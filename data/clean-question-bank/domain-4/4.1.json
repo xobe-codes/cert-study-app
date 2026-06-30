@@ -27,18 +27,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Encrypts traffic misses what this question tests. NAT maps inside local (private) to inside global (public) addresses.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+            "explanation": "Encrypts traffic describes a mechanism that could sound plausible for nat purpose. Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Encrypts traffic applies a different mechanism.",
+            "whatItDoes": "Encrypts traffic describes a mechanism that could sound plausible for nat purpose.",
+            "whyWrongHere": "Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Encrypts traffic applies a different mechanism.",
+            "misconceptionTested": "Applying \"Encrypts traffic\" without matching nat purpose"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Routes between VLANs misses what this question tests. NAT maps inside local (private) to inside global (public) addresses.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+            "explanation": "Routes between VLANs describes a mechanism that could sound plausible for nat purpose. Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Routes between VLANs applies a different mechanism.",
+            "whatItDoes": "Routes between VLANs describes a mechanism that could sound plausible for nat purpose.",
+            "whyWrongHere": "Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Routes between VLANs applies a different mechanism.",
+            "misconceptionTested": "Applying \"Routes between VLANs\" without matching nat purpose"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Assigns DHCP addresses misses what this question tests. NAT maps inside local (private) to inside global (public) addresses.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+            "explanation": "Assigns DHCP addresses describes a mechanism that could sound plausible for nat purpose. Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Assigns DHCP addresses applies a different mechanism.",
+            "whatItDoes": "Assigns DHCP addresses describes a mechanism that could sound plausible for nat purpose.",
+            "whyWrongHere": "Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Assigns DHCP addresses applies a different mechanism.",
+            "misconceptionTested": "Applying \"Assigns DHCP addresses\" without matching nat purpose"
           }
         ],
         "examTip": "NAT fails silently without inside/outside — label interfaces before reading address types."
@@ -69,18 +75,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Static NAT misses what this question tests. PAT/overload maps many inside hosts to one public IP using ports.",
-            "misconceptionTested": "Mixing up PAT/overload with static or dynamic NAT"
+            "explanation": "Static NAT describes a mechanism that could sound plausible for PAT/overload maps many inside hosts to one public IP using ports. Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — Static NAT applies a different mechanism.",
+            "whatItDoes": "Static NAT describes a mechanism that could sound plausible for PAT/overload maps many inside hosts to one public IP using ports.",
+            "whyWrongHere": "Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — Static NAT applies a different mechanism.",
+            "misconceptionTested": "Applying \"Static NAT\" without matching pat"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Dynamic NAT misses what this question tests. PAT/overload maps many inside hosts to one public IP using ports.",
-            "misconceptionTested": "Mixing up PAT/overload with static or dynamic NAT"
+            "explanation": "Dynamic NAT describes a mechanism that could sound plausible for PAT/overload maps many inside hosts to one public IP using ports. Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — Dynamic NAT applies a different mechanism.",
+            "whatItDoes": "Dynamic NAT describes a mechanism that could sound plausible for PAT/overload maps many inside hosts to one public IP using ports.",
+            "whyWrongHere": "Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — Dynamic NAT applies a different mechanism.",
+            "misconceptionTested": "Applying \"Dynamic NAT\" without matching pat"
           },
           {
             "choiceIndex": 3,
-            "explanation": "No NAT misses what this question tests. PAT/overload maps many inside hosts to one public IP using ports.",
-            "misconceptionTested": "Mixing up PAT/overload with static or dynamic NAT"
+            "explanation": "No NAT describes a mechanism that could sound plausible for PAT/overload maps many inside hosts to one public IP using ports. Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — No NAT applies a different mechanism.",
+            "whatItDoes": "No NAT describes a mechanism that could sound plausible for PAT/overload maps many inside hosts to one public IP using ports.",
+            "whyWrongHere": "Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — No NAT applies a different mechanism.",
+            "misconceptionTested": "Applying \"No NAT\" without matching pat"
           }
         ],
         "examTip": "On the exam: Every inside host needs its own public IP — PAT lets thousands of hosts share one public IP via ports",
@@ -112,18 +124,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "ip nat pool misses what this question tests. Static NAT uses ip nat inside source static <local> <global>.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+            "explanation": "ip nat pool describes a mechanism that could sound plausible for static nat. Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat pool applies a different mechanism.",
+            "whatItDoes": "ip nat pool describes a mechanism that could sound plausible for static nat.",
+            "whyWrongHere": "Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat pool applies a different mechanism.",
+            "misconceptionTested": "Applying \"ip nat pool\" without matching static nat"
           },
           {
             "choiceIndex": 2,
-            "explanation": "ip nat inside source list 1 interface g0/0 overload misses what this question tests. Static NAT uses ip nat inside source static <local> <global>.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+            "explanation": "ip nat inside source list 1 interface g0/0 overload describes a mechanism that could sound plausible for static nat. Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat inside source list 1 interface g0/0 overload applies a different mechanism.",
+            "whatItDoes": "ip nat inside source list 1 interface g0/0 overload describes a mechanism that could sound plausible for static nat.",
+            "whyWrongHere": "Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat inside source list 1 interface g0/0 overload applies a different mechanism.",
+            "misconceptionTested": "Applying \"ip nat inside source list 1 interfac\" without matching static nat"
           },
           {
             "choiceIndex": 3,
-            "explanation": "ip nat outside misses what this question tests. Static NAT uses ip nat inside source static <local> <global>.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+            "explanation": "ip nat outside describes a mechanism that could sound plausible for static nat. Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat outside applies a different mechanism.",
+            "whatItDoes": "ip nat outside describes a mechanism that could sound plausible for static nat.",
+            "whyWrongHere": "Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat outside applies a different mechanism.",
+            "misconceptionTested": "Applying \"ip nat outside\" without matching static nat"
           }
         ],
         "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
@@ -154,18 +172,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "A default route is a plausible symptom fix but does not match the most likely root cause here: Interfaces must be marked ip nat inside and ip nat outside.",
-            "misconceptionTested": "Selecting \"A default route\" without matching the scenario constraint"
+            "explanation": "A default route describes a mechanism that could sound plausible for interface tags. Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — A default route applies a different mechanism.",
+            "whatItDoes": "A default route describes a mechanism that could sound plausible for interface tags.",
+            "whyWrongHere": "Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — A default route applies a different mechanism.",
+            "misconceptionTested": "Applying \"A default route\" without matching interface tags"
           },
           {
             "choiceIndex": 2,
-            "explanation": "A loopback is a plausible symptom fix but does not match the most likely root cause here: Interfaces must be marked ip nat inside and ip nat outside.",
-            "misconceptionTested": "Selecting \"A loopback\" without matching the scenario constraint"
+            "explanation": "A loopback describes a mechanism that could sound plausible for interface tags. Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — A loopback applies a different mechanism.",
+            "whatItDoes": "A loopback describes a mechanism that could sound plausible for interface tags.",
+            "whyWrongHere": "Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — A loopback applies a different mechanism.",
+            "misconceptionTested": "Applying \"A loopback\" without matching interface tags"
           },
           {
             "choiceIndex": 3,
-            "explanation": "DNS is a plausible symptom fix but does not match the most likely root cause here: Interfaces must be marked ip nat inside and ip nat outside.",
-            "misconceptionTested": "Selecting \"DNS\" without matching the scenario constraint"
+            "explanation": "DNS describes a mechanism that could sound plausible for interface tags. Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — DNS applies a different mechanism.",
+            "whatItDoes": "DNS describes a mechanism that could sound plausible for interface tags.",
+            "whyWrongHere": "Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — DNS applies a different mechanism.",
+            "misconceptionTested": "Applying \"DNS\" without matching interface tags"
           }
         ],
         "examTip": "On the exam: Forgetting the inside/outside interface tags — Without ip nat inside/outside, NAT translates nothing"
@@ -197,17 +221,23 @@
           {
             "choiceIndex": 1,
             "explanation": "ip nat inside source static reflects a common trap: Every inside host needs its own public IP. PAT lets thousands of hosts share one public IP via ports.",
+            "whatItDoes": "ip nat inside source static describes a mechanism that could sound plausible for overload command.",
+            "whyWrongHere": "Given overload command, ip nat inside source list 1 interface g0/0 overload matches the tested behavior — ip nat inside source static applies a different mechanism.",
             "misconceptionTested": "Every inside host needs its own public IP"
           },
           {
             "choiceIndex": 2,
-            "explanation": "ip nat pool MYPOOL misses what this question tests. PAT: ip nat inside source list <ACL> interface <if> overload.",
-            "misconceptionTested": "Selecting \"ip nat pool MYPOOL\" without matching the scenario constraint"
+            "explanation": "ip nat pool MYPOOL describes a mechanism that could sound plausible for overload command. Given overload command, ip nat inside source list 1 interface g0/0 overload matches the tested behavior — ip nat pool MYPOOL applies a different mechanism.",
+            "whatItDoes": "ip nat pool MYPOOL describes a mechanism that could sound plausible for overload command.",
+            "whyWrongHere": "Given overload command, ip nat inside source list 1 interface g0/0 overload matches the tested behavior — ip nat pool MYPOOL applies a different mechanism.",
+            "misconceptionTested": "Applying \"ip nat pool MYPOOL\" without matching overload command"
           },
           {
             "choiceIndex": 3,
-            "explanation": "ip nat outside source list 1 misses what this question tests. PAT: ip nat inside source list <ACL> interface <if> overload.",
-            "misconceptionTested": "Selecting \"ip nat outside source list 1\" without matching the scenario constraint"
+            "explanation": "ip nat outside source list 1 describes a mechanism that could sound plausible for overload command. Given overload command, ip nat inside source list 1 interface g0/0 overload matches the tested behavior — ip nat outside source list 1 applies a different mechanism.",
+            "whatItDoes": "ip nat outside source list 1 describes a mechanism that could sound plausible for overload command.",
+            "whyWrongHere": "Given overload command, ip nat inside source list 1 interface g0/0 overload matches the tested behavior — ip nat outside source list 1 applies a different mechanism.",
+            "misconceptionTested": "Applying \"ip nat outside source list 1\" without matching overload command"
           }
         ],
         "examTip": "On the exam: Every inside host needs its own public IP — PAT lets thousands of hosts share one public IP via ports",
@@ -240,16 +270,22 @@
           {
             "choiceIndex": 0,
             "explanation": "Inside global reflects a common trap: Mixing up inside local and inside global. Inside local = private host; inside global = its public mapping.",
+            "whatItDoes": "Inside global describes a mechanism that could sound plausible for terminology.",
+            "whyWrongHere": "Given terminology, Inside local matches the tested behavior — Inside global applies a different mechanism.",
             "misconceptionTested": "Mixing up inside local and inside global"
           },
           {
             "choiceIndex": 2,
             "explanation": "Outside global reflects a common trap: Forgetting the inside/outside interface tags. Without ip nat inside/outside, NAT translates nothing.",
+            "whatItDoes": "Outside global describes a mechanism that could sound plausible for terminology.",
+            "whyWrongHere": "Given terminology, Inside local matches the tested behavior — Outside global applies a different mechanism.",
             "misconceptionTested": "Forgetting the inside/outside interface tags"
           },
           {
             "choiceIndex": 3,
             "explanation": "Outside local reflects a common trap: Forgetting the inside/outside interface tags. Without ip nat inside/outside, NAT translates nothing.",
+            "whatItDoes": "Outside local describes a mechanism that could sound plausible for terminology.",
+            "whyWrongHere": "Given terminology, Inside local matches the tested behavior — Outside local applies a different mechanism.",
             "misconceptionTested": "Forgetting the inside/outside interface tags"
           }
         ],
@@ -281,18 +317,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "show ip route misses what this question tests. show ip nat translations lists the current mappings.",
-            "misconceptionTested": "Selecting \"show ip route\" without matching the scenario constraint"
+            "explanation": "show ip route describes a mechanism that could sound plausible for show ip nat translations lists the current mappings. Given show ip nat translations lists the current mappings, show ip nat translations matches the tested behavior — show ip route applies a different mechanism.",
+            "whatItDoes": "show ip route describes a mechanism that could sound plausible for show ip nat translations lists the current mappings.",
+            "whyWrongHere": "Given show ip nat translations lists the current mappings, show ip nat translations matches the tested behavior — show ip route applies a different mechanism.",
+            "misconceptionTested": "Applying \"show ip route\" without matching verify"
           },
           {
             "choiceIndex": 2,
-            "explanation": "show running-config misses what this question tests. show ip nat translations lists the current mappings.",
-            "misconceptionTested": "Selecting \"show running-config\" without matching the scenario constraint"
+            "explanation": "show running-config describes a mechanism that could sound plausible for show ip nat translations lists the current mappings. Given show ip nat translations lists the current mappings, show ip nat translations matches the tested behavior — show running-config applies a different mechanism.",
+            "whatItDoes": "show running-config describes a mechanism that could sound plausible for show ip nat translations lists the current mappings.",
+            "whyWrongHere": "Given show ip nat translations lists the current mappings, show ip nat translations matches the tested behavior — show running-config applies a different mechanism.",
+            "misconceptionTested": "Applying \"show running-config\" without matching verify"
           },
           {
             "choiceIndex": 3,
-            "explanation": "show ip nat inside misses what this question tests. show ip nat translations lists the current mappings.",
-            "misconceptionTested": "Selecting \"show ip nat inside\" without matching the scenario constraint"
+            "explanation": "show ip nat inside describes a mechanism that could sound plausible for show ip nat translations lists the current mappings. Given show ip nat translations lists the current mappings, show ip nat translations matches the tested behavior — show ip nat inside applies a different mechanism.",
+            "whatItDoes": "show ip nat inside describes a mechanism that could sound plausible for show ip nat translations lists the current mappings.",
+            "whyWrongHere": "Given show ip nat translations lists the current mappings, show ip nat translations matches the tested behavior — show ip nat inside applies a different mechanism.",
+            "misconceptionTested": "Applying \"show ip nat inside\" without matching verify"
           }
         ],
         "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
@@ -322,7 +364,9 @@
           {
             "choiceIndex": 1,
             "explanation": "This statement is False, but the tested fact is: True — PAT tracks translations by inside global IP + port.",
-            "misconceptionTested": "Mixing up PAT/overload with static or dynamic NAT"
+            "whatItDoes": "False states the opposite of the tested fact about pat ports.",
+            "whyWrongHere": "Given pat ports, True matches the tested behavior — False applies a different mechanism.",
+            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
           }
         ],
         "examTip": "On the exam: Every inside host needs its own public IP — PAT lets thousands of hosts share one public IP via ports",
@@ -354,20 +398,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "CIDR does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "CIDR describes a mechanism that could sound plausible for addresses. Given addresses, NAT matches the tested behavior — CIDR applies a different mechanism.",
+            "whatItDoes": "CIDR describes a mechanism that could sound plausible for addresses.",
+            "whyWrongHere": "Given addresses, NAT matches the tested behavior — CIDR applies a different mechanism.",
+            "misconceptionTested": "Applying \"CIDR\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Classful addressing does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Classful addressing describes a mechanism that could sound plausible for addresses. Given addresses, NAT matches the tested behavior — Classful addressing applies a different mechanism.",
+            "whatItDoes": "Classful addressing describes a mechanism that could sound plausible for addresses.",
+            "whyWrongHere": "Given addresses, NAT matches the tested behavior — Classful addressing applies a different mechanism.",
+            "misconceptionTested": "Applying \"Classful addressing\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "VPN does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "VPN describes a mechanism that could sound plausible for addresses. Given addresses, NAT matches the tested behavior — VPN applies a different mechanism.",
+            "whatItDoes": "VPN describes a mechanism that could sound plausible for addresses.",
+            "whyWrongHere": "Given addresses, NAT matches the tested behavior — VPN applies a different mechanism.",
+            "misconceptionTested": "Applying \"VPN\" without matching nat",
             "needsExplanationReview": true
           }
         ],
@@ -401,20 +451,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "192.168.1.1 Router A Gi0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local. Given inside local, 192.168.1.2 Host A matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
+            "whatItDoes": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, 192.168.1.2 Host A matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"192.168.1.1 Router A Gi0/0\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "179.43.44.1 Router A S0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "179.43.44.1 Router A S0/0 describes a mechanism that could sound plausible for inside local. Given inside local, 192.168.1.2 Host A matches the tested behavior — 179.43.44.1 Router A S0/0 applies a different mechanism.",
+            "whatItDoes": "179.43.44.1 Router A S0/0 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, 192.168.1.2 Host A matches the tested behavior — 179.43.44.1 Router A S0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"179.43.44.1 Router A S0/0\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "198.23.53.3 web server does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "198.23.53.3 web server describes a mechanism that could sound plausible for inside local. Given inside local, 192.168.1.2 Host A matches the tested behavior — 198.23.53.3 web server applies a different mechanism.",
+            "whatItDoes": "198.23.53.3 web server describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, 192.168.1.2 Host A matches the tested behavior — 198.23.53.3 web server applies a different mechanism.",
+            "misconceptionTested": "Applying \"198.23.53.3 web server\" without matching nat",
             "needsExplanationReview": true
           }
         ],
@@ -448,20 +504,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "192.168.1.2 Host A does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "192.168.1.2 Host A describes a mechanism that could sound plausible for inside local. Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 192.168.1.2 Host A applies a different mechanism.",
+            "whatItDoes": "192.168.1.2 Host A describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 192.168.1.2 Host A applies a different mechanism.",
+            "misconceptionTested": "Applying \"192.168.1.2 Host A\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "192.168.1.1 Router A Gi0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local. Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
+            "whatItDoes": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"192.168.1.1 Router A Gi0/0\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "198.23.53.3 web server does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "198.23.53.3 web server describes a mechanism that could sound plausible for inside local. Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 198.23.53.3 web server applies a different mechanism.",
+            "whatItDoes": "198.23.53.3 web server describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 198.23.53.3 web server applies a different mechanism.",
+            "misconceptionTested": "Applying \"198.23.53.3 web server\" without matching nat",
             "needsExplanationReview": true
           }
         ],
@@ -495,20 +557,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "192.168.1.2 Host A does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "192.168.1.2 Host A describes a mechanism that could sound plausible for inside local. Given inside local, 198.23.53.3 web server matches the tested behavior — 192.168.1.2 Host A applies a different mechanism.",
+            "whatItDoes": "192.168.1.2 Host A describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, 198.23.53.3 web server matches the tested behavior — 192.168.1.2 Host A applies a different mechanism.",
+            "misconceptionTested": "Applying \"192.168.1.2 Host A\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "192.168.1.1 Router A Gi0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local. Given inside local, 198.23.53.3 web server matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
+            "whatItDoes": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, 198.23.53.3 web server matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"192.168.1.1 Router A Gi0/0\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "179.43.44.1 Router A S0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "179.43.44.1 Router A S0/0 describes a mechanism that could sound plausible for inside local. Given inside local, 198.23.53.3 web server matches the tested behavior — 179.43.44.1 Router A S0/0 applies a different mechanism.",
+            "whatItDoes": "179.43.44.1 Router A S0/0 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, 198.23.53.3 web server matches the tested behavior — 179.43.44.1 Router A S0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"179.43.44.1 Router A S0/0\" without matching nat",
             "needsExplanationReview": true
           }
         ],
@@ -540,20 +608,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router#show nat translations does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#show nat translations describes a mechanism that could sound plausible for translations. Given translations, Router#show ip nat translations matches the tested behavior — Router#show nat translations applies a different mechanism.",
+            "whatItDoes": "Router#show nat translations describes a mechanism that could sound plausible for translations.",
+            "whyWrongHere": "Given translations, Router#show ip nat translations matches the tested behavior — Router#show nat translations applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show nat translations\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#debug ip nat translations does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#debug ip nat translations describes a mechanism that could sound plausible for translations. Given translations, Router#show ip nat translations matches the tested behavior — Router#debug ip nat translations applies a different mechanism.",
+            "whatItDoes": "Router#debug ip nat translations describes a mechanism that could sound plausible for translations.",
+            "whyWrongHere": "Given translations, Router#show ip nat translations matches the tested behavior — Router#debug ip nat translations applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#debug ip nat translations\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show translations nat does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#show translations nat describes a mechanism that could sound plausible for translations. Given translations, Router#show ip nat translations matches the tested behavior — Router#show translations nat applies a different mechanism.",
+            "whatItDoes": "Router#show translations nat describes a mechanism that could sound plausible for translations.",
+            "whyWrongHere": "Given translations, Router#show ip nat translations matches the tested behavior — Router#show translations nat applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show translations nat\" without matching nat",
             "needsExplanationReview": true
           }
         ],
@@ -585,20 +659,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#show ip nat translations does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#show ip nat translations describes a mechanism that could sound plausible for overview. Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat translations applies a different mechanism.",
+            "whatItDoes": "Router#show ip nat translations describes a mechanism that could sound plausible for overview.",
+            "whyWrongHere": "Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat translations applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip nat translations\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router#show ip nat summary does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#show ip nat summary describes a mechanism that could sound plausible for overview. Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat summary applies a different mechanism.",
+            "whatItDoes": "Router#show ip nat summary describes a mechanism that could sound plausible for overview.",
+            "whyWrongHere": "Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat summary applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip nat summary\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#show ip nat status does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#show ip nat status describes a mechanism that could sound plausible for overview. Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat status applies a different mechanism.",
+            "whatItDoes": "Router#show ip nat status describes a mechanism that could sound plausible for overview.",
+            "whyWrongHere": "Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat status applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip nat status\" without matching nat",
             "needsExplanationReview": true
           }
         ],
@@ -633,18 +713,24 @@
           {
             "choiceIndex": 1,
             "explanation": "RouterA(config)#nat source static 192.168.1.3 179.43.44.1 reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
+            "whatItDoes": "RouterA(config)#nat source static 192.168.1.3 179.43.44.1 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the tested behavior — RouterA(config)#nat source static 192.168.1.3 179.43.44.1 applies a different mechanism.",
             "misconceptionTested": "Expecting static NAT to serve many hosts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
+            "whatItDoes": "RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the tested behavior — RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 applies a different mechanism.",
             "misconceptionTested": "Expecting static NAT to serve many hosts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
+            "whatItDoes": "RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the tested behavior — RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 applies a different mechanism.",
             "misconceptionTested": "Expecting static NAT to serve many hosts",
             "needsExplanationReview": true
           }
@@ -679,20 +765,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 describes a mechanism that could sound plausible for inside local. Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.0/28 applies a different mechanism.",
+            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.0/28 applies a different mechanism.",
+            "misconceptionTested": "Applying \"RouterA(config)#ip nat pool EntPool \" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 describes a mechanism that could sound plausible for inside local. Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 applies a different mechanism.",
+            "whatItDoes": "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"RouterA(config)#ip pool EntPool 179.\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 describes a mechanism that could sound plausible for inside local. Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 applies a different mechanism.",
+            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 applies a different mechanism.",
+            "misconceptionTested": "Applying \"RouterA(config)#ip nat pool EntPool \" without matching nat",
             "needsExplanationReview": true
           }
         ],
@@ -725,19 +817,25 @@
           {
             "choiceIndex": 0,
             "explanation": "NAT address types are fixed definitions — match the stem to the exact address role (who translates, who is local vs global).",
+            "whatItDoes": "The access list allows incoming access from outside global addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list.",
+            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows incoming access from outside global addresses. applies a different mechanism.",
             "misconceptionTested": "Swapping inside/outside or local/global NAT roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The access list allows outgoing access from outside local addresses. is not the behavior described here. .",
-            "misconceptionTested": "Swapping inside/outside or local/global NAT roles",
+            "explanation": "The access list allows outgoing access from outside local addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list. Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from outside local addresses. applies a different mechanism.",
+            "whatItDoes": "The access list allows outgoing access from outside local addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list.",
+            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from outside local addresses. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The access list allows outgoing acce\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The access list allows outgoing access from inside global addresses. is not the behavior described here. .",
-            "misconceptionTested": "Swapping inside/outside or local/global NAT roles",
+            "explanation": "The access list allows outgoing access from inside global addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list. Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from inside global addresses. applies a different mechanism.",
+            "whatItDoes": "The access list allows outgoing access from inside global addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list.",
+            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from inside global addresses. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The access list allows outgoing acce\" without matching nat",
             "needsExplanationReview": true
           }
         ],
@@ -769,20 +867,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#no ip nat translation does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#no ip nat translation describes a mechanism that could sound plausible for translations. Given translations, Router#clear ip nat translation * matches the tested behavior — Router#no ip nat translation applies a different mechanism.",
+            "whatItDoes": "Router#no ip nat translation describes a mechanism that could sound plausible for translations.",
+            "whyWrongHere": "Given translations, Router#clear ip nat translation * matches the tested behavior — Router#no ip nat translation applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#no ip nat translation\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router#clear ip nat translation does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#clear ip nat translation describes a mechanism that could sound plausible for translations. Given translations, Router#clear ip nat translation * matches the tested behavior — Router#clear ip nat translation applies a different mechanism.",
+            "whatItDoes": "Router#clear ip nat translation describes a mechanism that could sound plausible for translations.",
+            "whyWrongHere": "Given translations, Router#clear ip nat translation * matches the tested behavior — Router#clear ip nat translation applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#clear ip nat translation\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#clear ip nat does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#clear ip nat describes a mechanism that could sound plausible for translations. Given translations, Router#clear ip nat translation * matches the tested behavior — Router#clear ip nat applies a different mechanism.",
+            "whatItDoes": "Router#clear ip nat describes a mechanism that could sound plausible for translations.",
+            "whyWrongHere": "Given translations, Router#clear ip nat translation * matches the tested behavior — Router#clear ip nat applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#clear ip nat\" without matching nat",
             "needsExplanationReview": true
           }
         ],
@@ -814,20 +918,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#show ip translations does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#show ip translations describes a mechanism that could sound plausible for translations. Given translations, Router#debug ip nat matches the tested behavior — Router#show ip translations applies a different mechanism.",
+            "whatItDoes": "Router#show ip translations describes a mechanism that could sound plausible for translations.",
+            "whyWrongHere": "Given translations, Router#debug ip nat matches the tested behavior — Router#show ip translations applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip translations\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#debug ip translations does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#debug ip translations describes a mechanism that could sound plausible for translations. Given translations, Router#debug ip nat matches the tested behavior — Router#debug ip translations applies a different mechanism.",
+            "whatItDoes": "Router#debug ip translations describes a mechanism that could sound plausible for translations.",
+            "whyWrongHere": "Given translations, Router#debug ip nat matches the tested behavior — Router#debug ip translations applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#debug ip translations\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show ip nat does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#show ip nat describes a mechanism that could sound plausible for translations. Given translations, Router#debug ip nat matches the tested behavior — Router#show ip nat applies a different mechanism.",
+            "whatItDoes": "Router#show ip nat describes a mechanism that could sound plausible for translations.",
+            "whyWrongHere": "Given translations, Router#debug ip nat matches the tested behavior — Router#show ip nat applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip nat\" without matching nat",
             "needsExplanationReview": true
           }
         ],
@@ -863,18 +973,24 @@
           {
             "choiceIndex": 0,
             "explanation": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool reflects a common trap: Every inside host needs its own public IP. PAT lets thousands of hosts share one public IP via ports.",
+            "whatItDoes": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload matches the tested behavior — RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool applies a different mechanism.",
             "misconceptionTested": "Every inside host needs its own public IP",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool describes a mechanism that could sound plausible for inside local. Given inside local, RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool applies a different mechanism.",
+            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool applies a different mechanism.",
+            "misconceptionTested": "Applying \"RouterA(config)#ip nat pool EntPool \" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool reflects a common trap: Every inside host needs its own public IP. PAT lets thousands of hosts share one public IP via ports.",
+            "whatItDoes": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload matches the tested behavior — RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool applies a different mechanism.",
             "misconceptionTested": "Every inside host needs its own public IP",
             "needsExplanationReview": true
           }
@@ -909,20 +1025,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "CIDR does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "CIDR describes a mechanism that could sound plausible for addresses. Given addresses, NAT matches the tested behavior — CIDR applies a different mechanism.",
+            "whatItDoes": "CIDR describes a mechanism that could sound plausible for addresses.",
+            "whyWrongHere": "Given addresses, NAT matches the tested behavior — CIDR applies a different mechanism.",
+            "misconceptionTested": "Applying \"CIDR\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Classful addressing does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Classful addressing describes a mechanism that could sound plausible for addresses. Given addresses, NAT matches the tested behavior — Classful addressing applies a different mechanism.",
+            "whatItDoes": "Classful addressing describes a mechanism that could sound plausible for addresses.",
+            "whyWrongHere": "Given addresses, NAT matches the tested behavior — Classful addressing applies a different mechanism.",
+            "misconceptionTested": "Applying \"Classful addressing\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "VPN does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "VPN describes a mechanism that could sound plausible for addresses. Given addresses, NAT matches the tested behavior — VPN applies a different mechanism.",
+            "whatItDoes": "VPN describes a mechanism that could sound plausible for addresses.",
+            "whyWrongHere": "Given addresses, NAT matches the tested behavior — VPN applies a different mechanism.",
+            "misconceptionTested": "Applying \"VPN\" without matching nat",
             "needsExplanationReview": true
           }
         ],
@@ -959,20 +1081,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "192.168.1.1 Router A Gi0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local. Given inside local, 192.168.1.2 Host A matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
+            "whatItDoes": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, 192.168.1.2 Host A matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"192.168.1.1 Router A Gi0/0\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "179.43.44.1 Router A S0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "179.43.44.1 Router A S0/0 describes a mechanism that could sound plausible for inside local. Given inside local, 192.168.1.2 Host A matches the tested behavior — 179.43.44.1 Router A S0/0 applies a different mechanism.",
+            "whatItDoes": "179.43.44.1 Router A S0/0 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, 192.168.1.2 Host A matches the tested behavior — 179.43.44.1 Router A S0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"179.43.44.1 Router A S0/0\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "198.23.53.3 web server does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "198.23.53.3 web server describes a mechanism that could sound plausible for inside local. Given inside local, 192.168.1.2 Host A matches the tested behavior — 198.23.53.3 web server applies a different mechanism.",
+            "whatItDoes": "198.23.53.3 web server describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, 192.168.1.2 Host A matches the tested behavior — 198.23.53.3 web server applies a different mechanism.",
+            "misconceptionTested": "Applying \"198.23.53.3 web server\" without matching nat",
             "needsExplanationReview": true
           }
         ],
@@ -1009,20 +1137,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "192.168.1.2 Host A does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "192.168.1.2 Host A describes a mechanism that could sound plausible for inside local. Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 192.168.1.2 Host A applies a different mechanism.",
+            "whatItDoes": "192.168.1.2 Host A describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 192.168.1.2 Host A applies a different mechanism.",
+            "misconceptionTested": "Applying \"192.168.1.2 Host A\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "192.168.1.1 Router A Gi0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local. Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
+            "whatItDoes": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"192.168.1.1 Router A Gi0/0\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "198.23.53.3 web server does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "198.23.53.3 web server describes a mechanism that could sound plausible for inside local. Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 198.23.53.3 web server applies a different mechanism.",
+            "whatItDoes": "198.23.53.3 web server describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 198.23.53.3 web server applies a different mechanism.",
+            "misconceptionTested": "Applying \"198.23.53.3 web server\" without matching nat",
             "needsExplanationReview": true
           }
         ],
@@ -1059,20 +1193,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "192.168.1.2 Host A does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "192.168.1.2 Host A describes a mechanism that could sound plausible for inside local. Given inside local, 198.23.53.3 web server matches the tested behavior — 192.168.1.2 Host A applies a different mechanism.",
+            "whatItDoes": "192.168.1.2 Host A describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, 198.23.53.3 web server matches the tested behavior — 192.168.1.2 Host A applies a different mechanism.",
+            "misconceptionTested": "Applying \"192.168.1.2 Host A\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "192.168.1.1 Router A Gi0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local. Given inside local, 198.23.53.3 web server matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
+            "whatItDoes": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, 198.23.53.3 web server matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"192.168.1.1 Router A Gi0/0\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "179.43.44.1 Router A S0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "179.43.44.1 Router A S0/0 describes a mechanism that could sound plausible for inside local. Given inside local, 198.23.53.3 web server matches the tested behavior — 179.43.44.1 Router A S0/0 applies a different mechanism.",
+            "whatItDoes": "179.43.44.1 Router A S0/0 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, 198.23.53.3 web server matches the tested behavior — 179.43.44.1 Router A S0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"179.43.44.1 Router A S0/0\" without matching nat",
             "needsExplanationReview": true
           }
         ],
@@ -1108,20 +1248,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router#show nat translations does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#show nat translations describes a mechanism that could sound plausible for translations. Given translations, Router#show ip nat translations matches the tested behavior — Router#show nat translations applies a different mechanism.",
+            "whatItDoes": "Router#show nat translations describes a mechanism that could sound plausible for translations.",
+            "whyWrongHere": "Given translations, Router#show ip nat translations matches the tested behavior — Router#show nat translations applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show nat translations\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#debug ip nat translations does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#debug ip nat translations describes a mechanism that could sound plausible for translations. Given translations, Router#show ip nat translations matches the tested behavior — Router#debug ip nat translations applies a different mechanism.",
+            "whatItDoes": "Router#debug ip nat translations describes a mechanism that could sound plausible for translations.",
+            "whyWrongHere": "Given translations, Router#show ip nat translations matches the tested behavior — Router#debug ip nat translations applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#debug ip nat translations\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show translations nat does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#show translations nat describes a mechanism that could sound plausible for translations. Given translations, Router#show ip nat translations matches the tested behavior — Router#show translations nat applies a different mechanism.",
+            "whatItDoes": "Router#show translations nat describes a mechanism that could sound plausible for translations.",
+            "whyWrongHere": "Given translations, Router#show ip nat translations matches the tested behavior — Router#show translations nat applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show translations nat\" without matching nat",
             "needsExplanationReview": true
           }
         ],
@@ -1158,20 +1304,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#show ip nat translations does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#show ip nat translations describes a mechanism that could sound plausible for overview. Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat translations applies a different mechanism.",
+            "whatItDoes": "Router#show ip nat translations describes a mechanism that could sound plausible for overview.",
+            "whyWrongHere": "Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat translations applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip nat translations\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router#show ip nat summary does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#show ip nat summary describes a mechanism that could sound plausible for overview. Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat summary applies a different mechanism.",
+            "whatItDoes": "Router#show ip nat summary describes a mechanism that could sound plausible for overview.",
+            "whyWrongHere": "Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat summary applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip nat summary\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#show ip nat status does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#show ip nat status describes a mechanism that could sound plausible for overview. Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat status applies a different mechanism.",
+            "whatItDoes": "Router#show ip nat status describes a mechanism that could sound plausible for overview.",
+            "whyWrongHere": "Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat status applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip nat status\" without matching nat",
             "needsExplanationReview": true
           }
         ],
@@ -1208,18 +1360,24 @@
           {
             "choiceIndex": 1,
             "explanation": "RouterA(config)#nat source static 192.168.1.3 179.43.44.1 reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
+            "whatItDoes": "RouterA(config)#nat source static 192.168.1.3 179.43.44.1 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the tested behavior — RouterA(config)#nat source static 192.168.1.3 179.43.44.1 applies a different mechanism.",
             "misconceptionTested": "Expecting static NAT to serve many hosts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
+            "whatItDoes": "RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the tested behavior — RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 applies a different mechanism.",
             "misconceptionTested": "Expecting static NAT to serve many hosts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
+            "whatItDoes": "RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the tested behavior — RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 applies a different mechanism.",
             "misconceptionTested": "Expecting static NAT to serve many hosts",
             "needsExplanationReview": true
           }
@@ -1259,20 +1417,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 describes a mechanism that could sound plausible for inside local. Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.0/28 applies a different mechanism.",
+            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.0/28 applies a different mechanism.",
+            "misconceptionTested": "Applying \"RouterA(config)#ip nat pool EntPool \" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 describes a mechanism that could sound plausible for inside local. Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 applies a different mechanism.",
+            "whatItDoes": "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"RouterA(config)#ip pool EntPool 179.\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 describes a mechanism that could sound plausible for inside local. Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 applies a different mechanism.",
+            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 applies a different mechanism.",
+            "misconceptionTested": "Applying \"RouterA(config)#ip nat pool EntPool \" without matching nat",
             "needsExplanationReview": true
           }
         ],
@@ -1311,19 +1475,25 @@
           {
             "choiceIndex": 0,
             "explanation": "NAT address types are fixed definitions — match the stem to the exact address role (who translates, who is local vs global).",
+            "whatItDoes": "The access list allows incoming access from outside global addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list.",
+            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows incoming access from outside global addresses. applies a different mechanism.",
             "misconceptionTested": "Swapping inside/outside or local/global NAT roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The access list allows outgoing access from outside local addresses. is not the behavior described here. .",
-            "misconceptionTested": "Swapping inside/outside or local/global NAT roles",
+            "explanation": "The access list allows outgoing access from outside local addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list. Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from outside local addresses. applies a different mechanism.",
+            "whatItDoes": "The access list allows outgoing access from outside local addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list.",
+            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from outside local addresses. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The access list allows outgoing acce\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The access list allows outgoing access from inside global addresses. is not the behavior described here. .",
-            "misconceptionTested": "Swapping inside/outside or local/global NAT roles",
+            "explanation": "The access list allows outgoing access from inside global addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list. Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from inside global addresses. applies a different mechanism.",
+            "whatItDoes": "The access list allows outgoing access from inside global addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list.",
+            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from inside global addresses. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The access list allows outgoing acce\" without matching nat",
             "needsExplanationReview": true
           }
         ],
@@ -1358,20 +1528,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#no ip nat translation does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#no ip nat translation describes a mechanism that could sound plausible for translations. Given translations, Router#clear ip nat translation * matches the tested behavior — Router#no ip nat translation applies a different mechanism.",
+            "whatItDoes": "Router#no ip nat translation describes a mechanism that could sound plausible for translations.",
+            "whyWrongHere": "Given translations, Router#clear ip nat translation * matches the tested behavior — Router#no ip nat translation applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#no ip nat translation\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router#clear ip nat translation does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#clear ip nat translation describes a mechanism that could sound plausible for translations. Given translations, Router#clear ip nat translation * matches the tested behavior — Router#clear ip nat translation applies a different mechanism.",
+            "whatItDoes": "Router#clear ip nat translation describes a mechanism that could sound plausible for translations.",
+            "whyWrongHere": "Given translations, Router#clear ip nat translation * matches the tested behavior — Router#clear ip nat translation applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#clear ip nat translation\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#clear ip nat does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#clear ip nat describes a mechanism that could sound plausible for translations. Given translations, Router#clear ip nat translation * matches the tested behavior — Router#clear ip nat applies a different mechanism.",
+            "whatItDoes": "Router#clear ip nat describes a mechanism that could sound plausible for translations.",
+            "whyWrongHere": "Given translations, Router#clear ip nat translation * matches the tested behavior — Router#clear ip nat applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#clear ip nat\" without matching nat",
             "needsExplanationReview": true
           }
         ],
@@ -1406,20 +1582,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#show ip translations does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#show ip translations describes a mechanism that could sound plausible for translations. Given translations, Router#debug ip nat matches the tested behavior — Router#show ip translations applies a different mechanism.",
+            "whatItDoes": "Router#show ip translations describes a mechanism that could sound plausible for translations.",
+            "whyWrongHere": "Given translations, Router#debug ip nat matches the tested behavior — Router#show ip translations applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip translations\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#debug ip translations does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#debug ip translations describes a mechanism that could sound plausible for translations. Given translations, Router#debug ip nat matches the tested behavior — Router#debug ip translations applies a different mechanism.",
+            "whatItDoes": "Router#debug ip translations describes a mechanism that could sound plausible for translations.",
+            "whyWrongHere": "Given translations, Router#debug ip nat matches the tested behavior — Router#debug ip translations applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#debug ip translations\" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show ip nat does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "Router#show ip nat describes a mechanism that could sound plausible for translations. Given translations, Router#debug ip nat matches the tested behavior — Router#show ip nat applies a different mechanism.",
+            "whatItDoes": "Router#show ip nat describes a mechanism that could sound plausible for translations.",
+            "whyWrongHere": "Given translations, Router#debug ip nat matches the tested behavior — Router#show ip nat applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip nat\" without matching nat",
             "needsExplanationReview": true
           }
         ],
@@ -1459,18 +1641,24 @@
           {
             "choiceIndex": 0,
             "explanation": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool reflects a common trap: Every inside host needs its own public IP. PAT lets thousands of hosts share one public IP via ports.",
+            "whatItDoes": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload matches the tested behavior — RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool applies a different mechanism.",
             "misconceptionTested": "Every inside host needs its own public IP",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool describes a mechanism that could sound plausible for inside local. Given inside local, RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool applies a different mechanism.",
+            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool applies a different mechanism.",
+            "misconceptionTested": "Applying \"RouterA(config)#ip nat pool EntPool \" without matching nat",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool reflects a common trap: Every inside host needs its own public IP. PAT lets thousands of hosts share one public IP via ports.",
+            "whatItDoes": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool describes a mechanism that could sound plausible for inside local.",
+            "whyWrongHere": "Given inside local, RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload matches the tested behavior — RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool applies a different mechanism.",
             "misconceptionTested": "Every inside host needs its own public IP",
             "needsExplanationReview": true
           }

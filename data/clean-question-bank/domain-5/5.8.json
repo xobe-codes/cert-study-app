@@ -31,20 +31,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Enable WPA2 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Enable WPA2\" without matching the scenario constraint",
+            "explanation": "Enable WPA2 describes a mechanism that could sound plausible for wireless security. Given wireless security, Enable MAC filtering matches the tested behavior — Enable WPA2 applies a different mechanism.",
+            "whatItDoes": "Enable WPA2 describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, Enable MAC filtering matches the tested behavior — Enable WPA2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Enable WPA2\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Enable port security does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Enable port security\" without matching the scenario constraint",
+            "explanation": "Enable port security describes a mechanism that could sound plausible for wireless security. Given wireless security, Enable MAC filtering matches the tested behavior — Enable port security applies a different mechanism.",
+            "whatItDoes": "Enable port security describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, Enable MAC filtering matches the tested behavior — Enable port security applies a different mechanism.",
+            "misconceptionTested": "Applying \"Enable port security\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Disable SSID broadcasts does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Disable SSID broadcasts\" without matching the scenario constraint",
+            "explanation": "Disable SSID broadcasts describes flooding the frame to multiple ports in the VLAN. Given wireless security, Enable MAC filtering matches the tested behavior — Disable SSID broadcasts applies a different mechanism.",
+            "whatItDoes": "Disable SSID broadcasts describes flooding the frame to multiple ports in the VLAN.",
+            "whyWrongHere": "Given wireless security, Enable MAC filtering matches the tested behavior — Disable SSID broadcasts applies a different mechanism.",
+            "misconceptionTested": "Applying \"Disable SSID broadcasts\" without matching wireless security",
             "needsExplanationReview": true
           }
         ],
@@ -79,20 +85,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Creation of a PSK does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Creation of a PSK\" without matching the scenario constraint",
+            "explanation": "Creation of a PSK describes a mechanism that could sound plausible for wireless security. Given wireless security, Certificate infrastructure matches the tested behavior — Creation of a PSK applies a different mechanism.",
+            "whatItDoes": "Creation of a PSK describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, Certificate infrastructure matches the tested behavior — Creation of a PSK applies a different mechanism.",
+            "misconceptionTested": "Applying \"Creation of a PSK\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "192-bit key strength does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"192-bit key strength\" without matching the scenario constraint",
+            "explanation": "192-bit key strength describes a mechanism that could sound plausible for wireless security. Given wireless security, Certificate infrastructure matches the tested behavior — 192-bit key strength applies a different mechanism.",
+            "whatItDoes": "192-bit key strength describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, Certificate infrastructure matches the tested behavior — 192-bit key strength applies a different mechanism.",
+            "misconceptionTested": "Applying \"192-bit key strength\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "802.11ac does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"802.11ac\" without matching the scenario constraint",
+            "explanation": "802.11ac describes a mechanism that could sound plausible for wireless security. Given wireless security, Certificate infrastructure matches the tested behavior — 802.11ac applies a different mechanism.",
+            "whatItDoes": "802.11ac describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, Certificate infrastructure matches the tested behavior — 802.11ac applies a different mechanism.",
+            "misconceptionTested": "Applying \"802.11ac\" without matching wireless security",
             "needsExplanationReview": true
           }
         ],
@@ -128,20 +140,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "TKIP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"TKIP\" without matching the scenario constraint",
+            "explanation": "TKIP describes a mechanism that could sound plausible for wireless security. Given wireless security, MIC matches the tested behavior — TKIP applies a different mechanism.",
+            "whatItDoes": "TKIP describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, MIC matches the tested behavior — TKIP applies a different mechanism.",
+            "misconceptionTested": "Applying \"TKIP\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "AES does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"AES\" without matching the scenario constraint",
+            "explanation": "AES describes a mechanism that could sound plausible for wireless security. Given wireless security, MIC matches the tested behavior — AES applies a different mechanism.",
+            "whatItDoes": "AES describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, MIC matches the tested behavior — AES applies a different mechanism.",
+            "misconceptionTested": "Applying \"AES\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "CRC does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"CRC\" without matching the scenario constraint",
+            "explanation": "CRC describes a mechanism that could sound plausible for wireless security. Given wireless security, MIC matches the tested behavior — CRC applies a different mechanism.",
+            "whatItDoes": "CRC describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, MIC matches the tested behavior — CRC applies a different mechanism.",
+            "misconceptionTested": "Applying \"CRC\" without matching wireless security",
             "needsExplanationReview": true
           }
         ],
@@ -176,20 +194,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "64-bit does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"64-bit\" without matching the scenario constraint",
+            "explanation": "64-bit describes a mechanism that could sound plausible for wireless security. Given wireless security, 192-bit matches the tested behavior — 64-bit applies a different mechanism.",
+            "whatItDoes": "64-bit describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, 192-bit matches the tested behavior — 64-bit applies a different mechanism.",
+            "misconceptionTested": "Applying \"64-bit\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "128-bit does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"128-bit\" without matching the scenario constraint",
+            "explanation": "128-bit describes a mechanism that could sound plausible for wireless security. Given wireless security, 192-bit matches the tested behavior — 128-bit applies a different mechanism.",
+            "whatItDoes": "128-bit describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, 192-bit matches the tested behavior — 128-bit applies a different mechanism.",
+            "misconceptionTested": "Applying \"128-bit\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "256-bit does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"256-bit\" without matching the scenario constraint",
+            "explanation": "256-bit describes a mechanism that could sound plausible for wireless security. Given wireless security, 192-bit matches the tested behavior — 256-bit applies a different mechanism.",
+            "whatItDoes": "256-bit describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, 192-bit matches the tested behavior — 256-bit applies a different mechanism.",
+            "misconceptionTested": "Applying \"256-bit\" without matching wireless security",
             "needsExplanationReview": true
           }
         ],
@@ -224,19 +248,25 @@
           {
             "choiceIndex": 0,
             "explanation": "WEP is deprecated and insecure — CCNA expects WPA2/WPA3 for real deployments.",
+            "whatItDoes": "WPA was released at the same time as WEP. describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, WPA was released as a fix for poor encryption. matches the tested behavior — WPA was released at the same time as WEP. applies a different mechanism.",
             "misconceptionTested": "Choosing WEP for compatibility",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "WPA was released as a fix for poor coverage. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"WPA was released as a fix for poor cover…\" without matching the scenario constraint",
+            "explanation": "WPA was released as a fix for poor coverage. describes a mechanism that could sound plausible for wireless security. Given wireless security, WPA was released as a fix for poor encryption. matches the tested behavior — WPA was released as a fix for poor coverage. applies a different mechanism.",
+            "whatItDoes": "WPA was released as a fix for poor coverage. describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, WPA was released as a fix for poor encryption. matches the tested behavior — WPA was released as a fix for poor coverage. applies a different mechanism.",
+            "misconceptionTested": "Applying \"WPA was released as a fix for poor c\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The Wi-Fi Alliance wanted to rebrand WEP with WPA. is not the behavior described here. .",
-            "misconceptionTested": "Choosing WEP for compatibility",
+            "explanation": "The Wi-Fi Alliance wanted to rebrand WEP with WPA. describes a mechanism that could sound plausible for wireless security. Given wireless security, WPA was released as a fix for poor encryption. matches the tested behavior — The Wi-Fi Alliance wanted to rebrand WEP with WPA. applies a different mechanism.",
+            "whatItDoes": "The Wi-Fi Alliance wanted to rebrand WEP with WPA. describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, WPA was released as a fix for poor encryption. matches the tested behavior — The Wi-Fi Alliance wanted to rebrand WEP with WPA. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The Wi-Fi Alliance wanted to rebrand\" without matching wireless security",
             "needsExplanationReview": true
           }
         ],
@@ -270,20 +300,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The use of certificates does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The use of certificates\" without matching the scenario constraint",
+            "explanation": "The use of certificates describes a mechanism that could sound plausible for wireless security. Given wireless security, Frame-level encryption matches the tested behavior — The use of certificates applies a different mechanism.",
+            "whatItDoes": "The use of certificates describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, Frame-level encryption matches the tested behavior — The use of certificates applies a different mechanism.",
+            "misconceptionTested": "Applying \"The use of certificates\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Pre-shared keys does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Pre-shared keys\" without matching the scenario constraint",
+            "explanation": "Pre-shared keys describes a mechanism that could sound plausible for wireless security. Given wireless security, Frame-level encryption matches the tested behavior — Pre-shared keys applies a different mechanism.",
+            "whatItDoes": "Pre-shared keys describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, Frame-level encryption matches the tested behavior — Pre-shared keys applies a different mechanism.",
+            "misconceptionTested": "Applying \"Pre-shared keys\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "CRC checking does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"CRC checking\" without matching the scenario constraint",
+            "explanation": "CRC checking describes a mechanism that could sound plausible for wireless security. Given wireless security, Frame-level encryption matches the tested behavior — CRC checking applies a different mechanism.",
+            "whatItDoes": "CRC checking describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, Frame-level encryption matches the tested behavior — CRC checking applies a different mechanism.",
+            "misconceptionTested": "Applying \"CRC checking\" without matching wireless security",
             "needsExplanationReview": true
           }
         ],
@@ -318,20 +354,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RC4 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"RC4\" without matching the scenario constraint",
+            "explanation": "RC4 describes a mechanism that could sound plausible for wireless security. Given wireless security, AES-CCMP matches the tested behavior — RC4 applies a different mechanism.",
+            "whatItDoes": "RC4 describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, AES-CCMP matches the tested behavior — RC4 applies a different mechanism.",
+            "misconceptionTested": "Applying \"RC4\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "MD5 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"MD5\" without matching the scenario constraint",
+            "explanation": "MD5 describes a mechanism that could sound plausible for wireless security. Given wireless security, AES-CCMP matches the tested behavior — MD5 applies a different mechanism.",
+            "whatItDoes": "MD5 describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, AES-CCMP matches the tested behavior — MD5 applies a different mechanism.",
+            "misconceptionTested": "Applying \"MD5\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "SHA1 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SHA1\" without matching the scenario constraint",
+            "explanation": "SHA1 describes a mechanism that could sound plausible for wireless security. Given wireless security, AES-CCMP matches the tested behavior — SHA1 applies a different mechanism.",
+            "whatItDoes": "SHA1 describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, AES-CCMP matches the tested behavior — SHA1 applies a different mechanism.",
+            "misconceptionTested": "Applying \"SHA1\" without matching wireless security",
             "needsExplanationReview": true
           }
         ],
@@ -367,20 +409,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Certificate support does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Certificate support\" without matching the scenario constraint",
+            "explanation": "Certificate support describes a mechanism that could sound plausible for wireless security. Given wireless security, SAE authentication matches the tested behavior — Certificate support applies a different mechanism.",
+            "whatItDoes": "Certificate support describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, SAE authentication matches the tested behavior — Certificate support applies a different mechanism.",
+            "misconceptionTested": "Applying \"Certificate support\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Per-frame encryption does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Per-frame encryption\" without matching the scenario constraint",
+            "explanation": "Per-frame encryption describes a mechanism that could sound plausible for wireless security. Given wireless security, SAE authentication matches the tested behavior — Per-frame encryption applies a different mechanism.",
+            "whatItDoes": "Per-frame encryption describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, SAE authentication matches the tested behavior — Per-frame encryption applies a different mechanism.",
+            "misconceptionTested": "Applying \"Per-frame encryption\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "TKIP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"TKIP\" without matching the scenario constraint",
+            "explanation": "TKIP describes a mechanism that could sound plausible for wireless security. Given wireless security, SAE authentication matches the tested behavior — TKIP applies a different mechanism.",
+            "whatItDoes": "TKIP describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, SAE authentication matches the tested behavior — TKIP applies a different mechanism.",
+            "misconceptionTested": "Applying \"TKIP\" without matching wireless security",
             "needsExplanationReview": true
           }
         ],
@@ -417,20 +465,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "NTP server does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"NTP server\" without matching the scenario constraint",
+            "explanation": "NTP server describes a mechanism that could sound plausible for wireless security. Given wireless security, RADIUS server matches the tested behavior — NTP server applies a different mechanism.",
+            "whatItDoes": "NTP server describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, RADIUS server matches the tested behavior — NTP server applies a different mechanism.",
+            "misconceptionTested": "Applying \"NTP server\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "PSK does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"PSK\" without matching the scenario constraint",
+            "explanation": "PSK describes a mechanism that could sound plausible for wireless security. Given wireless security, RADIUS server matches the tested behavior — PSK applies a different mechanism.",
+            "whatItDoes": "PSK describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, RADIUS server matches the tested behavior — PSK applies a different mechanism.",
+            "misconceptionTested": "Applying \"PSK\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Captive portal does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Captive portal\" without matching the scenario constraint",
+            "explanation": "Captive portal describes a mechanism that could sound plausible for wireless security. Given wireless security, RADIUS server matches the tested behavior — Captive portal applies a different mechanism.",
+            "whatItDoes": "Captive portal describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, RADIUS server matches the tested behavior — Captive portal applies a different mechanism.",
+            "misconceptionTested": "Applying \"Captive portal\" without matching wireless security",
             "needsExplanationReview": true
           }
         ],
@@ -467,20 +521,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "802.1X does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"802.1X\" without matching the scenario constraint",
+            "explanation": "802.1X describes a mechanism that could sound plausible for wireless security. Given wireless security, TKIP matches the tested behavior — 802.1X applies a different mechanism.",
+            "whatItDoes": "802.1X describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — 802.1X applies a different mechanism.",
+            "misconceptionTested": "Applying \"802.1X\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "AES does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"AES\" without matching the scenario constraint",
+            "explanation": "AES describes a mechanism that could sound plausible for wireless security. Given wireless security, TKIP matches the tested behavior — AES applies a different mechanism.",
+            "whatItDoes": "AES describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — AES applies a different mechanism.",
+            "misconceptionTested": "Applying \"AES\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "MAC filtering does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"MAC filtering\" without matching the scenario constraint",
+            "explanation": "MAC filtering describes a mechanism that could sound plausible for wireless security. Given wireless security, TKIP matches the tested behavior — MAC filtering applies a different mechanism.",
+            "whatItDoes": "MAC filtering describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — MAC filtering applies a different mechanism.",
+            "misconceptionTested": "Applying \"MAC filtering\" without matching wireless security",
             "needsExplanationReview": true
           }
         ],
@@ -517,20 +577,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "AES does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"AES\" without matching the scenario constraint",
+            "explanation": "AES describes a mechanism that could sound plausible for wireless security. Given wireless security, PSK matches the tested behavior — AES applies a different mechanism.",
+            "whatItDoes": "AES describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, PSK matches the tested behavior — AES applies a different mechanism.",
+            "misconceptionTested": "Applying \"AES\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Certificates does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Certificates\" without matching the scenario constraint",
+            "explanation": "Certificates describes a mechanism that could sound plausible for wireless security. Given wireless security, PSK matches the tested behavior — Certificates applies a different mechanism.",
+            "whatItDoes": "Certificates describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, PSK matches the tested behavior — Certificates applies a different mechanism.",
+            "misconceptionTested": "Applying \"Certificates\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "TKIP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"TKIP\" without matching the scenario constraint",
+            "explanation": "TKIP describes a mechanism that could sound plausible for wireless security. Given wireless security, PSK matches the tested behavior — TKIP applies a different mechanism.",
+            "whatItDoes": "TKIP describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, PSK matches the tested behavior — TKIP applies a different mechanism.",
+            "misconceptionTested": "Applying \"TKIP\" without matching wireless security",
             "needsExplanationReview": true
           }
         ],
@@ -567,20 +633,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "AES does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"AES\" without matching the scenario constraint",
+            "explanation": "AES describes a mechanism that could sound plausible for wireless security. Given wireless security, TKIP matches the tested behavior — AES applies a different mechanism.",
+            "whatItDoes": "AES describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — AES applies a different mechanism.",
+            "misconceptionTested": "Applying \"AES\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "CCMP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"CCMP\" without matching the scenario constraint",
+            "explanation": "CCMP describes a mechanism that could sound plausible for wireless security. Given wireless security, TKIP matches the tested behavior — CCMP applies a different mechanism.",
+            "whatItDoes": "CCMP describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — CCMP applies a different mechanism.",
+            "misconceptionTested": "Applying \"CCMP\" without matching wireless security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "PSK does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"PSK\" without matching the scenario constraint",
+            "explanation": "PSK describes a mechanism that could sound plausible for wireless security. Given wireless security, TKIP matches the tested behavior — PSK applies a different mechanism.",
+            "whatItDoes": "PSK describes a mechanism that could sound plausible for wireless security.",
+            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — PSK applies a different mechanism.",
+            "misconceptionTested": "Applying \"PSK\" without matching wireless security",
             "needsExplanationReview": true
           }
         ],

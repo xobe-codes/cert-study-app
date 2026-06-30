@@ -29,18 +29,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Core misses what this question tests. Access switches connect PCs, phones, and APs.",
-            "misconceptionTested": "Selecting \"Core\" without matching the scenario constraint"
+            "explanation": "Core describes a mechanism that could sound plausible for access tier. Given access tier, Access matches the tested behavior — Core applies a different mechanism.",
+            "whatItDoes": "Core describes a mechanism that could sound plausible for access tier.",
+            "whyWrongHere": "Given access tier, Access matches the tested behavior — Core applies a different mechanism.",
+            "misconceptionTested": "Applying \"Core\" without matching access tier"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Distribution misses what this question tests. Access switches connect PCs, phones, and APs.",
-            "misconceptionTested": "Selecting \"Distribution\" without matching the scenario constraint"
+            "explanation": "Distribution describes a mechanism that could sound plausible for access tier. Given access tier, Access matches the tested behavior — Distribution applies a different mechanism.",
+            "whatItDoes": "Distribution describes a mechanism that could sound plausible for access tier.",
+            "whyWrongHere": "Given access tier, Access matches the tested behavior — Distribution applies a different mechanism.",
+            "misconceptionTested": "Applying \"Distribution\" without matching access tier"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Spine misses what this question tests. Access switches connect PCs, phones, and APs.",
-            "misconceptionTested": "Selecting \"Spine\" without matching the scenario constraint"
+            "explanation": "Spine describes a mechanism that could sound plausible for access tier. Given access tier, Access matches the tested behavior — Spine applies a different mechanism.",
+            "whatItDoes": "Spine describes a mechanism that could sound plausible for access tier.",
+            "whyWrongHere": "Given access tier, Access matches the tested behavior — Spine applies a different mechanism.",
+            "misconceptionTested": "Applying \"Spine\" without matching access tier"
           }
         ],
         "examTip": "On the exam: More tiers always mean faster networks — Tiers organize scale and policy; extra hops can add latency if over-engineered"
@@ -71,18 +77,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SOHO Wi‑Fi misses what this question tests. Spine-leaf fabrics optimize predictable, scalable traffic between servers in data centers.",
-            "misconceptionTested": "Selecting \"SOHO Wi‑Fi\" without matching the scenario constraint"
+            "explanation": "SOHO Wi‑Fi describes a mechanism that could sound plausible for spine-leaf. Given spine-leaf, Data center east-west traffic matches the tested behavior — SOHO Wi‑Fi applies a different mechanism.",
+            "whatItDoes": "SOHO Wi‑Fi describes a mechanism that could sound plausible for spine-leaf.",
+            "whyWrongHere": "Given spine-leaf, Data center east-west traffic matches the tested behavior — SOHO Wi‑Fi applies a different mechanism.",
+            "misconceptionTested": "Applying \"SOHO Wi‑Fi\" without matching spine-leaf"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Dial-up WAN misses what this question tests. Spine-leaf fabrics optimize predictable, scalable traffic between servers in data centers.",
-            "misconceptionTested": "Selecting \"Dial-up WAN\" without matching the scenario constraint"
+            "explanation": "Dial-up WAN describes a mechanism that could sound plausible for spine-leaf. Given spine-leaf, Data center east-west traffic matches the tested behavior — Dial-up WAN applies a different mechanism.",
+            "whatItDoes": "Dial-up WAN describes a mechanism that could sound plausible for spine-leaf.",
+            "whyWrongHere": "Given spine-leaf, Data center east-west traffic matches the tested behavior — Dial-up WAN applies a different mechanism.",
+            "misconceptionTested": "Applying \"Dial-up WAN\" without matching spine-leaf"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Home gaming misses what this question tests. Spine-leaf fabrics optimize predictable, scalable traffic between servers in data centers.",
-            "misconceptionTested": "Selecting \"Home gaming\" without matching the scenario constraint"
+            "explanation": "Home gaming describes a mechanism that could sound plausible for spine-leaf. Given spine-leaf, Data center east-west traffic matches the tested behavior — Home gaming applies a different mechanism.",
+            "whatItDoes": "Home gaming describes a mechanism that could sound plausible for spine-leaf.",
+            "whyWrongHere": "Given spine-leaf, Data center east-west traffic matches the tested behavior — Home gaming applies a different mechanism.",
+            "misconceptionTested": "Applying \"Home gaming\" without matching spine-leaf"
           }
         ],
         "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
@@ -113,18 +125,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Full mesh misses what this question tests. All spokes via one hub = hub-and-spoke.",
-            "misconceptionTested": "Selecting \"Full mesh\" without matching the scenario constraint"
+            "explanation": "Full mesh describes a mechanism that could sound plausible for hub-spoke. Given hub-spoke, Hub-and-spoke matches the tested behavior — Full mesh applies a different mechanism.",
+            "whatItDoes": "Full mesh describes a mechanism that could sound plausible for hub-spoke.",
+            "whyWrongHere": "Given hub-spoke, Hub-and-spoke matches the tested behavior — Full mesh applies a different mechanism.",
+            "misconceptionTested": "Applying \"Full mesh\" without matching hub-spoke"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Spine-leaf misses what this question tests. All spokes via one hub = hub-and-spoke.",
-            "misconceptionTested": "Selecting \"Spine-leaf\" without matching the scenario constraint"
+            "explanation": "Spine-leaf describes a mechanism that could sound plausible for hub-spoke. Given hub-spoke, Hub-and-spoke matches the tested behavior — Spine-leaf applies a different mechanism.",
+            "whatItDoes": "Spine-leaf describes a mechanism that could sound plausible for hub-spoke.",
+            "whyWrongHere": "Given hub-spoke, Hub-and-spoke matches the tested behavior — Spine-leaf applies a different mechanism.",
+            "misconceptionTested": "Applying \"Spine-leaf\" without matching hub-spoke"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Point-to-point only misses what this question tests. All spokes via one hub = hub-and-spoke.",
-            "misconceptionTested": "Selecting \"Point-to-point only\" without matching the scenario constraint"
+            "explanation": "Point-to-point only describes a mechanism that could sound plausible for hub-spoke. Given hub-spoke, Hub-and-spoke matches the tested behavior — Point-to-point only applies a different mechanism.",
+            "whatItDoes": "Point-to-point only describes a mechanism that could sound plausible for hub-spoke.",
+            "whyWrongHere": "Given hub-spoke, Hub-and-spoke matches the tested behavior — Point-to-point only applies a different mechanism.",
+            "misconceptionTested": "Applying \"Point-to-point only\" without matching hub-spoke"
           }
         ],
         "examTip": "On the exam: Assuming hub-and-spoke has automatic redundancy — The hub is a single point of failure unless spokes are dual-homed or meshed"
@@ -156,17 +174,23 @@
           {
             "choiceIndex": 0,
             "explanation": "No redundancy reflects a common trap: Assuming hub-and-spoke has automatic redundancy. The hub is a single point of failure unless spokes are dual-homed or meshed.",
+            "whatItDoes": "No redundancy describes a mechanism that could sound plausible for full mesh.",
+            "whyWrongHere": "Given full mesh, High cost/complexity for many links matches the tested behavior — No redundancy applies a different mechanism.",
             "misconceptionTested": "Assuming hub-and-spoke has automatic redundancy"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Only works with fiber misses what this question tests. Full mesh connects every site to every other — resilient but expensive.",
-            "misconceptionTested": "Selecting \"Only works with fiber\" without matching the scenario constraint"
+            "explanation": "Only works with fiber describes a mechanism that could sound plausible for full mesh. Given full mesh, High cost/complexity for many links matches the tested behavior — Only works with fiber applies a different mechanism.",
+            "whatItDoes": "Only works with fiber describes a mechanism that could sound plausible for full mesh.",
+            "whyWrongHere": "Given full mesh, High cost/complexity for many links matches the tested behavior — Only works with fiber applies a different mechanism.",
+            "misconceptionTested": "Applying \"Only works with fiber\" without matching full mesh"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Eliminates routing misses what this question tests. Full mesh connects every site to every other — resilient but expensive.",
-            "misconceptionTested": "Selecting \"Eliminates routing\" without matching the scenario constraint"
+            "explanation": "Eliminates routing describes a mechanism that could sound plausible for full mesh. Given full mesh, High cost/complexity for many links matches the tested behavior — Eliminates routing applies a different mechanism.",
+            "whatItDoes": "Eliminates routing describes a mechanism that could sound plausible for full mesh.",
+            "whyWrongHere": "Given full mesh, High cost/complexity for many links matches the tested behavior — Eliminates routing applies a different mechanism.",
+            "misconceptionTested": "Applying \"Eliminates routing\" without matching full mesh"
           }
         ],
         "examTip": "On the exam: Assuming hub-and-spoke has automatic redundancy — The hub is a single point of failure unless spokes are dual-homed or meshed"
@@ -197,18 +221,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "One misses what this question tests. Two-tier merges distribution and core — access + collapsed distribution/core.",
-            "misconceptionTested": "Selecting \"One\" without matching the scenario constraint"
+            "explanation": "One describes a mechanism that could sound plausible for two-tier. Given two-tier, Two matches the tested behavior — One applies a different mechanism.",
+            "whatItDoes": "One describes a mechanism that could sound plausible for two-tier.",
+            "whyWrongHere": "Given two-tier, Two matches the tested behavior — One applies a different mechanism.",
+            "misconceptionTested": "Applying \"One\" without matching two-tier"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Four misses what this question tests. Two-tier merges distribution and core — access + collapsed distribution/core.",
-            "misconceptionTested": "Selecting \"Four\" without matching the scenario constraint"
+            "explanation": "Four describes a mechanism that could sound plausible for two-tier. Given two-tier, Two matches the tested behavior — Four applies a different mechanism.",
+            "whatItDoes": "Four describes a mechanism that could sound plausible for two-tier.",
+            "whyWrongHere": "Given two-tier, Two matches the tested behavior — Four applies a different mechanism.",
+            "misconceptionTested": "Applying \"Four\" without matching two-tier"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Five misses what this question tests. Two-tier merges distribution and core — access + collapsed distribution/core.",
-            "misconceptionTested": "Selecting \"Five\" without matching the scenario constraint"
+            "explanation": "Five describes a mechanism that could sound plausible for two-tier. Given two-tier, Two matches the tested behavior — Five applies a different mechanism.",
+            "whatItDoes": "Five describes a mechanism that could sound plausible for two-tier.",
+            "whyWrongHere": "Given two-tier, Two matches the tested behavior — Five applies a different mechanism.",
+            "misconceptionTested": "Applying \"Five\" without matching two-tier"
           }
         ],
         "examTip": "On the exam: More tiers always mean faster networks — Tiers organize scale and policy; extra hops can add latency if over-engineered"
@@ -239,18 +269,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Core datacenter misses what this question tests. Small office/home office networks are simple, often one integrated gateway.",
-            "misconceptionTested": "Selecting \"Core datacenter\" without matching the scenario constraint"
+            "explanation": "Core datacenter describes a mechanism that could sound plausible for wireless. Given wireless, SOHO matches the tested behavior — Core datacenter applies a different mechanism.",
+            "whatItDoes": "Core datacenter describes a mechanism that could sound plausible for wireless.",
+            "whyWrongHere": "Given wireless, SOHO matches the tested behavior — Core datacenter applies a different mechanism.",
+            "misconceptionTested": "Applying \"Core datacenter\" without matching soho"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Full mesh WAN misses what this question tests. Small office/home office networks are simple, often one integrated gateway.",
-            "misconceptionTested": "Selecting \"Full mesh WAN\" without matching the scenario constraint"
+            "explanation": "Full mesh WAN describes a mechanism that could sound plausible for wireless. Given wireless, SOHO matches the tested behavior — Full mesh WAN applies a different mechanism.",
+            "whatItDoes": "Full mesh WAN describes a mechanism that could sound plausible for wireless.",
+            "whyWrongHere": "Given wireless, SOHO matches the tested behavior — Full mesh WAN applies a different mechanism.",
+            "misconceptionTested": "Applying \"Full mesh WAN\" without matching soho"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Spine fabric misses what this question tests. Small office/home office networks are simple, often one integrated gateway.",
-            "misconceptionTested": "Selecting \"Spine fabric\" without matching the scenario constraint"
+            "explanation": "Spine fabric describes a mechanism that could sound plausible for wireless. Given wireless, SOHO matches the tested behavior — Spine fabric applies a different mechanism.",
+            "whatItDoes": "Spine fabric describes a mechanism that could sound plausible for wireless.",
+            "whyWrongHere": "Given wireless, SOHO matches the tested behavior — Spine fabric applies a different mechanism.",
+            "misconceptionTested": "Applying \"Spine fabric\" without matching soho"
           }
         ],
         "examTip": "On the exam: Cloud means no local network — Hybrid designs keep on-prem LAN/WAN while using cloud for apps or compute"
@@ -281,18 +317,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SaaS misses what this question tests. IaaS provides VMs/infrastructure; the customer manages OS and above.",
-            "misconceptionTested": "Selecting \"SaaS\" without matching the scenario constraint"
+            "explanation": "SaaS describes a mechanism that could sound plausible for cloud model. Given cloud model, IaaS matches the tested behavior — SaaS applies a different mechanism.",
+            "whatItDoes": "SaaS describes a mechanism that could sound plausible for cloud model.",
+            "whyWrongHere": "Given cloud model, IaaS matches the tested behavior — SaaS applies a different mechanism.",
+            "misconceptionTested": "Applying \"SaaS\" without matching cloud model"
           },
           {
             "choiceIndex": 1,
-            "explanation": "PaaS misses what this question tests. IaaS provides VMs/infrastructure; the customer manages OS and above.",
-            "misconceptionTested": "Selecting \"PaaS\" without matching the scenario constraint"
+            "explanation": "PaaS describes a mechanism that could sound plausible for cloud model. Given cloud model, IaaS matches the tested behavior — PaaS applies a different mechanism.",
+            "whatItDoes": "PaaS describes a mechanism that could sound plausible for cloud model.",
+            "whyWrongHere": "Given cloud model, IaaS matches the tested behavior — PaaS applies a different mechanism.",
+            "misconceptionTested": "Applying \"PaaS\" without matching cloud model"
           },
           {
             "choiceIndex": 3,
-            "explanation": "On-prem only misses what this question tests. IaaS provides VMs/infrastructure; the customer manages OS and above.",
-            "misconceptionTested": "Selecting \"On-prem only\" without matching the scenario constraint"
+            "explanation": "On-prem only describes a mechanism that could sound plausible for cloud model. Given cloud model, IaaS matches the tested behavior — On-prem only applies a different mechanism.",
+            "whatItDoes": "On-prem only describes a mechanism that could sound plausible for cloud model.",
+            "whyWrongHere": "Given cloud model, IaaS matches the tested behavior — On-prem only applies a different mechanism.",
+            "misconceptionTested": "Applying \"On-prem only\" without matching cloud model"
           }
         ],
         "examTip": "On the exam: Cloud means no local network — Hybrid designs keep on-prem LAN/WAN while using cloud for apps or compute"
@@ -322,7 +364,9 @@
           {
             "choiceIndex": 1,
             "explanation": "This statement is False, but the tested fact is: True — full mesh between leaves and spines is the defining property.",
-            "misconceptionTested": "Selecting \"False\" without matching the scenario constraint"
+            "whatItDoes": "False states the opposite of the tested fact about spine connectivity.",
+            "whyWrongHere": "Given spine connectivity, True matches the tested behavior — False applies a different mechanism.",
+            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
           }
         ],
         "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"

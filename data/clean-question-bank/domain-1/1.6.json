@@ -30,17 +30,23 @@
           {
             "choiceIndex": 0,
             "explanation": "64 uses the wrong value. The tested fact calls for 26 — not 64.",
-            "misconceptionTested": "Selecting \"64\" without matching the scenario constraint"
+            "whatItDoes": "64 describes a mechanism that could sound plausible for hosts per subnet.",
+            "whyWrongHere": "Given hosts per subnet, 62 matches the tested behavior — 64 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 64 instead of the correct 26"
           },
           {
             "choiceIndex": 2,
             "explanation": "30 uses the wrong value. The tested fact calls for 26 — not 30.",
-            "misconceptionTested": "Selecting \"30\" without matching the scenario constraint"
+            "whatItDoes": "30 describes a mechanism that could sound plausible for hosts per subnet.",
+            "whyWrongHere": "Given hosts per subnet, 62 matches the tested behavior — 30 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 30 instead of the correct 26"
           },
           {
             "choiceIndex": 3,
             "explanation": "126 uses the wrong value. The tested fact calls for 26 — not 126.",
-            "misconceptionTested": "Selecting \"126\" without matching the scenario constraint"
+            "whatItDoes": "126 describes a mechanism that could sound plausible for hosts per subnet.",
+            "whyWrongHere": "Given hosts per subnet, 62 matches the tested behavior — 126 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 126 instead of the correct 26"
           }
         ],
         "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
@@ -72,17 +78,23 @@
           {
             "choiceIndex": 0,
             "explanation": "16 uses the wrong value. The tested fact calls for 256 — not 16.",
-            "misconceptionTested": "Selecting \"16\" without matching the scenario constraint"
+            "whatItDoes": "16 describes a mechanism that could sound plausible for block size.",
+            "whyWrongHere": "Given block size, 32 matches the tested behavior — 16 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 16 instead of the correct 256"
           },
           {
             "choiceIndex": 2,
             "explanation": "64 uses the wrong value. The tested fact calls for 256 — not 64.",
-            "misconceptionTested": "Selecting \"64\" without matching the scenario constraint"
+            "whatItDoes": "64 describes a mechanism that could sound plausible for block size.",
+            "whyWrongHere": "Given block size, 32 matches the tested behavior — 64 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 64 instead of the correct 256"
           },
           {
             "choiceIndex": 3,
             "explanation": "8 uses the wrong value. The tested fact calls for 256 — not 8.",
-            "misconceptionTested": "Selecting \"8\" without matching the scenario constraint"
+            "whatItDoes": "8 describes a mechanism that could sound plausible for block size.",
+            "whyWrongHere": "Given block size, 32 matches the tested behavior — 8 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 8 instead of the correct 256"
           }
         ],
         "examTip": "On the exam: Using the wrong octet for block size — Apply block size to the octet where the mask is neither 255 nor 0 (the interesting octet)"
@@ -115,17 +127,23 @@
           {
             "choiceIndex": 0,
             "explanation": "192.168.10.255 uses the wrong value. The tested fact calls for 64 — not 192.",
-            "misconceptionTested": "Selecting \"192.168.10.255\" without matching the scenario constraint"
+            "whatItDoes": "192.168.10.255 describes a mechanism that could sound plausible for broadcast address.",
+            "whyWrongHere": "Given broadcast address, 192.168.10.63 matches the tested behavior — 192.168.10.255 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 192 instead of the correct 64"
           },
           {
             "choiceIndex": 2,
             "explanation": "192.168.10.127 uses the wrong value. The tested fact calls for 64 — not 192.",
-            "misconceptionTested": "Selecting \"192.168.10.127\" without matching the scenario constraint"
+            "whatItDoes": "192.168.10.127 describes a mechanism that could sound plausible for broadcast address.",
+            "whyWrongHere": "Given broadcast address, 192.168.10.63 matches the tested behavior — 192.168.10.127 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 192 instead of the correct 64"
           },
           {
             "choiceIndex": 3,
             "explanation": "192.168.10.64 uses the wrong value. The tested fact calls for 64 — not 192.",
-            "misconceptionTested": "Selecting \"192.168.10.64\" without matching the scenario constraint"
+            "whatItDoes": "192.168.10.64 describes a mechanism that could sound plausible for broadcast address.",
+            "whyWrongHere": "Given broadcast address, 192.168.10.63 matches the tested behavior — 192.168.10.64 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 192 instead of the correct 64"
           }
         ],
         "examTip": "On the exam: Using the wrong octet for block size — Apply block size to the octet where the mask is neither 255 nor 0 (the interesting octet)"
@@ -157,17 +175,23 @@
           {
             "choiceIndex": 0,
             "explanation": "172.16.0.0 uses the wrong value. The tested fact calls for 64 — not 172.",
-            "misconceptionTested": "Selecting \"172.16.0.0\" without matching the scenario constraint"
+            "whatItDoes": "172.16.0.0 describes a mechanism that could sound plausible for find the subnet.",
+            "whyWrongHere": "Given find the subnet, 172.16.0.64 matches the tested behavior — 172.16.0.0 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 172 instead of the correct 64"
           },
           {
             "choiceIndex": 2,
             "explanation": "172.16.0.96 uses the wrong value. The tested fact calls for 64 — not 172.",
-            "misconceptionTested": "Selecting \"172.16.0.96\" without matching the scenario constraint"
+            "whatItDoes": "172.16.0.96 describes a mechanism that could sound plausible for find the subnet.",
+            "whyWrongHere": "Given find the subnet, 172.16.0.64 matches the tested behavior — 172.16.0.96 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 172 instead of the correct 64"
           },
           {
             "choiceIndex": 3,
             "explanation": "172.16.0.128 uses the wrong value. The tested fact calls for 64 — not 172.",
-            "misconceptionTested": "Selecting \"172.16.0.128\" without matching the scenario constraint"
+            "whatItDoes": "172.16.0.128 describes a mechanism that could sound plausible for find the subnet.",
+            "whyWrongHere": "Given find the subnet, 172.16.0.64 matches the tested behavior — 172.16.0.128 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 172 instead of the correct 64"
           }
         ],
         "examTip": "On the exam: Using the wrong octet for block size — Apply block size to the octet where the mask is neither 255 nor 0 (the interesting octet)"
@@ -199,17 +223,23 @@
           {
             "choiceIndex": 0,
             "explanation": "/26 uses the wrong value. The tested fact calls for 27 — not 26.",
-            "misconceptionTested": "Selecting \"/26\" without matching the scenario constraint"
+            "whatItDoes": "/26 describes a mechanism that could sound plausible for mask for host count.",
+            "whyWrongHere": "Given mask for host count, /27 matches the tested behavior — /26 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 26 instead of the correct 27"
           },
           {
             "choiceIndex": 2,
             "explanation": "/28 uses the wrong value. The tested fact calls for 27 — not 28.",
-            "misconceptionTested": "Selecting \"/28\" without matching the scenario constraint"
+            "whatItDoes": "/28 describes a mechanism that could sound plausible for mask for host count.",
+            "whyWrongHere": "Given mask for host count, /27 matches the tested behavior — /28 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 28 instead of the correct 27"
           },
           {
             "choiceIndex": 3,
             "explanation": "/29 uses the wrong value. The tested fact calls for 27 — not 29.",
-            "misconceptionTested": "Selecting \"/29\" without matching the scenario constraint"
+            "whatItDoes": "/29 describes a mechanism that could sound plausible for mask for host count.",
+            "whyWrongHere": "Given mask for host count, /27 matches the tested behavior — /29 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 29 instead of the correct 27"
           }
         ],
         "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
@@ -241,17 +271,23 @@
           {
             "choiceIndex": 0,
             "explanation": "1 uses the wrong value. The tested fact calls for 30 — not 1.",
-            "misconceptionTested": "Selecting \"1\" without matching the scenario constraint"
+            "whatItDoes": "1 describes a mechanism that could sound plausible for point-to-point.",
+            "whyWrongHere": "Given point-to-point, 2 matches the tested behavior — 1 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 1 instead of the correct 30"
           },
           {
             "choiceIndex": 2,
             "explanation": "4 uses the wrong value. The tested fact calls for 30 — not 4.",
-            "misconceptionTested": "Selecting \"4\" without matching the scenario constraint"
+            "whatItDoes": "4 describes a mechanism that could sound plausible for point-to-point.",
+            "whyWrongHere": "Given point-to-point, 2 matches the tested behavior — 4 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 4 instead of the correct 30"
           },
           {
             "choiceIndex": 3,
             "explanation": "0 uses the wrong value. The tested fact calls for 30 — not 0.",
-            "misconceptionTested": "Selecting \"0\" without matching the scenario constraint"
+            "whatItDoes": "0 describes a mechanism that could sound plausible for point-to-point.",
+            "whyWrongHere": "Given point-to-point, 2 matches the tested behavior — 0 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 0 instead of the correct 30"
           }
         ],
         "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
@@ -283,17 +319,23 @@
           {
             "choiceIndex": 0,
             "explanation": "6 uses the wrong value. The tested fact calls for 2 — not 6.",
-            "misconceptionTested": "Selecting \"6\" without matching the scenario constraint"
+            "whatItDoes": "6 describes a mechanism that could sound plausible for number of subnets.",
+            "whyWrongHere": "Given number of subnets, 8 matches the tested behavior — 6 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 6 instead of the correct 2"
           },
           {
             "choiceIndex": 2,
             "explanation": "16 uses the wrong value. The tested fact calls for 2 — not 16.",
-            "misconceptionTested": "Selecting \"16\" without matching the scenario constraint"
+            "whatItDoes": "16 describes a mechanism that could sound plausible for number of subnets.",
+            "whyWrongHere": "Given number of subnets, 8 matches the tested behavior — 16 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 16 instead of the correct 2"
           },
           {
             "choiceIndex": 3,
             "explanation": "3 uses the wrong value. The tested fact calls for 2 — not 3.",
-            "misconceptionTested": "Selecting \"3\" without matching the scenario constraint"
+            "whatItDoes": "3 describes a mechanism that could sound plausible for number of subnets.",
+            "whyWrongHere": "Given number of subnets, 8 matches the tested behavior — 3 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 3 instead of the correct 2"
           }
         ],
         "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
@@ -325,17 +367,23 @@
           {
             "choiceIndex": 0,
             "explanation": "/26 uses the wrong value. The tested fact calls for 240 — not 26.",
-            "misconceptionTested": "Selecting \"/26\" without matching the scenario constraint"
+            "whatItDoes": "/26 describes a mechanism that could sound plausible for CIDR conversion.",
+            "whyWrongHere": "Given CIDR conversion, /28 matches the tested behavior — /26 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 26 instead of the correct 240"
           },
           {
             "choiceIndex": 1,
             "explanation": "/27 uses the wrong value. The tested fact calls for 240 — not 27.",
-            "misconceptionTested": "Selecting \"/27\" without matching the scenario constraint"
+            "whatItDoes": "/27 describes a mechanism that could sound plausible for CIDR conversion.",
+            "whyWrongHere": "Given CIDR conversion, /28 matches the tested behavior — /27 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 27 instead of the correct 240"
           },
           {
             "choiceIndex": 3,
             "explanation": "/29 uses the wrong value. The tested fact calls for 240 — not 29.",
-            "misconceptionTested": "Selecting \"/29\" without matching the scenario constraint"
+            "whatItDoes": "/29 describes a mechanism that could sound plausible for CIDR conversion.",
+            "whyWrongHere": "Given CIDR conversion, /28 matches the tested behavior — /29 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 29 instead of the correct 240"
           }
         ],
         "examTip": "On the exam: A bigger prefix (/27) means a bigger network — A larger prefix number means MORE network bits and FEWER hosts — a smaller subnet"
@@ -368,17 +416,23 @@
           {
             "choiceIndex": 1,
             "explanation": "10.0.0.1 – 10.0.0.7 uses the wrong value. The tested fact calls for 8 — not 10.",
-            "misconceptionTested": "Selecting \"10.0.0.1 – 10.0.0.7\" without matching the scenario constraint"
+            "whatItDoes": "10.0.0.1 – 10.0.0.7 describes a mechanism that could sound plausible for usable range.",
+            "whyWrongHere": "Given usable range, 10.0.0.1 – 10.0.0.6 matches the tested behavior — 10.0.0.1 – 10.0.0.7 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 10 instead of the correct 8"
           },
           {
             "choiceIndex": 2,
             "explanation": "10.0.0.0 – 10.0.0.7 uses the wrong value. The tested fact calls for 8 — not 10.",
-            "misconceptionTested": "Selecting \"10.0.0.0 – 10.0.0.7\" without matching the scenario constraint"
+            "whatItDoes": "10.0.0.0 – 10.0.0.7 describes a mechanism that could sound plausible for usable range.",
+            "whyWrongHere": "Given usable range, 10.0.0.1 – 10.0.0.6 matches the tested behavior — 10.0.0.0 – 10.0.0.7 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 10 instead of the correct 8"
           },
           {
             "choiceIndex": 3,
             "explanation": "10.0.0.1 – 10.0.0.14 uses the wrong value. The tested fact calls for 8 — not 10.",
-            "misconceptionTested": "Selecting \"10.0.0.1 – 10.0.0.14\" without matching the scenario constraint"
+            "whatItDoes": "10.0.0.1 – 10.0.0.14 describes a mechanism that could sound plausible for usable range.",
+            "whyWrongHere": "Given usable range, 10.0.0.1 – 10.0.0.6 matches the tested behavior — 10.0.0.1 – 10.0.0.14 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 10 instead of the correct 8"
           }
         ],
         "examTip": "On the exam: Using the wrong octet for block size — Apply block size to the octet where the mask is neither 255 nor 0 (the interesting octet)"
@@ -410,17 +464,23 @@
           {
             "choiceIndex": 0,
             "explanation": "26 uses the wrong value. The tested fact calls for 32 — not 26.",
-            "misconceptionTested": "Selecting \"26\" without matching the scenario constraint"
+            "whatItDoes": "26 describes a mechanism that could sound plausible for network/host bits.",
+            "whyWrongHere": "Given network/host bits, 6 matches the tested behavior — 26 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 26 instead of the correct 32"
           },
           {
             "choiceIndex": 2,
             "explanation": "8 uses the wrong value. The tested fact calls for 32 — not 8.",
-            "misconceptionTested": "Selecting \"8\" without matching the scenario constraint"
+            "whatItDoes": "8 describes a mechanism that could sound plausible for network/host bits.",
+            "whyWrongHere": "Given network/host bits, 6 matches the tested behavior — 8 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 8 instead of the correct 32"
           },
           {
             "choiceIndex": 3,
             "explanation": "4 uses the wrong value. The tested fact calls for 32 — not 4.",
-            "misconceptionTested": "Selecting \"4\" without matching the scenario constraint"
+            "whatItDoes": "4 describes a mechanism that could sound plausible for network/host bits.",
+            "whyWrongHere": "Given network/host bits, 6 matches the tested behavior — 4 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 4 instead of the correct 32"
           }
         ],
         "examTip": "On the exam: A bigger prefix (/27) means a bigger network — A larger prefix number means MORE network bits and FEWER hosts — a smaller subnet"
@@ -450,7 +510,9 @@
           {
             "choiceIndex": 0,
             "explanation": "This statement is True, but the tested fact is: False — both are reserved, which is why hosts = 2^h − 2.",
-            "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
+            "whatItDoes": "True states the opposite of the tested fact about reserved addresses.",
+            "whyWrongHere": "Given reserved addresses, False matches the tested behavior — True applies a different mechanism.",
+            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
           }
         ],
         "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
@@ -482,17 +544,23 @@
           {
             "choiceIndex": 1,
             "explanation": "/25 uses the wrong value. The tested fact calls for 24 — not 25.",
-            "misconceptionTested": "Selecting \"/25\" without matching the scenario constraint"
+            "whatItDoes": "/25 describes a mechanism that could sound plausible for mask selection.",
+            "whyWrongHere": "Given mask selection, /24 matches the tested behavior — /25 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 25 instead of the correct 24"
           },
           {
             "choiceIndex": 2,
             "explanation": "/23 uses the wrong value. The tested fact calls for 24 — not 23.",
-            "misconceptionTested": "Selecting \"/23\" without matching the scenario constraint"
+            "whatItDoes": "/23 describes a mechanism that could sound plausible for mask selection.",
+            "whyWrongHere": "Given mask selection, /24 matches the tested behavior — /23 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 23 instead of the correct 24"
           },
           {
             "choiceIndex": 3,
             "explanation": "/26 uses the wrong value. The tested fact calls for 24 — not 26.",
-            "misconceptionTested": "Selecting \"/26\" without matching the scenario constraint"
+            "whatItDoes": "/26 describes a mechanism that could sound plausible for mask selection.",
+            "whyWrongHere": "Given mask selection, /24 matches the tested behavior — /26 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 26 instead of the correct 24"
           }
         ],
         "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"

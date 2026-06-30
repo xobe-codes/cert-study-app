@@ -30,20 +30,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SSID beaconing is enabled. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SSID beaconing is enabled.\" without matching the scenario constraint",
+            "explanation": "SSID beaconing is enabled. describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, Status is disabled. matches the tested behavior — SSID beaconing is enabled. applies a different mechanism.",
+            "whatItDoes": "SSID beaconing is enabled. describes a mechanism that could sound plausible for wlc gui wlan.",
+            "whyWrongHere": "Given wlc gui wlan, Status is disabled. matches the tested behavior — SSID beaconing is enabled. applies a different mechanism.",
+            "misconceptionTested": "Applying \"SSID beaconing is enabled.\" without matching wlc gui wlan",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Multicast support is disabled. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Multicast support is disabled.\" without matching the scenario constraint",
+            "explanation": "Multicast support is disabled. describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, Status is disabled. matches the tested behavior — Multicast support is disabled. applies a different mechanism.",
+            "whatItDoes": "Multicast support is disabled. describes a mechanism that could sound plausible for wlc gui wlan.",
+            "whyWrongHere": "Given wlc gui wlan, Status is disabled. matches the tested behavior — Multicast support is disabled. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Multicast support is disabled.\" without matching wlc gui wlan",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Radio Policy is configured to all. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Radio Policy is configured to all.\" without matching the scenario constraint",
+            "explanation": "Radio Policy is configured to all. describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, Status is disabled. matches the tested behavior — Radio Policy is configured to all. applies a different mechanism.",
+            "whatItDoes": "Radio Policy is configured to all. describes a mechanism that could sound plausible for wlc gui wlan.",
+            "whyWrongHere": "Given wlc gui wlan, Status is disabled. matches the tested behavior — Radio Policy is configured to all. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Radio Policy is configured to all.\" without matching wlc gui wlan",
             "needsExplanationReview": true
           }
         ],
@@ -80,20 +86,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Two PSKs (one hex and one ASCII) does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Two PSKs (one hex and one ASCII)\" without matching the scenario constraint",
+            "explanation": "Two PSKs (one hex and one ASCII) describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Two PSKs (one hex and one ASCII) applies a different mechanism.",
+            "whatItDoes": "Two PSKs (one hex and one ASCII) describes a mechanism that could sound plausible for wlc gui wlan.",
+            "whyWrongHere": "Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Two PSKs (one hex and one ASCII) applies a different mechanism.",
+            "misconceptionTested": "Applying \"Two PSKs (one hex and one ASCII)\" without matching wlc gui wlan",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Four PSKs (two hex and two ASCII) does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Four PSKs (two hex and two ASCII)\" without matching the scenario constraint",
+            "explanation": "Four PSKs (two hex and two ASCII) describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Four PSKs (two hex and two ASCII) applies a different mechanism.",
+            "whatItDoes": "Four PSKs (two hex and two ASCII) describes a mechanism that could sound plausible for wlc gui wlan.",
+            "whyWrongHere": "Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Four PSKs (two hex and two ASCII) applies a different mechanism.",
+            "misconceptionTested": "Applying \"Four PSKs (two hex and two ASCII)\" without matching wlc gui wlan",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Unlimited number of PSKs does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Unlimited number of PSKs\" without matching the scenario constraint",
+            "explanation": "Unlimited number of PSKs describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Unlimited number of PSKs applies a different mechanism.",
+            "whatItDoes": "Unlimited number of PSKs describes a mechanism that could sound plausible for wlc gui wlan.",
+            "whyWrongHere": "Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Unlimited number of PSKs applies a different mechanism.",
+            "misconceptionTested": "Applying \"Unlimited number of PSKs\" without matching wlc gui wlan",
             "needsExplanationReview": true
           }
         ],
@@ -131,20 +143,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "WPA-AES does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"WPA-AES\" without matching the scenario constraint",
+            "explanation": "WPA-AES describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA-AES applies a different mechanism.",
+            "whatItDoes": "WPA-AES describes a mechanism that could sound plausible for wlc gui wlan.",
+            "whyWrongHere": "Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA-AES applies a different mechanism.",
+            "misconceptionTested": "Applying \"WPA-AES\" without matching wlc gui wlan",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "WPA2-TKIP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"WPA2-TKIP\" without matching the scenario constraint",
+            "explanation": "WPA2-TKIP describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA2-TKIP applies a different mechanism.",
+            "whatItDoes": "WPA2-TKIP describes a mechanism that could sound plausible for wlc gui wlan.",
+            "whyWrongHere": "Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA2-TKIP applies a different mechanism.",
+            "misconceptionTested": "Applying \"WPA2-TKIP\" without matching wlc gui wlan",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "WPA2-RC4 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"WPA2-RC4\" without matching the scenario constraint",
+            "explanation": "WPA2-RC4 describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA2-RC4 applies a different mechanism.",
+            "whatItDoes": "WPA2-RC4 describes a mechanism that could sound plausible for wlc gui wlan.",
+            "whyWrongHere": "Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA2-RC4 applies a different mechanism.",
+            "misconceptionTested": "Applying \"WPA2-RC4\" without matching wlc gui wlan",
             "needsExplanationReview": true
           }
         ],
@@ -181,20 +199,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "WPA-Enterprise does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"WPA-Enterprise\" without matching the scenario constraint",
+            "explanation": "WPA-Enterprise describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA-Enterprise applies a different mechanism.",
+            "whatItDoes": "WPA-Enterprise describes a mechanism that could sound plausible for wlc gui wlan.",
+            "whyWrongHere": "Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA-Enterprise applies a different mechanism.",
+            "misconceptionTested": "Applying \"WPA-Enterprise\" without matching wlc gui wlan",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "WPA3-Enterprise does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"WPA3-Enterprise\" without matching the scenario constraint",
+            "explanation": "WPA3-Enterprise describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA3-Enterprise applies a different mechanism.",
+            "whatItDoes": "WPA3-Enterprise describes a mechanism that could sound plausible for wlc gui wlan.",
+            "whyWrongHere": "Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA3-Enterprise applies a different mechanism.",
+            "misconceptionTested": "Applying \"WPA3-Enterprise\" without matching wlc gui wlan",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "WPA-Personal does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"WPA-Personal\" without matching the scenario constraint",
+            "explanation": "WPA-Personal describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA-Personal applies a different mechanism.",
+            "whatItDoes": "WPA-Personal describes a mechanism that could sound plausible for wlc gui wlan.",
+            "whyWrongHere": "Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA-Personal applies a different mechanism.",
+            "misconceptionTested": "Applying \"WPA-Personal\" without matching wlc gui wlan",
             "needsExplanationReview": true
           }
         ],

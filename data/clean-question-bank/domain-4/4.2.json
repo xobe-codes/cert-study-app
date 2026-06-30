@@ -29,20 +29,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router#ntp server 129.6.15.28 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router#ntp server 129.6.15.28 describes a mechanism that could sound plausible for synchronize. Given synchronize, Router(config)#ntp server 129.6.15.28 matches the tested behavior — Router#ntp server 129.6.15.28 applies a different mechanism.",
+            "whatItDoes": "Router#ntp server 129.6.15.28 describes a mechanism that could sound plausible for synchronize.",
+            "whyWrongHere": "Given synchronize, Router(config)#ntp server 129.6.15.28 matches the tested behavior — Router#ntp server 129.6.15.28 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#ntp server 129.6.15.28\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#ntp client 129.6.15.28 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router(config)#ntp client 129.6.15.28 describes a mechanism that could sound plausible for synchronize. Given synchronize, Router(config)#ntp server 129.6.15.28 matches the tested behavior — Router(config)#ntp client 129.6.15.28 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ntp client 129.6.15.28 describes a mechanism that could sound plausible for synchronize.",
+            "whyWrongHere": "Given synchronize, Router(config)#ntp server 129.6.15.28 matches the tested behavior — Router(config)#ntp client 129.6.15.28 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ntp client 129.6.15.2\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#ntp client 129.6.15.28 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router#ntp client 129.6.15.28 describes a mechanism that could sound plausible for synchronize. Given synchronize, Router(config)#ntp server 129.6.15.28 matches the tested behavior — Router#ntp client 129.6.15.28 applies a different mechanism.",
+            "whatItDoes": "Router#ntp client 129.6.15.28 describes a mechanism that could sound plausible for synchronize.",
+            "whyWrongHere": "Given synchronize, Router(config)#ntp server 129.6.15.28 matches the tested behavior — Router#ntp client 129.6.15.28 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#ntp client 129.6.15.28\" without matching ntp",
             "needsExplanationReview": true
           }
         ],
@@ -77,20 +83,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#ntp server does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router(config)#ntp server describes a mechanism that could sound plausible for configures. Given configures, Router(config)#ntp master matches the tested behavior — Router(config)#ntp server applies a different mechanism.",
+            "whatItDoes": "Router(config)#ntp server describes a mechanism that could sound plausible for configures.",
+            "whyWrongHere": "Given configures, Router(config)#ntp master matches the tested behavior — Router(config)#ntp server applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ntp server\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#ntp clock source does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router(config)#ntp clock source describes a mechanism that could sound plausible for configures. Given configures, Router(config)#ntp master matches the tested behavior — Router(config)#ntp clock source applies a different mechanism.",
+            "whatItDoes": "Router(config)#ntp clock source describes a mechanism that could sound plausible for configures.",
+            "whyWrongHere": "Given configures, Router(config)#ntp master matches the tested behavior — Router(config)#ntp clock source applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ntp clock source\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#ntp trusted does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router(config)#ntp trusted describes a mechanism that could sound plausible for configures. Given configures, Router(config)#ntp master matches the tested behavior — Router(config)#ntp trusted applies a different mechanism.",
+            "whatItDoes": "Router(config)#ntp trusted describes a mechanism that could sound plausible for configures.",
+            "whyWrongHere": "Given configures, Router(config)#ntp master matches the tested behavior — Router(config)#ntp trusted applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ntp trusted\" without matching ntp",
             "needsExplanationReview": true
           }
         ],
@@ -125,20 +137,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router#show ntp does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router#show ntp describes a mechanism that could sound plausible for the router or switch is using NTP. Given the router or switch is using NTP, Router#show clock detail matches the tested behavior — Router#show ntp applies a different mechanism.",
+            "whatItDoes": "Router#show ntp describes a mechanism that could sound plausible for the router or switch is using NTP.",
+            "whyWrongHere": "Given the router or switch is using NTP, Router#show clock detail matches the tested behavior — Router#show ntp applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ntp\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#show time does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router#show time describes a mechanism that could sound plausible for the router or switch is using NTP. Given the router or switch is using NTP, Router#show clock detail matches the tested behavior — Router#show time applies a different mechanism.",
+            "whatItDoes": "Router#show time describes a mechanism that could sound plausible for the router or switch is using NTP.",
+            "whyWrongHere": "Given the router or switch is using NTP, Router#show clock detail matches the tested behavior — Router#show time applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show time\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show time source does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router#show time source describes a mechanism that could sound plausible for the router or switch is using NTP. Given the router or switch is using NTP, Router#show clock detail matches the tested behavior — Router#show time source applies a different mechanism.",
+            "whatItDoes": "Router#show time source describes a mechanism that could sound plausible for the router or switch is using NTP.",
+            "whyWrongHere": "Given the router or switch is using NTP, Router#show clock detail matches the tested behavior — Router#show time source applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show time source\" without matching ntp",
             "needsExplanationReview": true
           }
         ],
@@ -174,20 +192,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#show clock detail does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router#show clock detail describes a mechanism that could sound plausible for configured. Given configured, Router#show ntp associations detail matches the tested behavior — Router#show clock detail applies a different mechanism.",
+            "whatItDoes": "Router#show clock detail describes a mechanism that could sound plausible for configured.",
+            "whyWrongHere": "Given configured, Router#show ntp associations detail matches the tested behavior — Router#show clock detail applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show clock detail\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router#show ntp detail does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router#show ntp detail describes a mechanism that could sound plausible for configured. Given configured, Router#show ntp associations detail matches the tested behavior — Router#show ntp detail applies a different mechanism.",
+            "whatItDoes": "Router#show ntp detail describes a mechanism that could sound plausible for configured.",
+            "whyWrongHere": "Given configured, Router#show ntp associations detail matches the tested behavior — Router#show ntp detail applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ntp detail\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show ntp skew does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router#show ntp skew describes a mechanism that could sound plausible for configured. Given configured, Router#show ntp associations detail matches the tested behavior — Router#show ntp skew applies a different mechanism.",
+            "whatItDoes": "Router#show ntp skew describes a mechanism that could sound plausible for configured.",
+            "whyWrongHere": "Given configured, Router#show ntp associations detail matches the tested behavior — Router#show ntp skew applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ntp skew\" without matching ntp",
             "needsExplanationReview": true
           }
         ],
@@ -221,20 +245,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "TCP/161 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "TCP/161 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/123 matches the tested behavior — TCP/161 applies a different mechanism.",
+            "whatItDoes": "TCP/161 describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, UDP/123 matches the tested behavior — TCP/161 applies a different mechanism.",
+            "misconceptionTested": "Applying \"TCP/161\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "TCP/123 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "TCP/123 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/123 matches the tested behavior — TCP/123 applies a different mechanism.",
+            "whatItDoes": "TCP/123 describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, UDP/123 matches the tested behavior — TCP/123 applies a different mechanism.",
+            "misconceptionTested": "Applying \"TCP/123\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "UDP/69 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "UDP/69 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/123 matches the tested behavior — UDP/69 applies a different mechanism.",
+            "whatItDoes": "UDP/69 describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, UDP/123 matches the tested behavior — UDP/69 applies a different mechanism.",
+            "misconceptionTested": "Applying \"UDP/69\" without matching ntp",
             "needsExplanationReview": true
           }
         ],
@@ -268,20 +298,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#show ntp does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router#show ntp describes a mechanism that could sound plausible for the router or switch is getting an answer back from an NTP server. Given the router or switch is getting an answer back from an NTP server, Router#debug ntp packets matches the tested behavior — Router#show ntp applies a different mechanism.",
+            "whatItDoes": "Router#show ntp describes a mechanism that could sound plausible for the router or switch is getting an answer back from an NTP server.",
+            "whyWrongHere": "Given the router or switch is getting an answer back from an NTP server, Router#debug ntp packets matches the tested behavior — Router#show ntp applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ntp\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router#show ip ntp does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router#show ip ntp describes a mechanism that could sound plausible for the router or switch is getting an answer back from an NTP server. Given the router or switch is getting an answer back from an NTP server, Router#debug ntp packets matches the tested behavior — Router#show ip ntp applies a different mechanism.",
+            "whatItDoes": "Router#show ip ntp describes a mechanism that could sound plausible for the router or switch is getting an answer back from an NTP server.",
+            "whyWrongHere": "Given the router or switch is getting an answer back from an NTP server, Router#debug ntp packets matches the tested behavior — Router#show ip ntp applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip ntp\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#debug ntp messages does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router#debug ntp messages describes a mechanism that could sound plausible for the router or switch is getting an answer back from an NTP server. Given the router or switch is getting an answer back from an NTP server, Router#debug ntp packets matches the tested behavior — Router#debug ntp messages applies a different mechanism.",
+            "whatItDoes": "Router#debug ntp messages describes a mechanism that could sound plausible for the router or switch is getting an answer back from an NTP server.",
+            "whyWrongHere": "Given the router or switch is getting an answer back from an NTP server, Router#debug ntp packets matches the tested behavior — Router#debug ntp messages applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#debug ntp messages\" without matching ntp",
             "needsExplanationReview": true
           }
         ],
@@ -316,20 +352,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Configure all devices to a public NTP server. does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Configure all devices to a public NTP server. describes a mechanism that could sound plausible for practice. Given practice, Always configure the time source to a DNS address. matches the tested behavior — Configure all devices to a public NTP server. applies a different mechanism.",
+            "whatItDoes": "Configure all devices to a public NTP server. describes a mechanism that could sound plausible for practice.",
+            "whyWrongHere": "Given practice, Always configure the time source to a DNS address. matches the tested behavior — Configure all devices to a public NTP server. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Configure all devices to a public NT\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Configure all devices to different NTP servers for redundancy. does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Configure all devices to different NTP servers for redundancy. describes a mechanism that could sound plausible for practice. Given practice, Always configure the time source to a DNS address. matches the tested behavior — Configure all devices to different NTP servers for redundancy. applies a different mechanism.",
+            "whatItDoes": "Configure all devices to different NTP servers for redundancy. describes a mechanism that could sound plausible for practice.",
+            "whyWrongHere": "Given practice, Always configure the time source to a DNS address. matches the tested behavior — Configure all devices to different NTP servers for redundancy. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Configure all devices to different N\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Configure all devices as master servers. does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Configure all devices as master servers. describes a mechanism that could sound plausible for practice. Given practice, Always configure the time source to a DNS address. matches the tested behavior — Configure all devices as master servers. applies a different mechanism.",
+            "whatItDoes": "Configure all devices as master servers. describes a mechanism that could sound plausible for practice.",
+            "whyWrongHere": "Given practice, Always configure the time source to a DNS address. matches the tested behavior — Configure all devices as master servers. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Configure all devices as master serv\" without matching ntp",
             "needsExplanationReview": true
           }
         ],
@@ -364,20 +406,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#show ntp does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router#show ntp describes a mechanism that could sound plausible for observed. Given observed, Router#show ntp status matches the tested behavior — Router#show ntp applies a different mechanism.",
+            "whatItDoes": "Router#show ntp describes a mechanism that could sound plausible for observed.",
+            "whyWrongHere": "Given observed, Router#show ntp status matches the tested behavior — Router#show ntp applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ntp\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router#show ip ntp status does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router#show ip ntp status describes a mechanism that could sound plausible for observed. Given observed, Router#show ntp status matches the tested behavior — Router#show ip ntp status applies a different mechanism.",
+            "whatItDoes": "Router#show ip ntp status describes a mechanism that could sound plausible for observed.",
+            "whyWrongHere": "Given observed, Router#show ntp status matches the tested behavior — Router#show ip ntp status applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip ntp status\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#debug ntp drift does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router#debug ntp drift describes a mechanism that could sound plausible for observed. Given observed, Router#show ntp status matches the tested behavior — Router#debug ntp drift applies a different mechanism.",
+            "whatItDoes": "Router#debug ntp drift describes a mechanism that could sound plausible for observed.",
+            "whyWrongHere": "Given observed, Router#show ntp status matches the tested behavior — Router#debug ntp drift applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#debug ntp drift\" without matching ntp",
             "needsExplanationReview": true
           }
         ],
@@ -413,20 +461,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#clock timezone pacific does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router(config)#clock timezone pacific describes a mechanism that could sound plausible for standard. Given standard, Router(config)#clock timezone pst -8 0 matches the tested behavior — Router(config)#clock timezone pacific applies a different mechanism.",
+            "whatItDoes": "Router(config)#clock timezone pacific describes a mechanism that could sound plausible for standard.",
+            "whyWrongHere": "Given standard, Router(config)#clock timezone pst -8 0 matches the tested behavior — Router(config)#clock timezone pacific applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#clock timezone pacifi\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#timezone pacific does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router(config)#timezone pacific describes a mechanism that could sound plausible for standard. Given standard, Router(config)#clock timezone pst -8 0 matches the tested behavior — Router(config)#timezone pacific applies a different mechanism.",
+            "whatItDoes": "Router(config)#timezone pacific describes a mechanism that could sound plausible for standard.",
+            "whyWrongHere": "Given standard, Router(config)#clock timezone pst -8 0 matches the tested behavior — Router(config)#timezone pacific applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#timezone pacific\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#timezone pst -8 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router(config)#timezone pst -8 describes a mechanism that could sound plausible for standard. Given standard, Router(config)#clock timezone pst -8 0 matches the tested behavior — Router(config)#timezone pst -8 applies a different mechanism.",
+            "whatItDoes": "Router(config)#timezone pst -8 describes a mechanism that could sound plausible for standard.",
+            "whyWrongHere": "Given standard, Router(config)#clock timezone pst -8 0 matches the tested behavior — Router(config)#timezone pst -8 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#timezone pst -8\" without matching ntp",
             "needsExplanationReview": true
           }
         ],
@@ -461,20 +515,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Tunnel interface does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Tunnel interface describes a mechanism that could sound plausible for any interface fails, NTP will still be available. Given any interface fails, NTP will still be available, Loopback interface matches the tested behavior — Tunnel interface applies a different mechanism.",
+            "whatItDoes": "Tunnel interface describes a mechanism that could sound plausible for any interface fails, NTP will still be available.",
+            "whyWrongHere": "Given any interface fails, NTP will still be available, Loopback interface matches the tested behavior — Tunnel interface applies a different mechanism.",
+            "misconceptionTested": "Applying \"Tunnel interface\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "NTP interface does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "NTP interface describes a mechanism that could sound plausible for any interface fails, NTP will still be available. Given any interface fails, NTP will still be available, Loopback interface matches the tested behavior — NTP interface applies a different mechanism.",
+            "whatItDoes": "NTP interface describes a mechanism that could sound plausible for any interface fails, NTP will still be available.",
+            "whyWrongHere": "Given any interface fails, NTP will still be available, Loopback interface matches the tested behavior — NTP interface applies a different mechanism.",
+            "misconceptionTested": "Applying \"NTP interface\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switched Virtual Interface (SVI) does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Switched Virtual Interface (SVI) describes a mechanism that could sound plausible for any interface fails, NTP will still be available. Given any interface fails, NTP will still be available, Loopback interface matches the tested behavior — Switched Virtual Interface (SVI) applies a different mechanism.",
+            "whatItDoes": "Switched Virtual Interface (SVI) describes a mechanism that could sound plausible for any interface fails, NTP will still be available.",
+            "whyWrongHere": "Given any interface fails, NTP will still be available, Loopback interface matches the tested behavior — Switched Virtual Interface (SVI) applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switched Virtual Interface (SVI)\" without matching ntp",
             "needsExplanationReview": true
           }
         ],
@@ -510,20 +570,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config)#ntp loopback 0 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Switch(config)#ntp loopback 0 describes a mechanism that could sound plausible for configure. Given configure, Switch(config)#ntp source loopback 0 matches the tested behavior — Switch(config)#ntp loopback 0 applies a different mechanism.",
+            "whatItDoes": "Switch(config)#ntp loopback 0 describes a mechanism that could sound plausible for configure.",
+            "whyWrongHere": "Given configure, Switch(config)#ntp source loopback 0 matches the tested behavior — Switch(config)#ntp loopback 0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#ntp loopback 0\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config)#ntp master loopback 0 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Switch(config)#ntp master loopback 0 describes a mechanism that could sound plausible for configure. Given configure, Switch(config)#ntp source loopback 0 matches the tested behavior — Switch(config)#ntp master loopback 0 applies a different mechanism.",
+            "whatItDoes": "Switch(config)#ntp master loopback 0 describes a mechanism that could sound plausible for configure.",
+            "whyWrongHere": "Given configure, Switch(config)#ntp source loopback 0 matches the tested behavior — Switch(config)#ntp master loopback 0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#ntp master loopback 0\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config)#ntp clock loopback 0 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Switch(config)#ntp clock loopback 0 describes a mechanism that could sound plausible for configure. Given configure, Switch(config)#ntp source loopback 0 matches the tested behavior — Switch(config)#ntp clock loopback 0 applies a different mechanism.",
+            "whatItDoes": "Switch(config)#ntp clock loopback 0 describes a mechanism that could sound plausible for configure.",
+            "whyWrongHere": "Given configure, Switch(config)#ntp source loopback 0 matches the tested behavior — Switch(config)#ntp clock loopback 0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#ntp clock loopback 0\" without matching ntp",
             "needsExplanationReview": true
           }
         ],
@@ -558,20 +624,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#clock set 2:24:00 1 august 2019 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router(config)#clock set 2:24:00 1 august 2019 describes a mechanism that could sound plausible for internal. Given internal, Router#clock set 2:24:00 1 august 2019 matches the tested behavior — Router(config)#clock set 2:24:00 1 august 2019 applies a different mechanism.",
+            "whatItDoes": "Router(config)#clock set 2:24:00 1 august 2019 describes a mechanism that could sound plausible for internal.",
+            "whyWrongHere": "Given internal, Router#clock set 2:24:00 1 august 2019 matches the tested behavior — Router(config)#clock set 2:24:00 1 august 2019 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#clock set 2:24:00 1 a\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#clock set 2:24:00 august 1 2019 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router(config)#clock set 2:24:00 august 1 2019 describes a mechanism that could sound plausible for internal. Given internal, Router#clock set 2:24:00 1 august 2019 matches the tested behavior — Router(config)#clock set 2:24:00 august 1 2019 applies a different mechanism.",
+            "whatItDoes": "Router(config)#clock set 2:24:00 august 1 2019 describes a mechanism that could sound plausible for internal.",
+            "whyWrongHere": "Given internal, Router#clock set 2:24:00 1 august 2019 matches the tested behavior — Router(config)#clock set 2:24:00 august 1 2019 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#clock set 2:24:00 aug\" without matching ntp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#clock 2:24:00 1 august 2019 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "explanation": "Router#clock 2:24:00 1 august 2019 describes a mechanism that could sound plausible for internal. Given internal, Router#clock set 2:24:00 1 august 2019 matches the tested behavior — Router#clock 2:24:00 1 august 2019 applies a different mechanism.",
+            "whatItDoes": "Router#clock 2:24:00 1 august 2019 describes a mechanism that could sound plausible for internal.",
+            "whyWrongHere": "Given internal, Router#clock set 2:24:00 1 august 2019 matches the tested behavior — Router#clock 2:24:00 1 august 2019 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#clock 2:24:00 1 august 2019\" without matching ntp",
             "needsExplanationReview": true
           }
         ],

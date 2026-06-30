@@ -27,18 +27,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Connected route misses what this question tests. O = OSPF.",
-            "misconceptionTested": "Selecting \"Connected route\" without matching the scenario constraint"
+            "explanation": "Connected route describes a mechanism that could sound plausible for route source codes. Given route source codes, OSPF-learned route matches the tested behavior — Connected route applies a different mechanism.",
+            "whatItDoes": "Connected route describes a mechanism that could sound plausible for route source codes.",
+            "whyWrongHere": "Given route source codes, OSPF-learned route matches the tested behavior — Connected route applies a different mechanism.",
+            "misconceptionTested": "Applying \"Connected route\" without matching route source codes"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Static route misses what this question tests. O = OSPF.",
-            "misconceptionTested": "Selecting \"Static route\" without matching the scenario constraint"
+            "explanation": "Static route describes a mechanism that could sound plausible for route source codes. Given route source codes, OSPF-learned route matches the tested behavior — Static route applies a different mechanism.",
+            "whatItDoes": "Static route describes a mechanism that could sound plausible for route source codes.",
+            "whyWrongHere": "Given route source codes, OSPF-learned route matches the tested behavior — Static route applies a different mechanism.",
+            "misconceptionTested": "Applying \"Static route\" without matching route source codes"
           },
           {
             "choiceIndex": 3,
-            "explanation": "EIGRP-learned route misses what this question tests. O = OSPF.",
-            "misconceptionTested": "Selecting \"EIGRP-learned route\" without matching the scenario constraint"
+            "explanation": "EIGRP-learned route describes a mechanism that could sound plausible for route source codes. Given route source codes, OSPF-learned route matches the tested behavior — EIGRP-learned route applies a different mechanism.",
+            "whatItDoes": "EIGRP-learned route describes a mechanism that could sound plausible for route source codes.",
+            "whyWrongHere": "Given route source codes, OSPF-learned route matches the tested behavior — EIGRP-learned route applies a different mechanism.",
+            "misconceptionTested": "Applying \"EIGRP-learned route\" without matching route source codes"
           }
         ],
         "examTip": "This stem tests route source codes — exam distractors swap similar terms; anchor on: O = OSPF."
@@ -70,17 +76,23 @@
           {
             "choiceIndex": 0,
             "explanation": "The metric reflects a common trap: In [AD/metric], AD comes FIRST. Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets.",
+            "whatItDoes": "The metric describes a mechanism that could sound plausible for AD/metric brackets.",
+            "whyWrongHere": "Given AD/metric brackets, The administrative distance matches the tested behavior — The metric applies a different mechanism.",
             "misconceptionTested": "In [AD/metric], AD comes FIRST"
           },
           {
             "choiceIndex": 2,
-            "explanation": "The OSPF cost misses what this question tests. Format is [AD/metric].",
-            "misconceptionTested": "Selecting \"The OSPF cost\" without matching the scenario constraint"
+            "explanation": "The OSPF cost describes a mechanism that could sound plausible for AD/metric brackets. Given AD/metric brackets, The administrative distance matches the tested behavior — The OSPF cost applies a different mechanism.",
+            "whatItDoes": "The OSPF cost describes a mechanism that could sound plausible for AD/metric brackets.",
+            "whyWrongHere": "Given AD/metric brackets, The administrative distance matches the tested behavior — The OSPF cost applies a different mechanism.",
+            "misconceptionTested": "Applying \"The OSPF cost\" without matching AD/metric brackets"
           },
           {
             "choiceIndex": 3,
-            "explanation": "The hop count misses what this question tests. Format is [AD/metric].",
-            "misconceptionTested": "Selecting \"The hop count\" without matching the scenario constraint"
+            "explanation": "The hop count describes a mechanism that could sound plausible for AD/metric brackets. Given AD/metric brackets, The administrative distance matches the tested behavior — The hop count applies a different mechanism.",
+            "whatItDoes": "The hop count describes a mechanism that could sound plausible for AD/metric brackets.",
+            "whyWrongHere": "Given AD/metric brackets, The administrative distance matches the tested behavior — The hop count applies a different mechanism.",
+            "misconceptionTested": "Applying \"The hop count\" without matching AD/metric brackets"
           }
         ],
         "examTip": "On the exam: In [AD/metric], AD comes FIRST — Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets"
@@ -112,17 +124,23 @@
           {
             "choiceIndex": 1,
             "explanation": "S 192.168.1.0/24 and C 192.168.1.1/32 uses the wrong value. The tested fact calls for 32 — not 192.",
-            "misconceptionTested": "Selecting \"S 192.168.1.0/24 and C 192.168.1.1/32\" without matching the scenario constraint"
+            "whatItDoes": "S 192.168.1.0/24 and C 192.168.1.1/32 describes a mechanism that could sound plausible for connected and local routes.",
+            "whyWrongHere": "Given connected and local routes, C 192.168.1.0/24 and L 192.168.1.1/32 matches the tested behavior — S 192.168.1.0/24 and C 192.168.1.1/32 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 192 instead of the correct 32"
           },
           {
             "choiceIndex": 2,
             "explanation": "O 192.168.1.0/24 and C 192.168.1.1/24 uses the wrong value. The tested fact calls for 32 — not 192.",
-            "misconceptionTested": "Selecting \"O 192.168.1.0/24 and C 192.168.1.1/24\" without matching the scenario constraint"
+            "whatItDoes": "O 192.168.1.0/24 and C 192.168.1.1/24 describes a mechanism that could sound plausible for connected and local routes.",
+            "whyWrongHere": "Given connected and local routes, C 192.168.1.0/24 and L 192.168.1.1/32 matches the tested behavior — O 192.168.1.0/24 and C 192.168.1.1/24 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 192 instead of the correct 32"
           },
           {
             "choiceIndex": 3,
             "explanation": "C 192.168.1.0/24 only uses the wrong value. The tested fact calls for 32 — not 192.",
-            "misconceptionTested": "Selecting \"C 192.168.1.0/24 only\" without matching the scenario constraint"
+            "whatItDoes": "C 192.168.1.0/24 only describes a mechanism that could sound plausible for connected and local routes.",
+            "whyWrongHere": "Given connected and local routes, C 192.168.1.0/24 and L 192.168.1.1/32 matches the tested behavior — C 192.168.1.0/24 only applies a different mechanism.",
+            "misconceptionTested": "Memorizing 192 instead of the correct 32"
           }
         ],
         "examTip": "On the exam: The L route is NOT a host route to a PC — L is the router own interface IP as a /32 — so the router processes packets addressed to itself"
@@ -154,17 +172,23 @@
           {
             "choiceIndex": 0,
             "explanation": "It routes traffic to hosts on the subnet reflects a common trap: The L route forwards traffic to end hosts. L routes exist only for the router own interface IPs — not for PCs or servers.",
+            "whatItDoes": "It routes traffic to hosts on the subnet describes a mechanism that could sound plausible for L route purpose.",
+            "whyWrongHere": "Given L route purpose, It allows the router to process packets destined for its own interface IP matches the tested behavior — It routes traffic to hosts on the subnet applies a different mechanism.",
             "misconceptionTested": "The L route forwards traffic to end hosts"
           },
           {
             "choiceIndex": 2,
             "explanation": "It is a backup for the connected route reflects a common trap: The L route is NOT a host route to a PC. L is the router own interface IP as a /32 — so the router processes packets addressed to itself.",
+            "whatItDoes": "It is a backup for the connected route describes a mechanism that could sound plausible for L route purpose.",
+            "whyWrongHere": "Given L route purpose, It allows the router to process packets destined for its own interface IP matches the tested behavior — It is a backup for the connected route applies a different mechanism.",
             "misconceptionTested": "The L route is NOT a host route to a PC"
           },
           {
             "choiceIndex": 3,
-            "explanation": "It marks the default gateway misses what this question tests. The L /32 lets the router recognize and process packets addressed directly to its own interface IP (e.",
-            "misconceptionTested": "Selecting \"It marks the default gateway\" without matching the scenario constraint"
+            "explanation": "It marks the default gateway sends the decision to a router/default gateway rather than handling it at Layer 2. Given L route purpose, It allows the router to process packets destined for its own interface IP matches the tested behavior — It marks the default gateway applies a different mechanism.",
+            "whatItDoes": "It marks the default gateway sends the decision to a router/default gateway rather than handling it at Layer 2.",
+            "whyWrongHere": "Given L route purpose, It allows the router to process packets destined for its own interface IP matches the tested behavior — It marks the default gateway applies a different mechanism.",
+            "misconceptionTested": "Applying default-gateway logic to a Layer 2 switch decision"
           }
         ],
         "examTip": "On the exam: The L route is NOT a host route to a PC — L is the router own interface IP as a /32 — so the router processes packets addressed to itself"
@@ -195,18 +219,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "E misses what this question tests. D = EIGRP (Diffusing Update Algorithm).",
-            "misconceptionTested": "Selecting \"E\" without matching the scenario constraint"
+            "explanation": "E describes a mechanism that could sound plausible for EIGRP code. Given EIGRP code, D matches the tested behavior — E applies a different mechanism.",
+            "whatItDoes": "E describes a mechanism that could sound plausible for EIGRP code.",
+            "whyWrongHere": "Given EIGRP code, D matches the tested behavior — E applies a different mechanism.",
+            "misconceptionTested": "Applying \"E\" without matching EIGRP code"
           },
           {
             "choiceIndex": 2,
-            "explanation": "O misses what this question tests. D = EIGRP (Diffusing Update Algorithm).",
-            "misconceptionTested": "Selecting \"O\" without matching the scenario constraint"
+            "explanation": "O describes a mechanism that could sound plausible for EIGRP code. Given EIGRP code, D matches the tested behavior — O applies a different mechanism.",
+            "whatItDoes": "O describes a mechanism that could sound plausible for EIGRP code.",
+            "whyWrongHere": "Given EIGRP code, D matches the tested behavior — O applies a different mechanism.",
+            "misconceptionTested": "Applying \"O\" without matching EIGRP code"
           },
           {
             "choiceIndex": 3,
-            "explanation": "R misses what this question tests. D = EIGRP (Diffusing Update Algorithm).",
-            "misconceptionTested": "Selecting \"R\" without matching the scenario constraint"
+            "explanation": "R describes a mechanism that could sound plausible for EIGRP code. Given EIGRP code, D matches the tested behavior — R applies a different mechanism.",
+            "whatItDoes": "R describes a mechanism that could sound plausible for EIGRP code.",
+            "whyWrongHere": "Given EIGRP code, D matches the tested behavior — R applies a different mechanism.",
+            "misconceptionTested": "Applying \"R\" without matching EIGRP code"
           }
         ],
         "examTip": "This stem tests EIGRP code — exam distractors swap similar terms; anchor on: D = EIGRP (Diffusing Update Algorithm)."
@@ -237,17 +267,23 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Marked with *, indicating preferred misses what this question tests. Connected and local routes are removed when the interface fails.",
-            "misconceptionTested": "Selecting \"Marked with *, indicating preferred\" without matching the scenario constraint"
+            "explanation": "Marked with *, indicating preferred describes a mechanism that could sound plausible for connected route removal. Given connected route removal, Removed from the routing table matches the tested behavior — Marked with *, indicating preferred applies a different mechanism.",
+            "whatItDoes": "Marked with *, indicating preferred describes a mechanism that could sound plausible for connected route removal.",
+            "whyWrongHere": "Given connected route removal, Removed from the routing table matches the tested behavior — Marked with *, indicating preferred applies a different mechanism.",
+            "misconceptionTested": "Applying \"Marked with *, indicating preferred\" without matching connected route removal"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Stays with an age timer misses what this question tests. Connected and local routes are removed when the interface fails.",
-            "misconceptionTested": "Selecting \"Stays with an age timer\" without matching the scenario constraint"
+            "explanation": "Stays with an age timer describes a mechanism that could sound plausible for connected route removal. Given connected route removal, Removed from the routing table matches the tested behavior — Stays with an age timer applies a different mechanism.",
+            "whatItDoes": "Stays with an age timer describes a mechanism that could sound plausible for connected route removal.",
+            "whyWrongHere": "Given connected route removal, Removed from the routing table matches the tested behavior — Stays with an age timer applies a different mechanism.",
+            "misconceptionTested": "Applying \"Stays with an age timer\" without matching connected route removal"
           },
           {
             "choiceIndex": 3,
             "explanation": "Converts to a static route reflects a common trap: The L route is NOT a host route to a PC. L is the router own interface IP as a /32 — so the router processes packets addressed to itself.",
+            "whatItDoes": "Converts to a static route describes a mechanism that could sound plausible for connected route removal.",
+            "whyWrongHere": "Given connected route removal, Removed from the routing table matches the tested behavior — Converts to a static route applies a different mechanism.",
             "misconceptionTested": "The L route is NOT a host route to a PC"
           }
         ],
@@ -280,17 +316,23 @@
           {
             "choiceIndex": 0,
             "explanation": "0 uses the wrong value. The tested fact calls for 1 — not 0.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+            "whatItDoes": "0 describes a mechanism that could sound plausible for static AD.",
+            "whyWrongHere": "Given static AD, 1 matches the tested behavior — 0 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 0 instead of the correct 1"
           },
           {
             "choiceIndex": 2,
             "explanation": "90 uses the wrong value. The tested fact calls for 1 — not 90.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+            "whatItDoes": "90 describes a mechanism that could sound plausible for static AD.",
+            "whyWrongHere": "Given static AD, 1 matches the tested behavior — 90 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 90 instead of the correct 1"
           },
           {
             "choiceIndex": 3,
             "explanation": "110 uses the wrong value. The tested fact calls for 1 — not 110.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+            "whatItDoes": "110 describes a mechanism that could sound plausible for static AD.",
+            "whyWrongHere": "Given static AD, 1 matches the tested behavior — 110 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 110 instead of the correct 1"
           }
         ],
         "examTip": "AD picks the route source for the same prefix; longest match still wins first."
@@ -322,18 +364,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Administrative distance misses what this question tests. D = EIGRP.",
-            "misconceptionTested": "Selecting \"Administrative distance\" without matching the scenario constraint"
+            "explanation": "Administrative distance describes a mechanism that could sound plausible for show ip route interpretation. Given show ip route interpretation, EIGRP composite metric matches the tested behavior — Administrative distance applies a different mechanism.",
+            "whatItDoes": "Administrative distance describes a mechanism that could sound plausible for show ip route interpretation.",
+            "whyWrongHere": "Given show ip route interpretation, EIGRP composite metric matches the tested behavior — Administrative distance applies a different mechanism.",
+            "misconceptionTested": "Applying \"Administrative distance\" without matching show ip route interpretation"
           },
           {
             "choiceIndex": 2,
-            "explanation": "OSPF cost misses what this question tests. D = EIGRP.",
-            "misconceptionTested": "Selecting \"OSPF cost\" without matching the scenario constraint"
+            "explanation": "OSPF cost describes a mechanism that could sound plausible for show ip route interpretation. Given show ip route interpretation, EIGRP composite metric matches the tested behavior — OSPF cost applies a different mechanism.",
+            "whatItDoes": "OSPF cost describes a mechanism that could sound plausible for show ip route interpretation.",
+            "whyWrongHere": "Given show ip route interpretation, EIGRP composite metric matches the tested behavior — OSPF cost applies a different mechanism.",
+            "misconceptionTested": "Applying \"OSPF cost\" without matching show ip route interpretation"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Hop count misses what this question tests. D = EIGRP.",
-            "misconceptionTested": "Selecting \"Hop count\" without matching the scenario constraint"
+            "explanation": "Hop count describes a mechanism that could sound plausible for show ip route interpretation. Given show ip route interpretation, EIGRP composite metric matches the tested behavior — Hop count applies a different mechanism.",
+            "whatItDoes": "Hop count describes a mechanism that could sound plausible for show ip route interpretation.",
+            "whyWrongHere": "Given show ip route interpretation, EIGRP composite metric matches the tested behavior — Hop count applies a different mechanism.",
+            "misconceptionTested": "Applying \"Hop count\" without matching show ip route interpretation"
           }
         ],
         "examTip": "On the exam: In [AD/metric], AD comes FIRST — Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets"
@@ -364,18 +412,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The router cannot reach any network misses what this question tests. The gateway of last resort message means a default route (0.",
-            "misconceptionTested": "Selecting \"The router cannot reach any network\" without matching the scenario constraint"
+            "explanation": "The router cannot reach any network describes a mechanism that could sound plausible for gateway of last resort. Given gateway of last resort, A default route is installed matches the tested behavior — The router cannot reach any network applies a different mechanism.",
+            "whatItDoes": "The router cannot reach any network describes a mechanism that could sound plausible for gateway of last resort.",
+            "whyWrongHere": "Given gateway of last resort, A default route is installed matches the tested behavior — The router cannot reach any network applies a different mechanism.",
+            "misconceptionTested": "Applying \"The router cannot reach any network\" without matching gateway of last resort"
           },
           {
             "choiceIndex": 2,
-            "explanation": "The router is a DHCP server misses what this question tests. The gateway of last resort message means a default route (0.",
-            "misconceptionTested": "Selecting \"The router is a DHCP server\" without matching the scenario constraint"
+            "explanation": "The router is a DHCP server describes a mechanism that could sound plausible for gateway of last resort. Given gateway of last resort, A default route is installed matches the tested behavior — The router is a DHCP server applies a different mechanism.",
+            "whatItDoes": "The router is a DHCP server describes a mechanism that could sound plausible for gateway of last resort.",
+            "whyWrongHere": "Given gateway of last resort, A default route is installed matches the tested behavior — The router is a DHCP server applies a different mechanism.",
+            "misconceptionTested": "Applying \"The router is a DHCP server\" without matching gateway of last resort"
           },
           {
             "choiceIndex": 3,
-            "explanation": "OSPF elected a DR misses what this question tests. The gateway of last resort message means a default route (0.",
-            "misconceptionTested": "Selecting \"OSPF elected a DR\" without matching the scenario constraint"
+            "explanation": "OSPF elected a DR describes a mechanism that could sound plausible for gateway of last resort. Given gateway of last resort, A default route is installed matches the tested behavior — OSPF elected a DR applies a different mechanism.",
+            "whatItDoes": "OSPF elected a DR describes a mechanism that could sound plausible for gateway of last resort.",
+            "whyWrongHere": "Given gateway of last resort, A default route is installed matches the tested behavior — OSPF elected a DR applies a different mechanism.",
+            "misconceptionTested": "Applying \"OSPF elected a DR\" without matching gateway of last resort"
           }
         ],
         "examTip": "On the exam: In [AD/metric], AD comes FIRST — Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets"
@@ -406,18 +460,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The route is unreachable misses what this question tests. An asterisk marks the route as the best path for that prefix or indicates it as the candidate default route (for the gateway of last resort).",
-            "misconceptionTested": "Selecting \"The route is unreachable\" without matching the scenario constraint"
+            "explanation": "The route is unreachable describes a mechanism that could sound plausible for asterisk in routing table. Given asterisk in routing table, It is the best match or candidate default matches the tested behavior — The route is unreachable applies a different mechanism.",
+            "whatItDoes": "The route is unreachable describes a mechanism that could sound plausible for asterisk in routing table.",
+            "whyWrongHere": "Given asterisk in routing table, It is the best match or candidate default matches the tested behavior — The route is unreachable applies a different mechanism.",
+            "misconceptionTested": "Applying \"The route is unreachable\" without matching asterisk in routing table"
           },
           {
             "choiceIndex": 2,
-            "explanation": "The route is more than 24 hours old misses what this question tests. An asterisk marks the route as the best path for that prefix or indicates it as the candidate default route (for the gateway of last resort).",
-            "misconceptionTested": "Selecting \"The route is more than 24 hours old\" without matching the scenario constraint"
+            "explanation": "The route is more than 24 hours old describes a mechanism that could sound plausible for asterisk in routing table. Given asterisk in routing table, It is the best match or candidate default matches the tested behavior — The route is more than 24 hours old applies a different mechanism.",
+            "whatItDoes": "The route is more than 24 hours old describes a mechanism that could sound plausible for asterisk in routing table.",
+            "whyWrongHere": "Given asterisk in routing table, It is the best match or candidate default matches the tested behavior — The route is more than 24 hours old applies a different mechanism.",
+            "misconceptionTested": "Applying \"The route is more than 24 hours old\" without matching asterisk in routing table"
           },
           {
             "choiceIndex": 3,
-            "explanation": "The route requires manual activation misses what this question tests. An asterisk marks the route as the best path for that prefix or indicates it as the candidate default route (for the gateway of last resort).",
-            "misconceptionTested": "Selecting \"The route requires manual activation\" without matching the scenario constraint"
+            "explanation": "The route requires manual activation describes a mechanism that could sound plausible for asterisk in routing table. Given asterisk in routing table, It is the best match or candidate default matches the tested behavior — The route requires manual activation applies a different mechanism.",
+            "whatItDoes": "The route requires manual activation describes a mechanism that could sound plausible for asterisk in routing table.",
+            "whyWrongHere": "Given asterisk in routing table, It is the best match or candidate default matches the tested behavior — The route requires manual activation applies a different mechanism.",
+            "misconceptionTested": "Applying \"The route requires manual activation\" without matching asterisk in routing table"
           }
         ],
         "examTip": "On the exam: In [AD/metric], AD comes FIRST — Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets"
@@ -455,18 +515,24 @@
           {
             "choiceIndex": 0,
             "explanation": "Static route reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "whatItDoes": "Static route describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, Default route matches the tested behavior — Static route applies a different mechanism.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "Dynamic route reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "whatItDoes": "Dynamic route describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, Default route matches the tested behavior — Dynamic route applies a different mechanism.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "OSPF route reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "whatItDoes": "OSPF route describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, Default route matches the tested behavior — OSPF route applies a different mechanism.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           }
@@ -505,19 +571,25 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The 4 represents the administrative distance. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The 4 represents the administrative dist…\" without matching the scenario constraint",
+            "explanation": "The 4 represents the administrative distance. describes a mechanism that could sound plausible for routing table. Given routing table, The 4 represents the metric. matches the tested behavior — The 4 represents the administrative distance. applies a different mechanism.",
+            "whatItDoes": "The 4 represents the administrative distance. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The 4 represents the metric. matches the tested behavior — The 4 represents the administrative distance. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The 4 represents the administrative \" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "The 4 represents the protocol. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The 4 represents the protocol.\" without matching the scenario constraint",
+            "explanation": "The 4 represents the protocol. describes a mechanism that could sound plausible for routing table. Given routing table, The 4 represents the metric. matches the tested behavior — The 4 represents the protocol. applies a different mechanism.",
+            "whatItDoes": "The 4 represents the protocol. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The 4 represents the metric. matches the tested behavior — The 4 represents the protocol. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The 4 represents the protocol.\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "The 4 represents the position in the routing table. reflects a common trap: Forgetting AD 255 behavior. A route with AD 255 is considered unusable and is never installed in the routing table.",
+            "whatItDoes": "The 4 represents the position in the routing table. relies on a router routing table rather than switch MAC/CAM forwarding.",
+            "whyWrongHere": "Given routing table, The 4 represents the metric. matches the tested behavior — The 4 represents the position in the routing table. applies a different mechanism.",
             "misconceptionTested": "Forgetting AD 255 behavior",
             "needsExplanationReview": true
           }
@@ -554,20 +626,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router#show ip route 160.45.23.0 255.255.255.0 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router#show ip route 160.45.23.0 255.255…\" without matching the scenario constraint",
+            "explanation": "Router#show ip route 160.45.23.0 255.255.255.0 describes a mechanism that could sound plausible for routing table. Given routing table, Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes matches the tested behavior — Router#show ip route 160.45.23.0 255.255.255.0 applies a different mechanism.",
+            "whatItDoes": "Router#show ip route 160.45.23.0 255.255.255.0 describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes matches the tested behavior — Router#show ip route 160.45.23.0 255.255.255.0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip route 160.45.23.0 255\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#show ip route bgp does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router#show ip route bgp\" without matching the scenario constraint",
+            "explanation": "Router#show ip route bgp describes a mechanism that could sound plausible for routing table. Given routing table, Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes matches the tested behavior — Router#show ip route bgp applies a different mechanism.",
+            "whatItDoes": "Router#show ip route bgp describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes matches the tested behavior — Router#show ip route bgp applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip route bgp\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show ip route does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router#show ip route\" without matching the scenario constraint",
+            "explanation": "Router#show ip route describes a mechanism that could sound plausible for routing table. Given routing table, Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes matches the tested behavior — Router#show ip route applies a different mechanism.",
+            "whatItDoes": "Router#show ip route describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes matches the tested behavior — Router#show ip route applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip route\" without matching routing table",
             "needsExplanationReview": true
           }
         ],
@@ -605,20 +683,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The gateway 172.16.1.200 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The gateway 172.16.1.200\" without matching the scenario constraint",
+            "explanation": "The gateway 172.16.1.200 describes a mechanism that could sound plausible for routing table. Given routing table, The exit interface Serial 0/0 matches the tested behavior — The gateway 172.16.1.200 applies a different mechanism.",
+            "whatItDoes": "The gateway 172.16.1.200 describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The exit interface Serial 0/0 matches the tested behavior — The gateway 172.16.1.200 applies a different mechanism.",
+            "misconceptionTested": "Applying \"The gateway 172.16.1.200\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The gateway 172.16.1.100 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The gateway 172.16.1.100\" without matching the scenario constraint",
+            "explanation": "The gateway 172.16.1.100 describes a mechanism that could sound plausible for routing table. Given routing table, The exit interface Serial 0/0 matches the tested behavior — The gateway 172.16.1.100 applies a different mechanism.",
+            "whatItDoes": "The gateway 172.16.1.100 describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The exit interface Serial 0/0 matches the tested behavior — The gateway 172.16.1.100 applies a different mechanism.",
+            "misconceptionTested": "Applying \"The gateway 172.16.1.100\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The exit interface Ethernet0 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The exit interface Ethernet0\" without matching the scenario constraint",
+            "explanation": "The exit interface Ethernet0 describes a mechanism that could sound plausible for routing table. Given routing table, The exit interface Serial 0/0 matches the tested behavior — The exit interface Ethernet0 applies a different mechanism.",
+            "whatItDoes": "The exit interface Ethernet0 describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The exit interface Serial 0/0 matches the tested behavior — The exit interface Ethernet0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"The exit interface Ethernet0\" without matching routing table",
             "needsExplanationReview": true
           }
         ],
@@ -654,20 +738,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "S 203.80.16.0/19 is directly connected, Serial 0/0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"S 203.80.16.0/19 is directly connected, …\" without matching the scenario constraint",
+            "explanation": "S 203.80.16.0/19 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for routing table. Given routing table, S 203.80.32.0/19 is directly connected, Serial 0/0/0 matches the tested behavior — S 203.80.16.0/19 is directly connected, Serial 0/0/0 applies a different mechanism.",
+            "whatItDoes": "S 203.80.16.0/19 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, S 203.80.32.0/19 is directly connected, Serial 0/0/0 matches the tested behavior — S 203.80.16.0/19 is directly connected, Serial 0/0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"S 203.80.16.0/19 is directly connect\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "S 203.80.48.0/19 is directly connected, Serial 0/0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"S 203.80.48.0/19 is directly connected, …\" without matching the scenario constraint",
+            "explanation": "S 203.80.48.0/19 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for routing table. Given routing table, S 203.80.32.0/19 is directly connected, Serial 0/0/0 matches the tested behavior — S 203.80.48.0/19 is directly connected, Serial 0/0/0 applies a different mechanism.",
+            "whatItDoes": "S 203.80.48.0/19 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, S 203.80.32.0/19 is directly connected, Serial 0/0/0 matches the tested behavior — S 203.80.48.0/19 is directly connected, Serial 0/0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"S 203.80.48.0/19 is directly connect\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "S 203.80.53.22/19 is directly connected, Serial 0/0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"S 203.80.53.22/19 is directly connected,…\" without matching the scenario constraint",
+            "explanation": "S 203.80.53.22/19 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for routing table. Given routing table, S 203.80.32.0/19 is directly connected, Serial 0/0/0 matches the tested behavior — S 203.80.53.22/19 is directly connected, Serial 0/0/0 applies a different mechanism.",
+            "whatItDoes": "S 203.80.53.22/19 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, S 203.80.32.0/19 is directly connected, Serial 0/0/0 matches the tested behavior — S 203.80.53.22/19 is directly connected, Serial 0/0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"S 203.80.53.22/19 is directly connec\" without matching routing table",
             "needsExplanationReview": true
           }
         ],
@@ -704,20 +794,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The 10.0.0.0/8 is a route in the routing table. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The 10.0.0.0/8 is a route in the routing…\" without matching the scenario constraint",
+            "explanation": "The 10.0.0.0/8 is a route in the routing table. relies on a router routing table rather than switch MAC/CAM forwarding. Given routing table, The 10.0.0.0/8 is a summarization of the routes in the table. matches the tested behavior — The 10.0.0.0/8 is a route in the routing table. applies a different mechanism.",
+            "whatItDoes": "The 10.0.0.0/8 is a route in the routing table. relies on a router routing table rather than switch MAC/CAM forwarding.",
+            "whyWrongHere": "Given routing table, The 10.0.0.0/8 is a summarization of the routes in the table. matches the tested behavior — The 10.0.0.0/8 is a route in the routing table. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The 10.0.0.0/8 is a route in the rou\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The 10.0.0.0/8 is the router’s network address. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The 10.0.0.0/8 is the router’s network a…\" without matching the scenario constraint",
+            "explanation": "The 10.0.0.0/8 is the router’s network address. describes a mechanism that could sound plausible for routing table. Given routing table, The 10.0.0.0/8 is a summarization of the routes in the table. matches the tested behavior — The 10.0.0.0/8 is the router’s network address. applies a different mechanism.",
+            "whatItDoes": "The 10.0.0.0/8 is the router’s network address. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The 10.0.0.0/8 is a summarization of the routes in the table. matches the tested behavior — The 10.0.0.0/8 is the router’s network address. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The 10.0.0.0/8 is the router’s netwo\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The 10.0.0.0/8 has been populated from another router. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The 10.0.0.0/8 has been populated from a…\" without matching the scenario constraint",
+            "explanation": "The 10.0.0.0/8 has been populated from another router. describes a mechanism that could sound plausible for routing table. Given routing table, The 10.0.0.0/8 is a summarization of the routes in the table. matches the tested behavior — The 10.0.0.0/8 has been populated from another router. applies a different mechanism.",
+            "whatItDoes": "The 10.0.0.0/8 has been populated from another router. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The 10.0.0.0/8 is a summarization of the routes in the table. matches the tested behavior — The 10.0.0.0/8 has been populated from another router. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The 10.0.0.0/8 has been populated fr\" without matching routing table",
             "needsExplanationReview": true
           }
         ],
@@ -753,20 +849,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The number represents the current time. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The number represents the current time.\" without matching the scenario constraint",
+            "explanation": "The number represents the current time. describes a mechanism that could sound plausible for routing table. Given routing table, The number represents the time the route has been in the routing table. matches the tested behavior — The number represents the current time. applies a different mechanism.",
+            "whatItDoes": "The number represents the current time. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The number represents the time the route has been in the routing table. matches the tested behavior — The number represents the current time. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The number represents the current ti\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "The number represents the delay in microseconds of the connection. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The number represents the delay in micro…\" without matching the scenario constraint",
+            "explanation": "The number represents the delay in microseconds of the connection. describes a mechanism that could sound plausible for routing table. Given routing table, The number represents the time the route has been in the routing table. matches the tested behavior — The number represents the delay in microseconds of the connection. applies a different mechanism.",
+            "whatItDoes": "The number represents the delay in microseconds of the connection. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The number represents the time the route has been in the routing table. matches the tested behavior — The number represents the delay in microseconds of the connection. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The number represents the delay in m\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The number represents the time the interface has been up. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The number represents the time the inter…\" without matching the scenario constraint",
+            "explanation": "The number represents the time the interface has been up. describes a mechanism that could sound plausible for routing table. Given routing table, The number represents the time the route has been in the routing table. matches the tested behavior — The number represents the time the interface has been up. applies a different mechanism.",
+            "whatItDoes": "The number represents the time the interface has been up. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The number represents the time the route has been in the routing table. matches the tested behavior — The number represents the time the interface has been up. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The number represents the time the i\" without matching routing table",
             "needsExplanationReview": true
           }
         ],
@@ -804,20 +906,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Interface Serial 0/2/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Interface Serial 0/2/0\" without matching the scenario constraint",
+            "explanation": "Interface Serial 0/2/0 describes a mechanism that could sound plausible for routing table. Given routing table, Interface Serial 0/0/1 matches the tested behavior — Interface Serial 0/2/0 applies a different mechanism.",
+            "whatItDoes": "Interface Serial 0/2/0 describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, Interface Serial 0/0/1 matches the tested behavior — Interface Serial 0/2/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Interface Serial 0/2/0\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "IP address 192.168.4.2 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"IP address 192.168.4.2\" without matching the scenario constraint",
+            "explanation": "IP address 192.168.4.2 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given routing table, Interface Serial 0/0/1 matches the tested behavior — IP address 192.168.4.2 applies a different mechanism.",
+            "whatItDoes": "IP address 192.168.4.2 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given routing table, Interface Serial 0/0/1 matches the tested behavior — IP address 192.168.4.2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"IP address 192.168.4.2\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "IP address 198.22.34.3 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"IP address 198.22.34.3\" without matching the scenario constraint",
+            "explanation": "IP address 198.22.34.3 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given routing table, Interface Serial 0/0/1 matches the tested behavior — IP address 198.22.34.3 applies a different mechanism.",
+            "whatItDoes": "IP address 198.22.34.3 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given routing table, Interface Serial 0/0/1 matches the tested behavior — IP address 198.22.34.3 applies a different mechanism.",
+            "misconceptionTested": "Applying \"IP address 198.22.34.3\" without matching routing table",
             "needsExplanationReview": true
           }
         ],
@@ -853,20 +961,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "AD of 0 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"AD of 0\" without matching the scenario constraint",
+            "explanation": "AD of 0 describes a mechanism that could sound plausible for routing table. Given routing table, AD of 1 matches the tested behavior — AD of 0 applies a different mechanism.",
+            "whatItDoes": "AD of 0 describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, AD of 1 matches the tested behavior — AD of 0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"AD of 0\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "AD of 2 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"AD of 2\" without matching the scenario constraint",
+            "explanation": "AD of 2 describes a mechanism that could sound plausible for routing table. Given routing table, AD of 1 matches the tested behavior — AD of 2 applies a different mechanism.",
+            "whatItDoes": "AD of 2 describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, AD of 1 matches the tested behavior — AD of 2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"AD of 2\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "AD of 255 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"AD of 255\" without matching the scenario constraint",
+            "explanation": "AD of 255 describes a mechanism that could sound plausible for routing table. Given routing table, AD of 1 matches the tested behavior — AD of 255 applies a different mechanism.",
+            "whatItDoes": "AD of 255 describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, AD of 1 matches the tested behavior — AD of 255 applies a different mechanism.",
+            "misconceptionTested": "Applying \"AD of 255\" without matching routing table",
             "needsExplanationReview": true
           }
         ],
@@ -901,20 +1015,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "AD of 90 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"AD of 90\" without matching the scenario constraint",
+            "explanation": "AD of 90 describes a mechanism that could sound plausible for routing table. Given routing table, AD of 120 matches the tested behavior — AD of 90 applies a different mechanism.",
+            "whatItDoes": "AD of 90 describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, AD of 120 matches the tested behavior — AD of 90 applies a different mechanism.",
+            "misconceptionTested": "Applying \"AD of 90\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "AD of 100 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"AD of 100\" without matching the scenario constraint",
+            "explanation": "AD of 100 describes a mechanism that could sound plausible for routing table. Given routing table, AD of 120 matches the tested behavior — AD of 100 applies a different mechanism.",
+            "whatItDoes": "AD of 100 describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, AD of 120 matches the tested behavior — AD of 100 applies a different mechanism.",
+            "misconceptionTested": "Applying \"AD of 100\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "AD of 110 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"AD of 110\" without matching the scenario constraint",
+            "explanation": "AD of 110 describes a mechanism that could sound plausible for routing table. Given routing table, AD of 120 matches the tested behavior — AD of 110 applies a different mechanism.",
+            "whatItDoes": "AD of 110 describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, AD of 120 matches the tested behavior — AD of 110 applies a different mechanism.",
+            "misconceptionTested": "Applying \"AD of 110\" without matching routing table",
             "needsExplanationReview": true
           }
         ],
@@ -948,20 +1068,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "ADs define protocol standards. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"ADs define protocol standards.\" without matching the scenario constraint",
+            "explanation": "ADs define protocol standards. describes a mechanism that could sound plausible for routing table. Given routing table, ADs define reliability of routing protocols. matches the tested behavior — ADs define protocol standards. applies a different mechanism.",
+            "whatItDoes": "ADs define protocol standards. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, ADs define reliability of routing protocols. matches the tested behavior — ADs define protocol standards. applies a different mechanism.",
+            "misconceptionTested": "Applying \"ADs define protocol standards.\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "ADs allow for the shortest distance between routes. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"ADs allow for the shortest distance betw…\" without matching the scenario constraint",
+            "explanation": "ADs allow for the shortest distance between routes. describes a mechanism that could sound plausible for routing table. Given routing table, ADs define reliability of routing protocols. matches the tested behavior — ADs allow for the shortest distance between routes. applies a different mechanism.",
+            "whatItDoes": "ADs allow for the shortest distance between routes. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, ADs define reliability of routing protocols. matches the tested behavior — ADs allow for the shortest distance between routes. applies a different mechanism.",
+            "misconceptionTested": "Applying \"ADs allow for the shortest distance \" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "ADs are programmed by the administrator for path selection. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"ADs are programmed by the administrator …\" without matching the scenario constraint",
+            "explanation": "ADs are programmed by the administrator for path selection. describes a mechanism that could sound plausible for routing table. Given routing table, ADs define reliability of routing protocols. matches the tested behavior — ADs are programmed by the administrator for path selection. applies a different mechanism.",
+            "whatItDoes": "ADs are programmed by the administrator for path selection. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, ADs define reliability of routing protocols. matches the tested behavior — ADs are programmed by the administrator for path selection. applies a different mechanism.",
+            "misconceptionTested": "Applying \"ADs are programmed by the administra\" without matching routing table",
             "needsExplanationReview": true
           }
         ],
@@ -995,20 +1121,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The AD is 1. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The AD is 1.\" without matching the scenario constraint",
+            "explanation": "The AD is 1. describes a mechanism that could sound plausible for routing table. Given routing table, The AD is 0. matches the tested behavior — The AD is 1. applies a different mechanism.",
+            "whatItDoes": "The AD is 1. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The AD is 0. matches the tested behavior — The AD is 1. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The AD is 1.\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The AD is 5. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The AD is 5.\" without matching the scenario constraint",
+            "explanation": "The AD is 5. describes a mechanism that could sound plausible for routing table. Given routing table, The AD is 0. matches the tested behavior — The AD is 5. applies a different mechanism.",
+            "whatItDoes": "The AD is 5. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The AD is 0. matches the tested behavior — The AD is 5. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The AD is 5.\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Directly connected networks do not have an AD. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Directly connected networks do not have …\" without matching the scenario constraint",
+            "explanation": "Directly connected networks do not have an AD. describes a mechanism that could sound plausible for routing table. Given routing table, The AD is 0. matches the tested behavior — Directly connected networks do not have an AD. applies a different mechanism.",
+            "whatItDoes": "Directly connected networks do not have an AD. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The AD is 0. matches the tested behavior — Directly connected networks do not have an AD. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Directly connected networks do not h\" without matching routing table",
             "needsExplanationReview": true
           }
         ],
@@ -1043,20 +1175,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "100 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"100\" without matching the scenario constraint",
+            "explanation": "100 describes a mechanism that could sound plausible for routing table. Given routing table, 90 matches the tested behavior — 100 applies a different mechanism.",
+            "whatItDoes": "100 describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, 90 matches the tested behavior — 100 applies a different mechanism.",
+            "misconceptionTested": "Applying \"100\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "110 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"110\" without matching the scenario constraint",
+            "explanation": "110 describes a mechanism that could sound plausible for routing table. Given routing table, 90 matches the tested behavior — 110 applies a different mechanism.",
+            "whatItDoes": "110 describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, 90 matches the tested behavior — 110 applies a different mechanism.",
+            "misconceptionTested": "Applying \"110\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "120 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"120\" without matching the scenario constraint",
+            "explanation": "120 describes a mechanism that could sound plausible for routing table. Given routing table, 90 matches the tested behavior — 120 applies a different mechanism.",
+            "whatItDoes": "120 describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, 90 matches the tested behavior — 120 applies a different mechanism.",
+            "misconceptionTested": "Applying \"120\" without matching routing table",
             "needsExplanationReview": true
           }
         ],
@@ -1094,18 +1232,24 @@
           {
             "choiceIndex": 0,
             "explanation": "The AD is a metric that routing protocols use to select the best route. reflects a common trap: Comparing metrics across routing protocols. Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc.",
+            "whatItDoes": "The AD is a metric that routing protocols use to select the best route. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The AD is a rating of trust when multiple routes exist to the same destination. matches the tested behavior — The AD is a metric that routing protocols use to select the best route. applies a different mechanism.",
             "misconceptionTested": "Comparing metrics across routing protocols",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "The AD is a value assigned by network administrators for route selection. reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "whatItDoes": "The AD is a value assigned by network administrators for route selection. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The AD is a rating of trust when multiple routes exist to the same destination. matches the tested behavior — The AD is a value assigned by network administrators for route selection. applies a different mechanism.",
             "misconceptionTested": "A lower metric can beat a more-specific route",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "The AD is a value associated with the cost to the destination. reflects a common trap: Assuming 1G and 10G have different OSPF cost by default. Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth.",
+            "whatItDoes": "The AD is a value associated with the cost to the destination. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The AD is a rating of trust when multiple routes exist to the same destination. matches the tested behavior — The AD is a value associated with the cost to the destination. applies a different mechanism.",
             "misconceptionTested": "Assuming 1G and 10G have different OSPF cost by default",
             "needsExplanationReview": true
           }
@@ -1142,20 +1286,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Delay does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Delay\" without matching the scenario constraint",
+            "explanation": "Delay describes a mechanism that could sound plausible for routing table. Given routing table, Bandwidth matches the tested behavior — Delay applies a different mechanism.",
+            "whatItDoes": "Delay describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, Bandwidth matches the tested behavior — Delay applies a different mechanism.",
+            "misconceptionTested": "Applying \"Delay\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Reliability does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Reliability\" without matching the scenario constraint",
+            "explanation": "Reliability describes a mechanism that could sound plausible for routing table. Given routing table, Bandwidth matches the tested behavior — Reliability applies a different mechanism.",
+            "whatItDoes": "Reliability describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, Bandwidth matches the tested behavior — Reliability applies a different mechanism.",
+            "misconceptionTested": "Applying \"Reliability\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Load does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Load\" without matching the scenario constraint",
+            "explanation": "Load describes a mechanism that could sound plausible for routing table. Given routing table, Bandwidth matches the tested behavior — Load applies a different mechanism.",
+            "whatItDoes": "Load describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, Bandwidth matches the tested behavior — Load applies a different mechanism.",
+            "misconceptionTested": "Applying \"Load\" without matching routing table",
             "needsExplanationReview": true
           }
         ],
@@ -1194,20 +1344,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "IGRP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"IGRP\" without matching the scenario constraint",
+            "explanation": "IGRP describes a mechanism that could sound plausible for routing table. Given routing table, EIGRP matches the tested behavior — IGRP applies a different mechanism.",
+            "whatItDoes": "IGRP describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — IGRP applies a different mechanism.",
+            "misconceptionTested": "Applying \"IGRP\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "OSPF does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"OSPF\" without matching the scenario constraint",
+            "explanation": "OSPF describes a mechanism that could sound plausible for routing table. Given routing table, EIGRP matches the tested behavior — OSPF applies a different mechanism.",
+            "whatItDoes": "OSPF describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — OSPF applies a different mechanism.",
+            "misconceptionTested": "Applying \"OSPF\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "RIP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"RIP\" without matching the scenario constraint",
+            "explanation": "RIP describes a mechanism that could sound plausible for routing table. Given routing table, EIGRP matches the tested behavior — RIP applies a different mechanism.",
+            "whatItDoes": "RIP describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — RIP applies a different mechanism.",
+            "misconceptionTested": "Applying \"RIP\" without matching routing table",
             "needsExplanationReview": true
           }
         ],
@@ -1244,18 +1400,24 @@
           {
             "choiceIndex": 0,
             "explanation": "The route is chosen with the highest AD. reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "whatItDoes": "The route is chosen with the highest AD. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The route is chosen with the lowest AD. matches the tested behavior — The route is chosen with the highest AD. applies a different mechanism.",
             "misconceptionTested": "A lower metric can beat a more-specific route",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "The route chosen has the lowest metric. reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "whatItDoes": "The route chosen has the lowest metric. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The route is chosen with the lowest AD. matches the tested behavior — The route chosen has the lowest metric. applies a different mechanism.",
             "misconceptionTested": "A lower metric can beat a more-specific route",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "The route chosen has the highest metric. reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "whatItDoes": "The route chosen has the highest metric. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The route is chosen with the lowest AD. matches the tested behavior — The route chosen has the highest metric. applies a different mechanism.",
             "misconceptionTested": "A lower metric can beat a more-specific route",
             "needsExplanationReview": true
           }
@@ -1293,20 +1455,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RIPv1 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"RIPv1\" without matching the scenario constraint",
+            "explanation": "RIPv1 describes a mechanism that could sound plausible for routing table. Given routing table, EIGRP matches the tested behavior — RIPv1 applies a different mechanism.",
+            "whatItDoes": "RIPv1 describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — RIPv1 applies a different mechanism.",
+            "misconceptionTested": "Applying \"RIPv1\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "RIPv2 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"RIPv2\" without matching the scenario constraint",
+            "explanation": "RIPv2 describes a mechanism that could sound plausible for routing table. Given routing table, EIGRP matches the tested behavior — RIPv2 applies a different mechanism.",
+            "whatItDoes": "RIPv2 describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — RIPv2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"RIPv2\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "BGP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"BGP\" without matching the scenario constraint",
+            "explanation": "BGP describes a mechanism that could sound plausible for routing table. Given routing table, EIGRP matches the tested behavior — BGP applies a different mechanism.",
+            "whatItDoes": "BGP describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — BGP applies a different mechanism.",
+            "misconceptionTested": "Applying \"BGP\" without matching routing table",
             "needsExplanationReview": true
           }
         ],
@@ -1343,20 +1511,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Delay, bandwidth, reliability, load does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Delay, bandwidth, reliability, load\" without matching the scenario constraint",
+            "explanation": "Delay, bandwidth, reliability, load describes a mechanism that could sound plausible for routing table. Given routing table, 108/bandwidth matches the tested behavior — Delay, bandwidth, reliability, load applies a different mechanism.",
+            "whatItDoes": "Delay, bandwidth, reliability, load describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, 108/bandwidth matches the tested behavior — Delay, bandwidth, reliability, load applies a different mechanism.",
+            "misconceptionTested": "Applying \"Delay, bandwidth, reliability, load\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "K metrics reflects a common trap: Comparing metrics across routing protocols. Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc.",
+            "whatItDoes": "K metrics describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, 108/bandwidth matches the tested behavior — K metrics applies a different mechanism.",
             "misconceptionTested": "Comparing metrics across routing protocols",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Bandwidth does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Bandwidth\" without matching the scenario constraint",
+            "explanation": "Bandwidth describes a mechanism that could sound plausible for routing table. Given routing table, 108/bandwidth matches the tested behavior — Bandwidth applies a different mechanism.",
+            "whatItDoes": "Bandwidth describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, 108/bandwidth matches the tested behavior — Bandwidth applies a different mechanism.",
+            "misconceptionTested": "Applying \"Bandwidth\" without matching routing table",
             "needsExplanationReview": true
           }
         ],
@@ -1391,20 +1565,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "AD of 110 and a 10 Mb/s link does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"AD of 110 and a 10 Mb/s link\" without matching the scenario constraint",
+            "explanation": "AD of 110 and a 10 Mb/s link describes a mechanism that could sound plausible for routing table. Given routing table, AD of 110 and a 100 Mb/s link matches the tested behavior — AD of 110 and a 10 Mb/s link applies a different mechanism.",
+            "whatItDoes": "AD of 110 and a 10 Mb/s link describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, AD of 110 and a 100 Mb/s link matches the tested behavior — AD of 110 and a 10 Mb/s link applies a different mechanism.",
+            "misconceptionTested": "Applying \"AD of 110 and a 10 Mb/s link\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "AD of 1 and a 110 Mb/s link does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"AD of 1 and a 110 Mb/s link\" without matching the scenario constraint",
+            "explanation": "AD of 1 and a 110 Mb/s link describes a mechanism that could sound plausible for routing table. Given routing table, AD of 110 and a 100 Mb/s link matches the tested behavior — AD of 1 and a 110 Mb/s link applies a different mechanism.",
+            "whatItDoes": "AD of 1 and a 110 Mb/s link describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, AD of 110 and a 100 Mb/s link matches the tested behavior — AD of 1 and a 110 Mb/s link applies a different mechanism.",
+            "misconceptionTested": "Applying \"AD of 1 and a 110 Mb/s link\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "AD of 110 and a 1 Gb/s link does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"AD of 110 and a 1 Gb/s link\" without matching the scenario constraint",
+            "explanation": "AD of 110 and a 1 Gb/s link describes a mechanism that could sound plausible for routing table. Given routing table, AD of 110 and a 100 Mb/s link matches the tested behavior — AD of 110 and a 1 Gb/s link applies a different mechanism.",
+            "whatItDoes": "AD of 110 and a 1 Gb/s link describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, AD of 110 and a 100 Mb/s link matches the tested behavior — AD of 110 and a 1 Gb/s link applies a different mechanism.",
+            "misconceptionTested": "Applying \"AD of 110 and a 1 Gb/s link\" without matching routing table",
             "needsExplanationReview": true
           }
         ],
@@ -1441,18 +1621,24 @@
           {
             "choiceIndex": 0,
             "explanation": "Local route reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "whatItDoes": "Local route describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, Default route matches the tested behavior — Local route applies a different mechanism.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "Dynamic route reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "whatItDoes": "Dynamic route describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, Default route matches the tested behavior — Dynamic route applies a different mechanism.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "Loopback route reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "whatItDoes": "Loopback route describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, Default route matches the tested behavior — Loopback route applies a different mechanism.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           }
@@ -1489,20 +1675,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The host route is the route a packet will take if no other route matches in the routing table. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The host route is the route a packet wil…\" without matching the scenario constraint",
+            "explanation": "The host route is the route a packet will take if no other route matches in the routing table. relies on a router routing table rather than switch MAC/CAM forwarding. Given routing table, A host route is a specific route with a netmask of /32 for a specific host. matches the tested behavior — The host route is the route a packet will take if no other route matches in the routing table. applies a different mechanism.",
+            "whatItDoes": "The host route is the route a packet will take if no other route matches in the routing table. relies on a router routing table rather than switch MAC/CAM forwarding.",
+            "whyWrongHere": "Given routing table, A host route is a specific route with a netmask of /32 for a specific host. matches the tested behavior — The host route is the route a packet will take if no other route matches in the routing table. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The host route is the route a packet\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "The routing table creates host routers for the destination hosts it discovers. does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
+            "explanation": "The routing table creates host routers for the destination hosts it discovers. relies on a router routing table rather than switch MAC/CAM forwarding. Given routing table, A host route is a specific route with a netmask of /32 for a specific host. matches the tested behavior — The routing table creates host routers for the destination hosts it discovers. applies a different mechanism.",
+            "whatItDoes": "The routing table creates host routers for the destination hosts it discovers. relies on a router routing table rather than switch MAC/CAM forwarding.",
+            "whyWrongHere": "Given routing table, A host route is a specific route with a netmask of /32 for a specific host. matches the tested behavior — The routing table creates host routers for the destination hosts it discovers. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The routing table creates host route\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The host route is populated from HSRP. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The host route is populated from HSRP.\" without matching the scenario constraint",
+            "explanation": "The host route is populated from HSRP. describes a mechanism that could sound plausible for routing table. Given routing table, A host route is a specific route with a netmask of /32 for a specific host. matches the tested behavior — The host route is populated from HSRP. applies a different mechanism.",
+            "whatItDoes": "The host route is populated from HSRP. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, A host route is a specific route with a netmask of /32 for a specific host. matches the tested behavior — The host route is populated from HSRP. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The host route is populated from HSR\" without matching routing table",
             "needsExplanationReview": true
           }
         ],
@@ -1539,20 +1731,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Prefix and network mask does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Prefix and network mask\" without matching the scenario constraint",
+            "explanation": "Prefix and network mask describes a mechanism that could sound plausible for routing table. Given routing table, Routing protocol code matches the tested behavior — Prefix and network mask applies a different mechanism.",
+            "whatItDoes": "Prefix and network mask describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, Routing protocol code matches the tested behavior — Prefix and network mask applies a different mechanism.",
+            "misconceptionTested": "Applying \"Prefix and network mask\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "Metric reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "whatItDoes": "Metric describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, Routing protocol code matches the tested behavior — Metric applies a different mechanism.",
             "misconceptionTested": "A lower metric can beat a more-specific route",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Next hop does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Next hop\" without matching the scenario constraint",
+            "explanation": "Next hop describes a mechanism that could sound plausible for routing table. Given routing table, Routing protocol code matches the tested behavior — Next hop applies a different mechanism.",
+            "whatItDoes": "Next hop describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, Routing protocol code matches the tested behavior — Next hop applies a different mechanism.",
+            "misconceptionTested": "Applying \"Next hop\" without matching routing table",
             "needsExplanationReview": true
           }
         ],
@@ -1587,20 +1785,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The subnet mask is used in routing to determine the destination network. does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
+            "explanation": "The subnet mask is used in routing to determine the destination network. describes a mechanism that could sound plausible for routing table. Given routing table, The subnet mask is used by the host to determine the destination network. matches the tested behavior — The subnet mask is used in routing to determine the destination network. applies a different mechanism.",
+            "whatItDoes": "The subnet mask is used in routing to determine the destination network. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The subnet mask is used by the host to determine the destination network. matches the tested behavior — The subnet mask is used in routing to determine the destination network. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The subnet mask is used in routing t\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The router uses its subnet mask when routing a packet. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The router uses its subnet mask when rou…\" without matching the scenario constraint",
+            "explanation": "The router uses its subnet mask when routing a packet. describes a mechanism that could sound plausible for routing table. Given routing table, The subnet mask is used by the host to determine the destination network. matches the tested behavior — The router uses its subnet mask when routing a packet. applies a different mechanism.",
+            "whatItDoes": "The router uses its subnet mask when routing a packet. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The subnet mask is used by the host to determine the destination network. matches the tested behavior — The router uses its subnet mask when routing a packet. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The router uses its subnet mask when\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer. does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
+            "explanation": "The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer. describes a mechanism that could sound plausible for routing table. Given routing table, The subnet mask is used by the host to determine the destination network. matches the tested behavior — The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer. applies a different mechanism.",
+            "whatItDoes": "The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer. describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, The subnet mask is used by the host to determine the destination network. matches the tested behavior — The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The destination computer checks the \" without matching routing table",
             "needsExplanationReview": true
           }
         ],
@@ -1637,20 +1841,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "IP address route does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"IP address route\" without matching the scenario constraint",
+            "explanation": "IP address route shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given routing table, Local route matches the tested behavior — IP address route applies a different mechanism.",
+            "whatItDoes": "IP address route shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given routing table, Local route matches the tested behavior — IP address route applies a different mechanism.",
+            "misconceptionTested": "Applying \"IP address route\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Dynamic route does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Dynamic route\" without matching the scenario constraint",
+            "explanation": "Dynamic route describes a mechanism that could sound plausible for routing table. Given routing table, Local route matches the tested behavior — Dynamic route applies a different mechanism.",
+            "whatItDoes": "Dynamic route describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, Local route matches the tested behavior — Dynamic route applies a different mechanism.",
+            "misconceptionTested": "Applying \"Dynamic route\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Static route does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Static route\" without matching the scenario constraint",
+            "explanation": "Static route describes a mechanism that could sound plausible for routing table. Given routing table, Local route matches the tested behavior — Static route applies a different mechanism.",
+            "whatItDoes": "Static route describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, Local route matches the tested behavior — Static route applies a different mechanism.",
+            "misconceptionTested": "Applying \"Static route\" without matching routing table",
             "needsExplanationReview": true
           }
         ],
@@ -1688,18 +1898,24 @@
           {
             "choiceIndex": 0,
             "explanation": "The destination IP address is replaced with the default gateway when the destination is remote. reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "whatItDoes": "The destination IP address is replaced with the default gateway when the destination is remote. sends the decision to a router/default gateway rather than handling it at Layer 2.",
+            "whyWrongHere": "Given routing table, The host sends an ARP packet for the default gateway when the destination is remote. matches the tested behavior — The destination IP address is replaced with the default gateway when the destination is remote. applies a different mechanism.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "The host sends the default gateway packets that are deemed remote via a broadcast. reflects a common trap: A default route guarantees connectivity. It only forwards traffic that matches nothing more specific; if the next hop is wrong or down, traffic still fails.",
+            "whatItDoes": "The host sends the default gateway packets that are deemed remote via a broadcast. describes flooding the frame to multiple ports in the VLAN.",
+            "whyWrongHere": "Given routing table, The host sends an ARP packet for the default gateway when the destination is remote. matches the tested behavior — The host sends the default gateway packets that are deemed remote via a broadcast. applies a different mechanism.",
             "misconceptionTested": "A default route guarantees connectivity",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "The host creates a dedicated connection with the default gateway for remote traffic. reflects a common trap: A default route guarantees connectivity. It only forwards traffic that matches nothing more specific; if the next hop is wrong or down, traffic still fails.",
+            "whatItDoes": "The host creates a dedicated connection with the default gateway for remote traffic. sends the decision to a router/default gateway rather than handling it at Layer 2.",
+            "whyWrongHere": "Given routing table, The host sends an ARP packet for the default gateway when the destination is remote. matches the tested behavior — The host creates a dedicated connection with the default gateway for remote traffic. applies a different mechanism.",
             "misconceptionTested": "A default route guarantees connectivity",
             "needsExplanationReview": true
           }
@@ -1735,20 +1951,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router#show route does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router#show route\" without matching the scenario constraint",
+            "explanation": "Router#show route describes a mechanism that could sound plausible for routing table. Given routing table, Router#show ip route matches the tested behavior — Router#show route applies a different mechanism.",
+            "whatItDoes": "Router#show route describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, Router#show ip route matches the tested behavior — Router#show route applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show route\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#show route table does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router#show route table\" without matching the scenario constraint",
+            "explanation": "Router#show route table describes a mechanism that could sound plausible for routing table. Given routing table, Router#show ip route matches the tested behavior — Router#show route table applies a different mechanism.",
+            "whatItDoes": "Router#show route table describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, Router#show ip route matches the tested behavior — Router#show route table applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show route table\" without matching routing table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show routes does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router#show routes\" without matching the scenario constraint",
+            "explanation": "Router#show routes describes a mechanism that could sound plausible for routing table. Given routing table, Router#show ip route matches the tested behavior — Router#show routes applies a different mechanism.",
+            "whatItDoes": "Router#show routes describes a mechanism that could sound plausible for routing table.",
+            "whyWrongHere": "Given routing table, Router#show ip route matches the tested behavior — Router#show routes applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show routes\" without matching routing table",
             "needsExplanationReview": true
           }
         ],

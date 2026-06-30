@@ -29,18 +29,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SNMP misses what this question tests. Telnet provides terminal emulation over a network but is not encrypted.",
-            "misconceptionTested": "Selecting \"SNMP\" without matching the scenario constraint"
+            "explanation": "SNMP describes a mechanism that could sound plausible for management access. Given management access, Telnet matches the tested behavior — SNMP applies a different mechanism.",
+            "whatItDoes": "SNMP describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, Telnet matches the tested behavior — SNMP applies a different mechanism.",
+            "misconceptionTested": "Applying \"SNMP\" without matching management access"
           },
           {
             "choiceIndex": 2,
-            "explanation": "HTTP misses what this question tests. Telnet provides terminal emulation over a network but is not encrypted.",
-            "misconceptionTested": "Selecting \"HTTP\" without matching the scenario constraint"
+            "explanation": "HTTP describes a mechanism that could sound plausible for management access. Given management access, Telnet matches the tested behavior — HTTP applies a different mechanism.",
+            "whatItDoes": "HTTP describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, Telnet matches the tested behavior — HTTP applies a different mechanism.",
+            "misconceptionTested": "Applying \"HTTP\" without matching management access"
           },
           {
             "choiceIndex": 3,
-            "explanation": "TFTP misses what this question tests. Telnet provides terminal emulation over a network but is not encrypted.",
-            "misconceptionTested": "Selecting \"TFTP\" without matching the scenario constraint"
+            "explanation": "TFTP describes a mechanism that could sound plausible for management access. Given management access, Telnet matches the tested behavior — TFTP applies a different mechanism.",
+            "whatItDoes": "TFTP describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, Telnet matches the tested behavior — TFTP applies a different mechanism.",
+            "misconceptionTested": "Applying \"TFTP\" without matching management access"
           }
         ],
         "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
@@ -73,18 +79,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router#connect 198.56.33.3 misses what this question tests. Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
-            "misconceptionTested": "Selecting \"Router#connect 198.56.33.3\" without matching the scenario constraint"
+            "explanation": "Router#connect 198.56.33.3 describes a mechanism that could sound plausible for management access. Given management access, Router#198.56.33.3 matches the tested behavior — Router#connect 198.56.33.3 applies a different mechanism.",
+            "whatItDoes": "Router#connect 198.56.33.3 describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, Router#198.56.33.3 matches the tested behavior — Router#connect 198.56.33.3 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#connect 198.56.33.3\" without matching management access"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#remote 198.56.33.3 misses what this question tests. Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
-            "misconceptionTested": "Selecting \"Router#remote 198.56.33.3\" without matching the scenario constraint"
+            "explanation": "Router#remote 198.56.33.3 describes a mechanism that could sound plausible for management access. Given management access, Router#198.56.33.3 matches the tested behavior — Router#remote 198.56.33.3 applies a different mechanism.",
+            "whatItDoes": "Router#remote 198.56.33.3 describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, Router#198.56.33.3 matches the tested behavior — Router#remote 198.56.33.3 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#remote 198.56.33.3\" without matching management access"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#vty 198.56.33.3 misses what this question tests. Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
-            "misconceptionTested": "Selecting \"Router#vty 198.56.33.3\" without matching the scenario constraint"
+            "explanation": "Router#vty 198.56.33.3 describes a mechanism that could sound plausible for management access. Given management access, Router#198.56.33.3 matches the tested behavior — Router#vty 198.56.33.3 applies a different mechanism.",
+            "whatItDoes": "Router#vty 198.56.33.3 describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, Router#198.56.33.3 matches the tested behavior — Router#vty 198.56.33.3 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#vty 198.56.33.3\" without matching management access"
           }
         ],
         "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
@@ -120,17 +132,23 @@
           {
             "choiceIndex": 0,
             "explanation": "UDP/69 uses the wrong value. The tested fact calls for 49 — not 69.",
-            "misconceptionTested": "Selecting \"UDP/69\" without matching the scenario constraint"
+            "whatItDoes": "UDP/69 describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, TCP/49 matches the tested behavior — UDP/69 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 69 instead of the correct 49"
           },
           {
             "choiceIndex": 1,
             "explanation": "TCP/74 uses the wrong value. The tested fact calls for 49 — not 74.",
-            "misconceptionTested": "Selecting \"TCP/74\" without matching the scenario constraint"
+            "whatItDoes": "TCP/74 describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, TCP/49 matches the tested behavior — TCP/74 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 74 instead of the correct 49"
           },
           {
             "choiceIndex": 2,
             "explanation": "UDP/47 uses the wrong value. The tested fact calls for 49 — not 47.",
-            "misconceptionTested": "Selecting \"UDP/47\" without matching the scenario constraint"
+            "whatItDoes": "UDP/47 describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, TCP/49 matches the tested behavior — UDP/47 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 47 instead of the correct 49"
           }
         ],
         "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
@@ -163,18 +181,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RADIUS misses what this question tests. SSH provides encrypted management access.",
-            "misconceptionTested": "Selecting \"RADIUS\" without matching the scenario constraint"
+            "explanation": "RADIUS describes a mechanism that could sound plausible for management access. Given management access, SSH matches the tested behavior — RADIUS applies a different mechanism.",
+            "whatItDoes": "RADIUS describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, SSH matches the tested behavior — RADIUS applies a different mechanism.",
+            "misconceptionTested": "Applying \"RADIUS\" without matching management access"
           },
           {
             "choiceIndex": 1,
-            "explanation": "HTTP misses what this question tests. SSH provides encrypted management access.",
-            "misconceptionTested": "Selecting \"HTTP\" without matching the scenario constraint"
+            "explanation": "HTTP describes a mechanism that could sound plausible for management access. Given management access, SSH matches the tested behavior — HTTP applies a different mechanism.",
+            "whatItDoes": "HTTP describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, SSH matches the tested behavior — HTTP applies a different mechanism.",
+            "misconceptionTested": "Applying \"HTTP\" without matching management access"
           },
           {
             "choiceIndex": 3,
-            "explanation": "SFTP misses what this question tests. SSH provides encrypted management access.",
-            "misconceptionTested": "Selecting \"SFTP\" without matching the scenario constraint"
+            "explanation": "SFTP describes a mechanism that could sound plausible for management access. Given management access, SSH matches the tested behavior — SFTP applies a different mechanism.",
+            "whatItDoes": "SFTP describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, SSH matches the tested behavior — SFTP applies a different mechanism.",
+            "misconceptionTested": "Applying \"SFTP\" without matching management access"
           }
         ],
         "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
@@ -208,18 +232,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Symmetrical encryption misses what this question tests. SSH uses public/private key asymmetric encryption.",
-            "misconceptionTested": "Selecting \"Symmetrical encryption\" without matching the scenario constraint"
+            "explanation": "Symmetrical encryption describes a mechanism that could sound plausible for management access. Given management access, Asymmetrical encryption matches the tested behavior — Symmetrical encryption applies a different mechanism.",
+            "whatItDoes": "Symmetrical encryption describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, Asymmetrical encryption matches the tested behavior — Symmetrical encryption applies a different mechanism.",
+            "misconceptionTested": "Applying \"Symmetrical encryption\" without matching management access"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Code block ciphers misses what this question tests. SSH uses public/private key asymmetric encryption.",
-            "misconceptionTested": "Selecting \"Code block ciphers\" without matching the scenario constraint"
+            "explanation": "Code block ciphers describes a mechanism that could sound plausible for management access. Given management access, Asymmetrical encryption matches the tested behavior — Code block ciphers applies a different mechanism.",
+            "whatItDoes": "Code block ciphers describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, Asymmetrical encryption matches the tested behavior — Code block ciphers applies a different mechanism.",
+            "misconceptionTested": "Applying \"Code block ciphers\" without matching management access"
           },
           {
             "choiceIndex": 2,
-            "explanation": "At-rest encryption misses what this question tests. SSH uses public/private key asymmetric encryption.",
-            "misconceptionTested": "Selecting \"At-rest encryption\" without matching the scenario constraint"
+            "explanation": "At-rest encryption describes a mechanism that could sound plausible for management access. Given management access, Asymmetrical encryption matches the tested behavior — At-rest encryption applies a different mechanism.",
+            "whatItDoes": "At-rest encryption describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, Asymmetrical encryption matches the tested behavior — At-rest encryption applies a different mechanism.",
+            "misconceptionTested": "Applying \"At-rest encryption\" without matching management access"
           }
         ],
         "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
@@ -253,18 +283,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "SSH misses what this question tests. WAP debug output appears on the console by default.",
-            "misconceptionTested": "Selecting \"SSH\" without matching the scenario constraint"
+            "explanation": "SSH describes a mechanism that could sound plausible for management access. Given management access, Console matches the tested behavior — SSH applies a different mechanism.",
+            "whatItDoes": "SSH describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, Console matches the tested behavior — SSH applies a different mechanism.",
+            "misconceptionTested": "Applying \"SSH\" without matching management access"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Logging server misses what this question tests. WAP debug output appears on the console by default.",
-            "misconceptionTested": "Selecting \"Logging server\" without matching the scenario constraint"
+            "explanation": "Logging server describes a mechanism that could sound plausible for management access. Given management access, Console matches the tested behavior — Logging server applies a different mechanism.",
+            "whatItDoes": "Logging server describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, Console matches the tested behavior — Logging server applies a different mechanism.",
+            "misconceptionTested": "Applying \"Logging server\" without matching management access"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Local storage misses what this question tests. WAP debug output appears on the console by default.",
-            "misconceptionTested": "Selecting \"Local storage\" without matching the scenario constraint"
+            "explanation": "Local storage describes a mechanism that could sound plausible for management access. Given management access, Console matches the tested behavior — Local storage applies a different mechanism.",
+            "whatItDoes": "Local storage describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, Console matches the tested behavior — Local storage applies a different mechanism.",
+            "misconceptionTested": "Applying \"Local storage\" without matching management access"
           }
         ],
         "examTip": "This stem tests management access — exam distractors swap similar terms; anchor on: WAP debug output appears on the console by default."
@@ -298,18 +334,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "TACACS+ misses what this question tests. RADIUS is an open standard originally proposed by the IETF.",
-            "misconceptionTested": "Selecting \"TACACS+\" without matching the scenario constraint"
+            "explanation": "TACACS+ describes a mechanism that could sound plausible for management access. Given management access, RADIUS matches the tested behavior — TACACS+ applies a different mechanism.",
+            "whatItDoes": "TACACS+ describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, RADIUS matches the tested behavior — TACACS+ applies a different mechanism.",
+            "misconceptionTested": "Applying \"TACACS+\" without matching management access"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Kerberos misses what this question tests. RADIUS is an open standard originally proposed by the IETF.",
-            "misconceptionTested": "Selecting \"Kerberos\" without matching the scenario constraint"
+            "explanation": "Kerberos describes a mechanism that could sound plausible for management access. Given management access, RADIUS matches the tested behavior — Kerberos applies a different mechanism.",
+            "whatItDoes": "Kerberos describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, RADIUS matches the tested behavior — Kerberos applies a different mechanism.",
+            "misconceptionTested": "Applying \"Kerberos\" without matching management access"
           },
           {
             "choiceIndex": 3,
-            "explanation": "LDAP misses what this question tests. RADIUS is an open standard originally proposed by the IETF.",
-            "misconceptionTested": "Selecting \"LDAP\" without matching the scenario constraint"
+            "explanation": "LDAP describes a mechanism that could sound plausible for management access. Given management access, RADIUS matches the tested behavior — LDAP applies a different mechanism.",
+            "whatItDoes": "LDAP describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, RADIUS matches the tested behavior — LDAP applies a different mechanism.",
+            "misconceptionTested": "Applying \"LDAP\" without matching management access"
           }
         ],
         "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
@@ -343,18 +385,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "TACACS+ misses what this question tests. SSH can use AES for encrypted credentials and session data.",
-            "misconceptionTested": "Selecting \"TACACS+\" without matching the scenario constraint"
+            "explanation": "TACACS+ describes a mechanism that could sound plausible for management access. Given management access, SSH matches the tested behavior — TACACS+ applies a different mechanism.",
+            "whatItDoes": "TACACS+ describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, SSH matches the tested behavior — TACACS+ applies a different mechanism.",
+            "misconceptionTested": "Applying \"TACACS+\" without matching management access"
           },
           {
             "choiceIndex": 2,
-            "explanation": "HTTPS misses what this question tests. SSH can use AES for encrypted credentials and session data.",
-            "misconceptionTested": "Selecting \"HTTPS\" without matching the scenario constraint"
+            "explanation": "HTTPS describes a mechanism that could sound plausible for management access. Given management access, SSH matches the tested behavior — HTTPS applies a different mechanism.",
+            "whatItDoes": "HTTPS describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, SSH matches the tested behavior — HTTPS applies a different mechanism.",
+            "misconceptionTested": "Applying \"HTTPS\" without matching management access"
           },
           {
             "choiceIndex": 3,
-            "explanation": "RADIUS misses what this question tests. SSH can use AES for encrypted credentials and session data.",
-            "misconceptionTested": "Selecting \"RADIUS\" without matching the scenario constraint"
+            "explanation": "RADIUS describes a mechanism that could sound plausible for management access. Given management access, SSH matches the tested behavior — RADIUS applies a different mechanism.",
+            "whatItDoes": "RADIUS describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, SSH matches the tested behavior — RADIUS applies a different mechanism.",
+            "misconceptionTested": "Applying \"RADIUS\" without matching management access"
           }
         ],
         "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
@@ -389,18 +437,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "HTTPS misses what this question tests. A first-time autonomous AP setup commonly uses the console connection.",
-            "misconceptionTested": "Selecting \"HTTPS\" without matching the scenario constraint"
+            "explanation": "HTTPS describes a mechanism that could sound plausible for management access. Given management access, Console matches the tested behavior — HTTPS applies a different mechanism.",
+            "whatItDoes": "HTTPS describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, Console matches the tested behavior — HTTPS applies a different mechanism.",
+            "misconceptionTested": "Applying \"HTTPS\" without matching management access"
           },
           {
             "choiceIndex": 1,
-            "explanation": "SSH misses what this question tests. A first-time autonomous AP setup commonly uses the console connection.",
-            "misconceptionTested": "Selecting \"SSH\" without matching the scenario constraint"
+            "explanation": "SSH describes a mechanism that could sound plausible for management access. Given management access, Console matches the tested behavior — SSH applies a different mechanism.",
+            "whatItDoes": "SSH describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, Console matches the tested behavior — SSH applies a different mechanism.",
+            "misconceptionTested": "Applying \"SSH\" without matching management access"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Telnet misses what this question tests. A first-time autonomous AP setup commonly uses the console connection.",
-            "misconceptionTested": "Selecting \"Telnet\" without matching the scenario constraint"
+            "explanation": "Telnet describes a mechanism that could sound plausible for management access. Given management access, Console matches the tested behavior — Telnet applies a different mechanism.",
+            "whatItDoes": "Telnet describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, Console matches the tested behavior — Telnet applies a different mechanism.",
+            "misconceptionTested": "Applying \"Telnet\" without matching management access"
           }
         ],
         "examTip": "This stem tests management access — exam distractors swap similar terms; anchor on: A first-time autonomous AP setup commonly uses the console connection."
@@ -435,17 +489,23 @@
           {
             "choiceIndex": 0,
             "explanation": "19.2 kb/s uses the wrong value. The tested fact calls for 9600 — not 19.",
-            "misconceptionTested": "Selecting \"19.2 kb/s\" without matching the scenario constraint"
+            "whatItDoes": "19.2 kb/s describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, 9600 baud matches the tested behavior — 19.2 kb/s applies a different mechanism.",
+            "misconceptionTested": "Memorizing 19 instead of the correct 9600"
           },
           {
             "choiceIndex": 1,
-            "explanation": "9600 kb/s misses what this question tests. Cisco console access commonly uses 9600 baud.",
-            "misconceptionTested": "Selecting \"9600 kb/s\" without matching the scenario constraint"
+            "explanation": "9600 kb/s describes a mechanism that could sound plausible for management access. Given management access, 9600 baud matches the tested behavior — 9600 kb/s applies a different mechanism.",
+            "whatItDoes": "9600 kb/s describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, 9600 baud matches the tested behavior — 9600 kb/s applies a different mechanism.",
+            "misconceptionTested": "Applying \"9600 kb/s\" without matching management access"
           },
           {
             "choiceIndex": 3,
             "explanation": "19200 baud uses the wrong value. The tested fact calls for 9600 — not 19200.",
-            "misconceptionTested": "Selecting \"19200 baud\" without matching the scenario constraint"
+            "whatItDoes": "19200 baud describes a mechanism that could sound plausible for management access.",
+            "whyWrongHere": "Given management access, 9600 baud matches the tested behavior — 19200 baud applies a different mechanism.",
+            "misconceptionTested": "Memorizing 19200 instead of the correct 9600"
           }
         ],
         "examTip": "This stem tests management access — exam distractors swap similar terms; anchor on: Cisco console access commonly uses 9600 baud."
@@ -479,17 +539,23 @@
           {
             "choiceIndex": 0,
             "explanation": "16 characters uses the wrong value. The tested fact calls for 32 — not 16.",
-            "misconceptionTested": "Selecting \"16 characters\" without matching the scenario constraint"
+            "whatItDoes": "16 characters describes a mechanism that could sound plausible for An SSID can be up to 32 characters.",
+            "whyWrongHere": "Given An SSID can be up to 32 characters, 32 characters matches the tested behavior — 16 characters applies a different mechanism.",
+            "misconceptionTested": "Memorizing 16 instead of the correct 32"
           },
           {
             "choiceIndex": 2,
             "explanation": "48 characters uses the wrong value. The tested fact calls for 32 — not 48.",
-            "misconceptionTested": "Selecting \"48 characters\" without matching the scenario constraint"
+            "whatItDoes": "48 characters describes a mechanism that could sound plausible for An SSID can be up to 32 characters.",
+            "whyWrongHere": "Given An SSID can be up to 32 characters, 32 characters matches the tested behavior — 48 characters applies a different mechanism.",
+            "misconceptionTested": "Memorizing 48 instead of the correct 32"
           },
           {
             "choiceIndex": 3,
             "explanation": "64 characters uses the wrong value. The tested fact calls for 32 — not 64.",
-            "misconceptionTested": "Selecting \"64 characters\" without matching the scenario constraint"
+            "whatItDoes": "64 characters describes a mechanism that could sound plausible for An SSID can be up to 32 characters.",
+            "whyWrongHere": "Given An SSID can be up to 32 characters, 32 characters matches the tested behavior — 64 characters applies a different mechanism.",
+            "misconceptionTested": "Memorizing 64 instead of the correct 32"
           }
         ],
         "examTip": "This stem tests wlan — exam distractors swap similar terms; anchor on: An SSID can be up to 32 characters."
@@ -523,18 +589,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Access control lists for one SSID misses what this question tests. A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
-            "misconceptionTested": "Selecting \"Access control lists for one SSID\" without matching the scenario constraint"
+            "explanation": "Access control lists for one SSID describes a mechanism that could sound plausible for segmented. Given segmented, Two SSIDs, one configured to the production VLAN and another configured to the guest VLAN matches the tested behavior — Access control lists for one SSID applies a different mechanism.",
+            "whatItDoes": "Access control lists for one SSID describes a mechanism that could sound plausible for segmented.",
+            "whyWrongHere": "Given segmented, Two SSIDs, one configured to the production VLAN and another configured to the guest VLAN matches the tested behavior — Access control lists for one SSID applies a different mechanism.",
+            "misconceptionTested": "Applying \"Access control lists for one SSID\" without matching wlan"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Dynamic VLANs for the SSID misses what this question tests. A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
-            "misconceptionTested": "Selecting \"Dynamic VLANs for the SSID\" without matching the scenario constraint"
+            "explanation": "Dynamic VLANs for the SSID describes a mechanism that could sound plausible for segmented. Given segmented, Two SSIDs, one configured to the production VLAN and another configured to the guest VLAN matches the tested behavior — Dynamic VLANs for the SSID applies a different mechanism.",
+            "whatItDoes": "Dynamic VLANs for the SSID describes a mechanism that could sound plausible for segmented.",
+            "whyWrongHere": "Given segmented, Two SSIDs, one configured to the production VLAN and another configured to the guest VLAN matches the tested behavior — Dynamic VLANs for the SSID applies a different mechanism.",
+            "misconceptionTested": "Applying \"Dynamic VLANs for the SSID\" without matching wlan"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Access control lists for two SSIDs misses what this question tests. A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
-            "misconceptionTested": "Selecting \"Access control lists for two SSIDs\" without matching the scenario constraint"
+            "explanation": "Access control lists for two SSIDs describes a mechanism that could sound plausible for segmented. Given segmented, Two SSIDs, one configured to the production VLAN and another configured to the guest VLAN matches the tested behavior — Access control lists for two SSIDs applies a different mechanism.",
+            "whatItDoes": "Access control lists for two SSIDs describes a mechanism that could sound plausible for segmented.",
+            "whyWrongHere": "Given segmented, Two SSIDs, one configured to the production VLAN and another configured to the guest VLAN matches the tested behavior — Access control lists for two SSIDs applies a different mechanism.",
+            "misconceptionTested": "Applying \"Access control lists for two SSIDs\" without matching wlan"
           }
         ],
         "examTip": "Access = one VLAN; trunk tags frames. Native VLAN must match on both ends or you get silent mis-forwarding."
@@ -568,18 +640,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "WPAN misses what this question tests. A town-wide wireless deployment is a WMAN.",
-            "misconceptionTested": "Selecting \"WPAN\" without matching the scenario constraint"
+            "explanation": "WPAN describes a mechanism that could sound plausible for A town-wide wireless deployment is a WMAN. Given A town-wide wireless deployment is a WMAN, WMAN matches the tested behavior — WPAN applies a different mechanism.",
+            "whatItDoes": "WPAN describes a mechanism that could sound plausible for A town-wide wireless deployment is a WMAN.",
+            "whyWrongHere": "Given A town-wide wireless deployment is a WMAN, WMAN matches the tested behavior — WPAN applies a different mechanism.",
+            "misconceptionTested": "Applying \"WPAN\" without matching wlan"
           },
           {
             "choiceIndex": 2,
-            "explanation": "WLAN misses what this question tests. A town-wide wireless deployment is a WMAN.",
-            "misconceptionTested": "Selecting \"WLAN\" without matching the scenario constraint"
+            "explanation": "WLAN describes a mechanism that could sound plausible for A town-wide wireless deployment is a WMAN. Given A town-wide wireless deployment is a WMAN, WMAN matches the tested behavior — WLAN applies a different mechanism.",
+            "whatItDoes": "WLAN describes a mechanism that could sound plausible for A town-wide wireless deployment is a WMAN.",
+            "whyWrongHere": "Given A town-wide wireless deployment is a WMAN, WMAN matches the tested behavior — WLAN applies a different mechanism.",
+            "misconceptionTested": "Applying \"WLAN\" without matching wlan"
           },
           {
             "choiceIndex": 3,
-            "explanation": "WWAN misses what this question tests. A town-wide wireless deployment is a WMAN.",
-            "misconceptionTested": "Selecting \"WWAN\" without matching the scenario constraint"
+            "explanation": "WWAN describes a mechanism that could sound plausible for A town-wide wireless deployment is a WMAN. Given A town-wide wireless deployment is a WMAN, WMAN matches the tested behavior — WWAN applies a different mechanism.",
+            "whatItDoes": "WWAN describes a mechanism that could sound plausible for A town-wide wireless deployment is a WMAN.",
+            "whyWrongHere": "Given A town-wide wireless deployment is a WMAN, WMAN matches the tested behavior — WWAN applies a different mechanism.",
+            "misconceptionTested": "Applying \"WWAN\" without matching wlan"
           }
         ],
         "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
@@ -613,18 +691,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "WLAN misses what this question tests. A short-range personal wireless network is a WPAN.",
-            "misconceptionTested": "Selecting \"WLAN\" without matching the scenario constraint"
+            "explanation": "WLAN describes a mechanism that could sound plausible for A short-range personal wireless network is a WPAN. Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WLAN applies a different mechanism.",
+            "whatItDoes": "WLAN describes a mechanism that could sound plausible for A short-range personal wireless network is a WPAN.",
+            "whyWrongHere": "Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WLAN applies a different mechanism.",
+            "misconceptionTested": "Applying \"WLAN\" without matching wlan"
           },
           {
             "choiceIndex": 2,
-            "explanation": "WMAN misses what this question tests. A short-range personal wireless network is a WPAN.",
-            "misconceptionTested": "Selecting \"WMAN\" without matching the scenario constraint"
+            "explanation": "WMAN describes a mechanism that could sound plausible for A short-range personal wireless network is a WPAN. Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WMAN applies a different mechanism.",
+            "whatItDoes": "WMAN describes a mechanism that could sound plausible for A short-range personal wireless network is a WPAN.",
+            "whyWrongHere": "Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WMAN applies a different mechanism.",
+            "misconceptionTested": "Applying \"WMAN\" without matching wlan"
           },
           {
             "choiceIndex": 3,
-            "explanation": "WWAN misses what this question tests. A short-range personal wireless network is a WPAN.",
-            "misconceptionTested": "Selecting \"WWAN\" without matching the scenario constraint"
+            "explanation": "WWAN describes a mechanism that could sound plausible for A short-range personal wireless network is a WPAN. Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WWAN applies a different mechanism.",
+            "whatItDoes": "WWAN describes a mechanism that could sound plausible for A short-range personal wireless network is a WPAN.",
+            "whyWrongHere": "Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WWAN applies a different mechanism.",
+            "misconceptionTested": "Applying \"WWAN\" without matching wlan"
           }
         ],
         "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
@@ -658,18 +742,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "A trust boundary is where the QoS markings are first configured. misses what this question tests. A QoS trust boundary is where the network begins trusting QoS markings.",
-            "misconceptionTested": "Selecting \"A trust boundary is where the QoS markin…\" without matching the scenario constraint"
+            "explanation": "A trust boundary is where the QoS markings are first configured. describes a mechanism that could sound plausible for A QoS trust boundary is where the network begins trusting QoS markings. Given A QoS trust boundary is where the network begins trusting QoS markings, A trust boundary is where the network begins to trust the QoS markings from devices. matches the tested behavior — A trust boundary is where the QoS markings are first configured. applies a different mechanism.",
+            "whatItDoes": "A trust boundary is where the QoS markings are first configured. describes a mechanism that could sound plausible for A QoS trust boundary is where the network begins trusting QoS markings.",
+            "whyWrongHere": "Given A QoS trust boundary is where the network begins trusting QoS markings, A trust boundary is where the network begins to trust the QoS markings from devices. matches the tested behavior — A trust boundary is where the QoS markings are first configured. applies a different mechanism.",
+            "misconceptionTested": "Applying \"A trust boundary is where the QoS ma\" without matching wlan"
           },
           {
             "choiceIndex": 1,
-            "explanation": "A trust boundary is where the QoS markings are stripped at the router. misses what this question tests. A QoS trust boundary is where the network begins trusting QoS markings.",
-            "misconceptionTested": "Selecting \"A trust boundary is where the QoS markin…\" without matching the scenario constraint"
+            "explanation": "A trust boundary is where the QoS markings are stripped at the router. describes a mechanism that could sound plausible for A QoS trust boundary is where the network begins trusting QoS markings. Given A QoS trust boundary is where the network begins trusting QoS markings, A trust boundary is where the network begins to trust the QoS markings from devices. matches the tested behavior — A trust boundary is where the QoS markings are stripped at the router. applies a different mechanism.",
+            "whatItDoes": "A trust boundary is where the QoS markings are stripped at the router. describes a mechanism that could sound plausible for A QoS trust boundary is where the network begins trusting QoS markings.",
+            "whyWrongHere": "Given A QoS trust boundary is where the network begins trusting QoS markings, A trust boundary is where the network begins to trust the QoS markings from devices. matches the tested behavior — A trust boundary is where the QoS markings are stripped at the router. applies a different mechanism.",
+            "misconceptionTested": "Applying \"A trust boundary is where the QoS ma\" without matching wlan"
           },
           {
             "choiceIndex": 3,
-            "explanation": "A trust boundary is the separation of QoS queues based upon their priority. misses what this question tests. A QoS trust boundary is where the network begins trusting QoS markings.",
-            "misconceptionTested": "Selecting \"A trust boundary is the separation of Qo…\" without matching the scenario constraint"
+            "explanation": "A trust boundary is the separation of QoS queues based upon their priority. describes a mechanism that could sound plausible for A QoS trust boundary is where the network begins trusting QoS markings. Given A QoS trust boundary is where the network begins trusting QoS markings, A trust boundary is where the network begins to trust the QoS markings from devices. matches the tested behavior — A trust boundary is the separation of QoS queues based upon their priority. applies a different mechanism.",
+            "whatItDoes": "A trust boundary is the separation of QoS queues based upon their priority. describes a mechanism that could sound plausible for A QoS trust boundary is where the network begins trusting QoS markings.",
+            "whyWrongHere": "Given A QoS trust boundary is where the network begins trusting QoS markings, A trust boundary is where the network begins to trust the QoS markings from devices. matches the tested behavior — A trust boundary is the separation of QoS queues based upon their priority. applies a different mechanism.",
+            "misconceptionTested": "Applying \"A trust boundary is the separation o\" without matching wlan"
           }
         ],
         "examTip": "This stem tests wlan — exam distractors swap similar terms; anchor on: A QoS trust boundary is where the network begins trusting QoS markings."
@@ -704,17 +794,23 @@
           {
             "choiceIndex": 1,
             "explanation": "802.11r uses the wrong value. The tested fact calls for 11 — not 802.",
-            "misconceptionTested": "Selecting \"802.11r\" without matching the scenario constraint"
+            "whatItDoes": "802.11r describes a mechanism that could sound plausible for specification.",
+            "whyWrongHere": "Given specification, 802.11e matches the tested behavior — 802.11r applies a different mechanism.",
+            "misconceptionTested": "Memorizing 802 instead of the correct 11"
           },
           {
             "choiceIndex": 2,
             "explanation": "802.1p uses the wrong value. The tested fact calls for 11 — not 802.",
-            "misconceptionTested": "Selecting \"802.1p\" without matching the scenario constraint"
+            "whatItDoes": "802.1p describes a mechanism that could sound plausible for specification.",
+            "whyWrongHere": "Given specification, 802.11e matches the tested behavior — 802.1p applies a different mechanism.",
+            "misconceptionTested": "Memorizing 802 instead of the correct 11"
           },
           {
             "choiceIndex": 3,
             "explanation": "802.11k uses the wrong value. The tested fact calls for 11 — not 802.",
-            "misconceptionTested": "Selecting \"802.11k\" without matching the scenario constraint"
+            "whatItDoes": "802.11k describes a mechanism that could sound plausible for specification.",
+            "whyWrongHere": "Given specification, 802.11e matches the tested behavior — 802.11k applies a different mechanism.",
+            "misconceptionTested": "Memorizing 802 instead of the correct 11"
           }
         ],
         "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
@@ -748,18 +844,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Disable SSID broadcasting misses what this question tests. MAC filtering can restrict WLAN access to known corporate hosts.",
-            "misconceptionTested": "Selecting \"Disable SSID broadcasting\" without matching the scenario constraint"
+            "explanation": "Disable SSID broadcasting describes flooding the frame to multiple ports in the VLAN. Given MAC filtering can restrict WLAN access to known corporate hosts, Use MAC filtering matches the tested behavior — Disable SSID broadcasting applies a different mechanism.",
+            "whatItDoes": "Disable SSID broadcasting describes flooding the frame to multiple ports in the VLAN.",
+            "whyWrongHere": "Given MAC filtering can restrict WLAN access to known corporate hosts, Use MAC filtering matches the tested behavior — Disable SSID broadcasting applies a different mechanism.",
+            "misconceptionTested": "Applying \"Disable SSID broadcasting\" without matching wlan"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Set a unique PSK misses what this question tests. MAC filtering can restrict WLAN access to known corporate hosts.",
-            "misconceptionTested": "Selecting \"Set a unique PSK\" without matching the scenario constraint"
+            "explanation": "Set a unique PSK describes a mechanism that could sound plausible for MAC filtering can restrict WLAN access to known corporate hosts. Given MAC filtering can restrict WLAN access to known corporate hosts, Use MAC filtering matches the tested behavior — Set a unique PSK applies a different mechanism.",
+            "whatItDoes": "Set a unique PSK describes a mechanism that could sound plausible for MAC filtering can restrict WLAN access to known corporate hosts.",
+            "whyWrongHere": "Given MAC filtering can restrict WLAN access to known corporate hosts, Use MAC filtering matches the tested behavior — Set a unique PSK applies a different mechanism.",
+            "misconceptionTested": "Applying \"Set a unique PSK\" without matching wlan"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Add an LDAP server misses what this question tests. MAC filtering can restrict WLAN access to known corporate hosts.",
-            "misconceptionTested": "Selecting \"Add an LDAP server\" without matching the scenario constraint"
+            "explanation": "Add an LDAP server describes a mechanism that could sound plausible for MAC filtering can restrict WLAN access to known corporate hosts. Given MAC filtering can restrict WLAN access to known corporate hosts, Use MAC filtering matches the tested behavior — Add an LDAP server applies a different mechanism.",
+            "whatItDoes": "Add an LDAP server describes a mechanism that could sound plausible for MAC filtering can restrict WLAN access to known corporate hosts.",
+            "whyWrongHere": "Given MAC filtering can restrict WLAN access to known corporate hosts, Use MAC filtering matches the tested behavior — Add an LDAP server applies a different mechanism.",
+            "misconceptionTested": "Applying \"Add an LDAP server\" without matching wlan"
           }
         ],
         "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
@@ -794,17 +896,23 @@
           {
             "choiceIndex": 0,
             "explanation": "802.11r uses the wrong value. The tested fact calls for 11 — not 802.",
-            "misconceptionTested": "Selecting \"802.11r\" without matching the scenario constraint"
+            "whatItDoes": "802.11r describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, 802.11k matches the tested behavior — 802.11r applies a different mechanism.",
+            "misconceptionTested": "Memorizing 802 instead of the correct 11"
           },
           {
             "choiceIndex": 1,
             "explanation": "802.11e uses the wrong value. The tested fact calls for 11 — not 802.",
-            "misconceptionTested": "Selecting \"802.11e\" without matching the scenario constraint"
+            "whatItDoes": "802.11e describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, 802.11k matches the tested behavior — 802.11e applies a different mechanism.",
+            "misconceptionTested": "Memorizing 802 instead of the correct 11"
           },
           {
             "choiceIndex": 3,
             "explanation": "802.11ac uses the wrong value. The tested fact calls for 11 — not 802.",
-            "misconceptionTested": "Selecting \"802.11ac\" without matching the scenario constraint"
+            "whatItDoes": "802.11ac describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, 802.11k matches the tested behavior — 802.11ac applies a different mechanism.",
+            "misconceptionTested": "Memorizing 802 instead of the correct 11"
           }
         ],
         "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
@@ -839,18 +947,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Bronze misses what this question tests. Platinum is the WLC QoS profile appropriate for voice.",
-            "misconceptionTested": "Selecting \"Bronze\" without matching the scenario constraint"
+            "explanation": "Bronze describes a mechanism that could sound plausible for Platinum is the WLC QoS profile appropriate for voice. Given Platinum is the WLC QoS profile appropriate for voice, Platinum matches the tested behavior — Bronze applies a different mechanism.",
+            "whatItDoes": "Bronze describes a mechanism that could sound plausible for Platinum is the WLC QoS profile appropriate for voice.",
+            "whyWrongHere": "Given Platinum is the WLC QoS profile appropriate for voice, Platinum matches the tested behavior — Bronze applies a different mechanism.",
+            "misconceptionTested": "Applying \"Bronze\" without matching wlan"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Silver misses what this question tests. Platinum is the WLC QoS profile appropriate for voice.",
-            "misconceptionTested": "Selecting \"Silver\" without matching the scenario constraint"
+            "explanation": "Silver describes a mechanism that could sound plausible for Platinum is the WLC QoS profile appropriate for voice. Given Platinum is the WLC QoS profile appropriate for voice, Platinum matches the tested behavior — Silver applies a different mechanism.",
+            "whatItDoes": "Silver describes a mechanism that could sound plausible for Platinum is the WLC QoS profile appropriate for voice.",
+            "whyWrongHere": "Given Platinum is the WLC QoS profile appropriate for voice, Platinum matches the tested behavior — Silver applies a different mechanism.",
+            "misconceptionTested": "Applying \"Silver\" without matching wlan"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Gold misses what this question tests. Platinum is the WLC QoS profile appropriate for voice.",
-            "misconceptionTested": "Selecting \"Gold\" without matching the scenario constraint"
+            "explanation": "Gold describes a mechanism that could sound plausible for Platinum is the WLC QoS profile appropriate for voice. Given Platinum is the WLC QoS profile appropriate for voice, Platinum matches the tested behavior — Gold applies a different mechanism.",
+            "whatItDoes": "Gold describes a mechanism that could sound plausible for Platinum is the WLC QoS profile appropriate for voice.",
+            "whyWrongHere": "Given Platinum is the WLC QoS profile appropriate for voice, Platinum matches the tested behavior — Gold applies a different mechanism.",
+            "misconceptionTested": "Applying \"Gold\" without matching wlan"
           }
         ],
         "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
@@ -886,18 +1000,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Change the radio policy misses what this question tests. If a WLAN is disabled in the GUI, enabling status restores client access.",
-            "misconceptionTested": "Selecting \"Change the radio policy\" without matching the scenario constraint"
+            "explanation": "Change the radio policy describes a mechanism that could sound plausible for If a WLAN is disabled in the GUI, enabling status restores client access. Given If a WLAN is disabled in the GUI, enabling status restores client access, Enable the status matches the tested behavior — Change the radio policy applies a different mechanism.",
+            "whatItDoes": "Change the radio policy describes a mechanism that could sound plausible for If a WLAN is disabled in the GUI, enabling status restores client access.",
+            "whyWrongHere": "Given If a WLAN is disabled in the GUI, enabling status restores client access, Enable the status matches the tested behavior — Change the radio policy applies a different mechanism.",
+            "misconceptionTested": "Applying \"Change the radio policy\" without matching wlan"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Enable Multicast VLAN Feature misses what this question tests. If a WLAN is disabled in the GUI, enabling status restores client access.",
-            "misconceptionTested": "Selecting \"Enable Multicast VLAN Feature\" without matching the scenario constraint"
+            "explanation": "Enable Multicast VLAN Feature describes a mechanism that could sound plausible for If a WLAN is disabled in the GUI, enabling status restores client access. Given If a WLAN is disabled in the GUI, enabling status restores client access, Enable the status matches the tested behavior — Enable Multicast VLAN Feature applies a different mechanism.",
+            "whatItDoes": "Enable Multicast VLAN Feature describes a mechanism that could sound plausible for If a WLAN is disabled in the GUI, enabling status restores client access.",
+            "whyWrongHere": "Given If a WLAN is disabled in the GUI, enabling status restores client access, Enable the status matches the tested behavior — Enable Multicast VLAN Feature applies a different mechanism.",
+            "misconceptionTested": "Applying \"Enable Multicast VLAN Feature\" without matching wlan"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Enable Broadcast SSID misses what this question tests. If a WLAN is disabled in the GUI, enabling status restores client access.",
-            "misconceptionTested": "Selecting \"Enable Broadcast SSID\" without matching the scenario constraint"
+            "explanation": "Enable Broadcast SSID describes flooding the frame to multiple ports in the VLAN. Given If a WLAN is disabled in the GUI, enabling status restores client access, Enable the status matches the tested behavior — Enable Broadcast SSID applies a different mechanism.",
+            "whatItDoes": "Enable Broadcast SSID describes flooding the frame to multiple ports in the VLAN.",
+            "whyWrongHere": "Given If a WLAN is disabled in the GUI, enabling status restores client access, Enable the status matches the tested behavior — Enable Broadcast SSID applies a different mechanism.",
+            "misconceptionTested": "Applying \"Enable Broadcast SSID\" without matching wlan"
           }
         ],
         "examTip": "Access = one VLAN; trunk tags frames. Native VLAN must match on both ends or you get silent mis-forwarding."
@@ -933,18 +1053,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "WPA is enabled. misses what this question tests. The WPA2 personal/PSK security.",
-            "misconceptionTested": "Selecting \"WPA is enabled.\" without matching the scenario constraint"
+            "explanation": "WPA is enabled. describes a mechanism that could sound plausible for The WPA2 personal/PSK security. Given The WPA2 personal/PSK security, WPA2 personal is enabled. matches the tested behavior — WPA is enabled. applies a different mechanism.",
+            "whatItDoes": "WPA is enabled. describes a mechanism that could sound plausible for The WPA2 personal/PSK security.",
+            "whyWrongHere": "Given The WPA2 personal/PSK security, WPA2 personal is enabled. matches the tested behavior — WPA is enabled. applies a different mechanism.",
+            "misconceptionTested": "Applying \"WPA is enabled.\" without matching wlan"
           },
           {
             "choiceIndex": 1,
-            "explanation": "WPA2 enterprise is enabled. misses what this question tests. The WPA2 personal/PSK security.",
-            "misconceptionTested": "Selecting \"WPA2 enterprise is enabled.\" without matching the scenario constraint"
+            "explanation": "WPA2 enterprise is enabled. describes a mechanism that could sound plausible for The WPA2 personal/PSK security. Given The WPA2 personal/PSK security, WPA2 personal is enabled. matches the tested behavior — WPA2 enterprise is enabled. applies a different mechanism.",
+            "whatItDoes": "WPA2 enterprise is enabled. describes a mechanism that could sound plausible for The WPA2 personal/PSK security.",
+            "whyWrongHere": "Given The WPA2 personal/PSK security, WPA2 personal is enabled. matches the tested behavior — WPA2 enterprise is enabled. applies a different mechanism.",
+            "misconceptionTested": "Applying \"WPA2 enterprise is enabled.\" without matching wlan"
           },
           {
             "choiceIndex": 3,
             "explanation": "802.1X is enabled. uses the wrong value. The tested fact calls for 2 — not 802.",
-            "misconceptionTested": "Selecting \"802.1X is enabled.\" without matching the scenario constraint"
+            "whatItDoes": "802.1X is enabled. describes a mechanism that could sound plausible for The WPA2 personal/PSK security.",
+            "whyWrongHere": "Given The WPA2 personal/PSK security, WPA2 personal is enabled. matches the tested behavior — 802.1X is enabled. applies a different mechanism.",
+            "misconceptionTested": "Memorizing 802 instead of the correct 2"
           }
         ],
         "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
@@ -978,18 +1104,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Gold misses what this question tests. Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
-            "misconceptionTested": "Selecting \"Gold\" without matching the scenario constraint"
+            "explanation": "Gold describes a mechanism that could sound plausible for connectivity. Given connectivity, Bronze matches the tested behavior — Gold applies a different mechanism.",
+            "whatItDoes": "Gold describes a mechanism that could sound plausible for connectivity.",
+            "whyWrongHere": "Given connectivity, Bronze matches the tested behavior — Gold applies a different mechanism.",
+            "misconceptionTested": "Applying \"Gold\" without matching wlan"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Platinum misses what this question tests. Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
-            "misconceptionTested": "Selecting \"Platinum\" without matching the scenario constraint"
+            "explanation": "Platinum describes a mechanism that could sound plausible for connectivity. Given connectivity, Bronze matches the tested behavior — Platinum applies a different mechanism.",
+            "whatItDoes": "Platinum describes a mechanism that could sound plausible for connectivity.",
+            "whyWrongHere": "Given connectivity, Bronze matches the tested behavior — Platinum applies a different mechanism.",
+            "misconceptionTested": "Applying \"Platinum\" without matching wlan"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Silver misses what this question tests. Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
-            "misconceptionTested": "Selecting \"Silver\" without matching the scenario constraint"
+            "explanation": "Silver describes a mechanism that could sound plausible for connectivity. Given connectivity, Bronze matches the tested behavior — Silver applies a different mechanism.",
+            "whatItDoes": "Silver describes a mechanism that could sound plausible for connectivity.",
+            "whyWrongHere": "Given connectivity, Bronze matches the tested behavior — Silver applies a different mechanism.",
+            "misconceptionTested": "Applying \"Silver\" without matching wlan"
           }
         ],
         "examTip": "This stem tests wlan — exam distractors swap similar terms; anchor on: Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context."
@@ -1024,18 +1156,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "MAC filtering misses what this question tests. 802.",
-            "misconceptionTested": "Selecting \"MAC filtering\" without matching the scenario constraint"
+            "explanation": "MAC filtering describes a mechanism that could sound plausible for security. Given security, 802.1X matches the tested behavior — MAC filtering applies a different mechanism.",
+            "whatItDoes": "MAC filtering describes a mechanism that could sound plausible for security.",
+            "whyWrongHere": "Given security, 802.1X matches the tested behavior — MAC filtering applies a different mechanism.",
+            "misconceptionTested": "Applying \"MAC filtering\" without matching wlan"
           },
           {
             "choiceIndex": 2,
             "explanation": "WPA2 PSK uses the wrong value. The tested fact calls for 802 — not 2.",
-            "misconceptionTested": "Selecting \"WPA2 PSK\" without matching the scenario constraint"
+            "whatItDoes": "WPA2 PSK describes a mechanism that could sound plausible for security.",
+            "whyWrongHere": "Given security, 802.1X matches the tested behavior — WPA2 PSK applies a different mechanism.",
+            "misconceptionTested": "Memorizing 2 instead of the correct 802"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Fast Transitioning misses what this question tests. 802.",
-            "misconceptionTested": "Selecting \"Fast Transitioning\" without matching the scenario constraint"
+            "explanation": "Fast Transitioning describes a mechanism that could sound plausible for security. Given security, 802.1X matches the tested behavior — Fast Transitioning applies a different mechanism.",
+            "whatItDoes": "Fast Transitioning describes a mechanism that could sound plausible for security.",
+            "whyWrongHere": "Given security, 802.1X matches the tested behavior — Fast Transitioning applies a different mechanism.",
+            "misconceptionTested": "Applying \"Fast Transitioning\" without matching wlan"
           }
         ],
         "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."

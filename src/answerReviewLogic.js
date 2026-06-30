@@ -11,18 +11,12 @@ import {
   resolveTrapLabel,
   resolveStemAnchored,
 } from './answerReview/ckuTrapLibrary.js'
+import { buildStemAnchoredIncorrect } from './answerReview/stemAnchoredDistractor.js'
 import { goldAnswerReviewFor } from './answerReview/goldAnswerReviews.js'
 import { examTipFor, isGenericExamTip } from './answerReview/examTipLogic.js'
 import { sanitizeAnswerText } from './lib/voiceProse.js'
 
 export { examTipFor, isGenericExamTip } from './answerReview/examTipLogic.js'
-
-function firstSentence(text) {
-  const t = String(text || '').trim()
-  if (!t) return ''
-  const m = t.match(/^[^.!?]+[.!?]?/)
-  return m ? m[0].trim() : t.slice(0, 140)
-}
 
 function ctx(q) {
   const question = (q.question || '').toLowerCase()
@@ -38,17 +32,25 @@ function wrongChoice(q, choiceIndex) {
 }
 
 function ensureDistinctExplanations(q, incorrect) {
-  const used = new Map()
+  const usedExpl = new Map()
+  const usedWhy = new Map()
   return incorrect.map(item => {
-    let { explanation, misconceptionTested } = item
-    if (used.has(explanation)) {
-      const wrong = wrongChoice(q, item.choiceIndex)
-      const fact = (q.explanation || '').split(/[.!?]/)[0]?.trim()
-      explanation = `**${wrong}** is not the behavior described here. ${fact}.`
-      misconceptionTested = inferTrapForChoice(q, item.choiceIndex)
+    let { explanation, misconceptionTested, whatItDoes, whyWrongHere } = item
+    const regen = () => buildStemAnchoredIncorrect({ q, choiceIndex: item.choiceIndex })
+    if (usedExpl.has(explanation)) {
+      const sade = regen()
+      explanation = sade.explanation
+      whatItDoes = sade.whatItDoes
+      whyWrongHere = sade.whyWrongHere
+      misconceptionTested = sade.misconceptionTested || inferTrapForChoice(q, item.choiceIndex)
     }
-    used.set(explanation, item.choiceIndex)
-    return { ...item, explanation, misconceptionTested }
+    if (whyWrongHere && usedWhy.has(whyWrongHere)) {
+      const wrong = q.choices?.[item.choiceIndex] || ''
+      whyWrongHere = `${whyWrongHere} Picking **${wrong}** misses the exact behavior this stem tests.`
+    }
+    usedExpl.set(explanation, item.choiceIndex)
+    if (whyWrongHere) usedWhy.set(whyWrongHere, item.choiceIndex)
+    return { ...item, explanation, misconceptionTested, whatItDoes, whyWrongHere }
   })
 }
 
@@ -102,88 +104,48 @@ export function inferTrapForChoice(q, choiceIndex) {
     if (concept.includes(key)) return trap
   }
 
-  const anchored = resolveStemAnchored(wrong, q)
+  const anchored = resolveStemAnchored(wrong, q, choiceIndex)
   return anchored.trap
+}
+
+/** Build structured wrong-choice review with SADE fields when available. */
+export function buildWrongChoiceItem(q, choiceIndex) {
+  const wrong = wrongChoice(q, choiceIndex)
+  const correct = q.choices?.[q.correctIndex] || ''
+  if (!wrong) {
+    return { choiceIndex, explanation: 'This option does not fit the scenario.', misconceptionTested: '' }
+  }
+  if (wrong === correct) {
+    const dupIndices = (q.choices || []).map((c, i) => (c === correct ? i : -1)).filter(i => i >= 0)
+    if (dupIndices.length > 1 && choiceIndex !== q.correctIndex) {
+      const letter = String.fromCharCode(65 + q.correctIndex)
+      return {
+        choiceIndex,
+        explanation: `**${wrong}** matches the keyed correct syntax, but the scored answer is choice ${letter} — duplicate identical options are distractors.`,
+        misconceptionTested: 'Selecting a duplicate correct-looking option when only one letter is keyed',
+        whatItDoes: `**${wrong}** repeats the same CLI string as the marked correct answer.`,
+        whyWrongHere: `Only choice ${letter} is scored correct when two options show the same command — match the keyed letter, not the duplicate line.`,
+      }
+    }
+    return { choiceIndex, explanation: 'This is the correct answer, not a distractor.', misconceptionTested: '' }
+  }
+
+  const sade = buildStemAnchoredIncorrect({ q, choiceIndex })
+  const resolved = resolveWrongChoice(q, choiceIndex)
+  const useResolved = resolved?.explanation && !isFallbackExplanation(resolved.explanation)
+  return {
+    choiceIndex,
+    explanation: useResolved ? resolved.explanation : sade.explanation,
+    whatItDoes: sade.whatItDoes,
+    whyWrongHere: sade.whyWrongHere,
+    misconceptionTested: (useResolved ? resolved.trap : sade.misconceptionTested)
+      || inferTrapForChoice(q, choiceIndex),
+  }
 }
 
 /** Build a teachable explanation for one wrong choice. */
 export function buildWrongExplanation(q, choiceIndex) {
-  const wrong = wrongChoice(q, choiceIndex)
-  const correct = q.choices?.[q.correctIndex] || ''
-  const correctExpl = (q.explanation || '').trim() || `The correct answer is "${correct}".`
-  if (!wrong) return 'This option does not fit the scenario.'
-  if (wrong === correct) return 'This is the correct answer, not a distractor.'
-
-  const resolved = resolveWrongChoice(q, choiceIndex)
-  if (resolved?.explanation) return resolved.explanation
-
-  const w = wrong.toLowerCase()
-  const { blob, correctLower, question, expl } = ctx(q)
-
-  // --- MAC learning ---
-  if (/mac|cam|learn|source mac|destination mac/i.test(blob)) {
-    if (/destination/.test(w) && !/source/.test(w)) {
-      return 'Switches learn from the **source** MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.'
-    }
-    if (/both/.test(w) || (/source/.test(w) && /destination/.test(w))) {
-      return 'The CAM table stores **source** MAC-to-port mappings. Destination MACs are not learned as table entries on arrival.'
-    }
-    if (/ip address|only ip|neither|layer 3/i.test(w)) {
-      return 'MAC learning is a **Layer 2** process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.'
-    }
-  }
-
-  // --- Switch forwarding ---
-  if (/switch|frame|flood|forward|mac address table/i.test(blob)) {
-    if (/flood|all ports/i.test(w) && /forward|mapped|unicast|only the/i.test(correctLower)) {
-      return 'Flooding happens for **unknown** unicast destinations. When the destination MAC is already mapped in the table, the switch forwards out that port only.'
-    }
-    if (/broadcast/i.test(w) && /forward|mapped|unicast|only the/i.test(correctLower)) {
-      return 'Broadcast frames are flooded by destination, but this stem is about a **known unicast** MAC — the switch forwards out the single mapped port, not a VLAN-wide flood.'
-    }
-    if (/drop|discard|filter/i.test(w) && /forward|flood/i.test(correctLower)) {
-      return 'The switch should **forward** or **flood** the frame — not drop it — when handling normal unknown/known unicast behavior in this scenario.'
-    }
-    if (/forward/i.test(w) && /flood/i.test(correctLower)) {
-      return 'When the destination MAC is **not** in the table, the switch floods — it does not forward to a single known port.'
-    }
-    if (/same port|filter|does not forward/i.test(correctLower) && /forward|flood|different port/i.test(w)) {
-      return 'If source and destination map to the **same ingress port**, the switch filters the frame — there is no need to send it out again.'
-    }
-  }
-
-  // --- Router vs switch tables ---
-  if (/routing table/i.test(w) && /mac|cam|switch|frame|layer 2/i.test(blob)) {
-    return '**Routing tables** are for Layer 3 routers. Switches forward frames using a **MAC address (CAM) table**.'
-  }
-  if (/mac address table|cam table/i.test(w) && /routing|router|ip route|default gateway|layer 3/i.test(blob)) {
-    return 'Routers forward packets using a **routing table** and IP prefixes, not a switch MAC/CAM table.'
-  }
-
-  // --- Layer pickers ---
-  const layerWrong = w.match(/layer\s*([127])/i)
-  if (layerWrong) {
-    const n = layerWrong[1]
-    if (/layer\s*3|router|ip address|routing/i.test(blob) && n !== '3') {
-      return `**${wrong}** is the wrong OSI layer here. The stem tests **Layer 3** behavior — routers forward based on IP addresses and routing tables.`
-    }
-    if (/layer\s*2|switch|mac|frame|ethernet/i.test(blob) && !/layer\s*3|router/i.test(blob) && n !== '2') {
-      return `**${wrong}** is the wrong OSI layer here. The stem tests **Layer 2** behavior — switches forward frames using MAC addresses.`
-    }
-  }
-
-  // --- True / False ---
-  if ((q.choices?.length === 2) && (/^true$/i.test(w.trim()) || /^false$/i.test(w.trim()))) {
-    const fact = firstSentence(correctExpl)
-    return `This statement is **${wrong.trim()}**, but the tested fact is: ${fact}`
-  }
-
-  // --- Troubleshooting scenarios ---
-  if (question.includes('troubleshoot') || q.type === 'troubleshooting') {
-    return `**${wrong}** is a plausible symptom fix but does not match the most likely root cause here: ${firstSentence(correctExpl)}`
-  }
-
-  return resolveStemAnchored(wrong, q).explanation
+  return buildWrongChoiceItem(q, choiceIndex).explanation
 }
 export { isFallbackExplanation, isFallbackExplanation as isGenericWrongExplanation } from './answerReview/answerReviewQuality.js'
 export {
@@ -198,7 +160,15 @@ export function generateAnswerReview(q) {
   const gold = goldAnswerReviewFor(q.id)
   if (gold) {
     const examTip = gold.examTip && !isGenericExamTip(gold.examTip) ? gold.examTip : examTipFor(q)
-    return { ...gold, examTip }
+    const incorrect = (gold.incorrect || []).map(item => {
+      const sade = buildStemAnchoredIncorrect({ q, choiceIndex: item.choiceIndex })
+      return {
+        ...item,
+        whatItDoes: item.whatItDoes || sade.whatItDoes,
+        whyWrongHere: item.whyWrongHere || sade.whyWrongHere,
+      }
+    })
+    return { ...gold, examTip, incorrect: ensureDistinctExplanations(q, incorrect) }
   }
 
   const correctExpl = (q.explanation || '').trim()
@@ -209,10 +179,9 @@ export function generateAnswerReview(q) {
   const incorrect = q.choices
     .map((_, choiceIndex) => {
       if (choiceIndex === q.correctIndex) return null
+      const item = buildWrongChoiceItem(q, choiceIndex)
       return {
-        choiceIndex,
-        explanation: buildWrongExplanation(q, choiceIndex),
-        misconceptionTested: inferTrapForChoice(q, choiceIndex),
+        ...item,
         ...(needsReview ? { needsExplanationReview: true } : {}),
       }
     })
@@ -239,16 +208,21 @@ export function resolveIncorrectItem(q, item) {
     return {
       choiceIndex: item.choiceIndex,
       explanation: stored,
+      whatItDoes: item.whatItDoes,
+      whyWrongHere: item.whyWrongHere,
       misconceptionTested: isGenericTrap(storedTrap)
         ? inferTrapForChoice(q, item.choiceIndex)
         : storedTrap,
       needsExplanationReview: item.needsExplanationReview,
     }
   }
+  const rebuilt = buildWrongChoiceItem(q, item.choiceIndex)
   return {
     choiceIndex: item.choiceIndex,
-    explanation: buildWrongExplanation(q, item.choiceIndex),
-    misconceptionTested: inferTrapForChoice(q, item.choiceIndex),
+    explanation: rebuilt.explanation,
+    whatItDoes: rebuilt.whatItDoes,
+    whyWrongHere: rebuilt.whyWrongHere,
+    misconceptionTested: rebuilt.misconceptionTested || inferTrapForChoice(q, item.choiceIndex),
   }
 }
 
@@ -264,6 +238,8 @@ export function applyAnswerReviewToQuestion(q) {
     incorrect: (answerReview.incorrect || []).map(item => ({
       ...item,
       explanation: sanitizeAnswerText(item.explanation),
+      ...(item.whatItDoes ? { whatItDoes: sanitizeAnswerText(item.whatItDoes) } : {}),
+      ...(item.whyWrongHere ? { whyWrongHere: sanitizeAnswerText(item.whyWrongHere) } : {}),
     })),
   }
   const next = { ...q, answerReview: polished, explanation: sanitizeAnswerText(q.explanation) }

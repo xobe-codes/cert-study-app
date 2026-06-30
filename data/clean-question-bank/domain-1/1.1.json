@@ -30,17 +30,23 @@
           {
             "choiceIndex": 0,
             "explanation": "Layer 1 uses the wrong value. The tested fact calls for 3 — not 1.",
-            "misconceptionTested": "Selecting \"Layer 1\" without matching the scenario constraint"
+            "whatItDoes": "Layer 1 describes a mechanism that could sound plausible for router layer.",
+            "whyWrongHere": "Given router layer, Layer 3 matches the tested behavior — Layer 1 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 1 instead of the correct 3"
           },
           {
             "choiceIndex": 1,
             "explanation": "Layer 2 uses the wrong value. The tested fact calls for 3 — not 2.",
-            "misconceptionTested": "Selecting \"Layer 2\" without matching the scenario constraint"
+            "whatItDoes": "Layer 2 describes a mechanism that could sound plausible for router layer.",
+            "whyWrongHere": "Given router layer, Layer 3 matches the tested behavior — Layer 2 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 2 instead of the correct 3"
           },
           {
             "choiceIndex": 3,
             "explanation": "Layer 7 uses the wrong value. The tested fact calls for 3 — not 7.",
-            "misconceptionTested": "Selecting \"Layer 7\" without matching the scenario constraint"
+            "whatItDoes": "Layer 7 describes a mechanism that could sound plausible for router layer.",
+            "whyWrongHere": "Given router layer, Layer 3 matches the tested behavior — Layer 7 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 7 instead of the correct 3"
           }
         ],
         "examTip": "On the exam: More switches always mean better routing — Switches extend L2 domains; routing is an L3 function on routers or L3 switches"
@@ -72,17 +78,23 @@
           {
             "choiceIndex": 0,
             "explanation": "Routing table reflects a common trap: More switches always mean better routing. Switches extend L2 domains; routing is an L3 function on routers or L3 switches.",
+            "whatItDoes": "Routing table relies on a router routing table rather than switch MAC/CAM forwarding.",
+            "whyWrongHere": "Routers use routing tables; this stem is about switch forwarding (switch function). MAC address table is the right table/process here.",
             "misconceptionTested": "More switches always mean better routing"
           },
           {
             "choiceIndex": 2,
-            "explanation": "DNS cache misses what this question tests. L2 switches forward using the MAC address (CAM) table.",
-            "misconceptionTested": "Selecting \"DNS cache\" without matching the scenario constraint"
+            "explanation": "DNS cache describes a mechanism that could sound plausible for switch function. Given switch function, MAC address table matches the tested behavior — DNS cache applies a different mechanism.",
+            "whatItDoes": "DNS cache describes a mechanism that could sound plausible for switch function.",
+            "whyWrongHere": "Given switch function, MAC address table matches the tested behavior — DNS cache applies a different mechanism.",
+            "misconceptionTested": "Applying \"DNS cache\" without matching switch function"
           },
           {
             "choiceIndex": 3,
-            "explanation": "ACL list misses what this question tests. L2 switches forward using the MAC address (CAM) table.",
-            "misconceptionTested": "Selecting \"ACL list\" without matching the scenario constraint"
+            "explanation": "ACL list describes a mechanism that could sound plausible for switch function. Given switch function, MAC address table matches the tested behavior — ACL list applies a different mechanism.",
+            "whatItDoes": "ACL list describes a mechanism that could sound plausible for switch function.",
+            "whyWrongHere": "Given switch function, MAC address table matches the tested behavior — ACL list applies a different mechanism.",
+            "misconceptionTested": "Applying \"ACL list\" without matching switch function"
           }
         ],
         "examTip": "On the exam: Expecting an L2 switch to route VLANs — Inter-VLAN routing requires an L3 device — router or L3 switch with SVIs"
@@ -114,17 +126,23 @@
           {
             "choiceIndex": 0,
             "explanation": "Port mirroring copies frames to a monitor port for analysis — it does not route traffic between VLAN 10 and VLAN 20.",
-            "misconceptionTested": "Confusing traffic capture with inter-VLAN routing"
+            "misconceptionTested": "Confusing traffic capture with inter-VLAN routing",
+            "whatItDoes": "Port mirroring describes a mechanism that could sound plausible for l3 switch.",
+            "whyWrongHere": "Given l3 switch, SVI on a Layer 3 switch matches the tested behavior — Port mirroring applies a different mechanism."
           },
           {
             "choiceIndex": 2,
             "explanation": "Spanning Tree prevents Layer 2 loops — it does not provide inter-VLAN routing or replace an SVI on a Layer 3 switch.",
-            "misconceptionTested": "Expecting STP to route between VLANs"
+            "misconceptionTested": "Expecting STP to route between VLANs",
+            "whatItDoes": "Spanning Tree describes a mechanism that could sound plausible for l3 switch.",
+            "whyWrongHere": "Given l3 switch, SVI on a Layer 3 switch matches the tested behavior — Spanning Tree applies a different mechanism."
           },
           {
             "choiceIndex": 3,
             "explanation": "EtherChannel bundles links for bandwidth and redundancy — it is not the feature that routes between VLANs on one campus switch.",
-            "misconceptionTested": "Using link aggregation where L3 SVI routing is required"
+            "misconceptionTested": "Using link aggregation where L3 SVI routing is required",
+            "whatItDoes": "EtherChannel describes a mechanism that could sound plausible for l3 switch.",
+            "whyWrongHere": "Given l3 switch, SVI on a Layer 3 switch matches the tested behavior — EtherChannel applies a different mechanism."
           }
         ],
         "examTip": "Inter-VLAN on one switch without external router → SVI on an L3 switch."
@@ -155,18 +173,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "It only blocks UDP misses what this question tests. NGFWs track connection state and inspect applications, not just IP/port.",
-            "misconceptionTested": "Selecting \"It only blocks UDP\" without matching the scenario constraint"
+            "explanation": "It only blocks UDP describes a mechanism that could sound plausible for firewall. Given firewall, Stateful and application-aware inspection matches the tested behavior — It only blocks UDP applies a different mechanism.",
+            "whatItDoes": "It only blocks UDP describes a mechanism that could sound plausible for firewall.",
+            "whyWrongHere": "Given firewall, Stateful and application-aware inspection matches the tested behavior — It only blocks UDP applies a different mechanism.",
+            "misconceptionTested": "Applying \"It only blocks UDP\" without matching firewall"
           },
           {
             "choiceIndex": 2,
-            "explanation": "It replaces switches misses what this question tests. NGFWs track connection state and inspect applications, not just IP/port.",
-            "misconceptionTested": "Selecting \"It replaces switches\" without matching the scenario constraint"
+            "explanation": "It replaces switches describes a mechanism that could sound plausible for firewall. Given firewall, Stateful and application-aware inspection matches the tested behavior — It replaces switches applies a different mechanism.",
+            "whatItDoes": "It replaces switches describes a mechanism that could sound plausible for firewall.",
+            "whyWrongHere": "Given firewall, Stateful and application-aware inspection matches the tested behavior — It replaces switches applies a different mechanism.",
+            "misconceptionTested": "Applying \"It replaces switches\" without matching firewall"
           },
           {
             "choiceIndex": 3,
-            "explanation": "It operates only at Layer 1 misses what this question tests. NGFWs track connection state and inspect applications, not just IP/port.",
-            "misconceptionTested": "Selecting \"It operates only at Layer 1\" without matching the scenario constraint"
+            "explanation": "It operates only at Layer 1 describes a mechanism that could sound plausible for firewall. Given firewall, Stateful and application-aware inspection matches the tested behavior — It operates only at Layer 1 applies a different mechanism.",
+            "whatItDoes": "It operates only at Layer 1 describes a mechanism that could sound plausible for firewall.",
+            "whyWrongHere": "Given firewall, Stateful and application-aware inspection matches the tested behavior — It operates only at Layer 1 applies a different mechanism.",
+            "misconceptionTested": "Applying \"It operates only at Layer 1\" without matching firewall"
           }
         ],
         "examTip": "On the exam: Firewalls and IPS are interchangeable — Firewalls enforce access policy; IPS focuses on threat detection/prevention — often deployed together"
@@ -197,18 +221,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "DNS server misses what this question tests. Lightweight APs are managed by a WLC; they do not run full standalone config.",
-            "misconceptionTested": "Selecting \"DNS server\" without matching the scenario constraint"
+            "explanation": "DNS server describes a mechanism that could sound plausible for lightweight ap. Given lightweight ap, Wireless LAN controller (WLC) matches the tested behavior — DNS server applies a different mechanism.",
+            "whatItDoes": "DNS server describes a mechanism that could sound plausible for lightweight ap.",
+            "whyWrongHere": "Given lightweight ap, Wireless LAN controller (WLC) matches the tested behavior — DNS server applies a different mechanism.",
+            "misconceptionTested": "Applying \"DNS server\" without matching lightweight ap"
           },
           {
             "choiceIndex": 2,
             "explanation": "Core router only reflects a common trap: Calling an AP a router. An AP bridges wireless clients to the wired LAN; it does not perform inter-network routing.",
+            "whatItDoes": "Core router only describes a mechanism that could sound plausible for lightweight ap.",
+            "whyWrongHere": "Given lightweight ap, Wireless LAN controller (WLC) matches the tested behavior — Core router only applies a different mechanism.",
             "misconceptionTested": "Calling an AP a router"
           },
           {
             "choiceIndex": 3,
-            "explanation": "DHCP relay misses what this question tests. Lightweight APs are managed by a WLC; they do not run full standalone config.",
-            "misconceptionTested": "Selecting \"DHCP relay\" without matching the scenario constraint"
+            "explanation": "DHCP relay describes a mechanism that could sound plausible for lightweight ap. Given lightweight ap, Wireless LAN controller (WLC) matches the tested behavior — DHCP relay applies a different mechanism.",
+            "whatItDoes": "DHCP relay describes a mechanism that could sound plausible for lightweight ap.",
+            "whyWrongHere": "Given lightweight ap, Wireless LAN controller (WLC) matches the tested behavior — DHCP relay applies a different mechanism.",
+            "misconceptionTested": "Applying \"DHCP relay\" without matching lightweight ap"
           }
         ],
         "examTip": "On the exam: Calling an AP a router — An AP bridges wireless clients to the wired LAN; it does not perform inter-network routing"
@@ -239,18 +269,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Web server misses what this question tests. Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
-            "misconceptionTested": "Selecting \"Web server\" without matching the scenario constraint"
+            "explanation": "Web server describes a mechanism that could sound plausible for endpoint vs server. Given endpoint vs server, Employee laptop matches the tested behavior — Web server applies a different mechanism.",
+            "whatItDoes": "Web server describes a mechanism that could sound plausible for endpoint vs server.",
+            "whyWrongHere": "Given endpoint vs server, Employee laptop matches the tested behavior — Web server applies a different mechanism.",
+            "misconceptionTested": "Applying \"Web server\" without matching endpoint vs server"
           },
           {
             "choiceIndex": 1,
-            "explanation": "DNS server misses what this question tests. Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
-            "misconceptionTested": "Selecting \"DNS server\" without matching the scenario constraint"
+            "explanation": "DNS server describes a mechanism that could sound plausible for endpoint vs server. Given endpoint vs server, Employee laptop matches the tested behavior — DNS server applies a different mechanism.",
+            "whatItDoes": "DNS server describes a mechanism that could sound plausible for endpoint vs server.",
+            "whyWrongHere": "Given endpoint vs server, Employee laptop matches the tested behavior — DNS server applies a different mechanism.",
+            "misconceptionTested": "Applying \"DNS server\" without matching endpoint vs server"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Core router misses what this question tests. Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
-            "misconceptionTested": "Selecting \"Core router\" without matching the scenario constraint"
+            "explanation": "Core router describes a mechanism that could sound plausible for endpoint vs server. Given endpoint vs server, Employee laptop matches the tested behavior — Core router applies a different mechanism.",
+            "whatItDoes": "Core router describes a mechanism that could sound plausible for endpoint vs server.",
+            "whyWrongHere": "Given endpoint vs server, Employee laptop matches the tested behavior — Core router applies a different mechanism.",
+            "misconceptionTested": "Applying \"Core router\" without matching endpoint vs server"
           }
         ],
         "examTip": "On the exam: More switches always mean better routing — Switches extend L2 domains; routing is an L3 function on routers or L3 switches"
@@ -281,18 +317,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The access switch only misses what this question tests. Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
-            "misconceptionTested": "Selecting \"The access switch only\" without matching the scenario constraint"
+            "explanation": "The access switch only describes a mechanism that could sound plausible for default gateway. Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The access switch only applies a different mechanism.",
+            "whatItDoes": "The access switch only describes a mechanism that could sound plausible for default gateway.",
+            "whyWrongHere": "Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The access switch only applies a different mechanism.",
+            "misconceptionTested": "Applying \"The access switch only\" without matching default gateway"
           },
           {
             "choiceIndex": 2,
-            "explanation": "The WLC misses what this question tests. Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
-            "misconceptionTested": "Selecting \"The WLC\" without matching the scenario constraint"
+            "explanation": "The WLC describes a mechanism that could sound plausible for default gateway. Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The WLC applies a different mechanism.",
+            "whatItDoes": "The WLC describes a mechanism that could sound plausible for default gateway.",
+            "whyWrongHere": "Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The WLC applies a different mechanism.",
+            "misconceptionTested": "Applying \"The WLC\" without matching default gateway"
           },
           {
             "choiceIndex": 3,
-            "explanation": "The DNS server misses what this question tests. Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
-            "misconceptionTested": "Selecting \"The DNS server\" without matching the scenario constraint"
+            "explanation": "The DNS server describes a mechanism that could sound plausible for default gateway. Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The DNS server applies a different mechanism.",
+            "whatItDoes": "The DNS server describes a mechanism that could sound plausible for default gateway.",
+            "whyWrongHere": "Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The DNS server applies a different mechanism.",
+            "misconceptionTested": "Applying \"The DNS server\" without matching default gateway"
           }
         ],
         "examTip": "On the exam: More switches always mean better routing — Switches extend L2 domains; routing is an L3 function on routers or L3 switches"
@@ -322,7 +364,9 @@
           {
             "choiceIndex": 1,
             "explanation": "This statement is False, but the tested fact is: True — WLCs manage lightweight APs from a central point.",
-            "misconceptionTested": "Selecting \"False\" without matching the scenario constraint"
+            "whatItDoes": "False states the opposite of the tested fact about controller role.",
+            "whyWrongHere": "Given controller role, True matches the tested behavior — False applies a different mechanism.",
+            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
           }
         ],
         "examTip": "On the exam: Calling an AP a router — An AP bridges wireless clients to the wired LAN; it does not perform inter-network routing"

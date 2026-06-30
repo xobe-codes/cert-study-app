@@ -30,17 +30,23 @@
           {
             "choiceIndex": 0,
             "explanation": "8.8.8.0/24 uses the wrong value. The tested fact calls for 192 — not 8.",
-            "misconceptionTested": "Selecting \"8.8.8.0/24\" without matching the scenario constraint"
+            "whatItDoes": "8.8.8.0/24 describes a mechanism that could sound plausible for rfc1918 ranges.",
+            "whyWrongHere": "Given rfc1918 ranges, 192.168.50.0/24 matches the tested behavior — 8.8.8.0/24 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 8 instead of the correct 192"
           },
           {
             "choiceIndex": 2,
             "explanation": "203.0.113.0/24 uses the wrong value. The tested fact calls for 192 — not 203.",
-            "misconceptionTested": "Selecting \"203.0.113.0/24\" without matching the scenario constraint"
+            "whatItDoes": "203.0.113.0/24 describes a mechanism that could sound plausible for rfc1918 ranges.",
+            "whyWrongHere": "Given rfc1918 ranges, 192.168.50.0/24 matches the tested behavior — 203.0.113.0/24 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 203 instead of the correct 192"
           },
           {
             "choiceIndex": 3,
             "explanation": "169.254.1.0/24 uses the wrong value. The tested fact calls for 192 — not 169.",
-            "misconceptionTested": "Selecting \"169.254.1.0/24\" without matching the scenario constraint"
+            "whatItDoes": "169.254.1.0/24 describes a mechanism that could sound plausible for rfc1918 ranges.",
+            "whyWrongHere": "Given rfc1918 ranges, 192.168.50.0/24 matches the tested behavior — 169.254.1.0/24 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 169 instead of the correct 192"
           }
         ],
         "examTip": "On the exam: Thinking 172.16.0.0/16 is the whole 172 private block — The private range is 172.16.0.0/12 (through 172.31.x.x)"
@@ -72,17 +78,23 @@
           {
             "choiceIndex": 0,
             "explanation": "Public routable space reflects a common trap: Private addresses are secret/encrypted. Private means non-routable on the public Internet, not hidden from others on the same LAN.",
+            "whatItDoes": "Public routable space describes a mechanism that could sound plausible for 10 range.",
+            "whyWrongHere": "Given 10 range, Private non-Internet-routable space matches the tested behavior — Public routable space applies a different mechanism.",
             "misconceptionTested": "Private addresses are secret/encrypted"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Multicast only misses what this question tests. 10.",
-            "misconceptionTested": "Selecting \"Multicast only\" without matching the scenario constraint"
+            "explanation": "Multicast only describes a mechanism that could sound plausible for 10 range. Given 10 range, Private non-Internet-routable space matches the tested behavior — Multicast only applies a different mechanism.",
+            "whatItDoes": "Multicast only describes a mechanism that could sound plausible for 10 range.",
+            "whyWrongHere": "Given 10 range, Private non-Internet-routable space matches the tested behavior — Multicast only applies a different mechanism.",
+            "misconceptionTested": "Applying \"Multicast only\" without matching 10 range"
           },
           {
             "choiceIndex": 3,
-            "explanation": "APIPA misses what this question tests. 10.",
-            "misconceptionTested": "Selecting \"APIPA\" without matching the scenario constraint"
+            "explanation": "APIPA describes a mechanism that could sound plausible for 10 range. Given 10 range, Private non-Internet-routable space matches the tested behavior — APIPA applies a different mechanism.",
+            "whatItDoes": "APIPA describes a mechanism that could sound plausible for 10 range.",
+            "whyWrongHere": "Given 10 range, Private non-Internet-routable space matches the tested behavior — APIPA applies a different mechanism.",
+            "misconceptionTested": "Applying \"APIPA\" without matching 10 range"
           }
         ],
         "examTip": "On the exam: Thinking 172.16.0.0/16 is the whole 172 private block — The private range is 172.16.0.0/12 (through 172.31.x.x)"
@@ -113,18 +125,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "No — public only misses what this question tests. 172.",
-            "misconceptionTested": "Selecting \"No — public only\" without matching the scenario constraint"
+            "explanation": "No — public only describes a mechanism that could sound plausible for 172 range. Given 172 range, Yes — within 172.16.0.0/12 matches the tested behavior — No — public only applies a different mechanism.",
+            "whatItDoes": "No — public only describes a mechanism that could sound plausible for 172 range.",
+            "whyWrongHere": "Given 172 range, Yes — within 172.16.0.0/12 matches the tested behavior — No — public only applies a different mechanism.",
+            "misconceptionTested": "Applying \"No — public only\" without matching 172 range"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Only if DHCP assigns it misses what this question tests. 172.",
-            "misconceptionTested": "Selecting \"Only if DHCP assigns it\" without matching the scenario constraint"
+            "explanation": "Only if DHCP assigns it describes a mechanism that could sound plausible for 172 range. Given 172 range, Yes — within 172.16.0.0/12 matches the tested behavior — Only if DHCP assigns it applies a different mechanism.",
+            "whatItDoes": "Only if DHCP assigns it describes a mechanism that could sound plausible for 172 range.",
+            "whyWrongHere": "Given 172 range, Yes — within 172.16.0.0/12 matches the tested behavior — Only if DHCP assigns it applies a different mechanism.",
+            "misconceptionTested": "Applying \"Only if DHCP assigns it\" without matching 172 range"
           },
           {
             "choiceIndex": 3,
             "explanation": "Only on IPv6 uses the wrong value. The tested fact calls for 172 — not 6.",
-            "misconceptionTested": "Selecting \"Only on IPv6\" without matching the scenario constraint"
+            "whatItDoes": "Only on IPv6 describes a mechanism that could sound plausible for 172 range.",
+            "whyWrongHere": "Given 172 range, Yes — within 172.16.0.0/12 matches the tested behavior — Only on IPv6 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 6 instead of the correct 172"
           }
         ],
         "examTip": "On the exam: Thinking 172.16.0.0/16 is the whole 172 private block — The private range is 172.16.0.0/12 (through 172.31.x.x)"
@@ -156,17 +174,23 @@
           {
             "choiceIndex": 0,
             "explanation": "Successful DHCP lease reflects a common trap: Treating 169.254.x.x as normal private DHCP address. 169.254 is APIPA — indicates DHCP failure, not RFC 1918.",
+            "whatItDoes": "Successful DHCP lease describes a mechanism that could sound plausible for assigned.",
+            "whyWrongHere": "Given assigned, DHCP failure / no lease obtained matches the tested behavior — Successful DHCP lease applies a different mechanism.",
             "misconceptionTested": "Treating 169.254.x.x as normal private DHCP address"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Static public IP configured misses what this question tests. 169.",
-            "misconceptionTested": "Selecting \"Static public IP configured\" without matching the scenario constraint"
+            "explanation": "Static public IP configured describes a mechanism that could sound plausible for assigned. Given assigned, DHCP failure / no lease obtained matches the tested behavior — Static public IP configured applies a different mechanism.",
+            "whatItDoes": "Static public IP configured describes a mechanism that could sound plausible for assigned.",
+            "whyWrongHere": "Given assigned, DHCP failure / no lease obtained matches the tested behavior — Static public IP configured applies a different mechanism.",
+            "misconceptionTested": "Applying \"Static public IP configured\" without matching apipa"
           },
           {
             "choiceIndex": 3,
-            "explanation": "DNS cache flush misses what this question tests. 169.",
-            "misconceptionTested": "Selecting \"DNS cache flush\" without matching the scenario constraint"
+            "explanation": "DNS cache flush describes a mechanism that could sound plausible for assigned. Given assigned, DHCP failure / no lease obtained matches the tested behavior — DNS cache flush applies a different mechanism.",
+            "whatItDoes": "DNS cache flush describes a mechanism that could sound plausible for assigned.",
+            "whyWrongHere": "Given assigned, DHCP failure / no lease obtained matches the tested behavior — DNS cache flush applies a different mechanism.",
+            "misconceptionTested": "Applying \"DNS cache flush\" without matching apipa"
           }
         ],
         "examTip": "On the exam: Treating 169.254.x.x as normal private DHCP address — 169.254 is APIPA — indicates DHCP failure, not RFC 1918"
@@ -197,18 +221,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "They are too short misses what this question tests. Private space is reused and non-routable on the Internet — NAT maps to a public address.",
-            "misconceptionTested": "Selecting \"They are too short\" without matching the scenario constraint"
+            "explanation": "They are too short describes a mechanism that could sound plausible for public private. Given public private, They are not globally unique and are not routed publicly matches the tested behavior — They are too short applies a different mechanism.",
+            "whatItDoes": "They are too short describes a mechanism that could sound plausible for public private.",
+            "whyWrongHere": "Given public private, They are not globally unique and are not routed publicly matches the tested behavior — They are too short applies a different mechanism.",
+            "misconceptionTested": "Applying \"They are too short\" without matching public private"
           },
           {
             "choiceIndex": 2,
-            "explanation": "They are IPv6 only misses what this question tests. Private space is reused and non-routable on the Internet — NAT maps to a public address.",
-            "misconceptionTested": "Selecting \"They are IPv6 only\" without matching the scenario constraint"
+            "explanation": "They are IPv6 only describes a mechanism that could sound plausible for public private. Given public private, They are not globally unique and are not routed publicly matches the tested behavior — They are IPv6 only applies a different mechanism.",
+            "whatItDoes": "They are IPv6 only describes a mechanism that could sound plausible for public private.",
+            "whyWrongHere": "Given public private, They are not globally unique and are not routed publicly matches the tested behavior — They are IPv6 only applies a different mechanism.",
+            "misconceptionTested": "Applying \"They are IPv6 only\" without matching public private"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Firewalls block all IPv4 misses what this question tests. Private space is reused and non-routable on the Internet — NAT maps to a public address.",
-            "misconceptionTested": "Selecting \"Firewalls block all IPv4\" without matching the scenario constraint"
+            "explanation": "Firewalls block all IPv4 describes a mechanism that could sound plausible for public private. Given public private, They are not globally unique and are not routed publicly matches the tested behavior — Firewalls block all IPv4 applies a different mechanism.",
+            "whatItDoes": "Firewalls block all IPv4 describes a mechanism that could sound plausible for public private.",
+            "whyWrongHere": "Given public private, They are not globally unique and are not routed publicly matches the tested behavior — Firewalls block all IPv4 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Firewalls block all IPv4\" without matching public private"
           }
         ],
         "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
@@ -240,17 +270,23 @@
           {
             "choiceIndex": 0,
             "explanation": "10.1.1.1 uses the wrong value. The tested fact calls for 198 — not 10.",
-            "misconceptionTested": "Selecting \"10.1.1.1\" without matching the scenario constraint"
+            "whatItDoes": "10.1.1.1 describes a mechanism that could sound plausible for identify public.",
+            "whyWrongHere": "Given identify public, 198.51.100.50 matches the tested behavior — 10.1.1.1 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 10 instead of the correct 198"
           },
           {
             "choiceIndex": 1,
             "explanation": "172.16.1.1 uses the wrong value. The tested fact calls for 198 — not 172.",
-            "misconceptionTested": "Selecting \"172.16.1.1\" without matching the scenario constraint"
+            "whatItDoes": "172.16.1.1 describes a mechanism that could sound plausible for identify public.",
+            "whyWrongHere": "Given identify public, 198.51.100.50 matches the tested behavior — 172.16.1.1 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 172 instead of the correct 198"
           },
           {
             "choiceIndex": 3,
             "explanation": "192.168.1.1 uses the wrong value. The tested fact calls for 198 — not 192.",
-            "misconceptionTested": "Selecting \"192.168.1.1\" without matching the scenario constraint"
+            "whatItDoes": "192.168.1.1 describes a mechanism that could sound plausible for identify public.",
+            "whyWrongHere": "Given identify public, 198.51.100.50 matches the tested behavior — 192.168.1.1 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 192 instead of the correct 198"
           }
         ],
         "examTip": "This stem tests identify public — exam distractors swap similar terms; anchor on: 198."
@@ -280,7 +316,9 @@
           {
             "choiceIndex": 0,
             "explanation": "This statement is True, but the tested fact is: False — APIPA uses 169.",
-            "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
+            "whatItDoes": "True states the opposite of the tested fact about apipa scope.",
+            "whyWrongHere": "Given apipa scope, False matches the tested behavior — True applies a different mechanism.",
+            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
           }
         ],
         "examTip": "On the exam: Treating 169.254.x.x as normal private DHCP address — 169.254 is APIPA — indicates DHCP failure, not RFC 1918"
@@ -312,17 +350,23 @@
           {
             "choiceIndex": 0,
             "explanation": "STP is the wrong device role here. STP prevents Layer 2 loops — it does not provide inter-VLAN routing, MAC learning rules, or replace trunk configuration.",
+            "whatItDoes": "STP describes a mechanism that could sound plausible for nat role.",
+            "whyWrongHere": "Given nat role, NAT/PAT matches the tested behavior — STP applies a different mechanism.",
             "misconceptionTested": "Choosing STP when the question asks for forwarding, routing, or VLAN data plane behavior"
           },
           {
             "choiceIndex": 2,
-            "explanation": "VTP misses what this question tests. NAT (often PAT) translates many private addresses to one or few public IPs.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+            "explanation": "VTP describes a mechanism that could sound plausible for nat role. Given nat role, NAT/PAT matches the tested behavior — VTP applies a different mechanism.",
+            "whatItDoes": "VTP describes a mechanism that could sound plausible for nat role.",
+            "whyWrongHere": "Given nat role, NAT/PAT matches the tested behavior — VTP applies a different mechanism.",
+            "misconceptionTested": "Applying \"VTP\" without matching nat role"
           },
           {
             "choiceIndex": 3,
-            "explanation": "LLDP misses what this question tests. NAT (often PAT) translates many private addresses to one or few public IPs.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+            "explanation": "LLDP describes a mechanism that could sound plausible for nat role. Given nat role, NAT/PAT matches the tested behavior — LLDP applies a different mechanism.",
+            "whatItDoes": "LLDP describes a mechanism that could sound plausible for nat role.",
+            "whyWrongHere": "Given nat role, NAT/PAT matches the tested behavior — LLDP applies a different mechanism.",
+            "misconceptionTested": "Applying \"LLDP\" without matching nat role"
           }
         ],
         "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."

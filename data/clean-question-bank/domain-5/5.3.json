@@ -30,20 +30,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#password enable Password20! does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#password enable Password2…\" without matching the scenario constraint",
+            "explanation": "Router(config)#password enable Password20! describes a mechanism that could sound plausible for local device access. Given local device access, Router(config)#enable secret Password20! matches the tested behavior — Router(config)#password enable Password20! applies a different mechanism.",
+            "whatItDoes": "Router(config)#password enable Password20! describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Router(config)#enable secret Password20! matches the tested behavior — Router(config)#password enable Password20! applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#password enable Passw\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#enable Password20! does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#enable Password20!\" without matching the scenario constraint",
+            "explanation": "Router(config)#enable Password20! describes a mechanism that could sound plausible for local device access. Given local device access, Router(config)#enable secret Password20! matches the tested behavior — Router(config)#enable Password20! applies a different mechanism.",
+            "whatItDoes": "Router(config)#enable Password20! describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Router(config)#enable secret Password20! matches the tested behavior — Router(config)#enable Password20! applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#enable Password20!\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#secret enable Password20! does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#secret enable Password20!\" without matching the scenario constraint",
+            "explanation": "Router(config)#secret enable Password20! describes a mechanism that could sound plausible for local device access. Given local device access, Router(config)#enable secret Password20! matches the tested behavior — Router(config)#secret enable Password20! applies a different mechanism.",
+            "whatItDoes": "Router(config)#secret enable Password20! describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Router(config)#enable secret Password20! matches the tested behavior — Router(config)#secret enable Password20! applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#secret enable Passwor\" without matching local device access",
             "needsExplanationReview": true
           }
         ],
@@ -80,20 +86,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#interface vlan 1 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config)#interface vlan 1\" without matching the scenario constraint",
+            "explanation": "Switch(config)#interface vlan 1 describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#interface vlan 1 applies a different mechanism.",
+            "whatItDoes": "Switch(config)#interface vlan 1 describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#interface vlan 1 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#interface vlan 1\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config)#line console 1 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config)#line console 1\" without matching the scenario constraint",
+            "explanation": "Switch(config)#line console 1 describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#line console 1 applies a different mechanism.",
+            "whatItDoes": "Switch(config)#line console 1 describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#line console 1 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#line console 1\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config)#line aux 1 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config)#line aux 1\" without matching the scenario constraint",
+            "explanation": "Switch(config)#line aux 1 describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#line aux 1 applies a different mechanism.",
+            "whatItDoes": "Switch(config)#line aux 1 describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#line aux 1 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#line aux 1\" without matching local device access",
             "needsExplanationReview": true
           }
         ],
@@ -128,20 +140,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "You originally entered the wrong password. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"You originally entered the wrong passwor…\" without matching the scenario constraint",
+            "explanation": "You originally entered the wrong password. describes a mechanism that could sound plausible for local device access. Given local device access, The enable secret password is set to something else. matches the tested behavior — You originally entered the wrong password. applies a different mechanism.",
+            "whatItDoes": "You originally entered the wrong password. describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, The enable secret password is set to something else. matches the tested behavior — You originally entered the wrong password. applies a different mechanism.",
+            "misconceptionTested": "Applying \"You originally entered the wrong pas\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The password Password20! contains a special character. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The password Password20! contains a spec…\" without matching the scenario constraint",
+            "explanation": "The password Password20! contains a special character. describes a mechanism that could sound plausible for local device access. Given local device access, The enable secret password is set to something else. matches the tested behavior — The password Password20! contains a special character. applies a different mechanism.",
+            "whatItDoes": "The password Password20! contains a special character. describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, The enable secret password is set to something else. matches the tested behavior — The password Password20! contains a special character. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The password Password20! contains a \" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The password is too long and has been truncated. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The password is too long and has been tr…\" without matching the scenario constraint",
+            "explanation": "The password is too long and has been truncated. describes a mechanism that could sound plausible for local device access. Given local device access, The enable secret password is set to something else. matches the tested behavior — The password is too long and has been truncated. applies a different mechanism.",
+            "whatItDoes": "The password is too long and has been truncated. describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, The enable secret password is set to something else. matches the tested behavior — The password is too long and has been truncated. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The password is too long and has bee\" without matching local device access",
             "needsExplanationReview": true
           }
         ],
@@ -176,20 +194,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config-line)#set password Password20! Router(config-line)#request login does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config-line)#set password Passwor…\" without matching the scenario constraint",
+            "explanation": "Router(config-line)#set password Password20! Router(config-line)#request login describes a mechanism that could sound plausible for local device access. Given local device access, Router(config-line)#password Password20! Router(config-line)#login matches the tested behavior — Router(config-line)#set password Password20! Router(config-line)#request login applies a different mechanism.",
+            "whatItDoes": "Router(config-line)#set password Password20! Router(config-line)#request login describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Router(config-line)#password Password20! Router(config-line)#login matches the tested behavior — Router(config-line)#set password Password20! Router(config-line)#request login applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config-line)#set password Pas\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config-line)#password Password20! Router(config-line)#login password does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config-line)#password Password20!…\" without matching the scenario constraint",
+            "explanation": "Router(config-line)#password Password20! Router(config-line)#login password describes a mechanism that could sound plausible for local device access. Given local device access, Router(config-line)#password Password20! Router(config-line)#login matches the tested behavior — Router(config-line)#password Password20! Router(config-line)#login password applies a different mechanism.",
+            "whatItDoes": "Router(config-line)#password Password20! Router(config-line)#login password describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Router(config-line)#password Password20! Router(config-line)#login matches the tested behavior — Router(config-line)#password Password20! Router(config-line)#login password applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config-line)#password Passwor\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config-line)#login password Password20! does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config-line)#login password Passw…\" without matching the scenario constraint",
+            "explanation": "Router(config-line)#login password Password20! describes a mechanism that could sound plausible for local device access. Given local device access, Router(config-line)#password Password20! Router(config-line)#login matches the tested behavior — Router(config-line)#login password Password20! applies a different mechanism.",
+            "whatItDoes": "Router(config-line)#login password Password20! describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Router(config-line)#password Password20! Router(config-line)#login matches the tested behavior — Router(config-line)#login password Password20! applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config-line)#login password P\" without matching local device access",
             "needsExplanationReview": true
           }
         ],
@@ -225,20 +249,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The enable secret is not set. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The enable secret is not set.\" without matching the scenario constraint",
+            "explanation": "The enable secret is not set. describes a mechanism that could sound plausible for local device access. Given local device access, The line login password is not set. matches the tested behavior — The enable secret is not set. applies a different mechanism.",
+            "whatItDoes": "The enable secret is not set. describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, The line login password is not set. matches the tested behavior — The enable secret is not set. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The enable secret is not set.\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "The enable password is not set. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The enable password is not set.\" without matching the scenario constraint",
+            "explanation": "The enable password is not set. describes a mechanism that could sound plausible for local device access. Given local device access, The line login password is not set. matches the tested behavior — The enable password is not set. applies a different mechanism.",
+            "whatItDoes": "The enable password is not set. describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, The line login password is not set. matches the tested behavior — The enable password is not set. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The enable password is not set.\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The line is administratively down. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The line is administratively down.\" without matching the scenario constraint",
+            "explanation": "The line is administratively down. describes a mechanism that could sound plausible for local device access. Given local device access, The line login password is not set. matches the tested behavior — The line is administratively down. applies a different mechanism.",
+            "whatItDoes": "The line is administratively down. describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, The line login password is not set. matches the tested behavior — The line is administratively down. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The line is administratively down.\" without matching local device access",
             "needsExplanationReview": true
           }
         ],
@@ -273,20 +303,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Setting the time and date does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Setting the time and date\" without matching the scenario constraint",
+            "explanation": "Setting the time and date describes a mechanism that could sound plausible for local device access. Given local device access, Setting the hostname and domain name matches the tested behavior — Setting the time and date applies a different mechanism.",
+            "whatItDoes": "Setting the time and date describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Setting the hostname and domain name matches the tested behavior — Setting the time and date applies a different mechanism.",
+            "misconceptionTested": "Applying \"Setting the time and date\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Setting the key strength does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Setting the key strength\" without matching the scenario constraint",
+            "explanation": "Setting the key strength describes a mechanism that could sound plausible for local device access. Given local device access, Setting the hostname and domain name matches the tested behavior — Setting the key strength applies a different mechanism.",
+            "whatItDoes": "Setting the key strength describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Setting the hostname and domain name matches the tested behavior — Setting the key strength applies a different mechanism.",
+            "misconceptionTested": "Applying \"Setting the key strength\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Setting the key repository does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Setting the key repository\" without matching the scenario constraint",
+            "explanation": "Setting the key repository describes a mechanism that could sound plausible for local device access. Given local device access, Setting the hostname and domain name matches the tested behavior — Setting the key repository applies a different mechanism.",
+            "whatItDoes": "Setting the key repository describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Setting the hostname and domain name matches the tested behavior — Setting the key repository applies a different mechanism.",
+            "misconceptionTested": "Applying \"Setting the key repository\" without matching local device access",
             "needsExplanationReview": true
           }
         ],
@@ -321,20 +357,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router(config-line)#version 2 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config-line)#version 2\" without matching the scenario constraint",
+            "explanation": "Router(config-line)#version 2 describes a mechanism that could sound plausible for local device access. Given local device access, Router(config)#ip ssh version 2 matches the tested behavior — Router(config-line)#version 2 applies a different mechanism.",
+            "whatItDoes": "Router(config-line)#version 2 describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Router(config)#ip ssh version 2 matches the tested behavior — Router(config-line)#version 2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config-line)#version 2\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config-ssh)#version 2 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config-ssh)#version 2\" without matching the scenario constraint",
+            "explanation": "Router(config-ssh)#version 2 describes a mechanism that could sound plausible for local device access. Given local device access, Router(config)#ip ssh version 2 matches the tested behavior — Router(config-ssh)#version 2 applies a different mechanism.",
+            "whatItDoes": "Router(config-ssh)#version 2 describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Router(config)#ip ssh version 2 matches the tested behavior — Router(config-ssh)#version 2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config-ssh)#version 2\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#ssh version 2 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#ssh version 2\" without matching the scenario constraint",
+            "explanation": "Router(config)#ssh version 2 describes a mechanism that could sound plausible for local device access. Given local device access, Router(config)#ip ssh version 2 matches the tested behavior — Router(config)#ssh version 2 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ssh version 2 describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Router(config)#ip ssh version 2 matches the tested behavior — Router(config)#ssh version 2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ssh version 2\" without matching local device access",
             "needsExplanationReview": true
           }
         ],
@@ -371,19 +413,25 @@
           {
             "choiceIndex": 0,
             "explanation": "Telnet sends credentials in cleartext — SSH is required for secure device management.",
+            "whatItDoes": "Switch(config)#login ssh telnet describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Switch(config-line)#transport ssh telnet matches the tested behavior — Switch(config)#login ssh telnet applies a different mechanism.",
             "misconceptionTested": "Picking Telnet when secure management is required",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config-line)#login ssh telnet is not the behavior described here. .",
-            "misconceptionTested": "Picking Telnet when secure management is required",
+            "explanation": "Switch(config-line)#login ssh telnet describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config-line)#transport ssh telnet matches the tested behavior — Switch(config-line)#login ssh telnet applies a different mechanism.",
+            "whatItDoes": "Switch(config-line)#login ssh telnet describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Switch(config-line)#transport ssh telnet matches the tested behavior — Switch(config-line)#login ssh telnet applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-line)#login ssh telnet\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config)#transport ssh telnet is not the behavior described here. .",
-            "misconceptionTested": "Picking Telnet when secure management is required",
+            "explanation": "Switch(config)#transport ssh telnet describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config-line)#transport ssh telnet matches the tested behavior — Switch(config)#transport ssh telnet applies a different mechanism.",
+            "whatItDoes": "Switch(config)#transport ssh telnet describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Switch(config-line)#transport ssh telnet matches the tested behavior — Switch(config)#transport ssh telnet applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#transport ssh telnet\" without matching local device access",
             "needsExplanationReview": true
           }
         ],
@@ -421,18 +469,24 @@
           {
             "choiceIndex": 0,
             "explanation": "Telnet sends credentials in cleartext — SSH is required for secure device management.",
+            "whatItDoes": "Telnet has weak encryption. describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, SSH is encrypted. matches the tested behavior — Telnet has weak encryption. applies a different mechanism.",
             "misconceptionTested": "Picking Telnet when secure management is required",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "SSH allows for file copy. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SSH allows for file copy.\" without matching the scenario constraint",
+            "explanation": "SSH allows for file copy. describes a mechanism that could sound plausible for local device access. Given local device access, SSH is encrypted. matches the tested behavior — SSH allows for file copy. applies a different mechanism.",
+            "whatItDoes": "SSH allows for file copy. describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, SSH is encrypted. matches the tested behavior — SSH allows for file copy. applies a different mechanism.",
+            "misconceptionTested": "Applying \"SSH allows for file copy.\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "SSH makes it easier to create ACLs for access. reflects a common trap: ACLs encrypt or deeply inspect traffic. ACLs filter by header fields (IP/protocol/port); they are not encryption or stateful firewalls.",
+            "whatItDoes": "SSH makes it easier to create ACLs for access. describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, SSH is encrypted. matches the tested behavior — SSH makes it easier to create ACLs for access. applies a different mechanism.",
             "misconceptionTested": "ACLs encrypt or deeply inspect traffic",
             "needsExplanationReview": true
           }
@@ -469,20 +523,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#interface vlan 1 Switch(config-if)#ip access-group 1 in does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config)#access-list 1 permit host…\" without matching the scenario constraint",
+            "explanation": "Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#interface vlan 1 Switch(config-if)#ip access-group 1 in describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-class 1 in matches the tested behavior — Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#interface vlan 1 Switch(config-if)#ip access-group 1 in applies a different mechanism.",
+            "whatItDoes": "Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#interface vlan 1 Switch(config-if)#ip access-group 1 in describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-class 1 in matches the tested behavior — Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#interface vlan 1 Switch(config-if)#ip access-group 1 in applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#access-list 1 permit \" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-group 1 in does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config)#access-list 1 permit host…\" without matching the scenario constraint",
+            "explanation": "Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-group 1 in describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-class 1 in matches the tested behavior — Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-group 1 in applies a different mechanism.",
+            "whatItDoes": "Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-group 1 in describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-class 1 in matches the tested behavior — Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-group 1 in applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#access-list 1 permit \" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#ip access-group 1 in does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config)#access-list 1 permit host…\" without matching the scenario constraint",
+            "explanation": "Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#ip access-group 1 in describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-class 1 in matches the tested behavior — Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#ip access-group 1 in applies a different mechanism.",
+            "whatItDoes": "Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#ip access-group 1 in describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-class 1 in matches the tested behavior — Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#ip access-group 1 in applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#access-list 1 permit \" without matching local device access",
             "needsExplanationReview": true
           }
         ],
@@ -517,20 +577,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The time and date need to be corrected. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The time and date need to be corrected.\" without matching the scenario constraint",
+            "explanation": "The time and date need to be corrected. describes a mechanism that could sound plausible for local device access. Given local device access, The key strength needs to be 768 bits or higher. matches the tested behavior — The time and date need to be corrected. applies a different mechanism.",
+            "whatItDoes": "The time and date need to be corrected. describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, The key strength needs to be 768 bits or higher. matches the tested behavior — The time and date need to be corrected. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The time and date need to be correct\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The DNS server is not configured. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The DNS server is not configured.\" without matching the scenario constraint",
+            "explanation": "The DNS server is not configured. describes a mechanism that could sound plausible for local device access. Given local device access, The key strength needs to be 768 bits or higher. matches the tested behavior — The DNS server is not configured. applies a different mechanism.",
+            "whatItDoes": "The DNS server is not configured. describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, The key strength needs to be 768 bits or higher. matches the tested behavior — The DNS server is not configured. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The DNS server is not configured.\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "There is no host record for the switch or router. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"There is no host record for the switch o…\" without matching the scenario constraint",
+            "explanation": "There is no host record for the switch or router. describes a mechanism that could sound plausible for local device access. Given local device access, The key strength needs to be 768 bits or higher. matches the tested behavior — There is no host record for the switch or router. applies a different mechanism.",
+            "whatItDoes": "There is no host record for the switch or router. describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, The key strength needs to be 768 bits or higher. matches the tested behavior — There is no host record for the switch or router. applies a different mechanism.",
+            "misconceptionTested": "Applying \"There is no host record for the swit\" without matching local device access",
             "needsExplanationReview": true
           }
         ],
@@ -566,20 +632,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#account user1 Router(config-acct)#password Password20! does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#account user1 Router(conf…\" without matching the scenario constraint",
+            "explanation": "Router(config)#account user1 Router(config-acct)#password Password20! describes a mechanism that could sound plausible for local device access. Given local device access, Router(config)#username user1 password Password20! matches the tested behavior — Router(config)#account user1 Router(config-acct)#password Password20! applies a different mechanism.",
+            "whatItDoes": "Router(config)#account user1 Router(config-acct)#password Password20! describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Router(config)#username user1 password Password20! matches the tested behavior — Router(config)#account user1 Router(config-acct)#password Password20! applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#account user1 Router(\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#user user1 Password20! does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#user user1 Password20!\" without matching the scenario constraint",
+            "explanation": "Router(config)#user user1 Password20! describes a mechanism that could sound plausible for local device access. Given local device access, Router(config)#username user1 password Password20! matches the tested behavior — Router(config)#user user1 Password20! applies a different mechanism.",
+            "whatItDoes": "Router(config)#user user1 Password20! describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Router(config)#username user1 password Password20! matches the tested behavior — Router(config)#user user1 Password20! applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#user user1 Password20\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#user-account user1 password Password20! does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#user-account user1 passwo…\" without matching the scenario constraint",
+            "explanation": "Router(config)#user-account user1 password Password20! describes a mechanism that could sound plausible for local device access. Given local device access, Router(config)#username user1 password Password20! matches the tested behavior — Router(config)#user-account user1 password Password20! applies a different mechanism.",
+            "whatItDoes": "Router(config)#user-account user1 password Password20! describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Router(config)#username user1 password Password20! matches the tested behavior — Router(config)#user-account user1 password Password20! applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#user-account user1 pa\" without matching local device access",
             "needsExplanationReview": true
           }
         ],
@@ -615,20 +687,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#generate crypto key rsa does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#generate crypto key rsa\" without matching the scenario constraint",
+            "explanation": "Router(config)#generate crypto key rsa describes a mechanism that could sound plausible for local device access. Given local device access, Router(config)#crypto key generate rsa matches the tested behavior — Router(config)#generate crypto key rsa applies a different mechanism.",
+            "whatItDoes": "Router(config)#generate crypto key rsa describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Router(config)#crypto key generate rsa matches the tested behavior — Router(config)#generate crypto key rsa applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#generate crypto key r\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#crypto generate key rsa does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#crypto generate key rsa\" without matching the scenario constraint",
+            "explanation": "Router(config)#crypto generate key rsa describes a mechanism that could sound plausible for local device access. Given local device access, Router(config)#crypto key generate rsa matches the tested behavior — Router(config)#crypto generate key rsa applies a different mechanism.",
+            "whatItDoes": "Router(config)#crypto generate key rsa describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Router(config)#crypto key generate rsa matches the tested behavior — Router(config)#crypto generate key rsa applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#crypto generate key r\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#crypto key generate rsa does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router#crypto key generate rsa\" without matching the scenario constraint",
+            "explanation": "Router#crypto key generate rsa describes a mechanism that could sound plausible for local device access. Given local device access, Router(config)#crypto key generate rsa matches the tested behavior — Router#crypto key generate rsa applies a different mechanism.",
+            "whatItDoes": "Router#crypto key generate rsa describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Router(config)#crypto key generate rsa matches the tested behavior — Router#crypto key generate rsa applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#crypto key generate rsa\" without matching local device access",
             "needsExplanationReview": true
           }
         ],
@@ -662,20 +740,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config)#exec-timeout 0 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config)#exec-timeout 0\" without matching the scenario constraint",
+            "explanation": "Switch(config)#exec-timeout 0 describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config-line)#exec-timeout 0 0 matches the tested behavior — Switch(config)#exec-timeout 0 applies a different mechanism.",
+            "whatItDoes": "Switch(config)#exec-timeout 0 describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Switch(config-line)#exec-timeout 0 0 matches the tested behavior — Switch(config)#exec-timeout 0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#exec-timeout 0\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config-line)#timeout 0 0 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config-line)#timeout 0 0\" without matching the scenario constraint",
+            "explanation": "Switch(config-line)#timeout 0 0 describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config-line)#exec-timeout 0 0 matches the tested behavior — Switch(config-line)#timeout 0 0 applies a different mechanism.",
+            "whatItDoes": "Switch(config-line)#timeout 0 0 describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Switch(config-line)#exec-timeout 0 0 matches the tested behavior — Switch(config-line)#timeout 0 0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-line)#timeout 0 0\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config-line)#no exec-timeout does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config-line)#no exec-timeout\" without matching the scenario constraint",
+            "explanation": "Switch(config-line)#no exec-timeout describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config-line)#exec-timeout 0 0 matches the tested behavior — Switch(config-line)#no exec-timeout applies a different mechanism.",
+            "whatItDoes": "Switch(config-line)#no exec-timeout describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Switch(config-line)#exec-timeout 0 0 matches the tested behavior — Switch(config-line)#no exec-timeout applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-line)#no exec-timeout\" without matching local device access",
             "needsExplanationReview": true
           }
         ],
@@ -711,20 +795,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Console 0 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Console 0\" without matching the scenario constraint",
+            "explanation": "Console 0 describes a mechanism that could sound plausible for local device access. Given local device access, VTY 0 matches the tested behavior — Console 0 applies a different mechanism.",
+            "whatItDoes": "Console 0 describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, VTY 0 matches the tested behavior — Console 0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Console 0\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "VTY 1 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"VTY 1\" without matching the scenario constraint",
+            "explanation": "VTY 1 describes a mechanism that could sound plausible for local device access. Given local device access, VTY 0 matches the tested behavior — VTY 1 applies a different mechanism.",
+            "whatItDoes": "VTY 1 describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, VTY 0 matches the tested behavior — VTY 1 applies a different mechanism.",
+            "misconceptionTested": "Applying \"VTY 1\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "VTY 2 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"VTY 2\" without matching the scenario constraint",
+            "explanation": "VTY 2 describes a mechanism that could sound plausible for local device access. Given local device access, VTY 0 matches the tested behavior — VTY 2 applies a different mechanism.",
+            "whatItDoes": "VTY 2 describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, VTY 0 matches the tested behavior — VTY 2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"VTY 2\" without matching local device access",
             "needsExplanationReview": true
           }
         ],
@@ -763,20 +853,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#new aaa model does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config)#new aaa model\" without matching the scenario constraint",
+            "explanation": "Switch(config)#new aaa model describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config-line)#login local matches the tested behavior — Switch(config)#new aaa model applies a different mechanism.",
+            "whatItDoes": "Switch(config)#new aaa model describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Switch(config-line)#login local matches the tested behavior — Switch(config)#new aaa model applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#new aaa model\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config)#local authentication does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config)#local authentication\" without matching the scenario constraint",
+            "explanation": "Switch(config)#local authentication describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config-line)#login local matches the tested behavior — Switch(config)#local authentication applies a different mechanism.",
+            "whatItDoes": "Switch(config)#local authentication describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Switch(config-line)#login local matches the tested behavior — Switch(config)#local authentication applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#local authentication\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config-line)#local authentication does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config-line)#local authentication\" without matching the scenario constraint",
+            "explanation": "Switch(config-line)#local authentication describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config-line)#login local matches the tested behavior — Switch(config-line)#local authentication applies a different mechanism.",
+            "whatItDoes": "Switch(config-line)#local authentication describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Switch(config-line)#login local matches the tested behavior — Switch(config-line)#local authentication applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-line)#local authentica\" without matching local device access",
             "needsExplanationReview": true
           }
         ],
@@ -810,20 +906,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#exec-timeout 30 0 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config)#exec-timeout 30 0\" without matching the scenario constraint",
+            "explanation": "Switch(config)#exec-timeout 30 0 describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config-line)#exec-timeout 30 0 matches the tested behavior — Switch(config)#exec-timeout 30 0 applies a different mechanism.",
+            "whatItDoes": "Switch(config)#exec-timeout 30 0 describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Switch(config-line)#exec-timeout 30 0 matches the tested behavior — Switch(config)#exec-timeout 30 0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#exec-timeout 30 0\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config-line)#exec-timeout 0 30 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config-line)#exec-timeout 0 30\" without matching the scenario constraint",
+            "explanation": "Switch(config-line)#exec-timeout 0 30 describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config-line)#exec-timeout 30 0 matches the tested behavior — Switch(config-line)#exec-timeout 0 30 applies a different mechanism.",
+            "whatItDoes": "Switch(config-line)#exec-timeout 0 30 describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Switch(config-line)#exec-timeout 30 0 matches the tested behavior — Switch(config-line)#exec-timeout 0 30 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-line)#exec-timeout 0 3\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config-line)#timeout 30 0 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config-line)#timeout 30 0\" without matching the scenario constraint",
+            "explanation": "Switch(config-line)#timeout 30 0 describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config-line)#exec-timeout 30 0 matches the tested behavior — Switch(config-line)#timeout 30 0 applies a different mechanism.",
+            "whatItDoes": "Switch(config-line)#timeout 30 0 describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Switch(config-line)#exec-timeout 30 0 matches the tested behavior — Switch(config-line)#timeout 30 0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-line)#timeout 30 0\" without matching local device access",
             "needsExplanationReview": true
           }
         ],
@@ -858,20 +960,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#no enable secret does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config)#no enable secret\" without matching the scenario constraint",
+            "explanation": "Switch(config)#no enable secret describes a mechanism that could sound plausible for local device access. Given local device access, Switch#clear line vty 2 matches the tested behavior — Switch(config)#no enable secret applies a different mechanism.",
+            "whatItDoes": "Switch(config)#no enable secret describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Switch#clear line vty 2 matches the tested behavior — Switch(config)#no enable secret applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#no enable secret\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch#no line vty 2 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#no line vty 2\" without matching the scenario constraint",
+            "explanation": "Switch#no line vty 2 describes a mechanism that could sound plausible for local device access. Given local device access, Switch#clear line vty 2 matches the tested behavior — Switch#no line vty 2 applies a different mechanism.",
+            "whatItDoes": "Switch#no line vty 2 describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Switch#clear line vty 2 matches the tested behavior — Switch#no line vty 2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#no line vty 2\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch#disconnect line vty 2 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#disconnect line vty 2\" without matching the scenario constraint",
+            "explanation": "Switch#disconnect line vty 2 describes a mechanism that could sound plausible for local device access. Given local device access, Switch#clear line vty 2 matches the tested behavior — Switch#disconnect line vty 2 applies a different mechanism.",
+            "whatItDoes": "Switch#disconnect line vty 2 describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Switch#clear line vty 2 matches the tested behavior — Switch#disconnect line vty 2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#disconnect line vty 2\" without matching local device access",
             "needsExplanationReview": true
           }
         ],
@@ -905,20 +1013,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "MOTD banner does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"MOTD banner\" without matching the scenario constraint",
+            "explanation": "MOTD banner describes a mechanism that could sound plausible for local device access. Given local device access, Exec banner matches the tested behavior — MOTD banner applies a different mechanism.",
+            "whatItDoes": "MOTD banner describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Exec banner matches the tested behavior — MOTD banner applies a different mechanism.",
+            "misconceptionTested": "Applying \"MOTD banner\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Login banner does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Login banner\" without matching the scenario constraint",
+            "explanation": "Login banner describes a mechanism that could sound plausible for local device access. Given local device access, Exec banner matches the tested behavior — Login banner applies a different mechanism.",
+            "whatItDoes": "Login banner describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Exec banner matches the tested behavior — Login banner applies a different mechanism.",
+            "misconceptionTested": "Applying \"Login banner\" without matching local device access",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Incoming banner does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Incoming banner\" without matching the scenario constraint",
+            "explanation": "Incoming banner describes a mechanism that could sound plausible for local device access. Given local device access, Exec banner matches the tested behavior — Incoming banner applies a different mechanism.",
+            "whatItDoes": "Incoming banner describes a mechanism that could sound plausible for local device access.",
+            "whyWrongHere": "Given local device access, Exec banner matches the tested behavior — Incoming banner applies a different mechanism.",
+            "misconceptionTested": "Applying \"Incoming banner\" without matching local device access",
             "needsExplanationReview": true
           }
         ],
@@ -955,20 +1069,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Certificate does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Certificate\" without matching the scenario constraint",
+            "explanation": "Certificate describes a mechanism that could sound plausible for password policy. Given password policy, Token matches the tested behavior — Certificate applies a different mechanism.",
+            "whatItDoes": "Certificate describes a mechanism that could sound plausible for password policy.",
+            "whyWrongHere": "Given password policy, Token matches the tested behavior — Certificate applies a different mechanism.",
+            "misconceptionTested": "Applying \"Certificate\" without matching password policy",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Smart card does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Smart card\" without matching the scenario constraint",
+            "explanation": "Smart card describes a mechanism that could sound plausible for password policy. Given password policy, Token matches the tested behavior — Smart card applies a different mechanism.",
+            "whatItDoes": "Smart card describes a mechanism that could sound plausible for password policy.",
+            "whyWrongHere": "Given password policy, Token matches the tested behavior — Smart card applies a different mechanism.",
+            "misconceptionTested": "Applying \"Smart card\" without matching password policy",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "License does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"License\" without matching the scenario constraint",
+            "explanation": "License describes a mechanism that could sound plausible for password policy. Given password policy, Token matches the tested behavior — License applies a different mechanism.",
+            "whatItDoes": "License describes a mechanism that could sound plausible for password policy.",
+            "whyWrongHere": "Given password policy, Token matches the tested behavior — License applies a different mechanism.",
+            "misconceptionTested": "Applying \"License\" without matching password policy",
             "needsExplanationReview": true
           }
         ],
@@ -1004,20 +1124,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#password encryption does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#password encryption\" without matching the scenario constraint",
+            "explanation": "Router(config)#password encryption describes a mechanism that could sound plausible for password policy. Given password policy, Router(config)#service password-encryption matches the tested behavior — Router(config)#password encryption applies a different mechanism.",
+            "whatItDoes": "Router(config)#password encryption describes a mechanism that could sound plausible for password policy.",
+            "whyWrongHere": "Given password policy, Router(config)#service password-encryption matches the tested behavior — Router(config)#password encryption applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#password encryption\" without matching password policy",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#service encryption does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#service encryption\" without matching the scenario constraint",
+            "explanation": "Router(config)#service encryption describes a mechanism that could sound plausible for password policy. Given password policy, Router(config)#service password-encryption matches the tested behavior — Router(config)#service encryption applies a different mechanism.",
+            "whatItDoes": "Router(config)#service encryption describes a mechanism that could sound plausible for password policy.",
+            "whyWrongHere": "Given password policy, Router(config)#service password-encryption matches the tested behavior — Router(config)#service encryption applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#service encryption\" without matching password policy",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#password-encryption service does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#password-encryption servi…\" without matching the scenario constraint",
+            "explanation": "Router(config)#password-encryption service describes a mechanism that could sound plausible for password policy. Given password policy, Router(config)#service password-encryption matches the tested behavior — Router(config)#password-encryption service applies a different mechanism.",
+            "whatItDoes": "Router(config)#password-encryption service describes a mechanism that could sound plausible for password policy.",
+            "whyWrongHere": "Given password policy, Router(config)#service password-encryption matches the tested behavior — Router(config)#password-encryption service applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#password-encryption s\" without matching password policy",
             "needsExplanationReview": true
           }
         ],
@@ -1054,20 +1180,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#enable secret 9 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config)#enable secret 9\" without matching the scenario constraint",
+            "explanation": "Switch(config)#enable secret 9 describes a mechanism that could sound plausible for password policy. Given password policy, Switch(config)#enable algorithm-type scrypt secret Password20! matches the tested behavior — Switch(config)#enable secret 9 applies a different mechanism.",
+            "whatItDoes": "Switch(config)#enable secret 9 describes a mechanism that could sound plausible for password policy.",
+            "whyWrongHere": "Given password policy, Switch(config)#enable algorithm-type scrypt secret Password20! matches the tested behavior — Switch(config)#enable secret 9 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#enable secret 9\" without matching password policy",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config)#service password-encryption scrypt does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config)#service password-encrypti…\" without matching the scenario constraint",
+            "explanation": "Switch(config)#service password-encryption scrypt describes a mechanism that could sound plausible for password policy. Given password policy, Switch(config)#enable algorithm-type scrypt secret Password20! matches the tested behavior — Switch(config)#service password-encryption scrypt applies a different mechanism.",
+            "whatItDoes": "Switch(config)#service password-encryption scrypt describes a mechanism that could sound plausible for password policy.",
+            "whyWrongHere": "Given password policy, Switch(config)#enable algorithm-type scrypt secret Password20! matches the tested behavior — Switch(config)#service password-encryption scrypt applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#service password-encr\" without matching password policy",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config)#enable secret algorithm-type scrypt does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config)#enable secret algorithm-t…\" without matching the scenario constraint",
+            "explanation": "Switch(config)#enable secret algorithm-type scrypt describes a mechanism that could sound plausible for password policy. Given password policy, Switch(config)#enable algorithm-type scrypt secret Password20! matches the tested behavior — Switch(config)#enable secret algorithm-type scrypt applies a different mechanism.",
+            "whatItDoes": "Switch(config)#enable secret algorithm-type scrypt describes a mechanism that could sound plausible for password policy.",
+            "whyWrongHere": "Given password policy, Switch(config)#enable algorithm-type scrypt secret Password20! matches the tested behavior — Switch(config)#enable secret algorithm-type scrypt applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#enable secret algorit\" without matching password policy",
             "needsExplanationReview": true
           }
         ],
@@ -1102,20 +1234,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "MD5 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"MD5\" without matching the scenario constraint",
+            "explanation": "MD5 describes a mechanism that could sound plausible for password policy. Given password policy, Clear text matches the tested behavior — MD5 applies a different mechanism.",
+            "whatItDoes": "MD5 describes a mechanism that could sound plausible for password policy.",
+            "whyWrongHere": "Given password policy, Clear text matches the tested behavior — MD5 applies a different mechanism.",
+            "misconceptionTested": "Applying \"MD5\" without matching password policy",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "SHA-128 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SHA-128\" without matching the scenario constraint",
+            "explanation": "SHA-128 describes a mechanism that could sound plausible for password policy. Given password policy, Clear text matches the tested behavior — SHA-128 applies a different mechanism.",
+            "whatItDoes": "SHA-128 describes a mechanism that could sound plausible for password policy.",
+            "whyWrongHere": "Given password policy, Clear text matches the tested behavior — SHA-128 applies a different mechanism.",
+            "misconceptionTested": "Applying \"SHA-128\" without matching password policy",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "SHA-256 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SHA-256\" without matching the scenario constraint",
+            "explanation": "SHA-256 describes a mechanism that could sound plausible for password policy. Given password policy, Clear text matches the tested behavior — SHA-256 applies a different mechanism.",
+            "whatItDoes": "SHA-256 describes a mechanism that could sound plausible for password policy.",
+            "whyWrongHere": "Given password policy, Clear text matches the tested behavior — SHA-256 applies a different mechanism.",
+            "misconceptionTested": "Applying \"SHA-256\" without matching password policy",
             "needsExplanationReview": true
           }
         ],
@@ -1151,20 +1289,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Single-factor authentication does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Single-factor authentication\" without matching the scenario constraint",
+            "explanation": "Single-factor authentication describes a mechanism that could sound plausible for password policy. Given password policy, Multifactor authentication matches the tested behavior — Single-factor authentication applies a different mechanism.",
+            "whatItDoes": "Single-factor authentication describes a mechanism that could sound plausible for password policy.",
+            "whyWrongHere": "Given password policy, Multifactor authentication matches the tested behavior — Single-factor authentication applies a different mechanism.",
+            "misconceptionTested": "Applying \"Single-factor authentication\" without matching password policy",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "RADIUS authentication does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"RADIUS authentication\" without matching the scenario constraint",
+            "explanation": "RADIUS authentication describes a mechanism that could sound plausible for password policy. Given password policy, Multifactor authentication matches the tested behavior — RADIUS authentication applies a different mechanism.",
+            "whatItDoes": "RADIUS authentication describes a mechanism that could sound plausible for password policy.",
+            "whyWrongHere": "Given password policy, Multifactor authentication matches the tested behavior — RADIUS authentication applies a different mechanism.",
+            "misconceptionTested": "Applying \"RADIUS authentication\" without matching password policy",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Active Directory authentication does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Active Directory authentication\" without matching the scenario constraint",
+            "explanation": "Active Directory authentication describes a mechanism that could sound plausible for password policy. Given password policy, Multifactor authentication matches the tested behavior — Active Directory authentication applies a different mechanism.",
+            "whatItDoes": "Active Directory authentication describes a mechanism that could sound plausible for password policy.",
+            "whyWrongHere": "Given password policy, Multifactor authentication matches the tested behavior — Active Directory authentication applies a different mechanism.",
+            "misconceptionTested": "Applying \"Active Directory authentication\" without matching password policy",
             "needsExplanationReview": true
           }
         ],
@@ -1200,20 +1344,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Password expiration does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Password expiration\" without matching the scenario constraint",
+            "explanation": "Password expiration describes a mechanism that could sound plausible for password policy. Given password policy, Password complexity matches the tested behavior — Password expiration applies a different mechanism.",
+            "whatItDoes": "Password expiration describes a mechanism that could sound plausible for password policy.",
+            "whyWrongHere": "Given password policy, Password complexity matches the tested behavior — Password expiration applies a different mechanism.",
+            "misconceptionTested": "Applying \"Password expiration\" without matching password policy",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Phishing protection does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Phishing protection\" without matching the scenario constraint",
+            "explanation": "Phishing protection describes a mechanism that could sound plausible for password policy. Given password policy, Password complexity matches the tested behavior — Phishing protection applies a different mechanism.",
+            "whatItDoes": "Phishing protection describes a mechanism that could sound plausible for password policy.",
+            "whyWrongHere": "Given password policy, Password complexity matches the tested behavior — Phishing protection applies a different mechanism.",
+            "misconceptionTested": "Applying \"Phishing protection\" without matching password policy",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Time restrictions does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Time restrictions\" without matching the scenario constraint",
+            "explanation": "Time restrictions describes a mechanism that could sound plausible for password policy. Given password policy, Password complexity matches the tested behavior — Time restrictions applies a different mechanism.",
+            "whatItDoes": "Time restrictions describes a mechanism that could sound plausible for password policy.",
+            "whyWrongHere": "Given password policy, Password complexity matches the tested behavior — Time restrictions applies a different mechanism.",
+            "misconceptionTested": "Applying \"Time restrictions\" without matching password policy",
             "needsExplanationReview": true
           }
         ],

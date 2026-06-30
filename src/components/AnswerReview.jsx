@@ -42,10 +42,23 @@ function ReviewBlock({ icon, title, accent, children, collapsible, defaultOpen =
 
 function WrongChoiceReview({ q, item }) {
   const resolved = resolveIncorrectItem(q, item)
-  const letter = CHOICE_LETTERS[resolved.choiceIndex] || resolved.choiceIndex
+  const hasStructured = resolved.whatItDoes && resolved.whyWrongHere
   return (
     <>
-      <RichText text={resolved.explanation} />
+      {hasStructured ? (
+        <>
+          <div style={{ marginBottom: 8 }}>
+            <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, marginBottom: 4 }}>What this choice implies</div>
+            <RichText text={resolved.whatItDoes} />
+          </div>
+          <div>
+            <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, marginBottom: 4 }}>Why it is wrong here</div>
+            <RichText text={resolved.whyWrongHere} />
+          </div>
+        </>
+      ) : (
+        <RichText text={resolved.explanation} />
+      )}
       {resolved.misconceptionTested && (
         <div style={{ marginTop: 8, fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>
           Trap tested: {resolved.misconceptionTested}

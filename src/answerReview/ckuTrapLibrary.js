@@ -2,6 +2,7 @@
  * Choice-specific wrong-answer resolvers — CKU traps, devices, numbers, protocols.
  */
 import { CKU_TRAP_INDEX } from './ckuTrapIndex.js'
+import { buildStemAnchoredIncorrect } from './stemAnchoredDistractor.js'
 
 const DEVICE_ROLES = [
   { re: /\bhub\b/i, role: 'A hub is a Layer 1 repeater — it does not learn MACs, segment broadcasts, or route between VLANs.', trap: 'Treating a hub like a switch or router' },
@@ -109,15 +110,26 @@ export function resolveOppositeBoolean(wrong, correctExpl) {
   }
 }
 
-export function resolveStemAnchored(wrong, q) {
-  const fact = (q.explanation || '').trim()
-  const first = fact.split(/[.!?]/).filter(Boolean)[0]?.trim() || fact
-  const choice = String(wrong).replace(/\*\*/g, '').trim()
-  const lead = first ? `${choice} misses what this question tests. ${first}.` : `${choice} does not match the mechanism asked here.`
+export function resolveStemAnchored(wrong, q, choiceIndex) {
+  const idx = typeof choiceIndex === 'number' && choiceIndex >= 0
+    ? choiceIndex
+    : (q.choices || []).findIndex(
+      (c, i) => i !== q.correctIndex
+        && String(c).replace(/\*\*/g, '').trim() === String(wrong).replace(/\*\*/g, '').trim(),
+    )
+  if (idx < 0) {
+    return {
+      explanation: String(wrong).trim(),
+      trap: `Selecting "${String(wrong).slice(0, 40)}" without matching the scenario constraint`,
+    }
+  }
 
+  const sade = buildStemAnchoredIncorrect({ q, choiceIndex: idx })
   return {
-    explanation: lead,
-    trap: `Selecting "${choice.slice(0, 40)}${choice.length > 40 ? '…' : ''}" without matching the scenario constraint`,
+    explanation: sade.explanation,
+    trap: sade.misconceptionTested,
+    whatItDoes: sade.whatItDoes,
+    whyWrongHere: sade.whyWrongHere,
   }
 }
 

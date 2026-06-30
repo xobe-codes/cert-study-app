@@ -28,16 +28,22 @@
           {
             "choiceIndex": 1,
             "explanation": "ip route 172.16.0.0 0.0.255.255 10.0.0.1 reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "whatItDoes": "ip route 172.16.0.0 0.0.255.255 10.0.0.1 describes a mechanism that could sound plausible for static route syntax.",
+            "whyWrongHere": "Given static route syntax, ip route 172.16.0.0 255.255.0.0 10.0.0.1 matches the tested behavior — ip route 172.16.0.0 0.0.255.255 10.0.0.1 applies a different mechanism.",
             "misconceptionTested": "A static route installs even if the next-hop is unreachable"
           },
           {
             "choiceIndex": 2,
             "explanation": "static route 172.16.0.0/16 10.0.0.1 reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "whatItDoes": "static route 172.16.0.0/16 10.0.0.1 describes a mechanism that could sound plausible for static route syntax.",
+            "whyWrongHere": "Given static route syntax, ip route 172.16.0.0 255.255.0.0 10.0.0.1 matches the tested behavior — static route 172.16.0.0/16 10.0.0.1 applies a different mechanism.",
             "misconceptionTested": "A static route installs even if the next-hop is unreachable"
           },
           {
             "choiceIndex": 3,
             "explanation": "ip static-route 172.16.0.0 255.255.0.0 10.0.0.1 reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "whatItDoes": "ip static-route 172.16.0.0 255.255.0.0 10.0.0.1 describes a mechanism that could sound plausible for static route syntax.",
+            "whyWrongHere": "Given static route syntax, ip route 172.16.0.0 255.255.0.0 10.0.0.1 matches the tested behavior — ip static-route 172.16.0.0 255.255.0.0 10.0.0.1 applies a different mechanism.",
             "misconceptionTested": "A static route installs even if the next-hop is unreachable"
           }
         ],
@@ -69,18 +75,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "ip route 0.0.0.0 255.255.255.255 203.0.113.1 misses what this question tests. Default static route: destination 0.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+            "explanation": "ip route 0.0.0.0 255.255.255.255 203.0.113.1 describes a mechanism that could sound plausible for default static route. Given default static route, ip route 0.0.0.0 0.0.0.0 203.0.113.1 matches the tested behavior — ip route 0.0.0.0 255.255.255.255 203.0.113.1 applies a different mechanism.",
+            "whatItDoes": "ip route 0.0.0.0 255.255.255.255 203.0.113.1 describes a mechanism that could sound plausible for default static route.",
+            "whyWrongHere": "Given default static route, ip route 0.0.0.0 0.0.0.0 203.0.113.1 matches the tested behavior — ip route 0.0.0.0 255.255.255.255 203.0.113.1 applies a different mechanism.",
+            "misconceptionTested": "Applying \"ip route 0.0.0.0 255.255.255.255 203\" without matching default static route"
           },
           {
             "choiceIndex": 2,
             "explanation": "ip route default 203.0.113.1 uses the wrong value. The tested fact calls for 0 — not 203.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+            "whatItDoes": "ip route default 203.0.113.1 describes a mechanism that could sound plausible for default static route.",
+            "whyWrongHere": "Given default static route, ip route 0.0.0.0 0.0.0.0 203.0.113.1 matches the tested behavior — ip route default 203.0.113.1 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 203 instead of the correct 0"
           },
           {
             "choiceIndex": 3,
             "explanation": "ip default-route 203.0.113.1 uses the wrong value. The tested fact calls for 0 — not 203.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+            "whatItDoes": "ip default-route 203.0.113.1 describes a mechanism that could sound plausible for default static route.",
+            "whyWrongHere": "Given default static route, ip route 0.0.0.0 0.0.0.0 203.0.113.1 matches the tested behavior — ip default-route 203.0.113.1 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 203 instead of the correct 0"
           }
         ],
         "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
@@ -112,17 +124,23 @@
           {
             "choiceIndex": 0,
             "explanation": "ip route 10.0.0.0 255.0.0.0 192.168.2.1 90 uses the wrong value. The tested fact calls for 130 — not 10.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+            "whatItDoes": "ip route 10.0.0.0 255.0.0.0 192.168.2.1 90 describes a mechanism that could sound plausible for floating static.",
+            "whyWrongHere": "Given floating static, ip route 10.0.0.0 255.0.0.0 192.168.2.1 130 matches the tested behavior — ip route 10.0.0.0 255.0.0.0 192.168.2.1 90 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 10 instead of the correct 130"
           },
           {
             "choiceIndex": 2,
             "explanation": "ip route 10.0.0.0 255.0.0.0 192.168.2.1 uses the wrong value. The tested fact calls for 130 — not 10.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+            "whatItDoes": "ip route 10.0.0.0 255.0.0.0 192.168.2.1 describes a mechanism that could sound plausible for floating static.",
+            "whyWrongHere": "Given floating static, ip route 10.0.0.0 255.0.0.0 192.168.2.1 130 matches the tested behavior — ip route 10.0.0.0 255.0.0.0 192.168.2.1 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 10 instead of the correct 130"
           },
           {
             "choiceIndex": 3,
             "explanation": "ip route 10.0.0.0 255.0.0.0 192.168.2.1 1 uses the wrong value. The tested fact calls for 130 — not 10.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+            "whatItDoes": "ip route 10.0.0.0 255.0.0.0 192.168.2.1 1 describes a mechanism that could sound plausible for floating static.",
+            "whyWrongHere": "Given floating static, ip route 10.0.0.0 255.0.0.0 192.168.2.1 130 matches the tested behavior — ip route 10.0.0.0 255.0.0.0 192.168.2.1 1 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 10 instead of the correct 130"
           }
         ],
         "examTip": "On the exam: A floating static needs AD HIGHER than the dynamic protocol — Setting AD 90 to back up OSPF (AD 110) would always be preferred — it becomes primary, not backup"
@@ -154,17 +172,23 @@
           {
             "choiceIndex": 0,
             "explanation": "Static routes require OSPF to advertise them reflects a common trap: Exit-interface static routes are always preferred on Ethernet. Next-hop IP is preferred on multi-access segments to avoid ARP for every destination.",
+            "whatItDoes": "Static routes require OSPF to advertise them describes a mechanism that could sound plausible for recursive lookup.",
+            "whyWrongHere": "Given recursive lookup, The next-hop must be reachable — recursive lookup fails matches the tested behavior — Static routes require OSPF to advertise them applies a different mechanism.",
             "misconceptionTested": "Exit-interface static routes are always preferred on Ethernet"
           },
           {
             "choiceIndex": 2,
             "explanation": "Static routes must use exit interface only reflects a common trap: Exit-interface static routes are always preferred on Ethernet. Next-hop IP is preferred on multi-access segments to avoid ARP for every destination.",
+            "whatItDoes": "Static routes must use exit interface only describes a mechanism that could sound plausible for recursive lookup.",
+            "whyWrongHere": "Given recursive lookup, The next-hop must be reachable — recursive lookup fails matches the tested behavior — Static routes must use exit interface only applies a different mechanism.",
             "misconceptionTested": "Exit-interface static routes are always preferred on Ethernet"
           },
           {
             "choiceIndex": 3,
-            "explanation": "The mask is incompatible misses what this question tests. A static route requires its next-hop to be reachable via another routing table entry.",
-            "misconceptionTested": "Selecting \"The mask is incompatible\" without matching the scenario constraint"
+            "explanation": "The mask is incompatible describes a mechanism that could sound plausible for recursive lookup. Given recursive lookup, The next-hop must be reachable — recursive lookup fails matches the tested behavior — The mask is incompatible applies a different mechanism.",
+            "whatItDoes": "The mask is incompatible describes a mechanism that could sound plausible for recursive lookup.",
+            "whyWrongHere": "Given recursive lookup, The next-hop must be reachable — recursive lookup fails matches the tested behavior — The mask is incompatible applies a different mechanism.",
+            "misconceptionTested": "Applying \"The mask is incompatible\" without matching recursive lookup"
           }
         ],
         "examTip": "On the exam: Exit-interface static routes are always preferred on Ethernet — Next-hop IP is preferred on multi-access segments to avoid ARP for every destination"
@@ -196,16 +220,22 @@
           {
             "choiceIndex": 0,
             "explanation": "ip route 2001:db8:1::/48 2001:db8::1 uses the wrong value. The tested fact calls for 6 — not 2001.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+            "whatItDoes": "ip route 2001:db8:1::/48 2001:db8::1 describes a mechanism that could sound plausible for IPv6 static route.",
+            "whyWrongHere": "Given IPv6 static route, ipv6 route 2001:db8:1::/48 2001:db8::1 matches the tested behavior — ip route 2001:db8:1::/48 2001:db8::1 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 2001 instead of the correct 6"
           },
           {
             "choiceIndex": 2,
             "explanation": "ipv6 static-route 2001:db8:1::/48 nexthop 2001:db8::1 reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "ipv6 static-route 2001:db8:1::/48 nexthop 2001:db8::1 describes a mechanism that could sound plausible for IPv6 static route.",
+            "whyWrongHere": "Given IPv6 static route, ipv6 route 2001:db8:1::/48 2001:db8::1 matches the tested behavior — ipv6 static-route 2001:db8:1::/48 nexthop 2001:db8::1 applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first"
           },
           {
             "choiceIndex": 3,
             "explanation": "ipv6 route 2001:db8:1:: /48 2001:db8::1 reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "ipv6 route 2001:db8:1:: /48 2001:db8::1 describes a mechanism that could sound plausible for IPv6 static route.",
+            "whyWrongHere": "Given IPv6 static route, ipv6 route 2001:db8:1::/48 2001:db8::1 matches the tested behavior — ipv6 route 2001:db8:1:: /48 2001:db8::1 applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first"
           }
         ],
@@ -239,16 +269,22 @@
           {
             "choiceIndex": 0,
             "explanation": "ipv6 route ff00::/8 <next-hop> reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "ipv6 route ff00::/8 <next-hop> describes a mechanism that could sound plausible for IPv6 default route.",
+            "whyWrongHere": "Given IPv6 default route, ipv6 route ::/0 <next-hop> matches the tested behavior — ipv6 route ff00::/8 <next-hop> applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first"
           },
           {
             "choiceIndex": 2,
             "explanation": "ipv6 route 0::0/0 <next-hop> reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "ipv6 route 0::0/0 <next-hop> describes a mechanism that could sound plausible for IPv6 default route.",
+            "whyWrongHere": "Given IPv6 default route, ipv6 route ::/0 <next-hop> matches the tested behavior — ipv6 route 0::0/0 <next-hop> applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first"
           },
           {
             "choiceIndex": 3,
             "explanation": "ipv6 default-gateway <next-hop> reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "ipv6 default-gateway <next-hop> describes a mechanism that could sound plausible for IPv6 default route.",
+            "whyWrongHere": "Given IPv6 default route, ipv6 route ::/0 <next-hop> matches the tested behavior — ipv6 default-gateway <next-hop> applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first"
           }
         ],
@@ -281,17 +317,23 @@
           {
             "choiceIndex": 0,
             "explanation": "show ip route reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "whatItDoes": "show ip route describes a mechanism that could sound plausible for verify static routes.",
+            "whyWrongHere": "Given verify static routes, show ip route static matches the tested behavior — show ip route applies a different mechanism.",
             "misconceptionTested": "A static route installs even if the next-hop is unreachable"
           },
           {
             "choiceIndex": 2,
             "explanation": "show running-config | section route reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "whatItDoes": "show running-config | section route describes a mechanism that could sound plausible for verify static routes.",
+            "whyWrongHere": "Given verify static routes, show ip route static matches the tested behavior — show running-config | section route applies a different mechanism.",
             "misconceptionTested": "A static route installs even if the next-hop is unreachable"
           },
           {
             "choiceIndex": 3,
-            "explanation": "show ip protocols misses what this question tests. show ip route static filters to entries with source code S.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+            "explanation": "show ip protocols describes a mechanism that could sound plausible for verify static routes. Given verify static routes, show ip route static matches the tested behavior — show ip protocols applies a different mechanism.",
+            "whatItDoes": "show ip protocols describes a mechanism that could sound plausible for verify static routes.",
+            "whyWrongHere": "Given verify static routes, show ip route static matches the tested behavior — show ip protocols applies a different mechanism.",
+            "misconceptionTested": "Applying \"show ip protocols\" without matching verify static routes"
           }
         ],
         "examTip": "On the exam: Exit-interface static routes are always preferred on Ethernet — Next-hop IP is preferred on multi-access segments to avoid ARP for every destination"
@@ -323,17 +365,23 @@
           {
             "choiceIndex": 0,
             "explanation": "The route disappears from the table reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "whatItDoes": "The route disappears from the table describes a mechanism that could sound plausible for exit interface vs next-hop.",
+            "whyWrongHere": "Given exit interface vs next-hop, The router ARP-resolves every destination individually, wasting resources matches the tested behavior — The route disappears from the table applies a different mechanism.",
             "misconceptionTested": "A static route installs even if the next-hop is unreachable"
           },
           {
             "choiceIndex": 2,
             "explanation": "The route has AD 255 reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "whatItDoes": "The route has AD 255 describes a mechanism that could sound plausible for exit interface vs next-hop.",
+            "whyWrongHere": "Given exit interface vs next-hop, The router ARP-resolves every destination individually, wasting resources matches the tested behavior — The route has AD 255 applies a different mechanism.",
             "misconceptionTested": "A static route installs even if the next-hop is unreachable"
           },
           {
             "choiceIndex": 3,
-            "explanation": "The router uses OSPF to resolve the path misses what this question tests. On Ethernet without a next-hop IP, the router treats every destination as directly connected and ARP-resolves each one — inefficient on multi-access segments.",
-            "misconceptionTested": "Selecting \"The router uses OSPF to resolve the path\" without matching the scenario constraint"
+            "explanation": "The router uses OSPF to resolve the path describes a mechanism that could sound plausible for exit interface vs next-hop. Given exit interface vs next-hop, The router ARP-resolves every destination individually, wasting resources matches the tested behavior — The router uses OSPF to resolve the path applies a different mechanism.",
+            "whatItDoes": "The router uses OSPF to resolve the path describes a mechanism that could sound plausible for exit interface vs next-hop.",
+            "whyWrongHere": "Given exit interface vs next-hop, The router ARP-resolves every destination individually, wasting resources matches the tested behavior — The router uses OSPF to resolve the path applies a different mechanism.",
+            "misconceptionTested": "Applying \"The router uses OSPF to resolve the \" without matching exit interface vs next-hop"
           }
         ],
         "examTip": "On the exam: Exit-interface static routes are always preferred on Ethernet — Next-hop IP is preferred on multi-access segments to avoid ARP for every destination"
@@ -367,20 +415,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#ip route 205.34.54.85/24 205.34.55.2 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Router(config)#ip route 205.34.54.85/24 205.34.55.2 describes a mechanism that could sound plausible for static routing. Given static routing, Router(config)#ip route 205.34.54.85 255.255.255.248 205.34.55.2 matches the tested behavior — Router(config)#ip route 205.34.54.85/24 205.34.55.2 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip route 205.34.54.85/24 205.34.55.2 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router(config)#ip route 205.34.54.85 255.255.255.248 205.34.55.2 matches the tested behavior — Router(config)#ip route 205.34.54.85/24 205.34.55.2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip route 205.34.54.85\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#ip route 205.34.54.85 255.255.255.240 205.34.55.2 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Router(config)#ip route 205.34.54.85 255.255.255.240 205.34.55.2 describes a mechanism that could sound plausible for static routing. Given static routing, Router(config)#ip route 205.34.54.85 255.255.255.248 205.34.55.2 matches the tested behavior — Router(config)#ip route 205.34.54.85 255.255.255.240 205.34.55.2 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip route 205.34.54.85 255.255.255.240 205.34.55.2 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router(config)#ip route 205.34.54.85 255.255.255.248 205.34.55.2 matches the tested behavior — Router(config)#ip route 205.34.54.85 255.255.255.240 205.34.55.2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip route 205.34.54.85\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#ip route 205.34.55.2 255.255.255.248 205.34.54.85 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Router(config)#ip route 205.34.55.2 255.255.255.248 205.34.54.85 describes a mechanism that could sound plausible for static routing. Given static routing, Router(config)#ip route 205.34.54.85 255.255.255.248 205.34.55.2 matches the tested behavior — Router(config)#ip route 205.34.55.2 255.255.255.248 205.34.54.85 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip route 205.34.55.2 255.255.255.248 205.34.54.85 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router(config)#ip route 205.34.54.85 255.255.255.248 205.34.55.2 matches the tested behavior — Router(config)#ip route 205.34.55.2 255.255.255.248 205.34.54.85 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip route 205.34.55.2 \" without matching static routing",
             "needsExplanationReview": true
           }
         ],
@@ -415,18 +469,24 @@
           {
             "choiceIndex": 0,
             "explanation": "Link-state routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Link-state routing describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Static routing matches the tested behavior — Link-state routing applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "Distance-vector routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Distance-vector routing describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Static routing matches the tested behavior — Distance-vector routing applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "Dynamic routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Dynamic routing describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Static routing matches the tested behavior — Dynamic routing applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
@@ -463,18 +523,24 @@
           {
             "choiceIndex": 1,
             "explanation": "Directly connected routes reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Directly connected routes describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Dynamic routing matches the tested behavior — Directly connected routes applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "Default routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Default routing describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Dynamic routing matches the tested behavior — Default routing applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "Static routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Static routing describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Dynamic routing matches the tested behavior — Static routing applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
@@ -513,18 +579,24 @@
           {
             "choiceIndex": 0,
             "explanation": "RIP routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "RIP routing describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Static routing matches the tested behavior — RIP routing applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "OSPF routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "OSPF routing describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Static routing matches the tested behavior — OSPF routing applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "Default routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Default routing describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Static routing matches the tested behavior — Default routing applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
@@ -563,18 +635,24 @@
           {
             "choiceIndex": 0,
             "explanation": "RIP routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "RIP routing describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Default routing matches the tested behavior — RIP routing applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "OSPF routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "OSPF routing describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Default routing matches the tested behavior — OSPF routing applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "Static routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Static routing describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Default routing matches the tested behavior — Static routing applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
@@ -612,20 +690,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "BGP does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "BGP describes a mechanism that could sound plausible for static routing. Given static routing, RIP matches the tested behavior — BGP applies a different mechanism.",
+            "whatItDoes": "BGP describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, RIP matches the tested behavior — BGP applies a different mechanism.",
+            "misconceptionTested": "Applying \"BGP\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "OSPF does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "OSPF describes a mechanism that could sound plausible for static routing. Given static routing, RIP matches the tested behavior — OSPF applies a different mechanism.",
+            "whatItDoes": "OSPF describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, RIP matches the tested behavior — OSPF applies a different mechanism.",
+            "misconceptionTested": "Applying \"OSPF\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "EIGRP does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "EIGRP describes a mechanism that could sound plausible for static routing. Given static routing, RIP matches the tested behavior — EIGRP applies a different mechanism.",
+            "whatItDoes": "EIGRP describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, RIP matches the tested behavior — EIGRP applies a different mechanism.",
+            "misconceptionTested": "Applying \"EIGRP\" without matching static routing",
             "needsExplanationReview": true
           }
         ],
@@ -660,20 +744,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Lower router RAM usage does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Lower router RAM usage describes a mechanism that could sound plausible for static routing. Given static routing, Resiliency when routes become unavailable matches the tested behavior — Lower router RAM usage applies a different mechanism.",
+            "whatItDoes": "Lower router RAM usage describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Resiliency when routes become unavailable matches the tested behavior — Lower router RAM usage applies a different mechanism.",
+            "misconceptionTested": "Applying \"Lower router RAM usage\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Lower router CPU usage does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Lower router CPU usage describes a mechanism that could sound plausible for static routing. Given static routing, Resiliency when routes become unavailable matches the tested behavior — Lower router CPU usage applies a different mechanism.",
+            "whatItDoes": "Lower router CPU usage describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Resiliency when routes become unavailable matches the tested behavior — Lower router CPU usage applies a different mechanism.",
+            "misconceptionTested": "Applying \"Lower router CPU usage\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Less bandwidth usage does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Less bandwidth usage describes a mechanism that could sound plausible for static routing. Given static routing, Resiliency when routes become unavailable matches the tested behavior — Less bandwidth usage applies a different mechanism.",
+            "whatItDoes": "Less bandwidth usage describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Resiliency when routes become unavailable matches the tested behavior — Less bandwidth usage applies a different mechanism.",
+            "misconceptionTested": "Applying \"Less bandwidth usage\" without matching static routing",
             "needsExplanationReview": true
           }
         ],
@@ -709,18 +799,24 @@
           {
             "choiceIndex": 0,
             "explanation": "Default routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Default routing describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Connected routes matches the tested behavior — Default routing applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "Dynamic routes reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Dynamic routes describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Connected routes matches the tested behavior — Dynamic routes applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "Static routes reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Static routes describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Connected routes matches the tested behavior — Static routes applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
@@ -757,18 +853,24 @@
           {
             "choiceIndex": 0,
             "explanation": "Router(config)#ip route 0.0.0.0/0 s0/0 reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "whatItDoes": "Router(config)#ip route 0.0.0.0/0 s0/0 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router(config)#ipv6 route ::0/0 s0/0 matches the tested behavior — Router(config)#ip route 0.0.0.0/0 s0/0 applies a different mechanism.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "Router(config)#ipv6 route 0.0.0.0/0 s0/0 reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Router(config)#ipv6 route 0.0.0.0/0 s0/0 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router(config)#ipv6 route ::0/0 s0/0 matches the tested behavior — Router(config)#ipv6 route 0.0.0.0/0 s0/0 applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "Router(config)#ipv6 unicast-route ::0/0 s0/0 reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Router(config)#ipv6 unicast-route ::0/0 s0/0 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router(config)#ipv6 route ::0/0 s0/0 matches the tested behavior — Router(config)#ipv6 unicast-route ::0/0 s0/0 applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
@@ -806,20 +908,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RIPng does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "RIPng describes a mechanism that could sound plausible for static routing. Given static routing, All of the above matches the tested behavior — RIPng applies a different mechanism.",
+            "whatItDoes": "RIPng describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, All of the above matches the tested behavior — RIPng applies a different mechanism.",
+            "misconceptionTested": "Applying \"RIPng\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "OSPFv3 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "OSPFv3 describes a mechanism that could sound plausible for static routing. Given static routing, All of the above matches the tested behavior — OSPFv3 applies a different mechanism.",
+            "whatItDoes": "OSPFv3 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, All of the above matches the tested behavior — OSPFv3 applies a different mechanism.",
+            "misconceptionTested": "Applying \"OSPFv3\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "EIGRPv6 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "EIGRPv6 describes a mechanism that could sound plausible for static routing. Given static routing, All of the above matches the tested behavior — EIGRPv6 applies a different mechanism.",
+            "whatItDoes": "EIGRPv6 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, All of the above matches the tested behavior — EIGRPv6 applies a different mechanism.",
+            "misconceptionTested": "Applying \"EIGRPv6\" without matching static routing",
             "needsExplanationReview": true
           }
         ],
@@ -854,19 +962,25 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#show route does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Router#show route describes a mechanism that could sound plausible for static routing. Given static routing, Router#show ipv6 route matches the tested behavior — Router#show route applies a different mechanism.",
+            "whatItDoes": "Router#show route describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router#show ipv6 route matches the tested behavior — Router#show route applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show route\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router#show ip route does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Router#show ip route describes a mechanism that could sound plausible for static routing. Given static routing, Router#show ipv6 route matches the tested behavior — Router#show ip route applies a different mechanism.",
+            "whatItDoes": "Router#show ip route describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router#show ipv6 route matches the tested behavior — Router#show ip route applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip route\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "Router#show route ipv6 reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Router#show route ipv6 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router#show ipv6 route matches the tested behavior — Router#show route ipv6 applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
@@ -905,18 +1019,24 @@
           {
             "choiceIndex": 0,
             "explanation": "The destination IP address is replaced with the default gateway when the destination is remote. reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "whatItDoes": "The destination IP address is replaced with the default gateway when the destination is remote. sends the decision to a router/default gateway rather than handling it at Layer 2.",
+            "whyWrongHere": "Given static routing, The host sends an ARP packet for the default gateway when the destination is remote. matches the tested behavior — The destination IP address is replaced with the default gateway when the destination is remote. applies a different mechanism.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "The host sends the default gateway packets that are deemed remote via a broadcast. reflects a common trap: A default route guarantees connectivity. It only forwards traffic that matches nothing more specific; if the next hop is wrong or down, traffic still fails.",
+            "whatItDoes": "The host sends the default gateway packets that are deemed remote via a broadcast. describes flooding the frame to multiple ports in the VLAN.",
+            "whyWrongHere": "Given static routing, The host sends an ARP packet for the default gateway when the destination is remote. matches the tested behavior — The host sends the default gateway packets that are deemed remote via a broadcast. applies a different mechanism.",
             "misconceptionTested": "A default route guarantees connectivity",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "The host creates a dedicated connection with the default gateway for remote traffic. reflects a common trap: A default route guarantees connectivity. It only forwards traffic that matches nothing more specific; if the next hop is wrong or down, traffic still fails.",
+            "whatItDoes": "The host creates a dedicated connection with the default gateway for remote traffic. sends the decision to a router/default gateway rather than handling it at Layer 2.",
+            "whyWrongHere": "Given static routing, The host sends an ARP packet for the default gateway when the destination is remote. matches the tested behavior — The host creates a dedicated connection with the default gateway for remote traffic. applies a different mechanism.",
             "misconceptionTested": "A default route guarantees connectivity",
             "needsExplanationReview": true
           }
@@ -952,19 +1072,25 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router#show route does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Router#show route describes a mechanism that could sound plausible for static routing. Given static routing, Router#show ip route matches the tested behavior — Router#show route applies a different mechanism.",
+            "whatItDoes": "Router#show route describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router#show ip route matches the tested behavior — Router#show route applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show route\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#show route table does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Router#show route table describes a mechanism that could sound plausible for static routing. Given static routing, Router#show ip route matches the tested behavior — Router#show route table applies a different mechanism.",
+            "whatItDoes": "Router#show route table describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router#show ip route matches the tested behavior — Router#show route table applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show route table\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "Router#show routes reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Router#show routes describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router#show ip route matches the tested behavior — Router#show routes applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
@@ -1001,20 +1127,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "IGMP does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "IGMP describes a mechanism that could sound plausible for static routing. Given static routing, ARP matches the tested behavior — IGMP applies a different mechanism.",
+            "whatItDoes": "IGMP describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, ARP matches the tested behavior — IGMP applies a different mechanism.",
+            "misconceptionTested": "Applying \"IGMP\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "RARP does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "RARP describes a mechanism that could sound plausible for static routing. Given static routing, ARP matches the tested behavior — RARP applies a different mechanism.",
+            "whatItDoes": "RARP describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, ARP matches the tested behavior — RARP applies a different mechanism.",
+            "misconceptionTested": "Applying \"RARP\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "ICMP does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "ICMP describes a mechanism that could sound plausible for static routing. Given static routing, ARP matches the tested behavior — ICMP applies a different mechanism.",
+            "whatItDoes": "ICMP describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, ARP matches the tested behavior — ICMP applies a different mechanism.",
+            "misconceptionTested": "Applying \"ICMP\" without matching static routing",
             "needsExplanationReview": true
           }
         ],
@@ -1051,20 +1183,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SNMP traps does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "SNMP traps describes a mechanism that could sound plausible for static routing. Given static routing, Ping matches the tested behavior — SNMP traps applies a different mechanism.",
+            "whatItDoes": "SNMP traps describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Ping matches the tested behavior — SNMP traps applies a different mechanism.",
+            "misconceptionTested": "Applying \"SNMP traps\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Notifications does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Notifications describes a mechanism that could sound plausible for static routing. Given static routing, Ping matches the tested behavior — Notifications applies a different mechanism.",
+            "whatItDoes": "Notifications describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Ping matches the tested behavior — Notifications applies a different mechanism.",
+            "misconceptionTested": "Applying \"Notifications\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "ARP does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "ARP describes a mechanism that could sound plausible for static routing. Given static routing, Ping matches the tested behavior — ARP applies a different mechanism.",
+            "whatItDoes": "ARP describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Ping matches the tested behavior — ARP applies a different mechanism.",
+            "misconceptionTested": "Applying \"ARP\" without matching static routing",
             "needsExplanationReview": true
           }
         ],
@@ -1099,20 +1237,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The distant router is not responding. does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "The distant router is not responding. describes a mechanism that could sound plausible for static routing. Given static routing, The distant router is responding. matches the tested behavior — The distant router is not responding. applies a different mechanism.",
+            "whatItDoes": "The distant router is not responding. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, The distant router is responding. matches the tested behavior — The distant router is not responding. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The distant router is not responding\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "The distant router has a high response time. does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "The distant router has a high response time. describes a mechanism that could sound plausible for static routing. Given static routing, The distant router is responding. matches the tested behavior — The distant router has a high response time. applies a different mechanism.",
+            "whatItDoes": "The distant router has a high response time. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, The distant router is responding. matches the tested behavior — The distant router has a high response time. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The distant router has a high respon\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The distant router has a low response time. does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "The distant router has a low response time. describes a mechanism that could sound plausible for static routing. Given static routing, The distant router is responding. matches the tested behavior — The distant router has a low response time. applies a different mechanism.",
+            "whatItDoes": "The distant router has a low response time. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, The distant router is responding. matches the tested behavior — The distant router has a low response time. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The distant router has a low respons\" without matching static routing",
             "needsExplanationReview": true
           }
         ],
@@ -1146,20 +1290,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#ip route 192.168.4.0/24 serial 0/1 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Router(config)#ip route 192.168.4.0/24 serial 0/1 describes a mechanism that could sound plausible for static routing. Given static routing, Router(config)#ip route 192.168.4.0 255.255.255.0 serial 0/1 matches the tested behavior — Router(config)#ip route 192.168.4.0/24 serial 0/1 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip route 192.168.4.0/24 serial 0/1 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router(config)#ip route 192.168.4.0 255.255.255.0 serial 0/1 matches the tested behavior — Router(config)#ip route 192.168.4.0/24 serial 0/1 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip route 192.168.4.0/\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#ip route 192.168.4.0/24 interface serial 0/1 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Router(config)#ip route 192.168.4.0/24 interface serial 0/1 describes a mechanism that could sound plausible for static routing. Given static routing, Router(config)#ip route 192.168.4.0 255.255.255.0 serial 0/1 matches the tested behavior — Router(config)#ip route 192.168.4.0/24 interface serial 0/1 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip route 192.168.4.0/24 interface serial 0/1 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router(config)#ip route 192.168.4.0 255.255.255.0 serial 0/1 matches the tested behavior — Router(config)#ip route 192.168.4.0/24 interface serial 0/1 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip route 192.168.4.0/\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#ip route Router(config- rtr)#192.168.4.0/24 serial 0/1 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Router(config)#ip route Router(config- rtr)#192.168.4.0/24 serial 0/1 describes a mechanism that could sound plausible for static routing. Given static routing, Router(config)#ip route 192.168.4.0 255.255.255.0 serial 0/1 matches the tested behavior — Router(config)#ip route Router(config- rtr)#192.168.4.0/24 serial 0/1 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip route Router(config- rtr)#192.168.4.0/24 serial 0/1 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router(config)#ip route 192.168.4.0 255.255.255.0 serial 0/1 matches the tested behavior — Router(config)#ip route Router(config- rtr)#192.168.4.0/24 serial 0/1 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip route Router(confi\" without matching static routing",
             "needsExplanationReview": true
           }
         ],
@@ -1195,19 +1345,25 @@
           {
             "choiceIndex": 0,
             "explanation": "The ip default-network needs to be used in conjunction with ip default-gateway 192.168.11.2. reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "whatItDoes": "The ip default-network needs to be used in conjunction with ip default-gateway 192.168.11.2. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, The command is only used for the management plane of the router itself. matches the tested behavior — The ip default-network needs to be used in conjunction with ip default-gateway 192.168.11.2. applies a different mechanism.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "The command is used for dynamic routing only. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "The command is used for dynamic routing only. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, The command is only used for the management plane of the router itself. matches the tested behavior — The command is used for dynamic routing only. applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The specified gateway is wrong. does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "The specified gateway is wrong. describes a mechanism that could sound plausible for static routing. Given static routing, The command is only used for the management plane of the router itself. matches the tested behavior — The specified gateway is wrong. applies a different mechanism.",
+            "whatItDoes": "The specified gateway is wrong. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, The command is only used for the management plane of the router itself. matches the tested behavior — The specified gateway is wrong. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The specified gateway is wrong.\" without matching static routing",
             "needsExplanationReview": true
           }
         ],
@@ -1244,20 +1400,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RouterA(config)#ip route 192.168.3.0 255.255.255.0 serial 0/1 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "RouterA(config)#ip route 192.168.3.0 255.255.255.0 serial 0/1 describes a mechanism that could sound plausible for static routing. Given static routing, RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the tested behavior — RouterA(config)#ip route 192.168.3.0 255.255.255.0 serial 0/1 applies a different mechanism.",
+            "whatItDoes": "RouterA(config)#ip route 192.168.3.0 255.255.255.0 serial 0/1 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the tested behavior — RouterA(config)#ip route 192.168.3.0 255.255.255.0 serial 0/1 applies a different mechanism.",
+            "misconceptionTested": "Applying \"RouterA(config)#ip route 192.168.3.0\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.1 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.1 describes a mechanism that could sound plausible for static routing. Given static routing, RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the tested behavior — RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.1 applies a different mechanism.",
+            "whatItDoes": "RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.1 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the tested behavior — RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.1 applies a different mechanism.",
+            "misconceptionTested": "Applying \"RouterA(config)#ip route 192.168.3.0\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.3.1 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.3.1 describes a mechanism that could sound plausible for static routing. Given static routing, RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the tested behavior — RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.3.1 applies a different mechanism.",
+            "whatItDoes": "RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.3.1 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the tested behavior — RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.3.1 applies a different mechanism.",
+            "misconceptionTested": "Applying \"RouterA(config)#ip route 192.168.3.0\" without matching static routing",
             "needsExplanationReview": true
           }
         ],
@@ -1292,19 +1454,25 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The router creates a /32 route for the IP address. does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "The router creates a /32 route for the IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given static routing, All of the above. matches the tested behavior — The router creates a /32 route for the IP address. applies a different mechanism.",
+            "whatItDoes": "The router creates a /32 route for the IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given static routing, All of the above. matches the tested behavior — The router creates a /32 route for the IP address. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The router creates a /32 route for t\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "The router creates a summary address for the network. does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "The router creates a summary address for the network. describes a mechanism that could sound plausible for static routing. Given static routing, All of the above. matches the tested behavior — The router creates a summary address for the network. applies a different mechanism.",
+            "whatItDoes": "The router creates a summary address for the network. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, All of the above. matches the tested behavior — The router creates a summary address for the network. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The router creates a summary address\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "The router creates a routing update if dynamic routing is configured. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "The router creates a routing update if dynamic routing is configured. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, All of the above. matches the tested behavior — The router creates a routing update if dynamic routing is configured. applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
@@ -1341,20 +1509,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#show ip does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Router#show ip describes a mechanism that could sound plausible for static routing. Given static routing, Router#show ip interfaces brief matches the tested behavior — Router#show ip applies a different mechanism.",
+            "whatItDoes": "Router#show ip describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router#show ip interfaces brief matches the tested behavior — Router#show ip applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#show interfaces does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Router#show interfaces describes a mechanism that could sound plausible for static routing. Given static routing, Router#show ip interfaces brief matches the tested behavior — Router#show interfaces applies a different mechanism.",
+            "whatItDoes": "Router#show interfaces describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router#show ip interfaces brief matches the tested behavior — Router#show interfaces applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show interfaces\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show ip brief does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Router#show ip brief describes a mechanism that could sound plausible for static routing. Given static routing, Router#show ip interfaces brief matches the tested behavior — Router#show ip brief applies a different mechanism.",
+            "whatItDoes": "Router#show ip brief describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router#show ip interfaces brief matches the tested behavior — Router#show ip brief applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip brief\" without matching static routing",
             "needsExplanationReview": true
           }
         ],
@@ -1390,20 +1564,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The interface speed is incorrect. does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "The interface speed is incorrect. describes a mechanism that could sound plausible for static routing. Given static routing, The interface is administratively shut down. matches the tested behavior — The interface speed is incorrect. applies a different mechanism.",
+            "whatItDoes": "The interface speed is incorrect. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, The interface is administratively shut down. matches the tested behavior — The interface speed is incorrect. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The interface speed is incorrect.\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The interface bandwidth is not set. does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "The interface bandwidth is not set. describes a mechanism that could sound plausible for static routing. Given static routing, The interface is administratively shut down. matches the tested behavior — The interface bandwidth is not set. applies a different mechanism.",
+            "whatItDoes": "The interface bandwidth is not set. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, The interface is administratively shut down. matches the tested behavior — The interface bandwidth is not set. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The interface bandwidth is not set.\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The route will not show up until you save the config. does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "The route will not show up until you save the config. describes a mechanism that could sound plausible for static routing. Given static routing, The interface is administratively shut down. matches the tested behavior — The route will not show up until you save the config. applies a different mechanism.",
+            "whatItDoes": "The route will not show up until you save the config. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, The interface is administratively shut down. matches the tested behavior — The route will not show up until you save the config. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The route will not show up until you\" without matching static routing",
             "needsExplanationReview": true
           }
         ],
@@ -1438,20 +1618,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Adding networks is an easy task for network administrators. does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Adding networks is an easy task for network administrators. describes a mechanism that could sound plausible for static routing. Given static routing, It reduces bandwidth used by router-to-router communications. matches the tested behavior — Adding networks is an easy task for network administrators. applies a different mechanism.",
+            "whatItDoes": "Adding networks is an easy task for network administrators. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, It reduces bandwidth used by router-to-router communications. matches the tested behavior — Adding networks is an easy task for network administrators. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Adding networks is an easy task for \" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "It is suited for large networks because changes will not disturb routing. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "It is suited for large networks because changes will not disturb routing. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, It reduces bandwidth used by router-to-router communications. matches the tested behavior — It is suited for large networks because changes will not disturb routing. applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "It allows for configuration by any network admin in the network. does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "It allows for configuration by any network admin in the network. describes a mechanism that could sound plausible for static routing. Given static routing, It reduces bandwidth used by router-to-router communications. matches the tested behavior — It allows for configuration by any network admin in the network. applies a different mechanism.",
+            "whatItDoes": "It allows for configuration by any network admin in the network. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, It reduces bandwidth used by router-to-router communications. matches the tested behavior — It allows for configuration by any network admin in the network. applies a different mechanism.",
+            "misconceptionTested": "Applying \"It allows for configuration by any n\" without matching static routing",
             "needsExplanationReview": true
           }
         ],
@@ -1485,19 +1671,25 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RAM does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "RAM describes a mechanism that could sound plausible for static routing. Given static routing, Startup configuration matches the tested behavior — RAM applies a different mechanism.",
+            "whatItDoes": "RAM describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Startup configuration matches the tested behavior — RAM applies a different mechanism.",
+            "misconceptionTested": "Applying \"RAM\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Flash does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Flash describes a mechanism that could sound plausible for static routing. Given static routing, Startup configuration matches the tested behavior — Flash applies a different mechanism.",
+            "whatItDoes": "Flash describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Startup configuration matches the tested behavior — Flash applies a different mechanism.",
+            "misconceptionTested": "Applying \"Flash\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "Routing database reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Routing database describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Startup configuration matches the tested behavior — Routing database applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
@@ -1534,20 +1726,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#ip route 192.168.0.0 255.255.0.0 198.43.23.2 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Router(config)#ip route 192.168.0.0 255.255.0.0 198.43.23.2 describes a mechanism that could sound plausible for static routing. Given static routing, Router(config)#ip route 192.168.0.0 255.255.240.0 198.43.23.2 matches the tested behavior — Router(config)#ip route 192.168.0.0 255.255.0.0 198.43.23.2 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip route 192.168.0.0 255.255.0.0 198.43.23.2 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router(config)#ip route 192.168.0.0 255.255.240.0 198.43.23.2 matches the tested behavior — Router(config)#ip route 192.168.0.0 255.255.0.0 198.43.23.2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip route 192.168.0.0 \" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#ip route 192.168.0.0 255.255.255.0 198.43.23.2 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Router(config)#ip route 192.168.0.0 255.255.255.0 198.43.23.2 describes a mechanism that could sound plausible for static routing. Given static routing, Router(config)#ip route 192.168.0.0 255.255.240.0 198.43.23.2 matches the tested behavior — Router(config)#ip route 192.168.0.0 255.255.255.0 198.43.23.2 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip route 192.168.0.0 255.255.255.0 198.43.23.2 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router(config)#ip route 192.168.0.0 255.255.240.0 198.43.23.2 matches the tested behavior — Router(config)#ip route 192.168.0.0 255.255.255.0 198.43.23.2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip route 192.168.0.0 \" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#ip route 192.168.0.0 255.255.0.240 198.43.23.2 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Router(config)#ip route 192.168.0.0 255.255.0.240 198.43.23.2 describes a mechanism that could sound plausible for static routing. Given static routing, Router(config)#ip route 192.168.0.0 255.255.240.0 198.43.23.2 matches the tested behavior — Router(config)#ip route 192.168.0.0 255.255.0.240 198.43.23.2 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip route 192.168.0.0 255.255.0.240 198.43.23.2 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router(config)#ip route 192.168.0.0 255.255.240.0 198.43.23.2 matches the tested behavior — Router(config)#ip route 192.168.0.0 255.255.0.240 198.43.23.2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip route 192.168.0.0 \" without matching static routing",
             "needsExplanationReview": true
           }
         ],
@@ -1583,18 +1781,24 @@
           {
             "choiceIndex": 0,
             "explanation": "If the first one fails to route to the destination, the second route will succeed. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "If the first one fails to route to the destination, the second route will succeed. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, If the first interface goes down, the second route will become active. matches the tested behavior — If the first one fails to route to the destination, the second route will succeed. applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "If there is a high amount of traffic on the first interface, the second route will become active. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "If there is a high amount of traffic on the first interface, the second route will become active. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, If the first interface goes down, the second route will become active. matches the tested behavior — If there is a high amount of traffic on the first interface, the second route will become active. applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "If there is a routing loop on the first interface, the second will overcome the loop. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "If there is a routing loop on the first interface, the second will overcome the loop. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, If the first interface goes down, the second route will become active. matches the tested behavior — If there is a routing loop on the first interface, the second will overcome the loop. applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
@@ -1631,20 +1835,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "S 208.43.34.24/29 is directly connected, Serial 0/0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "S 208.43.34.24/29 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for static routing. Given static routing, S 208.43.34.17/32 is directly connected, Serial 0/0/0 matches the tested behavior — S 208.43.34.24/29 is directly connected, Serial 0/0/0 applies a different mechanism.",
+            "whatItDoes": "S 208.43.34.24/29 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, S 208.43.34.17/32 is directly connected, Serial 0/0/0 matches the tested behavior — S 208.43.34.24/29 is directly connected, Serial 0/0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"S 208.43.34.24/29 is directly connec\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "S 208.43.34.8/29 is directly connected, Serial 0/0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "S 208.43.34.8/29 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for static routing. Given static routing, S 208.43.34.17/32 is directly connected, Serial 0/0/0 matches the tested behavior — S 208.43.34.8/29 is directly connected, Serial 0/0/0 applies a different mechanism.",
+            "whatItDoes": "S 208.43.34.8/29 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, S 208.43.34.17/32 is directly connected, Serial 0/0/0 matches the tested behavior — S 208.43.34.8/29 is directly connected, Serial 0/0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"S 208.43.34.8/29 is directly connect\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "S 208.43.34.17/29 is directly connected, Serial 0/0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "S 208.43.34.17/29 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for static routing. Given static routing, S 208.43.34.17/32 is directly connected, Serial 0/0/0 matches the tested behavior — S 208.43.34.17/29 is directly connected, Serial 0/0/0 applies a different mechanism.",
+            "whatItDoes": "S 208.43.34.17/29 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, S 208.43.34.17/32 is directly connected, Serial 0/0/0 matches the tested behavior — S 208.43.34.17/29 is directly connected, Serial 0/0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"S 208.43.34.17/29 is directly connec\" without matching static routing",
             "needsExplanationReview": true
           }
         ],
@@ -1680,20 +1890,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The 172.30.0/16 network does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "The 172.30.0/16 network describes a mechanism that could sound plausible for static routing. Given static routing, The 192.168.4.0/24 network matches the tested behavior — The 172.30.0/16 network applies a different mechanism.",
+            "whatItDoes": "The 172.30.0/16 network describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, The 192.168.4.0/24 network matches the tested behavior — The 172.30.0/16 network applies a different mechanism.",
+            "misconceptionTested": "Applying \"The 172.30.0/16 network\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "The 192.168.128.0/24 network does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "The 192.168.128.0/24 network describes a mechanism that could sound plausible for static routing. Given static routing, The 192.168.4.0/24 network matches the tested behavior — The 192.168.128.0/24 network applies a different mechanism.",
+            "whatItDoes": "The 192.168.128.0/24 network describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, The 192.168.4.0/24 network matches the tested behavior — The 192.168.128.0/24 network applies a different mechanism.",
+            "misconceptionTested": "Applying \"The 192.168.128.0/24 network\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The 192.168.0.0/16 network does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "The 192.168.0.0/16 network describes a mechanism that could sound plausible for static routing. Given static routing, The 192.168.4.0/24 network matches the tested behavior — The 192.168.0.0/16 network applies a different mechanism.",
+            "whatItDoes": "The 192.168.0.0/16 network describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, The 192.168.4.0/24 network matches the tested behavior — The 192.168.0.0/16 network applies a different mechanism.",
+            "misconceptionTested": "Applying \"The 192.168.0.0/16 network\" without matching static routing",
             "needsExplanationReview": true
           }
         ],
@@ -1729,20 +1945,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RouterB(config)#ip route 198.44.4.0/24 198.55.4.9 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "RouterB(config)#ip route 198.44.4.0/24 198.55.4.9 describes a mechanism that could sound plausible for static routing. Given static routing, RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/1 matches the tested behavior — RouterB(config)#ip route 198.44.4.0/24 198.55.4.9 applies a different mechanism.",
+            "whatItDoes": "RouterB(config)#ip route 198.44.4.0/24 198.55.4.9 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/1 matches the tested behavior — RouterB(config)#ip route 198.44.4.0/24 198.55.4.9 applies a different mechanism.",
+            "misconceptionTested": "Applying \"RouterB(config)#ip route 198.44.4.0/\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "RouterB(config)#ip route 198.44.4.0 255.255.255.0 198.55.4.10 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "RouterB(config)#ip route 198.44.4.0 255.255.255.0 198.55.4.10 describes a mechanism that could sound plausible for static routing. Given static routing, RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/1 matches the tested behavior — RouterB(config)#ip route 198.44.4.0 255.255.255.0 198.55.4.10 applies a different mechanism.",
+            "whatItDoes": "RouterB(config)#ip route 198.44.4.0 255.255.255.0 198.55.4.10 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/1 matches the tested behavior — RouterB(config)#ip route 198.44.4.0 255.255.255.0 198.55.4.10 applies a different mechanism.",
+            "misconceptionTested": "Applying \"RouterB(config)#ip route 198.44.4.0 \" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/0 describes a mechanism that could sound plausible for static routing. Given static routing, RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/1 matches the tested behavior — RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/0 applies a different mechanism.",
+            "whatItDoes": "RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/0 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/1 matches the tested behavior — RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"RouterB(config)#ip route 198.44.4.0 \" without matching static routing",
             "needsExplanationReview": true
           }
         ],
@@ -1778,20 +2000,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "S 194.22.34.64/28 is directly connected, Serial 0/0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "S 194.22.34.64/28 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for static routing. Given static routing, S 194.22.34.48/28 is directly connected, Serial 0/0/0 matches the tested behavior — S 194.22.34.64/28 is directly connected, Serial 0/0/0 applies a different mechanism.",
+            "whatItDoes": "S 194.22.34.64/28 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, S 194.22.34.48/28 is directly connected, Serial 0/0/0 matches the tested behavior — S 194.22.34.64/28 is directly connected, Serial 0/0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"S 194.22.34.64/28 is directly connec\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "S 194.22.34.54/28 is directly connected, Serial 0/0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "S 194.22.34.54/28 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for static routing. Given static routing, S 194.22.34.48/28 is directly connected, Serial 0/0/0 matches the tested behavior — S 194.22.34.54/28 is directly connected, Serial 0/0/0 applies a different mechanism.",
+            "whatItDoes": "S 194.22.34.54/28 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, S 194.22.34.48/28 is directly connected, Serial 0/0/0 matches the tested behavior — S 194.22.34.54/28 is directly connected, Serial 0/0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"S 194.22.34.54/28 is directly connec\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "S 194.22.34.32/28 is directly connected, Serial 0/0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "S 194.22.34.32/28 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for static routing. Given static routing, S 194.22.34.48/28 is directly connected, Serial 0/0/0 matches the tested behavior — S 194.22.34.32/28 is directly connected, Serial 0/0/0 applies a different mechanism.",
+            "whatItDoes": "S 194.22.34.32/28 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, S 194.22.34.48/28 is directly connected, Serial 0/0/0 matches the tested behavior — S 194.22.34.32/28 is directly connected, Serial 0/0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"S 194.22.34.32/28 is directly connec\" without matching static routing",
             "needsExplanationReview": true
           }
         ],
@@ -1827,18 +2055,24 @@
           {
             "choiceIndex": 0,
             "explanation": "Router(config)# ip route 0.0.0.0 0.0.0.0 serial 0/0 reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "whatItDoes": "Router(config)# ip route 0.0.0.0 0.0.0.0 serial 0/0 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router(config)# ipv6 route ::/0 serial 0/0 matches the tested behavior — Router(config)# ip route 0.0.0.0 0.0.0.0 serial 0/0 applies a different mechanism.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "Router(config)# ipv6 route 0.0.0.0 0.0.0.0 serial 0/0 reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Router(config)# ipv6 route 0.0.0.0 0.0.0.0 serial 0/0 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router(config)# ipv6 route ::/0 serial 0/0 matches the tested behavior — Router(config)# ipv6 route 0.0.0.0 0.0.0.0 serial 0/0 applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "Router(config)# ip route ::/0 serial 0/0 reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "whatItDoes": "Router(config)# ip route ::/0 serial 0/0 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router(config)# ipv6 route ::/0 serial 0/0 matches the tested behavior — Router(config)# ip route ::/0 serial 0/0 applies a different mechanism.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           }
@@ -1873,19 +2107,25 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#ip route fc00:0:0:1 serial 0/0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Router(config)#ip route fc00:0:0:1 serial 0/0/0 describes a mechanism that could sound plausible for static routing. Given static routing, Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0 matches the tested behavior — Router(config)#ip route fc00:0:0:1 serial 0/0/0 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip route fc00:0:0:1 serial 0/0/0 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0 matches the tested behavior — Router(config)#ip route fc00:0:0:1 serial 0/0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip route fc00:0:0:1 s\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#ip route fc00:0:0:1/64 serial 0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Router(config)#ip route fc00:0:0:1/64 serial 0/0 describes a mechanism that could sound plausible for static routing. Given static routing, Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0 matches the tested behavior — Router(config)#ip route fc00:0:0:1/64 serial 0/0 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip route fc00:0:0:1/64 serial 0/0 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0 matches the tested behavior — Router(config)#ip route fc00:0:0:1/64 serial 0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip route fc00:0:0:1/6\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "Router(config)#ipv6 route fc00:0:0:1 serial 0/0/0 reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Router(config)#ipv6 route fc00:0:0:1 serial 0/0/0 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0 matches the tested behavior — Router(config)#ipv6 route fc00:0:0:1 serial 0/0/0 applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
@@ -1923,20 +2163,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "IP address of 192.168.4.5 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "IP address of 192.168.4.5 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given static routing, IP address of 192.168.4.2 matches the tested behavior — IP address of 192.168.4.5 applies a different mechanism.",
+            "whatItDoes": "IP address of 192.168.4.5 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given static routing, IP address of 192.168.4.2 matches the tested behavior — IP address of 192.168.4.5 applies a different mechanism.",
+            "misconceptionTested": "Applying \"IP address of 192.168.4.5\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Interface Serial 0/0/1 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Interface Serial 0/0/1 describes a mechanism that could sound plausible for static routing. Given static routing, IP address of 192.168.4.2 matches the tested behavior — Interface Serial 0/0/1 applies a different mechanism.",
+            "whatItDoes": "Interface Serial 0/0/1 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, IP address of 192.168.4.2 matches the tested behavior — Interface Serial 0/0/1 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Interface Serial 0/0/1\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Interface Serial 0/2/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "Interface Serial 0/2/0 describes a mechanism that could sound plausible for static routing. Given static routing, IP address of 192.168.4.2 matches the tested behavior — Interface Serial 0/2/0 applies a different mechanism.",
+            "whatItDoes": "Interface Serial 0/2/0 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, IP address of 192.168.4.2 matches the tested behavior — Interface Serial 0/2/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Interface Serial 0/2/0\" without matching static routing",
             "needsExplanationReview": true
           }
         ],
@@ -1975,18 +2221,24 @@
           {
             "choiceIndex": 0,
             "explanation": "OSPF routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "OSPF routing describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Default routing matches the tested behavior — OSPF routing applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "EIGRP routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "EIGRP routing describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Default routing matches the tested behavior — EIGRP routing applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "RIP routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "RIP routing describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Default routing matches the tested behavior — RIP routing applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
@@ -2021,20 +2273,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "There is less administrative overhead. does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "There is less administrative overhead. describes a mechanism that could sound plausible for static routing. Given static routing, It is extremely secure. matches the tested behavior — There is less administrative overhead. applies a different mechanism.",
+            "whatItDoes": "There is less administrative overhead. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, It is extremely secure. matches the tested behavior — There is less administrative overhead. applies a different mechanism.",
+            "misconceptionTested": "Applying \"There is less administrative overhea\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "It can create resiliency in a network. does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "It can create resiliency in a network. describes a mechanism that could sound plausible for static routing. Given static routing, It is extremely secure. matches the tested behavior — It can create resiliency in a network. applies a different mechanism.",
+            "whatItDoes": "It can create resiliency in a network. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, It is extremely secure. matches the tested behavior — It can create resiliency in a network. applies a different mechanism.",
+            "misconceptionTested": "Applying \"It can create resiliency in a networ\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "It is extremely scalable without issues. does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "It is extremely scalable without issues. describes a mechanism that could sound plausible for static routing. Given static routing, It is extremely secure. matches the tested behavior — It is extremely scalable without issues. applies a different mechanism.",
+            "whatItDoes": "It is extremely scalable without issues. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, It is extremely secure. matches the tested behavior — It is extremely scalable without issues. applies a different mechanism.",
+            "misconceptionTested": "Applying \"It is extremely scalable without iss\" without matching static routing",
             "needsExplanationReview": true
           }
         ],
@@ -2073,18 +2331,24 @@
           {
             "choiceIndex": 0,
             "explanation": "RIP routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "RIP routing describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Static routing matches the tested behavior — RIP routing applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "OSPF routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "OSPF routing describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Static routing matches the tested behavior — OSPF routing applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "EIGRP routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "EIGRP routing describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Static routing matches the tested behavior — EIGRP routing applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
@@ -2121,18 +2385,24 @@
           {
             "choiceIndex": 0,
             "explanation": "Dynamic routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Dynamic routing describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Static routing matches the tested behavior — Dynamic routing applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "Directly connected routes reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Directly connected routes describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Static routing matches the tested behavior — Directly connected routes applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "Default routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Default routing describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Static routing matches the tested behavior — Default routing applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
@@ -2169,18 +2439,24 @@
           {
             "choiceIndex": 0,
             "explanation": "Router#show static routes reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Router#show static routes describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router#show ip routes static matches the tested behavior — Router#show static routes applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "Router#show ip static routes reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Router#show ip static routes describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router#show ip routes static matches the tested behavior — Router#show ip static routes applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "Router#show ip routes reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Router#show ip routes describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, Router#show ip routes static matches the tested behavior — Router#show ip routes applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
@@ -2216,20 +2492,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The router will calculate a network ID of 2000:0db8::. does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "The router will calculate a network ID of 2000:0db8::. describes a mechanism that could sound plausible for static routing. Given static routing, The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0. matches the tested behavior — The router will calculate a network ID of 2000:0db8::. applies a different mechanism.",
+            "whatItDoes": "The router will calculate a network ID of 2000:0db8::. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0. matches the tested behavior — The router will calculate a network ID of 2000:0db8::. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The router will calculate a network \" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "The IPv6 address of 2000:0db8:4400:2300:1234:0000:0000:0000/128 will be assigned to Serial 0/0. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "The IPv6 address of 2000:0db8:4400:2300:1234:0000:0000:0000/128 will be assigned to Serial 0/0. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0. matches the tested behavior — The IPv6 address of 2000:0db8:4400:2300:1234:0000:0000:0000/128 will be assigned to Serial 0/0. applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The router will calculate a network ID of 2000:db8:4400:2300:0000/64 for Serial 0/0. does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "The router will calculate a network ID of 2000:db8:4400:2300:0000/64 for Serial 0/0. describes a mechanism that could sound plausible for static routing. Given static routing, The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0. matches the tested behavior — The router will calculate a network ID of 2000:db8:4400:2300:0000/64 for Serial 0/0. applies a different mechanism.",
+            "whatItDoes": "The router will calculate a network ID of 2000:db8:4400:2300:0000/64 for Serial 0/0. describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0. matches the tested behavior — The router will calculate a network ID of 2000:db8:4400:2300:0000/64 for Serial 0/0. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The router will calculate a network \" without matching static routing",
             "needsExplanationReview": true
           }
         ],
@@ -2267,18 +2549,24 @@
           {
             "choiceIndex": 0,
             "explanation": "Multicast addresses do not get added to the routing tables. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Multicast addresses do not get added to the routing tables. relies on a router routing table rather than switch MAC/CAM forwarding.",
+            "whyWrongHere": "Given static routing, Link-local addresses do not get added to the routing tables. matches the tested behavior — Multicast addresses do not get added to the routing tables. applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "Only one route statement can be in the routing table at a time for an interface. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Only one route statement can be in the routing table at a time for an interface. relies on a router routing table rather than switch MAC/CAM forwarding.",
+            "whyWrongHere": "Given static routing, Link-local addresses do not get added to the routing tables. matches the tested behavior — Only one route statement can be in the routing table at a time for an interface. applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "Broadcast addresses do not get added to the routing tables. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "Broadcast addresses do not get added to the routing tables. describes flooding the frame to multiple ports in the VLAN.",
+            "whyWrongHere": "Given static routing, Link-local addresses do not get added to the routing tables. matches the tested behavior — Broadcast addresses do not get added to the routing tables. applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
@@ -2318,18 +2606,24 @@
           {
             "choiceIndex": 0,
             "explanation": "RouterB(config-if )#ipv6 address default reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "RouterB(config-if )#ipv6 address default describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, RouterB(config-if)#ipv6 address autoconfig default matches the tested behavior — RouterB(config-if )#ipv6 address default applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "RouterB(config)#ip route ::/0 serial 0/3/0 reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "whatItDoes": "RouterB(config)#ip route ::/0 serial 0/3/0 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, RouterB(config-if)#ipv6 address autoconfig default matches the tested behavior — RouterB(config)#ip route ::/0 serial 0/3/0 applies a different mechanism.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "RouterB(config-if)#ipv6 address slaac reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "whatItDoes": "RouterB(config-if)#ipv6 address slaac describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, RouterB(config-if)#ipv6 address autoconfig default matches the tested behavior — RouterB(config-if)#ipv6 address slaac applies a different mechanism.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
@@ -2366,18 +2660,24 @@
           {
             "choiceIndex": 0,
             "explanation": "RouterA(config)#ip default-network 192.168.2.6 reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "whatItDoes": "RouterA(config)#ip default-network 192.168.2.6 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, RouterA(config)#ip route 0.0.0.0 0.0.0.0 192.168.2.6 matches the tested behavior — RouterA(config)#ip default-network 192.168.2.6 applies a different mechanism.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "RouterA(config)#ip route default-gateway 192.168.2.6 reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "whatItDoes": "RouterA(config)#ip route default-gateway 192.168.2.6 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, RouterA(config)#ip route 0.0.0.0 0.0.0.0 192.168.2.6 matches the tested behavior — RouterA(config)#ip route default-gateway 192.168.2.6 applies a different mechanism.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "RouterA(config)#ip route 0.0.0.0 255.255.255.255 192.168.2.6 reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "whatItDoes": "RouterA(config)#ip route 0.0.0.0 255.255.255.255 192.168.2.6 describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, RouterA(config)#ip route 0.0.0.0 0.0.0.0 192.168.2.6 matches the tested behavior — RouterA(config)#ip route 0.0.0.0 255.255.255.255 192.168.2.6 applies a different mechanism.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           }
@@ -2414,20 +2714,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RouterA#show ip rip does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "RouterA#show ip rip describes a mechanism that could sound plausible for static routing. Given static routing, RouterA#show ip route rip matches the tested behavior — RouterA#show ip rip applies a different mechanism.",
+            "whatItDoes": "RouterA#show ip rip describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, RouterA#show ip route rip matches the tested behavior — RouterA#show ip rip applies a different mechanism.",
+            "misconceptionTested": "Applying \"RouterA#show ip rip\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "RouterA#show ip route does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "RouterA#show ip route describes a mechanism that could sound plausible for static routing. Given static routing, RouterA#show ip route rip matches the tested behavior — RouterA#show ip route applies a different mechanism.",
+            "whatItDoes": "RouterA#show ip route describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, RouterA#show ip route rip matches the tested behavior — RouterA#show ip route applies a different mechanism.",
+            "misconceptionTested": "Applying \"RouterA#show ip route\" without matching static routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "RouterA#show ip rip route does not match the mechanism asked here.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "RouterA#show ip rip route describes a mechanism that could sound plausible for static routing. Given static routing, RouterA#show ip route rip matches the tested behavior — RouterA#show ip rip route applies a different mechanism.",
+            "whatItDoes": "RouterA#show ip rip route describes a mechanism that could sound plausible for static routing.",
+            "whyWrongHere": "Given static routing, RouterA#show ip route rip matches the tested behavior — RouterA#show ip rip route applies a different mechanism.",
+            "misconceptionTested": "Applying \"RouterA#show ip rip route\" without matching static routing",
             "needsExplanationReview": true
           }
         ],

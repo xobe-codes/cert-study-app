@@ -29,20 +29,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Layer 2 ASICs is the wrong OSI layer here. The stem tests Layer 3 behavior — routers forward based on IP addresses and routing tables.",
-            "misconceptionTested": "Selecting \"Layer 2 ASICs\" without matching the scenario constraint",
+            "explanation": "Layer 2 ASICs describes a mechanism that could sound plausible for classify. Given classify, Access control lists matches the tested behavior — Layer 2 ASICs applies a different mechanism.",
+            "whatItDoes": "Layer 2 ASICs describes a mechanism that could sound plausible for classify.",
+            "whyWrongHere": "Given classify, Access control lists matches the tested behavior — Layer 2 ASICs applies a different mechanism.",
+            "misconceptionTested": "Applying \"Layer 2 ASICs\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Route tables does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Route tables\" without matching the scenario constraint",
+            "explanation": "Route tables describes a mechanism that could sound plausible for classify. Given classify, Access control lists matches the tested behavior — Route tables applies a different mechanism.",
+            "whatItDoes": "Route tables describes a mechanism that could sound plausible for classify.",
+            "whyWrongHere": "Given classify, Access control lists matches the tested behavior — Route tables applies a different mechanism.",
+            "misconceptionTested": "Applying \"Route tables\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Frame filters does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Frame filters\" without matching the scenario constraint",
+            "explanation": "Frame filters describes a mechanism that could sound plausible for classify. Given classify, Access control lists matches the tested behavior — Frame filters applies a different mechanism.",
+            "whatItDoes": "Frame filters describes a mechanism that could sound plausible for classify.",
+            "whyWrongHere": "Given classify, Access control lists matches the tested behavior — Frame filters applies a different mechanism.",
+            "misconceptionTested": "Applying \"Frame filters\" without matching qos",
             "needsExplanationReview": true
           }
         ],
@@ -78,20 +84,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Bandwidth does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Bandwidth\" without matching the scenario constraint",
+            "explanation": "Bandwidth describes a mechanism that could sound plausible for measurement. Given measurement, Jitter matches the tested behavior — Bandwidth applies a different mechanism.",
+            "whatItDoes": "Bandwidth describes a mechanism that could sound plausible for measurement.",
+            "whyWrongHere": "Given measurement, Jitter matches the tested behavior — Bandwidth applies a different mechanism.",
+            "misconceptionTested": "Applying \"Bandwidth\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Delay does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Delay\" without matching the scenario constraint",
+            "explanation": "Delay describes a mechanism that could sound plausible for measurement. Given measurement, Jitter matches the tested behavior — Delay applies a different mechanism.",
+            "whatItDoes": "Delay describes a mechanism that could sound plausible for measurement.",
+            "whyWrongHere": "Given measurement, Jitter matches the tested behavior — Delay applies a different mechanism.",
+            "misconceptionTested": "Applying \"Delay\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Loss does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Loss\" without matching the scenario constraint",
+            "explanation": "Loss describes a mechanism that could sound plausible for measurement. Given measurement, Jitter matches the tested behavior — Loss applies a different mechanism.",
+            "whatItDoes": "Loss describes a mechanism that could sound plausible for measurement.",
+            "whyWrongHere": "Given measurement, Jitter matches the tested behavior — Loss applies a different mechanism.",
+            "misconceptionTested": "Applying \"Loss\" without matching qos",
             "needsExplanationReview": true
           }
         ],
@@ -125,20 +137,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The Class of Service field is a layer 3 field. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The Class of Service field is a layer 3 …\" without matching the scenario constraint",
+            "explanation": "The Class of Service field is a layer 3 field. describes a mechanism that could sound plausible for statement. Given statement, The Class of Service field is only present in 802.1Q frames. matches the tested behavior — The Class of Service field is a layer 3 field. applies a different mechanism.",
+            "whatItDoes": "The Class of Service field is a layer 3 field. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, The Class of Service field is only present in 802.1Q frames. matches the tested behavior — The Class of Service field is a layer 3 field. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The Class of Service field is a laye\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The Class of Service field is present from end to end of a transmission. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The Class of Service field is present fr…\" without matching the scenario constraint",
+            "explanation": "The Class of Service field is present from end to end of a transmission. describes a mechanism that could sound plausible for statement. Given statement, The Class of Service field is only present in 802.1Q frames. matches the tested behavior — The Class of Service field is present from end to end of a transmission. applies a different mechanism.",
+            "whatItDoes": "The Class of Service field is present from end to end of a transmission. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, The Class of Service field is only present in 802.1Q frames. matches the tested behavior — The Class of Service field is present from end to end of a transmission. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The Class of Service field is presen\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The Class of Service field is 6 bits. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The Class of Service field is 6 bits.\" without matching the scenario constraint",
+            "explanation": "The Class of Service field is 6 bits. describes a mechanism that could sound plausible for statement. Given statement, The Class of Service field is only present in 802.1Q frames. matches the tested behavior — The Class of Service field is 6 bits. applies a different mechanism.",
+            "whatItDoes": "The Class of Service field is 6 bits. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, The Class of Service field is only present in 802.1Q frames. matches the tested behavior — The Class of Service field is 6 bits. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The Class of Service field is 6 bits\" without matching qos",
             "needsExplanationReview": true
           }
         ],
@@ -175,20 +193,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Bandwidth does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Bandwidth\" without matching the scenario constraint",
+            "explanation": "Bandwidth describes a mechanism that could sound plausible for identify. Given identify, Loss matches the tested behavior — Bandwidth applies a different mechanism.",
+            "whatItDoes": "Bandwidth describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Loss matches the tested behavior — Bandwidth applies a different mechanism.",
+            "misconceptionTested": "Applying \"Bandwidth\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Delay does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Delay\" without matching the scenario constraint",
+            "explanation": "Delay describes a mechanism that could sound plausible for identify. Given identify, Loss matches the tested behavior — Delay applies a different mechanism.",
+            "whatItDoes": "Delay describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Loss matches the tested behavior — Delay applies a different mechanism.",
+            "misconceptionTested": "Applying \"Delay\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Jitter does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Jitter\" without matching the scenario constraint",
+            "explanation": "Jitter describes a mechanism that could sound plausible for identify. Given identify, Loss matches the tested behavior — Jitter applies a different mechanism.",
+            "whatItDoes": "Jitter describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Loss matches the tested behavior — Jitter applies a different mechanism.",
+            "misconceptionTested": "Applying \"Jitter\" without matching qos",
             "needsExplanationReview": true
           }
         ],
@@ -223,20 +247,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "DSCP AF 43 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"DSCP AF 43\" without matching the scenario constraint",
+            "explanation": "DSCP AF 43 describes a mechanism that could sound plausible for priority. Given priority, DSCP EF 46 matches the tested behavior — DSCP AF 43 applies a different mechanism.",
+            "whatItDoes": "DSCP AF 43 describes a mechanism that could sound plausible for priority.",
+            "whyWrongHere": "Given priority, DSCP EF 46 matches the tested behavior — DSCP AF 43 applies a different mechanism.",
+            "misconceptionTested": "Applying \"DSCP AF 43\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "DSCP AF 11 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"DSCP AF 11\" without matching the scenario constraint",
+            "explanation": "DSCP AF 11 describes a mechanism that could sound plausible for priority. Given priority, DSCP EF 46 matches the tested behavior — DSCP AF 11 applies a different mechanism.",
+            "whatItDoes": "DSCP AF 11 describes a mechanism that could sound plausible for priority.",
+            "whyWrongHere": "Given priority, DSCP EF 46 matches the tested behavior — DSCP AF 11 applies a different mechanism.",
+            "misconceptionTested": "Applying \"DSCP AF 11\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "DSCP AF 00 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"DSCP AF 00\" without matching the scenario constraint",
+            "explanation": "DSCP AF 00 describes a mechanism that could sound plausible for priority. Given priority, DSCP EF 46 matches the tested behavior — DSCP AF 00 applies a different mechanism.",
+            "whatItDoes": "DSCP AF 00 describes a mechanism that could sound plausible for priority.",
+            "whyWrongHere": "Given priority, DSCP EF 46 matches the tested behavior — DSCP AF 00 applies a different mechanism.",
+            "misconceptionTested": "Applying \"DSCP AF 00\" without matching qos",
             "needsExplanationReview": true
           }
         ],
@@ -270,20 +300,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "10 ms does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"10 ms\" without matching the scenario constraint",
+            "explanation": "10 ms describes a mechanism that could sound plausible for identify. Given identify, 150 ms matches the tested behavior — 10 ms applies a different mechanism.",
+            "whatItDoes": "10 ms describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, 150 ms matches the tested behavior — 10 ms applies a different mechanism.",
+            "misconceptionTested": "Applying \"10 ms\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "90 ms does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"90 ms\" without matching the scenario constraint",
+            "explanation": "90 ms describes a mechanism that could sound plausible for identify. Given identify, 150 ms matches the tested behavior — 90 ms applies a different mechanism.",
+            "whatItDoes": "90 ms describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, 150 ms matches the tested behavior — 90 ms applies a different mechanism.",
+            "misconceptionTested": "Applying \"90 ms\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "300 ms does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"300 ms\" without matching the scenario constraint",
+            "explanation": "300 ms describes a mechanism that could sound plausible for identify. Given identify, 150 ms matches the tested behavior — 300 ms applies a different mechanism.",
+            "whatItDoes": "300 ms describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, 150 ms matches the tested behavior — 300 ms applies a different mechanism.",
+            "misconceptionTested": "Applying \"300 ms\" without matching qos",
             "needsExplanationReview": true
           }
         ],
@@ -320,20 +356,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "CBWFQ does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"CBWFQ\" without matching the scenario constraint",
+            "explanation": "CBWFQ describes a mechanism that could sound plausible for priority. Given priority, LLQ matches the tested behavior — CBWFQ applies a different mechanism.",
+            "whatItDoes": "CBWFQ describes a mechanism that could sound plausible for priority.",
+            "whyWrongHere": "Given priority, LLQ matches the tested behavior — CBWFQ applies a different mechanism.",
+            "misconceptionTested": "Applying \"CBWFQ\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "FIFO does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"FIFO\" without matching the scenario constraint",
+            "explanation": "FIFO describes a mechanism that could sound plausible for priority. Given priority, LLQ matches the tested behavior — FIFO applies a different mechanism.",
+            "whatItDoes": "FIFO describes a mechanism that could sound plausible for priority.",
+            "whyWrongHere": "Given priority, LLQ matches the tested behavior — FIFO applies a different mechanism.",
+            "misconceptionTested": "Applying \"FIFO\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "CIR does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"CIR\" without matching the scenario constraint",
+            "explanation": "CIR describes a mechanism that could sound plausible for priority. Given priority, LLQ matches the tested behavior — CIR applies a different mechanism.",
+            "whatItDoes": "CIR describes a mechanism that could sound plausible for priority.",
+            "whyWrongHere": "Given priority, LLQ matches the tested behavior — CIR applies a different mechanism.",
+            "misconceptionTested": "Applying \"CIR\" without matching qos",
             "needsExplanationReview": true
           }
         ],
@@ -371,20 +413,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "LLQ does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"LLQ\" without matching the scenario constraint",
+            "explanation": "LLQ describes a mechanism that could sound plausible for starvation. Given starvation, Policing matches the tested behavior — LLQ applies a different mechanism.",
+            "whatItDoes": "LLQ describes a mechanism that could sound plausible for starvation.",
+            "whyWrongHere": "Given starvation, Policing matches the tested behavior — LLQ applies a different mechanism.",
+            "misconceptionTested": "Applying \"LLQ\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "CBWFQ does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"CBWFQ\" without matching the scenario constraint",
+            "explanation": "CBWFQ describes a mechanism that could sound plausible for starvation. Given starvation, Policing matches the tested behavior — CBWFQ applies a different mechanism.",
+            "whatItDoes": "CBWFQ describes a mechanism that could sound plausible for starvation.",
+            "whyWrongHere": "Given starvation, Policing matches the tested behavior — CBWFQ applies a different mechanism.",
+            "misconceptionTested": "Applying \"CBWFQ\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "FIFO does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"FIFO\" without matching the scenario constraint",
+            "explanation": "FIFO describes a mechanism that could sound plausible for starvation. Given starvation, Policing matches the tested behavior — FIFO applies a different mechanism.",
+            "whatItDoes": "FIFO describes a mechanism that could sound plausible for starvation.",
+            "whyWrongHere": "Given starvation, Policing matches the tested behavior — FIFO applies a different mechanism.",
+            "misconceptionTested": "Applying \"FIFO\" without matching qos",
             "needsExplanationReview": true
           }
         ],
@@ -421,20 +469,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Shaping drops packets over the configured bit rate to cause loss. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Shaping drops packets over the configure…\" without matching the scenario constraint",
+            "explanation": "Shaping drops packets over the configured bit rate to cause loss. implies the device should discard the frame instead of forwarding or flooding it. Given statement, Shaping holds packets in the queue over the configured bit rate to cause delay. matches the tested behavior — Shaping drops packets over the configured bit rate to cause loss. applies a different mechanism.",
+            "whatItDoes": "Shaping drops packets over the configured bit rate to cause loss. implies the device should discard the frame instead of forwarding or flooding it.",
+            "whyWrongHere": "Given statement, Shaping holds packets in the queue over the configured bit rate to cause delay. matches the tested behavior — Shaping drops packets over the configured bit rate to cause loss. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Shaping drops packets over the confi\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Shaping holds packets in the queue over the configured bit rate to cause jitter. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Shaping holds packets in the queue over …\" without matching the scenario constraint",
+            "explanation": "Shaping holds packets in the queue over the configured bit rate to cause jitter. describes a mechanism that could sound plausible for statement. Given statement, Shaping holds packets in the queue over the configured bit rate to cause delay. matches the tested behavior — Shaping holds packets in the queue over the configured bit rate to cause jitter. applies a different mechanism.",
+            "whatItDoes": "Shaping holds packets in the queue over the configured bit rate to cause jitter. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, Shaping holds packets in the queue over the configured bit rate to cause delay. matches the tested behavior — Shaping holds packets in the queue over the configured bit rate to cause jitter. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Shaping holds packets in the queue o\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Shaping slows packets in the queue over the configured bit rate to adhere to the speed. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Shaping slows packets in the queue over …\" without matching the scenario constraint",
+            "explanation": "Shaping slows packets in the queue over the configured bit rate to adhere to the speed. describes a mechanism that could sound plausible for statement. Given statement, Shaping holds packets in the queue over the configured bit rate to cause delay. matches the tested behavior — Shaping slows packets in the queue over the configured bit rate to adhere to the speed. applies a different mechanism.",
+            "whatItDoes": "Shaping slows packets in the queue over the configured bit rate to adhere to the speed. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, Shaping holds packets in the queue over the configured bit rate to cause delay. matches the tested behavior — Shaping slows packets in the queue over the configured bit rate to adhere to the speed. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Shaping slows packets in the queue o\" without matching qos",
             "needsExplanationReview": true
           }
         ],
@@ -470,20 +524,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "LLQ does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"LLQ\" without matching the scenario constraint",
+            "explanation": "LLQ describes a mechanism that could sound plausible for scheduler. Given scheduler, CBWFQ matches the tested behavior — LLQ applies a different mechanism.",
+            "whatItDoes": "LLQ describes a mechanism that could sound plausible for scheduler.",
+            "whyWrongHere": "Given scheduler, CBWFQ matches the tested behavior — LLQ applies a different mechanism.",
+            "misconceptionTested": "Applying \"LLQ\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "FIFO does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"FIFO\" without matching the scenario constraint",
+            "explanation": "FIFO describes a mechanism that could sound plausible for scheduler. Given scheduler, CBWFQ matches the tested behavior — FIFO applies a different mechanism.",
+            "whatItDoes": "FIFO describes a mechanism that could sound plausible for scheduler.",
+            "whyWrongHere": "Given scheduler, CBWFQ matches the tested behavior — FIFO applies a different mechanism.",
+            "misconceptionTested": "Applying \"FIFO\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "PQ does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"PQ\" without matching the scenario constraint",
+            "explanation": "PQ describes a mechanism that could sound plausible for scheduler. Given scheduler, CBWFQ matches the tested behavior — PQ applies a different mechanism.",
+            "whatItDoes": "PQ describes a mechanism that could sound plausible for scheduler.",
+            "whyWrongHere": "Given scheduler, CBWFQ matches the tested behavior — PQ applies a different mechanism.",
+            "misconceptionTested": "Applying \"PQ\" without matching qos",
             "needsExplanationReview": true
           }
         ],
@@ -520,20 +580,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Policing holds packets in the queue over the configured bit rate to cause delay. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Policing holds packets in the queue over…\" without matching the scenario constraint",
+            "explanation": "Policing holds packets in the queue over the configured bit rate to cause delay. describes a mechanism that could sound plausible for statement. Given statement, Policing drops packets over the configured bit rate to cause loss. matches the tested behavior — Policing holds packets in the queue over the configured bit rate to cause delay. applies a different mechanism.",
+            "whatItDoes": "Policing holds packets in the queue over the configured bit rate to cause delay. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, Policing drops packets over the configured bit rate to cause loss. matches the tested behavior — Policing holds packets in the queue over the configured bit rate to cause delay. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Policing holds packets in the queue \" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Policing holds packets in the queue over the configured bit rate to cause jitter. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Policing holds packets in the queue over…\" without matching the scenario constraint",
+            "explanation": "Policing holds packets in the queue over the configured bit rate to cause jitter. describes a mechanism that could sound plausible for statement. Given statement, Policing drops packets over the configured bit rate to cause loss. matches the tested behavior — Policing holds packets in the queue over the configured bit rate to cause jitter. applies a different mechanism.",
+            "whatItDoes": "Policing holds packets in the queue over the configured bit rate to cause jitter. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, Policing drops packets over the configured bit rate to cause loss. matches the tested behavior — Policing holds packets in the queue over the configured bit rate to cause jitter. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Policing holds packets in the queue \" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Policing slows packets in the queue over the configured bit rate to adhere to the bit rate. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Policing slows packets in the queue over…\" without matching the scenario constraint",
+            "explanation": "Policing slows packets in the queue over the configured bit rate to adhere to the bit rate. describes a mechanism that could sound plausible for statement. Given statement, Policing drops packets over the configured bit rate to cause loss. matches the tested behavior — Policing slows packets in the queue over the configured bit rate to adhere to the bit rate. applies a different mechanism.",
+            "whatItDoes": "Policing slows packets in the queue over the configured bit rate to adhere to the bit rate. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, Policing drops packets over the configured bit rate to cause loss. matches the tested behavior — Policing slows packets in the queue over the configured bit rate to adhere to the bit rate. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Policing slows packets in the queue \" without matching qos",
             "needsExplanationReview": true
           }
         ],
@@ -568,20 +634,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "To help police LAN applications does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"To help police LAN applications\" without matching the scenario constraint",
+            "explanation": "To help police LAN applications describes a mechanism that could sound plausible for policing. Given policing, To maintain a contracted CIR matches the tested behavior — To help police LAN applications applies a different mechanism.",
+            "whatItDoes": "To help police LAN applications describes a mechanism that could sound plausible for policing.",
+            "whyWrongHere": "Given policing, To maintain a contracted CIR matches the tested behavior — To help police LAN applications applies a different mechanism.",
+            "misconceptionTested": "Applying \"To help police LAN applications\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "To help police WAN applications does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"To help police WAN applications\" without matching the scenario constraint",
+            "explanation": "To help police WAN applications describes a mechanism that could sound plausible for policing. Given policing, To maintain a contracted CIR matches the tested behavior — To help police WAN applications applies a different mechanism.",
+            "whatItDoes": "To help police WAN applications describes a mechanism that could sound plausible for policing.",
+            "whyWrongHere": "Given policing, To maintain a contracted CIR matches the tested behavior — To help police WAN applications applies a different mechanism.",
+            "misconceptionTested": "Applying \"To help police WAN applications\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "To maintain a contracted burst rate does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"To maintain a contracted burst rate\" without matching the scenario constraint",
+            "explanation": "To maintain a contracted burst rate describes a mechanism that could sound plausible for policing. Given policing, To maintain a contracted CIR matches the tested behavior — To maintain a contracted burst rate applies a different mechanism.",
+            "whatItDoes": "To maintain a contracted burst rate describes a mechanism that could sound plausible for policing.",
+            "whyWrongHere": "Given policing, To maintain a contracted CIR matches the tested behavior — To maintain a contracted burst rate applies a different mechanism.",
+            "misconceptionTested": "Applying \"To maintain a contracted burst rate\" without matching qos",
             "needsExplanationReview": true
           }
         ],
@@ -619,20 +691,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "When the queue depth is full, a percentage of TCP packets are dropped. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"When the queue depth is full, a percenta…\" without matching the scenario constraint",
+            "explanation": "When the queue depth is full, a percentage of TCP packets are dropped. implies the device should discard the frame instead of forwarding or flooding it. Given congestion, When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped. matches the tested behavior — When the queue depth is full, a percentage of TCP packets are dropped. applies a different mechanism.",
+            "whatItDoes": "When the queue depth is full, a percentage of TCP packets are dropped. implies the device should discard the frame instead of forwarding or flooding it.",
+            "whyWrongHere": "Given congestion, When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped. matches the tested behavior — When the queue depth is full, a percentage of TCP packets are dropped. applies a different mechanism.",
+            "misconceptionTested": "Applying \"When the queue depth is full, a perc\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "When the queue depth is empty, a percentage of TCP packets are dropped. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"When the queue depth is empty, a percent…\" without matching the scenario constraint",
+            "explanation": "When the queue depth is empty, a percentage of TCP packets are dropped. implies the device should discard the frame instead of forwarding or flooding it. Given congestion, When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped. matches the tested behavior — When the queue depth is empty, a percentage of TCP packets are dropped. applies a different mechanism.",
+            "whatItDoes": "When the queue depth is empty, a percentage of TCP packets are dropped. implies the device should discard the frame instead of forwarding or flooding it.",
+            "whyWrongHere": "Given congestion, When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped. matches the tested behavior — When the queue depth is empty, a percentage of TCP packets are dropped. applies a different mechanism.",
+            "misconceptionTested": "Applying \"When the queue depth is empty, a per\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "When the queue depth is below the minimum threshold, a percentage of TCP packets are dropped. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"When the queue depth is below the minimu…\" without matching the scenario constraint",
+            "explanation": "When the queue depth is below the minimum threshold, a percentage of TCP packets are dropped. implies the device should discard the frame instead of forwarding or flooding it. Given congestion, When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped. matches the tested behavior — When the queue depth is below the minimum threshold, a percentage of TCP packets are dropped. applies a different mechanism.",
+            "whatItDoes": "When the queue depth is below the minimum threshold, a percentage of TCP packets are dropped. implies the device should discard the frame instead of forwarding or flooding it.",
+            "whyWrongHere": "Given congestion, When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped. matches the tested behavior — When the queue depth is below the minimum threshold, a percentage of TCP packets are dropped. applies a different mechanism.",
+            "misconceptionTested": "Applying \"When the queue depth is below the mi\" without matching qos",
             "needsExplanationReview": true
           }
         ],
@@ -669,20 +747,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "AF31 marked traffic has a better queue than AF41 marked traffic. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"AF31 marked traffic has a better queue t…\" without matching the scenario constraint",
+            "explanation": "AF31 marked traffic has a better queue than AF41 marked traffic. describes a mechanism that could sound plausible for statement. Given statement, AF41 marked traffic has a better queue than AF31 marked traffic. matches the tested behavior — AF31 marked traffic has a better queue than AF41 marked traffic. applies a different mechanism.",
+            "whatItDoes": "AF31 marked traffic has a better queue than AF41 marked traffic. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, AF41 marked traffic has a better queue than AF31 marked traffic. matches the tested behavior — AF31 marked traffic has a better queue than AF41 marked traffic. applies a different mechanism.",
+            "misconceptionTested": "Applying \"AF31 marked traffic has a better que\" without matching qos",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Both AF31 and AF41 marked traffic has an equal queue. does not match the mechanism asked here.",
+            "explanation": "Both AF31 and AF41 marked traffic has an equal queue. describes a mechanism that could sound plausible for statement. CAM learning stores one mapping per arrival (statement): AF41 marked traffic has a better queue than AF31 marked traffic. — not both addresses as table entries.",
+            "whatItDoes": "Both AF31 and AF41 marked traffic has an equal queue. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "CAM learning stores one mapping per arrival (statement): AF41 marked traffic has a better queue than AF31 marked traffic. — not both addresses as table entries.",
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "During high congestion, AF41 queues will be dropped and AF31 queues won’t. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"During high congestion, AF41 queues will…\" without matching the scenario constraint",
+            "explanation": "During high congestion, AF41 queues will be dropped and AF31 queues won’t. implies the device should discard the frame instead of forwarding or flooding it. Given statement, AF41 marked traffic has a better queue than AF31 marked traffic. matches the tested behavior — During high congestion, AF41 queues will be dropped and AF31 queues won’t. applies a different mechanism.",
+            "whatItDoes": "During high congestion, AF41 queues will be dropped and AF31 queues won’t. implies the device should discard the frame instead of forwarding or flooding it.",
+            "whyWrongHere": "Given statement, AF41 marked traffic has a better queue than AF31 marked traffic. matches the tested behavior — During high congestion, AF41 queues will be dropped and AF31 queues won’t. applies a different mechanism.",
+            "misconceptionTested": "Applying \"During high congestion, AF41 queues \" without matching qos",
             "needsExplanationReview": true
           }
         ],

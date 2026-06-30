@@ -29,18 +29,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Collision domain misses what this question tests. A VLAN is a logical broadcast domain at Layer 2.",
-            "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
+            "explanation": "Collision domain describes a mechanism that could sound plausible for vlan definition. Given vlan definition, Logical broadcast domain matches the tested behavior — Collision domain applies a different mechanism.",
+            "whatItDoes": "Collision domain describes a mechanism that could sound plausible for vlan definition.",
+            "whyWrongHere": "Given vlan definition, Logical broadcast domain matches the tested behavior — Collision domain applies a different mechanism.",
+            "misconceptionTested": "Applying \"Collision domain\" without matching vlan definition"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Physical cable misses what this question tests. A VLAN is a logical broadcast domain at Layer 2.",
-            "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
+            "explanation": "Physical cable describes a mechanism that could sound plausible for vlan definition. Given vlan definition, Logical broadcast domain matches the tested behavior — Physical cable applies a different mechanism.",
+            "whatItDoes": "Physical cable describes a mechanism that could sound plausible for vlan definition.",
+            "whyWrongHere": "Given vlan definition, Logical broadcast domain matches the tested behavior — Physical cable applies a different mechanism.",
+            "misconceptionTested": "Applying \"Physical cable\" without matching vlan definition"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Routing protocol misses what this question tests. A VLAN is a logical broadcast domain at Layer 2.",
-            "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
+            "explanation": "Routing protocol describes a mechanism that could sound plausible for vlan definition. Given vlan definition, Logical broadcast domain matches the tested behavior — Routing protocol applies a different mechanism.",
+            "whatItDoes": "Routing protocol describes a mechanism that could sound plausible for vlan definition.",
+            "whyWrongHere": "Given vlan definition, Logical broadcast domain matches the tested behavior — Routing protocol applies a different mechanism.",
+            "misconceptionTested": "Applying \"Routing protocol\" without matching vlan definition"
           }
         ],
         "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
@@ -72,17 +78,23 @@
           {
             "choiceIndex": 0,
             "explanation": "Another switch reflects a common trap: A VLAN exists on only one switch. A VLAN can span many switches over trunks.",
+            "whatItDoes": "Another switch describes a mechanism that could sound plausible for inter-vlan.",
+            "whyWrongHere": "Given inter-vlan, A router or L3 switch matches the tested behavior — Another switch applies a different mechanism.",
             "misconceptionTested": "A VLAN exists on only one switch"
           },
           {
             "choiceIndex": 2,
-            "explanation": "A longer cable misses what this question tests. Traffic between VLANs must be routed by a Layer 3 device.",
-            "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
+            "explanation": "A longer cable describes a mechanism that could sound plausible for inter-vlan. Given inter-vlan, A router or L3 switch matches the tested behavior — A longer cable applies a different mechanism.",
+            "whatItDoes": "A longer cable describes a mechanism that could sound plausible for inter-vlan.",
+            "whyWrongHere": "Given inter-vlan, A router or L3 switch matches the tested behavior — A longer cable applies a different mechanism.",
+            "misconceptionTested": "Applying \"A longer cable\" without matching inter-vlan"
           },
           {
             "choiceIndex": 3,
-            "explanation": "A trunk between the two hosts misses what this question tests. Traffic between VLANs must be routed by a Layer 3 device.",
-            "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
+            "explanation": "A trunk between the two hosts describes a mechanism that could sound plausible for inter-vlan. Given inter-vlan, A router or L3 switch matches the tested behavior — A trunk between the two hosts applies a different mechanism.",
+            "whatItDoes": "A trunk between the two hosts describes a mechanism that could sound plausible for inter-vlan.",
+            "whyWrongHere": "Given inter-vlan, A router or L3 switch matches the tested behavior — A trunk between the two hosts applies a different mechanism.",
+            "misconceptionTested": "Applying \"A trunk between the two hosts\" without matching inter-vlan"
           }
         ],
         "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
@@ -113,18 +125,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "switchport trunk vlan 10 misses what this question tests. Set the mode to access, then assign the VLAN.",
-            "misconceptionTested": "Selecting \"switchport trunk vlan 10\" without matching the scenario constraint"
+            "explanation": "switchport trunk vlan 10 describes a mechanism that could sound plausible for access port config. Given access port config, switchport mode access / switchport access vlan 10 matches the tested behavior — switchport trunk vlan 10 applies a different mechanism.",
+            "whatItDoes": "switchport trunk vlan 10 describes a mechanism that could sound plausible for access port config.",
+            "whyWrongHere": "Given access port config, switchport mode access / switchport access vlan 10 matches the tested behavior — switchport trunk vlan 10 applies a different mechanism.",
+            "misconceptionTested": "Applying \"switchport trunk vlan 10\" without matching access port config"
           },
           {
             "choiceIndex": 2,
-            "explanation": "vlan 10 / no shutdown misses what this question tests. Set the mode to access, then assign the VLAN.",
-            "misconceptionTested": "Selecting \"vlan 10 / no shutdown\" without matching the scenario constraint"
+            "explanation": "vlan 10 / no shutdown describes a mechanism that could sound plausible for access port config. Given access port config, switchport mode access / switchport access vlan 10 matches the tested behavior — vlan 10 / no shutdown applies a different mechanism.",
+            "whatItDoes": "vlan 10 / no shutdown describes a mechanism that could sound plausible for access port config.",
+            "whyWrongHere": "Given access port config, switchport mode access / switchport access vlan 10 matches the tested behavior — vlan 10 / no shutdown applies a different mechanism.",
+            "misconceptionTested": "Applying \"vlan 10 / no shutdown\" without matching access port config"
           },
           {
             "choiceIndex": 3,
-            "explanation": "switchport voice vlan 10 misses what this question tests. Set the mode to access, then assign the VLAN.",
-            "misconceptionTested": "Selecting \"switchport voice vlan 10\" without matching the scenario constraint"
+            "explanation": "switchport voice vlan 10 describes a mechanism that could sound plausible for access port config. Given access port config, switchport mode access / switchport access vlan 10 matches the tested behavior — switchport voice vlan 10 applies a different mechanism.",
+            "whatItDoes": "switchport voice vlan 10 describes a mechanism that could sound plausible for access port config.",
+            "whyWrongHere": "Given access port config, switchport mode access / switchport access vlan 10 matches the tested behavior — switchport voice vlan 10 applies a different mechanism.",
+            "misconceptionTested": "Applying \"switchport voice vlan 10\" without matching access port config"
           }
         ],
         "examTip": "Access = one VLAN; trunk tags frames. Native VLAN must match on both ends or you get silent mis-forwarding."
@@ -155,18 +173,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "show interfaces trunk misses what this question tests. show vlan brief lists VLANs and their assigned ports.",
-            "misconceptionTested": "Selecting \"show interfaces trunk\" without matching the scenario constraint"
+            "explanation": "show interfaces trunk describes a mechanism that could sound plausible for show vlan brief lists VLANs and their assigned ports. Given show vlan brief lists VLANs and their assigned ports, show vlan brief matches the tested behavior — show interfaces trunk applies a different mechanism.",
+            "whatItDoes": "show interfaces trunk describes a mechanism that could sound plausible for show vlan brief lists VLANs and their assigned ports.",
+            "whyWrongHere": "Given show vlan brief lists VLANs and their assigned ports, show vlan brief matches the tested behavior — show interfaces trunk applies a different mechanism.",
+            "misconceptionTested": "Applying \"show interfaces trunk\" without matching verify"
           },
           {
             "choiceIndex": 2,
-            "explanation": "show ip route misses what this question tests. show vlan brief lists VLANs and their assigned ports.",
-            "misconceptionTested": "Selecting \"show ip route\" without matching the scenario constraint"
+            "explanation": "show ip route describes a mechanism that could sound plausible for show vlan brief lists VLANs and their assigned ports. Given show vlan brief lists VLANs and their assigned ports, show vlan brief matches the tested behavior — show ip route applies a different mechanism.",
+            "whatItDoes": "show ip route describes a mechanism that could sound plausible for show vlan brief lists VLANs and their assigned ports.",
+            "whyWrongHere": "Given show vlan brief lists VLANs and their assigned ports, show vlan brief matches the tested behavior — show ip route applies a different mechanism.",
+            "misconceptionTested": "Applying \"show ip route\" without matching verify"
           },
           {
             "choiceIndex": 3,
-            "explanation": "show mac address-table misses what this question tests. show vlan brief lists VLANs and their assigned ports.",
-            "misconceptionTested": "Selecting \"show mac address-table\" without matching the scenario constraint"
+            "explanation": "show mac address-table describes a mechanism that could sound plausible for show vlan brief lists VLANs and their assigned ports. Given show vlan brief lists VLANs and their assigned ports, show vlan brief matches the tested behavior — show mac address-table applies a different mechanism.",
+            "whatItDoes": "show mac address-table describes a mechanism that could sound plausible for show vlan brief lists VLANs and their assigned ports.",
+            "whyWrongHere": "Given show vlan brief lists VLANs and their assigned ports, show vlan brief matches the tested behavior — show mac address-table applies a different mechanism.",
+            "misconceptionTested": "Applying \"show mac address-table\" without matching verify"
           }
         ],
         "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
@@ -198,16 +222,22 @@
           {
             "choiceIndex": 0,
             "explanation": "It is the only routable VLAN reflects a common trap: A VLAN exists on only one switch. A VLAN can span many switches over trunks.",
+            "whatItDoes": "It is the only routable VLAN describes a mechanism that could sound plausible for default vlan.",
+            "whyWrongHere": "Given default vlan, It is the default VLAN and default native VLAN matches the tested behavior — It is the only routable VLAN applies a different mechanism.",
             "misconceptionTested": "A VLAN exists on only one switch"
           },
           {
             "choiceIndex": 2,
-            "explanation": "It cannot carry traffic misses what this question tests. VLAN 1 is the default VLAN for all ports and the default native VLAN; best practice avoids it for user data.",
-            "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
+            "explanation": "It cannot carry traffic describes a mechanism that could sound plausible for default vlan. Given default vlan, It is the default VLAN and default native VLAN matches the tested behavior — It cannot carry traffic applies a different mechanism.",
+            "whatItDoes": "It cannot carry traffic describes a mechanism that could sound plausible for default vlan.",
+            "whyWrongHere": "Given default vlan, It is the default VLAN and default native VLAN matches the tested behavior — It cannot carry traffic applies a different mechanism.",
+            "misconceptionTested": "Applying \"It cannot carry traffic\" without matching default vlan"
           },
           {
             "choiceIndex": 3,
             "explanation": "It is the voice VLAN reflects a common trap: Thinking same-VLAN devices need a router. Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does.",
+            "whatItDoes": "It is the voice VLAN describes a mechanism that could sound plausible for default vlan.",
+            "whyWrongHere": "Given default vlan, It is the default VLAN and default native VLAN matches the tested behavior — It is the voice VLAN applies a different mechanism.",
             "misconceptionTested": "Thinking same-VLAN devices need a router"
           }
         ],
@@ -239,18 +269,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Two access VLANs are impossible misses what this question tests. The access (data) VLAN plus a voice VLAN separate PC and phone traffic on one port.",
-            "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
+            "explanation": "Two access VLANs are impossible describes a mechanism that could sound plausible for voice vlan. Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — Two access VLANs are impossible applies a different mechanism.",
+            "whatItDoes": "Two access VLANs are impossible describes a mechanism that could sound plausible for voice vlan.",
+            "whyWrongHere": "Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — Two access VLANs are impossible applies a different mechanism.",
+            "misconceptionTested": "Applying \"Two access VLANs are impossible\" without matching voice vlan"
           },
           {
             "choiceIndex": 2,
-            "explanation": "A trunk to the phone misses what this question tests. The access (data) VLAN plus a voice VLAN separate PC and phone traffic on one port.",
-            "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
+            "explanation": "A trunk to the phone describes a mechanism that could sound plausible for voice vlan. Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — A trunk to the phone applies a different mechanism.",
+            "whatItDoes": "A trunk to the phone describes a mechanism that could sound plausible for voice vlan.",
+            "whyWrongHere": "Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — A trunk to the phone applies a different mechanism.",
+            "misconceptionTested": "Applying \"A trunk to the phone\" without matching voice vlan"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Port security misses what this question tests. The access (data) VLAN plus a voice VLAN separate PC and phone traffic on one port.",
-            "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
+            "explanation": "Port security describes a mechanism that could sound plausible for voice vlan. Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — Port security applies a different mechanism.",
+            "whatItDoes": "Port security describes a mechanism that could sound plausible for voice vlan.",
+            "whyWrongHere": "Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — Port security applies a different mechanism.",
+            "misconceptionTested": "Applying \"Port security\" without matching voice vlan"
           }
         ],
         "examTip": "Access = one VLAN; trunk tags frames. Native VLAN must match on both ends or you get silent mis-forwarding."
@@ -280,7 +316,9 @@
           {
             "choiceIndex": 1,
             "explanation": "This statement is False, but the tested fact is: True — a trunk lets a VLAN span switches at Layer 2.",
-            "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
+            "whatItDoes": "False states the opposite of the tested fact about same vlan reach.",
+            "whyWrongHere": "Given same vlan reach, True matches the tested behavior — False applies a different mechanism.",
+            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
           }
         ],
         "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
@@ -312,16 +350,22 @@
           {
             "choiceIndex": 1,
             "explanation": "switchport access vlan 30 reflects a common trap: Thinking same-VLAN devices need a router. Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does.",
+            "whatItDoes": "switchport access vlan 30 describes a mechanism that could sound plausible for create vlan.",
+            "whyWrongHere": "Given create vlan, vlan 30 matches the tested behavior — switchport access vlan 30 applies a different mechanism.",
             "misconceptionTested": "Thinking same-VLAN devices need a router"
           },
           {
             "choiceIndex": 2,
             "explanation": "create vlan 30 reflects a common trap: Assigning a port to an uncreated VLAN. Create the VLAN first or the port may go inactive.",
+            "whatItDoes": "create vlan 30 describes a mechanism that could sound plausible for create vlan.",
+            "whyWrongHere": "Given create vlan, vlan 30 matches the tested behavior — create vlan 30 applies a different mechanism.",
             "misconceptionTested": "Assigning a port to an uncreated VLAN"
           },
           {
             "choiceIndex": 3,
             "explanation": "ip vlan 30 reflects a common trap: Thinking same-VLAN devices need a router. Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does.",
+            "whatItDoes": "ip vlan 30 describes a mechanism that could sound plausible for create vlan.",
+            "whyWrongHere": "Given create vlan, vlan 30 matches the tested behavior — ip vlan 30 applies a different mechanism.",
             "misconceptionTested": "Thinking same-VLAN devices need a router"
           }
         ],

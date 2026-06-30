@@ -30,18 +30,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Autonomous WAPs with a WLC misses what this question tests. A high-density design is best served by lightweight APs controlled by a WLC.",
-            "misconceptionTested": "Selecting \"Autonomous WAPs with a WLC\" without matching the scenario constraint"
+            "explanation": "Autonomous WAPs with a WLC describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Lightweight WAPs with a WLC matches the tested behavior — Autonomous WAPs with a WLC applies a different mechanism.",
+            "whatItDoes": "Autonomous WAPs with a WLC describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Lightweight WAPs with a WLC matches the tested behavior — Autonomous WAPs with a WLC applies a different mechanism.",
+            "misconceptionTested": "Applying \"Autonomous WAPs with a WLC\" without matching wireless architectures"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Autonomous WAPs without a WLC misses what this question tests. A high-density design is best served by lightweight APs controlled by a WLC.",
-            "misconceptionTested": "Selecting \"Autonomous WAPs without a WLC\" without matching the scenario constraint"
+            "explanation": "Autonomous WAPs without a WLC describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Lightweight WAPs with a WLC matches the tested behavior — Autonomous WAPs without a WLC applies a different mechanism.",
+            "whatItDoes": "Autonomous WAPs without a WLC describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Lightweight WAPs with a WLC matches the tested behavior — Autonomous WAPs without a WLC applies a different mechanism.",
+            "misconceptionTested": "Applying \"Autonomous WAPs without a WLC\" without matching wireless architectures"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Lightweight WAPs without a WLC misses what this question tests. A high-density design is best served by lightweight APs controlled by a WLC.",
-            "misconceptionTested": "Selecting \"Lightweight WAPs without a WLC\" without matching the scenario constraint"
+            "explanation": "Lightweight WAPs without a WLC describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Lightweight WAPs with a WLC matches the tested behavior — Lightweight WAPs without a WLC applies a different mechanism.",
+            "whatItDoes": "Lightweight WAPs without a WLC describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Lightweight WAPs with a WLC matches the tested behavior — Lightweight WAPs without a WLC applies a different mechanism.",
+            "misconceptionTested": "Applying \"Lightweight WAPs without a WLC\" without matching wireless architectures"
           }
         ],
         "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
@@ -75,18 +81,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "BT mode misses what this question tests. Monitor mode can detect sources of wireless interference such as Bluetooth.",
-            "misconceptionTested": "Selecting \"BT mode\" without matching the scenario constraint"
+            "explanation": "BT mode describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Monitor mode matches the tested behavior — BT mode applies a different mechanism.",
+            "whatItDoes": "BT mode describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Monitor mode matches the tested behavior — BT mode applies a different mechanism.",
+            "misconceptionTested": "Applying \"BT mode\" without matching wireless architectures"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Sniffing mode misses what this question tests. Monitor mode can detect sources of wireless interference such as Bluetooth.",
-            "misconceptionTested": "Selecting \"Sniffing mode\" without matching the scenario constraint"
+            "explanation": "Sniffing mode describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Monitor mode matches the tested behavior — Sniffing mode applies a different mechanism.",
+            "whatItDoes": "Sniffing mode describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Monitor mode matches the tested behavior — Sniffing mode applies a different mechanism.",
+            "misconceptionTested": "Applying \"Sniffing mode\" without matching wireless architectures"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Analysis mode misses what this question tests. Monitor mode can detect sources of wireless interference such as Bluetooth.",
-            "misconceptionTested": "Selecting \"Analysis mode\" without matching the scenario constraint"
+            "explanation": "Analysis mode describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Monitor mode matches the tested behavior — Analysis mode applies a different mechanism.",
+            "whatItDoes": "Analysis mode describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Monitor mode matches the tested behavior — Analysis mode applies a different mechanism.",
+            "misconceptionTested": "Applying \"Analysis mode\" without matching wireless architectures"
           }
         ],
         "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
@@ -120,18 +132,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "BSS misses what this question tests. IBSS is ad hoc wireless without infrastructure.",
-            "misconceptionTested": "Selecting \"BSS\" without matching the scenario constraint"
+            "explanation": "BSS describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, IBSS matches the tested behavior — BSS applies a different mechanism.",
+            "whatItDoes": "BSS describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, IBSS matches the tested behavior — BSS applies a different mechanism.",
+            "misconceptionTested": "Applying \"BSS\" without matching wireless architectures"
           },
           {
             "choiceIndex": 1,
-            "explanation": "ESS misses what this question tests. IBSS is ad hoc wireless without infrastructure.",
-            "misconceptionTested": "Selecting \"ESS\" without matching the scenario constraint"
+            "explanation": "ESS describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, IBSS matches the tested behavior — ESS applies a different mechanism.",
+            "whatItDoes": "ESS describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, IBSS matches the tested behavior — ESS applies a different mechanism.",
+            "misconceptionTested": "Applying \"ESS\" without matching wireless architectures"
           },
           {
             "choiceIndex": 3,
-            "explanation": "DS misses what this question tests. IBSS is ad hoc wireless without infrastructure.",
-            "misconceptionTested": "Selecting \"DS\" without matching the scenario constraint"
+            "explanation": "DS describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, IBSS matches the tested behavior — DS applies a different mechanism.",
+            "whatItDoes": "DS describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, IBSS matches the tested behavior — DS applies a different mechanism.",
+            "misconceptionTested": "Applying \"DS\" without matching wireless architectures"
           }
         ],
         "examTip": "AD picks the route source for the same prefix; longest match still wins first."
@@ -165,18 +183,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Non-root devices can connect to other non-root devices. misses what this question tests. Non-root wireless devices connect to root devices.",
-            "misconceptionTested": "Selecting \"Non-root devices can connect to other no…\" without matching the scenario constraint"
+            "explanation": "Non-root devices can connect to other non-root devices. describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Non-root devices can connect to other non-root devices. applies a different mechanism.",
+            "whatItDoes": "Non-root devices can connect to other non-root devices. describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Non-root devices can connect to other non-root devices. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Non-root devices can connect to othe\" without matching wireless architectures"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Root devices can connect to other root devices. misses what this question tests. Non-root wireless devices connect to root devices.",
-            "misconceptionTested": "Selecting \"Root devices can connect to other root d…\" without matching the scenario constraint"
+            "explanation": "Root devices can connect to other root devices. describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Root devices can connect to other root devices. applies a different mechanism.",
+            "whatItDoes": "Root devices can connect to other root devices. describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Root devices can connect to other root devices. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Root devices can connect to other ro\" without matching wireless architectures"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Repeaters are considered root devices. misses what this question tests. Non-root wireless devices connect to root devices.",
-            "misconceptionTested": "Selecting \"Repeaters are considered root devices.\" without matching the scenario constraint"
+            "explanation": "Repeaters are considered root devices. describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Repeaters are considered root devices. applies a different mechanism.",
+            "whatItDoes": "Repeaters are considered root devices. describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Repeaters are considered root devices. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Repeaters are considered root device\" without matching wireless architectures"
           }
         ],
         "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
@@ -209,18 +233,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Lightweight WAP misses what this question tests. Autonomous APs can operate independently.",
-            "misconceptionTested": "Selecting \"Lightweight WAP\" without matching the scenario constraint"
+            "explanation": "Lightweight WAP describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Autonomous WAP matches the tested behavior — Lightweight WAP applies a different mechanism.",
+            "whatItDoes": "Lightweight WAP describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Autonomous WAP matches the tested behavior — Lightweight WAP applies a different mechanism.",
+            "misconceptionTested": "Applying \"Lightweight WAP\" without matching wireless architectures"
           },
           {
             "choiceIndex": 1,
-            "explanation": "WLC misses what this question tests. Autonomous APs can operate independently.",
-            "misconceptionTested": "Selecting \"WLC\" without matching the scenario constraint"
+            "explanation": "WLC describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Autonomous WAP matches the tested behavior — WLC applies a different mechanism.",
+            "whatItDoes": "WLC describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Autonomous WAP matches the tested behavior — WLC applies a different mechanism.",
+            "misconceptionTested": "Applying \"WLC\" without matching wireless architectures"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Mesh misses what this question tests. Autonomous APs can operate independently.",
-            "misconceptionTested": "Selecting \"Mesh\" without matching the scenario constraint"
+            "explanation": "Mesh describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Autonomous WAP matches the tested behavior — Mesh applies a different mechanism.",
+            "whatItDoes": "Mesh describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Autonomous WAP matches the tested behavior — Mesh applies a different mechanism.",
+            "misconceptionTested": "Applying \"Mesh\" without matching wireless architectures"
           }
         ],
         "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
@@ -255,17 +285,23 @@
           {
             "choiceIndex": 0,
             "explanation": "Point-to-point wireless bridge is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
+            "whatItDoes": "Point-to-point wireless bridge describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Point-to-multipoint wireless bridge matches the tested behavior — Point-to-point wireless bridge applies a different mechanism.",
             "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Mesh wireless network misses what this question tests. Point-to-multipoint wireless bridges connect multiple nearby buildings to a central point.",
-            "misconceptionTested": "Selecting \"Mesh wireless network\" without matching the scenario constraint"
+            "explanation": "Mesh wireless network describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Point-to-multipoint wireless bridge matches the tested behavior — Mesh wireless network applies a different mechanism.",
+            "whatItDoes": "Mesh wireless network describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Point-to-multipoint wireless bridge matches the tested behavior — Mesh wireless network applies a different mechanism.",
+            "misconceptionTested": "Applying \"Mesh wireless network\" without matching wireless architectures"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Autonomous wireless network misses what this question tests. Point-to-multipoint wireless bridges connect multiple nearby buildings to a central point.",
-            "misconceptionTested": "Selecting \"Autonomous wireless network\" without matching the scenario constraint"
+            "explanation": "Autonomous wireless network describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Point-to-multipoint wireless bridge matches the tested behavior — Autonomous wireless network applies a different mechanism.",
+            "whatItDoes": "Autonomous wireless network describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Point-to-multipoint wireless bridge matches the tested behavior — Autonomous wireless network applies a different mechanism.",
+            "misconceptionTested": "Applying \"Autonomous wireless network\" without matching wireless architectures"
           }
         ],
         "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
@@ -299,18 +335,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Wireless bridging misses what this question tests. A repeater can extend coverage for a small area at low cost.",
-            "misconceptionTested": "Selecting \"Wireless bridging\" without matching the scenario constraint"
+            "explanation": "Wireless bridging describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Wireless repeater matches the tested behavior — Wireless bridging applies a different mechanism.",
+            "whatItDoes": "Wireless bridging describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Wireless repeater matches the tested behavior — Wireless bridging applies a different mechanism.",
+            "misconceptionTested": "Applying \"Wireless bridging\" without matching wireless architectures"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Mesh wireless system misses what this question tests. A repeater can extend coverage for a small area at low cost.",
-            "misconceptionTested": "Selecting \"Mesh wireless system\" without matching the scenario constraint"
+            "explanation": "Mesh wireless system describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Wireless repeater matches the tested behavior — Mesh wireless system applies a different mechanism.",
+            "whatItDoes": "Mesh wireless system describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Wireless repeater matches the tested behavior — Mesh wireless system applies a different mechanism.",
+            "misconceptionTested": "Applying \"Mesh wireless system\" without matching wireless architectures"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Addition of a wireless LAN controller misses what this question tests. A repeater can extend coverage for a small area at low cost.",
-            "misconceptionTested": "Selecting \"Addition of a wireless LAN controller\" without matching the scenario constraint"
+            "explanation": "Addition of a wireless LAN controller describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Wireless repeater matches the tested behavior — Addition of a wireless LAN controller applies a different mechanism.",
+            "whatItDoes": "Addition of a wireless LAN controller describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Wireless repeater matches the tested behavior — Addition of a wireless LAN controller applies a different mechanism.",
+            "misconceptionTested": "Applying \"Addition of a wireless LAN controlle\" without matching wireless architectures"
           }
         ],
         "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
@@ -344,18 +386,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "BSS misses what this question tests. Lightweight APs require a wireless LAN controller.",
-            "misconceptionTested": "Selecting \"BSS\" without matching the scenario constraint"
+            "explanation": "BSS describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Lightweight WAP matches the tested behavior — BSS applies a different mechanism.",
+            "whatItDoes": "BSS describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Lightweight WAP matches the tested behavior — BSS applies a different mechanism.",
+            "misconceptionTested": "Applying \"BSS\" without matching wireless architectures"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Bridges misses what this question tests. Lightweight APs require a wireless LAN controller.",
-            "misconceptionTested": "Selecting \"Bridges\" without matching the scenario constraint"
+            "explanation": "Bridges describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Lightweight WAP matches the tested behavior — Bridges applies a different mechanism.",
+            "whatItDoes": "Bridges describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Lightweight WAP matches the tested behavior — Bridges applies a different mechanism.",
+            "misconceptionTested": "Applying \"Bridges\" without matching wireless architectures"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Autonomous WAP misses what this question tests. Lightweight APs require a wireless LAN controller.",
-            "misconceptionTested": "Selecting \"Autonomous WAP\" without matching the scenario constraint"
+            "explanation": "Autonomous WAP describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Lightweight WAP matches the tested behavior — Autonomous WAP applies a different mechanism.",
+            "whatItDoes": "Autonomous WAP describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Lightweight WAP matches the tested behavior — Autonomous WAP applies a different mechanism.",
+            "misconceptionTested": "Applying \"Autonomous WAP\" without matching wireless architectures"
           }
         ],
         "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
@@ -389,18 +437,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Autonomous wireless network misses what this question tests. Mesh wireless networks can cover large public areas where cabling is not practical.",
-            "misconceptionTested": "Selecting \"Autonomous wireless network\" without matching the scenario constraint"
+            "explanation": "Autonomous wireless network describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Mesh wireless network matches the tested behavior — Autonomous wireless network applies a different mechanism.",
+            "whatItDoes": "Autonomous wireless network describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Mesh wireless network matches the tested behavior — Autonomous wireless network applies a different mechanism.",
+            "misconceptionTested": "Applying \"Autonomous wireless network\" without matching wireless architectures"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Point-to-multipoint wireless bridges misses what this question tests. Mesh wireless networks can cover large public areas where cabling is not practical.",
-            "misconceptionTested": "Selecting \"Point-to-multipoint wireless bridges\" without matching the scenario constraint"
+            "explanation": "Point-to-multipoint wireless bridges describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Mesh wireless network matches the tested behavior — Point-to-multipoint wireless bridges applies a different mechanism.",
+            "whatItDoes": "Point-to-multipoint wireless bridges describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Mesh wireless network matches the tested behavior — Point-to-multipoint wireless bridges applies a different mechanism.",
+            "misconceptionTested": "Applying \"Point-to-multipoint wireless bridges\" without matching wireless architectures"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Wireless repeaters misses what this question tests. Mesh wireless networks can cover large public areas where cabling is not practical.",
-            "misconceptionTested": "Selecting \"Wireless repeaters\" without matching the scenario constraint"
+            "explanation": "Wireless repeaters describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Mesh wireless network matches the tested behavior — Wireless repeaters applies a different mechanism.",
+            "whatItDoes": "Wireless repeaters describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Mesh wireless network matches the tested behavior — Wireless repeaters applies a different mechanism.",
+            "misconceptionTested": "Applying \"Wireless repeaters\" without matching wireless architectures"
           }
         ],
         "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
@@ -435,18 +489,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Flex Connect mode creates a CAPWAP tunnel to the WLC to transport data. misses what this question tests. Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally.",
-            "misconceptionTested": "Selecting \"Flex Connect mode creates a CAPWAP tunne…\" without matching the scenario constraint"
+            "explanation": "Flex Connect mode creates a CAPWAP tunnel to the WLC to transport data. describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Flex Connect mode creates a CAPWAP tunnel to the WLC to transport data. applies a different mechanism.",
+            "whatItDoes": "Flex Connect mode creates a CAPWAP tunnel to the WLC to transport data. describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Flex Connect mode creates a CAPWAP tunnel to the WLC to transport data. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Flex Connect mode creates a CAPWAP t\" without matching wireless architectures"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Local mode allows for switching of VLANs at the WAP. misses what this question tests. Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally.",
-            "misconceptionTested": "Selecting \"Local mode allows for switching of VLANs…\" without matching the scenario constraint"
+            "explanation": "Local mode allows for switching of VLANs at the WAP. describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Local mode allows for switching of VLANs at the WAP. applies a different mechanism.",
+            "whatItDoes": "Local mode allows for switching of VLANs at the WAP. describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Local mode allows for switching of VLANs at the WAP. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Local mode allows for switching of V\" without matching wireless architectures"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Flex Connect mode allows for switching of VLANs at the WLC. misses what this question tests. Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally.",
-            "misconceptionTested": "Selecting \"Flex Connect mode allows for switching o…\" without matching the scenario constraint"
+            "explanation": "Flex Connect mode allows for switching of VLANs at the WLC. describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Flex Connect mode allows for switching of VLANs at the WLC. applies a different mechanism.",
+            "whatItDoes": "Flex Connect mode allows for switching of VLANs at the WLC. describes a mechanism that could sound plausible for wireless architectures.",
+            "whyWrongHere": "Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Flex Connect mode allows for switching of VLANs at the WLC. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Flex Connect mode allows for switchi\" without matching wireless architectures"
           }
         ],
         "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."

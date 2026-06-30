@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-/** Strict answer-review voice validation. */
+/** Strict answer-review voice validation (markdown/stem checks + full SADE gate). */
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { isFallbackExplanation } from '../src/answerReview/answerReviewQuality.js'
+import { validateQuestionAnswerReview } from '../src/answerReview/answerReviewQuality.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -36,7 +36,10 @@ for (const path of walkJson(CLEAN)) {
     for (const [where, t] of texts) {
       if (/\*\*/.test(t)) errors.push(`${q.id}: ${where} has markdown bold`)
       if (/does not answer .+ in this stem/i.test(t)) errors.push(`${q.id}: ${where} uses stem template`)
-      if (isFallbackExplanation(t)) errors.push(`${q.id}: ${where} fallback/template`)
+    }
+
+    for (const msg of validateQuestionAnswerReview(q)) {
+      errors.push(`${q.id}: ${msg.replace(/^[^:]+:\s*/, '')}`)
     }
   }
 }

@@ -30,20 +30,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Network management station does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Network management station\" without matching the scenario constraint",
+            "explanation": "Network management station describes a mechanism that could sound plausible for configuration management. Given configuration management, Configuration management matches the tested behavior — Network management station applies a different mechanism.",
+            "whatItDoes": "Network management station describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Configuration management matches the tested behavior — Network management station applies a different mechanism.",
+            "misconceptionTested": "Applying \"Network management station\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Software-defined networking does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Software-defined networking\" without matching the scenario constraint",
+            "explanation": "Software-defined networking describes a mechanism that could sound plausible for configuration management. Given configuration management, Configuration management matches the tested behavior — Software-defined networking applies a different mechanism.",
+            "whatItDoes": "Software-defined networking describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Configuration management matches the tested behavior — Software-defined networking applies a different mechanism.",
+            "misconceptionTested": "Applying \"Software-defined networking\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Centralized logging does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Centralized logging\" without matching the scenario constraint",
+            "explanation": "Centralized logging describes a mechanism that could sound plausible for configuration management. Given configuration management, Configuration management matches the tested behavior — Centralized logging applies a different mechanism.",
+            "whatItDoes": "Centralized logging describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Configuration management matches the tested behavior — Centralized logging applies a different mechanism.",
+            "misconceptionTested": "Applying \"Centralized logging\" without matching configuration management",
             "needsExplanationReview": true
           }
         ],
@@ -80,20 +86,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Cisco DNA Center does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Cisco DNA Center\" without matching the scenario constraint",
+            "explanation": "Cisco DNA Center describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Cisco DNA Center applies a different mechanism.",
+            "whatItDoes": "Cisco DNA Center describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Cisco DNA Center applies a different mechanism.",
+            "misconceptionTested": "Applying \"Cisco DNA Center\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Chef does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Chef\" without matching the scenario constraint",
+            "explanation": "Chef describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Chef applies a different mechanism.",
+            "whatItDoes": "Chef describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Chef applies a different mechanism.",
+            "misconceptionTested": "Applying \"Chef\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Puppet does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Puppet\" without matching the scenario constraint",
+            "explanation": "Puppet describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Puppet applies a different mechanism.",
+            "whatItDoes": "Puppet describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Puppet applies a different mechanism.",
+            "misconceptionTested": "Applying \"Puppet\" without matching configuration management",
             "needsExplanationReview": true
           }
         ],
@@ -129,20 +141,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Playbook does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Playbook\" without matching the scenario constraint",
+            "explanation": "Playbook describes a mechanism that could sound plausible for configuration management. Given configuration management, Inventory matches the tested behavior — Playbook applies a different mechanism.",
+            "whatItDoes": "Playbook describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Inventory matches the tested behavior — Playbook applies a different mechanism.",
+            "misconceptionTested": "Applying \"Playbook\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Settings does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Settings\" without matching the scenario constraint",
+            "explanation": "Settings describes a mechanism that could sound plausible for configuration management. Given configuration management, Inventory matches the tested behavior — Settings applies a different mechanism.",
+            "whatItDoes": "Settings describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Inventory matches the tested behavior — Settings applies a different mechanism.",
+            "misconceptionTested": "Applying \"Settings\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Modules does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Modules\" without matching the scenario constraint",
+            "explanation": "Modules describes a mechanism that could sound plausible for configuration management. Given configuration management, Inventory matches the tested behavior — Modules applies a different mechanism.",
+            "whatItDoes": "Modules describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Inventory matches the tested behavior — Modules applies a different mechanism.",
+            "misconceptionTested": "Applying \"Modules\" without matching configuration management",
             "needsExplanationReview": true
           }
         ],
@@ -178,20 +196,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Puppet does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Puppet\" without matching the scenario constraint",
+            "explanation": "Puppet describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Puppet applies a different mechanism.",
+            "whatItDoes": "Puppet describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Puppet applies a different mechanism.",
+            "misconceptionTested": "Applying \"Puppet\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Chef does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Chef\" without matching the scenario constraint",
+            "explanation": "Chef describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Chef applies a different mechanism.",
+            "whatItDoes": "Chef describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Chef applies a different mechanism.",
+            "misconceptionTested": "Applying \"Chef\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Cisco DNA Center does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Cisco DNA Center\" without matching the scenario constraint",
+            "explanation": "Cisco DNA Center describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Cisco DNA Center applies a different mechanism.",
+            "whatItDoes": "Cisco DNA Center describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Cisco DNA Center applies a different mechanism.",
+            "misconceptionTested": "Applying \"Cisco DNA Center\" without matching configuration management",
             "needsExplanationReview": true
           }
         ],
@@ -226,20 +250,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Agent does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Agent\" without matching the scenario constraint",
+            "explanation": "Agent describes a mechanism that could sound plausible for configuration management. Given configuration management, Manifest matches the tested behavior — Agent applies a different mechanism.",
+            "whatItDoes": "Agent describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Manifest matches the tested behavior — Agent applies a different mechanism.",
+            "misconceptionTested": "Applying \"Agent\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Class does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Class\" without matching the scenario constraint",
+            "explanation": "Class describes a mechanism that could sound plausible for configuration management. Given configuration management, Manifest matches the tested behavior — Class applies a different mechanism.",
+            "whatItDoes": "Class describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Manifest matches the tested behavior — Class applies a different mechanism.",
+            "misconceptionTested": "Applying \"Class\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Module does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Module\" without matching the scenario constraint",
+            "explanation": "Module describes a mechanism that could sound plausible for configuration management. Given configuration management, Manifest matches the tested behavior — Module applies a different mechanism.",
+            "whatItDoes": "Module describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Manifest matches the tested behavior — Module applies a different mechanism.",
+            "misconceptionTested": "Applying \"Module\" without matching configuration management",
             "needsExplanationReview": true
           }
         ],
@@ -276,20 +306,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Cookbook does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Cookbook\" without matching the scenario constraint",
+            "explanation": "Cookbook describes a mechanism that could sound plausible for configuration management. Given configuration management, Recipe matches the tested behavior — Cookbook applies a different mechanism.",
+            "whatItDoes": "Cookbook describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Recipe matches the tested behavior — Cookbook applies a different mechanism.",
+            "misconceptionTested": "Applying \"Cookbook\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Crock Pot does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Crock Pot\" without matching the scenario constraint",
+            "explanation": "Crock Pot describes a mechanism that could sound plausible for configuration management. Given configuration management, Recipe matches the tested behavior — Crock Pot applies a different mechanism.",
+            "whatItDoes": "Crock Pot describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Recipe matches the tested behavior — Crock Pot applies a different mechanism.",
+            "misconceptionTested": "Applying \"Crock Pot\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Chef Node does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Chef Node\" without matching the scenario constraint",
+            "explanation": "Chef Node describes a mechanism that could sound plausible for configuration management. Given configuration management, Recipe matches the tested behavior — Chef Node applies a different mechanism.",
+            "whatItDoes": "Chef Node describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Recipe matches the tested behavior — Chef Node applies a different mechanism.",
+            "misconceptionTested": "Applying \"Chef Node\" without matching configuration management",
             "needsExplanationReview": true
           }
         ],
@@ -324,20 +360,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Chef-Client does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Chef-Client\" without matching the scenario constraint",
+            "explanation": "Chef-Client describes a mechanism that could sound plausible for configuration management. Given configuration management, Ohai matches the tested behavior — Chef-Client applies a different mechanism.",
+            "whatItDoes": "Chef-Client describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Ohai matches the tested behavior — Chef-Client applies a different mechanism.",
+            "misconceptionTested": "Applying \"Chef-Client\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Chef Workstation does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Chef Workstation\" without matching the scenario constraint",
+            "explanation": "Chef Workstation describes a mechanism that could sound plausible for configuration management. Given configuration management, Ohai matches the tested behavior — Chef Workstation applies a different mechanism.",
+            "whatItDoes": "Chef Workstation describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Ohai matches the tested behavior — Chef Workstation applies a different mechanism.",
+            "misconceptionTested": "Applying \"Chef Workstation\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Knife does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Knife\" without matching the scenario constraint",
+            "explanation": "Knife describes a mechanism that could sound plausible for configuration management. Given configuration management, Ohai matches the tested behavior — Knife applies a different mechanism.",
+            "whatItDoes": "Knife describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Ohai matches the tested behavior — Knife applies a different mechanism.",
+            "misconceptionTested": "Applying \"Knife\" without matching configuration management",
             "needsExplanationReview": true
           }
         ],
@@ -371,20 +413,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "ANSIBLE_SETTINGS does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"ANSIBLE_SETTINGS\" without matching the scenario constraint",
+            "explanation": "ANSIBLE_SETTINGS describes a mechanism that could sound plausible for configuration management. Given configuration management, ANSIBLE_CONFIG matches the tested behavior — ANSIBLE_SETTINGS applies a different mechanism.",
+            "whatItDoes": "ANSIBLE_SETTINGS describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, ANSIBLE_CONFIG matches the tested behavior — ANSIBLE_SETTINGS applies a different mechanism.",
+            "misconceptionTested": "Applying \"ANSIBLE_SETTINGS\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "ansible_connection does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"ansible_connection\" without matching the scenario constraint",
+            "explanation": "ansible_connection describes a mechanism that could sound plausible for configuration management. Given configuration management, ANSIBLE_CONFIG matches the tested behavior — ansible_connection applies a different mechanism.",
+            "whatItDoes": "ansible_connection describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, ANSIBLE_CONFIG matches the tested behavior — ansible_connection applies a different mechanism.",
+            "misconceptionTested": "Applying \"ansible_connection\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "/etc/ansible/hosts does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"/etc/ansible/hosts\" without matching the scenario constraint",
+            "explanation": "/etc/ansible/hosts describes a mechanism that could sound plausible for configuration management. Given configuration management, ANSIBLE_CONFIG matches the tested behavior — /etc/ansible/hosts applies a different mechanism.",
+            "whatItDoes": "/etc/ansible/hosts describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, ANSIBLE_CONFIG matches the tested behavior — /etc/ansible/hosts applies a different mechanism.",
+            "misconceptionTested": "Applying \"/etc/ansible/hosts\" without matching configuration management",
             "needsExplanationReview": true
           }
         ],
@@ -418,20 +466,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "man does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"man\" without matching the scenario constraint",
+            "explanation": "man describes a mechanism that could sound plausible for configuration management. Given configuration management, ansible-doc matches the tested behavior — man applies a different mechanism.",
+            "whatItDoes": "man describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, ansible-doc matches the tested behavior — man applies a different mechanism.",
+            "misconceptionTested": "Applying \"man\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "cat does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"cat\" without matching the scenario constraint",
+            "explanation": "cat describes a mechanism that could sound plausible for configuration management. Given configuration management, ansible-doc matches the tested behavior — cat applies a different mechanism.",
+            "whatItDoes": "cat describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, ansible-doc matches the tested behavior — cat applies a different mechanism.",
+            "misconceptionTested": "Applying \"cat\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "ad-hoc does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"ad-hoc\" without matching the scenario constraint",
+            "explanation": "ad-hoc describes a mechanism that could sound plausible for configuration management. Given configuration management, ansible-doc matches the tested behavior — ad-hoc applies a different mechanism.",
+            "whatItDoes": "ad-hoc describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, ansible-doc matches the tested behavior — ad-hoc applies a different mechanism.",
+            "misconceptionTested": "Applying \"ad-hoc\" without matching configuration management",
             "needsExplanationReview": true
           }
         ],
@@ -466,20 +520,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Knife interface does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Knife interface\" without matching the scenario constraint",
+            "explanation": "Knife interface describes a mechanism that could sound plausible for configuration management. Given configuration management, Ad-hoc interface matches the tested behavior — Knife interface applies a different mechanism.",
+            "whatItDoes": "Knife interface describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Ad-hoc interface matches the tested behavior — Knife interface applies a different mechanism.",
+            "misconceptionTested": "Applying \"Knife interface\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "ansible_playbook command does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"ansible_playbook command\" without matching the scenario constraint",
+            "explanation": "ansible_playbook command describes a mechanism that could sound plausible for configuration management. Given configuration management, Ad-hoc interface matches the tested behavior — ansible_playbook command applies a different mechanism.",
+            "whatItDoes": "ansible_playbook command describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Ad-hoc interface matches the tested behavior — ansible_playbook command applies a different mechanism.",
+            "misconceptionTested": "Applying \"ansible_playbook command\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Ansible Tower does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Ansible Tower\" without matching the scenario constraint",
+            "explanation": "Ansible Tower describes a mechanism that could sound plausible for configuration management. Given configuration management, Ad-hoc interface matches the tested behavior — Ansible Tower applies a different mechanism.",
+            "whatItDoes": "Ansible Tower describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Ad-hoc interface matches the tested behavior — Ansible Tower applies a different mechanism.",
+            "misconceptionTested": "Applying \"Ansible Tower\" without matching configuration management",
             "needsExplanationReview": true
           }
         ],
@@ -513,20 +573,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Resource does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Resource\" without matching the scenario constraint",
+            "explanation": "Resource describes a mechanism that could sound plausible for configuration management. Given configuration management, Facts matches the tested behavior — Resource applies a different mechanism.",
+            "whatItDoes": "Resource describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Facts matches the tested behavior — Resource applies a different mechanism.",
+            "misconceptionTested": "Applying \"Resource\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Class does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Class\" without matching the scenario constraint",
+            "explanation": "Class describes a mechanism that could sound plausible for configuration management. Given configuration management, Facts matches the tested behavior — Class applies a different mechanism.",
+            "whatItDoes": "Class describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Facts matches the tested behavior — Class applies a different mechanism.",
+            "misconceptionTested": "Applying \"Class\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Module does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Module\" without matching the scenario constraint",
+            "explanation": "Module describes a mechanism that could sound plausible for configuration management. Given configuration management, Facts matches the tested behavior — Module applies a different mechanism.",
+            "whatItDoes": "Module describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Facts matches the tested behavior — Module applies a different mechanism.",
+            "misconceptionTested": "Applying \"Module\" without matching configuration management",
             "needsExplanationReview": true
           }
         ],
@@ -562,20 +628,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Chef Workstation does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Chef Workstation\" without matching the scenario constraint",
+            "explanation": "Chef Workstation describes a mechanism that could sound plausible for configuration management. Given configuration management, Bookshelf matches the tested behavior — Chef Workstation applies a different mechanism.",
+            "whatItDoes": "Chef Workstation describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Bookshelf matches the tested behavior — Chef Workstation applies a different mechanism.",
+            "misconceptionTested": "Applying \"Chef Workstation\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Chef Node does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Chef Node\" without matching the scenario constraint",
+            "explanation": "Chef Node describes a mechanism that could sound plausible for configuration management. Given configuration management, Bookshelf matches the tested behavior — Chef Node applies a different mechanism.",
+            "whatItDoes": "Chef Node describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Bookshelf matches the tested behavior — Chef Node applies a different mechanism.",
+            "misconceptionTested": "Applying \"Chef Node\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Chef-Client does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Chef-Client\" without matching the scenario constraint",
+            "explanation": "Chef-Client describes a mechanism that could sound plausible for configuration management. Given configuration management, Bookshelf matches the tested behavior — Chef-Client applies a different mechanism.",
+            "whatItDoes": "Chef-Client describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Bookshelf matches the tested behavior — Chef-Client applies a different mechanism.",
+            "misconceptionTested": "Applying \"Chef-Client\" without matching configuration management",
             "needsExplanationReview": true
           }
         ],
@@ -610,20 +682,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Chef does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Chef\" without matching the scenario constraint",
+            "explanation": "Chef describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible Tower matches the tested behavior — Chef applies a different mechanism.",
+            "whatItDoes": "Chef describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Ansible Tower matches the tested behavior — Chef applies a different mechanism.",
+            "misconceptionTested": "Applying \"Chef\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Puppet does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Puppet\" without matching the scenario constraint",
+            "explanation": "Puppet describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible Tower matches the tested behavior — Puppet applies a different mechanism.",
+            "whatItDoes": "Puppet describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Ansible Tower matches the tested behavior — Puppet applies a different mechanism.",
+            "misconceptionTested": "Applying \"Puppet\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Ansible does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Ansible\" without matching the scenario constraint",
+            "explanation": "Ansible describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible Tower matches the tested behavior — Ansible applies a different mechanism.",
+            "whatItDoes": "Ansible describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Ansible Tower matches the tested behavior — Ansible applies a different mechanism.",
+            "misconceptionTested": "Applying \"Ansible\" without matching configuration management",
             "needsExplanationReview": true
           }
         ],
@@ -659,20 +737,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Puppet does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Puppet\" without matching the scenario constraint",
+            "explanation": "Puppet describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Puppet applies a different mechanism.",
+            "whatItDoes": "Puppet describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Puppet applies a different mechanism.",
+            "misconceptionTested": "Applying \"Puppet\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Chef does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Chef\" without matching the scenario constraint",
+            "explanation": "Chef describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Chef applies a different mechanism.",
+            "whatItDoes": "Chef describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Chef applies a different mechanism.",
+            "misconceptionTested": "Applying \"Chef\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Python does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Python\" without matching the scenario constraint",
+            "explanation": "Python describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Python applies a different mechanism.",
+            "whatItDoes": "Python describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Python applies a different mechanism.",
+            "misconceptionTested": "Applying \"Python\" without matching configuration management",
             "needsExplanationReview": true
           }
         ],
@@ -707,20 +791,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Storage of the Bookshelf does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Storage of the Bookshelf\" without matching the scenario constraint",
+            "explanation": "Storage of the Bookshelf describes a mechanism that could sound plausible for configuration management. Given configuration management, CLI utility for the management of Chef matches the tested behavior — Storage of the Bookshelf applies a different mechanism.",
+            "whatItDoes": "Storage of the Bookshelf describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, CLI utility for the management of Chef matches the tested behavior — Storage of the Bookshelf applies a different mechanism.",
+            "misconceptionTested": "Applying \"Storage of the Bookshelf\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Storage of the configuration of Chef does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Storage of the configuration of Chef\" without matching the scenario constraint",
+            "explanation": "Storage of the configuration of Chef describes a mechanism that could sound plausible for configuration management. Given configuration management, CLI utility for the management of Chef matches the tested behavior — Storage of the configuration of Chef applies a different mechanism.",
+            "whatItDoes": "Storage of the configuration of Chef describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, CLI utility for the management of Chef matches the tested behavior — Storage of the configuration of Chef applies a different mechanism.",
+            "misconceptionTested": "Applying \"Storage of the configuration of Chef\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Client-side agent does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Client-side agent\" without matching the scenario constraint",
+            "explanation": "Client-side agent describes a mechanism that could sound plausible for configuration management. Given configuration management, CLI utility for the management of Chef matches the tested behavior — Client-side agent applies a different mechanism.",
+            "whatItDoes": "Client-side agent describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, CLI utility for the management of Chef matches the tested behavior — Client-side agent applies a different mechanism.",
+            "misconceptionTested": "Applying \"Client-side agent\" without matching configuration management",
             "needsExplanationReview": true
           }
         ],
@@ -755,20 +845,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "IaaS helps maintain configuration over the life cycle of the host. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"IaaS helps maintain configuration over t…\" without matching the scenario constraint",
+            "explanation": "IaaS helps maintain configuration over the life cycle of the host. describes a mechanism that could sound plausible for configuration management. Given configuration management, IaC solutions prevent drift with Idempotence. matches the tested behavior — IaaS helps maintain configuration over the life cycle of the host. applies a different mechanism.",
+            "whatItDoes": "IaaS helps maintain configuration over the life cycle of the host. describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, IaC solutions prevent drift with Idempotence. matches the tested behavior — IaaS helps maintain configuration over the life cycle of the host. applies a different mechanism.",
+            "misconceptionTested": "Applying \"IaaS helps maintain configuration ov\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Configuration management prevents drift with NTP. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Configuration management prevents drift …\" without matching the scenario constraint",
+            "explanation": "Configuration management prevents drift with NTP. describes a mechanism that could sound plausible for configuration management. Given configuration management, IaC solutions prevent drift with Idempotence. matches the tested behavior — Configuration management prevents drift with NTP. applies a different mechanism.",
+            "whatItDoes": "Configuration management prevents drift with NTP. describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, IaC solutions prevent drift with Idempotence. matches the tested behavior — Configuration management prevents drift with NTP. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Configuration management prevents dr\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Configuration management software requires per-host licensing. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Configuration management software requir…\" without matching the scenario constraint",
+            "explanation": "Configuration management software requires per-host licensing. describes a mechanism that could sound plausible for configuration management. Given configuration management, IaC solutions prevent drift with Idempotence. matches the tested behavior — Configuration management software requires per-host licensing. applies a different mechanism.",
+            "whatItDoes": "Configuration management software requires per-host licensing. describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, IaC solutions prevent drift with Idempotence. matches the tested behavior — Configuration management software requires per-host licensing. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Configuration management software re\" without matching configuration management",
             "needsExplanationReview": true
           }
         ],
@@ -804,20 +900,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Chef does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Chef\" without matching the scenario constraint",
+            "explanation": "Chef describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Chef applies a different mechanism.",
+            "whatItDoes": "Chef describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Chef applies a different mechanism.",
+            "misconceptionTested": "Applying \"Chef\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Puppet does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Puppet\" without matching the scenario constraint",
+            "explanation": "Puppet describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Puppet applies a different mechanism.",
+            "whatItDoes": "Puppet describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Puppet applies a different mechanism.",
+            "misconceptionTested": "Applying \"Puppet\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Cisco DNA Center does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Cisco DNA Center\" without matching the scenario constraint",
+            "explanation": "Cisco DNA Center describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Cisco DNA Center applies a different mechanism.",
+            "whatItDoes": "Cisco DNA Center describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Cisco DNA Center applies a different mechanism.",
+            "misconceptionTested": "Applying \"Cisco DNA Center\" without matching configuration management",
             "needsExplanationReview": true
           }
         ],
@@ -854,20 +956,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "YAML does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"YAML\" without matching the scenario constraint",
+            "explanation": "YAML describes a mechanism that could sound plausible for configuration management. Given configuration management, JSON matches the tested behavior — YAML applies a different mechanism.",
+            "whatItDoes": "YAML describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, JSON matches the tested behavior — YAML applies a different mechanism.",
+            "misconceptionTested": "Applying \"YAML\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "CSV does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"CSV\" without matching the scenario constraint",
+            "explanation": "CSV describes a mechanism that could sound plausible for configuration management. Given configuration management, JSON matches the tested behavior — CSV applies a different mechanism.",
+            "whatItDoes": "CSV describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, JSON matches the tested behavior — CSV applies a different mechanism.",
+            "misconceptionTested": "Applying \"CSV\" without matching configuration management",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "XML does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"XML\" without matching the scenario constraint",
+            "explanation": "XML describes a mechanism that could sound plausible for configuration management. Given configuration management, JSON matches the tested behavior — XML applies a different mechanism.",
+            "whatItDoes": "XML describes a mechanism that could sound plausible for configuration management.",
+            "whyWrongHere": "Given configuration management, JSON matches the tested behavior — XML applies a different mechanism.",
+            "misconceptionTested": "Applying \"XML\" without matching configuration management",
             "needsExplanationReview": true
           }
         ],
@@ -901,20 +1009,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Definition does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Definition\" without matching the scenario constraint",
+            "explanation": "Definition describes a mechanism that could sound plausible for json. Given json, Mapping matches the tested behavior — Definition applies a different mechanism.",
+            "whatItDoes": "Definition describes a mechanism that could sound plausible for json.",
+            "whyWrongHere": "Given json, Mapping matches the tested behavior — Definition applies a different mechanism.",
+            "misconceptionTested": "Applying \"Definition\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Lists does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Lists\" without matching the scenario constraint",
+            "explanation": "Lists describes a mechanism that could sound plausible for json. Given json, Mapping matches the tested behavior — Lists applies a different mechanism.",
+            "whatItDoes": "Lists describes a mechanism that could sound plausible for json.",
+            "whyWrongHere": "Given json, Mapping matches the tested behavior — Lists applies a different mechanism.",
+            "misconceptionTested": "Applying \"Lists\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Keys does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Keys\" without matching the scenario constraint",
+            "explanation": "Keys describes a mechanism that could sound plausible for json. Given json, Mapping matches the tested behavior — Keys applies a different mechanism.",
+            "whatItDoes": "Keys describes a mechanism that could sound plausible for json.",
+            "whyWrongHere": "Given json, Mapping matches the tested behavior — Keys applies a different mechanism.",
+            "misconceptionTested": "Applying \"Keys\" without matching json",
             "needsExplanationReview": true
           }
         ],
@@ -948,20 +1062,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The file begins with a hashbang preprocessor. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The file begins with a hashbang preproce…\" without matching the scenario constraint",
+            "explanation": "The file begins with a hashbang preprocessor. describes a mechanism that could sound plausible for identify. Given identify, The file begins with three dashes. matches the tested behavior — The file begins with a hashbang preprocessor. applies a different mechanism.",
+            "whatItDoes": "The file begins with a hashbang preprocessor. describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, The file begins with three dashes. matches the tested behavior — The file begins with a hashbang preprocessor. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The file begins with a hashbang prep\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The contents are contained between curly brackets. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The contents are contained between curly…\" without matching the scenario constraint",
+            "explanation": "The contents are contained between curly brackets. describes a mechanism that could sound plausible for identify. Given identify, The file begins with three dashes. matches the tested behavior — The contents are contained between curly brackets. applies a different mechanism.",
+            "whatItDoes": "The contents are contained between curly brackets. describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, The file begins with three dashes. matches the tested behavior — The contents are contained between curly brackets. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The contents are contained between c\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The contents are contained between square brackets. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The contents are contained between squar…\" without matching the scenario constraint",
+            "explanation": "The contents are contained between square brackets. describes a mechanism that could sound plausible for identify. Given identify, The file begins with three dashes. matches the tested behavior — The contents are contained between square brackets. applies a different mechanism.",
+            "whatItDoes": "The contents are contained between square brackets. describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, The file begins with three dashes. matches the tested behavior — The contents are contained between square brackets. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The contents are contained between s\" without matching json",
             "needsExplanationReview": true
           }
         ],
@@ -995,20 +1115,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "YAML does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"YAML\" without matching the scenario constraint",
+            "explanation": "YAML describes a mechanism that could sound plausible for structured. Given structured, XML matches the tested behavior — YAML applies a different mechanism.",
+            "whatItDoes": "YAML describes a mechanism that could sound plausible for structured.",
+            "whyWrongHere": "Given structured, XML matches the tested behavior — YAML applies a different mechanism.",
+            "misconceptionTested": "Applying \"YAML\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "JSON does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"JSON\" without matching the scenario constraint",
+            "explanation": "JSON describes a mechanism that could sound plausible for structured. Given structured, XML matches the tested behavior — JSON applies a different mechanism.",
+            "whatItDoes": "JSON describes a mechanism that could sound plausible for structured.",
+            "whyWrongHere": "Given structured, XML matches the tested behavior — JSON applies a different mechanism.",
+            "misconceptionTested": "Applying \"JSON\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "CSV does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"CSV\" without matching the scenario constraint",
+            "explanation": "CSV describes a mechanism that could sound plausible for structured. Given structured, XML matches the tested behavior — CSV applies a different mechanism.",
+            "whatItDoes": "CSV describes a mechanism that could sound plausible for structured.",
+            "whyWrongHere": "Given structured, XML matches the tested behavior — CSV applies a different mechanism.",
+            "misconceptionTested": "Applying \"CSV\" without matching json",
             "needsExplanationReview": true
           }
         ],
@@ -1042,20 +1168,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "JSON does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"JSON\" without matching the scenario constraint",
+            "explanation": "JSON describes a mechanism that could sound plausible for structured. Given structured, YAML matches the tested behavior — JSON applies a different mechanism.",
+            "whatItDoes": "JSON describes a mechanism that could sound plausible for structured.",
+            "whyWrongHere": "Given structured, YAML matches the tested behavior — JSON applies a different mechanism.",
+            "misconceptionTested": "Applying \"JSON\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "XML does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"XML\" without matching the scenario constraint",
+            "explanation": "XML describes a mechanism that could sound plausible for structured. Given structured, YAML matches the tested behavior — XML applies a different mechanism.",
+            "whatItDoes": "XML describes a mechanism that could sound plausible for structured.",
+            "whyWrongHere": "Given structured, YAML matches the tested behavior — XML applies a different mechanism.",
+            "misconceptionTested": "Applying \"XML\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "CSV does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"CSV\" without matching the scenario constraint",
+            "explanation": "CSV describes a mechanism that could sound plausible for structured. Given structured, YAML matches the tested behavior — CSV applies a different mechanism.",
+            "whatItDoes": "CSV describes a mechanism that could sound plausible for structured.",
+            "whyWrongHere": "Given structured, YAML matches the tested behavior — CSV applies a different mechanism.",
+            "misconceptionTested": "Applying \"CSV\" without matching json",
             "needsExplanationReview": true
           }
         ],
@@ -1089,20 +1221,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Three dashes does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Three dashes\" without matching the scenario constraint",
+            "explanation": "Three dashes describes a mechanism that could sound plausible for identify. Given identify, A curly bracket matches the tested behavior — Three dashes applies a different mechanism.",
+            "whatItDoes": "Three dashes describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, A curly bracket matches the tested behavior — Three dashes applies a different mechanism.",
+            "misconceptionTested": "Applying \"Three dashes\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "A square bracket does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"A square bracket\" without matching the scenario constraint",
+            "explanation": "A square bracket describes a mechanism that could sound plausible for identify. Given identify, A curly bracket matches the tested behavior — A square bracket applies a different mechanism.",
+            "whatItDoes": "A square bracket describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, A curly bracket matches the tested behavior — A square bracket applies a different mechanism.",
+            "misconceptionTested": "Applying \"A square bracket\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "A double quote does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"A double quote\" without matching the scenario constraint",
+            "explanation": "A double quote describes a mechanism that could sound plausible for identify. Given identify, A curly bracket matches the tested behavior — A double quote applies a different mechanism.",
+            "whatItDoes": "A double quote describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, A curly bracket matches the tested behavior — A double quote applies a different mechanism.",
+            "misconceptionTested": "Applying \"A double quote\" without matching json",
             "needsExplanationReview": true
           }
         ],
@@ -1136,20 +1274,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The value that follows the square bracket is the value you are looking for. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The value that follows the square bracke…\" without matching the scenario constraint",
+            "explanation": "The value that follows the square bracket is the value you are looking for. describes a mechanism that could sound plausible for concluded. Given concluded, There are several key-value pairs for the key you need. matches the tested behavior — The value that follows the square bracket is the value you are looking for. applies a different mechanism.",
+            "whatItDoes": "The value that follows the square bracket is the value you are looking for. describes a mechanism that could sound plausible for concluded.",
+            "whyWrongHere": "Given concluded, There are several key-value pairs for the key you need. matches the tested behavior — The value that follows the square bracket is the value you are looking for. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The value that follows the square br\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The value is after the matching square bracket. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The value is after the matching square b…\" without matching the scenario constraint",
+            "explanation": "The value is after the matching square bracket. describes a mechanism that could sound plausible for concluded. Given concluded, There are several key-value pairs for the key you need. matches the tested behavior — The value is after the matching square bracket. applies a different mechanism.",
+            "whatItDoes": "The value is after the matching square bracket. describes a mechanism that could sound plausible for concluded.",
+            "whyWrongHere": "Given concluded, There are several key-value pairs for the key you need. matches the tested behavior — The value is after the matching square bracket. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The value is after the matching squa\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The value is unknown. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The value is unknown.\" without matching the scenario constraint",
+            "explanation": "The value is unknown. describes a mechanism that could sound plausible for concluded. Given concluded, There are several key-value pairs for the key you need. matches the tested behavior — The value is unknown. applies a different mechanism.",
+            "whatItDoes": "The value is unknown. describes a mechanism that could sound plausible for concluded.",
+            "whyWrongHere": "Given concluded, There are several key-value pairs for the key you need. matches the tested behavior — The value is unknown. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The value is unknown.\" without matching json",
             "needsExplanationReview": true
           }
         ],
@@ -1186,20 +1330,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The interface of Fa0/1 is capitalized. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The interface of Fa0/1 is capitalized.\" without matching the scenario constraint",
+            "explanation": "The interface of Fa0/1 is capitalized. describes a mechanism that could sound plausible for interface. Given interface, There is a missing curly bracket. matches the tested behavior — The interface of Fa0/1 is capitalized. applies a different mechanism.",
+            "whatItDoes": "The interface of Fa0/1 is capitalized. describes a mechanism that could sound plausible for interface.",
+            "whyWrongHere": "Given interface, There is a missing curly bracket. matches the tested behavior — The interface of Fa0/1 is capitalized. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The interface of Fa0/1 is capitalize\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "The address should have a square bracket. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The address should have a square bracket…\" without matching the scenario constraint",
+            "explanation": "The address should have a square bracket. describes a mechanism that could sound plausible for interface. Given interface, There is a missing curly bracket. matches the tested behavior — The address should have a square bracket. applies a different mechanism.",
+            "whatItDoes": "The address should have a square bracket. describes a mechanism that could sound plausible for interface.",
+            "whyWrongHere": "Given interface, There is a missing curly bracket. matches the tested behavior — The address should have a square bracket. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The address should have a square bra\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Nothing is wrong. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Nothing is wrong.\" without matching the scenario constraint",
+            "explanation": "Nothing is wrong. describes a mechanism that could sound plausible for interface. Given interface, There is a missing curly bracket. matches the tested behavior — Nothing is wrong. applies a different mechanism.",
+            "whatItDoes": "Nothing is wrong. describes a mechanism that could sound plausible for interface.",
+            "whyWrongHere": "Given interface, There is a missing curly bracket. matches the tested behavior — Nothing is wrong. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Nothing is wrong.\" without matching json",
             "needsExplanationReview": true
           }
         ],
@@ -1233,20 +1383,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Values can be used that contain spaces. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Values can be used that contain spaces.\" without matching the scenario constraint",
+            "explanation": "Values can be used that contain spaces. describes a mechanism that could sound plausible for advantage. Given advantage, Hierarchical structure allows for programmability. matches the tested behavior — Values can be used that contain spaces. applies a different mechanism.",
+            "whatItDoes": "Values can be used that contain spaces. describes a mechanism that could sound plausible for advantage.",
+            "whyWrongHere": "Given advantage, Hierarchical structure allows for programmability. matches the tested behavior — Values can be used that contain spaces. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Values can be used that contain spac\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "There are multiple values for a particular key. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"There are multiple values for a particul…\" without matching the scenario constraint",
+            "explanation": "There are multiple values for a particular key. describes a mechanism that could sound plausible for advantage. Given advantage, Hierarchical structure allows for programmability. matches the tested behavior — There are multiple values for a particular key. applies a different mechanism.",
+            "whatItDoes": "There are multiple values for a particular key. describes a mechanism that could sound plausible for advantage.",
+            "whyWrongHere": "Given advantage, Hierarchical structure allows for programmability. matches the tested behavior — There are multiple values for a particular key. applies a different mechanism.",
+            "misconceptionTested": "Applying \"There are multiple values for a part\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The files can be read line by line for every value. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The files can be read line by line for e…\" without matching the scenario constraint",
+            "explanation": "The files can be read line by line for every value. describes a mechanism that could sound plausible for advantage. Given advantage, Hierarchical structure allows for programmability. matches the tested behavior — The files can be read line by line for every value. applies a different mechanism.",
+            "whatItDoes": "The files can be read line by line for every value. describes a mechanism that could sound plausible for advantage.",
+            "whyWrongHere": "Given advantage, Hierarchical structure allows for programmability. matches the tested behavior — The files can be read line by line for every value. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The files can be read line by line f\" without matching json",
             "needsExplanationReview": true
           }
         ],
@@ -1284,19 +1440,25 @@
           {
             "choiceIndex": 1,
             "explanation": "Automation questions hinge on the tool/API named in the stem — do not swap REST, Ansible, or controller roles.",
+            "whatItDoes": "XML describes a mechanism that could sound plausible for information.",
+            "whyWrongHere": "Given information, JSON matches the tested behavior — XML applies a different mechanism.",
             "misconceptionTested": "Swapping automation tools or API styles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "CSV does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"CSV\" without matching the scenario constraint",
+            "explanation": "CSV describes a mechanism that could sound plausible for information. Given information, JSON matches the tested behavior — CSV applies a different mechanism.",
+            "whatItDoes": "CSV describes a mechanism that could sound plausible for information.",
+            "whyWrongHere": "Given information, JSON matches the tested behavior — CSV applies a different mechanism.",
+            "misconceptionTested": "Applying \"CSV\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "YAML is not the behavior described here. .",
-            "misconceptionTested": "Swapping automation tools or API styles",
+            "explanation": "YAML describes a mechanism that could sound plausible for information. Given information, JSON matches the tested behavior — YAML applies a different mechanism.",
+            "whatItDoes": "YAML describes a mechanism that could sound plausible for information.",
+            "whyWrongHere": "Given information, JSON matches the tested behavior — YAML applies a different mechanism.",
+            "misconceptionTested": "Applying \"YAML\" without matching json",
             "needsExplanationReview": true
           }
         ],
@@ -1332,20 +1494,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The interface data is incorrect because it is missing a comma after the routes. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The interface data is incorrect because …\" without matching the scenario constraint",
+            "explanation": "The interface data is incorrect because it is missing a comma after the routes. describes a mechanism that could sound plausible for ipaddress. Given ipaddress, The interface data is incorrect because it is missing a set of square brackets around the second route. matches the tested behavior — The interface data is incorrect because it is missing a comma after the routes. applies a different mechanism.",
+            "whatItDoes": "The interface data is incorrect because it is missing a comma after the routes. describes a mechanism that could sound plausible for ipaddress.",
+            "whyWrongHere": "Given ipaddress, The interface data is incorrect because it is missing a set of square brackets around the second route. matches the tested behavior — The interface data is incorrect because it is missing a comma after the routes. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The interface data is incorrect beca\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The interface data is incorrect because it contains an illegal underscore character. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The interface data is incorrect because …\" without matching the scenario constraint",
+            "explanation": "The interface data is incorrect because it contains an illegal underscore character. describes a mechanism that could sound plausible for ipaddress. Given ipaddress, The interface data is incorrect because it is missing a set of square brackets around the second route. matches the tested behavior — The interface data is incorrect because it contains an illegal underscore character. applies a different mechanism.",
+            "whatItDoes": "The interface data is incorrect because it contains an illegal underscore character. describes a mechanism that could sound plausible for ipaddress.",
+            "whyWrongHere": "Given ipaddress, The interface data is incorrect because it is missing a set of square brackets around the second route. matches the tested behavior — The interface data is incorrect because it contains an illegal underscore character. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The interface data is incorrect beca\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Nothing is wrong with the exhibit. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Nothing is wrong with the exhibit.\" without matching the scenario constraint",
+            "explanation": "Nothing is wrong with the exhibit. describes a mechanism that could sound plausible for ipaddress. Given ipaddress, The interface data is incorrect because it is missing a set of square brackets around the second route. matches the tested behavior — Nothing is wrong with the exhibit. applies a different mechanism.",
+            "whatItDoes": "Nothing is wrong with the exhibit. describes a mechanism that could sound plausible for ipaddress.",
+            "whyWrongHere": "Given ipaddress, The interface data is incorrect because it is missing a set of square brackets around the second route. matches the tested behavior — Nothing is wrong with the exhibit. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Nothing is wrong with the exhibit.\" without matching json",
             "needsExplanationReview": true
           }
         ],
@@ -1381,20 +1549,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The interface data is incorrect because it is missing a comma after defaultgw. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The interface data is incorrect because …\" without matching the scenario constraint",
+            "explanation": "The interface data is incorrect because it is missing a comma after defaultgw. describes a mechanism that could sound plausible for ipaddress. Given ipaddress, Nothing is wrong with the exhibit. matches the tested behavior — The interface data is incorrect because it is missing a comma after defaultgw. applies a different mechanism.",
+            "whatItDoes": "The interface data is incorrect because it is missing a comma after defaultgw. describes a mechanism that could sound plausible for ipaddress.",
+            "whyWrongHere": "Given ipaddress, Nothing is wrong with the exhibit. matches the tested behavior — The interface data is incorrect because it is missing a comma after defaultgw. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The interface data is incorrect beca\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "The interface data is incorrect because it is missing a subnet mask for the second IP address. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The interface data is incorrect because …\" without matching the scenario constraint",
+            "explanation": "The interface data is incorrect because it is missing a subnet mask for the second IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given ipaddress, Nothing is wrong with the exhibit. matches the tested behavior — The interface data is incorrect because it is missing a subnet mask for the second IP address. applies a different mechanism.",
+            "whatItDoes": "The interface data is incorrect because it is missing a subnet mask for the second IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given ipaddress, Nothing is wrong with the exhibit. matches the tested behavior — The interface data is incorrect because it is missing a subnet mask for the second IP address. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The interface data is incorrect beca\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The interface data is incorrect because it contains an illegal underscore character. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The interface data is incorrect because …\" without matching the scenario constraint",
+            "explanation": "The interface data is incorrect because it contains an illegal underscore character. describes a mechanism that could sound plausible for ipaddress. Given ipaddress, Nothing is wrong with the exhibit. matches the tested behavior — The interface data is incorrect because it contains an illegal underscore character. applies a different mechanism.",
+            "whatItDoes": "The interface data is incorrect because it contains an illegal underscore character. describes a mechanism that could sound plausible for ipaddress.",
+            "whyWrongHere": "Given ipaddress, Nothing is wrong with the exhibit. matches the tested behavior — The interface data is incorrect because it contains an illegal underscore character. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The interface data is incorrect beca\" without matching json",
             "needsExplanationReview": true
           }
         ],
@@ -1430,20 +1604,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The interface data is incorrect because it is missing a comma after defaultgw. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The interface data is incorrect because …\" without matching the scenario constraint",
+            "explanation": "The interface data is incorrect because it is missing a comma after defaultgw. describes a mechanism that could sound plausible for interface. Given interface, The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses. matches the tested behavior — The interface data is incorrect because it is missing a comma after defaultgw. applies a different mechanism.",
+            "whatItDoes": "The interface data is incorrect because it is missing a comma after defaultgw. describes a mechanism that could sound plausible for interface.",
+            "whyWrongHere": "Given interface, The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses. matches the tested behavior — The interface data is incorrect because it is missing a comma after defaultgw. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The interface data is incorrect beca\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The interface data is incorrect because it contains an illegal underscore character. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The interface data is incorrect because …\" without matching the scenario constraint",
+            "explanation": "The interface data is incorrect because it contains an illegal underscore character. describes a mechanism that could sound plausible for interface. Given interface, The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses. matches the tested behavior — The interface data is incorrect because it contains an illegal underscore character. applies a different mechanism.",
+            "whatItDoes": "The interface data is incorrect because it contains an illegal underscore character. describes a mechanism that could sound plausible for interface.",
+            "whyWrongHere": "Given interface, The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses. matches the tested behavior — The interface data is incorrect because it contains an illegal underscore character. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The interface data is incorrect beca\" without matching json",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Nothing is wrong with the exhibit. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Nothing is wrong with the exhibit.\" without matching the scenario constraint",
+            "explanation": "Nothing is wrong with the exhibit. describes a mechanism that could sound plausible for interface. Given interface, The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses. matches the tested behavior — Nothing is wrong with the exhibit. applies a different mechanism.",
+            "whatItDoes": "Nothing is wrong with the exhibit. describes a mechanism that could sound plausible for interface.",
+            "whyWrongHere": "Given interface, The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses. matches the tested behavior — Nothing is wrong with the exhibit. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Nothing is wrong with the exhibit.\" without matching json",
             "needsExplanationReview": true
           }
         ],

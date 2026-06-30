@@ -33,18 +33,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Access, Audit, Administration misses what this question tests. AAA stands for Authentication (who are you), Authorization (what are you allowed to do), and Accounting (what did you do / logging).",
-            "misconceptionTested": "Selecting \"Access, Audit, Administration\" without matching the scenario constraint"
+            "explanation": "Access, Audit, Administration describes a mechanism that could sound plausible for AAA framework. Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Access, Audit, Administration applies a different mechanism.",
+            "whatItDoes": "Access, Audit, Administration describes a mechanism that could sound plausible for AAA framework.",
+            "whyWrongHere": "Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Access, Audit, Administration applies a different mechanism.",
+            "misconceptionTested": "Applying \"Access, Audit, Administration\" without matching AAA framework"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Authentication, Auditing, Availability misses what this question tests. AAA stands for Authentication (who are you), Authorization (what are you allowed to do), and Accounting (what did you do / logging).",
-            "misconceptionTested": "Selecting \"Authentication, Auditing, Availability\" without matching the scenario constraint"
+            "explanation": "Authentication, Auditing, Availability describes a mechanism that could sound plausible for AAA framework. Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Authentication, Auditing, Availability applies a different mechanism.",
+            "whatItDoes": "Authentication, Auditing, Availability describes a mechanism that could sound plausible for AAA framework.",
+            "whyWrongHere": "Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Authentication, Auditing, Availability applies a different mechanism.",
+            "misconceptionTested": "Applying \"Authentication, Auditing, Availabili\" without matching AAA framework"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Authorization, Access, Accounting misses what this question tests. AAA stands for Authentication (who are you), Authorization (what are you allowed to do), and Accounting (what did you do / logging).",
-            "misconceptionTested": "Selecting \"Authorization, Access, Accounting\" without matching the scenario constraint"
+            "explanation": "Authorization, Access, Accounting describes a mechanism that could sound plausible for AAA framework. Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Authorization, Access, Accounting applies a different mechanism.",
+            "whatItDoes": "Authorization, Access, Accounting describes a mechanism that could sound plausible for AAA framework.",
+            "whyWrongHere": "Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Authorization, Access, Accounting applies a different mechanism.",
+            "misconceptionTested": "Applying \"Authorization, Access, Accounting\" without matching AAA framework"
           }
         ],
         "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
@@ -77,17 +83,23 @@
           {
             "choiceIndex": 0,
             "explanation": "UDP port 1812 uses the wrong value. The tested fact calls for 49 — not 1812.",
-            "misconceptionTested": "Selecting \"UDP port 1812\" without matching the scenario constraint"
+            "whatItDoes": "UDP port 1812 describes a mechanism that could sound plausible for TACACS+ transport.",
+            "whyWrongHere": "Given TACACS+ transport, TCP port 49 matches the tested behavior — UDP port 1812 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 1812 instead of the correct 49"
           },
           {
             "choiceIndex": 2,
-            "explanation": "UDP port 49 misses what this question tests. TACACS+ uses TCP port 49, providing reliable, connection-oriented communication between the network device and the AAA server.",
-            "misconceptionTested": "Selecting \"UDP port 49\" without matching the scenario constraint"
+            "explanation": "UDP port 49 describes a mechanism that could sound plausible for TACACS+ transport. Given TACACS+ transport, TCP port 49 matches the tested behavior — UDP port 49 applies a different mechanism.",
+            "whatItDoes": "UDP port 49 describes a mechanism that could sound plausible for TACACS+ transport.",
+            "whyWrongHere": "Given TACACS+ transport, TCP port 49 matches the tested behavior — UDP port 49 applies a different mechanism.",
+            "misconceptionTested": "Applying \"UDP port 49\" without matching TACACS+ transport"
           },
           {
             "choiceIndex": 3,
             "explanation": "TCP port 1812 uses the wrong value. The tested fact calls for 49 — not 1812.",
-            "misconceptionTested": "Selecting \"TCP port 1812\" without matching the scenario constraint"
+            "whatItDoes": "TCP port 1812 describes a mechanism that could sound plausible for TACACS+ transport.",
+            "whyWrongHere": "Given TACACS+ transport, TCP port 49 matches the tested behavior — TCP port 1812 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 1812 instead of the correct 49"
           }
         ],
         "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
@@ -120,17 +132,23 @@
           {
             "choiceIndex": 0,
             "explanation": "TCP 49 and TCP 50 uses the wrong value. The tested fact calls for 1812 — not 49.",
-            "misconceptionTested": "Selecting \"TCP 49 and TCP 50\" without matching the scenario constraint"
+            "whatItDoes": "TCP 49 and TCP 50 describes a mechanism that could sound plausible for RADIUS transport.",
+            "whyWrongHere": "Given RADIUS transport, UDP 1812 (authentication/authorization) and UDP 1813 (accounting) matches the tested behavior — TCP 49 and TCP 50 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 49 instead of the correct 1812"
           },
           {
             "choiceIndex": 2,
             "explanation": "TCP 1812 and TCP 1813 uses the wrong value. The tested fact calls for 1813 — not 1812.",
-            "misconceptionTested": "Selecting \"TCP 1812 and TCP 1813\" without matching the scenario constraint"
+            "whatItDoes": "TCP 1812 and TCP 1813 describes a mechanism that could sound plausible for RADIUS transport.",
+            "whyWrongHere": "Given RADIUS transport, UDP 1812 (authentication/authorization) and UDP 1813 (accounting) matches the tested behavior — TCP 1812 and TCP 1813 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 1812 instead of the correct 1813"
           },
           {
             "choiceIndex": 3,
             "explanation": "UDP 161 and UDP 162 uses the wrong value. The tested fact calls for 1812 — not 161.",
-            "misconceptionTested": "Selecting \"UDP 161 and UDP 162\" without matching the scenario constraint"
+            "whatItDoes": "UDP 161 and UDP 162 describes a mechanism that could sound plausible for RADIUS transport.",
+            "whyWrongHere": "Given RADIUS transport, UDP 1812 (authentication/authorization) and UDP 1813 (accounting) matches the tested behavior — UDP 161 and UDP 162 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 161 instead of the correct 1812"
           }
         ],
         "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
@@ -163,17 +181,23 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "TACACS+ encrypts only the password; RADIUS encrypts the entire packet body misses what this question tests. TACACS+ encrypts the entire body of the packet between client and server, while RADIUS encrypts only the password field, leaving other attributes (like username) in clear text.",
-            "misconceptionTested": "Selecting \"TACACS+ encrypts only the password; RADI…\" without matching the scenario constraint"
+            "explanation": "TACACS+ encrypts only the password; RADIUS encrypts the entire packet body describes a mechanism that could sound plausible for TACACS+ vs RADIUS encryption. Given TACACS+ vs RADIUS encryption, TACACS+ encrypts the entire packet body; RADIUS encrypts only the password in the access-request packet matches the tested behavior — TACACS+ encrypts only the password; RADIUS encrypts the entire packet body applies a different mechanism.",
+            "whatItDoes": "TACACS+ encrypts only the password; RADIUS encrypts the entire packet body describes a mechanism that could sound plausible for TACACS+ vs RADIUS encryption.",
+            "whyWrongHere": "Given TACACS+ vs RADIUS encryption, TACACS+ encrypts the entire packet body; RADIUS encrypts only the password in the access-request packet matches the tested behavior — TACACS+ encrypts only the password; RADIUS encrypts the entire packet body applies a different mechanism.",
+            "misconceptionTested": "Applying \"TACACS+ encrypts only the password; \" without matching TACACS+ vs RADIUS encryption"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Neither protocol supports encryption misses what this question tests. TACACS+ encrypts the entire body of the packet between client and server, while RADIUS encrypts only the password field, leaving other attributes (like username) in clear text.",
-            "misconceptionTested": "Selecting \"Neither protocol supports encryption\" without matching the scenario constraint"
+            "explanation": "Neither protocol supports encryption shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given TACACS+ vs RADIUS encryption, TACACS+ encrypts the entire packet body; RADIUS encrypts only the password in the access-request packet matches the tested behavior — Neither protocol supports encryption applies a different mechanism.",
+            "whatItDoes": "Neither protocol supports encryption shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given TACACS+ vs RADIUS encryption, TACACS+ encrypts the entire packet body; RADIUS encrypts only the password in the access-request packet matches the tested behavior — Neither protocol supports encryption applies a different mechanism.",
+            "misconceptionTested": "Applying \"Neither protocol supports encryption\" without matching TACACS+ vs RADIUS encryption"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Both encrypt the entire packet body identically misses what this question tests. TACACS+ encrypts the entire body of the packet between client and server, while RADIUS encrypts only the password field, leaving other attributes (like username) in clear text.",
+            "explanation": "Both encrypt the entire packet body identically describes a mechanism that could sound plausible for TACACS+ vs RADIUS encryption. CAM learning stores one mapping per arrival (TACACS+ vs RADIUS encryption): TACACS+ encrypts the entire packet body; RADIUS encrypts only the password in the access-request packet — not both addresses as table entries.",
+            "whatItDoes": "Both encrypt the entire packet body identically describes a mechanism that could sound plausible for TACACS+ vs RADIUS encryption.",
+            "whyWrongHere": "CAM learning stores one mapping per arrival (TACACS+ vs RADIUS encryption): TACACS+ encrypts the entire packet body; RADIUS encrypts only the password in the access-request packet — not both addresses as table entries.",
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           }
         ],
@@ -206,18 +230,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "ip aaa enable misses what this question tests. aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands.",
-            "misconceptionTested": "Selecting \"ip aaa enable\" without matching the scenario constraint"
+            "explanation": "ip aaa enable describes a mechanism that could sound plausible for aaa new-model. Given aaa new-model, aaa new-model matches the tested behavior — ip aaa enable applies a different mechanism.",
+            "whatItDoes": "ip aaa enable describes a mechanism that could sound plausible for aaa new-model.",
+            "whyWrongHere": "Given aaa new-model, aaa new-model matches the tested behavior — ip aaa enable applies a different mechanism.",
+            "misconceptionTested": "Applying \"ip aaa enable\" without matching aaa new-model"
           },
           {
             "choiceIndex": 2,
-            "explanation": "service aaa misses what this question tests. aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands.",
-            "misconceptionTested": "Selecting \"service aaa\" without matching the scenario constraint"
+            "explanation": "service aaa describes a mechanism that could sound plausible for aaa new-model. Given aaa new-model, aaa new-model matches the tested behavior — service aaa applies a different mechanism.",
+            "whatItDoes": "service aaa describes a mechanism that could sound plausible for aaa new-model.",
+            "whyWrongHere": "Given aaa new-model, aaa new-model matches the tested behavior — service aaa applies a different mechanism.",
+            "misconceptionTested": "Applying \"service aaa\" without matching aaa new-model"
           },
           {
             "choiceIndex": 3,
-            "explanation": "aaa start misses what this question tests. aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands.",
-            "misconceptionTested": "Selecting \"aaa start\" without matching the scenario constraint"
+            "explanation": "aaa start describes a mechanism that could sound plausible for aaa new-model. Given aaa new-model, aaa new-model matches the tested behavior — aaa start applies a different mechanism.",
+            "whatItDoes": "aaa start describes a mechanism that could sound plausible for aaa new-model.",
+            "whyWrongHere": "Given aaa new-model, aaa new-model matches the tested behavior — aaa start applies a different mechanism.",
+            "misconceptionTested": "Applying \"aaa start\" without matching aaa new-model"
           }
         ],
         "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
@@ -249,18 +279,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Only TACACS+ can be used; if it fails, login is denied misses what this question tests. The 'group tacacs+ local' method list tries TACACS+ servers first (in order); if none respond, the device falls back to the local user database — a common design for resilience if the AAA server is unreachable.",
-            "misconceptionTested": "Selecting \"Only TACACS+ can be used; if it fails, l…\" without matching the scenario constraint"
+            "explanation": "Only TACACS+ can be used; if it fails, login is denied describes a mechanism that could sound plausible for AAA method lists. Given AAA method lists, The switch will attempt TACACS+ authentication first, and fall back to the local username/password database if TACACS+ is unreachable matches the tested behavior — Only TACACS+ can be used; if it fails, login is denied applies a different mechanism.",
+            "whatItDoes": "Only TACACS+ can be used; if it fails, login is denied describes a mechanism that could sound plausible for AAA method lists.",
+            "whyWrongHere": "Given AAA method lists, The switch will attempt TACACS+ authentication first, and fall back to the local username/password database if TACACS+ is unreachable matches the tested behavior — Only TACACS+ can be used; if it fails, login is denied applies a different mechanism.",
+            "misconceptionTested": "Applying \"Only TACACS+ can be used; if it fail\" without matching AAA method lists"
           },
           {
             "choiceIndex": 2,
-            "explanation": "The switch authenticates against the local database first, then TACACS+ misses what this question tests. The 'group tacacs+ local' method list tries TACACS+ servers first (in order); if none respond, the device falls back to the local user database — a common design for resilience if the AAA server is unreachable.",
-            "misconceptionTested": "Selecting \"The switch authenticates against the loc…\" without matching the scenario constraint"
+            "explanation": "The switch authenticates against the local database first, then TACACS+ describes a mechanism that could sound plausible for AAA method lists. Given AAA method lists, The switch will attempt TACACS+ authentication first, and fall back to the local username/password database if TACACS+ is unreachable matches the tested behavior — The switch authenticates against the local database first, then TACACS+ applies a different mechanism.",
+            "whatItDoes": "The switch authenticates against the local database first, then TACACS+ describes a mechanism that could sound plausible for AAA method lists.",
+            "whyWrongHere": "Given AAA method lists, The switch will attempt TACACS+ authentication first, and fall back to the local username/password database if TACACS+ is unreachable matches the tested behavior — The switch authenticates against the local database first, then TACACS+ applies a different mechanism.",
+            "misconceptionTested": "Applying \"The switch authenticates against the\" without matching AAA method lists"
           },
           {
             "choiceIndex": 3,
-            "explanation": "This command has no effect without a RADIUS server configured misses what this question tests. The 'group tacacs+ local' method list tries TACACS+ servers first (in order); if none respond, the device falls back to the local user database — a common design for resilience if the AAA server is unreachable.",
-            "misconceptionTested": "Selecting \"This command has no effect without a RAD…\" without matching the scenario constraint"
+            "explanation": "This command has no effect without a RADIUS server configured describes a mechanism that could sound plausible for AAA method lists. Given AAA method lists, The switch will attempt TACACS+ authentication first, and fall back to the local username/password database if TACACS+ is unreachable matches the tested behavior — This command has no effect without a RADIUS server configured applies a different mechanism.",
+            "whatItDoes": "This command has no effect without a RADIUS server configured describes a mechanism that could sound plausible for AAA method lists.",
+            "whyWrongHere": "Given AAA method lists, The switch will attempt TACACS+ authentication first, and fall back to the local username/password database if TACACS+ is unreachable matches the tested behavior — This command has no effect without a RADIUS server configured applies a different mechanism.",
+            "misconceptionTested": "Applying \"This command has no effect without a\" without matching AAA method lists"
           }
         ],
         "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
@@ -292,18 +328,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "TACACS+ does not support shared secret keys is a plausible symptom fix but does not match the most likely root cause here: The shared secret key used to encrypt TACACS+/RADIUS traffic must match exactly (case-sensitive) on both the network device and the AAA server.",
-            "misconceptionTested": "Selecting \"TACACS+ does not support shared secret k…\" without matching the scenario constraint"
+            "explanation": "TACACS+ does not support shared secret keys describes a mechanism that could sound plausible for AAA shared secret mismatch. Given AAA shared secret mismatch, The shared secret keys must match exactly (including case) between the device and the TACACS+ server — this mismatch will cause authentication failures matches the tested behavior — TACACS+ does not support shared secret keys applies a different mechanism.",
+            "whatItDoes": "TACACS+ does not support shared secret keys describes a mechanism that could sound plausible for AAA shared secret mismatch.",
+            "whyWrongHere": "Given AAA shared secret mismatch, The shared secret keys must match exactly (including case) between the device and the TACACS+ server — this mismatch will cause authentication failures matches the tested behavior — TACACS+ does not support shared secret keys applies a different mechanism.",
+            "misconceptionTested": "Applying \"TACACS+ does not support shared secr\" without matching AAA shared secret mismatch"
           },
           {
             "choiceIndex": 2,
-            "explanation": "The device needs to use RADIUS instead is a plausible symptom fix but does not match the most likely root cause here: The shared secret key used to encrypt TACACS+/RADIUS traffic must match exactly (case-sensitive) on both the network device and the AAA server.",
-            "misconceptionTested": "Selecting \"The device needs to use RADIUS instead\" without matching the scenario constraint"
+            "explanation": "The device needs to use RADIUS instead describes a mechanism that could sound plausible for AAA shared secret mismatch. Given AAA shared secret mismatch, The shared secret keys must match exactly (including case) between the device and the TACACS+ server — this mismatch will cause authentication failures matches the tested behavior — The device needs to use RADIUS instead applies a different mechanism.",
+            "whatItDoes": "The device needs to use RADIUS instead describes a mechanism that could sound plausible for AAA shared secret mismatch.",
+            "whyWrongHere": "Given AAA shared secret mismatch, The shared secret keys must match exactly (including case) between the device and the TACACS+ server — this mismatch will cause authentication failures matches the tested behavior — The device needs to use RADIUS instead applies a different mechanism.",
+            "misconceptionTested": "Applying \"The device needs to use RADIUS inste\" without matching AAA shared secret mismatch"
           },
           {
             "choiceIndex": 3,
-            "explanation": "TACACS+ requires the keys to be different on each side is a plausible symptom fix but does not match the most likely root cause here: The shared secret key used to encrypt TACACS+/RADIUS traffic must match exactly (case-sensitive) on both the network device and the AAA server.",
-            "misconceptionTested": "Selecting \"TACACS+ requires the keys to be differen…\" without matching the scenario constraint"
+            "explanation": "TACACS+ requires the keys to be different on each side describes a mechanism that could sound plausible for AAA shared secret mismatch. Given AAA shared secret mismatch, The shared secret keys must match exactly (including case) between the device and the TACACS+ server — this mismatch will cause authentication failures matches the tested behavior — TACACS+ requires the keys to be different on each side applies a different mechanism.",
+            "whatItDoes": "TACACS+ requires the keys to be different on each side describes a mechanism that could sound plausible for AAA shared secret mismatch.",
+            "whyWrongHere": "Given AAA shared secret mismatch, The shared secret keys must match exactly (including case) between the device and the TACACS+ server — this mismatch will cause authentication failures matches the tested behavior — TACACS+ requires the keys to be different on each side applies a different mechanism.",
+            "misconceptionTested": "Applying \"TACACS+ requires the keys to be diff\" without matching AAA shared secret mismatch"
           }
         ],
         "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
@@ -335,18 +377,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Authentication misses what this question tests. Authorization determines what an authenticated user is permitted to do — e.",
-            "misconceptionTested": "Selecting \"Authentication\" without matching the scenario constraint"
+            "explanation": "Authentication describes a mechanism that could sound plausible for authorization role. Given authorization role, Authorization matches the tested behavior — Authentication applies a different mechanism.",
+            "whatItDoes": "Authentication describes a mechanism that could sound plausible for authorization role.",
+            "whyWrongHere": "Given authorization role, Authorization matches the tested behavior — Authentication applies a different mechanism.",
+            "misconceptionTested": "Applying \"Authentication\" without matching authorization role"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Accounting misses what this question tests. Authorization determines what an authenticated user is permitted to do — e.",
-            "misconceptionTested": "Selecting \"Accounting\" without matching the scenario constraint"
+            "explanation": "Accounting describes a mechanism that could sound plausible for authorization role. Given authorization role, Authorization matches the tested behavior — Accounting applies a different mechanism.",
+            "whatItDoes": "Accounting describes a mechanism that could sound plausible for authorization role.",
+            "whyWrongHere": "Given authorization role, Authorization matches the tested behavior — Accounting applies a different mechanism.",
+            "misconceptionTested": "Applying \"Accounting\" without matching authorization role"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Auditing misses what this question tests. Authorization determines what an authenticated user is permitted to do — e.",
-            "misconceptionTested": "Selecting \"Auditing\" without matching the scenario constraint"
+            "explanation": "Auditing describes a mechanism that could sound plausible for authorization role. Given authorization role, Authorization matches the tested behavior — Auditing applies a different mechanism.",
+            "whatItDoes": "Auditing describes a mechanism that could sound plausible for authorization role.",
+            "whyWrongHere": "Given authorization role, Authorization matches the tested behavior — Auditing applies a different mechanism.",
+            "misconceptionTested": "Applying \"Auditing\" without matching authorization role"
           }
         ],
         "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
@@ -378,18 +426,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Authentication misses what this question tests. Accounting tracks and logs what an authenticated and authorized user actually does — including command-level logging — which is exactly what command auditing requires.",
-            "misconceptionTested": "Selecting \"Authentication\" without matching the scenario constraint"
+            "explanation": "Authentication describes a mechanism that could sound plausible for accounting use case. Given accounting use case, Accounting matches the tested behavior — Authentication applies a different mechanism.",
+            "whatItDoes": "Authentication describes a mechanism that could sound plausible for accounting use case.",
+            "whyWrongHere": "Given accounting use case, Accounting matches the tested behavior — Authentication applies a different mechanism.",
+            "misconceptionTested": "Applying \"Authentication\" without matching accounting use case"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Authorization misses what this question tests. Accounting tracks and logs what an authenticated and authorized user actually does — including command-level logging — which is exactly what command auditing requires.",
-            "misconceptionTested": "Selecting \"Authorization\" without matching the scenario constraint"
+            "explanation": "Authorization describes a mechanism that could sound plausible for accounting use case. Given accounting use case, Accounting matches the tested behavior — Authorization applies a different mechanism.",
+            "whatItDoes": "Authorization describes a mechanism that could sound plausible for accounting use case.",
+            "whyWrongHere": "Given accounting use case, Accounting matches the tested behavior — Authorization applies a different mechanism.",
+            "misconceptionTested": "Applying \"Authorization\" without matching accounting use case"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Encryption misses what this question tests. Accounting tracks and logs what an authenticated and authorized user actually does — including command-level logging — which is exactly what command auditing requires.",
-            "misconceptionTested": "Selecting \"Encryption\" without matching the scenario constraint"
+            "explanation": "Encryption describes a mechanism that could sound plausible for accounting use case. Given accounting use case, Accounting matches the tested behavior — Encryption applies a different mechanism.",
+            "whatItDoes": "Encryption describes a mechanism that could sound plausible for accounting use case.",
+            "whyWrongHere": "Given accounting use case, Accounting matches the tested behavior — Encryption applies a different mechanism.",
+            "misconceptionTested": "Applying \"Encryption\" without matching accounting use case"
           }
         ],
         "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
@@ -422,18 +476,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RADIUS cannot authenticate users at all misses what this question tests. TACACS+'s separation of AAA functions and support for per-command authorization makes it especially well-suited for controlling exactly which CLI commands an administrator can run — a common reason it's preferred for device administration (RADIUS is more common for network access / 802.",
-            "misconceptionTested": "Selecting \"RADIUS cannot authenticate users at all\" without matching the scenario constraint"
+            "explanation": "RADIUS cannot authenticate users at all describes a mechanism that could sound plausible for TACACS+ vs RADIUS use case. Given TACACS+ vs RADIUS use case, TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-command authorization, which is well-suited to granular device-administration control matches the tested behavior — RADIUS cannot authenticate users at all applies a different mechanism.",
+            "whatItDoes": "RADIUS cannot authenticate users at all describes a mechanism that could sound plausible for TACACS+ vs RADIUS use case.",
+            "whyWrongHere": "Given TACACS+ vs RADIUS use case, TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-command authorization, which is well-suited to granular device-administration control matches the tested behavior — RADIUS cannot authenticate users at all applies a different mechanism.",
+            "misconceptionTested": "Applying \"RADIUS cannot authenticate users at \" without matching TACACS+ vs RADIUS use case"
           },
           {
             "choiceIndex": 2,
-            "explanation": "TACACS+ is required for wireless client authentication, which RADIUS cannot do misses what this question tests. TACACS+'s separation of AAA functions and support for per-command authorization makes it especially well-suited for controlling exactly which CLI commands an administrator can run — a common reason it's preferred for device administration (RADIUS is more common for network access / 802.",
-            "misconceptionTested": "Selecting \"TACACS+ is required for wireless client …\" without matching the scenario constraint"
+            "explanation": "TACACS+ is required for wireless client authentication, which RADIUS cannot do describes a mechanism that could sound plausible for TACACS+ vs RADIUS use case. Given TACACS+ vs RADIUS use case, TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-command authorization, which is well-suited to granular device-administration control matches the tested behavior — TACACS+ is required for wireless client authentication, which RADIUS cannot do applies a different mechanism.",
+            "whatItDoes": "TACACS+ is required for wireless client authentication, which RADIUS cannot do describes a mechanism that could sound plausible for TACACS+ vs RADIUS use case.",
+            "whyWrongHere": "Given TACACS+ vs RADIUS use case, TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-command authorization, which is well-suited to granular device-administration control matches the tested behavior — TACACS+ is required for wireless client authentication, which RADIUS cannot do applies a different mechanism.",
+            "misconceptionTested": "Applying \"TACACS+ is required for wireless cli\" without matching TACACS+ vs RADIUS use case"
           },
           {
             "choiceIndex": 3,
-            "explanation": "TACACS+ uses less bandwidth than RADIUS in all cases misses what this question tests. TACACS+'s separation of AAA functions and support for per-command authorization makes it especially well-suited for controlling exactly which CLI commands an administrator can run — a common reason it's preferred for device administration (RADIUS is more common for network access / 802.",
-            "misconceptionTested": "Selecting \"TACACS+ uses less bandwidth than RADIUS …\" without matching the scenario constraint"
+            "explanation": "TACACS+ uses less bandwidth than RADIUS in all cases describes a mechanism that could sound plausible for TACACS+ vs RADIUS use case. Given TACACS+ vs RADIUS use case, TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-command authorization, which is well-suited to granular device-administration control matches the tested behavior — TACACS+ uses less bandwidth than RADIUS in all cases applies a different mechanism.",
+            "whatItDoes": "TACACS+ uses less bandwidth than RADIUS in all cases describes a mechanism that could sound plausible for TACACS+ vs RADIUS use case.",
+            "whyWrongHere": "Given TACACS+ vs RADIUS use case, TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-command authorization, which is well-suited to granular device-administration control matches the tested behavior — TACACS+ uses less bandwidth than RADIUS in all cases applies a different mechanism.",
+            "misconceptionTested": "Applying \"TACACS+ uses less bandwidth than RAD\" without matching TACACS+ vs RADIUS use case"
           }
         ],
         "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."

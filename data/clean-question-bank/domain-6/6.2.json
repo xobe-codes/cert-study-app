@@ -29,20 +29,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Decreased problems does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Decreased problems\" without matching the scenario constraint",
+            "explanation": "Decreased problems describes a mechanism that could sound plausible for controller based networking. Given controller based networking, Increased security matches the tested behavior — Decreased problems applies a different mechanism.",
+            "whatItDoes": "Decreased problems describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, Increased security matches the tested behavior — Decreased problems applies a different mechanism.",
+            "misconceptionTested": "Applying \"Decreased problems\" without matching controller based networking",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Increased throughput does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Increased throughput\" without matching the scenario constraint",
+            "explanation": "Increased throughput describes a mechanism that could sound plausible for controller based networking. Given controller based networking, Increased security matches the tested behavior — Increased throughput applies a different mechanism.",
+            "whatItDoes": "Increased throughput describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, Increased security matches the tested behavior — Increased throughput applies a different mechanism.",
+            "misconceptionTested": "Applying \"Increased throughput\" without matching controller based networking",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Increased complexity does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Increased complexity\" without matching the scenario constraint",
+            "explanation": "Increased complexity describes a mechanism that could sound plausible for controller based networking. Given controller based networking, Increased security matches the tested behavior — Increased complexity applies a different mechanism.",
+            "whatItDoes": "Increased complexity describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, Increased security matches the tested behavior — Increased complexity applies a different mechanism.",
+            "misconceptionTested": "Applying \"Increased complexity\" without matching controller based networking",
             "needsExplanationReview": true
           }
         ],
@@ -78,20 +84,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Controller-based networking is always in the form of hardware appliances. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Controller-based networking is always in…\" without matching the scenario constraint",
+            "explanation": "Controller-based networking is always in the form of hardware appliances. describes a mechanism that could sound plausible for controller based networking. Given controller based networking, Controller-based networking has a logically centralized control plane. matches the tested behavior — Controller-based networking is always in the form of hardware appliances. applies a different mechanism.",
+            "whatItDoes": "Controller-based networking is always in the form of hardware appliances. describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, Controller-based networking has a logically centralized control plane. matches the tested behavior — Controller-based networking is always in the form of hardware appliances. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Controller-based networking is alway\" without matching controller based networking",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Controller-based networking has a logically centralized data plane. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Controller-based networking has a logica…\" without matching the scenario constraint",
+            "explanation": "Controller-based networking has a logically centralized data plane. describes a mechanism that could sound plausible for controller based networking. Given controller based networking, Controller-based networking has a logically centralized control plane. matches the tested behavior — Controller-based networking has a logically centralized data plane. applies a different mechanism.",
+            "whatItDoes": "Controller-based networking has a logically centralized data plane. describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, Controller-based networking has a logically centralized control plane. matches the tested behavior — Controller-based networking has a logically centralized data plane. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Controller-based networking has a lo\" without matching controller based networking",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Controller-based networking uses ASICs to centrally switch frames. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Controller-based networking uses ASICs t…\" without matching the scenario constraint",
+            "explanation": "Controller-based networking uses ASICs to centrally switch frames. describes a mechanism that could sound plausible for controller based networking. Given controller based networking, Controller-based networking has a logically centralized control plane. matches the tested behavior — Controller-based networking uses ASICs to centrally switch frames. applies a different mechanism.",
+            "whatItDoes": "Controller-based networking uses ASICs to centrally switch frames. describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, Controller-based networking has a logically centralized control plane. matches the tested behavior — Controller-based networking uses ASICs to centrally switch frames. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Controller-based networking uses ASI\" without matching controller based networking",
             "needsExplanationReview": true
           }
         ],
@@ -127,20 +139,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SDN does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SDN\" without matching the scenario constraint",
+            "explanation": "SDN describes a mechanism that could sound plausible for controller based networking. Given controller based networking, SD-WAN matches the tested behavior — SDN applies a different mechanism.",
+            "whatItDoes": "SDN describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, SD-WAN matches the tested behavior — SDN applies a different mechanism.",
+            "misconceptionTested": "Applying \"SDN\" without matching controller based networking",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "SD-LAN does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SD-LAN\" without matching the scenario constraint",
+            "explanation": "SD-LAN describes a mechanism that could sound plausible for controller based networking. Given controller based networking, SD-WAN matches the tested behavior — SD-LAN applies a different mechanism.",
+            "whatItDoes": "SD-LAN describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, SD-WAN matches the tested behavior — SD-LAN applies a different mechanism.",
+            "misconceptionTested": "Applying \"SD-LAN\" without matching controller based networking",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "VPN does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"VPN\" without matching the scenario constraint",
+            "explanation": "VPN describes a mechanism that could sound plausible for controller based networking. Given controller based networking, SD-WAN matches the tested behavior — VPN applies a different mechanism.",
+            "whatItDoes": "VPN describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, SD-WAN matches the tested behavior — VPN applies a different mechanism.",
+            "misconceptionTested": "Applying \"VPN\" without matching controller based networking",
             "needsExplanationReview": true
           }
         ],
@@ -175,20 +193,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Scalability does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Scalability\" without matching the scenario constraint",
+            "explanation": "Scalability describes a mechanism that could sound plausible for controller based networking. Given controller based networking, Maturity matches the tested behavior — Scalability applies a different mechanism.",
+            "whatItDoes": "Scalability describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, Maturity matches the tested behavior — Scalability applies a different mechanism.",
+            "misconceptionTested": "Applying \"Scalability\" without matching controller based networking",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Security does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Security\" without matching the scenario constraint",
+            "explanation": "Security describes a mechanism that could sound plausible for controller based networking. Given controller based networking, Maturity matches the tested behavior — Security applies a different mechanism.",
+            "whatItDoes": "Security describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, Maturity matches the tested behavior — Security applies a different mechanism.",
+            "misconceptionTested": "Applying \"Security\" without matching controller based networking",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Centralized provisioning does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Centralized provisioning\" without matching the scenario constraint",
+            "explanation": "Centralized provisioning describes a mechanism that could sound plausible for controller based networking. Given controller based networking, Maturity matches the tested behavior — Centralized provisioning applies a different mechanism.",
+            "whatItDoes": "Centralized provisioning describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, Maturity matches the tested behavior — Centralized provisioning applies a different mechanism.",
+            "misconceptionTested": "Applying \"Centralized provisioning\" without matching controller based networking",
             "needsExplanationReview": true
           }
         ],
@@ -222,20 +246,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "CPU utilization does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"CPU utilization\" without matching the scenario constraint",
+            "explanation": "CPU utilization describes a mechanism that could sound plausible for controller based networking. Given controller based networking, QoS matches the tested behavior — CPU utilization applies a different mechanism.",
+            "whatItDoes": "CPU utilization describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, QoS matches the tested behavior — CPU utilization applies a different mechanism.",
+            "misconceptionTested": "Applying \"CPU utilization\" without matching controller based networking",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Memory utilization does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Memory utilization\" without matching the scenario constraint",
+            "explanation": "Memory utilization describes a mechanism that could sound plausible for controller based networking. Given controller based networking, QoS matches the tested behavior — Memory utilization applies a different mechanism.",
+            "whatItDoes": "Memory utilization describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, QoS matches the tested behavior — Memory utilization applies a different mechanism.",
+            "misconceptionTested": "Applying \"Memory utilization\" without matching controller based networking",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Forwarding of traffic does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Forwarding of traffic\" without matching the scenario constraint",
+            "explanation": "Forwarding of traffic describes a mechanism that could sound plausible for controller based networking. Given controller based networking, QoS matches the tested behavior — Forwarding of traffic applies a different mechanism.",
+            "whatItDoes": "Forwarding of traffic describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, QoS matches the tested behavior — Forwarding of traffic applies a different mechanism.",
+            "misconceptionTested": "Applying \"Forwarding of traffic\" without matching controller based networking",
             "needsExplanationReview": true
           }
         ],
@@ -270,20 +300,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "All data is centrally switched at the SDN controller. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"All data is centrally switched at the SD…\" without matching the scenario constraint",
+            "explanation": "All data is centrally switched at the SDN controller. describes a mechanism that could sound plausible for controller based networking. Given controller based networking, All SDN switches are stateless with respect to configuration. matches the tested behavior — All data is centrally switched at the SDN controller. applies a different mechanism.",
+            "whatItDoes": "All data is centrally switched at the SDN controller. describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, All SDN switches are stateless with respect to configuration. matches the tested behavior — All data is centrally switched at the SDN controller. applies a different mechanism.",
+            "misconceptionTested": "Applying \"All data is centrally switched at th\" without matching controller based networking",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "All SDN switches are stateful with respect to configuration. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"All SDN switches are stateful with respe…\" without matching the scenario constraint",
+            "explanation": "All SDN switches are stateful with respect to configuration. describes a mechanism that could sound plausible for controller based networking. Given controller based networking, All SDN switches are stateless with respect to configuration. matches the tested behavior — All SDN switches are stateful with respect to configuration. applies a different mechanism.",
+            "whatItDoes": "All SDN switches are stateful with respect to configuration. describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, All SDN switches are stateless with respect to configuration. matches the tested behavior — All SDN switches are stateful with respect to configuration. applies a different mechanism.",
+            "misconceptionTested": "Applying \"All SDN switches are stateful with r\" without matching controller based networking",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "All data flowing through the switch is stateless. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"All data flowing through the switch is s…\" without matching the scenario constraint",
+            "explanation": "All data flowing through the switch is stateless. describes a mechanism that could sound plausible for controller based networking. Given controller based networking, All SDN switches are stateless with respect to configuration. matches the tested behavior — All data flowing through the switch is stateless. applies a different mechanism.",
+            "whatItDoes": "All data flowing through the switch is stateless. describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, All SDN switches are stateless with respect to configuration. matches the tested behavior — All data flowing through the switch is stateless. applies a different mechanism.",
+            "misconceptionTested": "Applying \"All data flowing through the switch \" without matching controller based networking",
             "needsExplanationReview": true
           }
         ],
@@ -318,20 +354,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Syslog does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Syslog\" without matching the scenario constraint",
+            "explanation": "Syslog describes a mechanism that could sound plausible for controller based networking. Given controller based networking, SNMP matches the tested behavior — Syslog applies a different mechanism.",
+            "whatItDoes": "Syslog describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, SNMP matches the tested behavior — Syslog applies a different mechanism.",
+            "misconceptionTested": "Applying \"Syslog\" without matching controller based networking",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "SDN does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SDN\" without matching the scenario constraint",
+            "explanation": "SDN describes a mechanism that could sound plausible for controller based networking. Given controller based networking, SNMP matches the tested behavior — SDN applies a different mechanism.",
+            "whatItDoes": "SDN describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, SNMP matches the tested behavior — SDN applies a different mechanism.",
+            "misconceptionTested": "Applying \"SDN\" without matching controller based networking",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "CDP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"CDP\" without matching the scenario constraint",
+            "explanation": "CDP describes a mechanism that could sound plausible for controller based networking. Given controller based networking, SNMP matches the tested behavior — CDP applies a different mechanism.",
+            "whatItDoes": "CDP describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, SNMP matches the tested behavior — CDP applies a different mechanism.",
+            "misconceptionTested": "Applying \"CDP\" without matching controller based networking",
             "needsExplanationReview": true
           }
         ],
@@ -367,20 +409,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Trap does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Trap\" without matching the scenario constraint",
+            "explanation": "Trap describes a mechanism that could sound plausible for controller based networking. Given controller based networking, NMS matches the tested behavior — Trap applies a different mechanism.",
+            "whatItDoes": "Trap describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, NMS matches the tested behavior — Trap applies a different mechanism.",
+            "misconceptionTested": "Applying \"Trap\" without matching controller based networking",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "SNMP agent does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SNMP agent\" without matching the scenario constraint",
+            "explanation": "SNMP agent describes a mechanism that could sound plausible for controller based networking. Given controller based networking, NMS matches the tested behavior — SNMP agent applies a different mechanism.",
+            "whatItDoes": "SNMP agent describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, NMS matches the tested behavior — SNMP agent applies a different mechanism.",
+            "misconceptionTested": "Applying \"SNMP agent\" without matching controller based networking",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Syslog server does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Syslog server\" without matching the scenario constraint",
+            "explanation": "Syslog server describes a mechanism that could sound plausible for controller based networking. Given controller based networking, NMS matches the tested behavior — Syslog server applies a different mechanism.",
+            "whatItDoes": "Syslog server describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, NMS matches the tested behavior — Syslog server applies a different mechanism.",
+            "misconceptionTested": "Applying \"Syslog server\" without matching controller based networking",
             "needsExplanationReview": true
           }
         ],
@@ -416,20 +464,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "CAPWAP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"CAPWAP\" without matching the scenario constraint",
+            "explanation": "CAPWAP describes a mechanism that could sound plausible for controller based networking. Given controller based networking, SNMP matches the tested behavior — CAPWAP applies a different mechanism.",
+            "whatItDoes": "CAPWAP describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, SNMP matches the tested behavior — CAPWAP applies a different mechanism.",
+            "misconceptionTested": "Applying \"CAPWAP\" without matching controller based networking",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "LWAPP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"LWAPP\" without matching the scenario constraint",
+            "explanation": "LWAPP describes a mechanism that could sound plausible for controller based networking. Given controller based networking, SNMP matches the tested behavior — LWAPP applies a different mechanism.",
+            "whatItDoes": "LWAPP describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, SNMP matches the tested behavior — LWAPP applies a different mechanism.",
+            "misconceptionTested": "Applying \"LWAPP\" without matching controller based networking",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "RESTCONF does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"RESTCONF\" without matching the scenario constraint",
+            "explanation": "RESTCONF describes a mechanism that could sound plausible for controller based networking. Given controller based networking, SNMP matches the tested behavior — RESTCONF applies a different mechanism.",
+            "whatItDoes": "RESTCONF describes a mechanism that could sound plausible for controller based networking.",
+            "whyWrongHere": "Given controller based networking, SNMP matches the tested behavior — RESTCONF applies a different mechanism.",
+            "misconceptionTested": "Applying \"RESTCONF\" without matching controller based networking",
             "needsExplanationReview": true
           }
         ],

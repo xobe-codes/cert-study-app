@@ -30,20 +30,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Three tier does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Three tier\" without matching the scenario constraint",
+            "explanation": "Three tier describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Spine/Leaf matches the tested behavior — Three tier applies a different mechanism.",
+            "whatItDoes": "Three tier describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Spine/Leaf matches the tested behavior — Three tier applies a different mechanism.",
+            "misconceptionTested": "Applying \"Three tier\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Collapsed core does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Collapsed core\" without matching the scenario constraint",
+            "explanation": "Collapsed core describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Spine/Leaf matches the tested behavior — Collapsed core applies a different mechanism.",
+            "whatItDoes": "Collapsed core describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Spine/Leaf matches the tested behavior — Collapsed core applies a different mechanism.",
+            "misconceptionTested": "Applying \"Collapsed core\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "SAN fabric does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SAN fabric\" without matching the scenario constraint",
+            "explanation": "SAN fabric describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Spine/Leaf matches the tested behavior — SAN fabric applies a different mechanism.",
+            "whatItDoes": "SAN fabric describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Spine/Leaf matches the tested behavior — SAN fabric applies a different mechanism.",
+            "misconceptionTested": "Applying \"SAN fabric\" without matching sdn architecture",
             "needsExplanationReview": true
           }
         ],
@@ -78,18 +84,24 @@
           {
             "choiceIndex": 0,
             "explanation": "The Leaf switches connect to other Leaf switches. reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
+            "whatItDoes": "The Leaf switches connect to other Leaf switches. describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, The Leaf switches never connect to other Leaf switches, only Spine switches. matches the tested behavior — The Leaf switches connect to other Leaf switches. applies a different mechanism.",
             "misconceptionTested": "Calling spine-leaf a WAN topology",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "There is only one Spine switch per network. reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
+            "whatItDoes": "There is only one Spine switch per network. describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, The Leaf switches never connect to other Leaf switches, only Spine switches. matches the tested behavior — There is only one Spine switch per network. applies a different mechanism.",
             "misconceptionTested": "Calling spine-leaf a WAN topology",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "Spine switches provide access to hosts. reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
+            "whatItDoes": "Spine switches provide access to hosts. describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, The Leaf switches never connect to other Leaf switches, only Spine switches. matches the tested behavior — Spine switches provide access to hosts. applies a different mechanism.",
             "misconceptionTested": "Calling spine-leaf a WAN topology",
             "needsExplanationReview": true
           }
@@ -125,18 +137,24 @@
           {
             "choiceIndex": 1,
             "explanation": "Leaf to Leaf to Spine reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
+            "whatItDoes": "Leaf to Leaf to Spine describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Leaf to Spine to Leaf matches the tested behavior — Leaf to Leaf to Spine applies a different mechanism.",
             "misconceptionTested": "Calling spine-leaf a WAN topology",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "Spine to Leaf to Spine reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
+            "whatItDoes": "Spine to Leaf to Spine describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Leaf to Spine to Leaf matches the tested behavior — Spine to Leaf to Spine applies a different mechanism.",
             "misconceptionTested": "Calling spine-leaf a WAN topology",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "Leaf to Leaf reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
+            "whatItDoes": "Leaf to Leaf describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Leaf to Spine to Leaf matches the tested behavior — Leaf to Leaf applies a different mechanism.",
             "misconceptionTested": "Calling spine-leaf a WAN topology",
             "needsExplanationReview": true
           }
@@ -174,20 +192,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Cisco APIC-EM does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Cisco APIC-EM\" without matching the scenario constraint",
+            "explanation": "Cisco APIC-EM describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Cisco ACI matches the tested behavior — Cisco APIC-EM applies a different mechanism.",
+            "whatItDoes": "Cisco APIC-EM describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Cisco ACI matches the tested behavior — Cisco APIC-EM applies a different mechanism.",
+            "misconceptionTested": "Applying \"Cisco APIC-EM\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "OpenDaylight does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"OpenDaylight\" without matching the scenario constraint",
+            "explanation": "OpenDaylight describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Cisco ACI matches the tested behavior — OpenDaylight applies a different mechanism.",
+            "whatItDoes": "OpenDaylight describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Cisco ACI matches the tested behavior — OpenDaylight applies a different mechanism.",
+            "misconceptionTested": "Applying \"OpenDaylight\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Cisco SD-WAN does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Cisco SD-WAN\" without matching the scenario constraint",
+            "explanation": "Cisco SD-WAN describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Cisco ACI matches the tested behavior — Cisco SD-WAN applies a different mechanism.",
+            "whatItDoes": "Cisco SD-WAN describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Cisco ACI matches the tested behavior — Cisco SD-WAN applies a different mechanism.",
+            "misconceptionTested": "Applying \"Cisco SD-WAN\" without matching sdn architecture",
             "needsExplanationReview": true
           }
         ],
@@ -224,20 +248,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Cisco APIC-EM does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Cisco APIC-EM\" without matching the scenario constraint",
+            "explanation": "Cisco APIC-EM describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Cisco SD-WAN matches the tested behavior — Cisco APIC-EM applies a different mechanism.",
+            "whatItDoes": "Cisco APIC-EM describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Cisco SD-WAN matches the tested behavior — Cisco APIC-EM applies a different mechanism.",
+            "misconceptionTested": "Applying \"Cisco APIC-EM\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Cisco Prime Infrastructure does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Cisco Prime Infrastructure\" without matching the scenario constraint",
+            "explanation": "Cisco Prime Infrastructure describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Cisco SD-WAN matches the tested behavior — Cisco Prime Infrastructure applies a different mechanism.",
+            "whatItDoes": "Cisco Prime Infrastructure describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Cisco SD-WAN matches the tested behavior — Cisco Prime Infrastructure applies a different mechanism.",
+            "misconceptionTested": "Applying \"Cisco Prime Infrastructure\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "OpenDaylight does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"OpenDaylight\" without matching the scenario constraint",
+            "explanation": "OpenDaylight describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Cisco SD-WAN matches the tested behavior — OpenDaylight applies a different mechanism.",
+            "whatItDoes": "OpenDaylight describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Cisco SD-WAN matches the tested behavior — OpenDaylight applies a different mechanism.",
+            "misconceptionTested": "Applying \"OpenDaylight\" without matching sdn architecture",
             "needsExplanationReview": true
           }
         ],
@@ -273,19 +303,25 @@
           {
             "choiceIndex": 0,
             "explanation": "Spine/Leaf reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
+            "whatItDoes": "Spine/Leaf describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Campus matches the tested behavior — Spine/Leaf applies a different mechanism.",
             "misconceptionTested": "Calling spine-leaf a WAN topology",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "CLOS does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"CLOS\" without matching the scenario constraint",
+            "explanation": "CLOS describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Campus matches the tested behavior — CLOS applies a different mechanism.",
+            "whatItDoes": "CLOS describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Campus matches the tested behavior — CLOS applies a different mechanism.",
+            "misconceptionTested": "Applying \"CLOS\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "SDN does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SDN\" without matching the scenario constraint",
+            "explanation": "SDN describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Campus matches the tested behavior — SDN applies a different mechanism.",
+            "whatItDoes": "SDN describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Campus matches the tested behavior — SDN applies a different mechanism.",
+            "misconceptionTested": "Applying \"SDN\" without matching sdn architecture",
             "needsExplanationReview": true
           }
         ],
@@ -323,20 +359,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The SDN controller configures the management plane of network devices. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The SDN controller configures the manage…\" without matching the scenario constraint",
+            "explanation": "The SDN controller configures the management plane of network devices. describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, The SDN controller replaces the control plane of the SDN. matches the tested behavior — The SDN controller configures the management plane of network devices. applies a different mechanism.",
+            "whatItDoes": "The SDN controller configures the management plane of network devices. describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, The SDN controller replaces the control plane of the SDN. matches the tested behavior — The SDN controller configures the management plane of network devices. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The SDN controller configures the ma\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "The SDN controller monitors data plane traffic. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The SDN controller monitors data plane t…\" without matching the scenario constraint",
+            "explanation": "The SDN controller monitors data plane traffic. describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, The SDN controller replaces the control plane of the SDN. matches the tested behavior — The SDN controller monitors data plane traffic. applies a different mechanism.",
+            "whatItDoes": "The SDN controller monitors data plane traffic. describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, The SDN controller replaces the control plane of the SDN. matches the tested behavior — The SDN controller monitors data plane traffic. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The SDN controller monitors data pla\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The SDN controller complements the control plane of the SDN device. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The SDN controller complements the contr…\" without matching the scenario constraint",
+            "explanation": "The SDN controller complements the control plane of the SDN device. describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, The SDN controller replaces the control plane of the SDN. matches the tested behavior — The SDN controller complements the control plane of the SDN device. applies a different mechanism.",
+            "whatItDoes": "The SDN controller complements the control plane of the SDN device. describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, The SDN controller replaces the control plane of the SDN. matches the tested behavior — The SDN controller complements the control plane of the SDN device. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The SDN controller complements the c\" without matching sdn architecture",
             "needsExplanationReview": true
           }
         ],
@@ -374,20 +416,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "OpenSDN does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"OpenSDN\" without matching the scenario constraint",
+            "explanation": "OpenSDN describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, APIC-EM matches the tested behavior — OpenSDN applies a different mechanism.",
+            "whatItDoes": "OpenSDN describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, APIC-EM matches the tested behavior — OpenSDN applies a different mechanism.",
+            "misconceptionTested": "Applying \"OpenSDN\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "OpenStack does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"OpenStack\" without matching the scenario constraint",
+            "explanation": "OpenStack describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, APIC-EM matches the tested behavior — OpenStack applies a different mechanism.",
+            "whatItDoes": "OpenStack describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, APIC-EM matches the tested behavior — OpenStack applies a different mechanism.",
+            "misconceptionTested": "Applying \"OpenStack\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "OpenDaylight does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"OpenDaylight\" without matching the scenario constraint",
+            "explanation": "OpenDaylight describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, APIC-EM matches the tested behavior — OpenDaylight applies a different mechanism.",
+            "whatItDoes": "OpenDaylight describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, APIC-EM matches the tested behavior — OpenDaylight applies a different mechanism.",
+            "misconceptionTested": "Applying \"OpenDaylight\" without matching sdn architecture",
             "needsExplanationReview": true
           }
         ],
@@ -423,20 +471,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Data plane does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Data plane\" without matching the scenario constraint",
+            "explanation": "Data plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Control plane matches the tested behavior — Data plane applies a different mechanism.",
+            "whatItDoes": "Data plane describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Data plane applies a different mechanism.",
+            "misconceptionTested": "Applying \"Data plane\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Management plane does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Management plane\" without matching the scenario constraint",
+            "explanation": "Management plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Control plane matches the tested behavior — Management plane applies a different mechanism.",
+            "whatItDoes": "Management plane describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Management plane applies a different mechanism.",
+            "misconceptionTested": "Applying \"Management plane\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch plane does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch plane\" without matching the scenario constraint",
+            "explanation": "Switch plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Control plane matches the tested behavior — Switch plane applies a different mechanism.",
+            "whatItDoes": "Switch plane describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Switch plane applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch plane\" without matching sdn architecture",
             "needsExplanationReview": true
           }
         ],
@@ -472,20 +526,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Data plane does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Data plane\" without matching the scenario constraint",
+            "explanation": "Data plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Management plane matches the tested behavior — Data plane applies a different mechanism.",
+            "whatItDoes": "Data plane describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Management plane matches the tested behavior — Data plane applies a different mechanism.",
+            "misconceptionTested": "Applying \"Data plane\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Control plane does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Control plane\" without matching the scenario constraint",
+            "explanation": "Control plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Management plane matches the tested behavior — Control plane applies a different mechanism.",
+            "whatItDoes": "Control plane describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Management plane matches the tested behavior — Control plane applies a different mechanism.",
+            "misconceptionTested": "Applying \"Control plane\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch plane does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch plane\" without matching the scenario constraint",
+            "explanation": "Switch plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Management plane matches the tested behavior — Switch plane applies a different mechanism.",
+            "whatItDoes": "Switch plane describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Management plane matches the tested behavior — Switch plane applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch plane\" without matching sdn architecture",
             "needsExplanationReview": true
           }
         ],
@@ -521,20 +581,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Control plane does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Control plane\" without matching the scenario constraint",
+            "explanation": "Control plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Data plane matches the tested behavior — Control plane applies a different mechanism.",
+            "whatItDoes": "Control plane describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Data plane matches the tested behavior — Control plane applies a different mechanism.",
+            "misconceptionTested": "Applying \"Control plane\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Management plane does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Management plane\" without matching the scenario constraint",
+            "explanation": "Management plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Data plane matches the tested behavior — Management plane applies a different mechanism.",
+            "whatItDoes": "Management plane describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Data plane matches the tested behavior — Management plane applies a different mechanism.",
+            "misconceptionTested": "Applying \"Management plane\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch plane does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch plane\" without matching the scenario constraint",
+            "explanation": "Switch plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Data plane matches the tested behavior — Switch plane applies a different mechanism.",
+            "whatItDoes": "Switch plane describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Data plane matches the tested behavior — Switch plane applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch plane\" without matching sdn architecture",
             "needsExplanationReview": true
           }
         ],
@@ -570,20 +636,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Data plane does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Data plane\" without matching the scenario constraint",
+            "explanation": "Data plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Control plane matches the tested behavior — Data plane applies a different mechanism.",
+            "whatItDoes": "Data plane describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Data plane applies a different mechanism.",
+            "misconceptionTested": "Applying \"Data plane\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Management plane does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Management plane\" without matching the scenario constraint",
+            "explanation": "Management plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Control plane matches the tested behavior — Management plane applies a different mechanism.",
+            "whatItDoes": "Management plane describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Management plane applies a different mechanism.",
+            "misconceptionTested": "Applying \"Management plane\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Routing plane does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Routing plane\" without matching the scenario constraint",
+            "explanation": "Routing plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Control plane matches the tested behavior — Routing plane applies a different mechanism.",
+            "whatItDoes": "Routing plane describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Routing plane applies a different mechanism.",
+            "misconceptionTested": "Applying \"Routing plane\" without matching sdn architecture",
             "needsExplanationReview": true
           }
         ],
@@ -620,20 +692,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Data plane does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Data plane\" without matching the scenario constraint",
+            "explanation": "Data plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Management plane matches the tested behavior — Data plane applies a different mechanism.",
+            "whatItDoes": "Data plane describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Management plane matches the tested behavior — Data plane applies a different mechanism.",
+            "misconceptionTested": "Applying \"Data plane\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Control plane does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Control plane\" without matching the scenario constraint",
+            "explanation": "Control plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Management plane matches the tested behavior — Control plane applies a different mechanism.",
+            "whatItDoes": "Control plane describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Management plane matches the tested behavior — Control plane applies a different mechanism.",
+            "misconceptionTested": "Applying \"Control plane\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Network plane does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Network plane\" without matching the scenario constraint",
+            "explanation": "Network plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Management plane matches the tested behavior — Network plane applies a different mechanism.",
+            "whatItDoes": "Network plane describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Management plane matches the tested behavior — Network plane applies a different mechanism.",
+            "misconceptionTested": "Applying \"Network plane\" without matching sdn architecture",
             "needsExplanationReview": true
           }
         ],
@@ -671,20 +749,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The northbound interface (NBI) does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The northbound interface (NBI)\" without matching the scenario constraint",
+            "explanation": "The northbound interface (NBI) describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, The southbound interface (SBI) matches the tested behavior — The northbound interface (NBI) applies a different mechanism.",
+            "whatItDoes": "The northbound interface (NBI) describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, The southbound interface (SBI) matches the tested behavior — The northbound interface (NBI) applies a different mechanism.",
+            "misconceptionTested": "Applying \"The northbound interface (NBI)\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The core of the controller does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The core of the controller\" without matching the scenario constraint",
+            "explanation": "The core of the controller describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, The southbound interface (SBI) matches the tested behavior — The core of the controller applies a different mechanism.",
+            "whatItDoes": "The core of the controller describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, The southbound interface (SBI) matches the tested behavior — The core of the controller applies a different mechanism.",
+            "misconceptionTested": "Applying \"The core of the controller\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Applications hosted on the controller does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Applications hosted on the controller\" without matching the scenario constraint",
+            "explanation": "Applications hosted on the controller describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, The southbound interface (SBI) matches the tested behavior — Applications hosted on the controller applies a different mechanism.",
+            "whatItDoes": "Applications hosted on the controller describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, The southbound interface (SBI) matches the tested behavior — Applications hosted on the controller applies a different mechanism.",
+            "misconceptionTested": "Applying \"Applications hosted on the controlle\" without matching sdn architecture",
             "needsExplanationReview": true
           }
         ],
@@ -719,20 +803,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "An API is a program that allows for data transfer. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"An API is a program that allows for data…\" without matching the scenario constraint",
+            "explanation": "An API is a program that allows for data transfer. describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, An API is a programming interface or standard allowing one program to communicate with another program. matches the tested behavior — An API is a program that allows for data transfer. applies a different mechanism.",
+            "whatItDoes": "An API is a program that allows for data transfer. describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, An API is a programming interface or standard allowing one program to communicate with another program. matches the tested behavior — An API is a program that allows for data transfer. applies a different mechanism.",
+            "misconceptionTested": "Applying \"An API is a program that allows for \" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "An API is a programming language for network programmability. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"An API is a programming language for net…\" without matching the scenario constraint",
+            "explanation": "An API is a programming language for network programmability. describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, An API is a programming interface or standard allowing one program to communicate with another program. matches the tested behavior — An API is a programming language for network programmability. applies a different mechanism.",
+            "whatItDoes": "An API is a programming language for network programmability. describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, An API is a programming interface or standard allowing one program to communicate with another program. matches the tested behavior — An API is a programming language for network programmability. applies a different mechanism.",
+            "misconceptionTested": "Applying \"An API is a programming language for\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "An API allows for programs to be virtualized. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"An API allows for programs to be virtual…\" without matching the scenario constraint",
+            "explanation": "An API allows for programs to be virtualized. describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, An API is a programming interface or standard allowing one program to communicate with another program. matches the tested behavior — An API allows for programs to be virtualized. applies a different mechanism.",
+            "whatItDoes": "An API allows for programs to be virtualized. describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, An API is a programming interface or standard allowing one program to communicate with another program. matches the tested behavior — An API allows for programs to be virtualized. applies a different mechanism.",
+            "misconceptionTested": "Applying \"An API allows for programs to be vir\" without matching sdn architecture",
             "needsExplanationReview": true
           }
         ],
@@ -771,20 +861,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The southbound interface (SBI) does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The southbound interface (SBI)\" without matching the scenario constraint",
+            "explanation": "The southbound interface (SBI) describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, The northbound interface (NBI) matches the tested behavior — The southbound interface (SBI) applies a different mechanism.",
+            "whatItDoes": "The southbound interface (SBI) describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, The northbound interface (NBI) matches the tested behavior — The southbound interface (SBI) applies a different mechanism.",
+            "misconceptionTested": "Applying \"The southbound interface (SBI)\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "The core of the controller does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The core of the controller\" without matching the scenario constraint",
+            "explanation": "The core of the controller describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, The northbound interface (NBI) matches the tested behavior — The core of the controller applies a different mechanism.",
+            "whatItDoes": "The core of the controller describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, The northbound interface (NBI) matches the tested behavior — The core of the controller applies a different mechanism.",
+            "misconceptionTested": "Applying \"The core of the controller\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Simple Network Management Protocol (SNMP) does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Simple Network Management Protocol (SNMP…\" without matching the scenario constraint",
+            "explanation": "Simple Network Management Protocol (SNMP) describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, The northbound interface (NBI) matches the tested behavior — Simple Network Management Protocol (SNMP) applies a different mechanism.",
+            "whatItDoes": "Simple Network Management Protocol (SNMP) describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, The northbound interface (NBI) matches the tested behavior — Simple Network Management Protocol (SNMP) applies a different mechanism.",
+            "misconceptionTested": "Applying \"Simple Network Management Protocol (\" without matching sdn architecture",
             "needsExplanationReview": true
           }
         ],
@@ -821,20 +917,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Control plane does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Control plane\" without matching the scenario constraint",
+            "explanation": "Control plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Data plane matches the tested behavior — Control plane applies a different mechanism.",
+            "whatItDoes": "Control plane describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Data plane matches the tested behavior — Control plane applies a different mechanism.",
+            "misconceptionTested": "Applying \"Control plane\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Management plane does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Management plane\" without matching the scenario constraint",
+            "explanation": "Management plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Data plane matches the tested behavior — Management plane applies a different mechanism.",
+            "whatItDoes": "Management plane describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Data plane matches the tested behavior — Management plane applies a different mechanism.",
+            "misconceptionTested": "Applying \"Management plane\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Routing plane does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Routing plane\" without matching the scenario constraint",
+            "explanation": "Routing plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Data plane matches the tested behavior — Routing plane applies a different mechanism.",
+            "whatItDoes": "Routing plane describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Data plane matches the tested behavior — Routing plane applies a different mechanism.",
+            "misconceptionTested": "Applying \"Routing plane\" without matching sdn architecture",
             "needsExplanationReview": true
           }
         ],
@@ -868,20 +970,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "1 hop does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"1 hop\" without matching the scenario constraint",
+            "explanation": "1 hop describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, 3 hops matches the tested behavior — 1 hop applies a different mechanism.",
+            "whatItDoes": "1 hop describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, 3 hops matches the tested behavior — 1 hop applies a different mechanism.",
+            "misconceptionTested": "Applying \"1 hop\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "4 hops does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"4 hops\" without matching the scenario constraint",
+            "explanation": "4 hops describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, 3 hops matches the tested behavior — 4 hops applies a different mechanism.",
+            "whatItDoes": "4 hops describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, 3 hops matches the tested behavior — 4 hops applies a different mechanism.",
+            "misconceptionTested": "Applying \"4 hops\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "5 hops does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"5 hops\" without matching the scenario constraint",
+            "explanation": "5 hops describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, 3 hops matches the tested behavior — 5 hops applies a different mechanism.",
+            "whatItDoes": "5 hops describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, 3 hops matches the tested behavior — 5 hops applies a different mechanism.",
+            "misconceptionTested": "Applying \"5 hops\" without matching sdn architecture",
             "needsExplanationReview": true
           }
         ],
@@ -918,19 +1026,25 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Overlay does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Overlay\" without matching the scenario constraint",
+            "explanation": "Overlay describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Underlay matches the tested behavior — Overlay applies a different mechanism.",
+            "whatItDoes": "Overlay describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Underlay matches the tested behavior — Overlay applies a different mechanism.",
+            "misconceptionTested": "Applying \"Overlay\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Tunnel does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Tunnel\" without matching the scenario constraint",
+            "explanation": "Tunnel describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Underlay matches the tested behavior — Tunnel applies a different mechanism.",
+            "whatItDoes": "Tunnel describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Underlay matches the tested behavior — Tunnel applies a different mechanism.",
+            "misconceptionTested": "Applying \"Tunnel\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "Leaf reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
+            "whatItDoes": "Leaf describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Underlay matches the tested behavior — Leaf applies a different mechanism.",
             "misconceptionTested": "Calling spine-leaf a WAN topology",
             "needsExplanationReview": true
           }
@@ -968,20 +1082,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Management plane does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Management plane\" without matching the scenario constraint",
+            "explanation": "Management plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Control plane matches the tested behavior — Management plane applies a different mechanism.",
+            "whatItDoes": "Management plane describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Management plane applies a different mechanism.",
+            "misconceptionTested": "Applying \"Management plane\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Configuration plane does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Configuration plane\" without matching the scenario constraint",
+            "explanation": "Configuration plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Control plane matches the tested behavior — Configuration plane applies a different mechanism.",
+            "whatItDoes": "Configuration plane describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Configuration plane applies a different mechanism.",
+            "misconceptionTested": "Applying \"Configuration plane\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Data plane does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Data plane\" without matching the scenario constraint",
+            "explanation": "Data plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Control plane matches the tested behavior — Data plane applies a different mechanism.",
+            "whatItDoes": "Data plane describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Data plane applies a different mechanism.",
+            "misconceptionTested": "Applying \"Data plane\" without matching sdn architecture",
             "needsExplanationReview": true
           }
         ],
@@ -1019,20 +1139,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "VXLAN does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"VXLAN\" without matching the scenario constraint",
+            "explanation": "VXLAN describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, DMVPN matches the tested behavior — VXLAN applies a different mechanism.",
+            "whatItDoes": "VXLAN describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, DMVPN matches the tested behavior — VXLAN applies a different mechanism.",
+            "misconceptionTested": "Applying \"VXLAN\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "VLAN does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"VLAN\" without matching the scenario constraint",
+            "explanation": "VLAN describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, DMVPN matches the tested behavior — VLAN applies a different mechanism.",
+            "whatItDoes": "VLAN describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, DMVPN matches the tested behavior — VLAN applies a different mechanism.",
+            "misconceptionTested": "Applying \"VLAN\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "ECMP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"ECMP\" without matching the scenario constraint",
+            "explanation": "ECMP describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, DMVPN matches the tested behavior — ECMP applies a different mechanism.",
+            "whatItDoes": "ECMP describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, DMVPN matches the tested behavior — ECMP applies a different mechanism.",
+            "misconceptionTested": "Applying \"ECMP\" without matching sdn architecture",
             "needsExplanationReview": true
           }
         ],
@@ -1069,20 +1195,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "ECMP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"ECMP\" without matching the scenario constraint",
+            "explanation": "ECMP describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, VXLAN matches the tested behavior — ECMP applies a different mechanism.",
+            "whatItDoes": "ECMP describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, VXLAN matches the tested behavior — ECMP applies a different mechanism.",
+            "misconceptionTested": "Applying \"ECMP\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "DMVPN does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"DMVPN\" without matching the scenario constraint",
+            "explanation": "DMVPN describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, VXLAN matches the tested behavior — DMVPN applies a different mechanism.",
+            "whatItDoes": "DMVPN describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, VXLAN matches the tested behavior — DMVPN applies a different mechanism.",
+            "misconceptionTested": "Applying \"DMVPN\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "EIGRP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"EIGRP\" without matching the scenario constraint",
+            "explanation": "EIGRP describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, VXLAN matches the tested behavior — EIGRP applies a different mechanism.",
+            "whatItDoes": "EIGRP describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, VXLAN matches the tested behavior — EIGRP applies a different mechanism.",
+            "misconceptionTested": "Applying \"EIGRP\" without matching sdn architecture",
             "needsExplanationReview": true
           }
         ],
@@ -1118,20 +1250,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "CDP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"CDP\" without matching the scenario constraint",
+            "explanation": "CDP describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, SNMP matches the tested behavior — CDP applies a different mechanism.",
+            "whatItDoes": "CDP describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, SNMP matches the tested behavior — CDP applies a different mechanism.",
+            "misconceptionTested": "Applying \"CDP\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "ICMP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"ICMP\" without matching the scenario constraint",
+            "explanation": "ICMP describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, SNMP matches the tested behavior — ICMP applies a different mechanism.",
+            "whatItDoes": "ICMP describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, SNMP matches the tested behavior — ICMP applies a different mechanism.",
+            "misconceptionTested": "Applying \"ICMP\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "VTP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"VTP\" without matching the scenario constraint",
+            "explanation": "VTP describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, SNMP matches the tested behavior — VTP applies a different mechanism.",
+            "whatItDoes": "VTP describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, SNMP matches the tested behavior — VTP applies a different mechanism.",
+            "misconceptionTested": "Applying \"VTP\" without matching sdn architecture",
             "needsExplanationReview": true
           }
         ],
@@ -1167,20 +1305,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "OSPF does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"OSPF\" without matching the scenario constraint",
+            "explanation": "OSPF describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, ECMP matches the tested behavior — OSPF applies a different mechanism.",
+            "whatItDoes": "OSPF describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, ECMP matches the tested behavior — OSPF applies a different mechanism.",
+            "misconceptionTested": "Applying \"OSPF\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "MPLS does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"MPLS\" without matching the scenario constraint",
+            "explanation": "MPLS describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, ECMP matches the tested behavior — MPLS applies a different mechanism.",
+            "whatItDoes": "MPLS describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, ECMP matches the tested behavior — MPLS applies a different mechanism.",
+            "misconceptionTested": "Applying \"MPLS\" without matching sdn architecture",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "CLOS does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"CLOS\" without matching the scenario constraint",
+            "explanation": "CLOS describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, ECMP matches the tested behavior — CLOS applies a different mechanism.",
+            "whatItDoes": "CLOS describes a mechanism that could sound plausible for sdn architecture.",
+            "whyWrongHere": "Given sdn architecture, ECMP matches the tested behavior — CLOS applies a different mechanism.",
+            "misconceptionTested": "Applying \"CLOS\" without matching sdn architecture",
             "needsExplanationReview": true
           }
         ],

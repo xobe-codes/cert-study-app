@@ -31,20 +31,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router#show ip dhcp lease does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "Router#show ip dhcp lease describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip dhcp lease applies a different mechanism.",
+            "whatItDoes": "Router#show ip dhcp lease describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip dhcp lease applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip dhcp lease\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#show ip lease does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "Router#show ip lease describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip lease applies a different mechanism.",
+            "whatItDoes": "Router#show ip lease describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip lease applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip lease\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show ip interface does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "Router#show ip interface describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip interface applies a different mechanism.",
+            "whatItDoes": "Router#show ip interface describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip interface applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip interface\" without matching dhcp client",
             "needsExplanationReview": true
           }
         ],
@@ -81,20 +87,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switches learn from the source MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
+            "explanation": "The layer 3 destination is a unicast to the DHCP client. describes a mechanism that could sound plausible for dhcp client. The stem asks what gets learned (dhcp client). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
+            "whatItDoes": "The layer 3 destination is a unicast to the DHCP client. describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "The stem asks what gets learned (dhcp client). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "The layer 2 destination is the MAC address of the DHCP client. is not the behavior described here. .",
+            "explanation": "The layer 2 destination is the MAC address of the DHCP client. describes a mechanism that could sound plausible for dhcp client. The stem asks what gets learned (dhcp client). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
+            "whatItDoes": "The layer 2 destination is the MAC address of the DHCP client. describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "The stem asks what gets learned (dhcp client). Switches record the source MAC on ingress — destination MAC is for lookup, not learning. Picking The layer 2 destination is the MAC address of the DHCP client. misses the exact behavior this stem tests.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "MAC learning is a Layer 2 process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "The layer 3 source is a link-local address of the client. describes a mechanism that could sound plausible for dhcp client. Given dhcp client, The layer 2 source is the MAC address of the server. matches the tested behavior — The layer 3 source is a link-local address of the client. applies a different mechanism.",
+            "whatItDoes": "The layer 3 source is a link-local address of the client. describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, The layer 2 source is the MAC address of the server. matches the tested behavior — The layer 3 source is a link-local address of the client. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The layer 3 source is a link-local a\" without matching dhcp client",
             "needsExplanationReview": true
           }
         ],
@@ -129,20 +141,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#ip dhcp server 10.10.1.101 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "Router(config)#ip dhcp server 10.10.1.101 describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Router(config-if)#ip helper-address 10.10.1.101 matches the tested behavior — Router(config)#ip dhcp server 10.10.1.101 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip dhcp server 10.10.1.101 describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, Router(config-if)#ip helper-address 10.10.1.101 matches the tested behavior — Router(config)#ip dhcp server 10.10.1.101 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip dhcp server 10.10.\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config-if)#ip dhcp server 10.10.1.101 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "Router(config-if)#ip dhcp server 10.10.1.101 describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Router(config-if)#ip helper-address 10.10.1.101 matches the tested behavior — Router(config-if)#ip dhcp server 10.10.1.101 applies a different mechanism.",
+            "whatItDoes": "Router(config-if)#ip dhcp server 10.10.1.101 describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, Router(config-if)#ip helper-address 10.10.1.101 matches the tested behavior — Router(config-if)#ip dhcp server 10.10.1.101 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config-if)#ip dhcp server 10.\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config-if)#ip relay-agent 10.10.1.101 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "Router(config-if)#ip relay-agent 10.10.1.101 describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Router(config-if)#ip helper-address 10.10.1.101 matches the tested behavior — Router(config-if)#ip relay-agent 10.10.1.101 applies a different mechanism.",
+            "whatItDoes": "Router(config-if)#ip relay-agent 10.10.1.101 describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, Router(config-if)#ip helper-address 10.10.1.101 matches the tested behavior — Router(config-if)#ip relay-agent 10.10.1.101 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config-if)#ip relay-agent 10.\" without matching dhcp client",
             "needsExplanationReview": true
           }
         ],
@@ -178,20 +196,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "CIADDR does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "CIADDR describes a mechanism that could sound plausible for dhcp client. Given dhcp client, GIADDR matches the tested behavior — CIADDR applies a different mechanism.",
+            "whatItDoes": "CIADDR describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, GIADDR matches the tested behavior — CIADDR applies a different mechanism.",
+            "misconceptionTested": "Applying \"CIADDR\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "SIADDR does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "SIADDR describes a mechanism that could sound plausible for dhcp client. Given dhcp client, GIADDR matches the tested behavior — SIADDR applies a different mechanism.",
+            "whatItDoes": "SIADDR describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, GIADDR matches the tested behavior — SIADDR applies a different mechanism.",
+            "misconceptionTested": "Applying \"SIADDR\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "CHADDR does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "CHADDR describes a mechanism that could sound plausible for dhcp client. Given dhcp client, GIADDR matches the tested behavior — CHADDR applies a different mechanism.",
+            "whatItDoes": "CHADDR describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, GIADDR matches the tested behavior — CHADDR applies a different mechanism.",
+            "misconceptionTested": "Applying \"CHADDR\" without matching dhcp client",
             "needsExplanationReview": true
           }
         ],
@@ -228,20 +252,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "A second DHCP server on the Host A network does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "A second DHCP server on the Host A network describes a mechanism that could sound plausible for dhcp client. Given dhcp client, A DHCP relay agent on Router A interface Gi0/0 matches the tested behavior — A second DHCP server on the Host A network applies a different mechanism.",
+            "whatItDoes": "A second DHCP server on the Host A network describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, A DHCP relay agent on Router A interface Gi0/0 matches the tested behavior — A second DHCP server on the Host A network applies a different mechanism.",
+            "misconceptionTested": "Applying \"A second DHCP server on the Host A n\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "A DHCP relay agent on Router B interface Gi0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "A DHCP relay agent on Router B interface Gi0/0 describes a mechanism that could sound plausible for dhcp client. Given dhcp client, A DHCP relay agent on Router A interface Gi0/0 matches the tested behavior — A DHCP relay agent on Router B interface Gi0/0 applies a different mechanism.",
+            "whatItDoes": "A DHCP relay agent on Router B interface Gi0/0 describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, A DHCP relay agent on Router A interface Gi0/0 matches the tested behavior — A DHCP relay agent on Router B interface Gi0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"A DHCP relay agent on Router B inter\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "A DHCP relay agent on Switch A does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "A DHCP relay agent on Switch A describes a mechanism that could sound plausible for dhcp client. Given dhcp client, A DHCP relay agent on Router A interface Gi0/0 matches the tested behavior — A DHCP relay agent on Switch A applies a different mechanism.",
+            "whatItDoes": "A DHCP relay agent on Switch A describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, A DHCP relay agent on Router A interface Gi0/0 matches the tested behavior — A DHCP relay agent on Switch A applies a different mechanism.",
+            "misconceptionTested": "Applying \"A DHCP relay agent on Switch A\" without matching dhcp client",
             "needsExplanationReview": true
           }
         ],
@@ -276,20 +306,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#debug dhcp does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "Router#debug dhcp describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Router#debug ip dhcp server packet matches the tested behavior — Router#debug dhcp applies a different mechanism.",
+            "whatItDoes": "Router#debug dhcp describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, Router#debug ip dhcp server packet matches the tested behavior — Router#debug dhcp applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#debug dhcp\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router#show ip dhcp detail does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "Router#show ip dhcp detail describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Router#debug ip dhcp server packet matches the tested behavior — Router#show ip dhcp detail applies a different mechanism.",
+            "whatItDoes": "Router#show ip dhcp detail describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, Router#debug ip dhcp server packet matches the tested behavior — Router#show ip dhcp detail applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip dhcp detail\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#debug ip dhcp does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "Router#debug ip dhcp describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Router#debug ip dhcp server packet matches the tested behavior — Router#debug ip dhcp applies a different mechanism.",
+            "whatItDoes": "Router#debug ip dhcp describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, Router#debug ip dhcp server packet matches the tested behavior — Router#debug ip dhcp applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#debug ip dhcp\" without matching dhcp client",
             "needsExplanationReview": true
           }
         ],
@@ -325,20 +361,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Stateful configuration of clients for IPv6 addressing does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "Stateful configuration of clients for IPv6 addressing describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Configuration of clients with IPv6 options matches the tested behavior — Stateful configuration of clients for IPv6 addressing applies a different mechanism.",
+            "whatItDoes": "Stateful configuration of clients for IPv6 addressing describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, Configuration of clients with IPv6 options matches the tested behavior — Stateful configuration of clients for IPv6 addressing applies a different mechanism.",
+            "misconceptionTested": "Applying \"Stateful configuration of clients fo\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Configuration of clients with the IPv6 network IDs does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "Configuration of clients with the IPv6 network IDs describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Configuration of clients with IPv6 options matches the tested behavior — Configuration of clients with the IPv6 network IDs applies a different mechanism.",
+            "whatItDoes": "Configuration of clients with the IPv6 network IDs describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, Configuration of clients with IPv6 options matches the tested behavior — Configuration of clients with the IPv6 network IDs applies a different mechanism.",
+            "misconceptionTested": "Applying \"Configuration of clients with the IP\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Stateless configuration of clients for IPv6 addressing does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "Stateless configuration of clients for IPv6 addressing describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Configuration of clients with IPv6 options matches the tested behavior — Stateless configuration of clients for IPv6 addressing applies a different mechanism.",
+            "whatItDoes": "Stateless configuration of clients for IPv6 addressing describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, Configuration of clients with IPv6 options matches the tested behavior — Stateless configuration of clients for IPv6 addressing applies a different mechanism.",
+            "misconceptionTested": "Applying \"Stateless configuration of clients f\" without matching dhcp client",
             "needsExplanationReview": true
           }
         ],
@@ -374,20 +416,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "They lose their IP address immediately. does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "They lose their IP address immediately. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given dhcp client, They lose their IP address after their entire lease has expired. matches the tested behavior — They lose their IP address immediately. applies a different mechanism.",
+            "whatItDoes": "They lose their IP address immediately. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given dhcp client, They lose their IP address after their entire lease has expired. matches the tested behavior — They lose their IP address immediately. applies a different mechanism.",
+            "misconceptionTested": "Applying \"They lose their IP address immediate\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "They lose their IP address after one-half of their lease has expired. does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "They lose their IP address after one-half of their lease has expired. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given dhcp client, They lose their IP address after their entire lease has expired. matches the tested behavior — They lose their IP address after one-half of their lease has expired. applies a different mechanism.",
+            "whatItDoes": "They lose their IP address after one-half of their lease has expired. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given dhcp client, They lose their IP address after their entire lease has expired. matches the tested behavior — They lose their IP address after one-half of their lease has expired. applies a different mechanism.",
+            "misconceptionTested": "Applying \"They lose their IP address after one\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "They lose their IP address after seven-eighths of their lease has expired. does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "They lose their IP address after seven-eighths of their lease has expired. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given dhcp client, They lose their IP address after their entire lease has expired. matches the tested behavior — They lose their IP address after seven-eighths of their lease has expired. applies a different mechanism.",
+            "whatItDoes": "They lose their IP address after seven-eighths of their lease has expired. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given dhcp client, They lose their IP address after their entire lease has expired. matches the tested behavior — They lose their IP address after seven-eighths of their lease has expired. applies a different mechanism.",
+            "misconceptionTested": "Applying \"They lose their IP address after sev\" without matching dhcp client",
             "needsExplanationReview": true
           }
         ],
@@ -423,20 +471,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Stateful DHCPv6 supplies the network ID, host ID, and default router. does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "Stateful DHCPv6 supplies the network ID, host ID, and default router. describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Stateful DHCPv6 supplies the network ID and host ID. matches the tested behavior — Stateful DHCPv6 supplies the network ID, host ID, and default router. applies a different mechanism.",
+            "whatItDoes": "Stateful DHCPv6 supplies the network ID, host ID, and default router. describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, Stateful DHCPv6 supplies the network ID and host ID. matches the tested behavior — Stateful DHCPv6 supplies the network ID, host ID, and default router. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Stateful DHCPv6 supplies the network\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Stateful DHCPv6 communicates via broadcasts. does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "Stateful DHCPv6 communicates via broadcasts. describes flooding the frame to multiple ports in the VLAN. Given dhcp client, Stateful DHCPv6 supplies the network ID and host ID. matches the tested behavior — Stateful DHCPv6 communicates via broadcasts. applies a different mechanism.",
+            "whatItDoes": "Stateful DHCPv6 communicates via broadcasts. describes flooding the frame to multiple ports in the VLAN.",
+            "whyWrongHere": "Given dhcp client, Stateful DHCPv6 supplies the network ID and host ID. matches the tested behavior — Stateful DHCPv6 communicates via broadcasts. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Stateful DHCPv6 communicates via bro\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Stateful DHCPv6 works in conjunction with SLAAC. does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "Stateful DHCPv6 works in conjunction with SLAAC. describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Stateful DHCPv6 supplies the network ID and host ID. matches the tested behavior — Stateful DHCPv6 works in conjunction with SLAAC. applies a different mechanism.",
+            "whatItDoes": "Stateful DHCPv6 works in conjunction with SLAAC. describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, Stateful DHCPv6 supplies the network ID and host ID. matches the tested behavior — Stateful DHCPv6 works in conjunction with SLAAC. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Stateful DHCPv6 works in conjunction\" without matching dhcp client",
             "needsExplanationReview": true
           }
         ],
@@ -472,20 +526,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RouterA(config)#ipv6 address dhcp gi 0/0 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "RouterA(config)#ipv6 address dhcp gi 0/0 describes a mechanism that could sound plausible for dhcp client. Given dhcp client, RouterA(config-if)#ipv6 address dhcp matches the tested behavior — RouterA(config)#ipv6 address dhcp gi 0/0 applies a different mechanism.",
+            "whatItDoes": "RouterA(config)#ipv6 address dhcp gi 0/0 describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, RouterA(config-if)#ipv6 address dhcp matches the tested behavior — RouterA(config)#ipv6 address dhcp gi 0/0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"RouterA(config)#ipv6 address dhcp gi\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "RouterA(config-if)#ipv6 address dhcpv6 does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "RouterA(config-if)#ipv6 address dhcpv6 describes a mechanism that could sound plausible for dhcp client. Given dhcp client, RouterA(config-if)#ipv6 address dhcp matches the tested behavior — RouterA(config-if)#ipv6 address dhcpv6 applies a different mechanism.",
+            "whatItDoes": "RouterA(config-if)#ipv6 address dhcpv6 describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, RouterA(config-if)#ipv6 address dhcp matches the tested behavior — RouterA(config-if)#ipv6 address dhcpv6 applies a different mechanism.",
+            "misconceptionTested": "Applying \"RouterA(config-if)#ipv6 address dhcp\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "RouterA(config)#ipv6 address stateless does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "RouterA(config)#ipv6 address stateless describes a mechanism that could sound plausible for dhcp client. Given dhcp client, RouterA(config-if)#ipv6 address dhcp matches the tested behavior — RouterA(config)#ipv6 address stateless applies a different mechanism.",
+            "whatItDoes": "RouterA(config)#ipv6 address stateless describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, RouterA(config-if)#ipv6 address dhcp matches the tested behavior — RouterA(config)#ipv6 address stateless applies a different mechanism.",
+            "misconceptionTested": "Applying \"RouterA(config)#ipv6 address statele\" without matching dhcp client",
             "needsExplanationReview": true
           }
         ],
@@ -522,19 +582,25 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The server will contact the client to immediately relinquish the IP address. does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "The server will contact the client to immediately relinquish the IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given dhcp client, The server will offer the IP address to another node, which will cause a duplicate address. matches the tested behavior — The server will contact the client to immediately relinquish the IP address. applies a different mechanism.",
+            "whatItDoes": "The server will contact the client to immediately relinquish the IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given dhcp client, The server will offer the IP address to another node, which will cause a duplicate address. matches the tested behavior — The server will contact the client to immediately relinquish the IP address. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The server will contact the client t\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "The client will immediately renew its lease for the current IP address. does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "The client will immediately renew its lease for the current IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given dhcp client, The server will offer the IP address to another node, which will cause a duplicate address. matches the tested behavior — The client will immediately renew its lease for the current IP address. applies a different mechanism.",
+            "whatItDoes": "The client will immediately renew its lease for the current IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given dhcp client, The server will offer the IP address to another node, which will cause a duplicate address. matches the tested behavior — The client will immediately renew its lease for the current IP address. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The client will immediately renew it\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "DHCP DORA order matters — identify which message the stem describes before picking a step.",
+            "whatItDoes": "The server will offer the IP address to another node, at which time the original client will relinquish the IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given dhcp client, The server will offer the IP address to another node, which will cause a duplicate address. matches the tested behavior — The server will offer the IP address to another node, at which time the original client will relinquish the IP address. applies a different mechanism.",
             "misconceptionTested": "Misordering or mislabeling DHCP messages",
             "needsExplanationReview": true
           }
@@ -571,20 +637,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Nothing. The DHCP client will retain the lease. does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "Nothing. The DHCP client will retain the lease. describes a mechanism that could sound plausible for dhcp client. Given dhcp client, The DHCP client will perform a DHCP rebinding. matches the tested behavior — Nothing. The DHCP client will retain the lease. applies a different mechanism.",
+            "whatItDoes": "Nothing. The DHCP client will retain the lease. describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, The DHCP client will perform a DHCP rebinding. matches the tested behavior — Nothing. The DHCP client will retain the lease. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Nothing. The DHCP client will retain\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The DHCP client will renew its lease. does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "The DHCP client will renew its lease. describes a mechanism that could sound plausible for dhcp client. Given dhcp client, The DHCP client will perform a DHCP rebinding. matches the tested behavior — The DHCP client will renew its lease. applies a different mechanism.",
+            "whatItDoes": "The DHCP client will renew its lease. describes a mechanism that could sound plausible for dhcp client.",
+            "whyWrongHere": "Given dhcp client, The DHCP client will perform a DHCP rebinding. matches the tested behavior — The DHCP client will renew its lease. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The DHCP client will renew its lease\" without matching dhcp client",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The DHCP client will relinquish the use of the IP address. does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
+            "explanation": "The DHCP client will relinquish the use of the IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given dhcp client, The DHCP client will perform a DHCP rebinding. matches the tested behavior — The DHCP client will relinquish the use of the IP address. applies a different mechanism.",
+            "whatItDoes": "The DHCP client will relinquish the use of the IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given dhcp client, The DHCP client will perform a DHCP rebinding. matches the tested behavior — The DHCP client will relinquish the use of the IP address. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The DHCP client will relinquish the \" without matching dhcp client",
             "needsExplanationReview": true
           }
         ],

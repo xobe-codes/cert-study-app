@@ -29,18 +29,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Carries one VLAN only misses what this question tests. A trunk carries traffic for multiple VLANs between switches using 802.",
-            "misconceptionTested": "Selecting \"Carries one VLAN only\" without matching the scenario constraint"
+            "explanation": "Carries one VLAN only describes a mechanism that could sound plausible for trunk purpose. Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Carries one VLAN only applies a different mechanism.",
+            "whatItDoes": "Carries one VLAN only describes a mechanism that could sound plausible for trunk purpose.",
+            "whyWrongHere": "Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Carries one VLAN only applies a different mechanism.",
+            "misconceptionTested": "Applying \"Carries one VLAN only\" without matching trunk purpose"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Connects a PC to a switch misses what this question tests. A trunk carries traffic for multiple VLANs between switches using 802.",
-            "misconceptionTested": "Selecting \"Connects a PC to a switch\" without matching the scenario constraint"
+            "explanation": "Connects a PC to a switch describes a mechanism that could sound plausible for trunk purpose. Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Connects a PC to a switch applies a different mechanism.",
+            "whatItDoes": "Connects a PC to a switch describes a mechanism that could sound plausible for trunk purpose.",
+            "whyWrongHere": "Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Connects a PC to a switch applies a different mechanism.",
+            "misconceptionTested": "Applying \"Connects a PC to a switch\" without matching trunk purpose"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Routes between VLANs misses what this question tests. A trunk carries traffic for multiple VLANs between switches using 802.",
-            "misconceptionTested": "Selecting \"Routes between VLANs\" without matching the scenario constraint"
+            "explanation": "Routes between VLANs describes a mechanism that could sound plausible for trunk purpose. Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Routes between VLANs applies a different mechanism.",
+            "whatItDoes": "Routes between VLANs describes a mechanism that could sound plausible for trunk purpose.",
+            "whyWrongHere": "Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Routes between VLANs applies a different mechanism.",
+            "misconceptionTested": "Applying \"Routes between VLANs\" without matching trunk purpose"
           }
         ],
         "examTip": "On the exam: A trunk is faster than an access port — A trunk simply carries multiple VLANs; speed depends on the physical link"
@@ -72,17 +78,23 @@
           {
             "choiceIndex": 0,
             "explanation": "2 bytes uses the wrong value. The tested fact calls for 802 — not 2.",
-            "misconceptionTested": "Selecting \"2 bytes\" without matching the scenario constraint"
+            "whatItDoes": "2 bytes describes a mechanism that could sound plausible for tag size.",
+            "whyWrongHere": "Given tag size, 4 bytes matches the tested behavior — 2 bytes applies a different mechanism.",
+            "misconceptionTested": "Memorizing 2 instead of the correct 802"
           },
           {
             "choiceIndex": 2,
             "explanation": "8 bytes uses the wrong value. The tested fact calls for 802 — not 8.",
-            "misconceptionTested": "Selecting \"8 bytes\" without matching the scenario constraint"
+            "whatItDoes": "8 bytes describes a mechanism that could sound plausible for tag size.",
+            "whyWrongHere": "Given tag size, 4 bytes matches the tested behavior — 8 bytes applies a different mechanism.",
+            "misconceptionTested": "Memorizing 8 instead of the correct 802"
           },
           {
             "choiceIndex": 3,
             "explanation": "12 bytes uses the wrong value. The tested fact calls for 802 — not 12.",
-            "misconceptionTested": "Selecting \"12 bytes\" without matching the scenario constraint"
+            "whatItDoes": "12 bytes describes a mechanism that could sound plausible for tag size.",
+            "whyWrongHere": "Given tag size, 4 bytes matches the tested behavior — 12 bytes applies a different mechanism.",
+            "misconceptionTested": "Memorizing 12 instead of the correct 802"
           }
         ],
         "examTip": "On the exam: A trunk is faster than an access port — A trunk simply carries multiple VLANs; speed depends on the physical link"
@@ -114,17 +126,23 @@
           {
             "choiceIndex": 0,
             "explanation": "Double-tagged reflects a common trap: Thinking all VLANs are tagged. The native VLAN is untagged; all others are tagged.",
+            "whatItDoes": "Double-tagged describes a mechanism that could sound plausible for native vlan.",
+            "whyWrongHere": "Given native vlan, Untagged matches the tested behavior — Double-tagged applies a different mechanism.",
             "misconceptionTested": "Thinking all VLANs are tagged"
           },
           {
             "choiceIndex": 1,
             "explanation": "Tagged reflects a common trap: Thinking all VLANs are tagged. The native VLAN is untagged; all others are tagged.",
+            "whatItDoes": "Tagged describes a mechanism that could sound plausible for native vlan.",
+            "whyWrongHere": "Given native vlan, Untagged matches the tested behavior — Tagged applies a different mechanism.",
             "misconceptionTested": "Thinking all VLANs are tagged"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Dropped misses what this question tests. Native VLAN frames cross the trunk untagged.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+            "explanation": "Dropped implies the device should discard the frame instead of forwarding or flooding it. Given native vlan, Untagged matches the tested behavior — Dropped applies a different mechanism.",
+            "whatItDoes": "Dropped implies the device should discard the frame instead of forwarding or flooding it.",
+            "whyWrongHere": "Given native vlan, Untagged matches the tested behavior — Dropped applies a different mechanism.",
+            "misconceptionTested": "Applying \"Dropped\" without matching native vlan"
           }
         ],
         "examTip": "On the exam: Mismatched native VLANs — Native VLAN must match on both ends or traffic can leak (CDP warns)"
@@ -155,18 +173,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Trunk speed drops is a plausible symptom fix but does not match the most likely root cause here: A native VLAN mismatch can merge the two native VLANs’ traffic and triggers a CDP warning.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+            "explanation": "Trunk speed drops implies the device should discard the frame instead of forwarding or flooding it. Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — Trunk speed drops applies a different mechanism.",
+            "whatItDoes": "Trunk speed drops implies the device should discard the frame instead of forwarding or flooding it.",
+            "whyWrongHere": "Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — Trunk speed drops applies a different mechanism.",
+            "misconceptionTested": "Applying \"Trunk speed drops\" without matching native mismatch"
           },
           {
             "choiceIndex": 2,
             "explanation": "All VLANs stop reflects a common trap: Mismatched native VLANs. Native VLAN must match on both ends or traffic can leak (CDP warns).",
+            "whatItDoes": "All VLANs stop describes a mechanism that could sound plausible for native mismatch.",
+            "whyWrongHere": "Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — All VLANs stop applies a different mechanism.",
             "misconceptionTested": "Mismatched native VLANs"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Nothing — it is cosmetic is a plausible symptom fix but does not match the most likely root cause here: A native VLAN mismatch can merge the two native VLANs’ traffic and triggers a CDP warning.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+            "explanation": "Nothing — it is cosmetic describes a mechanism that could sound plausible for native mismatch. Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — Nothing — it is cosmetic applies a different mechanism.",
+            "whatItDoes": "Nothing — it is cosmetic describes a mechanism that could sound plausible for native mismatch.",
+            "whyWrongHere": "Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — Nothing — it is cosmetic applies a different mechanism.",
+            "misconceptionTested": "Applying \"Nothing — it is cosmetic\" without matching native mismatch"
           }
         ],
         "examTip": "On the exam: Mismatched native VLANs — Native VLAN must match on both ends or traffic can leak (CDP warns)"
@@ -198,17 +222,23 @@
           {
             "choiceIndex": 0,
             "explanation": "switchport mode access reflects a common trap: A trunk is faster than an access port. A trunk simply carries multiple VLANs; speed depends on the physical link.",
+            "whatItDoes": "switchport mode access describes a mechanism that could sound plausible for config trunk.",
+            "whyWrongHere": "Given config trunk, switchport mode trunk matches the tested behavior — switchport mode access applies a different mechanism.",
             "misconceptionTested": "A trunk is faster than an access port"
           },
           {
             "choiceIndex": 2,
             "explanation": "switchport trunk allowed vlan reflects a common trap: A trunk is faster than an access port. A trunk simply carries multiple VLANs; speed depends on the physical link.",
+            "whatItDoes": "switchport trunk allowed vlan describes a mechanism that could sound plausible for config trunk.",
+            "whyWrongHere": "Given config trunk, switchport mode trunk matches the tested behavior — switchport trunk allowed vlan applies a different mechanism.",
             "misconceptionTested": "A trunk is faster than an access port"
           },
           {
             "choiceIndex": 3,
-            "explanation": "switchport nonegotiate misses what this question tests. switchport mode trunk sets the port to trunking.",
-            "misconceptionTested": "Selecting \"switchport nonegotiate\" without matching the scenario constraint"
+            "explanation": "switchport nonegotiate describes a mechanism that could sound plausible for config trunk. Given config trunk, switchport mode trunk matches the tested behavior — switchport nonegotiate applies a different mechanism.",
+            "whatItDoes": "switchport nonegotiate describes a mechanism that could sound plausible for config trunk.",
+            "whyWrongHere": "Given config trunk, switchport mode trunk matches the tested behavior — switchport nonegotiate applies a different mechanism.",
+            "misconceptionTested": "Applying \"switchport nonegotiate\" without matching config trunk"
           }
         ],
         "examTip": "On the exam: A trunk is faster than an access port — A trunk simply carries multiple VLANs; speed depends on the physical link"
@@ -239,18 +269,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "no dtp misses what this question tests. switchport nonegotiate stops DTP, a hardening best practice.",
-            "misconceptionTested": "Selecting \"no dtp\" without matching the scenario constraint"
+            "explanation": "no dtp describes a mechanism that could sound plausible for DTP security. Given DTP security, switchport nonegotiate matches the tested behavior — no dtp applies a different mechanism.",
+            "whatItDoes": "no dtp describes a mechanism that could sound plausible for DTP security.",
+            "whyWrongHere": "Given DTP security, switchport nonegotiate matches the tested behavior — no dtp applies a different mechanism.",
+            "misconceptionTested": "Applying \"no dtp\" without matching DTP security"
           },
           {
             "choiceIndex": 2,
-            "explanation": "switchport mode dynamic misses what this question tests. switchport nonegotiate stops DTP, a hardening best practice.",
-            "misconceptionTested": "Selecting \"switchport mode dynamic\" without matching the scenario constraint"
+            "explanation": "switchport mode dynamic describes a mechanism that could sound plausible for DTP security. Given DTP security, switchport nonegotiate matches the tested behavior — switchport mode dynamic applies a different mechanism.",
+            "whatItDoes": "switchport mode dynamic describes a mechanism that could sound plausible for DTP security.",
+            "whyWrongHere": "Given DTP security, switchport nonegotiate matches the tested behavior — switchport mode dynamic applies a different mechanism.",
+            "misconceptionTested": "Applying \"switchport mode dynamic\" without matching DTP security"
           },
           {
             "choiceIndex": 3,
-            "explanation": "no switchport trunk misses what this question tests. switchport nonegotiate stops DTP, a hardening best practice.",
-            "misconceptionTested": "Selecting \"no switchport trunk\" without matching the scenario constraint"
+            "explanation": "no switchport trunk describes a mechanism that could sound plausible for DTP security. Given DTP security, switchport nonegotiate matches the tested behavior — no switchport trunk applies a different mechanism.",
+            "whatItDoes": "no switchport trunk describes a mechanism that could sound plausible for DTP security.",
+            "whyWrongHere": "Given DTP security, switchport nonegotiate matches the tested behavior — no switchport trunk applies a different mechanism.",
+            "misconceptionTested": "Applying \"no switchport trunk\" without matching DTP security"
           }
         ],
         "examTip": "On the exam: Leaving DTP on for untrusted ports — Disable DTP with switchport nonegotiate to prevent VLAN hopping"
@@ -281,18 +317,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "show vlan brief misses what this question tests. show interfaces trunk lists trunking details.",
-            "misconceptionTested": "Selecting \"show vlan brief\" without matching the scenario constraint"
+            "explanation": "show vlan brief describes a mechanism that could sound plausible for verify trunk. Given verify trunk, show interfaces trunk matches the tested behavior — show vlan brief applies a different mechanism.",
+            "whatItDoes": "show vlan brief describes a mechanism that could sound plausible for verify trunk.",
+            "whyWrongHere": "Given verify trunk, show interfaces trunk matches the tested behavior — show vlan brief applies a different mechanism.",
+            "misconceptionTested": "Applying \"show vlan brief\" without matching verify trunk"
           },
           {
             "choiceIndex": 2,
-            "explanation": "show ip interface brief misses what this question tests. show interfaces trunk lists trunking details.",
-            "misconceptionTested": "Selecting \"show ip interface brief\" without matching the scenario constraint"
+            "explanation": "show ip interface brief describes a mechanism that could sound plausible for verify trunk. Given verify trunk, show interfaces trunk matches the tested behavior — show ip interface brief applies a different mechanism.",
+            "whatItDoes": "show ip interface brief describes a mechanism that could sound plausible for verify trunk.",
+            "whyWrongHere": "Given verify trunk, show interfaces trunk matches the tested behavior — show ip interface brief applies a different mechanism.",
+            "misconceptionTested": "Applying \"show ip interface brief\" without matching verify trunk"
           },
           {
             "choiceIndex": 3,
-            "explanation": "show cdp neighbors misses what this question tests. show interfaces trunk lists trunking details.",
-            "misconceptionTested": "Selecting \"show cdp neighbors\" without matching the scenario constraint"
+            "explanation": "show cdp neighbors describes a mechanism that could sound plausible for verify trunk. Given verify trunk, show interfaces trunk matches the tested behavior — show cdp neighbors applies a different mechanism.",
+            "whatItDoes": "show cdp neighbors describes a mechanism that could sound plausible for verify trunk.",
+            "whyWrongHere": "Given verify trunk, show interfaces trunk matches the tested behavior — show cdp neighbors applies a different mechanism.",
+            "misconceptionTested": "Applying \"show cdp neighbors\" without matching verify trunk"
           }
         ],
         "examTip": "On the exam: A trunk is faster than an access port — A trunk simply carries multiple VLANs; speed depends on the physical link"
@@ -324,16 +366,22 @@
           {
             "choiceIndex": 0,
             "explanation": "switchport access vlan 10,20 reflects a common trap: A trunk is faster than an access port. A trunk simply carries multiple VLANs; speed depends on the physical link.",
+            "whatItDoes": "switchport access vlan 10,20 describes a mechanism that could sound plausible for allowed vlans.",
+            "whyWrongHere": "Given allowed vlans, switchport trunk allowed vlan 10,20 matches the tested behavior — switchport access vlan 10,20 applies a different mechanism.",
             "misconceptionTested": "A trunk is faster than an access port"
           },
           {
             "choiceIndex": 2,
             "explanation": "vlan 10,20 uses the wrong value. The tested fact calls for 20 — not 10.",
-            "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
+            "whatItDoes": "vlan 10,20 describes a mechanism that could sound plausible for allowed vlans.",
+            "whyWrongHere": "Given allowed vlans, switchport trunk allowed vlan 10,20 matches the tested behavior — vlan 10,20 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 10 instead of the correct 20"
           },
           {
             "choiceIndex": 3,
             "explanation": "switchport trunk native vlan 10 reflects a common trap: A trunk is faster than an access port. A trunk simply carries multiple VLANs; speed depends on the physical link.",
+            "whatItDoes": "switchport trunk native vlan 10 describes a mechanism that could sound plausible for allowed vlans.",
+            "whyWrongHere": "Given allowed vlans, switchport trunk allowed vlan 10,20 matches the tested behavior — switchport trunk native vlan 10 applies a different mechanism.",
             "misconceptionTested": "A trunk is faster than an access port"
           }
         ],

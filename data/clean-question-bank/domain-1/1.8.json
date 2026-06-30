@@ -30,17 +30,23 @@
           {
             "choiceIndex": 0,
             "explanation": "32 uses the wrong value. The tested fact calls for 6 — not 32.",
-            "misconceptionTested": "Selecting \"32\" without matching the scenario constraint"
+            "whatItDoes": "32 describes a mechanism that could sound plausible for address length.",
+            "whyWrongHere": "Given address length, 128 matches the tested behavior — 32 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 32 instead of the correct 6"
           },
           {
             "choiceIndex": 1,
             "explanation": "64 uses the wrong value. The tested fact calls for 6 — not 64.",
-            "misconceptionTested": "Selecting \"64\" without matching the scenario constraint"
+            "whatItDoes": "64 describes a mechanism that could sound plausible for address length.",
+            "whyWrongHere": "Given address length, 128 matches the tested behavior — 64 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 64 instead of the correct 6"
           },
           {
             "choiceIndex": 3,
             "explanation": "256 uses the wrong value. The tested fact calls for 6 — not 256.",
-            "misconceptionTested": "Selecting \"256\" without matching the scenario constraint"
+            "whatItDoes": "256 describes a mechanism that could sound plausible for address length.",
+            "whyWrongHere": "Given address length, 128 matches the tested behavior — 256 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 256 instead of the correct 6"
           }
         ],
         "examTip": "On the exam: IPv6 needs NAT like IPv4 — IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary"
@@ -72,17 +78,23 @@
           {
             "choiceIndex": 1,
             "explanation": "2001:db8:::1 uses the wrong value. The tested fact calls for 8 — not 2001.",
-            "misconceptionTested": "Selecting \"2001:db8:::1\" without matching the scenario constraint"
+            "whatItDoes": "2001:db8:::1 describes a mechanism that could sound plausible for shortening.",
+            "whyWrongHere": "Given shortening, 2001:db8::1 matches the tested behavior — 2001:db8:::1 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 2001 instead of the correct 8"
           },
           {
             "choiceIndex": 2,
             "explanation": "2001:db8::0:1:: uses the wrong value. The tested fact calls for 8 — not 2001.",
-            "misconceptionTested": "Selecting \"2001:db8::0:1::\" without matching the scenario constraint"
+            "whatItDoes": "2001:db8::0:1:: describes a mechanism that could sound plausible for shortening.",
+            "whyWrongHere": "Given shortening, 2001:db8::1 matches the tested behavior — 2001:db8::0:1:: applies a different mechanism.",
+            "misconceptionTested": "Memorizing 2001 instead of the correct 8"
           },
           {
             "choiceIndex": 3,
             "explanation": "2001::db8::1 uses the wrong value. The tested fact calls for 8 — not 2001.",
-            "misconceptionTested": "Selecting \"2001::db8::1\" without matching the scenario constraint"
+            "whatItDoes": "2001::db8::1 describes a mechanism that could sound plausible for shortening.",
+            "whyWrongHere": "Given shortening, 2001:db8::1 matches the tested behavior — 2001::db8::1 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 2001 instead of the correct 8"
           }
         ],
         "examTip": "On the exam: Using :: twice — Only one :: per address is allowed"
@@ -112,7 +124,9 @@
           {
             "choiceIndex": 0,
             "explanation": "This statement is True, but the tested fact is: False — :: may appear only once, otherwise the number of zero groups is ambiguous.",
-            "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
+            "whatItDoes": "True states the opposite of the tested fact about double colon rule.",
+            "whyWrongHere": "Given double colon rule, False matches the tested behavior — True applies a different mechanism.",
+            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
           }
         ],
         "examTip": "On the exam: Using :: twice — Only one :: per address is allowed"
@@ -144,17 +158,23 @@
           {
             "choiceIndex": 0,
             "explanation": "/24 uses the wrong value. The tested fact calls for 64 — not 24.",
-            "misconceptionTested": "Selecting \"/24\" without matching the scenario constraint"
+            "whatItDoes": "/24 describes a mechanism that could sound plausible for LAN prefix.",
+            "whyWrongHere": "Given LAN prefix, /64 matches the tested behavior — /24 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 24 instead of the correct 64"
           },
           {
             "choiceIndex": 1,
             "explanation": "/48 uses the wrong value. The tested fact calls for 64 — not 48.",
-            "misconceptionTested": "Selecting \"/48\" without matching the scenario constraint"
+            "whatItDoes": "/48 describes a mechanism that could sound plausible for LAN prefix.",
+            "whyWrongHere": "Given LAN prefix, /64 matches the tested behavior — /48 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 48 instead of the correct 64"
           },
           {
             "choiceIndex": 3,
             "explanation": "/128 uses the wrong value. The tested fact calls for 64 — not 128.",
-            "misconceptionTested": "Selecting \"/128\" without matching the scenario constraint"
+            "whatItDoes": "/128 describes a mechanism that could sound plausible for LAN prefix.",
+            "whyWrongHere": "Given LAN prefix, /64 matches the tested behavior — /128 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 128 instead of the correct 64"
           }
         ],
         "examTip": "On the exam: IPv6 needs NAT like IPv4 — IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary"
@@ -186,17 +206,23 @@
           {
             "choiceIndex": 1,
             "explanation": "FF00 uses the wrong value. The tested fact calls for 7 — not 00.",
-            "misconceptionTested": "Selecting \"FF00\" without matching the scenario constraint"
+            "whatItDoes": "FF00 describes a mechanism that could sound plausible for modified.",
+            "whyWrongHere": "Given modified, FFFE matches the tested behavior — FF00 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 00 instead of the correct 7"
           },
           {
             "choiceIndex": 2,
-            "explanation": "FFFF misses what this question tests. FFFE is inserted in the middle, and the 7th bit of the first byte is flipped.",
-            "misconceptionTested": "Selecting \"FFFF\" without matching the scenario constraint"
+            "explanation": "FFFF describes a mechanism that could sound plausible for modified. Given modified, FFFE matches the tested behavior — FFFF applies a different mechanism.",
+            "whatItDoes": "FFFF describes a mechanism that could sound plausible for modified.",
+            "whyWrongHere": "Given modified, FFFE matches the tested behavior — FFFF applies a different mechanism.",
+            "misconceptionTested": "Applying \"FFFF\" without matching EUI-64"
           },
           {
             "choiceIndex": 3,
             "explanation": "FE80 uses the wrong value. The tested fact calls for 7 — not 80.",
-            "misconceptionTested": "Selecting \"FE80\" without matching the scenario constraint"
+            "whatItDoes": "FE80 describes a mechanism that could sound plausible for modified.",
+            "whyWrongHere": "Given modified, FFFE matches the tested behavior — FE80 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 80 instead of the correct 7"
           }
         ],
         "examTip": "Link-local fe80::/10 is automatic; global unicast needs SLAAC, DHCPv6, or static config."
@@ -227,18 +253,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "DHCPv6 misses what this question tests. SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
-            "misconceptionTested": "Selecting \"DHCPv6\" without matching the scenario constraint"
+            "explanation": "DHCPv6 describes a mechanism that could sound plausible for advertisement. Given advertisement, SLAAC matches the tested behavior — DHCPv6 applies a different mechanism.",
+            "whatItDoes": "DHCPv6 describes a mechanism that could sound plausible for advertisement.",
+            "whyWrongHere": "Given advertisement, SLAAC matches the tested behavior — DHCPv6 applies a different mechanism.",
+            "misconceptionTested": "Applying \"DHCPv6\" without matching SLAAC"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Static misses what this question tests. SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
-            "misconceptionTested": "Selecting \"Static\" without matching the scenario constraint"
+            "explanation": "Static describes a mechanism that could sound plausible for advertisement. Given advertisement, SLAAC matches the tested behavior — Static applies a different mechanism.",
+            "whatItDoes": "Static describes a mechanism that could sound plausible for advertisement.",
+            "whyWrongHere": "Given advertisement, SLAAC matches the tested behavior — Static applies a different mechanism.",
+            "misconceptionTested": "Applying \"Static\" without matching SLAAC"
           },
           {
             "choiceIndex": 3,
-            "explanation": "NAT66 misses what this question tests. SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
-            "misconceptionTested": "Selecting \"NAT66\" without matching the scenario constraint"
+            "explanation": "NAT66 describes a mechanism that could sound plausible for advertisement. Given advertisement, SLAAC matches the tested behavior — NAT66 applies a different mechanism.",
+            "whatItDoes": "NAT66 describes a mechanism that could sound plausible for advertisement.",
+            "whyWrongHere": "Given advertisement, SLAAC matches the tested behavior — NAT66 applies a different mechanism.",
+            "misconceptionTested": "Applying \"NAT66\" without matching SLAAC"
           }
         ],
         "examTip": "On the exam: Expecting SLAAC on a non-/64 prefix — SLAAC requires a /64 prefix"
@@ -270,16 +302,22 @@
           {
             "choiceIndex": 0,
             "explanation": "ipv6 routing reflects a common trap: IPv6 needs NAT like IPv4. IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary.",
+            "whatItDoes": "ipv6 routing describes a mechanism that could sound plausible for enable routing.",
+            "whyWrongHere": "Given enable routing, ipv6 unicast-routing matches the tested behavior — ipv6 routing applies a different mechanism.",
             "misconceptionTested": "IPv6 needs NAT like IPv4"
           },
           {
             "choiceIndex": 2,
-            "explanation": "ip routing v6 misses what this question tests. ipv6 unicast-routing must be enabled globally.",
-            "misconceptionTested": "Selecting \"ip routing v6\" without matching the scenario constraint"
+            "explanation": "ip routing v6 describes a mechanism that could sound plausible for enable routing. Given enable routing, ipv6 unicast-routing matches the tested behavior — ip routing v6 applies a different mechanism.",
+            "whatItDoes": "ip routing v6 describes a mechanism that could sound plausible for enable routing.",
+            "whyWrongHere": "Given enable routing, ipv6 unicast-routing matches the tested behavior — ip routing v6 applies a different mechanism.",
+            "misconceptionTested": "Applying \"ip routing v6\" without matching enable routing"
           },
           {
             "choiceIndex": 3,
             "explanation": "enable ipv6 reflects a common trap: IPv6 needs NAT like IPv4. IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary.",
+            "whatItDoes": "enable ipv6 describes a mechanism that could sound plausible for enable routing.",
+            "whyWrongHere": "Given enable routing, ipv6 unicast-routing matches the tested behavior — enable ipv6 applies a different mechanism.",
             "misconceptionTested": "IPv6 needs NAT like IPv4"
           }
         ],
@@ -312,17 +350,23 @@
           {
             "choiceIndex": 0,
             "explanation": "Trailing zeros reflects a common trap: Dropping trailing zeros in a hextet. Only leading zeros may be dropped (00a0 → a0, not a).",
+            "whatItDoes": "Trailing zeros describes a mechanism that could sound plausible for zero compression.",
+            "whyWrongHere": "Given zero compression, Leading zeros → a0 matches the tested behavior — Trailing zeros applies a different mechanism.",
             "misconceptionTested": "Dropping trailing zeros in a hextet"
           },
           {
             "choiceIndex": 2,
             "explanation": "All zeros reflects a common trap: Dropping trailing zeros in a hextet. Only leading zeros may be dropped (00a0 → a0, not a).",
+            "whatItDoes": "All zeros describes a mechanism that could sound plausible for zero compression.",
+            "whyWrongHere": "Given zero compression, Leading zeros → a0 matches the tested behavior — All zeros applies a different mechanism.",
             "misconceptionTested": "Dropping trailing zeros in a hextet"
           },
           {
             "choiceIndex": 3,
-            "explanation": "None misses what this question tests. Only leading zeros within a hextet may be dropped: 00a0 → a0.",
-            "misconceptionTested": "Selecting \"None\" without matching the scenario constraint"
+            "explanation": "None describes a mechanism that could sound plausible for zero compression. Given zero compression, Leading zeros → a0 matches the tested behavior — None applies a different mechanism.",
+            "whatItDoes": "None describes a mechanism that could sound plausible for zero compression.",
+            "whyWrongHere": "Given zero compression, Leading zeros → a0 matches the tested behavior — None applies a different mechanism.",
+            "misconceptionTested": "Applying \"None\" without matching zero compression"
           }
         ],
         "examTip": "On the exam: Using :: twice — Only one :: per address is allowed"
@@ -354,17 +398,23 @@
           {
             "choiceIndex": 0,
             "explanation": "show ip interface brief reflects a common trap: An interface has only one IPv6 address. Interfaces normally have at least a link-local (FE80::) and a global address.",
+            "whatItDoes": "show ip interface brief describes a mechanism that could sound plausible for addresses.",
+            "whyWrongHere": "Given addresses, show ipv6 interface brief matches the tested behavior — show ip interface brief applies a different mechanism.",
             "misconceptionTested": "An interface has only one IPv6 address"
           },
           {
             "choiceIndex": 2,
             "explanation": "show ipv6 route reflects a common trap: IPv6 needs NAT like IPv4. IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary.",
+            "whatItDoes": "show ipv6 route describes a mechanism that could sound plausible for addresses.",
+            "whyWrongHere": "Given addresses, show ipv6 interface brief matches the tested behavior — show ipv6 route applies a different mechanism.",
             "misconceptionTested": "IPv6 needs NAT like IPv4"
           },
           {
             "choiceIndex": 3,
-            "explanation": "show running-config misses what this question tests. show ipv6 interface brief lists IPv6 addresses (link-local + global) and status.",
-            "misconceptionTested": "Selecting \"show running-config\" without matching the scenario constraint"
+            "explanation": "show running-config describes a mechanism that could sound plausible for addresses. Given addresses, show ipv6 interface brief matches the tested behavior — show running-config applies a different mechanism.",
+            "whatItDoes": "show running-config describes a mechanism that could sound plausible for addresses.",
+            "whyWrongHere": "Given addresses, show ipv6 interface brief matches the tested behavior — show running-config applies a different mechanism.",
+            "misconceptionTested": "Applying \"show running-config\" without matching verify"
           }
         ],
         "examTip": "On the exam: IPv6 needs NAT like IPv4 — IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary"
@@ -396,17 +446,23 @@
           {
             "choiceIndex": 0,
             "explanation": "32 uses the wrong value. The tested fact calls for 128 — not 32.",
-            "misconceptionTested": "Selecting \"32\" without matching the scenario constraint"
+            "whatItDoes": "32 describes a mechanism that could sound plausible for interface ID size.",
+            "whyWrongHere": "Given interface ID size, 64 matches the tested behavior — 32 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 32 instead of the correct 128"
           },
           {
             "choiceIndex": 1,
             "explanation": "48 uses the wrong value. The tested fact calls for 128 — not 48.",
-            "misconceptionTested": "Selecting \"48\" without matching the scenario constraint"
+            "whatItDoes": "48 describes a mechanism that could sound plausible for interface ID size.",
+            "whyWrongHere": "Given interface ID size, 64 matches the tested behavior — 48 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 48 instead of the correct 128"
           },
           {
             "choiceIndex": 3,
             "explanation": "128 uses the wrong value. The tested fact calls for 64 — not 128.",
-            "misconceptionTested": "Selecting \"128\" without matching the scenario constraint"
+            "whatItDoes": "128 describes a mechanism that could sound plausible for interface ID size.",
+            "whyWrongHere": "Given interface ID size, 64 matches the tested behavior — 128 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 128 instead of the correct 64"
           }
         ],
         "examTip": "On the exam: IPv6 needs NAT like IPv4 — IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary"

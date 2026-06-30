@@ -31,19 +31,25 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "802.1Q does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"802.1Q\" without matching the scenario constraint",
+            "explanation": "802.1Q describes a mechanism that could sound plausible for technology. Given technology, 802.1X matches the tested behavior — 802.1Q applies a different mechanism.",
+            "whatItDoes": "802.1Q describes a mechanism that could sound plausible for technology.",
+            "whyWrongHere": "Given technology, 802.1X matches the tested behavior — 802.1Q applies a different mechanism.",
+            "misconceptionTested": "Applying \"802.1Q\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "ACLs reflects a common trap: ACLs encrypt or deeply inspect traffic. ACLs filter by header fields (IP/protocol/port); they are not encryption or stateful firewalls.",
+            "whatItDoes": "ACLs describes a mechanism that could sound plausible for technology.",
+            "whyWrongHere": "Given technology, 802.1X matches the tested behavior — ACLs applies a different mechanism.",
             "misconceptionTested": "ACLs encrypt or deeply inspect traffic",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "Firewall is the wrong device role here. Firewalls filter/policy traffic — they are not the default answer for basic L2 forwarding or VLAN trunk setup unless the stem is security-focused.",
+            "whatItDoes": "Firewall describes a mechanism that could sound plausible for technology.",
+            "whyWrongHere": "Given technology, 802.1X matches the tested behavior — Firewall applies a different mechanism.",
             "misconceptionTested": "Defaulting to firewall when the stem tests switching or routing mechanics",
             "needsExplanationReview": true
           }
@@ -82,20 +88,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Authenticator does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Authenticator\" without matching the scenario constraint",
+            "explanation": "Authenticator describes a mechanism that could sound plausible for identify. Given identify, Supplicant matches the tested behavior — Authenticator applies a different mechanism.",
+            "whatItDoes": "Authenticator describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Supplicant matches the tested behavior — Authenticator applies a different mechanism.",
+            "misconceptionTested": "Applying \"Authenticator\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "AAA server does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"AAA server\" without matching the scenario constraint",
+            "explanation": "AAA server describes a mechanism that could sound plausible for identify. Given identify, Supplicant matches the tested behavior — AAA server applies a different mechanism.",
+            "whatItDoes": "AAA server describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Supplicant matches the tested behavior — AAA server applies a different mechanism.",
+            "misconceptionTested": "Applying \"AAA server\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "RADIUS server does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"RADIUS server\" without matching the scenario constraint",
+            "explanation": "RADIUS server describes a mechanism that could sound plausible for identify. Given identify, Supplicant matches the tested behavior — RADIUS server applies a different mechanism.",
+            "whatItDoes": "RADIUS server describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Supplicant matches the tested behavior — RADIUS server applies a different mechanism.",
+            "misconceptionTested": "Applying \"RADIUS server\" without matching aaa",
             "needsExplanationReview": true
           }
         ],
@@ -133,20 +145,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Supplicant does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Supplicant\" without matching the scenario constraint",
+            "explanation": "Supplicant describes a mechanism that could sound plausible for identify. Given identify, Authenticator matches the tested behavior — Supplicant applies a different mechanism.",
+            "whatItDoes": "Supplicant describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Authenticator matches the tested behavior — Supplicant applies a different mechanism.",
+            "misconceptionTested": "Applying \"Supplicant\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "AAA server does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"AAA server\" without matching the scenario constraint",
+            "explanation": "AAA server describes a mechanism that could sound plausible for identify. Given identify, Authenticator matches the tested behavior — AAA server applies a different mechanism.",
+            "whatItDoes": "AAA server describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Authenticator matches the tested behavior — AAA server applies a different mechanism.",
+            "misconceptionTested": "Applying \"AAA server\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "RADIUS server does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"RADIUS server\" without matching the scenario constraint",
+            "explanation": "RADIUS server describes a mechanism that could sound plausible for identify. Given identify, Authenticator matches the tested behavior — RADIUS server applies a different mechanism.",
+            "whatItDoes": "RADIUS server describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Authenticator matches the tested behavior — RADIUS server applies a different mechanism.",
+            "misconceptionTested": "Applying \"RADIUS server\" without matching aaa",
             "needsExplanationReview": true
           }
         ],
@@ -184,20 +202,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "UDP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"UDP\" without matching the scenario constraint",
+            "explanation": "UDP describes a mechanism that could sound plausible for protocol. Given protocol, 802.1X EAP matches the tested behavior — UDP applies a different mechanism.",
+            "whatItDoes": "UDP describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, 802.1X EAP matches the tested behavior — UDP applies a different mechanism.",
+            "misconceptionTested": "Applying \"UDP\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "TCP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"TCP\" without matching the scenario constraint",
+            "explanation": "TCP describes a mechanism that could sound plausible for protocol. Given protocol, 802.1X EAP matches the tested behavior — TCP applies a different mechanism.",
+            "whatItDoes": "TCP describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, 802.1X EAP matches the tested behavior — TCP applies a different mechanism.",
+            "misconceptionTested": "Applying \"TCP\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "IP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"IP\" without matching the scenario constraint",
+            "explanation": "IP describes a mechanism that could sound plausible for protocol. Given protocol, 802.1X EAP matches the tested behavior — IP applies a different mechanism.",
+            "whatItDoes": "IP describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, 802.1X EAP matches the tested behavior — IP applies a different mechanism.",
+            "misconceptionTested": "Applying \"IP\" without matching aaa",
             "needsExplanationReview": true
           }
         ],
@@ -238,20 +262,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "802.1X authentication headers does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"802.1X authentication headers\" without matching the scenario constraint",
+            "explanation": "802.1X authentication headers describes a mechanism that could sound plausible for protocol. Given protocol, EAP matches the tested behavior — 802.1X authentication headers applies a different mechanism.",
+            "whatItDoes": "802.1X authentication headers describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, EAP matches the tested behavior — 802.1X authentication headers applies a different mechanism.",
+            "misconceptionTested": "Applying \"802.1X authentication headers\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "IPsec does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"IPsec\" without matching the scenario constraint",
+            "explanation": "IPsec describes a mechanism that could sound plausible for protocol. Given protocol, EAP matches the tested behavior — IPsec applies a different mechanism.",
+            "whatItDoes": "IPsec describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, EAP matches the tested behavior — IPsec applies a different mechanism.",
+            "misconceptionTested": "Applying \"IPsec\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "RADIUS does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"RADIUS\" without matching the scenario constraint",
+            "explanation": "RADIUS describes a mechanism that could sound plausible for protocol. Given protocol, EAP matches the tested behavior — RADIUS applies a different mechanism.",
+            "whatItDoes": "RADIUS describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, EAP matches the tested behavior — RADIUS applies a different mechanism.",
+            "misconceptionTested": "Applying \"RADIUS\" without matching aaa",
             "needsExplanationReview": true
           }
         ],
@@ -287,20 +317,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The server that is providing authentication does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The server that is providing authenticat…\" without matching the scenario constraint",
+            "explanation": "The server that is providing authentication describes a mechanism that could sound plausible for supplicant. Given supplicant, The device requesting access matches the tested behavior — The server that is providing authentication applies a different mechanism.",
+            "whatItDoes": "The server that is providing authentication describes a mechanism that could sound plausible for supplicant.",
+            "whyWrongHere": "Given supplicant, The device requesting access matches the tested behavior — The server that is providing authentication applies a different mechanism.",
+            "misconceptionTested": "Applying \"The server that is providing authent\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The device that is controlling access via 802.1X does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The device that is controlling access vi…\" without matching the scenario constraint",
+            "explanation": "The device that is controlling access via 802.1X describes a mechanism that could sound plausible for supplicant. Given supplicant, The device requesting access matches the tested behavior — The device that is controlling access via 802.1X applies a different mechanism.",
+            "whatItDoes": "The device that is controlling access via 802.1X describes a mechanism that could sound plausible for supplicant.",
+            "whyWrongHere": "Given supplicant, The device requesting access matches the tested behavior — The device that is controlling access via 802.1X applies a different mechanism.",
+            "misconceptionTested": "Applying \"The device that is controlling acces\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The device connecting the layer 3 network does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The device connecting the layer 3 networ…\" without matching the scenario constraint",
+            "explanation": "The device connecting the layer 3 network describes a mechanism that could sound plausible for supplicant. Given supplicant, The device requesting access matches the tested behavior — The device connecting the layer 3 network applies a different mechanism.",
+            "whatItDoes": "The device connecting the layer 3 network describes a mechanism that could sound plausible for supplicant.",
+            "whyWrongHere": "Given supplicant, The device requesting access matches the tested behavior — The device connecting the layer 3 network applies a different mechanism.",
+            "misconceptionTested": "Applying \"The device connecting the layer 3 ne\" without matching aaa",
             "needsExplanationReview": true
           }
         ],
@@ -335,20 +371,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Active Directory server does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Active Directory server\" without matching the scenario constraint",
+            "explanation": "Active Directory server describes a mechanism that could sound plausible for centralize. Given centralize, AAA server matches the tested behavior — Active Directory server applies a different mechanism.",
+            "whatItDoes": "Active Directory server describes a mechanism that could sound plausible for centralize.",
+            "whyWrongHere": "Given centralize, AAA server matches the tested behavior — Active Directory server applies a different mechanism.",
+            "misconceptionTested": "Applying \"Active Directory server\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "802.1X server does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"802.1X server\" without matching the scenario constraint",
+            "explanation": "802.1X server describes a mechanism that could sound plausible for centralize. Given centralize, AAA server matches the tested behavior — 802.1X server applies a different mechanism.",
+            "whatItDoes": "802.1X server describes a mechanism that could sound plausible for centralize.",
+            "whyWrongHere": "Given centralize, AAA server matches the tested behavior — 802.1X server applies a different mechanism.",
+            "misconceptionTested": "Applying \"802.1X server\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Terminal server does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Terminal server\" without matching the scenario constraint",
+            "explanation": "Terminal server describes a mechanism that could sound plausible for centralize. Given centralize, AAA server matches the tested behavior — Terminal server applies a different mechanism.",
+            "whatItDoes": "Terminal server describes a mechanism that could sound plausible for centralize.",
+            "whyWrongHere": "Given centralize, AAA server matches the tested behavior — Terminal server applies a different mechanism.",
+            "misconceptionTested": "Applying \"Terminal server\" without matching aaa",
             "needsExplanationReview": true
           }
         ],
@@ -383,20 +425,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "UDP/1845 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"UDP/1845\" without matching the scenario constraint",
+            "explanation": "UDP/1845 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/1645 matches the tested behavior — UDP/1845 applies a different mechanism.",
+            "whatItDoes": "UDP/1845 describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, UDP/1645 matches the tested behavior — UDP/1845 applies a different mechanism.",
+            "misconceptionTested": "Applying \"UDP/1845\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "TCP/1645 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"TCP/1645\" without matching the scenario constraint",
+            "explanation": "TCP/1645 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/1645 matches the tested behavior — TCP/1645 applies a different mechanism.",
+            "whatItDoes": "TCP/1645 describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, UDP/1645 matches the tested behavior — TCP/1645 applies a different mechanism.",
+            "misconceptionTested": "Applying \"TCP/1645\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "UDP/1911 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"UDP/1911\" without matching the scenario constraint",
+            "explanation": "UDP/1911 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/1645 matches the tested behavior — UDP/1911 applies a different mechanism.",
+            "whatItDoes": "UDP/1911 describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, UDP/1645 matches the tested behavior — UDP/1911 applies a different mechanism.",
+            "misconceptionTested": "Applying \"UDP/1911\" without matching aaa",
             "needsExplanationReview": true
           }
         ],
@@ -434,20 +482,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "802.1X does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"802.1X\" without matching the scenario constraint",
+            "explanation": "802.1X describes a mechanism that could sound plausible for authentication. Given authentication, TACACS+ matches the tested behavior — 802.1X applies a different mechanism.",
+            "whatItDoes": "802.1X describes a mechanism that could sound plausible for authentication.",
+            "whyWrongHere": "Given authentication, TACACS+ matches the tested behavior — 802.1X applies a different mechanism.",
+            "misconceptionTested": "Applying \"802.1X\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "AD does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"AD\" without matching the scenario constraint",
+            "explanation": "AD describes a mechanism that could sound plausible for authentication. Given authentication, TACACS+ matches the tested behavior — AD applies a different mechanism.",
+            "whatItDoes": "AD describes a mechanism that could sound plausible for authentication.",
+            "whyWrongHere": "Given authentication, TACACS+ matches the tested behavior — AD applies a different mechanism.",
+            "misconceptionTested": "Applying \"AD\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "EAP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"EAP\" without matching the scenario constraint",
+            "explanation": "EAP describes a mechanism that could sound plausible for authentication. Given authentication, TACACS+ matches the tested behavior — EAP applies a different mechanism.",
+            "whatItDoes": "EAP describes a mechanism that could sound plausible for authentication.",
+            "whyWrongHere": "Given authentication, TACACS+ matches the tested behavior — EAP applies a different mechanism.",
+            "misconceptionTested": "Applying \"EAP\" without matching aaa",
             "needsExplanationReview": true
           }
         ],
@@ -482,20 +536,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#authentication login group tacacs+ local does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#authentication login grou…\" without matching the scenario constraint",
+            "explanation": "Router(config)#authentication login group tacacs+ local describes a mechanism that could sound plausible for configure. Given configure, Router(config)#aaa authentication login default group tacacs+ local matches the tested behavior — Router(config)#authentication login group tacacs+ local applies a different mechanism.",
+            "whatItDoes": "Router(config)#authentication login group tacacs+ local describes a mechanism that could sound plausible for configure.",
+            "whyWrongHere": "Given configure, Router(config)#aaa authentication login default group tacacs+ local matches the tested behavior — Router(config)#authentication login group tacacs+ local applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#authentication login \" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#aaa-authentication login default tacacs+ local does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#aaa-authentication login …\" without matching the scenario constraint",
+            "explanation": "Router(config)#aaa-authentication login default tacacs+ local describes a mechanism that could sound plausible for configure. Given configure, Router(config)#aaa authentication login default group tacacs+ local matches the tested behavior — Router(config)#aaa-authentication login default tacacs+ local applies a different mechanism.",
+            "whatItDoes": "Router(config)#aaa-authentication login default tacacs+ local describes a mechanism that could sound plausible for configure.",
+            "whyWrongHere": "Given configure, Router(config)#aaa authentication login default group tacacs+ local matches the tested behavior — Router(config)#aaa-authentication login default tacacs+ local applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#aaa-authentication lo\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#aaa authentication login tacacs+ local does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#aaa authentication login …\" without matching the scenario constraint",
+            "explanation": "Router(config)#aaa authentication login tacacs+ local describes a mechanism that could sound plausible for configure. Given configure, Router(config)#aaa authentication login default group tacacs+ local matches the tested behavior — Router(config)#aaa authentication login tacacs+ local applies a different mechanism.",
+            "whatItDoes": "Router(config)#aaa authentication login tacacs+ local describes a mechanism that could sound plausible for configure.",
+            "whyWrongHere": "Given configure, Router(config)#aaa authentication login default group tacacs+ local matches the tested behavior — Router(config)#aaa authentication login tacacs+ local applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#aaa authentication lo\" without matching aaa",
             "needsExplanationReview": true
           }
         ],
@@ -531,20 +591,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The enable secret will work. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The enable secret will work.\" without matching the scenario constraint",
+            "explanation": "The enable secret will work. describes a mechanism that could sound plausible for you log out. Given you log out, The router will lock you out. matches the tested behavior — The enable secret will work. applies a different mechanism.",
+            "whatItDoes": "The enable secret will work. describes a mechanism that could sound plausible for you log out.",
+            "whyWrongHere": "Given you log out, The router will lock you out. matches the tested behavior — The enable secret will work. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The enable secret will work.\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "The console will still be available. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The console will still be available.\" without matching the scenario constraint",
+            "explanation": "The console will still be available. describes a mechanism that could sound plausible for you log out. Given you log out, The router will lock you out. matches the tested behavior — The console will still be available. applies a different mechanism.",
+            "whatItDoes": "The console will still be available. describes a mechanism that could sound plausible for you log out.",
+            "whyWrongHere": "Given you log out, The router will lock you out. matches the tested behavior — The console will still be available. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The console will still be available.\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Nothing, since a username and password have not been set. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Nothing, since a username and password h…\" without matching the scenario constraint",
+            "explanation": "Nothing, since a username and password have not been set. describes a mechanism that could sound plausible for you log out. Given you log out, The router will lock you out. matches the tested behavior — Nothing, since a username and password have not been set. applies a different mechanism.",
+            "whatItDoes": "Nothing, since a username and password have not been set. describes a mechanism that could sound plausible for you log out.",
+            "whyWrongHere": "Given you log out, The router will lock you out. matches the tested behavior — Nothing, since a username and password have not been set. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Nothing, since a username and passwo\" without matching aaa",
             "needsExplanationReview": true
           }
         ],
@@ -578,20 +644,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Active does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Active\" without matching the scenario constraint",
+            "explanation": "Active describes a mechanism that could sound plausible for routinely. Given routinely, Passive matches the tested behavior — Active applies a different mechanism.",
+            "whatItDoes": "Active describes a mechanism that could sound plausible for routinely.",
+            "whyWrongHere": "Given routinely, Passive matches the tested behavior — Active applies a different mechanism.",
+            "misconceptionTested": "Applying \"Active\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Proactive does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Proactive\" without matching the scenario constraint",
+            "explanation": "Proactive describes a mechanism that could sound plausible for routinely. Given routinely, Passive matches the tested behavior — Proactive applies a different mechanism.",
+            "whatItDoes": "Proactive describes a mechanism that could sound plausible for routinely.",
+            "whyWrongHere": "Given routinely, Passive matches the tested behavior — Proactive applies a different mechanism.",
+            "misconceptionTested": "Applying \"Proactive\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Auditing does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Auditing\" without matching the scenario constraint",
+            "explanation": "Auditing describes a mechanism that could sound plausible for routinely. Given routinely, Passive matches the tested behavior — Auditing applies a different mechanism.",
+            "whatItDoes": "Auditing describes a mechanism that could sound plausible for routinely.",
+            "whyWrongHere": "Given routinely, Passive matches the tested behavior — Auditing applies a different mechanism.",
+            "misconceptionTested": "Applying \"Auditing\" without matching aaa",
             "needsExplanationReview": true
           }
         ],
@@ -626,20 +698,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "DNS does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"DNS\" without matching the scenario constraint",
+            "explanation": "DNS describes a mechanism that could sound plausible for aaa. Given aaa, Authentication matches the tested behavior — DNS applies a different mechanism.",
+            "whatItDoes": "DNS describes a mechanism that could sound plausible for aaa.",
+            "whyWrongHere": "Given aaa, Authentication matches the tested behavior — DNS applies a different mechanism.",
+            "misconceptionTested": "Applying \"DNS\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Email does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Email\" without matching the scenario constraint",
+            "explanation": "Email describes a mechanism that could sound plausible for aaa. Given aaa, Authentication matches the tested behavior — Email applies a different mechanism.",
+            "whatItDoes": "Email describes a mechanism that could sound plausible for aaa.",
+            "whyWrongHere": "Given aaa, Authentication matches the tested behavior — Email applies a different mechanism.",
+            "misconceptionTested": "Applying \"Email\" without matching aaa",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Proxy does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Proxy\" without matching the scenario constraint",
+            "explanation": "Proxy describes a mechanism that could sound plausible for aaa. Given aaa, Authentication matches the tested behavior — Proxy applies a different mechanism.",
+            "whatItDoes": "Proxy describes a mechanism that could sound plausible for aaa.",
+            "whyWrongHere": "Given aaa, Authentication matches the tested behavior — Proxy applies a different mechanism.",
+            "misconceptionTested": "Applying \"Proxy\" without matching aaa",
             "needsExplanationReview": true
           }
         ],

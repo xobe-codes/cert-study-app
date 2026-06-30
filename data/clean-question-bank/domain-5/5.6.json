@@ -29,19 +29,25 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The DHCP server is running on the layer 2 switch. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The DHCP server is running on the layer …\" without matching the scenario constraint",
+            "explanation": "The DHCP server is running on the layer 2 switch. describes a mechanism that could sound plausible for layer2 security. Given layer2 security, The device is on a layer 2 switched port on the same VLAN. matches the tested behavior — The DHCP server is running on the layer 2 switch. applies a different mechanism.",
+            "whatItDoes": "The DHCP server is running on the layer 2 switch. describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, The device is on a layer 2 switched port on the same VLAN. matches the tested behavior — The DHCP server is running on the layer 2 switch. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The DHCP server is running on the la\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The device is on a layer 3 routed port on the same VLAN. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The device is on a layer 3 routed port o…\" without matching the scenario constraint",
+            "explanation": "The device is on a layer 3 routed port on the same VLAN. describes a mechanism that could sound plausible for layer2 security. Given layer2 security, The device is on a layer 2 switched port on the same VLAN. matches the tested behavior — The device is on a layer 3 routed port on the same VLAN. applies a different mechanism.",
+            "whatItDoes": "The device is on a layer 3 routed port on the same VLAN. describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, The device is on a layer 2 switched port on the same VLAN. matches the tested behavior — The device is on a layer 3 routed port on the same VLAN. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The device is on a layer 3 routed po\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Configuration of a dedicated IP address for monitoring DHCP transactions. does not match the mechanism asked here.",
+            "explanation": "Configuration of a dedicated IP address for monitoring DHCP transactions. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given layer2 security, The device is on a layer 2 switched port on the same VLAN. matches the tested behavior — Configuration of a dedicated IP address for monitoring DHCP transactions. applies a different mechanism.",
+            "whatItDoes": "Configuration of a dedicated IP address for monitoring DHCP transactions. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given layer2 security, The device is on a layer 2 switched port on the same VLAN. matches the tested behavior — Configuration of a dedicated IP address for monitoring DHCP transactions. applies a different mechanism.",
             "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
             "needsExplanationReview": true
           }
@@ -78,20 +84,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "VLAN traversal does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"VLAN traversal\" without matching the scenario constraint",
+            "explanation": "VLAN traversal describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Double tagging matches the tested behavior — VLAN traversal applies a different mechanism.",
+            "whatItDoes": "VLAN traversal describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Double tagging matches the tested behavior — VLAN traversal applies a different mechanism.",
+            "misconceptionTested": "Applying \"VLAN traversal\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Trunk popping does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Trunk popping\" without matching the scenario constraint",
+            "explanation": "Trunk popping describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Double tagging matches the tested behavior — Trunk popping applies a different mechanism.",
+            "whatItDoes": "Trunk popping describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Double tagging matches the tested behavior — Trunk popping applies a different mechanism.",
+            "misconceptionTested": "Applying \"Trunk popping\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Denial of service does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Denial of service\" without matching the scenario constraint",
+            "explanation": "Denial of service describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Double tagging matches the tested behavior — Denial of service applies a different mechanism.",
+            "whatItDoes": "Denial of service describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Double tagging matches the tested behavior — Denial of service applies a different mechanism.",
+            "misconceptionTested": "Applying \"Denial of service\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -125,20 +137,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config-if)#dhcp snooping trust does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config-if)#dhcp snooping trust\" without matching the scenario constraint",
+            "explanation": "Switch(config-if)#dhcp snooping trust describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#ip dhcp snooping trust matches the tested behavior — Switch(config-if)#dhcp snooping trust applies a different mechanism.",
+            "whatItDoes": "Switch(config-if)#dhcp snooping trust describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch(config-if)#ip dhcp snooping trust matches the tested behavior — Switch(config-if)#dhcp snooping trust applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-if)#dhcp snooping trus\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config)#ip dhcp snooping trust interface gi 2/3 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config)#ip dhcp snooping trust in…\" without matching the scenario constraint",
+            "explanation": "Switch(config)#ip dhcp snooping trust interface gi 2/3 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#ip dhcp snooping trust matches the tested behavior — Switch(config)#ip dhcp snooping trust interface gi 2/3 applies a different mechanism.",
+            "whatItDoes": "Switch(config)#ip dhcp snooping trust interface gi 2/3 describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch(config-if)#ip dhcp snooping trust matches the tested behavior — Switch(config)#ip dhcp snooping trust interface gi 2/3 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#ip dhcp snooping trus\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config-if)#ip dhcp trust does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config-if)#ip dhcp trust\" without matching the scenario constraint",
+            "explanation": "Switch(config-if)#ip dhcp trust describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#ip dhcp snooping trust matches the tested behavior — Switch(config-if)#ip dhcp trust applies a different mechanism.",
+            "whatItDoes": "Switch(config-if)#ip dhcp trust describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch(config-if)#ip dhcp snooping trust matches the tested behavior — Switch(config-if)#ip dhcp trust applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-if)#ip dhcp trust\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -172,20 +190,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Switch#show mac address-table does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#show mac address-table\" without matching the scenario constraint",
+            "explanation": "Switch#show mac address-table describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show mac address-table applies a different mechanism.",
+            "whatItDoes": "Switch#show mac address-table describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show mac address-table applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show mac address-table\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch#show interface does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#show interface\" without matching the scenario constraint",
+            "explanation": "Switch#show interface describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show interface applies a different mechanism.",
+            "whatItDoes": "Switch#show interface describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show interface applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show interface\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch#show security does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#show security\" without matching the scenario constraint",
+            "explanation": "Switch#show security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show security applies a different mechanism.",
+            "whatItDoes": "Switch#show security describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show security applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show security\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -220,20 +244,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Dynamic VLANs does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Dynamic VLANs\" without matching the scenario constraint",
+            "explanation": "Dynamic VLANs describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Port security matches the tested behavior — Dynamic VLANs applies a different mechanism.",
+            "whatItDoes": "Dynamic VLANs describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Port security matches the tested behavior — Dynamic VLANs applies a different mechanism.",
+            "misconceptionTested": "Applying \"Dynamic VLANs\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "ACLs reflects a common trap: ACLs encrypt or deeply inspect traffic. ACLs filter by header fields (IP/protocol/port); they are not encryption or stateful firewalls.",
+            "whatItDoes": "ACLs describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Port security matches the tested behavior — ACLs applies a different mechanism.",
             "misconceptionTested": "ACLs encrypt or deeply inspect traffic",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "VLAN pruning does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"VLAN pruning\" without matching the scenario constraint",
+            "explanation": "VLAN pruning describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Port security matches the tested behavior — VLAN pruning applies a different mechanism.",
+            "whatItDoes": "VLAN pruning describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Port security matches the tested behavior — VLAN pruning applies a different mechanism.",
+            "misconceptionTested": "Applying \"VLAN pruning\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -267,20 +297,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Access control lists does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Access control lists\" without matching the scenario constraint",
+            "explanation": "Access control lists describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Port security matches the tested behavior — Access control lists applies a different mechanism.",
+            "whatItDoes": "Access control lists describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Port security matches the tested behavior — Access control lists applies a different mechanism.",
+            "misconceptionTested": "Applying \"Access control lists\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Wired Equivalent Privacy does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Wired Equivalent Privacy\" without matching the scenario constraint",
+            "explanation": "Wired Equivalent Privacy describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Port security matches the tested behavior — Wired Equivalent Privacy applies a different mechanism.",
+            "whatItDoes": "Wired Equivalent Privacy describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Port security matches the tested behavior — Wired Equivalent Privacy applies a different mechanism.",
+            "misconceptionTested": "Applying \"Wired Equivalent Privacy\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Static MAC addresses does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Static MAC addresses\" without matching the scenario constraint",
+            "explanation": "Static MAC addresses describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Port security matches the tested behavior — Static MAC addresses applies a different mechanism.",
+            "whatItDoes": "Static MAC addresses describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Port security matches the tested behavior — Static MAC addresses applies a different mechanism.",
+            "misconceptionTested": "Applying \"Static MAC addresses\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -314,19 +350,25 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Switches learn from the source MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
+            "explanation": "Destination MAC addresses treats the destination MAC as the address recorded during learning. The stem asks what gets learned (layer2 security). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
+            "whatItDoes": "Destination MAC addresses treats the destination MAC as the address recorded during learning.",
+            "whyWrongHere": "The stem asks what gets learned (layer2 security). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "MAC learning is a Layer 2 process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
+            "explanation": "Source IP addresses shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given layer2 security, Source MAC addresses matches the tested behavior — Source IP addresses applies a different mechanism.",
+            "whatItDoes": "Source IP addresses shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given layer2 security, Source MAC addresses matches the tested behavior — Source IP addresses applies a different mechanism.",
             "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Destination IP addresses is not the behavior described here. .",
+            "explanation": "Destination IP addresses shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. The stem asks what gets learned (layer2 security). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
+            "whatItDoes": "Destination IP addresses shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "The stem asks what gets learned (layer2 security). Switches record the source MAC on ingress — destination MAC is for lookup, not learning. Picking Destination IP addresses misses the exact behavior this stem tests.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           }
@@ -361,20 +403,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#switchport port-security does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config)#switchport port-security\" without matching the scenario constraint",
+            "explanation": "Switch(config)#switchport port-security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security matches the tested behavior — Switch(config)#switchport port-security applies a different mechanism.",
+            "whatItDoes": "Switch(config)#switchport port-security describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security matches the tested behavior — Switch(config)#switchport port-security applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#switchport port-secur\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config)#port-security enable does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config)#port-security enable\" without matching the scenario constraint",
+            "explanation": "Switch(config)#port-security enable describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security matches the tested behavior — Switch(config)#port-security enable applies a different mechanism.",
+            "whatItDoes": "Switch(config)#port-security enable describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security matches the tested behavior — Switch(config)#port-security enable applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#port-security enable\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config-if)#port-security enable does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config-if)#port-security enable\" without matching the scenario constraint",
+            "explanation": "Switch(config-if)#port-security enable describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security matches the tested behavior — Switch(config-if)#port-security enable applies a different mechanism.",
+            "whatItDoes": "Switch(config-if)#port-security enable describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security matches the tested behavior — Switch(config-if)#port-security enable applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-if)#port-security enab\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -408,20 +456,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "2 MAC addresses does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"2 MAC addresses\" without matching the scenario constraint",
+            "explanation": "2 MAC addresses describes a mechanism that could sound plausible for layer2 security. Given layer2 security, 1 MAC address matches the tested behavior — 2 MAC addresses applies a different mechanism.",
+            "whatItDoes": "2 MAC addresses describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, 1 MAC address matches the tested behavior — 2 MAC addresses applies a different mechanism.",
+            "misconceptionTested": "Applying \"2 MAC addresses\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "0 MAC addresses does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"0 MAC addresses\" without matching the scenario constraint",
+            "explanation": "0 MAC addresses describes a mechanism that could sound plausible for layer2 security. Given layer2 security, 1 MAC address matches the tested behavior — 0 MAC addresses applies a different mechanism.",
+            "whatItDoes": "0 MAC addresses describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, 1 MAC address matches the tested behavior — 0 MAC addresses applies a different mechanism.",
+            "misconceptionTested": "Applying \"0 MAC addresses\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "10 MAC addresses does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"10 MAC addresses\" without matching the scenario constraint",
+            "explanation": "10 MAC addresses describes a mechanism that could sound plausible for layer2 security. Given layer2 security, 1 MAC address matches the tested behavior — 10 MAC addresses applies a different mechanism.",
+            "whatItDoes": "10 MAC addresses describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, 1 MAC address matches the tested behavior — 10 MAC addresses applies a different mechanism.",
+            "misconceptionTested": "Applying \"10 MAC addresses\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -455,20 +509,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Layer 0 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Layer 0\" without matching the scenario constraint",
+            "explanation": "Layer 0 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Layer 2 matches the tested behavior — Layer 0 applies a different mechanism.",
+            "whatItDoes": "Layer 0 describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Layer 2 matches the tested behavior — Layer 0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Layer 0\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Layer 1 is the wrong OSI layer here. The stem tests Layer 2 behavior — switches forward frames using MAC addresses.",
-            "misconceptionTested": "Selecting \"Layer 1\" without matching the scenario constraint",
+            "explanation": "Layer 1 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Layer 2 matches the tested behavior — Layer 1 applies a different mechanism.",
+            "whatItDoes": "Layer 1 describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Layer 2 matches the tested behavior — Layer 1 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Layer 1\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Layer 3 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Layer 3\" without matching the scenario constraint",
+            "explanation": "Layer 3 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Layer 2 matches the tested behavior — Layer 3 applies a different mechanism.",
+            "whatItDoes": "Layer 3 describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Layer 2 matches the tested behavior — Layer 3 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Layer 3\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -502,20 +562,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "To allow or disallow VLANs does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"To allow or disallow VLANs\" without matching the scenario constraint",
+            "explanation": "To allow or disallow VLANs describes a mechanism that could sound plausible for layer2 security. Given layer2 security, To prevent unauthorized access by MAC address matches the tested behavior — To allow or disallow VLANs applies a different mechanism.",
+            "whatItDoes": "To allow or disallow VLANs describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, To prevent unauthorized access by MAC address matches the tested behavior — To allow or disallow VLANs applies a different mechanism.",
+            "misconceptionTested": "Applying \"To allow or disallow VLANs\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "MAC learning is a Layer 2 process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
+            "explanation": "To allow or disallow IP addresses shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given layer2 security, To prevent unauthorized access by MAC address matches the tested behavior — To allow or disallow IP addresses applies a different mechanism.",
+            "whatItDoes": "To allow or disallow IP addresses shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given layer2 security, To prevent unauthorized access by MAC address matches the tested behavior — To allow or disallow IP addresses applies a different mechanism.",
             "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "To prevent unauthorized access by users does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"To prevent unauthorized access by users\" without matching the scenario constraint",
+            "explanation": "To prevent unauthorized access by users describes a mechanism that could sound plausible for layer2 security. Given layer2 security, To prevent unauthorized access by MAC address matches the tested behavior — To prevent unauthorized access by users applies a different mechanism.",
+            "whatItDoes": "To prevent unauthorized access by users describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, To prevent unauthorized access by MAC address matches the tested behavior — To prevent unauthorized access by users applies a different mechanism.",
+            "misconceptionTested": "Applying \"To prevent unauthorized access by us\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -549,20 +615,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Port security works best in mobile environments. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Port security works best in mobile envir…\" without matching the scenario constraint",
+            "explanation": "Port security works best in mobile environments. describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Port security works best in static environments. matches the tested behavior — Port security works best in mobile environments. applies a different mechanism.",
+            "whatItDoes": "Port security works best in mobile environments. describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Port security works best in static environments. matches the tested behavior — Port security works best in mobile environments. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Port security works best in mobile e\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Port security requires a higher amount of memory. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Port security requires a higher amount o…\" without matching the scenario constraint",
+            "explanation": "Port security requires a higher amount of memory. describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Port security works best in static environments. matches the tested behavior — Port security requires a higher amount of memory. applies a different mechanism.",
+            "whatItDoes": "Port security requires a higher amount of memory. describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Port security works best in static environments. matches the tested behavior — Port security requires a higher amount of memory. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Port security requires a higher amou\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Port security always results in admin intervention to reset the port. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Port security always results in admin in…\" without matching the scenario constraint",
+            "explanation": "Port security always results in admin intervention to reset the port. describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Port security works best in static environments. matches the tested behavior — Port security always results in admin intervention to reset the port. applies a different mechanism.",
+            "whatItDoes": "Port security always results in admin intervention to reset the port. describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Port security works best in static environments. matches the tested behavior — Port security always results in admin intervention to reset the port. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Port security always results in admi\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -596,20 +668,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "1 MAC address does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"1 MAC address\" without matching the scenario constraint",
+            "explanation": "1 MAC address describes a mechanism that could sound plausible for layer2 security. Given layer2 security, 2 MAC addresses matches the tested behavior — 1 MAC address applies a different mechanism.",
+            "whatItDoes": "1 MAC address describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, 2 MAC addresses matches the tested behavior — 1 MAC address applies a different mechanism.",
+            "misconceptionTested": "Applying \"1 MAC address\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "0 MAC addresses does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"0 MAC addresses\" without matching the scenario constraint",
+            "explanation": "0 MAC addresses describes a mechanism that could sound plausible for layer2 security. Given layer2 security, 2 MAC addresses matches the tested behavior — 0 MAC addresses applies a different mechanism.",
+            "whatItDoes": "0 MAC addresses describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, 2 MAC addresses matches the tested behavior — 0 MAC addresses applies a different mechanism.",
+            "misconceptionTested": "Applying \"0 MAC addresses\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "10 MAC addresses does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"10 MAC addresses\" without matching the scenario constraint",
+            "explanation": "10 MAC addresses describes a mechanism that could sound plausible for layer2 security. Given layer2 security, 2 MAC addresses matches the tested behavior — 10 MAC addresses applies a different mechanism.",
+            "whatItDoes": "10 MAC addresses describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, 2 MAC addresses matches the tested behavior — 10 MAC addresses applies a different mechanism.",
+            "misconceptionTested": "Applying \"10 MAC addresses\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -644,20 +722,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Administrative shutdown does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Administrative shutdown\" without matching the scenario constraint",
+            "explanation": "Administrative shutdown describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Err-disabled shutdown matches the tested behavior — Administrative shutdown applies a different mechanism.",
+            "whatItDoes": "Administrative shutdown describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Err-disabled shutdown matches the tested behavior — Administrative shutdown applies a different mechanism.",
+            "misconceptionTested": "Applying \"Administrative shutdown\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Restricted access without logging does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Restricted access without logging\" without matching the scenario constraint",
+            "explanation": "Restricted access without logging describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Err-disabled shutdown matches the tested behavior — Restricted access without logging applies a different mechanism.",
+            "whatItDoes": "Restricted access without logging describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Err-disabled shutdown matches the tested behavior — Restricted access without logging applies a different mechanism.",
+            "misconceptionTested": "Applying \"Restricted access without logging\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Restricted access with logging does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Restricted access with logging\" without matching the scenario constraint",
+            "explanation": "Restricted access with logging describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Err-disabled shutdown matches the tested behavior — Restricted access with logging applies a different mechanism.",
+            "whatItDoes": "Restricted access with logging describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Err-disabled shutdown matches the tested behavior — Restricted access with logging applies a different mechanism.",
+            "misconceptionTested": "Applying \"Restricted access with logging\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -691,20 +775,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SwitchA(config-if)#no switchport dynamic SwitchA(config-if)#switchport port-security does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SwitchA(config-if)#no switchport dynamic…\" without matching the scenario constraint",
+            "explanation": "SwitchA(config-if)#no switchport dynamic SwitchA(config-if)#switchport port-security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security matches the tested behavior — SwitchA(config-if)#no switchport dynamic SwitchA(config-if)#switchport port-security applies a different mechanism.",
+            "whatItDoes": "SwitchA(config-if)#no switchport dynamic SwitchA(config-if)#switchport port-security describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security matches the tested behavior — SwitchA(config-if)#no switchport dynamic SwitchA(config-if)#switchport port-security applies a different mechanism.",
+            "misconceptionTested": "Applying \"SwitchA(config-if)#no switchport dyn\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport port-security does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SwitchA(config-if)#switchport mode acces…\" without matching the scenario constraint",
+            "explanation": "SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport port-security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security matches the tested behavior — SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport port-security applies a different mechanism.",
+            "whatItDoes": "SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport port-security describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security matches the tested behavior — SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport port-security applies a different mechanism.",
+            "misconceptionTested": "Applying \"SwitchA(config-if)#switchport mode a\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "SwitchA(config-if)#switchport mode access SwitchA(config-if)#no dynamicSwitchA(config- if)#switchport port-security does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SwitchA(config-if)#switchport mode acces…\" without matching the scenario constraint",
+            "explanation": "SwitchA(config-if)#switchport mode access SwitchA(config-if)#no dynamicSwitchA(config- if)#switchport port-security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security matches the tested behavior — SwitchA(config-if)#switchport mode access SwitchA(config-if)#no dynamicSwitchA(config- if)#switchport port-security applies a different mechanism.",
+            "whatItDoes": "SwitchA(config-if)#switchport mode access SwitchA(config-if)#no dynamicSwitchA(config- if)#switchport port-security describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security matches the tested behavior — SwitchA(config-if)#switchport mode access SwitchA(config-if)#no dynamicSwitchA(config- if)#switchport port-security applies a different mechanism.",
+            "misconceptionTested": "Applying \"SwitchA(config-if)#switchport mode a\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -738,20 +828,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SwitchA(config-if)#switchport maximum 2 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SwitchA(config-if)#switchport maximum 2\" without matching the scenario constraint",
+            "explanation": "SwitchA(config-if)#switchport maximum 2 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport port-security maximum 2 matches the tested behavior — SwitchA(config-if)#switchport maximum 2 applies a different mechanism.",
+            "whatItDoes": "SwitchA(config-if)#switchport maximum 2 describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport port-security maximum 2 matches the tested behavior — SwitchA(config-if)#switchport maximum 2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"SwitchA(config-if)#switchport maximu\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "SwitchA(config-if)#port-security maximum 2 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SwitchA(config-if)#port-security maximum…\" without matching the scenario constraint",
+            "explanation": "SwitchA(config-if)#port-security maximum 2 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport port-security maximum 2 matches the tested behavior — SwitchA(config-if)#port-security maximum 2 applies a different mechanism.",
+            "whatItDoes": "SwitchA(config-if)#port-security maximum 2 describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport port-security maximum 2 matches the tested behavior — SwitchA(config-if)#port-security maximum 2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"SwitchA(config-if)#port-security max\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "SwitchA(config-if)#switchport port-security limit 2 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SwitchA(config-if)#switchport port-secur…\" without matching the scenario constraint",
+            "explanation": "SwitchA(config-if)#switchport port-security limit 2 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport port-security maximum 2 matches the tested behavior — SwitchA(config-if)#switchport port-security limit 2 applies a different mechanism.",
+            "whatItDoes": "SwitchA(config-if)#switchport port-security limit 2 describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport port-security maximum 2 matches the tested behavior — SwitchA(config-if)#switchport port-security limit 2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"SwitchA(config-if)#switchport port-s\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -785,20 +881,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config-if)#switchport port-security violation shutdown does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config-if)#switchport port-securi…\" without matching the scenario constraint",
+            "explanation": "Switch(config-if)#switchport port-security violation shutdown describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security violation restrict matches the tested behavior — Switch(config-if)#switchport port-security violation shutdown applies a different mechanism.",
+            "whatItDoes": "Switch(config-if)#switchport port-security violation shutdown describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security violation restrict matches the tested behavior — Switch(config-if)#switchport port-security violation shutdown applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-if)#switchport port-se\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config-if)#switchport port-security restrict does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config-if)#switchport port-securi…\" without matching the scenario constraint",
+            "explanation": "Switch(config-if)#switchport port-security restrict describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security violation restrict matches the tested behavior — Switch(config-if)#switchport port-security restrict applies a different mechanism.",
+            "whatItDoes": "Switch(config-if)#switchport port-security restrict describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security violation restrict matches the tested behavior — Switch(config-if)#switchport port-security restrict applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-if)#switchport port-se\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config-if)#switchport port-security violation protect does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config-if)#switchport port-securi…\" without matching the scenario constraint",
+            "explanation": "Switch(config-if)#switchport port-security violation protect describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security violation restrict matches the tested behavior — Switch(config-if)#switchport port-security violation protect applies a different mechanism.",
+            "whatItDoes": "Switch(config-if)#switchport port-security violation protect describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security violation restrict matches the tested behavior — Switch(config-if)#switchport port-security violation protect applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-if)#switchport port-se\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -832,20 +934,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#show running-configuration does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#show running-configuration\" without matching the scenario constraint",
+            "explanation": "Switch#show running-configuration describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security interface gi 2/13 matches the tested behavior — Switch#show running-configuration applies a different mechanism.",
+            "whatItDoes": "Switch#show running-configuration describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch#show port-security interface gi 2/13 matches the tested behavior — Switch#show running-configuration applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show running-configuration\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch#show port-security details interface gi 2/13 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#show port-security details interf…\" without matching the scenario constraint",
+            "explanation": "Switch#show port-security details interface gi 2/13 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security interface gi 2/13 matches the tested behavior — Switch#show port-security details interface gi 2/13 applies a different mechanism.",
+            "whatItDoes": "Switch#show port-security details interface gi 2/13 describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch#show port-security interface gi 2/13 matches the tested behavior — Switch#show port-security details interface gi 2/13 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show port-security details in\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch#show port-security gi 2/13 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#show port-security gi 2/13\" without matching the scenario constraint",
+            "explanation": "Switch#show port-security gi 2/13 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security interface gi 2/13 matches the tested behavior — Switch#show port-security gi 2/13 applies a different mechanism.",
+            "whatItDoes": "Switch#show port-security gi 2/13 describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch#show port-security interface gi 2/13 matches the tested behavior — Switch#show port-security gi 2/13 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show port-security gi 2/13\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -880,20 +988,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config-if)#switchport port-security restrict does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config-if)#switchport port-securi…\" without matching the scenario constraint",
+            "explanation": "Switch(config-if)#switchport port-security restrict describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security violation shutdown matches the tested behavior — Switch(config-if)#switchport port-security restrict applies a different mechanism.",
+            "whatItDoes": "Switch(config-if)#switchport port-security restrict describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security violation shutdown matches the tested behavior — Switch(config-if)#switchport port-security restrict applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-if)#switchport port-se\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config-if)#switchport port-security violation protect does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config-if)#switchport port-securi…\" without matching the scenario constraint",
+            "explanation": "Switch(config-if)#switchport port-security violation protect describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security violation shutdown matches the tested behavior — Switch(config-if)#switchport port-security violation protect applies a different mechanism.",
+            "whatItDoes": "Switch(config-if)#switchport port-security violation protect describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security violation shutdown matches the tested behavior — Switch(config-if)#switchport port-security violation protect applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-if)#switchport port-se\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config-if)#switchport port-security violation restrict does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config-if)#switchport port-securi…\" without matching the scenario constraint",
+            "explanation": "Switch(config-if)#switchport port-security violation restrict describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security violation shutdown matches the tested behavior — Switch(config-if)#switchport port-security violation restrict applies a different mechanism.",
+            "whatItDoes": "Switch(config-if)#switchport port-security violation restrict describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security violation shutdown matches the tested behavior — Switch(config-if)#switchport port-security violation restrict applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-if)#switchport port-se\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -927,20 +1041,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config-if)#switchport port-security violation shutdown does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config-if)#switchport port-securi…\" without matching the scenario constraint",
+            "explanation": "Switch(config-if)#switchport port-security violation shutdown describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security violation protect matches the tested behavior — Switch(config-if)#switchport port-security violation shutdown applies a different mechanism.",
+            "whatItDoes": "Switch(config-if)#switchport port-security violation shutdown describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security violation protect matches the tested behavior — Switch(config-if)#switchport port-security violation shutdown applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-if)#switchport port-se\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config-if)#switchport port-security restrict does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config-if)#switchport port-securi…\" without matching the scenario constraint",
+            "explanation": "Switch(config-if)#switchport port-security restrict describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security violation protect matches the tested behavior — Switch(config-if)#switchport port-security restrict applies a different mechanism.",
+            "whatItDoes": "Switch(config-if)#switchport port-security restrict describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security violation protect matches the tested behavior — Switch(config-if)#switchport port-security restrict applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-if)#switchport port-se\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config-if)#switchport port-security violation restrict does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config-if)#switchport port-securi…\" without matching the scenario constraint",
+            "explanation": "Switch(config-if)#switchport port-security violation restrict describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security violation protect matches the tested behavior — Switch(config-if)#switchport port-security violation restrict applies a different mechanism.",
+            "whatItDoes": "Switch(config-if)#switchport port-security violation restrict describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security violation protect matches the tested behavior — Switch(config-if)#switchport port-security violation restrict applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-if)#switchport port-se\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -974,20 +1094,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#show violations does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#show violations\" without matching the scenario constraint",
+            "explanation": "Switch#show violations describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show violations applies a different mechanism.",
+            "whatItDoes": "Switch#show violations describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show violations applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show violations\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch#show port-security violations does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#show port-security violations\" without matching the scenario constraint",
+            "explanation": "Switch#show port-security violations describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show port-security violations applies a different mechanism.",
+            "whatItDoes": "Switch#show port-security violations describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show port-security violations applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show port-security violations\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch#show psec violations does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#show psec violations\" without matching the scenario constraint",
+            "explanation": "Switch#show psec violations describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show psec violations applies a different mechanism.",
+            "whatItDoes": "Switch#show psec violations describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show psec violations applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show psec violations\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -1022,20 +1148,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Static port security does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Static port security\" without matching the scenario constraint",
+            "explanation": "Static port security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Sticky port security matches the tested behavior — Static port security applies a different mechanism.",
+            "whatItDoes": "Static port security describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Sticky port security matches the tested behavior — Static port security applies a different mechanism.",
+            "misconceptionTested": "Applying \"Static port security\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Dynamic port security does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Dynamic port security\" without matching the scenario constraint",
+            "explanation": "Dynamic port security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Sticky port security matches the tested behavior — Dynamic port security applies a different mechanism.",
+            "whatItDoes": "Dynamic port security describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Sticky port security matches the tested behavior — Dynamic port security applies a different mechanism.",
+            "misconceptionTested": "Applying \"Dynamic port security\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Time limit port security does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Time limit port security\" without matching the scenario constraint",
+            "explanation": "Time limit port security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Sticky port security matches the tested behavior — Time limit port security applies a different mechanism.",
+            "whatItDoes": "Time limit port security describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Sticky port security matches the tested behavior — Time limit port security applies a different mechanism.",
+            "misconceptionTested": "Applying \"Time limit port security\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -1071,20 +1203,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The port has been administratively shutdown. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The port has been administratively shutd…\" without matching the scenario constraint",
+            "explanation": "The port has been administratively shutdown. describes a mechanism that could sound plausible for layer2 security. Given layer2 security, The port has an access violation on it. matches the tested behavior — The port has been administratively shutdown. applies a different mechanism.",
+            "whatItDoes": "The port has been administratively shutdown. describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, The port has an access violation on it. matches the tested behavior — The port has been administratively shutdown. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The port has been administratively s\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The port has bad wiring. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The port has bad wiring.\" without matching the scenario constraint",
+            "explanation": "The port has bad wiring. describes a mechanism that could sound plausible for layer2 security. Given layer2 security, The port has an access violation on it. matches the tested behavior — The port has bad wiring. applies a different mechanism.",
+            "whatItDoes": "The port has bad wiring. describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, The port has an access violation on it. matches the tested behavior — The port has bad wiring. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The port has bad wiring.\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The port on the switch is configured as a trunk. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The port on the switch is configured as …\" without matching the scenario constraint",
+            "explanation": "The port on the switch is configured as a trunk. describes a mechanism that could sound plausible for layer2 security. Given layer2 security, The port has an access violation on it. matches the tested behavior — The port on the switch is configured as a trunk. applies a different mechanism.",
+            "whatItDoes": "The port on the switch is configured as a trunk. describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, The port has an access violation on it. matches the tested behavior — The port on the switch is configured as a trunk. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The port on the switch is configured\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -1119,20 +1257,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "SwitchA(config-if)#switchport port-security mac-address dynamic does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SwitchA(config-if)#switchport port-secur…\" without matching the scenario constraint",
+            "explanation": "SwitchA(config-if)#switchport port-security mac-address dynamic describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport port-security mac-address sticky matches the tested behavior — SwitchA(config-if)#switchport port-security mac-address dynamic applies a different mechanism.",
+            "whatItDoes": "SwitchA(config-if)#switchport port-security mac-address dynamic describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport port-security mac-address sticky matches the tested behavior — SwitchA(config-if)#switchport port-security mac-address dynamic applies a different mechanism.",
+            "misconceptionTested": "Applying \"SwitchA(config-if)#switchport port-s\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "SwitchA(config-if)#switchport port-security mac-address static does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SwitchA(config-if)#switchport port-secur…\" without matching the scenario constraint",
+            "explanation": "SwitchA(config-if)#switchport port-security mac-address static describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport port-security mac-address sticky matches the tested behavior — SwitchA(config-if)#switchport port-security mac-address static applies a different mechanism.",
+            "whatItDoes": "SwitchA(config-if)#switchport port-security mac-address static describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport port-security mac-address sticky matches the tested behavior — SwitchA(config-if)#switchport port-security mac-address static applies a different mechanism.",
+            "misconceptionTested": "Applying \"SwitchA(config-if)#switchport port-s\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "SwitchA(config-if)#switchport port-security mac-address learn does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SwitchA(config-if)#switchport port-secur…\" without matching the scenario constraint",
+            "explanation": "SwitchA(config-if)#switchport port-security mac-address learn describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport port-security mac-address sticky matches the tested behavior — SwitchA(config-if)#switchport port-security mac-address learn applies a different mechanism.",
+            "whatItDoes": "SwitchA(config-if)#switchport port-security mac-address learn describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport port-security mac-address sticky matches the tested behavior — SwitchA(config-if)#switchport port-security mac-address learn applies a different mechanism.",
+            "misconceptionTested": "Applying \"SwitchA(config-if)#switchport port-s\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -1168,20 +1312,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SwitchA(config-if)#no port-security does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SwitchA(config-if)#no port-security\" without matching the scenario constraint",
+            "explanation": "SwitchA(config-if)#no port-security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown matches the tested behavior — SwitchA(config-if)#no port-security applies a different mechanism.",
+            "whatItDoes": "SwitchA(config-if)#no port-security describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown matches the tested behavior — SwitchA(config-if)#no port-security applies a different mechanism.",
+            "misconceptionTested": "Applying \"SwitchA(config-if)#no port-security\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "SwitchA(config-if)#no shutdown does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SwitchA(config-if)#no shutdown\" without matching the scenario constraint",
+            "explanation": "SwitchA(config-if)#no shutdown describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown matches the tested behavior — SwitchA(config-if)#no shutdown applies a different mechanism.",
+            "whatItDoes": "SwitchA(config-if)#no shutdown describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown matches the tested behavior — SwitchA(config-if)#no shutdown applies a different mechanism.",
+            "misconceptionTested": "Applying \"SwitchA(config-if)#no shutdown\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "SwitchA(config-if)#no switchport port-security does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SwitchA(config-if)#no switchport port-se…\" without matching the scenario constraint",
+            "explanation": "SwitchA(config-if)#no switchport port-security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown matches the tested behavior — SwitchA(config-if)#no switchport port-security applies a different mechanism.",
+            "whatItDoes": "SwitchA(config-if)#no switchport port-security describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown matches the tested behavior — SwitchA(config-if)#no switchport port-security applies a different mechanism.",
+            "misconceptionTested": "Applying \"SwitchA(config-if)#no switchport por\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -1216,20 +1366,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SwitchA(config-if)#switchport port-security mac-address sticky does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SwitchA(config-if)#switchport port-secur…\" without matching the scenario constraint",
+            "explanation": "SwitchA(config-if)#switchport port-security mac-address sticky describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4 matches the tested behavior — SwitchA(config-if)#switchport port-security mac-address sticky applies a different mechanism.",
+            "whatItDoes": "SwitchA(config-if)#switchport port-security mac-address sticky describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4 matches the tested behavior — SwitchA(config-if)#switchport port-security mac-address sticky applies a different mechanism.",
+            "misconceptionTested": "Applying \"SwitchA(config-if)#switchport port-s\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "SwitchA(config-if)#switchport port-security mac-address static 0334.56f3.e4e4 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SwitchA(config-if)#switchport port-secur…\" without matching the scenario constraint",
+            "explanation": "SwitchA(config-if)#switchport port-security mac-address static 0334.56f3.e4e4 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4 matches the tested behavior — SwitchA(config-if)#switchport port-security mac-address static 0334.56f3.e4e4 applies a different mechanism.",
+            "whatItDoes": "SwitchA(config-if)#switchport port-security mac-address static 0334.56f3.e4e4 describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4 matches the tested behavior — SwitchA(config-if)#switchport port-security mac-address static 0334.56f3.e4e4 applies a different mechanism.",
+            "misconceptionTested": "Applying \"SwitchA(config-if)#switchport port-s\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "SwitchA(config-if)#switchport port-security static 0334.56f3.e4e4 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SwitchA(config-if)#switchport port-secur…\" without matching the scenario constraint",
+            "explanation": "SwitchA(config-if)#switchport port-security static 0334.56f3.e4e4 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4 matches the tested behavior — SwitchA(config-if)#switchport port-security static 0334.56f3.e4e4 applies a different mechanism.",
+            "whatItDoes": "SwitchA(config-if)#switchport port-security static 0334.56f3.e4e4 describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4 matches the tested behavior — SwitchA(config-if)#switchport port-security static 0334.56f3.e4e4 applies a different mechanism.",
+            "misconceptionTested": "Applying \"SwitchA(config-if)#switchport port-s\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -1265,20 +1421,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#show port-security details does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#show port-security details\" without matching the scenario constraint",
+            "explanation": "Switch#show port-security details describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show port-security details applies a different mechanism.",
+            "whatItDoes": "Switch#show port-security details describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show port-security details applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show port-security details\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch#show mac address-table secure does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#show mac address-table secure\" without matching the scenario constraint",
+            "explanation": "Switch#show mac address-table secure describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show mac address-table secure applies a different mechanism.",
+            "whatItDoes": "Switch#show mac address-table secure describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show mac address-table secure applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show mac address-table secure\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch#show port-security address does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#show port-security address\" without matching the scenario constraint",
+            "explanation": "Switch#show port-security address describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show port-security address applies a different mechanism.",
+            "whatItDoes": "Switch#show port-security address describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show port-security address applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show port-security address\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -1313,20 +1475,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#clear err-disable does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#clear err-disable\" without matching the scenario constraint",
+            "explanation": "Switch#clear err-disable describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config)#errdisable recovery cause psecure_violation matches the tested behavior — Switch#clear err-disable applies a different mechanism.",
+            "whatItDoes": "Switch#clear err-disable describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch(config)#errdisable recovery cause psecure_violation matches the tested behavior — Switch#clear err-disable applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#clear err-disable\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch#clear switchport port-security does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#clear switchport port-security\" without matching the scenario constraint",
+            "explanation": "Switch#clear switchport port-security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config)#errdisable recovery cause psecure_violation matches the tested behavior — Switch#clear switchport port-security applies a different mechanism.",
+            "whatItDoes": "Switch#clear switchport port-security describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch(config)#errdisable recovery cause psecure_violation matches the tested behavior — Switch#clear switchport port-security applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#clear switchport port-securit\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch#clear port-security violation does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#clear port-security violation\" without matching the scenario constraint",
+            "explanation": "Switch#clear port-security violation describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config)#errdisable recovery cause psecure_violation matches the tested behavior — Switch#clear port-security violation applies a different mechanism.",
+            "whatItDoes": "Switch#clear port-security violation describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, Switch(config)#errdisable recovery cause psecure_violation matches the tested behavior — Switch#clear port-security violation applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#clear port-security violation\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],
@@ -1361,20 +1529,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "SwitchA#show port-security does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SwitchA#show port-security\" without matching the scenario constraint",
+            "explanation": "SwitchA#show port-security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA#show running-config matches the tested behavior — SwitchA#show port-security applies a different mechanism.",
+            "whatItDoes": "SwitchA#show port-security describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, SwitchA#show running-config matches the tested behavior — SwitchA#show port-security applies a different mechanism.",
+            "misconceptionTested": "Applying \"SwitchA#show port-security\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "SwitchA#show port-security details does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SwitchA#show port-security details\" without matching the scenario constraint",
+            "explanation": "SwitchA#show port-security details describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA#show running-config matches the tested behavior — SwitchA#show port-security details applies a different mechanism.",
+            "whatItDoes": "SwitchA#show port-security details describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, SwitchA#show running-config matches the tested behavior — SwitchA#show port-security details applies a different mechanism.",
+            "misconceptionTested": "Applying \"SwitchA#show port-security details\" without matching layer2 security",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "SwitchA#show port-security status does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SwitchA#show port-security status\" without matching the scenario constraint",
+            "explanation": "SwitchA#show port-security status describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA#show running-config matches the tested behavior — SwitchA#show port-security status applies a different mechanism.",
+            "whatItDoes": "SwitchA#show port-security status describes a mechanism that could sound plausible for layer2 security.",
+            "whyWrongHere": "Given layer2 security, SwitchA#show running-config matches the tested behavior — SwitchA#show port-security status applies a different mechanism.",
+            "misconceptionTested": "Applying \"SwitchA#show port-security status\" without matching layer2 security",
             "needsExplanationReview": true
           }
         ],

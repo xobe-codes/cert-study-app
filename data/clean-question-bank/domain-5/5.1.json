@@ -28,17 +28,23 @@
           {
             "choiceIndex": 0,
             "explanation": "Availability reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
+            "whatItDoes": "Availability describes a mechanism that could sound plausible for CIA triad confidentiality.",
+            "whyWrongHere": "Given CIA triad confidentiality, Confidentiality matches the tested behavior — Availability applies a different mechanism.",
             "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
           },
           {
             "choiceIndex": 1,
             "explanation": "Integrity reflects a common trap: Integrity = detecting CHANGES (hashing). NOT keeping data private. That is confidentiality. Integrity uses hashing to detect unauthorized modification.",
+            "whatItDoes": "Integrity describes a mechanism that could sound plausible for CIA triad confidentiality.",
+            "whyWrongHere": "Given CIA triad confidentiality, Confidentiality matches the tested behavior — Integrity applies a different mechanism.",
             "misconceptionTested": "Integrity = detecting CHANGES (hashing). NOT keeping data private"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Authentication misses what this question tests. Encryption protects confidentiality.",
-            "misconceptionTested": "Selecting \"Authentication\" without matching the scenario constraint"
+            "explanation": "Authentication describes a mechanism that could sound plausible for CIA triad confidentiality. Given CIA triad confidentiality, Confidentiality matches the tested behavior — Authentication applies a different mechanism.",
+            "whatItDoes": "Authentication describes a mechanism that could sound plausible for CIA triad confidentiality.",
+            "whyWrongHere": "Given CIA triad confidentiality, Confidentiality matches the tested behavior — Authentication applies a different mechanism.",
+            "misconceptionTested": "Applying \"Authentication\" without matching CIA triad confidentiality"
           }
         ],
         "examTip": "On the exam: Integrity = detecting CHANGES (hashing). NOT keeping data private — That is confidentiality. Integrity uses hashing to detect unauthorized modification"
@@ -70,17 +76,23 @@
           {
             "choiceIndex": 0,
             "explanation": "Confidentiality reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
+            "whatItDoes": "Confidentiality describes a mechanism that could sound plausible for CIA triad integrity.",
+            "whyWrongHere": "Given CIA triad integrity, Integrity matches the tested behavior — Confidentiality applies a different mechanism.",
             "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
           },
           {
             "choiceIndex": 1,
             "explanation": "Availability reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
+            "whatItDoes": "Availability describes a mechanism that could sound plausible for CIA triad integrity.",
+            "whyWrongHere": "Given CIA triad integrity, Integrity matches the tested behavior — Availability applies a different mechanism.",
             "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Non-repudiation misses what this question tests. Integrity ensures data has not been altered without detection.",
-            "misconceptionTested": "Selecting \"Non-repudiation\" without matching the scenario constraint"
+            "explanation": "Non-repudiation describes a mechanism that could sound plausible for CIA triad integrity. Given CIA triad integrity, Integrity matches the tested behavior — Non-repudiation applies a different mechanism.",
+            "whatItDoes": "Non-repudiation describes a mechanism that could sound plausible for CIA triad integrity.",
+            "whyWrongHere": "Given CIA triad integrity, Integrity matches the tested behavior — Non-repudiation applies a different mechanism.",
+            "misconceptionTested": "Applying \"Non-repudiation\" without matching CIA triad integrity"
           }
         ],
         "examTip": "On the exam: Integrity = detecting CHANGES (hashing). NOT keeping data private — That is confidentiality. Integrity uses hashing to detect unauthorized modification"
@@ -111,18 +123,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Threat misses what this question tests. A vulnerability is a weakness (unpatched software).",
-            "misconceptionTested": "Selecting \"Threat\" without matching the scenario constraint"
+            "explanation": "Threat describes a mechanism that could sound plausible for vulnerability definition. Given vulnerability definition, Vulnerability matches the tested behavior — Threat applies a different mechanism.",
+            "whatItDoes": "Threat describes a mechanism that could sound plausible for vulnerability definition.",
+            "whyWrongHere": "Given vulnerability definition, Vulnerability matches the tested behavior — Threat applies a different mechanism.",
+            "misconceptionTested": "Applying \"Threat\" without matching vulnerability definition"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Exploit misses what this question tests. A vulnerability is a weakness (unpatched software).",
-            "misconceptionTested": "Selecting \"Exploit\" without matching the scenario constraint"
+            "explanation": "Exploit describes a mechanism that could sound plausible for vulnerability definition. Given vulnerability definition, Vulnerability matches the tested behavior — Exploit applies a different mechanism.",
+            "whatItDoes": "Exploit describes a mechanism that could sound plausible for vulnerability definition.",
+            "whyWrongHere": "Given vulnerability definition, Vulnerability matches the tested behavior — Exploit applies a different mechanism.",
+            "misconceptionTested": "Applying \"Exploit\" without matching vulnerability definition"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Risk misses what this question tests. A vulnerability is a weakness (unpatched software).",
-            "misconceptionTested": "Selecting \"Risk\" without matching the scenario constraint"
+            "explanation": "Risk describes a mechanism that could sound plausible for vulnerability definition. Given vulnerability definition, Vulnerability matches the tested behavior — Risk applies a different mechanism.",
+            "whatItDoes": "Risk describes a mechanism that could sound plausible for vulnerability definition.",
+            "whyWrongHere": "Given vulnerability definition, Vulnerability matches the tested behavior — Risk applies a different mechanism.",
+            "misconceptionTested": "Applying \"Risk\" without matching vulnerability definition"
           }
         ],
         "examTip": "On the exam: A vulnerability alone equals a breach — A threat and exploit are also required — vulnerability is only the weakness"
@@ -153,18 +171,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Virus misses what this question tests. Ransomware encrypts files and demands a ransom.",
-            "misconceptionTested": "Selecting \"Virus\" without matching the scenario constraint"
+            "explanation": "Virus describes a mechanism that could sound plausible for ransomware. Given ransomware, Ransomware matches the tested behavior — Virus applies a different mechanism.",
+            "whatItDoes": "Virus describes a mechanism that could sound plausible for ransomware.",
+            "whyWrongHere": "Given ransomware, Ransomware matches the tested behavior — Virus applies a different mechanism.",
+            "misconceptionTested": "Applying \"Virus\" without matching ransomware"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Worm misses what this question tests. Ransomware encrypts files and demands a ransom.",
-            "misconceptionTested": "Selecting \"Worm\" without matching the scenario constraint"
+            "explanation": "Worm describes a mechanism that could sound plausible for ransomware. Given ransomware, Ransomware matches the tested behavior — Worm applies a different mechanism.",
+            "whatItDoes": "Worm describes a mechanism that could sound plausible for ransomware.",
+            "whyWrongHere": "Given ransomware, Ransomware matches the tested behavior — Worm applies a different mechanism.",
+            "misconceptionTested": "Applying \"Worm\" without matching ransomware"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Trojan misses what this question tests. Ransomware encrypts files and demands a ransom.",
-            "misconceptionTested": "Selecting \"Trojan\" without matching the scenario constraint"
+            "explanation": "Trojan describes a mechanism that could sound plausible for ransomware. Given ransomware, Ransomware matches the tested behavior — Trojan applies a different mechanism.",
+            "whatItDoes": "Trojan describes a mechanism that could sound plausible for ransomware.",
+            "whyWrongHere": "Given ransomware, Ransomware matches the tested behavior — Trojan applies a different mechanism.",
+            "misconceptionTested": "Applying \"Trojan\" without matching ransomware"
           }
         ],
         "examTip": "On the exam: A DDoS attack violates AVAILABILITY, not confidentiality or integrity — Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services"
@@ -196,17 +220,23 @@
           {
             "choiceIndex": 0,
             "explanation": "A worm attack reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
+            "whatItDoes": "A worm attack describes a mechanism that could sound plausible for phishing.",
+            "whyWrongHere": "Given phishing, Phishing matches the tested behavior — A worm attack applies a different mechanism.",
             "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
           },
           {
             "choiceIndex": 2,
             "explanation": "A DoS attack reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
+            "whatItDoes": "A DoS attack describes a mechanism that could sound plausible for phishing.",
+            "whyWrongHere": "Given phishing, Phishing matches the tested behavior — A DoS attack applies a different mechanism.",
             "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
           },
           {
             "choiceIndex": 3,
-            "explanation": "IP spoofing misses what this question tests. Phishing is social engineering via deceptive email to trick users into revealing credentials or clicking malicious links.",
-            "misconceptionTested": "Selecting \"IP spoofing\" without matching the scenario constraint"
+            "explanation": "IP spoofing describes a mechanism that could sound plausible for phishing. Given phishing, Phishing matches the tested behavior — IP spoofing applies a different mechanism.",
+            "whatItDoes": "IP spoofing describes a mechanism that could sound plausible for phishing.",
+            "whyWrongHere": "Given phishing, Phishing matches the tested behavior — IP spoofing applies a different mechanism.",
+            "misconceptionTested": "Applying \"IP spoofing\" without matching phishing"
           }
         ],
         "examTip": "On the exam: A DDoS attack violates AVAILABILITY, not confidentiality or integrity — Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services"
@@ -239,17 +269,23 @@
           {
             "choiceIndex": 0,
             "explanation": "Confidentiality reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
+            "whatItDoes": "Confidentiality describes a mechanism that could sound plausible for DDoS and availability.",
+            "whyWrongHere": "Given DDoS and availability, Availability matches the tested behavior — Confidentiality applies a different mechanism.",
             "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
           },
           {
             "choiceIndex": 1,
             "explanation": "Integrity reflects a common trap: Integrity = detecting CHANGES (hashing). NOT keeping data private. That is confidentiality. Integrity uses hashing to detect unauthorized modification.",
+            "whatItDoes": "Integrity describes a mechanism that could sound plausible for DDoS and availability.",
+            "whyWrongHere": "Given DDoS and availability, Availability matches the tested behavior — Integrity applies a different mechanism.",
             "misconceptionTested": "Integrity = detecting CHANGES (hashing). NOT keeping data private"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Authentication misses what this question tests. A DDoS attack violates availability — legitimate users cannot access services because resources are exhausted.",
-            "misconceptionTested": "Selecting \"Authentication\" without matching the scenario constraint"
+            "explanation": "Authentication describes a mechanism that could sound plausible for DDoS and availability. Given DDoS and availability, Availability matches the tested behavior — Authentication applies a different mechanism.",
+            "whatItDoes": "Authentication describes a mechanism that could sound plausible for DDoS and availability.",
+            "whyWrongHere": "Given DDoS and availability, Availability matches the tested behavior — Authentication applies a different mechanism.",
+            "misconceptionTested": "Applying \"Authentication\" without matching DDoS and availability"
           }
         ],
         "examTip": "On the exam: Integrity = detecting CHANGES (hashing). NOT keeping data private — That is confidentiality. Integrity uses hashing to detect unauthorized modification"
@@ -280,18 +316,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Multi-factor authentication misses what this question tests. Defense in depth uses multiple overlapping controls so that if one layer fails, others still protect.",
-            "misconceptionTested": "Selecting \"Multi-factor authentication\" without matching the scenario constraint"
+            "explanation": "Multi-factor authentication describes a mechanism that could sound plausible for defense in depth. Given defense in depth, Defense in depth matches the tested behavior — Multi-factor authentication applies a different mechanism.",
+            "whatItDoes": "Multi-factor authentication describes a mechanism that could sound plausible for defense in depth.",
+            "whyWrongHere": "Given defense in depth, Defense in depth matches the tested behavior — Multi-factor authentication applies a different mechanism.",
+            "misconceptionTested": "Applying \"Multi-factor authentication\" without matching defense in depth"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Zero-trust networking misses what this question tests. Defense in depth uses multiple overlapping controls so that if one layer fails, others still protect.",
-            "misconceptionTested": "Selecting \"Zero-trust networking\" without matching the scenario constraint"
+            "explanation": "Zero-trust networking describes a mechanism that could sound plausible for defense in depth. Given defense in depth, Defense in depth matches the tested behavior — Zero-trust networking applies a different mechanism.",
+            "whatItDoes": "Zero-trust networking describes a mechanism that could sound plausible for defense in depth.",
+            "whyWrongHere": "Given defense in depth, Defense in depth matches the tested behavior — Zero-trust networking applies a different mechanism.",
+            "misconceptionTested": "Applying \"Zero-trust networking\" without matching defense in depth"
           },
           {
             "choiceIndex": 3,
-            "explanation": "AAA framework misses what this question tests. Defense in depth uses multiple overlapping controls so that if one layer fails, others still protect.",
-            "misconceptionTested": "Selecting \"AAA framework\" without matching the scenario constraint"
+            "explanation": "AAA framework describes a mechanism that could sound plausible for defense in depth. Given defense in depth, Defense in depth matches the tested behavior — AAA framework applies a different mechanism.",
+            "whatItDoes": "AAA framework describes a mechanism that could sound plausible for defense in depth.",
+            "whyWrongHere": "Given defense in depth, Defense in depth matches the tested behavior — AAA framework applies a different mechanism.",
+            "misconceptionTested": "Applying \"AAA framework\" without matching defense in depth"
           }
         ],
         "examTip": "This stem tests defense in depth — exam distractors swap similar terms; anchor on: Defense in depth uses multiple overlapping controls so that if one layer fails, others still protect."
@@ -323,16 +365,22 @@
           {
             "choiceIndex": 0,
             "explanation": "A DoS attack reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
+            "whatItDoes": "A DoS attack describes a mechanism that could sound plausible for attacker.",
+            "whyWrongHere": "Given attacker, A man-in-the-middle attack matches the tested behavior — A DoS attack applies a different mechanism.",
             "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
           },
           {
             "choiceIndex": 2,
-            "explanation": "IP spoofing misses what this question tests. A man-in-the-middle (MITM) attack positions the attacker between two communicating parties to eavesdrop or alter traffic.",
-            "misconceptionTested": "Selecting \"IP spoofing\" without matching the scenario constraint"
+            "explanation": "IP spoofing describes a mechanism that could sound plausible for attacker. Given attacker, A man-in-the-middle attack matches the tested behavior — IP spoofing applies a different mechanism.",
+            "whatItDoes": "IP spoofing describes a mechanism that could sound plausible for attacker.",
+            "whyWrongHere": "Given attacker, A man-in-the-middle attack matches the tested behavior — IP spoofing applies a different mechanism.",
+            "misconceptionTested": "Applying \"IP spoofing\" without matching MITM"
           },
           {
             "choiceIndex": 3,
             "explanation": "A replay attack reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
+            "whatItDoes": "A replay attack describes a mechanism that could sound plausible for attacker.",
+            "whyWrongHere": "Given attacker, A man-in-the-middle attack matches the tested behavior — A replay attack applies a different mechanism.",
             "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
           }
         ],
@@ -364,18 +412,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Virus misses what this question tests. A worm self-propagates without a host file — it spreads by exploiting vulnerabilities.",
-            "misconceptionTested": "Selecting \"Virus\" without matching the scenario constraint"
+            "explanation": "Virus describes a mechanism that could sound plausible for worm vs virus. Given worm vs virus, Worm matches the tested behavior — Virus applies a different mechanism.",
+            "whatItDoes": "Virus describes a mechanism that could sound plausible for worm vs virus.",
+            "whyWrongHere": "Given worm vs virus, Worm matches the tested behavior — Virus applies a different mechanism.",
+            "misconceptionTested": "Applying \"Virus\" without matching worm vs virus"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Spyware misses what this question tests. A worm self-propagates without a host file — it spreads by exploiting vulnerabilities.",
-            "misconceptionTested": "Selecting \"Spyware\" without matching the scenario constraint"
+            "explanation": "Spyware describes a mechanism that could sound plausible for worm vs virus. Given worm vs virus, Worm matches the tested behavior — Spyware applies a different mechanism.",
+            "whatItDoes": "Spyware describes a mechanism that could sound plausible for worm vs virus.",
+            "whyWrongHere": "Given worm vs virus, Worm matches the tested behavior — Spyware applies a different mechanism.",
+            "misconceptionTested": "Applying \"Spyware\" without matching worm vs virus"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Adware misses what this question tests. A worm self-propagates without a host file — it spreads by exploiting vulnerabilities.",
-            "misconceptionTested": "Selecting \"Adware\" without matching the scenario constraint"
+            "explanation": "Adware describes a mechanism that could sound plausible for worm vs virus. Given worm vs virus, Worm matches the tested behavior — Adware applies a different mechanism.",
+            "whatItDoes": "Adware describes a mechanism that could sound plausible for worm vs virus.",
+            "whyWrongHere": "Given worm vs virus, Worm matches the tested behavior — Adware applies a different mechanism.",
+            "misconceptionTested": "Applying \"Adware\" without matching worm vs virus"
           }
         ],
         "examTip": "On the exam: A DDoS attack violates AVAILABILITY, not confidentiality or integrity — Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services"
@@ -407,18 +461,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Firewalls misses what this question tests. Social engineering exploits human trust.",
-            "misconceptionTested": "Selecting \"Firewalls\" without matching the scenario constraint"
+            "explanation": "Firewalls describes a mechanism that could sound plausible for social engineering mitigation. Given social engineering mitigation, User security awareness training matches the tested behavior — Firewalls applies a different mechanism.",
+            "whatItDoes": "Firewalls describes a mechanism that could sound plausible for social engineering mitigation.",
+            "whyWrongHere": "Given social engineering mitigation, User security awareness training matches the tested behavior — Firewalls applies a different mechanism.",
+            "misconceptionTested": "Applying \"Firewalls\" without matching social engineering mitigation"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Antivirus software misses what this question tests. Social engineering exploits human trust.",
-            "misconceptionTested": "Selecting \"Antivirus software\" without matching the scenario constraint"
+            "explanation": "Antivirus software describes a mechanism that could sound plausible for social engineering mitigation. Given social engineering mitigation, User security awareness training matches the tested behavior — Antivirus software applies a different mechanism.",
+            "whatItDoes": "Antivirus software describes a mechanism that could sound plausible for social engineering mitigation.",
+            "whyWrongHere": "Given social engineering mitigation, User security awareness training matches the tested behavior — Antivirus software applies a different mechanism.",
+            "misconceptionTested": "Applying \"Antivirus software\" without matching social engineering mitigation"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Encryption misses what this question tests. Social engineering exploits human trust.",
-            "misconceptionTested": "Selecting \"Encryption\" without matching the scenario constraint"
+            "explanation": "Encryption describes a mechanism that could sound plausible for social engineering mitigation. Given social engineering mitigation, User security awareness training matches the tested behavior — Encryption applies a different mechanism.",
+            "whatItDoes": "Encryption describes a mechanism that could sound plausible for social engineering mitigation.",
+            "whyWrongHere": "Given social engineering mitigation, User security awareness training matches the tested behavior — Encryption applies a different mechanism.",
+            "misconceptionTested": "Applying \"Encryption\" without matching social engineering mitigation"
           }
         ],
         "examTip": "On the exam: A DDoS attack violates AVAILABILITY, not confidentiality or integrity — Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services"
@@ -453,20 +513,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "DMZ does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"DMZ\" without matching the scenario constraint",
+            "explanation": "DMZ describes a mechanism that could sound plausible for security concepts. Given security concepts, Perimeter matches the tested behavior — DMZ applies a different mechanism.",
+            "whatItDoes": "DMZ describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, Perimeter matches the tested behavior — DMZ applies a different mechanism.",
+            "misconceptionTested": "Applying \"DMZ\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Internal does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Internal\" without matching the scenario constraint",
+            "explanation": "Internal describes a mechanism that could sound plausible for security concepts. Given security concepts, Perimeter matches the tested behavior — Internal applies a different mechanism.",
+            "whatItDoes": "Internal describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, Perimeter matches the tested behavior — Internal applies a different mechanism.",
+            "misconceptionTested": "Applying \"Internal\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Trusted does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Trusted\" without matching the scenario constraint",
+            "explanation": "Trusted describes a mechanism that could sound plausible for security concepts. Given security concepts, Perimeter matches the tested behavior — Trusted applies a different mechanism.",
+            "whatItDoes": "Trusted describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, Perimeter matches the tested behavior — Trusted applies a different mechanism.",
+            "misconceptionTested": "Applying \"Trusted\" without matching security concepts",
             "needsExplanationReview": true
           }
         ],
@@ -502,20 +568,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Perimeter does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Perimeter\" without matching the scenario constraint",
+            "explanation": "Perimeter describes a mechanism that could sound plausible for security concepts. Given security concepts, DMZ matches the tested behavior — Perimeter applies a different mechanism.",
+            "whatItDoes": "Perimeter describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, DMZ matches the tested behavior — Perimeter applies a different mechanism.",
+            "misconceptionTested": "Applying \"Perimeter\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Internal does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Internal\" without matching the scenario constraint",
+            "explanation": "Internal describes a mechanism that could sound plausible for security concepts. Given security concepts, DMZ matches the tested behavior — Internal applies a different mechanism.",
+            "whatItDoes": "Internal describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, DMZ matches the tested behavior — Internal applies a different mechanism.",
+            "misconceptionTested": "Applying \"Internal\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Trusted does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Trusted\" without matching the scenario constraint",
+            "explanation": "Trusted describes a mechanism that could sound plausible for security concepts. Given security concepts, DMZ matches the tested behavior — Trusted applies a different mechanism.",
+            "whatItDoes": "Trusted describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, DMZ matches the tested behavior — Trusted applies a different mechanism.",
+            "misconceptionTested": "Applying \"Trusted\" without matching security concepts",
             "needsExplanationReview": true
           }
         ],
@@ -551,20 +623,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Honey pots does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Honey pots\" without matching the scenario constraint",
+            "explanation": "Honey pots describes a mechanism that could sound plausible for security concepts. Given security concepts, IPS matches the tested behavior — Honey pots applies a different mechanism.",
+            "whatItDoes": "Honey pots describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — Honey pots applies a different mechanism.",
+            "misconceptionTested": "Applying \"Honey pots\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "IDS does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"IDS\" without matching the scenario constraint",
+            "explanation": "IDS describes a mechanism that could sound plausible for security concepts. Given security concepts, IPS matches the tested behavior — IDS applies a different mechanism.",
+            "whatItDoes": "IDS describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — IDS applies a different mechanism.",
+            "misconceptionTested": "Applying \"IDS\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "HIDS does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"HIDS\" without matching the scenario constraint",
+            "explanation": "HIDS describes a mechanism that could sound plausible for security concepts. Given security concepts, IPS matches the tested behavior — HIDS applies a different mechanism.",
+            "whatItDoes": "HIDS describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — HIDS applies a different mechanism.",
+            "misconceptionTested": "Applying \"HIDS\" without matching security concepts",
             "needsExplanationReview": true
           }
         ],
@@ -599,20 +677,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The Internet does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The Internet\" without matching the scenario constraint",
+            "explanation": "The Internet describes a mechanism that could sound plausible for security concepts. Given security concepts, Internal network matches the tested behavior — The Internet applies a different mechanism.",
+            "whatItDoes": "The Internet describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, Internal network matches the tested behavior — The Internet applies a different mechanism.",
+            "misconceptionTested": "Applying \"The Internet\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The DMZ does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The DMZ\" without matching the scenario constraint",
+            "explanation": "The DMZ describes a mechanism that could sound plausible for security concepts. Given security concepts, Internal network matches the tested behavior — The DMZ applies a different mechanism.",
+            "whatItDoes": "The DMZ describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, Internal network matches the tested behavior — The DMZ applies a different mechanism.",
+            "misconceptionTested": "Applying \"The DMZ\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "A network with SSL does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"A network with SSL\" without matching the scenario constraint",
+            "explanation": "A network with SSL describes a mechanism that could sound plausible for security concepts. Given security concepts, Internal network matches the tested behavior — A network with SSL applies a different mechanism.",
+            "whatItDoes": "A network with SSL describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, Internal network matches the tested behavior — A network with SSL applies a different mechanism.",
+            "misconceptionTested": "Applying \"A network with SSL\" without matching security concepts",
             "needsExplanationReview": true
           }
         ],
@@ -648,20 +732,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Denial of service does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Denial of service\" without matching the scenario constraint",
+            "explanation": "Denial of service describes a mechanism that could sound plausible for security concepts. Given security concepts, Distributed denial of service matches the tested behavior — Denial of service applies a different mechanism.",
+            "whatItDoes": "Denial of service describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, Distributed denial of service matches the tested behavior — Denial of service applies a different mechanism.",
+            "misconceptionTested": "Applying \"Denial of service\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "IP address spoofing does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"IP address spoofing\" without matching the scenario constraint",
+            "explanation": "IP address spoofing shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given security concepts, Distributed denial of service matches the tested behavior — IP address spoofing applies a different mechanism.",
+            "whatItDoes": "IP address spoofing shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given security concepts, Distributed denial of service matches the tested behavior — IP address spoofing applies a different mechanism.",
+            "misconceptionTested": "Applying \"IP address spoofing\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Session hijacking does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Session hijacking\" without matching the scenario constraint",
+            "explanation": "Session hijacking describes a mechanism that could sound plausible for security concepts. Given security concepts, Distributed denial of service matches the tested behavior — Session hijacking applies a different mechanism.",
+            "whatItDoes": "Session hijacking describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, Distributed denial of service matches the tested behavior — Session hijacking applies a different mechanism.",
+            "misconceptionTested": "Applying \"Session hijacking\" without matching security concepts",
             "needsExplanationReview": true
           }
         ],
@@ -697,20 +787,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Honey pots does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Honey pots\" without matching the scenario constraint",
+            "explanation": "Honey pots describes a mechanism that could sound plausible for security concepts. Given security concepts, IDS matches the tested behavior — Honey pots applies a different mechanism.",
+            "whatItDoes": "Honey pots describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, IDS matches the tested behavior — Honey pots applies a different mechanism.",
+            "misconceptionTested": "Applying \"Honey pots\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "IPS does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"IPS\" without matching the scenario constraint",
+            "explanation": "IPS describes a mechanism that could sound plausible for security concepts. Given security concepts, IDS matches the tested behavior — IPS applies a different mechanism.",
+            "whatItDoes": "IPS describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, IDS matches the tested behavior — IPS applies a different mechanism.",
+            "misconceptionTested": "Applying \"IPS\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "HIDS does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"HIDS\" without matching the scenario constraint",
+            "explanation": "HIDS describes a mechanism that could sound plausible for security concepts. Given security concepts, IDS matches the tested behavior — HIDS applies a different mechanism.",
+            "whatItDoes": "HIDS describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, IDS matches the tested behavior — HIDS applies a different mechanism.",
+            "misconceptionTested": "Applying \"HIDS\" without matching security concepts",
             "needsExplanationReview": true
           }
         ],
@@ -745,20 +841,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Deploying host intrusion detection systems does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Deploying host intrusion detection syste…\" without matching the scenario constraint",
+            "explanation": "Deploying host intrusion detection systems describes a mechanism that could sound plausible for security concepts. Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Deploying host intrusion detection systems applies a different mechanism.",
+            "whatItDoes": "Deploying host intrusion detection systems describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Deploying host intrusion detection systems applies a different mechanism.",
+            "misconceptionTested": "Applying \"Deploying host intrusion detection s\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Deploying network intrusion detection systems does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Deploying network intrusion detection sy…\" without matching the scenario constraint",
+            "explanation": "Deploying network intrusion detection systems describes a mechanism that could sound plausible for security concepts. Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Deploying network intrusion detection systems applies a different mechanism.",
+            "whatItDoes": "Deploying network intrusion detection systems describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Deploying network intrusion detection systems applies a different mechanism.",
+            "misconceptionTested": "Applying \"Deploying network intrusion detectio\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Blocking RFC 1918 addresses at the perimeter does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Blocking RFC 1918 addresses at the perim…\" without matching the scenario constraint",
+            "explanation": "Blocking RFC 1918 addresses at the perimeter describes a mechanism that could sound plausible for security concepts. Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Blocking RFC 1918 addresses at the perimeter applies a different mechanism.",
+            "whatItDoes": "Blocking RFC 1918 addresses at the perimeter describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Blocking RFC 1918 addresses at the perimeter applies a different mechanism.",
+            "misconceptionTested": "Applying \"Blocking RFC 1918 addresses at the p\" without matching security concepts",
             "needsExplanationReview": true
           }
         ],
@@ -795,20 +897,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Honey pots does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Honey pots\" without matching the scenario constraint",
+            "explanation": "Honey pots describes a mechanism that could sound plausible for security concepts. Given security concepts, IPS matches the tested behavior — Honey pots applies a different mechanism.",
+            "whatItDoes": "Honey pots describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — Honey pots applies a different mechanism.",
+            "misconceptionTested": "Applying \"Honey pots\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "IDS does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"IDS\" without matching the scenario constraint",
+            "explanation": "IDS describes a mechanism that could sound plausible for security concepts. Given security concepts, IPS matches the tested behavior — IDS applies a different mechanism.",
+            "whatItDoes": "IDS describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — IDS applies a different mechanism.",
+            "misconceptionTested": "Applying \"IDS\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "HIDS does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"HIDS\" without matching the scenario constraint",
+            "explanation": "HIDS describes a mechanism that could sound plausible for security concepts. Given security concepts, IPS matches the tested behavior — HIDS applies a different mechanism.",
+            "whatItDoes": "HIDS describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — HIDS applies a different mechanism.",
+            "misconceptionTested": "Applying \"HIDS\" without matching security concepts",
             "needsExplanationReview": true
           }
         ],
@@ -844,20 +952,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Denial of service does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Denial of service\" without matching the scenario constraint",
+            "explanation": "Denial of service describes a mechanism that could sound plausible for security concepts. Given security concepts, IP address spoofing matches the tested behavior — Denial of service applies a different mechanism.",
+            "whatItDoes": "Denial of service describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, IP address spoofing matches the tested behavior — Denial of service applies a different mechanism.",
+            "misconceptionTested": "Applying \"Denial of service\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Distributed denial of service does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Distributed denial of service\" without matching the scenario constraint",
+            "explanation": "Distributed denial of service describes a mechanism that could sound plausible for security concepts. Given security concepts, IP address spoofing matches the tested behavior — Distributed denial of service applies a different mechanism.",
+            "whatItDoes": "Distributed denial of service describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, IP address spoofing matches the tested behavior — Distributed denial of service applies a different mechanism.",
+            "misconceptionTested": "Applying \"Distributed denial of service\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Session hijacking does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Session hijacking\" without matching the scenario constraint",
+            "explanation": "Session hijacking describes a mechanism that could sound plausible for security concepts. Given security concepts, IP address spoofing matches the tested behavior — Session hijacking applies a different mechanism.",
+            "whatItDoes": "Session hijacking describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, IP address spoofing matches the tested behavior — Session hijacking applies a different mechanism.",
+            "misconceptionTested": "Applying \"Session hijacking\" without matching security concepts",
             "needsExplanationReview": true
           }
         ],
@@ -894,19 +1008,25 @@
           {
             "choiceIndex": 0,
             "explanation": "Access control lists (ACLs) reflects a common trap: ACLs encrypt or deeply inspect traffic. ACLs filter by header fields (IP/protocol/port); they are not encryption or stateful firewalls.",
+            "whatItDoes": "Access control lists (ACLs) describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, SSL matches the tested behavior — Access control lists (ACLs) applies a different mechanism.",
             "misconceptionTested": "ACLs encrypt or deeply inspect traffic",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Spoofing mitigation does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Spoofing mitigation\" without matching the scenario constraint",
+            "explanation": "Spoofing mitigation describes a mechanism that could sound plausible for security concepts. Given security concepts, SSL matches the tested behavior — Spoofing mitigation applies a different mechanism.",
+            "whatItDoes": "Spoofing mitigation describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, SSL matches the tested behavior — Spoofing mitigation applies a different mechanism.",
+            "misconceptionTested": "Applying \"Spoofing mitigation\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Encryption of the data does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Encryption of the data\" without matching the scenario constraint",
+            "explanation": "Encryption of the data describes a mechanism that could sound plausible for security concepts. Given security concepts, SSL matches the tested behavior — Encryption of the data applies a different mechanism.",
+            "whatItDoes": "Encryption of the data describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, SSL matches the tested behavior — Encryption of the data applies a different mechanism.",
+            "misconceptionTested": "Applying \"Encryption of the data\" without matching security concepts",
             "needsExplanationReview": true
           }
         ],
@@ -942,20 +1062,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Smurf attack does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Smurf attack\" without matching the scenario constraint",
+            "explanation": "Smurf attack describes a mechanism that could sound plausible for security concepts. Given security concepts, Man in the middle attack matches the tested behavior — Smurf attack applies a different mechanism.",
+            "whatItDoes": "Smurf attack describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, Man in the middle attack matches the tested behavior — Smurf attack applies a different mechanism.",
+            "misconceptionTested": "Applying \"Smurf attack\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Compromised key attack does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Compromised key attack\" without matching the scenario constraint",
+            "explanation": "Compromised key attack describes a mechanism that could sound plausible for security concepts. Given security concepts, Man in the middle attack matches the tested behavior — Compromised key attack applies a different mechanism.",
+            "whatItDoes": "Compromised key attack describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, Man in the middle attack matches the tested behavior — Compromised key attack applies a different mechanism.",
+            "misconceptionTested": "Applying \"Compromised key attack\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Sniffer attack does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Sniffer attack\" without matching the scenario constraint",
+            "explanation": "Sniffer attack describes a mechanism that could sound plausible for security concepts. Given security concepts, Man in the middle attack matches the tested behavior — Sniffer attack applies a different mechanism.",
+            "whatItDoes": "Sniffer attack describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, Man in the middle attack matches the tested behavior — Sniffer attack applies a different mechanism.",
+            "misconceptionTested": "Applying \"Sniffer attack\" without matching security concepts",
             "needsExplanationReview": true
           }
         ],
@@ -992,20 +1118,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Intrusion detection systems does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Intrusion detection systems\" without matching the scenario constraint",
+            "explanation": "Intrusion detection systems describes a mechanism that could sound plausible for security concepts. Given security concepts, ACLs matches the tested behavior — Intrusion detection systems applies a different mechanism.",
+            "whatItDoes": "Intrusion detection systems describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, ACLs matches the tested behavior — Intrusion detection systems applies a different mechanism.",
+            "misconceptionTested": "Applying \"Intrusion detection systems\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "SSL does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SSL\" without matching the scenario constraint",
+            "explanation": "SSL describes a mechanism that could sound plausible for security concepts. Given security concepts, ACLs matches the tested behavior — SSL applies a different mechanism.",
+            "whatItDoes": "SSL describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, ACLs matches the tested behavior — SSL applies a different mechanism.",
+            "misconceptionTested": "Applying \"SSL\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Host intrusion detection systems does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Host intrusion detection systems\" without matching the scenario constraint",
+            "explanation": "Host intrusion detection systems describes a mechanism that could sound plausible for security concepts. Given security concepts, ACLs matches the tested behavior — Host intrusion detection systems applies a different mechanism.",
+            "whatItDoes": "Host intrusion detection systems describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, ACLs matches the tested behavior — Host intrusion detection systems applies a different mechanism.",
+            "misconceptionTested": "Applying \"Host intrusion detection systems\" without matching security concepts",
             "needsExplanationReview": true
           }
         ],
@@ -1040,20 +1172,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "DHCP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"DHCP\" without matching the scenario constraint",
+            "explanation": "DHCP describes a mechanism that could sound plausible for security concepts. Given security concepts, All of the above matches the tested behavior — DHCP applies a different mechanism.",
+            "whatItDoes": "DHCP describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, All of the above matches the tested behavior — DHCP applies a different mechanism.",
+            "misconceptionTested": "Applying \"DHCP\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "DNS does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"DNS\" without matching the scenario constraint",
+            "explanation": "DNS describes a mechanism that could sound plausible for security concepts. Given security concepts, All of the above matches the tested behavior — DNS applies a different mechanism.",
+            "whatItDoes": "DNS describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, All of the above matches the tested behavior — DNS applies a different mechanism.",
+            "misconceptionTested": "Applying \"DNS\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Wireless does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Wireless\" without matching the scenario constraint",
+            "explanation": "Wireless describes a mechanism that could sound plausible for security concepts. Given security concepts, All of the above matches the tested behavior — Wireless applies a different mechanism.",
+            "whatItDoes": "Wireless describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, All of the above matches the tested behavior — Wireless applies a different mechanism.",
+            "misconceptionTested": "Applying \"Wireless\" without matching security concepts",
             "needsExplanationReview": true
           }
         ],
@@ -1087,20 +1225,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The native VLAN contains frames from all VLANs. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The native VLAN contains frames from all…\" without matching the scenario constraint",
+            "explanation": "The native VLAN contains frames from all VLANs. describes a mechanism that could sound plausible for security concepts. Given security concepts, The native VLAN is the default on all switch ports. matches the tested behavior — The native VLAN contains frames from all VLANs. applies a different mechanism.",
+            "whatItDoes": "The native VLAN contains frames from all VLANs. describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, The native VLAN is the default on all switch ports. matches the tested behavior — The native VLAN contains frames from all VLANs. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The native VLAN contains frames from\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "The native VLAN is configured on all switches for logging. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The native VLAN is configured on all swi…\" without matching the scenario constraint",
+            "explanation": "The native VLAN is configured on all switches for logging. describes a mechanism that could sound plausible for security concepts. Given security concepts, The native VLAN is the default on all switch ports. matches the tested behavior — The native VLAN is configured on all switches for logging. applies a different mechanism.",
+            "whatItDoes": "The native VLAN is configured on all switches for logging. describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, The native VLAN is the default on all switch ports. matches the tested behavior — The native VLAN is configured on all switches for logging. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The native VLAN is configured on all\" without matching security concepts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The native VLAN provides no encryption. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The native VLAN provides no encryption.\" without matching the scenario constraint",
+            "explanation": "The native VLAN provides no encryption. describes a mechanism that could sound plausible for security concepts. Given security concepts, The native VLAN is the default on all switch ports. matches the tested behavior — The native VLAN provides no encryption. applies a different mechanism.",
+            "whatItDoes": "The native VLAN provides no encryption. describes a mechanism that could sound plausible for security concepts.",
+            "whyWrongHere": "Given security concepts, The native VLAN is the default on all switch ports. matches the tested behavior — The native VLAN provides no encryption. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The native VLAN provides no encrypti\" without matching security concepts",
             "needsExplanationReview": true
           }
         ],

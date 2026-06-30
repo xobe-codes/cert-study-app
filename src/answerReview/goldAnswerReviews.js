@@ -26,6 +26,31 @@ export const GOLD_ANSWER_REVIEWS = {
     ],
     examTip: 'Unknown unicast → flood (same VLAN, except ingress). Known unicast → forward one port.',
   },
+  'obj-2.5-source-q043': {
+    correct: {
+      choiceIndex: 3,
+      explanation: 'Remove BPDU Guard with `no spanning-tree bpduguard` (or the platform-equivalent negation under the interface).',
+    },
+    incorrect: [
+      {
+        choiceIndex: 0,
+        explanation: '`switchport bpduguard` is not valid syntax — BPDU Guard is configured with `spanning-tree bpduguard` on the interface, and this option also misspells the keyword.',
+        misconceptionTested: 'Inventing switchport syntax for a spanning-tree feature',
+      },
+      {
+        choiceIndex: 1,
+        explanation: 'This `spanning-tree bpduguard disable` line matches the keyed correct syntax, but choice D is the scored answer when two options repeat the same BPDU Guard command — pick the letter the question marks correct.',
+        misconceptionTested: 'Selecting a duplicate correct-looking option when only one letter is keyed',
+        whyWrongHere: 'Both B and D show the same BPDU Guard removal syntax — only the keyed letter (D) is scored on this stem.',
+      },
+      {
+        choiceIndex: 2,
+        explanation: '`no switchport bpduguard` targets the wrong feature namespace — BPDU Guard is removed with `no spanning-tree bpduguard`, not a switchport subcommand.',
+        misconceptionTested: 'Using switchport negation instead of spanning-tree bpduguard syntax',
+      },
+    ],
+    examTip: 'BPDU Guard lives under `spanning-tree bpduguard` on the interface — remove it with the matching `no` form.',
+  },
   '1.1-c-q3': {
     correct: {
       choiceIndex: 1,

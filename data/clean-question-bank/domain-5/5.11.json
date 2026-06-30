@@ -31,18 +31,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "It increases the total bandwidth available to every device misses what this question tests. Segmentation divides a network into smaller zones with controlled boundaries, so that if one segment is compromised, an attacker's ability to move laterally to other segments is restricted.",
-            "misconceptionTested": "Selecting \"It increases the total bandwidth availab…\" without matching the scenario constraint"
+            "explanation": "It increases the total bandwidth available to every device describes a mechanism that could sound plausible for segmentation purpose. Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It increases the total bandwidth available to every device applies a different mechanism.",
+            "whatItDoes": "It increases the total bandwidth available to every device describes a mechanism that could sound plausible for segmentation purpose.",
+            "whyWrongHere": "Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It increases the total bandwidth available to every device applies a different mechanism.",
+            "misconceptionTested": "Applying \"It increases the total bandwidth ava\" without matching segmentation purpose"
           },
           {
             "choiceIndex": 2,
-            "explanation": "It eliminates the need for firewalls misses what this question tests. Segmentation divides a network into smaller zones with controlled boundaries, so that if one segment is compromised, an attacker's ability to move laterally to other segments is restricted.",
-            "misconceptionTested": "Selecting \"It eliminates the need for firewalls\" without matching the scenario constraint"
+            "explanation": "It eliminates the need for firewalls describes a mechanism that could sound plausible for segmentation purpose. Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It eliminates the need for firewalls applies a different mechanism.",
+            "whatItDoes": "It eliminates the need for firewalls describes a mechanism that could sound plausible for segmentation purpose.",
+            "whyWrongHere": "Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It eliminates the need for firewalls applies a different mechanism.",
+            "misconceptionTested": "Applying \"It eliminates the need for firewalls\" without matching segmentation purpose"
           },
           {
             "choiceIndex": 3,
-            "explanation": "It automatically encrypts all traffic on the network misses what this question tests. Segmentation divides a network into smaller zones with controlled boundaries, so that if one segment is compromised, an attacker's ability to move laterally to other segments is restricted.",
-            "misconceptionTested": "Selecting \"It automatically encrypts all traffic on…\" without matching the scenario constraint"
+            "explanation": "It automatically encrypts all traffic on the network describes a mechanism that could sound plausible for segmentation purpose. Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It automatically encrypts all traffic on the network applies a different mechanism.",
+            "whatItDoes": "It automatically encrypts all traffic on the network describes a mechanism that could sound plausible for segmentation purpose.",
+            "whyWrongHere": "Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It automatically encrypts all traffic on the network applies a different mechanism.",
+            "misconceptionTested": "Applying \"It automatically encrypts all traffi\" without matching segmentation purpose"
           }
         ],
         "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
@@ -74,18 +80,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "NAT misses what this question tests. VLANs logically separate a switched network into multiple broadcast domains, forming the basic building block for segmenting users, devices, and traffic types.",
-            "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
+            "explanation": "NAT describes a mechanism that could sound plausible for VLAN segmentation. Given VLAN segmentation, VLANs matches the tested behavior — NAT applies a different mechanism.",
+            "whatItDoes": "NAT describes a mechanism that could sound plausible for VLAN segmentation.",
+            "whyWrongHere": "Given VLAN segmentation, VLANs matches the tested behavior — NAT applies a different mechanism.",
+            "misconceptionTested": "Applying \"NAT\" without matching VLAN segmentation"
           },
           {
             "choiceIndex": 2,
-            "explanation": "HSRP misses what this question tests. VLANs logically separate a switched network into multiple broadcast domains, forming the basic building block for segmenting users, devices, and traffic types.",
-            "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
+            "explanation": "HSRP describes a mechanism that could sound plausible for VLAN segmentation. Given VLAN segmentation, VLANs matches the tested behavior — HSRP applies a different mechanism.",
+            "whatItDoes": "HSRP describes a mechanism that could sound plausible for VLAN segmentation.",
+            "whyWrongHere": "Given VLAN segmentation, VLANs matches the tested behavior — HSRP applies a different mechanism.",
+            "misconceptionTested": "Applying \"HSRP\" without matching VLAN segmentation"
           },
           {
             "choiceIndex": 3,
-            "explanation": "CDP misses what this question tests. VLANs logically separate a switched network into multiple broadcast domains, forming the basic building block for segmenting users, devices, and traffic types.",
-            "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
+            "explanation": "CDP describes a mechanism that could sound plausible for VLAN segmentation. Given VLAN segmentation, VLANs matches the tested behavior — CDP applies a different mechanism.",
+            "whatItDoes": "CDP describes a mechanism that could sound plausible for VLAN segmentation.",
+            "whyWrongHere": "Given VLAN segmentation, VLANs matches the tested behavior — CDP applies a different mechanism.",
+            "misconceptionTested": "Applying \"CDP\" without matching VLAN segmentation"
           }
         ],
         "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
@@ -117,18 +129,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "To host internal-only file servers with no external access misses what this question tests. A DMZ is a segmented zone that exposes services to untrusted networks (like the internet) while keeping them isolated from the trusted internal network — so a compromise of a DMZ host doesn't directly expose internal systems.",
-            "misconceptionTested": "Selecting \"To host internal-only file servers with …\" without matching the scenario constraint"
+            "explanation": "To host internal-only file servers with no external access describes a mechanism that could sound plausible for demilitarized. Given demilitarized, To host externally-facing services (e.g., web/email servers) in a buffer zone, isolated from the internal network, between the internet and the internal LAN matches the tested behavior — To host internal-only file servers with no external access applies a different mechanism.",
+            "whatItDoes": "To host internal-only file servers with no external access describes a mechanism that could sound plausible for demilitarized.",
+            "whyWrongHere": "Given demilitarized, To host externally-facing services (e.g., web/email servers) in a buffer zone, isolated from the internal network, between the internet and the internal LAN matches the tested behavior — To host internal-only file servers with no external access applies a different mechanism.",
+            "misconceptionTested": "Applying \"To host internal-only file servers w\" without matching DMZ"
           },
           {
             "choiceIndex": 2,
-            "explanation": "To provide a backup path for routing protocols misses what this question tests. A DMZ is a segmented zone that exposes services to untrusted networks (like the internet) while keeping them isolated from the trusted internal network — so a compromise of a DMZ host doesn't directly expose internal systems.",
-            "misconceptionTested": "Selecting \"To provide a backup path for routing pro…\" without matching the scenario constraint"
+            "explanation": "To provide a backup path for routing protocols describes a mechanism that could sound plausible for demilitarized. Given demilitarized, To host externally-facing services (e.g., web/email servers) in a buffer zone, isolated from the internal network, between the internet and the internal LAN matches the tested behavior — To provide a backup path for routing protocols applies a different mechanism.",
+            "whatItDoes": "To provide a backup path for routing protocols describes a mechanism that could sound plausible for demilitarized.",
+            "whyWrongHere": "Given demilitarized, To host externally-facing services (e.g., web/email servers) in a buffer zone, isolated from the internal network, between the internet and the internal LAN matches the tested behavior — To provide a backup path for routing protocols applies a different mechanism.",
+            "misconceptionTested": "Applying \"To provide a backup path for routing\" without matching DMZ"
           },
           {
             "choiceIndex": 3,
-            "explanation": "To store network device configuration backups misses what this question tests. A DMZ is a segmented zone that exposes services to untrusted networks (like the internet) while keeping them isolated from the trusted internal network — so a compromise of a DMZ host doesn't directly expose internal systems.",
-            "misconceptionTested": "Selecting \"To store network device configuration ba…\" without matching the scenario constraint"
+            "explanation": "To store network device configuration backups describes a mechanism that could sound plausible for demilitarized. Given demilitarized, To host externally-facing services (e.g., web/email servers) in a buffer zone, isolated from the internal network, between the internet and the internal LAN matches the tested behavior — To store network device configuration backups applies a different mechanism.",
+            "whatItDoes": "To store network device configuration backups describes a mechanism that could sound plausible for demilitarized.",
+            "whyWrongHere": "Given demilitarized, To host externally-facing services (e.g., web/email servers) in a buffer zone, isolated from the internal network, between the internet and the internal LAN matches the tested behavior — To store network device configuration backups applies a different mechanism.",
+            "misconceptionTested": "Applying \"To store network device configuratio\" without matching DMZ"
           }
         ],
         "examTip": "This stem tests DMZ — exam distractors swap similar terms; anchor on: A DMZ is a segmented zone that exposes services to untrusted networks (like the internet) while keeping them isolated from the trusted internal network — so a compromise of a DMZ host doesn't directly expose internal systems."
@@ -161,18 +179,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Microsegmentation only works on wireless networks misses what this question tests. Microsegmentation enforces security policy at a much finer granularity — often per-workload or per-application — commonly used in data centers and zero-trust architectures, going beyond coarse VLAN/subnet boundaries.",
-            "misconceptionTested": "Selecting \"Microsegmentation only works on wireless…\" without matching the scenario constraint"
+            "explanation": "Microsegmentation only works on wireless networks describes a mechanism that could sound plausible for microsegmentation. Given microsegmentation, Microsegmentation applies granular security policies down to the individual workload or application level, often independent of physical/VLAN boundaries matches the tested behavior — Microsegmentation only works on wireless networks applies a different mechanism.",
+            "whatItDoes": "Microsegmentation only works on wireless networks describes a mechanism that could sound plausible for microsegmentation.",
+            "whyWrongHere": "Given microsegmentation, Microsegmentation applies granular security policies down to the individual workload or application level, often independent of physical/VLAN boundaries matches the tested behavior — Microsegmentation only works on wireless networks applies a different mechanism.",
+            "misconceptionTested": "Applying \"Microsegmentation only works on wire\" without matching microsegmentation"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Microsegmentation removes the need for any access control misses what this question tests. Microsegmentation enforces security policy at a much finer granularity — often per-workload or per-application — commonly used in data centers and zero-trust architectures, going beyond coarse VLAN/subnet boundaries.",
-            "misconceptionTested": "Selecting \"Microsegmentation removes the need for a…\" without matching the scenario constraint"
+            "explanation": "Microsegmentation removes the need for any access control describes a mechanism that could sound plausible for microsegmentation. Given microsegmentation, Microsegmentation applies granular security policies down to the individual workload or application level, often independent of physical/VLAN boundaries matches the tested behavior — Microsegmentation removes the need for any access control applies a different mechanism.",
+            "whatItDoes": "Microsegmentation removes the need for any access control describes a mechanism that could sound plausible for microsegmentation.",
+            "whyWrongHere": "Given microsegmentation, Microsegmentation applies granular security policies down to the individual workload or application level, often independent of physical/VLAN boundaries matches the tested behavior — Microsegmentation removes the need for any access control applies a different mechanism.",
+            "misconceptionTested": "Applying \"Microsegmentation removes the need f\" without matching microsegmentation"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Microsegmentation is identical to VLAN segmentation but uses smaller subnet masks misses what this question tests. Microsegmentation enforces security policy at a much finer granularity — often per-workload or per-application — commonly used in data centers and zero-trust architectures, going beyond coarse VLAN/subnet boundaries.",
-            "misconceptionTested": "Selecting \"Microsegmentation is identical to VLAN s…\" without matching the scenario constraint"
+            "explanation": "Microsegmentation is identical to VLAN segmentation but uses smaller subnet masks describes a mechanism that could sound plausible for microsegmentation. Given microsegmentation, Microsegmentation applies granular security policies down to the individual workload or application level, often independent of physical/VLAN boundaries matches the tested behavior — Microsegmentation is identical to VLAN segmentation but uses smaller subnet masks applies a different mechanism.",
+            "whatItDoes": "Microsegmentation is identical to VLAN segmentation but uses smaller subnet masks describes a mechanism that could sound plausible for microsegmentation.",
+            "whyWrongHere": "Given microsegmentation, Microsegmentation applies granular security policies down to the individual workload or application level, often independent of physical/VLAN boundaries matches the tested behavior — Microsegmentation is identical to VLAN segmentation but uses smaller subnet masks applies a different mechanism.",
+            "misconceptionTested": "Applying \"Microsegmentation is identical to VL\" without matching microsegmentation"
           }
         ],
         "examTip": "Access = one VLAN; trunk tags frames. Native VLAN must match on both ends or you get silent mis-forwarding."
@@ -204,18 +228,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The impact would be identical regardless of segmentation misses what this question tests. On a flat network, there are no internal boundaries to stop malware from reaching other hosts/servers once it's inside.",
-            "misconceptionTested": "Selecting \"The impact would be identical regardless…\" without matching the scenario constraint"
+            "explanation": "The impact would be identical regardless of segmentation describes a mechanism that could sound plausible for segmentation and malware containment. Given segmentation and malware containment, The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the tested behavior — The impact would be identical regardless of segmentation applies a different mechanism.",
+            "whatItDoes": "The impact would be identical regardless of segmentation describes a mechanism that could sound plausible for segmentation and malware containment.",
+            "whyWrongHere": "Given segmentation and malware containment, The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the tested behavior — The impact would be identical regardless of segmentation applies a different mechanism.",
+            "misconceptionTested": "Applying \"The impact would be identical regard\" without matching segmentation and malware containment"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Segmentation would have caused the initial infection instead of preventing spread misses what this question tests. On a flat network, there are no internal boundaries to stop malware from reaching other hosts/servers once it's inside.",
-            "misconceptionTested": "Selecting \"Segmentation would have caused the initi…\" without matching the scenario constraint"
+            "explanation": "Segmentation would have caused the initial infection instead of preventing spread describes a mechanism that could sound plausible for segmentation and malware containment. Given segmentation and malware containment, The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the tested behavior — Segmentation would have caused the initial infection instead of preventing spread applies a different mechanism.",
+            "whatItDoes": "Segmentation would have caused the initial infection instead of preventing spread describes a mechanism that could sound plausible for segmentation and malware containment.",
+            "whyWrongHere": "Given segmentation and malware containment, The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the tested behavior — Segmentation would have caused the initial infection instead of preventing spread applies a different mechanism.",
+            "misconceptionTested": "Applying \"Segmentation would have caused the i\" without matching segmentation and malware containment"
           },
           {
             "choiceIndex": 3,
-            "explanation": "A flat network automatically isolates infected hosts misses what this question tests. On a flat network, there are no internal boundaries to stop malware from reaching other hosts/servers once it's inside.",
-            "misconceptionTested": "Selecting \"A flat network automatically isolates in…\" without matching the scenario constraint"
+            "explanation": "A flat network automatically isolates infected hosts describes a mechanism that could sound plausible for segmentation and malware containment. Given segmentation and malware containment, The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the tested behavior — A flat network automatically isolates infected hosts applies a different mechanism.",
+            "whatItDoes": "A flat network automatically isolates infected hosts describes a mechanism that could sound plausible for segmentation and malware containment.",
+            "whyWrongHere": "Given segmentation and malware containment, The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the tested behavior — A flat network automatically isolates infected hosts applies a different mechanism.",
+            "misconceptionTested": "Applying \"A flat network automatically isolate\" without matching segmentation and malware containment"
           }
         ],
         "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
@@ -249,17 +279,23 @@
           {
             "choiceIndex": 0,
             "explanation": "Spanning Tree Protocol is the wrong device role here. STP prevents Layer 2 loops — it does not provide inter-VLAN routing, MAC learning rules, or replace trunk configuration.",
+            "whatItDoes": "Spanning Tree Protocol describes a mechanism that could sound plausible for inter-VLAN policy enforcement.",
+            "whyWrongHere": "Given inter-VLAN policy enforcement, Access Control Lists (ACLs) on a Layer 3 device (router or multilayer switch) matches the tested behavior — Spanning Tree Protocol applies a different mechanism.",
             "misconceptionTested": "Choosing STP when the question asks for forwarding, routing, or VLAN data plane behavior"
           },
           {
             "choiceIndex": 2,
-            "explanation": "CDP neighbor advertisements misses what this question tests. While VLANs provide the segmentation boundary at Layer 2, enforcing what traffic is allowed to cross between VLANs is typically done with ACLs (or firewall rules) on the Layer 3 device routing between them.",
-            "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
+            "explanation": "CDP neighbor advertisements describes a mechanism that could sound plausible for inter-VLAN policy enforcement. Given inter-VLAN policy enforcement, Access Control Lists (ACLs) on a Layer 3 device (router or multilayer switch) matches the tested behavior — CDP neighbor advertisements applies a different mechanism.",
+            "whatItDoes": "CDP neighbor advertisements describes a mechanism that could sound plausible for inter-VLAN policy enforcement.",
+            "whyWrongHere": "Given inter-VLAN policy enforcement, Access Control Lists (ACLs) on a Layer 3 device (router or multilayer switch) matches the tested behavior — CDP neighbor advertisements applies a different mechanism.",
+            "misconceptionTested": "Applying \"CDP neighbor advertisements\" without matching inter-VLAN policy enforcement"
           },
           {
             "choiceIndex": 3,
-            "explanation": "DHCP relay misses what this question tests. While VLANs provide the segmentation boundary at Layer 2, enforcing what traffic is allowed to cross between VLANs is typically done with ACLs (or firewall rules) on the Layer 3 device routing between them.",
-            "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
+            "explanation": "DHCP relay describes a mechanism that could sound plausible for inter-VLAN policy enforcement. Given inter-VLAN policy enforcement, Access Control Lists (ACLs) on a Layer 3 device (router or multilayer switch) matches the tested behavior — DHCP relay applies a different mechanism.",
+            "whatItDoes": "DHCP relay describes a mechanism that could sound plausible for inter-VLAN policy enforcement.",
+            "whyWrongHere": "Given inter-VLAN policy enforcement, Access Control Lists (ACLs) on a Layer 3 device (router or multilayer switch) matches the tested behavior — DHCP relay applies a different mechanism.",
+            "misconceptionTested": "Applying \"DHCP relay\" without matching inter-VLAN policy enforcement"
           }
         ],
         "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
@@ -291,18 +327,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Once a device is on the internal network, it is trusted to access anything misses what this question tests. Zero trust rejects the older model of \"trusted inside, untrusted outside.",
-            "misconceptionTested": "Selecting \"Once a device is on the internal network…\" without matching the scenario constraint"
+            "explanation": "Once a device is on the internal network, it is trusted to access anything describes a mechanism that could sound plausible for zero trust. Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Once a device is on the internal network, it is trusted to access anything applies a different mechanism.",
+            "whatItDoes": "Once a device is on the internal network, it is trusted to access anything describes a mechanism that could sound plausible for zero trust.",
+            "whyWrongHere": "Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Once a device is on the internal network, it is trusted to access anything applies a different mechanism.",
+            "misconceptionTested": "Applying \"Once a device is on the internal net\" without matching zero trust"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Zero trust means no authentication is required for internal traffic misses what this question tests. Zero trust rejects the older model of \"trusted inside, untrusted outside.",
-            "misconceptionTested": "Selecting \"Zero trust means no authentication is re…\" without matching the scenario constraint"
+            "explanation": "Zero trust means no authentication is required for internal traffic describes a mechanism that could sound plausible for zero trust. Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Zero trust means no authentication is required for internal traffic applies a different mechanism.",
+            "whatItDoes": "Zero trust means no authentication is required for internal traffic describes a mechanism that could sound plausible for zero trust.",
+            "whyWrongHere": "Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Zero trust means no authentication is required for internal traffic applies a different mechanism.",
+            "misconceptionTested": "Applying \"Zero trust means no authentication i\" without matching zero trust"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Zero trust applies only to wireless networks misses what this question tests. Zero trust rejects the older model of \"trusted inside, untrusted outside.",
-            "misconceptionTested": "Selecting \"Zero trust applies only to wireless netw…\" without matching the scenario constraint"
+            "explanation": "Zero trust applies only to wireless networks describes a mechanism that could sound plausible for zero trust. Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Zero trust applies only to wireless networks applies a different mechanism.",
+            "whatItDoes": "Zero trust applies only to wireless networks describes a mechanism that could sound plausible for zero trust.",
+            "whyWrongHere": "Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Zero trust applies only to wireless networks applies a different mechanism.",
+            "misconceptionTested": "Applying \"Zero trust applies only to wireless \" without matching zero trust"
           }
         ],
         "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
@@ -336,16 +378,22 @@
           {
             "choiceIndex": 0,
             "explanation": "Place guest devices on the same VLAN and subnet as corporate devices for simplicity reflects a common trap: Thinking same-VLAN devices need a router. Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does.",
+            "whatItDoes": "Place guest devices on the same VLAN and subnet as corporate devices for simplicity describes a mechanism that could sound plausible for guest network segmentation.",
+            "whyWrongHere": "Given guest network segmentation, Place guest traffic on a separate VLAN/subnet with restricted or no access to internal corporate resources, typically routed directly to the internet matches the tested behavior — Place guest devices on the same VLAN and subnet as corporate devices for simplicity applies a different mechanism.",
             "misconceptionTested": "Thinking same-VLAN devices need a router"
           },
           {
             "choiceIndex": 2,
             "explanation": "Disable DHCP for guest devices so they can't get an IP address reflects a common trap: Thinking same-VLAN devices need a router. Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does.",
+            "whatItDoes": "Disable DHCP for guest devices so they can't get an IP address shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given guest network segmentation, Place guest traffic on a separate VLAN/subnet with restricted or no access to internal corporate resources, typically routed directly to the internet matches the tested behavior — Disable DHCP for guest devices so they can't get an IP address applies a different mechanism.",
             "misconceptionTested": "Thinking same-VLAN devices need a router"
           },
           {
             "choiceIndex": 3,
             "explanation": "Give guest devices a higher VLAN priority than corporate traffic reflects a common trap: Thinking same-VLAN devices need a router. Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does.",
+            "whatItDoes": "Give guest devices a higher VLAN priority than corporate traffic describes a mechanism that could sound plausible for guest network segmentation.",
+            "whyWrongHere": "Given guest network segmentation, Place guest traffic on a separate VLAN/subnet with restricted or no access to internal corporate resources, typically routed directly to the internet matches the tested behavior — Give guest devices a higher VLAN priority than corporate traffic applies a different mechanism.",
             "misconceptionTested": "Thinking same-VLAN devices need a router"
           }
         ],
@@ -378,18 +426,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Putting the Sales department on VLAN 10 and Engineering on VLAN 20 misses what this question tests. A voice VLAN separates VoIP traffic from regular data traffic — this is segmentation based on traffic type/function rather than organizational grouping (department, location, etc.",
-            "misconceptionTested": "Selecting \"Putting the Sales department on VLAN 10 …\" without matching the scenario constraint"
+            "explanation": "Putting the Sales department on VLAN 10 and Engineering on VLAN 20 describes a mechanism that could sound plausible for traffic-type segmentation. Given traffic-type segmentation, Placing voice (VoIP) traffic on a separate VLAN from data traffic to isolate and prioritize it matches the tested behavior — Putting the Sales department on VLAN 10 and Engineering on VLAN 20 applies a different mechanism.",
+            "whatItDoes": "Putting the Sales department on VLAN 10 and Engineering on VLAN 20 describes a mechanism that could sound plausible for traffic-type segmentation.",
+            "whyWrongHere": "Given traffic-type segmentation, Placing voice (VoIP) traffic on a separate VLAN from data traffic to isolate and prioritize it matches the tested behavior — Putting the Sales department on VLAN 10 and Engineering on VLAN 20 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Putting the Sales department on VLAN\" without matching traffic-type segmentation"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Creating a separate VLAN for each floor of a building misses what this question tests. A voice VLAN separates VoIP traffic from regular data traffic — this is segmentation based on traffic type/function rather than organizational grouping (department, location, etc.",
-            "misconceptionTested": "Selecting \"Creating a separate VLAN for each floor …\" without matching the scenario constraint"
+            "explanation": "Creating a separate VLAN for each floor of a building describes a mechanism that could sound plausible for traffic-type segmentation. Given traffic-type segmentation, Placing voice (VoIP) traffic on a separate VLAN from data traffic to isolate and prioritize it matches the tested behavior — Creating a separate VLAN for each floor of a building applies a different mechanism.",
+            "whatItDoes": "Creating a separate VLAN for each floor of a building describes a mechanism that could sound plausible for traffic-type segmentation.",
+            "whyWrongHere": "Given traffic-type segmentation, Placing voice (VoIP) traffic on a separate VLAN from data traffic to isolate and prioritize it matches the tested behavior — Creating a separate VLAN for each floor of a building applies a different mechanism.",
+            "misconceptionTested": "Applying \"Creating a separate VLAN for each fl\" without matching traffic-type segmentation"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Assigning a static IP to each printer misses what this question tests. A voice VLAN separates VoIP traffic from regular data traffic — this is segmentation based on traffic type/function rather than organizational grouping (department, location, etc.",
-            "misconceptionTested": "Selecting \"Assigning a static IP to each printer\" without matching the scenario constraint"
+            "explanation": "Assigning a static IP to each printer describes a mechanism that could sound plausible for traffic-type segmentation. Given traffic-type segmentation, Placing voice (VoIP) traffic on a separate VLAN from data traffic to isolate and prioritize it matches the tested behavior — Assigning a static IP to each printer applies a different mechanism.",
+            "whatItDoes": "Assigning a static IP to each printer describes a mechanism that could sound plausible for traffic-type segmentation.",
+            "whyWrongHere": "Given traffic-type segmentation, Placing voice (VoIP) traffic on a separate VLAN from data traffic to isolate and prioritize it matches the tested behavior — Assigning a static IP to each printer applies a different mechanism.",
+            "misconceptionTested": "Applying \"Assigning a static IP to each printe\" without matching traffic-type segmentation"
           }
         ],
         "examTip": "Access = one VLAN; trunk tags frames. Native VLAN must match on both ends or you get silent mis-forwarding."
@@ -421,18 +475,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "It increases the speed of management traffic only misses what this question tests. An out-of-band management network isolates administrative access to infrastructure devices from general user traffic, significantly reducing the attack surface — a compromised user device can't directly reach management interfaces.",
-            "misconceptionTested": "Selecting \"It increases the speed of management tra…\" without matching the scenario constraint"
+            "explanation": "It increases the speed of management traffic only describes a mechanism that could sound plausible for out-of-band management segmentation. Given out-of-band management segmentation, It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the tested behavior — It increases the speed of management traffic only applies a different mechanism.",
+            "whatItDoes": "It increases the speed of management traffic only describes a mechanism that could sound plausible for out-of-band management segmentation.",
+            "whyWrongHere": "Given out-of-band management segmentation, It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the tested behavior — It increases the speed of management traffic only applies a different mechanism.",
+            "misconceptionTested": "Applying \"It increases the speed of management\" without matching out-of-band management segmentation"
           },
           {
             "choiceIndex": 2,
-            "explanation": "It eliminates the need for AAA on network devices misses what this question tests. An out-of-band management network isolates administrative access to infrastructure devices from general user traffic, significantly reducing the attack surface — a compromised user device can't directly reach management interfaces.",
-            "misconceptionTested": "Selecting \"It eliminates the need for AAA on networ…\" without matching the scenario constraint"
+            "explanation": "It eliminates the need for AAA on network devices describes a mechanism that could sound plausible for out-of-band management segmentation. Given out-of-band management segmentation, It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the tested behavior — It eliminates the need for AAA on network devices applies a different mechanism.",
+            "whatItDoes": "It eliminates the need for AAA on network devices describes a mechanism that could sound plausible for out-of-band management segmentation.",
+            "whyWrongHere": "Given out-of-band management segmentation, It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the tested behavior — It eliminates the need for AAA on network devices applies a different mechanism.",
+            "misconceptionTested": "Applying \"It eliminates the need for AAA on ne\" without matching out-of-band management segmentation"
           },
           {
             "choiceIndex": 3,
-            "explanation": "It allows users to bypass authentication for management access misses what this question tests. An out-of-band management network isolates administrative access to infrastructure devices from general user traffic, significantly reducing the attack surface — a compromised user device can't directly reach management interfaces.",
-            "misconceptionTested": "Selecting \"It allows users to bypass authentication…\" without matching the scenario constraint"
+            "explanation": "It allows users to bypass authentication for management access describes a mechanism that could sound plausible for out-of-band management segmentation. Given out-of-band management segmentation, It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the tested behavior — It allows users to bypass authentication for management access applies a different mechanism.",
+            "whatItDoes": "It allows users to bypass authentication for management access describes a mechanism that could sound plausible for out-of-band management segmentation.",
+            "whyWrongHere": "Given out-of-band management segmentation, It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the tested behavior — It allows users to bypass authentication for management access applies a different mechanism.",
+            "misconceptionTested": "Applying \"It allows users to bypass authentica\" without matching out-of-band management segmentation"
           }
         ],
         "examTip": "Access = one VLAN; trunk tags frames. Native VLAN must match on both ends or you get silent mis-forwarding."

@@ -29,20 +29,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Setting the time and date does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Setting the time and date\" without matching the scenario constraint",
+            "explanation": "Setting the time and date describes a mechanism that could sound plausible for identify. Given identify, Setting the hostname and domain name matches the tested behavior — Setting the time and date applies a different mechanism.",
+            "whatItDoes": "Setting the time and date describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Setting the hostname and domain name matches the tested behavior — Setting the time and date applies a different mechanism.",
+            "misconceptionTested": "Applying \"Setting the time and date\" without matching ssh",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Setting the key strength does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Setting the key strength\" without matching the scenario constraint",
+            "explanation": "Setting the key strength describes a mechanism that could sound plausible for identify. Given identify, Setting the hostname and domain name matches the tested behavior — Setting the key strength applies a different mechanism.",
+            "whatItDoes": "Setting the key strength describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Setting the hostname and domain name matches the tested behavior — Setting the key strength applies a different mechanism.",
+            "misconceptionTested": "Applying \"Setting the key strength\" without matching ssh",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Setting the key repository does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Setting the key repository\" without matching the scenario constraint",
+            "explanation": "Setting the key repository describes a mechanism that could sound plausible for identify. Given identify, Setting the hostname and domain name matches the tested behavior — Setting the key repository applies a different mechanism.",
+            "whatItDoes": "Setting the key repository describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Setting the hostname and domain name matches the tested behavior — Setting the key repository applies a different mechanism.",
+            "misconceptionTested": "Applying \"Setting the key repository\" without matching ssh",
             "needsExplanationReview": true
           }
         ],
@@ -76,20 +82,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router(config-line)#version 2 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config-line)#version 2\" without matching the scenario constraint",
+            "explanation": "Router(config-line)#version 2 describes a mechanism that could sound plausible for ssh. Given ssh, Router(config)#ip ssh version 2 matches the tested behavior — Router(config-line)#version 2 applies a different mechanism.",
+            "whatItDoes": "Router(config-line)#version 2 describes a mechanism that could sound plausible for ssh.",
+            "whyWrongHere": "Given ssh, Router(config)#ip ssh version 2 matches the tested behavior — Router(config-line)#version 2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config-line)#version 2\" without matching ssh",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config-ssh)#version 2 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config-ssh)#version 2\" without matching the scenario constraint",
+            "explanation": "Router(config-ssh)#version 2 describes a mechanism that could sound plausible for ssh. Given ssh, Router(config)#ip ssh version 2 matches the tested behavior — Router(config-ssh)#version 2 applies a different mechanism.",
+            "whatItDoes": "Router(config-ssh)#version 2 describes a mechanism that could sound plausible for ssh.",
+            "whyWrongHere": "Given ssh, Router(config)#ip ssh version 2 matches the tested behavior — Router(config-ssh)#version 2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config-ssh)#version 2\" without matching ssh",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#ssh version 2 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#ssh version 2\" without matching the scenario constraint",
+            "explanation": "Router(config)#ssh version 2 describes a mechanism that could sound plausible for ssh. Given ssh, Router(config)#ip ssh version 2 matches the tested behavior — Router(config)#ssh version 2 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ssh version 2 describes a mechanism that could sound plausible for ssh.",
+            "whyWrongHere": "Given ssh, Router(config)#ip ssh version 2 matches the tested behavior — Router(config)#ssh version 2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ssh version 2\" without matching ssh",
             "needsExplanationReview": true
           }
         ],
@@ -126,19 +138,25 @@
           {
             "choiceIndex": 0,
             "explanation": "Telnet sends credentials in cleartext — SSH is required for secure device management.",
+            "whatItDoes": "Switch(config)#login ssh telnet describes a mechanism that could sound plausible for configure.",
+            "whyWrongHere": "Given configure, Switch(config-line)#transport ssh telnet matches the tested behavior — Switch(config)#login ssh telnet applies a different mechanism.",
             "misconceptionTested": "Picking Telnet when secure management is required",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config-line)#login ssh telnet is not the behavior described here. .",
-            "misconceptionTested": "Picking Telnet when secure management is required",
+            "explanation": "Switch(config-line)#login ssh telnet describes a mechanism that could sound plausible for configure. Given configure, Switch(config-line)#transport ssh telnet matches the tested behavior — Switch(config-line)#login ssh telnet applies a different mechanism.",
+            "whatItDoes": "Switch(config-line)#login ssh telnet describes a mechanism that could sound plausible for configure.",
+            "whyWrongHere": "Given configure, Switch(config-line)#transport ssh telnet matches the tested behavior — Switch(config-line)#login ssh telnet applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-line)#login ssh telnet\" without matching ssh",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config)#transport ssh telnet is not the behavior described here. .",
-            "misconceptionTested": "Picking Telnet when secure management is required",
+            "explanation": "Switch(config)#transport ssh telnet describes a mechanism that could sound plausible for configure. Given configure, Switch(config-line)#transport ssh telnet matches the tested behavior — Switch(config)#transport ssh telnet applies a different mechanism.",
+            "whatItDoes": "Switch(config)#transport ssh telnet describes a mechanism that could sound plausible for configure.",
+            "whyWrongHere": "Given configure, Switch(config-line)#transport ssh telnet matches the tested behavior — Switch(config)#transport ssh telnet applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#transport ssh telnet\" without matching ssh",
             "needsExplanationReview": true
           }
         ],
@@ -174,19 +192,25 @@
           {
             "choiceIndex": 0,
             "explanation": "Telnet sends credentials in cleartext — SSH is required for secure device management.",
+            "whatItDoes": "Telnet has weak encryption. describes a mechanism that could sound plausible for replaced.",
+            "whyWrongHere": "Given replaced, SSH is encrypted. matches the tested behavior — Telnet has weak encryption. applies a different mechanism.",
             "misconceptionTested": "Picking Telnet when secure management is required",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "SSH allows for file copy. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SSH allows for file copy.\" without matching the scenario constraint",
+            "explanation": "SSH allows for file copy. describes a mechanism that could sound plausible for replaced. Given replaced, SSH is encrypted. matches the tested behavior — SSH allows for file copy. applies a different mechanism.",
+            "whatItDoes": "SSH allows for file copy. describes a mechanism that could sound plausible for replaced.",
+            "whyWrongHere": "Given replaced, SSH is encrypted. matches the tested behavior — SSH allows for file copy. applies a different mechanism.",
+            "misconceptionTested": "Applying \"SSH allows for file copy.\" without matching ssh",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "SSH makes it easier to create ACLs for access. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SSH makes it easier to create ACLs for a…\" without matching the scenario constraint",
+            "explanation": "SSH makes it easier to create ACLs for access. describes a mechanism that could sound plausible for replaced. Given replaced, SSH is encrypted. matches the tested behavior — SSH makes it easier to create ACLs for access. applies a different mechanism.",
+            "whatItDoes": "SSH makes it easier to create ACLs for access. describes a mechanism that could sound plausible for replaced.",
+            "whyWrongHere": "Given replaced, SSH is encrypted. matches the tested behavior — SSH makes it easier to create ACLs for access. applies a different mechanism.",
+            "misconceptionTested": "Applying \"SSH makes it easier to create ACLs f\" without matching ssh",
             "needsExplanationReview": true
           }
         ],
@@ -222,20 +246,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The time and date need to be corrected. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The time and date need to be corrected.\" without matching the scenario constraint",
+            "explanation": "The time and date need to be corrected. describes a mechanism that could sound plausible for encryption. Given encryption, The key strength needs to be 768 bits or higher. matches the tested behavior — The time and date need to be corrected. applies a different mechanism.",
+            "whatItDoes": "The time and date need to be corrected. describes a mechanism that could sound plausible for encryption.",
+            "whyWrongHere": "Given encryption, The key strength needs to be 768 bits or higher. matches the tested behavior — The time and date need to be corrected. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The time and date need to be correct\" without matching ssh",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The DNS server is not configured. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The DNS server is not configured.\" without matching the scenario constraint",
+            "explanation": "The DNS server is not configured. describes a mechanism that could sound plausible for encryption. Given encryption, The key strength needs to be 768 bits or higher. matches the tested behavior — The DNS server is not configured. applies a different mechanism.",
+            "whatItDoes": "The DNS server is not configured. describes a mechanism that could sound plausible for encryption.",
+            "whyWrongHere": "Given encryption, The key strength needs to be 768 bits or higher. matches the tested behavior — The DNS server is not configured. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The DNS server is not configured.\" without matching ssh",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "There is no host record for the switch or router. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"There is no host record for the switch o…\" without matching the scenario constraint",
+            "explanation": "There is no host record for the switch or router. describes a mechanism that could sound plausible for encryption. Given encryption, The key strength needs to be 768 bits or higher. matches the tested behavior — There is no host record for the switch or router. applies a different mechanism.",
+            "whatItDoes": "There is no host record for the switch or router. describes a mechanism that could sound plausible for encryption.",
+            "whyWrongHere": "Given encryption, The key strength needs to be 768 bits or higher. matches the tested behavior — There is no host record for the switch or router. applies a different mechanism.",
+            "misconceptionTested": "Applying \"There is no host record for the swit\" without matching ssh",
             "needsExplanationReview": true
           }
         ],
@@ -270,20 +300,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#account user1 Router(config-acct)#password Password20! does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#account user1 Router(conf…\" without matching the scenario constraint",
+            "explanation": "Router(config)#account user1 Router(config-acct)#password Password20! describes a mechanism that could sound plausible for configure. Given configure, Router(config)#username user1 password Password20! matches the tested behavior — Router(config)#account user1 Router(config-acct)#password Password20! applies a different mechanism.",
+            "whatItDoes": "Router(config)#account user1 Router(config-acct)#password Password20! describes a mechanism that could sound plausible for configure.",
+            "whyWrongHere": "Given configure, Router(config)#username user1 password Password20! matches the tested behavior — Router(config)#account user1 Router(config-acct)#password Password20! applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#account user1 Router(\" without matching ssh",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#user user1 Password20! does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#user user1 Password20!\" without matching the scenario constraint",
+            "explanation": "Router(config)#user user1 Password20! describes a mechanism that could sound plausible for configure. Given configure, Router(config)#username user1 password Password20! matches the tested behavior — Router(config)#user user1 Password20! applies a different mechanism.",
+            "whatItDoes": "Router(config)#user user1 Password20! describes a mechanism that could sound plausible for configure.",
+            "whyWrongHere": "Given configure, Router(config)#username user1 password Password20! matches the tested behavior — Router(config)#user user1 Password20! applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#user user1 Password20\" without matching ssh",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#user-account user1 password Password20! does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#user-account user1 passwo…\" without matching the scenario constraint",
+            "explanation": "Router(config)#user-account user1 password Password20! describes a mechanism that could sound plausible for configure. Given configure, Router(config)#username user1 password Password20! matches the tested behavior — Router(config)#user-account user1 password Password20! applies a different mechanism.",
+            "whatItDoes": "Router(config)#user-account user1 password Password20! describes a mechanism that could sound plausible for configure.",
+            "whyWrongHere": "Given configure, Router(config)#username user1 password Password20! matches the tested behavior — Router(config)#user-account user1 password Password20! applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#user-account user1 pa\" without matching ssh",
             "needsExplanationReview": true
           }
         ],
@@ -318,20 +354,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#generate crypto key rsa does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#generate crypto key rsa\" without matching the scenario constraint",
+            "explanation": "Router(config)#generate crypto key rsa describes a mechanism that could sound plausible for generate. Given generate, Router(config)#crypto key generate rsa matches the tested behavior — Router(config)#generate crypto key rsa applies a different mechanism.",
+            "whatItDoes": "Router(config)#generate crypto key rsa describes a mechanism that could sound plausible for generate.",
+            "whyWrongHere": "Given generate, Router(config)#crypto key generate rsa matches the tested behavior — Router(config)#generate crypto key rsa applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#generate crypto key r\" without matching ssh",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#crypto generate key rsa does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#crypto generate key rsa\" without matching the scenario constraint",
+            "explanation": "Router(config)#crypto generate key rsa describes a mechanism that could sound plausible for generate. Given generate, Router(config)#crypto key generate rsa matches the tested behavior — Router(config)#crypto generate key rsa applies a different mechanism.",
+            "whatItDoes": "Router(config)#crypto generate key rsa describes a mechanism that could sound plausible for generate.",
+            "whyWrongHere": "Given generate, Router(config)#crypto key generate rsa matches the tested behavior — Router(config)#crypto generate key rsa applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#crypto generate key r\" without matching ssh",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#crypto key generate rsa does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router#crypto key generate rsa\" without matching the scenario constraint",
+            "explanation": "Router#crypto key generate rsa describes a mechanism that could sound plausible for generate. Given generate, Router(config)#crypto key generate rsa matches the tested behavior — Router#crypto key generate rsa applies a different mechanism.",
+            "whatItDoes": "Router#crypto key generate rsa describes a mechanism that could sound plausible for generate.",
+            "whyWrongHere": "Given generate, Router(config)#crypto key generate rsa matches the tested behavior — Router#crypto key generate rsa applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#crypto key generate rsa\" without matching ssh",
             "needsExplanationReview": true
           }
         ],
@@ -369,20 +411,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#new aaa model does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config)#new aaa model\" without matching the scenario constraint",
+            "explanation": "Switch(config)#new aaa model describes a mechanism that could sound plausible for managing the switch. Given managing the switch, Switch(config-line)#login local matches the tested behavior — Switch(config)#new aaa model applies a different mechanism.",
+            "whatItDoes": "Switch(config)#new aaa model describes a mechanism that could sound plausible for managing the switch.",
+            "whyWrongHere": "Given managing the switch, Switch(config-line)#login local matches the tested behavior — Switch(config)#new aaa model applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#new aaa model\" without matching ssh",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config)#local authentication does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config)#local authentication\" without matching the scenario constraint",
+            "explanation": "Switch(config)#local authentication describes a mechanism that could sound plausible for managing the switch. Given managing the switch, Switch(config-line)#login local matches the tested behavior — Switch(config)#local authentication applies a different mechanism.",
+            "whatItDoes": "Switch(config)#local authentication describes a mechanism that could sound plausible for managing the switch.",
+            "whyWrongHere": "Given managing the switch, Switch(config-line)#login local matches the tested behavior — Switch(config)#local authentication applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#local authentication\" without matching ssh",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config-line)#local authentication does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch(config-line)#local authentication\" without matching the scenario constraint",
+            "explanation": "Switch(config-line)#local authentication describes a mechanism that could sound plausible for managing the switch. Given managing the switch, Switch(config-line)#login local matches the tested behavior — Switch(config-line)#local authentication applies a different mechanism.",
+            "whatItDoes": "Switch(config-line)#local authentication describes a mechanism that could sound plausible for managing the switch.",
+            "whyWrongHere": "Given managing the switch, Switch(config-line)#login local matches the tested behavior — Switch(config-line)#local authentication applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-line)#local authentica\" without matching ssh",
             "needsExplanationReview": true
           }
         ],
@@ -417,20 +465,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "MOTD banner does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"MOTD banner\" without matching the scenario constraint",
+            "explanation": "MOTD banner describes a mechanism that could sound plausible for a user connects to a Cisco device via SSH. Given a user connects to a Cisco device via SSH, Login banner matches the tested behavior — MOTD banner applies a different mechanism.",
+            "whatItDoes": "MOTD banner describes a mechanism that could sound plausible for a user connects to a Cisco device via SSH.",
+            "whyWrongHere": "Given a user connects to a Cisco device via SSH, Login banner matches the tested behavior — MOTD banner applies a different mechanism.",
+            "misconceptionTested": "Applying \"MOTD banner\" without matching ssh",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Exec banner does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Exec banner\" without matching the scenario constraint",
+            "explanation": "Exec banner describes a mechanism that could sound plausible for a user connects to a Cisco device via SSH. Given a user connects to a Cisco device via SSH, Login banner matches the tested behavior — Exec banner applies a different mechanism.",
+            "whatItDoes": "Exec banner describes a mechanism that could sound plausible for a user connects to a Cisco device via SSH.",
+            "whyWrongHere": "Given a user connects to a Cisco device via SSH, Login banner matches the tested behavior — Exec banner applies a different mechanism.",
+            "misconceptionTested": "Applying \"Exec banner\" without matching ssh",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Incoming banner does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Incoming banner\" without matching the scenario constraint",
+            "explanation": "Incoming banner describes a mechanism that could sound plausible for a user connects to a Cisco device via SSH. Given a user connects to a Cisco device via SSH, Login banner matches the tested behavior — Incoming banner applies a different mechanism.",
+            "whatItDoes": "Incoming banner describes a mechanism that could sound plausible for a user connects to a Cisco device via SSH.",
+            "whyWrongHere": "Given a user connects to a Cisco device via SSH, Login banner matches the tested behavior — Incoming banner applies a different mechanism.",
+            "misconceptionTested": "Applying \"Incoming banner\" without matching ssh",
             "needsExplanationReview": true
           }
         ],

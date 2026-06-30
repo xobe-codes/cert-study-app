@@ -27,18 +27,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Bottom-up misses what this question tests. ACLs are read top-down and stop at the first match.",
-            "misconceptionTested": "Selecting \"Bottom-up\" without matching the scenario constraint"
+            "explanation": "Bottom-up describes a mechanism that could sound plausible for processing order. Given processing order, Top-down, first match wins matches the tested behavior — Bottom-up applies a different mechanism.",
+            "whatItDoes": "Bottom-up describes a mechanism that could sound plausible for processing order.",
+            "whyWrongHere": "Given processing order, Top-down, first match wins matches the tested behavior — Bottom-up applies a different mechanism.",
+            "misconceptionTested": "Applying \"Bottom-up\" without matching processing order"
           },
           {
             "choiceIndex": 2,
             "explanation": "Most-specific first automatically reflects a common trap: Misordering rules. First match wins — put specific rules before broad ones.",
+            "whatItDoes": "Most-specific first automatically describes a mechanism that could sound plausible for processing order.",
+            "whyWrongHere": "Given processing order, Top-down, first match wins matches the tested behavior — Most-specific first automatically applies a different mechanism.",
             "misconceptionTested": "Misordering rules"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Randomly misses what this question tests. ACLs are read top-down and stop at the first match.",
-            "misconceptionTested": "Selecting \"Randomly\" without matching the scenario constraint"
+            "explanation": "Randomly describes a mechanism that could sound plausible for processing order. Given processing order, Top-down, first match wins matches the tested behavior — Randomly applies a different mechanism.",
+            "whatItDoes": "Randomly describes a mechanism that could sound plausible for processing order.",
+            "whyWrongHere": "Given processing order, Top-down, first match wins matches the tested behavior — Randomly applies a different mechanism.",
+            "misconceptionTested": "Applying \"Randomly\" without matching processing order"
           }
         ],
         "examTip": "Extended ACLs go near the source; standard ACLs near the destination — placement is the trap."
@@ -68,7 +74,9 @@
           {
             "choiceIndex": 1,
             "explanation": "This statement is False, but the tested fact is: True — anything not explicitly permitted is denied.",
-            "misconceptionTested": "Selecting \"False\" without matching the scenario constraint"
+            "whatItDoes": "False states the opposite of the tested fact about implicit deny.",
+            "whyWrongHere": "Given implicit deny, True matches the tested behavior — False applies a different mechanism.",
+            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
           }
         ],
         "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
@@ -99,18 +107,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Close to the source misses what this question tests. Standard ACLs match source only, so place them near the destination to avoid over-blocking.",
-            "misconceptionTested": "Selecting \"Close to the source\" without matching the scenario constraint"
+            "explanation": "Close to the source describes a mechanism that could sound plausible for standard placement. Given standard placement, Close to the destination matches the tested behavior — Close to the source applies a different mechanism.",
+            "whatItDoes": "Close to the source describes a mechanism that could sound plausible for standard placement.",
+            "whyWrongHere": "Given standard placement, Close to the destination matches the tested behavior — Close to the source applies a different mechanism.",
+            "misconceptionTested": "Applying \"Close to the source\" without matching standard placement"
           },
           {
             "choiceIndex": 2,
-            "explanation": "On every interface misses what this question tests. Standard ACLs match source only, so place them near the destination to avoid over-blocking.",
-            "misconceptionTested": "Selecting \"On every interface\" without matching the scenario constraint"
+            "explanation": "On every interface describes a mechanism that could sound plausible for standard placement. Given standard placement, Close to the destination matches the tested behavior — On every interface applies a different mechanism.",
+            "whatItDoes": "On every interface describes a mechanism that could sound plausible for standard placement.",
+            "whyWrongHere": "Given standard placement, Close to the destination matches the tested behavior — On every interface applies a different mechanism.",
+            "misconceptionTested": "Applying \"On every interface\" without matching standard placement"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Only on trunks misses what this question tests. Standard ACLs match source only, so place them near the destination to avoid over-blocking.",
-            "misconceptionTested": "Selecting \"Only on trunks\" without matching the scenario constraint"
+            "explanation": "Only on trunks describes a mechanism that could sound plausible for standard placement. Given standard placement, Close to the destination matches the tested behavior — Only on trunks applies a different mechanism.",
+            "whatItDoes": "Only on trunks describes a mechanism that could sound plausible for standard placement.",
+            "whyWrongHere": "Given standard placement, Close to the destination matches the tested behavior — Only on trunks applies a different mechanism.",
+            "misconceptionTested": "Applying \"Only on trunks\" without matching standard placement"
           }
         ],
         "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
@@ -142,17 +156,23 @@
           {
             "choiceIndex": 1,
             "explanation": "Close to the destination reflects a common trap: Placing extended ACLs near the destination. Place extended ACLs near the source to drop traffic early.",
+            "whatItDoes": "Close to the destination describes a mechanism that could sound plausible for extended placement.",
+            "whyWrongHere": "The stem asks what gets learned (extended placement). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
             "misconceptionTested": "Placing extended ACLs near the destination"
           },
           {
             "choiceIndex": 2,
             "explanation": "On the root bridge is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
+            "whatItDoes": "On the root bridge describes a mechanism that could sound plausible for extended placement.",
+            "whyWrongHere": "Given extended placement, Close to the source matches the tested behavior — On the root bridge applies a different mechanism.",
             "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
           },
           {
             "choiceIndex": 3,
-            "explanation": "On the DHCP server misses what this question tests. Extended ACLs are specific, so place near the source to drop traffic early.",
-            "misconceptionTested": "Selecting \"On the DHCP server\" without matching the scenario constraint"
+            "explanation": "On the DHCP server describes a mechanism that could sound plausible for extended placement. Given extended placement, Close to the source matches the tested behavior — On the DHCP server applies a different mechanism.",
+            "whatItDoes": "On the DHCP server describes a mechanism that could sound plausible for extended placement.",
+            "whyWrongHere": "Given extended placement, Close to the source matches the tested behavior — On the DHCP server applies a different mechanism.",
+            "misconceptionTested": "Applying \"On the DHCP server\" without matching extended placement"
           }
         ],
         "examTip": "On the exam: Placing extended ACLs near the destination — Place extended ACLs near the source to drop traffic early"
@@ -184,17 +204,23 @@
           {
             "choiceIndex": 0,
             "explanation": "255.255.255.0 uses the wrong value. The tested fact calls for 24 — not 255.",
-            "misconceptionTested": "Selecting \"255.255.255.0\" without matching the scenario constraint"
+            "whatItDoes": "255.255.255.0 describes a mechanism that could sound plausible for wildcard mask.",
+            "whyWrongHere": "Given wildcard mask, 0.0.0.255 matches the tested behavior — 255.255.255.0 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 255 instead of the correct 24"
           },
           {
             "choiceIndex": 2,
             "explanation": "0.0.0.0 uses the wrong value. The tested fact calls for 24 — not 0.",
-            "misconceptionTested": "Selecting \"0.0.0.0\" without matching the scenario constraint"
+            "whatItDoes": "0.0.0.0 describes a mechanism that could sound plausible for wildcard mask.",
+            "whyWrongHere": "Given wildcard mask, 0.0.0.255 matches the tested behavior — 0.0.0.0 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 0 instead of the correct 24"
           },
           {
             "choiceIndex": 3,
             "explanation": "255.255.255.255 uses the wrong value. The tested fact calls for 24 — not 255.",
-            "misconceptionTested": "Selecting \"255.255.255.255\" without matching the scenario constraint"
+            "whatItDoes": "255.255.255.255 describes a mechanism that could sound plausible for wildcard mask.",
+            "whyWrongHere": "Given wildcard mask, 0.0.0.255 matches the tested behavior — 255.255.255.255 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 255 instead of the correct 24"
           }
         ],
         "examTip": "On the exam: Using a subnet mask in an ACL — ACLs use WILDCARD masks (inverse): /24 → 0.0.0.255"
@@ -226,17 +252,23 @@
           {
             "choiceIndex": 1,
             "explanation": "100–199 uses the wrong value. The tested fact calls for 1 — not 100.",
-            "misconceptionTested": "Selecting \"100–199\" without matching the scenario constraint"
+            "whatItDoes": "100–199 describes a mechanism that could sound plausible for standard range.",
+            "whyWrongHere": "Given standard range, 1–99 matches the tested behavior — 100–199 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 100 instead of the correct 1"
           },
           {
             "choiceIndex": 2,
             "explanation": "200–299 uses the wrong value. The tested fact calls for 1 — not 200.",
-            "misconceptionTested": "Selecting \"200–299\" without matching the scenario constraint"
+            "whatItDoes": "200–299 describes a mechanism that could sound plausible for standard range.",
+            "whyWrongHere": "Given standard range, 1–99 matches the tested behavior — 200–299 applies a different mechanism.",
+            "misconceptionTested": "Memorizing 200 instead of the correct 1"
           },
           {
             "choiceIndex": 3,
             "explanation": "1300–2699 only uses the wrong value. The tested fact calls for 1 — not 1300.",
-            "misconceptionTested": "Selecting \"1300–2699 only\" without matching the scenario constraint"
+            "whatItDoes": "1300–2699 only describes a mechanism that could sound plausible for standard range.",
+            "whyWrongHere": "Given standard range, 1–99 matches the tested behavior — 1300–2699 only applies a different mechanism.",
+            "misconceptionTested": "Memorizing 1300 instead of the correct 1"
           }
         ],
         "examTip": "First match wins + implicit deny. Standard = source only near destination; extended near source."
@@ -267,18 +299,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Source IP misses what this question tests. Extended ACLs match source+destination IP, protocol, and ports.",
-            "misconceptionTested": "Selecting \"Source IP\" without matching the scenario constraint"
+            "explanation": "Source IP describes a mechanism that could sound plausible for extended match. Given extended match, Destination IP, protocol, and port matches the tested behavior — Source IP applies a different mechanism.",
+            "whatItDoes": "Source IP describes a mechanism that could sound plausible for extended match.",
+            "whyWrongHere": "Given extended match, Destination IP, protocol, and port matches the tested behavior — Source IP applies a different mechanism.",
+            "misconceptionTested": "Applying \"Source IP\" without matching extended match"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Interface name misses what this question tests. Extended ACLs match source+destination IP, protocol, and ports.",
-            "misconceptionTested": "Selecting \"Interface name\" without matching the scenario constraint"
+            "explanation": "Interface name describes a mechanism that could sound plausible for extended match. Given extended match, Destination IP, protocol, and port matches the tested behavior — Interface name applies a different mechanism.",
+            "whatItDoes": "Interface name describes a mechanism that could sound plausible for extended match.",
+            "whyWrongHere": "Given extended match, Destination IP, protocol, and port matches the tested behavior — Interface name applies a different mechanism.",
+            "misconceptionTested": "Applying \"Interface name\" without matching extended match"
           },
           {
             "choiceIndex": 3,
-            "explanation": "VLAN ID misses what this question tests. Extended ACLs match source+destination IP, protocol, and ports.",
-            "misconceptionTested": "Selecting \"VLAN ID\" without matching the scenario constraint"
+            "explanation": "VLAN ID describes a mechanism that could sound plausible for extended match. Given extended match, Destination IP, protocol, and port matches the tested behavior — VLAN ID applies a different mechanism.",
+            "whatItDoes": "VLAN ID describes a mechanism that could sound plausible for extended match.",
+            "whyWrongHere": "Given extended match, Destination IP, protocol, and port matches the tested behavior — VLAN ID applies a different mechanism.",
+            "misconceptionTested": "Applying \"VLAN ID\" without matching extended match"
           }
         ],
         "examTip": "On the exam: Placing extended ACLs near the destination — Place extended ACLs near the source to drop traffic early"
@@ -309,18 +347,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "access-list 100 in misses what this question tests. ip access-group 100 in applies the ACL to the interface.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks"
+            "explanation": "access-list 100 in describes a mechanism that could sound plausible for apply acl. Given apply acl, ip access-group 100 in matches the tested behavior — access-list 100 in applies a different mechanism.",
+            "whatItDoes": "access-list 100 in describes a mechanism that could sound plausible for apply acl.",
+            "whyWrongHere": "Given apply acl, ip access-group 100 in matches the tested behavior — access-list 100 in applies a different mechanism.",
+            "misconceptionTested": "Applying \"access-list 100 in\" without matching apply acl"
           },
           {
             "choiceIndex": 2,
-            "explanation": "ip access-list 100 inbound misses what this question tests. ip access-group 100 in applies the ACL to the interface.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks"
+            "explanation": "ip access-list 100 inbound describes a mechanism that could sound plausible for apply acl. Given apply acl, ip access-group 100 in matches the tested behavior — ip access-list 100 inbound applies a different mechanism.",
+            "whatItDoes": "ip access-list 100 inbound describes a mechanism that could sound plausible for apply acl.",
+            "whyWrongHere": "Given apply acl, ip access-group 100 in matches the tested behavior — ip access-list 100 inbound applies a different mechanism.",
+            "misconceptionTested": "Applying \"ip access-list 100 inbound\" without matching apply acl"
           },
           {
             "choiceIndex": 3,
-            "explanation": "apply acl 100 in misses what this question tests. ip access-group 100 in applies the ACL to the interface.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks"
+            "explanation": "apply acl 100 in describes a mechanism that could sound plausible for apply acl. Given apply acl, ip access-group 100 in matches the tested behavior — apply acl 100 in applies a different mechanism.",
+            "whatItDoes": "apply acl 100 in describes a mechanism that could sound plausible for apply acl.",
+            "whyWrongHere": "Given apply acl, ip access-group 100 in matches the tested behavior — apply acl 100 in applies a different mechanism.",
+            "misconceptionTested": "Applying \"apply acl 100 in\" without matching apply acl"
           }
         ],
         "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
@@ -352,17 +396,23 @@
           {
             "choiceIndex": 0,
             "explanation": "ACLs ignore deny rules reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "whatItDoes": "ACLs ignore deny rules describes a mechanism that could sound plausible for order matters.",
+            "whyWrongHere": "Given order matters, First match wins — the permit matches first matches the tested behavior — ACLs ignore deny rules applies a different mechanism.",
             "misconceptionTested": "Forgetting the implicit deny"
           },
           {
             "choiceIndex": 2,
             "explanation": "Deny rules need a wildcard reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "whatItDoes": "Deny rules need a wildcard describes a mechanism that could sound plausible for order matters.",
+            "whyWrongHere": "Given order matters, First match wins — the permit matches first matches the tested behavior — Deny rules need a wildcard applies a different mechanism.",
             "misconceptionTested": "Forgetting the implicit deny"
           },
           {
             "choiceIndex": 3,
-            "explanation": "The ACL is not applied is a plausible symptom fix but does not match the most likely root cause here: Top-down first-match means the earlier broad permit matches before the specific deny.",
-            "misconceptionTested": "Selecting \"The ACL is not applied\" without matching the scenario constraint"
+            "explanation": "The ACL is not applied describes a mechanism that could sound plausible for order matters. Given order matters, First match wins — the permit matches first matches the tested behavior — The ACL is not applied applies a different mechanism.",
+            "whatItDoes": "The ACL is not applied describes a mechanism that could sound plausible for order matters.",
+            "whyWrongHere": "Given order matters, First match wins — the permit matches first matches the tested behavior — The ACL is not applied applies a different mechanism.",
+            "misconceptionTested": "Applying \"The ACL is not applied\" without matching order matters"
           }
         ],
         "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
@@ -395,20 +445,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "1 to 100 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "1 to 100 describes a mechanism that could sound plausible for identify. Given identify, 1 to 99 matches the tested behavior — 1 to 100 applies a different mechanism.",
+            "whatItDoes": "1 to 100 describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, 1 to 99 matches the tested behavior — 1 to 100 applies a different mechanism.",
+            "misconceptionTested": "Applying \"1 to 100\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "100 to 199 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "100 to 199 describes a mechanism that could sound plausible for identify. Given identify, 1 to 99 matches the tested behavior — 100 to 199 applies a different mechanism.",
+            "whatItDoes": "100 to 199 describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, 1 to 99 matches the tested behavior — 100 to 199 applies a different mechanism.",
+            "misconceptionTested": "Applying \"100 to 199\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "100 to 200 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "100 to 200 describes a mechanism that could sound plausible for identify. Given identify, 1 to 99 matches the tested behavior — 100 to 200 applies a different mechanism.",
+            "whatItDoes": "100 to 200 describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, 1 to 99 matches the tested behavior — 100 to 200 applies a different mechanism.",
+            "misconceptionTested": "Applying \"100 to 200\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -442,19 +498,25 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Conditions can be based upon only the destination address. does not match the mechanism asked here.",
+            "explanation": "Conditions can be based upon only the destination address. describes a mechanism that could sound plausible for statement. The stem asks what gets learned (statement). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
+            "whatItDoes": "Conditions can be based upon only the destination address. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "The stem asks what gets learned (statement). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Conditions can be based upon only the source address and source port. does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Conditions can be based upon only the source address and source port. describes a mechanism that could sound plausible for statement. Given statement, Conditions can be based upon only the source address. matches the tested behavior — Conditions can be based upon only the source address and source port. applies a different mechanism.",
+            "whatItDoes": "Conditions can be based upon only the source address and source port. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, Conditions can be based upon only the source address. matches the tested behavior — Conditions can be based upon only the source address and source port. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Conditions can be based upon only th\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Conditions can be based upon the source or destination address and source or destination port. does not match the mechanism asked here.",
+            "explanation": "Conditions can be based upon the source or destination address and source or destination port. describes a mechanism that could sound plausible for statement. CAM learning stores one mapping per arrival (statement): Conditions can be based upon only the source address. — not both addresses as table entries.",
+            "whatItDoes": "Conditions can be based upon the source or destination address and source or destination port. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "CAM learning stores one mapping per arrival (statement): Conditions can be based upon only the source address. — not both addresses as table entries.",
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table",
             "needsExplanationReview": true
           }
@@ -489,20 +551,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "1 to 99 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "1 to 99 describes a mechanism that could sound plausible for identify. Given identify, 100 to 199 matches the tested behavior — 1 to 99 applies a different mechanism.",
+            "whatItDoes": "1 to 99 describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, 100 to 199 matches the tested behavior — 1 to 99 applies a different mechanism.",
+            "misconceptionTested": "Applying \"1 to 99\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "1 to 100 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "1 to 100 describes a mechanism that could sound plausible for identify. Given identify, 100 to 199 matches the tested behavior — 1 to 100 applies a different mechanism.",
+            "whatItDoes": "1 to 100 describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, 100 to 199 matches the tested behavior — 1 to 100 applies a different mechanism.",
+            "misconceptionTested": "Applying \"1 to 100\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "100 to 200 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "100 to 200 describes a mechanism that could sound plausible for identify. Given identify, 100 to 199 matches the tested behavior — 100 to 200 applies a different mechanism.",
+            "whatItDoes": "100 to 200 describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, 100 to 199 matches the tested behavior — 100 to 200 applies a different mechanism.",
+            "misconceptionTested": "Applying \"100 to 200\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -536,20 +604,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "permit any any does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "permit any any describes a mechanism that could sound plausible for identify. Given identify, deny any any matches the tested behavior — permit any any applies a different mechanism.",
+            "whatItDoes": "permit any any describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, deny any any matches the tested behavior — permit any any applies a different mechanism.",
+            "misconceptionTested": "Applying \"permit any any\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "log all does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "log all describes a mechanism that could sound plausible for identify. Given identify, deny any any matches the tested behavior — log all applies a different mechanism.",
+            "whatItDoes": "log all describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, deny any any matches the tested behavior — log all applies a different mechanism.",
+            "misconceptionTested": "Applying \"log all\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "End of ACL marker does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "End of ACL marker describes a mechanism that could sound plausible for identify. Given identify, deny any any matches the tested behavior — End of ACL marker applies a different mechanism.",
+            "whatItDoes": "End of ACL marker describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, deny any any matches the tested behavior — End of ACL marker applies a different mechanism.",
+            "misconceptionTested": "Applying \"End of ACL marker\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -583,19 +657,25 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Packets are compared sequentially against each line in an access list, and the last matching condition is the action taken. does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Packets are compared sequentially against each line in an access list, and the last matching condition is the action taken. describes a mechanism that could sound plausible for statement. Given statement, Packets are compared sequentially against each line in an access list until a match is made. matches the tested behavior — Packets are compared sequentially against each line in an access list, and the last matching condition is the action taken. applies a different mechanism.",
+            "whatItDoes": "Packets are compared sequentially against each line in an access list, and the last matching condition is the action taken. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, Packets are compared sequentially against each line in an access list until a match is made. matches the tested behavior — Packets are compared sequentially against each line in an access list, and the last matching condition is the action taken. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Packets are compared sequentially ag\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "Packets are compared, and if no matching rule exists, they are allowed. reflects a common trap: Rule order doesn’t matter. Order is critical — the first matching rule wins and the rest are skipped.",
+            "whatItDoes": "Packets are compared, and if no matching rule exists, they are allowed. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, Packets are compared sequentially against each line in an access list until a match is made. matches the tested behavior — Packets are compared, and if no matching rule exists, they are allowed. applies a different mechanism.",
             "misconceptionTested": "Rule order doesn’t matter",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "At the end of the ACL, there is an implicit allow. reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "whatItDoes": "At the end of the ACL, there is an implicit allow. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, Packets are compared sequentially against each line in an access list until a match is made. matches the tested behavior — At the end of the ACL, there is an implicit allow. applies a different mechanism.",
             "misconceptionTested": "Forgetting the implicit deny",
             "needsExplanationReview": true
           }
@@ -630,20 +710,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "More secure does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "More secure describes a mechanism that could sound plausible for identify. Given identify, Less processing overhead matches the tested behavior — More secure applies a different mechanism.",
+            "whatItDoes": "More secure describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Less processing overhead matches the tested behavior — More secure applies a different mechanism.",
+            "misconceptionTested": "Applying \"More secure\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "More specific rules reflects a common trap: Misordering rules. First match wins — put specific rules before broad ones.",
+            "whatItDoes": "More specific rules describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Less processing overhead matches the tested behavior — More specific rules applies a different mechanism.",
             "misconceptionTested": "Misordering rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Blocking of applications does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Blocking of applications describes a mechanism that could sound plausible for identify. Given identify, Less processing overhead matches the tested behavior — Blocking of applications applies a different mechanism.",
+            "whatItDoes": "Blocking of applications describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Less processing overhead matches the tested behavior — Blocking of applications applies a different mechanism.",
+            "misconceptionTested": "Applying \"Blocking of applications\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -677,20 +763,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "1000 to 1999 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "1000 to 1999 describes a mechanism that could sound plausible for identify. Given identify, 1300 to 1999 matches the tested behavior — 1000 to 1999 applies a different mechanism.",
+            "whatItDoes": "1000 to 1999 describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, 1300 to 1999 matches the tested behavior — 1000 to 1999 applies a different mechanism.",
+            "misconceptionTested": "Applying \"1000 to 1999\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "1100 to 1299 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "1100 to 1299 describes a mechanism that could sound plausible for identify. Given identify, 1300 to 1999 matches the tested behavior — 1100 to 1299 applies a different mechanism.",
+            "whatItDoes": "1100 to 1299 describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, 1300 to 1999 matches the tested behavior — 1100 to 1299 applies a different mechanism.",
+            "misconceptionTested": "Applying \"1100 to 1299\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "2000 to 2699 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "2000 to 2699 describes a mechanism that could sound plausible for identify. Given identify, 1300 to 1999 matches the tested behavior — 2000 to 2699 applies a different mechanism.",
+            "whatItDoes": "2000 to 2699 describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, 1300 to 1999 matches the tested behavior — 2000 to 2699 applies a different mechanism.",
+            "misconceptionTested": "Applying \"2000 to 2699\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -725,20 +817,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "255.240.0.0 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "255.240.0.0 describes a mechanism that could sound plausible for wildcard. Given wildcard, 0.15.255.255 matches the tested behavior — 255.240.0.0 applies a different mechanism.",
+            "whatItDoes": "255.240.0.0 describes a mechanism that could sound plausible for wildcard.",
+            "whyWrongHere": "Given wildcard, 0.15.255.255 matches the tested behavior — 255.240.0.0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"255.240.0.0\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "0.0.240.255 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "0.0.240.255 describes a mechanism that could sound plausible for wildcard. Given wildcard, 0.15.255.255 matches the tested behavior — 0.0.240.255 applies a different mechanism.",
+            "whatItDoes": "0.0.240.255 describes a mechanism that could sound plausible for wildcard.",
+            "whyWrongHere": "Given wildcard, 0.15.255.255 matches the tested behavior — 0.0.240.255 applies a different mechanism.",
+            "misconceptionTested": "Applying \"0.0.240.255\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "255.3.0.0 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "255.3.0.0 describes a mechanism that could sound plausible for wildcard. Given wildcard, 0.15.255.255 matches the tested behavior — 255.3.0.0 applies a different mechanism.",
+            "whatItDoes": "255.3.0.0 describes a mechanism that could sound plausible for wildcard.",
+            "whyWrongHere": "Given wildcard, 0.15.255.255 matches the tested behavior — 255.3.0.0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"255.3.0.0\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -772,20 +870,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#ip access-list 100 192.168.1.0 0.0.0.255 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Router(config)#ip access-list 100 192.168.1.0 0.0.0.255 describes a mechanism that could sound plausible for configure. Given configure, Router(config)#ip access-list 20 192.168.1.0 0.0.0.255 matches the tested behavior — Router(config)#ip access-list 100 192.168.1.0 0.0.0.255 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip access-list 100 192.168.1.0 0.0.0.255 describes a mechanism that could sound plausible for configure.",
+            "whyWrongHere": "Given configure, Router(config)#ip access-list 20 192.168.1.0 0.0.0.255 matches the tested behavior — Router(config)#ip access-list 100 192.168.1.0 0.0.0.255 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip access-list 100 19\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#ip access-list 1 192.168.1.0/24 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Router(config)#ip access-list 1 192.168.1.0/24 describes a mechanism that could sound plausible for configure. Given configure, Router(config)#ip access-list 20 192.168.1.0 0.0.0.255 matches the tested behavior — Router(config)#ip access-list 1 192.168.1.0/24 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip access-list 1 192.168.1.0/24 describes a mechanism that could sound plausible for configure.",
+            "whyWrongHere": "Given configure, Router(config)#ip access-list 20 192.168.1.0 0.0.0.255 matches the tested behavior — Router(config)#ip access-list 1 192.168.1.0/24 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip access-list 1 192.\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#ip access-list 2 192.168.1.0 255.255.255.0 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Router(config)#ip access-list 2 192.168.1.0 255.255.255.0 describes a mechanism that could sound plausible for configure. Given configure, Router(config)#ip access-list 20 192.168.1.0 0.0.0.255 matches the tested behavior — Router(config)#ip access-list 2 192.168.1.0 255.255.255.0 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip access-list 2 192.168.1.0 255.255.255.0 describes a mechanism that could sound plausible for configure.",
+            "whyWrongHere": "Given configure, Router(config)#ip access-list 20 192.168.1.0 0.0.0.255 matches the tested behavior — Router(config)#ip access-list 2 192.168.1.0 255.255.255.0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip access-list 2 192.\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -820,20 +924,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Defining the broadcast address does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Defining the broadcast address describes flooding the frame to multiple ports in the VLAN. Given you configure a rule with the address of 0, Defining all addresses matches the tested behavior — Defining the broadcast address applies a different mechanism.",
+            "whatItDoes": "Defining the broadcast address describes flooding the frame to multiple ports in the VLAN.",
+            "whyWrongHere": "Given you configure a rule with the address of 0, Defining all addresses matches the tested behavior — Defining the broadcast address applies a different mechanism.",
+            "misconceptionTested": "Applying \"Defining the broadcast address\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Defining no addresses does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Defining no addresses describes a mechanism that could sound plausible for you configure a rule with the address of 0. Given you configure a rule with the address of 0, Defining all addresses matches the tested behavior — Defining no addresses applies a different mechanism.",
+            "whatItDoes": "Defining no addresses describes a mechanism that could sound plausible for you configure a rule with the address of 0.",
+            "whyWrongHere": "Given you configure a rule with the address of 0, Defining all addresses matches the tested behavior — Defining no addresses applies a different mechanism.",
+            "misconceptionTested": "Applying \"Defining no addresses\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Defining the network address does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Defining the network address describes a mechanism that could sound plausible for you configure a rule with the address of 0. Given you configure a rule with the address of 0, Defining all addresses matches the tested behavior — Defining the network address applies a different mechanism.",
+            "whatItDoes": "Defining the network address describes a mechanism that could sound plausible for you configure a rule with the address of 0.",
+            "whyWrongHere": "Given you configure a rule with the address of 0, Defining all addresses matches the tested behavior — Defining the network address applies a different mechanism.",
+            "misconceptionTested": "Applying \"Defining the network address\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -867,20 +977,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "An ACL can be applied in only one direction. does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "An ACL can be applied in only one direction. describes a mechanism that could sound plausible for statement. Given statement, All of the above. matches the tested behavior — An ACL can be applied in only one direction. applies a different mechanism.",
+            "whatItDoes": "An ACL can be applied in only one direction. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, All of the above. matches the tested behavior — An ACL can be applied in only one direction. applies a different mechanism.",
+            "misconceptionTested": "Applying \"An ACL can be applied in only one di\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "An ACL can be applied only to a single protocol. does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "An ACL can be applied only to a single protocol. describes a mechanism that could sound plausible for statement. Given statement, All of the above. matches the tested behavior — An ACL can be applied only to a single protocol. applies a different mechanism.",
+            "whatItDoes": "An ACL can be applied only to a single protocol. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, All of the above. matches the tested behavior — An ACL can be applied only to a single protocol. applies a different mechanism.",
+            "misconceptionTested": "Applying \"An ACL can be applied only to a sing\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "An ACL can be applied only to a single port. does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "An ACL can be applied only to a single port. describes a mechanism that could sound plausible for statement. Given statement, All of the above. matches the tested behavior — An ACL can be applied only to a single port. applies a different mechanism.",
+            "whatItDoes": "An ACL can be applied only to a single port. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, All of the above. matches the tested behavior — An ACL can be applied only to a single port. applies a different mechanism.",
+            "misconceptionTested": "Applying \"An ACL can be applied only to a sing\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -914,20 +1030,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Standard does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Standard describes a mechanism that could sound plausible for application. Given application, Extended matches the tested behavior — Standard applies a different mechanism.",
+            "whatItDoes": "Standard describes a mechanism that could sound plausible for application.",
+            "whyWrongHere": "Given application, Extended matches the tested behavior — Standard applies a different mechanism.",
+            "misconceptionTested": "Applying \"Standard\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Dynamic does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Dynamic describes a mechanism that could sound plausible for application. Given application, Extended matches the tested behavior — Dynamic applies a different mechanism.",
+            "whatItDoes": "Dynamic describes a mechanism that could sound plausible for application.",
+            "whyWrongHere": "Given application, Extended matches the tested behavior — Dynamic applies a different mechanism.",
+            "misconceptionTested": "Applying \"Dynamic\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Expanded does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Expanded describes a mechanism that could sound plausible for application. Given application, Extended matches the tested behavior — Expanded applies a different mechanism.",
+            "whatItDoes": "Expanded describes a mechanism that could sound plausible for application.",
+            "whyWrongHere": "Given application, Extended matches the tested behavior — Expanded applies a different mechanism.",
+            "misconceptionTested": "Applying \"Expanded\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -961,20 +1083,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "1000 to 1999 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "1000 to 1999 describes a mechanism that could sound plausible for identify. Given identify, 2000 to 2699 matches the tested behavior — 1000 to 1999 applies a different mechanism.",
+            "whatItDoes": "1000 to 1999 describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, 2000 to 2699 matches the tested behavior — 1000 to 1999 applies a different mechanism.",
+            "misconceptionTested": "Applying \"1000 to 1999\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "1100 to 1299 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "1100 to 1299 describes a mechanism that could sound plausible for identify. Given identify, 2000 to 2699 matches the tested behavior — 1100 to 1299 applies a different mechanism.",
+            "whatItDoes": "1100 to 1299 describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, 2000 to 2699 matches the tested behavior — 1100 to 1299 applies a different mechanism.",
+            "misconceptionTested": "Applying \"1100 to 1299\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "1300 to 1999 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "1300 to 1999 describes a mechanism that could sound plausible for identify. Given identify, 2000 to 2699 matches the tested behavior — 1300 to 1999 applies a different mechanism.",
+            "whatItDoes": "1300 to 1999 describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, 2000 to 2699 matches the tested behavior — 1300 to 1999 applies a different mechanism.",
+            "misconceptionTested": "Applying \"1300 to 1999\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -1009,20 +1137,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "255.255.255.128 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "255.255.255.128 describes a mechanism that could sound plausible for wildcard. Given wildcard, 0.0.0.127 matches the tested behavior — 255.255.255.128 applies a different mechanism.",
+            "whatItDoes": "255.255.255.128 describes a mechanism that could sound plausible for wildcard.",
+            "whyWrongHere": "Given wildcard, 0.0.0.127 matches the tested behavior — 255.255.255.128 applies a different mechanism.",
+            "misconceptionTested": "Applying \"255.255.255.128\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "0.0.0.128 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "0.0.0.128 describes a mechanism that could sound plausible for wildcard. Given wildcard, 0.0.0.127 matches the tested behavior — 0.0.0.128 applies a different mechanism.",
+            "whatItDoes": "0.0.0.128 describes a mechanism that could sound plausible for wildcard.",
+            "whyWrongHere": "Given wildcard, 0.0.0.127 matches the tested behavior — 0.0.0.128 applies a different mechanism.",
+            "misconceptionTested": "Applying \"0.0.0.128\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "0.0.0.63 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "0.0.0.63 describes a mechanism that could sound plausible for wildcard. Given wildcard, 0.0.0.127 matches the tested behavior — 0.0.0.63 applies a different mechanism.",
+            "whatItDoes": "0.0.0.63 describes a mechanism that could sound plausible for wildcard.",
+            "whyWrongHere": "Given wildcard, 0.0.0.127 matches the tested behavior — 0.0.0.63 applies a different mechanism.",
+            "misconceptionTested": "Applying \"0.0.0.63\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -1056,20 +1190,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Standard does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Standard describes a mechanism that could sound plausible for removing. Given removing, Named matches the tested behavior — Standard applies a different mechanism.",
+            "whatItDoes": "Standard describes a mechanism that could sound plausible for removing.",
+            "whyWrongHere": "Given removing, Named matches the tested behavior — Standard applies a different mechanism.",
+            "misconceptionTested": "Applying \"Standard\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Dynamic does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Dynamic describes a mechanism that could sound plausible for removing. Given removing, Named matches the tested behavior — Dynamic applies a different mechanism.",
+            "whatItDoes": "Dynamic describes a mechanism that could sound plausible for removing.",
+            "whyWrongHere": "Given removing, Named matches the tested behavior — Dynamic applies a different mechanism.",
+            "misconceptionTested": "Applying \"Dynamic\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Extended does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Extended describes a mechanism that could sound plausible for removing. Given removing, Named matches the tested behavior — Extended applies a different mechanism.",
+            "whatItDoes": "Extended describes a mechanism that could sound plausible for removing.",
+            "whyWrongHere": "Given removing, Named matches the tested behavior — Extended applies a different mechanism.",
+            "misconceptionTested": "Applying \"Extended\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -1103,20 +1243,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Standard does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Standard describes a mechanism that could sound plausible for someone has successfully logged into the router. Given someone has successfully logged into the router, Dynamic matches the tested behavior — Standard applies a different mechanism.",
+            "whatItDoes": "Standard describes a mechanism that could sound plausible for someone has successfully logged into the router.",
+            "whyWrongHere": "Given someone has successfully logged into the router, Dynamic matches the tested behavior — Standard applies a different mechanism.",
+            "misconceptionTested": "Applying \"Standard\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Extended does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Extended describes a mechanism that could sound plausible for someone has successfully logged into the router. Given someone has successfully logged into the router, Dynamic matches the tested behavior — Extended applies a different mechanism.",
+            "whatItDoes": "Extended describes a mechanism that could sound plausible for someone has successfully logged into the router.",
+            "whyWrongHere": "Given someone has successfully logged into the router, Dynamic matches the tested behavior — Extended applies a different mechanism.",
+            "misconceptionTested": "Applying \"Extended\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Named does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Named describes a mechanism that could sound plausible for someone has successfully logged into the router. Given someone has successfully logged into the router, Dynamic matches the tested behavior — Named applies a different mechanism.",
+            "whatItDoes": "Named describes a mechanism that could sound plausible for someone has successfully logged into the router.",
+            "whyWrongHere": "Given someone has successfully logged into the router, Dynamic matches the tested behavior — Named applies a different mechanism.",
+            "misconceptionTested": "Applying \"Named\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -1150,19 +1296,25 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#access-list 180 permit udp any 172.16.0.0 0.255.255.255 eq 161 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Router(config)#access-list 180 permit udp any 172.16.0.0 0.255.255.255 eq 161 describes a mechanism that could sound plausible for statement. Given statement, Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255 matches the tested behavior — Router(config)#access-list 180 permit udp any 172.16.0.0 0.255.255.255 eq 161 applies a different mechanism.",
+            "whatItDoes": "Router(config)#access-list 180 permit udp any 172.16.0.0 0.255.255.255 eq 161 describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255 matches the tested behavior — Router(config)#access-list 180 permit udp any 172.16.0.0 0.255.255.255 eq 161 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#access-list 180 permi\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#access-list 130 permit permit ip any any does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Router(config)#access-list 130 permit permit ip any any describes a mechanism that could sound plausible for statement. Given statement, Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255 matches the tested behavior — Router(config)#access-list 130 permit permit ip any any applies a different mechanism.",
+            "whatItDoes": "Router(config)#access-list 130 permit permit ip any any describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255 matches the tested behavior — Router(config)#access-list 130 permit permit ip any any applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#access-list 130 permi\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "Router(config)#access-list 150 deny any 172.16.0.0 0.255.255.255 reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "whatItDoes": "Router(config)#access-list 150 deny any 172.16.0.0 0.255.255.255 describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255 matches the tested behavior — Router(config)#access-list 150 deny any 172.16.0.0 0.255.255.255 applies a different mechanism.",
             "misconceptionTested": "Forgetting the implicit deny",
             "needsExplanationReview": true
           }
@@ -1197,20 +1349,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#access-list 5 permit 192.168.1.5 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Router(config)#access-list 5 permit 192.168.1.5 describes a mechanism that could sound plausible for statement. Given statement, Router(config)#access-list 5 permit host 192.168.1.5 matches the tested behavior — Router(config)#access-list 5 permit 192.168.1.5 applies a different mechanism.",
+            "whatItDoes": "Router(config)#access-list 5 permit 192.168.1.5 describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, Router(config)#access-list 5 permit host 192.168.1.5 matches the tested behavior — Router(config)#access-list 5 permit 192.168.1.5 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#access-list 5 permit \" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#access-list 5 permit 192.168.1.5/24 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Router(config)#access-list 5 permit 192.168.1.5/24 describes a mechanism that could sound plausible for statement. Given statement, Router(config)#access-list 5 permit host 192.168.1.5 matches the tested behavior — Router(config)#access-list 5 permit 192.168.1.5/24 applies a different mechanism.",
+            "whatItDoes": "Router(config)#access-list 5 permit 192.168.1.5/24 describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, Router(config)#access-list 5 permit host 192.168.1.5 matches the tested behavior — Router(config)#access-list 5 permit 192.168.1.5/24 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#access-list 5 permit \" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#access-list 5 permit 192.168.1.0 0.0.0.255 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Router(config)#access-list 5 permit 192.168.1.0 0.0.0.255 describes a mechanism that could sound plausible for statement. Given statement, Router(config)#access-list 5 permit host 192.168.1.5 matches the tested behavior — Router(config)#access-list 5 permit 192.168.1.0 0.0.0.255 applies a different mechanism.",
+            "whatItDoes": "Router(config)#access-list 5 permit 192.168.1.0 0.0.0.255 describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, Router(config)#access-list 5 permit host 192.168.1.5 matches the tested behavior — Router(config)#access-list 5 permit 192.168.1.0 0.0.0.255 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#access-list 5 permit \" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -1247,18 +1405,24 @@
           {
             "choiceIndex": 0,
             "explanation": "Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "whatItDoes": "Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any describes a mechanism that could sound plausible for internet.",
+            "whyWrongHere": "Given internet, Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any matches the tested behavior — Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any applies a different mechanism.",
             "misconceptionTested": "Forgetting the implicit deny",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "Router(config)#access-list 101 deny host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "whatItDoes": "Router(config)#access-list 101 deny host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any describes a mechanism that could sound plausible for internet.",
+            "whyWrongHere": "Given internet, Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any matches the tested behavior — Router(config)#access-list 101 deny host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any applies a different mechanism.",
             "misconceptionTested": "Forgetting the implicit deny",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any eq 80 reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "whatItDoes": "Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any eq 80 describes a mechanism that could sound plausible for internet.",
+            "whyWrongHere": "Given internet, Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any matches the tested behavior — Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any eq 80 applies a different mechanism.",
             "misconceptionTested": "Forgetting the implicit deny",
             "needsExplanationReview": true
           }
@@ -1293,20 +1457,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Extended does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Extended describes a mechanism that could sound plausible for describing. Given describing, Standard matches the tested behavior — Extended applies a different mechanism.",
+            "whatItDoes": "Extended describes a mechanism that could sound plausible for describing.",
+            "whyWrongHere": "Given describing, Standard matches the tested behavior — Extended applies a different mechanism.",
+            "misconceptionTested": "Applying \"Extended\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Named does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Named describes a mechanism that could sound plausible for describing. Given describing, Standard matches the tested behavior — Named applies a different mechanism.",
+            "whatItDoes": "Named describes a mechanism that could sound plausible for describing.",
+            "whyWrongHere": "Given describing, Standard matches the tested behavior — Named applies a different mechanism.",
+            "misconceptionTested": "Applying \"Named\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Dynamic does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Dynamic describes a mechanism that could sound plausible for describing. Given describing, Standard matches the tested behavior — Dynamic applies a different mechanism.",
+            "whatItDoes": "Dynamic describes a mechanism that could sound plausible for describing.",
+            "whyWrongHere": "Given describing, Standard matches the tested behavior — Dynamic applies a different mechanism.",
+            "misconceptionTested": "Applying \"Dynamic\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -1342,18 +1512,24 @@
           {
             "choiceIndex": 0,
             "explanation": "Router(config)#access-list 90 deny ip host 192.168.1.5 eq 22 reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "whatItDoes": "Router(config)#access-list 90 deny ip host 192.168.1.5 eq 22 describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, Router(config)#access-list 199 deny tcp any host 192.168.1.5 eq 22 matches the tested behavior — Router(config)#access-list 90 deny ip host 192.168.1.5 eq 22 applies a different mechanism.",
             "misconceptionTested": "Forgetting the implicit deny",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "Router(config)#access-list 90 deny tcp any host 192.168.1.5 eq 22 reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "whatItDoes": "Router(config)#access-list 90 deny tcp any host 192.168.1.5 eq 22 describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, Router(config)#access-list 199 deny tcp any host 192.168.1.5 eq 22 matches the tested behavior — Router(config)#access-list 90 deny tcp any host 192.168.1.5 eq 22 applies a different mechanism.",
             "misconceptionTested": "Forgetting the implicit deny",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "Router(config)#access-list 199 deny tcp host 192.168.1.5 any eq 23 reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "whatItDoes": "Router(config)#access-list 199 deny tcp host 192.168.1.5 any eq 23 describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, Router(config)#access-list 199 deny tcp any host 192.168.1.5 eq 22 matches the tested behavior — Router(config)#access-list 199 deny tcp host 192.168.1.5 any eq 23 applies a different mechanism.",
             "misconceptionTested": "Forgetting the implicit deny",
             "needsExplanationReview": true
           }
@@ -1390,20 +1566,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Standard does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Standard describes a mechanism that could sound plausible for requirement. Given requirement, Extended matches the tested behavior — Standard applies a different mechanism.",
+            "whatItDoes": "Standard describes a mechanism that could sound plausible for requirement.",
+            "whyWrongHere": "Given requirement, Extended matches the tested behavior — Standard applies a different mechanism.",
+            "misconceptionTested": "Applying \"Standard\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Dynamic does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Dynamic describes a mechanism that could sound plausible for requirement. Given requirement, Extended matches the tested behavior — Dynamic applies a different mechanism.",
+            "whatItDoes": "Dynamic describes a mechanism that could sound plausible for requirement.",
+            "whyWrongHere": "Given requirement, Extended matches the tested behavior — Dynamic applies a different mechanism.",
+            "misconceptionTested": "Applying \"Dynamic\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Expanded does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Expanded describes a mechanism that could sound plausible for requirement. Given requirement, Extended matches the tested behavior — Expanded applies a different mechanism.",
+            "whatItDoes": "Expanded describes a mechanism that could sound plausible for requirement.",
+            "whyWrongHere": "Given requirement, Extended matches the tested behavior — Expanded applies a different mechanism.",
+            "misconceptionTested": "Applying \"Expanded\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -1438,19 +1620,25 @@
           {
             "choiceIndex": 0,
             "explanation": "Router(config)#access-list 99 deny tcp host 192.168.2.7 eq 443 reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "whatItDoes": "Router(config)#access-list 99 deny tcp host 192.168.2.7 eq 443 describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any matches the tested behavior — Router(config)#access-list 99 deny tcp host 192.168.2.7 eq 443 applies a different mechanism.",
             "misconceptionTested": "Forgetting the implicit deny",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "Router(config)#access-list 189 deny any host 192.168.1.5 eq 22 reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "whatItDoes": "Router(config)#access-list 189 deny any host 192.168.1.5 eq 22 describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any matches the tested behavior — Router(config)#access-list 189 deny any host 192.168.1.5 eq 22 applies a different mechanism.",
             "misconceptionTested": "Forgetting the implicit deny",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#access-list 153 permit any host 192.168.4.5 eq 22 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Router(config)#access-list 153 permit any host 192.168.4.5 eq 22 describes a mechanism that could sound plausible for statement. Given statement, Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any matches the tested behavior — Router(config)#access-list 153 permit any host 192.168.4.5 eq 22 applies a different mechanism.",
+            "whatItDoes": "Router(config)#access-list 153 permit any host 192.168.4.5 eq 22 describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any matches the tested behavior — Router(config)#access-list 153 permit any host 192.168.4.5 eq 22 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#access-list 153 permi\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -1484,20 +1672,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#ip access-list 198 in fast 0/1 does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Router(config)#ip access-list 198 in fast 0/1 describes a mechanism that could sound plausible for interface. Given interface, Router(config-if)#ip access-group 198 in matches the tested behavior — Router(config)#ip access-list 198 in fast 0/1 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip access-list 198 in fast 0/1 describes a mechanism that could sound plausible for interface.",
+            "whyWrongHere": "Given interface, Router(config-if)#ip access-group 198 in matches the tested behavior — Router(config)#ip access-list 198 in fast 0/1 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip access-list 198 in\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config-if)#ip access-list 198 in does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Router(config-if)#ip access-list 198 in describes a mechanism that could sound plausible for interface. Given interface, Router(config-if)#ip access-group 198 in matches the tested behavior — Router(config-if)#ip access-list 198 in applies a different mechanism.",
+            "whatItDoes": "Router(config-if)#ip access-list 198 in describes a mechanism that could sound plausible for interface.",
+            "whyWrongHere": "Given interface, Router(config-if)#ip access-group 198 in matches the tested behavior — Router(config-if)#ip access-list 198 in applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config-if)#ip access-list 198\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config-if)#ip access-class 198 in does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Router(config-if)#ip access-class 198 in describes a mechanism that could sound plausible for interface. Given interface, Router(config-if)#ip access-group 198 in matches the tested behavior — Router(config-if)#ip access-class 198 in applies a different mechanism.",
+            "whatItDoes": "Router(config-if)#ip access-class 198 in describes a mechanism that could sound plausible for interface.",
+            "whyWrongHere": "Given interface, Router(config-if)#ip access-group 198 in matches the tested behavior — Router(config-if)#ip access-class 198 in applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config-if)#ip access-class 19\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -1533,20 +1727,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in describes a mechanism that could sound plausible for topology. Given topology, Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out matches the tested behavior — Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in applies a different mechanism.",
+            "whatItDoes": "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in describes a mechanism that could sound plausible for topology.",
+            "whyWrongHere": "Given topology, Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out matches the tested behavior — Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#interface gi 0/0 Rout\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out describes a mechanism that could sound plausible for topology. Given topology, Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out matches the tested behavior — Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out applies a different mechanism.",
+            "whatItDoes": "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out describes a mechanism that could sound plausible for topology.",
+            "whyWrongHere": "Given topology, Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out matches the tested behavior — Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#interface gi 0/0 Rout\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 in does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 in describes a mechanism that could sound plausible for topology. Given topology, Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out matches the tested behavior — Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 in applies a different mechanism.",
+            "whatItDoes": "Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 in describes a mechanism that could sound plausible for topology.",
+            "whyWrongHere": "Given topology, Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out matches the tested behavior — Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 in applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#interface gi 0/2 Rout\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -1582,20 +1782,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#show access-list named_list does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Switch#show access-list named_list describes a mechanism that could sound plausible for named_list. Given named_list, Switch#show ip access-list matches the tested behavior — Switch#show access-list named_list applies a different mechanism.",
+            "whatItDoes": "Switch#show access-list named_list describes a mechanism that could sound plausible for named_list.",
+            "whyWrongHere": "Given named_list, Switch#show ip access-list matches the tested behavior — Switch#show access-list named_list applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show access-list named_list\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch#show ip access-list named_list does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Switch#show ip access-list named_list describes a mechanism that could sound plausible for named_list. Given named_list, Switch#show ip access-list matches the tested behavior — Switch#show ip access-list named_list applies a different mechanism.",
+            "whatItDoes": "Switch#show ip access-list named_list describes a mechanism that could sound plausible for named_list.",
+            "whyWrongHere": "Given named_list, Switch#show ip access-list matches the tested behavior — Switch#show ip access-list named_list applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show ip access-list named_lis\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch#show running-configuration does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Switch#show running-configuration describes a mechanism that could sound plausible for named_list. Given named_list, Switch#show ip access-list matches the tested behavior — Switch#show running-configuration applies a different mechanism.",
+            "whatItDoes": "Switch#show running-configuration describes a mechanism that could sound plausible for named_list.",
+            "whyWrongHere": "Given named_list, Switch#show ip access-list matches the tested behavior — Switch#show running-configuration applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show running-configuration\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -1629,20 +1835,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Standard does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Standard describes a mechanism that could sound plausible for acl. Given acl, Extended matches the tested behavior — Standard applies a different mechanism.",
+            "whatItDoes": "Standard describes a mechanism that could sound plausible for acl.",
+            "whyWrongHere": "Given acl, Extended matches the tested behavior — Standard applies a different mechanism.",
+            "misconceptionTested": "Applying \"Standard\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Dynamic does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Dynamic describes a mechanism that could sound plausible for acl. Given acl, Extended matches the tested behavior — Dynamic applies a different mechanism.",
+            "whatItDoes": "Dynamic describes a mechanism that could sound plausible for acl.",
+            "whyWrongHere": "Given acl, Extended matches the tested behavior — Dynamic applies a different mechanism.",
+            "misconceptionTested": "Applying \"Dynamic\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Expanded does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Expanded describes a mechanism that could sound plausible for acl. Given acl, Extended matches the tested behavior — Expanded applies a different mechanism.",
+            "whatItDoes": "Expanded describes a mechanism that could sound plausible for acl.",
+            "whyWrongHere": "Given acl, Extended matches the tested behavior — Expanded applies a different mechanism.",
+            "misconceptionTested": "Applying \"Expanded\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -1676,20 +1888,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#access-list 101 allow host 192.168.1.5 any does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Router(config)#access-list 101 allow host 192.168.1.5 any describes a mechanism that could sound plausible for extended. Given extended, Router(config)#ip access-list extended named_list matches the tested behavior — Router(config)#access-list 101 allow host 192.168.1.5 any applies a different mechanism.",
+            "whatItDoes": "Router(config)#access-list 101 allow host 192.168.1.5 any describes a mechanism that could sound plausible for extended.",
+            "whyWrongHere": "Given extended, Router(config)#ip access-list extended named_list matches the tested behavior — Router(config)#access-list 101 allow host 192.168.1.5 any applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#access-list 101 allow\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#ip access-list named_list does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Router(config)#ip access-list named_list describes a mechanism that could sound plausible for extended. Given extended, Router(config)#ip access-list extended named_list matches the tested behavior — Router(config)#ip access-list named_list applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip access-list named_list describes a mechanism that could sound plausible for extended.",
+            "whyWrongHere": "Given extended, Router(config)#ip access-list extended named_list matches the tested behavior — Router(config)#ip access-list named_list applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip access-list named_\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#ip access-list 101 named_list does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Router(config)#ip access-list 101 named_list describes a mechanism that could sound plausible for extended. Given extended, Router(config)#ip access-list extended named_list matches the tested behavior — Router(config)#ip access-list 101 named_list applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip access-list 101 named_list describes a mechanism that could sound plausible for extended.",
+            "whyWrongHere": "Given extended, Router(config)#ip access-list extended named_list matches the tested behavior — Router(config)#ip access-list 101 named_list applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip access-list 101 na\" without matching acl",
             "needsExplanationReview": true
           }
         ],
@@ -1723,20 +1941,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Extended does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Extended describes a mechanism that could sound plausible for destination. Given destination, Standard matches the tested behavior — Extended applies a different mechanism.",
+            "whatItDoes": "Extended describes a mechanism that could sound plausible for destination.",
+            "whyWrongHere": "Given destination, Standard matches the tested behavior — Extended applies a different mechanism.",
+            "misconceptionTested": "Applying \"Extended\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Dynamic does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Dynamic describes a mechanism that could sound plausible for destination. Given destination, Standard matches the tested behavior — Dynamic applies a different mechanism.",
+            "whatItDoes": "Dynamic describes a mechanism that could sound plausible for destination.",
+            "whyWrongHere": "Given destination, Standard matches the tested behavior — Dynamic applies a different mechanism.",
+            "misconceptionTested": "Applying \"Dynamic\" without matching acl",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Expanded does not match the mechanism asked here.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "Expanded describes a mechanism that could sound plausible for destination. Given destination, Standard matches the tested behavior — Expanded applies a different mechanism.",
+            "whatItDoes": "Expanded describes a mechanism that could sound plausible for destination.",
+            "whyWrongHere": "Given destination, Standard matches the tested behavior — Expanded applies a different mechanism.",
+            "misconceptionTested": "Applying \"Expanded\" without matching acl",
             "needsExplanationReview": true
           }
         ],

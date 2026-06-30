@@ -1,5 +1,6 @@
 /** Detect low-quality / template wrong-answer explanations. */
 import { isGenericExamTip } from './examTipLogic.js'
+import { stemAnchorScore } from './stemAnchoredDistractor.js'
 
 export const FALLBACK_EXPLANATION_RE = [
   /is incorrect because the scenario requires:/i,
@@ -10,6 +11,9 @@ export const FALLBACK_EXPLANATION_RE = [
   /doesn't fit the scenario above/i,
   /see the correct-answer explanation for why/i,
   /does not answer .+ in this stem/i,
+  /does not match the mechanism/i,
+  /plausible symptom fix but does not match/i,
+  /misses what this question tests/i,
 ]
 
 export const GENERIC_TRAP_RE = /^Picking a familiar term without matching the exact behavior tested$/i
@@ -81,12 +85,22 @@ export function validateQuestionAnswerReview(q) {
   if (new Set(texts).size < texts.length) {
     errors.push(`${where}: duplicate distractor explanations`)
   }
+  const whyWrongTexts = ar.incorrect.map(i => i.whyWrongHere).filter(Boolean)
+  const identicalWhyWrong = whyWrongTexts.length > 1 && new Set(whyWrongTexts).size < whyWrongTexts.length
+
   for (const item of ar.incorrect) {
     if (isFallbackExplanation(item.explanation)) {
       errors.push(`${where}: fallback explanation for choice ${item.choiceIndex}`)
     }
     if (isGenericTrap(item.misconceptionTested)) {
       errors.push(`${where}: generic trap for choice ${item.choiceIndex}`)
+    }
+    if (identicalWhyWrong && item.whyWrongHere && whyWrongTexts.filter(t => t === item.whyWrongHere).length > 1) {
+      errors.push(`${where}: identical whyWrongHere across sibling distractors for choice ${item.choiceIndex}`)
+    }
+    const anchorScore = stemAnchorScore(q, item)
+    if (anchorScore < 2) {
+      errors.push(`${where}: weak stem anchor for choice ${item.choiceIndex} (score=${anchorScore})`)
     }
   }
   if (isGenericExamTip(ar.examTip)) {

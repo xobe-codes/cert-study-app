@@ -30,20 +30,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "GRE uses IPsec security. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"GRE uses IPsec security.\" without matching the scenario constraint",
+            "explanation": "GRE uses IPsec security. describes a mechanism that could sound plausible for statement. Given statement, GRE provides packet-in-packet encapsulation. matches the tested behavior — GRE uses IPsec security. applies a different mechanism.",
+            "whatItDoes": "GRE uses IPsec security. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, GRE provides packet-in-packet encapsulation. matches the tested behavior — GRE uses IPsec security. applies a different mechanism.",
+            "misconceptionTested": "Applying \"GRE uses IPsec security.\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "GRE uses a protocol of 57. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"GRE uses a protocol of 57.\" without matching the scenario constraint",
+            "explanation": "GRE uses a protocol of 57. describes a mechanism that could sound plausible for statement. Given statement, GRE provides packet-in-packet encapsulation. matches the tested behavior — GRE uses a protocol of 57. applies a different mechanism.",
+            "whatItDoes": "GRE uses a protocol of 57. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, GRE provides packet-in-packet encapsulation. matches the tested behavior — GRE uses a protocol of 57. applies a different mechanism.",
+            "misconceptionTested": "Applying \"GRE uses a protocol of 57.\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "GRE provides per-packet authentication. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"GRE provides per-packet authentication.\" without matching the scenario constraint",
+            "explanation": "GRE provides per-packet authentication. describes a mechanism that could sound plausible for statement. Given statement, GRE provides packet-in-packet encapsulation. matches the tested behavior — GRE provides per-packet authentication. applies a different mechanism.",
+            "whatItDoes": "GRE provides per-packet authentication. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, GRE provides packet-in-packet encapsulation. matches the tested behavior — GRE provides per-packet authentication. applies a different mechanism.",
+            "misconceptionTested": "Applying \"GRE provides per-packet authenticati\" without matching vpn",
             "needsExplanationReview": true
           }
         ],
@@ -78,20 +84,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "PPP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"PPP\" without matching the scenario constraint",
+            "explanation": "PPP describes a mechanism that could sound plausible for protocol. Given protocol, GRE matches the tested behavior — PPP applies a different mechanism.",
+            "whatItDoes": "PPP describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, GRE matches the tested behavior — PPP applies a different mechanism.",
+            "misconceptionTested": "Applying \"PPP\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "IPsec does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"IPsec\" without matching the scenario constraint",
+            "explanation": "IPsec describes a mechanism that could sound plausible for protocol. Given protocol, GRE matches the tested behavior — IPsec applies a different mechanism.",
+            "whatItDoes": "IPsec describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, GRE matches the tested behavior — IPsec applies a different mechanism.",
+            "misconceptionTested": "Applying \"IPsec\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "SSL does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SSL\" without matching the scenario constraint",
+            "explanation": "SSL describes a mechanism that could sound plausible for protocol. Given protocol, GRE matches the tested behavior — SSL applies a different mechanism.",
+            "whatItDoes": "SSL describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, GRE matches the tested behavior — SSL applies a different mechanism.",
+            "misconceptionTested": "Applying \"SSL\" without matching vpn",
             "needsExplanationReview": true
           }
         ],
@@ -125,20 +137,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Protocol 4 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Protocol 4\" without matching the scenario constraint",
+            "explanation": "Protocol 4 describes a mechanism that could sound plausible for protocol. Given protocol, Protocol 47 matches the tested behavior — Protocol 4 applies a different mechanism.",
+            "whatItDoes": "Protocol 4 describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, Protocol 47 matches the tested behavior — Protocol 4 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Protocol 4\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Protocol 43 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Protocol 43\" without matching the scenario constraint",
+            "explanation": "Protocol 43 describes a mechanism that could sound plausible for protocol. Given protocol, Protocol 47 matches the tested behavior — Protocol 43 applies a different mechanism.",
+            "whatItDoes": "Protocol 43 describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, Protocol 47 matches the tested behavior — Protocol 43 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Protocol 43\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Protocol 57 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Protocol 57\" without matching the scenario constraint",
+            "explanation": "Protocol 57 describes a mechanism that could sound plausible for protocol. Given protocol, Protocol 47 matches the tested behavior — Protocol 57 applies a different mechanism.",
+            "whatItDoes": "Protocol 57 describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, Protocol 47 matches the tested behavior — Protocol 57 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Protocol 57\" without matching vpn",
             "needsExplanationReview": true
           }
         ],
@@ -174,20 +192,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Nothing is wrong with the configuration. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Nothing is wrong with the configuration.\" without matching the scenario constraint",
+            "explanation": "Nothing is wrong with the configuration. describes a mechanism that could sound plausible for interface. Given interface, The network is unrouteable. matches the tested behavior — Nothing is wrong with the configuration. applies a different mechanism.",
+            "whatItDoes": "Nothing is wrong with the configuration. describes a mechanism that could sound plausible for interface.",
+            "whyWrongHere": "Given interface, The network is unrouteable. matches the tested behavior — Nothing is wrong with the configuration. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Nothing is wrong with the configurat\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "The destination on Router A of the tunnel is incorrect. does not match the mechanism asked here.",
+            "explanation": "The destination on Router A of the tunnel is incorrect. describes a mechanism that could sound plausible for interface. Given interface, The network is unrouteable. matches the tested behavior — The destination on Router A of the tunnel is incorrect. applies a different mechanism.",
+            "whatItDoes": "The destination on Router A of the tunnel is incorrect. describes a mechanism that could sound plausible for interface.",
+            "whyWrongHere": "Given interface, The network is unrouteable. matches the tested behavior — The destination on Router A of the tunnel is incorrect. applies a different mechanism.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The serial interfaces are on different networks. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The serial interfaces are on different n…\" without matching the scenario constraint",
+            "explanation": "The serial interfaces are on different networks. describes a mechanism that could sound plausible for interface. Given interface, The network is unrouteable. matches the tested behavior — The serial interfaces are on different networks. applies a different mechanism.",
+            "whatItDoes": "The serial interfaces are on different networks. describes a mechanism that could sound plausible for interface.",
+            "whyWrongHere": "Given interface, The network is unrouteable. matches the tested behavior — The serial interfaces are on different networks. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The serial interfaces are on differe\" without matching vpn",
             "needsExplanationReview": true
           }
         ],
@@ -223,20 +247,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#ip route 192.168.3.0 255.255.255.0 tunnel 0 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#ip route 192.168.3.0 255.…\" without matching the scenario constraint",
+            "explanation": "Router(config)#ip route 192.168.3.0 255.255.255.0 tunnel 0 describes a mechanism that could sound plausible for topology. Given topology, Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the tested behavior — Router(config)#ip route 192.168.3.0 255.255.255.0 tunnel 0 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip route 192.168.3.0 255.255.255.0 tunnel 0 describes a mechanism that could sound plausible for topology.",
+            "whyWrongHere": "Given topology, Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the tested behavior — Router(config)#ip route 192.168.3.0 255.255.255.0 tunnel 0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip route 192.168.3.0 \" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#ip route 192.168.2.0 255.255.255.0 tunnel 0 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#ip route 192.168.2.0 255.…\" without matching the scenario constraint",
+            "explanation": "Router(config)#ip route 192.168.2.0 255.255.255.0 tunnel 0 describes a mechanism that could sound plausible for topology. Given topology, Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the tested behavior — Router(config)#ip route 192.168.2.0 255.255.255.0 tunnel 0 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip route 192.168.2.0 255.255.255.0 tunnel 0 describes a mechanism that could sound plausible for topology.",
+            "whyWrongHere": "Given topology, Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the tested behavior — Router(config)#ip route 192.168.2.0 255.255.255.0 tunnel 0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip route 192.168.2.0 \" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#ip route 192.168.3.0 255.255.255.0 serial 0/0/1 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#ip route 192.168.3.0 255.…\" without matching the scenario constraint",
+            "explanation": "Router(config)#ip route 192.168.3.0 255.255.255.0 serial 0/0/1 describes a mechanism that could sound plausible for topology. Given topology, Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the tested behavior — Router(config)#ip route 192.168.3.0 255.255.255.0 serial 0/0/1 applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip route 192.168.3.0 255.255.255.0 serial 0/0/1 describes a mechanism that could sound plausible for topology.",
+            "whyWrongHere": "Given topology, Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the tested behavior — Router(config)#ip route 192.168.3.0 255.255.255.0 serial 0/0/1 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip route 192.168.3.0 \" without matching vpn",
             "needsExplanationReview": true
           }
         ],
@@ -270,20 +300,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "MTU 1492 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"MTU 1492\" without matching the scenario constraint",
+            "explanation": "MTU 1492 describes a mechanism that could sound plausible for identify. Given identify, MTU 1476 matches the tested behavior — MTU 1492 applies a different mechanism.",
+            "whatItDoes": "MTU 1492 describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, MTU 1476 matches the tested behavior — MTU 1492 applies a different mechanism.",
+            "misconceptionTested": "Applying \"MTU 1492\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "MTU 1500 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"MTU 1500\" without matching the scenario constraint",
+            "explanation": "MTU 1500 describes a mechanism that could sound plausible for identify. Given identify, MTU 1476 matches the tested behavior — MTU 1500 applies a different mechanism.",
+            "whatItDoes": "MTU 1500 describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, MTU 1476 matches the tested behavior — MTU 1500 applies a different mechanism.",
+            "misconceptionTested": "Applying \"MTU 1500\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "MTU 1528 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"MTU 1528\" without matching the scenario constraint",
+            "explanation": "MTU 1528 describes a mechanism that could sound plausible for identify. Given identify, MTU 1476 matches the tested behavior — MTU 1528 applies a different mechanism.",
+            "whatItDoes": "MTU 1528 describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, MTU 1476 matches the tested behavior — MTU 1528 applies a different mechanism.",
+            "misconceptionTested": "Applying \"MTU 1528\" without matching vpn",
             "needsExplanationReview": true
           }
         ],
@@ -317,20 +353,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#show ip tunnel 0 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router#show ip tunnel 0\" without matching the scenario constraint",
+            "explanation": "Router#show ip tunnel 0 describes a mechanism that could sound plausible for destination. Given destination, Router#show interface tunnel 0 matches the tested behavior — Router#show ip tunnel 0 applies a different mechanism.",
+            "whatItDoes": "Router#show ip tunnel 0 describes a mechanism that could sound plausible for destination.",
+            "whyWrongHere": "Given destination, Router#show interface tunnel 0 matches the tested behavior — Router#show ip tunnel 0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip tunnel 0\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#show ip gre does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router#show ip gre\" without matching the scenario constraint",
+            "explanation": "Router#show ip gre describes a mechanism that could sound plausible for destination. Given destination, Router#show interface tunnel 0 matches the tested behavior — Router#show ip gre applies a different mechanism.",
+            "whatItDoes": "Router#show ip gre describes a mechanism that could sound plausible for destination.",
+            "whyWrongHere": "Given destination, Router#show interface tunnel 0 matches the tested behavior — Router#show ip gre applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip gre\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show ip route does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router#show ip route\" without matching the scenario constraint",
+            "explanation": "Router#show ip route describes a mechanism that could sound plausible for destination. Given destination, Router#show interface tunnel 0 matches the tested behavior — Router#show ip route applies a different mechanism.",
+            "whatItDoes": "Router#show ip route describes a mechanism that could sound plausible for destination.",
+            "whyWrongHere": "Given destination, Router#show interface tunnel 0 matches the tested behavior — Router#show ip route applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show ip route\" without matching vpn",
             "needsExplanationReview": true
           }
         ],
@@ -366,20 +408,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Two hops does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Two hops\" without matching the scenario constraint",
+            "explanation": "Two hops describes a mechanism that could sound plausible for you do a traceroute on Router A to a destination of 192. Given you do a traceroute on Router A to a destination of 192, One hop matches the tested behavior — Two hops applies a different mechanism.",
+            "whatItDoes": "Two hops describes a mechanism that could sound plausible for you do a traceroute on Router A to a destination of 192.",
+            "whyWrongHere": "Given you do a traceroute on Router A to a destination of 192, One hop matches the tested behavior — Two hops applies a different mechanism.",
+            "misconceptionTested": "Applying \"Two hops\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Four hops does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Four hops\" without matching the scenario constraint",
+            "explanation": "Four hops describes a mechanism that could sound plausible for you do a traceroute on Router A to a destination of 192. Given you do a traceroute on Router A to a destination of 192, One hop matches the tested behavior — Four hops applies a different mechanism.",
+            "whatItDoes": "Four hops describes a mechanism that could sound plausible for you do a traceroute on Router A to a destination of 192.",
+            "whyWrongHere": "Given you do a traceroute on Router A to a destination of 192, One hop matches the tested behavior — Four hops applies a different mechanism.",
+            "misconceptionTested": "Applying \"Four hops\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Zero hops does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Zero hops\" without matching the scenario constraint",
+            "explanation": "Zero hops describes a mechanism that could sound plausible for you do a traceroute on Router A to a destination of 192. Given you do a traceroute on Router A to a destination of 192, One hop matches the tested behavior — Zero hops applies a different mechanism.",
+            "whatItDoes": "Zero hops describes a mechanism that could sound plausible for you do a traceroute on Router A to a destination of 192.",
+            "whyWrongHere": "Given you do a traceroute on Router A to a destination of 192, One hop matches the tested behavior — Zero hops applies a different mechanism.",
+            "misconceptionTested": "Applying \"Zero hops\" without matching vpn",
             "needsExplanationReview": true
           }
         ],
@@ -415,20 +463,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The tunnel numbers do not match. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The tunnel numbers do not match.\" without matching the scenario constraint",
+            "explanation": "The tunnel numbers do not match. describes a mechanism that could sound plausible for vpn. Given vpn, The routes are wrong. matches the tested behavior — The tunnel numbers do not match. applies a different mechanism.",
+            "whatItDoes": "The tunnel numbers do not match. describes a mechanism that could sound plausible for vpn.",
+            "whyWrongHere": "Given vpn, The routes are wrong. matches the tested behavior — The tunnel numbers do not match. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The tunnel numbers do not match.\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "The destination on Router A of the tunnel is incorrect. does not match the mechanism asked here.",
-            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
+            "explanation": "The destination on Router A of the tunnel is incorrect. describes a mechanism that could sound plausible for vpn. Given vpn, The routes are wrong. matches the tested behavior — The destination on Router A of the tunnel is incorrect. applies a different mechanism.",
+            "whatItDoes": "The destination on Router A of the tunnel is incorrect. describes a mechanism that could sound plausible for vpn.",
+            "whyWrongHere": "Given vpn, The routes are wrong. matches the tested behavior — The destination on Router A of the tunnel is incorrect. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The destination on Router A of the t\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The serial interfaces do not match. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The serial interfaces do not match.\" without matching the scenario constraint",
+            "explanation": "The serial interfaces do not match. describes a mechanism that could sound plausible for vpn. Given vpn, The routes are wrong. matches the tested behavior — The serial interfaces do not match. applies a different mechanism.",
+            "whatItDoes": "The serial interfaces do not match. describes a mechanism that could sound plausible for vpn.",
+            "whyWrongHere": "Given vpn, The routes are wrong. matches the tested behavior — The serial interfaces do not match. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The serial interfaces do not match.\" without matching vpn",
             "needsExplanationReview": true
           }
         ],
@@ -463,20 +517,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "HSRP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"HSRP\" without matching the scenario constraint",
+            "explanation": "HSRP describes a mechanism that could sound plausible for protocol. Given protocol, NHRP matches the tested behavior — HSRP applies a different mechanism.",
+            "whatItDoes": "HSRP describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, NHRP matches the tested behavior — HSRP applies a different mechanism.",
+            "misconceptionTested": "Applying \"HSRP\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "ARP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"ARP\" without matching the scenario constraint",
+            "explanation": "ARP describes a mechanism that could sound plausible for protocol. Given protocol, NHRP matches the tested behavior — ARP applies a different mechanism.",
+            "whatItDoes": "ARP describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, NHRP matches the tested behavior — ARP applies a different mechanism.",
+            "misconceptionTested": "Applying \"ARP\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "GRE does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"GRE\" without matching the scenario constraint",
+            "explanation": "GRE describes a mechanism that could sound plausible for protocol. Given protocol, NHRP matches the tested behavior — GRE applies a different mechanism.",
+            "whatItDoes": "GRE describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, NHRP matches the tested behavior — GRE applies a different mechanism.",
+            "misconceptionTested": "Applying \"GRE\" without matching vpn",
             "needsExplanationReview": true
           }
         ],
@@ -512,20 +572,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The interface is administratively shut down. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The interface is administratively shut d…\" without matching the scenario constraint",
+            "explanation": "The interface is administratively shut down. describes a mechanism that could sound plausible for encapsulation. Given encapsulation, There is a protocol mismatch. matches the tested behavior — The interface is administratively shut down. applies a different mechanism.",
+            "whatItDoes": "The interface is administratively shut down. describes a mechanism that could sound plausible for encapsulation.",
+            "whyWrongHere": "Given encapsulation, There is a protocol mismatch. matches the tested behavior — The interface is administratively shut down. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The interface is administratively sh\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "There is a wiring problem. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"There is a wiring problem.\" without matching the scenario constraint",
+            "explanation": "There is a wiring problem. describes a mechanism that could sound plausible for encapsulation. Given encapsulation, There is a protocol mismatch. matches the tested behavior — There is a wiring problem. applies a different mechanism.",
+            "whatItDoes": "There is a wiring problem. describes a mechanism that could sound plausible for encapsulation.",
+            "whyWrongHere": "Given encapsulation, There is a protocol mismatch. matches the tested behavior — There is a wiring problem. applies a different mechanism.",
+            "misconceptionTested": "Applying \"There is a wiring problem.\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "There is an IP address mismatch. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"There is an IP address mismatch.\" without matching the scenario constraint",
+            "explanation": "There is an IP address mismatch. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given encapsulation, There is a protocol mismatch. matches the tested behavior — There is an IP address mismatch. applies a different mechanism.",
+            "whatItDoes": "There is an IP address mismatch. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given encapsulation, There is a protocol mismatch. matches the tested behavior — There is an IP address mismatch. applies a different mechanism.",
+            "misconceptionTested": "Applying \"There is an IP address mismatch.\" without matching vpn",
             "needsExplanationReview": true
           }
         ],
@@ -559,20 +625,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Point-to-point does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Point-to-point\" without matching the scenario constraint",
+            "explanation": "Point-to-point describes a mechanism that could sound plausible for topology. Given topology, Hub-and-spoke matches the tested behavior — Point-to-point applies a different mechanism.",
+            "whatItDoes": "Point-to-point describes a mechanism that could sound plausible for topology.",
+            "whyWrongHere": "Given topology, Hub-and-spoke matches the tested behavior — Point-to-point applies a different mechanism.",
+            "misconceptionTested": "Applying \"Point-to-point\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Full-mesh does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Full-mesh\" without matching the scenario constraint",
+            "explanation": "Full-mesh describes a mechanism that could sound plausible for topology. Given topology, Hub-and-spoke matches the tested behavior — Full-mesh applies a different mechanism.",
+            "whatItDoes": "Full-mesh describes a mechanism that could sound plausible for topology.",
+            "whyWrongHere": "Given topology, Hub-and-spoke matches the tested behavior — Full-mesh applies a different mechanism.",
+            "misconceptionTested": "Applying \"Full-mesh\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Dual-homed does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Dual-homed\" without matching the scenario constraint",
+            "explanation": "Dual-homed describes a mechanism that could sound plausible for topology. Given topology, Hub-and-spoke matches the tested behavior — Dual-homed applies a different mechanism.",
+            "whatItDoes": "Dual-homed describes a mechanism that could sound plausible for topology.",
+            "whyWrongHere": "Given topology, Hub-and-spoke matches the tested behavior — Dual-homed applies a different mechanism.",
+            "misconceptionTested": "Applying \"Dual-homed\" without matching vpn",
             "needsExplanationReview": true
           }
         ],
@@ -606,20 +678,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Authentication does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Authentication\" without matching the scenario constraint",
+            "explanation": "Authentication describes a mechanism that could sound plausible for verification. Given verification, Data integrity matches the tested behavior — Authentication applies a different mechanism.",
+            "whatItDoes": "Authentication describes a mechanism that could sound plausible for verification.",
+            "whyWrongHere": "Given verification, Data integrity matches the tested behavior — Authentication applies a different mechanism.",
+            "misconceptionTested": "Applying \"Authentication\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Anti-replay does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Anti-replay\" without matching the scenario constraint",
+            "explanation": "Anti-replay describes a mechanism that could sound plausible for verification. Given verification, Data integrity matches the tested behavior — Anti-replay applies a different mechanism.",
+            "whatItDoes": "Anti-replay describes a mechanism that could sound plausible for verification.",
+            "whyWrongHere": "Given verification, Data integrity matches the tested behavior — Anti-replay applies a different mechanism.",
+            "misconceptionTested": "Applying \"Anti-replay\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Confidentiality does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Confidentiality\" without matching the scenario constraint",
+            "explanation": "Confidentiality describes a mechanism that could sound plausible for verification. Given verification, Data integrity matches the tested behavior — Confidentiality applies a different mechanism.",
+            "whatItDoes": "Confidentiality describes a mechanism that could sound plausible for verification.",
+            "whyWrongHere": "Given verification, Data integrity matches the tested behavior — Confidentiality applies a different mechanism.",
+            "misconceptionTested": "Applying \"Confidentiality\" without matching vpn",
             "needsExplanationReview": true
           }
         ],
@@ -653,20 +731,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Catalyst switches does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Catalyst switches\" without matching the scenario constraint",
+            "explanation": "Catalyst switches describes a mechanism that could sound plausible for technology. Given technology, Cisco FTD matches the tested behavior — Catalyst switches applies a different mechanism.",
+            "whatItDoes": "Catalyst switches describes a mechanism that could sound plausible for technology.",
+            "whyWrongHere": "Given technology, Cisco FTD matches the tested behavior — Catalyst switches applies a different mechanism.",
+            "misconceptionTested": "Applying \"Catalyst switches\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Cisco routers does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Cisco routers\" without matching the scenario constraint",
+            "explanation": "Cisco routers describes a mechanism that could sound plausible for technology. Given technology, Cisco FTD matches the tested behavior — Cisco routers applies a different mechanism.",
+            "whatItDoes": "Cisco routers describes a mechanism that could sound plausible for technology.",
+            "whyWrongHere": "Given technology, Cisco FTD matches the tested behavior — Cisco routers applies a different mechanism.",
+            "misconceptionTested": "Applying \"Cisco routers\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Policy-based routing does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Policy-based routing\" without matching the scenario constraint",
+            "explanation": "Policy-based routing describes a mechanism that could sound plausible for technology. Given technology, Cisco FTD matches the tested behavior — Policy-based routing applies a different mechanism.",
+            "whatItDoes": "Policy-based routing describes a mechanism that could sound plausible for technology.",
+            "whyWrongHere": "Given technology, Cisco FTD matches the tested behavior — Policy-based routing applies a different mechanism.",
+            "misconceptionTested": "Applying \"Policy-based routing\" without matching vpn",
             "needsExplanationReview": true
           }
         ],
@@ -700,20 +784,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "GRE tunnels does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"GRE tunnels\" without matching the scenario constraint",
+            "explanation": "GRE tunnels describes a mechanism that could sound plausible for information. Given information, Client SSL/VPN matches the tested behavior — GRE tunnels applies a different mechanism.",
+            "whatItDoes": "GRE tunnels describes a mechanism that could sound plausible for information.",
+            "whyWrongHere": "Given information, Client SSL/VPN matches the tested behavior — GRE tunnels applies a different mechanism.",
+            "misconceptionTested": "Applying \"GRE tunnels\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Wireless WAN does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Wireless WAN\" without matching the scenario constraint",
+            "explanation": "Wireless WAN describes a mechanism that could sound plausible for information. Given information, Client SSL/VPN matches the tested behavior — Wireless WAN applies a different mechanism.",
+            "whatItDoes": "Wireless WAN describes a mechanism that could sound plausible for information.",
+            "whyWrongHere": "Given information, Client SSL/VPN matches the tested behavior — Wireless WAN applies a different mechanism.",
+            "misconceptionTested": "Applying \"Wireless WAN\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Site-to-site VPN does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Site-to-site VPN\" without matching the scenario constraint",
+            "explanation": "Site-to-site VPN describes a mechanism that could sound plausible for information. Given information, Client SSL/VPN matches the tested behavior — Site-to-site VPN applies a different mechanism.",
+            "whatItDoes": "Site-to-site VPN describes a mechanism that could sound plausible for information.",
+            "whyWrongHere": "Given information, Client SSL/VPN matches the tested behavior — Site-to-site VPN applies a different mechanism.",
+            "misconceptionTested": "Applying \"Site-to-site VPN\" without matching vpn",
             "needsExplanationReview": true
           }
         ],
@@ -749,20 +839,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "AH does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"AH\" without matching the scenario constraint",
+            "explanation": "AH describes a mechanism that could sound plausible for protocol. Given protocol, ESP matches the tested behavior — AH applies a different mechanism.",
+            "whatItDoes": "AH describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, ESP matches the tested behavior — AH applies a different mechanism.",
+            "misconceptionTested": "Applying \"AH\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "IKE does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"IKE\" without matching the scenario constraint",
+            "explanation": "IKE describes a mechanism that could sound plausible for protocol. Given protocol, ESP matches the tested behavior — IKE applies a different mechanism.",
+            "whatItDoes": "IKE describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, ESP matches the tested behavior — IKE applies a different mechanism.",
+            "misconceptionTested": "Applying \"IKE\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "ISAKMP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"ISAKMP\" without matching the scenario constraint",
+            "explanation": "ISAKMP describes a mechanism that could sound plausible for protocol. Given protocol, ESP matches the tested behavior — ISAKMP applies a different mechanism.",
+            "whatItDoes": "ISAKMP describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, ESP matches the tested behavior — ISAKMP applies a different mechanism.",
+            "misconceptionTested": "Applying \"ISAKMP\" without matching vpn",
             "needsExplanationReview": true
           }
         ],
@@ -797,20 +893,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Lower bandwidth requirements does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Lower bandwidth requirements\" without matching the scenario constraint",
+            "explanation": "Lower bandwidth requirements describes a mechanism that could sound plausible for identify. Given identify, Scalability matches the tested behavior — Lower bandwidth requirements applies a different mechanism.",
+            "whatItDoes": "Lower bandwidth requirements describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Scalability matches the tested behavior — Lower bandwidth requirements applies a different mechanism.",
+            "misconceptionTested": "Applying \"Lower bandwidth requirements\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Lower latency does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Lower latency\" without matching the scenario constraint",
+            "explanation": "Lower latency describes a mechanism that could sound plausible for identify. Given identify, Scalability matches the tested behavior — Lower latency applies a different mechanism.",
+            "whatItDoes": "Lower latency describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Scalability matches the tested behavior — Lower latency applies a different mechanism.",
+            "misconceptionTested": "Applying \"Lower latency\" without matching vpn",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Support for multicast does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Support for multicast\" without matching the scenario constraint",
+            "explanation": "Support for multicast describes a mechanism that could sound plausible for identify. Given identify, Scalability matches the tested behavior — Support for multicast applies a different mechanism.",
+            "whatItDoes": "Support for multicast describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Scalability matches the tested behavior — Support for multicast applies a different mechanism.",
+            "misconceptionTested": "Applying \"Support for multicast\" without matching vpn",
             "needsExplanationReview": true
           }
         ],

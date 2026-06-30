@@ -29,20 +29,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "UDP/161 does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "UDP/161 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/514 matches the tested behavior — UDP/161 applies a different mechanism.",
+            "whatItDoes": "UDP/161 describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, UDP/514 matches the tested behavior — UDP/161 applies a different mechanism.",
+            "misconceptionTested": "Applying \"UDP/161\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "TCP/162 does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "TCP/162 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/514 matches the tested behavior — TCP/162 applies a different mechanism.",
+            "whatItDoes": "TCP/162 describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, UDP/514 matches the tested behavior — TCP/162 applies a different mechanism.",
+            "misconceptionTested": "Applying \"TCP/162\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "UDP/162 does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "UDP/162 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/514 matches the tested behavior — UDP/162 applies a different mechanism.",
+            "whatItDoes": "UDP/162 describes a mechanism that could sound plausible for protocol.",
+            "whyWrongHere": "Given protocol, UDP/514 matches the tested behavior — UDP/162 applies a different mechanism.",
+            "misconceptionTested": "Applying \"UDP/162\" without matching syslog",
             "needsExplanationReview": true
           }
         ],
@@ -78,20 +84,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#syslog debugging does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Router(config)#syslog debugging describes a mechanism that could sound plausible for configure. Given configure, Router(config)#logging trap debugging matches the tested behavior — Router(config)#syslog debugging applies a different mechanism.",
+            "whatItDoes": "Router(config)#syslog debugging describes a mechanism that could sound plausible for configure.",
+            "whyWrongHere": "Given configure, Router(config)#logging trap debugging matches the tested behavior — Router(config)#syslog debugging applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#syslog debugging\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#logging debugging does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Router(config)#logging debugging describes a mechanism that could sound plausible for configure. Given configure, Router(config)#logging trap debugging matches the tested behavior — Router(config)#logging debugging applies a different mechanism.",
+            "whatItDoes": "Router(config)#logging debugging describes a mechanism that could sound plausible for configure.",
+            "whyWrongHere": "Given configure, Router(config)#logging trap debugging matches the tested behavior — Router(config)#logging debugging applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#logging debugging\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#log-level debugging does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Router(config)#log-level debugging describes a mechanism that could sound plausible for configure. Given configure, Router(config)#logging trap debugging matches the tested behavior — Router(config)#log-level debugging applies a different mechanism.",
+            "whatItDoes": "Router(config)#log-level debugging describes a mechanism that could sound plausible for configure.",
+            "whyWrongHere": "Given configure, Router(config)#logging trap debugging matches the tested behavior — Router(config)#log-level debugging applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#log-level debugging\" without matching syslog",
             "needsExplanationReview": true
           }
         ],
@@ -126,20 +138,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#logging server 4 does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Switch(config)#logging server 4 describes a mechanism that could sound plausible for warnings. Given warnings, Switch(config)#logging trap 4 matches the tested behavior — Switch(config)#logging server 4 applies a different mechanism.",
+            "whatItDoes": "Switch(config)#logging server 4 describes a mechanism that could sound plausible for warnings.",
+            "whyWrongHere": "Given warnings, Switch(config)#logging trap 4 matches the tested behavior — Switch(config)#logging server 4 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#logging server 4\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config)#logging trap 5 does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Switch(config)#logging trap 5 describes a mechanism that could sound plausible for warnings. Given warnings, Switch(config)#logging trap 4 matches the tested behavior — Switch(config)#logging trap 5 applies a different mechanism.",
+            "whatItDoes": "Switch(config)#logging trap 5 describes a mechanism that could sound plausible for warnings.",
+            "whyWrongHere": "Given warnings, Switch(config)#logging trap 4 matches the tested behavior — Switch(config)#logging trap 5 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#logging trap 5\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config)#logging server 5 does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Switch(config)#logging server 5 describes a mechanism that could sound plausible for warnings. Given warnings, Switch(config)#logging trap 4 matches the tested behavior — Switch(config)#logging server 5 applies a different mechanism.",
+            "whatItDoes": "Switch(config)#logging server 5 describes a mechanism that could sound plausible for warnings.",
+            "whyWrongHere": "Given warnings, Switch(config)#logging trap 4 matches the tested behavior — Switch(config)#logging server 5 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#logging server 5\" without matching syslog",
             "needsExplanationReview": true
           }
         ],
@@ -174,20 +192,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#logging timestamps log datetime does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Switch(config)#logging timestamps log datetime describes a mechanism that could sound plausible for sequence. Given sequence, Switch(config)#service timestamps log datetime matches the tested behavior — Switch(config)#logging timestamps log datetime applies a different mechanism.",
+            "whatItDoes": "Switch(config)#logging timestamps log datetime describes a mechanism that could sound plausible for sequence.",
+            "whyWrongHere": "Given sequence, Switch(config)#service timestamps log datetime matches the tested behavior — Switch(config)#logging timestamps log datetime applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#logging timestamps lo\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config)#logging timestamps datetime does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Switch(config)#logging timestamps datetime describes a mechanism that could sound plausible for sequence. Given sequence, Switch(config)#service timestamps log datetime matches the tested behavior — Switch(config)#logging timestamps datetime applies a different mechanism.",
+            "whatItDoes": "Switch(config)#logging timestamps datetime describes a mechanism that could sound plausible for sequence.",
+            "whyWrongHere": "Given sequence, Switch(config)#service timestamps log datetime matches the tested behavior — Switch(config)#logging timestamps datetime applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#logging timestamps da\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config)#service datetime timestamps does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Switch(config)#service datetime timestamps describes a mechanism that could sound plausible for sequence. Given sequence, Switch(config)#service timestamps log datetime matches the tested behavior — Switch(config)#service datetime timestamps applies a different mechanism.",
+            "whatItDoes": "Switch(config)#service datetime timestamps describes a mechanism that could sound plausible for sequence.",
+            "whyWrongHere": "Given sequence, Switch(config)#service timestamps log datetime matches the tested behavior — Switch(config)#service datetime timestamps applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#service datetime time\" without matching syslog",
             "needsExplanationReview": true
           }
         ],
@@ -222,20 +246,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router(config-line)#logging level 0 does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Router(config-line)#logging level 0 describes a mechanism that could sound plausible for severity. Given severity, Router(config)#logging console 0 matches the tested behavior — Router(config-line)#logging level 0 applies a different mechanism.",
+            "whatItDoes": "Router(config-line)#logging level 0 describes a mechanism that could sound plausible for severity.",
+            "whyWrongHere": "Given severity, Router(config)#logging console 0 matches the tested behavior — Router(config-line)#logging level 0 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config-line)#logging level 0\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#logging console 7 does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Router(config)#logging console 7 describes a mechanism that could sound plausible for severity. Given severity, Router(config)#logging console 0 matches the tested behavior — Router(config)#logging console 7 applies a different mechanism.",
+            "whatItDoes": "Router(config)#logging console 7 describes a mechanism that could sound plausible for severity.",
+            "whyWrongHere": "Given severity, Router(config)#logging console 0 matches the tested behavior — Router(config)#logging console 7 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#logging console 7\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config-line)#logging level 7 does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Router(config-line)#logging level 7 describes a mechanism that could sound plausible for severity. Given severity, Router(config)#logging console 0 matches the tested behavior — Router(config-line)#logging level 7 applies a different mechanism.",
+            "whatItDoes": "Router(config-line)#logging level 7 describes a mechanism that could sound plausible for severity.",
+            "whyWrongHere": "Given severity, Router(config)#logging console 0 matches the tested behavior — Router(config-line)#logging level 7 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config-line)#logging level 7\" without matching syslog",
             "needsExplanationReview": true
           }
         ],
@@ -270,20 +300,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config)#logging 1 does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Switch(config)#logging 1 describes a mechanism that could sound plausible for configure. Given configure, Switch(config)#logging buffered 1 matches the tested behavior — Switch(config)#logging 1 applies a different mechanism.",
+            "whatItDoes": "Switch(config)#logging 1 describes a mechanism that could sound plausible for configure.",
+            "whyWrongHere": "Given configure, Switch(config)#logging buffered 1 matches the tested behavior — Switch(config)#logging 1 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#logging 1\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config)#logging buffered 2 does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Switch(config)#logging buffered 2 describes a mechanism that could sound plausible for configure. Given configure, Switch(config)#logging buffered 1 matches the tested behavior — Switch(config)#logging buffered 2 applies a different mechanism.",
+            "whatItDoes": "Switch(config)#logging buffered 2 describes a mechanism that could sound plausible for configure.",
+            "whyWrongHere": "Given configure, Switch(config)#logging buffered 1 matches the tested behavior — Switch(config)#logging buffered 2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#logging buffered 2\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config)#logging 2 does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Switch(config)#logging 2 describes a mechanism that could sound plausible for configure. Given configure, Switch(config)#logging buffered 1 matches the tested behavior — Switch(config)#logging 2 applies a different mechanism.",
+            "whatItDoes": "Switch(config)#logging 2 describes a mechanism that could sound plausible for configure.",
+            "whyWrongHere": "Given configure, Switch(config)#logging buffered 1 matches the tested behavior — Switch(config)#logging 2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#logging 2\" without matching syslog",
             "needsExplanationReview": true
           }
         ],
@@ -317,20 +353,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#show commands does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Switch#show commands describes a mechanism that could sound plausible for commands. Given commands, Switch#show history matches the tested behavior — Switch#show commands applies a different mechanism.",
+            "whatItDoes": "Switch#show commands describes a mechanism that could sound plausible for commands.",
+            "whyWrongHere": "Given commands, Switch#show history matches the tested behavior — Switch#show commands applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show commands\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch#show log does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Switch#show log describes a mechanism that could sound plausible for commands. Given commands, Switch#show history matches the tested behavior — Switch#show log applies a different mechanism.",
+            "whatItDoes": "Switch#show log describes a mechanism that could sound plausible for commands.",
+            "whyWrongHere": "Given commands, Switch#show history matches the tested behavior — Switch#show log applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show log\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch#show buffer does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Switch#show buffer describes a mechanism that could sound plausible for commands. Given commands, Switch#show history matches the tested behavior — Switch#show buffer applies a different mechanism.",
+            "whatItDoes": "Switch#show buffer describes a mechanism that could sound plausible for commands.",
+            "whyWrongHere": "Given commands, Switch#show history matches the tested behavior — Switch#show buffer applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show buffer\" without matching syslog",
             "needsExplanationReview": true
           }
         ],
@@ -368,20 +410,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Informational (6) does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Informational (6) describes a mechanism that could sound plausible for configuration. Given configuration, Notifications (5) matches the tested behavior — Informational (6) applies a different mechanism.",
+            "whatItDoes": "Informational (6) describes a mechanism that could sound plausible for configuration.",
+            "whyWrongHere": "Given configuration, Notifications (5) matches the tested behavior — Informational (6) applies a different mechanism.",
+            "misconceptionTested": "Applying \"Informational (6)\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Warnings (4) does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Warnings (4) describes a mechanism that could sound plausible for configuration. Given configuration, Notifications (5) matches the tested behavior — Warnings (4) applies a different mechanism.",
+            "whatItDoes": "Warnings (4) describes a mechanism that could sound plausible for configuration.",
+            "whyWrongHere": "Given configuration, Notifications (5) matches the tested behavior — Warnings (4) applies a different mechanism.",
+            "misconceptionTested": "Applying \"Warnings (4)\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Debugging (7) does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Debugging (7) describes a mechanism that could sound plausible for configuration. Given configuration, Notifications (5) matches the tested behavior — Debugging (7) applies a different mechanism.",
+            "whatItDoes": "Debugging (7) describes a mechanism that could sound plausible for configuration.",
+            "whyWrongHere": "Given configuration, Notifications (5) matches the tested behavior — Debugging (7) applies a different mechanism.",
+            "misconceptionTested": "Applying \"Debugging (7)\" without matching syslog",
             "needsExplanationReview": true
           }
         ],
@@ -415,20 +463,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#show cpu does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Router#show cpu describes a mechanism that could sound plausible for utilization. Given utilization, Router#show processes matches the tested behavior — Router#show cpu applies a different mechanism.",
+            "whatItDoes": "Router#show cpu describes a mechanism that could sound plausible for utilization.",
+            "whyWrongHere": "Given utilization, Router#show processes matches the tested behavior — Router#show cpu applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show cpu\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router#show cpu-stats does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Router#show cpu-stats describes a mechanism that could sound plausible for utilization. Given utilization, Router#show processes matches the tested behavior — Router#show cpu-stats applies a different mechanism.",
+            "whatItDoes": "Router#show cpu-stats describes a mechanism that could sound plausible for utilization.",
+            "whyWrongHere": "Given utilization, Router#show processes matches the tested behavior — Router#show cpu-stats applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show cpu-stats\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show environment cpu does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Router#show environment cpu describes a mechanism that could sound plausible for utilization. Given utilization, Router#show processes matches the tested behavior — Router#show environment cpu applies a different mechanism.",
+            "whatItDoes": "Router#show environment cpu describes a mechanism that could sound plausible for utilization.",
+            "whyWrongHere": "Given utilization, Router#show processes matches the tested behavior — Router#show environment cpu applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#show environment cpu\" without matching syslog",
             "needsExplanationReview": true
           }
         ],
@@ -464,20 +518,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#logging internal does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Router(config)#logging internal describes a mechanism that could sound plausible for internal. Given internal, Router(config)#logging buffered matches the tested behavior — Router(config)#logging internal applies a different mechanism.",
+            "whatItDoes": "Router(config)#logging internal describes a mechanism that could sound plausible for internal.",
+            "whyWrongHere": "Given internal, Router(config)#logging buffered matches the tested behavior — Router(config)#logging internal applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#logging internal\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#logging ram does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Router(config)#logging ram describes a mechanism that could sound plausible for internal. Given internal, Router(config)#logging buffered matches the tested behavior — Router(config)#logging ram applies a different mechanism.",
+            "whatItDoes": "Router(config)#logging ram describes a mechanism that could sound plausible for internal.",
+            "whyWrongHere": "Given internal, Router(config)#logging buffered matches the tested behavior — Router(config)#logging ram applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#logging ram\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#logging console does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Router(config)#logging console describes a mechanism that could sound plausible for internal. Given internal, Router(config)#logging buffered matches the tested behavior — Router(config)#logging console applies a different mechanism.",
+            "whatItDoes": "Router(config)#logging console describes a mechanism that could sound plausible for internal.",
+            "whyWrongHere": "Given internal, Router(config)#logging buffered matches the tested behavior — Router(config)#logging console applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#logging console\" without matching syslog",
             "needsExplanationReview": true
           }
         ],
@@ -513,20 +573,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Broadcasts to a syslog server does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Broadcasts to a syslog server describes flooding the frame to multiple ports in the VLAN. Given identify, Console matches the tested behavior — Broadcasts to a syslog server applies a different mechanism.",
+            "whatItDoes": "Broadcasts to a syslog server describes flooding the frame to multiple ports in the VLAN.",
+            "whyWrongHere": "Given identify, Console matches the tested behavior — Broadcasts to a syslog server applies a different mechanism.",
+            "misconceptionTested": "Applying \"Broadcasts to a syslog server\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "TTY does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "TTY describes a mechanism that could sound plausible for identify. Given identify, Console matches the tested behavior — TTY applies a different mechanism.",
+            "whatItDoes": "TTY describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Console matches the tested behavior — TTY applies a different mechanism.",
+            "misconceptionTested": "Applying \"TTY\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "NVRAM does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "NVRAM describes a mechanism that could sound plausible for identify. Given identify, Console matches the tested behavior — NVRAM applies a different mechanism.",
+            "whatItDoes": "NVRAM describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Console matches the tested behavior — NVRAM applies a different mechanism.",
+            "misconceptionTested": "Applying \"NVRAM\" without matching syslog",
             "needsExplanationReview": true
           }
         ],
@@ -562,20 +628,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Notification (5) does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Notification (5) describes a mechanism that could sound plausible for identify. Given identify, Debugging (7) matches the tested behavior — Notification (5) applies a different mechanism.",
+            "whatItDoes": "Notification (5) describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Debugging (7) matches the tested behavior — Notification (5) applies a different mechanism.",
+            "misconceptionTested": "Applying \"Notification (5)\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Informational (6) does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Informational (6) describes a mechanism that could sound plausible for identify. Given identify, Debugging (7) matches the tested behavior — Informational (6) applies a different mechanism.",
+            "whatItDoes": "Informational (6) describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Debugging (7) matches the tested behavior — Informational (6) applies a different mechanism.",
+            "misconceptionTested": "Applying \"Informational (6)\" without matching syslog",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Warning (4) does not match the mechanism asked here.",
-            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
+            "explanation": "Warning (4) describes a mechanism that could sound plausible for identify. Given identify, Debugging (7) matches the tested behavior — Warning (4) applies a different mechanism.",
+            "whatItDoes": "Warning (4) describes a mechanism that could sound plausible for identify.",
+            "whyWrongHere": "Given identify, Debugging (7) matches the tested behavior — Warning (4) applies a different mechanism.",
+            "misconceptionTested": "Applying \"Warning (4)\" without matching syslog",
             "needsExplanationReview": true
           }
         ],

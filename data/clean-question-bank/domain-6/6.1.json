@@ -29,20 +29,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "To increase the possibility for misconfiguration does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"To increase the possibility for misconfi…\" without matching the scenario constraint",
+            "explanation": "To increase the possibility for misconfiguration describes a mechanism that could sound plausible for automation. Given automation, To create an outcome that can be reproduced matches the tested behavior — To increase the possibility for misconfiguration applies a different mechanism.",
+            "whatItDoes": "To increase the possibility for misconfiguration describes a mechanism that could sound plausible for automation.",
+            "whyWrongHere": "Given automation, To create an outcome that can be reproduced matches the tested behavior — To increase the possibility for misconfiguration applies a different mechanism.",
+            "misconceptionTested": "Applying \"To increase the possibility for misc\" without matching automation",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "To decrease problems from the new configuration does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"To decrease problems from the new config…\" without matching the scenario constraint",
+            "explanation": "To decrease problems from the new configuration describes a mechanism that could sound plausible for automation. Given automation, To create an outcome that can be reproduced matches the tested behavior — To decrease problems from the new configuration applies a different mechanism.",
+            "whatItDoes": "To decrease problems from the new configuration describes a mechanism that could sound plausible for automation.",
+            "whyWrongHere": "Given automation, To create an outcome that can be reproduced matches the tested behavior — To decrease problems from the new configuration applies a different mechanism.",
+            "misconceptionTested": "Applying \"To decrease problems from the new co\" without matching automation",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "To allow you to do less work does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"To allow you to do less work\" without matching the scenario constraint",
+            "explanation": "To allow you to do less work describes a mechanism that could sound plausible for automation. Given automation, To create an outcome that can be reproduced matches the tested behavior — To allow you to do less work applies a different mechanism.",
+            "whatItDoes": "To allow you to do less work describes a mechanism that could sound plausible for automation.",
+            "whyWrongHere": "Given automation, To create an outcome that can be reproduced matches the tested behavior — To allow you to do less work applies a different mechanism.",
+            "misconceptionTested": "Applying \"To allow you to do less work\" without matching automation",
             "needsExplanationReview": true
           }
         ],
@@ -77,19 +83,25 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Copy and paste scripts built in Notepad++ into each router. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Copy and paste scripts built in Notepad+…\" without matching the scenario constraint",
+            "explanation": "Copy and paste scripts built in Notepad++ into each router. describes a mechanism that could sound plausible for automation. Given automation, Create a Python script to configure each router. matches the tested behavior — Copy and paste scripts built in Notepad++ into each router. applies a different mechanism.",
+            "whatItDoes": "Copy and paste scripts built in Notepad++ into each router. describes a mechanism that could sound plausible for automation.",
+            "whyWrongHere": "Given automation, Create a Python script to configure each router. matches the tested behavior — Copy and paste scripts built in Notepad++ into each router. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Copy and paste scripts built in Note\" without matching automation",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Copy and paste scripts built in Excel into each router. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Copy and paste scripts built in Excel in…\" without matching the scenario constraint",
+            "explanation": "Copy and paste scripts built in Excel into each router. describes a mechanism that could sound plausible for automation. Given automation, Create a Python script to configure each router. matches the tested behavior — Copy and paste scripts built in Excel into each router. applies a different mechanism.",
+            "whatItDoes": "Copy and paste scripts built in Excel into each router. describes a mechanism that could sound plausible for automation.",
+            "whyWrongHere": "Given automation, Create a Python script to configure each router. matches the tested behavior — Copy and paste scripts built in Excel into each router. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Copy and paste scripts built in Exce\" without matching automation",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Work with a partner so that both of you can double-check each other’s work and cut the time in half. does not match the mechanism asked here.",
+            "explanation": "Work with a partner so that both of you can double-check each other’s work and cut the time in half. describes a mechanism that could sound plausible for automation. CAM learning stores one mapping per arrival (automation): Create a Python script to configure each router. — not both addresses as table entries.",
+            "whatItDoes": "Work with a partner so that both of you can double-check each other’s work and cut the time in half. describes a mechanism that could sound plausible for automation.",
+            "whyWrongHere": "CAM learning stores one mapping per arrival (automation): Create a Python script to configure each router. — not both addresses as table entries.",
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table",
             "needsExplanationReview": true
           }
@@ -124,20 +136,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Reduce the number of changes to be made does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Reduce the number of changes to be made\" without matching the scenario constraint",
+            "explanation": "Reduce the number of changes to be made describes a mechanism that could sound plausible for automation. Given automation, Reduce the human error factor matches the tested behavior — Reduce the number of changes to be made applies a different mechanism.",
+            "whatItDoes": "Reduce the number of changes to be made describes a mechanism that could sound plausible for automation.",
+            "whyWrongHere": "Given automation, Reduce the human error factor matches the tested behavior — Reduce the number of changes to be made applies a different mechanism.",
+            "misconceptionTested": "Applying \"Reduce the number of changes to be m\" without matching automation",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Reduce the complications that arise from changes does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Reduce the complications that arise from…\" without matching the scenario constraint",
+            "explanation": "Reduce the complications that arise from changes describes a mechanism that could sound plausible for automation. Given automation, Reduce the human error factor matches the tested behavior — Reduce the complications that arise from changes applies a different mechanism.",
+            "whatItDoes": "Reduce the complications that arise from changes describes a mechanism that could sound plausible for automation.",
+            "whyWrongHere": "Given automation, Reduce the human error factor matches the tested behavior — Reduce the complications that arise from changes applies a different mechanism.",
+            "misconceptionTested": "Applying \"Reduce the complications that arise \" without matching automation",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Reduce the planning time for the changes does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Reduce the planning time for the changes\" without matching the scenario constraint",
+            "explanation": "Reduce the planning time for the changes describes a mechanism that could sound plausible for automation. Given automation, Reduce the human error factor matches the tested behavior — Reduce the planning time for the changes applies a different mechanism.",
+            "whatItDoes": "Reduce the planning time for the changes describes a mechanism that could sound plausible for automation.",
+            "whyWrongHere": "Given automation, Reduce the human error factor matches the tested behavior — Reduce the planning time for the changes applies a different mechanism.",
+            "misconceptionTested": "Applying \"Reduce the planning time for the cha\" without matching automation",
             "needsExplanationReview": true
           }
         ],
@@ -173,20 +191,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "NetOps does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"NetOps\" without matching the scenario constraint",
+            "explanation": "NetOps describes a mechanism that could sound plausible for automation. Given automation, DevOps matches the tested behavior — NetOps applies a different mechanism.",
+            "whatItDoes": "NetOps describes a mechanism that could sound plausible for automation.",
+            "whyWrongHere": "Given automation, DevOps matches the tested behavior — NetOps applies a different mechanism.",
+            "misconceptionTested": "Applying \"NetOps\" without matching automation",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "SysOps does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SysOps\" without matching the scenario constraint",
+            "explanation": "SysOps describes a mechanism that could sound plausible for automation. Given automation, DevOps matches the tested behavior — SysOps applies a different mechanism.",
+            "whatItDoes": "SysOps describes a mechanism that could sound plausible for automation.",
+            "whyWrongHere": "Given automation, DevOps matches the tested behavior — SysOps applies a different mechanism.",
+            "misconceptionTested": "Applying \"SysOps\" without matching automation",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "SecOps does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SecOps\" without matching the scenario constraint",
+            "explanation": "SecOps describes a mechanism that could sound plausible for automation. Given automation, DevOps matches the tested behavior — SecOps applies a different mechanism.",
+            "whatItDoes": "SecOps describes a mechanism that could sound plausible for automation.",
+            "whyWrongHere": "Given automation, DevOps matches the tested behavior — SecOps applies a different mechanism.",
+            "misconceptionTested": "Applying \"SecOps\" without matching automation",
             "needsExplanationReview": true
           }
         ],
@@ -221,20 +245,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Waterfall does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Waterfall\" without matching the scenario constraint",
+            "explanation": "Waterfall describes a mechanism that could sound plausible for automation. Given automation, Lean and Agile matches the tested behavior — Waterfall applies a different mechanism.",
+            "whatItDoes": "Waterfall describes a mechanism that could sound plausible for automation.",
+            "whyWrongHere": "Given automation, Lean and Agile matches the tested behavior — Waterfall applies a different mechanism.",
+            "misconceptionTested": "Applying \"Waterfall\" without matching automation",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Kanban does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Kanban\" without matching the scenario constraint",
+            "explanation": "Kanban describes a mechanism that could sound plausible for automation. Given automation, Lean and Agile matches the tested behavior — Kanban applies a different mechanism.",
+            "whatItDoes": "Kanban describes a mechanism that could sound plausible for automation.",
+            "whyWrongHere": "Given automation, Lean and Agile matches the tested behavior — Kanban applies a different mechanism.",
+            "misconceptionTested": "Applying \"Kanban\" without matching automation",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Scrum does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Scrum\" without matching the scenario constraint",
+            "explanation": "Scrum describes a mechanism that could sound plausible for automation. Given automation, Lean and Agile matches the tested behavior — Scrum applies a different mechanism.",
+            "whatItDoes": "Scrum describes a mechanism that could sound plausible for automation.",
+            "whyWrongHere": "Given automation, Lean and Agile matches the tested behavior — Scrum applies a different mechanism.",
+            "misconceptionTested": "Applying \"Scrum\" without matching automation",
             "needsExplanationReview": true
           }
         ],
@@ -268,20 +298,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Testing does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Testing\" without matching the scenario constraint",
+            "explanation": "Testing describes a mechanism that could sound plausible for automation. Given automation, Monitoring matches the tested behavior — Testing applies a different mechanism.",
+            "whatItDoes": "Testing describes a mechanism that could sound plausible for automation.",
+            "whyWrongHere": "Given automation, Monitoring matches the tested behavior — Testing applies a different mechanism.",
+            "misconceptionTested": "Applying \"Testing\" without matching automation",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Building does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Building\" without matching the scenario constraint",
+            "explanation": "Building describes a mechanism that could sound plausible for automation. Given automation, Monitoring matches the tested behavior — Building applies a different mechanism.",
+            "whatItDoes": "Building describes a mechanism that could sound plausible for automation.",
+            "whyWrongHere": "Given automation, Monitoring matches the tested behavior — Building applies a different mechanism.",
+            "misconceptionTested": "Applying \"Building\" without matching automation",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Planning does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Planning\" without matching the scenario constraint",
+            "explanation": "Planning describes a mechanism that could sound plausible for automation. Given automation, Monitoring matches the tested behavior — Planning applies a different mechanism.",
+            "whatItDoes": "Planning describes a mechanism that could sound plausible for automation.",
+            "whyWrongHere": "Given automation, Monitoring matches the tested behavior — Planning applies a different mechanism.",
+            "misconceptionTested": "Applying \"Planning\" without matching automation",
             "needsExplanationReview": true
           }
         ],

@@ -30,20 +30,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#archive tftp: running-config does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#archive tftp: running-config\" without matching the scenario constraint",
+            "explanation": "Switch#archive tftp: running-config describes a mechanism that could sound plausible for configuration. Given configuration, Switch#copy tftp: running-config matches the tested behavior — Switch#archive tftp: running-config applies a different mechanism.",
+            "whatItDoes": "Switch#archive tftp: running-config describes a mechanism that could sound plausible for configuration.",
+            "whyWrongHere": "Given configuration, Switch#copy tftp: running-config matches the tested behavior — Switch#archive tftp: running-config applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#archive tftp: running-config\" without matching tftp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch#restore tftp://192.168.1.2 running-config does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#restore tftp://192.168.1.2 runnin…\" without matching the scenario constraint",
+            "explanation": "Switch#restore tftp://192.168.1.2 running-config describes a mechanism that could sound plausible for configuration. Given configuration, Switch#copy tftp: running-config matches the tested behavior — Switch#restore tftp://192.168.1.2 running-config applies a different mechanism.",
+            "whatItDoes": "Switch#restore tftp://192.168.1.2 running-config describes a mechanism that could sound plausible for configuration.",
+            "whyWrongHere": "Given configuration, Switch#copy tftp: running-config matches the tested behavior — Switch#restore tftp://192.168.1.2 running-config applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#restore tftp://192.168.1.2 ru\" without matching tftp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch#copy server: running-config does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#copy server: running-config\" without matching the scenario constraint",
+            "explanation": "Switch#copy server: running-config describes a mechanism that could sound plausible for configuration. Given configuration, Switch#copy tftp: running-config matches the tested behavior — Switch#copy server: running-config applies a different mechanism.",
+            "whatItDoes": "Switch#copy server: running-config describes a mechanism that could sound plausible for configuration.",
+            "whyWrongHere": "Given configuration, Switch#copy tftp: running-config matches the tested behavior — Switch#copy server: running-config applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#copy server: running-config\" without matching tftp",
             "needsExplanationReview": true
           }
         ],
@@ -78,20 +84,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Switch#copy tftp ios does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#copy tftp ios\" without matching the scenario constraint",
+            "explanation": "Switch#copy tftp ios describes a mechanism that could sound plausible for tftp. Given tftp, Switch#copy tftp flash matches the tested behavior — Switch#copy tftp ios applies a different mechanism.",
+            "whatItDoes": "Switch#copy tftp ios describes a mechanism that could sound plausible for tftp.",
+            "whyWrongHere": "Given tftp, Switch#copy tftp flash matches the tested behavior — Switch#copy tftp ios applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#copy tftp ios\" without matching tftp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch#copy tftp nvram does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#copy tftp nvram\" without matching the scenario constraint",
+            "explanation": "Switch#copy tftp nvram describes a mechanism that could sound plausible for tftp. Given tftp, Switch#copy tftp flash matches the tested behavior — Switch#copy tftp nvram applies a different mechanism.",
+            "whatItDoes": "Switch#copy tftp nvram describes a mechanism that could sound plausible for tftp.",
+            "whyWrongHere": "Given tftp, Switch#copy tftp flash matches the tested behavior — Switch#copy tftp nvram applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#copy tftp nvram\" without matching tftp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch#upgrade tftp flash does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Switch#upgrade tftp flash\" without matching the scenario constraint",
+            "explanation": "Switch#upgrade tftp flash describes a mechanism that could sound plausible for tftp. Given tftp, Switch#copy tftp flash matches the tested behavior — Switch#upgrade tftp flash applies a different mechanism.",
+            "whatItDoes": "Switch#upgrade tftp flash describes a mechanism that could sound plausible for tftp.",
+            "whyWrongHere": "Given tftp, Switch#copy tftp flash matches the tested behavior — Switch#upgrade tftp flash applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#upgrade tftp flash\" without matching tftp",
             "needsExplanationReview": true
           }
         ],
@@ -127,20 +139,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#boot tftp://192.168.1.2 does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router#boot tftp://192.168.1.2\" without matching the scenario constraint",
+            "explanation": "Router#boot tftp://192.168.1.2 describes a mechanism that could sound plausible for universalk9. Given universalk9, Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 matches the tested behavior — Router#boot tftp://192.168.1.2 applies a different mechanism.",
+            "whatItDoes": "Router#boot tftp://192.168.1.2 describes a mechanism that could sound plausible for universalk9.",
+            "whyWrongHere": "Given universalk9, Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 matches the tested behavior — Router#boot tftp://192.168.1.2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router#boot tftp://192.168.1.2\" without matching tftp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#boot tftp://192.168.1.2 c…\" without matching the scenario constraint",
+            "explanation": "Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin describes a mechanism that could sound plausible for universalk9. Given universalk9, Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 matches the tested behavior — Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin applies a different mechanism.",
+            "whatItDoes": "Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin describes a mechanism that could sound plausible for universalk9.",
+            "whyWrongHere": "Given universalk9, Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 matches the tested behavior — Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#boot tftp://192.168.1\" without matching tftp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#boot system tftp://192.16…\" without matching the scenario constraint",
+            "explanation": "Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin describes a mechanism that could sound plausible for universalk9. Given universalk9, Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 matches the tested behavior — Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin applies a different mechanism.",
+            "whatItDoes": "Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin describes a mechanism that could sound plausible for universalk9.",
+            "whyWrongHere": "Given universalk9, Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 matches the tested behavior — Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#boot system tftp://19\" without matching tftp",
             "needsExplanationReview": true
           }
         ],
@@ -176,20 +194,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The new flash memory will have a mini-IOS installed. You will need to upgrade it from the mini-IOS. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The new flash memory will have a mini-IO…\" without matching the scenario constraint",
+            "explanation": "The new flash memory will have a mini-IOS installed. You will need to upgrade it from the mini-IOS. describes a mechanism that could sound plausible for upgrading. Given upgrading, The router will boot into the ROMMON, and from there you will need to TFTP download the IOS. matches the tested behavior — The new flash memory will have a mini-IOS installed. You will need to upgrade it from the mini-IOS. applies a different mechanism.",
+            "whatItDoes": "The new flash memory will have a mini-IOS installed. You will need to upgrade it from the mini-IOS. describes a mechanism that could sound plausible for upgrading.",
+            "whyWrongHere": "Given upgrading, The router will boot into the ROMMON, and from there you will need to TFTP download the IOS. matches the tested behavior — The new flash memory will have a mini-IOS installed. You will need to upgrade it from the mini-IOS. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The new flash memory will have a min\" without matching tftp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Nothing needs to be done because the IOS is not storage on the flash memory card. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Nothing needs to be done because the IOS…\" without matching the scenario constraint",
+            "explanation": "Nothing needs to be done because the IOS is not storage on the flash memory card. describes a mechanism that could sound plausible for upgrading. Given upgrading, The router will boot into the ROMMON, and from there you will need to TFTP download the IOS. matches the tested behavior — Nothing needs to be done because the IOS is not storage on the flash memory card. applies a different mechanism.",
+            "whatItDoes": "Nothing needs to be done because the IOS is not storage on the flash memory card. describes a mechanism that could sound plausible for upgrading.",
+            "whyWrongHere": "Given upgrading, The router will boot into the ROMMON, and from there you will need to TFTP download the IOS. matches the tested behavior — Nothing needs to be done because the IOS is not storage on the flash memory card. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Nothing needs to be done because the\" without matching tftp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Format the flash card with the FAT operating system and copy the IOS image to the card. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Format the flash card with the FAT opera…\" without matching the scenario constraint",
+            "explanation": "Format the flash card with the FAT operating system and copy the IOS image to the card. describes a mechanism that could sound plausible for upgrading. Given upgrading, The router will boot into the ROMMON, and from there you will need to TFTP download the IOS. matches the tested behavior — Format the flash card with the FAT operating system and copy the IOS image to the card. applies a different mechanism.",
+            "whatItDoes": "Format the flash card with the FAT operating system and copy the IOS image to the card. describes a mechanism that could sound plausible for upgrading.",
+            "whyWrongHere": "Given upgrading, The router will boot into the ROMMON, and from there you will need to TFTP download the IOS. matches the tested behavior — Format the flash card with the FAT operating system and copy the IOS image to the card. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Format the flash card with the FAT o\" without matching tftp",
             "needsExplanationReview": true
           }
         ],
@@ -224,20 +248,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#ip ftp username USER password USERPASS does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#ip ftp username USER pass…\" without matching the scenario constraint",
+            "explanation": "Router(config)#ip ftp username USER password USERPASS describes a mechanism that could sound plausible for required. Given required, Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS matches the tested behavior — Router(config)#ip ftp username USER password USERPASS applies a different mechanism.",
+            "whatItDoes": "Router(config)#ip ftp username USER password USERPASS describes a mechanism that could sound plausible for required.",
+            "whyWrongHere": "Given required, Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS matches the tested behavior — Router(config)#ip ftp username USER password USERPASS applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ip ftp username USER \" without matching tftp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#ftp USER password USERPASS does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#ftp USER password USERPAS…\" without matching the scenario constraint",
+            "explanation": "Router(config)#ftp USER password USERPASS describes a mechanism that could sound plausible for required. Given required, Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS matches the tested behavior — Router(config)#ftp USER password USERPASS applies a different mechanism.",
+            "whatItDoes": "Router(config)#ftp USER password USERPASS describes a mechanism that could sound plausible for required.",
+            "whyWrongHere": "Given required, Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS matches the tested behavior — Router(config)#ftp USER password USERPASS applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#ftp USER password USE\" without matching tftp",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#username USER password USERPASS does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Router(config)#username USER password US…\" without matching the scenario constraint",
+            "explanation": "Router(config)#username USER password USERPASS describes a mechanism that could sound plausible for required. Given required, Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS matches the tested behavior — Router(config)#username USER password USERPASS applies a different mechanism.",
+            "whatItDoes": "Router(config)#username USER password USERPASS describes a mechanism that could sound plausible for required.",
+            "whyWrongHere": "Given required, Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS matches the tested behavior — Router(config)#username USER password USERPASS applies a different mechanism.",
+            "misconceptionTested": "Applying \"Router(config)#username USER passwor\" without matching tftp",
             "needsExplanationReview": true
           }
         ],

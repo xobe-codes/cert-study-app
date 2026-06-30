@@ -31,18 +31,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Nothing. Routers cannot aggregate bandwidth from multiple connections. misses what this question tests. A WLC connection can use EtherChannel/LAG to increase bandwidth.",
-            "misconceptionTested": "Selecting \"Nothing. Routers cannot aggregate bandwi…\" without matching the scenario constraint"
+            "explanation": "Nothing. Routers cannot aggregate bandwidth from multiple connections. describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Bundle both Gigabit Ethernet connections in an EtherChannel. matches the tested behavior — Nothing. Routers cannot aggregate bandwidth from multiple connections. applies a different mechanism.",
+            "whatItDoes": "Nothing. Routers cannot aggregate bandwidth from multiple connections. describes a mechanism that could sound plausible for wlc connections.",
+            "whyWrongHere": "Given wlc connections, Bundle both Gigabit Ethernet connections in an EtherChannel. matches the tested behavior — Nothing. Routers cannot aggregate bandwidth from multiple connections. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Nothing. Routers cannot aggregate ba\" without matching wlc connections"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Use RIP to balance the bandwidth. misses what this question tests. A WLC connection can use EtherChannel/LAG to increase bandwidth.",
-            "misconceptionTested": "Selecting \"Use RIP to balance the bandwidth.\" without matching the scenario constraint"
+            "explanation": "Use RIP to balance the bandwidth. describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Bundle both Gigabit Ethernet connections in an EtherChannel. matches the tested behavior — Use RIP to balance the bandwidth. applies a different mechanism.",
+            "whatItDoes": "Use RIP to balance the bandwidth. describes a mechanism that could sound plausible for wlc connections.",
+            "whyWrongHere": "Given wlc connections, Bundle both Gigabit Ethernet connections in an EtherChannel. matches the tested behavior — Use RIP to balance the bandwidth. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Use RIP to balance the bandwidth.\" without matching wlc connections"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Use the wireless controller to perform inter-VLAN routing. misses what this question tests. A WLC connection can use EtherChannel/LAG to increase bandwidth.",
-            "misconceptionTested": "Selecting \"Use the wireless controller to perform i…\" without matching the scenario constraint"
+            "explanation": "Use the wireless controller to perform inter-VLAN routing. describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Bundle both Gigabit Ethernet connections in an EtherChannel. matches the tested behavior — Use the wireless controller to perform inter-VLAN routing. applies a different mechanism.",
+            "whatItDoes": "Use the wireless controller to perform inter-VLAN routing. describes a mechanism that could sound plausible for wlc connections.",
+            "whyWrongHere": "Given wlc connections, Bundle both Gigabit Ethernet connections in an EtherChannel. matches the tested behavior — Use the wireless controller to perform inter-VLAN routing. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Use the wireless controller to perfo\" without matching wlc connections"
           }
         ],
         "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
@@ -76,18 +82,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Access port misses what this question tests. A WLC link should be a trunk when several VLANs must be carried.",
-            "misconceptionTested": "Selecting \"Access port\" without matching the scenario constraint"
+            "explanation": "Access port describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Trunk port matches the tested behavior — Access port applies a different mechanism.",
+            "whatItDoes": "Access port describes a mechanism that could sound plausible for wlc connections.",
+            "whyWrongHere": "Given wlc connections, Trunk port matches the tested behavior — Access port applies a different mechanism.",
+            "misconceptionTested": "Applying \"Access port\" without matching wlc connections"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Voice port misses what this question tests. A WLC link should be a trunk when several VLANs must be carried.",
-            "misconceptionTested": "Selecting \"Voice port\" without matching the scenario constraint"
+            "explanation": "Voice port describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Trunk port matches the tested behavior — Voice port applies a different mechanism.",
+            "whatItDoes": "Voice port describes a mechanism that could sound plausible for wlc connections.",
+            "whyWrongHere": "Given wlc connections, Trunk port matches the tested behavior — Voice port applies a different mechanism.",
+            "misconceptionTested": "Applying \"Voice port\" without matching wlc connections"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Routed switch port misses what this question tests. A WLC link should be a trunk when several VLANs must be carried.",
-            "misconceptionTested": "Selecting \"Routed switch port\" without matching the scenario constraint"
+            "explanation": "Routed switch port describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Trunk port matches the tested behavior — Routed switch port applies a different mechanism.",
+            "whatItDoes": "Routed switch port describes a mechanism that could sound plausible for wlc connections.",
+            "whyWrongHere": "Given wlc connections, Trunk port matches the tested behavior — Routed switch port applies a different mechanism.",
+            "misconceptionTested": "Applying \"Routed switch port\" without matching wlc connections"
           }
         ],
         "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
@@ -121,18 +133,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "LACP misses what this question tests. WLCs use LAG, not LACP/PAgP, for bundling links.",
-            "misconceptionTested": "Selecting \"LACP\" without matching the scenario constraint"
+            "explanation": "LACP describes a mechanism that could sound plausible for wlc connections. Given wlc connections, LAG matches the tested behavior — LACP applies a different mechanism.",
+            "whatItDoes": "LACP describes a mechanism that could sound plausible for wlc connections.",
+            "whyWrongHere": "Given wlc connections, LAG matches the tested behavior — LACP applies a different mechanism.",
+            "misconceptionTested": "Applying \"LACP\" without matching wlc connections"
           },
           {
             "choiceIndex": 1,
-            "explanation": "PAgP misses what this question tests. WLCs use LAG, not LACP/PAgP, for bundling links.",
-            "misconceptionTested": "Selecting \"PAgP\" without matching the scenario constraint"
+            "explanation": "PAgP describes a mechanism that could sound plausible for wlc connections. Given wlc connections, LAG matches the tested behavior — PAgP applies a different mechanism.",
+            "whatItDoes": "PAgP describes a mechanism that could sound plausible for wlc connections.",
+            "whyWrongHere": "Given wlc connections, LAG matches the tested behavior — PAgP applies a different mechanism.",
+            "misconceptionTested": "Applying \"PAgP\" without matching wlc connections"
           },
           {
             "choiceIndex": 3,
-            "explanation": "PortChannel misses what this question tests. WLCs use LAG, not LACP/PAgP, for bundling links.",
-            "misconceptionTested": "Selecting \"PortChannel\" without matching the scenario constraint"
+            "explanation": "PortChannel describes a mechanism that could sound plausible for wlc connections. Given wlc connections, LAG matches the tested behavior — PortChannel applies a different mechanism.",
+            "whatItDoes": "PortChannel describes a mechanism that could sound plausible for wlc connections.",
+            "whyWrongHere": "Given wlc connections, LAG matches the tested behavior — PortChannel applies a different mechanism.",
+            "misconceptionTested": "Applying \"PortChannel\" without matching wlc connections"
           }
         ],
         "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
@@ -166,18 +184,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Round robin misses what this question tests. WLC LAG load balancing is hash-based.",
-            "misconceptionTested": "Selecting \"Round robin\" without matching the scenario constraint"
+            "explanation": "Round robin describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Hash based matches the tested behavior — Round robin applies a different mechanism.",
+            "whatItDoes": "Round robin describes a mechanism that could sound plausible for wlc connections.",
+            "whyWrongHere": "Given wlc connections, Hash based matches the tested behavior — Round robin applies a different mechanism.",
+            "misconceptionTested": "Applying \"Round robin\" without matching wlc connections"
           },
           {
             "choiceIndex": 2,
-            "explanation": "First in, first out (FIFO) misses what this question tests. WLC LAG load balancing is hash-based.",
-            "misconceptionTested": "Selecting \"First in, first out (FIFO)\" without matching the scenario constraint"
+            "explanation": "First in, first out (FIFO) describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Hash based matches the tested behavior — First in, first out (FIFO) applies a different mechanism.",
+            "whatItDoes": "First in, first out (FIFO) describes a mechanism that could sound plausible for wlc connections.",
+            "whyWrongHere": "Given wlc connections, Hash based matches the tested behavior — First in, first out (FIFO) applies a different mechanism.",
+            "misconceptionTested": "Applying \"First in, first out (FIFO)\" without matching wlc connections"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Spill and fill misses what this question tests. WLC LAG load balancing is hash-based.",
-            "misconceptionTested": "Selecting \"Spill and fill\" without matching the scenario constraint"
+            "explanation": "Spill and fill describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Hash based matches the tested behavior — Spill and fill applies a different mechanism.",
+            "whatItDoes": "Spill and fill describes a mechanism that could sound plausible for wlc connections.",
+            "whyWrongHere": "Given wlc connections, Hash based matches the tested behavior — Spill and fill applies a different mechanism.",
+            "misconceptionTested": "Applying \"Spill and fill\" without matching wlc connections"
           }
         ],
         "examTip": "This stem tests wlc connections — exam distractors swap similar terms; anchor on: WLC LAG load balancing is hash-based."
@@ -211,18 +235,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "16 misses what this question tests. A WLC LAG supports up to eight bundled ports.",
-            "misconceptionTested": "Selecting \"16\" without matching the scenario constraint"
+            "explanation": "16 describes a mechanism that could sound plausible for wlc connections. Given wlc connections, 8 matches the tested behavior — 16 applies a different mechanism.",
+            "whatItDoes": "16 describes a mechanism that could sound plausible for wlc connections.",
+            "whyWrongHere": "Given wlc connections, 8 matches the tested behavior — 16 applies a different mechanism.",
+            "misconceptionTested": "Applying \"16\" without matching wlc connections"
           },
           {
             "choiceIndex": 2,
-            "explanation": "4 misses what this question tests. A WLC LAG supports up to eight bundled ports.",
-            "misconceptionTested": "Selecting \"4\" without matching the scenario constraint"
+            "explanation": "4 describes a mechanism that could sound plausible for wlc connections. Given wlc connections, 8 matches the tested behavior — 4 applies a different mechanism.",
+            "whatItDoes": "4 describes a mechanism that could sound plausible for wlc connections.",
+            "whyWrongHere": "Given wlc connections, 8 matches the tested behavior — 4 applies a different mechanism.",
+            "misconceptionTested": "Applying \"4\" without matching wlc connections"
           },
           {
             "choiceIndex": 3,
-            "explanation": "2 misses what this question tests. A WLC LAG supports up to eight bundled ports.",
-            "misconceptionTested": "Selecting \"2\" without matching the scenario constraint"
+            "explanation": "2 describes a mechanism that could sound plausible for wlc connections. Given wlc connections, 8 matches the tested behavior — 2 applies a different mechanism.",
+            "whatItDoes": "2 describes a mechanism that could sound plausible for wlc connections.",
+            "whyWrongHere": "Given wlc connections, 8 matches the tested behavior — 2 applies a different mechanism.",
+            "misconceptionTested": "Applying \"2\" without matching wlc connections"
           }
         ],
         "examTip": "This stem tests wlc connections — exam distractors swap similar terms; anchor on: A WLC LAG supports up to eight bundled ports."
@@ -256,18 +286,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Upgrade the WLC to accommodate more ports. misses what this question tests. Converting a WLC access port to a trunk allows multiple VLANs over one physical port.",
-            "misconceptionTested": "Selecting \"Upgrade the WLC to accommodate more port…\" without matching the scenario constraint"
+            "explanation": "Upgrade the WLC to accommodate more ports. describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Convert one of the current access ports to a trunk. matches the tested behavior — Upgrade the WLC to accommodate more ports. applies a different mechanism.",
+            "whatItDoes": "Upgrade the WLC to accommodate more ports. describes a mechanism that could sound plausible for wlc connections.",
+            "whyWrongHere": "Given wlc connections, Convert one of the current access ports to a trunk. matches the tested behavior — Upgrade the WLC to accommodate more ports. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Upgrade the WLC to accommodate more \" without matching wlc connections"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Convert the current access ports to LAGs. misses what this question tests. Converting a WLC access port to a trunk allows multiple VLANs over one physical port.",
-            "misconceptionTested": "Selecting \"Convert the current access ports to LAGs…\" without matching the scenario constraint"
+            "explanation": "Convert the current access ports to LAGs. describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Convert one of the current access ports to a trunk. matches the tested behavior — Convert the current access ports to LAGs. applies a different mechanism.",
+            "whatItDoes": "Convert the current access ports to LAGs. describes a mechanism that could sound plausible for wlc connections.",
+            "whyWrongHere": "Given wlc connections, Convert one of the current access ports to a trunk. matches the tested behavior — Convert the current access ports to LAGs. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Convert the current access ports to \" without matching wlc connections"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Add a second WLC to accommodate the new departments. misses what this question tests. Converting a WLC access port to a trunk allows multiple VLANs over one physical port.",
-            "misconceptionTested": "Selecting \"Add a second WLC to accommodate the new …\" without matching the scenario constraint"
+            "explanation": "Add a second WLC to accommodate the new departments. describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Convert one of the current access ports to a trunk. matches the tested behavior — Add a second WLC to accommodate the new departments. applies a different mechanism.",
+            "whatItDoes": "Add a second WLC to accommodate the new departments. describes a mechanism that could sound plausible for wlc connections.",
+            "whyWrongHere": "Given wlc connections, Convert one of the current access ports to a trunk. matches the tested behavior — Add a second WLC to accommodate the new departments. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Add a second WLC to accommodate the \" without matching wlc connections"
           }
         ],
         "examTip": "Access = one VLAN; trunk tags frames. Native VLAN must match on both ends or you get silent mis-forwarding."
@@ -301,18 +337,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Access port misses what this question tests. Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs.",
-            "misconceptionTested": "Selecting \"Access port\" without matching the scenario constraint"
+            "explanation": "Access port describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Trunk port matches the tested behavior — Access port applies a different mechanism.",
+            "whatItDoes": "Access port describes a mechanism that could sound plausible for wlc connections.",
+            "whyWrongHere": "Given wlc connections, Trunk port matches the tested behavior — Access port applies a different mechanism.",
+            "misconceptionTested": "Applying \"Access port\" without matching wlc connections"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Wireless port misses what this question tests. Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs.",
-            "misconceptionTested": "Selecting \"Wireless port\" without matching the scenario constraint"
+            "explanation": "Wireless port describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Trunk port matches the tested behavior — Wireless port applies a different mechanism.",
+            "whatItDoes": "Wireless port describes a mechanism that could sound plausible for wlc connections.",
+            "whyWrongHere": "Given wlc connections, Trunk port matches the tested behavior — Wireless port applies a different mechanism.",
+            "misconceptionTested": "Applying \"Wireless port\" without matching wlc connections"
           },
           {
             "choiceIndex": 3,
-            "explanation": "LAG port misses what this question tests. Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs.",
-            "misconceptionTested": "Selecting \"LAG port\" without matching the scenario constraint"
+            "explanation": "LAG port describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Trunk port matches the tested behavior — LAG port applies a different mechanism.",
+            "whatItDoes": "LAG port describes a mechanism that could sound plausible for wlc connections.",
+            "whyWrongHere": "Given wlc connections, Trunk port matches the tested behavior — LAG port applies a different mechanism.",
+            "misconceptionTested": "Applying \"LAG port\" without matching wlc connections"
           }
         ],
         "examTip": "Access = one VLAN; trunk tags frames. Native VLAN must match on both ends or you get silent mis-forwarding."

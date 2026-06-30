@@ -31,20 +31,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "User interface layout does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"User interface layout\" without matching the scenario constraint",
+            "explanation": "User interface layout describes a mechanism that could sound plausible for rest api. Given rest api, API reference matches the tested behavior — User interface layout applies a different mechanism.",
+            "whatItDoes": "User interface layout describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, API reference matches the tested behavior — User interface layout applies a different mechanism.",
+            "misconceptionTested": "Applying \"User interface layout\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Source code of the device does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Source code of the device\" without matching the scenario constraint",
+            "explanation": "Source code of the device describes a mechanism that could sound plausible for rest api. Given rest api, API reference matches the tested behavior — Source code of the device applies a different mechanism.",
+            "whatItDoes": "Source code of the device describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, API reference matches the tested behavior — Source code of the device applies a different mechanism.",
+            "misconceptionTested": "Applying \"Source code of the device\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Data storage of the device does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Data storage of the device\" without matching the scenario constraint",
+            "explanation": "Data storage of the device describes a mechanism that could sound plausible for rest api. Given rest api, API reference matches the tested behavior — Data storage of the device applies a different mechanism.",
+            "whatItDoes": "Data storage of the device describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, API reference matches the tested behavior — Data storage of the device applies a different mechanism.",
+            "misconceptionTested": "Applying \"Data storage of the device\" without matching rest api",
             "needsExplanationReview": true
           }
         ],
@@ -82,20 +88,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "CLI does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"CLI\" without matching the scenario constraint",
+            "explanation": "CLI describes a mechanism that could sound plausible for rest api. Given rest api, SNMP matches the tested behavior — CLI applies a different mechanism.",
+            "whatItDoes": "CLI describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, SNMP matches the tested behavior — CLI applies a different mechanism.",
+            "misconceptionTested": "Applying \"CLI\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Syslog does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Syslog\" without matching the scenario constraint",
+            "explanation": "Syslog describes a mechanism that could sound plausible for rest api. Given rest api, SNMP matches the tested behavior — Syslog applies a different mechanism.",
+            "whatItDoes": "Syslog describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, SNMP matches the tested behavior — Syslog applies a different mechanism.",
+            "misconceptionTested": "Applying \"Syslog\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "SSH does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SSH\" without matching the scenario constraint",
+            "explanation": "SSH describes a mechanism that could sound plausible for rest api. Given rest api, SNMP matches the tested behavior — SSH applies a different mechanism.",
+            "whatItDoes": "SSH describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, SNMP matches the tested behavior — SSH applies a different mechanism.",
+            "misconceptionTested": "Applying \"SSH\" without matching rest api",
             "needsExplanationReview": true
           }
         ],
@@ -132,20 +144,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Syslog does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Syslog\" without matching the scenario constraint",
+            "explanation": "Syslog describes a mechanism that could sound plausible for rest api. Given rest api, NETCONF matches the tested behavior — Syslog applies a different mechanism.",
+            "whatItDoes": "Syslog describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, NETCONF matches the tested behavior — Syslog applies a different mechanism.",
+            "misconceptionTested": "Applying \"Syslog\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "REST does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"REST\" without matching the scenario constraint",
+            "explanation": "REST describes a mechanism that could sound plausible for rest api. Given rest api, NETCONF matches the tested behavior — REST applies a different mechanism.",
+            "whatItDoes": "REST describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, NETCONF matches the tested behavior — REST applies a different mechanism.",
+            "misconceptionTested": "Applying \"REST\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "SSH does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SSH\" without matching the scenario constraint",
+            "explanation": "SSH describes a mechanism that could sound plausible for rest api. Given rest api, NETCONF matches the tested behavior — SSH applies a different mechanism.",
+            "whatItDoes": "SSH describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, NETCONF matches the tested behavior — SSH applies a different mechanism.",
+            "misconceptionTested": "Applying \"SSH\" without matching rest api",
             "needsExplanationReview": true
           }
         ],
@@ -183,20 +201,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "REST does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"REST\" without matching the scenario constraint",
+            "explanation": "REST describes a mechanism that could sound plausible for rest api. Given rest api, NETCONF matches the tested behavior — REST applies a different mechanism.",
+            "whatItDoes": "REST describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, NETCONF matches the tested behavior — REST applies a different mechanism.",
+            "misconceptionTested": "Applying \"REST\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "SNMP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SNMP\" without matching the scenario constraint",
+            "explanation": "SNMP describes a mechanism that could sound plausible for rest api. Given rest api, NETCONF matches the tested behavior — SNMP applies a different mechanism.",
+            "whatItDoes": "SNMP describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, NETCONF matches the tested behavior — SNMP applies a different mechanism.",
+            "misconceptionTested": "Applying \"SNMP\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "YAML does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"YAML\" without matching the scenario constraint",
+            "explanation": "YAML describes a mechanism that could sound plausible for rest api. Given rest api, NETCONF matches the tested behavior — YAML applies a different mechanism.",
+            "whatItDoes": "YAML describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, NETCONF matches the tested behavior — YAML applies a different mechanism.",
+            "misconceptionTested": "Applying \"YAML\" without matching rest api",
             "needsExplanationReview": true
           }
         ],
@@ -234,20 +258,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "NETCONF does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"NETCONF\" without matching the scenario constraint",
+            "explanation": "NETCONF describes a mechanism that could sound plausible for rest api. Given rest api, RESTCONF matches the tested behavior — NETCONF applies a different mechanism.",
+            "whatItDoes": "NETCONF describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, RESTCONF matches the tested behavior — NETCONF applies a different mechanism.",
+            "misconceptionTested": "Applying \"NETCONF\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "SNMP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SNMP\" without matching the scenario constraint",
+            "explanation": "SNMP describes a mechanism that could sound plausible for rest api. Given rest api, RESTCONF matches the tested behavior — SNMP applies a different mechanism.",
+            "whatItDoes": "SNMP describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, RESTCONF matches the tested behavior — SNMP applies a different mechanism.",
+            "misconceptionTested": "Applying \"SNMP\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Syslog does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Syslog\" without matching the scenario constraint",
+            "explanation": "Syslog describes a mechanism that could sound plausible for rest api. Given rest api, RESTCONF matches the tested behavior — Syslog applies a different mechanism.",
+            "whatItDoes": "Syslog describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, RESTCONF matches the tested behavior — Syslog applies a different mechanism.",
+            "misconceptionTested": "Applying \"Syslog\" without matching rest api",
             "needsExplanationReview": true
           }
         ],
@@ -284,20 +314,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SNMP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SNMP\" without matching the scenario constraint",
+            "explanation": "SNMP describes a mechanism that could sound plausible for rest api. Given rest api, HTTP matches the tested behavior — SNMP applies a different mechanism.",
+            "whatItDoes": "SNMP describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, HTTP matches the tested behavior — SNMP applies a different mechanism.",
+            "misconceptionTested": "Applying \"SNMP\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "SNTP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SNTP\" without matching the scenario constraint",
+            "explanation": "SNTP describes a mechanism that could sound plausible for rest api. Given rest api, HTTP matches the tested behavior — SNTP applies a different mechanism.",
+            "whatItDoes": "SNTP describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, HTTP matches the tested behavior — SNTP applies a different mechanism.",
+            "misconceptionTested": "Applying \"SNTP\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "SOAP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SOAP\" without matching the scenario constraint",
+            "explanation": "SOAP describes a mechanism that could sound plausible for rest api. Given rest api, HTTP matches the tested behavior — SOAP applies a different mechanism.",
+            "whatItDoes": "SOAP describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, HTTP matches the tested behavior — SOAP applies a different mechanism.",
+            "misconceptionTested": "Applying \"SOAP\" without matching rest api",
             "needsExplanationReview": true
           }
         ],
@@ -336,20 +372,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Pass the username and password in every request. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Pass the username and password in every …\" without matching the scenario constraint",
+            "explanation": "Pass the username and password in every request. describes a mechanism that could sound plausible for rest api. Given rest api, Send a POST to the API for an authentication token. matches the tested behavior — Pass the username and password in every request. applies a different mechanism.",
+            "whatItDoes": "Pass the username and password in every request. describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Send a POST to the API for an authentication token. matches the tested behavior — Pass the username and password in every request. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Pass the username and password in ev\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Send a GET to the API for an auth token. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Send a GET to the API for an auth token.\" without matching the scenario constraint",
+            "explanation": "Send a GET to the API for an auth token. describes a mechanism that could sound plausible for rest api. Given rest api, Send a POST to the API for an authentication token. matches the tested behavior — Send a GET to the API for an auth token. applies a different mechanism.",
+            "whatItDoes": "Send a GET to the API for an auth token. describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Send a POST to the API for an authentication token. matches the tested behavior — Send a GET to the API for an auth token. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Send a GET to the API for an auth to\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Create a public private key pair for the Cisco DNA Center appliance. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Create a public private key pair for the…\" without matching the scenario constraint",
+            "explanation": "Create a public private key pair for the Cisco DNA Center appliance. describes a mechanism that could sound plausible for rest api. Given rest api, Send a POST to the API for an authentication token. matches the tested behavior — Create a public private key pair for the Cisco DNA Center appliance. applies a different mechanism.",
+            "whatItDoes": "Create a public private key pair for the Cisco DNA Center appliance. describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Send a POST to the API for an authentication token. matches the tested behavior — Create a public private key pair for the Cisco DNA Center appliance. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Create a public private key pair for\" without matching rest api",
             "needsExplanationReview": true
           }
         ],
@@ -384,20 +426,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Memory cleanup does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Memory cleanup\" without matching the scenario constraint",
+            "explanation": "Memory cleanup describes a mechanism that could sound plausible for rest api. Given rest api, Data actions matches the tested behavior — Memory cleanup applies a different mechanism.",
+            "whatItDoes": "Memory cleanup describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Data actions matches the tested behavior — Memory cleanup applies a different mechanism.",
+            "misconceptionTested": "Applying \"Memory cleanup\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Replacement for REST-based APIs does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Replacement for REST-based APIs\" without matching the scenario constraint",
+            "explanation": "Replacement for REST-based APIs describes a mechanism that could sound plausible for rest api. Given rest api, Data actions matches the tested behavior — Replacement for REST-based APIs applies a different mechanism.",
+            "whatItDoes": "Replacement for REST-based APIs describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Data actions matches the tested behavior — Replacement for REST-based APIs applies a different mechanism.",
+            "misconceptionTested": "Applying \"Replacement for REST-based APIs\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Data encoding does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Data encoding\" without matching the scenario constraint",
+            "explanation": "Data encoding describes a mechanism that could sound plausible for rest api. Given rest api, Data actions matches the tested behavior — Data encoding applies a different mechanism.",
+            "whatItDoes": "Data encoding describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Data actions matches the tested behavior — Data encoding applies a different mechanism.",
+            "misconceptionTested": "Applying \"Data encoding\" without matching rest api",
             "needsExplanationReview": true
           }
         ],
@@ -434,20 +482,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "AD integrated does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"AD integrated\" without matching the scenario constraint",
+            "explanation": "AD integrated describes a mechanism that could sound plausible for rest api. Given rest api, Basic matches the tested behavior — AD integrated applies a different mechanism.",
+            "whatItDoes": "AD integrated describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Basic matches the tested behavior — AD integrated applies a different mechanism.",
+            "misconceptionTested": "Applying \"AD integrated\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "SSL does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SSL\" without matching the scenario constraint",
+            "explanation": "SSL describes a mechanism that could sound plausible for rest api. Given rest api, Basic matches the tested behavior — SSL applies a different mechanism.",
+            "whatItDoes": "SSL describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Basic matches the tested behavior — SSL applies a different mechanism.",
+            "misconceptionTested": "Applying \"SSL\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Pass-through does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Pass-through\" without matching the scenario constraint",
+            "explanation": "Pass-through describes a mechanism that could sound plausible for rest api. Given rest api, Basic matches the tested behavior — Pass-through applies a different mechanism.",
+            "whatItDoes": "Pass-through describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Basic matches the tested behavior — Pass-through applies a different mechanism.",
+            "misconceptionTested": "Applying \"Pass-through\" without matching rest api",
             "needsExplanationReview": true
           }
         ],
@@ -483,20 +537,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Add it as a variable named X-Auth-Token in the script. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Add it as a variable named X-Auth-Token …\" without matching the scenario constraint",
+            "explanation": "Add it as a variable named X-Auth-Token in the script. describes a mechanism that could sound plausible for rest api. Given rest api, Place it in the header of the request as an X-Auth-Token element. matches the tested behavior — Add it as a variable named X-Auth-Token in the script. applies a different mechanism.",
+            "whatItDoes": "Add it as a variable named X-Auth-Token in the script. describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Place it in the header of the request as an X-Auth-Token element. matches the tested behavior — Add it as a variable named X-Auth-Token in the script. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Add it as a variable named X-Auth-To\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Pass the token in the URI of subsequent requests. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Pass the token in the URI of subsequent …\" without matching the scenario constraint",
+            "explanation": "Pass the token in the URI of subsequent requests. describes a mechanism that could sound plausible for rest api. Given rest api, Place it in the header of the request as an X-Auth-Token element. matches the tested behavior — Pass the token in the URI of subsequent requests. applies a different mechanism.",
+            "whatItDoes": "Pass the token in the URI of subsequent requests. describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Place it in the header of the request as an X-Auth-Token element. matches the tested behavior — Pass the token in the URI of subsequent requests. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Pass the token in the URI of subsequ\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Perform a POST for the authentication token within 10 seconds of the subsequent request. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Perform a POST for the authentication to…\" without matching the scenario constraint",
+            "explanation": "Perform a POST for the authentication token within 10 seconds of the subsequent request. describes a mechanism that could sound plausible for rest api. Given rest api, Place it in the header of the request as an X-Auth-Token element. matches the tested behavior — Perform a POST for the authentication token within 10 seconds of the subsequent request. applies a different mechanism.",
+            "whatItDoes": "Perform a POST for the authentication token within 10 seconds of the subsequent request. describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Place it in the header of the request as an X-Auth-Token element. matches the tested behavior — Perform a POST for the authentication token within 10 seconds of the subsequent request. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Perform a POST for the authenticatio\" without matching rest api",
             "needsExplanationReview": true
           }
         ],
@@ -536,20 +596,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SSL does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SSL\" without matching the scenario constraint",
+            "explanation": "SSL describes a mechanism that could sound plausible for rest api. Given rest api, Base64 matches the tested behavior — SSL applies a different mechanism.",
+            "whatItDoes": "SSL describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Base64 matches the tested behavior — SSL applies a different mechanism.",
+            "misconceptionTested": "Applying \"SSL\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "AAA does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"AAA\" without matching the scenario constraint",
+            "explanation": "AAA describes a mechanism that could sound plausible for rest api. Given rest api, Base64 matches the tested behavior — AAA applies a different mechanism.",
+            "whatItDoes": "AAA describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Base64 matches the tested behavior — AAA applies a different mechanism.",
+            "misconceptionTested": "Applying \"AAA\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Basic does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Basic\" without matching the scenario constraint",
+            "explanation": "Basic describes a mechanism that could sound plausible for rest api. Given rest api, Base64 matches the tested behavior — Basic applies a different mechanism.",
+            "whatItDoes": "Basic describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Base64 matches the tested behavior — Basic applies a different mechanism.",
+            "misconceptionTested": "Applying \"Basic\" without matching rest api",
             "needsExplanationReview": true
           }
         ],
@@ -587,19 +653,25 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "OpenFlow does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"OpenFlow\" without matching the scenario constraint",
+            "explanation": "OpenFlow describes a mechanism that could sound plausible for rest api. Given rest api, RESTCONF matches the tested behavior — OpenFlow applies a different mechanism.",
+            "whatItDoes": "OpenFlow describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, RESTCONF matches the tested behavior — OpenFlow applies a different mechanism.",
+            "misconceptionTested": "Applying \"OpenFlow\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "SNMP does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"SNMP\" without matching the scenario constraint",
+            "explanation": "SNMP describes a mechanism that could sound plausible for rest api. Given rest api, RESTCONF matches the tested behavior — SNMP applies a different mechanism.",
+            "whatItDoes": "SNMP describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, RESTCONF matches the tested behavior — SNMP applies a different mechanism.",
+            "misconceptionTested": "Applying \"SNMP\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
             "explanation": "Automation questions hinge on the tool/API named in the stem — do not swap REST, Ansible, or controller roles.",
+            "whatItDoes": "REST-based API describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, RESTCONF matches the tested behavior — REST-based API applies a different mechanism.",
             "misconceptionTested": "Swapping automation tools or API styles",
             "needsExplanationReview": true
           }
@@ -638,20 +710,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "application/json does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"application/json\" without matching the scenario constraint",
+            "explanation": "application/json describes a mechanism that could sound plausible for rest api. Given rest api, application/yang-data+json matches the tested behavior — application/json applies a different mechanism.",
+            "whatItDoes": "application/json describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, application/yang-data+json matches the tested behavior — application/json applies a different mechanism.",
+            "misconceptionTested": "Applying \"application/json\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "data/json does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"data/json\" without matching the scenario constraint",
+            "explanation": "data/json describes a mechanism that could sound plausible for rest api. Given rest api, application/yang-data+json matches the tested behavior — data/json applies a different mechanism.",
+            "whatItDoes": "data/json describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, application/yang-data+json matches the tested behavior — data/json applies a different mechanism.",
+            "misconceptionTested": "Applying \"data/json\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "data/yaml does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"data/yaml\" without matching the scenario constraint",
+            "explanation": "data/yaml describes a mechanism that could sound plausible for rest api. Given rest api, application/yang-data+json matches the tested behavior — data/yaml applies a different mechanism.",
+            "whatItDoes": "data/yaml describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, application/yang-data+json matches the tested behavior — data/yaml applies a different mechanism.",
+            "misconceptionTested": "Applying \"data/yaml\" without matching rest api",
             "needsExplanationReview": true
           }
         ],
@@ -689,20 +767,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Format your response correctly. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Format your response correctly.\" without matching the scenario constraint",
+            "explanation": "Format your response correctly. describes a mechanism that could sound plausible for rest api. Given rest api, Restart the REST-based service. matches the tested behavior — Format your response correctly. applies a different mechanism.",
+            "whatItDoes": "Format your response correctly. describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Restart the REST-based service. matches the tested behavior — Format your response correctly. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Format your response correctly.\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Authenticate to the device first. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Authenticate to the device first.\" without matching the scenario constraint",
+            "explanation": "Authenticate to the device first. describes a mechanism that could sound plausible for rest api. Given rest api, Restart the REST-based service. matches the tested behavior — Authenticate to the device first. applies a different mechanism.",
+            "whatItDoes": "Authenticate to the device first. describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Restart the REST-based service. matches the tested behavior — Authenticate to the device first. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Authenticate to the device first.\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Nothing; this code means OK. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Nothing; this code means OK.\" without matching the scenario constraint",
+            "explanation": "Nothing; this code means OK. describes a mechanism that could sound plausible for rest api. Given rest api, Restart the REST-based service. matches the tested behavior — Nothing; this code means OK. applies a different mechanism.",
+            "whatItDoes": "Nothing; this code means OK. describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Restart the REST-based service. matches the tested behavior — Nothing; this code means OK. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Nothing; this code means OK.\" without matching rest api",
             "needsExplanationReview": true
           }
         ],
@@ -740,20 +824,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Northbound interface does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Northbound interface\" without matching the scenario constraint",
+            "explanation": "Northbound interface describes a mechanism that could sound plausible for rest api. Given rest api, Southbound interface matches the tested behavior — Northbound interface applies a different mechanism.",
+            "whatItDoes": "Northbound interface describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Southbound interface matches the tested behavior — Northbound interface applies a different mechanism.",
+            "misconceptionTested": "Applying \"Northbound interface\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Eastbound interface does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Eastbound interface\" without matching the scenario constraint",
+            "explanation": "Eastbound interface describes a mechanism that could sound plausible for rest api. Given rest api, Southbound interface matches the tested behavior — Eastbound interface applies a different mechanism.",
+            "whatItDoes": "Eastbound interface describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Southbound interface matches the tested behavior — Eastbound interface applies a different mechanism.",
+            "misconceptionTested": "Applying \"Eastbound interface\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Westbound interface does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Westbound interface\" without matching the scenario constraint",
+            "explanation": "Westbound interface describes a mechanism that could sound plausible for rest api. Given rest api, Southbound interface matches the tested behavior — Westbound interface applies a different mechanism.",
+            "whatItDoes": "Westbound interface describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Southbound interface matches the tested behavior — Westbound interface applies a different mechanism.",
+            "misconceptionTested": "Applying \"Westbound interface\" without matching rest api",
             "needsExplanationReview": true
           }
         ],
@@ -788,20 +878,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "HTTP body does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"HTTP body\" without matching the scenario constraint",
+            "explanation": "HTTP body describes a mechanism that could sound plausible for rest api. Given rest api, HTTP header matches the tested behavior — HTTP body applies a different mechanism.",
+            "whatItDoes": "HTTP body describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, HTTP header matches the tested behavior — HTTP body applies a different mechanism.",
+            "misconceptionTested": "Applying \"HTTP body\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Script variable does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Script variable\" without matching the scenario constraint",
+            "explanation": "Script variable describes a mechanism that could sound plausible for rest api. Given rest api, HTTP header matches the tested behavior — Script variable applies a different mechanism.",
+            "whatItDoes": "Script variable describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, HTTP header matches the tested behavior — Script variable applies a different mechanism.",
+            "misconceptionTested": "Applying \"Script variable\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Script data object does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Script data object\" without matching the scenario constraint",
+            "explanation": "Script data object describes a mechanism that could sound plausible for rest api. Given rest api, HTTP header matches the tested behavior — Script data object applies a different mechanism.",
+            "whatItDoes": "Script data object describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, HTTP header matches the tested behavior — Script data object applies a different mechanism.",
+            "misconceptionTested": "Applying \"Script data object\" without matching rest api",
             "needsExplanationReview": true
           }
         ],
@@ -838,20 +934,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "GET does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"GET\" without matching the scenario constraint",
+            "explanation": "GET describes a mechanism that could sound plausible for rest api. Given rest api, POST matches the tested behavior — GET applies a different mechanism.",
+            "whatItDoes": "GET describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, POST matches the tested behavior — GET applies a different mechanism.",
+            "misconceptionTested": "Applying \"GET\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "PATCH does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"PATCH\" without matching the scenario constraint",
+            "explanation": "PATCH describes a mechanism that could sound plausible for rest api. Given rest api, POST matches the tested behavior — PATCH applies a different mechanism.",
+            "whatItDoes": "PATCH describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, POST matches the tested behavior — PATCH applies a different mechanism.",
+            "misconceptionTested": "Applying \"PATCH\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "DELETE does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"DELETE\" without matching the scenario constraint",
+            "explanation": "DELETE describes a mechanism that could sound plausible for rest api. Given rest api, POST matches the tested behavior — DELETE applies a different mechanism.",
+            "whatItDoes": "DELETE describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, POST matches the tested behavior — DELETE applies a different mechanism.",
+            "misconceptionTested": "Applying \"DELETE\" without matching rest api",
             "needsExplanationReview": true
           }
         ],
@@ -886,20 +988,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Backslash does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Backslash\" without matching the scenario constraint",
+            "explanation": "Backslash describes a mechanism that could sound plausible for rest api. Given rest api, Question mark matches the tested behavior — Backslash applies a different mechanism.",
+            "whatItDoes": "Backslash describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Question mark matches the tested behavior — Backslash applies a different mechanism.",
+            "misconceptionTested": "Applying \"Backslash\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Forward slash does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Forward slash\" without matching the scenario constraint",
+            "explanation": "Forward slash describes a mechanism that could sound plausible for rest api. Given rest api, Question mark matches the tested behavior — Forward slash applies a different mechanism.",
+            "whatItDoes": "Forward slash describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Question mark matches the tested behavior — Forward slash applies a different mechanism.",
+            "misconceptionTested": "Applying \"Forward slash\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Ampersand does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Ampersand\" without matching the scenario constraint",
+            "explanation": "Ampersand describes a mechanism that could sound plausible for rest api. Given rest api, Question mark matches the tested behavior — Ampersand applies a different mechanism.",
+            "whatItDoes": "Ampersand describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, Question mark matches the tested behavior — Ampersand applies a different mechanism.",
+            "misconceptionTested": "Applying \"Ampersand\" without matching rest api",
             "needsExplanationReview": true
           }
         ],
@@ -934,20 +1042,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "GET does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"GET\" without matching the scenario constraint",
+            "explanation": "GET describes a mechanism that could sound plausible for rest api. Given rest api, POST matches the tested behavior — GET applies a different mechanism.",
+            "whatItDoes": "GET describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, POST matches the tested behavior — GET applies a different mechanism.",
+            "misconceptionTested": "Applying \"GET\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "UPDATE does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"UPDATE\" without matching the scenario constraint",
+            "explanation": "UPDATE describes a mechanism that could sound plausible for rest api. Given rest api, POST matches the tested behavior — UPDATE applies a different mechanism.",
+            "whatItDoes": "UPDATE describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, POST matches the tested behavior — UPDATE applies a different mechanism.",
+            "misconceptionTested": "Applying \"UPDATE\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "PUT does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"PUT\" without matching the scenario constraint",
+            "explanation": "PUT describes a mechanism that could sound plausible for rest api. Given rest api, POST matches the tested behavior — PUT applies a different mechanism.",
+            "whatItDoes": "PUT describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, POST matches the tested behavior — PUT applies a different mechanism.",
+            "misconceptionTested": "Applying \"PUT\" without matching rest api",
             "needsExplanationReview": true
           }
         ],
@@ -983,20 +1097,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The command is missing parameters. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The command is missing parameters.\" without matching the scenario constraint",
+            "explanation": "The command is missing parameters. describes a mechanism that could sound plausible for rest api. Given rest api, The command has timed out. matches the tested behavior — The command is missing parameters. applies a different mechanism.",
+            "whatItDoes": "The command is missing parameters. describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, The command has timed out. matches the tested behavior — The command is missing parameters. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The command is missing parameters.\" without matching rest api",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
             "explanation": "Automation questions hinge on the tool/API named in the stem — do not swap REST, Ansible, or controller roles.",
+            "whatItDoes": "The command is restricted. describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, The command has timed out. matches the tested behavior — The command is restricted. applies a different mechanism.",
             "misconceptionTested": "Swapping automation tools or API styles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The service is down. does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"The service is down.\" without matching the scenario constraint",
+            "explanation": "The service is down. describes a mechanism that could sound plausible for rest api. Given rest api, The command has timed out. matches the tested behavior — The service is down. applies a different mechanism.",
+            "whatItDoes": "The service is down. describes a mechanism that could sound plausible for rest api.",
+            "whyWrongHere": "Given rest api, The command has timed out. matches the tested behavior — The service is down. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The service is down.\" without matching rest api",
             "needsExplanationReview": true
           }
         ],

@@ -29,20 +29,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "A reverse lookup is when the request needs to be reversed to another DNS server. does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "A reverse lookup is when the request needs to be reversed to another DNS server. describes a mechanism that could sound plausible for statement. Given statement, A reverse lookup is the resolution of an IP address to FQDN. matches the tested behavior — A reverse lookup is when the request needs to be reversed to another DNS server. applies a different mechanism.",
+            "whatItDoes": "A reverse lookup is when the request needs to be reversed to another DNS server. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, A reverse lookup is the resolution of an IP address to FQDN. matches the tested behavior — A reverse lookup is when the request needs to be reversed to another DNS server. applies a different mechanism.",
+            "misconceptionTested": "Applying \"A reverse lookup is when the request\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "A reverse lookup is when the DNS queried can answer the request without asking another DNS server. does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "A reverse lookup is when the DNS queried can answer the request without asking another DNS server. describes a mechanism that could sound plausible for statement. Given statement, A reverse lookup is the resolution of an IP address to FQDN. matches the tested behavior — A reverse lookup is when the DNS queried can answer the request without asking another DNS server. applies a different mechanism.",
+            "whatItDoes": "A reverse lookup is when the DNS queried can answer the request without asking another DNS server. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, A reverse lookup is the resolution of an IP address to FQDN. matches the tested behavior — A reverse lookup is when the DNS queried can answer the request without asking another DNS server. applies a different mechanism.",
+            "misconceptionTested": "Applying \"A reverse lookup is when the DNS que\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "A reverse lookup is the resolution of an FQDN to an IP address. does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "A reverse lookup is the resolution of an FQDN to an IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given statement, A reverse lookup is the resolution of an IP address to FQDN. matches the tested behavior — A reverse lookup is the resolution of an FQDN to an IP address. applies a different mechanism.",
+            "whatItDoes": "A reverse lookup is the resolution of an FQDN to an IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given statement, A reverse lookup is the resolution of an IP address to FQDN. matches the tested behavior — A reverse lookup is the resolution of an FQDN to an IP address. applies a different mechanism.",
+            "misconceptionTested": "Applying \"A reverse lookup is the resolution o\" without matching dns",
             "needsExplanationReview": true
           }
         ],
@@ -77,20 +83,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The A record does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "The A record describes a mechanism that could sound plausible for dns. Given dns, The PTR record matches the tested behavior — The A record applies a different mechanism.",
+            "whatItDoes": "The A record describes a mechanism that could sound plausible for dns.",
+            "whyWrongHere": "Given dns, The PTR record matches the tested behavior — The A record applies a different mechanism.",
+            "misconceptionTested": "Applying \"The A record\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "The CName record does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "The CName record describes a mechanism that could sound plausible for dns. Given dns, The PTR record matches the tested behavior — The CName record applies a different mechanism.",
+            "whatItDoes": "The CName record describes a mechanism that could sound plausible for dns.",
+            "whyWrongHere": "Given dns, The PTR record matches the tested behavior — The CName record applies a different mechanism.",
+            "misconceptionTested": "Applying \"The CName record\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The AAAA record does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "The AAAA record describes a mechanism that could sound plausible for dns. Given dns, The PTR record matches the tested behavior — The AAAA record applies a different mechanism.",
+            "whatItDoes": "The AAAA record describes a mechanism that could sound plausible for dns.",
+            "whyWrongHere": "Given dns, The PTR record matches the tested behavior — The AAAA record applies a different mechanism.",
+            "misconceptionTested": "Applying \"The AAAA record\" without matching dns",
             "needsExplanationReview": true
           }
         ],
@@ -127,20 +139,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The DNS zone does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "The DNS zone describes a mechanism that could sound plausible for appended. Given appended, The DNS domain name matches the tested behavior — The DNS zone applies a different mechanism.",
+            "whatItDoes": "The DNS zone describes a mechanism that could sound plausible for appended.",
+            "whyWrongHere": "Given appended, The DNS domain name matches the tested behavior — The DNS zone applies a different mechanism.",
+            "misconceptionTested": "Applying \"The DNS zone\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The host header does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "The host header describes a mechanism that could sound plausible for appended. Given appended, The DNS domain name matches the tested behavior — The host header applies a different mechanism.",
+            "whatItDoes": "The host header describes a mechanism that could sound plausible for appended.",
+            "whyWrongHere": "Given appended, The DNS domain name matches the tested behavior — The host header applies a different mechanism.",
+            "misconceptionTested": "Applying \"The host header\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The hostname PTR record does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "The hostname PTR record describes a mechanism that could sound plausible for appended. Given appended, The DNS domain name matches the tested behavior — The hostname PTR record applies a different mechanism.",
+            "whatItDoes": "The hostname PTR record describes a mechanism that could sound plausible for appended.",
+            "whyWrongHere": "Given appended, The DNS domain name matches the tested behavior — The hostname PTR record applies a different mechanism.",
+            "misconceptionTested": "Applying \"The hostname PTR record\" without matching dns",
             "needsExplanationReview": true
           }
         ],
@@ -176,20 +194,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "DNS does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "DNS describes a mechanism that could sound plausible for resolution. Given resolution, Static hostname entries matches the tested behavior — DNS applies a different mechanism.",
+            "whatItDoes": "DNS describes a mechanism that could sound plausible for resolution.",
+            "whyWrongHere": "Given resolution, Static hostname entries matches the tested behavior — DNS applies a different mechanism.",
+            "misconceptionTested": "Applying \"DNS\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "PTR records does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "PTR records describes a mechanism that could sound plausible for resolution. Given resolution, Static hostname entries matches the tested behavior — PTR records applies a different mechanism.",
+            "whatItDoes": "PTR records describes a mechanism that could sound plausible for resolution.",
+            "whyWrongHere": "Given resolution, Static hostname entries matches the tested behavior — PTR records applies a different mechanism.",
+            "misconceptionTested": "Applying \"PTR records\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "LLMNR does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "LLMNR describes a mechanism that could sound plausible for resolution. Given resolution, Static hostname entries matches the tested behavior — LLMNR applies a different mechanism.",
+            "whatItDoes": "LLMNR describes a mechanism that could sound plausible for resolution.",
+            "whyWrongHere": "Given resolution, Static hostname entries matches the tested behavior — LLMNR applies a different mechanism.",
+            "misconceptionTested": "Applying \"LLMNR\" without matching dns",
             "needsExplanationReview": true
           }
         ],
@@ -225,20 +249,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The CName record does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "The CName record describes a mechanism that could sound plausible for hostname. Given hostname, The A record matches the tested behavior — The CName record applies a different mechanism.",
+            "whatItDoes": "The CName record describes a mechanism that could sound plausible for hostname.",
+            "whyWrongHere": "Given hostname, The A record matches the tested behavior — The CName record applies a different mechanism.",
+            "misconceptionTested": "Applying \"The CName record\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The PTR record does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "The PTR record describes a mechanism that could sound plausible for hostname. Given hostname, The A record matches the tested behavior — The PTR record applies a different mechanism.",
+            "whatItDoes": "The PTR record describes a mechanism that could sound plausible for hostname.",
+            "whyWrongHere": "Given hostname, The A record matches the tested behavior — The PTR record applies a different mechanism.",
+            "misconceptionTested": "Applying \"The PTR record\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The AAAA record does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "The AAAA record describes a mechanism that could sound plausible for hostname. Given hostname, The A record matches the tested behavior — The AAAA record applies a different mechanism.",
+            "whatItDoes": "The AAAA record describes a mechanism that could sound plausible for hostname.",
+            "whyWrongHere": "Given hostname, The A record matches the tested behavior — The AAAA record applies a different mechanism.",
+            "misconceptionTested": "Applying \"The AAAA record\" without matching dns",
             "needsExplanationReview": true
           }
         ],
@@ -274,20 +304,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "An A record does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "An A record describes a mechanism that could sound plausible for available. Given available, TTL matches the tested behavior — An A record applies a different mechanism.",
+            "whatItDoes": "An A record describes a mechanism that could sound plausible for available.",
+            "whyWrongHere": "Given available, TTL matches the tested behavior — An A record applies a different mechanism.",
+            "misconceptionTested": "Applying \"An A record\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "SOA does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "SOA describes a mechanism that could sound plausible for available. Given available, TTL matches the tested behavior — SOA applies a different mechanism.",
+            "whatItDoes": "SOA describes a mechanism that could sound plausible for available.",
+            "whyWrongHere": "Given available, TTL matches the tested behavior — SOA applies a different mechanism.",
+            "misconceptionTested": "Applying \"SOA\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Default of 5 minutes does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "Default of 5 minutes describes a mechanism that could sound plausible for available. Given available, TTL matches the tested behavior — Default of 5 minutes applies a different mechanism.",
+            "whatItDoes": "Default of 5 minutes describes a mechanism that could sound plausible for available.",
+            "whyWrongHere": "Given available, TTL matches the tested behavior — Default of 5 minutes applies a different mechanism.",
+            "misconceptionTested": "Applying \"Default of 5 minutes\" without matching dns",
             "needsExplanationReview": true
           }
         ],
@@ -326,19 +362,25 @@
           {
             "choiceIndex": 1,
             "explanation": "DHCP DORA order matters — identify which message the stem describes before picking a step.",
+            "whatItDoes": "Discover describes a mechanism that could sound plausible for dns.",
+            "whyWrongHere": "Given dns, Acknowledgment matches the tested behavior — Discover applies a different mechanism.",
             "misconceptionTested": "Misordering or mislabeling DHCP messages",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Offer is not the behavior described here. .",
-            "misconceptionTested": "Misordering or mislabeling DHCP messages",
+            "explanation": "Offer describes a mechanism that could sound plausible for dns. Given dns, Acknowledgment matches the tested behavior — Offer applies a different mechanism.",
+            "whatItDoes": "Offer describes a mechanism that could sound plausible for dns.",
+            "whyWrongHere": "Given dns, Acknowledgment matches the tested behavior — Offer applies a different mechanism.",
+            "misconceptionTested": "Applying \"Offer\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Request is not the behavior described here. .",
-            "misconceptionTested": "Misordering or mislabeling DHCP messages",
+            "explanation": "Request describes a mechanism that could sound plausible for dns. Given dns, Acknowledgment matches the tested behavior — Request applies a different mechanism.",
+            "whatItDoes": "Request describes a mechanism that could sound plausible for dns.",
+            "whyWrongHere": "Given dns, Acknowledgment matches the tested behavior — Request applies a different mechanism.",
+            "misconceptionTested": "Applying \"Request\" without matching dns",
             "needsExplanationReview": true
           }
         ],
@@ -373,20 +415,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Layer 3 multicast does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "Layer 3 multicast describes a mechanism that could sound plausible for communication. Given communication, Layer 3 broadcast matches the tested behavior — Layer 3 multicast applies a different mechanism.",
+            "whatItDoes": "Layer 3 multicast describes a mechanism that could sound plausible for communication.",
+            "whyWrongHere": "Given communication, Layer 3 broadcast matches the tested behavior — Layer 3 multicast applies a different mechanism.",
+            "misconceptionTested": "Applying \"Layer 3 multicast\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Layer 3 802.1Q does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "Layer 3 802.1Q describes a mechanism that could sound plausible for communication. Given communication, Layer 3 broadcast matches the tested behavior — Layer 3 802.1Q applies a different mechanism.",
+            "whatItDoes": "Layer 3 802.1Q describes a mechanism that could sound plausible for communication.",
+            "whyWrongHere": "Given communication, Layer 3 broadcast matches the tested behavior — Layer 3 802.1Q applies a different mechanism.",
+            "misconceptionTested": "Applying \"Layer 3 802.1Q\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Layer 3 unicast does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "Layer 3 unicast describes a mechanism that could sound plausible for communication. Given communication, Layer 3 broadcast matches the tested behavior — Layer 3 unicast applies a different mechanism.",
+            "whatItDoes": "Layer 3 unicast describes a mechanism that could sound plausible for communication.",
+            "whyWrongHere": "Given communication, Layer 3 broadcast matches the tested behavior — Layer 3 unicast applies a different mechanism.",
+            "misconceptionTested": "Applying \"Layer 3 unicast\" without matching dns",
             "needsExplanationReview": true
           }
         ],
@@ -422,20 +470,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "One-quarter of the lease does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "One-quarter of the lease describes a mechanism that could sound plausible for dns. Given dns, One-half of the lease matches the tested behavior — One-quarter of the lease applies a different mechanism.",
+            "whatItDoes": "One-quarter of the lease describes a mechanism that could sound plausible for dns.",
+            "whyWrongHere": "Given dns, One-half of the lease matches the tested behavior — One-quarter of the lease applies a different mechanism.",
+            "misconceptionTested": "Applying \"One-quarter of the lease\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Seven-eighths of the lease does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "Seven-eighths of the lease describes a mechanism that could sound plausible for dns. Given dns, One-half of the lease matches the tested behavior — Seven-eighths of the lease applies a different mechanism.",
+            "whatItDoes": "Seven-eighths of the lease describes a mechanism that could sound plausible for dns.",
+            "whyWrongHere": "Given dns, One-half of the lease matches the tested behavior — Seven-eighths of the lease applies a different mechanism.",
+            "misconceptionTested": "Applying \"Seven-eighths of the lease\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "End of the lease does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "End of the lease describes a mechanism that could sound plausible for dns. Given dns, One-half of the lease matches the tested behavior — End of the lease applies a different mechanism.",
+            "whatItDoes": "End of the lease describes a mechanism that could sound plausible for dns.",
+            "whyWrongHere": "Given dns, One-half of the lease matches the tested behavior — End of the lease applies a different mechanism.",
+            "misconceptionTested": "Applying \"End of the lease\" without matching dns",
             "needsExplanationReview": true
           }
         ],
@@ -471,20 +525,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The DHCP server is responsible for maintaining the life cycle of an IP address. does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "The DHCP server is responsible for maintaining the life cycle of an IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — The DHCP server is responsible for maintaining the life cycle of an IP address. applies a different mechanism.",
+            "whatItDoes": "The DHCP server is responsible for maintaining the life cycle of an IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — The DHCP server is responsible for maintaining the life cycle of an IP address. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The DHCP server is responsible for m\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "DHCP uses multicasting between the client and server. does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "DHCP uses multicasting between the client and server. describes a mechanism that could sound plausible for statement. Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — DHCP uses multicasting between the client and server. applies a different mechanism.",
+            "whatItDoes": "DHCP uses multicasting between the client and server. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — DHCP uses multicasting between the client and server. applies a different mechanism.",
+            "misconceptionTested": "Applying \"DHCP uses multicasting between the c\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The DHCP lease is negotiated between client and server. does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "The DHCP lease is negotiated between client and server. describes a mechanism that could sound plausible for statement. Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — The DHCP lease is negotiated between client and server. applies a different mechanism.",
+            "whatItDoes": "The DHCP lease is negotiated between client and server. describes a mechanism that could sound plausible for statement.",
+            "whyWrongHere": "Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — The DHCP lease is negotiated between client and server. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The DHCP lease is negotiated between\" without matching dns",
             "needsExplanationReview": true
           }
         ],
@@ -520,20 +580,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "ICMP does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "ICMP describes a mechanism that could sound plausible for transport. Given transport, UDP matches the tested behavior — ICMP applies a different mechanism.",
+            "whatItDoes": "ICMP describes a mechanism that could sound plausible for transport.",
+            "whyWrongHere": "Given transport, UDP matches the tested behavior — ICMP applies a different mechanism.",
+            "misconceptionTested": "Applying \"ICMP\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "TCP does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "TCP describes a mechanism that could sound plausible for transport. Given transport, UDP matches the tested behavior — TCP applies a different mechanism.",
+            "whatItDoes": "TCP describes a mechanism that could sound plausible for transport.",
+            "whyWrongHere": "Given transport, UDP matches the tested behavior — TCP applies a different mechanism.",
+            "misconceptionTested": "Applying \"TCP\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "RARP does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "RARP describes a mechanism that could sound plausible for transport. Given transport, UDP matches the tested behavior — RARP applies a different mechanism.",
+            "whatItDoes": "RARP describes a mechanism that could sound plausible for transport.",
+            "whyWrongHere": "Given transport, UDP matches the tested behavior — RARP applies a different mechanism.",
+            "misconceptionTested": "Applying \"RARP\" without matching dns",
             "needsExplanationReview": true
           }
         ],
@@ -569,19 +635,25 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The IP address is still served to the client. does not match the mechanism asked here.",
+            "explanation": "The IP address is still served to the client. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. This is a Layer 2 process (a router or switch detects a duplicate IP address for a DHCP process). The IP address is removed from the DHCP pool. uses Ethernet addresses — not IP headers.",
+            "whatItDoes": "The IP address is still served to the client. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "This is a Layer 2 process (a router or switch detects a duplicate IP address for a DHCP process). The IP address is removed from the DHCP pool. uses Ethernet addresses — not IP headers.",
             "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "The DHCP server will halt. does not match the mechanism asked here.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "The DHCP server will halt. describes a mechanism that could sound plausible for a router or switch detects a duplicate IP address for a DHCP process. Given a router or switch detects a duplicate IP address for a DHCP process, The IP address is removed from the DHCP pool. matches the tested behavior — The DHCP server will halt. applies a different mechanism.",
+            "whatItDoes": "The DHCP server will halt. describes a mechanism that could sound plausible for a router or switch detects a duplicate IP address for a DHCP process.",
+            "whyWrongHere": "Given a router or switch detects a duplicate IP address for a DHCP process, The IP address is removed from the DHCP pool. matches the tested behavior — The DHCP server will halt. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The DHCP server will halt.\" without matching dns",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "The DHCP will serve the IP address in the future. does not match the mechanism asked here.",
+            "explanation": "The DHCP will serve the IP address in the future. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. This is a Layer 2 process (a router or switch detects a duplicate IP address for a DHCP process). The IP address is removed from the DHCP pool. uses Ethernet addresses — not IP headers.",
+            "whatItDoes": "The DHCP will serve the IP address in the future. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "This is a Layer 2 process (a router or switch detects a duplicate IP address for a DHCP process). The IP address is removed from the DHCP pool. uses Ethernet addresses — not IP headers. Picking The DHCP will serve the IP address in the future. misses the exact behavior this stem tests.",
             "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
             "needsExplanationReview": true
           }

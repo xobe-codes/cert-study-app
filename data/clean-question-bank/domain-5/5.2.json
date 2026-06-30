@@ -30,20 +30,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Anti-malware software does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Anti-malware software\" without matching the scenario constraint",
+            "explanation": "Anti-malware software describes a mechanism that could sound plausible for security program. Given security program, Training matches the tested behavior — Anti-malware software applies a different mechanism.",
+            "whatItDoes": "Anti-malware software describes a mechanism that could sound plausible for security program.",
+            "whyWrongHere": "Given security program, Training matches the tested behavior — Anti-malware software applies a different mechanism.",
+            "misconceptionTested": "Applying \"Anti-malware software\" without matching security program",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Antivirus software does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Antivirus software\" without matching the scenario constraint",
+            "explanation": "Antivirus software describes a mechanism that could sound plausible for security program. Given security program, Training matches the tested behavior — Antivirus software applies a different mechanism.",
+            "whatItDoes": "Antivirus software describes a mechanism that could sound plausible for security program.",
+            "whyWrongHere": "Given security program, Training matches the tested behavior — Antivirus software applies a different mechanism.",
+            "misconceptionTested": "Applying \"Antivirus software\" without matching security program",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Certificates does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Certificates\" without matching the scenario constraint",
+            "explanation": "Certificates describes a mechanism that could sound plausible for security program. Given security program, Training matches the tested behavior — Certificates applies a different mechanism.",
+            "whatItDoes": "Certificates describes a mechanism that could sound plausible for security program.",
+            "whyWrongHere": "Given security program, Training matches the tested behavior — Certificates applies a different mechanism.",
+            "misconceptionTested": "Applying \"Certificates\" without matching security program",
             "needsExplanationReview": true
           }
         ],
@@ -79,20 +85,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Spam does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Spam\" without matching the scenario constraint",
+            "explanation": "Spam describes a mechanism that could sound plausible for security program. Given security program, Phishing matches the tested behavior — Spam applies a different mechanism.",
+            "whatItDoes": "Spam describes a mechanism that could sound plausible for security program.",
+            "whyWrongHere": "Given security program, Phishing matches the tested behavior — Spam applies a different mechanism.",
+            "misconceptionTested": "Applying \"Spam\" without matching security program",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Password cracking does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Password cracking\" without matching the scenario constraint",
+            "explanation": "Password cracking describes a mechanism that could sound plausible for security program. Given security program, Phishing matches the tested behavior — Password cracking applies a different mechanism.",
+            "whatItDoes": "Password cracking describes a mechanism that could sound plausible for security program.",
+            "whyWrongHere": "Given security program, Phishing matches the tested behavior — Password cracking applies a different mechanism.",
+            "misconceptionTested": "Applying \"Password cracking\" without matching security program",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Worm does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Worm\" without matching the scenario constraint",
+            "explanation": "Worm describes a mechanism that could sound plausible for security program. Given security program, Phishing matches the tested behavior — Worm applies a different mechanism.",
+            "whatItDoes": "Worm describes a mechanism that could sound plausible for security program.",
+            "whyWrongHere": "Given security program, Phishing matches the tested behavior — Worm applies a different mechanism.",
+            "misconceptionTested": "Applying \"Worm\" without matching security program",
             "needsExplanationReview": true
           }
         ],
@@ -126,20 +138,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Security does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Security\" without matching the scenario constraint",
+            "explanation": "Security describes a mechanism that could sound plausible for security program. Given security program, Privacy matches the tested behavior — Security applies a different mechanism.",
+            "whatItDoes": "Security describes a mechanism that could sound plausible for security program.",
+            "whyWrongHere": "Given security program, Privacy matches the tested behavior — Security applies a different mechanism.",
+            "misconceptionTested": "Applying \"Security\" without matching security program",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Degaussing does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Degaussing\" without matching the scenario constraint",
+            "explanation": "Degaussing describes a mechanism that could sound plausible for security program. Given security program, Privacy matches the tested behavior — Degaussing applies a different mechanism.",
+            "whatItDoes": "Degaussing describes a mechanism that could sound plausible for security program.",
+            "whyWrongHere": "Given security program, Privacy matches the tested behavior — Degaussing applies a different mechanism.",
+            "misconceptionTested": "Applying \"Degaussing\" without matching security program",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Tempered does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Tempered\" without matching the scenario constraint",
+            "explanation": "Tempered describes a mechanism that could sound plausible for security program. Given security program, Privacy matches the tested behavior — Tempered applies a different mechanism.",
+            "whatItDoes": "Tempered describes a mechanism that could sound plausible for security program.",
+            "whyWrongHere": "Given security program, Privacy matches the tested behavior — Tempered applies a different mechanism.",
+            "misconceptionTested": "Applying \"Tempered\" without matching security program",
             "needsExplanationReview": true
           }
         ],
@@ -176,20 +194,26 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Phishing does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Phishing\" without matching the scenario constraint",
+            "explanation": "Phishing describes a mechanism that could sound plausible for security program. Given security program, Shoulder surfing matches the tested behavior — Phishing applies a different mechanism.",
+            "whatItDoes": "Phishing describes a mechanism that could sound plausible for security program.",
+            "whyWrongHere": "Given security program, Shoulder surfing matches the tested behavior — Phishing applies a different mechanism.",
+            "misconceptionTested": "Applying \"Phishing\" without matching security program",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Tailgating does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Tailgating\" without matching the scenario constraint",
+            "explanation": "Tailgating describes a mechanism that could sound plausible for security program. Given security program, Shoulder surfing matches the tested behavior — Tailgating applies a different mechanism.",
+            "whatItDoes": "Tailgating describes a mechanism that could sound plausible for security program.",
+            "whyWrongHere": "Given security program, Shoulder surfing matches the tested behavior — Tailgating applies a different mechanism.",
+            "misconceptionTested": "Applying \"Tailgating\" without matching security program",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Whaling does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Whaling\" without matching the scenario constraint",
+            "explanation": "Whaling describes a mechanism that could sound plausible for security program. Given security program, Shoulder surfing matches the tested behavior — Whaling applies a different mechanism.",
+            "whatItDoes": "Whaling describes a mechanism that could sound plausible for security program.",
+            "whyWrongHere": "Given security program, Shoulder surfing matches the tested behavior — Whaling applies a different mechanism.",
+            "misconceptionTested": "Applying \"Whaling\" without matching security program",
             "needsExplanationReview": true
           }
         ],
@@ -226,20 +250,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Biometric authentication does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Biometric authentication\" without matching the scenario constraint",
+            "explanation": "Biometric authentication describes a mechanism that could sound plausible for security program. Given security program, Least privilege matches the tested behavior — Biometric authentication applies a different mechanism.",
+            "whatItDoes": "Biometric authentication describes a mechanism that could sound plausible for security program.",
+            "whyWrongHere": "Given security program, Least privilege matches the tested behavior — Biometric authentication applies a different mechanism.",
+            "misconceptionTested": "Applying \"Biometric authentication\" without matching security program",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Hardware tokens does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Hardware tokens\" without matching the scenario constraint",
+            "explanation": "Hardware tokens describes a mechanism that could sound plausible for security program. Given security program, Least privilege matches the tested behavior — Hardware tokens applies a different mechanism.",
+            "whatItDoes": "Hardware tokens describes a mechanism that could sound plausible for security program.",
+            "whyWrongHere": "Given security program, Least privilege matches the tested behavior — Hardware tokens applies a different mechanism.",
+            "misconceptionTested": "Applying \"Hardware tokens\" without matching security program",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Active Directory does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Active Directory\" without matching the scenario constraint",
+            "explanation": "Active Directory describes a mechanism that could sound plausible for security program. Given security program, Least privilege matches the tested behavior — Active Directory applies a different mechanism.",
+            "whatItDoes": "Active Directory describes a mechanism that could sound plausible for security program.",
+            "whyWrongHere": "Given security program, Least privilege matches the tested behavior — Active Directory applies a different mechanism.",
+            "misconceptionTested": "Applying \"Active Directory\" without matching security program",
             "needsExplanationReview": true
           }
         ],
@@ -274,20 +304,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Multifactor authentication does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Multifactor authentication\" without matching the scenario constraint",
+            "explanation": "Multifactor authentication describes a mechanism that could sound plausible for security program. Given security program, Anti-malware software matches the tested behavior — Multifactor authentication applies a different mechanism.",
+            "whatItDoes": "Multifactor authentication describes a mechanism that could sound plausible for security program.",
+            "whyWrongHere": "Given security program, Anti-malware software matches the tested behavior — Multifactor authentication applies a different mechanism.",
+            "misconceptionTested": "Applying \"Multifactor authentication\" without matching security program",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "Software firewalls does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Software firewalls\" without matching the scenario constraint",
+            "explanation": "Software firewalls describes a mechanism that could sound plausible for security program. Given security program, Anti-malware software matches the tested behavior — Software firewalls applies a different mechanism.",
+            "whatItDoes": "Software firewalls describes a mechanism that could sound plausible for security program.",
+            "whyWrongHere": "Given security program, Anti-malware software matches the tested behavior — Software firewalls applies a different mechanism.",
+            "misconceptionTested": "Applying \"Software firewalls\" without matching security program",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Antivirus software does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Antivirus software\" without matching the scenario constraint",
+            "explanation": "Antivirus software describes a mechanism that could sound plausible for security program. Given security program, Anti-malware software matches the tested behavior — Antivirus software applies a different mechanism.",
+            "whatItDoes": "Antivirus software describes a mechanism that could sound plausible for security program.",
+            "whyWrongHere": "Given security program, Anti-malware software matches the tested behavior — Antivirus software applies a different mechanism.",
+            "misconceptionTested": "Applying \"Antivirus software\" without matching security program",
             "needsExplanationReview": true
           }
         ],
@@ -326,20 +362,26 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "User authentication does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"User authentication\" without matching the scenario constraint",
+            "explanation": "User authentication describes a mechanism that could sound plausible for security program. Given security program, Mantraps matches the tested behavior — User authentication applies a different mechanism.",
+            "whatItDoes": "User authentication describes a mechanism that could sound plausible for security program.",
+            "whyWrongHere": "Given security program, Mantraps matches the tested behavior — User authentication applies a different mechanism.",
+            "misconceptionTested": "Applying \"User authentication\" without matching security program",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Strong passwords does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Strong passwords\" without matching the scenario constraint",
+            "explanation": "Strong passwords describes a mechanism that could sound plausible for security program. Given security program, Mantraps matches the tested behavior — Strong passwords applies a different mechanism.",
+            "whatItDoes": "Strong passwords describes a mechanism that could sound plausible for security program.",
+            "whyWrongHere": "Given security program, Mantraps matches the tested behavior — Strong passwords applies a different mechanism.",
+            "misconceptionTested": "Applying \"Strong passwords\" without matching security program",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "Change SSIDs does not match the mechanism asked here.",
-            "misconceptionTested": "Selecting \"Change SSIDs\" without matching the scenario constraint",
+            "explanation": "Change SSIDs describes a mechanism that could sound plausible for security program. Given security program, Mantraps matches the tested behavior — Change SSIDs applies a different mechanism.",
+            "whatItDoes": "Change SSIDs describes a mechanism that could sound plausible for security program.",
+            "whyWrongHere": "Given security program, Mantraps matches the tested behavior — Change SSIDs applies a different mechanism.",
+            "misconceptionTested": "Applying \"Change SSIDs\" without matching security program",
             "needsExplanationReview": true
           }
         ],

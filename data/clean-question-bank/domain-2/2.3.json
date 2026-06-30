@@ -30,18 +30,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "CDP misses what this question tests. LLDP is IEEE 802.",
-            "misconceptionTested": "Selecting \"CDP\" without matching the scenario constraint"
+            "explanation": "CDP describes a mechanism that could sound plausible for LLDP is IEEE 802. Given LLDP is IEEE 802, LLDP matches the tested behavior — CDP applies a different mechanism.",
+            "whatItDoes": "CDP describes a mechanism that could sound plausible for LLDP is IEEE 802.",
+            "whyWrongHere": "Given LLDP is IEEE 802, LLDP matches the tested behavior — CDP applies a different mechanism.",
+            "misconceptionTested": "Applying \"CDP\" without matching cdp"
           },
           {
             "choiceIndex": 2,
             "explanation": "802.1b uses the wrong value. The tested fact calls for 1 — not 802.",
-            "misconceptionTested": "Selecting \"802.1b\" without matching the scenario constraint"
+            "whatItDoes": "802.1b describes a mechanism that could sound plausible for LLDP is IEEE 802.",
+            "whyWrongHere": "Given LLDP is IEEE 802, LLDP matches the tested behavior — 802.1b applies a different mechanism.",
+            "misconceptionTested": "Memorizing 802 instead of the correct 1"
           },
           {
             "choiceIndex": 3,
             "explanation": "802.1a uses the wrong value. The tested fact calls for 1 — not 802.",
-            "misconceptionTested": "Selecting \"802.1a\" without matching the scenario constraint"
+            "whatItDoes": "802.1a describes a mechanism that could sound plausible for LLDP is IEEE 802.",
+            "whyWrongHere": "Given LLDP is IEEE 802, LLDP matches the tested behavior — 802.1a applies a different mechanism.",
+            "misconceptionTested": "Memorizing 802 instead of the correct 1"
           }
         ],
         "examTip": "DHCP is DORA — match the message name to the step the stem describes."
@@ -75,18 +81,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#cdp disable misses what this question tests. no cdp run disables CDP globally.",
-            "misconceptionTested": "Selecting \"Switch(config)#cdp disable\" without matching the scenario constraint"
+            "explanation": "Switch(config)#cdp disable describes a mechanism that could sound plausible for no cdp run disables CDP globally. Given no cdp run disables CDP globally, Switch(config-if)#no cdp run matches the tested behavior — Switch(config)#cdp disable applies a different mechanism.",
+            "whatItDoes": "Switch(config)#cdp disable describes a mechanism that could sound plausible for no cdp run disables CDP globally.",
+            "whyWrongHere": "Given no cdp run disables CDP globally, Switch(config-if)#no cdp run matches the tested behavior — Switch(config)#cdp disable applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#cdp disable\" without matching cdp"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config-if)#no cdp enable misses what this question tests. no cdp run disables CDP globally.",
-            "misconceptionTested": "Selecting \"Switch(config-if)#no cdp enable\" without matching the scenario constraint"
+            "explanation": "Switch(config-if)#no cdp enable describes a mechanism that could sound plausible for no cdp run disables CDP globally. Given no cdp run disables CDP globally, Switch(config-if)#no cdp run matches the tested behavior — Switch(config-if)#no cdp enable applies a different mechanism.",
+            "whatItDoes": "Switch(config-if)#no cdp enable describes a mechanism that could sound plausible for no cdp run disables CDP globally.",
+            "whyWrongHere": "Given no cdp run disables CDP globally, Switch(config-if)#no cdp run matches the tested behavior — Switch(config-if)#no cdp enable applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-if)#no cdp enable\" without matching cdp"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config)#no cdp misses what this question tests. no cdp run disables CDP globally.",
-            "misconceptionTested": "Selecting \"Switch(config)#no cdp\" without matching the scenario constraint"
+            "explanation": "Switch(config)#no cdp describes a mechanism that could sound plausible for no cdp run disables CDP globally. Given no cdp run disables CDP globally, Switch(config-if)#no cdp run matches the tested behavior — Switch(config)#no cdp applies a different mechanism.",
+            "whatItDoes": "Switch(config)#no cdp describes a mechanism that could sound plausible for no cdp run disables CDP globally.",
+            "whyWrongHere": "Given no cdp run disables CDP globally, Switch(config-if)#no cdp run matches the tested behavior — Switch(config)#no cdp applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#no cdp\" without matching cdp"
           }
         ],
         "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: no cdp run disables CDP globally."
@@ -121,17 +133,23 @@
           {
             "choiceIndex": 0,
             "explanation": "Every 30 seconds uses the wrong value. The tested fact calls for 60 — not 30.",
-            "misconceptionTested": "Selecting \"Every 30 seconds\" without matching the scenario constraint"
+            "whatItDoes": "Every 30 seconds describes a mechanism that could sound plausible for CDP advertises every 60 seconds by default.",
+            "whyWrongHere": "Given CDP advertises every 60 seconds by default, Every 60 seconds matches the tested behavior — Every 30 seconds applies a different mechanism.",
+            "misconceptionTested": "Memorizing 30 instead of the correct 60"
           },
           {
             "choiceIndex": 2,
             "explanation": "Every 90 seconds uses the wrong value. The tested fact calls for 60 — not 90.",
-            "misconceptionTested": "Selecting \"Every 90 seconds\" without matching the scenario constraint"
+            "whatItDoes": "Every 90 seconds describes a mechanism that could sound plausible for CDP advertises every 60 seconds by default.",
+            "whyWrongHere": "Given CDP advertises every 60 seconds by default, Every 60 seconds matches the tested behavior — Every 90 seconds applies a different mechanism.",
+            "misconceptionTested": "Memorizing 90 instead of the correct 60"
           },
           {
             "choiceIndex": 3,
             "explanation": "Every 180 seconds uses the wrong value. The tested fact calls for 60 — not 180.",
-            "misconceptionTested": "Selecting \"Every 180 seconds\" without matching the scenario constraint"
+            "whatItDoes": "Every 180 seconds describes a mechanism that could sound plausible for CDP advertises every 60 seconds by default.",
+            "whyWrongHere": "Given CDP advertises every 60 seconds by default, Every 60 seconds matches the tested behavior — Every 180 seconds applies a different mechanism.",
+            "misconceptionTested": "Memorizing 180 instead of the correct 60"
           }
         ],
         "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: CDP advertises every 60 seconds by default."
@@ -164,18 +182,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "802.1ab misses what this question tests. CDP is Cisco proprietary neighbor discovery.",
-            "misconceptionTested": "Selecting \"802.1ab\" without matching the scenario constraint"
+            "explanation": "802.1ab describes a mechanism that could sound plausible for CDP is Cisco proprietary neighbor discovery. Given CDP is Cisco proprietary neighbor discovery, CDP matches the tested behavior — 802.1ab applies a different mechanism.",
+            "whatItDoes": "802.1ab describes a mechanism that could sound plausible for CDP is Cisco proprietary neighbor discovery.",
+            "whyWrongHere": "Given CDP is Cisco proprietary neighbor discovery, CDP matches the tested behavior — 802.1ab applies a different mechanism.",
+            "misconceptionTested": "Applying \"802.1ab\" without matching cdp"
           },
           {
             "choiceIndex": 1,
-            "explanation": "LLDP misses what this question tests. CDP is Cisco proprietary neighbor discovery.",
-            "misconceptionTested": "Selecting \"LLDP\" without matching the scenario constraint"
+            "explanation": "LLDP describes a mechanism that could sound plausible for CDP is Cisco proprietary neighbor discovery. Given CDP is Cisco proprietary neighbor discovery, CDP matches the tested behavior — LLDP applies a different mechanism.",
+            "whatItDoes": "LLDP describes a mechanism that could sound plausible for CDP is Cisco proprietary neighbor discovery.",
+            "whyWrongHere": "Given CDP is Cisco proprietary neighbor discovery, CDP matches the tested behavior — LLDP applies a different mechanism.",
+            "misconceptionTested": "Applying \"LLDP\" without matching cdp"
           },
           {
             "choiceIndex": 3,
-            "explanation": "802.1a misses what this question tests. CDP is Cisco proprietary neighbor discovery.",
-            "misconceptionTested": "Selecting \"802.1a\" without matching the scenario constraint"
+            "explanation": "802.1a describes a mechanism that could sound plausible for CDP is Cisco proprietary neighbor discovery. Given CDP is Cisco proprietary neighbor discovery, CDP matches the tested behavior — 802.1a applies a different mechanism.",
+            "whatItDoes": "802.1a describes a mechanism that could sound plausible for CDP is Cisco proprietary neighbor discovery.",
+            "whyWrongHere": "Given CDP is Cisco proprietary neighbor discovery, CDP matches the tested behavior — 802.1a applies a different mechanism.",
+            "misconceptionTested": "Applying \"802.1a\" without matching cdp"
           }
         ],
         "examTip": "DHCP is DORA — match the message name to the step the stem describes."
@@ -210,17 +234,23 @@
           {
             "choiceIndex": 0,
             "explanation": "30 seconds uses the wrong value. The tested fact calls for 180 — not 30.",
-            "misconceptionTested": "Selecting \"30 seconds\" without matching the scenario constraint"
+            "whatItDoes": "30 seconds describes a mechanism that could sound plausible for CDP holdtime defaults to 180 seconds.",
+            "whyWrongHere": "Given CDP holdtime defaults to 180 seconds, 180 seconds matches the tested behavior — 30 seconds applies a different mechanism.",
+            "misconceptionTested": "Memorizing 30 instead of the correct 180"
           },
           {
             "choiceIndex": 1,
             "explanation": "60 seconds uses the wrong value. The tested fact calls for 180 — not 60.",
-            "misconceptionTested": "Selecting \"60 seconds\" without matching the scenario constraint"
+            "whatItDoes": "60 seconds describes a mechanism that could sound plausible for CDP holdtime defaults to 180 seconds.",
+            "whyWrongHere": "Given CDP holdtime defaults to 180 seconds, 180 seconds matches the tested behavior — 60 seconds applies a different mechanism.",
+            "misconceptionTested": "Memorizing 60 instead of the correct 180"
           },
           {
             "choiceIndex": 2,
             "explanation": "90 seconds uses the wrong value. The tested fact calls for 180 — not 90.",
-            "misconceptionTested": "Selecting \"90 seconds\" without matching the scenario constraint"
+            "whatItDoes": "90 seconds describes a mechanism that could sound plausible for CDP holdtime defaults to 180 seconds.",
+            "whyWrongHere": "Given CDP holdtime defaults to 180 seconds, 180 seconds matches the tested behavior — 90 seconds applies a different mechanism.",
+            "misconceptionTested": "Memorizing 90 instead of the correct 180"
           }
         ],
         "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: CDP holdtime defaults to 180 seconds."
@@ -254,18 +284,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#cdp disable misses what this question tests. no cdp enable disables CDP on one interface.",
-            "misconceptionTested": "Selecting \"Switch(config)#cdp disable\" without matching the scenario constraint"
+            "explanation": "Switch(config)#cdp disable describes a mechanism that could sound plausible for no cdp enable disables CDP on one interface. Given no cdp enable disables CDP on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config)#cdp disable applies a different mechanism.",
+            "whatItDoes": "Switch(config)#cdp disable describes a mechanism that could sound plausible for no cdp enable disables CDP on one interface.",
+            "whyWrongHere": "Given no cdp enable disables CDP on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config)#cdp disable applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#cdp disable\" without matching cdp"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config)#no cdp misses what this question tests. no cdp enable disables CDP on one interface.",
-            "misconceptionTested": "Selecting \"Switch(config)#no cdp\" without matching the scenario constraint"
+            "explanation": "Switch(config)#no cdp describes a mechanism that could sound plausible for no cdp enable disables CDP on one interface. Given no cdp enable disables CDP on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config)#no cdp applies a different mechanism.",
+            "whatItDoes": "Switch(config)#no cdp describes a mechanism that could sound plausible for no cdp enable disables CDP on one interface.",
+            "whyWrongHere": "Given no cdp enable disables CDP on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config)#no cdp applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#no cdp\" without matching cdp"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config-if)#no cdp run misses what this question tests. no cdp enable disables CDP on one interface.",
-            "misconceptionTested": "Selecting \"Switch(config-if)#no cdp run\" without matching the scenario constraint"
+            "explanation": "Switch(config-if)#no cdp run describes a mechanism that could sound plausible for no cdp enable disables CDP on one interface. Given no cdp enable disables CDP on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config-if)#no cdp run applies a different mechanism.",
+            "whatItDoes": "Switch(config-if)#no cdp run describes a mechanism that could sound plausible for no cdp enable disables CDP on one interface.",
+            "whyWrongHere": "Given no cdp enable disables CDP on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config-if)#no cdp run applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-if)#no cdp run\" without matching cdp"
           }
         ],
         "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: no cdp enable disables CDP on one interface."
@@ -299,18 +335,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#sh cdp neighbors all misses what this question tests. show cdp entry * gives detailed CDP neighbor information.",
-            "misconceptionTested": "Selecting \"Switch#sh cdp neighbors all\" without matching the scenario constraint"
+            "explanation": "Switch#sh cdp neighbors all describes a mechanism that could sound plausible for show cdp entry * gives detailed CDP neighbor information. Given show cdp entry * gives detailed CDP neighbor information, Switch#sh cdp entry * matches the tested behavior — Switch#sh cdp neighbors all applies a different mechanism.",
+            "whatItDoes": "Switch#sh cdp neighbors all describes a mechanism that could sound plausible for show cdp entry * gives detailed CDP neighbor information.",
+            "whyWrongHere": "Given show cdp entry * gives detailed CDP neighbor information, Switch#sh cdp entry * matches the tested behavior — Switch#sh cdp neighbors all applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#sh cdp neighbors all\" without matching cdp"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch#sh cdp neighbors * misses what this question tests. show cdp entry * gives detailed CDP neighbor information.",
-            "misconceptionTested": "Selecting \"Switch#sh cdp neighbors *\" without matching the scenario constraint"
+            "explanation": "Switch#sh cdp neighbors * describes a mechanism that could sound plausible for show cdp entry * gives detailed CDP neighbor information. Given show cdp entry * gives detailed CDP neighbor information, Switch#sh cdp entry * matches the tested behavior — Switch#sh cdp neighbors * applies a different mechanism.",
+            "whatItDoes": "Switch#sh cdp neighbors * describes a mechanism that could sound plausible for show cdp entry * gives detailed CDP neighbor information.",
+            "whyWrongHere": "Given show cdp entry * gives detailed CDP neighbor information, Switch#sh cdp entry * matches the tested behavior — Switch#sh cdp neighbors * applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#sh cdp neighbors *\" without matching cdp"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch#sh cdp entries all misses what this question tests. show cdp entry * gives detailed CDP neighbor information.",
-            "misconceptionTested": "Selecting \"Switch#sh cdp entries all\" without matching the scenario constraint"
+            "explanation": "Switch#sh cdp entries all describes a mechanism that could sound plausible for show cdp entry * gives detailed CDP neighbor information. Given show cdp entry * gives detailed CDP neighbor information, Switch#sh cdp entry * matches the tested behavior — Switch#sh cdp entries all applies a different mechanism.",
+            "whatItDoes": "Switch#sh cdp entries all describes a mechanism that could sound plausible for show cdp entry * gives detailed CDP neighbor information.",
+            "whyWrongHere": "Given show cdp entry * gives detailed CDP neighbor information, Switch#sh cdp entry * matches the tested behavior — Switch#sh cdp entries all applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#sh cdp entries all\" without matching cdp"
           }
         ],
         "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: show cdp entry * gives detailed CDP neighbor information."
@@ -344,18 +386,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#lldp run misses what this question tests. lldp run enables LLDP globally, including LLDP-MED capabilities.",
-            "misconceptionTested": "Selecting \"Switch#lldp run\" without matching the scenario constraint"
+            "explanation": "Switch#lldp run describes a mechanism that could sound plausible for lldp run enables LLDP globally, including LLDP-MED capabilities. Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch#lldp run applies a different mechanism.",
+            "whatItDoes": "Switch#lldp run describes a mechanism that could sound plausible for lldp run enables LLDP globally, including LLDP-MED capabilities.",
+            "whyWrongHere": "Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch#lldp run applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#lldp run\" without matching cdp"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config)#lldp enable misses what this question tests. lldp run enables LLDP globally, including LLDP-MED capabilities.",
-            "misconceptionTested": "Selecting \"Switch(config)#lldp enable\" without matching the scenario constraint"
+            "explanation": "Switch(config)#lldp enable describes a mechanism that could sound plausible for lldp run enables LLDP globally, including LLDP-MED capabilities. Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch(config)#lldp enable applies a different mechanism.",
+            "whatItDoes": "Switch(config)#lldp enable describes a mechanism that could sound plausible for lldp run enables LLDP globally, including LLDP-MED capabilities.",
+            "whyWrongHere": "Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch(config)#lldp enable applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#lldp enable\" without matching cdp"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch#lldp enable misses what this question tests. lldp run enables LLDP globally, including LLDP-MED capabilities.",
-            "misconceptionTested": "Selecting \"Switch#lldp enable\" without matching the scenario constraint"
+            "explanation": "Switch#lldp enable describes a mechanism that could sound plausible for lldp run enables LLDP globally, including LLDP-MED capabilities. Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch#lldp enable applies a different mechanism.",
+            "whatItDoes": "Switch#lldp enable describes a mechanism that could sound plausible for lldp run enables LLDP globally, including LLDP-MED capabilities.",
+            "whyWrongHere": "Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch#lldp enable applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#lldp enable\" without matching cdp"
           }
         ],
         "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: lldp run enables LLDP globally, including LLDP-MED capabilities."
@@ -389,18 +437,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#show lldp misses what this question tests. show lldp neighbor detail shows detailed LLDP neighbor information.",
-            "misconceptionTested": "Selecting \"Switch#show lldp\" without matching the scenario constraint"
+            "explanation": "Switch#show lldp describes a mechanism that could sound plausible for show lldp neighbor detail shows detailed LLDP neighbor information. Given show lldp neighbor detail shows detailed LLDP neighbor information, Switch#show lldp neighbor detail matches the tested behavior — Switch#show lldp applies a different mechanism.",
+            "whatItDoes": "Switch#show lldp describes a mechanism that could sound plausible for show lldp neighbor detail shows detailed LLDP neighbor information.",
+            "whyWrongHere": "Given show lldp neighbor detail shows detailed LLDP neighbor information, Switch#show lldp neighbor detail matches the tested behavior — Switch#show lldp applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show lldp\" without matching cdp"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch#show lldp devices misses what this question tests. show lldp neighbor detail shows detailed LLDP neighbor information.",
-            "misconceptionTested": "Selecting \"Switch#show lldp devices\" without matching the scenario constraint"
+            "explanation": "Switch#show lldp devices describes a mechanism that could sound plausible for show lldp neighbor detail shows detailed LLDP neighbor information. Given show lldp neighbor detail shows detailed LLDP neighbor information, Switch#show lldp neighbor detail matches the tested behavior — Switch#show lldp devices applies a different mechanism.",
+            "whatItDoes": "Switch#show lldp devices describes a mechanism that could sound plausible for show lldp neighbor detail shows detailed LLDP neighbor information.",
+            "whyWrongHere": "Given show lldp neighbor detail shows detailed LLDP neighbor information, Switch#show lldp neighbor detail matches the tested behavior — Switch#show lldp devices applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show lldp devices\" without matching cdp"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch#show cdp neighbor detail misses what this question tests. show lldp neighbor detail shows detailed LLDP neighbor information.",
-            "misconceptionTested": "Selecting \"Switch#show cdp neighbor detail\" without matching the scenario constraint"
+            "explanation": "Switch#show cdp neighbor detail describes a mechanism that could sound plausible for show lldp neighbor detail shows detailed LLDP neighbor information. Given show lldp neighbor detail shows detailed LLDP neighbor information, Switch#show lldp neighbor detail matches the tested behavior — Switch#show cdp neighbor detail applies a different mechanism.",
+            "whatItDoes": "Switch#show cdp neighbor detail describes a mechanism that could sound plausible for show lldp neighbor detail shows detailed LLDP neighbor information.",
+            "whyWrongHere": "Given show lldp neighbor detail shows detailed LLDP neighbor information, Switch#show lldp neighbor detail matches the tested behavior — Switch#show cdp neighbor detail applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show cdp neighbor detail\" without matching cdp"
           }
         ],
         "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: show lldp neighbor detail shows detailed LLDP neighbor information."
@@ -435,17 +489,23 @@
           {
             "choiceIndex": 1,
             "explanation": "60 seconds uses the wrong value. The tested fact calls for 30 — not 60.",
-            "misconceptionTested": "Selecting \"60 seconds\" without matching the scenario constraint"
+            "whatItDoes": "60 seconds describes a mechanism that could sound plausible for LLDP advertises every 30 seconds by default.",
+            "whyWrongHere": "Given LLDP advertises every 30 seconds by default, 30 seconds matches the tested behavior — 60 seconds applies a different mechanism.",
+            "misconceptionTested": "Memorizing 60 instead of the correct 30"
           },
           {
             "choiceIndex": 2,
             "explanation": "90 seconds uses the wrong value. The tested fact calls for 30 — not 90.",
-            "misconceptionTested": "Selecting \"90 seconds\" without matching the scenario constraint"
+            "whatItDoes": "90 seconds describes a mechanism that could sound plausible for LLDP advertises every 30 seconds by default.",
+            "whyWrongHere": "Given LLDP advertises every 30 seconds by default, 30 seconds matches the tested behavior — 90 seconds applies a different mechanism.",
+            "misconceptionTested": "Memorizing 90 instead of the correct 30"
           },
           {
             "choiceIndex": 3,
             "explanation": "120 seconds uses the wrong value. The tested fact calls for 30 — not 120.",
-            "misconceptionTested": "Selecting \"120 seconds\" without matching the scenario constraint"
+            "whatItDoes": "120 seconds describes a mechanism that could sound plausible for LLDP advertises every 30 seconds by default.",
+            "whyWrongHere": "Given LLDP advertises every 30 seconds by default, 30 seconds matches the tested behavior — 120 seconds applies a different mechanism.",
+            "misconceptionTested": "Memorizing 120 instead of the correct 30"
           }
         ],
         "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: LLDP advertises every 30 seconds by default."
@@ -479,18 +539,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config-if)#no lldp misses what this question tests. no lldp transmit suppresses outgoing LLDP on an interface.",
-            "misconceptionTested": "Selecting \"Switch(config-if)#no lldp\" without matching the scenario constraint"
+            "explanation": "Switch(config-if)#no lldp describes a mechanism that could sound plausible for no lldp transmit suppresses outgoing LLDP on an interface. Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp applies a different mechanism.",
+            "whatItDoes": "Switch(config-if)#no lldp describes a mechanism that could sound plausible for no lldp transmit suppresses outgoing LLDP on an interface.",
+            "whyWrongHere": "Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-if)#no lldp\" without matching cdp"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config-if)#no lldp receive misses what this question tests. no lldp transmit suppresses outgoing LLDP on an interface.",
-            "misconceptionTested": "Selecting \"Switch(config-if)#no lldp receive\" without matching the scenario constraint"
+            "explanation": "Switch(config-if)#no lldp receive describes a mechanism that could sound plausible for no lldp transmit suppresses outgoing LLDP on an interface. Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp receive applies a different mechanism.",
+            "whatItDoes": "Switch(config-if)#no lldp receive describes a mechanism that could sound plausible for no lldp transmit suppresses outgoing LLDP on an interface.",
+            "whyWrongHere": "Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp receive applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-if)#no lldp receive\" without matching cdp"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config-if)#no lldp enable misses what this question tests. no lldp transmit suppresses outgoing LLDP on an interface.",
-            "misconceptionTested": "Selecting \"Switch(config-if)#no lldp enable\" without matching the scenario constraint"
+            "explanation": "Switch(config-if)#no lldp enable describes a mechanism that could sound plausible for no lldp transmit suppresses outgoing LLDP on an interface. Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp enable applies a different mechanism.",
+            "whatItDoes": "Switch(config-if)#no lldp enable describes a mechanism that could sound plausible for no lldp transmit suppresses outgoing LLDP on an interface.",
+            "whyWrongHere": "Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp enable applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-if)#no lldp enable\" without matching cdp"
           }
         ],
         "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: no lldp transmit suppresses outgoing LLDP on an interface."
@@ -525,17 +591,23 @@
           {
             "choiceIndex": 0,
             "explanation": "30 seconds uses the wrong value. The tested fact calls for 120 — not 30.",
-            "misconceptionTested": "Selecting \"30 seconds\" without matching the scenario constraint"
+            "whatItDoes": "30 seconds describes a mechanism that could sound plausible for LLDP holdtime defaults to 120 seconds.",
+            "whyWrongHere": "Given LLDP holdtime defaults to 120 seconds, 120 seconds matches the tested behavior — 30 seconds applies a different mechanism.",
+            "misconceptionTested": "Memorizing 30 instead of the correct 120"
           },
           {
             "choiceIndex": 1,
             "explanation": "60 seconds uses the wrong value. The tested fact calls for 120 — not 60.",
-            "misconceptionTested": "Selecting \"60 seconds\" without matching the scenario constraint"
+            "whatItDoes": "60 seconds describes a mechanism that could sound plausible for LLDP holdtime defaults to 120 seconds.",
+            "whyWrongHere": "Given LLDP holdtime defaults to 120 seconds, 120 seconds matches the tested behavior — 60 seconds applies a different mechanism.",
+            "misconceptionTested": "Memorizing 60 instead of the correct 120"
           },
           {
             "choiceIndex": 2,
             "explanation": "90 seconds uses the wrong value. The tested fact calls for 120 — not 90.",
-            "misconceptionTested": "Selecting \"90 seconds\" without matching the scenario constraint"
+            "whatItDoes": "90 seconds describes a mechanism that could sound plausible for LLDP holdtime defaults to 120 seconds.",
+            "whyWrongHere": "Given LLDP holdtime defaults to 120 seconds, 120 seconds matches the tested behavior — 90 seconds applies a different mechanism.",
+            "misconceptionTested": "Memorizing 90 instead of the correct 120"
           }
         ],
         "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: LLDP holdtime defaults to 120 seconds."
@@ -571,17 +643,23 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The advertisement was seen 162 seconds ago. misses what this question tests. CDP detail output identifies the local and remote interfaces, holdtime, and management address.",
-            "misconceptionTested": "Selecting \"The advertisement was seen 162 seconds a…\" without matching the scenario constraint"
+            "explanation": "The advertisement was seen 162 seconds ago. describes a mechanism that could sound plausible for neighbor. Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — The advertisement was seen 162 seconds ago. applies a different mechanism.",
+            "whatItDoes": "The advertisement was seen 162 seconds ago. describes a mechanism that could sound plausible for neighbor.",
+            "whyWrongHere": "Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — The advertisement was seen 162 seconds ago. applies a different mechanism.",
+            "misconceptionTested": "Applying \"The advertisement was seen 162 secon\" without matching cdp"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch B interface Gi0/1 connects to Switch A. misses what this question tests. CDP detail output identifies the local and remote interfaces, holdtime, and management address.",
-            "misconceptionTested": "Selecting \"Switch B interface Gi0/1 connects to Swi…\" without matching the scenario constraint"
+            "explanation": "Switch B interface Gi0/1 connects to Switch A. describes a mechanism that could sound plausible for neighbor. Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — Switch B interface Gi0/1 connects to Switch A. applies a different mechanism.",
+            "whatItDoes": "Switch B interface Gi0/1 connects to Switch A. describes a mechanism that could sound plausible for neighbor.",
+            "whyWrongHere": "Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — Switch B interface Gi0/1 connects to Switch A. applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch B interface Gi0/1 connects to\" without matching cdp"
           },
           {
             "choiceIndex": 3,
-            "explanation": "The IP address of Switch B is 192.168.1.1. misses what this question tests. CDP detail output identifies the local and remote interfaces, holdtime, and management address.",
+            "explanation": "The IP address of Switch B is 192.168.1.1. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — The IP address of Switch B is 192.168.1.1. applies a different mechanism.",
+            "whatItDoes": "The IP address of Switch B is 192.168.1.1. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+            "whyWrongHere": "Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — The IP address of Switch B is 192.168.1.1. applies a different mechanism.",
             "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process"
           }
         ],
@@ -616,18 +694,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#cdp disable misses what this question tests. no cdp enable disables CDP advertisements on one interface.",
-            "misconceptionTested": "Selecting \"Switch(config)#cdp disable\" without matching the scenario constraint"
+            "explanation": "Switch(config)#cdp disable describes a mechanism that could sound plausible for no cdp enable disables CDP advertisements on one interface. Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config)#cdp disable applies a different mechanism.",
+            "whatItDoes": "Switch(config)#cdp disable describes a mechanism that could sound plausible for no cdp enable disables CDP advertisements on one interface.",
+            "whyWrongHere": "Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config)#cdp disable applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config)#cdp disable\" without matching cdp"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config-if)#no cdp misses what this question tests. no cdp enable disables CDP advertisements on one interface.",
-            "misconceptionTested": "Selecting \"Switch(config-if)#no cdp\" without matching the scenario constraint"
+            "explanation": "Switch(config-if)#no cdp describes a mechanism that could sound plausible for no cdp enable disables CDP advertisements on one interface. Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config-if)#no cdp applies a different mechanism.",
+            "whatItDoes": "Switch(config-if)#no cdp describes a mechanism that could sound plausible for no cdp enable disables CDP advertisements on one interface.",
+            "whyWrongHere": "Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config-if)#no cdp applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-if)#no cdp\" without matching cdp"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config-if)#no cdp disable misses what this question tests. no cdp enable disables CDP advertisements on one interface.",
-            "misconceptionTested": "Selecting \"Switch(config-if)#no cdp disable\" without matching the scenario constraint"
+            "explanation": "Switch(config-if)#no cdp disable describes a mechanism that could sound plausible for no cdp enable disables CDP advertisements on one interface. Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config-if)#no cdp disable applies a different mechanism.",
+            "whatItDoes": "Switch(config-if)#no cdp disable describes a mechanism that could sound plausible for no cdp enable disables CDP advertisements on one interface.",
+            "whyWrongHere": "Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config-if)#no cdp disable applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch(config-if)#no cdp disable\" without matching cdp"
           }
         ],
         "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: no cdp enable disables CDP advertisements on one interface."
@@ -661,18 +745,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#show cdp misses what this question tests. show cdp interface shows interfaces advertising CDP.",
-            "misconceptionTested": "Selecting \"Switch#show cdp\" without matching the scenario constraint"
+            "explanation": "Switch#show cdp describes a mechanism that could sound plausible for show cdp interface shows interfaces advertising CDP. Given show cdp interface shows interfaces advertising CDP, Switch#show cdp interface matches the tested behavior — Switch#show cdp applies a different mechanism.",
+            "whatItDoes": "Switch#show cdp describes a mechanism that could sound plausible for show cdp interface shows interfaces advertising CDP.",
+            "whyWrongHere": "Given show cdp interface shows interfaces advertising CDP, Switch#show cdp interface matches the tested behavior — Switch#show cdp applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show cdp\" without matching cdp"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch#show interface misses what this question tests. show cdp interface shows interfaces advertising CDP.",
-            "misconceptionTested": "Selecting \"Switch#show interface\" without matching the scenario constraint"
+            "explanation": "Switch#show interface describes a mechanism that could sound plausible for show cdp interface shows interfaces advertising CDP. Given show cdp interface shows interfaces advertising CDP, Switch#show cdp interface matches the tested behavior — Switch#show interface applies a different mechanism.",
+            "whatItDoes": "Switch#show interface describes a mechanism that could sound plausible for show cdp interface shows interfaces advertising CDP.",
+            "whyWrongHere": "Given show cdp interface shows interfaces advertising CDP, Switch#show cdp interface matches the tested behavior — Switch#show interface applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show interface\" without matching cdp"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch#show interface cdp misses what this question tests. show cdp interface shows interfaces advertising CDP.",
-            "misconceptionTested": "Selecting \"Switch#show interface cdp\" without matching the scenario constraint"
+            "explanation": "Switch#show interface cdp describes a mechanism that could sound plausible for show cdp interface shows interfaces advertising CDP. Given show cdp interface shows interfaces advertising CDP, Switch#show cdp interface matches the tested behavior — Switch#show interface cdp applies a different mechanism.",
+            "whatItDoes": "Switch#show interface cdp describes a mechanism that could sound plausible for show cdp interface shows interfaces advertising CDP.",
+            "whyWrongHere": "Given show cdp interface shows interfaces advertising CDP, Switch#show cdp interface matches the tested behavior — Switch#show interface cdp applies a different mechanism.",
+            "misconceptionTested": "Applying \"Switch#show interface cdp\" without matching cdp"
           }
         ],
         "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: show cdp interface shows interfaces advertising CDP."
