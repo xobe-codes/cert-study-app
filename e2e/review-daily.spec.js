@@ -15,16 +15,19 @@ test.describe('Daily Review (#/review)', () => {
     await page.goto('/')
     await page.waitForFunction(() => typeof window.storage?.getItem === 'function')
 
-    await page.evaluate(async (q) => {
-      const { seedDueReviewBank } = await import('/src/quiz/srsReview.js')
-      await seedDueReviewBank('3.5', [q])
+    const dueCount = await page.evaluate(async (q) => {
+      const { seedDueReviewBank, countDueQuestions } = await import('/src/quiz/srsReview.js')
       await window.storage.setItem('ccna_onboard_done_v1', true)
+      await seedDueReviewBank('3.5', [q])
+      return countDueQuestions()
     }, SEED_Q)
+
+    expect(dueCount).toBeGreaterThan(0)
 
     await page.goto('/#/review')
 
     await expect(page.getByRole('heading', { name: 'Daily Review' })).toBeVisible({ timeout: 15_000 })
-    await expect(page.getByText(/Question 1|Gathering your reviews/i)).toBeVisible({ timeout: 15_000 })
-    await expect(page.getByText(/default HSRP priority/i)).toBeVisible({ timeout: 10_000 })
+    await expect(page.getByText(/default HSRP priority/i)).toBeVisible({ timeout: 15_000 })
+    await expect(page.getByText(/of 1/i)).toBeVisible({ timeout: 10_000 })
   })
 })
