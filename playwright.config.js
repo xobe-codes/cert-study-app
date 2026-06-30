@@ -10,7 +10,8 @@ export default defineConfig({
   use: {
     baseURL: 'http://127.0.0.1:5173',
     trace: 'on-first-retry',
-    ...devices['iPhone 13'],
+    browserName: 'chromium',
+    ...devices['Pixel 5'],
   },
   webServer: {
     command: 'npm run dev -- --host 127.0.0.1 --port 5173',
