@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-15T16:14:17.159Z",
+  "generatedAt": "2026-06-22T02:58:52.964Z",
   "items": [
     {
       "id": "improve_vlan_engineer_verify",
@@ -110,6 +110,11 @@
       "recommendedImprovement": "Lab-lite show ip route parser",
       "riskLevel": "medium",
       "confidenceScore": 78,
+      "acceptance": [
+        "Lab 3.1 teach-first flow with show ip route verify step",
+        "Validator accepts correct route-table interpretation",
+        "npm test && npm run build pass"
+      ],
       "effort": "M",
       "scoreImpact": {
         "labs": 8,
@@ -120,12 +125,176 @@
         "src/lab/LabView.jsx",
         "src/lab/cliEngine.js"
       ],
+      "completedAt": "2026-06-17T08:05:09.808Z"
+    },
+    {
+      "id": "bulk_factory_flashcards",
+      "priority": "high",
+      "status": "done",
+      "area": "content",
+      "objectiveNumber": "24 objs",
+      "problem": "Zero flashcards on factory shells",
+      "recommendedImprovement": "Bulk flashcard enrichment patches",
+      "riskLevel": "medium",
+      "confidenceScore": 74,
       "acceptance": [
-        "Lab 3.1 teach-first flow with show ip route verify step",
-        "Validator accepts correct route-table interpretation",
+        "Flashcard patches for Tier C factory objectives with zero flashcards",
+        "validate:pipeline passes"
+      ],
+      "effort": "L",
+      "scoreImpact": {
+        "flashcards": 12,
+        "tier_c": 6
+      },
+      "files": [
+        "src/data/contentEnrichmentPatches.js",
+        "src/data/factoryTrapPatches.js"
+      ],
+      "completedAt": "2026-06-22T02:58:00.753Z"
+    },
+    {
+      "id": "content_depth_35_hsrp",
+      "priority": "critical",
+      "status": "done",
+      "area": "content",
+      "objectiveNumber": "3.5",
+      "problem": "Lowest question count in syllabus (1 Q) — FHRP/HSRP under-tested",
+      "recommendedImprovement": "Add ≥7 HSRP/VRRP/GLBP skill questions to clean bank + exam traps",
+      "riskLevel": "low",
+      "confidenceScore": 88,
+      "acceptance": [
+        "Objective 3.5 has ≥8 questions in clean bank",
+        "At least 2 troubleshooting-style FHRP questions",
+        "npm test && npm run audit:coverage shows 3.5 count ≥8"
+      ],
+      "effort": "S",
+      "scoreImpact": {
+        "coverage_depth": 6,
+        "exam_traps": 4
+      },
+      "files": [
+        "data/clean-question-bank/",
+        "src/data/ccnaSkillQuestionsExtended.js"
+      ],
+      "completedAt": "2026-06-30T07:07:45.643Z"
+    },
+    {
+      "id": "content_depth_wave2",
+      "priority": "high",
+      "status": "done",
+      "area": "content",
+      "objectiveNumber": "31 objs",
+      "problem": "31 objectives below 8 questions (target ≥8 for Tier A)",
+      "recommendedImprovement": "Second skill-question sweep for remaining thin objectives",
+      "riskLevel": "low",
+      "confidenceScore": 76,
+      "acceptance": [
+        "Raise all Tier C objectives to ≥8 MC questions via skill bank",
         "npm test && npm run build pass"
       ],
-      "completedAt": "2026-06-17T08:05:09.808Z"
+      "effort": "L",
+      "scoreImpact": {
+        "coverage_depth": 10,
+        "tier_c": 5
+      },
+      "files": [
+        "src/data/ccnaSkillQuestionsExtended.js"
+      ],
+      "completedAt": "2026-06-30T07:34:43.199Z"
+    },
+    {
+      "id": "extract_app_shell_modules",
+      "priority": "high",
+      "status": "pending",
+      "area": "maintainability",
+      "objectiveNumber": "app",
+      "problem": "App.jsx still ~5k lines after tab extract",
+      "recommendedImprovement": "Extract tutor/search/modals into src/features/",
+      "riskLevel": "medium",
+      "confidenceScore": 72,
+      "acceptance": [
+        "Extract tutor/search/modals from App.jsx into src/features/ or src/routes/",
+        "App.jsx reduced by ≥800 lines; npm test && npm run build pass"
+      ],
+      "effort": "L",
+      "scoreImpact": {
+        "maintainability": 12
+      },
+      "files": [
+        "src/App.jsx",
+        "src/features/",
+        "src/routes/"
+      ]
+    },
+    {
+      "id": "engineer_view_tier_c",
+      "priority": "medium",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "28 objs",
+      "problem": "Tier C objectives lack engineerView verify layer",
+      "recommendedImprovement": "Bulk engineerView patches with show commands + trap callouts",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "acceptance": [
+        "engineerView patches for top 10 Tier C objectives missing verify steps",
+        "EngineerViewSection renders on Study tab for each"
+      ],
+      "effort": "M",
+      "scoreImpact": {
+        "coverage_depth": 8,
+        "engineer_perspective": 10
+      },
+      "files": [
+        "src/data/contentEnrichmentPatches.js"
+      ]
+    },
+    {
+      "id": "labs_connectivity_wave",
+      "priority": "high",
+      "status": "pending",
+      "area": "labs",
+      "objectiveNumber": "3.2/3.4/3.5",
+      "problem": "30 objectives have no lab; routing/FHRP gaps remain",
+      "recommendedImprovement": "Labs for 3.2 VLSM, 3.4 OSPF, 3.5 HSRP verify",
+      "riskLevel": "medium",
+      "confidenceScore": 74,
+      "acceptance": [
+        "Add labs for 3.2 VLSM, 3.4 OSPF multi-area, 3.5 HSRP verify (objectives lacking labs)",
+        "npm test && npm run build pass"
+      ],
+      "effort": "M",
+      "scoreImpact": {
+        "labs": 10
+      },
+      "files": [
+        "src/data/ccnaLabsExtended.js",
+        "src/lab/cliEngine.js"
+      ]
+    },
+    {
+      "id": "pwa_offline_curated",
+      "priority": "medium",
+      "status": "pending",
+      "area": "mobile",
+      "objectiveNumber": "app",
+      "problem": "PWA caches shell only — curated content offline gap",
+      "recommendedImprovement": "Cache static question/reading chunks in service worker",
+      "riskLevel": "medium",
+      "confidenceScore": 68,
+      "acceptance": [
+        "Service worker caches curated shell + static question chunks for offline Study/Practice",
+        "Works on iPhone without network after first load"
+      ],
+      "effort": "M",
+      "scoreImpact": {
+        "mobile": 8,
+        "learning_flow": 5
+      },
+      "files": [
+        "vite.config.js",
+        "public/sw.js"
+      ]
     }
   ]
 }

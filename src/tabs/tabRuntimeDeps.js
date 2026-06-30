@@ -13,8 +13,10 @@ export {
 export { QUIZ_BANK_MIN } from '../quiz/quizBankStorage.js'
 export {
   loadQuizBank, saveQuizBank, mergeIntoBank, recordQuizResult,
-  enableSectionReview, loadDueQuestions, seedTestedOutReview,
+  enableSectionReview, seedTestedOutReview,
 } from '../quiz/quizBankStorage.js'
+
+export { loadDueQuestions, countDueQuestions } from '../quiz/srsReview.js'
 
 export { logEvent } from '../eventLog.js'
 export { haptic, celebrate, Skeleton } from '../ui/feedbackHelpers.jsx'

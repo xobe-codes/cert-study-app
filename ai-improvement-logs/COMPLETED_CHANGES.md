@@ -22,3 +22,24 @@
 - Content depth: 40 new questions for 10 thin objectives (2.3/2.4/2.6/2.7/2.8/4.3/4.7/4.9/5.2/5.7)
 - Labs: wireless arch 2.6, DHCP/DNS 4.3, SSH device access 5.3
 - Tests: 53 cliEngine unit tests; mobile dvh terminal fix
+- **2026-06-22** `bulk_factory_flashcards`: Added factoryFlashcardPatches.js — 48 flashcards (2 each) for 24 Tier C objectives; wired merge in contentEnrichmentPatches applyContentEnrichment
+
+## 2026-06-29 (functionality audit — P0/P1 fixes)
+- Fixed missing imports after Study/Practice tab extraction: `objectiveTabId`, `objectivePanelId`, `MAX_QUIZ_SESSION_SIZE`, `preloadCleanBank`, `masteryBreakdown`, `parseRichTextSegments` in `studyQuizTabs.jsx` / `App.jsx`
+- Fixed missing `LabsHub` and `SubnetPracticeHome` imports in `App.jsx` (Labs Hub + Subnetting routes crashed)
+- Exported `masteryBreakdown` from `masteryCriteria.js` for shared quiz session logic
+- Fixed hash deep link `#/objective/:id/practice` — case-insensitive tab mapping in `ObjectiveScreen.jsx`
+- Added `ai-improvement-logs/FUNCTIONALITY_AUDIT_REPORT.md`
+
+## 2026-06-29 (audit follow-ups — CI guardrails + SRS smoke)
+- Added import regression tests (`appImportRegression.test.js`, `importContracts.js`) — runs in CI via `npm test`
+- Extracted SRS review queue to `src/quiz/srsReview.js` with `seedDueReviewBank` test helper
+- Added `srsReviewSmoke.test.js` — seeds due items, verifies count/load/reschedule cycle
+- Added `content_depth_35_hsrp` queue item (critical) for objective 3.5 thin bank (1 Q)
+
+## 2026-06-29 (content_depth_35_hsrp)
+- Added 2 HSRP troubleshooting skill questions for 3.5 in `ccnaSkillQuestionsExtended.js` (33 total bank items: 30 clean + 3 skill)
+- Fixed `auditContentCoverage.mjs` to count compiled clean bank + skill (was 1 without preload)
+- Added `contentDepth35.test.js`, `reviewDailySmoke.test.js`; optional `e2e/review-daily.spec.js` + `npm run test:e2e` (Playwright)
+- **2026-06-30** `content_depth_35_hsrp`: Added 2 HSRP troubleshooting skill questions; fixed audit scanner to count clean bank; review smoke tests
+- **2026-06-30** `content_depth_wave2`: Skill questions for 5.9/6.1; shared questionBankCount; Playwright CI job

@@ -68,10 +68,7 @@ export async function enableSectionReview(objectiveId) {
   if (changed) await saveQuizBank(bank)
 }
 
-/** Stub — full interleaved review queue lives in App.jsx for home/review flows. */
-export async function loadDueQuestions() {
-  return []
-}
+/** Due-question queue lives in srsReview.js (re-exported via tabRuntimeDeps). */
 
 export async function seedTestedOutReview(objectiveId, questions) {
   let bank = await loadQuizBank()

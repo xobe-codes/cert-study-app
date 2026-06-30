@@ -47,15 +47,130 @@ const QUEUE_META = {
   bulk_factory_flashcards: {
     effort: 'L',
     scoreImpact: { flashcards: 12, tier_c: 6 },
-    files: ['src/data/contentEnrichmentPatches.js', 'src/data/factoryTrapPatches.js'],
+    files: ['src/data/factoryFlashcardPatches.js', 'src/data/contentEnrichmentPatches.js'],
     acceptance: [
       'Flashcard patches for Tier C factory objectives with zero flashcards',
-      'validate:pipeline passes',
+      'npm test && npm run build pass',
+    ],
+  },
+  content_depth_wave2: {
+    effort: 'L',
+    scoreImpact: { coverage_depth: 10, tier_c: 5 },
+    files: ['src/data/ccnaSkillQuestionsExtended.js'],
+    acceptance: [
+      'Raise all Tier C objectives to ≥8 MC questions via skill bank',
+      'npm test && npm run build pass',
+    ],
+  },
+  extract_app_shell_modules: {
+    effort: 'L',
+    scoreImpact: { maintainability: 12 },
+    files: ['src/App.jsx', 'src/features/', 'src/routes/'],
+    acceptance: [
+      'Extract tutor/search/modals from App.jsx into src/features/ or src/routes/',
+      'App.jsx reduced by ≥800 lines; npm test && npm run build pass',
+    ],
+  },
+  engineer_view_tier_c: {
+    effort: 'M',
+    scoreImpact: { coverage_depth: 8, engineer_perspective: 10 },
+    files: ['src/data/contentEnrichmentPatches.js'],
+    acceptance: [
+      'engineerView patches for top 10 Tier C objectives missing verify steps',
+      'EngineerViewSection renders on Study tab for each',
+    ],
+  },
+  labs_connectivity_wave: {
+    effort: 'M',
+    scoreImpact: { labs: 10 },
+    files: ['src/data/ccnaLabsExtended.js', 'src/lab/cliEngine.js'],
+    acceptance: [
+      'Add labs for 3.2 VLSM, 3.4 OSPF multi-area, 3.5 HSRP verify (objectives lacking labs)',
+      'npm test && npm run build pass',
+    ],
+  },
+  pwa_offline_curated: {
+    effort: 'M',
+    scoreImpact: { mobile: 8, learning_flow: 5 },
+    files: ['vite.config.js', 'public/sw.js'],
+    acceptance: [
+      'Service worker caches curated shell + static question chunks for offline Study/Practice',
+      'Works on iPhone without network after first load',
     ],
   },
 }
 
 const QUEUE_EXTRA_KEYS = ['acceptance', 'effort', 'scoreImpact', 'files']
+
+function buildPendingQueueItems(summary, rows) {
+  const pending = []
+  const thinQuestions = rows.filter(r => r.questions < 8)
+  const noLab = rows.filter(r => !r.hasLab)
+  const tierCNoEngineer = rows.filter(r => r.tier === 'C' && !r.hasEngineerView)
+
+  if (thinQuestions.length > 0) {
+    pending.push({
+      id: 'content_depth_wave2',
+      priority: 'high',
+      status: 'pending',
+      area: 'content',
+      objectiveNumber: `${thinQuestions.length} objs`,
+      problem: `${thinQuestions.length} objectives below 8 questions (target ≥8 for Tier A)`,
+      recommendedImprovement: 'Second skill-question sweep for remaining thin objectives',
+      riskLevel: 'low',
+      confidenceScore: 76,
+    })
+  }
+  pending.push({
+    id: 'extract_app_shell_modules',
+    priority: 'high',
+    status: 'pending',
+    area: 'maintainability',
+    objectiveNumber: 'app',
+    problem: 'App.jsx still ~5k lines after tab extract',
+    recommendedImprovement: 'Extract tutor/search/modals into src/features/',
+    riskLevel: 'medium',
+    confidenceScore: 72,
+  })
+  if (tierCNoEngineer.length >= 5) {
+    pending.push({
+      id: 'engineer_view_tier_c',
+      priority: 'medium',
+      status: 'pending',
+      area: 'content',
+      objectiveNumber: `${tierCNoEngineer.length} objs`,
+      problem: 'Tier C objectives lack engineerView verify layer',
+      recommendedImprovement: 'Bulk engineerView patches with show commands + trap callouts',
+      riskLevel: 'low',
+      confidenceScore: 70,
+    })
+  }
+  if (noLab.length > 20) {
+    pending.push({
+      id: 'labs_connectivity_wave',
+      priority: 'high',
+      status: 'pending',
+      area: 'labs',
+      objectiveNumber: '3.2/3.4/3.5',
+      problem: `${noLab.length} objectives have no lab; routing/FHRP gaps remain`,
+      recommendedImprovement: 'Labs for 3.2 VLSM, 3.4 OSPF, 3.5 HSRP verify',
+      riskLevel: 'medium',
+      confidenceScore: 74,
+    })
+  }
+  pending.push({
+    id: 'pwa_offline_curated',
+    priority: 'medium',
+    status: 'pending',
+    area: 'mobile',
+    objectiveNumber: 'app',
+    problem: 'PWA caches shell only — curated content offline gap',
+    recommendedImprovement: 'Cache static question/reading chunks in service worker',
+    riskLevel: 'medium',
+    confidenceScore: 68,
+  })
+  return pending
+}
 
 function mergeQueueItems(templateItems, existingById) {
   return templateItems.map(item => {
@@ -403,7 +518,7 @@ Tier breakdown: A=${summary.tierCounts.A}, B=${summary.tierCounts.B}, C=${summar
 | 4 | Pilot 2.1 Engineer View | Done |
 | 5 | Enrich STP, 3.1, 5.9, 6.x | Done |
 | 6 | Build-time scanner | Done |
-| 7 | Bulk factory enrichment | Pending |
+| 7 | Bulk factory enrichment | Done |
 | 8 | Extract tabs from App.jsx | Done |
 | 9 | PWA curated cache | Pending |
 | 10 | RAG/tutor | Deferred |
@@ -419,8 +534,9 @@ Tier breakdown: A=${summary.tierCounts.A}, B=${summary.tierCounts.B}, C=${summar
     { id: 'enrich_automation_6x', priority: 'critical', status: 'done', area: 'content', objectiveNumber: '6.1-6.6', problem: 'Zero traps on factory automation', recommendedImprovement: 'Trap + flashcard enrichment patches', riskLevel: 'low', confidenceScore: 82 },
     { id: 'extract_app_tabs', priority: 'medium', status: 'done', area: 'maintainability', objectiveNumber: 'app', problem: '7k-line App.jsx', recommendedImprovement: 'Extract ExplainTab/QuizTab', riskLevel: 'medium', confidenceScore: 80 },
     { id: 'bulk_factory_traps', priority: 'high', status: 'done', area: 'content', objectiveNumber: '22 objs', problem: 'Tier C zero traps', recommendedImprovement: 'Pipeline bulk trap generation', riskLevel: 'medium', confidenceScore: 75 },
-    { id: 'lab_31_route_lite', priority: 'high', status: 'pending', area: 'labs', objectiveNumber: '3.1', problem: 'No routing table lab', recommendedImprovement: 'Lab-lite show ip route parser', riskLevel: 'medium', confidenceScore: 78 },
-    { id: 'bulk_factory_flashcards', priority: 'high', status: 'pending', area: 'content', objectiveNumber: '24 objs', problem: 'Zero flashcards on factory shells', recommendedImprovement: 'Bulk flashcard enrichment patches', riskLevel: 'medium', confidenceScore: 74 },
+    { id: 'lab_31_route_lite', priority: 'high', status: 'done', area: 'labs', objectiveNumber: '3.1', problem: 'No routing table lab', recommendedImprovement: 'Lab-lite show ip route parser', riskLevel: 'medium', confidenceScore: 78 },
+    { id: 'bulk_factory_flashcards', priority: 'high', status: 'done', area: 'content', objectiveNumber: '24 objs', problem: 'Zero flashcards on factory shells', recommendedImprovement: 'Bulk flashcard enrichment patches', riskLevel: 'medium', confidenceScore: 74 },
+    ...buildPendingQueueItems(summary, rows),
   ], loadExistingQueueStatuses())
 
   write('IMPLEMENTATION_QUEUE.json', JSON.stringify({ generatedAt: summary.generatedAt, items: queue }, null, 2))

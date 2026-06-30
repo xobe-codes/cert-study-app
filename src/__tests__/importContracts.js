@@ -1,0 +1,54 @@
+/** Static import contracts — catches missing imports after tab/route extractions. */
+export const APP_IMPORTS = [
+  { symbol: 'LabsHub', from: './lab/LabsHub.jsx' },
+  { symbol: 'SubnetPracticeHome', from: './tabs/studyQuizTabs.jsx' },
+  { symbol: 'objectiveTabId', from: './tabs/studyQuizTabs.jsx' },
+  { symbol: 'objectivePanelId', from: './tabs/studyQuizTabs.jsx' },
+  { symbol: 'ExplainTab', from: './tabs/studyQuizTabs.jsx' },
+  { symbol: 'QuizTab', from: './tabs/studyQuizTabs.jsx' },
+  { symbol: 'MockExam', from: './MockExam.jsx' },
+  { symbol: 'ObjectiveScreen', from: './ObjectiveScreen.jsx' },
+  { symbol: 'HomeScreen', from: './HomeScreen.jsx' },
+  { symbol: 'LabView', from: './lab/LabView.jsx' },
+]
+
+export const STUDY_QUIZ_TAB_IMPORTS = [
+  { symbol: 'MAX_QUIZ_SESSION_SIZE', from: '../quizSessionConfig.js' },
+  { symbol: 'loadQuizSessionSize', from: '../quizSessionConfig.js' },
+  { symbol: 'saveQuizSessionSize', from: '../quizSessionConfig.js' },
+  { symbol: 'preloadCleanBank', from: '../data/cleanQuestionAdapter.js' },
+  { symbol: 'masteryBreakdown', from: '../lesson/masteryCriteria.js' },
+  { symbol: 'computeMastery', from: '../netUtils.js' },
+  { symbol: 'parseRichTextSegments', from: '../lesson/richTextParse.js' },
+]
+
+export const APP_SRS_IMPORTS = [
+  { symbol: 'loadDueQuestions', from: './quiz/srsReview.js' },
+  { symbol: 'countDueQuestions', from: './quiz/srsReview.js' },
+  { symbol: 'REVIEW_SESSION_CAP', from: './quiz/srsReview.js' },
+]
+
+function escapeRe(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+/** True when `source` imports `symbol` from `from` (named or default import). */
+export function hasNamedImport(source, symbol, from) {
+  const fromRe = escapeRe(from)
+  const patterns = [
+    new RegExp(`import\\s+\\{[^}]*\\b${symbol}\\b[^}]*\\}\\s+from\\s+['"]${fromRe}['"]`),
+    new RegExp(`import\\s+${symbol}\\s+from\\s+['"]${fromRe}['"]`),
+  ]
+  return patterns.some(p => p.test(source))
+}
+
+/** True when JSX or expression references the symbol (not a string literal). */
+export function usesSymbol(source, symbol) {
+  const re = new RegExp(
+    `(?<![\\w$])${symbol}(?![\\w$])`
+  )
+  if (!re.test(source)) return false
+  const importOnly = new RegExp(`^import\\s+.*\\b${symbol}\\b`, 'm')
+  const lines = source.split('\n').filter(line => re.test(line) && !importOnly.test(line.trim()))
+  return lines.length > 0
+}

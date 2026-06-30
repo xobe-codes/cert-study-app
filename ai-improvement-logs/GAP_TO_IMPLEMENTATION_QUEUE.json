@@ -1,12 +1,11 @@
 {
-  "generatedAt": "2026-06-15T16:14:17.159Z",
+  "generatedAt": "2026-06-22T02:58:52.964Z",
   "gaps": [
     {
       "gapId": "gap_2_3",
       "objectiveId": "2.3",
       "tier": "C",
       "missing": [
-        "flashcard",
         "quiz_question"
       ],
       "passImpact": 75,
@@ -18,7 +17,6 @@
       "objectiveId": "2.4",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
         "quiz_question"
       ],
@@ -31,9 +29,7 @@
       "objectiveId": "2.6",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
-        "lab",
         "quiz_question"
       ],
       "passImpact": 60,
@@ -45,7 +41,6 @@
       "objectiveId": "2.7",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
         "lab",
         "quiz_question"
@@ -59,7 +54,6 @@
       "objectiveId": "2.8",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
         "quiz_question"
       ],
@@ -72,7 +66,6 @@
       "objectiveId": "3.5",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
         "quiz_question"
       ],
@@ -85,7 +78,6 @@
       "objectiveId": "3.6",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
         "quiz_question"
       ],
@@ -98,7 +90,6 @@
       "objectiveId": "4.2",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
         "quiz_question"
       ],
@@ -111,9 +102,7 @@
       "objectiveId": "4.3",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
-        "lab",
         "quiz_question"
       ],
       "passImpact": 75,
@@ -125,7 +114,6 @@
       "objectiveId": "4.4",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
         "quiz_question"
       ],
@@ -138,7 +126,6 @@
       "objectiveId": "4.5",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
         "quiz_question"
       ],
@@ -151,7 +138,6 @@
       "objectiveId": "4.6",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
         "quiz_question"
       ],
@@ -164,7 +150,6 @@
       "objectiveId": "4.7",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
         "lab",
         "quiz_question"
@@ -178,7 +163,6 @@
       "objectiveId": "4.8",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
         "quiz_question"
       ],
@@ -191,7 +175,6 @@
       "objectiveId": "4.9",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
         "lab",
         "quiz_question"
@@ -205,7 +188,6 @@
       "objectiveId": "4.10",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
         "lab",
         "quiz_question"
@@ -219,7 +201,6 @@
       "objectiveId": "5.2",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
         "lab",
         "quiz_question"
@@ -233,7 +214,6 @@
       "objectiveId": "5.3",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
         "quiz_question"
       ],
@@ -246,7 +226,6 @@
       "objectiveId": "5.4",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
         "quiz_question"
       ],
@@ -259,7 +238,6 @@
       "objectiveId": "5.6",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
         "quiz_question"
       ],
@@ -272,7 +250,6 @@
       "objectiveId": "5.7",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
         "lab",
         "quiz_question"
@@ -286,7 +263,6 @@
       "objectiveId": "5.8",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
         "lab",
         "quiz_question"
@@ -313,7 +289,6 @@
       "objectiveId": "5.10",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
         "lab",
         "quiz_question"
@@ -327,7 +302,6 @@
       "objectiveId": "5.11",
       "tier": "C",
       "missing": [
-        "flashcard",
         "cli_verification",
         "lab",
         "quiz_question"

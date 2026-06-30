@@ -34,7 +34,7 @@ import { useVisualViewportBottomInset } from './ui/visualViewportInset.js'
 import CuratedStaticBadge from './components/CuratedStaticBadge.jsx'
 import OverflowMarquee from './components/OverflowMarquee.jsx'
 import DeferredExamTips from './components/DeferredExamTips.jsx'
-import { ExplainTab, QuizTab } from './tabs/studyQuizTabs.jsx'
+import { ExplainTab, QuizTab, objectiveTabId, objectivePanelId, SubnetPracticeHome } from './tabs/studyQuizTabs.jsx'
 import { BOOK_REF } from './data/bookRefFull.js'
 import { formatCuratedAttribution } from './curatedDisplay.js'
 import { STORAGE_KEYS } from './storageKeys.js'
@@ -61,6 +61,7 @@ import ExtraStudyMode from './ExtraStudyMode.jsx'
 import ExamTrapStudyMode from './ExamTrapStudyMode.jsx'
 import RoutingDecoderMode from './RoutingDecoderMode.jsx'
 import { DEFAULT_QUIZ_SESSION_SIZE, MAX_QUIZ_SESSION_SIZE, clampQuizSessionSize, loadQuizSessionSize, saveQuizSessionSize } from './quizSessionConfig.js'
+import { loadDueQuestions, countDueQuestions, REVIEW_SESSION_CAP } from './quiz/srsReview.js'
 import { NavHintProvider, useNavHint } from './components/NavHintProvider.jsx'
 import StudyBlockProvider, { useStudyBlock } from './components/StudyBlockProvider.jsx'
 import SvgConfetti from './components/SvgConfetti.jsx'
@@ -77,6 +78,7 @@ import AppTour from './components/AppTour.jsx'
 import BottomNav from './components/BottomNav.jsx'
 import CiscoTerminal from './components/CiscoTerminal.jsx'
 import LabView from './lab/LabView.jsx'
+import LabsHub from './lab/LabsHub.jsx'
 import TopicFocusStudio from './topic/TopicFocusStudio.jsx'
 import TopicFocusSession from './topic/TopicFocusSession.jsx'
 import CommandHubStudio from './commands/CommandHubStudio.jsx'
@@ -594,7 +596,6 @@ async function bumpStreak() {
    ========================================================================= */
 const QUIZ_BANK_MIN = 5   // questions needed before we can run a no-API session
 const QUIZ_SESSION_SIZE = 5
-const REVIEW_SESSION_CAP = 20
 
 async function loadQuizBank() {
   return (await window.storage.getItem(STORAGE_KEYS.quizBank)) || {}
@@ -677,83 +678,6 @@ async function enableSectionReview(objectiveId) {
     }
   })
   if (changed) await saveQuizBank(bank)
-}
-// All banked questions due for review now (scheduled + seen), across every
-// objective. Returned INTERLEAVED: round-robin across sections so similar
-// concepts never sit adjacent — forcing discrimination strengthens recall.
-async function loadDueQuestions(limit = 20) {
-  const bank = await loadQuizBank()
-  const progress = await loadProgress()
-  const now = Date.now()
-  // If exam date is set and within 30 days, boost troubleshooting questions
-  const examDate = await window.storage.getItem(STORAGE_KEYS.examDate)
-  const daysToExam = examDate ? Math.ceil((new Date(examDate) - now) / 86400000) : 999
-  const nearExam = daysToExam > 0 && daysToExam <= 30
-
-  // #22: overconfidence detection — last rating 'easy' but has prior lapses
-  function isOverconfident(q) {
-    if (!q.srs || (q.srs.lapses || 0) === 0) return false
-    const lastRating = q.ratings?.length ? q.ratings[q.ratings.length - 1].value : null
-    return lastRating === 'easy'
-  }
-
-  // #22: declining accuracy — mastery >= 80% but last 3 quiz sessions got worse
-  function hasDecliningAccuracy(objId) {
-    const entry = progress[objId]
-    if (!entry) return false
-    const { score: masteryScore } = computeMastery(entry)
-    if (masteryScore < 0.8) return false
-    const scores = (entry.quizScores || []).slice(-3)
-    if (scores.length < 3) return false
-    const accs = scores.map(s => s.score / Math.max(s.total, 1))
-    return accs[0] > accs[1] && accs[1] > accs[2]
-  }
-
-  // Priority tiers: 0=troubleshooting, 1=overconfident, 2=regular due
-  function qPriority(q, overconf) {
-    if (q.type === 'troubleshooting' && (nearExam || (q.srs?.intervalIndex || 0) >= 2)) return 0
-    if (overconf) return 1
-    return 2
-  }
-
-  const bySection = {}
-  for (const objectiveId of Object.keys(bank)) {
-    const declining = hasDecliningAccuracy(objectiveId)
-    for (const q of bank[objectiveId]) {
-      if (!q.srs || (q.attempts?.length || 0) === 0) continue
-      const due = (q.srs.due ?? 0) <= now
-      const overconf = isOverconfident(q)
-      // Include if: normally due, OR overconfident (high-confidence but lapsed), OR in a declining-accuracy objective
-      if (!due && !overconf && !declining) continue
-      const priority = qPriority(q, overconf)
-      ;(bySection[objectiveId] ||= []).push({ ...q, objectiveId, dueAt: q.srs.due ?? 0, _priority: priority })
-    }
-  }
-
-  const queues = Object.values(bySection)
-    .map(arr => arr.sort((a, b) => a._priority - b._priority || a.dueAt - b.dueAt))
-    .sort(() => Math.random() - 0.5)
-  const interleaved = []
-  let added = true
-  while (added && interleaved.length < limit) {
-    added = false
-    for (const queue of queues) {
-      if (queue.length) { interleaved.push(queue.shift()); added = true; if (interleaved.length >= limit) break }
-    }
-  }
-  // Final pass: randomize presentation order across sections.
-  return randomizeQuestionOrder(interleaved)
-}
-async function countDueQuestions() {
-  const bank = await loadQuizBank()
-  const now = Date.now()
-  let n = 0
-  for (const objectiveId of Object.keys(bank)) {
-    for (const q of bank[objectiveId]) {
-      if (q.srs && (q.attempts?.length || 0) > 0 && (q.srs.due ?? 0) <= now) n++
-    }
-  }
-  return n
 }
 
 const RETENTION_META = {

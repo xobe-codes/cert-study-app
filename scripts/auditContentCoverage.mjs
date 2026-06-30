@@ -7,7 +7,8 @@ import { mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { ALL_OBJECTIVES } from '../src/data/ccnaDomains.js'
-import { getCurated, getCuratedQuestions, curatedObjectiveIds } from '../src/data/ccnaCurated.js'
+import { getCurated, curatedObjectiveIds } from '../src/data/ccnaCurated.js'
+import { countObjectiveQuestions } from '../src/data/questionBankCount.js'
 import { KB_COMPILED_OBJECTIVE_IDS } from '../src/data/kbCompiledPatches.js'
 import { labsForObjective } from '../src/data/ccnaLabs.js'
 import { getLessonReference } from '../src/lesson/knowledgeReference.js'
@@ -31,6 +32,11 @@ function passImpact(objectiveId) {
   return 60
 }
 
+/** Count quiz items for coverage (clean bank + skill; hand-curated when no clean file). */
+function questionCountFor(objectiveId) {
+  return countObjectiveQuestions(objectiveId)
+}
+
 function main() {
   mkdirSync(OUT_DIR, { recursive: true })
 
@@ -38,7 +44,7 @@ function main() {
     const id = obj.id
     const curated = getCurated(id)
     const ref = getLessonReference(id)
-    const questions = getCuratedQuestions(id)
+    const questions = questionCountFor(id)
     const traps = curated?.examTraps?.length || ref?.examTraps?.length || 0
     const flashcards = curated?.flashcards?.length || 0
     const commands = curated?.commands?.length || ref?.commands?.length || 0
@@ -56,7 +62,7 @@ function main() {
       traps,
       flashcards,
       commands,
-      questions: questions.length,
+      questions,
       hasReading,
       hasLab,
       hasDiagram,

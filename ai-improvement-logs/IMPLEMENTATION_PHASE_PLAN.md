@@ -8,7 +8,7 @@
 | 4 | Pilot 2.1 Engineer View | Done |
 | 5 | Enrich STP, 3.1, 5.9, 6.x | Done |
 | 6 | Build-time scanner | Done |
-| 7 | Bulk factory enrichment | Pending |
+| 7 | Bulk factory enrichment | Done |
 | 8 | Extract tabs from App.jsx | Done |
 | 9 | PWA curated cache | Pending |
 | 10 | RAG/tutor | Deferred |

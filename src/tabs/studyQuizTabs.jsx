@@ -14,7 +14,10 @@ import {
 import {
   explanationBodyFromReading, explanationBodyFromAi, resolveBigTakeaway, resolveAiTakeaway,
 } from '../lesson/explanationFormat.js'
+import { getMasteryChecklist, masteryBreakdown } from '../lesson/masteryCriteria.js'
+import { computeMastery } from '../netUtils.js'
 import { parseRichTextSegments } from '../lesson/richTextParse.js'
+import { preloadCleanBank } from '../data/cleanQuestionAdapter.js'
 import CuratedDiagram from '../components/CuratedDiagram.jsx'
 import CuratedStaticBadge from '../components/CuratedStaticBadge.jsx'
 import OverflowMarquee from '../components/OverflowMarquee.jsx'
@@ -32,7 +35,7 @@ import { COLORS, accentColors, styles } from '../ui/appTheme.js'
 import { STATIC_COPY } from '../ui/staticContentCopy.js'
 import { useNavHint } from '../components/NavHintProvider.jsx'
 import { NAV_HINT_KEYS } from '../ui/navHintConfig.js'
-import { DEFAULT_QUIZ_SESSION_SIZE, clampQuizSessionSize } from '../quizSessionConfig.js'
+import { DEFAULT_QUIZ_SESSION_SIZE, MAX_QUIZ_SESSION_SIZE, clampQuizSessionSize, loadQuizSessionSize, saveQuizSessionSize } from '../quizSessionConfig.js'
 import { BOOK_REF } from '../data/bookRefFull.js'
 import {
   PREMIUM_FEATURES,
@@ -827,7 +830,7 @@ function ConceptDetailPanel({ objectiveId, card }) {
   )
 }
 
-function SubnetPracticeHome({ onBack }) {
+export function SubnetPracticeHome({ onBack }) {
   return (
     <div>
       <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
@@ -1256,11 +1259,11 @@ function useFocusTrap(containerRef) {
   }, [containerRef])
 }
 
-function objectiveTabId(objectiveId, tabName) {
+export function objectiveTabId(objectiveId, tabName) {
   return `obj-tab-${objectiveId}-${tabName.replace(/\s+/g, '-')}`
 }
 
-function objectivePanelId(objectiveId, tabName) {
+export function objectivePanelId(objectiveId, tabName) {
   return `obj-panel-${objectiveId}-${tabName.replace(/\s+/g, '-')}`
 }
 

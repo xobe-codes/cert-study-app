@@ -21,6 +21,7 @@ import { SUPPLEMENTAL_QUESTIONS } from './ccnaQuestionSupplemental.js'
 import { getSkillQuestions } from './ccnaSkillQuestions.js'
 import { hasCleanBank, getImportedOrCleanQuestions } from './cleanQuestionAdapter.js'
 import { CLEAN_BANK_OBJECTIVES } from './ccnaCleanBankMeta.js'
+import { countObjectiveQuestions } from './questionBankCount.js'
 import {
   OBJ_11, OBJ_12, OBJ_13, OBJ_14, OBJ_17, OBJ_110, OBJ_111, OBJ_112,
 } from './ccnaCuratedDomain1Rest.js'
@@ -2013,8 +2014,12 @@ export function hasCuratedReading(objectiveId) { return !!CURATED[objectiveId]?.
 
 /** True if this objective has curated (static, zero-API) questions, hand-curated or bulk-imported. */
 export function hasCuratedQuestions(objectiveId) {
-  return (CURATED[objectiveId]?.questions?.length || 0) > 0
-    || CLEAN_BANK_OBJECTIVES.has(objectiveId)
+  return countObjectiveQuestions(objectiveId) > 0
+}
+
+/** Sync count for badges/coverage without loading the lazy clean-bank chunk. */
+export function getCuratedQuestionCount(objectiveId) {
+  return countObjectiveQuestions(objectiveId)
 }
 
 /** Curated + bulk-imported questions reshaped to the app's quiz-bank question shape. */

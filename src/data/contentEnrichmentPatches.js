@@ -1,6 +1,22 @@
 /** Additive content merges — traps, flashcards, engineerView, supplemental questions. */
 
 import { FACTORY_TRAP_PATCHES } from './factoryTrapPatches.js'
+import { FACTORY_FLASHCARD_PATCHES } from './factoryFlashcardPatches.js'
+
+function factoryPatchFor(objectiveId) {
+  const traps = FACTORY_TRAP_PATCHES[objectiveId]
+  const flash = FACTORY_FLASHCARD_PATCHES[objectiveId]
+  if (!traps && !flash) return null
+  const flashcards = [
+    ...(traps?.flashcards || []),
+    ...(flash?.flashcards || []),
+  ]
+  return {
+    ...traps,
+    ...flash,
+    ...(flashcards.length ? { flashcards } : {}),
+  }
+}
 
 const ENGINEER_21 = {
   title: 'Engineer view — VLAN verify',
@@ -291,7 +307,7 @@ export const CONTENT_ENRICHMENT_PATCHES = {
 /** Merge enrichment patch into a curated objective object. */
 export function applyContentEnrichment(base, objectiveId) {
   if (!base) return base
-  const factory = FACTORY_TRAP_PATCHES[objectiveId]
+  const factory = factoryPatchFor(objectiveId)
   const patch = CONTENT_ENRICHMENT_PATCHES[objectiveId]
   if (!factory && !patch) return base
   const mergeList = (a, b) => (b?.length ? [...(a || []), ...b] : a)
