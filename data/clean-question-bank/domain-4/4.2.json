@@ -24,35 +24,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Router(config)#ntp server 129.6.15.28\"."
+          "explanation": "NTP server is configured in global config mode: ntp server 129.6.15.28 — synchronizes router clock to the stratum source."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router#ntp server 129.6.15.28 describes a mechanism that could sound plausible for synchronize. Given synchronize, Router(config)#ntp server 129.6.15.28 matches the tested behavior — Router#ntp server 129.6.15.28 applies a different mechanism.",
+            "explanation": "NTP server is not an exec-mode command — configuration belongs under configure terminal.",
+            "misconceptionTested": "NTP server in privileged exec instead of config mode",
             "whatItDoes": "Router#ntp server 129.6.15.28 describes a mechanism that could sound plausible for synchronize.",
-            "whyWrongHere": "Given synchronize, Router(config)#ntp server 129.6.15.28 matches the tested behavior — Router#ntp server 129.6.15.28 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#ntp server 129.6.15.28\" without matching ntp",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given synchronize, Router(config)#ntp server 129.6.15.28 matches the tested behavior — Router#ntp server 129.6.15.28 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#ntp client 129.6.15.28 describes a mechanism that could sound plausible for synchronize. Given synchronize, Router(config)#ntp server 129.6.15.28 matches the tested behavior — Router(config)#ntp client 129.6.15.28 applies a different mechanism.",
+            "explanation": "ntp client is not the IOS command to point at an NTP server — use ntp server <ip>.",
+            "misconceptionTested": "Inventing ntp client syntax",
             "whatItDoes": "Router(config)#ntp client 129.6.15.28 describes a mechanism that could sound plausible for synchronize.",
-            "whyWrongHere": "Given synchronize, Router(config)#ntp server 129.6.15.28 matches the tested behavior — Router(config)#ntp client 129.6.15.28 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#ntp client 129.6.15.2\" without matching ntp",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given synchronize, Router(config)#ntp server 129.6.15.28 matches the tested behavior — Router(config)#ntp client 129.6.15.28 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#ntp client 129.6.15.28 describes a mechanism that could sound plausible for synchronize. Given synchronize, Router(config)#ntp server 129.6.15.28 matches the tested behavior — Router#ntp client 129.6.15.28 applies a different mechanism.",
+            "explanation": "Exec-mode ntp client is invalid — NTP peers/servers are defined in configuration mode.",
+            "misconceptionTested": "Exec-mode NTP configuration",
             "whatItDoes": "Router#ntp client 129.6.15.28 describes a mechanism that could sound plausible for synchronize.",
-            "whyWrongHere": "Given synchronize, Router(config)#ntp server 129.6.15.28 matches the tested behavior — Router#ntp client 129.6.15.28 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#ntp client 129.6.15.28\" without matching ntp",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given synchronize, Router(config)#ntp server 129.6.15.28 matches the tested behavior — Router#ntp client 129.6.15.28 applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
+        "examTip": "NTP: ntp server <ip> in global config. Verify with show ntp associations."
       }
     },
     {

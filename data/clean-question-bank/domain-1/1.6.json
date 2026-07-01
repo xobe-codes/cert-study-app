@@ -24,32 +24,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "/26 has 6 host bits → 2^6 − 2 = 62 usable hosts."
+          "explanation": "/26 = 64 addresses − 2 (network + broadcast) = 62 usable hosts."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "64 uses the wrong value. The tested fact calls for 26 — not 64.",
+            "explanation": "64 is total addresses in the block — subtract network and broadcast for usable hosts.",
+            "misconceptionTested": "Forgetting to subtract network and broadcast",
             "whatItDoes": "64 describes a mechanism that could sound plausible for hosts per subnet.",
-            "whyWrongHere": "Given hosts per subnet, 62 matches the tested behavior — 64 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 64 instead of the correct 26"
+            "whyWrongHere": "Given hosts per subnet, 62 matches the tested behavior — 64 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "30 uses the wrong value. The tested fact calls for 26 — not 30.",
+            "explanation": "30 usable hosts is a /27 (/32−2=30) — /26 gives 62.",
+            "misconceptionTested": "Confusing /27 host count with /26",
             "whatItDoes": "30 describes a mechanism that could sound plausible for hosts per subnet.",
-            "whyWrongHere": "Given hosts per subnet, 62 matches the tested behavior — 30 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 30 instead of the correct 26"
+            "whyWrongHere": "Given hosts per subnet, 62 matches the tested behavior — 30 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "126 uses the wrong value. The tested fact calls for 26 — not 126.",
+            "explanation": "126 usable is a /25 — /26 is half that size.",
+            "misconceptionTested": "Using /25 math for a /26 prefix",
             "whatItDoes": "126 describes a mechanism that could sound plausible for hosts per subnet.",
-            "whyWrongHere": "Given hosts per subnet, 62 matches the tested behavior — 126 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 126 instead of the correct 26"
+            "whyWrongHere": "Given hosts per subnet, 62 matches the tested behavior — 126 applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
+        "examTip": "Usable hosts = 2^(32−prefix) − 2. /26 → 62 usable."
       }
     },
     {

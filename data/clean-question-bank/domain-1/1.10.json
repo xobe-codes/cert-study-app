@@ -24,32 +24,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "ipconfig /all displays full IPv4/IPv6 client parameters."
+          "explanation": "ipconfig /all on Windows shows IP address, subnet mask, default gateway, and DNS servers."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "netstat describes a mechanism that could sound plausible for ipconfig. Given ipconfig, ipconfig /all matches the tested behavior — netstat applies a different mechanism.",
+            "explanation": "netstat shows connections and listening ports — not full IP configuration.",
+            "misconceptionTested": "Using netstat for IP config dump",
             "whatItDoes": "netstat describes a mechanism that could sound plausible for ipconfig.",
-            "whyWrongHere": "Given ipconfig, ipconfig /all matches the tested behavior — netstat applies a different mechanism.",
-            "misconceptionTested": "Applying \"netstat\" without matching ipconfig"
+            "whyWrongHere": "Given ipconfig, ipconfig /all matches the tested behavior — netstat applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "arp -a describes a mechanism that could sound plausible for ipconfig. Given ipconfig, ipconfig /all matches the tested behavior — arp -a applies a different mechanism.",
+            "explanation": "arp -a shows MAC/IP bindings — not mask, gateway, or DNS.",
+            "misconceptionTested": "Checking ARP table for DHCP parameters",
             "whatItDoes": "arp -a describes a mechanism that could sound plausible for ipconfig.",
-            "whyWrongHere": "Given ipconfig, ipconfig /all matches the tested behavior — arp -a applies a different mechanism.",
-            "misconceptionTested": "Applying \"arp -a\" without matching ipconfig"
+            "whyWrongHere": "Given ipconfig, ipconfig /all matches the tested behavior — arp -a applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "route print only describes a mechanism that could sound plausible for ipconfig. Given ipconfig, ipconfig /all matches the tested behavior — route print only applies a different mechanism.",
+            "explanation": "route print shows routing table — combine with ipconfig for full host troubleshooting.",
+            "misconceptionTested": "Relying on route print alone for IP config",
             "whatItDoes": "route print only describes a mechanism that could sound plausible for ipconfig.",
-            "whyWrongHere": "Given ipconfig, ipconfig /all matches the tested behavior — route print only applies a different mechanism.",
-            "misconceptionTested": "Applying \"route print only\" without matching ipconfig"
+            "whyWrongHere": "Given ipconfig, ipconfig /all matches the tested behavior — route print only applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Ignoring 169.254.x.x in ipconfig — APIPA means DHCP failed — not a valid corporate address"
+        "examTip": "Windows host IP check → ipconfig /all. Linux → ip addr."
       }
     },
     {
@@ -120,32 +120,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "IP works but names fail — troubleshoot DNS settings or server."
+          "explanation": "IP ping works but name fails — DNS resolution is broken while Layer 3 routing to the IP is fine."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Cable CRC errors describes a mechanism that could sound plausible for dns symptom. Given dns symptom, DNS resolution failure matches the tested behavior — Cable CRC errors applies a different mechanism.",
+            "explanation": "Cable CRC would affect IP ping too — here 203.0.113.1 succeeds, isolating DNS.",
+            "misconceptionTested": "Blaming physical errors when IP ping works",
             "whatItDoes": "Cable CRC errors describes a mechanism that could sound plausible for dns symptom.",
-            "whyWrongHere": "Given dns symptom, DNS resolution failure matches the tested behavior — Cable CRC errors applies a different mechanism.",
-            "misconceptionTested": "Applying \"Cable CRC errors\" without matching dns symptom"
+            "whyWrongHere": "Given dns symptom, DNS resolution failure matches the tested behavior — Cable CRC errors applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Missing subnet mask describes a mechanism that could sound plausible for dns symptom. Given dns symptom, DNS resolution failure matches the tested behavior — Missing subnet mask applies a different mechanism.",
+            "explanation": "Missing mask would break same-subnet logic — successful IP ping to Internet target points to DNS.",
+            "misconceptionTested": "Suspecting mask when IP reachability works",
             "whatItDoes": "Missing subnet mask describes a mechanism that could sound plausible for dns symptom.",
-            "whyWrongHere": "Given dns symptom, DNS resolution failure matches the tested behavior — Missing subnet mask applies a different mechanism.",
-            "misconceptionTested": "Applying \"Missing subnet mask\" without matching dns symptom"
+            "whyWrongHere": "Given dns symptom, DNS resolution failure matches the tested behavior — Missing subnet mask applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "STP loop is the wrong device role here. STP prevents Layer 2 loops — it does not provide inter-VLAN routing, MAC learning rules, or replace trunk configuration.",
+            "explanation": "STP loops cause broadcast storms — they do not selectively break DNS while IP ping succeeds.",
+            "misconceptionTested": "Dragging STP into selective DNS failure",
             "whatItDoes": "STP loop describes a mechanism that could sound plausible for dns symptom.",
-            "whyWrongHere": "Given dns symptom, DNS resolution failure matches the tested behavior — STP loop applies a different mechanism.",
-            "misconceptionTested": "Choosing STP when the question asks for forwarding, routing, or VLAN data plane behavior"
+            "whyWrongHere": "Given dns symptom, DNS resolution failure matches the tested behavior — STP loop applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Blaming DNS when the gateway is wrong — If remote IPs fail, fix gateway/routing before DNS"
+        "examTip": "Ping IP works, ping name fails → DNS first."
       }
     },
     {

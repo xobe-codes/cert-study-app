@@ -125,35 +125,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Reduce the human error factor\"."
+          "explanation": "Automation primary driver is reducing human error in repetitive changes — consistency and repeatability beat manual CLI typos."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Reduce the number of changes to be made describes a mechanism that could sound plausible for automation. Given automation, Reduce the human error factor matches the tested behavior — Reduce the number of changes to be made applies a different mechanism.",
+            "explanation": "Automation often increases change frequency safely — the goal is not fewer changes but fewer mistakes per change.",
+            "misconceptionTested": "Equating automation with minimizing change count",
             "whatItDoes": "Reduce the number of changes to be made describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Reduce the human error factor matches the tested behavior — Reduce the number of changes to be made applies a different mechanism.",
-            "misconceptionTested": "Applying \"Reduce the number of changes to be m\" without matching automation",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given automation, Reduce the human error factor matches the tested behavior — Reduce the number of changes to be made applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Reduce the complications that arise from changes describes a mechanism that could sound plausible for automation. Given automation, Reduce the human error factor matches the tested behavior — Reduce the complications that arise from changes applies a different mechanism.",
+            "explanation": "Complexity may shift to tooling — the top motivator cited is error reduction, not abstract complication reduction.",
+            "misconceptionTested": "Choosing complication reduction over human error",
             "whatItDoes": "Reduce the complications that arise from changes describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Reduce the human error factor matches the tested behavior — Reduce the complications that arise from changes applies a different mechanism.",
-            "misconceptionTested": "Applying \"Reduce the complications that arise \" without matching automation",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given automation, Reduce the human error factor matches the tested behavior — Reduce the complications that arise from changes applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Reduce the planning time for the changes describes a mechanism that could sound plausible for automation. Given automation, Reduce the human error factor matches the tested behavior — Reduce the planning time for the changes applies a different mechanism.",
+            "explanation": "Planning still matters — automation saves execution time and errors, not necessarily upfront design time.",
+            "misconceptionTested": "Planning time as primary automation driver",
             "whatItDoes": "Reduce the planning time for the changes describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Reduce the human error factor matches the tested behavior — Reduce the planning time for the changes applies a different mechanism.",
-            "misconceptionTested": "Applying \"Reduce the planning time for the cha\" without matching automation",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given automation, Reduce the human error factor matches the tested behavior — Reduce the planning time for the changes applies a different mechanism."
           }
         ],
-        "examTip": "Separate management plane (API/controller) from data plane (forwarding)."
+        "examTip": "Network automation #1 driver → reduce human error on repetitive, scalable changes."
       }
     },
     {

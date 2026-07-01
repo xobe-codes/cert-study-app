@@ -509,35 +509,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Default route\"."
+          "explanation": "S* marks a candidate default route — the asterisk flags the gateway of last resort, not a generic static prefix."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Static route reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "Plain S is a static route — S* specifically indicates the default/static gateway of last resort entry.",
+            "misconceptionTested": "Ignoring asterisk on static default route code",
             "whatItDoes": "Static route describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Default route matches the tested behavior — Static route applies a different mechanism.",
-            "misconceptionTested": "Treating the default route as a normal match",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, Default route matches the tested behavior — Static route applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Dynamic route reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "Dynamic routes use O, D, R, etc. — S is static; the * denotes default route candidacy.",
+            "misconceptionTested": "Calling S* a dynamic route",
             "whatItDoes": "Dynamic route describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Default route matches the tested behavior — Dynamic route applies a different mechanism.",
-            "misconceptionTested": "Treating the default route as a normal match",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, Default route matches the tested behavior — Dynamic route applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "OSPF route reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "OSPF routes show O — S* is static default, not OSPF.",
+            "misconceptionTested": "Reading S* as OSPF",
             "whatItDoes": "OSPF route describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Default route matches the tested behavior — OSPF route applies a different mechanism.",
-            "misconceptionTested": "Treating the default route as a normal match",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, Default route matches the tested behavior — OSPF route applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
+        "examTip": "S* in routing table = default route candidate (gateway of last resort)."
       }
     },
     {

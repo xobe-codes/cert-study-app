@@ -126,32 +126,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "Links in an EtherChannel must use the same speed and duplex."
+          "explanation": "EtherChannel members must match speed and duplex — only the two gigabit ports can bundle, giving 2 Gb/s aggregate with PAgP."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "2.2 Gb/s describes a mechanism that could sound plausible for etherchannel. Given etherchannel, 2 Gb/s matches the tested behavior — 2.2 Gb/s applies a different mechanism.",
+            "explanation": "You cannot mix FastEthernet and Gigabit in one channel group — 2.2 Gb/s is not achievable with mismatched port speeds.",
+            "misconceptionTested": "Assuming mixed-speed ports aggregate together",
             "whatItDoes": "2.2 Gb/s describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, 2 Gb/s matches the tested behavior — 2.2 Gb/s applies a different mechanism.",
-            "misconceptionTested": "Applying \"2.2 Gb/s\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, 2 Gb/s matches the tested behavior — 2.2 Gb/s applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "400 Mb/s describes a mechanism that could sound plausible for etherchannel. Given etherchannel, 2 Gb/s matches the tested behavior — 400 Mb/s applies a different mechanism.",
+            "explanation": "400 Mb/s would require bundling FastEthernet ports only — the question asks for highest bandwidth using PAgP across available ports.",
+            "misconceptionTested": "Under-counting by ignoring the gigabit pair",
             "whatItDoes": "400 Mb/s describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, 2 Gb/s matches the tested behavior — 400 Mb/s applies a different mechanism.",
-            "misconceptionTested": "Applying \"400 Mb/s\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, 2 Gb/s matches the tested behavior — 400 Mb/s applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "2.6 Gb/s describes a mechanism that could sound plausible for etherchannel. Given etherchannel, 2 Gb/s matches the tested behavior — 2.6 Gb/s applies a different mechanism.",
+            "explanation": "2.6 Gb/s implies mixing link speeds — EtherChannel requires homogeneous speed/duplex on all members.",
+            "misconceptionTested": "Adding incompatible port speeds into one bundle",
             "whatItDoes": "2.6 Gb/s describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, 2 Gb/s matches the tested behavior — 2.6 Gb/s applies a different mechanism.",
-            "misconceptionTested": "Applying \"2.6 Gb/s\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, 2 Gb/s matches the tested behavior — 2.6 Gb/s applies a different mechanism."
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "EtherChannel rule: same speed + duplex on every member — no mixing FE and GE."
       }
     },
     {
@@ -227,32 +227,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Use LACP for non-Cisco link aggregation compatibility."
+          "explanation": "LACP (802.3ad) is the IEEE standard — VMware ESXi and third-party hosts require LACP, not Cisco PAgP."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "EtherChannel is the wrong device role here. EtherChannel bundles links for bandwidth/redundancy — it is not inter-VLAN routing, MAC learning, or unknown-unicast flooding.",
+            "explanation": "\"EtherChannel\" is the feature name, not a negotiation protocol — you must pick LACP or PAgP explicitly.",
+            "misconceptionTested": "Naming the feature instead of the negotiation protocol",
             "whatItDoes": "EtherChannel describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, LACP matches the tested behavior — EtherChannel applies a different mechanism.",
-            "misconceptionTested": "Dragging link-aggregation into an unrelated L2/L3 behavior question"
+            "whyWrongHere": "Given etherchannel, LACP matches the tested behavior — EtherChannel applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Channel Group describes a mechanism that could sound plausible for etherchannel. Given etherchannel, LACP matches the tested behavior — Channel Group applies a different mechanism.",
+            "explanation": "\"Channel Group\" describes the interface bundle — it is not the inter-vendor negotiation protocol.",
+            "misconceptionTested": "Confusing bundle terminology with LACP/PAgP",
             "whatItDoes": "Channel Group describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, LACP matches the tested behavior — Channel Group applies a different mechanism.",
-            "misconceptionTested": "Applying \"Channel Group\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, LACP matches the tested behavior — Channel Group applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "PAgP describes a mechanism that could sound plausible for etherchannel. Given etherchannel, LACP matches the tested behavior — PAgP applies a different mechanism.",
+            "explanation": "PAgP is Cisco-proprietary — non-Cisco ESXi hosts will not negotiate PAgP successfully.",
+            "misconceptionTested": "Using PAgP with non-Cisco endpoints",
             "whatItDoes": "PAgP describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, LACP matches the tested behavior — PAgP applies a different mechanism.",
-            "misconceptionTested": "Applying \"PAgP\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, LACP matches the tested behavior — PAgP applies a different mechanism."
           }
         ],
-        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
+        "examTip": "Non-Cisco link aggregation → LACP. Cisco-to-Cisco can use PAgP or LACP."
       }
     },
     {
@@ -684,32 +684,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Passive plus passive does not form LACP because neither side initiates."
+          "explanation": "LACP passive on both sides means neither initiates — no PDUs are exchanged, so the port channel never forms."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The channel group will use PAgP. describes a mechanism that could sound plausible for etherchannel. Given etherchannel, The channel group will not be formed. matches the tested behavior — The channel group will use PAgP. applies a different mechanism.",
+            "explanation": "PAgP is a different protocol family — this scenario describes LACP passive/passive, not PAgP negotiation.",
+            "misconceptionTested": "Switching to PAgP when LACP modes are specified",
             "whatItDoes": "The channel group will use PAgP. describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, The channel group will not be formed. matches the tested behavior — The channel group will use PAgP. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The channel group will use PAgP.\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, The channel group will not be formed. matches the tested behavior — The channel group will use PAgP. applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The channel group will use LACP. describes a mechanism that could sound plausible for etherchannel. Given etherchannel, The channel group will not be formed. matches the tested behavior — The channel group will use LACP. applies a different mechanism.",
+            "explanation": "The channel does not form at all — passive/passive produces no LACP PDUs, so there is no bundle to \"use LACP\" on.",
+            "misconceptionTested": "Believing passive/passive still negotiates LACP",
             "whatItDoes": "The channel group will use LACP. describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, The channel group will not be formed. matches the tested behavior — The channel group will use LACP. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The channel group will use LACP.\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, The channel group will not be formed. matches the tested behavior — The channel group will use LACP. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "An unconditional port channel will be formed. describes a mechanism that could sound plausible for etherchannel. Given etherchannel, The channel group will not be formed. matches the tested behavior — An unconditional port channel will be formed. applies a different mechanism.",
+            "explanation": "mode on forces a channel without negotiation — passive/passive is not unconditional and will not form.",
+            "misconceptionTested": "Equating passive/passive with mode on",
             "whatItDoes": "An unconditional port channel will be formed. describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, The channel group will not be formed. matches the tested behavior — An unconditional port channel will be formed. applies a different mechanism.",
-            "misconceptionTested": "Applying \"An unconditional port channel will b\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, The channel group will not be formed. matches the tested behavior — An unconditional port channel will be formed. applies a different mechanism."
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "LACP passive + passive = no channel. Need active on at least one side."
       }
     },
     {

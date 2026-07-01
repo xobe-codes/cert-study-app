@@ -6,7 +6,7 @@ test.describe('Stem replay map', () => {
     await page.waitForFunction(() => typeof window.__ccnaTestHooks?.stemReplaySize === 'function')
 
     const size = await page.evaluate(() => window.__ccnaTestHooks.stemReplaySize())
-    expect(size).toBeGreaterThanOrEqual(50)
+    expect(size).toBeGreaterThanOrEqual(80)
 
     const aclLab = await page.evaluate(() => window.__ccnaTestHooks.stemReplayLab('5.5-c-q1'))
     expect(aclLab).toBe('LAB-ACL-CONFIG')

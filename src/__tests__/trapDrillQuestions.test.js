@@ -7,9 +7,9 @@ import {
 } from '../features/trapDrill/trapDrillQuestions.js'
 
 describe('trapDrillQuestions', () => {
-  it('defines 35 trap CKUs with 3 questions each (105 total)', () => {
-    expect(TRAP_DRILL_CKUS).toHaveLength(35)
-    expect(getAllTrapDrillQuestions()).toHaveLength(105)
+  it('defines 45 trap CKUs with 3 questions each (135 total)', () => {
+    expect(TRAP_DRILL_CKUS).toHaveLength(45)
+    expect(getAllTrapDrillQuestions()).toHaveLength(135)
   })
 
   it('returns 3 questions per CKU by id', () => {
@@ -48,6 +48,19 @@ describe('trapDrillQuestions', () => {
       'CKU-WILDCARD-ACL',
       'CKU-REST-API',
       'CKU-CONTROLLER',
+    ]))
+  })
+
+  it('includes security/automation wave-3 trap topics: SSH, AAA, VPN, Ansible', () => {
+    const ids = TRAP_DRILL_CKUS.map(c => c.ckuId)
+    expect(ids).toEqual(expect.arrayContaining([
+      'CKU-SSH',
+      'CKU-AAA-SERVERS',
+      'CKU-AAA-CONCEPTS',
+      'CKU-VPN',
+      'CKU-SEGMENTATION',
+      'CKU-JSON-ANSIBLE',
+      'CKU-DNA',
     ]))
   })
 })

@@ -24,32 +24,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "192.168.0.0/16 is one of the three RFC 1918 ranges."
+          "explanation": "192.168.0.0/16 is RFC 1918 private space — not routable on the public Internet."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "8.8.8.0/24 uses the wrong value. The tested fact calls for 192 — not 8.",
+            "explanation": "8.8.8.0/24 is public Google DNS space — not private RFC 1918.",
+            "misconceptionTested": "Labeling public space as private",
             "whatItDoes": "8.8.8.0/24 describes a mechanism that could sound plausible for rfc1918 ranges.",
-            "whyWrongHere": "Given rfc1918 ranges, 192.168.50.0/24 matches the tested behavior — 8.8.8.0/24 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 8 instead of the correct 192"
+            "whyWrongHere": "Given rfc1918 ranges, 192.168.50.0/24 matches the tested behavior — 8.8.8.0/24 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "203.0.113.0/24 uses the wrong value. The tested fact calls for 192 — not 203.",
+            "explanation": "203.0.113.0/24 is TEST-NET documentation space — not RFC 1918 private.",
+            "misconceptionTested": "Confusing documentation blocks with RFC 1918",
             "whatItDoes": "203.0.113.0/24 describes a mechanism that could sound plausible for rfc1918 ranges.",
-            "whyWrongHere": "Given rfc1918 ranges, 192.168.50.0/24 matches the tested behavior — 203.0.113.0/24 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 203 instead of the correct 192"
+            "whyWrongHere": "Given rfc1918 ranges, 192.168.50.0/24 matches the tested behavior — 203.0.113.0/24 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "169.254.1.0/24 uses the wrong value. The tested fact calls for 192 — not 169.",
+            "explanation": "169.254.0.0/16 is APIPA link-local — not RFC 1918 private (10/8, 172.16/12, 192.168/16).",
+            "misconceptionTested": "Mixing APIPA with RFC 1918 private",
             "whatItDoes": "169.254.1.0/24 describes a mechanism that could sound plausible for rfc1918 ranges.",
-            "whyWrongHere": "Given rfc1918 ranges, 192.168.50.0/24 matches the tested behavior — 169.254.1.0/24 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 169 instead of the correct 192"
+            "whyWrongHere": "Given rfc1918 ranges, 192.168.50.0/24 matches the tested behavior — 169.254.1.0/24 applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Thinking 172.16.0.0/16 is the whole 172 private block — The private range is 172.16.0.0/12 (through 172.31.x.x)"
+        "examTip": "RFC 1918 private: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16."
       }
     },
     {

@@ -1339,35 +1339,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"The command is only used for the management plane of the router itself.\"."
+          "explanation": "ip default-gateway on a router only affects the router own management traffic when IP routing is off — it does not populate the routing table for forwarded packets."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The ip default-network needs to be used in conjunction with ip default-gateway 192.168.11.2. reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "ip default-network advertises a default candidate — it does not fix using default-gateway on a router that should use ip route 0.0.0.0 0.0.0.0.",
+            "misconceptionTested": "Combining default-network with default-gateway on L3 router",
             "whatItDoes": "The ip default-network needs to be used in conjunction with ip default-gateway 192.168.11.2. describes a mechanism that could sound plausible for static routing.",
-            "whyWrongHere": "Given static routing, The command is only used for the management plane of the router itself. matches the tested behavior — The ip default-network needs to be used in conjunction with ip default-gateway 192.168.11.2. applies a different mechanism.",
-            "misconceptionTested": "Treating the default route as a normal match",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given static routing, The command is only used for the management plane of the router itself. matches the tested behavior — The ip default-network needs to be used in conjunction with ip default-gateway 192.168.11.2. applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The command is used for dynamic routing only. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Default-gateway is not for dynamic routing — it is for hosts or routers with IP routing disabled.",
+            "misconceptionTested": "Expecting default-gateway to install dynamic routes",
             "whatItDoes": "The command is used for dynamic routing only. describes a mechanism that could sound plausible for static routing.",
-            "whyWrongHere": "Given static routing, The command is only used for the management plane of the router itself. matches the tested behavior — The command is used for dynamic routing only. applies a different mechanism.",
-            "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given static routing, The command is only used for the management plane of the router itself. matches the tested behavior — The command is used for dynamic routing only. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The specified gateway is wrong. describes a mechanism that could sound plausible for static routing. Given static routing, The command is only used for the management plane of the router itself. matches the tested behavior — The specified gateway is wrong. applies a different mechanism.",
+            "explanation": "The gateway IP may be valid — the command itself is wrong context on a router doing packet forwarding.",
+            "misconceptionTested": "Blaming wrong gateway IP when command scope is the issue",
             "whatItDoes": "The specified gateway is wrong. describes a mechanism that could sound plausible for static routing.",
-            "whyWrongHere": "Given static routing, The command is only used for the management plane of the router itself. matches the tested behavior — The specified gateway is wrong. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The specified gateway is wrong.\" without matching static routing",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given static routing, The command is only used for the management plane of the router itself. matches the tested behavior — The specified gateway is wrong. applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "Router forwarding traffic → ip route 0.0.0.0. ip default-gateway = host / routing-disabled router only."
       }
     },
     {
@@ -1449,35 +1446,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"All of the above.\"."
+          "explanation": "Configuring an IP on an interface creates a connected /prefix route, may add a local /32 host route, and triggers routing updates if dynamic protocols run."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The router creates a /32 route for the IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given static routing, All of the above. matches the tested behavior — The router creates a /32 route for the IP address. applies a different mechanism.",
+            "explanation": "A /32 alone is incomplete — IOS also installs the connected network prefix for the subnet, not only host route.",
+            "misconceptionTested": "Selecting only /32 when all effects apply",
             "whatItDoes": "The router creates a /32 route for the IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given static routing, All of the above. matches the tested behavior — The router creates a /32 route for the IP address. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The router creates a /32 route for t\" without matching static routing",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given static routing, All of the above. matches the tested behavior — The router creates a /32 route for the IP address. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The router creates a summary address for the network. describes a mechanism that could sound plausible for static routing. Given static routing, All of the above. matches the tested behavior — The router creates a summary address for the network. applies a different mechanism.",
+            "explanation": "Summary routes are not auto-created from a single interface IP — connected and local routes are, plus updates if routing protocols active.",
+            "misconceptionTested": "Expecting auto summary without full answer",
             "whatItDoes": "The router creates a summary address for the network. describes a mechanism that could sound plausible for static routing.",
-            "whyWrongHere": "Given static routing, All of the above. matches the tested behavior — The router creates a summary address for the network. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The router creates a summary address\" without matching static routing",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given static routing, All of the above. matches the tested behavior — The router creates a summary address for the network. applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The router creates a routing update if dynamic routing is configured. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Routing updates occur when dynamic routing is enabled — but connected route creation always happens; all listed effects apply together.",
+            "misconceptionTested": "Picking partial effect when stem asks for complete picture",
             "whatItDoes": "The router creates a routing update if dynamic routing is configured. describes a mechanism that could sound plausible for static routing.",
-            "whyWrongHere": "Given static routing, All of the above. matches the tested behavior — The router creates a routing update if dynamic routing is configured. applies a different mechanism.",
-            "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given static routing, All of the above. matches the tested behavior — The router creates a routing update if dynamic routing is configured. applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "Interface IP up → connected route (+ local host route). Dynamic IGP may advertise it."
       }
     },
     {

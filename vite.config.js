@@ -55,6 +55,24 @@ export default defineConfig({
             },
           },
           {
+            urlPattern: /\/assets\/study-modes[^/?]*\.js$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'ccna-study-modes',
+              expiration: { maxEntries: 4, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
+            urlPattern: /\/assets\/studios[^/?]*\.js$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'ccna-studios',
+              expiration: { maxEntries: 4, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
             urlPattern: /\/assets\/[^/?]+\.(?:js|css)$/i,
             handler: 'NetworkFirst',
             options: {

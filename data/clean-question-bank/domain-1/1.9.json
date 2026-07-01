@@ -24,32 +24,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Global unicast = 2000::/3, the public/routable range."
+          "explanation": "2000::/3 is the IPv6 global unicast range — publicly routable addresses."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "FE80::/10 uses the wrong value. The tested fact calls for 2000 — not 80.",
+            "explanation": "FE80::/10 is link-local — not globally routable public unicast.",
+            "misconceptionTested": "Confusing link-local with global unicast",
             "whatItDoes": "FE80::/10 describes a mechanism that could sound plausible for global unicast.",
-            "whyWrongHere": "Given global unicast, 2000::/3 matches the tested behavior — FE80::/10 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 80 instead of the correct 2000"
+            "whyWrongHere": "Given global unicast, 2000::/3 matches the tested behavior — FE80::/10 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "FC00::/7 uses the wrong value. The tested fact calls for 2000 — not 00.",
+            "explanation": "FC00::/7 is unique local (ULA) — private-like, not global public unicast.",
+            "misconceptionTested": "Mixing ULA with global unicast",
             "whatItDoes": "FC00::/7 describes a mechanism that could sound plausible for global unicast.",
-            "whyWrongHere": "Given global unicast, 2000::/3 matches the tested behavior — FC00::/7 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 00 instead of the correct 2000"
+            "whyWrongHere": "Given global unicast, 2000::/3 matches the tested behavior — FC00::/7 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "FF00::/8 uses the wrong value. The tested fact calls for 2000 — not 00.",
+            "explanation": "FF00::/8 is multicast — not unicast public addressing.",
+            "misconceptionTested": "Selecting multicast range for unicast question",
             "whatItDoes": "FF00::/8 describes a mechanism that could sound plausible for global unicast.",
-            "whyWrongHere": "Given global unicast, 2000::/3 matches the tested behavior — FF00::/8 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 00 instead of the correct 2000"
+            "whyWrongHere": "Given global unicast, 2000::/3 matches the tested behavior — FF00::/8 applies a different mechanism."
           }
         ],
-        "examTip": "Link-local fe80::/10 is automatic; global unicast needs SLAAC, DHCPv6, or static config."
+        "examTip": "Global unicast = 2000::/3. Link-local = FE80::/10. ULA = FC00::/7."
       }
     },
     {

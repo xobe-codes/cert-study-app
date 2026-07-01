@@ -133,35 +133,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Router(config-if)#ip helper-address 10.10.1.101\"."
+          "explanation": "DHCP relay on a router/L3 SVI uses ip helper-address 10.10.1.101 under the client-facing interface to forward broadcasts to the server."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#ip dhcp server 10.10.1.101 describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Router(config-if)#ip helper-address 10.10.1.101 matches the tested behavior — Router(config)#ip dhcp server 10.10.1.101 applies a different mechanism.",
+            "explanation": "ip dhcp server in global config is not the relay command — helper-address goes on the interface where clients sit.",
+            "misconceptionTested": "Global dhcp server instead of interface helper-address",
             "whatItDoes": "Router(config)#ip dhcp server 10.10.1.101 describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Router(config-if)#ip helper-address 10.10.1.101 matches the tested behavior — Router(config)#ip dhcp server 10.10.1.101 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#ip dhcp server 10.10.\" without matching dhcp client",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given dhcp client, Router(config-if)#ip helper-address 10.10.1.101 matches the tested behavior — Router(config)#ip dhcp server 10.10.1.101 applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config-if)#ip dhcp server 10.10.1.101 describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Router(config-if)#ip helper-address 10.10.1.101 matches the tested behavior — Router(config-if)#ip dhcp server 10.10.1.101 applies a different mechanism.",
+            "explanation": "ip dhcp server under interface is wrong syntax — relay uses ip helper-address.",
+            "misconceptionTested": "Wrong interface DHCP command for relay",
             "whatItDoes": "Router(config-if)#ip dhcp server 10.10.1.101 describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Router(config-if)#ip helper-address 10.10.1.101 matches the tested behavior — Router(config-if)#ip dhcp server 10.10.1.101 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config-if)#ip dhcp server 10.\" without matching dhcp client",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given dhcp client, Router(config-if)#ip helper-address 10.10.1.101 matches the tested behavior — Router(config-if)#ip dhcp server 10.10.1.101 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config-if)#ip relay-agent 10.10.1.101 describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Router(config-if)#ip helper-address 10.10.1.101 matches the tested behavior — Router(config-if)#ip relay-agent 10.10.1.101 applies a different mechanism.",
+            "explanation": "ip relay-agent is not valid Cisco IOS syntax for DHCP relay — the command is ip helper-address.",
+            "misconceptionTested": "Inventing relay-agent command name",
             "whatItDoes": "Router(config-if)#ip relay-agent 10.10.1.101 describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Router(config-if)#ip helper-address 10.10.1.101 matches the tested behavior — Router(config-if)#ip relay-agent 10.10.1.101 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config-if)#ip relay-agent 10.\" without matching dhcp client",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given dhcp client, Router(config-if)#ip helper-address 10.10.1.101 matches the tested behavior — Router(config-if)#ip relay-agent 10.10.1.101 applies a different mechanism."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "DHCP relay → ip helper-address <server> on the client VLAN interface."
       }
     },
     {

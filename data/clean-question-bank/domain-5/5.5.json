@@ -440,35 +440,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"1 to 99\"."
+          "explanation": "Standard numbered ACLs use range 1–99 (and 1300–1999 extended standard on some platforms) — classic CCNA answer is 1–99."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "1 to 100 describes a mechanism that could sound plausible for identify. Given identify, 1 to 99 matches the tested behavior — 1 to 100 applies a different mechanism.",
+            "explanation": "100 is not in the standard ACL range — standard stops at 99 in the classic numbering scheme.",
+            "misconceptionTested": "Including 100 in standard ACL range",
             "whatItDoes": "1 to 100 describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, 1 to 99 matches the tested behavior — 1 to 100 applies a different mechanism.",
-            "misconceptionTested": "Applying \"1 to 100\" without matching acl",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given identify, 1 to 99 matches the tested behavior — 1 to 100 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "100 to 199 describes a mechanism that could sound plausible for identify. Given identify, 1 to 99 matches the tested behavior — 100 to 199 applies a different mechanism.",
+            "explanation": "100–199 is the extended ACL numbered range — not standard.",
+            "misconceptionTested": "Confusing extended range with standard",
             "whatItDoes": "100 to 199 describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, 1 to 99 matches the tested behavior — 100 to 199 applies a different mechanism.",
-            "misconceptionTested": "Applying \"100 to 199\" without matching acl",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given identify, 1 to 99 matches the tested behavior — 100 to 199 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "100 to 200 describes a mechanism that could sound plausible for identify. Given identify, 1 to 99 matches the tested behavior — 100 to 200 applies a different mechanism.",
+            "explanation": "200 is outside both classic standard and extended ranges — standard is 1–99.",
+            "misconceptionTested": "Off-by-range ACL numbering",
             "whatItDoes": "100 to 200 describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, 1 to 99 matches the tested behavior — 100 to 200 applies a different mechanism.",
-            "misconceptionTested": "Applying \"100 to 200\" without matching acl",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given identify, 1 to 99 matches the tested behavior — 100 to 200 applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "Standard ACL 1–99. Extended ACL 100–199. Match range to ACL type."
       }
     },
     {

@@ -807,35 +807,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"The access list allows outgoing access from inside local addresses.\"."
+          "explanation": "The access list defines which inside local addresses are permitted to be translated by the NAT pool or PAT configuration."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "NAT address types are fixed definitions — match the stem to the exact address role (who translates, who is local vs global).",
+            "explanation": "Dynamic NAT ACLs identify inside local sources eligible for translation — they do not permit inbound access from outside global addresses.",
+            "misconceptionTested": "Reversing inside/outside direction for NAT ACL",
             "whatItDoes": "The access list allows incoming access from outside global addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list.",
-            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows incoming access from outside global addresses. applies a different mechanism.",
-            "misconceptionTested": "Swapping inside/outside or local/global NAT roles",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows incoming access from outside global addresses. applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The access list allows outgoing access from outside local addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list. Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from outside local addresses. applies a different mechanism.",
+            "explanation": "Outside local addresses are on the outside segment as seen locally — the NAT ACL matches inside local sources going out, not outside local.",
+            "misconceptionTested": "Confusing outside local with inside local in NAT ACL",
             "whatItDoes": "The access list allows outgoing access from outside local addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list.",
-            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from outside local addresses. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The access list allows outgoing acce\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from outside local addresses. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The access list allows outgoing access from inside global addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list. Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from inside global addresses. applies a different mechanism.",
+            "explanation": "Inside global is the translated address — the ACL specifies which inside local hosts may use NAT, not inside global as the matched source.",
+            "misconceptionTested": "Matching inside global instead of inside local in ACL",
             "whatItDoes": "The access list allows outgoing access from inside global addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list.",
-            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from inside global addresses. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The access list allows outgoing acce\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from inside global addresses. applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "Services trap: DHCP/DNS/QoS failures are often placement or relay — not “server is down.”"
       }
     },
     {

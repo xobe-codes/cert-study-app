@@ -24,32 +24,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "ESXi runs directly on hardware without a host OS underneath."
+          "explanation": "VMware ESXi runs directly on bare metal — a Type 1 hypervisor."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "VMware Workstation on Windows describes a mechanism that could sound plausible for ESXi runs directly on hardware without a host OS underneath. Given ESXi runs directly on hardware without a host OS underneath, VMware ESXi matches the tested behavior — VMware Workstation on Windows applies a different mechanism.",
+            "explanation": "Workstation runs on top of Windows — Type 2 (hosted) hypervisor, not bare-metal Type 1.",
+            "misconceptionTested": "Classifying hosted hypervisor as Type 1",
             "whatItDoes": "VMware Workstation on Windows describes a mechanism that could sound plausible for ESXi runs directly on hardware without a host OS underneath.",
-            "whyWrongHere": "Given ESXi runs directly on hardware without a host OS underneath, VMware ESXi matches the tested behavior — VMware Workstation on Windows applies a different mechanism.",
-            "misconceptionTested": "Applying \"VMware Workstation on Windows\" without matching type1"
+            "whyWrongHere": "Given ESXi runs directly on hardware without a host OS underneath, VMware ESXi matches the tested behavior — VMware Workstation on Windows applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Docker Desktop only describes a mechanism that could sound plausible for ESXi runs directly on hardware without a host OS underneath. Given ESXi runs directly on hardware without a host OS underneath, VMware ESXi matches the tested behavior — Docker Desktop only applies a different mechanism.",
+            "explanation": "Docker Desktop is container tooling on a host OS — not a bare-metal hypervisor.",
+            "misconceptionTested": "Equating containers with Type 1 hypervisor",
             "whatItDoes": "Docker Desktop only describes a mechanism that could sound plausible for ESXi runs directly on hardware without a host OS underneath.",
-            "whyWrongHere": "Given ESXi runs directly on hardware without a host OS underneath, VMware ESXi matches the tested behavior — Docker Desktop only applies a different mechanism.",
-            "misconceptionTested": "Applying \"Docker Desktop only\" without matching type1"
+            "whyWrongHere": "Given ESXi runs directly on hardware without a host OS underneath, VMware ESXi matches the tested behavior — Docker Desktop only applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "A physical router reflects a common trap: Virtualization eliminates physical networks. VMs/containers still need virtual and physical switching/routing underneath.",
+            "explanation": "A physical router forwards packets — it is not a hypervisor.",
+            "misconceptionTested": "Confusing network hardware with virtualization",
             "whatItDoes": "A physical router describes a mechanism that could sound plausible for ESXi runs directly on hardware without a host OS underneath.",
-            "whyWrongHere": "Given ESXi runs directly on hardware without a host OS underneath, VMware ESXi matches the tested behavior — A physical router applies a different mechanism.",
-            "misconceptionTested": "Virtualization eliminates physical networks"
+            "whyWrongHere": "Given ESXi runs directly on hardware without a host OS underneath, VMware ESXi matches the tested behavior — A physical router applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Virtualization eliminates physical networks — VMs/containers still need virtual and physical switching/routing underneath"
+        "examTip": "Type 1 = bare metal (ESXi, Hyper-V on hardware). Type 2 = runs on OS (Workstation)."
       }
     },
     {

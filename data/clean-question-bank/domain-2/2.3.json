@@ -30,27 +30,27 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "CDP describes a mechanism that could sound plausible for LLDP is IEEE 802. Given LLDP is IEEE 802, LLDP matches the tested behavior — CDP applies a different mechanism.",
+            "explanation": "CDP is Cisco proprietary — the stem asks for an IEEE standard protocol for neighbor identity and capabilities, which is LLDP (802.1AB), not CDP.",
+            "misconceptionTested": "Picking Cisco-only CDP for IEEE standard requirement",
             "whatItDoes": "CDP describes a mechanism that could sound plausible for LLDP is IEEE 802.",
-            "whyWrongHere": "Given LLDP is IEEE 802, LLDP matches the tested behavior — CDP applies a different mechanism.",
-            "misconceptionTested": "Applying \"CDP\" without matching cdp"
+            "whyWrongHere": "Given LLDP is IEEE 802, LLDP matches the tested behavior — CDP applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "802.1b uses the wrong value. The tested fact calls for 1 — not 802.",
+            "explanation": "802.1b is not the IEEE neighbor discovery standard — LLDP is defined in IEEE 802.1AB for collecting neighbor device information.",
+            "misconceptionTested": "Selecting nonexistent 802.1b as discovery standard",
             "whatItDoes": "802.1b describes a mechanism that could sound plausible for LLDP is IEEE 802.",
-            "whyWrongHere": "Given LLDP is IEEE 802, LLDP matches the tested behavior — 802.1b applies a different mechanism.",
-            "misconceptionTested": "Memorizing 802 instead of the correct 1"
+            "whyWrongHere": "Given LLDP is IEEE 802, LLDP matches the tested behavior — 802.1b applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "802.1a uses the wrong value. The tested fact calls for 1 — not 802.",
+            "explanation": "802.1a is not LLDP — IEEE 802.1AB defines Link Layer Discovery Protocol for standards-based neighbor information exchange.",
+            "misconceptionTested": "Confusing 802.1a with 802.1AB LLDP standard",
             "whatItDoes": "802.1a describes a mechanism that could sound plausible for LLDP is IEEE 802.",
-            "whyWrongHere": "Given LLDP is IEEE 802, LLDP matches the tested behavior — 802.1a applies a different mechanism.",
-            "misconceptionTested": "Memorizing 802 instead of the correct 1"
+            "whyWrongHere": "Given LLDP is IEEE 802, LLDP matches the tested behavior — 802.1a applies a different mechanism."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "IEEE neighbor discovery standard → LLDP (802.1AB), not Cisco CDP."
       }
     },
     {
@@ -81,27 +81,27 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#cdp disable describes a mechanism that could sound plausible for no cdp run disables CDP globally. Given no cdp run disables CDP globally, Switch(config-if)#no cdp run matches the tested behavior — Switch(config)#cdp disable applies a different mechanism.",
+            "explanation": "cdp disable is not valid IOS syntax — the global command to turn off CDP on the entire switch is no cdp run in global configuration mode.",
+            "misconceptionTested": "Using invalid cdp disable global command",
             "whatItDoes": "Switch(config)#cdp disable describes a mechanism that could sound plausible for no cdp run disables CDP globally.",
-            "whyWrongHere": "Given no cdp run disables CDP globally, Switch(config-if)#no cdp run matches the tested behavior — Switch(config)#cdp disable applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#cdp disable\" without matching cdp"
+            "whyWrongHere": "Given no cdp run disables CDP globally, Switch(config-if)#no cdp run matches the tested behavior — Switch(config)#cdp disable applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config-if)#no cdp enable describes a mechanism that could sound plausible for no cdp run disables CDP globally. Given no cdp run disables CDP globally, Switch(config-if)#no cdp run matches the tested behavior — Switch(config-if)#no cdp enable applies a different mechanism.",
+            "explanation": "no cdp enable under an interface disables CDP on that port only — the stem asks to turn off CDP on the whole switch, which requires global no cdp run.",
+            "misconceptionTested": "Using per-interface disable for global CDP off",
             "whatItDoes": "Switch(config-if)#no cdp enable describes a mechanism that could sound plausible for no cdp run disables CDP globally.",
-            "whyWrongHere": "Given no cdp run disables CDP globally, Switch(config-if)#no cdp run matches the tested behavior — Switch(config-if)#no cdp enable applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#no cdp enable\" without matching cdp"
+            "whyWrongHere": "Given no cdp run disables CDP globally, Switch(config-if)#no cdp run matches the tested behavior — Switch(config-if)#no cdp enable applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config)#no cdp describes a mechanism that could sound plausible for no cdp run disables CDP globally. Given no cdp run disables CDP globally, Switch(config-if)#no cdp run matches the tested behavior — Switch(config)#no cdp applies a different mechanism.",
+            "explanation": "no cdp alone is incomplete IOS syntax — the recognized global command is no cdp run to disable CDP switch-wide.",
+            "misconceptionTested": "Using incomplete no cdp without run keyword",
             "whatItDoes": "Switch(config)#no cdp describes a mechanism that could sound plausible for no cdp run disables CDP globally.",
-            "whyWrongHere": "Given no cdp run disables CDP globally, Switch(config-if)#no cdp run matches the tested behavior — Switch(config)#no cdp applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#no cdp\" without matching cdp"
+            "whyWrongHere": "Given no cdp run disables CDP globally, Switch(config-if)#no cdp run matches the tested behavior — Switch(config)#no cdp applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: no cdp run disables CDP globally."
+        "examTip": "Disable CDP globally → no cdp run. Per-port → no cdp enable on interface."
       }
     },
     {
@@ -132,27 +132,27 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Every 30 seconds uses the wrong value. The tested fact calls for 60 — not 30.",
+            "explanation": "CDP default timer is 60 seconds, not 30 — advertisements are sent once per minute unless changed with cdp timer.",
+            "misconceptionTested": "Confusing 30-second interval with CDP default",
             "whatItDoes": "Every 30 seconds describes a mechanism that could sound plausible for CDP advertises every 60 seconds by default.",
-            "whyWrongHere": "Given CDP advertises every 60 seconds by default, Every 60 seconds matches the tested behavior — Every 30 seconds applies a different mechanism.",
-            "misconceptionTested": "Memorizing 30 instead of the correct 60"
+            "whyWrongHere": "Given CDP advertises every 60 seconds by default, Every 60 seconds matches the tested behavior — Every 30 seconds applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Every 90 seconds uses the wrong value. The tested fact calls for 60 — not 90.",
+            "explanation": "90 seconds is not the default CDP advertisement interval — IOS sends CDP updates every 60 seconds by default.",
+            "misconceptionTested": "Selecting 90 seconds as CDP timer default",
             "whatItDoes": "Every 90 seconds describes a mechanism that could sound plausible for CDP advertises every 60 seconds by default.",
-            "whyWrongHere": "Given CDP advertises every 60 seconds by default, Every 60 seconds matches the tested behavior — Every 90 seconds applies a different mechanism.",
-            "misconceptionTested": "Memorizing 90 instead of the correct 60"
+            "whyWrongHere": "Given CDP advertises every 60 seconds by default, Every 60 seconds matches the tested behavior — Every 90 seconds applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Every 180 seconds uses the wrong value. The tested fact calls for 60 — not 180.",
+            "explanation": "180 seconds is the default CDP hold-time, not the advertisement interval — frames are sent every 60 seconds, and neighbors are held for 180 seconds of silence.",
+            "misconceptionTested": "Confusing CDP hold-time (180 s) with timer (60 s)",
             "whatItDoes": "Every 180 seconds describes a mechanism that could sound plausible for CDP advertises every 60 seconds by default.",
-            "whyWrongHere": "Given CDP advertises every 60 seconds by default, Every 60 seconds matches the tested behavior — Every 180 seconds applies a different mechanism.",
-            "misconceptionTested": "Memorizing 180 instead of the correct 60"
+            "whyWrongHere": "Given CDP advertises every 60 seconds by default, Every 60 seconds matches the tested behavior — Every 180 seconds applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: CDP advertises every 60 seconds by default."
+        "examTip": "CDP defaults: timer 60 s, hold-time 180 s — do not swap them."
       }
     },
     {
@@ -182,27 +182,27 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "802.1ab describes a mechanism that could sound plausible for CDP is Cisco proprietary neighbor discovery. Given CDP is Cisco proprietary neighbor discovery, CDP matches the tested behavior — 802.1ab applies a different mechanism.",
+            "explanation": "802.1ab is the IEEE standard number for LLDP — the stem asks for the Cisco proprietary protocol, which is CDP.",
+            "misconceptionTested": "Picking IEEE 802.1ab when Cisco proprietary asked",
             "whatItDoes": "802.1ab describes a mechanism that could sound plausible for CDP is Cisco proprietary neighbor discovery.",
-            "whyWrongHere": "Given CDP is Cisco proprietary neighbor discovery, CDP matches the tested behavior — 802.1ab applies a different mechanism.",
-            "misconceptionTested": "Applying \"802.1ab\" without matching cdp"
+            "whyWrongHere": "Given CDP is Cisco proprietary neighbor discovery, CDP matches the tested behavior — 802.1ab applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "LLDP describes a mechanism that could sound plausible for CDP is Cisco proprietary neighbor discovery. Given CDP is Cisco proprietary neighbor discovery, CDP matches the tested behavior — LLDP applies a different mechanism.",
+            "explanation": "LLDP is the IEEE standards-based neighbor protocol — CDP is the Cisco proprietary equivalent that only works between Cisco devices.",
+            "misconceptionTested": "Selecting LLDP for Cisco proprietary requirement",
             "whatItDoes": "LLDP describes a mechanism that could sound plausible for CDP is Cisco proprietary neighbor discovery.",
-            "whyWrongHere": "Given CDP is Cisco proprietary neighbor discovery, CDP matches the tested behavior — LLDP applies a different mechanism.",
-            "misconceptionTested": "Applying \"LLDP\" without matching cdp"
+            "whyWrongHere": "Given CDP is Cisco proprietary neighbor discovery, CDP matches the tested behavior — LLDP applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "802.1a describes a mechanism that could sound plausible for CDP is Cisco proprietary neighbor discovery. Given CDP is Cisco proprietary neighbor discovery, CDP matches the tested behavior — 802.1a applies a different mechanism.",
+            "explanation": "802.1a is not Cisco CDP — CDP is Cisco's proprietary Layer 2 protocol for neighbor identity and capabilities discovery.",
+            "misconceptionTested": "Confusing 802.1a standard with Cisco CDP",
             "whatItDoes": "802.1a describes a mechanism that could sound plausible for CDP is Cisco proprietary neighbor discovery.",
-            "whyWrongHere": "Given CDP is Cisco proprietary neighbor discovery, CDP matches the tested behavior — 802.1a applies a different mechanism.",
-            "misconceptionTested": "Applying \"802.1a\" without matching cdp"
+            "whyWrongHere": "Given CDP is Cisco proprietary neighbor discovery, CDP matches the tested behavior — 802.1a applies a different mechanism."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "Cisco proprietary neighbor discovery → CDP. Multivendor → LLDP."
       }
     },
     {
@@ -233,27 +233,27 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "30 seconds uses the wrong value. The tested fact calls for 180 — not 30.",
+            "explanation": "30 seconds is not the default CDP hold-time — IOS keeps neighbor entries for 180 seconds without updates before removing them.",
+            "misconceptionTested": "Underestimating default CDP hold-time",
             "whatItDoes": "30 seconds describes a mechanism that could sound plausible for CDP holdtime defaults to 180 seconds.",
-            "whyWrongHere": "Given CDP holdtime defaults to 180 seconds, 180 seconds matches the tested behavior — 30 seconds applies a different mechanism.",
-            "misconceptionTested": "Memorizing 30 instead of the correct 180"
+            "whyWrongHere": "Given CDP holdtime defaults to 180 seconds, 180 seconds matches the tested behavior — 30 seconds applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "60 seconds uses the wrong value. The tested fact calls for 180 — not 60.",
+            "explanation": "60 seconds is the default CDP advertisement timer, not the hold-time — entries persist for 180 seconds (three missed advertisements) before aging out.",
+            "misconceptionTested": "Using advertisement timer as hold-time default",
             "whatItDoes": "60 seconds describes a mechanism that could sound plausible for CDP holdtime defaults to 180 seconds.",
-            "whyWrongHere": "Given CDP holdtime defaults to 180 seconds, 180 seconds matches the tested behavior — 60 seconds applies a different mechanism.",
-            "misconceptionTested": "Memorizing 60 instead of the correct 180"
+            "whyWrongHere": "Given CDP holdtime defaults to 180 seconds, 180 seconds matches the tested behavior — 60 seconds applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "90 seconds uses the wrong value. The tested fact calls for 180 — not 90.",
+            "explanation": "90 seconds is not the default CDP hold-time — the factory default is 180 seconds, three times the 60-second advertisement interval.",
+            "misconceptionTested": "Selecting 90 s as CDP hold-time default",
             "whatItDoes": "90 seconds describes a mechanism that could sound plausible for CDP holdtime defaults to 180 seconds.",
-            "whyWrongHere": "Given CDP holdtime defaults to 180 seconds, 180 seconds matches the tested behavior — 90 seconds applies a different mechanism.",
-            "misconceptionTested": "Memorizing 90 instead of the correct 180"
+            "whyWrongHere": "Given CDP holdtime defaults to 180 seconds, 180 seconds matches the tested behavior — 90 seconds applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: CDP holdtime defaults to 180 seconds."
+        "examTip": "CDP hold-time default = 180 s (3× the 60 s advertisement timer)."
       }
     },
     {
@@ -284,27 +284,27 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#cdp disable describes a mechanism that could sound plausible for no cdp enable disables CDP on one interface. Given no cdp enable disables CDP on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config)#cdp disable applies a different mechanism.",
+            "explanation": "cdp disable in global config is invalid syntax — per-interface CDP shutdown uses no cdp enable under the specific interface, not a global cdp disable.",
+            "misconceptionTested": "Using invalid global cdp disable for one interface",
             "whatItDoes": "Switch(config)#cdp disable describes a mechanism that could sound plausible for no cdp enable disables CDP on one interface.",
-            "whyWrongHere": "Given no cdp enable disables CDP on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config)#cdp disable applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#cdp disable\" without matching cdp"
+            "whyWrongHere": "Given no cdp enable disables CDP on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config)#cdp disable applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config)#no cdp describes a mechanism that could sound plausible for no cdp enable disables CDP on one interface. Given no cdp enable disables CDP on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config)#no cdp applies a different mechanism.",
+            "explanation": "no cdp in global config is incomplete — disabling CDP on a single interface requires interface-level no cdp enable, not an ambiguous global command.",
+            "misconceptionTested": "Using incomplete global no cdp for per-interface off",
             "whatItDoes": "Switch(config)#no cdp describes a mechanism that could sound plausible for no cdp enable disables CDP on one interface.",
-            "whyWrongHere": "Given no cdp enable disables CDP on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config)#no cdp applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#no cdp\" without matching cdp"
+            "whyWrongHere": "Given no cdp enable disables CDP on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config)#no cdp applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config-if)#no cdp run describes a mechanism that could sound plausible for no cdp enable disables CDP on one interface. Given no cdp enable disables CDP on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config-if)#no cdp run applies a different mechanism.",
+            "explanation": "no cdp run under an interface is not valid — no cdp run is a global command; per-interface disable is no cdp enable in interface configuration mode.",
+            "misconceptionTested": "Placing global no cdp run on interface",
             "whatItDoes": "Switch(config-if)#no cdp run describes a mechanism that could sound plausible for no cdp enable disables CDP on one interface.",
-            "whyWrongHere": "Given no cdp enable disables CDP on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config-if)#no cdp run applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#no cdp run\" without matching cdp"
+            "whyWrongHere": "Given no cdp enable disables CDP on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config-if)#no cdp run applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: no cdp enable disables CDP on one interface."
+        "examTip": "CDP off one interface → no cdp enable under that interface."
       }
     },
     {
@@ -335,27 +335,27 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#sh cdp neighbors all describes a mechanism that could sound plausible for show cdp entry * gives detailed CDP neighbor information. Given show cdp entry * gives detailed CDP neighbor information, Switch#sh cdp entry * matches the tested behavior — Switch#sh cdp neighbors all applies a different mechanism.",
+            "explanation": "show cdp neighbors all is not the IOS command that mirrors detail output — use show cdp entry * for the same detailed neighbor information.",
+            "misconceptionTested": "Using nonexistent show cdp neighbors all",
             "whatItDoes": "Switch#sh cdp neighbors all describes a mechanism that could sound plausible for show cdp entry * gives detailed CDP neighbor information.",
-            "whyWrongHere": "Given show cdp entry * gives detailed CDP neighbor information, Switch#sh cdp entry * matches the tested behavior — Switch#sh cdp neighbors all applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#sh cdp neighbors all\" without matching cdp"
+            "whyWrongHere": "Given show cdp entry * gives detailed CDP neighbor information, Switch#sh cdp entry * matches the tested behavior — Switch#sh cdp neighbors all applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch#sh cdp neighbors * describes a mechanism that could sound plausible for show cdp entry * gives detailed CDP neighbor information. Given show cdp entry * gives detailed CDP neighbor information, Switch#sh cdp entry * matches the tested behavior — Switch#sh cdp neighbors * applies a different mechanism.",
+            "explanation": "show cdp neighbors * is invalid syntax — the asterisk wildcard for detailed entries belongs to show cdp entry *, not the neighbors summary command.",
+            "misconceptionTested": "Appending wildcard to neighbors instead of entry",
             "whatItDoes": "Switch#sh cdp neighbors * describes a mechanism that could sound plausible for show cdp entry * gives detailed CDP neighbor information.",
-            "whyWrongHere": "Given show cdp entry * gives detailed CDP neighbor information, Switch#sh cdp entry * matches the tested behavior — Switch#sh cdp neighbors * applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#sh cdp neighbors *\" without matching cdp"
+            "whyWrongHere": "Given show cdp entry * gives detailed CDP neighbor information, Switch#sh cdp entry * matches the tested behavior — Switch#sh cdp neighbors * applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch#sh cdp entries all describes a mechanism that could sound plausible for show cdp entry * gives detailed CDP neighbor information. Given show cdp entry * gives detailed CDP neighbor information, Switch#sh cdp entry * matches the tested behavior — Switch#sh cdp entries all applies a different mechanism.",
+            "explanation": "show cdp entries all is not valid IOS syntax — the correct equivalent to show cdp neighbors detail is show cdp entry *.",
+            "misconceptionTested": "Using plural entries all instead of entry *",
             "whatItDoes": "Switch#sh cdp entries all describes a mechanism that could sound plausible for show cdp entry * gives detailed CDP neighbor information.",
-            "whyWrongHere": "Given show cdp entry * gives detailed CDP neighbor information, Switch#sh cdp entry * matches the tested behavior — Switch#sh cdp entries all applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#sh cdp entries all\" without matching cdp"
+            "whyWrongHere": "Given show cdp entry * gives detailed CDP neighbor information, Switch#sh cdp entry * matches the tested behavior — Switch#sh cdp entries all applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: show cdp entry * gives detailed CDP neighbor information."
+        "examTip": "CDP detail equivalent → show cdp entry * (same output as neighbors detail)."
       }
     },
     {

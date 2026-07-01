@@ -24,32 +24,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Channels 1, 6, and 11 are the standard non-overlapping set in 2.4 GHz."
+          "explanation": "In 2.4 GHz, channels 1, 6, and 11 are non-overlapping in common 20 MHz planning."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "1, 2, 3 uses the wrong value. The tested fact calls for 6 — not 1.",
+            "explanation": "Channels 1, 2, 3 overlap — only 1, 6, 11 avoid overlap in typical US planning.",
+            "misconceptionTested": "Using adjacent overlapping channels",
             "whatItDoes": "1, 2, 3 describes a mechanism that could sound plausible for 2.4 channels.",
-            "whyWrongHere": "Given 2.4 channels, 1, 6, 11 matches the tested behavior — 1, 2, 3 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 1 instead of the correct 6"
+            "whyWrongHere": "Given 2.4 channels, 1, 6, 11 matches the tested behavior — 1, 2, 3 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "6, 7, 8 uses the wrong value. The tested fact calls for 1 — not 6.",
+            "explanation": "6, 7, 8 overlap each other — not the standard non-overlapping set.",
+            "misconceptionTested": "Picking overlapping mid-band channels",
             "whatItDoes": "6, 7, 8 describes a mechanism that could sound plausible for 2.4 channels.",
-            "whyWrongHere": "Given 2.4 channels, 1, 6, 11 matches the tested behavior — 6, 7, 8 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 6 instead of the correct 1"
+            "whyWrongHere": "Given 2.4 channels, 1, 6, 11 matches the tested behavior — 6, 7, 8 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "11, 12, 13 only in all regions uses the wrong value. The tested fact calls for 1 — not 11.",
+            "explanation": "Channel 13 is region-dependent — exam default non-overlapping set is 1, 6, 11.",
+            "misconceptionTested": "Region-specific channels on generic exam question",
             "whatItDoes": "11, 12, 13 only in all regions describes a mechanism that could sound plausible for 2.4 channels.",
-            "whyWrongHere": "Given 2.4 channels, 1, 6, 11 matches the tested behavior — 11, 12, 13 only in all regions applies a different mechanism.",
-            "misconceptionTested": "Memorizing 11 instead of the correct 1"
+            "whyWrongHere": "Given 2.4 channels, 1, 6, 11 matches the tested behavior — 11, 12, 13 only in all regions applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Using adjacent 2.4 GHz channels (e.g. 3 and 4) — They overlap — stick to 1, 6, 11 for non-overlapping 20 MHz cells"
+        "examTip": "2.4 GHz non-overlapping (exam default): 1, 6, 11."
       }
     },
     {

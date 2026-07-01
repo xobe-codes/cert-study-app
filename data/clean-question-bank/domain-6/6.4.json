@@ -26,35 +26,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Cisco DNA Center\"."
+          "explanation": "Cisco DNA Center replaced APIC-EM as the campus SDN controller with automation, assurance, and fabric management."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "OpenFlow describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Cisco DNA Center matches the tested behavior — OpenFlow applies a different mechanism.",
+            "explanation": "OpenFlow is a southbound protocol spec — not a replacement management platform for APIC-EM.",
+            "misconceptionTested": "OpenFlow as APIC-EM successor product",
             "whatItDoes": "OpenFlow describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Cisco DNA Center matches the tested behavior — OpenFlow applies a different mechanism.",
-            "misconceptionTested": "Applying \"OpenFlow\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given cisco dna center, Cisco DNA Center matches the tested behavior — OpenFlow applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Cisco Prime Infrastructure describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Cisco DNA Center matches the tested behavior — Cisco Prime Infrastructure applies a different mechanism.",
+            "explanation": "Prime Infrastructure is legacy NMS — DNA Center is the modern APIC-EM replacement for intent-based campus automation.",
+            "misconceptionTested": "Prime as APIC-EM replacement",
             "whatItDoes": "Cisco Prime Infrastructure describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Cisco DNA Center matches the tested behavior — Cisco Prime Infrastructure applies a different mechanism.",
-            "misconceptionTested": "Applying \"Cisco Prime Infrastructure\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given cisco dna center, Cisco DNA Center matches the tested behavior — Cisco Prime Infrastructure applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Cisco SD-WAN describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Cisco DNA Center matches the tested behavior — Cisco SD-WAN applies a different mechanism.",
+            "explanation": "SD-WAN (vManage) targets WAN edge — not the campus controller role APIC-EM held.",
+            "misconceptionTested": "SD-WAN controller as APIC-EM replacement",
             "whatItDoes": "Cisco SD-WAN describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Cisco DNA Center matches the tested behavior — Cisco SD-WAN applies a different mechanism.",
-            "misconceptionTested": "Applying \"Cisco SD-WAN\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given cisco dna center, Cisco DNA Center matches the tested behavior — Cisco SD-WAN applies a different mechanism."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "APIC-EM successor → Cisco DNA Center for campus automation and assurance."
       }
     },
     {

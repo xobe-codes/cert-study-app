@@ -432,32 +432,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "A first-time autonomous AP setup commonly uses the console connection."
+          "explanation": "First-time autonomous AP setup typically uses the console — no IP or credentials exist yet for SSH/HTTPS/Telnet."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "HTTPS describes a mechanism that could sound plausible for management access. Given management access, Console matches the tested behavior — HTTPS applies a different mechanism.",
+            "explanation": "HTTPS requires network reachability and prior configuration — unavailable on initial out-of-box setup.",
+            "misconceptionTested": "Using HTTPS before AP has management IP",
             "whatItDoes": "HTTPS describes a mechanism that could sound plausible for management access.",
-            "whyWrongHere": "Given management access, Console matches the tested behavior — HTTPS applies a different mechanism.",
-            "misconceptionTested": "Applying \"HTTPS\" without matching management access"
+            "whyWrongHere": "Given management access, Console matches the tested behavior — HTTPS applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "SSH describes a mechanism that could sound plausible for management access. Given management access, Console matches the tested behavior — SSH applies a different mechanism.",
+            "explanation": "SSH needs IP connectivity and credentials configured — not available on first boot before initial setup.",
+            "misconceptionTested": "SSH on factory-default autonomous AP",
             "whatItDoes": "SSH describes a mechanism that could sound plausible for management access.",
-            "whyWrongHere": "Given management access, Console matches the tested behavior — SSH applies a different mechanism.",
-            "misconceptionTested": "Applying \"SSH\" without matching management access"
+            "whyWrongHere": "Given management access, Console matches the tested behavior — SSH applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Telnet describes a mechanism that could sound plausible for management access. Given management access, Console matches the tested behavior — Telnet applies a different mechanism.",
+            "explanation": "Telnet is insecure and still requires network config — console is the initial provisioning path.",
+            "misconceptionTested": "Telnet for first-time AP setup without L3 config",
             "whatItDoes": "Telnet describes a mechanism that could sound plausible for management access.",
-            "whyWrongHere": "Given management access, Console matches the tested behavior — Telnet applies a different mechanism.",
-            "misconceptionTested": "Applying \"Telnet\" without matching management access"
+            "whyWrongHere": "Given management access, Console matches the tested behavior — Telnet applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests management access — exam distractors swap similar terms; anchor on: A first-time autonomous AP setup commonly uses the console connection."
+        "examTip": "Factory-default autonomous AP → console first. Then HTTPS/SSH after IP and creds."
       }
     },
     {
@@ -839,32 +839,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "MAC filtering can restrict WLAN access to known corporate hosts."
+          "explanation": "MAC filtering allows only approved corporate MAC addresses to associate — restricts WLAN access to known devices."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Disable SSID broadcasting describes flooding the frame to multiple ports in the VLAN. Given MAC filtering can restrict WLAN access to known corporate hosts, Use MAC filtering matches the tested behavior — Disable SSID broadcasting applies a different mechanism.",
+            "explanation": "Disabling SSID broadcast hides the name — it does not authenticate or restrict which hosts can connect.",
+            "misconceptionTested": "Using hidden SSID as corporate-only access control",
             "whatItDoes": "Disable SSID broadcasting describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "Given MAC filtering can restrict WLAN access to known corporate hosts, Use MAC filtering matches the tested behavior — Disable SSID broadcasting applies a different mechanism.",
-            "misconceptionTested": "Applying \"Disable SSID broadcasting\" without matching wlan"
+            "whyWrongHere": "Given MAC filtering can restrict WLAN access to known corporate hosts, Use MAC filtering matches the tested behavior — Disable SSID broadcasting applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Set a unique PSK describes a mechanism that could sound plausible for MAC filtering can restrict WLAN access to known corporate hosts. Given MAC filtering can restrict WLAN access to known corporate hosts, Use MAC filtering matches the tested behavior — Set a unique PSK applies a different mechanism.",
+            "explanation": "A shared PSK lets anyone with the password connect — it does not limit to corporate-owned devices.",
+            "misconceptionTested": "PSK alone for corporate-only host restriction",
             "whatItDoes": "Set a unique PSK describes a mechanism that could sound plausible for MAC filtering can restrict WLAN access to known corporate hosts.",
-            "whyWrongHere": "Given MAC filtering can restrict WLAN access to known corporate hosts, Use MAC filtering matches the tested behavior — Set a unique PSK applies a different mechanism.",
-            "misconceptionTested": "Applying \"Set a unique PSK\" without matching wlan"
+            "whyWrongHere": "Given MAC filtering can restrict WLAN access to known corporate hosts, Use MAC filtering matches the tested behavior — Set a unique PSK applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Add an LDAP server describes a mechanism that could sound plausible for MAC filtering can restrict WLAN access to known corporate hosts. Given MAC filtering can restrict WLAN access to known corporate hosts, Use MAC filtering matches the tested behavior — Add an LDAP server applies a different mechanism.",
+            "explanation": "LDAP enables user-based 802.1X authentication — the stem asks for corporate host restriction, which MAC filtering addresses directly.",
+            "misconceptionTested": "Choosing LDAP when MAC allow-list is the simpler host filter",
             "whatItDoes": "Add an LDAP server describes a mechanism that could sound plausible for MAC filtering can restrict WLAN access to known corporate hosts.",
-            "whyWrongHere": "Given MAC filtering can restrict WLAN access to known corporate hosts, Use MAC filtering matches the tested behavior — Add an LDAP server applies a different mechanism.",
-            "misconceptionTested": "Applying \"Add an LDAP server\" without matching wlan"
+            "whyWrongHere": "Given MAC filtering can restrict WLAN access to known corporate hosts, Use MAC filtering matches the tested behavior — Add an LDAP server applies a different mechanism."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Corporate devices only → MAC filtering (or 802.1X with cert). PSK ≠ device allow-list."
       }
     },
     {

@@ -1,4 +1,4 @@
-/** Curated trap-drill MC — 3 questions per top trap CKU (105 total). */
+/** Curated trap-drill MC — 3 questions per top trap CKU (135 total). */
 
 export const TRAP_DRILL_CKUS = [
   {
@@ -175,6 +175,56 @@ export const TRAP_DRILL_CKUS = [
     ckuId: 'CKU-SYSLOG',
     trapLabel: 'Setting all syslog messages to severity 7 (debug).',
     objectiveId: '4.5',
+  },
+  {
+    ckuId: 'CKU-SSH',
+    trapLabel: '`transport input ssh` works without generating RSA keys.',
+    objectiveId: '4.8',
+  },
+  {
+    ckuId: 'CKU-AAA-SERVERS',
+    trapLabel: 'TACACS+ and RADIUS use the same port and protocol.',
+    objectiveId: '5.4',
+  },
+  {
+    ckuId: 'CKU-AAA-CONCEPTS',
+    trapLabel: 'Authentication and authorization are the same AAA function.',
+    objectiveId: '5.7',
+  },
+  {
+    ckuId: 'CKU-WLAN-SEC',
+    trapLabel: 'WEP is acceptable for enterprise WLAN security.',
+    objectiveId: '5.8',
+  },
+  {
+    ckuId: 'CKU-VPN',
+    trapLabel: 'Site-to-site VPN and remote-access VPN are identical.',
+    objectiveId: '5.10',
+  },
+  {
+    ckuId: 'CKU-SEGMENTATION',
+    trapLabel: 'VLANs alone provide complete security isolation.',
+    objectiveId: '5.11',
+  },
+  {
+    ckuId: 'CKU-SECURITY-PROGRAM',
+    trapLabel: 'Deploying ACLs alone completes a security program.',
+    objectiveId: '5.2',
+  },
+  {
+    ckuId: 'CKU-PRIVILEGE-LEVELS',
+    trapLabel: 'Use `enable password` instead of `enable secret`.',
+    objectiveId: '5.3',
+  },
+  {
+    ckuId: 'CKU-DNA',
+    trapLabel: 'On-box CLI and DNA Center are mutually exclusive.',
+    objectiveId: '6.4',
+  },
+  {
+    ckuId: 'CKU-JSON-ANSIBLE',
+    trapLabel: 'Thinking Ansible requires an agent on Cisco IOS.',
+    objectiveId: '6.6',
   },
 ]
 
@@ -1583,6 +1633,166 @@ const QUESTIONS = [
     id: 'trap-syslog-3', ckuId: 'CKU-SYSLOG', trapLabel: 'Setting all syslog messages to severity 7 (debug).', objectiveId: '4.5',
     question: 'Lower syslog severity numbers mean…', choices: ['Less important', 'More severe / higher priority', 'Only local console', 'Encrypted messages'],
     correctIndex: 1, explanation: '0 = emergency, 7 = debug — lower number = more critical.', type: 'definition', concept: 'syslog',
+  },
+  // CKU-SSH (3)
+  {
+    id: 'trap-ssh-1', ckuId: 'CKU-SSH', trapLabel: '`transport input ssh` works without generating RSA keys.', objectiveId: '4.8',
+    question: 'You configured `transport input ssh` on VTY lines but SSH fails. What is the most likely missing step?', choices: ['Enable CDP globally', 'Generate RSA keys with `crypto key generate rsa`', 'Configure `ip helper-address`', 'Enable port security'],
+    correctIndex: 1, explanation: 'IOS requires RSA keys before SSH can accept sessions — `transport input ssh` alone is not enough.', type: 'scenario', concept: 'ssh',
+  },
+  {
+    id: 'trap-ssh-2', ckuId: 'CKU-SSH', trapLabel: 'Telnet and SSH are equally secure for management.', objectiveId: '4.8',
+    question: 'Why does CCNA expect SSH instead of Telnet for remote device management?', choices: ['SSH uses UDP for speed', 'SSH encrypts the session; Telnet sends credentials in clear text', 'Telnet requires RSA keys', 'SSH only works on routers'],
+    correctIndex: 1, explanation: 'Telnet has no encryption — SSH protects credentials and command traffic in transit.', type: 'definition', concept: 'ssh',
+  },
+  {
+    id: 'trap-ssh-3', ckuId: 'CKU-SSH', trapLabel: '`transport input ssh` works without generating RSA keys.', objectiveId: '4.8',
+    question: 'Which command restricts VTY access to SSH only?', choices: ['`access-list 1 permit ssh`', '`transport input ssh` under line vty', '`ip ssh enable` on every interface', '`service password-encryption`'],
+    correctIndex: 1, explanation: '`transport input ssh` on line vty blocks Telnet — but RSA keys must exist first.', type: 'application', concept: 'ssh',
+  },
+  // CKU-AAA-SERVERS (3)
+  {
+    id: 'trap-aaa-srv-1', ckuId: 'CKU-AAA-SERVERS', trapLabel: 'TACACS+ and RADIUS use the same port and protocol.', objectiveId: '5.4',
+    question: 'Which AAA protocol uses TCP port 49 and is Cisco-proprietary?', choices: ['RADIUS', 'TACACS+', 'LDAP', 'SNMP'],
+    correctIndex: 1, explanation: 'TACACS+ uses TCP/49; RADIUS uses UDP/1812 for authentication.', type: 'definition', concept: 'aaa',
+  },
+  {
+    id: 'trap-aaa-srv-2', ckuId: 'CKU-AAA-SERVERS', trapLabel: 'RADIUS is preferred for per-command authorization on Cisco devices.', objectiveId: '5.4',
+    question: 'For granular per-command CLI authorization on Cisco IOS, which server type is preferred?', choices: ['RADIUS', 'TACACS+', 'NTP', 'TFTP'],
+    correctIndex: 1, explanation: 'TACACS+ separates auth, authorization, and accounting — ideal for command-level control.', type: 'application', concept: 'aaa',
+  },
+  {
+    id: 'trap-aaa-srv-3', ckuId: 'CKU-AAA-SERVERS', trapLabel: 'TACACS+ and RADIUS use the same port and protocol.', objectiveId: '5.4',
+    question: 'RADIUS authentication typically uses which transport?', choices: ['TCP port 49', 'UDP port 1812', 'TCP port 443', 'UDP port 69'],
+    correctIndex: 1, explanation: 'RADIUS auth uses UDP/1812 — do not confuse with TACACS+ TCP/49.', type: 'definition', concept: 'aaa',
+  },
+  // CKU-AAA-CONCEPTS (3)
+  {
+    id: 'trap-aaa-con-1', ckuId: 'CKU-AAA-CONCEPTS', trapLabel: 'Authentication and authorization are the same AAA function.', objectiveId: '5.7',
+    question: 'In AAA, authorization answers which question?', choices: ['Who are you?', 'What are you allowed to do?', 'What did you do?', 'When did you log in?'],
+    correctIndex: 1, explanation: 'Authentication = identity; authorization = permitted actions; accounting = audit trail.', type: 'definition', concept: 'aaa',
+  },
+  {
+    id: 'trap-aaa-con-2', ckuId: 'CKU-AAA-CONCEPTS', trapLabel: 'Accounting only tracks failed login attempts.', objectiveId: '5.7',
+    question: 'What does AAA accounting typically record?', choices: ['Only failed passwords', 'Session activity such as commands and duration', 'MAC addresses only', 'DHCP leases'],
+    correctIndex: 1, explanation: 'Accounting logs what happened during a session — not just login failures.', type: 'definition', concept: 'aaa',
+  },
+  {
+    id: 'trap-aaa-con-3', ckuId: 'CKU-AAA-CONCEPTS', trapLabel: 'Authentication and authorization are the same AAA function.', objectiveId: '5.7',
+    question: 'A user passes login (username/password) but cannot enter `configure terminal`. Which AAA function blocked them?', choices: ['Authentication', 'Authorization', 'Accounting', 'Encryption'],
+    correctIndex: 1, explanation: 'They authenticated successfully but lack authorization for privileged config commands.', type: 'scenario', concept: 'aaa',
+  },
+  // CKU-WLAN-SEC (3)
+  {
+    id: 'trap-wsec-1', ckuId: 'CKU-WLAN-SEC', trapLabel: 'WEP is acceptable for enterprise WLAN security.', objectiveId: '5.8',
+    question: 'Which WLAN encryption should you deploy in a production enterprise?', choices: ['WEP', 'WPA2-AES (or WPA3)', 'Open (no encryption)', 'WEP with longer keys only'],
+    correctIndex: 1, explanation: 'WEP is broken — CCNA expects WPA2-AES or WPA3 for real deployments.', type: 'definition', concept: 'wlan',
+  },
+  {
+    id: 'trap-wsec-2', ckuId: 'CKU-WLAN-SEC', trapLabel: 'WPA3-Personal removes the need for a strong passphrase.', objectiveId: '5.8',
+    question: 'WPA3-Personal improves key exchange with SAE. What is still required?', choices: ['No passphrase needed', 'A strong pre-shared key/passphrase', 'WEP fallback', 'Disable AES'],
+    correctIndex: 1, explanation: 'WPA3 strengthens handshake but personal networks still need a strong PSK.', type: 'application', concept: 'wlan',
+  },
+  {
+    id: 'trap-wsec-3', ckuId: 'CKU-WLAN-SEC', trapLabel: 'WEP is acceptable for enterprise WLAN security.', objectiveId: '5.8',
+    question: 'An auditor finds WEP on guest Wi-Fi. Primary risk?', choices: ['Slower throughput only', 'Trivially crackable encryption — traffic exposed', 'Requires more APs', 'Breaks DHCP'],
+    correctIndex: 1, explanation: 'WEP keys are recovered in minutes — never acceptable for sensitive traffic.', type: 'scenario', concept: 'wlan',
+  },
+  // CKU-VPN (3)
+  {
+    id: 'trap-vpn-1', ckuId: 'CKU-VPN', trapLabel: 'Site-to-site VPN and remote-access VPN are identical.', objectiveId: '5.10',
+    question: 'A branch office router connects to HQ over IPsec. Which VPN type is this?', choices: ['Remote-access (client VPN)', 'Site-to-site (gateway-to-gateway)', 'SSL bookmark only', 'GRE without encryption'],
+    correctIndex: 1, explanation: 'Site-to-site VPNs connect networks via gateways — remote-access serves individual users.', type: 'definition', concept: 'vpn',
+  },
+  {
+    id: 'trap-vpn-2', ckuId: 'CKU-VPN', trapLabel: 'IPsec only provides confidentiality, not integrity.', objectiveId: '5.10',
+    question: 'IPsec ESP provides which protections?', choices: ['Encryption only', 'Authentication, integrity, and encryption of payload', 'DNS resolution', 'MAC learning'],
+    correctIndex: 1, explanation: 'ESP authenticates and encrypts — AH adds integrity without encryption.', type: 'definition', concept: 'vpn',
+  },
+  {
+    id: 'trap-vpn-3', ckuId: 'CKU-VPN', trapLabel: 'Site-to-site VPN and remote-access VPN are identical.', objectiveId: '5.10',
+    question: 'A traveling employee uses Cisco AnyConnect from a laptop. VPN type?', choices: ['Site-to-site', 'Remote-access', 'EtherChannel', 'VTP trunk'],
+    correctIndex: 1, explanation: 'Individual user endpoints use remote-access VPN — not gateway-to-gateway site-to-site.', type: 'scenario', concept: 'vpn',
+  },
+  // CKU-SEGMENTATION (3)
+  {
+    id: 'trap-seg-1', ckuId: 'CKU-SEGMENTATION', trapLabel: 'VLANs alone provide complete security isolation.', objectiveId: '5.11',
+    question: 'Can VLANs alone stop routed traffic between subnets?', choices: ['Yes — VLANs are firewalls', 'No — routing/ACLs/firewalls still needed between segments', 'Only on routers', 'Only with WEP'],
+    correctIndex: 1, explanation: 'VLANs are L2 boundaries — L3 devices can route between them unless policy blocks it.', type: 'definition', concept: 'security',
+  },
+  {
+    id: 'trap-seg-2', ckuId: 'CKU-SEGMENTATION', trapLabel: 'Micro-segmentation means one flat VLAN for all servers.', objectiveId: '5.11',
+    question: 'Micro-segmentation primarily aims to…', choices: ['Use one VLAN for simplicity', 'Limit lateral movement between trust zones', 'Disable STP', 'Remove ACLs'],
+    correctIndex: 1, explanation: 'Segmentation divides zones (VLANs, VRFs, firewalls) to contain breaches.', type: 'definition', concept: 'security',
+  },
+  {
+    id: 'trap-seg-3', ckuId: 'CKU-SEGMENTATION', trapLabel: 'VLANs alone provide complete security isolation.', objectiveId: '5.11',
+    question: 'Servers in VLAN 10 and users in VLAN 20 share an L3 switch with SVIs. To restrict server access you need…', choices: ['Only change native VLAN', 'ACLs or firewall policy on the L3 path', 'Disable CDP', 'PortFast on all ports'],
+    correctIndex: 1, explanation: 'Inter-VLAN routing is enabled by SVIs — ACLs/firewalls enforce security between segments.', type: 'scenario', concept: 'security',
+  },
+  // CKU-SECURITY-PROGRAM (3)
+  {
+    id: 'trap-secprog-1', ckuId: 'CKU-SECURITY-PROGRAM', trapLabel: 'Deploying ACLs alone completes a security program.', objectiveId: '5.2',
+    question: 'A complete security program includes which elements?', choices: ['ACLs only', 'People, process, and technology controls', 'Firewalls only', 'SNMP traps only'],
+    correctIndex: 1, explanation: 'Defense in depth layers training, policies, and technical controls — ACLs are one piece.', type: 'definition', concept: 'security',
+  },
+  {
+    id: 'trap-secprog-2', ckuId: 'CKU-SECURITY-PROGRAM', trapLabel: 'Physical security is outside network security scope.', objectiveId: '5.2',
+    question: 'Why is physical access to a wiring closet a network security concern?', choices: ['It only affects Wi-Fi', 'Console access can bypass logical controls', 'It improves throughput', 'It enables OSPF only'],
+    correctIndex: 1, explanation: 'Physical access to devices can compromise the network regardless of ACLs.', type: 'scenario', concept: 'security',
+  },
+  {
+    id: 'trap-secprog-3', ckuId: 'CKU-SECURITY-PROGRAM', trapLabel: 'Deploying ACLs alone completes a security program.', objectiveId: '5.2',
+    question: 'Which is a process (not technology) security control?', choices: ['Extended ACL', 'Incident response plan', 'Port security', 'IPsec VPN'],
+    correctIndex: 1, explanation: 'Policies and incident response are process controls — ACLs are technology.', type: 'application', concept: 'security',
+  },
+  // CKU-PRIVILEGE-LEVELS (3)
+  {
+    id: 'trap-priv-1', ckuId: 'CKU-PRIVILEGE-LEVELS', trapLabel: 'Use `enable password` instead of `enable secret`.', objectiveId: '5.3',
+    question: 'Which enable command stores a hashed privileged password?', choices: ['`enable password`', '`enable secret`', '`password enable`', '`secret enable`'],
+    correctIndex: 1, explanation: '`enable secret` uses a strong hash; `enable password` is reversible in config.', type: 'definition', concept: 'security',
+  },
+  {
+    id: 'trap-priv-2', ckuId: 'CKU-PRIVILEGE-LEVELS', trapLabel: 'Telnet is acceptable when `login local` is configured.', objectiveId: '5.3',
+    question: '`login local` is configured on VTY but Telnet is still allowed. What is missing?', choices: ['Nothing — Telnet is secure with local users', '`transport input ssh` to block clear-text Telnet', 'Disable ARP', 'VTP server mode'],
+    correctIndex: 1, explanation: 'Local auth verifies users but Telnet still exposes credentials — restrict to SSH.', type: 'scenario', concept: 'security',
+  },
+  {
+    id: 'trap-priv-3', ckuId: 'CKU-PRIVILEGE-LEVELS', trapLabel: 'Use `enable password` instead of `enable secret`.', objectiveId: '5.3',
+    question: 'If both `enable password` and `enable secret` exist, which is used at the enable prompt?', choices: ['`enable password`', '`enable secret`', 'The longer one', 'Neither — only AAA'],
+    correctIndex: 1, explanation: 'When both are set, `enable secret` takes precedence — prefer secret only.', type: 'application', concept: 'security',
+  },
+  // CKU-DNA (3)
+  {
+    id: 'trap-dna-1', ckuId: 'CKU-DNA', trapLabel: 'On-box CLI and DNA Center are mutually exclusive.', objectiveId: '6.4',
+    question: 'DNA Center manages campus devices centrally. Can you still SSH to a switch CLI?', choices: ['No — DNA replaces all CLI', 'Yes — IOS CLI remains for troubleshooting', 'Only via Telnet', 'Only on WLCs'],
+    correctIndex: 1, explanation: 'DNA orchestrates policy; per-device CLI still exists for outages and deep troubleshooting.', type: 'definition', concept: 'sdn',
+  },
+  {
+    id: 'trap-dna-2', ckuId: 'CKU-DNA', trapLabel: 'Expecting DNA Center to replace all per-device CLI troubleshooting.', objectiveId: '6.4',
+    question: 'DNA Center Assurance primarily provides…', choices: ['Elimination of routing tables', 'Health scores and root-cause hints from telemetry', 'Replacement of all SNMP', 'Automatic CCNA pass'],
+    correctIndex: 1, explanation: 'Assurance aggregates telemetry for proactive troubleshooting — does not remove IOS show commands.', type: 'definition', concept: 'sdn',
+  },
+  {
+    id: 'trap-dna-3', ckuId: 'CKU-DNA', trapLabel: 'On-box CLI and DNA Center are mutually exclusive.', objectiveId: '6.4',
+    question: 'Day-zero onboarding of 12 branch switches via DNA template replaces…', choices: ['All future design decisions', '12 manual per-device CLI onboarding sessions', 'The data plane on switches', 'DHCP entirely'],
+    correctIndex: 1, explanation: 'Templates automate repetitive provisioning — engineers still use CLI and DNA GUI together.', type: 'scenario', concept: 'sdn',
+  },
+  // CKU-JSON-ANSIBLE (3)
+  {
+    id: 'trap-ansible-1', ckuId: 'CKU-JSON-ANSIBLE', trapLabel: 'Thinking Ansible requires an agent on Cisco IOS.', objectiveId: '6.6',
+    question: 'How does Ansible configure Cisco IOS devices?', choices: ['Installs a permanent agent on each router', 'Agentless SSH/API modules (e.g. ios_config)', 'Only via CDP', 'Requires SNMP write on every port'],
+    correctIndex: 1, explanation: 'Ansible is agentless — it connects over SSH (network_cli) without installing software on IOS.', type: 'definition', concept: 'automation',
+  },
+  {
+    id: 'trap-ansible-2', ckuId: 'CKU-JSON-ANSIBLE', trapLabel: 'Using single quotes in JSON — keys/strings require double quotes.', objectiveId: '6.6',
+    question: 'Which JSON snippet is valid?', choices: ["{ 'hostname': 'R1' }", '{ "hostname": "R1" }', '{ hostname: R1 }', '[hostname=R1]'],
+    correctIndex: 1, explanation: 'JSON requires double-quoted keys and string values — single quotes are invalid.', type: 'application', concept: 'automation',
+  },
+  {
+    id: 'trap-ansible-3', ckuId: 'CKU-JSON-ANSIBLE', trapLabel: 'Thinking Ansible requires an agent on Cisco IOS.', objectiveId: '6.6',
+    question: 'Puppet/Chef on network devices often differ from Ansible because they…', choices: ['Never use YAML', 'Use agent-based pull models on managed nodes', 'Cannot configure VLANs', 'Require WEP'],
+    correctIndex: 1, explanation: 'Puppet/Chef agents check in to a master; Ansible pushes over SSH without an agent.', type: 'definition', concept: 'automation',
   },
 ]
 

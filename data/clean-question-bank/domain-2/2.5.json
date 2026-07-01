@@ -262,32 +262,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "BPDU Guard err-disables the port, protecting against a rogue switch."
+          "explanation": "BPDU Guard on a PortFast port err-disables the interface when any BPDU arrives — protects against rogue switches on access ports."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Port becomes root describes a mechanism that could sound plausible for bpdu guard. Given bpdu guard, Port is err-disabled (shut down) matches the tested behavior — Port becomes root applies a different mechanism.",
+            "explanation": "Receiving a BPDU does not make the port root — BPDU Guard shuts the port down immediately.",
+            "misconceptionTested": "Expecting BPDU to trigger root election on access port",
             "whatItDoes": "Port becomes root describes a mechanism that could sound plausible for bpdu guard.",
-            "whyWrongHere": "Given bpdu guard, Port is err-disabled (shut down) matches the tested behavior — Port becomes root applies a different mechanism.",
-            "misconceptionTested": "Applying \"Port becomes root\" without matching bpdu guard"
+            "whyWrongHere": "Given bpdu guard, Port is err-disabled (shut down) matches the tested behavior — Port becomes root applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "BPDU is forwarded describes a mechanism that could sound plausible for bpdu guard. Given bpdu guard, Port is err-disabled (shut down) matches the tested behavior — BPDU is forwarded applies a different mechanism.",
+            "explanation": "BPDU Guard blocks BPDUs by err-disabling the port — it does not forward them into the STP domain.",
+            "misconceptionTested": "Believing BPDU Guard forwards BPDUs normally",
             "whatItDoes": "BPDU is forwarded describes a mechanism that could sound plausible for bpdu guard.",
-            "whyWrongHere": "Given bpdu guard, Port is err-disabled (shut down) matches the tested behavior — BPDU is forwarded applies a different mechanism.",
-            "misconceptionTested": "Applying \"BPDU is forwarded\" without matching bpdu guard"
+            "whyWrongHere": "Given bpdu guard, Port is err-disabled (shut down) matches the tested behavior — BPDU is forwarded applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Nothing describes a mechanism that could sound plausible for bpdu guard. Given bpdu guard, Port is err-disabled (shut down) matches the tested behavior — Nothing applies a different mechanism.",
+            "explanation": "A BPDU on a PortFast+BPDU Guard port triggers immediate err-disable — this is not a no-op.",
+            "misconceptionTested": "Thinking PortFast ignores all BPDU handling",
             "whatItDoes": "Nothing describes a mechanism that could sound plausible for bpdu guard.",
-            "whyWrongHere": "Given bpdu guard, Port is err-disabled (shut down) matches the tested behavior — Nothing applies a different mechanism.",
-            "misconceptionTested": "Applying \"Nothing\" without matching bpdu guard"
+            "whyWrongHere": "Given bpdu guard, Port is err-disabled (shut down) matches the tested behavior — Nothing applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: PortFast on switch links — PortFast belongs only on access/host ports; on switch links it risks loops"
+        "examTip": "PortFast + BPDU Guard + BPDU received → err-disable the port."
       }
     },
     {
@@ -2009,32 +2009,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+          "explanation": "Enable PortFast on the specific access interface with spanning-tree portfast — speeds edge port to forwarding so DHCP/domain join is not delayed by STP convergence."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SwitchA(config-if)#no switchport spanning-tree describes a mechanism that could sound plausible for computers. Given computers, SwitchA(config-if)#spanning-tree portfast matches the tested behavior — SwitchA(config-if)#no switchport spanning-tree applies a different mechanism.",
+            "explanation": "no switchport spanning-tree is invalid — you cannot disable STP per switchport with this syntax.",
+            "misconceptionTested": "Inventing switchport-level STP disable command",
             "whatItDoes": "SwitchA(config-if)#no switchport spanning-tree describes a mechanism that could sound plausible for computers.",
-            "whyWrongHere": "Given computers, SwitchA(config-if)#spanning-tree portfast matches the tested behavior — SwitchA(config-if)#no switchport spanning-tree applies a different mechanism.",
-            "misconceptionTested": "Applying \"SwitchA(config-if)#no switchport spa\" without matching stp"
+            "whyWrongHere": "Given computers, SwitchA(config-if)#spanning-tree portfast matches the tested behavior — SwitchA(config-if)#no switchport spanning-tree applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "SwitchA(config)#switchport spanning-tree portfast describes a mechanism that could sound plausible for computers. Given computers, SwitchA(config-if)#spanning-tree portfast matches the tested behavior — SwitchA(config)#switchport spanning-tree portfast applies a different mechanism.",
+            "explanation": "PortFast is an interface subcommand — switchport spanning-tree portfast in global config is wrong context and syntax.",
+            "misconceptionTested": "Configuring PortFast in wrong config mode",
             "whatItDoes": "SwitchA(config)#switchport spanning-tree portfast describes a mechanism that could sound plausible for computers.",
-            "whyWrongHere": "Given computers, SwitchA(config-if)#spanning-tree portfast matches the tested behavior — SwitchA(config)#switchport spanning-tree portfast applies a different mechanism.",
-            "misconceptionTested": "Applying \"SwitchA(config)#switchport spanning-\" without matching stp"
+            "whyWrongHere": "Given computers, SwitchA(config-if)#spanning-tree portfast matches the tested behavior — SwitchA(config)#switchport spanning-tree portfast applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SwitchA(config)#spanning-tree portfast default describes a mechanism that could sound plausible for computers. Given computers, SwitchA(config-if)#spanning-tree portfast matches the tested behavior — SwitchA(config)#spanning-tree portfast default applies a different mechanism.",
+            "explanation": "spanning-tree portfast default enables PortFast globally for access ports — the stem asks for the interface-level command on a specific port.",
+            "misconceptionTested": "Using global default when interface command is required",
             "whatItDoes": "SwitchA(config)#spanning-tree portfast default describes a mechanism that could sound plausible for computers.",
-            "whyWrongHere": "Given computers, SwitchA(config-if)#spanning-tree portfast matches the tested behavior — SwitchA(config)#spanning-tree portfast default applies a different mechanism.",
-            "misconceptionTested": "Applying \"SwitchA(config)#spanning-tree portfa\" without matching stp"
+            "whyWrongHere": "Given computers, SwitchA(config-if)#spanning-tree portfast matches the tested behavior — SwitchA(config)#spanning-tree portfast default applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
+        "examTip": "Boot delay from STP on one access port → spanning-tree portfast under that interface."
       }
     },
     {
@@ -2163,32 +2163,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+          "explanation": "A hub connected to two PortFast ports creates a temporary L2 loop — both ports forward simultaneously until STP detects and blocks."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "You will create a permanent switching loop. describes a mechanism that could sound plausible for configured. Given configured, You will create a temporary switching loop. matches the tested behavior — You will create a permanent switching loop. applies a different mechanism.",
+            "explanation": "STP eventually blocks a port — the loop is not permanent once BPDUs propagate and STP reconverges.",
+            "misconceptionTested": "Believing PortFast prevents any loop recovery",
             "whatItDoes": "You will create a permanent switching loop. describes a mechanism that could sound plausible for configured.",
-            "whyWrongHere": "Given configured, You will create a temporary switching loop. matches the tested behavior — You will create a permanent switching loop. applies a different mechanism.",
-            "misconceptionTested": "Applying \"You will create a permanent switchin\" without matching stp"
+            "whyWrongHere": "Given configured, You will create a temporary switching loop. matches the tested behavior — You will create a permanent switching loop. applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Both ports will sense the switch and err-disable. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "BPDU Guard err-disables on BPDU receipt — a dumb hub does not send BPDUs, so err-disable from BPDU Guard is not the first effect here.",
+            "misconceptionTested": "Expecting immediate err-disable from hub without BPDUs",
             "whatItDoes": "Both ports will sense the switch and err-disable. describes a mechanism that could sound plausible for configured.",
-            "whyWrongHere": "CAM learning stores one mapping per arrival (configured): You will create a temporary switching loop. — not both addresses as table entries.",
-            "misconceptionTested": "Confusing root and designated ports"
+            "whyWrongHere": "CAM learning stores one mapping per arrival (configured): You will create a temporary switching loop. — not both addresses as table entries."
           },
           {
             "choiceIndex": 3,
-            "explanation": "One of the links will disable via Spanning Tree. reflects a common trap: STP load-balances across redundant links. Classic STP blocks redundant links (one active path); EtherChannel or per-VLAN roots are needed to use both.",
+            "explanation": "STP may block one link after convergence, but the immediate effect is a temporary loop when both PortFast ports forward at once.",
+            "misconceptionTested": "Skipping the temporary loop phase",
             "whatItDoes": "One of the links will disable via Spanning Tree. describes a mechanism that could sound plausible for configured.",
-            "whyWrongHere": "Given configured, You will create a temporary switching loop. matches the tested behavior — One of the links will disable via Spanning Tree. applies a different mechanism.",
-            "misconceptionTested": "STP load-balances across redundant links"
+            "whyWrongHere": "Given configured, You will create a temporary switching loop. matches the tested behavior — One of the links will disable via Spanning Tree. applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
+        "examTip": "Hub into two switch ports = loop risk. PortFast speeds forward — does not remove loops."
       }
     },
     {

@@ -32,27 +32,27 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The OSPF route, because it is dynamically learned describes a mechanism that could sound plausible for administrative distance. Given administrative distance, The static route, because it has the lower administrative distance matches the tested behavior — The OSPF route, because it is dynamically learned applies a different mechanism.",
+            "explanation": "Dynamic does not automatically win — IOS compares administrative distance first. Static AD 1 beats OSPF AD 110 for the same prefix.",
+            "misconceptionTested": "Preferring dynamic OSPF over static regardless of AD",
             "whatItDoes": "The OSPF route, because it is dynamically learned describes a mechanism that could sound plausible for administrative distance.",
-            "whyWrongHere": "Given administrative distance, The static route, because it has the lower administrative distance matches the tested behavior — The OSPF route, because it is dynamically learned applies a different mechanism.",
-            "misconceptionTested": "Applying \"The OSPF route, because it is dynami\" without matching administrative distance"
+            "whyWrongHere": "Given administrative distance, The static route, because it has the lower administrative distance matches the tested behavior — The OSPF route, because it is dynamically learned applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Both routes, load-balanced equally describes a mechanism that could sound plausible for administrative distance. CAM learning stores one mapping per arrival (administrative distance): The static route, because it has the lower administrative distance — not both addresses as table entries.",
+            "explanation": "IOS installs one best route per prefix — equal-cost load balancing requires identical AD and metric, not static plus OSPF to the same net.",
+            "misconceptionTested": "Expecting both static and OSPF installed for load balance",
             "whatItDoes": "Both routes, load-balanced equally describes a mechanism that could sound plausible for administrative distance.",
-            "whyWrongHere": "CAM learning stores one mapping per arrival (administrative distance): The static route, because it has the lower administrative distance — not both addresses as table entries.",
-            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
+            "whyWrongHere": "CAM learning stores one mapping per arrival (administrative distance): The static route, because it has the lower administrative distance — not both addresses as table entries."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Neither route — the router flags a conflict shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given administrative distance, The static route, because it has the lower administrative distance matches the tested behavior — Neither route — the router flags a conflict applies a different mechanism.",
+            "explanation": "Competing routes are normal — the router picks the lowest AD route; it does not flag a conflict when static beats OSPF.",
+            "misconceptionTested": "Believing duplicate sources create a routing conflict error",
             "whatItDoes": "Neither route — the router flags a conflict shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given administrative distance, The static route, because it has the lower administrative distance matches the tested behavior — Neither route — the router flags a conflict applies a different mechanism.",
-            "misconceptionTested": "Applying \"Neither route — the router flags a c\" without matching administrative distance"
+            "whyWrongHere": "Given administrative distance, The static route, because it has the lower administrative distance matches the tested behavior — Neither route — the router flags a conflict applies a different mechanism."
           }
         ],
-        "examTip": "AD picks the route source for the same prefix; longest match still wins first."
+        "examTip": "Routing trap: read show ip route brackets — code, AD, metric — before changing config."
       }
     },
     {
@@ -277,27 +277,27 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Whenever the floating static route has a lower metric reflects a common trap: A floating static needs AD HIGHER than the dynamic protocol. Setting AD 90 to back up OSPF (AD 110) would always be preferred — it becomes primary, not backup.",
+            "explanation": "Floating static uses higher AD, not lower metric — it activates only when the primary OSPF route is withdrawn from the table.",
+            "misconceptionTested": "Using metric comparison for floating static activation",
             "whatItDoes": "Whenever the floating static route has a lower metric describes a mechanism that could sound plausible for floating static route.",
-            "whyWrongHere": "Given floating static route, Only when the OSPF route is no longer available matches the tested behavior — Whenever the floating static route has a lower metric applies a different mechanism.",
-            "misconceptionTested": "A floating static needs AD HIGHER than the dynamic protocol"
+            "whyWrongHere": "Given floating static route, Only when the OSPF route is no longer available matches the tested behavior — Whenever the floating static route has a lower metric applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Immediately, alongside the OSPF route, for load balancing describes a mechanism that could sound plausible for floating static route. Given floating static route, Only when the OSPF route is no longer available matches the tested behavior — Immediately, alongside the OSPF route, for load balancing applies a different mechanism.",
+            "explanation": "Floating static is a backup — it does not load-balance alongside OSPF while both exist; higher AD keeps it inactive until primary fails.",
+            "misconceptionTested": "Expecting simultaneous OSPF and floating static load balance",
             "whatItDoes": "Immediately, alongside the OSPF route, for load balancing describes a mechanism that could sound plausible for floating static route.",
-            "whyWrongHere": "Given floating static route, Only when the OSPF route is no longer available matches the tested behavior — Immediately, alongside the OSPF route, for load balancing applies a different mechanism.",
-            "misconceptionTested": "Applying \"Immediately, alongside the OSPF rout\" without matching floating static route"
+            "whyWrongHere": "Given floating static route, Only when the OSPF route is no longer available matches the tested behavior — Immediately, alongside the OSPF route, for load balancing applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Only after the router reboots describes a mechanism that could sound plausible for floating static route. Given floating static route, Only when the OSPF route is no longer available matches the tested behavior — Only after the router reboots applies a different mechanism.",
+            "explanation": "Route selection is immediate when the primary disappears — no reboot is required for the floating static to become active.",
+            "misconceptionTested": "Requiring reboot for floating static takeover",
             "whatItDoes": "Only after the router reboots describes a mechanism that could sound plausible for floating static route.",
-            "whyWrongHere": "Given floating static route, Only when the OSPF route is no longer available matches the tested behavior — Only after the router reboots applies a different mechanism.",
-            "misconceptionTested": "Applying \"Only after the router reboots\" without matching floating static route"
+            "whyWrongHere": "Given floating static route, Only when the OSPF route is no longer available matches the tested behavior — Only after the router reboots applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: A floating static needs AD HIGHER than the dynamic protocol — Setting AD 90 to back up OSPF (AD 110) would always be preferred — it becomes primary, not backup"
+        "examTip": "Routing trap: read show ip route brackets — code, AD, metric — before changing config."
       }
     },
     {
@@ -321,32 +321,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "A correct routing table entry doesn't guarantee Layer 1/2 health. If pings to a directly connected neighbor fail, check the physical link first — interface status, cabling, and duplex/speed mismatches are the most common causes."
+          "explanation": "Routing table can be correct while L1/L2 is broken — ping the directly connected neighbor fails: check cable, up/up, speed/duplex first."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The OSPF process ID describes a mechanism that could sound plausible for routing troubleshooting layers. Given routing troubleshooting layers, Layer 1/2 status of the connecting link (interface up/up, cabling, duplex) matches the tested behavior — The OSPF process ID applies a different mechanism.",
+            "explanation": "OSPF process ID mismatch does not explain failure to ping a directly connected neighbor interface — L1/L2 is first.",
+            "misconceptionTested": "OSPF process when direct ping to next-hop fails",
             "whatItDoes": "The OSPF process ID describes a mechanism that could sound plausible for routing troubleshooting layers.",
-            "whyWrongHere": "Given routing troubleshooting layers, Layer 1/2 status of the connecting link (interface up/up, cabling, duplex) matches the tested behavior — The OSPF process ID applies a different mechanism.",
-            "misconceptionTested": "Applying \"The OSPF process ID\" without matching routing troubleshooting layers"
+            "whyWrongHere": "Given routing troubleshooting layers, Layer 1/2 status of the connecting link (interface up/up, cabling, duplex) matches the tested behavior — The OSPF process ID applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The router's hostname configuration describes a mechanism that could sound plausible for routing troubleshooting layers. Given routing troubleshooting layers, Layer 1/2 status of the connecting link (interface up/up, cabling, duplex) matches the tested behavior — The router's hostname configuration applies a different mechanism.",
+            "explanation": "Hostname has no effect on IP reachability or routing — physical/link layer is the first check.",
+            "misconceptionTested": "Hostname config for ping failure to adjacent router",
             "whatItDoes": "The router's hostname configuration describes a mechanism that could sound plausible for routing troubleshooting layers.",
-            "whyWrongHere": "Given routing troubleshooting layers, Layer 1/2 status of the connecting link (interface up/up, cabling, duplex) matches the tested behavior — The router's hostname configuration applies a different mechanism.",
-            "misconceptionTested": "Applying \"The router's hostname configuration\" without matching routing troubleshooting layers"
+            "whyWrongHere": "Given routing troubleshooting layers, Layer 1/2 status of the connecting link (interface up/up, cabling, duplex) matches the tested behavior — The router's hostname configuration applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The NTP server configuration describes a mechanism that could sound plausible for routing troubleshooting layers. Given routing troubleshooting layers, Layer 1/2 status of the connecting link (interface up/up, cabling, duplex) matches the tested behavior — The NTP server configuration applies a different mechanism.",
+            "explanation": "NTP does not affect basic IP connectivity to a directly connected peer — verify interface and cabling.",
+            "misconceptionTested": "NTP as first check for failed neighbor ping",
             "whatItDoes": "The NTP server configuration describes a mechanism that could sound plausible for routing troubleshooting layers.",
-            "whyWrongHere": "Given routing troubleshooting layers, Layer 1/2 status of the connecting link (interface up/up, cabling, duplex) matches the tested behavior — The NTP server configuration applies a different mechanism.",
-            "misconceptionTested": "Applying \"The NTP server configuration\" without matching routing troubleshooting layers"
+            "whyWrongHere": "Given routing troubleshooting layers, Layer 1/2 status of the connecting link (interface up/up, cabling, duplex) matches the tested behavior — The NTP server configuration applies a different mechanism."
           }
         ],
-        "examTip": "Troubleshooting stem: work bottom-up (L1 → L2 → L3). Here the fix hinges on: A correct routing table entry doesn't guarantee Layer 1/2 health."
+        "examTip": "Good route but cannot ping connected next-hop → L1/L2: cable, up/up, speed/duplex."
       }
     },
     {

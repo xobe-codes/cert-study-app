@@ -426,27 +426,27 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Authentication describes a mechanism that could sound plausible for accounting use case. Given accounting use case, Accounting matches the tested behavior — Authentication applies a different mechanism.",
+            "explanation": "Authentication verifies identity — audit logging of every command executed requires AAA accounting, not authentication alone.",
+            "misconceptionTested": "Using authentication for command audit logging",
             "whatItDoes": "Authentication describes a mechanism that could sound plausible for accounting use case.",
-            "whyWrongHere": "Given accounting use case, Accounting matches the tested behavior — Authentication applies a different mechanism.",
-            "misconceptionTested": "Applying \"Authentication\" without matching accounting use case"
+            "whyWrongHere": "Given accounting use case, Accounting matches the tested behavior — Authentication applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Authorization describes a mechanism that could sound plausible for accounting use case. Given accounting use case, Accounting matches the tested behavior — Authorization applies a different mechanism.",
+            "explanation": "Authorization controls what a user may do — accounting records what they actually did, which is required for command-level audit trails.",
+            "misconceptionTested": "Confusing authorization with command accounting logs",
             "whatItDoes": "Authorization describes a mechanism that could sound plausible for accounting use case.",
-            "whyWrongHere": "Given accounting use case, Accounting matches the tested behavior — Authorization applies a different mechanism.",
-            "misconceptionTested": "Applying \"Authorization\" without matching accounting use case"
+            "whyWrongHere": "Given accounting use case, Accounting matches the tested behavior — Authorization applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Encryption describes a mechanism that could sound plausible for accounting use case. Given accounting use case, Accounting matches the tested behavior — Encryption applies a different mechanism.",
+            "explanation": "Encryption protects data confidentiality — command auditing is provided by AAA accounting, not encryption.",
+            "misconceptionTested": "Choosing encryption for command audit requirement",
             "whatItDoes": "Encryption describes a mechanism that could sound plausible for accounting use case.",
-            "whyWrongHere": "Given accounting use case, Accounting matches the tested behavior — Encryption applies a different mechanism.",
-            "misconceptionTested": "Applying \"Encryption\" without matching accounting use case"
+            "whyWrongHere": "Given accounting use case, Accounting matches the tested behavior — Encryption applies a different mechanism."
           }
         ],
-        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
+        "examTip": "Security trap: ACL order, implicit deny, AAA separation — authentication ≠ authorization."
       }
     },
     {

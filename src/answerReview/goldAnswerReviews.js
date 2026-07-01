@@ -6,6 +6,7 @@ import { BATCH2_GOLD } from './goldAnswerReviewsBatch2.js'
 import { BATCH3_GOLD } from './goldAnswerReviewsBatch3.js'
 import { BATCH4_GOLD } from './goldAnswerReviewsBatch4.js'
 import { BATCH5_GOLD } from './goldAnswerReviewsBatch5.js'
+import { BATCH6_GOLD } from './goldAnswerReviewsBatch6.js'
 import { HIGH_TRAFFIC_GOLD } from './goldAnswerReviewsHighTraffic.js'
 import { WLAN_58_GOLD } from './goldAnswerReviewsWlan58.js'
 
@@ -90,6 +91,7 @@ export const GOLD_ANSWER_REVIEWS = {
   ...BATCH3_GOLD,
   ...BATCH4_GOLD,
   ...BATCH5_GOLD,
+  ...BATCH6_GOLD,
 }
 
 export function goldAnswerReviewFor(questionId) {

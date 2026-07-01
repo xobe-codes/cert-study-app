@@ -24,35 +24,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"The device is on a layer 2 switched port on the same VLAN.\"."
+          "explanation": "DHCP snooping inspects DHCP messages on Layer 2 access ports in the same VLAN — it cannot protect devices on routed-only ports without L2 visibility."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The DHCP server is running on the layer 2 switch. describes a mechanism that could sound plausible for layer2 security. Given layer2 security, The device is on a layer 2 switched port on the same VLAN. matches the tested behavior — The DHCP server is running on the layer 2 switch. applies a different mechanism.",
+            "explanation": "The DHCP server is typically a dedicated server or router — snooping runs on switches between clients and server, not requiring server on the switch.",
+            "misconceptionTested": "DHCP server must run on the L2 switch",
             "whatItDoes": "The DHCP server is running on the layer 2 switch. describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, The device is on a layer 2 switched port on the same VLAN. matches the tested behavior — The DHCP server is running on the layer 2 switch. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The DHCP server is running on the la\" without matching layer2 security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given layer2 security, The device is on a layer 2 switched port on the same VLAN. matches the tested behavior — The DHCP server is running on the layer 2 switch. applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The device is on a layer 3 routed port on the same VLAN. describes a mechanism that could sound plausible for layer2 security. Given layer2 security, The device is on a layer 2 switched port on the same VLAN. matches the tested behavior — The device is on a layer 3 routed port on the same VLAN. applies a different mechanism.",
+            "explanation": "Routed ports do not see client DHCP broadcasts the same way — snooping needs L2 switch ports in the VLAN.",
+            "misconceptionTested": "DHCP snooping on L3 routed port",
             "whatItDoes": "The device is on a layer 3 routed port on the same VLAN. describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, The device is on a layer 2 switched port on the same VLAN. matches the tested behavior — The device is on a layer 3 routed port on the same VLAN. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The device is on a layer 3 routed po\" without matching layer2 security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given layer2 security, The device is on a layer 2 switched port on the same VLAN. matches the tested behavior — The device is on a layer 3 routed port on the same VLAN. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Configuration of a dedicated IP address for monitoring DHCP transactions. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given layer2 security, The device is on a layer 2 switched port on the same VLAN. matches the tested behavior — Configuration of a dedicated IP address for monitoring DHCP transactions. applies a different mechanism.",
+            "explanation": "No dedicated monitor IP is required — snooping uses trusted/untrusted port roles and binding table.",
+            "misconceptionTested": "Special monitor IP as DHCP snooping prerequisite",
             "whatItDoes": "Configuration of a dedicated IP address for monitoring DHCP transactions. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given layer2 security, The device is on a layer 2 switched port on the same VLAN. matches the tested behavior — Configuration of a dedicated IP address for monitoring DHCP transactions. applies a different mechanism.",
-            "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given layer2 security, The device is on a layer 2 switched port on the same VLAN. matches the tested behavior — Configuration of a dedicated IP address for monitoring DHCP transactions. applies a different mechanism."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "DHCP snooping → L2 switch access ports in VLAN. Mark trusted uplinks to real server."
       }
     },
     {

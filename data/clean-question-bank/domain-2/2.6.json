@@ -25,32 +25,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "A high-density design is best served by lightweight APs controlled by a WLC."
+          "explanation": "High client density in a small area needs lightweight APs with centralized RF management from a WLC — optimal for scale and control."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Autonomous WAPs with a WLC describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Lightweight WAPs with a WLC matches the tested behavior — Autonomous WAPs with a WLC applies a different mechanism.",
+            "explanation": "Autonomous APs lack centralized RF coordination — managing 100 clients in a tight area is harder without WLC-driven channel/power planning.",
+            "misconceptionTested": "Choosing autonomous APs for high-density centralized design",
             "whatItDoes": "Autonomous WAPs with a WLC describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Lightweight WAPs with a WLC matches the tested behavior — Autonomous WAPs with a WLC applies a different mechanism.",
-            "misconceptionTested": "Applying \"Autonomous WAPs with a WLC\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Lightweight WAPs with a WLC matches the tested behavior — Autonomous WAPs with a WLC applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Autonomous WAPs without a WLC describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Lightweight WAPs with a WLC matches the tested behavior — Autonomous WAPs without a WLC applies a different mechanism.",
+            "explanation": "Autonomous without WLC removes centralized management — poor fit for dense deployments needing coordinated RF.",
+            "misconceptionTested": "Deploying standalone autonomous APs at high density",
             "whatItDoes": "Autonomous WAPs without a WLC describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Lightweight WAPs with a WLC matches the tested behavior — Autonomous WAPs without a WLC applies a different mechanism.",
-            "misconceptionTested": "Applying \"Autonomous WAPs without a WLC\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Lightweight WAPs with a WLC matches the tested behavior — Autonomous WAPs without a WLC applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Lightweight WAPs without a WLC describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Lightweight WAPs with a WLC matches the tested behavior — Lightweight WAPs without a WLC applies a different mechanism.",
+            "explanation": "Lightweight APs require a WLC for control and config — they cannot operate in lightweight mode without one.",
+            "misconceptionTested": "Using lightweight APs with no controller",
             "whatItDoes": "Lightweight WAPs without a WLC describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Lightweight WAPs with a WLC matches the tested behavior — Lightweight WAPs without a WLC applies a different mechanism.",
-            "misconceptionTested": "Applying \"Lightweight WAPs without a WLC\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Lightweight WAPs with a WLC matches the tested behavior — Lightweight WAPs without a WLC applies a different mechanism."
           }
         ],
-        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
+        "examTip": "High density + small area → lightweight APs + WLC for RF and client management."
       }
     },
     {
@@ -330,32 +330,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "A repeater can extend coverage for a small area at low cost."
+          "explanation": "A wireless repeater extends coverage in a small warehouse dead zone at low cost — acceptable when density and throughput needs are modest."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Wireless bridging describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Wireless repeater matches the tested behavior — Wireless bridging applies a different mechanism.",
+            "explanation": "Wireless bridging connects two networks — overkill for extending coverage within one warehouse corner.",
+            "misconceptionTested": "Using point-to-point bridge for local coverage gap",
             "whatItDoes": "Wireless bridging describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Wireless repeater matches the tested behavior — Wireless bridging applies a different mechanism.",
-            "misconceptionTested": "Applying \"Wireless bridging\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Wireless repeater matches the tested behavior — Wireless bridging applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Mesh wireless system describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Wireless repeater matches the tested behavior — Mesh wireless system applies a different mechanism.",
+            "explanation": "Mesh systems cost more than a simple repeater for a single small dead zone.",
+            "misconceptionTested": "Over-engineering with mesh for minimal coverage need",
             "whatItDoes": "Mesh wireless system describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Wireless repeater matches the tested behavior — Mesh wireless system applies a different mechanism.",
-            "misconceptionTested": "Applying \"Mesh wireless system\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Wireless repeater matches the tested behavior — Mesh wireless system applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Addition of a wireless LAN controller describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Wireless repeater matches the tested behavior — Addition of a wireless LAN controller applies a different mechanism.",
+            "explanation": "Adding a WLC is expensive infrastructure — a repeater solves a small-area signal drop more cheaply.",
+            "misconceptionTested": "Deploying full WLC stack for one coverage hole",
             "whatItDoes": "Addition of a wireless LAN controller describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Wireless repeater matches the tested behavior — Addition of a wireless LAN controller applies a different mechanism.",
-            "misconceptionTested": "Applying \"Addition of a wireless LAN controlle\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Wireless repeater matches the tested behavior — Addition of a wireless LAN controller applies a different mechanism."
           }
         ],
-        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
+        "examTip": "Small dead zone, low cost → repeater. High density → WLC + lightweight APs."
       }
     },
     {

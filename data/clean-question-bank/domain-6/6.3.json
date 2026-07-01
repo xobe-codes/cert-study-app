@@ -75,35 +75,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"The Leaf switches never connect to other Leaf switches, only Spine switches.\"."
+          "explanation": "In spine-leaf, leaf switches connect hosts and uplink only to spines — leaf-to-leaf traffic hairpins through spines, never direct leaf links."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The Leaf switches connect to other Leaf switches. reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
+            "explanation": "Leaf switches do not interconnect to other leafs — that breaks the spine-leaf model and defeats ECMP fabric design.",
+            "misconceptionTested": "Leaf-to-leaf mesh in spine-leaf",
             "whatItDoes": "The Leaf switches connect to other Leaf switches. describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, The Leaf switches never connect to other Leaf switches, only Spine switches. matches the tested behavior — The Leaf switches connect to other Leaf switches. applies a different mechanism.",
-            "misconceptionTested": "Calling spine-leaf a WAN topology",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given sdn architecture, The Leaf switches never connect to other Leaf switches, only Spine switches. matches the tested behavior — The Leaf switches connect to other Leaf switches. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "There is only one Spine switch per network. reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
+            "explanation": "Production fabrics use multiple spines for redundancy and bisection bandwidth — not a single spine only.",
+            "misconceptionTested": "Single spine as spine-leaf rule",
             "whatItDoes": "There is only one Spine switch per network. describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, The Leaf switches never connect to other Leaf switches, only Spine switches. matches the tested behavior — There is only one Spine switch per network. applies a different mechanism.",
-            "misconceptionTested": "Calling spine-leaf a WAN topology",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given sdn architecture, The Leaf switches never connect to other Leaf switches, only Spine switches. matches the tested behavior — There is only one Spine switch per network. applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Spine switches provide access to hosts. reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
+            "explanation": "Spines aggregate leafs — hosts attach at the leaf tier, not the spine.",
+            "misconceptionTested": "Hosts connecting directly to spine switches",
             "whatItDoes": "Spine switches provide access to hosts. describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, The Leaf switches never connect to other Leaf switches, only Spine switches. matches the tested behavior — Spine switches provide access to hosts. applies a different mechanism.",
-            "misconceptionTested": "Calling spine-leaf a WAN topology",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given sdn architecture, The Leaf switches never connect to other Leaf switches, only Spine switches. matches the tested behavior — Spine switches provide access to hosts. applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "Spine-leaf: hosts on leaf, leafs connect only to spines, never leaf-to-leaf."
       }
     },
     {

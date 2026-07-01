@@ -24,32 +24,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "IPv6 addresses are 128 bits (8 hextets of 16 bits)."
+          "explanation": "IPv6 addresses are 128 bits — four times longer than 32-bit IPv4."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "32 uses the wrong value. The tested fact calls for 6 — not 32.",
+            "explanation": "32 bits is IPv4 address length — IPv6 is 128 bits.",
+            "misconceptionTested": "Using IPv4 bit length for IPv6",
             "whatItDoes": "32 describes a mechanism that could sound plausible for address length.",
-            "whyWrongHere": "Given address length, 128 matches the tested behavior — 32 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 32 instead of the correct 6"
+            "whyWrongHere": "Given address length, 128 matches the tested behavior — 32 applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "64 uses the wrong value. The tested fact calls for 6 — not 64.",
+            "explanation": "64 bits is a common prefix or interface ID slice — full IPv6 address is 128 bits.",
+            "misconceptionTested": "Confusing /64 prefix with full address size",
             "whatItDoes": "64 describes a mechanism that could sound plausible for address length.",
-            "whyWrongHere": "Given address length, 128 matches the tested behavior — 64 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 64 instead of the correct 6"
+            "whyWrongHere": "Given address length, 128 matches the tested behavior — 64 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "256 uses the wrong value. The tested fact calls for 6 — not 256.",
+            "explanation": "256 bits is not a standard IP address size on CCNA — IPv6 is 128 bits.",
+            "misconceptionTested": "Inventing non-standard address length",
             "whatItDoes": "256 describes a mechanism that could sound plausible for address length.",
-            "whyWrongHere": "Given address length, 128 matches the tested behavior — 256 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 256 instead of the correct 6"
+            "whyWrongHere": "Given address length, 128 matches the tested behavior — 256 applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: IPv6 needs NAT like IPv4 — IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary"
+        "examTip": "IPv4 = 32 bits. IPv6 = 128 bits."
       }
     },
     {

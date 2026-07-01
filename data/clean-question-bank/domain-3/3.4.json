@@ -406,32 +406,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Highest priority wins; ties break on highest Router ID. Priority 0 never becomes DR."
+          "explanation": "DR election on multi-access segments: highest OSPF priority wins; tie-break is highest Router ID. Priority 0 never becomes DR."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Lowest IP describes a mechanism that could sound plausible for DR election. Given DR election, Highest OSPF priority, then highest Router ID matches the tested behavior — Lowest IP applies a different mechanism.",
+            "explanation": "Lowest IP is not the DR rule — OSPF uses highest priority, then highest RID.",
+            "misconceptionTested": "Using lowest IP for DR election",
             "whatItDoes": "Lowest IP describes a mechanism that could sound plausible for DR election.",
-            "whyWrongHere": "Given DR election, Highest OSPF priority, then highest Router ID matches the tested behavior — Lowest IP applies a different mechanism.",
-            "misconceptionTested": "Applying \"Lowest IP\" without matching DR election"
+            "whyWrongHere": "Given DR election, Highest OSPF priority, then highest Router ID matches the tested behavior — Lowest IP applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Lowest MAC describes a mechanism that could sound plausible for DR election. Given DR election, Highest OSPF priority, then highest Router ID matches the tested behavior — Lowest MAC applies a different mechanism.",
+            "explanation": "MAC address plays no role in OSPF DR election — priority and Router ID decide.",
+            "misconceptionTested": "Electing DR by MAC address",
             "whatItDoes": "Lowest MAC describes a mechanism that could sound plausible for DR election.",
-            "whyWrongHere": "Given DR election, Highest OSPF priority, then highest Router ID matches the tested behavior — Lowest MAC applies a different mechanism.",
-            "misconceptionTested": "Applying \"Lowest MAC\" without matching DR election"
+            "whyWrongHere": "Given DR election, Highest OSPF priority, then highest Router ID matches the tested behavior — Lowest MAC applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "First to boot only describes a mechanism that could sound plausible for DR election. Given DR election, Highest OSPF priority, then highest Router ID matches the tested behavior — First to boot only applies a different mechanism.",
+            "explanation": "First boot order alone does not permanently determine DR — priority and RID decide when BDR/DR election runs.",
+            "misconceptionTested": "Believing first router up stays DR forever",
             "whatItDoes": "First to boot only describes a mechanism that could sound plausible for DR election.",
-            "whyWrongHere": "Given DR election, Highest OSPF priority, then highest Router ID matches the tested behavior — First to boot only applies a different mechanism.",
-            "misconceptionTested": "Applying \"First to boot only\" without matching DR election"
+            "whyWrongHere": "Given DR election, Highest OSPF priority, then highest Router ID matches the tested behavior — First to boot only applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Expecting DR/BDR on point-to-point links — DR/BDR are only elected on multi-access (e.g. Ethernet) segments"
+        "examTip": "OSPF DR: highest priority → tie highest RID. Priority 0 = never DR/BDR."
       }
     },
     {
@@ -2682,35 +2682,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Router A is configured with a hello timer of 30.\"."
+          "explanation": "OSPF hello/dead timers must match — Router A hello 30 vs Router B hello 10 prevents adjacency even on the same LAN and area."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "There is a static route configured between the two routers. describes a mechanism that could sound plausible for configured. Given configured, Router A is configured with a hello timer of 30. matches the tested behavior — There is a static route configured between the two routers. applies a different mechanism.",
+            "explanation": "A static route between routers does not block OSPF adjacency on a shared LAN segment.",
+            "misconceptionTested": "Blaming static route for OSPF neighbor failure",
             "whatItDoes": "There is a static route configured between the two routers. describes a mechanism that could sound plausible for configured.",
-            "whyWrongHere": "Given configured, Router A is configured with a hello timer of 30. matches the tested behavior — There is a static route configured between the two routers. applies a different mechanism.",
-            "misconceptionTested": "Applying \"There is a static route configured b\" without matching ospfv2",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given configured, Router A is configured with a hello timer of 30. matches the tested behavior — There is a static route configured between the two routers. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router A is configured with multiple area IDs. describes a mechanism that could sound plausible for configured. Given configured, Router A is configured with a hello timer of 30. matches the tested behavior — Router A is configured with multiple area IDs. applies a different mechanism.",
+            "explanation": "Multiple area IDs on one router is unusual but the explicit timer mismatch (30 vs 10) is the classic adjacency killer here.",
+            "misconceptionTested": "Choosing multi-area config over clear timer mismatch",
             "whatItDoes": "Router A is configured with multiple area IDs. describes a mechanism that could sound plausible for configured.",
-            "whyWrongHere": "Given configured, Router A is configured with a hello timer of 30. matches the tested behavior — Router A is configured with multiple area IDs. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router A is configured with multiple\" without matching ospfv2",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given configured, Router A is configured with a hello timer of 30. matches the tested behavior — Router A is configured with multiple area IDs. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router B is configured with a hello timer of 10. describes a mechanism that could sound plausible for configured. Given configured, Router A is configured with a hello timer of 30. matches the tested behavior — Router B is configured with a hello timer of 10. applies a different mechanism.",
+            "explanation": "Router B hello 10 matches common default — Router A hello 30 is the mismatch; B alone is not the problem.",
+            "misconceptionTested": "Flagging the router with default timer instead of the odd 30-second hello",
             "whatItDoes": "Router B is configured with a hello timer of 10. describes a mechanism that could sound plausible for configured.",
-            "whyWrongHere": "Given configured, Router A is configured with a hello timer of 30. matches the tested behavior — Router B is configured with a hello timer of 10. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router B is configured with a hello \" without matching ospfv2",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given configured, Router A is configured with a hello timer of 30. matches the tested behavior — Router B is configured with a hello timer of 10. applies a different mechanism."
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead, subnet/mask, and auth — one mismatch blocks FULL."
+        "examTip": "OSPF stuck in INIT/EXSTART → verify hello and dead timers match on both sides."
       }
     },
     {

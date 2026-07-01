@@ -228,27 +228,27 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The impact would be identical regardless of segmentation describes a mechanism that could sound plausible for segmentation and malware containment. Given segmentation and malware containment, The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the tested behavior — The impact would be identical regardless of segmentation applies a different mechanism.",
+            "explanation": "Segmentation limits lateral movement — impact on a flat network is worse because malware can reach any host without internal ACLs or zone boundaries.",
+            "misconceptionTested": "Claiming segmentation has no effect on malware spread",
             "whatItDoes": "The impact would be identical regardless of segmentation describes a mechanism that could sound plausible for segmentation and malware containment.",
-            "whyWrongHere": "Given segmentation and malware containment, The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the tested behavior — The impact would be identical regardless of segmentation applies a different mechanism.",
-            "misconceptionTested": "Applying \"The impact would be identical regard\" without matching segmentation and malware containment"
+            "whyWrongHere": "Given segmentation and malware containment, The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the tested behavior — The impact would be identical regardless of segmentation applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Segmentation would have caused the initial infection instead of preventing spread describes a mechanism that could sound plausible for segmentation and malware containment. Given segmentation and malware containment, The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the tested behavior — Segmentation would have caused the initial infection instead of preventing spread applies a different mechanism.",
+            "explanation": "Segmentation contains spread — it does not cause the initial infection. The flat network enables wider propagation after compromise.",
+            "misconceptionTested": "Blaming segmentation for causing ransomware infection",
             "whatItDoes": "Segmentation would have caused the initial infection instead of preventing spread describes a mechanism that could sound plausible for segmentation and malware containment.",
-            "whyWrongHere": "Given segmentation and malware containment, The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the tested behavior — Segmentation would have caused the initial infection instead of preventing spread applies a different mechanism.",
-            "misconceptionTested": "Applying \"Segmentation would have caused the i\" without matching segmentation and malware containment"
+            "whyWrongHere": "Given segmentation and malware containment, The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the tested behavior — Segmentation would have caused the initial infection instead of preventing spread applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "A flat network automatically isolates infected hosts describes a mechanism that could sound plausible for segmentation and malware containment. Given segmentation and malware containment, The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the tested behavior — A flat network automatically isolates infected hosts applies a different mechanism.",
+            "explanation": "Flat networks do not auto-isolate infected hosts — without segmentation, ransomware spreads more easily to peers and servers.",
+            "misconceptionTested": "Believing flat networks auto-isolate infected hosts",
             "whatItDoes": "A flat network automatically isolates infected hosts describes a mechanism that could sound plausible for segmentation and malware containment.",
-            "whyWrongHere": "Given segmentation and malware containment, The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the tested behavior — A flat network automatically isolates infected hosts applies a different mechanism.",
-            "misconceptionTested": "Applying \"A flat network automatically isolate\" without matching segmentation and malware containment"
+            "whyWrongHere": "Given segmentation and malware containment, The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the tested behavior — A flat network automatically isolates infected hosts applies a different mechanism."
           }
         ],
-        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
+        "examTip": "Security trap: ACL order, implicit deny, AAA separation — authentication ≠ authorization."
       }
     },
     {
@@ -377,27 +377,27 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Place guest devices on the same VLAN and subnet as corporate devices for simplicity reflects a common trap: Thinking same-VLAN devices need a router. Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does.",
+            "explanation": "Same VLAN as corporate devices lets guests reach internal resources — guest Wi-Fi must use a separate VLAN with restricted inward access.",
+            "misconceptionTested": "Placing guests on corporate VLAN for simplicity",
             "whatItDoes": "Place guest devices on the same VLAN and subnet as corporate devices for simplicity describes a mechanism that could sound plausible for guest network segmentation.",
-            "whyWrongHere": "Given guest network segmentation, Place guest traffic on a separate VLAN/subnet with restricted or no access to internal corporate resources, typically routed directly to the internet matches the tested behavior — Place guest devices on the same VLAN and subnet as corporate devices for simplicity applies a different mechanism.",
-            "misconceptionTested": "Thinking same-VLAN devices need a router"
+            "whyWrongHere": "Given guest network segmentation, Place guest traffic on a separate VLAN/subnet with restricted or no access to internal corporate resources, typically routed directly to the internet matches the tested behavior — Place guest devices on the same VLAN and subnet as corporate devices for simplicity applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Disable DHCP for guest devices so they can't get an IP address reflects a common trap: Thinking same-VLAN devices need a router. Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does.",
+            "explanation": "Disabling DHCP prevents address assignment but does not provide proper segmentation — guests need their own VLAN with internet-only or restricted policy.",
+            "misconceptionTested": "Using DHCP disable instead of guest VLAN segmentation",
             "whatItDoes": "Disable DHCP for guest devices so they can't get an IP address shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given guest network segmentation, Place guest traffic on a separate VLAN/subnet with restricted or no access to internal corporate resources, typically routed directly to the internet matches the tested behavior — Disable DHCP for guest devices so they can't get an IP address applies a different mechanism.",
-            "misconceptionTested": "Thinking same-VLAN devices need a router"
+            "whyWrongHere": "Given guest network segmentation, Place guest traffic on a separate VLAN/subnet with restricted or no access to internal corporate resources, typically routed directly to the internet matches the tested behavior — Disable DHCP for guest devices so they can't get an IP address applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Give guest devices a higher VLAN priority than corporate traffic reflects a common trap: Thinking same-VLAN devices need a router. Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does.",
+            "explanation": "VLAN priority (CoS) does not secure guest traffic — segmentation via separate VLAN and ACLs isolates guests from corporate resources.",
+            "misconceptionTested": "Using VLAN priority instead of guest segmentation",
             "whatItDoes": "Give guest devices a higher VLAN priority than corporate traffic describes a mechanism that could sound plausible for guest network segmentation.",
-            "whyWrongHere": "Given guest network segmentation, Place guest traffic on a separate VLAN/subnet with restricted or no access to internal corporate resources, typically routed directly to the internet matches the tested behavior — Give guest devices a higher VLAN priority than corporate traffic applies a different mechanism.",
-            "misconceptionTested": "Thinking same-VLAN devices need a router"
+            "whyWrongHere": "Given guest network segmentation, Place guest traffic on a separate VLAN/subnet with restricted or no access to internal corporate resources, typically routed directly to the internet matches the tested behavior — Give guest devices a higher VLAN priority than corporate traffic applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
+        "examTip": "Security trap: ACL order, implicit deny, AAA separation — authentication ≠ authorization."
       }
     },
     {
@@ -475,27 +475,27 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "It increases the speed of management traffic only describes a mechanism that could sound plausible for out-of-band management segmentation. Given out-of-band management segmentation, It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the tested behavior — It increases the speed of management traffic only applies a different mechanism.",
+            "explanation": "OOB management primarily improves security isolation — speed may be adequate on a dedicated VLAN but attack-surface reduction is the main goal.",
+            "misconceptionTested": "Choosing speed as primary OOB segmentation benefit",
             "whatItDoes": "It increases the speed of management traffic only describes a mechanism that could sound plausible for out-of-band management segmentation.",
-            "whyWrongHere": "Given out-of-band management segmentation, It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the tested behavior — It increases the speed of management traffic only applies a different mechanism.",
-            "misconceptionTested": "Applying \"It increases the speed of management\" without matching out-of-band management segmentation"
+            "whyWrongHere": "Given out-of-band management segmentation, It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the tested behavior — It increases the speed of management traffic only applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "It eliminates the need for AAA on network devices describes a mechanism that could sound plausible for out-of-band management segmentation. Given out-of-band management segmentation, It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the tested behavior — It eliminates the need for AAA on network devices applies a different mechanism.",
+            "explanation": "Isolating management traffic does not remove AAA — administrative access still requires authentication and authorization on devices.",
+            "misconceptionTested": "Believing OOB eliminates AAA requirement",
             "whatItDoes": "It eliminates the need for AAA on network devices describes a mechanism that could sound plausible for out-of-band management segmentation.",
-            "whyWrongHere": "Given out-of-band management segmentation, It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the tested behavior — It eliminates the need for AAA on network devices applies a different mechanism.",
-            "misconceptionTested": "Applying \"It eliminates the need for AAA on ne\" without matching out-of-band management segmentation"
+            "whyWrongHere": "Given out-of-band management segmentation, It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the tested behavior — It eliminates the need for AAA on network devices applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "It allows users to bypass authentication for management access describes a mechanism that could sound plausible for out-of-band management segmentation. Given out-of-band management segmentation, It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the tested behavior — It allows users to bypass authentication for management access applies a different mechanism.",
+            "explanation": "OOB segmentation restricts user reachability to mgmt interfaces — it does not bypass authentication for management access.",
+            "misconceptionTested": "Expecting users to bypass auth via OOB design",
             "whatItDoes": "It allows users to bypass authentication for management access describes a mechanism that could sound plausible for out-of-band management segmentation.",
-            "whyWrongHere": "Given out-of-band management segmentation, It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the tested behavior — It allows users to bypass authentication for management access applies a different mechanism.",
-            "misconceptionTested": "Applying \"It allows users to bypass authentica\" without matching out-of-band management segmentation"
+            "whyWrongHere": "Given out-of-band management segmentation, It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the tested behavior — It allows users to bypass authentication for management access applies a different mechanism."
           }
         ],
-        "examTip": "Access = one VLAN; trunk tags frames. Native VLAN must match on both ends or you get silent mis-forwarding."
+        "examTip": "Security trap: ACL order, implicit deny, AAA separation — authentication ≠ authorization."
       }
     }
   ]
