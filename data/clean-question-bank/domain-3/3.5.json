@@ -26,35 +26,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"VRRP\"."
+          "explanation": "VRRP (RFC 5798) is the open IEEE/IETF standard FHRP — HSRP and GLBP are Cisco-proprietary alternatives."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Proxy ARP describes a mechanism that could sound plausible for protocol. Given protocol, VRRP matches the tested behavior — Proxy ARP applies a different mechanism.",
+            "explanation": "Proxy ARP answers ARP on behalf of remote subnets — it is not a first-hop redundancy protocol with virtual IP/MAC.",
+            "misconceptionTested": "Substituting Proxy ARP for FHRP",
             "whatItDoes": "Proxy ARP describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, VRRP matches the tested behavior — Proxy ARP applies a different mechanism.",
-            "misconceptionTested": "Applying \"Proxy ARP\" without matching fhrp",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given protocol, VRRP matches the tested behavior — Proxy ARP applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "GLBP describes a mechanism that could sound plausible for protocol. Given protocol, VRRP matches the tested behavior — GLBP applies a different mechanism.",
+            "explanation": "GLBP is Cisco proprietary load-sharing FHRP — the stem asks for the openly standardized protocol (VRRP).",
+            "misconceptionTested": "Picking Cisco GLBP when IEEE standard is required",
             "whatItDoes": "GLBP describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, VRRP matches the tested behavior — GLBP applies a different mechanism.",
-            "misconceptionTested": "Applying \"GLBP\" without matching fhrp",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given protocol, VRRP matches the tested behavior — GLBP applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "HSRP describes a mechanism that could sound plausible for protocol. Given protocol, VRRP matches the tested behavior — HSRP applies a different mechanism.",
+            "explanation": "HSRP is widely deployed but Cisco-proprietary — VRRP is the multi-vendor IEEE-aligned FHRP.",
+            "misconceptionTested": "Selecting HSRP instead of open standard VRRP",
             "whatItDoes": "HSRP describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, VRRP matches the tested behavior — HSRP applies a different mechanism.",
-            "misconceptionTested": "Applying \"HSRP\" without matching fhrp",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given protocol, VRRP matches the tested behavior — HSRP applies a different mechanism."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "Open standard FHRP → VRRP. Cisco-only → HSRP or GLBP."
       }
     },
     {

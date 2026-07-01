@@ -125,32 +125,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Most cloud-managed architectures separate the data plane (local forwarding continues independently) from the management/control plane (cloud dashboard). A WAN/internet outage interrupts management visibility and configuration push, but local forwarding generally continues using the last-known configuration."
+          "explanation": "Cloud-managed APs usually keep forwarding locally (data plane) but lose dashboard management, config push, and analytics until WAN returns."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "All wireless clients are immediately disconnected describes a mechanism that could sound plausible for cloud management data vs control plane. Given cloud management data vs control plane, The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the tested behavior — All wireless clients are immediately disconnected applies a different mechanism.",
+            "explanation": "Clients typically stay connected — local forwarding continues; only cloud management/control is interrupted.",
+            "misconceptionTested": "Assuming total wireless outage when cloud link drops",
             "whatItDoes": "All wireless clients are immediately disconnected describes a mechanism that could sound plausible for cloud management data vs control plane.",
-            "whyWrongHere": "Given cloud management data vs control plane, The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the tested behavior — All wireless clients are immediately disconnected applies a different mechanism.",
-            "misconceptionTested": "Applying \"All wireless clients are immediately\" without matching cloud management data vs control plane"
+            "whyWrongHere": "Given cloud management data vs control plane, The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the tested behavior — All wireless clients are immediately disconnected applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The APs factory-reset themselves automatically describes a mechanism that could sound plausible for cloud management data vs control plane. Given cloud management data vs control plane, The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the tested behavior — The APs factory-reset themselves automatically applies a different mechanism.",
+            "explanation": "APs do not factory-reset on WAN loss — they run last-known config and resume cloud sync when connectivity returns.",
+            "misconceptionTested": "Expecting automatic factory reset on management outage",
             "whatItDoes": "The APs factory-reset themselves automatically describes a mechanism that could sound plausible for cloud management data vs control plane.",
-            "whyWrongHere": "Given cloud management data vs control plane, The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the tested behavior — The APs factory-reset themselves automatically applies a different mechanism.",
-            "misconceptionTested": "Applying \"The APs factory-reset themselves aut\" without matching cloud management data vs control plane"
+            "whyWrongHere": "Given cloud management data vs control plane, The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the tested behavior — The APs factory-reset themselves automatically applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Wired switches in the same branch also stop forwarding traffic describes a mechanism that could sound plausible for cloud management data vs control plane. Given cloud management data vs control plane, The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the tested behavior — Wired switches in the same branch also stop forwarding traffic applies a different mechanism.",
+            "explanation": "Wired switch forwarding is independent — the scenario describes cloud AP management loss, not wired data-plane failure.",
+            "misconceptionTested": "Extending AP management outage to wired switching",
             "whatItDoes": "Wired switches in the same branch also stop forwarding traffic describes a mechanism that could sound plausible for cloud management data vs control plane.",
-            "whyWrongHere": "Given cloud management data vs control plane, The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the tested behavior — Wired switches in the same branch also stop forwarding traffic applies a different mechanism.",
-            "misconceptionTested": "Applying \"Wired switches in the same branch al\" without matching cloud management data vs control plane"
+            "whyWrongHere": "Given cloud management data vs control plane, The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the tested behavior — Wired switches in the same branch also stop forwarding traffic applies a different mechanism."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "Cloud WAN down → local forwarding continues; management/analytics pause."
       }
     },
     {

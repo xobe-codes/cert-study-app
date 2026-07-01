@@ -24,32 +24,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "A trunk carries traffic for multiple VLANs between switches using 802.1Q."
+          "explanation": "A trunk tags frames with 802.1Q VLAN IDs so multiple VLANs cross one inter-switch link."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Carries one VLAN only describes a mechanism that could sound plausible for trunk purpose. Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Carries one VLAN only applies a different mechanism.",
+            "explanation": "Access ports carry a single VLAN untagged — trunks carry many VLANs with tags.",
+            "misconceptionTested": "Describing access-port behavior on a trunk question",
             "whatItDoes": "Carries one VLAN only describes a mechanism that could sound plausible for trunk purpose.",
-            "whyWrongHere": "Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Carries one VLAN only applies a different mechanism.",
-            "misconceptionTested": "Applying \"Carries one VLAN only\" without matching trunk purpose"
+            "whyWrongHere": "Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Carries one VLAN only applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Connects a PC to a switch describes a mechanism that could sound plausible for trunk purpose. Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Connects a PC to a switch applies a different mechanism.",
+            "explanation": "PC-to-switch links are access ports — trunks connect switches (or switch to router-on-a-stick).",
+            "misconceptionTested": "Using end-host access link for trunk definition",
             "whatItDoes": "Connects a PC to a switch describes a mechanism that could sound plausible for trunk purpose.",
-            "whyWrongHere": "Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Connects a PC to a switch applies a different mechanism.",
-            "misconceptionTested": "Applying \"Connects a PC to a switch\" without matching trunk purpose"
+            "whyWrongHere": "Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Connects a PC to a switch applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Routes between VLANs describes a mechanism that could sound plausible for trunk purpose. Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Routes between VLANs applies a different mechanism.",
+            "explanation": "Routing between VLANs needs a Layer 3 device — trunks extend Layer 2 VLANs across links, not route them.",
+            "misconceptionTested": "Expecting trunk to route between VLANs",
             "whatItDoes": "Routes between VLANs describes a mechanism that could sound plausible for trunk purpose.",
-            "whyWrongHere": "Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Routes between VLANs applies a different mechanism.",
-            "misconceptionTested": "Applying \"Routes between VLANs\" without matching trunk purpose"
+            "whyWrongHere": "Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Routes between VLANs applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: A trunk is faster than an access port — A trunk simply carries multiple VLANs; speed depends on the physical link"
+        "examTip": "Trunk = 802.1Q tags on inter-switch links; native VLAN must match both ends."
       }
     },
     {
@@ -120,32 +120,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Native VLAN frames cross the trunk untagged."
+          "explanation": "Native VLAN frames cross an 802.1Q trunk untagged — all other VLANs are tagged with their VLAN ID."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Double-tagged reflects a common trap: Thinking all VLANs are tagged. The native VLAN is untagged; all others are tagged.",
+            "explanation": "Double-tagging (Q-in-Q) is a provider technique — standard native VLAN traffic is sent with no 802.1Q tag.",
+            "misconceptionTested": "Applying Q-in-Q to standard native VLAN behavior",
             "whatItDoes": "Double-tagged describes a mechanism that could sound plausible for native vlan.",
-            "whyWrongHere": "Given native vlan, Untagged matches the tested behavior — Double-tagged applies a different mechanism.",
-            "misconceptionTested": "Thinking all VLANs are tagged"
+            "whyWrongHere": "Given native vlan, Untagged matches the tested behavior — Double-tagged applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Tagged reflects a common trap: Thinking all VLANs are tagged. The native VLAN is untagged; all others are tagged.",
+            "explanation": "Tagged frames carry an 802.1Q header — only non-native VLANs are tagged on a trunk.",
+            "misconceptionTested": "Tagging native VLAN traffic like all other VLANs",
             "whatItDoes": "Tagged describes a mechanism that could sound plausible for native vlan.",
-            "whyWrongHere": "Given native vlan, Untagged matches the tested behavior — Tagged applies a different mechanism.",
-            "misconceptionTested": "Thinking all VLANs are tagged"
+            "whyWrongHere": "Given native vlan, Untagged matches the tested behavior — Tagged applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Dropped implies the device should discard the frame instead of forwarding or flooding it. Given native vlan, Untagged matches the tested behavior — Dropped applies a different mechanism.",
+            "explanation": "Native VLAN traffic is forwarded normally — it is not dropped for lacking a tag.",
+            "misconceptionTested": "Assuming untagged native VLAN frames are discarded",
             "whatItDoes": "Dropped implies the device should discard the frame instead of forwarding or flooding it.",
-            "whyWrongHere": "Given native vlan, Untagged matches the tested behavior — Dropped applies a different mechanism.",
-            "misconceptionTested": "Applying \"Dropped\" without matching native vlan"
+            "whyWrongHere": "Given native vlan, Untagged matches the tested behavior — Dropped applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Mismatched native VLANs — Native VLAN must match on both ends or traffic can leak (CDP warns)"
+        "examTip": "Trunk rule: native VLAN = untagged; all others tagged. Match native VLAN both ends."
       }
     },
     {
@@ -168,32 +168,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "A native VLAN mismatch can merge the two native VLANs’ traffic and triggers a CDP warning."
+          "explanation": "Native VLAN mismatch puts each switch's untagged traffic into the peer's native VLAN — traffic can leak between VLANs and CDP reports the error."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Trunk speed drops implies the device should discard the frame instead of forwarding or flooding it. Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — Trunk speed drops applies a different mechanism.",
+            "explanation": "Trunk speed is negotiated separately — native VLAN mismatch affects which VLAN receives untagged frames, not link speed.",
+            "misconceptionTested": "Confusing VLAN mismatch with speed/duplex issues",
             "whatItDoes": "Trunk speed drops implies the device should discard the frame instead of forwarding or flooding it.",
-            "whyWrongHere": "Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — Trunk speed drops applies a different mechanism.",
-            "misconceptionTested": "Applying \"Trunk speed drops\" without matching native mismatch"
+            "whyWrongHere": "Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — Trunk speed drops applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "All VLANs stop reflects a common trap: Mismatched native VLANs. Native VLAN must match on both ends or traffic can leak (CDP warns).",
+            "explanation": "Tagged VLANs still work on a mismatched native VLAN trunk — the problem is untagged traffic landing in the wrong VLAN, not a total trunk shutdown.",
+            "misconceptionTested": "Expecting all VLANs to fail when only native is mismatched",
             "whatItDoes": "All VLANs stop describes a mechanism that could sound plausible for native mismatch.",
-            "whyWrongHere": "Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — All VLANs stop applies a different mechanism.",
-            "misconceptionTested": "Mismatched native VLANs"
+            "whyWrongHere": "Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — All VLANs stop applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Nothing — it is cosmetic describes a mechanism that could sound plausible for native mismatch. Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — Nothing — it is cosmetic applies a different mechanism.",
+            "explanation": "CDP logs %CDP-4-NATIVE_VLAN_MISMATCH because the misconfiguration has real forwarding impact — it is not cosmetic.",
+            "misconceptionTested": "Treating native VLAN mismatch as harmless warning",
             "whatItDoes": "Nothing — it is cosmetic describes a mechanism that could sound plausible for native mismatch.",
-            "whyWrongHere": "Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — Nothing — it is cosmetic applies a different mechanism.",
-            "misconceptionTested": "Applying \"Nothing — it is cosmetic\" without matching native mismatch"
+            "whyWrongHere": "Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — Nothing — it is cosmetic applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Mismatched native VLANs — Native VLAN must match on both ends or traffic can leak (CDP warns)"
+        "examTip": "Native VLAN mismatch → untagged traffic bleeds into wrong VLAN. Fix both ends."
       }
     },
     {

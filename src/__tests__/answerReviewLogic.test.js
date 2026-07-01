@@ -7,8 +7,10 @@ import {
   resolveIncorrectItem,
 } from '../answerReviewLogic.js'
 import { isFallbackExplanation, scoreAnswerReview } from '../answerReview/answerReviewQuality.js'
-import { goldAnswerReviewFor } from '../answerReview/goldAnswerReviews.js'
+import { goldAnswerReviewFor, GOLD_ANSWER_REVIEWS } from '../answerReview/goldAnswerReviews.js'
 import { ASAP_SCENARIO_GOLD } from '../answerReview/goldAnswerReviewsAsap.js'
+import { BATCH2_GOLD } from '../answerReview/goldAnswerReviewsBatch2.js'
+import { BATCH3_GOLD } from '../answerReview/goldAnswerReviewsBatch3.js'
 import { HIGH_TRAFFIC_GOLD } from '../answerReview/goldAnswerReviewsHighTraffic.js'
 
 const MAC_Q = {
@@ -105,6 +107,54 @@ describe('answerReviewLogic', () => {
       const ar = generateAnswerReview(q)
       expect(goldAnswerReviewFor(id)).toBeTruthy()
       expect(ar.incorrect.length).toBeGreaterThanOrEqual(1)
+      ar.incorrect.forEach(item => {
+        expect(isFallbackExplanation(item.explanation)).toBe(false)
+      })
+      expect(scoreAnswerReview({ ...q, answerReview: ar }).min).toBeGreaterThanOrEqual(3)
+    }
+  })
+
+  it('total unique gold answer reviews meet count bar', () => {
+    expect(Object.keys(GOLD_ANSWER_REVIEWS).length).toBeGreaterThanOrEqual(100)
+    expect(Object.keys(BATCH2_GOLD).length).toBe(25)
+    expect(Object.keys(BATCH3_GOLD).length).toBe(25)
+  })
+
+  it('Batch 3 gold reviews pass SADE quality bar', () => {
+    expect(Object.keys(BATCH3_GOLD).length).toBe(25)
+    for (const [id, gold] of Object.entries(BATCH3_GOLD)) {
+      const q = {
+        id,
+        question: `Batch 3 stem for ${id}`,
+        choices: ['A', 'B', 'C', 'D'],
+        correctIndex: gold.correct.choiceIndex,
+        explanation: gold.correct.explanation,
+        answerReview: { ...gold, incorrect: gold.incorrect },
+      }
+      const ar = generateAnswerReview(q)
+      expect(goldAnswerReviewFor(id)).toBeTruthy()
+      expect(ar.incorrect.length).toBeGreaterThanOrEqual(1)
+      ar.incorrect.forEach(item => {
+        expect(isFallbackExplanation(item.explanation)).toBe(false)
+      })
+      expect(scoreAnswerReview({ ...q, answerReview: ar }).min).toBeGreaterThanOrEqual(3)
+    }
+  })
+
+  it('Batch 2 gold reviews pass SADE quality bar', () => {
+    expect(Object.keys(BATCH2_GOLD).length).toBe(25)
+    for (const [id, gold] of Object.entries(BATCH2_GOLD)) {
+      const q = {
+        id,
+        question: `Batch 2 stem for ${id}`,
+        choices: ['A', 'B', 'C', 'D'],
+        correctIndex: gold.correct.choiceIndex,
+        explanation: gold.correct.explanation,
+        answerReview: { ...gold, incorrect: gold.incorrect },
+      }
+      const ar = generateAnswerReview(q)
+      expect(goldAnswerReviewFor(id)).toBeTruthy()
+      expect(ar.incorrect).toHaveLength(3)
       ar.incorrect.forEach(item => {
         expect(isFallbackExplanation(item.explanation)).toBe(false)
       })

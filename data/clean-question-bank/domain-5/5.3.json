@@ -81,35 +81,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Switch(config)#line vty 0 5\"."
+          "explanation": "Telnet/SSH login passwords are configured under line vty 0 15 (or 0 4 on older platforms) — start there before password/login."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#interface vlan 1 describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#interface vlan 1 applies a different mechanism.",
+            "explanation": "Interface VLAN 1 configures SVI IP — not VTY line passwords for remote Telnet access.",
+            "misconceptionTested": "Configuring SVI when VTY lines are needed",
             "whatItDoes": "Switch(config)#interface vlan 1 describes a mechanism that could sound plausible for local device access.",
-            "whyWrongHere": "Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#interface vlan 1 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#interface vlan 1\" without matching local device access",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#interface vlan 1 applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config)#line console 1 describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#line console 1 applies a different mechanism.",
+            "explanation": "Console line secures local serial/console access — Telnet uses virtual terminal (VTY) lines.",
+            "misconceptionTested": "Using console line for Telnet password",
             "whatItDoes": "Switch(config)#line console 1 describes a mechanism that could sound plausible for local device access.",
-            "whyWrongHere": "Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#line console 1 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#line console 1\" without matching local device access",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#line console 1 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config)#line aux 1 describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#line aux 1 applies a different mechanism.",
+            "explanation": "Auxiliary line is legacy dial/modem access — Telnet targets VTY lines, not aux.",
+            "misconceptionTested": "Selecting aux line for Telnet configuration",
             "whatItDoes": "Switch(config)#line aux 1 describes a mechanism that could sound plausible for local device access.",
-            "whyWrongHere": "Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#line aux 1 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#line aux 1\" without matching local device access",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#line aux 1 applies a different mechanism."
           }
         ],
-        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
+        "examTip": "Remote login (Telnet/SSH) → line vty first. Console → line console 0."
       }
     },
     {

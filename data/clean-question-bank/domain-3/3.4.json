@@ -22,32 +22,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "OSPF is a link-state IGP using LSAs and SPF."
+          "explanation": "OSPF is a link-state IGP — routers flood LSAs and run SPF to build a synchronized topology map."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Distance vector describes a mechanism that could sound plausible for protocol type. Given protocol type, Link-state matches the tested behavior — Distance vector applies a different mechanism.",
+            "explanation": "Distance-vector protocols (RIP, legacy EIGRP behavior) advertise routes to neighbors — OSPF exchanges link-state advertisements, not periodic route vectors.",
+            "misconceptionTested": "Labeling OSPF as distance vector",
             "whatItDoes": "Distance vector describes a mechanism that could sound plausible for protocol type.",
-            "whyWrongHere": "Given protocol type, Link-state matches the tested behavior — Distance vector applies a different mechanism.",
-            "misconceptionTested": "Applying \"Distance vector\" without matching protocol type"
+            "whyWrongHere": "Given protocol type, Link-state matches the tested behavior — Distance vector applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Path vector describes a mechanism that could sound plausible for protocol type. Given protocol type, Link-state matches the tested behavior — Path vector applies a different mechanism.",
+            "explanation": "Path-vector describes BGP between autonomous systems — OSPF is an interior gateway protocol within one AS.",
+            "misconceptionTested": "Confusing IGP link-state with BGP path vector",
             "whatItDoes": "Path vector describes a mechanism that could sound plausible for protocol type.",
-            "whyWrongHere": "Given protocol type, Link-state matches the tested behavior — Path vector applies a different mechanism.",
-            "misconceptionTested": "Applying \"Path vector\" without matching protocol type"
+            "whyWrongHere": "Given protocol type, Link-state matches the tested behavior — Path vector applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Static describes a mechanism that could sound plausible for protocol type. Given protocol type, Link-state matches the tested behavior — Static applies a different mechanism.",
+            "explanation": "Static routes are manually configured, not a dynamic routing protocol category — OSPF learns routes automatically.",
+            "misconceptionTested": "Selecting static when asked for protocol type",
             "whatItDoes": "Static describes a mechanism that could sound plausible for protocol type.",
-            "whyWrongHere": "Given protocol type, Link-state matches the tested behavior — Static applies a different mechanism.",
-            "misconceptionTested": "Applying \"Static\" without matching protocol type"
+            "whyWrongHere": "Given protocol type, Link-state matches the tested behavior — Static applies a different mechanism."
           }
         ],
-        "examTip": "OSPF won't go FULL without matching area, hello/dead, subnet, and auth on the link."
+        "examTip": "OSPF = link-state IGP (LSAs + SPF). RIP = distance vector. BGP = path vector."
       }
     },
     {

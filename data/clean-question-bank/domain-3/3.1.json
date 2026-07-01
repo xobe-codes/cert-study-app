@@ -22,32 +22,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "O = OSPF. C = connected, S = static, D = EIGRP."
+          "explanation": "In show ip route, O = OSPF-learned route. C = connected, S = static, D = EIGRP."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Connected route describes a mechanism that could sound plausible for route source codes. Given route source codes, OSPF-learned route matches the tested behavior — Connected route applies a different mechanism.",
+            "explanation": "Connected routes show C (and L for local) — O is specifically OSPF, not directly connected subnets.",
+            "misconceptionTested": "Confusing O with connected code",
             "whatItDoes": "Connected route describes a mechanism that could sound plausible for route source codes.",
-            "whyWrongHere": "Given route source codes, OSPF-learned route matches the tested behavior — Connected route applies a different mechanism.",
-            "misconceptionTested": "Applying \"Connected route\" without matching route source codes"
+            "whyWrongHere": "Given route source codes, OSPF-learned route matches the tested behavior — Connected route applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Static route describes a mechanism that could sound plausible for route source codes. Given route source codes, OSPF-learned route matches the tested behavior — Static route applies a different mechanism.",
+            "explanation": "Static routes use S — O indicates the route was learned via OSPF adjacency.",
+            "misconceptionTested": "Mixing static (S) with OSPF (O)",
             "whatItDoes": "Static route describes a mechanism that could sound plausible for route source codes.",
-            "whyWrongHere": "Given route source codes, OSPF-learned route matches the tested behavior — Static route applies a different mechanism.",
-            "misconceptionTested": "Applying \"Static route\" without matching route source codes"
+            "whyWrongHere": "Given route source codes, OSPF-learned route matches the tested behavior — Static route applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "EIGRP-learned route describes a mechanism that could sound plausible for route source codes. Given route source codes, OSPF-learned route matches the tested behavior — EIGRP-learned route applies a different mechanism.",
+            "explanation": "EIGRP routes display D (dual) — O is reserved for OSPF in Cisco routing tables.",
+            "misconceptionTested": "Assigning EIGRP code to OSPF letter",
             "whatItDoes": "EIGRP-learned route describes a mechanism that could sound plausible for route source codes.",
-            "whyWrongHere": "Given route source codes, OSPF-learned route matches the tested behavior — EIGRP-learned route applies a different mechanism.",
-            "misconceptionTested": "Applying \"EIGRP-learned route\" without matching route source codes"
+            "whyWrongHere": "Given route source codes, OSPF-learned route matches the tested behavior — EIGRP-learned route applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests route source codes — exam distractors swap similar terms; anchor on: O = OSPF."
+        "examTip": "Route codes: C connected, S static, O OSPF, D EIGRP."
       }
     },
     {
@@ -70,32 +70,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Format is [AD/metric]. 110 is the administrative distance (OSPF), 20 is the metric (OSPF cost)."
+          "explanation": "IOS shows [AD/metric] — 110 is OSPF's administrative distance; 20 is the OSPF cost (metric)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The metric reflects a common trap: In [AD/metric], AD comes FIRST. Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets.",
+            "explanation": "The metric is the second number (20) — 110 is AD, not the OSPF cost.",
+            "misconceptionTested": "Swapping AD and metric in bracket notation",
             "whatItDoes": "The metric describes a mechanism that could sound plausible for AD/metric brackets.",
-            "whyWrongHere": "Given AD/metric brackets, The administrative distance matches the tested behavior — The metric applies a different mechanism.",
-            "misconceptionTested": "In [AD/metric], AD comes FIRST"
+            "whyWrongHere": "Given AD/metric brackets, The administrative distance matches the tested behavior — The metric applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The OSPF cost describes a mechanism that could sound plausible for AD/metric brackets. Given AD/metric brackets, The administrative distance matches the tested behavior — The OSPF cost applies a different mechanism.",
+            "explanation": "OSPF cost is the metric (20 here) — 110 is the well-known AD value for OSPF routes.",
+            "misconceptionTested": "Identifying cost where AD belongs in [AD/metric]",
             "whatItDoes": "The OSPF cost describes a mechanism that could sound plausible for AD/metric brackets.",
-            "whyWrongHere": "Given AD/metric brackets, The administrative distance matches the tested behavior — The OSPF cost applies a different mechanism.",
-            "misconceptionTested": "Applying \"The OSPF cost\" without matching AD/metric brackets"
+            "whyWrongHere": "Given AD/metric brackets, The administrative distance matches the tested behavior — The OSPF cost applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The hop count describes a mechanism that could sound plausible for AD/metric brackets. Given AD/metric brackets, The administrative distance matches the tested behavior — The hop count applies a different mechanism.",
+            "explanation": "Hop count is RIP's metric — OSPF uses cost based on bandwidth; 110 is AD in the bracket format.",
+            "misconceptionTested": "Applying RIP hop-count thinking to OSPF route display",
             "whatItDoes": "The hop count describes a mechanism that could sound plausible for AD/metric brackets.",
-            "whyWrongHere": "Given AD/metric brackets, The administrative distance matches the tested behavior — The hop count applies a different mechanism.",
-            "misconceptionTested": "Applying \"The hop count\" without matching AD/metric brackets"
+            "whyWrongHere": "Given AD/metric brackets, The administrative distance matches the tested behavior — The hop count applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: In [AD/metric], AD comes FIRST — Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets"
+        "examTip": "Route table [110/20] → 110 = AD, 20 = metric. Always read left first."
       }
     },
     {
@@ -262,32 +262,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Connected and local routes are removed when the interface fails. They cannot be reached directly anymore."
+          "explanation": "Connected (and local) routes disappear when the interface goes down — there is no longer a directly reachable path."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Marked with *, indicating preferred describes a mechanism that could sound plausible for connected route removal. Given connected route removal, Removed from the routing table matches the tested behavior — Marked with *, indicating preferred applies a different mechanism.",
+            "explanation": "The asterisk marks a preferred gateway of last resort in some displays — it does not keep a dead interface's connected route alive.",
+            "misconceptionTested": "Expecting special marking to preserve dead connected routes",
             "whatItDoes": "Marked with *, indicating preferred describes a mechanism that could sound plausible for connected route removal.",
-            "whyWrongHere": "Given connected route removal, Removed from the routing table matches the tested behavior — Marked with *, indicating preferred applies a different mechanism.",
-            "misconceptionTested": "Applying \"Marked with *, indicating preferred\" without matching connected route removal"
+            "whyWrongHere": "Given connected route removal, Removed from the routing table matches the tested behavior — Marked with *, indicating preferred applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Stays with an age timer describes a mechanism that could sound plausible for connected route removal. Given connected route removal, Removed from the routing table matches the tested behavior — Stays with an age timer applies a different mechanism.",
+            "explanation": "Connected routes are not aged like dynamic routes — they are removed immediately when the interface fails.",
+            "misconceptionTested": "Expecting timer-based aging for connected routes",
             "whatItDoes": "Stays with an age timer describes a mechanism that could sound plausible for connected route removal.",
-            "whyWrongHere": "Given connected route removal, Removed from the routing table matches the tested behavior — Stays with an age timer applies a different mechanism.",
-            "misconceptionTested": "Applying \"Stays with an age timer\" without matching connected route removal"
+            "whyWrongHere": "Given connected route removal, Removed from the routing table matches the tested behavior — Stays with an age timer applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Converts to a static route reflects a common trap: The L route is NOT a host route to a PC. L is the router own interface IP as a /32 — so the router processes packets addressed to itself.",
+            "explanation": "A failed interface does not auto-convert its subnet into a static route — the connected entry is simply withdrawn.",
+            "misconceptionTested": "Assuming automatic static conversion on link down",
             "whatItDoes": "Converts to a static route describes a mechanism that could sound plausible for connected route removal.",
-            "whyWrongHere": "Given connected route removal, Removed from the routing table matches the tested behavior — Converts to a static route applies a different mechanism.",
-            "misconceptionTested": "The L route is NOT a host route to a PC"
+            "whyWrongHere": "Given connected route removal, Removed from the routing table matches the tested behavior — Converts to a static route applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: The L route is NOT a host route to a PC — L is the router own interface IP as a /32 — so the router processes packets addressed to itself"
+        "examTip": "Interface down → connected/local routes vanish immediately from the RIB."
       }
     },
     {
@@ -1450,35 +1450,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"EIGRP\"."
+          "explanation": "EIGRP supports unequal-cost load balancing and uses composite metrics tuned for varied link bandwidths — ideal for mixed-speed enterprise networks."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RIPv1 describes a mechanism that could sound plausible for routing table. Given routing table, EIGRP matches the tested behavior — RIPv1 applies a different mechanism.",
+            "explanation": "RIPv1 is classful, limited to 15 hops, and ignores bandwidth — it cannot optimize across varied link speeds.",
+            "misconceptionTested": "Choosing legacy classful RIP for heterogeneous bandwidth",
             "whatItDoes": "RIPv1 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — RIPv1 applies a different mechanism.",
-            "misconceptionTested": "Applying \"RIPv1\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — RIPv1 applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "RIPv2 describes a mechanism that could sound plausible for routing table. Given routing table, EIGRP matches the tested behavior — RIPv2 applies a different mechanism.",
+            "explanation": "RIPv2 adds VLSM but still uses hop count only — it does not factor bandwidth the way EIGRP's composite metric does.",
+            "misconceptionTested": "Expecting RIPv2 to optimize for bandwidth differences",
             "whatItDoes": "RIPv2 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — RIPv2 applies a different mechanism.",
-            "misconceptionTested": "Applying \"RIPv2\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — RIPv2 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "BGP describes a mechanism that could sound plausible for routing table. Given routing table, EIGRP matches the tested behavior — BGP applies a different mechanism.",
+            "explanation": "BGP is an exterior path-vector protocol for inter-AS routing — not the IGP choice for internal varied-bandwidth optimization.",
+            "misconceptionTested": "Selecting BGP for internal enterprise IGP scenario",
             "whatItDoes": "BGP describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — BGP applies a different mechanism.",
-            "misconceptionTested": "Applying \"BGP\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — BGP applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for routing table before picking a familiar-sounding wrong term."
+        "examTip": "Varied bandwidths inside one AS → EIGRP (composite metric). RIP = hop count only."
       }
     },
     {

@@ -312,32 +312,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch."
+          "explanation": "Off-subnet traffic is sent to the configured default gateway — a router or L3 switch SVI — not to the access switch alone."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The access switch only describes a mechanism that could sound plausible for default gateway. Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The access switch only applies a different mechanism.",
+            "explanation": "The access switch forwards within the VLAN but does not route to remote subnets — the PC must ARP for its default gateway first.",
+            "misconceptionTested": "Expecting the access switch to route inter-subnet traffic",
             "whatItDoes": "The access switch only describes a mechanism that could sound plausible for default gateway.",
-            "whyWrongHere": "Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The access switch only applies a different mechanism.",
-            "misconceptionTested": "Applying \"The access switch only\" without matching default gateway"
+            "whyWrongHere": "Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The access switch only applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The WLC describes a mechanism that could sound plausible for default gateway. Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The WLC applies a different mechanism.",
+            "explanation": "The WLC manages wireless APs — it is not the first hop for a wired PC sending traffic to a remote subnet.",
+            "misconceptionTested": "Dragging wireless controller into wired routing path",
             "whatItDoes": "The WLC describes a mechanism that could sound plausible for default gateway.",
-            "whyWrongHere": "Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The WLC applies a different mechanism.",
-            "misconceptionTested": "Applying \"The WLC\" without matching default gateway"
+            "whyWrongHere": "Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The WLC applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The DNS server describes a mechanism that could sound plausible for default gateway. Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The DNS server applies a different mechanism.",
+            "explanation": "DNS resolves names to IPs — it is not in the Layer 3 forwarding path for packets already addressed to a remote subnet.",
+            "misconceptionTested": "Confusing name resolution with default-gateway forwarding",
             "whatItDoes": "The DNS server describes a mechanism that could sound plausible for default gateway.",
-            "whyWrongHere": "Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The DNS server applies a different mechanism.",
-            "misconceptionTested": "Applying \"The DNS server\" without matching default gateway"
+            "whyWrongHere": "Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The DNS server applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: More switches always mean better routing — Switches extend L2 domains; routing is an L3 function on routers or L3 switches"
+        "examTip": "Same subnet → direct ARP. Remote subnet → default gateway first."
       }
     },
     {

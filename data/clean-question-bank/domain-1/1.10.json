@@ -72,32 +72,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Same-subnet works but off-subnet fails → check default gateway."
+          "explanation": "Same-subnet ping works but off-subnet fails — the default gateway is missing, wrong, or unreachable."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "DNS server describes a mechanism that could sound plausible for gateway symptom. Given gateway symptom, Default gateway matches the tested behavior — DNS server applies a different mechanism.",
+            "explanation": "DNS is not used for ping by IP address — same-subnet success proves Layer 2/3 local forwarding works; the break is at the gateway for remote targets.",
+            "misconceptionTested": "Blaming DNS when pinging IP addresses directly",
             "whatItDoes": "DNS server describes a mechanism that could sound plausible for gateway symptom.",
-            "whyWrongHere": "Given gateway symptom, Default gateway matches the tested behavior — DNS server applies a different mechanism.",
-            "misconceptionTested": "Applying \"DNS server\" without matching gateway symptom"
+            "whyWrongHere": "Given gateway symptom, Default gateway matches the tested behavior — DNS server applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Wrong VLAN on switch reflects a common trap: Blaming DNS when the gateway is wrong. If remote IPs fail, fix gateway/routing before DNS.",
+            "explanation": "Wrong VLAN would typically break same-subnet communication too — here local /24 works, pointing to gateway or upstream routing.",
+            "misconceptionTested": "Suspecting VLAN when only off-subnet fails",
             "whatItDoes": "Wrong VLAN on switch describes a mechanism that could sound plausible for gateway symptom.",
-            "whyWrongHere": "Given gateway symptom, Default gateway matches the tested behavior — Wrong VLAN on switch applies a different mechanism.",
-            "misconceptionTested": "Blaming DNS when the gateway is wrong"
+            "whyWrongHere": "Given gateway symptom, Default gateway matches the tested behavior — Wrong VLAN on switch applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "WPA3 describes a mechanism that could sound plausible for gateway symptom. Given gateway symptom, Default gateway matches the tested behavior — WPA3 applies a different mechanism.",
+            "explanation": "WPA3 is a wireless security protocol — it does not explain why same-subnet ICMP succeeds but Internet ping fails.",
+            "misconceptionTested": "Dragging wireless security into IP routing troubleshooting",
             "whatItDoes": "WPA3 describes a mechanism that could sound plausible for gateway symptom.",
-            "whyWrongHere": "Given gateway symptom, Default gateway matches the tested behavior — WPA3 applies a different mechanism.",
-            "misconceptionTested": "Applying \"WPA3\" without matching gateway symptom"
+            "whyWrongHere": "Given gateway symptom, Default gateway matches the tested behavior — WPA3 applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Blaming DNS when the gateway is wrong — If remote IPs fail, fix gateway/routing before DNS"
+        "examTip": "Local works, remote fails → check default gateway before DNS or VLAN."
       }
     },
     {
@@ -217,32 +217,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "169.254.x.x means DHCP failed — verify DHCP service, relay, and VLAN."
+          "explanation": "169.254.x.x is APIPA — DHCP failed. Verify the DHCP server, relay (ip helper-address), and VLAN reachability."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "OSPF neighbor table describes a mechanism that could sound plausible for apipa client. Given apipa client, DHCP server/reachability matches the tested behavior — OSPF neighbor table applies a different mechanism.",
+            "explanation": "OSPF neighbors are irrelevant on an end host — APIPA means the PC never received a DHCP offer.",
+            "misconceptionTested": "Checking routing protocol tables on a host DHCP failure",
             "whatItDoes": "OSPF neighbor table describes a mechanism that could sound plausible for apipa client.",
-            "whyWrongHere": "Given apipa client, DHCP server/reachability matches the tested behavior — OSPF neighbor table applies a different mechanism.",
-            "misconceptionTested": "Applying \"OSPF neighbor table\" without matching apipa client"
+            "whyWrongHere": "Given apipa client, DHCP server/reachability matches the tested behavior — OSPF neighbor table applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Fiber SM/MM type describes a mechanism that could sound plausible for apipa client. Given apipa client, DHCP server/reachability matches the tested behavior — Fiber SM/MM type applies a different mechanism.",
+            "explanation": "Fiber type affects physical link — APIPA appears when Layer 2 works but DHCP does not respond.",
+            "misconceptionTested": "Suspecting physical media when DHCP is the root cause",
             "whatItDoes": "Fiber SM/MM type describes a mechanism that could sound plausible for apipa client.",
-            "whyWrongHere": "Given apipa client, DHCP server/reachability matches the tested behavior — Fiber SM/MM type applies a different mechanism.",
-            "misconceptionTested": "Applying \"Fiber SM/MM type\" without matching apipa client"
+            "whyWrongHere": "Given apipa client, DHCP server/reachability matches the tested behavior — Fiber SM/MM type applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "VTP domain describes a mechanism that could sound plausible for apipa client. Given apipa client, DHCP server/reachability matches the tested behavior — VTP domain applies a different mechanism.",
+            "explanation": "VTP manages VLAN propagation between switches — a host with APIPA needs DHCP service, not VTP domain checks first.",
+            "misconceptionTested": "Checking VTP before DHCP on an APIPA address",
             "whatItDoes": "VTP domain describes a mechanism that could sound plausible for apipa client.",
-            "whyWrongHere": "Given apipa client, DHCP server/reachability matches the tested behavior — VTP domain applies a different mechanism.",
-            "misconceptionTested": "Applying \"VTP domain\" without matching apipa client"
+            "whyWrongHere": "Given apipa client, DHCP server/reachability matches the tested behavior — VTP domain applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Blaming DNS when the gateway is wrong — If remote IPs fail, fix gateway/routing before DNS"
+        "examTip": "169.254.x.x = no DHCP — verify server, relay, and VLAN before anything else."
       }
     },
     {
@@ -265,32 +265,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Test gateway, then known public IP, then DNS name to isolate layer."
+          "explanation": "Ping gateway first (local L3), then a known public IP (end-to-end without DNS), then a hostname (DNS layer)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Hostname → random IP describes a mechanism that could sound plausible for ping order. Given ping order, Gateway → remote IP → hostname matches the tested behavior — Hostname → random IP applies a different mechanism.",
+            "explanation": "Starting with a hostname tests DNS immediately — you cannot isolate whether failure is gateway, routing, or DNS.",
+            "misconceptionTested": "Testing DNS before confirming gateway and routing",
             "whatItDoes": "Hostname → random IP describes a mechanism that could sound plausible for ping order.",
-            "whyWrongHere": "Given ping order, Gateway → remote IP → hostname matches the tested behavior — Hostname → random IP applies a different mechanism.",
-            "misconceptionTested": "Applying \"Hostname → random IP\" without matching ping order"
+            "whyWrongHere": "Given ping order, Gateway → remote IP → hostname matches the tested behavior — Hostname → random IP applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Broadcast → multicast describes flooding the frame to multiple ports in the VLAN. Given ping order, Gateway → remote IP → hostname matches the tested behavior — Broadcast → multicast applies a different mechanism.",
+            "explanation": "Broadcast and multicast pings are not a standard Internet troubleshooting sequence — use gateway → public IP → FQDN.",
+            "misconceptionTested": "Using non-standard ICMP targets for layered isolation",
             "whatItDoes": "Broadcast → multicast describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "Given ping order, Gateway → remote IP → hostname matches the tested behavior — Broadcast → multicast applies a different mechanism.",
-            "misconceptionTested": "Applying \"Broadcast → multicast\" without matching ping order"
+            "whyWrongHere": "Given ping order, Gateway → remote IP → hostname matches the tested behavior — Broadcast → multicast applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Loopback only describes a mechanism that could sound plausible for ping order. Given ping order, Gateway → remote IP → hostname matches the tested behavior — Loopback only applies a different mechanism.",
+            "explanation": "Loopback-only tests local stack — it never validates default gateway or upstream connectivity.",
+            "misconceptionTested": "Stopping at loopback when Internet path is the goal",
             "whatItDoes": "Loopback only describes a mechanism that could sound plausible for ping order.",
-            "whyWrongHere": "Given ping order, Gateway → remote IP → hostname matches the tested behavior — Loopback only applies a different mechanism.",
-            "misconceptionTested": "Applying \"Loopback only\" without matching ping order"
+            "whyWrongHere": "Given ping order, Gateway → remote IP → hostname matches the tested behavior — Loopback only applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: ping failure always means the remote host is down — Firewalls may block ICMP; also local misconfig can fail before the path is tested"
+        "examTip": "Layered ping: gateway → public IP → hostname to isolate L3 vs DNS."
       }
     },
     {
@@ -361,32 +361,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "Duplicate IPs cause ARP conflicts and flaky connectivity."
+          "explanation": "Duplicate IP addresses cause ARP conflicts — hosts fight over the same IP and connectivity becomes intermittent."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Correct DNS describes a mechanism that could sound plausible for duplicate ip. Given duplicate ip, Duplicate IP address matches the tested behavior — Correct DNS applies a different mechanism.",
+            "explanation": "Correct DNS does not produce ARP warnings — duplicate IPs trigger gratuitous ARP and flaky Layer 2 resolution.",
+            "misconceptionTested": "Blaming DNS for ARP-layer conflict symptoms",
             "whatItDoes": "Correct DNS describes a mechanism that could sound plausible for duplicate ip.",
-            "whyWrongHere": "Given duplicate ip, Duplicate IP address matches the tested behavior — Correct DNS applies a different mechanism.",
-            "misconceptionTested": "Applying \"Correct DNS\" without matching duplicate ip"
+            "whyWrongHere": "Given duplicate ip, Duplicate IP address matches the tested behavior — Correct DNS applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Full-duplex on both ends describes a mechanism that could sound plausible for duplicate ip. CAM learning stores one mapping per arrival (duplicate ip): Duplicate IP address — not both addresses as table entries.",
+            "explanation": "Full-duplex on both ends is normal — it does not cause ARP conflict messages or intermittent loss.",
+            "misconceptionTested": "Suspecting duplex mismatch when ARP points to duplicate IP",
             "whatItDoes": "Full-duplex on both ends describes a mechanism that could sound plausible for duplicate ip.",
-            "whyWrongHere": "CAM learning stores one mapping per arrival (duplicate ip): Duplicate IP address — not both addresses as table entries.",
-            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
+            "whyWrongHere": "CAM learning stores one mapping per arrival (duplicate ip): Duplicate IP address — not both addresses as table entries."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Valid DHCP lease describes a mechanism that could sound plausible for duplicate ip. Given duplicate ip, Duplicate IP address matches the tested behavior — Valid DHCP lease applies a different mechanism.",
+            "explanation": "A valid DHCP lease assigns one unique address — duplicate IP usually means static overlap or rogue DHCP, not a healthy lease.",
+            "misconceptionTested": "Assuming DHCP success when ARP warnings indicate conflict",
             "whatItDoes": "Valid DHCP lease describes a mechanism that could sound plausible for duplicate ip.",
-            "whyWrongHere": "Given duplicate ip, Duplicate IP address matches the tested behavior — Valid DHCP lease applies a different mechanism.",
-            "misconceptionTested": "Applying \"Valid DHCP lease\" without matching duplicate ip"
+            "whyWrongHere": "Given duplicate ip, Duplicate IP address matches the tested behavior — Valid DHCP lease applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Blaming DNS when the gateway is wrong — If remote IPs fail, fix gateway/routing before DNS"
+        "examTip": "ARP warnings + flaky connectivity → suspect duplicate IP on the segment."
       }
     }
   ]

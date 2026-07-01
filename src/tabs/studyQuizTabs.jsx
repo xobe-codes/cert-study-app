@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef, useId } from 'react'
 import { getCurated, hasCuratedReading, hasCuratedQuestions, getCuratedQuestions } from '../data/ccnaCurated.js'
+import { labsForObjective } from '../data/ccnaLabs.js'
 import {
   TYPE_LABEL, SKILL_LABEL, isOrderingQuestion, isMcQuestion, gradeQuestion, correctAnswerLabel,
   shuffleArrayCopy, randomizeQuestionOrder, computeBankMix, normalizeQuestionForBank, inferSkill, buildMissedEntry,
@@ -520,10 +521,12 @@ function StructuredExplanation({ data }) {
 
 // Renders a curated objective's reading: source-grounded, no AI call. Reuses
 // the same ExplainBlock visual language as the AI path so it feels native.
-function CuratedReading({ data, progressEntry, onTierChange, onOpenReference, showDiagram = true }) {
+function CuratedReading({ data, progressEntry, onTierChange, onOpenReference, onOpenLab, showDiagram = true }) {
   const resolvedTier = useMemo(() => getReadingTier(progressEntry), [progressEntry])
   const [tier, setTier] = useState(resolvedTier)
   const hint = useMemo(() => readingTierHint(progressEntry, tier), [progressEntry, tier])
+  const objectiveLabs = useMemo(() => labsForObjective(data.objectiveId), [data.objectiveId])
+  const firstLabId = objectiveLabs[0]?.id
 
   useEffect(() => {
     setTier(getReadingTier(progressEntry))
@@ -600,6 +603,16 @@ function CuratedReading({ data, progressEntry, onTierChange, onOpenReference, sh
       {r.related?.length > 0 && <ExplainBlock icon="🔗" title="RELATED CONCEPTS" accent="sky" collapsible defaultOpen={false}><Bullets items={r.related} /></ExplainBlock>}
       {data.engineerView && <EngineerViewSection data={data.engineerView} defaultOpen={openRealWorld} />}
       <QuestionHealthAdminSection objectiveId={data.objectiveId} />
+      {firstLabId && (
+        <div className="objective-lab-cta" style={{ flexDirection: 'column', alignItems: 'stretch', marginTop: 12 }}>
+          <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, marginBottom: 10, lineHeight: 1.45 }}>
+            Hands-on CLI for this topic — verify commands in the lab before exam day.
+          </div>
+          <button type="button" style={styles.primaryBtn} onClick={() => onOpenLab?.(firstLabId)}>
+            Open lab for this topic
+          </button>
+        </div>
+      )}
       {showDiagram && data.diagram && <CuratedDiagram diagram={data.diagram} />}
       <CuratedSources data={data} />
     </div>
@@ -852,6 +865,7 @@ export function ExplainTab({
   objective, progress, onUpdateProgress,
   layout = 'legacy',
   onStartPractice,
+  onOpenLab,
   VisualAidTab: VisualAidTabProp,
   premiumUnlocked,
   onPremiumBlocked,
@@ -1036,6 +1050,7 @@ export function ExplainTab({
               progressEntry={progress[objective.id]}
               onTierChange={(key) => onUpdateProgress?.(objective.id, { readingTier: key, studySectionsViewed: true, lastSeen: Date.now() })}
               onOpenReference={showReference ? () => setLessonView('reference') : undefined}
+              onOpenLab={onOpenLab}
               showDiagram={!isStudy}
             />
           )}
@@ -1345,7 +1360,7 @@ function QuizCompleteCard({
 }
 
 export function QuizTab({
-  objective, progress, missed, onMissed, onScoreSaved, nextObjective, onSelectObjective, onOpenMissed, onOpenTrapDrill, onSwitchTab,
+  objective, progress, missed, onMissed, onScoreSaved, nextObjective, onSelectObjective, onOpenMissed, onOpenTrapDrill, onOpenLab, onSwitchTab,
   examMode = false, premiumUnlocked = false, onPremiumBlocked,
   showPreAssessFirst = false, onUpdateProgress,
 }) {
@@ -1805,7 +1820,7 @@ export function QuizTab({
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>
               {isCorrect ? 'Correct' : 'Incorrect'}
             </div>
-            <AnswerReview q={current} selected={selected} hideExamTip={examMode} objectiveId={objective.id} showQuestionFlag />
+            <AnswerReview q={current} selected={selected} hideExamTip={examMode} objectiveId={objective.id} showQuestionFlag onOpenLab={onOpenLab} />
             {!isCorrect && onOpenTrapDrill && (() => {
               const enriched = applyAnswerReviewToQuestion(current)
               const trap = inferTrapForChoice(enriched, selected)

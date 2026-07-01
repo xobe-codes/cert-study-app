@@ -187,35 +187,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"The network is unrouteable.\"."
+          "explanation": "Without a route to the remote tunnel endpoint (203.0.113.2), the GRE tunnel cannot come up — the underlay must be reachable first."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Nothing is wrong with the configuration. describes a mechanism that could sound plausible for interface. Given interface, The network is unrouteable. matches the tested behavior — Nothing is wrong with the configuration. applies a different mechanism.",
+            "explanation": "The comment explicitly states no route to the remote endpoint — GRE requires reachable tunnel destination in the routing table.",
+            "misconceptionTested": "Ignoring missing underlay route to tunnel endpoint",
             "whatItDoes": "Nothing is wrong with the configuration. describes a mechanism that could sound plausible for interface.",
-            "whyWrongHere": "Given interface, The network is unrouteable. matches the tested behavior — Nothing is wrong with the configuration. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Nothing is wrong with the configurat\" without matching vpn",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given interface, The network is unrouteable. matches the tested behavior — Nothing is wrong with the configuration. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The destination on Router A of the tunnel is incorrect. describes a mechanism that could sound plausible for interface. Given interface, The network is unrouteable. matches the tested behavior — The destination on Router A of the tunnel is incorrect. applies a different mechanism.",
+            "explanation": "The destination IP may be correct — the failure is that no routing entry reaches that network, making the tunnel unroutable.",
+            "misconceptionTested": "Blaming wrong destination when underlay routing is missing",
             "whatItDoes": "The destination on Router A of the tunnel is incorrect. describes a mechanism that could sound plausible for interface.",
-            "whyWrongHere": "Given interface, The network is unrouteable. matches the tested behavior — The destination on Router A of the tunnel is incorrect. applies a different mechanism.",
-            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given interface, The network is unrouteable. matches the tested behavior — The destination on Router A of the tunnel is incorrect. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The serial interfaces are on different networks. describes a mechanism that could sound plausible for interface. Given interface, The network is unrouteable. matches the tested behavior — The serial interfaces are on different networks. applies a different mechanism.",
+            "explanation": "Serial interfaces on different subnets is normal for a point-to-point WAN — the issue is no route to 203.0.113.0/peer endpoint.",
+            "misconceptionTested": "Flagging P2P addressing when underlay route is absent",
             "whatItDoes": "The serial interfaces are on different networks. describes a mechanism that could sound plausible for interface.",
-            "whyWrongHere": "Given interface, The network is unrouteable. matches the tested behavior — The serial interfaces are on different networks. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The serial interfaces are on differe\" without matching vpn",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given interface, The network is unrouteable. matches the tested behavior — The serial interfaces are on different networks. applies a different mechanism."
           }
         ],
-        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
+        "examTip": "GRE tunnel up requires reachable tunnel destination in routing table (underlay first)."
       }
     },
     {

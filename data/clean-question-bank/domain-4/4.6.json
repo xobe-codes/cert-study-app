@@ -26,35 +26,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Router#show dhcp lease\"."
+          "explanation": "show dhcp lease on a DHCP client router displays the active lease from the server that assigned the address."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router#show ip dhcp lease describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip dhcp lease applies a different mechanism.",
+            "explanation": "show ip dhcp lease is for routers acting as DHCP servers — a client router uses show dhcp lease.",
+            "misconceptionTested": "Using server-side show command on a DHCP client",
             "whatItDoes": "Router#show ip dhcp lease describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip dhcp lease applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip dhcp lease\" without matching dhcp client",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip dhcp lease applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#show ip lease describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip lease applies a different mechanism.",
+            "explanation": "show ip lease is not the standard IOS client verification command — show dhcp lease is.",
+            "misconceptionTested": "Inventing show command syntax",
             "whatItDoes": "Router#show ip lease describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip lease applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip lease\" without matching dhcp client",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip lease applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show ip interface describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip interface applies a different mechanism.",
+            "explanation": "show ip interface confirms interface status/IP but does not detail the DHCP server and lease timers like show dhcp lease.",
+            "misconceptionTested": "Substituting interface status for DHCP lease details",
             "whatItDoes": "Router#show ip interface describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip interface applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip interface\" without matching dhcp client",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip interface applies a different mechanism."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "Client router lease check → show dhcp lease. Server pool → show ip dhcp binding."
       }
     },
     {

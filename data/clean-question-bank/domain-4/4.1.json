@@ -22,29 +22,29 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "NAT maps inside local (private) to inside global (public) addresses."
+          "explanation": "NAT translates inside local (private) addresses to inside global (public) addresses so internal hosts reach the Internet."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Encrypts traffic describes a mechanism that could sound plausible for nat purpose. Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Encrypts traffic applies a different mechanism.",
+            "explanation": "Encryption protects confidentiality — NAT performs address translation, not cipher operations.",
+            "misconceptionTested": "Equating NAT with encryption",
             "whatItDoes": "Encrypts traffic describes a mechanism that could sound plausible for nat purpose.",
-            "whyWrongHere": "Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Encrypts traffic applies a different mechanism.",
-            "misconceptionTested": "Applying \"Encrypts traffic\" without matching nat purpose"
+            "whyWrongHere": "Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Encrypts traffic applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Routes between VLANs describes a mechanism that could sound plausible for nat purpose. Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Routes between VLANs applies a different mechanism.",
+            "explanation": "Inter-VLAN routing uses a router or L3 switch — NAT maps addresses between private and public realms.",
+            "misconceptionTested": "Using routing/VLAN logic for NAT purpose",
             "whatItDoes": "Routes between VLANs describes a mechanism that could sound plausible for nat purpose.",
-            "whyWrongHere": "Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Routes between VLANs applies a different mechanism.",
-            "misconceptionTested": "Applying \"Routes between VLANs\" without matching nat purpose"
+            "whyWrongHere": "Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Routes between VLANs applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Assigns DHCP addresses describes a mechanism that could sound plausible for nat purpose. Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Assigns DHCP addresses applies a different mechanism.",
+            "explanation": "DHCP assigns addresses dynamically — NAT rewrites source/destination IPs on packets crossing a boundary.",
+            "misconceptionTested": "Confusing address assignment with address translation",
             "whatItDoes": "Assigns DHCP addresses describes a mechanism that could sound plausible for nat purpose.",
-            "whyWrongHere": "Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Assigns DHCP addresses applies a different mechanism.",
-            "misconceptionTested": "Applying \"Assigns DHCP addresses\" without matching nat purpose"
+            "whyWrongHere": "Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Assigns DHCP addresses applies a different mechanism."
           }
         ],
         "examTip": "NAT fails silently without inside/outside — label interfaces before reading address types."
@@ -70,33 +70,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "PAT/overload maps many inside hosts to one public IP using ports."
+          "explanation": "PAT (NAT overload) maps many inside private hosts to one public IP using unique source ports."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Static NAT describes a mechanism that could sound plausible for PAT/overload maps many inside hosts to one public IP using ports. Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — Static NAT applies a different mechanism.",
+            "explanation": "Static NAT is 1:1 permanent mapping — many home devices sharing one public IP needs port-based overload.",
+            "misconceptionTested": "Using 1:1 static NAT for many-to-one scenario",
             "whatItDoes": "Static NAT describes a mechanism that could sound plausible for PAT/overload maps many inside hosts to one public IP using ports.",
-            "whyWrongHere": "Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — Static NAT applies a different mechanism.",
-            "misconceptionTested": "Applying \"Static NAT\" without matching pat"
+            "whyWrongHere": "Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — Static NAT applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Dynamic NAT describes a mechanism that could sound plausible for PAT/overload maps many inside hosts to one public IP using ports. Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — Dynamic NAT applies a different mechanism.",
+            "explanation": "Dynamic NAT pools one public IP per session but still exhausts the pool with many simultaneous hosts — PAT scales with ports.",
+            "misconceptionTested": "Choosing dynamic pool when overload/PAT is required",
             "whatItDoes": "Dynamic NAT describes a mechanism that could sound plausible for PAT/overload maps many inside hosts to one public IP using ports.",
-            "whyWrongHere": "Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — Dynamic NAT applies a different mechanism.",
-            "misconceptionTested": "Applying \"Dynamic NAT\" without matching pat"
+            "whyWrongHere": "Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — Dynamic NAT applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "No NAT describes a mechanism that could sound plausible for PAT/overload maps many inside hosts to one public IP using ports. Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — No NAT applies a different mechanism.",
+            "explanation": "Without NAT, private RFC1918 addresses cannot reach the public Internet from a typical home ISP setup.",
+            "misconceptionTested": "Denying NAT in a classic SOHO sharing scenario",
             "whatItDoes": "No NAT describes a mechanism that could sound plausible for PAT/overload maps many inside hosts to one public IP using ports.",
-            "whyWrongHere": "Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — No NAT applies a different mechanism.",
-            "misconceptionTested": "Applying \"No NAT\" without matching pat"
+            "whyWrongHere": "Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — No NAT applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Every inside host needs its own public IP — PAT lets thousands of hosts share one public IP via ports",
-        "memoryHook": "PAT = many tenants, one door — ports are the apartment numbers."
+        "examTip": "Many inside → one public IP = PAT/overload, not static 1:1."
       }
     },
     {
@@ -119,32 +118,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "Static NAT uses ip nat inside source static <local> <global>."
+          "explanation": "ip nat inside source static 192.168.1.10 203.0.113.10 creates a permanent inside-local to inside-global 1:1 mapping."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "ip nat pool describes a mechanism that could sound plausible for static nat. Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat pool applies a different mechanism.",
+            "explanation": "ip nat pool defines addresses for dynamic NAT — static 1:1 server publishing uses inside source static.",
+            "misconceptionTested": "Using dynamic pool command for static server mapping",
             "whatItDoes": "ip nat pool describes a mechanism that could sound plausible for static nat.",
-            "whyWrongHere": "Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat pool applies a different mechanism.",
-            "misconceptionTested": "Applying \"ip nat pool\" without matching static nat"
+            "whyWrongHere": "Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat pool applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "ip nat inside source list 1 interface g0/0 overload describes a mechanism that could sound plausible for static nat. Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat inside source list 1 interface g0/0 overload applies a different mechanism.",
+            "explanation": "That overload line enables PAT for an ACL — static server publishing needs explicit local/global pair.",
+            "misconceptionTested": "Applying PAT overload syntax to 1:1 static requirement",
             "whatItDoes": "ip nat inside source list 1 interface g0/0 overload describes a mechanism that could sound plausible for static nat.",
-            "whyWrongHere": "Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat inside source list 1 interface g0/0 overload applies a different mechanism.",
-            "misconceptionTested": "Applying \"ip nat inside source list 1 interfac\" without matching static nat"
+            "whyWrongHere": "Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat inside source list 1 interface g0/0 overload applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "ip nat outside describes a mechanism that could sound plausible for static nat. Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat outside applies a different mechanism.",
+            "explanation": "ip nat outside only labels interface direction — it does not create the static translation entry.",
+            "misconceptionTested": "Stopping at interface NAT label without translation rule",
             "whatItDoes": "ip nat outside describes a mechanism that could sound plausible for static nat.",
-            "whyWrongHere": "Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat outside applies a different mechanism.",
-            "misconceptionTested": "Applying \"ip nat outside\" without matching static nat"
+            "whyWrongHere": "Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat outside applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "Permanent server NAT → ip nat inside source static <local> <global>."
       }
     },
     {
@@ -167,32 +166,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Interfaces must be marked ip nat inside and ip nat outside."
+          "explanation": "NAT requires ip nat inside and ip nat outside on the correct interfaces — without these tags, translation never occurs."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "A default route describes a mechanism that could sound plausible for interface tags. Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — A default route applies a different mechanism.",
+            "explanation": "A default route helps reach the Internet but does not enable NAT — inside/outside interface designation is mandatory.",
+            "misconceptionTested": "Adding default route when NAT direction tags are missing",
             "whatItDoes": "A default route describes a mechanism that could sound plausible for interface tags.",
-            "whyWrongHere": "Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — A default route applies a different mechanism.",
-            "misconceptionTested": "Applying \"A default route\" without matching interface tags"
+            "whyWrongHere": "Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — A default route applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "A loopback describes a mechanism that could sound plausible for interface tags. Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — A loopback applies a different mechanism.",
+            "explanation": "Loopbacks are not required for basic NAT — the missing inside/outside labels prevent any translation.",
+            "misconceptionTested": "Creating loopback instead of labeling NAT interfaces",
             "whatItDoes": "A loopback describes a mechanism that could sound plausible for interface tags.",
-            "whyWrongHere": "Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — A loopback applies a different mechanism.",
-            "misconceptionTested": "Applying \"A loopback\" without matching interface tags"
+            "whyWrongHere": "Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — A loopback applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "DNS describes a mechanism that could sound plausible for interface tags. Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — DNS applies a different mechanism.",
+            "explanation": "DNS resolves names — NAT operates on IP headers and needs inside/outside interface roles defined first.",
+            "misconceptionTested": "Checking DNS when NAT interface roles are unset",
             "whatItDoes": "DNS describes a mechanism that could sound plausible for interface tags.",
-            "whyWrongHere": "Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — DNS applies a different mechanism.",
-            "misconceptionTested": "Applying \"DNS\" without matching interface tags"
+            "whyWrongHere": "Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — DNS applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Forgetting the inside/outside interface tags — Without ip nat inside/outside, NAT translates nothing"
+        "examTip": "NAT broken? First check ip nat inside / ip nat outside on the right interfaces."
       }
     },
     {
@@ -393,35 +392,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"NAT\"."
+          "explanation": "NAT translates private RFC 1918 addresses to public addresses so internal hosts can reach the Internet."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "CIDR describes a mechanism that could sound plausible for addresses. Given addresses, NAT matches the tested behavior — CIDR applies a different mechanism.",
+            "explanation": "CIDR is efficient address allocation notation — it does not translate private addresses for Internet access.",
+            "misconceptionTested": "Equating CIDR with address translation",
             "whatItDoes": "CIDR describes a mechanism that could sound plausible for addresses.",
-            "whyWrongHere": "Given addresses, NAT matches the tested behavior — CIDR applies a different mechanism.",
-            "misconceptionTested": "Applying \"CIDR\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given addresses, NAT matches the tested behavior — CIDR applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Classful addressing describes a mechanism that could sound plausible for addresses. Given addresses, NAT matches the tested behavior — Classful addressing applies a different mechanism.",
+            "explanation": "Classful addressing is obsolete — RFC 1918 private space still needs NAT (or proxy) to reach public Internet.",
+            "misconceptionTested": "Expecting classful rules to enable Internet from private space",
             "whatItDoes": "Classful addressing describes a mechanism that could sound plausible for addresses.",
-            "whyWrongHere": "Given addresses, NAT matches the tested behavior — Classful addressing applies a different mechanism.",
-            "misconceptionTested": "Applying \"Classful addressing\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given addresses, NAT matches the tested behavior — Classful addressing applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "VPN describes a mechanism that could sound plausible for addresses. Given addresses, NAT matches the tested behavior — VPN applies a different mechanism.",
+            "explanation": "VPN encrypts/tunnels traffic — the question asks how RFC 1918 hosts reach the Internet, which is NAT/PAT.",
+            "misconceptionTested": "Choosing VPN when NAT is the standard exam answer",
             "whatItDoes": "VPN describes a mechanism that could sound plausible for addresses.",
-            "whyWrongHere": "Given addresses, NAT matches the tested behavior — VPN applies a different mechanism.",
-            "misconceptionTested": "Applying \"VPN\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given addresses, NAT matches the tested behavior — VPN applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "Private RFC 1918 → Internet = NAT/PAT. Label inside/outside first."
       }
     },
     {
@@ -1469,35 +1465,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"The access list allows outgoing access from inside local addresses.\"."
+          "explanation": "Dynamic NAT uses an ACL to identify which inside local addresses are permitted to be translated outbound."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "NAT address types are fixed definitions — match the stem to the exact address role (who translates, who is local vs global).",
+            "explanation": "The ACL for dynamic NAT matches inside sources going out — it does not permit inbound connections from outside global addresses.",
+            "misconceptionTested": "Reversing NAT ACL direction (inbound vs outbound)",
             "whatItDoes": "The access list allows incoming access from outside global addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list.",
-            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows incoming access from outside global addresses. applies a different mechanism.",
-            "misconceptionTested": "Swapping inside/outside or local/global NAT roles",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows incoming access from outside global addresses. applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The access list allows outgoing access from outside local addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list. Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from outside local addresses. applies a different mechanism.",
+            "explanation": "Outside local addresses are how outsiders appear inside — dynamic NAT ACLs match inside local sources, not outside local.",
+            "misconceptionTested": "Confusing outside local with inside local in NAT ACL",
             "whatItDoes": "The access list allows outgoing access from outside local addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list.",
-            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from outside local addresses. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The access list allows outgoing acce\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from outside local addresses. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The access list allows outgoing access from inside global addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list. Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from inside global addresses. applies a different mechanism.",
+            "explanation": "Inside global is the translated public face — the ACL selects inside local hosts before translation occurs.",
+            "misconceptionTested": "Matching inside global instead of inside local pre-translation",
             "whatItDoes": "The access list allows outgoing access from inside global addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list.",
-            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from inside global addresses. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The access list allows outgoing acce\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from inside global addresses. applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "Dynamic NAT ACL → match inside local sources allowed to translate outbound."
       }
     },
     {

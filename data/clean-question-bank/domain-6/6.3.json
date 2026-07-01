@@ -25,35 +25,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Spine/Leaf\"."
+          "explanation": "Controller-based SDN campus/data-center fabrics commonly use spine-leaf (Clos) topology for equal-cost multipath east-west traffic."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Three tier describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Spine/Leaf matches the tested behavior — Three tier applies a different mechanism.",
+            "explanation": "Three-tier (access-distribution-core) is classic hierarchical — modern controller fabrics favor spine-leaf for scale and ECMP.",
+            "misconceptionTested": "Applying legacy three-tier to SDN fabric",
             "whatItDoes": "Three tier describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Spine/Leaf matches the tested behavior — Three tier applies a different mechanism.",
-            "misconceptionTested": "Applying \"Three tier\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given sdn architecture, Spine/Leaf matches the tested behavior — Three tier applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Collapsed core describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Spine/Leaf matches the tested behavior — Collapsed core applies a different mechanism.",
+            "explanation": "Collapsed core merges distribution/core — spine-leaf is the distinct SDN fabric pattern tested here.",
+            "misconceptionTested": "Confusing collapsed core with spine-leaf",
             "whatItDoes": "Collapsed core describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Spine/Leaf matches the tested behavior — Collapsed core applies a different mechanism.",
-            "misconceptionTested": "Applying \"Collapsed core\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given sdn architecture, Spine/Leaf matches the tested behavior — Collapsed core applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "SAN fabric describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Spine/Leaf matches the tested behavior — SAN fabric applies a different mechanism.",
+            "explanation": "SAN fabric is storage networking (FC/FCoE) — not the IP Ethernet architecture for controller-based LANs.",
+            "misconceptionTested": "Dragging storage fabric into SDN campus question",
             "whatItDoes": "SAN fabric describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Spine/Leaf matches the tested behavior — SAN fabric applies a different mechanism.",
-            "misconceptionTested": "Applying \"SAN fabric\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given sdn architecture, Spine/Leaf matches the tested behavior — SAN fabric applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "Controller/SDN fabric → spine-leaf. Legacy campus → three-tier."
       }
     },
     {
@@ -243,35 +240,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Cisco SD-WAN\"."
+          "explanation": "Cisco SD-WAN (Viptela) connects branch offices to applications over optimized WAN paths — built for ROBO direct app access."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Cisco APIC-EM describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Cisco SD-WAN matches the tested behavior — Cisco APIC-EM applies a different mechanism.",
+            "explanation": "APIC-EM is legacy SDN management for enterprise LAN — not the branch WAN overlay for remote workers reaching apps.",
+            "misconceptionTested": "Using campus SDN controller for WAN branch use case",
             "whatItDoes": "Cisco APIC-EM describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Cisco SD-WAN matches the tested behavior — Cisco APIC-EM applies a different mechanism.",
-            "misconceptionTested": "Applying \"Cisco APIC-EM\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given sdn architecture, Cisco SD-WAN matches the tested behavior — Cisco APIC-EM applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Cisco Prime Infrastructure describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Cisco SD-WAN matches the tested behavior — Cisco Prime Infrastructure applies a different mechanism.",
+            "explanation": "Prime Infrastructure is traditional network management — not the SD-WAN overlay product for branch connectivity.",
+            "misconceptionTested": "Selecting NMS instead of SD-WAN solution",
             "whatItDoes": "Cisco Prime Infrastructure describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Cisco SD-WAN matches the tested behavior — Cisco Prime Infrastructure applies a different mechanism.",
-            "misconceptionTested": "Applying \"Cisco Prime Infrastructure\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given sdn architecture, Cisco SD-WAN matches the tested behavior — Cisco Prime Infrastructure applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "OpenDaylight describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Cisco SD-WAN matches the tested behavior — OpenDaylight applies a different mechanism.",
+            "explanation": "OpenDaylight is an open SDN controller platform — Cisco SD-WAN is the branded branch/WAN answer on CCNA stems.",
+            "misconceptionTested": "Picking generic open controller for Cisco ROBO scenario",
             "whatItDoes": "OpenDaylight describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Cisco SD-WAN matches the tested behavior — OpenDaylight applies a different mechanism.",
-            "misconceptionTested": "Applying \"OpenDaylight\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given sdn architecture, Cisco SD-WAN matches the tested behavior — OpenDaylight applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "Branch offices need direct app access → Cisco SD-WAN, not campus APIC-EM."
       }
     },
     {
@@ -1077,35 +1071,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Control plane\"."
+          "explanation": "ACLs enforce forwarding policy — configuring them affects the control plane that programs what the data plane allows."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Management plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Control plane matches the tested behavior — Management plane applies a different mechanism.",
+            "explanation": "Management plane covers device administration (SSH, SNMP) — ACL configuration defines traffic policy, which is control plane.",
+            "misconceptionTested": "Equating ACL policy with device management plane",
             "whatItDoes": "Management plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Management plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Management plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Management plane applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Configuration plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Control plane matches the tested behavior — Configuration plane applies a different mechanism.",
+            "explanation": "\"Configuration plane\" is not a standard Cisco three-plane term — ACLs belong to control plane policy.",
+            "misconceptionTested": "Inventing non-standard plane name for ACL config",
             "whatItDoes": "Configuration plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Configuration plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Configuration plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Configuration plane applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Data plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Control plane matches the tested behavior — Data plane applies a different mechanism.",
+            "explanation": "Data plane forwards packets — you configure ACL rules (control plane) that the data plane then enforces.",
+            "misconceptionTested": "Confusing policy configuration with packet forwarding plane",
             "whatItDoes": "Data plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Data plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Data plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Data plane applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "Three planes: data = forward, control = routing/ACL policy, management = admin access."
       }
     },
     {

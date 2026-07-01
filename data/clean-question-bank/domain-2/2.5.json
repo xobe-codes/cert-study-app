@@ -22,32 +22,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "STP prevents Layer 2 loops by blocking redundant paths."
+          "explanation": "STP blocks redundant Layer 2 paths so frames cannot loop endlessly through a switched topology."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Routing loops reflects a common trap: STP prevents routing loops. STP is Layer 2 only; routing loops are handled by L3 mechanisms (TTL, split horizon).",
+            "explanation": "Routing loops are a Layer 3 problem (TTL, routing protocol convergence) — STP operates at Layer 2 on switches.",
+            "misconceptionTested": "Applying STP to Layer 3 routing loops",
             "whatItDoes": "Routing loops describes a mechanism that could sound plausible for stp purpose.",
-            "whyWrongHere": "Given stp purpose, Layer 2 switching loops matches the tested behavior — Routing loops applies a different mechanism.",
-            "misconceptionTested": "STP prevents routing loops"
+            "whyWrongHere": "Given stp purpose, Layer 2 switching loops matches the tested behavior — Routing loops applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "IP address conflicts shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given stp purpose, Layer 2 switching loops matches the tested behavior — IP address conflicts applies a different mechanism.",
+            "explanation": "IP conflicts are addressed by DHCP snooping, DAI, or manual assignment — STP does not detect duplicate IPs.",
+            "misconceptionTested": "Expecting STP to fix IP addressing conflicts",
             "whatItDoes": "IP address conflicts shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given stp purpose, Layer 2 switching loops matches the tested behavior — IP address conflicts applies a different mechanism.",
-            "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process"
+            "whyWrongHere": "Given stp purpose, Layer 2 switching loops matches the tested behavior — IP address conflicts applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Slow DNS describes a mechanism that could sound plausible for stp purpose. Given stp purpose, Layer 2 switching loops matches the tested behavior — Slow DNS applies a different mechanism.",
+            "explanation": "DNS resolution speed is unrelated — STP prevents broadcast/multicast storms from physical switching loops.",
+            "misconceptionTested": "Dragging unrelated services into STP purpose",
             "whatItDoes": "Slow DNS describes a mechanism that could sound plausible for stp purpose.",
-            "whyWrongHere": "Given stp purpose, Layer 2 switching loops matches the tested behavior — Slow DNS applies a different mechanism.",
-            "misconceptionTested": "Applying \"Slow DNS\" without matching stp purpose"
+            "whyWrongHere": "Given stp purpose, Layer 2 switching loops matches the tested behavior — Slow DNS applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
+        "examTip": "STP: blocking prevents L2 loops — not “drop all user traffic” on a forwarding port."
       }
     },
     {
@@ -118,32 +118,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Default priority is 32768 (lower is preferred)."
+          "explanation": "Default STP bridge priority is 32768 — lower numeric value wins root election (often set in increments of 4096)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "0 uses the wrong value. The tested fact calls for 32768 — not 0.",
+            "explanation": "Priority 0 is the minimum (best) but not the default — Cisco ships switches at 32768 unless changed.",
+            "misconceptionTested": "Confusing best possible priority with factory default",
             "whatItDoes": "0 describes a mechanism that could sound plausible for default priority.",
-            "whyWrongHere": "Given default priority, 32768 matches the tested behavior — 0 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 0 instead of the correct 32768"
+            "whyWrongHere": "Given default priority, 32768 matches the tested behavior — 0 applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "4096 uses the wrong value. The tested fact calls for 32768 — not 4096.",
+            "explanation": "4096 is a common increment when lowering priority — the default starting value is 32768.",
+            "misconceptionTested": "Using common increment step as default priority",
             "whatItDoes": "4096 describes a mechanism that could sound plausible for default priority.",
-            "whyWrongHere": "Given default priority, 32768 matches the tested behavior — 4096 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 4096 instead of the correct 32768"
+            "whyWrongHere": "Given default priority, 32768 matches the tested behavior — 4096 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "65535 uses the wrong value. The tested fact calls for 32768 — not 65535.",
+            "explanation": "65535 exceeds the valid STP priority range (0–61440 in multiples of 4096) — default is 32768.",
+            "misconceptionTested": "Picking max 16-bit value instead of Cisco default",
             "whatItDoes": "65535 describes a mechanism that could sound plausible for default priority.",
-            "whyWrongHere": "Given default priority, 32768 matches the tested behavior — 65535 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 65535 instead of the correct 32768"
+            "whyWrongHere": "Given default priority, 32768 matches the tested behavior — 65535 applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Highest priority becomes root — LOWEST Bridge ID (priority then MAC) becomes root"
+        "examTip": "Default STP priority = 32768. Lower wins. Adjust in steps of 4096."
       }
     },
     {

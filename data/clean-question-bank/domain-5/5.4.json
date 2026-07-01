@@ -28,32 +28,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "AAA stands for Authentication (who are you), Authorization (what are you allowed to do), and Accounting (what did you do / logging)."
+          "explanation": "AAA = Authentication (identity), Authorization (permissions), Accounting (logging/auditing of actions)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Access, Audit, Administration describes a mechanism that could sound plausible for AAA framework. Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Access, Audit, Administration applies a different mechanism.",
+            "explanation": "Access/Audit/Administration is a plausible-sounding shuffle — Cisco AAA is specifically Authentication, Authorization, Accounting.",
+            "misconceptionTested": "Memorizing wrong AAA expansion",
             "whatItDoes": "Access, Audit, Administration describes a mechanism that could sound plausible for AAA framework.",
-            "whyWrongHere": "Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Access, Audit, Administration applies a different mechanism.",
-            "misconceptionTested": "Applying \"Access, Audit, Administration\" without matching AAA framework"
+            "whyWrongHere": "Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Access, Audit, Administration applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Authentication, Auditing, Availability describes a mechanism that could sound plausible for AAA framework. Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Authentication, Auditing, Availability applies a different mechanism.",
+            "explanation": "Auditing and Availability are not the middle A — Authorization defines what an authenticated user may do.",
+            "misconceptionTested": "Swapping Authorization with Auditing/Availability",
             "whatItDoes": "Authentication, Auditing, Availability describes a mechanism that could sound plausible for AAA framework.",
-            "whyWrongHere": "Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Authentication, Auditing, Availability applies a different mechanism.",
-            "misconceptionTested": "Applying \"Authentication, Auditing, Availabili\" without matching AAA framework"
+            "whyWrongHere": "Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Authentication, Auditing, Availability applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Authorization, Access, Accounting describes a mechanism that could sound plausible for AAA framework. Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Authorization, Access, Accounting applies a different mechanism.",
+            "explanation": "Order matters: Authentication first, then Authorization, then Accounting — not Authorization/Access/Accounting.",
+            "misconceptionTested": "Reordering the three A components",
             "whatItDoes": "Authorization, Access, Accounting describes a mechanism that could sound plausible for AAA framework.",
-            "whyWrongHere": "Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Authorization, Access, Accounting applies a different mechanism.",
-            "misconceptionTested": "Applying \"Authorization, Access, Accounting\" without matching AAA framework"
+            "whyWrongHere": "Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Authorization, Access, Accounting applies a different mechanism."
           }
         ],
-        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
+        "examTip": "AAA order: Authentication → Authorization → Accounting — match the stem verb."
       }
     },
     {

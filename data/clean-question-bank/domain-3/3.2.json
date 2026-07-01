@@ -22,29 +22,29 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "10.1.1.10 falls inside both, but /26 is the longer (more specific) prefix, so longest prefix match selects it."
+          "explanation": "10.1.1.10 matches both prefixes, but /26 is longer (more specific) — longest prefix match selects the /26 via R3."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The /24 via R2 uses the wrong value. The tested fact calls for 10 — not 24.",
+            "explanation": "/24 is less specific than /26 when both match the destination. Longest prefix match always wins before metric or AD.",
+            "misconceptionTested": "Picking the shorter prefix when both match",
             "whatItDoes": "The /24 via R2 describes a mechanism that could sound plausible for longest prefix match.",
-            "whyWrongHere": "Given longest prefix match, The /26 via R3 matches the tested behavior — The /24 via R2 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 24 instead of the correct 10"
+            "whyWrongHere": "Given longest prefix match, The /26 via R3 matches the tested behavior — The /24 via R2 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Whichever has the lower metric reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "explanation": "Metric only breaks ties between routes to the same prefix learned the same way — it does not override longest prefix match.",
+            "misconceptionTested": "Using metric before longest prefix match",
             "whatItDoes": "Whichever has the lower metric describes a mechanism that could sound plausible for longest prefix match.",
-            "whyWrongHere": "Given longest prefix match, The /26 via R3 matches the tested behavior — Whichever has the lower metric applies a different mechanism.",
-            "misconceptionTested": "A lower metric can beat a more-specific route"
+            "whyWrongHere": "Given longest prefix match, The /26 via R3 matches the tested behavior — Whichever has the lower metric applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Both, load-balanced describes a mechanism that could sound plausible for longest prefix match. CAM learning stores one mapping per arrival (longest prefix match): The /26 via R3 — not both addresses as table entries.",
+            "explanation": "ECMP load-balancing requires equal-cost routes to the same prefix — here two different prefix lengths compete, and LPM picks one.",
+            "misconceptionTested": "Expecting load balance across different prefix lengths",
             "whatItDoes": "Both, load-balanced describes a mechanism that could sound plausible for longest prefix match.",
-            "whyWrongHere": "CAM learning stores one mapping per arrival (longest prefix match): The /26 via R3 — not both addresses as table entries.",
-            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
+            "whyWrongHere": "CAM learning stores one mapping per arrival (longest prefix match): The /26 via R3 — not both addresses as table entries."
           }
         ],
         "examTip": "Forwarding order: longest prefix match first, then lowest AD, then best metric."
@@ -72,32 +72,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Longest prefix match decides which route forwards the packet; AD then metric decide which routes get installed for a given prefix."
+          "explanation": "When forwarding, longest prefix match picks the route; AD and metric matter when installing competing routes for the same prefix."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Metric → AD → longest prefix reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "explanation": "Metric does not come first — the router must find the best matching prefix before comparing metrics on equal routes.",
+            "misconceptionTested": "Leading with metric instead of LPM",
             "whatItDoes": "Metric → AD → longest prefix describes a mechanism that could sound plausible for route selection order.",
-            "whyWrongHere": "Given route selection order, Longest prefix match → administrative distance → metric matches the tested behavior — Metric → AD → longest prefix applies a different mechanism.",
-            "misconceptionTested": "A lower metric can beat a more-specific route"
+            "whyWrongHere": "Given route selection order, Longest prefix match → administrative distance → metric matches the tested behavior — Metric → AD → longest prefix applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "AD → metric → longest prefix reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "explanation": "AD breaks ties between routes to the same prefix from different sources — it does not replace longest prefix match at forward time.",
+            "misconceptionTested": "Putting AD ahead of longest prefix match",
             "whatItDoes": "AD → metric → longest prefix describes a mechanism that could sound plausible for route selection order.",
-            "whyWrongHere": "Given route selection order, Longest prefix match → administrative distance → metric matches the tested behavior — AD → metric → longest prefix applies a different mechanism.",
-            "misconceptionTested": "A lower metric can beat a more-specific route"
+            "whyWrongHere": "Given route selection order, Longest prefix match → administrative distance → metric matches the tested behavior — AD → metric → longest prefix applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Longest prefix → metric → AD reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "explanation": "Longest prefix is first, but metric is not second at install time — AD decides between sources, then metric within one protocol.",
+            "misconceptionTested": "Swapping AD and metric in the install order",
             "whatItDoes": "Longest prefix → metric → AD describes a mechanism that could sound plausible for route selection order.",
-            "whyWrongHere": "Given route selection order, Longest prefix match → administrative distance → metric matches the tested behavior — Longest prefix → metric → AD applies a different mechanism.",
-            "misconceptionTested": "A lower metric can beat a more-specific route"
+            "whyWrongHere": "Given route selection order, Longest prefix match → administrative distance → metric matches the tested behavior — Longest prefix → metric → AD applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
+        "examTip": "Forward: LPM → AD → metric. Do not swap LPM with either tie-breaker."
       }
     },
     {
@@ -297,32 +297,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Within one protocol, the lower metric (OSPF cost 10) wins."
+          "explanation": "Within one OSPF process, the lower cost route (10) is installed — metric breaks ties for the same prefix from the same protocol."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Cost 20 uses the wrong value. The tested fact calls for 10 — not 20.",
+            "explanation": "Higher OSPF cost is less preferred — cost 20 loses to cost 10 for the same prefix.",
+            "misconceptionTested": "Selecting higher metric within one OSPF process",
             "whatItDoes": "Cost 20 describes a mechanism that could sound plausible for metric tie-break.",
-            "whyWrongHere": "Given metric tie-break, Cost 10 matches the tested behavior — Cost 20 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 20 instead of the correct 10"
+            "whyWrongHere": "Given metric tie-break, Cost 10 matches the tested behavior — Cost 20 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Both (equal-cost only if equal) describes a mechanism that could sound plausible for metric tie-break. CAM learning stores one mapping per arrival (metric tie-break): Cost 10 — not both addresses as table entries.",
+            "explanation": "ECMP requires equal metrics — cost 10 and 20 are not equal, so only the lower-cost path is installed.",
+            "misconceptionTested": "Expecting load balance across unequal OSPF costs",
             "whatItDoes": "Both (equal-cost only if equal) describes a mechanism that could sound plausible for metric tie-break.",
-            "whyWrongHere": "CAM learning stores one mapping per arrival (metric tie-break): Cost 10 — not both addresses as table entries.",
-            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
+            "whyWrongHere": "CAM learning stores one mapping per arrival (metric tie-break): Cost 10 — not both addresses as table entries."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Neither — AD must differ shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given metric tie-break, Cost 10 matches the tested behavior — Neither — AD must differ applies a different mechanism.",
+            "explanation": "Both routes are OSPF (same AD 110) — AD only differs between routing sources, not between two OSPF paths to one prefix.",
+            "misconceptionTested": "Invoking AD when comparing metrics within one protocol",
             "whatItDoes": "Neither — AD must differ shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given metric tie-break, Cost 10 matches the tested behavior — Neither — AD must differ applies a different mechanism.",
-            "misconceptionTested": "Applying \"Neither — AD must differ\" without matching metric tie-break"
+            "whyWrongHere": "Given metric tie-break, Cost 10 matches the tested behavior — Neither — AD must differ applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
+        "examTip": "Same protocol, same prefix → lower metric wins. ECMP needs equal metrics."
       }
     },
     {
@@ -346,32 +346,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The /16 matches and is far more specific than the /0 default route, so longest prefix match uses the /16."
+          "explanation": "172.16.4.9 matches 172.16.0.0/16 — longest prefix match picks /16 over the less-specific 0.0.0.0/0 default."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The default route via R1 reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "Default route 0.0.0.0/0 matches everything but is the least specific — /16 is a longer match and wins forwarding.",
+            "misconceptionTested": "Preferring default route over more specific prefix",
             "whatItDoes": "The default route via R1 describes a mechanism that could sound plausible for default route specificity.",
-            "whyWrongHere": "Given default route specificity, The /16 via R2 matches the tested behavior — The default route via R1 applies a different mechanism.",
-            "misconceptionTested": "Treating the default route as a normal match"
+            "whyWrongHere": "Given default route specificity, The /16 via R2 matches the tested behavior — The default route via R1 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Whichever has lower AD reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "explanation": "AD breaks ties between different sources to the same prefix — here both routes exist and LPM at forward time picks /16.",
+            "misconceptionTested": "Using AD instead of longest prefix match at forward time",
             "whatItDoes": "Whichever has lower AD describes a mechanism that could sound plausible for default route specificity.",
-            "whyWrongHere": "Given default route specificity, The /16 via R2 matches the tested behavior — Whichever has lower AD applies a different mechanism.",
-            "misconceptionTested": "A lower metric can beat a more-specific route"
+            "whyWrongHere": "Given default route specificity, The /16 via R2 matches the tested behavior — Whichever has lower AD applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "It is dropped implies the device should discard the frame instead of forwarding or flooding it. Given default route specificity, The /16 via R2 matches the tested behavior — It is dropped applies a different mechanism.",
+            "explanation": "A matching /16 route exists — the packet is forwarded via R2, not dropped.",
+            "misconceptionTested": "Assuming drop when both default and specific routes exist",
             "whatItDoes": "It is dropped implies the device should discard the frame instead of forwarding or flooding it.",
-            "whyWrongHere": "Given default route specificity, The /16 via R2 matches the tested behavior — It is dropped applies a different mechanism.",
-            "misconceptionTested": "Applying \"It is dropped\" without matching default route specificity"
+            "whyWrongHere": "Given default route specificity, The /16 via R2 matches the tested behavior — It is dropped applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
+        "examTip": "Forwarding: longest prefix match beats default route every time."
       }
     },
     {
@@ -491,32 +491,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "A plain static route has AD 1, beating OSPF’s 110, so it is always installed. Add a higher AD (e.g. ... 10.1.1.1 130) to make it a floating static backup."
+          "explanation": "A plain static route has AD 1, which beats OSPF AD 110 — the static is always preferred. Use floating static with higher AD (e.g. 130) for backup-only behavior."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "OSPF metric is too high reflects a common trap: AD and metric do the same job. AD chooses between routing SOURCES for the same prefix; metric ranks routes WITHIN one protocol.",
+            "explanation": "OSPF metric is irrelevant here — the static wins because AD 1 < 110, not because of OSPF cost.",
+            "misconceptionTested": "Blaming OSPF metric when AD causes static preference",
             "whatItDoes": "OSPF metric is too high describes a mechanism that could sound plausible for floating static.",
-            "whyWrongHere": "Given floating static, Static AD (1) is lower than OSPF (110), so static is always preferred matches the tested behavior — OSPF metric is too high applies a different mechanism.",
-            "misconceptionTested": "AD and metric do the same job"
+            "whyWrongHere": "Given floating static, Static AD (1) is lower than OSPF (110), so static is always preferred matches the tested behavior — OSPF metric is too high applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The mask is wrong describes a mechanism that could sound plausible for floating static. Given floating static, Static AD (1) is lower than OSPF (110), so static is always preferred matches the tested behavior — The mask is wrong applies a different mechanism.",
+            "explanation": "/8 mask matches 10.0.0.0/8 correctly — the problem is administrative distance, not subnet mask.",
+            "misconceptionTested": "Suspecting mask error when AD is the issue",
             "whatItDoes": "The mask is wrong describes a mechanism that could sound plausible for floating static.",
-            "whyWrongHere": "Given floating static, Static AD (1) is lower than OSPF (110), so static is always preferred matches the tested behavior — The mask is wrong applies a different mechanism.",
-            "misconceptionTested": "Applying \"The mask is wrong\" without matching floating static"
+            "whyWrongHere": "Given floating static, Static AD (1) is lower than OSPF (110), so static is always preferred matches the tested behavior — The mask is wrong applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Default routes override static describes a mechanism that could sound plausible for floating static. Given floating static, Static AD (1) is lower than OSPF (110), so static is always preferred matches the tested behavior — Default routes override static applies a different mechanism.",
+            "explanation": "Default routes are a prefix length issue — this is a static vs OSPF AD competition for 10.0.0.0/8.",
+            "misconceptionTested": "Dragging default-route logic into floating-static AD trap",
             "whatItDoes": "Default routes override static describes a mechanism that could sound plausible for floating static.",
-            "whyWrongHere": "Given floating static, Static AD (1) is lower than OSPF (110), so static is always preferred matches the tested behavior — Default routes override static applies a different mechanism.",
-            "misconceptionTested": "Applying \"Default routes override static\" without matching floating static"
+            "whyWrongHere": "Given floating static, Static AD (1) is lower than OSPF (110), so static is always preferred matches the tested behavior — Default routes override static applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
+        "examTip": "Backup static only when primary fails → set higher AD than the primary (floating static)."
       }
     },
     {
@@ -539,32 +539,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "By AD: connected 0 (most trusted), static 1, OSPF 110."
+          "explanation": "Default AD: connected 0, static 1, OSPF 110 — lower AD = more trusted when sources compete."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "OSPF, static, connected describes a mechanism that could sound plausible for connected vs static vs dynamic. Given connected vs static vs dynamic, Connected, static, OSPF matches the tested behavior — OSPF, static, connected applies a different mechanism.",
+            "explanation": "OSPF (110) is least trusted of the three — connected (0) and static (1) beat OSPF when all offer the same prefix.",
+            "misconceptionTested": "Ranking OSPF above connected/static",
             "whatItDoes": "OSPF, static, connected describes a mechanism that could sound plausible for connected vs static vs dynamic.",
-            "whyWrongHere": "Given connected vs static vs dynamic, Connected, static, OSPF matches the tested behavior — OSPF, static, connected applies a different mechanism.",
-            "misconceptionTested": "Applying \"OSPF, static, connected\" without matching connected vs static vs dynamic"
+            "whyWrongHere": "Given connected vs static vs dynamic, Connected, static, OSPF matches the tested behavior — OSPF, static, connected applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Static, connected, OSPF describes a mechanism that could sound plausible for connected vs static vs dynamic. Given connected vs static vs dynamic, Connected, static, OSPF matches the tested behavior — Static, connected, OSPF applies a different mechanism.",
+            "explanation": "Static (1) is more trusted than OSPF but less than connected (0) — connected routes are always AD 0.",
+            "misconceptionTested": "Placing static above connected",
             "whatItDoes": "Static, connected, OSPF describes a mechanism that could sound plausible for connected vs static vs dynamic.",
-            "whyWrongHere": "Given connected vs static vs dynamic, Connected, static, OSPF matches the tested behavior — Static, connected, OSPF applies a different mechanism.",
-            "misconceptionTested": "Applying \"Static, connected, OSPF\" without matching connected vs static vs dynamic"
+            "whyWrongHere": "Given connected vs static vs dynamic, Connected, static, OSPF matches the tested behavior — Static, connected, OSPF applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Connected, OSPF, static describes a mechanism that could sound plausible for connected vs static vs dynamic. Given connected vs static vs dynamic, Connected, static, OSPF matches the tested behavior — Connected, OSPF, static applies a different mechanism.",
+            "explanation": "Connected beats static — connected AD is 0, static is 1. OSPF at 110 is last among these three.",
+            "misconceptionTested": "Swapping connected and static trust order",
             "whatItDoes": "Connected, OSPF, static describes a mechanism that could sound plausible for connected vs static vs dynamic.",
-            "whyWrongHere": "Given connected vs static vs dynamic, Connected, static, OSPF matches the tested behavior — Connected, OSPF, static applies a different mechanism.",
-            "misconceptionTested": "Applying \"Connected, OSPF, static\" without matching connected vs static vs dynamic"
+            "whyWrongHere": "Given connected vs static vs dynamic, Connected, static, OSPF matches the tested behavior — Connected, OSPF, static applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
+        "examTip": "Memorize: connected 0, static 1, OSPF 110 — compare AD between sources, metric within one protocol."
       }
     },
     {

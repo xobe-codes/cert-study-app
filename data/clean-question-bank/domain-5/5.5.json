@@ -22,32 +22,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "ACLs are read top-down and stop at the first match."
+          "explanation": "ACLs are evaluated top-down — the first matching line wins and processing stops."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Bottom-up describes a mechanism that could sound plausible for processing order. Given processing order, Top-down, first match wins matches the tested behavior — Bottom-up applies a different mechanism.",
+            "explanation": "ACLs are not read bottom-up — order matters because an early permit or deny can block a later line from ever being reached.",
+            "misconceptionTested": "Reversing ACL evaluation order",
             "whatItDoes": "Bottom-up describes a mechanism that could sound plausible for processing order.",
-            "whyWrongHere": "Given processing order, Top-down, first match wins matches the tested behavior — Bottom-up applies a different mechanism.",
-            "misconceptionTested": "Applying \"Bottom-up\" without matching processing order"
+            "whyWrongHere": "Given processing order, Top-down, first match wins matches the tested behavior — Bottom-up applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Most-specific first automatically reflects a common trap: Misordering rules. First match wins — put specific rules before broad ones.",
+            "explanation": "Cisco ACLs do not auto-sort by specificity — you must place more specific entries above general ones manually.",
+            "misconceptionTested": "Expecting automatic most-specific-first sorting",
             "whatItDoes": "Most-specific first automatically describes a mechanism that could sound plausible for processing order.",
-            "whyWrongHere": "Given processing order, Top-down, first match wins matches the tested behavior — Most-specific first automatically applies a different mechanism.",
-            "misconceptionTested": "Misordering rules"
+            "whyWrongHere": "Given processing order, Top-down, first match wins matches the tested behavior — Most-specific first automatically applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Randomly describes a mechanism that could sound plausible for processing order. Given processing order, Top-down, first match wins matches the tested behavior — Randomly applies a different mechanism.",
+            "explanation": "ACL evaluation is deterministic top-down — not random or round-robin.",
+            "misconceptionTested": "Guessing non-deterministic ACL behavior",
             "whatItDoes": "Randomly describes a mechanism that could sound plausible for processing order.",
-            "whyWrongHere": "Given processing order, Top-down, first match wins matches the tested behavior — Randomly applies a different mechanism.",
-            "misconceptionTested": "Applying \"Randomly\" without matching processing order"
+            "whyWrongHere": "Given processing order, Top-down, first match wins matches the tested behavior — Randomly applies a different mechanism."
           }
         ],
-        "examTip": "Extended ACLs go near the source; standard ACLs near the destination — placement is the trap."
+        "examTip": "ACL: first match wins, implicit deny at end — order your lines deliberately."
       }
     },
     {
@@ -102,32 +102,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Standard ACLs match source only, so place them near the destination to avoid over-blocking."
+          "explanation": "Standard ACLs match source IP only — place them close to the destination so you do not accidentally filter traffic for other subnets earlier."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Close to the source describes a mechanism that could sound plausible for standard placement. Given standard placement, Close to the destination matches the tested behavior — Close to the source applies a different mechanism.",
+            "explanation": "Near the source is correct for extended ACLs (match source and destination) — standard ACLs belong near the destination.",
+            "misconceptionTested": "Applying extended ACL placement rule to standard ACL",
             "whatItDoes": "Close to the source describes a mechanism that could sound plausible for standard placement.",
-            "whyWrongHere": "Given standard placement, Close to the destination matches the tested behavior — Close to the source applies a different mechanism.",
-            "misconceptionTested": "Applying \"Close to the source\" without matching standard placement"
+            "whyWrongHere": "Given standard placement, Close to the destination matches the tested behavior — Close to the source applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "On every interface describes a mechanism that could sound plausible for standard placement. Given standard placement, Close to the destination matches the tested behavior — On every interface applies a different mechanism.",
+            "explanation": "ACLs are applied on specific interfaces where traffic enters or exits — not blindly on every interface.",
+            "misconceptionTested": "Over-applying ACLs network-wide",
             "whatItDoes": "On every interface describes a mechanism that could sound plausible for standard placement.",
-            "whyWrongHere": "Given standard placement, Close to the destination matches the tested behavior — On every interface applies a different mechanism.",
-            "misconceptionTested": "Applying \"On every interface\" without matching standard placement"
+            "whyWrongHere": "Given standard placement, Close to the destination matches the tested behavior — On every interface applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Only on trunks describes a mechanism that could sound plausible for standard placement. Given standard placement, Close to the destination matches the tested behavior — Only on trunks applies a different mechanism.",
+            "explanation": "Trunks carry multiple VLANs — ACL placement follows source/destination logic, not “trunks only”.",
+            "misconceptionTested": "Restricting ACL placement to trunk interfaces",
             "whatItDoes": "Only on trunks describes a mechanism that could sound plausible for standard placement.",
-            "whyWrongHere": "Given standard placement, Close to the destination matches the tested behavior — Only on trunks applies a different mechanism.",
-            "misconceptionTested": "Applying \"Only on trunks\" without matching standard placement"
+            "whyWrongHere": "Given standard placement, Close to the destination matches the tested behavior — Only on trunks applies a different mechanism."
           }
         ],
-        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
+        "examTip": "Extended ACL → near source. Standard ACL → near destination."
       }
     },
     {

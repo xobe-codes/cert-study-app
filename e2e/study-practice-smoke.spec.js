@@ -6,9 +6,13 @@ test.describe('Study Practice smoke', () => {
     await page.waitForFunction(() => typeof window.storage?.getItem === 'function')
     await page.evaluate(async () => {
       await window.storage.setItem('ccna_onboard_done_v1', true)
+      await window.storage.setItem('ccna_progress_v1', {
+        '1.5': { status: 'in_progress', quizScores: [], lastSeen: Date.now(), studySectionsViewed: true },
+      })
     })
 
     await page.goto('/#/objective/1.5/Practice')
+    await expect(page.locator('.ccna-quiz-idle')).toBeVisible({ timeout: 20_000 })
     await page.getByRole('button', { name: /Practice \d+ question/i }).click({ timeout: 20_000 })
 
     let reviewVisible = false
@@ -19,9 +23,9 @@ test.describe('Study Practice smoke', () => {
       const count = await radios.count()
       for (let c = 0; c < count; c++) {
         await radios.nth(c).click()
-        const incorrect = page.getByText(/^Incorrect$/).first()
+        const wrongHeading = page.getByText(/WHY [A-F] IS WRONG/)
         const review = page.locator('.ccna-answer-review').first()
-        if (await incorrect.isVisible().catch(() => false) && await review.isVisible().catch(() => false)) {
+        if (await wrongHeading.count() && await review.isVisible().catch(() => false)) {
           reviewVisible = true
           break
         }
@@ -37,5 +41,6 @@ test.describe('Study Practice smoke', () => {
 
     expect(reviewVisible).toBe(true)
     await expect(page.locator('.ccna-answer-review').first()).toBeVisible()
+    await expect(page.getByText(/What this choice implies/i)).toBeVisible()
   })
 })

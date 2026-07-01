@@ -13,11 +13,11 @@
 | Asset | Location | Count |
 |-------|----------|------:|
 | Objectives | `src/data/ccnaDomains.js` | 53 |
-| Hand curated | `src/data/ccnaCurated.js` | 22 rich+ |
-| Factory supplements | `curatedReadingSupplement*.js` | 31 thin |
+| Hand curated | `src/data/ccnaCurated.js` | 53 rich+ |
+| Factory supplements | `curatedReadingSupplement*.js` | 0 thin |
 | KB patches | `kbCompiledPatches.js` | 42 |
-| Clean bank | `data/clean-question-bank/` | 315 Q |
-| Labs | `ccnaLabs*.js` | 23 objs with labs |
+| Clean bank | `data/clean-question-bank/` | 1025 Q |
+| Labs | `ccnaLabs*.js` | 24 objs with labs |
 
 ## Learner storage (localStorage)
 - `ccna_progress_v1` — per-objective mastery, reading tier, SRS

@@ -311,32 +311,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch."
+          "explanation": "Off-subnet traffic is sent to the configured default gateway — a router or L3 switch SVI — not to the access switch alone."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The access switch only describes a mechanism that could sound plausible for default gateway. Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The access switch only applies a different mechanism.",
+            "explanation": "The access switch forwards within the VLAN but does not route to remote subnets — the PC must ARP for its default gateway first.",
+            "misconceptionTested": "Expecting the access switch to route inter-subnet traffic",
             "whatItDoes": "The access switch only describes a mechanism that could sound plausible for default gateway.",
-            "whyWrongHere": "Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The access switch only applies a different mechanism.",
-            "misconceptionTested": "Applying \"The access switch only\" without matching default gateway"
+            "whyWrongHere": "Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The access switch only applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The WLC describes a mechanism that could sound plausible for default gateway. Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The WLC applies a different mechanism.",
+            "explanation": "The WLC manages wireless APs — it is not the first hop for a wired PC sending traffic to a remote subnet.",
+            "misconceptionTested": "Dragging wireless controller into wired routing path",
             "whatItDoes": "The WLC describes a mechanism that could sound plausible for default gateway.",
-            "whyWrongHere": "Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The WLC applies a different mechanism.",
-            "misconceptionTested": "Applying \"The WLC\" without matching default gateway"
+            "whyWrongHere": "Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The WLC applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The DNS server describes a mechanism that could sound plausible for default gateway. Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The DNS server applies a different mechanism.",
+            "explanation": "DNS resolves names to IPs — it is not in the Layer 3 forwarding path for packets already addressed to a remote subnet.",
+            "misconceptionTested": "Confusing name resolution with default-gateway forwarding",
             "whatItDoes": "The DNS server describes a mechanism that could sound plausible for default gateway.",
-            "whyWrongHere": "Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The DNS server applies a different mechanism.",
-            "misconceptionTested": "Applying \"The DNS server\" without matching default gateway"
+            "whyWrongHere": "Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The DNS server applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: More switches always mean better routing — Switches extend L2 domains; routing is an L3 function on routers or L3 switches"
+        "examTip": "Same subnet → direct ARP. Remote subnet → default gateway first."
       }
     },
     {
@@ -3888,32 +3888,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Same-subnet works but off-subnet fails → check default gateway."
+          "explanation": "Same-subnet ping works but off-subnet fails — the default gateway is missing, wrong, or unreachable."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "DNS server describes a mechanism that could sound plausible for gateway symptom. Given gateway symptom, Default gateway matches the tested behavior — DNS server applies a different mechanism.",
+            "explanation": "DNS is not used for ping by IP address — same-subnet success proves Layer 2/3 local forwarding works; the break is at the gateway for remote targets.",
+            "misconceptionTested": "Blaming DNS when pinging IP addresses directly",
             "whatItDoes": "DNS server describes a mechanism that could sound plausible for gateway symptom.",
-            "whyWrongHere": "Given gateway symptom, Default gateway matches the tested behavior — DNS server applies a different mechanism.",
-            "misconceptionTested": "Applying \"DNS server\" without matching gateway symptom"
+            "whyWrongHere": "Given gateway symptom, Default gateway matches the tested behavior — DNS server applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Wrong VLAN on switch reflects a common trap: Blaming DNS when the gateway is wrong. If remote IPs fail, fix gateway/routing before DNS.",
+            "explanation": "Wrong VLAN would typically break same-subnet communication too — here local /24 works, pointing to gateway or upstream routing.",
+            "misconceptionTested": "Suspecting VLAN when only off-subnet fails",
             "whatItDoes": "Wrong VLAN on switch describes a mechanism that could sound plausible for gateway symptom.",
-            "whyWrongHere": "Given gateway symptom, Default gateway matches the tested behavior — Wrong VLAN on switch applies a different mechanism.",
-            "misconceptionTested": "Blaming DNS when the gateway is wrong"
+            "whyWrongHere": "Given gateway symptom, Default gateway matches the tested behavior — Wrong VLAN on switch applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "WPA3 describes a mechanism that could sound plausible for gateway symptom. Given gateway symptom, Default gateway matches the tested behavior — WPA3 applies a different mechanism.",
+            "explanation": "WPA3 is a wireless security protocol — it does not explain why same-subnet ICMP succeeds but Internet ping fails.",
+            "misconceptionTested": "Dragging wireless security into IP routing troubleshooting",
             "whatItDoes": "WPA3 describes a mechanism that could sound plausible for gateway symptom.",
-            "whyWrongHere": "Given gateway symptom, Default gateway matches the tested behavior — WPA3 applies a different mechanism.",
-            "misconceptionTested": "Applying \"WPA3\" without matching gateway symptom"
+            "whyWrongHere": "Given gateway symptom, Default gateway matches the tested behavior — WPA3 applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Blaming DNS when the gateway is wrong — If remote IPs fail, fix gateway/routing before DNS"
+        "examTip": "Local works, remote fails → check default gateway before DNS or VLAN."
       }
     },
     {
@@ -4033,32 +4033,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "169.254.x.x means DHCP failed — verify DHCP service, relay, and VLAN."
+          "explanation": "169.254.x.x is APIPA — DHCP failed. Verify the DHCP server, relay (ip helper-address), and VLAN reachability."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "OSPF neighbor table describes a mechanism that could sound plausible for apipa client. Given apipa client, DHCP server/reachability matches the tested behavior — OSPF neighbor table applies a different mechanism.",
+            "explanation": "OSPF neighbors are irrelevant on an end host — APIPA means the PC never received a DHCP offer.",
+            "misconceptionTested": "Checking routing protocol tables on a host DHCP failure",
             "whatItDoes": "OSPF neighbor table describes a mechanism that could sound plausible for apipa client.",
-            "whyWrongHere": "Given apipa client, DHCP server/reachability matches the tested behavior — OSPF neighbor table applies a different mechanism.",
-            "misconceptionTested": "Applying \"OSPF neighbor table\" without matching apipa client"
+            "whyWrongHere": "Given apipa client, DHCP server/reachability matches the tested behavior — OSPF neighbor table applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Fiber SM/MM type describes a mechanism that could sound plausible for apipa client. Given apipa client, DHCP server/reachability matches the tested behavior — Fiber SM/MM type applies a different mechanism.",
+            "explanation": "Fiber type affects physical link — APIPA appears when Layer 2 works but DHCP does not respond.",
+            "misconceptionTested": "Suspecting physical media when DHCP is the root cause",
             "whatItDoes": "Fiber SM/MM type describes a mechanism that could sound plausible for apipa client.",
-            "whyWrongHere": "Given apipa client, DHCP server/reachability matches the tested behavior — Fiber SM/MM type applies a different mechanism.",
-            "misconceptionTested": "Applying \"Fiber SM/MM type\" without matching apipa client"
+            "whyWrongHere": "Given apipa client, DHCP server/reachability matches the tested behavior — Fiber SM/MM type applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "VTP domain describes a mechanism that could sound plausible for apipa client. Given apipa client, DHCP server/reachability matches the tested behavior — VTP domain applies a different mechanism.",
+            "explanation": "VTP manages VLAN propagation between switches — a host with APIPA needs DHCP service, not VTP domain checks first.",
+            "misconceptionTested": "Checking VTP before DHCP on an APIPA address",
             "whatItDoes": "VTP domain describes a mechanism that could sound plausible for apipa client.",
-            "whyWrongHere": "Given apipa client, DHCP server/reachability matches the tested behavior — VTP domain applies a different mechanism.",
-            "misconceptionTested": "Applying \"VTP domain\" without matching apipa client"
+            "whyWrongHere": "Given apipa client, DHCP server/reachability matches the tested behavior — VTP domain applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Blaming DNS when the gateway is wrong — If remote IPs fail, fix gateway/routing before DNS"
+        "examTip": "169.254.x.x = no DHCP — verify server, relay, and VLAN before anything else."
       }
     },
     {
@@ -4081,32 +4081,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Test gateway, then known public IP, then DNS name to isolate layer."
+          "explanation": "Ping gateway first (local L3), then a known public IP (end-to-end without DNS), then a hostname (DNS layer)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Hostname → random IP describes a mechanism that could sound plausible for ping order. Given ping order, Gateway → remote IP → hostname matches the tested behavior — Hostname → random IP applies a different mechanism.",
+            "explanation": "Starting with a hostname tests DNS immediately — you cannot isolate whether failure is gateway, routing, or DNS.",
+            "misconceptionTested": "Testing DNS before confirming gateway and routing",
             "whatItDoes": "Hostname → random IP describes a mechanism that could sound plausible for ping order.",
-            "whyWrongHere": "Given ping order, Gateway → remote IP → hostname matches the tested behavior — Hostname → random IP applies a different mechanism.",
-            "misconceptionTested": "Applying \"Hostname → random IP\" without matching ping order"
+            "whyWrongHere": "Given ping order, Gateway → remote IP → hostname matches the tested behavior — Hostname → random IP applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Broadcast → multicast describes flooding the frame to multiple ports in the VLAN. Given ping order, Gateway → remote IP → hostname matches the tested behavior — Broadcast → multicast applies a different mechanism.",
+            "explanation": "Broadcast and multicast pings are not a standard Internet troubleshooting sequence — use gateway → public IP → FQDN.",
+            "misconceptionTested": "Using non-standard ICMP targets for layered isolation",
             "whatItDoes": "Broadcast → multicast describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "Given ping order, Gateway → remote IP → hostname matches the tested behavior — Broadcast → multicast applies a different mechanism.",
-            "misconceptionTested": "Applying \"Broadcast → multicast\" without matching ping order"
+            "whyWrongHere": "Given ping order, Gateway → remote IP → hostname matches the tested behavior — Broadcast → multicast applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Loopback only describes a mechanism that could sound plausible for ping order. Given ping order, Gateway → remote IP → hostname matches the tested behavior — Loopback only applies a different mechanism.",
+            "explanation": "Loopback-only tests local stack — it never validates default gateway or upstream connectivity.",
+            "misconceptionTested": "Stopping at loopback when Internet path is the goal",
             "whatItDoes": "Loopback only describes a mechanism that could sound plausible for ping order.",
-            "whyWrongHere": "Given ping order, Gateway → remote IP → hostname matches the tested behavior — Loopback only applies a different mechanism.",
-            "misconceptionTested": "Applying \"Loopback only\" without matching ping order"
+            "whyWrongHere": "Given ping order, Gateway → remote IP → hostname matches the tested behavior — Loopback only applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: ping failure always means the remote host is down — Firewalls may block ICMP; also local misconfig can fail before the path is tested"
+        "examTip": "Layered ping: gateway → public IP → hostname to isolate L3 vs DNS."
       }
     },
     {
@@ -4177,32 +4177,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "Duplicate IPs cause ARP conflicts and flaky connectivity."
+          "explanation": "Duplicate IP addresses cause ARP conflicts — hosts fight over the same IP and connectivity becomes intermittent."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Correct DNS describes a mechanism that could sound plausible for duplicate ip. Given duplicate ip, Duplicate IP address matches the tested behavior — Correct DNS applies a different mechanism.",
+            "explanation": "Correct DNS does not produce ARP warnings — duplicate IPs trigger gratuitous ARP and flaky Layer 2 resolution.",
+            "misconceptionTested": "Blaming DNS for ARP-layer conflict symptoms",
             "whatItDoes": "Correct DNS describes a mechanism that could sound plausible for duplicate ip.",
-            "whyWrongHere": "Given duplicate ip, Duplicate IP address matches the tested behavior — Correct DNS applies a different mechanism.",
-            "misconceptionTested": "Applying \"Correct DNS\" without matching duplicate ip"
+            "whyWrongHere": "Given duplicate ip, Duplicate IP address matches the tested behavior — Correct DNS applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Full-duplex on both ends describes a mechanism that could sound plausible for duplicate ip. CAM learning stores one mapping per arrival (duplicate ip): Duplicate IP address — not both addresses as table entries.",
+            "explanation": "Full-duplex on both ends is normal — it does not cause ARP conflict messages or intermittent loss.",
+            "misconceptionTested": "Suspecting duplex mismatch when ARP points to duplicate IP",
             "whatItDoes": "Full-duplex on both ends describes a mechanism that could sound plausible for duplicate ip.",
-            "whyWrongHere": "CAM learning stores one mapping per arrival (duplicate ip): Duplicate IP address — not both addresses as table entries.",
-            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
+            "whyWrongHere": "CAM learning stores one mapping per arrival (duplicate ip): Duplicate IP address — not both addresses as table entries."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Valid DHCP lease describes a mechanism that could sound plausible for duplicate ip. Given duplicate ip, Duplicate IP address matches the tested behavior — Valid DHCP lease applies a different mechanism.",
+            "explanation": "A valid DHCP lease assigns one unique address — duplicate IP usually means static overlap or rogue DHCP, not a healthy lease.",
+            "misconceptionTested": "Assuming DHCP success when ARP warnings indicate conflict",
             "whatItDoes": "Valid DHCP lease describes a mechanism that could sound plausible for duplicate ip.",
-            "whyWrongHere": "Given duplicate ip, Duplicate IP address matches the tested behavior — Valid DHCP lease applies a different mechanism.",
-            "misconceptionTested": "Applying \"Valid DHCP lease\" without matching duplicate ip"
+            "whyWrongHere": "Given duplicate ip, Duplicate IP address matches the tested behavior — Valid DHCP lease applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Blaming DNS when the gateway is wrong — If remote IPs fail, fix gateway/routing before DNS"
+        "examTip": "ARP warnings + flaky connectivity → suspect duplicate IP on the segment."
       }
     }
   ],
@@ -4967,32 +4967,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "A VLAN is a logical broadcast domain at Layer 2."
+          "explanation": "A VLAN segments a switch into separate Layer 2 broadcast domains — broadcasts stay within the VLAN."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Collision domain describes a mechanism that could sound plausible for vlan definition. Given vlan definition, Logical broadcast domain matches the tested behavior — Collision domain applies a different mechanism.",
+            "explanation": "Collision domains are separated by switches at half-duplex legacy hubs — VLANs define broadcast boundaries, not collision domains on modern full-duplex links.",
+            "misconceptionTested": "Confusing broadcast domain with collision domain",
             "whatItDoes": "Collision domain describes a mechanism that could sound plausible for vlan definition.",
-            "whyWrongHere": "Given vlan definition, Logical broadcast domain matches the tested behavior — Collision domain applies a different mechanism.",
-            "misconceptionTested": "Applying \"Collision domain\" without matching vlan definition"
+            "whyWrongHere": "Given vlan definition, Logical broadcast domain matches the tested behavior — Collision domain applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Physical cable describes a mechanism that could sound plausible for vlan definition. Given vlan definition, Logical broadcast domain matches the tested behavior — Physical cable applies a different mechanism.",
+            "explanation": "A VLAN is logical software configuration — not a physical cable or port grouping by wiring alone.",
+            "misconceptionTested": "Equating VLAN with physical media",
             "whatItDoes": "Physical cable describes a mechanism that could sound plausible for vlan definition.",
-            "whyWrongHere": "Given vlan definition, Logical broadcast domain matches the tested behavior — Physical cable applies a different mechanism.",
-            "misconceptionTested": "Applying \"Physical cable\" without matching vlan definition"
+            "whyWrongHere": "Given vlan definition, Logical broadcast domain matches the tested behavior — Physical cable applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Routing protocol describes a mechanism that could sound plausible for vlan definition. Given vlan definition, Logical broadcast domain matches the tested behavior — Routing protocol applies a different mechanism.",
+            "explanation": "Routing protocols operate at Layer 3 — VLANs are a Layer 2 segmentation feature.",
+            "misconceptionTested": "Naming a routing protocol as VLAN definition",
             "whatItDoes": "Routing protocol describes a mechanism that could sound plausible for vlan definition.",
-            "whyWrongHere": "Given vlan definition, Logical broadcast domain matches the tested behavior — Routing protocol applies a different mechanism.",
-            "misconceptionTested": "Applying \"Routing protocol\" without matching vlan definition"
+            "whyWrongHere": "Given vlan definition, Logical broadcast domain matches the tested behavior — Routing protocol applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
+        "examTip": "Access port = one VLAN; a VLAN is a logical broadcast domain."
       }
     },
     {
@@ -5015,32 +5015,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Traffic between VLANs must be routed by a Layer 3 device."
+          "explanation": "VLAN 10 and VLAN 20 are separate broadcast domains — traffic between them must be routed by a router or Layer 3 switch."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Another switch reflects a common trap: A VLAN exists on only one switch. A VLAN can span many switches over trunks.",
+            "explanation": "Another switch alone extends the same VLANs — it does not provide Layer 3 routing between VLAN 10 and VLAN 20.",
+            "misconceptionTested": "Adding L2 switch capacity instead of L3 routing",
             "whatItDoes": "Another switch describes a mechanism that could sound plausible for inter-vlan.",
-            "whyWrongHere": "Given inter-vlan, A router or L3 switch matches the tested behavior — Another switch applies a different mechanism.",
-            "misconceptionTested": "A VLAN exists on only one switch"
+            "whyWrongHere": "Given inter-vlan, A router or L3 switch matches the tested behavior — Another switch applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "A longer cable describes a mechanism that could sound plausible for inter-vlan. Given inter-vlan, A router or L3 switch matches the tested behavior — A longer cable applies a different mechanism.",
+            "explanation": "Cable length does not separate VLANs — the failure is missing inter-VLAN routing, not physical reach.",
+            "misconceptionTested": "Blaming physical layer for inter-VLAN isolation",
             "whatItDoes": "A longer cable describes a mechanism that could sound plausible for inter-vlan.",
-            "whyWrongHere": "Given inter-vlan, A router or L3 switch matches the tested behavior — A longer cable applies a different mechanism.",
-            "misconceptionTested": "Applying \"A longer cable\" without matching inter-vlan"
+            "whyWrongHere": "Given inter-vlan, A router or L3 switch matches the tested behavior — A longer cable applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "A trunk between the two hosts describes a mechanism that could sound plausible for inter-vlan. Given inter-vlan, A router or L3 switch matches the tested behavior — A trunk between the two hosts applies a different mechanism.",
+            "explanation": "A trunk between hosts is not the fix — hosts use access ports; inter-VLAN traffic needs an SVI or router interface.",
+            "misconceptionTested": "Trunking between end hosts instead of L3 routing",
             "whatItDoes": "A trunk between the two hosts describes a mechanism that could sound plausible for inter-vlan.",
-            "whyWrongHere": "Given inter-vlan, A router or L3 switch matches the tested behavior — A trunk between the two hosts applies a different mechanism.",
-            "misconceptionTested": "Applying \"A trunk between the two hosts\" without matching inter-vlan"
+            "whyWrongHere": "Given inter-vlan, A router or L3 switch matches the tested behavior — A trunk between the two hosts applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
+        "examTip": "Different VLANs on one campus switch → SVI or router for inter-VLAN routing."
       }
     },
     {
@@ -5207,32 +5207,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The access (data) VLAN plus a voice VLAN separate PC and phone traffic on one port."
+          "explanation": "Voice VLAN plus data VLAN on one access port separates PC traffic (untagged data VLAN) from phone signaling/media (tagged voice VLAN)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Two access VLANs are impossible describes a mechanism that could sound plausible for voice vlan. Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — Two access VLANs are impossible applies a different mechanism.",
+            "explanation": "Cisco supports data + voice VLAN on a single access port — the phone acts as a mini-switch for the PC.",
+            "misconceptionTested": "Believing one port cannot carry two VLAN types",
             "whatItDoes": "Two access VLANs are impossible describes a mechanism that could sound plausible for voice vlan.",
-            "whyWrongHere": "Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — Two access VLANs are impossible applies a different mechanism.",
-            "misconceptionTested": "Applying \"Two access VLANs are impossible\" without matching voice vlan"
+            "whyWrongHere": "Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — Two access VLANs are impossible applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "A trunk to the phone describes a mechanism that could sound plausible for voice vlan. Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — A trunk to the phone applies a different mechanism.",
+            "explanation": "The PC connects to the phone on an access port — the switch port is access with voice VLAN, not a trunk to the phone in the classic design.",
+            "misconceptionTested": "Calling the switch-to-phone link a trunk when it is access + voice VLAN",
             "whatItDoes": "A trunk to the phone describes a mechanism that could sound plausible for voice vlan.",
-            "whyWrongHere": "Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — A trunk to the phone applies a different mechanism.",
-            "misconceptionTested": "Applying \"A trunk to the phone\" without matching voice vlan"
+            "whyWrongHere": "Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — A trunk to the phone applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Port security describes a mechanism that could sound plausible for voice vlan. Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — Port security applies a different mechanism.",
+            "explanation": "Port security limits MAC addresses — it does not separate voice and data traffic types on a shared port.",
+            "misconceptionTested": "Using port security where voice/data VLAN separation is required",
             "whatItDoes": "Port security describes a mechanism that could sound plausible for voice vlan.",
-            "whyWrongHere": "Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — Port security applies a different mechanism.",
-            "misconceptionTested": "Applying \"Port security\" without matching voice vlan"
+            "whyWrongHere": "Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — Port security applies a different mechanism."
           }
         ],
-        "examTip": "Access = one VLAN; trunk tags frames. Native VLAN must match on both ends or you get silent mis-forwarding."
+        "examTip": "Phone + PC on one port → data VLAN (untagged) + voice VLAN (tagged)."
       }
     },
     {
@@ -5337,32 +5337,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "A trunk carries traffic for multiple VLANs between switches using 802.1Q."
+          "explanation": "A trunk tags frames with 802.1Q VLAN IDs so multiple VLANs cross one inter-switch link."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Carries one VLAN only describes a mechanism that could sound plausible for trunk purpose. Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Carries one VLAN only applies a different mechanism.",
+            "explanation": "Access ports carry a single VLAN untagged — trunks carry many VLANs with tags.",
+            "misconceptionTested": "Describing access-port behavior on a trunk question",
             "whatItDoes": "Carries one VLAN only describes a mechanism that could sound plausible for trunk purpose.",
-            "whyWrongHere": "Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Carries one VLAN only applies a different mechanism.",
-            "misconceptionTested": "Applying \"Carries one VLAN only\" without matching trunk purpose"
+            "whyWrongHere": "Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Carries one VLAN only applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Connects a PC to a switch describes a mechanism that could sound plausible for trunk purpose. Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Connects a PC to a switch applies a different mechanism.",
+            "explanation": "PC-to-switch links are access ports — trunks connect switches (or switch to router-on-a-stick).",
+            "misconceptionTested": "Using end-host access link for trunk definition",
             "whatItDoes": "Connects a PC to a switch describes a mechanism that could sound plausible for trunk purpose.",
-            "whyWrongHere": "Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Connects a PC to a switch applies a different mechanism.",
-            "misconceptionTested": "Applying \"Connects a PC to a switch\" without matching trunk purpose"
+            "whyWrongHere": "Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Connects a PC to a switch applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Routes between VLANs describes a mechanism that could sound plausible for trunk purpose. Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Routes between VLANs applies a different mechanism.",
+            "explanation": "Routing between VLANs needs a Layer 3 device — trunks extend Layer 2 VLANs across links, not route them.",
+            "misconceptionTested": "Expecting trunk to route between VLANs",
             "whatItDoes": "Routes between VLANs describes a mechanism that could sound plausible for trunk purpose.",
-            "whyWrongHere": "Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Routes between VLANs applies a different mechanism.",
-            "misconceptionTested": "Applying \"Routes between VLANs\" without matching trunk purpose"
+            "whyWrongHere": "Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Routes between VLANs applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: A trunk is faster than an access port — A trunk simply carries multiple VLANs; speed depends on the physical link"
+        "examTip": "Trunk = 802.1Q tags on inter-switch links; native VLAN must match both ends."
       }
     },
     {
@@ -5433,32 +5433,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Native VLAN frames cross the trunk untagged."
+          "explanation": "Native VLAN frames cross an 802.1Q trunk untagged — all other VLANs are tagged with their VLAN ID."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Double-tagged reflects a common trap: Thinking all VLANs are tagged. The native VLAN is untagged; all others are tagged.",
+            "explanation": "Double-tagging (Q-in-Q) is a provider technique — standard native VLAN traffic is sent with no 802.1Q tag.",
+            "misconceptionTested": "Applying Q-in-Q to standard native VLAN behavior",
             "whatItDoes": "Double-tagged describes a mechanism that could sound plausible for native vlan.",
-            "whyWrongHere": "Given native vlan, Untagged matches the tested behavior — Double-tagged applies a different mechanism.",
-            "misconceptionTested": "Thinking all VLANs are tagged"
+            "whyWrongHere": "Given native vlan, Untagged matches the tested behavior — Double-tagged applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Tagged reflects a common trap: Thinking all VLANs are tagged. The native VLAN is untagged; all others are tagged.",
+            "explanation": "Tagged frames carry an 802.1Q header — only non-native VLANs are tagged on a trunk.",
+            "misconceptionTested": "Tagging native VLAN traffic like all other VLANs",
             "whatItDoes": "Tagged describes a mechanism that could sound plausible for native vlan.",
-            "whyWrongHere": "Given native vlan, Untagged matches the tested behavior — Tagged applies a different mechanism.",
-            "misconceptionTested": "Thinking all VLANs are tagged"
+            "whyWrongHere": "Given native vlan, Untagged matches the tested behavior — Tagged applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Dropped implies the device should discard the frame instead of forwarding or flooding it. Given native vlan, Untagged matches the tested behavior — Dropped applies a different mechanism.",
+            "explanation": "Native VLAN traffic is forwarded normally — it is not dropped for lacking a tag.",
+            "misconceptionTested": "Assuming untagged native VLAN frames are discarded",
             "whatItDoes": "Dropped implies the device should discard the frame instead of forwarding or flooding it.",
-            "whyWrongHere": "Given native vlan, Untagged matches the tested behavior — Dropped applies a different mechanism.",
-            "misconceptionTested": "Applying \"Dropped\" without matching native vlan"
+            "whyWrongHere": "Given native vlan, Untagged matches the tested behavior — Dropped applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Mismatched native VLANs — Native VLAN must match on both ends or traffic can leak (CDP warns)"
+        "examTip": "Trunk rule: native VLAN = untagged; all others tagged. Match native VLAN both ends."
       }
     },
     {
@@ -5481,32 +5481,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "A native VLAN mismatch can merge the two native VLANs’ traffic and triggers a CDP warning."
+          "explanation": "Native VLAN mismatch puts each switch's untagged traffic into the peer's native VLAN — traffic can leak between VLANs and CDP reports the error."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Trunk speed drops implies the device should discard the frame instead of forwarding or flooding it. Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — Trunk speed drops applies a different mechanism.",
+            "explanation": "Trunk speed is negotiated separately — native VLAN mismatch affects which VLAN receives untagged frames, not link speed.",
+            "misconceptionTested": "Confusing VLAN mismatch with speed/duplex issues",
             "whatItDoes": "Trunk speed drops implies the device should discard the frame instead of forwarding or flooding it.",
-            "whyWrongHere": "Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — Trunk speed drops applies a different mechanism.",
-            "misconceptionTested": "Applying \"Trunk speed drops\" without matching native mismatch"
+            "whyWrongHere": "Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — Trunk speed drops applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "All VLANs stop reflects a common trap: Mismatched native VLANs. Native VLAN must match on both ends or traffic can leak (CDP warns).",
+            "explanation": "Tagged VLANs still work on a mismatched native VLAN trunk — the problem is untagged traffic landing in the wrong VLAN, not a total trunk shutdown.",
+            "misconceptionTested": "Expecting all VLANs to fail when only native is mismatched",
             "whatItDoes": "All VLANs stop describes a mechanism that could sound plausible for native mismatch.",
-            "whyWrongHere": "Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — All VLANs stop applies a different mechanism.",
-            "misconceptionTested": "Mismatched native VLANs"
+            "whyWrongHere": "Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — All VLANs stop applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Nothing — it is cosmetic describes a mechanism that could sound plausible for native mismatch. Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — Nothing — it is cosmetic applies a different mechanism.",
+            "explanation": "CDP logs %CDP-4-NATIVE_VLAN_MISMATCH because the misconfiguration has real forwarding impact — it is not cosmetic.",
+            "misconceptionTested": "Treating native VLAN mismatch as harmless warning",
             "whatItDoes": "Nothing — it is cosmetic describes a mechanism that could sound plausible for native mismatch.",
-            "whyWrongHere": "Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — Nothing — it is cosmetic applies a different mechanism.",
-            "misconceptionTested": "Applying \"Nothing — it is cosmetic\" without matching native mismatch"
+            "whyWrongHere": "Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — Nothing — it is cosmetic applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Mismatched native VLANs — Native VLAN must match on both ends or traffic can leak (CDP warns)"
+        "examTip": "Native VLAN mismatch → untagged traffic bleeds into wrong VLAN. Fix both ends."
       }
     },
     {
@@ -7051,32 +7051,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Passive plus active forms an LACP channel."
+          "explanation": "Passive + active on both sides forms an LACP (802.3ad) EtherChannel — passive waits, active initiates."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The channel group will use PAgP. describes a mechanism that could sound plausible for etherchannel. Given etherchannel, The channel group will use LACP. matches the tested behavior — The channel group will use PAgP. applies a different mechanism.",
+            "explanation": "PAgP uses desirable/auto keywords — LACP uses active/passive. This pairing is LACP, not PAgP.",
+            "misconceptionTested": "Labeling LACP active/passive as PAgP",
             "whatItDoes": "The channel group will use PAgP. describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, The channel group will use LACP. matches the tested behavior — The channel group will use PAgP. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The channel group will use PAgP.\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, The channel group will use LACP. matches the tested behavior — The channel group will use PAgP. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The channel group will not be formed. describes a mechanism that could sound plausible for etherchannel. Given etherchannel, The channel group will use LACP. matches the tested behavior — The channel group will not be formed. applies a different mechanism.",
+            "explanation": "Passive + active is a valid LACP combination — passive + passive would fail to negotiate.",
+            "misconceptionTested": "Believing active/passive cannot form a channel",
             "whatItDoes": "The channel group will not be formed. describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, The channel group will use LACP. matches the tested behavior — The channel group will not be formed. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The channel group will not be formed\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, The channel group will use LACP. matches the tested behavior — The channel group will not be formed. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The channel group will use EtherChannel. is the wrong device role here. EtherChannel bundles links for bandwidth/redundancy — it is not inter-VLAN routing, MAC learning, or unknown-unicast flooding.",
+            "explanation": "EtherChannel is the feature name — the question asks which protocol negotiates; LACP (802.3ad) is the answer for active/passive.",
+            "misconceptionTested": "Answering generic EtherChannel when LACP protocol is required",
             "whatItDoes": "The channel group will use EtherChannel. describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, The channel group will use LACP. matches the tested behavior — The channel group will use EtherChannel. applies a different mechanism.",
-            "misconceptionTested": "Dragging link-aggregation into an unrelated L2/L3 behavior question"
+            "whyWrongHere": "Given etherchannel, The channel group will use LACP. matches the tested behavior — The channel group will use EtherChannel. applies a different mechanism."
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "LACP: active/passive or active/active. PAgP: desirable/auto."
       }
     },
     {
@@ -7254,32 +7254,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "STP prevents Layer 2 loops by blocking redundant paths."
+          "explanation": "STP blocks redundant Layer 2 paths so frames cannot loop endlessly through a switched topology."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Routing loops reflects a common trap: STP prevents routing loops. STP is Layer 2 only; routing loops are handled by L3 mechanisms (TTL, split horizon).",
+            "explanation": "Routing loops are a Layer 3 problem (TTL, routing protocol convergence) — STP operates at Layer 2 on switches.",
+            "misconceptionTested": "Applying STP to Layer 3 routing loops",
             "whatItDoes": "Routing loops describes a mechanism that could sound plausible for stp purpose.",
-            "whyWrongHere": "Given stp purpose, Layer 2 switching loops matches the tested behavior — Routing loops applies a different mechanism.",
-            "misconceptionTested": "STP prevents routing loops"
+            "whyWrongHere": "Given stp purpose, Layer 2 switching loops matches the tested behavior — Routing loops applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "IP address conflicts shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given stp purpose, Layer 2 switching loops matches the tested behavior — IP address conflicts applies a different mechanism.",
+            "explanation": "IP conflicts are addressed by DHCP snooping, DAI, or manual assignment — STP does not detect duplicate IPs.",
+            "misconceptionTested": "Expecting STP to fix IP addressing conflicts",
             "whatItDoes": "IP address conflicts shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given stp purpose, Layer 2 switching loops matches the tested behavior — IP address conflicts applies a different mechanism.",
-            "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process"
+            "whyWrongHere": "Given stp purpose, Layer 2 switching loops matches the tested behavior — IP address conflicts applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Slow DNS describes a mechanism that could sound plausible for stp purpose. Given stp purpose, Layer 2 switching loops matches the tested behavior — Slow DNS applies a different mechanism.",
+            "explanation": "DNS resolution speed is unrelated — STP prevents broadcast/multicast storms from physical switching loops.",
+            "misconceptionTested": "Dragging unrelated services into STP purpose",
             "whatItDoes": "Slow DNS describes a mechanism that could sound plausible for stp purpose.",
-            "whyWrongHere": "Given stp purpose, Layer 2 switching loops matches the tested behavior — Slow DNS applies a different mechanism.",
-            "misconceptionTested": "Applying \"Slow DNS\" without matching stp purpose"
+            "whyWrongHere": "Given stp purpose, Layer 2 switching loops matches the tested behavior — Slow DNS applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
+        "examTip": "STP: blocking prevents L2 loops — not “drop all user traffic” on a forwarding port."
       }
     },
     {
@@ -7350,32 +7350,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Default priority is 32768 (lower is preferred)."
+          "explanation": "Default STP bridge priority is 32768 — lower numeric value wins root election (often set in increments of 4096)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "0 uses the wrong value. The tested fact calls for 32768 — not 0.",
+            "explanation": "Priority 0 is the minimum (best) but not the default — Cisco ships switches at 32768 unless changed.",
+            "misconceptionTested": "Confusing best possible priority with factory default",
             "whatItDoes": "0 describes a mechanism that could sound plausible for default priority.",
-            "whyWrongHere": "Given default priority, 32768 matches the tested behavior — 0 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 0 instead of the correct 32768"
+            "whyWrongHere": "Given default priority, 32768 matches the tested behavior — 0 applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "4096 uses the wrong value. The tested fact calls for 32768 — not 4096.",
+            "explanation": "4096 is a common increment when lowering priority — the default starting value is 32768.",
+            "misconceptionTested": "Using common increment step as default priority",
             "whatItDoes": "4096 describes a mechanism that could sound plausible for default priority.",
-            "whyWrongHere": "Given default priority, 32768 matches the tested behavior — 4096 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 4096 instead of the correct 32768"
+            "whyWrongHere": "Given default priority, 32768 matches the tested behavior — 4096 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "65535 uses the wrong value. The tested fact calls for 32768 — not 65535.",
+            "explanation": "65535 exceeds the valid STP priority range (0–61440 in multiples of 4096) — default is 32768.",
+            "misconceptionTested": "Picking max 16-bit value instead of Cisco default",
             "whatItDoes": "65535 describes a mechanism that could sound plausible for default priority.",
-            "whyWrongHere": "Given default priority, 32768 matches the tested behavior — 65535 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 65535 instead of the correct 32768"
+            "whyWrongHere": "Given default priority, 32768 matches the tested behavior — 65535 applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Highest priority becomes root — LOWEST Bridge ID (priority then MAC) becomes root"
+        "examTip": "Default STP priority = 32768. Lower wins. Adjust in steps of 4096."
       }
     },
     {
@@ -12008,32 +12008,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "O = OSPF. C = connected, S = static, D = EIGRP."
+          "explanation": "In show ip route, O = OSPF-learned route. C = connected, S = static, D = EIGRP."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Connected route describes a mechanism that could sound plausible for route source codes. Given route source codes, OSPF-learned route matches the tested behavior — Connected route applies a different mechanism.",
+            "explanation": "Connected routes show C (and L for local) — O is specifically OSPF, not directly connected subnets.",
+            "misconceptionTested": "Confusing O with connected code",
             "whatItDoes": "Connected route describes a mechanism that could sound plausible for route source codes.",
-            "whyWrongHere": "Given route source codes, OSPF-learned route matches the tested behavior — Connected route applies a different mechanism.",
-            "misconceptionTested": "Applying \"Connected route\" without matching route source codes"
+            "whyWrongHere": "Given route source codes, OSPF-learned route matches the tested behavior — Connected route applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Static route describes a mechanism that could sound plausible for route source codes. Given route source codes, OSPF-learned route matches the tested behavior — Static route applies a different mechanism.",
+            "explanation": "Static routes use S — O indicates the route was learned via OSPF adjacency.",
+            "misconceptionTested": "Mixing static (S) with OSPF (O)",
             "whatItDoes": "Static route describes a mechanism that could sound plausible for route source codes.",
-            "whyWrongHere": "Given route source codes, OSPF-learned route matches the tested behavior — Static route applies a different mechanism.",
-            "misconceptionTested": "Applying \"Static route\" without matching route source codes"
+            "whyWrongHere": "Given route source codes, OSPF-learned route matches the tested behavior — Static route applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "EIGRP-learned route describes a mechanism that could sound plausible for route source codes. Given route source codes, OSPF-learned route matches the tested behavior — EIGRP-learned route applies a different mechanism.",
+            "explanation": "EIGRP routes display D (dual) — O is reserved for OSPF in Cisco routing tables.",
+            "misconceptionTested": "Assigning EIGRP code to OSPF letter",
             "whatItDoes": "EIGRP-learned route describes a mechanism that could sound plausible for route source codes.",
-            "whyWrongHere": "Given route source codes, OSPF-learned route matches the tested behavior — EIGRP-learned route applies a different mechanism.",
-            "misconceptionTested": "Applying \"EIGRP-learned route\" without matching route source codes"
+            "whyWrongHere": "Given route source codes, OSPF-learned route matches the tested behavior — EIGRP-learned route applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests route source codes — exam distractors swap similar terms; anchor on: O = OSPF."
+        "examTip": "Route codes: C connected, S static, O OSPF, D EIGRP."
       }
     },
     {
@@ -12056,32 +12056,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Format is [AD/metric]. 110 is the administrative distance (OSPF), 20 is the metric (OSPF cost)."
+          "explanation": "IOS shows [AD/metric] — 110 is OSPF's administrative distance; 20 is the OSPF cost (metric)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The metric reflects a common trap: In [AD/metric], AD comes FIRST. Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets.",
+            "explanation": "The metric is the second number (20) — 110 is AD, not the OSPF cost.",
+            "misconceptionTested": "Swapping AD and metric in bracket notation",
             "whatItDoes": "The metric describes a mechanism that could sound plausible for AD/metric brackets.",
-            "whyWrongHere": "Given AD/metric brackets, The administrative distance matches the tested behavior — The metric applies a different mechanism.",
-            "misconceptionTested": "In [AD/metric], AD comes FIRST"
+            "whyWrongHere": "Given AD/metric brackets, The administrative distance matches the tested behavior — The metric applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The OSPF cost describes a mechanism that could sound plausible for AD/metric brackets. Given AD/metric brackets, The administrative distance matches the tested behavior — The OSPF cost applies a different mechanism.",
+            "explanation": "OSPF cost is the metric (20 here) — 110 is the well-known AD value for OSPF routes.",
+            "misconceptionTested": "Identifying cost where AD belongs in [AD/metric]",
             "whatItDoes": "The OSPF cost describes a mechanism that could sound plausible for AD/metric brackets.",
-            "whyWrongHere": "Given AD/metric brackets, The administrative distance matches the tested behavior — The OSPF cost applies a different mechanism.",
-            "misconceptionTested": "Applying \"The OSPF cost\" without matching AD/metric brackets"
+            "whyWrongHere": "Given AD/metric brackets, The administrative distance matches the tested behavior — The OSPF cost applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The hop count describes a mechanism that could sound plausible for AD/metric brackets. Given AD/metric brackets, The administrative distance matches the tested behavior — The hop count applies a different mechanism.",
+            "explanation": "Hop count is RIP's metric — OSPF uses cost based on bandwidth; 110 is AD in the bracket format.",
+            "misconceptionTested": "Applying RIP hop-count thinking to OSPF route display",
             "whatItDoes": "The hop count describes a mechanism that could sound plausible for AD/metric brackets.",
-            "whyWrongHere": "Given AD/metric brackets, The administrative distance matches the tested behavior — The hop count applies a different mechanism.",
-            "misconceptionTested": "Applying \"The hop count\" without matching AD/metric brackets"
+            "whyWrongHere": "Given AD/metric brackets, The administrative distance matches the tested behavior — The hop count applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: In [AD/metric], AD comes FIRST — Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets"
+        "examTip": "Route table [110/20] → 110 = AD, 20 = metric. Always read left first."
       }
     },
     {
@@ -12248,32 +12248,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Connected and local routes are removed when the interface fails. They cannot be reached directly anymore."
+          "explanation": "Connected (and local) routes disappear when the interface goes down — there is no longer a directly reachable path."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Marked with *, indicating preferred describes a mechanism that could sound plausible for connected route removal. Given connected route removal, Removed from the routing table matches the tested behavior — Marked with *, indicating preferred applies a different mechanism.",
+            "explanation": "The asterisk marks a preferred gateway of last resort in some displays — it does not keep a dead interface's connected route alive.",
+            "misconceptionTested": "Expecting special marking to preserve dead connected routes",
             "whatItDoes": "Marked with *, indicating preferred describes a mechanism that could sound plausible for connected route removal.",
-            "whyWrongHere": "Given connected route removal, Removed from the routing table matches the tested behavior — Marked with *, indicating preferred applies a different mechanism.",
-            "misconceptionTested": "Applying \"Marked with *, indicating preferred\" without matching connected route removal"
+            "whyWrongHere": "Given connected route removal, Removed from the routing table matches the tested behavior — Marked with *, indicating preferred applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Stays with an age timer describes a mechanism that could sound plausible for connected route removal. Given connected route removal, Removed from the routing table matches the tested behavior — Stays with an age timer applies a different mechanism.",
+            "explanation": "Connected routes are not aged like dynamic routes — they are removed immediately when the interface fails.",
+            "misconceptionTested": "Expecting timer-based aging for connected routes",
             "whatItDoes": "Stays with an age timer describes a mechanism that could sound plausible for connected route removal.",
-            "whyWrongHere": "Given connected route removal, Removed from the routing table matches the tested behavior — Stays with an age timer applies a different mechanism.",
-            "misconceptionTested": "Applying \"Stays with an age timer\" without matching connected route removal"
+            "whyWrongHere": "Given connected route removal, Removed from the routing table matches the tested behavior — Stays with an age timer applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Converts to a static route reflects a common trap: The L route is NOT a host route to a PC. L is the router own interface IP as a /32 — so the router processes packets addressed to itself.",
+            "explanation": "A failed interface does not auto-convert its subnet into a static route — the connected entry is simply withdrawn.",
+            "misconceptionTested": "Assuming automatic static conversion on link down",
             "whatItDoes": "Converts to a static route describes a mechanism that could sound plausible for connected route removal.",
-            "whyWrongHere": "Given connected route removal, Removed from the routing table matches the tested behavior — Converts to a static route applies a different mechanism.",
-            "misconceptionTested": "The L route is NOT a host route to a PC"
+            "whyWrongHere": "Given connected route removal, Removed from the routing table matches the tested behavior — Converts to a static route applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: The L route is NOT a host route to a PC — L is the router own interface IP as a /32 — so the router processes packets addressed to itself"
+        "examTip": "Interface down → connected/local routes vanish immediately from the RIB."
       }
     },
     {
@@ -13436,35 +13436,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"EIGRP\"."
+          "explanation": "EIGRP supports unequal-cost load balancing and uses composite metrics tuned for varied link bandwidths — ideal for mixed-speed enterprise networks."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RIPv1 describes a mechanism that could sound plausible for routing table. Given routing table, EIGRP matches the tested behavior — RIPv1 applies a different mechanism.",
+            "explanation": "RIPv1 is classful, limited to 15 hops, and ignores bandwidth — it cannot optimize across varied link speeds.",
+            "misconceptionTested": "Choosing legacy classful RIP for heterogeneous bandwidth",
             "whatItDoes": "RIPv1 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — RIPv1 applies a different mechanism.",
-            "misconceptionTested": "Applying \"RIPv1\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — RIPv1 applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "RIPv2 describes a mechanism that could sound plausible for routing table. Given routing table, EIGRP matches the tested behavior — RIPv2 applies a different mechanism.",
+            "explanation": "RIPv2 adds VLSM but still uses hop count only — it does not factor bandwidth the way EIGRP's composite metric does.",
+            "misconceptionTested": "Expecting RIPv2 to optimize for bandwidth differences",
             "whatItDoes": "RIPv2 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — RIPv2 applies a different mechanism.",
-            "misconceptionTested": "Applying \"RIPv2\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — RIPv2 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "BGP describes a mechanism that could sound plausible for routing table. Given routing table, EIGRP matches the tested behavior — BGP applies a different mechanism.",
+            "explanation": "BGP is an exterior path-vector protocol for inter-AS routing — not the IGP choice for internal varied-bandwidth optimization.",
+            "misconceptionTested": "Selecting BGP for internal enterprise IGP scenario",
             "whatItDoes": "BGP describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — BGP applies a different mechanism.",
-            "misconceptionTested": "Applying \"BGP\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — BGP applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for routing table before picking a familiar-sounding wrong term."
+        "examTip": "Varied bandwidths inside one AS → EIGRP (composite metric). RIP = hop count only."
       }
     },
     {
@@ -13985,29 +13982,29 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "10.1.1.10 falls inside both, but /26 is the longer (more specific) prefix, so longest prefix match selects it."
+          "explanation": "10.1.1.10 matches both prefixes, but /26 is longer (more specific) — longest prefix match selects the /26 via R3."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The /24 via R2 uses the wrong value. The tested fact calls for 10 — not 24.",
+            "explanation": "/24 is less specific than /26 when both match the destination. Longest prefix match always wins before metric or AD.",
+            "misconceptionTested": "Picking the shorter prefix when both match",
             "whatItDoes": "The /24 via R2 describes a mechanism that could sound plausible for longest prefix match.",
-            "whyWrongHere": "Given longest prefix match, The /26 via R3 matches the tested behavior — The /24 via R2 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 24 instead of the correct 10"
+            "whyWrongHere": "Given longest prefix match, The /26 via R3 matches the tested behavior — The /24 via R2 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Whichever has the lower metric reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "explanation": "Metric only breaks ties between routes to the same prefix learned the same way — it does not override longest prefix match.",
+            "misconceptionTested": "Using metric before longest prefix match",
             "whatItDoes": "Whichever has the lower metric describes a mechanism that could sound plausible for longest prefix match.",
-            "whyWrongHere": "Given longest prefix match, The /26 via R3 matches the tested behavior — Whichever has the lower metric applies a different mechanism.",
-            "misconceptionTested": "A lower metric can beat a more-specific route"
+            "whyWrongHere": "Given longest prefix match, The /26 via R3 matches the tested behavior — Whichever has the lower metric applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Both, load-balanced describes a mechanism that could sound plausible for longest prefix match. CAM learning stores one mapping per arrival (longest prefix match): The /26 via R3 — not both addresses as table entries.",
+            "explanation": "ECMP load-balancing requires equal-cost routes to the same prefix — here two different prefix lengths compete, and LPM picks one.",
+            "misconceptionTested": "Expecting load balance across different prefix lengths",
             "whatItDoes": "Both, load-balanced describes a mechanism that could sound plausible for longest prefix match.",
-            "whyWrongHere": "CAM learning stores one mapping per arrival (longest prefix match): The /26 via R3 — not both addresses as table entries.",
-            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
+            "whyWrongHere": "CAM learning stores one mapping per arrival (longest prefix match): The /26 via R3 — not both addresses as table entries."
           }
         ],
         "examTip": "Forwarding order: longest prefix match first, then lowest AD, then best metric."
@@ -14035,32 +14032,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Longest prefix match decides which route forwards the packet; AD then metric decide which routes get installed for a given prefix."
+          "explanation": "When forwarding, longest prefix match picks the route; AD and metric matter when installing competing routes for the same prefix."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Metric → AD → longest prefix reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "explanation": "Metric does not come first — the router must find the best matching prefix before comparing metrics on equal routes.",
+            "misconceptionTested": "Leading with metric instead of LPM",
             "whatItDoes": "Metric → AD → longest prefix describes a mechanism that could sound plausible for route selection order.",
-            "whyWrongHere": "Given route selection order, Longest prefix match → administrative distance → metric matches the tested behavior — Metric → AD → longest prefix applies a different mechanism.",
-            "misconceptionTested": "A lower metric can beat a more-specific route"
+            "whyWrongHere": "Given route selection order, Longest prefix match → administrative distance → metric matches the tested behavior — Metric → AD → longest prefix applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "AD → metric → longest prefix reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "explanation": "AD breaks ties between routes to the same prefix from different sources — it does not replace longest prefix match at forward time.",
+            "misconceptionTested": "Putting AD ahead of longest prefix match",
             "whatItDoes": "AD → metric → longest prefix describes a mechanism that could sound plausible for route selection order.",
-            "whyWrongHere": "Given route selection order, Longest prefix match → administrative distance → metric matches the tested behavior — AD → metric → longest prefix applies a different mechanism.",
-            "misconceptionTested": "A lower metric can beat a more-specific route"
+            "whyWrongHere": "Given route selection order, Longest prefix match → administrative distance → metric matches the tested behavior — AD → metric → longest prefix applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Longest prefix → metric → AD reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "explanation": "Longest prefix is first, but metric is not second at install time — AD decides between sources, then metric within one protocol.",
+            "misconceptionTested": "Swapping AD and metric in the install order",
             "whatItDoes": "Longest prefix → metric → AD describes a mechanism that could sound plausible for route selection order.",
-            "whyWrongHere": "Given route selection order, Longest prefix match → administrative distance → metric matches the tested behavior — Longest prefix → metric → AD applies a different mechanism.",
-            "misconceptionTested": "A lower metric can beat a more-specific route"
+            "whyWrongHere": "Given route selection order, Longest prefix match → administrative distance → metric matches the tested behavior — Longest prefix → metric → AD applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
+        "examTip": "Forward: LPM → AD → metric. Do not swap LPM with either tie-breaker."
       }
     },
     {
@@ -14260,32 +14257,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Within one protocol, the lower metric (OSPF cost 10) wins."
+          "explanation": "Within one OSPF process, the lower cost route (10) is installed — metric breaks ties for the same prefix from the same protocol."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Cost 20 uses the wrong value. The tested fact calls for 10 — not 20.",
+            "explanation": "Higher OSPF cost is less preferred — cost 20 loses to cost 10 for the same prefix.",
+            "misconceptionTested": "Selecting higher metric within one OSPF process",
             "whatItDoes": "Cost 20 describes a mechanism that could sound plausible for metric tie-break.",
-            "whyWrongHere": "Given metric tie-break, Cost 10 matches the tested behavior — Cost 20 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 20 instead of the correct 10"
+            "whyWrongHere": "Given metric tie-break, Cost 10 matches the tested behavior — Cost 20 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Both (equal-cost only if equal) describes a mechanism that could sound plausible for metric tie-break. CAM learning stores one mapping per arrival (metric tie-break): Cost 10 — not both addresses as table entries.",
+            "explanation": "ECMP requires equal metrics — cost 10 and 20 are not equal, so only the lower-cost path is installed.",
+            "misconceptionTested": "Expecting load balance across unequal OSPF costs",
             "whatItDoes": "Both (equal-cost only if equal) describes a mechanism that could sound plausible for metric tie-break.",
-            "whyWrongHere": "CAM learning stores one mapping per arrival (metric tie-break): Cost 10 — not both addresses as table entries.",
-            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
+            "whyWrongHere": "CAM learning stores one mapping per arrival (metric tie-break): Cost 10 — not both addresses as table entries."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Neither — AD must differ shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given metric tie-break, Cost 10 matches the tested behavior — Neither — AD must differ applies a different mechanism.",
+            "explanation": "Both routes are OSPF (same AD 110) — AD only differs between routing sources, not between two OSPF paths to one prefix.",
+            "misconceptionTested": "Invoking AD when comparing metrics within one protocol",
             "whatItDoes": "Neither — AD must differ shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given metric tie-break, Cost 10 matches the tested behavior — Neither — AD must differ applies a different mechanism.",
-            "misconceptionTested": "Applying \"Neither — AD must differ\" without matching metric tie-break"
+            "whyWrongHere": "Given metric tie-break, Cost 10 matches the tested behavior — Neither — AD must differ applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
+        "examTip": "Same protocol, same prefix → lower metric wins. ECMP needs equal metrics."
       }
     },
     {
@@ -14309,32 +14306,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The /16 matches and is far more specific than the /0 default route, so longest prefix match uses the /16."
+          "explanation": "172.16.4.9 matches 172.16.0.0/16 — longest prefix match picks /16 over the less-specific 0.0.0.0/0 default."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The default route via R1 reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "Default route 0.0.0.0/0 matches everything but is the least specific — /16 is a longer match and wins forwarding.",
+            "misconceptionTested": "Preferring default route over more specific prefix",
             "whatItDoes": "The default route via R1 describes a mechanism that could sound plausible for default route specificity.",
-            "whyWrongHere": "Given default route specificity, The /16 via R2 matches the tested behavior — The default route via R1 applies a different mechanism.",
-            "misconceptionTested": "Treating the default route as a normal match"
+            "whyWrongHere": "Given default route specificity, The /16 via R2 matches the tested behavior — The default route via R1 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Whichever has lower AD reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "explanation": "AD breaks ties between different sources to the same prefix — here both routes exist and LPM at forward time picks /16.",
+            "misconceptionTested": "Using AD instead of longest prefix match at forward time",
             "whatItDoes": "Whichever has lower AD describes a mechanism that could sound plausible for default route specificity.",
-            "whyWrongHere": "Given default route specificity, The /16 via R2 matches the tested behavior — Whichever has lower AD applies a different mechanism.",
-            "misconceptionTested": "A lower metric can beat a more-specific route"
+            "whyWrongHere": "Given default route specificity, The /16 via R2 matches the tested behavior — Whichever has lower AD applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "It is dropped implies the device should discard the frame instead of forwarding or flooding it. Given default route specificity, The /16 via R2 matches the tested behavior — It is dropped applies a different mechanism.",
+            "explanation": "A matching /16 route exists — the packet is forwarded via R2, not dropped.",
+            "misconceptionTested": "Assuming drop when both default and specific routes exist",
             "whatItDoes": "It is dropped implies the device should discard the frame instead of forwarding or flooding it.",
-            "whyWrongHere": "Given default route specificity, The /16 via R2 matches the tested behavior — It is dropped applies a different mechanism.",
-            "misconceptionTested": "Applying \"It is dropped\" without matching default route specificity"
+            "whyWrongHere": "Given default route specificity, The /16 via R2 matches the tested behavior — It is dropped applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
+        "examTip": "Forwarding: longest prefix match beats default route every time."
       }
     },
     {
@@ -14454,32 +14451,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "A plain static route has AD 1, beating OSPF’s 110, so it is always installed. Add a higher AD (e.g. ... 10.1.1.1 130) to make it a floating static backup."
+          "explanation": "A plain static route has AD 1, which beats OSPF AD 110 — the static is always preferred. Use floating static with higher AD (e.g. 130) for backup-only behavior."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "OSPF metric is too high reflects a common trap: AD and metric do the same job. AD chooses between routing SOURCES for the same prefix; metric ranks routes WITHIN one protocol.",
+            "explanation": "OSPF metric is irrelevant here — the static wins because AD 1 < 110, not because of OSPF cost.",
+            "misconceptionTested": "Blaming OSPF metric when AD causes static preference",
             "whatItDoes": "OSPF metric is too high describes a mechanism that could sound plausible for floating static.",
-            "whyWrongHere": "Given floating static, Static AD (1) is lower than OSPF (110), so static is always preferred matches the tested behavior — OSPF metric is too high applies a different mechanism.",
-            "misconceptionTested": "AD and metric do the same job"
+            "whyWrongHere": "Given floating static, Static AD (1) is lower than OSPF (110), so static is always preferred matches the tested behavior — OSPF metric is too high applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The mask is wrong describes a mechanism that could sound plausible for floating static. Given floating static, Static AD (1) is lower than OSPF (110), so static is always preferred matches the tested behavior — The mask is wrong applies a different mechanism.",
+            "explanation": "/8 mask matches 10.0.0.0/8 correctly — the problem is administrative distance, not subnet mask.",
+            "misconceptionTested": "Suspecting mask error when AD is the issue",
             "whatItDoes": "The mask is wrong describes a mechanism that could sound plausible for floating static.",
-            "whyWrongHere": "Given floating static, Static AD (1) is lower than OSPF (110), so static is always preferred matches the tested behavior — The mask is wrong applies a different mechanism.",
-            "misconceptionTested": "Applying \"The mask is wrong\" without matching floating static"
+            "whyWrongHere": "Given floating static, Static AD (1) is lower than OSPF (110), so static is always preferred matches the tested behavior — The mask is wrong applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Default routes override static describes a mechanism that could sound plausible for floating static. Given floating static, Static AD (1) is lower than OSPF (110), so static is always preferred matches the tested behavior — Default routes override static applies a different mechanism.",
+            "explanation": "Default routes are a prefix length issue — this is a static vs OSPF AD competition for 10.0.0.0/8.",
+            "misconceptionTested": "Dragging default-route logic into floating-static AD trap",
             "whatItDoes": "Default routes override static describes a mechanism that could sound plausible for floating static.",
-            "whyWrongHere": "Given floating static, Static AD (1) is lower than OSPF (110), so static is always preferred matches the tested behavior — Default routes override static applies a different mechanism.",
-            "misconceptionTested": "Applying \"Default routes override static\" without matching floating static"
+            "whyWrongHere": "Given floating static, Static AD (1) is lower than OSPF (110), so static is always preferred matches the tested behavior — Default routes override static applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
+        "examTip": "Backup static only when primary fails → set higher AD than the primary (floating static)."
       }
     },
     {
@@ -14502,32 +14499,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "By AD: connected 0 (most trusted), static 1, OSPF 110."
+          "explanation": "Default AD: connected 0, static 1, OSPF 110 — lower AD = more trusted when sources compete."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "OSPF, static, connected describes a mechanism that could sound plausible for connected vs static vs dynamic. Given connected vs static vs dynamic, Connected, static, OSPF matches the tested behavior — OSPF, static, connected applies a different mechanism.",
+            "explanation": "OSPF (110) is least trusted of the three — connected (0) and static (1) beat OSPF when all offer the same prefix.",
+            "misconceptionTested": "Ranking OSPF above connected/static",
             "whatItDoes": "OSPF, static, connected describes a mechanism that could sound plausible for connected vs static vs dynamic.",
-            "whyWrongHere": "Given connected vs static vs dynamic, Connected, static, OSPF matches the tested behavior — OSPF, static, connected applies a different mechanism.",
-            "misconceptionTested": "Applying \"OSPF, static, connected\" without matching connected vs static vs dynamic"
+            "whyWrongHere": "Given connected vs static vs dynamic, Connected, static, OSPF matches the tested behavior — OSPF, static, connected applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Static, connected, OSPF describes a mechanism that could sound plausible for connected vs static vs dynamic. Given connected vs static vs dynamic, Connected, static, OSPF matches the tested behavior — Static, connected, OSPF applies a different mechanism.",
+            "explanation": "Static (1) is more trusted than OSPF but less than connected (0) — connected routes are always AD 0.",
+            "misconceptionTested": "Placing static above connected",
             "whatItDoes": "Static, connected, OSPF describes a mechanism that could sound plausible for connected vs static vs dynamic.",
-            "whyWrongHere": "Given connected vs static vs dynamic, Connected, static, OSPF matches the tested behavior — Static, connected, OSPF applies a different mechanism.",
-            "misconceptionTested": "Applying \"Static, connected, OSPF\" without matching connected vs static vs dynamic"
+            "whyWrongHere": "Given connected vs static vs dynamic, Connected, static, OSPF matches the tested behavior — Static, connected, OSPF applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Connected, OSPF, static describes a mechanism that could sound plausible for connected vs static vs dynamic. Given connected vs static vs dynamic, Connected, static, OSPF matches the tested behavior — Connected, OSPF, static applies a different mechanism.",
+            "explanation": "Connected beats static — connected AD is 0, static is 1. OSPF at 110 is last among these three.",
+            "misconceptionTested": "Swapping connected and static trust order",
             "whatItDoes": "Connected, OSPF, static describes a mechanism that could sound plausible for connected vs static vs dynamic.",
-            "whyWrongHere": "Given connected vs static vs dynamic, Connected, static, OSPF matches the tested behavior — Connected, OSPF, static applies a different mechanism.",
-            "misconceptionTested": "Applying \"Connected, OSPF, static\" without matching connected vs static vs dynamic"
+            "whyWrongHere": "Given connected vs static vs dynamic, Connected, static, OSPF matches the tested behavior — Connected, OSPF, static applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
+        "examTip": "Memorize: connected 0, static 1, OSPF 110 — compare AD between sources, metric within one protocol."
       }
     },
     {
@@ -16580,32 +16577,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "ip route <network> <subnet-mask> <next-hop>. /16 = 255.255.0.0."
+          "explanation": "ip route 172.16.0.0 255.255.0.0 10.0.0.1 — network, dotted-decimal mask (/16 = 255.255.0.0), next-hop."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "ip route 172.16.0.0 0.0.255.255 10.0.0.1 reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "explanation": "0.0.255.255 is a wildcard mask syntax used in ACLs — static routes require a subnet mask, not a wildcard.",
+            "misconceptionTested": "Using ACL wildcard mask in static route command",
             "whatItDoes": "ip route 172.16.0.0 0.0.255.255 10.0.0.1 describes a mechanism that could sound plausible for static route syntax.",
-            "whyWrongHere": "Given static route syntax, ip route 172.16.0.0 255.255.0.0 10.0.0.1 matches the tested behavior — ip route 172.16.0.0 0.0.255.255 10.0.0.1 applies a different mechanism.",
-            "misconceptionTested": "A static route installs even if the next-hop is unreachable"
+            "whyWrongHere": "Given static route syntax, ip route 172.16.0.0 255.255.0.0 10.0.0.1 matches the tested behavior — ip route 172.16.0.0 0.0.255.255 10.0.0.1 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "static route 172.16.0.0/16 10.0.0.1 reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "explanation": "Cisco IOS uses ip route, not static route, and CIDR slash notation is not valid in classic IOS static route syntax.",
+            "misconceptionTested": "Inventing non-IOS static route syntax",
             "whatItDoes": "static route 172.16.0.0/16 10.0.0.1 describes a mechanism that could sound plausible for static route syntax.",
-            "whyWrongHere": "Given static route syntax, ip route 172.16.0.0 255.255.0.0 10.0.0.1 matches the tested behavior — static route 172.16.0.0/16 10.0.0.1 applies a different mechanism.",
-            "misconceptionTested": "A static route installs even if the next-hop is unreachable"
+            "whyWrongHere": "Given static route syntax, ip route 172.16.0.0 255.255.0.0 10.0.0.1 matches the tested behavior — static route 172.16.0.0/16 10.0.0.1 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "ip static-route 172.16.0.0 255.255.0.0 10.0.0.1 reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "explanation": "ip static-route is not valid IOS — the command is ip route <network> <mask> <next-hop>.",
+            "misconceptionTested": "Misspelling the ip route command",
             "whatItDoes": "ip static-route 172.16.0.0 255.255.0.0 10.0.0.1 describes a mechanism that could sound plausible for static route syntax.",
-            "whyWrongHere": "Given static route syntax, ip route 172.16.0.0 255.255.0.0 10.0.0.1 matches the tested behavior — ip static-route 172.16.0.0 255.255.0.0 10.0.0.1 applies a different mechanism.",
-            "misconceptionTested": "A static route installs even if the next-hop is unreachable"
+            "whyWrongHere": "Given static route syntax, ip route 172.16.0.0 255.255.0.0 10.0.0.1 matches the tested behavior — ip static-route 172.16.0.0 255.255.0.0 10.0.0.1 applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Exit-interface static routes are always preferred on Ethernet — Next-hop IP is preferred on multi-access segments to avoid ARP for every destination"
+        "examTip": "Static route: ip route + network + subnet mask + next-hop or exit interface."
       }
     },
     {
@@ -19320,32 +19317,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "OSPF is a link-state IGP using LSAs and SPF."
+          "explanation": "OSPF is a link-state IGP — routers flood LSAs and run SPF to build a synchronized topology map."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Distance vector describes a mechanism that could sound plausible for protocol type. Given protocol type, Link-state matches the tested behavior — Distance vector applies a different mechanism.",
+            "explanation": "Distance-vector protocols (RIP, legacy EIGRP behavior) advertise routes to neighbors — OSPF exchanges link-state advertisements, not periodic route vectors.",
+            "misconceptionTested": "Labeling OSPF as distance vector",
             "whatItDoes": "Distance vector describes a mechanism that could sound plausible for protocol type.",
-            "whyWrongHere": "Given protocol type, Link-state matches the tested behavior — Distance vector applies a different mechanism.",
-            "misconceptionTested": "Applying \"Distance vector\" without matching protocol type"
+            "whyWrongHere": "Given protocol type, Link-state matches the tested behavior — Distance vector applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Path vector describes a mechanism that could sound plausible for protocol type. Given protocol type, Link-state matches the tested behavior — Path vector applies a different mechanism.",
+            "explanation": "Path-vector describes BGP between autonomous systems — OSPF is an interior gateway protocol within one AS.",
+            "misconceptionTested": "Confusing IGP link-state with BGP path vector",
             "whatItDoes": "Path vector describes a mechanism that could sound plausible for protocol type.",
-            "whyWrongHere": "Given protocol type, Link-state matches the tested behavior — Path vector applies a different mechanism.",
-            "misconceptionTested": "Applying \"Path vector\" without matching protocol type"
+            "whyWrongHere": "Given protocol type, Link-state matches the tested behavior — Path vector applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Static describes a mechanism that could sound plausible for protocol type. Given protocol type, Link-state matches the tested behavior — Static applies a different mechanism.",
+            "explanation": "Static routes are manually configured, not a dynamic routing protocol category — OSPF learns routes automatically.",
+            "misconceptionTested": "Selecting static when asked for protocol type",
             "whatItDoes": "Static describes a mechanism that could sound plausible for protocol type.",
-            "whyWrongHere": "Given protocol type, Link-state matches the tested behavior — Static applies a different mechanism.",
-            "misconceptionTested": "Applying \"Static\" without matching protocol type"
+            "whyWrongHere": "Given protocol type, Link-state matches the tested behavior — Static applies a different mechanism."
           }
         ],
-        "examTip": "OSPF won't go FULL without matching area, hello/dead, subnet, and auth on the link."
+        "examTip": "OSPF = link-state IGP (LSAs + SPF). RIP = distance vector. BGP = path vector."
       }
     },
     {
@@ -23198,35 +23195,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"VRRP\"."
+          "explanation": "VRRP (RFC 5798) is the open IEEE/IETF standard FHRP — HSRP and GLBP are Cisco-proprietary alternatives."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Proxy ARP describes a mechanism that could sound plausible for protocol. Given protocol, VRRP matches the tested behavior — Proxy ARP applies a different mechanism.",
+            "explanation": "Proxy ARP answers ARP on behalf of remote subnets — it is not a first-hop redundancy protocol with virtual IP/MAC.",
+            "misconceptionTested": "Substituting Proxy ARP for FHRP",
             "whatItDoes": "Proxy ARP describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, VRRP matches the tested behavior — Proxy ARP applies a different mechanism.",
-            "misconceptionTested": "Applying \"Proxy ARP\" without matching fhrp",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given protocol, VRRP matches the tested behavior — Proxy ARP applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "GLBP describes a mechanism that could sound plausible for protocol. Given protocol, VRRP matches the tested behavior — GLBP applies a different mechanism.",
+            "explanation": "GLBP is Cisco proprietary load-sharing FHRP — the stem asks for the openly standardized protocol (VRRP).",
+            "misconceptionTested": "Picking Cisco GLBP when IEEE standard is required",
             "whatItDoes": "GLBP describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, VRRP matches the tested behavior — GLBP applies a different mechanism.",
-            "misconceptionTested": "Applying \"GLBP\" without matching fhrp",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given protocol, VRRP matches the tested behavior — GLBP applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "HSRP describes a mechanism that could sound plausible for protocol. Given protocol, VRRP matches the tested behavior — HSRP applies a different mechanism.",
+            "explanation": "HSRP is widely deployed but Cisco-proprietary — VRRP is the multi-vendor IEEE-aligned FHRP.",
+            "misconceptionTested": "Selecting HSRP instead of open standard VRRP",
             "whatItDoes": "HSRP describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, VRRP matches the tested behavior — HSRP applies a different mechanism.",
-            "misconceptionTested": "Applying \"HSRP\" without matching fhrp",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given protocol, VRRP matches the tested behavior — HSRP applies a different mechanism."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "Open standard FHRP → VRRP. Cisco-only → HSRP or GLBP."
       }
     },
     {
@@ -25322,29 +25316,29 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "NAT maps inside local (private) to inside global (public) addresses."
+          "explanation": "NAT translates inside local (private) addresses to inside global (public) addresses so internal hosts reach the Internet."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Encrypts traffic describes a mechanism that could sound plausible for nat purpose. Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Encrypts traffic applies a different mechanism.",
+            "explanation": "Encryption protects confidentiality — NAT performs address translation, not cipher operations.",
+            "misconceptionTested": "Equating NAT with encryption",
             "whatItDoes": "Encrypts traffic describes a mechanism that could sound plausible for nat purpose.",
-            "whyWrongHere": "Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Encrypts traffic applies a different mechanism.",
-            "misconceptionTested": "Applying \"Encrypts traffic\" without matching nat purpose"
+            "whyWrongHere": "Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Encrypts traffic applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Routes between VLANs describes a mechanism that could sound plausible for nat purpose. Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Routes between VLANs applies a different mechanism.",
+            "explanation": "Inter-VLAN routing uses a router or L3 switch — NAT maps addresses between private and public realms.",
+            "misconceptionTested": "Using routing/VLAN logic for NAT purpose",
             "whatItDoes": "Routes between VLANs describes a mechanism that could sound plausible for nat purpose.",
-            "whyWrongHere": "Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Routes between VLANs applies a different mechanism.",
-            "misconceptionTested": "Applying \"Routes between VLANs\" without matching nat purpose"
+            "whyWrongHere": "Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Routes between VLANs applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Assigns DHCP addresses describes a mechanism that could sound plausible for nat purpose. Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Assigns DHCP addresses applies a different mechanism.",
+            "explanation": "DHCP assigns addresses dynamically — NAT rewrites source/destination IPs on packets crossing a boundary.",
+            "misconceptionTested": "Confusing address assignment with address translation",
             "whatItDoes": "Assigns DHCP addresses describes a mechanism that could sound plausible for nat purpose.",
-            "whyWrongHere": "Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Assigns DHCP addresses applies a different mechanism.",
-            "misconceptionTested": "Applying \"Assigns DHCP addresses\" without matching nat purpose"
+            "whyWrongHere": "Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Assigns DHCP addresses applies a different mechanism."
           }
         ],
         "examTip": "NAT fails silently without inside/outside — label interfaces before reading address types."
@@ -25370,33 +25364,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "PAT/overload maps many inside hosts to one public IP using ports."
+          "explanation": "PAT (NAT overload) maps many inside private hosts to one public IP using unique source ports."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Static NAT describes a mechanism that could sound plausible for PAT/overload maps many inside hosts to one public IP using ports. Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — Static NAT applies a different mechanism.",
+            "explanation": "Static NAT is 1:1 permanent mapping — many home devices sharing one public IP needs port-based overload.",
+            "misconceptionTested": "Using 1:1 static NAT for many-to-one scenario",
             "whatItDoes": "Static NAT describes a mechanism that could sound plausible for PAT/overload maps many inside hosts to one public IP using ports.",
-            "whyWrongHere": "Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — Static NAT applies a different mechanism.",
-            "misconceptionTested": "Applying \"Static NAT\" without matching pat"
+            "whyWrongHere": "Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — Static NAT applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Dynamic NAT describes a mechanism that could sound plausible for PAT/overload maps many inside hosts to one public IP using ports. Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — Dynamic NAT applies a different mechanism.",
+            "explanation": "Dynamic NAT pools one public IP per session but still exhausts the pool with many simultaneous hosts — PAT scales with ports.",
+            "misconceptionTested": "Choosing dynamic pool when overload/PAT is required",
             "whatItDoes": "Dynamic NAT describes a mechanism that could sound plausible for PAT/overload maps many inside hosts to one public IP using ports.",
-            "whyWrongHere": "Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — Dynamic NAT applies a different mechanism.",
-            "misconceptionTested": "Applying \"Dynamic NAT\" without matching pat"
+            "whyWrongHere": "Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — Dynamic NAT applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "No NAT describes a mechanism that could sound plausible for PAT/overload maps many inside hosts to one public IP using ports. Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — No NAT applies a different mechanism.",
+            "explanation": "Without NAT, private RFC1918 addresses cannot reach the public Internet from a typical home ISP setup.",
+            "misconceptionTested": "Denying NAT in a classic SOHO sharing scenario",
             "whatItDoes": "No NAT describes a mechanism that could sound plausible for PAT/overload maps many inside hosts to one public IP using ports.",
-            "whyWrongHere": "Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — No NAT applies a different mechanism.",
-            "misconceptionTested": "Applying \"No NAT\" without matching pat"
+            "whyWrongHere": "Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — No NAT applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Every inside host needs its own public IP — PAT lets thousands of hosts share one public IP via ports",
-        "memoryHook": "PAT = many tenants, one door — ports are the apartment numbers."
+        "examTip": "Many inside → one public IP = PAT/overload, not static 1:1."
       }
     },
     {
@@ -25419,32 +25412,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "Static NAT uses ip nat inside source static <local> <global>."
+          "explanation": "ip nat inside source static 192.168.1.10 203.0.113.10 creates a permanent inside-local to inside-global 1:1 mapping."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "ip nat pool describes a mechanism that could sound plausible for static nat. Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat pool applies a different mechanism.",
+            "explanation": "ip nat pool defines addresses for dynamic NAT — static 1:1 server publishing uses inside source static.",
+            "misconceptionTested": "Using dynamic pool command for static server mapping",
             "whatItDoes": "ip nat pool describes a mechanism that could sound plausible for static nat.",
-            "whyWrongHere": "Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat pool applies a different mechanism.",
-            "misconceptionTested": "Applying \"ip nat pool\" without matching static nat"
+            "whyWrongHere": "Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat pool applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "ip nat inside source list 1 interface g0/0 overload describes a mechanism that could sound plausible for static nat. Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat inside source list 1 interface g0/0 overload applies a different mechanism.",
+            "explanation": "That overload line enables PAT for an ACL — static server publishing needs explicit local/global pair.",
+            "misconceptionTested": "Applying PAT overload syntax to 1:1 static requirement",
             "whatItDoes": "ip nat inside source list 1 interface g0/0 overload describes a mechanism that could sound plausible for static nat.",
-            "whyWrongHere": "Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat inside source list 1 interface g0/0 overload applies a different mechanism.",
-            "misconceptionTested": "Applying \"ip nat inside source list 1 interfac\" without matching static nat"
+            "whyWrongHere": "Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat inside source list 1 interface g0/0 overload applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "ip nat outside describes a mechanism that could sound plausible for static nat. Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat outside applies a different mechanism.",
+            "explanation": "ip nat outside only labels interface direction — it does not create the static translation entry.",
+            "misconceptionTested": "Stopping at interface NAT label without translation rule",
             "whatItDoes": "ip nat outside describes a mechanism that could sound plausible for static nat.",
-            "whyWrongHere": "Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat outside applies a different mechanism.",
-            "misconceptionTested": "Applying \"ip nat outside\" without matching static nat"
+            "whyWrongHere": "Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat outside applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "Permanent server NAT → ip nat inside source static <local> <global>."
       }
     },
     {
@@ -25467,32 +25460,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Interfaces must be marked ip nat inside and ip nat outside."
+          "explanation": "NAT requires ip nat inside and ip nat outside on the correct interfaces — without these tags, translation never occurs."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "A default route describes a mechanism that could sound plausible for interface tags. Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — A default route applies a different mechanism.",
+            "explanation": "A default route helps reach the Internet but does not enable NAT — inside/outside interface designation is mandatory.",
+            "misconceptionTested": "Adding default route when NAT direction tags are missing",
             "whatItDoes": "A default route describes a mechanism that could sound plausible for interface tags.",
-            "whyWrongHere": "Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — A default route applies a different mechanism.",
-            "misconceptionTested": "Applying \"A default route\" without matching interface tags"
+            "whyWrongHere": "Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — A default route applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "A loopback describes a mechanism that could sound plausible for interface tags. Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — A loopback applies a different mechanism.",
+            "explanation": "Loopbacks are not required for basic NAT — the missing inside/outside labels prevent any translation.",
+            "misconceptionTested": "Creating loopback instead of labeling NAT interfaces",
             "whatItDoes": "A loopback describes a mechanism that could sound plausible for interface tags.",
-            "whyWrongHere": "Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — A loopback applies a different mechanism.",
-            "misconceptionTested": "Applying \"A loopback\" without matching interface tags"
+            "whyWrongHere": "Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — A loopback applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "DNS describes a mechanism that could sound plausible for interface tags. Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — DNS applies a different mechanism.",
+            "explanation": "DNS resolves names — NAT operates on IP headers and needs inside/outside interface roles defined first.",
+            "misconceptionTested": "Checking DNS when NAT interface roles are unset",
             "whatItDoes": "DNS describes a mechanism that could sound plausible for interface tags.",
-            "whyWrongHere": "Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — DNS applies a different mechanism.",
-            "misconceptionTested": "Applying \"DNS\" without matching interface tags"
+            "whyWrongHere": "Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — DNS applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Forgetting the inside/outside interface tags — Without ip nat inside/outside, NAT translates nothing"
+        "examTip": "NAT broken? First check ip nat inside / ip nat outside on the right interfaces."
       }
     },
     {
@@ -25693,35 +25686,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"NAT\"."
+          "explanation": "NAT translates private RFC 1918 addresses to public addresses so internal hosts can reach the Internet."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "CIDR describes a mechanism that could sound plausible for addresses. Given addresses, NAT matches the tested behavior — CIDR applies a different mechanism.",
+            "explanation": "CIDR is efficient address allocation notation — it does not translate private addresses for Internet access.",
+            "misconceptionTested": "Equating CIDR with address translation",
             "whatItDoes": "CIDR describes a mechanism that could sound plausible for addresses.",
-            "whyWrongHere": "Given addresses, NAT matches the tested behavior — CIDR applies a different mechanism.",
-            "misconceptionTested": "Applying \"CIDR\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given addresses, NAT matches the tested behavior — CIDR applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Classful addressing describes a mechanism that could sound plausible for addresses. Given addresses, NAT matches the tested behavior — Classful addressing applies a different mechanism.",
+            "explanation": "Classful addressing is obsolete — RFC 1918 private space still needs NAT (or proxy) to reach public Internet.",
+            "misconceptionTested": "Expecting classful rules to enable Internet from private space",
             "whatItDoes": "Classful addressing describes a mechanism that could sound plausible for addresses.",
-            "whyWrongHere": "Given addresses, NAT matches the tested behavior — Classful addressing applies a different mechanism.",
-            "misconceptionTested": "Applying \"Classful addressing\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given addresses, NAT matches the tested behavior — Classful addressing applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "VPN describes a mechanism that could sound plausible for addresses. Given addresses, NAT matches the tested behavior — VPN applies a different mechanism.",
+            "explanation": "VPN encrypts/tunnels traffic — the question asks how RFC 1918 hosts reach the Internet, which is NAT/PAT.",
+            "misconceptionTested": "Choosing VPN when NAT is the standard exam answer",
             "whatItDoes": "VPN describes a mechanism that could sound plausible for addresses.",
-            "whyWrongHere": "Given addresses, NAT matches the tested behavior — VPN applies a different mechanism.",
-            "misconceptionTested": "Applying \"VPN\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given addresses, NAT matches the tested behavior — VPN applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "Private RFC 1918 → Internet = NAT/PAT. Label inside/outside first."
       }
     },
     {
@@ -26769,35 +26759,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"The access list allows outgoing access from inside local addresses.\"."
+          "explanation": "Dynamic NAT uses an ACL to identify which inside local addresses are permitted to be translated outbound."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "NAT address types are fixed definitions — match the stem to the exact address role (who translates, who is local vs global).",
+            "explanation": "The ACL for dynamic NAT matches inside sources going out — it does not permit inbound connections from outside global addresses.",
+            "misconceptionTested": "Reversing NAT ACL direction (inbound vs outbound)",
             "whatItDoes": "The access list allows incoming access from outside global addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list.",
-            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows incoming access from outside global addresses. applies a different mechanism.",
-            "misconceptionTested": "Swapping inside/outside or local/global NAT roles",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows incoming access from outside global addresses. applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The access list allows outgoing access from outside local addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list. Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from outside local addresses. applies a different mechanism.",
+            "explanation": "Outside local addresses are how outsiders appear inside — dynamic NAT ACLs match inside local sources, not outside local.",
+            "misconceptionTested": "Confusing outside local with inside local in NAT ACL",
             "whatItDoes": "The access list allows outgoing access from outside local addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list.",
-            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from outside local addresses. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The access list allows outgoing acce\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from outside local addresses. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The access list allows outgoing access from inside global addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list. Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from inside global addresses. applies a different mechanism.",
+            "explanation": "Inside global is the translated public face — the ACL selects inside local hosts before translation occurs.",
+            "misconceptionTested": "Matching inside global instead of inside local pre-translation",
             "whatItDoes": "The access list allows outgoing access from inside global addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list.",
-            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from inside global addresses. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The access list allows outgoing acce\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from inside global addresses. applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "Dynamic NAT ACL → match inside local sources allowed to translate outbound."
       }
     },
     {
@@ -28136,35 +28123,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"The DHCP client is responsible for maintaining the life cycle of an IP address.\"."
+          "explanation": "The DHCP client must renew or release before lease expiry — lifecycle maintenance (renew/rebind/release) is client-driven."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The DHCP server is responsible for maintaining the life cycle of an IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — The DHCP server is responsible for maintaining the life cycle of an IP address. applies a different mechanism.",
+            "explanation": "The server tracks lease database and offers addresses, but the client initiates renewal at 50%/87.5% timers — lifecycle action is client-side.",
+            "misconceptionTested": "Assigning all lifecycle responsibility to the server",
             "whatItDoes": "The DHCP server is responsible for maintaining the life cycle of an IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — The DHCP server is responsible for maintaining the life cycle of an IP address. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The DHCP server is responsible for m\" without matching dns",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — The DHCP server is responsible for maintaining the life cycle of an IP address. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "DHCP uses multicasting between the client and server. describes a mechanism that could sound plausible for statement. Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — DHCP uses multicasting between the client and server. applies a different mechanism.",
+            "explanation": "DHCP discover/request use broadcast; offer/ack are often unicast — it is not general multicast between client and server.",
+            "misconceptionTested": "Claiming DHCP is multicast end-to-end",
             "whatItDoes": "DHCP uses multicasting between the client and server. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — DHCP uses multicasting between the client and server. applies a different mechanism.",
-            "misconceptionTested": "Applying \"DHCP uses multicasting between the c\" without matching dns",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — DHCP uses multicasting between the client and server. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The DHCP lease is negotiated between client and server. describes a mechanism that could sound plausible for statement. Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — The DHCP lease is negotiated between client and server. applies a different mechanism.",
+            "explanation": "Leases are offered by the server — \"negotiated\" overstates client/server haggling; the keyed distinction here is who maintains renewal lifecycle.",
+            "misconceptionTested": "Focusing on negotiation wording instead of client renewal duty",
             "whatItDoes": "The DHCP lease is negotiated between client and server. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — The DHCP lease is negotiated between client and server. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The DHCP lease is negotiated between\" without matching dns",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — The DHCP lease is negotiated between client and server. applies a different mechanism."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "DHCP DORA — client sends Discover/Request; client renews before lease expires."
       }
     },
     {
@@ -29617,35 +29601,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Router#show dhcp lease\"."
+          "explanation": "show dhcp lease on a DHCP client router displays the active lease from the server that assigned the address."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router#show ip dhcp lease describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip dhcp lease applies a different mechanism.",
+            "explanation": "show ip dhcp lease is for routers acting as DHCP servers — a client router uses show dhcp lease.",
+            "misconceptionTested": "Using server-side show command on a DHCP client",
             "whatItDoes": "Router#show ip dhcp lease describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip dhcp lease applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip dhcp lease\" without matching dhcp client",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip dhcp lease applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#show ip lease describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip lease applies a different mechanism.",
+            "explanation": "show ip lease is not the standard IOS client verification command — show dhcp lease is.",
+            "misconceptionTested": "Inventing show command syntax",
             "whatItDoes": "Router#show ip lease describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip lease applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip lease\" without matching dhcp client",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip lease applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show ip interface describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip interface applies a different mechanism.",
+            "explanation": "show ip interface confirms interface status/IP but does not detail the DHCP server and lease timers like show dhcp lease.",
+            "misconceptionTested": "Substituting interface status for DHCP lease details",
             "whatItDoes": "Router#show ip interface describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip interface applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip interface\" without matching dhcp client",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip interface applies a different mechanism."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "Client router lease check → show dhcp lease. Server pool → show ip dhcp binding."
       }
     },
     {
@@ -31914,32 +31895,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Most cloud-managed architectures separate the data plane (local forwarding continues independently) from the management/control plane (cloud dashboard). A WAN/internet outage interrupts management visibility and configuration push, but local forwarding generally continues using the last-known configuration."
+          "explanation": "Cloud-managed APs usually keep forwarding locally (data plane) but lose dashboard management, config push, and analytics until WAN returns."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "All wireless clients are immediately disconnected describes a mechanism that could sound plausible for cloud management data vs control plane. Given cloud management data vs control plane, The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the tested behavior — All wireless clients are immediately disconnected applies a different mechanism.",
+            "explanation": "Clients typically stay connected — local forwarding continues; only cloud management/control is interrupted.",
+            "misconceptionTested": "Assuming total wireless outage when cloud link drops",
             "whatItDoes": "All wireless clients are immediately disconnected describes a mechanism that could sound plausible for cloud management data vs control plane.",
-            "whyWrongHere": "Given cloud management data vs control plane, The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the tested behavior — All wireless clients are immediately disconnected applies a different mechanism.",
-            "misconceptionTested": "Applying \"All wireless clients are immediately\" without matching cloud management data vs control plane"
+            "whyWrongHere": "Given cloud management data vs control plane, The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the tested behavior — All wireless clients are immediately disconnected applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The APs factory-reset themselves automatically describes a mechanism that could sound plausible for cloud management data vs control plane. Given cloud management data vs control plane, The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the tested behavior — The APs factory-reset themselves automatically applies a different mechanism.",
+            "explanation": "APs do not factory-reset on WAN loss — they run last-known config and resume cloud sync when connectivity returns.",
+            "misconceptionTested": "Expecting automatic factory reset on management outage",
             "whatItDoes": "The APs factory-reset themselves automatically describes a mechanism that could sound plausible for cloud management data vs control plane.",
-            "whyWrongHere": "Given cloud management data vs control plane, The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the tested behavior — The APs factory-reset themselves automatically applies a different mechanism.",
-            "misconceptionTested": "Applying \"The APs factory-reset themselves aut\" without matching cloud management data vs control plane"
+            "whyWrongHere": "Given cloud management data vs control plane, The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the tested behavior — The APs factory-reset themselves automatically applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Wired switches in the same branch also stop forwarding traffic describes a mechanism that could sound plausible for cloud management data vs control plane. Given cloud management data vs control plane, The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the tested behavior — Wired switches in the same branch also stop forwarding traffic applies a different mechanism.",
+            "explanation": "Wired switch forwarding is independent — the scenario describes cloud AP management loss, not wired data-plane failure.",
+            "misconceptionTested": "Extending AP management outage to wired switching",
             "whatItDoes": "Wired switches in the same branch also stop forwarding traffic describes a mechanism that could sound plausible for cloud management data vs control plane.",
-            "whyWrongHere": "Given cloud management data vs control plane, The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the tested behavior — Wired switches in the same branch also stop forwarding traffic applies a different mechanism.",
-            "misconceptionTested": "Applying \"Wired switches in the same branch al\" without matching cloud management data vs control plane"
+            "whyWrongHere": "Given cloud management data vs control plane, The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the tested behavior — Wired switches in the same branch also stop forwarding traffic applies a different mechanism."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "Cloud WAN down → local forwarding continues; management/analytics pause."
       }
     },
     {
@@ -32306,32 +32287,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Encryption protects confidentiality. Integrity is addressed by hashing; availability by redundancy."
+          "explanation": "Encryption protects confidentiality — ciphertext hides data from unauthorized readers in transit or at rest."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Availability reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
+            "explanation": "Availability ensures systems stay up — redundancy and failover address availability, not encryption.",
+            "misconceptionTested": "Mapping encryption to availability",
             "whatItDoes": "Availability describes a mechanism that could sound plausible for CIA triad confidentiality.",
-            "whyWrongHere": "Given CIA triad confidentiality, Confidentiality matches the tested behavior — Availability applies a different mechanism.",
-            "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
+            "whyWrongHere": "Given CIA triad confidentiality, Confidentiality matches the tested behavior — Availability applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Integrity reflects a common trap: Integrity = detecting CHANGES (hashing). NOT keeping data private. That is confidentiality. Integrity uses hashing to detect unauthorized modification.",
+            "explanation": "Integrity detects tampering — hashing and digital signatures address integrity; encryption hides content.",
+            "misconceptionTested": "Confusing confidentiality with integrity",
             "whatItDoes": "Integrity describes a mechanism that could sound plausible for CIA triad confidentiality.",
-            "whyWrongHere": "Given CIA triad confidentiality, Confidentiality matches the tested behavior — Integrity applies a different mechanism.",
-            "misconceptionTested": "Integrity = detecting CHANGES (hashing). NOT keeping data private"
+            "whyWrongHere": "Given CIA triad confidentiality, Confidentiality matches the tested behavior — Integrity applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Authentication describes a mechanism that could sound plausible for CIA triad confidentiality. Given CIA triad confidentiality, Confidentiality matches the tested behavior — Authentication applies a different mechanism.",
+            "explanation": "Authentication proves identity — encryption does not by itself verify who sent the data.",
+            "misconceptionTested": "Equating encryption with authentication",
             "whatItDoes": "Authentication describes a mechanism that could sound plausible for CIA triad confidentiality.",
-            "whyWrongHere": "Given CIA triad confidentiality, Confidentiality matches the tested behavior — Authentication applies a different mechanism.",
-            "misconceptionTested": "Applying \"Authentication\" without matching CIA triad confidentiality"
+            "whyWrongHere": "Given CIA triad confidentiality, Confidentiality matches the tested behavior — Authentication applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Integrity = detecting CHANGES (hashing). NOT keeping data private — That is confidentiality. Integrity uses hashing to detect unauthorized modification"
+        "examTip": "CIA: Confidentiality = encryption; Integrity = hash; Availability = redundancy."
       }
     },
     {
@@ -32902,35 +32883,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"IPS\"."
+          "explanation": "IPS (Intrusion Prevention System) detects and actively blocks malicious traffic inline — prevention, not just detection."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Honey pots describes a mechanism that could sound plausible for security concepts. Given security concepts, IPS matches the tested behavior — Honey pots applies a different mechanism.",
+            "explanation": "Honeypots decoy attackers for analysis — they do not inline-prevent intrusions across the production network.",
+            "misconceptionTested": "Confusing honeypot decoy with inline prevention",
             "whatItDoes": "Honey pots describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — Honey pots applies a different mechanism.",
-            "misconceptionTested": "Applying \"Honey pots\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — Honey pots applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "IDS describes a mechanism that could sound plausible for security concepts. Given security concepts, IPS matches the tested behavior — IDS applies a different mechanism.",
+            "explanation": "IDS detects and alerts but does not block inline — IPS adds active prevention on the traffic path.",
+            "misconceptionTested": "Selecting detect-only IDS when prevention is required",
             "whatItDoes": "IDS describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — IDS applies a different mechanism.",
-            "misconceptionTested": "Applying \"IDS\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — IDS applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "HIDS describes a mechanism that could sound plausible for security concepts. Given security concepts, IPS matches the tested behavior — HIDS applies a different mechanism.",
+            "explanation": "HIDS monitors a single host — the question asks about network-level intrusion prevention.",
+            "misconceptionTested": "Choosing host-based detection for network prevention question",
             "whatItDoes": "HIDS describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — HIDS applies a different mechanism.",
-            "misconceptionTested": "Applying \"HIDS\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — HIDS applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
+        "examTip": "IDS = detect/alert. IPS = detect + block inline."
       }
     },
     {
@@ -33397,35 +33375,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"ACLs\"."
+          "explanation": "Perimeter ACLs can deny packets with source addresses that should not arrive from outside (anti-spoofing / BCP 38 style filtering)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Intrusion detection systems describes a mechanism that could sound plausible for security concepts. Given security concepts, ACLs matches the tested behavior — Intrusion detection systems applies a different mechanism.",
+            "explanation": "IDS detects suspicious activity — it does not filter spoofed source IPs at the perimeter like an ACL can.",
+            "misconceptionTested": "Using IDS where ingress ACL filtering is needed",
             "whatItDoes": "Intrusion detection systems describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, ACLs matches the tested behavior — Intrusion detection systems applies a different mechanism.",
-            "misconceptionTested": "Applying \"Intrusion detection systems\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, ACLs matches the tested behavior — Intrusion detection systems applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SSL describes a mechanism that could sound plausible for security concepts. Given security concepts, ACLs matches the tested behavior — SSL applies a different mechanism.",
+            "explanation": "SSL/TLS encrypts application traffic — it does not validate or block spoofed IP source addresses at the edge.",
+            "misconceptionTested": "Expecting SSL to prevent IP spoofing",
             "whatItDoes": "SSL describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, ACLs matches the tested behavior — SSL applies a different mechanism.",
-            "misconceptionTested": "Applying \"SSL\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, ACLs matches the tested behavior — SSL applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Host intrusion detection systems describes a mechanism that could sound plausible for security concepts. Given security concepts, ACLs matches the tested behavior — Host intrusion detection systems applies a different mechanism.",
+            "explanation": "HIDS protects individual hosts — spoofing at the perimeter requires ingress filtering on the border router/firewall.",
+            "misconceptionTested": "Relying on host IDS for perimeter anti-spoofing",
             "whatItDoes": "Host intrusion detection systems describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, ACLs matches the tested behavior — Host intrusion detection systems applies a different mechanism.",
-            "misconceptionTested": "Applying \"Host intrusion detection systems\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, ACLs matches the tested behavior — Host intrusion detection systems applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "Block spoofed internal sources at the edge with ingress ACLs (deny impossible source IPs)."
       }
     },
     {
@@ -34004,35 +33979,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Switch(config)#line vty 0 5\"."
+          "explanation": "Telnet/SSH login passwords are configured under line vty 0 15 (or 0 4 on older platforms) — start there before password/login."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#interface vlan 1 describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#interface vlan 1 applies a different mechanism.",
+            "explanation": "Interface VLAN 1 configures SVI IP — not VTY line passwords for remote Telnet access.",
+            "misconceptionTested": "Configuring SVI when VTY lines are needed",
             "whatItDoes": "Switch(config)#interface vlan 1 describes a mechanism that could sound plausible for local device access.",
-            "whyWrongHere": "Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#interface vlan 1 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#interface vlan 1\" without matching local device access",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#interface vlan 1 applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config)#line console 1 describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#line console 1 applies a different mechanism.",
+            "explanation": "Console line secures local serial/console access — Telnet uses virtual terminal (VTY) lines.",
+            "misconceptionTested": "Using console line for Telnet password",
             "whatItDoes": "Switch(config)#line console 1 describes a mechanism that could sound plausible for local device access.",
-            "whyWrongHere": "Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#line console 1 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#line console 1\" without matching local device access",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#line console 1 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config)#line aux 1 describes a mechanism that could sound plausible for local device access. Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#line aux 1 applies a different mechanism.",
+            "explanation": "Auxiliary line is legacy dial/modem access — Telnet targets VTY lines, not aux.",
+            "misconceptionTested": "Selecting aux line for Telnet configuration",
             "whatItDoes": "Switch(config)#line aux 1 describes a mechanism that could sound plausible for local device access.",
-            "whyWrongHere": "Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#line aux 1 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#line aux 1\" without matching local device access",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given local device access, Switch(config)#line vty 0 5 matches the tested behavior — Switch(config)#line aux 1 applies a different mechanism."
           }
         ],
-        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
+        "examTip": "Remote login (Telnet/SSH) → line vty first. Console → line console 0."
       }
     },
     {
@@ -35315,32 +35287,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "ACLs are read top-down and stop at the first match."
+          "explanation": "ACLs are evaluated top-down — the first matching line wins and processing stops."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Bottom-up describes a mechanism that could sound plausible for processing order. Given processing order, Top-down, first match wins matches the tested behavior — Bottom-up applies a different mechanism.",
+            "explanation": "ACLs are not read bottom-up — order matters because an early permit or deny can block a later line from ever being reached.",
+            "misconceptionTested": "Reversing ACL evaluation order",
             "whatItDoes": "Bottom-up describes a mechanism that could sound plausible for processing order.",
-            "whyWrongHere": "Given processing order, Top-down, first match wins matches the tested behavior — Bottom-up applies a different mechanism.",
-            "misconceptionTested": "Applying \"Bottom-up\" without matching processing order"
+            "whyWrongHere": "Given processing order, Top-down, first match wins matches the tested behavior — Bottom-up applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Most-specific first automatically reflects a common trap: Misordering rules. First match wins — put specific rules before broad ones.",
+            "explanation": "Cisco ACLs do not auto-sort by specificity — you must place more specific entries above general ones manually.",
+            "misconceptionTested": "Expecting automatic most-specific-first sorting",
             "whatItDoes": "Most-specific first automatically describes a mechanism that could sound plausible for processing order.",
-            "whyWrongHere": "Given processing order, Top-down, first match wins matches the tested behavior — Most-specific first automatically applies a different mechanism.",
-            "misconceptionTested": "Misordering rules"
+            "whyWrongHere": "Given processing order, Top-down, first match wins matches the tested behavior — Most-specific first automatically applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Randomly describes a mechanism that could sound plausible for processing order. Given processing order, Top-down, first match wins matches the tested behavior — Randomly applies a different mechanism.",
+            "explanation": "ACL evaluation is deterministic top-down — not random or round-robin.",
+            "misconceptionTested": "Guessing non-deterministic ACL behavior",
             "whatItDoes": "Randomly describes a mechanism that could sound plausible for processing order.",
-            "whyWrongHere": "Given processing order, Top-down, first match wins matches the tested behavior — Randomly applies a different mechanism.",
-            "misconceptionTested": "Applying \"Randomly\" without matching processing order"
+            "whyWrongHere": "Given processing order, Top-down, first match wins matches the tested behavior — Randomly applies a different mechanism."
           }
         ],
-        "examTip": "Extended ACLs go near the source; standard ACLs near the destination — placement is the trap."
+        "examTip": "ACL: first match wins, implicit deny at end — order your lines deliberately."
       }
     },
     {
@@ -35395,32 +35367,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Standard ACLs match source only, so place them near the destination to avoid over-blocking."
+          "explanation": "Standard ACLs match source IP only — place them close to the destination so you do not accidentally filter traffic for other subnets earlier."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Close to the source describes a mechanism that could sound plausible for standard placement. Given standard placement, Close to the destination matches the tested behavior — Close to the source applies a different mechanism.",
+            "explanation": "Near the source is correct for extended ACLs (match source and destination) — standard ACLs belong near the destination.",
+            "misconceptionTested": "Applying extended ACL placement rule to standard ACL",
             "whatItDoes": "Close to the source describes a mechanism that could sound plausible for standard placement.",
-            "whyWrongHere": "Given standard placement, Close to the destination matches the tested behavior — Close to the source applies a different mechanism.",
-            "misconceptionTested": "Applying \"Close to the source\" without matching standard placement"
+            "whyWrongHere": "Given standard placement, Close to the destination matches the tested behavior — Close to the source applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "On every interface describes a mechanism that could sound plausible for standard placement. Given standard placement, Close to the destination matches the tested behavior — On every interface applies a different mechanism.",
+            "explanation": "ACLs are applied on specific interfaces where traffic enters or exits — not blindly on every interface.",
+            "misconceptionTested": "Over-applying ACLs network-wide",
             "whatItDoes": "On every interface describes a mechanism that could sound plausible for standard placement.",
-            "whyWrongHere": "Given standard placement, Close to the destination matches the tested behavior — On every interface applies a different mechanism.",
-            "misconceptionTested": "Applying \"On every interface\" without matching standard placement"
+            "whyWrongHere": "Given standard placement, Close to the destination matches the tested behavior — On every interface applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Only on trunks describes a mechanism that could sound plausible for standard placement. Given standard placement, Close to the destination matches the tested behavior — Only on trunks applies a different mechanism.",
+            "explanation": "Trunks carry multiple VLANs — ACL placement follows source/destination logic, not “trunks only”.",
+            "misconceptionTested": "Restricting ACL placement to trunk interfaces",
             "whatItDoes": "Only on trunks describes a mechanism that could sound plausible for standard placement.",
-            "whyWrongHere": "Given standard placement, Close to the destination matches the tested behavior — Only on trunks applies a different mechanism.",
-            "misconceptionTested": "Applying \"Only on trunks\" without matching standard placement"
+            "whyWrongHere": "Given standard placement, Close to the destination matches the tested behavior — Only on trunks applies a different mechanism."
           }
         ],
-        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
+        "examTip": "Extended ACL → near source. Standard ACL → near destination."
       }
     },
     {
@@ -40562,35 +40534,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"The network is unrouteable.\"."
+          "explanation": "Without a route to the remote tunnel endpoint (203.0.113.2), the GRE tunnel cannot come up — the underlay must be reachable first."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Nothing is wrong with the configuration. describes a mechanism that could sound plausible for interface. Given interface, The network is unrouteable. matches the tested behavior — Nothing is wrong with the configuration. applies a different mechanism.",
+            "explanation": "The comment explicitly states no route to the remote endpoint — GRE requires reachable tunnel destination in the routing table.",
+            "misconceptionTested": "Ignoring missing underlay route to tunnel endpoint",
             "whatItDoes": "Nothing is wrong with the configuration. describes a mechanism that could sound plausible for interface.",
-            "whyWrongHere": "Given interface, The network is unrouteable. matches the tested behavior — Nothing is wrong with the configuration. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Nothing is wrong with the configurat\" without matching vpn",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given interface, The network is unrouteable. matches the tested behavior — Nothing is wrong with the configuration. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The destination on Router A of the tunnel is incorrect. describes a mechanism that could sound plausible for interface. Given interface, The network is unrouteable. matches the tested behavior — The destination on Router A of the tunnel is incorrect. applies a different mechanism.",
+            "explanation": "The destination IP may be correct — the failure is that no routing entry reaches that network, making the tunnel unroutable.",
+            "misconceptionTested": "Blaming wrong destination when underlay routing is missing",
             "whatItDoes": "The destination on Router A of the tunnel is incorrect. describes a mechanism that could sound plausible for interface.",
-            "whyWrongHere": "Given interface, The network is unrouteable. matches the tested behavior — The destination on Router A of the tunnel is incorrect. applies a different mechanism.",
-            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given interface, The network is unrouteable. matches the tested behavior — The destination on Router A of the tunnel is incorrect. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The serial interfaces are on different networks. describes a mechanism that could sound plausible for interface. Given interface, The network is unrouteable. matches the tested behavior — The serial interfaces are on different networks. applies a different mechanism.",
+            "explanation": "Serial interfaces on different subnets is normal for a point-to-point WAN — the issue is no route to 203.0.113.0/peer endpoint.",
+            "misconceptionTested": "Flagging P2P addressing when underlay route is absent",
             "whatItDoes": "The serial interfaces are on different networks. describes a mechanism that could sound plausible for interface.",
-            "whyWrongHere": "Given interface, The network is unrouteable. matches the tested behavior — The serial interfaces are on different networks. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The serial interfaces are on differe\" without matching vpn",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given interface, The network is unrouteable. matches the tested behavior — The serial interfaces are on different networks. applies a different mechanism."
           }
         ],
-        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
+        "examTip": "GRE tunnel up requires reachable tunnel destination in routing table (underlay first)."
       }
     },
     {
@@ -41318,35 +41287,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"To create an outcome that can be reproduced\"."
+          "explanation": "Automation (templates, IaC, scripts) produces repeatable, reproducible configs — same input yields the same outcome every time."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "To increase the possibility for misconfiguration describes a mechanism that could sound plausible for automation. Given automation, To create an outcome that can be reproduced matches the tested behavior — To increase the possibility for misconfiguration applies a different mechanism.",
+            "explanation": "Automation reduces manual typos — it does not increase misconfiguration when templates are validated.",
+            "misconceptionTested": "Assuming automation adds randomness/errors",
             "whatItDoes": "To increase the possibility for misconfiguration describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, To create an outcome that can be reproduced matches the tested behavior — To increase the possibility for misconfiguration applies a different mechanism.",
-            "misconceptionTested": "Applying \"To increase the possibility for misc\" without matching automation",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given automation, To create an outcome that can be reproduced matches the tested behavior — To increase the possibility for misconfiguration applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "To decrease problems from the new configuration describes a mechanism that could sound plausible for automation. Given automation, To create an outcome that can be reproduced matches the tested behavior — To decrease problems from the new configuration applies a different mechanism.",
+            "explanation": "Reproducibility is the primary exam answer — “decrease problems” is vague; templates explicitly enable identical redeployments.",
+            "misconceptionTested": "Picking vague benefit over reproducibility",
             "whatItDoes": "To decrease problems from the new configuration describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, To create an outcome that can be reproduced matches the tested behavior — To decrease problems from the new configuration applies a different mechanism.",
-            "misconceptionTested": "Applying \"To decrease problems from the new co\" without matching automation",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given automation, To create an outcome that can be reproduced matches the tested behavior — To decrease problems from the new configuration applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "To allow you to do less work describes a mechanism that could sound plausible for automation. Given automation, To create an outcome that can be reproduced matches the tested behavior — To allow you to do less work applies a different mechanism.",
+            "explanation": "Less manual work is a side benefit — Cisco stems emphasize consistent, reproducible outcomes across many routers.",
+            "misconceptionTested": "Choosing laziness over operational repeatability",
             "whatItDoes": "To allow you to do less work describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, To create an outcome that can be reproduced matches the tested behavior — To allow you to do less work applies a different mechanism.",
-            "misconceptionTested": "Applying \"To allow you to do less work\" without matching automation",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given automation, To create an outcome that can be reproduced matches the tested behavior — To allow you to do less work applies a different mechanism."
           }
         ],
-        "examTip": "Separate management plane (API/controller) from data plane (forwarding)."
+        "examTip": "Network automation → repeatable, reproducible configs at scale."
       }
     },
     {
@@ -42127,35 +42093,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Spine/Leaf\"."
+          "explanation": "Controller-based SDN campus/data-center fabrics commonly use spine-leaf (Clos) topology for equal-cost multipath east-west traffic."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Three tier describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Spine/Leaf matches the tested behavior — Three tier applies a different mechanism.",
+            "explanation": "Three-tier (access-distribution-core) is classic hierarchical — modern controller fabrics favor spine-leaf for scale and ECMP.",
+            "misconceptionTested": "Applying legacy three-tier to SDN fabric",
             "whatItDoes": "Three tier describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Spine/Leaf matches the tested behavior — Three tier applies a different mechanism.",
-            "misconceptionTested": "Applying \"Three tier\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given sdn architecture, Spine/Leaf matches the tested behavior — Three tier applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Collapsed core describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Spine/Leaf matches the tested behavior — Collapsed core applies a different mechanism.",
+            "explanation": "Collapsed core merges distribution/core — spine-leaf is the distinct SDN fabric pattern tested here.",
+            "misconceptionTested": "Confusing collapsed core with spine-leaf",
             "whatItDoes": "Collapsed core describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Spine/Leaf matches the tested behavior — Collapsed core applies a different mechanism.",
-            "misconceptionTested": "Applying \"Collapsed core\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given sdn architecture, Spine/Leaf matches the tested behavior — Collapsed core applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "SAN fabric describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Spine/Leaf matches the tested behavior — SAN fabric applies a different mechanism.",
+            "explanation": "SAN fabric is storage networking (FC/FCoE) — not the IP Ethernet architecture for controller-based LANs.",
+            "misconceptionTested": "Dragging storage fabric into SDN campus question",
             "whatItDoes": "SAN fabric describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Spine/Leaf matches the tested behavior — SAN fabric applies a different mechanism.",
-            "misconceptionTested": "Applying \"SAN fabric\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given sdn architecture, Spine/Leaf matches the tested behavior — SAN fabric applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "Controller/SDN fabric → spine-leaf. Legacy campus → three-tier."
       }
     },
     {
@@ -42345,35 +42308,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Cisco SD-WAN\"."
+          "explanation": "Cisco SD-WAN (Viptela) connects branch offices to applications over optimized WAN paths — built for ROBO direct app access."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Cisco APIC-EM describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Cisco SD-WAN matches the tested behavior — Cisco APIC-EM applies a different mechanism.",
+            "explanation": "APIC-EM is legacy SDN management for enterprise LAN — not the branch WAN overlay for remote workers reaching apps.",
+            "misconceptionTested": "Using campus SDN controller for WAN branch use case",
             "whatItDoes": "Cisco APIC-EM describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Cisco SD-WAN matches the tested behavior — Cisco APIC-EM applies a different mechanism.",
-            "misconceptionTested": "Applying \"Cisco APIC-EM\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given sdn architecture, Cisco SD-WAN matches the tested behavior — Cisco APIC-EM applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Cisco Prime Infrastructure describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Cisco SD-WAN matches the tested behavior — Cisco Prime Infrastructure applies a different mechanism.",
+            "explanation": "Prime Infrastructure is traditional network management — not the SD-WAN overlay product for branch connectivity.",
+            "misconceptionTested": "Selecting NMS instead of SD-WAN solution",
             "whatItDoes": "Cisco Prime Infrastructure describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Cisco SD-WAN matches the tested behavior — Cisco Prime Infrastructure applies a different mechanism.",
-            "misconceptionTested": "Applying \"Cisco Prime Infrastructure\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given sdn architecture, Cisco SD-WAN matches the tested behavior — Cisco Prime Infrastructure applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "OpenDaylight describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Cisco SD-WAN matches the tested behavior — OpenDaylight applies a different mechanism.",
+            "explanation": "OpenDaylight is an open SDN controller platform — Cisco SD-WAN is the branded branch/WAN answer on CCNA stems.",
+            "misconceptionTested": "Picking generic open controller for Cisco ROBO scenario",
             "whatItDoes": "OpenDaylight describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Cisco SD-WAN matches the tested behavior — OpenDaylight applies a different mechanism.",
-            "misconceptionTested": "Applying \"OpenDaylight\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given sdn architecture, Cisco SD-WAN matches the tested behavior — OpenDaylight applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "Branch offices need direct app access → Cisco SD-WAN, not campus APIC-EM."
       }
     },
     {
@@ -43179,35 +43139,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Control plane\"."
+          "explanation": "ACLs enforce forwarding policy — configuring them affects the control plane that programs what the data plane allows."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Management plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Control plane matches the tested behavior — Management plane applies a different mechanism.",
+            "explanation": "Management plane covers device administration (SSH, SNMP) — ACL configuration defines traffic policy, which is control plane.",
+            "misconceptionTested": "Equating ACL policy with device management plane",
             "whatItDoes": "Management plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Management plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Management plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Management plane applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Configuration plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Control plane matches the tested behavior — Configuration plane applies a different mechanism.",
+            "explanation": "\"Configuration plane\" is not a standard Cisco three-plane term — ACLs belong to control plane policy.",
+            "misconceptionTested": "Inventing non-standard plane name for ACL config",
             "whatItDoes": "Configuration plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Configuration plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Configuration plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Configuration plane applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Data plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Control plane matches the tested behavior — Data plane applies a different mechanism.",
+            "explanation": "Data plane forwards packets — you configure ACL rules (control plane) that the data plane then enforces.",
+            "misconceptionTested": "Confusing policy configuration with packet forwarding plane",
             "whatItDoes": "Data plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Data plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Data plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Data plane applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "Three planes: data = forward, control = routing/ACL policy, management = admin access."
       }
     },
     {
@@ -43570,35 +43527,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Assurance\"."
+          "explanation": "DNA Center Assurance dashboard shows network health, client experience, and proactive issue detection across the fabric."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Design describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Assurance matches the tested behavior — Design applies a different mechanism.",
+            "explanation": "Design is for topology and site hierarchy planning — health monitoring lives in Assurance.",
+            "misconceptionTested": "Using Design section for operational health view",
             "whatItDoes": "Design describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Assurance matches the tested behavior — Design applies a different mechanism.",
-            "misconceptionTested": "Applying \"Design\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given cisco dna center, Assurance matches the tested behavior — Design applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Policy describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Assurance matches the tested behavior — Policy applies a different mechanism.",
+            "explanation": "Policy configures group-based access and segmentation — Assurance reports health and performance.",
+            "misconceptionTested": "Confusing policy configuration with health dashboard",
             "whatItDoes": "Policy describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Assurance matches the tested behavior — Policy applies a different mechanism.",
-            "misconceptionTested": "Applying \"Policy\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given cisco dna center, Assurance matches the tested behavior — Policy applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Platform describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Assurance matches the tested behavior — Platform applies a different mechanism.",
+            "explanation": "Platform covers system settings and integrations — not the primary network health overview.",
+            "misconceptionTested": "Selecting platform admin for network health monitoring",
             "whatItDoes": "Platform describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Assurance matches the tested behavior — Platform applies a different mechanism.",
-            "misconceptionTested": "Applying \"Platform\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given cisco dna center, Assurance matches the tested behavior — Platform applies a different mechanism."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "DNA Center: Assurance = health/clients/issues. Design = topology. Policy = segmentation."
       }
     },
     {
@@ -43734,35 +43688,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"DNA Command Runner\"."
+          "explanation": "DNA Command Runner executes CLI templates across many devices — fastest way to push OSPF area config to a device group."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "IP-based access control describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, DNA Command Runner matches the tested behavior — IP-based access control applies a different mechanism.",
+            "explanation": "IP-based access control is a security feature — not a bulk configuration tool for OSPF areas.",
+            "misconceptionTested": "Using access control feature for routing configuration",
             "whatItDoes": "IP-based access control describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, DNA Command Runner matches the tested behavior — IP-based access control applies a different mechanism.",
-            "misconceptionTested": "Applying \"IP-based access control\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given cisco dna center, DNA Command Runner matches the tested behavior — IP-based access control applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Python describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, DNA Command Runner matches the tested behavior — Python applies a different mechanism.",
+            "explanation": "Python/API scripting is powerful but Command Runner is the built-in DNA Center method for quick multi-device CLI pushes.",
+            "misconceptionTested": "Defaulting to Python when Command Runner is the exam shortcut",
             "whatItDoes": "Python describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, DNA Command Runner matches the tested behavior — Python applies a different mechanism.",
-            "misconceptionTested": "Applying \"Python\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given cisco dna center, DNA Command Runner matches the tested behavior — Python applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Inventory describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, DNA Command Runner matches the tested behavior — Inventory applies a different mechanism.",
+            "explanation": "Inventory lists devices — it does not execute configuration. Command Runner applies templates at scale.",
+            "misconceptionTested": "Expecting Inventory to push config without Command Runner",
             "whatItDoes": "Inventory describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, DNA Command Runner matches the tested behavior — Inventory applies a different mechanism.",
-            "misconceptionTested": "Applying \"Inventory\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given cisco dna center, DNA Command Runner matches the tested behavior — Inventory applies a different mechanism."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "Bulk CLI on many routers in DNA Center → Command Runner templates."
       }
     },
     {
@@ -46820,32 +46771,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "AAA stands for Authentication (who are you), Authorization (what are you allowed to do), and Accounting (what did you do / logging)."
+          "explanation": "AAA = Authentication (identity), Authorization (permissions), Accounting (logging/auditing of actions)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Access, Audit, Administration describes a mechanism that could sound plausible for AAA framework. Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Access, Audit, Administration applies a different mechanism.",
+            "explanation": "Access/Audit/Administration is a plausible-sounding shuffle — Cisco AAA is specifically Authentication, Authorization, Accounting.",
+            "misconceptionTested": "Memorizing wrong AAA expansion",
             "whatItDoes": "Access, Audit, Administration describes a mechanism that could sound plausible for AAA framework.",
-            "whyWrongHere": "Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Access, Audit, Administration applies a different mechanism.",
-            "misconceptionTested": "Applying \"Access, Audit, Administration\" without matching AAA framework"
+            "whyWrongHere": "Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Access, Audit, Administration applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Authentication, Auditing, Availability describes a mechanism that could sound plausible for AAA framework. Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Authentication, Auditing, Availability applies a different mechanism.",
+            "explanation": "Auditing and Availability are not the middle A — Authorization defines what an authenticated user may do.",
+            "misconceptionTested": "Swapping Authorization with Auditing/Availability",
             "whatItDoes": "Authentication, Auditing, Availability describes a mechanism that could sound plausible for AAA framework.",
-            "whyWrongHere": "Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Authentication, Auditing, Availability applies a different mechanism.",
-            "misconceptionTested": "Applying \"Authentication, Auditing, Availabili\" without matching AAA framework"
+            "whyWrongHere": "Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Authentication, Auditing, Availability applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Authorization, Access, Accounting describes a mechanism that could sound plausible for AAA framework. Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Authorization, Access, Accounting applies a different mechanism.",
+            "explanation": "Order matters: Authentication first, then Authorization, then Accounting — not Authorization/Access/Accounting.",
+            "misconceptionTested": "Reordering the three A components",
             "whatItDoes": "Authorization, Access, Accounting describes a mechanism that could sound plausible for AAA framework.",
-            "whyWrongHere": "Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Authorization, Access, Accounting applies a different mechanism.",
-            "misconceptionTested": "Applying \"Authorization, Access, Accounting\" without matching AAA framework"
+            "whyWrongHere": "Given AAA framework, Authentication, Authorization, Accounting matches the tested behavior — Authorization, Access, Accounting applies a different mechanism."
           }
         ],
-        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
+        "examTip": "AAA order: Authentication → Authorization → Accounting — match the stem verb."
       }
     },
     {

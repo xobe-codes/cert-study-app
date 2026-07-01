@@ -8,7 +8,7 @@ import {
   MOCK_EXAM_DURATION_MIN,
   staticMockExamReady,
   buildStaticMockExamPool,
-  sampleAdaptiveQuestions,
+  buildBlueprintWeightedPool,
 } from './mockExamConfig.js'
 import {
   buildDomainStudyPool,
@@ -47,7 +47,7 @@ function formatSeconds(total) {
   return `${m}:${String(s).padStart(2, '0')}`
 }
 
-export default function MockExam({ onExit, examMode = false, missed = [] }) {
+export default function MockExam({ onExit, examMode = false, missed = [], onOpenLab }) {
   const showNavHint = useNavHint()
   const doneHintFired = useRef(false)
   const [phase, setPhase] = useState('intro') // intro | loading | active | done | review | error
@@ -120,12 +120,9 @@ export default function MockExam({ onExit, examMode = false, missed = [] }) {
       if (!staticMockExamReady(DOMAINS, getMc)) {
         throw new Error('Not enough static questions for a full exam. Add more questions to the bank.')
       }
-      const fullPool = DOMAINS.flatMap(d =>
-        d.objectives.flatMap(o => getMc(o.id).map(q => ({ ...q, objectiveId: o.id }))),
-      )
       const weakIds = computeCkuWeakness(missed).slice(0, 12).map(w => w.id)
       const final = weakIds.length
-        ? sampleAdaptiveQuestions(fullPool, weakIds, MOCK_EXAM_QUESTION_COUNT, shuffleArray)
+        ? buildBlueprintWeightedPool(DOMAINS, getMc, weakIds, shuffleArray)
         : buildStaticMockExamPool(DOMAINS, getMc, shuffleArray)
       setQuestions(final)
       setResponses({})
@@ -486,7 +483,7 @@ export default function MockExam({ onExit, examMode = false, missed = [] }) {
             <div style={{ fontWeight: 700, color: unanswered ? COLORS.amber : isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>
               {unanswered ? 'Unanswered' : isCorrect ? 'Correct' : 'Incorrect'}
             </div>
-            <AnswerReview q={q} selected={selected} hideExamTip={examMode && isStudyMode} />
+            <AnswerReview q={q} selected={selected} hideExamTip={examMode && isStudyMode} onOpenLab={onOpenLab} />
           </div>
         </div>
         <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
@@ -553,7 +550,7 @@ export default function MockExam({ onExit, examMode = false, missed = [] }) {
             }}>
               {isCurrentCorrect ? '✓ Correct!' : '✗ Incorrect'}
             </div>
-            <AnswerReview q={q} selected={selected} hideExamTip={examMode && isStudyMode} />
+            <AnswerReview q={q} selected={selected} hideExamTip={examMode && isStudyMode} onOpenLab={onOpenLab} />
           </div>
         )}
       </div>

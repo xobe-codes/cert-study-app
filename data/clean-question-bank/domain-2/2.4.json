@@ -582,32 +582,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Passive plus active forms an LACP channel."
+          "explanation": "Passive + active on both sides forms an LACP (802.3ad) EtherChannel — passive waits, active initiates."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The channel group will use PAgP. describes a mechanism that could sound plausible for etherchannel. Given etherchannel, The channel group will use LACP. matches the tested behavior — The channel group will use PAgP. applies a different mechanism.",
+            "explanation": "PAgP uses desirable/auto keywords — LACP uses active/passive. This pairing is LACP, not PAgP.",
+            "misconceptionTested": "Labeling LACP active/passive as PAgP",
             "whatItDoes": "The channel group will use PAgP. describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, The channel group will use LACP. matches the tested behavior — The channel group will use PAgP. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The channel group will use PAgP.\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, The channel group will use LACP. matches the tested behavior — The channel group will use PAgP. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The channel group will not be formed. describes a mechanism that could sound plausible for etherchannel. Given etherchannel, The channel group will use LACP. matches the tested behavior — The channel group will not be formed. applies a different mechanism.",
+            "explanation": "Passive + active is a valid LACP combination — passive + passive would fail to negotiate.",
+            "misconceptionTested": "Believing active/passive cannot form a channel",
             "whatItDoes": "The channel group will not be formed. describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, The channel group will use LACP. matches the tested behavior — The channel group will not be formed. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The channel group will not be formed\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, The channel group will use LACP. matches the tested behavior — The channel group will not be formed. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The channel group will use EtherChannel. is the wrong device role here. EtherChannel bundles links for bandwidth/redundancy — it is not inter-VLAN routing, MAC learning, or unknown-unicast flooding.",
+            "explanation": "EtherChannel is the feature name — the question asks which protocol negotiates; LACP (802.3ad) is the answer for active/passive.",
+            "misconceptionTested": "Answering generic EtherChannel when LACP protocol is required",
             "whatItDoes": "The channel group will use EtherChannel. describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, The channel group will use LACP. matches the tested behavior — The channel group will use EtherChannel. applies a different mechanism.",
-            "misconceptionTested": "Dragging link-aggregation into an unrelated L2/L3 behavior question"
+            "whyWrongHere": "Given etherchannel, The channel group will use LACP. matches the tested behavior — The channel group will use EtherChannel. applies a different mechanism."
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "LACP: active/passive or active/active. PAgP: desirable/auto."
       }
     },
     {

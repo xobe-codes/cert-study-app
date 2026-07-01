@@ -22,32 +22,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "ip route <network> <subnet-mask> <next-hop>. /16 = 255.255.0.0."
+          "explanation": "ip route 172.16.0.0 255.255.0.0 10.0.0.1 — network, dotted-decimal mask (/16 = 255.255.0.0), next-hop."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "ip route 172.16.0.0 0.0.255.255 10.0.0.1 reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "explanation": "0.0.255.255 is a wildcard mask syntax used in ACLs — static routes require a subnet mask, not a wildcard.",
+            "misconceptionTested": "Using ACL wildcard mask in static route command",
             "whatItDoes": "ip route 172.16.0.0 0.0.255.255 10.0.0.1 describes a mechanism that could sound plausible for static route syntax.",
-            "whyWrongHere": "Given static route syntax, ip route 172.16.0.0 255.255.0.0 10.0.0.1 matches the tested behavior — ip route 172.16.0.0 0.0.255.255 10.0.0.1 applies a different mechanism.",
-            "misconceptionTested": "A static route installs even if the next-hop is unreachable"
+            "whyWrongHere": "Given static route syntax, ip route 172.16.0.0 255.255.0.0 10.0.0.1 matches the tested behavior — ip route 172.16.0.0 0.0.255.255 10.0.0.1 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "static route 172.16.0.0/16 10.0.0.1 reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "explanation": "Cisco IOS uses ip route, not static route, and CIDR slash notation is not valid in classic IOS static route syntax.",
+            "misconceptionTested": "Inventing non-IOS static route syntax",
             "whatItDoes": "static route 172.16.0.0/16 10.0.0.1 describes a mechanism that could sound plausible for static route syntax.",
-            "whyWrongHere": "Given static route syntax, ip route 172.16.0.0 255.255.0.0 10.0.0.1 matches the tested behavior — static route 172.16.0.0/16 10.0.0.1 applies a different mechanism.",
-            "misconceptionTested": "A static route installs even if the next-hop is unreachable"
+            "whyWrongHere": "Given static route syntax, ip route 172.16.0.0 255.255.0.0 10.0.0.1 matches the tested behavior — static route 172.16.0.0/16 10.0.0.1 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "ip static-route 172.16.0.0 255.255.0.0 10.0.0.1 reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "explanation": "ip static-route is not valid IOS — the command is ip route <network> <mask> <next-hop>.",
+            "misconceptionTested": "Misspelling the ip route command",
             "whatItDoes": "ip static-route 172.16.0.0 255.255.0.0 10.0.0.1 describes a mechanism that could sound plausible for static route syntax.",
-            "whyWrongHere": "Given static route syntax, ip route 172.16.0.0 255.255.0.0 10.0.0.1 matches the tested behavior — ip static-route 172.16.0.0 255.255.0.0 10.0.0.1 applies a different mechanism.",
-            "misconceptionTested": "A static route installs even if the next-hop is unreachable"
+            "whyWrongHere": "Given static route syntax, ip route 172.16.0.0 255.255.0.0 10.0.0.1 matches the tested behavior — ip static-route 172.16.0.0 255.255.0.0 10.0.0.1 applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Exit-interface static routes are always preferred on Ethernet — Next-hop IP is preferred on multi-access segments to avoid ARP for every destination"
+        "examTip": "Static route: ip route + network + subnet mask + next-hop or exit interface."
       }
     },
     {

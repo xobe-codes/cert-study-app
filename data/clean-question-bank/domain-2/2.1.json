@@ -24,32 +24,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "A VLAN is a logical broadcast domain at Layer 2."
+          "explanation": "A VLAN segments a switch into separate Layer 2 broadcast domains — broadcasts stay within the VLAN."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Collision domain describes a mechanism that could sound plausible for vlan definition. Given vlan definition, Logical broadcast domain matches the tested behavior — Collision domain applies a different mechanism.",
+            "explanation": "Collision domains are separated by switches at half-duplex legacy hubs — VLANs define broadcast boundaries, not collision domains on modern full-duplex links.",
+            "misconceptionTested": "Confusing broadcast domain with collision domain",
             "whatItDoes": "Collision domain describes a mechanism that could sound plausible for vlan definition.",
-            "whyWrongHere": "Given vlan definition, Logical broadcast domain matches the tested behavior — Collision domain applies a different mechanism.",
-            "misconceptionTested": "Applying \"Collision domain\" without matching vlan definition"
+            "whyWrongHere": "Given vlan definition, Logical broadcast domain matches the tested behavior — Collision domain applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Physical cable describes a mechanism that could sound plausible for vlan definition. Given vlan definition, Logical broadcast domain matches the tested behavior — Physical cable applies a different mechanism.",
+            "explanation": "A VLAN is logical software configuration — not a physical cable or port grouping by wiring alone.",
+            "misconceptionTested": "Equating VLAN with physical media",
             "whatItDoes": "Physical cable describes a mechanism that could sound plausible for vlan definition.",
-            "whyWrongHere": "Given vlan definition, Logical broadcast domain matches the tested behavior — Physical cable applies a different mechanism.",
-            "misconceptionTested": "Applying \"Physical cable\" without matching vlan definition"
+            "whyWrongHere": "Given vlan definition, Logical broadcast domain matches the tested behavior — Physical cable applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Routing protocol describes a mechanism that could sound plausible for vlan definition. Given vlan definition, Logical broadcast domain matches the tested behavior — Routing protocol applies a different mechanism.",
+            "explanation": "Routing protocols operate at Layer 3 — VLANs are a Layer 2 segmentation feature.",
+            "misconceptionTested": "Naming a routing protocol as VLAN definition",
             "whatItDoes": "Routing protocol describes a mechanism that could sound plausible for vlan definition.",
-            "whyWrongHere": "Given vlan definition, Logical broadcast domain matches the tested behavior — Routing protocol applies a different mechanism.",
-            "misconceptionTested": "Applying \"Routing protocol\" without matching vlan definition"
+            "whyWrongHere": "Given vlan definition, Logical broadcast domain matches the tested behavior — Routing protocol applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
+        "examTip": "Access port = one VLAN; a VLAN is a logical broadcast domain."
       }
     },
     {
@@ -72,32 +72,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Traffic between VLANs must be routed by a Layer 3 device."
+          "explanation": "VLAN 10 and VLAN 20 are separate broadcast domains — traffic between them must be routed by a router or Layer 3 switch."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Another switch reflects a common trap: A VLAN exists on only one switch. A VLAN can span many switches over trunks.",
+            "explanation": "Another switch alone extends the same VLANs — it does not provide Layer 3 routing between VLAN 10 and VLAN 20.",
+            "misconceptionTested": "Adding L2 switch capacity instead of L3 routing",
             "whatItDoes": "Another switch describes a mechanism that could sound plausible for inter-vlan.",
-            "whyWrongHere": "Given inter-vlan, A router or L3 switch matches the tested behavior — Another switch applies a different mechanism.",
-            "misconceptionTested": "A VLAN exists on only one switch"
+            "whyWrongHere": "Given inter-vlan, A router or L3 switch matches the tested behavior — Another switch applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "A longer cable describes a mechanism that could sound plausible for inter-vlan. Given inter-vlan, A router or L3 switch matches the tested behavior — A longer cable applies a different mechanism.",
+            "explanation": "Cable length does not separate VLANs — the failure is missing inter-VLAN routing, not physical reach.",
+            "misconceptionTested": "Blaming physical layer for inter-VLAN isolation",
             "whatItDoes": "A longer cable describes a mechanism that could sound plausible for inter-vlan.",
-            "whyWrongHere": "Given inter-vlan, A router or L3 switch matches the tested behavior — A longer cable applies a different mechanism.",
-            "misconceptionTested": "Applying \"A longer cable\" without matching inter-vlan"
+            "whyWrongHere": "Given inter-vlan, A router or L3 switch matches the tested behavior — A longer cable applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "A trunk between the two hosts describes a mechanism that could sound plausible for inter-vlan. Given inter-vlan, A router or L3 switch matches the tested behavior — A trunk between the two hosts applies a different mechanism.",
+            "explanation": "A trunk between hosts is not the fix — hosts use access ports; inter-VLAN traffic needs an SVI or router interface.",
+            "misconceptionTested": "Trunking between end hosts instead of L3 routing",
             "whatItDoes": "A trunk between the two hosts describes a mechanism that could sound plausible for inter-vlan.",
-            "whyWrongHere": "Given inter-vlan, A router or L3 switch matches the tested behavior — A trunk between the two hosts applies a different mechanism.",
-            "misconceptionTested": "Applying \"A trunk between the two hosts\" without matching inter-vlan"
+            "whyWrongHere": "Given inter-vlan, A router or L3 switch matches the tested behavior — A trunk between the two hosts applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
+        "examTip": "Different VLANs on one campus switch → SVI or router for inter-VLAN routing."
       }
     },
     {
@@ -264,32 +264,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The access (data) VLAN plus a voice VLAN separate PC and phone traffic on one port."
+          "explanation": "Voice VLAN plus data VLAN on one access port separates PC traffic (untagged data VLAN) from phone signaling/media (tagged voice VLAN)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Two access VLANs are impossible describes a mechanism that could sound plausible for voice vlan. Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — Two access VLANs are impossible applies a different mechanism.",
+            "explanation": "Cisco supports data + voice VLAN on a single access port — the phone acts as a mini-switch for the PC.",
+            "misconceptionTested": "Believing one port cannot carry two VLAN types",
             "whatItDoes": "Two access VLANs are impossible describes a mechanism that could sound plausible for voice vlan.",
-            "whyWrongHere": "Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — Two access VLANs are impossible applies a different mechanism.",
-            "misconceptionTested": "Applying \"Two access VLANs are impossible\" without matching voice vlan"
+            "whyWrongHere": "Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — Two access VLANs are impossible applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "A trunk to the phone describes a mechanism that could sound plausible for voice vlan. Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — A trunk to the phone applies a different mechanism.",
+            "explanation": "The PC connects to the phone on an access port — the switch port is access with voice VLAN, not a trunk to the phone in the classic design.",
+            "misconceptionTested": "Calling the switch-to-phone link a trunk when it is access + voice VLAN",
             "whatItDoes": "A trunk to the phone describes a mechanism that could sound plausible for voice vlan.",
-            "whyWrongHere": "Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — A trunk to the phone applies a different mechanism.",
-            "misconceptionTested": "Applying \"A trunk to the phone\" without matching voice vlan"
+            "whyWrongHere": "Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — A trunk to the phone applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Port security describes a mechanism that could sound plausible for voice vlan. Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — Port security applies a different mechanism.",
+            "explanation": "Port security limits MAC addresses — it does not separate voice and data traffic types on a shared port.",
+            "misconceptionTested": "Using port security where voice/data VLAN separation is required",
             "whatItDoes": "Port security describes a mechanism that could sound plausible for voice vlan.",
-            "whyWrongHere": "Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — Port security applies a different mechanism.",
-            "misconceptionTested": "Applying \"Port security\" without matching voice vlan"
+            "whyWrongHere": "Given voice vlan, A data VLAN + a voice VLAN on the port matches the tested behavior — Port security applies a different mechanism."
           }
         ],
-        "examTip": "Access = one VLAN; trunk tags frames. Native VLAN must match on both ends or you get silent mis-forwarding."
+        "examTip": "Phone + PC on one port → data VLAN (untagged) + voice VLAN (tagged)."
       }
     },
     {

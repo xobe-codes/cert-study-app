@@ -22,32 +22,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Encryption protects confidentiality. Integrity is addressed by hashing; availability by redundancy."
+          "explanation": "Encryption protects confidentiality — ciphertext hides data from unauthorized readers in transit or at rest."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Availability reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
+            "explanation": "Availability ensures systems stay up — redundancy and failover address availability, not encryption.",
+            "misconceptionTested": "Mapping encryption to availability",
             "whatItDoes": "Availability describes a mechanism that could sound plausible for CIA triad confidentiality.",
-            "whyWrongHere": "Given CIA triad confidentiality, Confidentiality matches the tested behavior — Availability applies a different mechanism.",
-            "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
+            "whyWrongHere": "Given CIA triad confidentiality, Confidentiality matches the tested behavior — Availability applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Integrity reflects a common trap: Integrity = detecting CHANGES (hashing). NOT keeping data private. That is confidentiality. Integrity uses hashing to detect unauthorized modification.",
+            "explanation": "Integrity detects tampering — hashing and digital signatures address integrity; encryption hides content.",
+            "misconceptionTested": "Confusing confidentiality with integrity",
             "whatItDoes": "Integrity describes a mechanism that could sound plausible for CIA triad confidentiality.",
-            "whyWrongHere": "Given CIA triad confidentiality, Confidentiality matches the tested behavior — Integrity applies a different mechanism.",
-            "misconceptionTested": "Integrity = detecting CHANGES (hashing). NOT keeping data private"
+            "whyWrongHere": "Given CIA triad confidentiality, Confidentiality matches the tested behavior — Integrity applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Authentication describes a mechanism that could sound plausible for CIA triad confidentiality. Given CIA triad confidentiality, Confidentiality matches the tested behavior — Authentication applies a different mechanism.",
+            "explanation": "Authentication proves identity — encryption does not by itself verify who sent the data.",
+            "misconceptionTested": "Equating encryption with authentication",
             "whatItDoes": "Authentication describes a mechanism that could sound plausible for CIA triad confidentiality.",
-            "whyWrongHere": "Given CIA triad confidentiality, Confidentiality matches the tested behavior — Authentication applies a different mechanism.",
-            "misconceptionTested": "Applying \"Authentication\" without matching CIA triad confidentiality"
+            "whyWrongHere": "Given CIA triad confidentiality, Confidentiality matches the tested behavior — Authentication applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Integrity = detecting CHANGES (hashing). NOT keeping data private — That is confidentiality. Integrity uses hashing to detect unauthorized modification"
+        "examTip": "CIA: Confidentiality = encryption; Integrity = hash; Availability = redundancy."
       }
     },
     {
@@ -618,35 +618,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"IPS\"."
+          "explanation": "IPS (Intrusion Prevention System) detects and actively blocks malicious traffic inline — prevention, not just detection."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Honey pots describes a mechanism that could sound plausible for security concepts. Given security concepts, IPS matches the tested behavior — Honey pots applies a different mechanism.",
+            "explanation": "Honeypots decoy attackers for analysis — they do not inline-prevent intrusions across the production network.",
+            "misconceptionTested": "Confusing honeypot decoy with inline prevention",
             "whatItDoes": "Honey pots describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — Honey pots applies a different mechanism.",
-            "misconceptionTested": "Applying \"Honey pots\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — Honey pots applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "IDS describes a mechanism that could sound plausible for security concepts. Given security concepts, IPS matches the tested behavior — IDS applies a different mechanism.",
+            "explanation": "IDS detects and alerts but does not block inline — IPS adds active prevention on the traffic path.",
+            "misconceptionTested": "Selecting detect-only IDS when prevention is required",
             "whatItDoes": "IDS describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — IDS applies a different mechanism.",
-            "misconceptionTested": "Applying \"IDS\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — IDS applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "HIDS describes a mechanism that could sound plausible for security concepts. Given security concepts, IPS matches the tested behavior — HIDS applies a different mechanism.",
+            "explanation": "HIDS monitors a single host — the question asks about network-level intrusion prevention.",
+            "misconceptionTested": "Choosing host-based detection for network prevention question",
             "whatItDoes": "HIDS describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — HIDS applies a different mechanism.",
-            "misconceptionTested": "Applying \"HIDS\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — HIDS applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
+        "examTip": "IDS = detect/alert. IPS = detect + block inline."
       }
     },
     {
@@ -1113,35 +1110,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"ACLs\"."
+          "explanation": "Perimeter ACLs can deny packets with source addresses that should not arrive from outside (anti-spoofing / BCP 38 style filtering)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Intrusion detection systems describes a mechanism that could sound plausible for security concepts. Given security concepts, ACLs matches the tested behavior — Intrusion detection systems applies a different mechanism.",
+            "explanation": "IDS detects suspicious activity — it does not filter spoofed source IPs at the perimeter like an ACL can.",
+            "misconceptionTested": "Using IDS where ingress ACL filtering is needed",
             "whatItDoes": "Intrusion detection systems describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, ACLs matches the tested behavior — Intrusion detection systems applies a different mechanism.",
-            "misconceptionTested": "Applying \"Intrusion detection systems\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, ACLs matches the tested behavior — Intrusion detection systems applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SSL describes a mechanism that could sound plausible for security concepts. Given security concepts, ACLs matches the tested behavior — SSL applies a different mechanism.",
+            "explanation": "SSL/TLS encrypts application traffic — it does not validate or block spoofed IP source addresses at the edge.",
+            "misconceptionTested": "Expecting SSL to prevent IP spoofing",
             "whatItDoes": "SSL describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, ACLs matches the tested behavior — SSL applies a different mechanism.",
-            "misconceptionTested": "Applying \"SSL\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, ACLs matches the tested behavior — SSL applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Host intrusion detection systems describes a mechanism that could sound plausible for security concepts. Given security concepts, ACLs matches the tested behavior — Host intrusion detection systems applies a different mechanism.",
+            "explanation": "HIDS protects individual hosts — spoofing at the perimeter requires ingress filtering on the border router/firewall.",
+            "misconceptionTested": "Relying on host IDS for perimeter anti-spoofing",
             "whatItDoes": "Host intrusion detection systems describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, ACLs matches the tested behavior — Host intrusion detection systems applies a different mechanism.",
-            "misconceptionTested": "Applying \"Host intrusion detection systems\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, ACLs matches the tested behavior — Host intrusion detection systems applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "Block spoofed internal sources at the edge with ingress ACLs (deny impossible source IPs)."
       }
     },
     {

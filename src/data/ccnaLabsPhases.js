@@ -807,10 +807,712 @@ const L3_EC = mkGuided({
   ],
 })
 
+/* ---- Lab Wave 99+ — objectives without labs (1.1–1.4, 1.7–1.12, 2.2, 2.7, 4.7, 4.9, 4.10, 5.1, 5.2, 5.7) ---- */
+
+const CLI_D11_11 = {
+  'show ip route': `Codes: C - connected, S - static, R - RIP, O - OSPF
+Gateway of last resort is 10.1.1.1 to network 0.0.0.0
+
+C    192.168.10.0/24 is directly connected, GigabitEthernet0/0
+L    192.168.10.1/32 is directly connected, GigabitEthernet0/0
+O    10.20.0.0/16 [110/20] via 10.1.1.2, 00:05:12, GigabitEthernet0/1
+
+Device role: R1 = Layer 3 router — routing table, default gateway for LANs.`,
+  'show mac address-table': `Mac Address Table
+Vlan    Mac Address       Type        Ports
+----    -----------       ----        -----
+  10    aaaa.bbbb.cccc    DYNAMIC     Fa0/5
+  10    0011.2233.4455    STATIC      Fa0/1
+
+Device role: SW1 = Layer 2 switch — forwards frames using MAC/CAM table within VLANs.`,
+  'show wireless summary': `Number of APs........................ 12
+Number of WLANs...................... 3
+Global AP User Name................. admin
+
+Device role: WLC1 = wireless LAN controller — centralizes lightweight AP config and policy.`,
+}
+
+const LAB_D11_11 = mkInterpretGuided({
+  id: 'LAB-D11-11', title: 'Identify Network Components from Show Output', domainId: 'fundamentals', objectiveId: '1.1',
+  ckuIds: ['CKU-ROUTER', 'CKU-SWITCH', 'CKU-FIREWALL', 'CKU-AP-WLAN'],
+  chapter: '1.1 Network components', minutes: 10, cliShowOutput: CLI_D11_11,
+  scenario: 'A branch site has R1 (router), SW1 (access switch), and WLC1 (wireless controller). Read static show output from each device type and map OSI layer and role: router = L3 inter-network, switch = L2 MAC forwarding, WLC = AP management.',
+  goals: ['Match show ip route to router role', 'Match MAC table to L2 switch', 'Identify WLC as AP/controller manager'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Router role', device: 'R1', instruction: 'Run show ip route — R1 forwards between subnets using a routing table (Layer 3).', expectedCommands: ['enable', 'show ip route'] },
+    { id: 't2', order: 2, title: 'Switch role', device: 'SW1', instruction: 'Run show mac address-table — SW1 learns MACs and forwards frames within VLANs (Layer 2).', expectedCommands: ['show mac address-table'] },
+    { id: 't3', order: 3, title: 'WLC role', device: 'WLC1', instruction: 'Run show wireless summary — WLC1 manages lightweight APs and WLAN policy.', expectedCommands: ['show wireless summary'] },
+  ],
+  required: [
+    { device: 'R1', command: 'show ip route' },
+    { device: 'SW1', command: 'show mac address-table' },
+    { device: 'WLC1', command: 'show wireless summary' },
+  ],
+  verify: ['show ip route', 'show mac address-table', 'show wireless summary'],
+  verifyCmd: 'show ip route', verifyExpect: 'directly connected',
+  verificationChecks: [
+    { id: 'v1', device: 'R1', command: 'show ip route', expectedResult: 'Routing table with connected and OSPF routes', passCondition: 'router L3 role' },
+    { id: 'v2', device: 'SW1', command: 'show mac address-table', expectedResult: 'MAC-to-port mappings per VLAN', passCondition: 'switch L2 role' },
+  ],
+  success: ['Router identified by routing table', 'Switch identified by MAC table', 'WLC identified by AP/WLAN summary'],
+  mistakes: ['Calling an AP a router', 'Expecting L2 switch to route between VLANs without L3 device'],
+  topoNodes: [{ id: 'r1', label: 'R1 L3', type: 'router', x: 50, y: 20 }, { id: 'sw1', label: 'SW1 L2', type: 'switch', x: 30, y: 55 }, { id: 'wlc', label: 'WLC1', type: 'server', x: 70, y: 55 }],
+  topoLinks: [{ id: 'l1', source: 'r1', target: 'sw1', status: 'forwarding' }, { id: 'l2', source: 'wlc', target: 'sw1', status: 'forwarding' }],
+  diagNodes: [{ id: 'rtr', label: 'Router L3', type: 'router', x: 25, y: 50 }, { id: 'sw', label: 'Switch L2', type: 'switch', x: 50, y: 50, status: 'highlighted' }, { id: 'wlc', label: 'WLC/AP', type: 'server', x: 75, y: 50 }],
+  diagLinks: [{ id: 'd1', source: 'rtr', target: 'sw', label: 'inter-VLAN', status: 'forwarded' }],
+  flowSteps: [
+    { id: 's1', order: 1, title: 'Router', action: 'R1 routes packets between subnets via routing table', successState: 'noted' },
+    { id: 's2', order: 2, title: 'Switch', action: 'SW1 forwards frames using learned MAC addresses', successState: 'noted' },
+    { id: 's3', order: 3, title: 'Controller', action: 'WLC pushes config to lightweight APs', successState: 'noted' },
+  ],
+})
+
+const CLI_D11_12 = {
+  'show cdp neighbors detail': `Device ID: SW-DIST-01
+Entry address(es): 10.10.1.2
+Platform: cisco C9300, Capabilities: Switch IGMP
+Interface: GigabitEthernet0/1, Port ID (outgoing port): GigabitEthernet1/0/48
+Holdtime : 179 sec
+
+Topology note: Access SW-ACC-01 uplinks to Distribution SW-DIST-01 (three-tier campus).
+Spine-leaf alternative: every leaf connects to every spine — no distribution tier.`,
+  'show ip route summary': `Route Source    Networks
+connected       4
+static          2
+ospf 1          18
+
+WAN hub-spoke: branch routers use default route to HQ hub (cost-effective).
+Full mesh: every site has direct links (redundant, expensive).`,
+}
+
+const LAB_D11_12 = mkInterpretGuided({
+  id: 'LAB-D11-12', title: 'Interpret Campus and WAN Topology Architectures', domainId: 'fundamentals', objectiveId: '1.2',
+  ckuIds: ['CKU-CAMPUS-TIER', 'CKU-SPINE-LEAF', 'CKU-WAN-TOPO', 'CKU-CLOUD-ONPREM'],
+  chapter: '1.2 Topology architectures', minutes: 10, cliShowOutput: CLI_D11_12,
+  scenario: 'Read CDP neighbor and routing summaries to identify three-tier campus (access→distribution→core), contrast spine-leaf data-center fabric, and recognize hub-and-spoke WAN vs full mesh.',
+  goals: ['Identify access/distribution/core tiers', 'Contrast spine-leaf with three-tier', 'Recognize hub-spoke WAN routing'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Campus tiers', device: 'SW1', instruction: 'Run show cdp neighbors detail — access switch uplinks to distribution layer.', expectedCommands: ['enable', 'show cdp neighbors detail'] },
+    { id: 't2', order: 2, title: 'WAN routing pattern', device: 'R1', instruction: 'Run show ip route summary — branch sites often use static/default routes to a central hub.', expectedCommands: ['show ip route summary'] },
+  ],
+  required: [{ device: 'SW1', command: 'show cdp neighbors detail' }, { device: 'R1', command: 'show ip route summary' }],
+  verify: ['show cdp neighbors detail', 'show ip route summary'],
+  verifyCmd: 'show cdp neighbors detail', verifyExpect: 'SW-DIST',
+  verificationChecks: [{ id: 'v1', device: 'SW1', command: 'show cdp neighbors detail', expectedResult: 'Access uplink to distribution switch', passCondition: 'campus tier' }],
+  success: ['Three-tier access→distribution identified', 'Spine-leaf noted as DC alternative', 'Hub-spoke WAN pattern recognized'],
+  mistakes: ['Confusing spine-leaf with three-tier campus', 'Assuming full mesh is default for all WANs'],
+  topoNodes: [{ id: 'acc', label: 'Access', type: 'switch', x: 30, y: 70 }, { id: 'dist', label: 'Distribution', type: 'switch', x: 50, y: 45 }, { id: 'core', label: 'Core', type: 'router', x: 50, y: 20 }],
+  topoLinks: [{ id: 'l1', source: 'acc', target: 'dist', status: 'forwarding' }, { id: 'l2', source: 'dist', target: 'core', status: 'forwarding' }],
+  diagNodes: [{ id: 'tier', label: '3-tier campus', type: 'process', x: 35, y: 50, status: 'highlighted' }, { id: 'spine', label: 'Spine-leaf', type: 'process', x: 65, y: 50 }],
+  diagLinks: [{ id: 'd1', source: 'tier', target: 'spine', label: 'vs DC fabric', status: 'forwarding' }],
+  flowSteps: [
+    { id: 's1', order: 1, title: 'Campus', action: 'Access connects endpoints; distribution aggregates; core provides high-speed backbone', successState: 'noted' },
+    { id: 's2', order: 2, title: 'WAN', action: 'Hub-spoke routes all branches through central site; mesh connects every site directly', successState: 'noted' },
+  ],
+})
+
+const CLI_D11_13 = {
+  'show interfaces gi0/1': `GigabitEthernet0/1 is up, line protocol is up
+  Hardware is Gigabit Ethernet, address is aaaa.bbbb.cccc
+  Media type is 10/100/1000BaseTX (RJ-45 copper UTP Cat6)
+  Full-duplex, 1000Mb/s
+  Input flow-control is off, output flow-control is off`,
+  'show interfaces gi0/2': `GigabitEthernet0/2 is up, line protocol is up
+  Hardware is Gigabit Ethernet
+  Media type is SFP 1000Base-LX (single-mode fiber, LC connector)
+  Full-duplex, 1000Mb/s`,
+  'show inventory': `NAME: "SFP-GE-L", DESCR: "1000BaseLX SFP transceiver"
+PID: GLC-LH-SMD        , VID: V01  , SN: FNS12345678
+
+Copper UTP: max ~100 m, RJ-45. Fiber SM: long distance (yellow), MM: shorter (orange/aqua).`,
+}
+
+const LAB_D11_13 = mkInterpretGuided({
+  id: 'LAB-D11-13', title: 'Identify Physical Interface and Cabling Types', domainId: 'fundamentals', objectiveId: '1.3',
+  ckuIds: ['CKU-UTP', 'CKU-FIBER', 'CKU-CABLE-TYPES', 'CKU-SFP'],
+  chapter: '1.3 Physical interfaces and cabling', minutes: 10, cliShowOutput: CLI_D11_13,
+  scenario: 'SW1 has Gi0/1 on copper UTP (RJ-45 Cat6) to an access switch and Gi0/2 on SFP fiber for a long uplink. Read show output to distinguish copper vs fiber, SM vs MM, and modular SFP transceivers.',
+  goals: ['Read media type from show interfaces', 'Contrast UTP copper with SFP fiber', 'Identify SFP as hot-swappable transceiver'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Copper port', device: 'SW1', instruction: 'Run show interfaces gi0/1 — note 1000BaseTX RJ-45 copper UTP.', expectedCommands: ['enable', 'show interfaces gi0/1'] },
+    { id: 't2', order: 2, title: 'Fiber SFP port', device: 'SW1', instruction: 'Run show interfaces gi0/2 — SFP 1000Base-LX single-mode fiber with LC connector.', expectedCommands: ['show interfaces gi0/2'] },
+    { id: 't3', order: 3, title: 'Transceiver inventory', device: 'SW1', instruction: 'Run show inventory — confirm modular SFP transceiver model.', expectedCommands: ['show inventory'] },
+  ],
+  required: [{ device: 'SW1', command: 'show interfaces gi0/1' }, { device: 'SW1', command: 'show interfaces gi0/2' }, { device: 'SW1', command: 'show inventory' }],
+  verify: ['show interfaces gi0/1', 'show interfaces gi0/2', 'show inventory'],
+  verifyCmd: 'show interfaces gi0/1', verifyExpect: 'BaseTX',
+  verificationChecks: [
+    { id: 'v1', device: 'SW1', command: 'show interfaces gi0/1', expectedResult: 'RJ-45 copper UTP', passCondition: 'copper media' },
+    { id: 'v2', device: 'SW1', command: 'show interfaces gi0/2', expectedResult: 'SFP fiber LX single-mode', passCondition: 'fiber media' },
+  ],
+  success: ['Copper UTP identified on Gi0/1', 'SFP fiber identified on Gi0/2', 'SFP transceiver confirmed in inventory'],
+  mistakes: ['Confusing straight-through vs crossover on modern auto-MDIX ports', 'Mixing single-mode (long) with multimode (short) fiber'],
+  topoNodes: [{ id: 'sw1', label: 'SW1', type: 'switch', x: 50, y: 40 }, { id: 'copper', label: 'UTP Cat6', type: 'pc', x: 25, y: 70 }, { id: 'fiber', label: 'SM fiber', type: 'router', x: 75, y: 70 }],
+  topoLinks: [{ id: 'l1', source: 'sw1', target: 'copper', label: 'Gi0/1', status: 'forwarding' }, { id: 'l2', source: 'sw1', target: 'fiber', label: 'Gi0/2 SFP', status: 'forwarding' }],
+  diagNodes: [{ id: 'utp', label: 'Copper UTP', type: 'process', x: 30, y: 55 }, { id: 'sfp', label: 'SFP Fiber', type: 'process', x: 70, y: 55, status: 'highlighted' }],
+  diagLinks: [{ id: 'd1', source: 'utp', target: 'sfp', label: 'media choice', status: 'forwarding' }],
+  flowSteps: [{ id: 's1', order: 1, title: 'Copper', action: 'UTP RJ-45 for short LAN runs ≤100 m', successState: 'noted' }, { id: 's2', order: 2, title: 'Fiber', action: 'SFP transceivers enable fiber uplinks for distance', successState: 'noted' }],
+})
+
+const CLI_D11_14 = {
+  'show interfaces gi0/5': `GigabitEthernet0/5 is up, line protocol is up (connected)
+  Full-duplex, 1000Mb/s, media type is 10/100/1000BaseTX
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 output errors, 0 collisions, 0 interface resets`,
+  'show interfaces gi0/6': `GigabitEthernet0/6 is up, line protocol is up (connected)
+  Half-duplex, 100Mb/s, media type is 10/100/1000BaseTX
+     4821 input errors, 4800 CRC, 0 frame, 0 overrun, 0 ignored
+     1205 output errors, 890 collisions, 0 interface resets
+
+DIAGNOSIS: Duplex mismatch — remote end likely full-duplex 1000 while Gi0/6 forced half-duplex.`,
+  'show interfaces gi0/6 status': `Port      Name               Status       Vlan       Duplex  Speed Type
+Gi0/6                        connected    1          half    100   10/100/1000BaseTX`,
+}
+
+const LAB_D11_14 = mkInterpretGuided({
+  id: 'LAB-D11-14', title: 'Diagnose Interface and Cable Issues from Counters', domainId: 'fundamentals', objectiveId: '1.4',
+  ckuIds: ['CKU-IF-ERRORS', 'CKU-CRC', 'CKU-DUPLEX-MISMATCH', 'CKU-COLLISIONS'],
+  chapter: '1.4 Interface and cable issues', minutes: 10, cliShowOutput: CLI_D11_14,
+  scenario: 'Gi0/5 is healthy full-duplex 1000 Mb/s. Gi0/6 shows high CRC errors, collisions, and half-duplex — classic duplex mismatch. Read show interfaces output to isolate Layer 1 physical problems.',
+  goals: ['Interpret CRC and collision counters', 'Identify duplex mismatch symptoms', 'Contrast healthy vs failing interface'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Healthy interface', device: 'SW1', instruction: 'Run show interfaces gi0/5 — zero errors, full-duplex 1000 Mb/s baseline.', expectedCommands: ['enable', 'show interfaces gi0/5'] },
+    { id: 't2', order: 2, title: 'Error counters', device: 'SW1', instruction: 'Run show interfaces gi0/6 — note CRC errors and collisions indicating duplex mismatch.', expectedCommands: ['show interfaces gi0/6'] },
+    { id: 't3', order: 3, title: 'Duplex verify', device: 'SW1', instruction: 'Run show interfaces gi0/6 status — confirm half-duplex vs expected full-duplex.', expectedCommands: ['show interfaces gi0/6 status'] },
+  ],
+  required: [{ device: 'SW1', command: 'show interfaces gi0/5' }, { device: 'SW1', command: 'show interfaces gi0/6' }, { device: 'SW1', command: 'show interfaces gi0/6 status' }],
+  verify: ['show interfaces gi0/5', 'show interfaces gi0/6', 'show interfaces gi0/6 status'],
+  verifyCmd: 'show interfaces gi0/6', verifyExpect: 'CRC',
+  verificationChecks: [{ id: 'v1', device: 'SW1', command: 'show interfaces gi0/6', expectedResult: 'High CRC + collisions on half-duplex', passCondition: 'duplex mismatch' }],
+  success: ['Healthy port has zero CRC', 'Gi0/6 CRC/collisions traced to duplex mismatch', 'Fix: match speed/duplex both ends or use auto'],
+  mistakes: ['Ignoring CRC as cable/EMI vs always blaming config', 'Leaving one side forced while other auto-negotiates'],
+  topoNodes: [{ id: 'sw1', label: 'SW1', type: 'switch', x: 50, y: 40 }, { id: 'ok', label: 'Gi0/5 OK', type: 'pc', x: 25, y: 70 }, { id: 'bad', label: 'Gi0/6 mismatch', type: 'pc', x: 75, y: 70, status: 'error' }],
+  topoLinks: [{ id: 'l1', source: 'sw1', target: 'ok', status: 'forwarding' }, { id: 'l2', source: 'sw1', target: 'bad', status: 'blocked' }],
+  diagNodes: [{ id: 'crc', label: 'CRC errors', type: 'process', x: 40, y: 55, status: 'error' }, { id: 'fix', label: 'Match duplex', type: 'process', x: 65, y: 55, status: 'highlighted' }],
+  diagLinks: [{ id: 'd1', source: 'crc', target: 'fix', status: 'forwarded' }],
+  flowSteps: [{ id: 's1', order: 1, title: 'Symptom', action: 'CRC errors and collisions on half-duplex link', successState: 'noted' }, { id: 's2', order: 2, title: 'Fix', action: 'Align speed/duplex on both ends — prefer auto-auto', successState: 'noted' }],
+})
+
+const CLI_D11_17 = {
+  'show ip route': `C    192.168.1.0/24 is directly connected, Vlan10
+C    10.0.0.0/8 is directly connected, GigabitEthernet0/0
+S    0.0.0.0/0 [1/0] via 203.0.113.1
+
+RFC 1918 private ranges (NOT Internet-routable):
+  10.0.0.0/8  |  172.16.0.0/12  |  192.168.0.0/16
+10.0.0.0/8 above is private — requires NAT for Internet access.`,
+  'show ip nat translations': `Pro  Inside global     Inside local       Outside local      Outside global
+tcp  203.0.113.50:80   10.0.0.10:80       ---                ---
+
+Inside local 10.0.0.10 (private RFC1918) translated to public 203.0.113.50.`,
+}
+
+const LAB_D11_17 = mkInterpretGuided({
+  id: 'LAB-D11-17', title: 'Identify RFC 1918 Private IPv4 Addressing', domainId: 'fundamentals', objectiveId: '1.7',
+  ckuIds: ['CKU-RFC1918', 'CKU-PUBLIC-PRIVATE', 'CKU-APIPA'],
+  chapter: '1.7 Private IPv4 addressing', minutes: 10, cliShowOutput: CLI_D11_17,
+  scenario: 'R1 uses 10.0.0.0/8 (RFC 1918 private) internally and NAT to reach the Internet. Read routing and NAT tables to distinguish private vs public addresses and explain why NAT is required.',
+  goals: ['Recall RFC 1918 ranges 10/8, 172.16/12, 192.168/16', 'Contrast private inside-local with public inside-global', 'Recognize APIPA 169.254.x.x as DHCP failure indicator'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Private routes', device: 'R1', instruction: 'Run show ip route — identify 10.0.0.0/8 as RFC 1918 private (not Internet-routable).', expectedCommands: ['enable', 'show ip route'] },
+    { id: 't2', order: 2, title: 'NAT translation', device: 'R1', instruction: 'Run show ip nat translations — inside-local private address mapped to public global.', expectedCommands: ['show ip nat translations'] },
+  ],
+  required: [{ device: 'R1', command: 'show ip route' }, { device: 'R1', command: 'show ip nat translations' }],
+  verify: ['show ip route', 'show ip nat translations'],
+  verifyCmd: 'show ip route', verifyExpect: '10.0.0.0',
+  verificationChecks: [{ id: 'v1', device: 'R1', command: 'show ip nat translations', expectedResult: '10.0.0.10 private → 203.0.113.50 public', passCondition: 'NAT private to public' }],
+  success: ['RFC 1918 10/8 identified as private', 'NAT maps private to public for Internet', 'APIPA 169.254.x.x noted as DHCP failure'],
+  mistakes: ['Routing private addresses on the public Internet without NAT', 'Confusing link-local APIPA with RFC 1918 private'],
+  topoNodes: [{ id: 'r1', label: 'R1 NAT', type: 'router', x: 50, y: 40 }, { id: 'lan', label: '10.0.0.0/8 private', type: 'subnet', x: 25, y: 70 }, { id: 'wan', label: '203.0.113.x public', type: 'cloud', x: 75, y: 70 }],
+  topoLinks: [{ id: 'l1', source: 'lan', target: 'r1', status: 'forwarding' }, { id: 'l2', source: 'r1', target: 'wan', label: 'NAT', status: 'forwarding' }],
+  diagNodes: [{ id: 'priv', label: 'RFC1918 private', type: 'subnet', x: 30, y: 55 }, { id: 'pub', label: 'Public global', type: 'subnet', x: 70, y: 55, status: 'highlighted' }],
+  diagLinks: [{ id: 'd1', source: 'priv', target: 'pub', label: 'NAT', status: 'forwarded' }],
+  flowSteps: [{ id: 's1', order: 1, title: 'Private', action: 'RFC 1918 addresses reused inside organizations', successState: 'noted' }, { id: 's2', order: 2, title: 'NAT', action: 'NAT translates private to public at Internet edge', successState: 'noted' }],
+})
+
+const LAB_D11_18 = mkGuided({
+  id: 'LAB-D11-18', title: 'Configure and Verify IPv6 Addressing on a Router', domainId: 'fundamentals', objectiveId: '1.8',
+  ckuIds: ['CKU-IPV6-ADDRESSING', 'CKU-IPV6-SHORTENING', 'CKU-IPV6-SLAAC'],
+  chapter: '1.8 IPv6 addressing', minutes: 12,
+  scenario: 'R1 Gi0/0 connects the LAN with prefix 2001:db8:acad:1::/64. Enable IPv6 routing globally, assign 2001:db8:acad:1::1/64 on Gi0/0, and verify with show ipv6 interface brief.',
+  goals: ['ipv6 unicast-routing globally', 'Assign /64 global unicast on interface', 'Verify with show ipv6 interface brief'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Enable IPv6 routing', device: 'R1', instruction: 'Enable IPv6 unicast routing globally.', expectedCommands: ['ipv6 unicast-routing'] },
+    { id: 't2', order: 2, title: 'Assign IPv6 address', device: 'R1', instruction: 'On Gi0/0 assign 2001:db8:acad:1::1/64.', expectedCommands: ['interface gi0/0', 'ipv6 address 2001:db8:acad:1::1/64', 'no shutdown'] },
+    { id: 't3', order: 3, title: 'Verify', device: 'R1', instruction: 'Confirm global and link-local addresses on Gi0/0.', expectedCommands: ['show ipv6 interface brief'] },
+  ],
+  required: [{ device: 'R1', command: 'ipv6 unicast-routing' }, { device: 'R1', command: 'ipv6 address 2001:db8:acad:1::1/64' }],
+  verify: ['show ipv6 interface brief', 'show ipv6 interface gi0/0'],
+  verifyCmd: 'show ipv6 interface brief', verifyExpect: '2001:db8:acad:1::1',
+  success: ['IPv6 routing enabled', 'Global /64 assigned on Gi0/0', 'Link-local FE80:: auto-assigned'],
+  mistakes: ['Forgetting ipv6 unicast-routing', 'Using non-/64 prefix with SLAAC expectation'],
+  topoNodes: [{ id: 'r1', label: 'R1', type: 'router', x: 50, y: 40 }, { id: 'lan', label: 'LAN /64', type: 'subnet', x: 50, y: 70 }],
+  topoLinks: [{ id: 'l1', source: 'r1', target: 'lan', label: 'Gi0/0', status: 'forwarding' }],
+  diagNodes: [{ id: 'gua', label: '2001:db8::/64 GUA', type: 'subnet', x: 40, y: 55, status: 'highlighted' }, { id: 'll', label: 'FE80:: link-local', type: 'process', x: 65, y: 55 }],
+  diagLinks: [{ id: 'd1', source: 'gua', target: 'll', status: 'forwarded' }],
+  flowSteps: [{ id: 's1', order: 1, title: 'Config', action: 'Router advertises /64 prefix for SLAAC', successState: 'matched' }, { id: 's2', order: 2, title: 'Verify', action: 'show ipv6 interface brief lists GUA + link-local', successState: 'forwarded' }],
+})
+
+const CLI_D11_19 = {
+  'show ipv6 interface gi0/0': `GigabitEthernet0/0 is up, line protocol is up
+  IPv6 is enabled, link-local address is FE80::1:1FF:FE00:1
+  Global unicast address(es):
+    2001:DB8:ACAD:1::1, subnet is 2001:DB8:ACAD:1::/64 [GUA — public routable 2000::/3]
+  Joined group address(es):
+    FF02::1  (all-nodes link-local multicast)
+    FF02::2  (all-routers link-local multicast)
+
+Address type summary:
+  GUA 2000::/3 — public routable (like public IPv4)
+  ULA FD00::/8 — private IPv6 (like RFC1918)
+  Link-local FE80::/10 — on-link only, never routed
+  Multicast FF00::/8 — replaces IPv4 broadcast`,
+}
+
+const LAB_D11_19 = mkInterpretGuided({
+  id: 'LAB-D11-19', title: 'Compare IPv6 Address Types from Interface Output', domainId: 'fundamentals', objectiveId: '1.9',
+  ckuIds: ['CKU-IPV6-GLOBAL-UNICAST', 'CKU-IPV6-UNIQUE-LOCAL', 'CKU-IPV6-LINK-LOCAL', 'CKU-IPV6-MULTICAST'],
+  chapter: '1.9 IPv6 address types', minutes: 10, cliShowOutput: CLI_D11_19,
+  scenario: 'R1 Gi0/0 shows global unicast (2001:db8::), link-local (FE80::), and joined multicast groups (FF02::1, FF02::2). Read output to classify GUA, ULA, link-local, and multicast — IPv6 has no broadcast.',
+  goals: ['Classify GUA 2000::/3 vs ULA FD00::/8', 'Explain link-local FE80::/10 scope', 'Identify multicast FF02::1 and FF02::2'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Address types', device: 'R1', instruction: 'Run show ipv6 interface gi0/0 — list GUA, link-local, and multicast groups.', expectedCommands: ['enable', 'show ipv6 interface gi0/0'] },
+  ],
+  required: [{ device: 'R1', command: 'show ipv6 interface gi0/0' }],
+  verify: ['show ipv6 interface gi0/0'],
+  verifyCmd: 'show ipv6 interface gi0/0', verifyExpect: 'FE80',
+  verificationChecks: [
+    { id: 'v1', device: 'R1', command: 'show ipv6 interface gi0/0', expectedResult: 'GUA 2001: + link-local FE80 + FF02 groups', passCondition: 'address type classification' },
+  ],
+  success: ['GUA in 2000::/3 identified', 'Link-local FE80 never routed off-link', 'Multicast replaces broadcast'],
+  mistakes: ['Expecting IPv6 broadcast address', 'Routing link-local addresses off the local segment'],
+  topoNodes: [{ id: 'r1', label: 'R1 Gi0/0', type: 'router', x: 50, y: 45 }],
+  topoLinks: [],
+  diagNodes: [{ id: 'gua', label: 'GUA 2000::/3', type: 'subnet', x: 25, y: 55 }, { id: 'll', label: 'FE80::/10', type: 'process', x: 50, y: 55, status: 'highlighted' }, { id: 'mc', label: 'FF00::/8', type: 'process', x: 75, y: 55 }],
+  diagLinks: [{ id: 'd1', source: 'gua', target: 'll', status: 'forwarding' }],
+  flowSteps: [{ id: 's1', order: 1, title: 'Types', action: 'Every interface has link-local; GUA for routed traffic; multicast for groups', successState: 'noted' }],
+})
+
+const CLI_D11_110 = {
+  'ipconfig /all': `Windows IP Configuration
+   Host Name . . . . . . . . . . . . : PC-CORP-01
+   IPv4 Address. . . . . . . . . . . : 192.168.10.45(Preferred)
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 192.168.10.1
+   DHCP Server . . . . . . . . . . . : 192.168.10.1
+   DNS Servers . . . . . . . . . . . : 192.168.10.1
+   Physical Address. . . . . . . . . : A4-B1-C2-D3-E4-F5
+
+Verify checklist: IP + mask + gateway + DNS from DHCP lease.`,
+  'ping 8.8.8.8': `Pinging 8.8.8.8 with 32 bytes of data:
+Reply from 8.8.8.8: bytes=32 time=12ms TTL=118
+Ping OK — L3 routing and default gateway working.`,
+  'ping www.example.com': `Ping request could not find host www.example.com.
+DNS failure — IP works but name resolution broken (check DNS server setting).`,
+}
+
+const LAB_D11_110 = mkInterpretGuided({
+  id: 'LAB-D11-110', title: 'Verify Client IP Parameters and Troubleshoot Connectivity', domainId: 'fundamentals', objectiveId: '1.10',
+  ckuIds: ['CKU-IPCONFIG', 'CKU-PING-TRACE', 'CKU-DNS-GW-ISSUES'],
+  chapter: '1.10 Client IP parameters', minutes: 10, cliShowOutput: CLI_D11_110,
+  scenario: 'PC-CORP-01 received DHCP parameters. Read ipconfig /all output, then use ping to isolate gateway vs DNS issues — ping to 8.8.8.8 succeeds but hostname fails (DNS problem).',
+  goals: ['Read ipconfig for IP/mask/gateway/DNS', 'Use ping IP vs ping name to isolate DNS', 'Identify wrong gateway symptom'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Client parameters', device: 'PC1', instruction: 'Run ipconfig /all — note IPv4, mask, default gateway, DNS from DHCP.', expectedCommands: ['ipconfig /all'] },
+    { id: 't2', order: 2, title: 'Ping IP', device: 'PC1', instruction: 'Ping 8.8.8.8 — confirms routing/gateway OK when reply received.', expectedCommands: ['ping 8.8.8.8'] },
+    { id: 't3', order: 3, title: 'Ping name', device: 'PC1', instruction: 'Ping www.example.com fails — DNS resolution issue despite working IP connectivity.', expectedCommands: ['ping www.example.com'] },
+  ],
+  required: [{ device: 'PC1', command: 'ipconfig /all' }, { device: 'PC1', command: 'ping 8.8.8.8' }, { device: 'PC1', command: 'ping www.example.com' }],
+  verify: ['ipconfig /all', 'ping 8.8.8.8', 'ping www.example.com'],
+  verifyCmd: 'ipconfig /all', verifyExpect: 'Default Gateway',
+  verificationChecks: [{ id: 'v1', device: 'PC1', command: 'ping www.example.com', expectedResult: 'Host not found — DNS failure', passCondition: 'DNS vs gateway isolation' }],
+  success: ['ipconfig shows complete DHCP lease', 'Ping IP succeeds — gateway OK', 'Ping name fails — DNS misconfigured'],
+  mistakes: ['Blaming gateway when only DNS fails', 'Ignoring duplicate IP or wrong subnet mask'],
+  topoNodes: [{ id: 'pc', label: 'PC-CORP-01', type: 'pc', x: 30, y: 55 }, { id: 'gw', label: 'GW 192.168.10.1', type: 'router', x: 55, y: 40 }, { id: 'dns', label: 'DNS', type: 'server', x: 75, y: 55 }],
+  topoLinks: [{ id: 'l1', source: 'pc', target: 'gw', status: 'forwarding' }, { id: 'l2', source: 'pc', target: 'dns', label: 'broken', status: 'blocked' }],
+  diagNodes: [{ id: 'ip', label: 'Ping IP OK', type: 'process', x: 35, y: 70, status: 'highlighted' }, { id: 'name', label: 'Ping name FAIL', type: 'process', x: 65, y: 70, status: 'error' }],
+  diagLinks: [{ id: 'd1', source: 'ip', target: 'name', label: 'DNS issue', status: 'forwarded' }],
+  flowSteps: [{ id: 's1', order: 1, title: 'Verify params', action: 'ipconfig confirms IP, mask, gateway, DNS', successState: 'noted' }, { id: 's2', order: 2, title: 'Isolate', action: 'IP ping OK + name ping fail = DNS not gateway', successState: 'noted' }],
+})
+
+const CLI_D11_111 = {
+  'show dot11 associations all-client': `802.11 Client Associations (AP-FLOOR2)
+SSID          Band   Channel  RSSI   Width
+CORP_WIFI     5 GHz  36       -58    80 MHz
+CORP_WIFI     2.4GHz 6        -72    20 MHz
+
+2.4 GHz: 3 non-overlapping channels (1, 6, 11) — longer range, more interference.
+5 GHz: many channels, shorter range, higher throughput (802.11ac/ax).`,
+  'show controllers dot11Radio 0': `Radio 0 (2.4 GHz): Channel 6, 20 MHz width, TX power 17 dBm
+Radio 1 (5 GHz):   Channel 36, 80 MHz width, TX power 20 dBm
+
+802.11 standards: n (Wi-Fi 4), ac (Wi-Fi 5), ax (Wi-Fi 6) — increasing speed/OFDMA.`,
+}
+
+const LAB_D11_111 = mkInterpretGuided({
+  id: 'LAB-D11-111', title: 'Interpret Wireless RF Principles from AP Output', domainId: 'fundamentals', objectiveId: '1.11',
+  ckuIds: ['CKU-WIFI-BANDS', 'CKU-80211-STANDARDS', 'CKU-WIFI-CHANNELS', 'CKU-WPA'],
+  chapter: '1.11 Wireless principles', minutes: 10, cliShowOutput: CLI_D11_111,
+  scenario: 'AP-FLOOR2 serves dual-band CORP_WIFI. Read show output to compare 2.4 vs 5 GHz bands, non-overlapping channels, channel width, RSSI signal strength, and 802.11 standards progression.',
+  goals: ['Contrast 2.4 GHz vs 5 GHz trade-offs', 'Identify channels 1/6/11 on 2.4 GHz', 'Read RSSI and channel width impact'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Client associations', device: 'AP1', instruction: 'Run show dot11 associations all-client — note band, channel, RSSI per client.', expectedCommands: ['enable', 'show dot11 associations all-client'] },
+    { id: 't2', order: 2, title: 'Radio settings', device: 'AP1', instruction: 'Run show controllers dot11Radio 0 — compare 2.4 vs 5 GHz channel and width.', expectedCommands: ['show controllers dot11Radio 0'] },
+  ],
+  required: [{ device: 'AP1', command: 'show dot11 associations all-client' }, { device: 'AP1', command: 'show controllers dot11Radio 0' }],
+  verify: ['show dot11 associations all-client', 'show controllers dot11Radio 0'],
+  verifyCmd: 'show dot11 associations all-client', verifyExpect: '5 GHz',
+  verificationChecks: [{ id: 'v1', device: 'AP1', command: 'show dot11 associations all-client', expectedResult: 'Dual-band with RSSI and channel width', passCondition: 'RF principles' }],
+  success: ['2.4 GHz channels 1/6/11 noted', '5 GHz higher throughput with wider channels', 'RSSI measures signal strength'],
+  mistakes: ['Overlapping 2.4 GHz channels causing co-channel interference', 'Expecting WEP as acceptable encryption'],
+  topoNodes: [{ id: 'ap', label: 'AP dual-band', type: 'switch', x: 50, y: 40 }, { id: 'c24', label: '2.4 GHz ch6', type: 'pc', x: 30, y: 70 }, { id: 'c5', label: '5 GHz ch36', type: 'pc', x: 70, y: 70 }],
+  topoLinks: [{ id: 'l1', source: 'ap', target: 'c24', status: 'forwarding' }, { id: 'l2', source: 'ap', target: 'c5', status: 'forwarding' }],
+  diagNodes: [{ id: 'b24', label: '2.4 GHz range', type: 'process', x: 30, y: 55 }, { id: 'b5', label: '5 GHz speed', type: 'process', x: 70, y: 55, status: 'highlighted' }],
+  diagLinks: [{ id: 'd1', source: 'b24', target: 'b5', label: 'dual-band', status: 'forwarding' }],
+  flowSteps: [{ id: 's1', order: 1, title: 'Bands', action: '2.4 = range; 5 = speed and more channels', successState: 'noted' }],
+})
+
+const CLI_D11_112 = {
+  'show vrf': `Name                             Default RD            Interfaces
+  CORP                             65001:1               Gi0/0, Gi0/1
+  GUEST                            65001:2               Gi0/2
+
+VRF = virtual routing table — multiple isolated routing instances on one router.`,
+  'show virtual-service list': `Virtual Service Name          Status    Package Name
+  iosxe-k9_16.12.4              Running   UCS-KVM-IOSXE
+
+Type 1 hypervisor (bare metal ESXi) runs VMs directly on hardware.
+Containers share the host OS kernel — lighter than full VMs.`,
+  'show platform software virtual-service': `NFV instance: vEdge-router-01 (virtual router function)
+Replaces dedicated hardware appliance with software on x86 server.`,
+}
+
+const LAB_D11_112 = mkInterpretGuided({
+  id: 'LAB-D11-112', title: 'Explain Virtualization Fundamentals from Platform Output', domainId: 'fundamentals', objectiveId: '1.12',
+  ckuIds: ['CKU-HYPERVISOR', 'CKU-CONTAINERS', 'CKU-VRF', 'CKU-NFV'],
+  chapter: '1.12 Virtualization fundamentals', minutes: 10, cliShowOutput: CLI_D11_112,
+  scenario: 'A platform runs VRFs for tenant isolation, a virtual IOS-XE service, and NFV router functions. Read show output to contrast VMs (Type 1/2 hypervisor), containers, VRF-lite, and NFV.',
+  goals: ['Explain VRF as logical router isolation', 'Contrast VM hypervisor vs containers', 'Describe NFV replacing hardware appliances'],
+  tasks: [
+    { id: 't1', order: 1, title: 'VRF instances', device: 'R1', instruction: 'Run show vrf — separate routing tables for CORP and GUEST tenants.', expectedCommands: ['enable', 'show vrf'] },
+    { id: 't2', order: 2, title: 'Virtual service', device: 'R1', instruction: 'Run show virtual-service list — VM-based network service on hypervisor.', expectedCommands: ['show virtual-service list'] },
+    { id: 't3', order: 3, title: 'NFV', device: 'R1', instruction: 'Run show platform software virtual-service — software router replaces dedicated appliance.', expectedCommands: ['show platform software virtual-service'] },
+  ],
+  required: [{ device: 'R1', command: 'show vrf' }, { device: 'R1', command: 'show virtual-service list' }, { device: 'R1', command: 'show platform software virtual-service' }],
+  verify: ['show vrf', 'show virtual-service list', 'show platform software virtual-service'],
+  verifyCmd: 'show vrf', verifyExpect: 'CORP',
+  verificationChecks: [{ id: 'v1', device: 'R1', command: 'show vrf', expectedResult: 'Separate VRF routing tables', passCondition: 'VRF isolation' }],
+  success: ['VRF provides L3 isolation on one device', 'VMs via hypervisor vs lighter containers', 'NFV virtualizes network functions'],
+  mistakes: ['Confusing VRF with VLAN — VRF is L3 routing isolation', 'Treating containers as full VMs with separate kernels'],
+  topoNodes: [{ id: 'r1', label: 'R1 VRF/NFV', type: 'router', x: 50, y: 40 }, { id: 'vm', label: 'Virtual IOS-XE', type: 'server', x: 30, y: 70 }, { id: 'ctr', label: 'Container app', type: 'process', x: 70, y: 70 }],
+  topoLinks: [{ id: 'l1', source: 'r1', target: 'vm', status: 'forwarding' }],
+  diagNodes: [{ id: 'vrf', label: 'VRF-lite', type: 'process', x: 35, y: 55, status: 'highlighted' }, { id: 'nfv', label: 'NFV vRouter', type: 'process', x: 65, y: 55 }],
+  diagLinks: [{ id: 'd1', source: 'vrf', target: 'nfv', status: 'forwarded' }],
+  flowSteps: [{ id: 's1', order: 1, title: 'Virtualize', action: 'VRF, VMs, containers, NFV reduce hardware sprawl', successState: 'noted' }],
+})
+
+const LAB_D22_22 = mkGuided({
+  id: 'LAB-D22-22', title: 'Configure 802.1Q Trunk Between Switches', domainId: 'access', objectiveId: '2.2',
+  ckuIds: ['CKU-TRUNKING', 'CKU-NATIVE-VLAN', 'CKU-DTP'],
+  chapter: '2.2 Interswitch trunking', minutes: 14,
+  scenario: 'SW1 and SW2 connect via Gi0/1. VLANs 10 and 20 must cross the link. Configure SW1 Gi0/1 as an 802.1Q trunk with native VLAN 99, allow VLANs 10 and 20 only, and disable DTP with switchport nonegotiate.',
+  goals: ['switchport mode trunk', 'Set native VLAN 99', 'Prune allowed VLANs and disable DTP'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Trunk mode', device: 'SW1', instruction: 'Configure Gi0/1 as 802.1Q trunk.', expectedCommands: ['interface gi0/1', 'switchport mode trunk'] },
+    { id: 't2', order: 2, title: 'Native VLAN', device: 'SW1', instruction: 'Set native VLAN 99 (must match SW2).', expectedCommands: ['switchport trunk native vlan 99'] },
+    { id: 't3', order: 3, title: 'Allowed VLANs', device: 'SW1', instruction: 'Allow only VLANs 10 and 20 on the trunk.', expectedCommands: ['switchport trunk allowed vlan 10,20'] },
+    { id: 't4', order: 4, title: 'Disable DTP', device: 'SW1', instruction: 'Disable DTP auto-negotiation for security.', expectedCommands: ['switchport nonegotiate'] },
+    { id: 't5', order: 5, title: 'Verify', device: 'SW1', instruction: 'Confirm trunk mode, native VLAN, and allowed list.', expectedCommands: ['show interfaces trunk'] },
+  ],
+  required: [
+    { device: 'SW1', command: 'switchport mode trunk' },
+    { device: 'SW1', command: 'switchport trunk native vlan 99' },
+    { device: 'SW1', command: 'switchport trunk allowed vlan 10,20' },
+    { device: 'SW1', command: 'switchport nonegotiate' },
+  ],
+  verify: ['show interfaces trunk', 'show interfaces gi0/1 switchport'],
+  verifyCmd: 'show interfaces trunk', verifyExpect: 'trunking',
+  success: ['Trunk carries VLANs 10 and 20', 'Native VLAN 99 matches both ends', 'DTP disabled'],
+  mistakes: ['Native VLAN mismatch between switches', 'Leaving native VLAN as 1 (security risk)'],
+  topoNodes: [{ id: 'sw1', label: 'SW1', type: 'switch', x: 35, y: 50 }, { id: 'sw2', label: 'SW2', type: 'switch', x: 65, y: 50 }],
+  topoLinks: [{ id: 'l1', source: 'sw1', target: 'sw2', label: '802.1Q trunk', status: 'forwarding' }],
+  diagNodes: [{ id: 'tag', label: '802.1Q tag', type: 'process', x: 50, y: 45, status: 'highlighted' }, { id: 'nv', label: 'Native VLAN 99 untagged', type: 'process', x: 50, y: 65 }],
+  diagLinks: [{ id: 'd1', source: 'tag', target: 'nv', status: 'forwarded' }],
+  flowSteps: [{ id: 's1', order: 1, title: 'Tag', action: '802.1Q inserts 4-byte VLAN ID on tagged VLANs', successState: 'matched' }, { id: 's2', order: 2, title: 'Native', action: 'Native VLAN 99 crosses untagged', successState: 'forwarded' }],
+})
+
+const CLI_D27_27 = {
+  'show ap summary': `AP Name          Model       Ethernet IF   PoE Status   CAPWAP State
+AP-F1-01         AIR-CAP2702I Gi0           Full (802.3at)  Registered
+AP-F1-02         AIR-CAP2702I Gi0           Full (802.3at)  Registered
+
+Physical: AP connects to access switch via Ethernet (PoE powers AP).
+Control: AP builds CAPWAP tunnel to WLC over wired network.`,
+  'show capwap client': `CAPWAP Client Status: RUN
+  Primary WLC: 192.168.100.10 (WLC-HQ)
+  Data tunnel: 192.168.100.11
+  Control tunnel: 192.168.100.10
+
+Antenna: omnidirectional for general coverage; directional for point-to-point.`,
+  'show ap config general AP-F1-01': `AP Mode: Local (default — serves clients)
+Ethernet Port: Gi0 trunk to SW-ACCESS (VLAN 100 AP-mgmt, VLAN 20 user)
+PoE: IEEE 802.3at (25.5W) from switch`,
+}
+
+const LAB_D27_27 = mkInterpretGuided({
+  id: 'LAB-D27-27', title: 'Interpret WLAN Physical Infrastructure Connections', domainId: 'access', objectiveId: '2.7',
+  ckuIds: ['CKU-WLAN-PHYS'],
+  chapter: '2.7 WLAN physical infrastructure', minutes: 10, cliShowOutput: CLI_D27_27,
+  scenario: 'Lightweight APs connect to access switches via PoE Ethernet and register to WLC-HQ via CAPWAP. Read show output to trace physical cabling, PoE power, CAPWAP control/data tunnels, and antenna types.',
+  goals: ['Map AP Ethernet + PoE to access switch', 'Explain CAPWAP tunnels to WLC', 'Contrast omnidirectional vs directional antennas'],
+  tasks: [
+    { id: 't1', order: 1, title: 'AP physical summary', device: 'WLC1', instruction: 'Run show ap summary — AP Ethernet port and PoE status from switch.', expectedCommands: ['enable', 'show ap summary'] },
+    { id: 't2', order: 2, title: 'CAPWAP tunnels', device: 'AP1', instruction: 'Run show capwap client — control and data tunnels to WLC.', expectedCommands: ['show capwap client'] },
+    { id: 't3', order: 3, title: 'AP port config', device: 'WLC1', instruction: 'Run show ap config general — trunk VLANs and PoE class.', expectedCommands: ['show ap config general AP-F1-01'] },
+  ],
+  required: [{ device: 'WLC1', command: 'show ap summary' }, { device: 'AP1', command: 'show capwap client' }, { device: 'WLC1', command: 'show ap config general AP-F1-01' }],
+  verify: ['show ap summary', 'show capwap client', 'show ap config general AP-F1-01'],
+  verifyCmd: 'show ap summary', verifyExpect: 'CAPWAP',
+  verificationChecks: [{ id: 'v1', device: 'AP1', command: 'show capwap client', expectedResult: 'CAPWAP RUN to WLC', passCondition: 'WLAN physical path' }],
+  success: ['AP powered via PoE from switch', 'CAPWAP control/data tunnels to WLC', 'Antenna type affects coverage pattern'],
+  mistakes: ['Expecting AP to route like a router', 'Confusing CAPWAP with client Wi-Fi association'],
+  topoNodes: [{ id: 'ap', label: 'Lightweight AP', type: 'switch', x: 30, y: 55 }, { id: 'sw', label: 'PoE switch', type: 'switch', x: 50, y: 40 }, { id: 'wlc', label: 'WLC-HQ', type: 'server', x: 75, y: 40 }],
+  topoLinks: [{ id: 'l1', source: 'ap', target: 'sw', label: 'PoE Eth', status: 'forwarding' }, { id: 'l2', source: 'sw', target: 'wlc', label: 'CAPWAP', status: 'forwarding' }],
+  diagNodes: [{ id: 'poe', label: 'PoE power', type: 'process', x: 35, y: 70 }, { id: 'cap', label: 'CAPWAP tunnel', type: 'process', x: 65, y: 70, status: 'highlighted' }],
+  diagLinks: [{ id: 'd1', source: 'poe', target: 'cap', status: 'forwarded' }],
+  flowSteps: [{ id: 's1', order: 1, title: 'Physical', action: 'AP connects via Ethernet trunk; switch provides PoE', successState: 'noted' }, { id: 's2', order: 2, title: 'Control', action: 'CAPWAP tunnels AP management to WLC', successState: 'noted' }],
+})
+
+const CLI_D47_47 = {
+  'show policy-map interface gi0/0': `GigabitEthernet0/0
+
+  Service-policy output: WAN-EDGE-QOS
+
+    Class-map: VOICE (match dscp ef)
+      priority percent 10
+      Per-Hop Behavior: LLQ (Low Latency Queuing) — voice dequeued first
+
+    Class-map: VIDEO (match dscp af41)
+      bandwidth percent 30
+      Per-Hop Behavior: CBWFQ — guaranteed bandwidth share
+
+    Class-map: class-default
+      fair-queue
+      Per-Hop Behavior: WRED — drop probability rises as queue fills`,
+  'show queueing interface gi0/0': `Queueing strategy: Class-based queueing
+  DSCP trust: enabled on Gi0/0 (honor inbound markings at trust boundary)`,
+}
+
+const LAB_D47_47 = mkInterpretGuided({
+  id: 'LAB-D47-47', title: 'Interpret QoS Per-Hop Behavior and Queuing', domainId: 'services', objectiveId: '4.7',
+  ckuIds: ['CKU-QOS-PHB'],
+  chapter: '4.7 QoS per-hop behavior', minutes: 10, cliShowOutput: CLI_D47_47,
+  scenario: 'R1 WAN edge applies WAN-EDGE-QOS: voice gets LLQ priority, video gets CBWFQ bandwidth guarantee, default class uses WRED. Read show output to explain classification, marking (DSCP EF/AF41), and per-hop queuing behaviors.',
+  goals: ['Explain LLQ for latency-sensitive voice', 'Describe CBWFQ bandwidth allocation', 'Relate WRED to congestion avoidance'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Policy map', device: 'R1', instruction: 'Run show policy-map interface gi0/0 — identify LLQ, CBWFQ, WRED per class.', expectedCommands: ['enable', 'show policy-map interface gi0/0'] },
+    { id: 't2', order: 2, title: 'Trust boundary', device: 'R1', instruction: 'Run show queueing interface gi0/0 — DSCP trust at WAN edge.', expectedCommands: ['show queueing interface gi0/0'] },
+  ],
+  required: [{ device: 'R1', command: 'show policy-map interface gi0/0' }, { device: 'R1', command: 'show queueing interface gi0/0' }],
+  verify: ['show policy-map interface gi0/0', 'show queueing interface gi0/0'],
+  verifyCmd: 'show policy-map interface gi0/0', verifyExpect: 'LLQ',
+  verificationChecks: [{ id: 'v1', device: 'R1', command: 'show policy-map interface gi0/0', expectedResult: 'Voice LLQ + video CBWFQ + default WRED', passCondition: 'QoS PHB' }],
+  success: ['Voice uses LLQ priority queue', 'Video gets guaranteed CBWFQ bandwidth', 'WRED drops proactively under congestion'],
+  mistakes: ['Policing vs shaping confusion — shaping buffers, policing drops', 'Not marking traffic before trust boundary'],
+  topoNodes: [{ id: 'r1', label: 'R1 WAN edge', type: 'router', x: 50, y: 40 }, { id: 'voice', label: 'Voice EF', type: 'pc', x: 25, y: 70 }, { id: 'data', label: 'Best-effort', type: 'pc', x: 75, y: 70 }],
+  topoLinks: [{ id: 'l1', source: 'voice', target: 'r1', status: 'forwarding' }, { id: 'l2', source: 'data', target: 'r1', status: 'forwarding' }],
+  diagNodes: [{ id: 'llq', label: 'LLQ voice', type: 'process', x: 30, y: 55, status: 'highlighted' }, { id: 'wred', label: 'WRED default', type: 'process', x: 70, y: 55 }],
+  diagLinks: [{ id: 'd1', source: 'llq', target: 'wred', label: 'PHB', status: 'forwarding' }],
+  flowSteps: [{ id: 's1', order: 1, title: 'Classify', action: 'Match DSCP EF for voice, AF41 for video', successState: 'noted' }, { id: 's2', order: 2, title: 'Queue', action: 'LLQ strict priority; CBWFQ bandwidth; WRED on default', successState: 'noted' }],
+})
+
+const LAB_D49_49 = mkGuided({
+  id: 'LAB-D49-49', title: 'Backup IOS Image via TFTP', domainId: 'services', objectiveId: '4.9',
+  ckuIds: ['CKU-TFTP-FTP'],
+  chapter: '4.9 TFTP and FTP', minutes: 12,
+  scenario: 'R1 needs a backup IOS image copied from TFTP server 192.168.1.100. TFTP uses UDP/69 (simple, no auth). Use copy tftp flash to download c2960-lanbasek9-mz.bin and verify with show flash.',
+  goals: ['copy tftp flash for IOS backup', 'Know TFTP UDP/69 vs FTP TCP/20-21', 'Verify file on flash'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Test reachability', device: 'R1', instruction: 'Ping TFTP server 192.168.1.100 before copy.', expectedCommands: ['ping 192.168.1.100'] },
+    { id: 't2', order: 2, title: 'Copy from TFTP', device: 'R1', instruction: 'Copy IOS image from TFTP server to flash.', expectedCommands: ['copy tftp flash'] },
+    { id: 't3', order: 3, title: 'Verify flash', device: 'R1', instruction: 'Confirm image file exists on flash.', expectedCommands: ['show flash:', 'dir flash:'] },
+  ],
+  required: [{ device: 'R1', command: 'copy tftp flash' }, { device: 'R1', command: 'show flash:' }],
+  verify: ['show flash:', 'dir flash:'],
+  verifyCmd: 'show flash:', verifyExpect: 'c2960',
+  success: ['IOS image copied via TFTP UDP/69', 'File visible on flash', 'FTP noted as TCP/20-21 with optional auth'],
+  mistakes: ['Using TFTP over WAN without reliability considerations', 'Expecting TFTP encryption — use SFTP/SCP for secure transfer'],
+  topoNodes: [{ id: 'r1', label: 'R1', type: 'router', x: 35, y: 50 }, { id: 'tftp', label: 'TFTP :69', type: 'server', x: 70, y: 50 }],
+  topoLinks: [{ id: 'l1', source: 'r1', target: 'tftp', label: 'UDP/69', status: 'forwarding' }],
+  diagNodes: [{ id: 'tftp', label: 'TFTP simple', type: 'process', x: 35, y: 65 }, { id: 'ftp', label: 'FTP TCP 20/21', type: 'process', x: 65, y: 65 }],
+  diagLinks: [{ id: 'd1', source: 'tftp', target: 'ftp', label: 'vs auth', status: 'forwarding' }],
+  flowSteps: [{ id: 's1', order: 1, title: 'TFTP', action: 'UDP/69 simple file transfer for IOS/config backup', successState: 'matched' }],
+})
+
+const CLI_D410_410 = {
+  'show license summary': `Local management: CLI on console/SSH, SNMP polling, on-prem NMS at 192.168.1.50
+Smart License: CSL enabled — registration via HTTPS to Cisco cloud (optional).`,
+  'show meraki dashboard status': `Cloud-managed (Meraki): Device reports to dashboard.meraki.com
+  Status: Connected (last check-in 30 sec ago)
+  Management: Zero-touch provisioning, centralized firmware, multi-site visibility
+
+Local vs cloud:
+  Local = direct CLI/SSH, on-prem controllers, full control offline
+  Cloud = dashboard API, simplified ops, requires Internet + provider trust`,
+}
+
+const LAB_D410_410 = mkInterpretGuided({
+  id: 'LAB-D410-410', title: 'Compare Local and Cloud Device Management', domainId: 'services', objectiveId: '4.10',
+  ckuIds: ['CKU-MGMT-CLOUD'],
+  chapter: '4.10 Local vs cloud management', minutes: 10, cliShowOutput: CLI_D410_410,
+  scenario: 'Some devices use local CLI/SNMP management; others report to Meraki cloud dashboard. Read show output to contrast on-prem control (SSH, DNA Center) with cloud-managed simplicity and trade-offs.',
+  goals: ['Contrast local CLI vs cloud dashboard', 'Identify cloud dependency on Internet', 'Recognize DNA Center and Meraki as management platforms'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Local management', device: 'R1', instruction: 'Run show license summary — local CLI/SNMP and optional Smart Licensing cloud.', expectedCommands: ['enable', 'show license summary'] },
+    { id: 't2', order: 2, title: 'Cloud dashboard', device: 'SW1', instruction: 'Run show meraki dashboard status — cloud-managed device check-in.', expectedCommands: ['show meraki dashboard status'] },
+  ],
+  required: [{ device: 'R1', command: 'show license summary' }, { device: 'SW1', command: 'show meraki dashboard status' }],
+  verify: ['show license summary', 'show meraki dashboard status'],
+  verifyCmd: 'show meraki dashboard status', verifyExpect: 'Connected',
+  verificationChecks: [{ id: 'v1', device: 'SW1', command: 'show meraki dashboard status', expectedResult: 'Cloud dashboard connected', passCondition: 'cloud management' }],
+  success: ['Local management works offline via CLI', 'Cloud simplifies multi-site ops', 'Cloud requires Internet and provider trust'],
+  mistakes: ['Assuming cloud replaces all local CLI access', 'Ignoring data sovereignty with cloud management'],
+  topoNodes: [{ id: 'local', label: 'On-prem CLI', type: 'router', x: 30, y: 50 }, { id: 'cloud', label: 'Cloud dashboard', type: 'cloud', x: 70, y: 50 }],
+  topoLinks: [{ id: 'l1', source: 'local', target: 'cloud', label: 'hybrid', status: 'forwarding' }],
+  diagNodes: [{ id: 'cli', label: 'SSH/CLI local', type: 'process', x: 35, y: 65, status: 'highlighted' }, { id: 'dash', label: 'Meraki/DNA cloud', type: 'process', x: 65, y: 65 }],
+  diagLinks: [{ id: 'd1', source: 'cli', target: 'dash', status: 'forwarded' }],
+  flowSteps: [{ id: 's1', order: 1, title: 'Local', action: 'Direct device CLI and on-prem NMS', successState: 'noted' }, { id: 's2', order: 2, title: 'Cloud', action: 'Centralized dashboard for fleet management', successState: 'noted' }],
+})
+
+const CLI_D51_51 = {
+  'show logging | include SEC': `[SEC-6-IPACCESSLOGP: list PERMIT denied 10.1.1.50 -> 10.2.2.10]
+Threat: reconnaissance scan blocked by ACL (confidentiality/integrity protection).`,
+  'show ip ips statistics': `IPS Signature Hits:
+  41200: TCP SYN Flood — 847 hits (DoS threat — availability impact)
+  61503: Malware C2 beacon — 3 hits (confidentiality breach attempt)
+
+CIA mapping:
+  Confidentiality = encryption + access control (ACL deny)
+  Integrity = hashing detects unauthorized changes
+  Availability = DDoS mitigation, redundancy`,
+}
+
+const LAB_D51_51 = mkInterpretGuided({
+  id: 'LAB-D51-51', title: 'Map Security Events to CIA Triad and Threat Types', domainId: 'security', objectiveId: '5.1',
+  ckuIds: ['CKU-CIA-TRIAD', 'CKU-VULN-THREAT-EXPLOIT', 'CKU-COMMON-THREATS', 'CKU-MITIGATION-TECHNIQUES'],
+  chapter: '5.1 Key security concepts', minutes: 10, cliShowOutput: CLI_D51_51,
+  scenario: 'Security logs show ACL blocks, SYN flood IPS hits, and malware C2 signatures. Read output to map events to CIA triad elements, distinguish vulnerability/threat/exploit, and identify mitigation (defense in depth).',
+  goals: ['Map ACL block to confidentiality', 'Map SYN flood to availability', 'Distinguish vulnerability vs threat vs exploit'],
+  tasks: [
+    { id: 't1', order: 1, title: 'ACL security log', device: 'R1', instruction: 'Run show logging — ACL deny protects confidentiality by blocking unauthorized access.', expectedCommands: ['enable', 'show logging | include SEC'] },
+    { id: 't2', order: 2, title: 'IPS statistics', device: 'R1', instruction: 'Run show ip ips statistics — SYN flood (availability), malware C2 (confidentiality).', expectedCommands: ['show ip ips statistics'] },
+  ],
+  required: [{ device: 'R1', command: 'show logging | include SEC' }, { device: 'R1', command: 'show ip ips statistics' }],
+  verify: ['show logging | include SEC', 'show ip ips statistics'],
+  verifyCmd: 'show ip ips statistics', verifyExpect: 'SYN Flood',
+  verificationChecks: [{ id: 'v1', device: 'R1', command: 'show ip ips statistics', expectedResult: 'DoS hits availability; malware hits confidentiality', passCondition: 'CIA mapping' }],
+  success: ['CIA triad applied to log events', 'Vulnerability/threat/exploit distinguished', 'Defense in depth with ACL + IPS noted'],
+  mistakes: ['Confusing integrity with confidentiality', 'Treating vulnerability alone as an active breach'],
+  topoNodes: [{ id: 'att', label: 'Attacker', type: 'pc', x: 20, y: 55 }, { id: 'fw', label: 'R1 ACL/IPS', type: 'router', x: 50, y: 45 }, { id: 'srv', label: 'Server', type: 'server', x: 80, y: 55 }],
+  topoLinks: [{ id: 'l1', source: 'att', target: 'fw', status: 'blocked' }, { id: 'l2', source: 'fw', target: 'srv', status: 'forwarding' }],
+  diagNodes: [{ id: 'c', label: 'Confidentiality', type: 'process', x: 25, y: 70 }, { id: 'a', label: 'Availability', type: 'process', x: 50, y: 70, status: 'highlighted' }, { id: 'i', label: 'Integrity', type: 'process', x: 75, y: 70 }],
+  diagLinks: [{ id: 'd1', source: 'c', target: 'a', label: 'CIA', status: 'forwarding' }],
+  flowSteps: [{ id: 's1', order: 1, title: 'CIA', action: 'Map each threat to confidentiality, integrity, or availability', successState: 'noted' }],
+})
+
+const CLI_D52_52 = {
+  'show policy-map type control subscriber': `Security program elements (beyond technology):
+  1. User awareness training — phishing simulations, annual security education
+  2. Physical access control — badge readers, server room locks, CCTV
+  3. Incident response plan — detect, contain, eradicate, recover, lessons learned
+  4. Risk assessment — identify assets, threats, vulnerabilities; prioritize remediation
+  5. Acceptable use policy — define permitted user behavior on corporate systems`,
+  'show run | include banner': `banner motd ^C
+Authorized access only. Violators prosecuted. Report suspicious activity to security@corp.com.
+^C
+Policy communication supports user awareness program element.`,
+}
+
+const LAB_D52_52 = mkInterpretGuided({
+  id: 'LAB-D52-52', title: 'Interpret Security Program Elements on a Device', domainId: 'security', objectiveId: '5.2',
+  ckuIds: ['CKU-SECURITY-PROGRAM'],
+  chapter: '5.2 Security program elements', minutes: 10, cliShowOutput: CLI_D52_52,
+  scenario: 'Security is not only firewalls — programs include user training, physical access, incident response, and risk assessment. Read static policy output and login banner to identify non-technical program elements.',
+  goals: ['List security program elements beyond technology', 'Relate login banner to user awareness', 'Explain incident response and risk assessment roles'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Program elements', device: 'R1', instruction: 'Review security program checklist — training, physical access, IR, risk assessment, AUP.', expectedCommands: ['enable', 'show policy-map type control subscriber'] },
+    { id: 't2', order: 2, title: 'User awareness banner', device: 'R1', instruction: 'Run show run | include banner — MOTD communicates acceptable use policy.', expectedCommands: ['show run | include banner'] },
+  ],
+  required: [{ device: 'R1', command: 'show policy-map type control subscriber' }, { device: 'R1', command: 'show run | include banner' }],
+  verify: ['show policy-map type control subscriber', 'show run | include banner'],
+  verifyCmd: 'show run | include banner', verifyExpect: 'banner motd',
+  verificationChecks: [{ id: 'v1', device: 'R1', command: 'show policy-map type control subscriber', expectedResult: 'Training, physical, IR, risk assessment listed', passCondition: 'security program' }],
+  success: ['User awareness training identified', 'Physical access control noted', 'Incident response and risk assessment understood'],
+  mistakes: ['Assuming technology alone satisfies security program', 'Skipping physical security in layered defense'],
+  topoNodes: [{ id: 'train', label: 'User training', type: 'pc', x: 25, y: 55 }, { id: 'phys', label: 'Badge access', type: 'process', x: 50, y: 55 }, { id: 'ir', label: 'Incident response', type: 'server', x: 75, y: 55 }],
+  topoLinks: [{ id: 'l1', source: 'train', target: 'phys', status: 'forwarding' }],
+  diagNodes: [{ id: 'prog', label: 'Security program', type: 'process', x: 50, y: 45, status: 'highlighted' }],
+  diagLinks: [],
+  flowSteps: [{ id: 's1', order: 1, title: 'Program', action: 'People, process, and technology together form defense in depth', successState: 'noted' }],
+})
+
+const CLI_D57_57 = {
+  'show aaa servers': `RADIUS server group ISE-GROUP:
+  Server 1: 192.168.100.10:1812 auth, 1813 acct — UP
+  Server 2: 192.168.100.11:1812 auth — UP
+
+TACACS+ server group ACS-GROUP:
+  Server 1: 192.168.100.20:49 — UP (admin AAA)
+
+AAA framework:
+  Authentication — WHO are you? (username/password, MFA)
+  Authorization — WHAT may you do? (privilege level, command set)
+  Accounting — WHAT did you do? (audit logs, session records)`,
+  'show aaa user all': `User: netadmin
+  Auth: TACACS+ (ACS-GROUP) — authenticated
+  Author: priv 15 — full command authorization
+  Acct: session logged — start/stop records sent to TACACS+`,
+}
+
+const LAB_D57_57 = mkInterpretGuided({
+  id: 'LAB-D57-57', title: 'Compare AAA Authentication, Authorization, and Accounting', domainId: 'security', objectiveId: '5.7',
+  ckuIds: ['CKU-AAA-CONCEPTS'],
+  chapter: '5.7 AAA concepts', minutes: 10, cliShowOutput: CLI_D57_57,
+  scenario: 'Network devices use RADIUS (ISE) for user network access and TACACS+ (ACS) for device admin AAA. Read show aaa output to distinguish authentication, authorization, and accounting — and map RADIUS vs TACACS+ roles.',
+  goals: ['Define authentication vs authorization vs accounting', 'Map RADIUS to network access', 'Map TACACS+ to device admin AAA'],
+  tasks: [
+    { id: 't1', order: 1, title: 'AAA servers', device: 'R1', instruction: 'Run show aaa servers — RADIUS for user auth; TACACS+ for admin AAA.', expectedCommands: ['enable', 'show aaa servers'] },
+    { id: 't2', order: 2, title: 'User AAA session', device: 'R1', instruction: 'Run show aaa user all — auth, author priv 15, acct logging for netadmin.', expectedCommands: ['show aaa user all'] },
+  ],
+  required: [{ device: 'R1', command: 'show aaa servers' }, { device: 'R1', command: 'show aaa user all' }],
+  verify: ['show aaa servers', 'show aaa user all'],
+  verifyCmd: 'show aaa servers', verifyExpect: 'RADIUS',
+  verificationChecks: [
+    { id: 'v1', device: 'R1', command: 'show aaa user all', expectedResult: 'Auth + author priv 15 + acct session log', passCondition: 'AAA three A\'s' },
+  ],
+  success: ['Authentication verifies identity', 'Authorization grants privilege level', 'Accounting logs session for audit'],
+  mistakes: ['Using RADIUS for granular command authorization (TACACS+ job)', 'Confusing authorization with authentication'],
+  topoNodes: [{ id: 'r1', label: 'R1', type: 'router', x: 40, y: 45 }, { id: 'rad', label: 'RADIUS ISE', type: 'server', x: 70, y: 30 }, { id: 'tac', label: 'TACACS+ ACS', type: 'server', x: 70, y: 65 }],
+  topoLinks: [{ id: 'l1', source: 'r1', target: 'rad', label: 'user access', status: 'forwarding' }, { id: 'l2', source: 'r1', target: 'tac', label: 'admin AAA', status: 'forwarding' }],
+  diagNodes: [{ id: 'auth', label: 'Authentication', type: 'process', x: 25, y: 60 }, { id: 'authz', label: 'Authorization', type: 'process', x: 50, y: 60, status: 'highlighted' }, { id: 'acct', label: 'Accounting', type: 'process', x: 75, y: 60 }],
+  diagLinks: [{ id: 'd1', source: 'auth', target: 'authz', status: 'forwarded' }, { id: 'd2', source: 'authz', target: 'acct', status: 'forwarded' }],
+  flowSteps: [
+    { id: 's1', order: 1, title: 'Authn', action: 'Verify identity — who is connecting?', successState: 'noted' },
+    { id: 's2', order: 2, title: 'Authz', action: 'Grant permissions — what commands allowed?', successState: 'noted' },
+    { id: 's3', order: 3, title: 'Acct', action: 'Log session — audit trail for compliance', successState: 'noted' },
+  ],
+})
+
 export const PHASE_LAB_BUNDLES = [
   PORT_SECURITY, EXTENDED_ACL_BUILD, STATIC_NAT, INTERVLAN_SVI,
   STP_PORTFAST, IPV6_STATIC, OSPF_DEFAULT,
   WLAN_SSID, TS_WLAN,
   MAC_FORWARD_15, WLAN_SEC_58, WPA2_PSK_59, VPN_TYPES_510, SEGMENT_511,
   LLDP, SNMP, PAGP_EC, L3_EC,
+  LAB_D11_11, LAB_D11_12, LAB_D11_13, LAB_D11_14, LAB_D11_17, LAB_D11_18, LAB_D11_19,
+  LAB_D11_110, LAB_D11_111, LAB_D11_112,
+  LAB_D22_22, LAB_D27_27, LAB_D47_47, LAB_D49_49, LAB_D410_410,
+  LAB_D51_51, LAB_D52_52, LAB_D57_57,
 ]

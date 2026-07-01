@@ -2,6 +2,8 @@
  * Hand-authored gold answer reviews — override generator for high-traffic questions.
  */
 import { ASAP_SCENARIO_GOLD } from './goldAnswerReviewsAsap.js'
+import { BATCH2_GOLD } from './goldAnswerReviewsBatch2.js'
+import { BATCH3_GOLD } from './goldAnswerReviewsBatch3.js'
 import { HIGH_TRAFFIC_GOLD } from './goldAnswerReviewsHighTraffic.js'
 import { WLAN_58_GOLD } from './goldAnswerReviewsWlan58.js'
 
@@ -82,6 +84,8 @@ export const GOLD_ANSWER_REVIEWS = {
   ...ASAP_SCENARIO_GOLD,
   ...HIGH_TRAFFIC_GOLD,
   ...WLAN_58_GOLD,
+  ...BATCH2_GOLD,
+  ...BATCH3_GOLD,
 }
 
 export function goldAnswerReviewFor(questionId) {

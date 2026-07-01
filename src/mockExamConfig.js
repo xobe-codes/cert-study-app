@@ -72,3 +72,22 @@ export function sampleAdaptiveQuestions(questions, weakCkuIds, count, shuffle = 
   }
   return picked
 }
+
+/**
+ * Full mock exam pool: CCNA blueprint domain weights, with optional weak-CKU
+ * weighting applied within each domain slice.
+ */
+export function buildBlueprintWeightedPool(domains, getMcQuestions, weakCkuIds, shuffle, questionCount = MOCK_EXAM_QUESTION_COUNT) {
+  const weak = weakCkuIds || []
+  const all = []
+  for (const { domain, count } of buildMockExamDomainCounts(domains, questionCount)) {
+    const domainPool = domain.objectives.flatMap(o =>
+      getMcQuestions(o.id).map(q => ({ ...q, objectiveId: o.id })),
+    )
+    const slice = weak.length
+      ? sampleAdaptiveQuestions(domainPool, weak, count, shuffle)
+      : shuffle(domainPool).slice(0, count)
+    all.push(...slice)
+  }
+  return shuffle(all)
+}

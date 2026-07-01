@@ -24,35 +24,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"To create an outcome that can be reproduced\"."
+          "explanation": "Automation (templates, IaC, scripts) produces repeatable, reproducible configs — same input yields the same outcome every time."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "To increase the possibility for misconfiguration describes a mechanism that could sound plausible for automation. Given automation, To create an outcome that can be reproduced matches the tested behavior — To increase the possibility for misconfiguration applies a different mechanism.",
+            "explanation": "Automation reduces manual typos — it does not increase misconfiguration when templates are validated.",
+            "misconceptionTested": "Assuming automation adds randomness/errors",
             "whatItDoes": "To increase the possibility for misconfiguration describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, To create an outcome that can be reproduced matches the tested behavior — To increase the possibility for misconfiguration applies a different mechanism.",
-            "misconceptionTested": "Applying \"To increase the possibility for misc\" without matching automation",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given automation, To create an outcome that can be reproduced matches the tested behavior — To increase the possibility for misconfiguration applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "To decrease problems from the new configuration describes a mechanism that could sound plausible for automation. Given automation, To create an outcome that can be reproduced matches the tested behavior — To decrease problems from the new configuration applies a different mechanism.",
+            "explanation": "Reproducibility is the primary exam answer — “decrease problems” is vague; templates explicitly enable identical redeployments.",
+            "misconceptionTested": "Picking vague benefit over reproducibility",
             "whatItDoes": "To decrease problems from the new configuration describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, To create an outcome that can be reproduced matches the tested behavior — To decrease problems from the new configuration applies a different mechanism.",
-            "misconceptionTested": "Applying \"To decrease problems from the new co\" without matching automation",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given automation, To create an outcome that can be reproduced matches the tested behavior — To decrease problems from the new configuration applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "To allow you to do less work describes a mechanism that could sound plausible for automation. Given automation, To create an outcome that can be reproduced matches the tested behavior — To allow you to do less work applies a different mechanism.",
+            "explanation": "Less manual work is a side benefit — Cisco stems emphasize consistent, reproducible outcomes across many routers.",
+            "misconceptionTested": "Choosing laziness over operational repeatability",
             "whatItDoes": "To allow you to do less work describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, To create an outcome that can be reproduced matches the tested behavior — To allow you to do less work applies a different mechanism.",
-            "misconceptionTested": "Applying \"To allow you to do less work\" without matching automation",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given automation, To create an outcome that can be reproduced matches the tested behavior — To allow you to do less work applies a different mechanism."
           }
         ],
-        "examTip": "Separate management plane (API/controller) from data plane (forwarding)."
+        "examTip": "Network automation → repeatable, reproducible configs at scale."
       }
     },
     {

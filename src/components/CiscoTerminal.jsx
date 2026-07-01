@@ -17,6 +17,7 @@ export default function CiscoTerminal({
   height,
   showRunButton = false,
   className = '',
+  teachHint = null,
 }) {
   const scrollRef = useRef(null)
 
@@ -43,6 +44,11 @@ export default function CiscoTerminal({
         {history.map((l, i) => (
           <div key={i} style={{ color: LINE_COLOR[l.kind] || '#d9d9d9', whiteSpace: 'pre-wrap' }}>{l.text}</div>
         ))}
+        {teachHint && (
+          <div style={{ color: '#8a8fa8', fontSize: 'var(--ccna-type-xs)', marginTop: 4, fontStyle: 'italic' }}>
+            {teachHint}
+          </div>
+        )}
       </div>
       {!disabled && (
         <div className="cisco-terminal-input-row">

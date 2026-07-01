@@ -137,35 +137,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Assurance\"."
+          "explanation": "DNA Center Assurance dashboard shows network health, client experience, and proactive issue detection across the fabric."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Design describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Assurance matches the tested behavior — Design applies a different mechanism.",
+            "explanation": "Design is for topology and site hierarchy planning — health monitoring lives in Assurance.",
+            "misconceptionTested": "Using Design section for operational health view",
             "whatItDoes": "Design describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Assurance matches the tested behavior — Design applies a different mechanism.",
-            "misconceptionTested": "Applying \"Design\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given cisco dna center, Assurance matches the tested behavior — Design applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Policy describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Assurance matches the tested behavior — Policy applies a different mechanism.",
+            "explanation": "Policy configures group-based access and segmentation — Assurance reports health and performance.",
+            "misconceptionTested": "Confusing policy configuration with health dashboard",
             "whatItDoes": "Policy describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Assurance matches the tested behavior — Policy applies a different mechanism.",
-            "misconceptionTested": "Applying \"Policy\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given cisco dna center, Assurance matches the tested behavior — Policy applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Platform describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Assurance matches the tested behavior — Platform applies a different mechanism.",
+            "explanation": "Platform covers system settings and integrations — not the primary network health overview.",
+            "misconceptionTested": "Selecting platform admin for network health monitoring",
             "whatItDoes": "Platform describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Assurance matches the tested behavior — Platform applies a different mechanism.",
-            "misconceptionTested": "Applying \"Platform\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given cisco dna center, Assurance matches the tested behavior — Platform applies a different mechanism."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "DNA Center: Assurance = health/clients/issues. Design = topology. Policy = segmentation."
       }
     },
     {
@@ -301,35 +298,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"DNA Command Runner\"."
+          "explanation": "DNA Command Runner executes CLI templates across many devices — fastest way to push OSPF area config to a device group."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "IP-based access control describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, DNA Command Runner matches the tested behavior — IP-based access control applies a different mechanism.",
+            "explanation": "IP-based access control is a security feature — not a bulk configuration tool for OSPF areas.",
+            "misconceptionTested": "Using access control feature for routing configuration",
             "whatItDoes": "IP-based access control describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, DNA Command Runner matches the tested behavior — IP-based access control applies a different mechanism.",
-            "misconceptionTested": "Applying \"IP-based access control\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given cisco dna center, DNA Command Runner matches the tested behavior — IP-based access control applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Python describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, DNA Command Runner matches the tested behavior — Python applies a different mechanism.",
+            "explanation": "Python/API scripting is powerful but Command Runner is the built-in DNA Center method for quick multi-device CLI pushes.",
+            "misconceptionTested": "Defaulting to Python when Command Runner is the exam shortcut",
             "whatItDoes": "Python describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, DNA Command Runner matches the tested behavior — Python applies a different mechanism.",
-            "misconceptionTested": "Applying \"Python\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given cisco dna center, DNA Command Runner matches the tested behavior — Python applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Inventory describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, DNA Command Runner matches the tested behavior — Inventory applies a different mechanism.",
+            "explanation": "Inventory lists devices — it does not execute configuration. Command Runner applies templates at scale.",
+            "misconceptionTested": "Expecting Inventory to push config without Command Runner",
             "whatItDoes": "Inventory describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, DNA Command Runner matches the tested behavior — Inventory applies a different mechanism.",
-            "misconceptionTested": "Applying \"Inventory\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given cisco dna center, DNA Command Runner matches the tested behavior — Inventory applies a different mechanism."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "Bulk CLI on many routers in DNA Center → Command Runner templates."
       }
     },
     {

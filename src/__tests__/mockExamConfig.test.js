@@ -4,6 +4,7 @@ import {
   staticMockExamReady,
   buildStaticMockExamPool,
   buildMockExamDomainCounts,
+  buildBlueprintWeightedPool,
   sampleAdaptiveQuestions,
 } from '../mockExamConfig.js'
 import { preloadCleanBank } from '../data/cleanQuestionAdapter.js'
@@ -57,5 +58,14 @@ describe('mockExamConfig', () => {
     expect(weakHits.has('a') || weakHits.has('c')).toBe(true)
     const picked = sampleAdaptiveQuestions(questions, [], 2, arr => [...arr])
     expect(picked.length).toBe(2)
+  })
+
+  it('buildBlueprintWeightedPool preserves domain count and favors weak CKUs', () => {
+    const getMc = id => getCuratedQuestions(id).filter(isMcQuestion)
+    const pool = buildBlueprintWeightedPool(DOMAINS, getMc, ['CKU-ACL'], arr => [...arr])
+    expect(pool.length).toBe(MOCK_EXAM_QUESTION_COUNT)
+    expect(pool.every(q => isMcQuestion(q))).toBe(true)
+    const staticPool = buildStaticMockExamPool(DOMAINS, getMc, arr => [...arr])
+    expect(staticPool.length).toBe(MOCK_EXAM_QUESTION_COUNT)
   })
 })

@@ -1434,7 +1434,7 @@ export default function App() {
         )}
         {view === 'mock' && (
           <LazyRoute label="Loading mock exam…">
-            <MockExam onExit={goBack} examMode={settingsExamMode} missed={missed} />
+            <MockExam onExit={goBack} examMode={settingsExamMode} missed={missed} onOpenLab={(id) => openLab(id, 'mock')} />
           </LazyRoute>
         )}
         {view === 'missed' && (

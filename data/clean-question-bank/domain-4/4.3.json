@@ -520,35 +520,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"The DHCP client is responsible for maintaining the life cycle of an IP address.\"."
+          "explanation": "The DHCP client must renew or release before lease expiry — lifecycle maintenance (renew/rebind/release) is client-driven."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The DHCP server is responsible for maintaining the life cycle of an IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — The DHCP server is responsible for maintaining the life cycle of an IP address. applies a different mechanism.",
+            "explanation": "The server tracks lease database and offers addresses, but the client initiates renewal at 50%/87.5% timers — lifecycle action is client-side.",
+            "misconceptionTested": "Assigning all lifecycle responsibility to the server",
             "whatItDoes": "The DHCP server is responsible for maintaining the life cycle of an IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — The DHCP server is responsible for maintaining the life cycle of an IP address. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The DHCP server is responsible for m\" without matching dns",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — The DHCP server is responsible for maintaining the life cycle of an IP address. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "DHCP uses multicasting between the client and server. describes a mechanism that could sound plausible for statement. Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — DHCP uses multicasting between the client and server. applies a different mechanism.",
+            "explanation": "DHCP discover/request use broadcast; offer/ack are often unicast — it is not general multicast between client and server.",
+            "misconceptionTested": "Claiming DHCP is multicast end-to-end",
             "whatItDoes": "DHCP uses multicasting between the client and server. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — DHCP uses multicasting between the client and server. applies a different mechanism.",
-            "misconceptionTested": "Applying \"DHCP uses multicasting between the c\" without matching dns",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — DHCP uses multicasting between the client and server. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The DHCP lease is negotiated between client and server. describes a mechanism that could sound plausible for statement. Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — The DHCP lease is negotiated between client and server. applies a different mechanism.",
+            "explanation": "Leases are offered by the server — \"negotiated\" overstates client/server haggling; the keyed distinction here is who maintains renewal lifecycle.",
+            "misconceptionTested": "Focusing on negotiation wording instead of client renewal duty",
             "whatItDoes": "The DHCP lease is negotiated between client and server. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — The DHCP lease is negotiated between client and server. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The DHCP lease is negotiated between\" without matching dns",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — The DHCP lease is negotiated between client and server. applies a different mechanism."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "DHCP DORA — client sends Discover/Request; client renews before lease expires."
       }
     },
     {

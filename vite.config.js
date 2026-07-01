@@ -20,6 +20,15 @@ export default defineConfig({
             handler: 'NetworkFirst',
             options: { cacheName: 'ccna-pages', networkTimeoutSeconds: 5 },
           },
+          {
+            urlPattern: /\/assets\/[^/?]+\.(?:js|css)$/i,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'ccna-chunks',
+              networkTimeoutSeconds: 5,
+              expiration: { maxEntries: 80, maxAgeSeconds: 60 * 60 * 24 * 30 },
+            },
+          },
         ],
       },
       devOptions: { enabled: false },

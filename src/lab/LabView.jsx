@@ -104,6 +104,22 @@ export default function LabView({ bundle, onBack, onDone, celebrate, haptic }) {
     if (idx !== activeTaskIdx && idx >= 0 && idx < lab.tasks.length) setActiveTaskIdx(idx)
   }
 
+  function getTeachHint(raw) {
+    if (!activeTask) return null
+    const expected = activeTask.expectedCommands || []
+    const doneFlags = taskCmdDone[activeTask.id] || []
+    const nextIdx = doneFlags.findIndex(f => !f)
+    if (nextIdx < 0) return null
+    const nextCmd = expected[nextIdx]
+    const trimmed = normalizeCmd(raw)
+    if (!trimmed || trimmed.length < 2) return null
+    const nextNorm = normalizeCmd(nextCmd)
+    if (nextNorm.startsWith(trimmed) && trimmed !== nextNorm) {
+      return `Next: ${nextCmd}`
+    }
+    return null
+  }
+
   function submit() {
     const raw = input.trim()
     if (!raw || !activeTask) return
@@ -234,6 +250,7 @@ export default function LabView({ bundle, onBack, onDone, celebrate, haptic }) {
                 input={input}
                 onInputChange={setInput}
                 onSubmit={submit}
+                teachHint={getTeachHint(input)}
                 emptyMessage={lab.interpretOnly
                   ? `${host} ready — type enable, then run the show command for each task.`
                   : `${host} ready — type enable, then configure terminal.`}

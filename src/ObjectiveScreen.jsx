@@ -321,6 +321,7 @@ export default function ObjectiveScreen({
               premiumUnlocked={premiumUnlocked}
               onPremiumBlocked={onPremiumBlocked}
               onStartPractice={() => setTab('Practice')}
+              onOpenLab={onOpenLab}
             />
           </div>
         )}
@@ -336,6 +337,7 @@ export default function ObjectiveScreen({
               onSelectObjective={onSelectObjective}
               onOpenMissed={onOpenMissed}
               onOpenTrapDrill={onOpenTrapDrill}
+              onOpenLab={onOpenLab}
               onSwitchTab={(t) => setTab(t === 'Explain' ? 'Study' : t === 'Quiz' ? 'Practice' : t)}
               examMode={examMode}
               premiumUnlocked={premiumUnlocked}
