@@ -34,7 +34,7 @@ function mapLegacyTab(tab) {
 }
 
 export default function ObjectiveScreen({
-  objective, progress, apiOnline, offlineReady, packagingId, onPackage, onBack, backLabel = 'Back', onUpdateProgress, onMissed, missed, onOpenLab, onSelectObjective, onOpenMissed,
+  objective, progress, apiOnline, offlineReady, packagingId, onPackage, onBack, backLabel = 'Back', onUpdateProgress, onMissed, missed, onOpenLab, onSelectObjective, onOpenMissed, onOpenTrapDrill,
   ExplainTab, VisualAidTab, QuizTab, CLIDrillTab, SubnettingTab, VLSMTab, IPv6CalcTab, ACLCalcTab,
   examMode = false,
   premiumUnlocked = false,
@@ -335,6 +335,7 @@ export default function ObjectiveScreen({
               nextObjective={nextObj}
               onSelectObjective={onSelectObjective}
               onOpenMissed={onOpenMissed}
+              onOpenTrapDrill={onOpenTrapDrill}
               onSwitchTab={(t) => setTab(t === 'Explain' ? 'Study' : t === 'Quiz' ? 'Practice' : t)}
               examMode={examMode}
               premiumUnlocked={premiumUnlocked}

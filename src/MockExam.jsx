@@ -8,6 +8,7 @@ import {
   MOCK_EXAM_DURATION_MIN,
   staticMockExamReady,
   buildStaticMockExamPool,
+  sampleAdaptiveQuestions,
 } from './mockExamConfig.js'
 import {
   buildDomainStudyPool,
@@ -23,6 +24,7 @@ import { STORAGE_KEYS } from './storageKeys.js'
 import McChoices from './components/McChoices.jsx'
 import AnswerReview from './components/AnswerReview.jsx'
 import { summarizeWrongTraps } from './missed/missedTrapGroups.js'
+import { computeCkuWeakness } from './weaknessUtils.js'
 import { applyAnswerReviewToQuestion, inferTrapForChoice } from './answerReviewLogic.js'
 import DeferredExamTips from './components/DeferredExamTips.jsx'
 import Spinner from './components/Spinner.jsx'
@@ -45,7 +47,7 @@ function formatSeconds(total) {
   return `${m}:${String(s).padStart(2, '0')}`
 }
 
-export default function MockExam({ onExit, examMode = false }) {
+export default function MockExam({ onExit, examMode = false, missed = [] }) {
   const showNavHint = useNavHint()
   const doneHintFired = useRef(false)
   const [phase, setPhase] = useState('intro') // intro | loading | active | done | review | error
@@ -118,7 +120,13 @@ export default function MockExam({ onExit, examMode = false }) {
       if (!staticMockExamReady(DOMAINS, getMc)) {
         throw new Error('Not enough static questions for a full exam. Add more questions to the bank.')
       }
-      const final = buildStaticMockExamPool(DOMAINS, getMc, shuffleArray)
+      const fullPool = DOMAINS.flatMap(d =>
+        d.objectives.flatMap(o => getMc(o.id).map(q => ({ ...q, objectiveId: o.id }))),
+      )
+      const weakIds = computeCkuWeakness(missed).slice(0, 12).map(w => w.id)
+      const final = weakIds.length
+        ? sampleAdaptiveQuestions(fullPool, weakIds, MOCK_EXAM_QUESTION_COUNT, shuffleArray)
+        : buildStaticMockExamPool(DOMAINS, getMc, shuffleArray)
       setQuestions(final)
       setResponses({})
       setStudyRevealed({})
@@ -250,6 +258,9 @@ export default function MockExam({ onExit, examMode = false }) {
               {bankReady && staticCount > 0 && (
                 <div style={{ ...styles.small, marginTop: 8, color: COLORS.silverMid }}>
                   {staticCount} multiple-choice questions in static bank for this exam
+                  {computeCkuWeakness(missed).length > 0 && (
+                    <> · adaptive weighting from your missed bank</>
+                  )}
                 </div>
               )}
               {bankReady && !canUseStaticOnly && (

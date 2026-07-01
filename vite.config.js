@@ -1,8 +1,30 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      includeAssets: ['icon-192.svg', 'manifest.webmanifest'],
+      manifest: false,
+      workbox: {
+        globPatterns: ['**/*.{html,css,ico,svg,webmanifest}', 'registerSW.js'],
+        globIgnores: ['**/clean-questions*.js', '**/mock-exam*.js'],
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
+        navigateFallback: 'index.html',
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/master\.ccna-study-tool\.pages\.dev\/.*/i,
+            handler: 'NetworkFirst',
+            options: { cacheName: 'ccna-pages', networkTimeoutSeconds: 5 },
+          },
+        ],
+      },
+      devOptions: { enabled: false },
+    }),
+  ],
   // Cloudflare Pages: `/`. GitHub Pages project site: set VITE_BASE=/cert-study-app/ in deploy workflow.
   base: process.env.VITE_BASE || '/',
   build: {

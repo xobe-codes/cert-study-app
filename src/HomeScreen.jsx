@@ -16,6 +16,7 @@ import {
   loadRetentionHealth,
 } from './home/learnerHome.js'
 import StudyNextStrip from './home/StudyNextStrip.jsx'
+import TrapHeatmapStrip from './home/TrapHeatmapStrip.jsx'
 import ThemeToggleButton from './components/ThemeToggleButton.jsx'
 import StatusDot from './components/StatusDot.jsx'
 import StatusLabel from './components/StatusLabel.jsx'
@@ -328,7 +329,7 @@ function StudyModeBtn({ onClick, children, primary, disabled }) {
   )
 }
 
-export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onPremiumBlocked, premiumUnlocked = false, onOpenMetrics, onOpenStats, onOpenSettings, onOpenReview, onOpenLabs, onOpenFocus, onOpenTopicFocus, onOpenCommandHub, onOpenStudyLens, onOpenExamTraps, onOpenSubnet, onOpenRouting, onOpenExtraStudy, commandDrills = {}, theme, onToggleTheme }) {
+export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onPremiumBlocked, premiumUnlocked = false, onOpenMetrics, onOpenStats, onOpenSettings, onOpenReview, onOpenLabs, onOpenFocus, onOpenTopicFocus, onOpenCommandHub, onOpenStudyLens, onOpenExamTraps, onOpenTrapDrill, onOpenSubnet, onOpenRouting, onOpenExtraStudy, commandDrills = {}, theme, onToggleTheme }) {
   const [suggestions, setSuggestions] = useState([])
   const [learnerSummary, setLearnerSummary] = useState(null)
   const [retention, setRetention] = useState([])
@@ -416,6 +417,8 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
       </div>
 
       <StudyNextStrip next={studyNext} onSelectObjective={onSelectObjective} onOpenReview={onOpenReview} />
+
+      <TrapHeatmapStrip missed={missed} onOpenTrapDrill={onOpenTrapDrill} onOpenMissed={onOpenMissed} />
 
       <ExamTrapWidget />
 

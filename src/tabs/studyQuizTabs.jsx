@@ -53,6 +53,8 @@ import {
   enableSectionReview, loadDueQuestions,
 } from './tabRuntimeDeps.js'
 import { recordQuestionHealthSignal } from '../quiz/questionHealthSignals.js'
+import { applyAnswerReviewToQuestion, inferTrapForChoice } from '../answerReviewLogic.js'
+import { isActionableMissedTrap } from '../missed/missedTrapGroups.js'
 
 function VisualBadge({ children, accent }) {
   const c = accent || COLORS.purpleGlow
@@ -1343,7 +1345,7 @@ function QuizCompleteCard({
 }
 
 export function QuizTab({
-  objective, progress, missed, onMissed, onScoreSaved, nextObjective, onSelectObjective, onOpenMissed, onSwitchTab,
+  objective, progress, missed, onMissed, onScoreSaved, nextObjective, onSelectObjective, onOpenMissed, onOpenTrapDrill, onSwitchTab,
   examMode = false, premiumUnlocked = false, onPremiumBlocked,
   showPreAssessFirst = false, onUpdateProgress,
 }) {
@@ -1804,6 +1806,20 @@ export function QuizTab({
               {isCorrect ? 'Correct' : 'Incorrect'}
             </div>
             <AnswerReview q={current} selected={selected} hideExamTip={examMode} objectiveId={objective.id} showQuestionFlag />
+            {!isCorrect && onOpenTrapDrill && (() => {
+              const enriched = applyAnswerReviewToQuestion(current)
+              const trap = inferTrapForChoice(enriched, selected)
+              if (!isActionableMissedTrap(trap)) return null
+              return (
+                <button
+                  type="button"
+                  style={{ ...styles.secondaryBtn, marginTop: 10, width: '100%' }}
+                  onClick={() => onOpenTrapDrill({ trapLabel: trap, objectiveId: objective.id })}
+                >
+                  Drill this trap →
+                </button>
+              )
+            })()}
           </div>
         )}
       </div>

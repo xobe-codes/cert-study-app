@@ -39,3 +39,36 @@ export function buildStaticMockExamPool(domains, getMcQuestions, shuffle, questi
   }
   return shuffle(all)
 }
+
+/**
+ * Weighted sample favoring questions whose ckuIds overlap weakCkuIds.
+ * Each weak CKU match adds +3 to weight (base 1). No replacement.
+ */
+export function sampleAdaptiveQuestions(questions, weakCkuIds, count, shuffle = arr => [...arr]) {
+  const pool = shuffle(questions || [])
+  const n = Math.min(count, pool.length)
+  if (n === 0) return []
+  const weak = new Set(weakCkuIds || [])
+  if (weak.size === 0) return pool.slice(0, n)
+
+  const weighted = pool.map(q => {
+    const ids = q.ckuIds || []
+    const overlap = ids.filter(id => weak.has(id)).length
+    return { q, weight: 1 + overlap * 3 }
+  })
+
+  const picked = []
+  const remaining = [...weighted]
+  while (picked.length < n && remaining.length) {
+    const total = remaining.reduce((s, w) => s + w.weight, 0)
+    let roll = Math.random() * total
+    let idx = 0
+    for (; idx < remaining.length; idx++) {
+      roll -= remaining[idx].weight
+      if (roll <= 0) break
+    }
+    const chosen = remaining.splice(Math.min(idx, remaining.length - 1), 1)[0]
+    picked.push(chosen.q)
+  }
+  return picked
+}

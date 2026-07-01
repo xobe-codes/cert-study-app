@@ -4,6 +4,7 @@ import {
   staticMockExamReady,
   buildStaticMockExamPool,
   buildMockExamDomainCounts,
+  sampleAdaptiveQuestions,
 } from '../mockExamConfig.js'
 import { preloadCleanBank } from '../data/cleanQuestionAdapter.js'
 import { getCuratedQuestions } from '../data/ccnaCurated.js'
@@ -40,5 +41,21 @@ describe('mockExamConfig', () => {
     const pool = buildStaticMockExamPool(DOMAINS, getMc, arr => [...arr])
     expect(pool.length).toBe(MOCK_EXAM_QUESTION_COUNT)
     expect(pool.every(q => isMcQuestion(q))).toBe(true)
+  })
+
+  it('sampleAdaptiveQuestions favors weak CKU overlap', () => {
+    const questions = [
+      { id: 'a', ckuIds: ['CKU-ACL'], question: 'a' },
+      { id: 'b', ckuIds: ['CKU-VLAN'], question: 'b' },
+      { id: 'c', ckuIds: ['CKU-ACL', 'CKU-NAT'], question: 'c' },
+      { id: 'd', ckuIds: ['CKU-OSPF'], question: 'd' },
+    ]
+    const weakHits = new Set()
+    for (let i = 0; i < 40; i++) {
+      sampleAdaptiveQuestions(questions, ['CKU-ACL'], 2, arr => [...arr]).forEach(q => weakHits.add(q.id))
+    }
+    expect(weakHits.has('a') || weakHits.has('c')).toBe(true)
+    const picked = sampleAdaptiveQuestions(questions, [], 2, arr => [...arr])
+    expect(picked.length).toBe(2)
   })
 })

@@ -3,12 +3,14 @@
 import { FACTORY_TRAP_PATCHES } from './factoryTrapPatches.js'
 import { FACTORY_FLASHCARD_PATCHES } from './factoryFlashcardPatches.js'
 import { FACTORY_ENGINEER_VIEW_PATCHES } from './factoryEngineerViewPatches.js'
+import { FACTORY_DEPTH_WAVE3_QUESTIONS } from './factoryDepthWave3Questions.js'
 
 function factoryPatchFor(objectiveId) {
   const traps = FACTORY_TRAP_PATCHES[objectiveId]
   const flash = FACTORY_FLASHCARD_PATCHES[objectiveId]
   const engineer = FACTORY_ENGINEER_VIEW_PATCHES[objectiveId]
-  if (!traps && !flash && !engineer) return null
+  const depthQuestions = FACTORY_DEPTH_WAVE3_QUESTIONS[objectiveId]
+  if (!traps && !flash && !engineer && !depthQuestions?.length) return null
   const flashcards = [
     ...(traps?.flashcards || []),
     ...(flash?.flashcards || []),
@@ -18,6 +20,7 @@ function factoryPatchFor(objectiveId) {
     ...flash,
     ...engineer,
     ...(flashcards.length ? { flashcards } : {}),
+    ...(depthQuestions?.length ? { questions: depthQuestions } : {}),
   }
 }
 

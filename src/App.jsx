@@ -116,6 +116,7 @@ import FocusModeSession from './features/focus/FocusModeSession.jsx'
 import ReviewSession from './features/review/ReviewSession.jsx'
 import Onboarding from './features/onboarding/Onboarding.jsx'
 import MissedReview from './features/missed/MissedReview.jsx'
+import TrapDrillSession from './features/trapDrill/TrapDrillSession.jsx'
 import MetricsDashboard from './features/metrics/MetricsDashboard.jsx'
 import {
   generateSyncCode, loadSyncBundle, saveSyncBundle, mergeSyncData, pullSync, pushSync,
@@ -708,7 +709,7 @@ function parseAppHash() {
   if (simple === 'topicfocussession') return { view: 'topicfocus' }
   if ([
     'mock', 'metrics', 'stats', 'review', 'missed', 'labs', 'focus', 'tutor',
-    'topicfocus', 'commandhub', 'studylens', 'examtraps', 'subnet', 'routing', 'extrastudy',
+    'topicfocus', 'commandhub', 'studylens', 'examtraps', 'trapdrill', 'subnet', 'routing', 'extrastudy',
   ].includes(simple)) {
     return { view: simple }
   }
@@ -744,10 +745,11 @@ function AppShell({ view, compactTopChrome, withBottomNav, children }) {
    APP ROOT
    ========================================================================= */
 export default function App() {
-  const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | stats | focus | topicfocus | topicfocussession | commandhub | studylens | examtraps | subnet | routing | extrastudy
+  const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | stats | focus | topicfocus | topicfocussession | commandhub | studylens | examtraps | trapdrill | subnet | routing | extrastudy
   const [returnToView, setReturnToView] = useState('home')
   const [topicFocusConfig, setTopicFocusConfig] = useState(null)
   const [examTrapPrefill, setExamTrapPrefill] = useState(null)
+  const [trapDrillPrefill, setTrapDrillPrefill] = useState(null)
   const [selectedObjective, setSelectedObjective] = useState(null)
   const [progress, setProgress] = useState({})
   const [missed, setMissed] = useState([])
@@ -1208,7 +1210,13 @@ export default function App() {
     navigateTo('examtraps')
   }, [navigateTo])
 
+  const openTrapDrill = useCallback((prefill) => {
+    setTrapDrillPrefill(prefill || null)
+    navigateTo('trapdrill')
+  }, [navigateTo])
+
   const clearExamTrapPrefill = useCallback(() => setExamTrapPrefill(null), [])
+  const clearTrapDrillPrefill = useCallback(() => setTrapDrillPrefill(null), [])
 
   const goBack = useCallback(() => {
     setView(returnToView)
@@ -1363,6 +1371,7 @@ export default function App() {
             onOpenCommandHub={() => navigateTo('commandhub')}
             onOpenStudyLens={() => navigateTo('studylens')}
             onOpenExamTraps={openExamTraps}
+            onOpenTrapDrill={openTrapDrill}
             onOpenSubnet={() => navigateTo('subnet')}
             onOpenRouting={() => navigateTo('routing')}
             onOpenExtraStudy={() => navigateTo('extrastudy')}
@@ -1393,6 +1402,7 @@ export default function App() {
             onOpenLab={(id) => openLab(id, 'objective')}
             onSelectObjective={selectObjective}
             onOpenMissed={() => setView('missed')}
+            onOpenTrapDrill={openTrapDrill}
             ExplainTab={ExplainTab}
             VisualAidTab={VisualAidTab}
             QuizTab={QuizTab}
@@ -1424,7 +1434,7 @@ export default function App() {
         )}
         {view === 'mock' && (
           <LazyRoute label="Loading mock exam…">
-            <MockExam onExit={goBack} examMode={settingsExamMode} />
+            <MockExam onExit={goBack} examMode={settingsExamMode} missed={missed} />
           </LazyRoute>
         )}
         {view === 'missed' && (
@@ -1433,6 +1443,7 @@ export default function App() {
             onBack={goBack}
             onRemove={removeMissed}
             onOpenExamTraps={openExamTraps}
+            onOpenTrapDrill={openTrapDrill}
           />
         )}
         {view === 'tutor' && (
@@ -1519,6 +1530,12 @@ export default function App() {
               onPrefillConsumed={clearExamTrapPrefill}
             />
           </LazyRoute>
+        )}
+        {view === 'trapdrill' && (
+          <TrapDrillSession
+            prefill={trapDrillPrefill}
+            onBack={() => { clearTrapDrillPrefill(); goBack() }}
+          />
         )}
         {view === 'subnet' && <SubnetPracticeHome onBack={goBack} />}
         {view === 'routing' && (

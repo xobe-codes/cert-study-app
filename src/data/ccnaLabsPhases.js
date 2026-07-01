@@ -55,6 +55,49 @@ function mkGuided(opts) {
   )
 }
 
+/** Teach-first interpret lab — static cliShowOutput, no live API. */
+function mkInterpretGuided(opts) {
+  const lab = {
+    id: opts.id,
+    title: opts.title,
+    domainId: opts.domainId,
+    objectiveId: opts.objectiveId,
+    ckuIds: opts.ckuIds,
+    labType: 'guided',
+    interpretOnly: true,
+    cliShowOutput: opts.cliShowOutput,
+    difficulty: opts.difficulty || 'beginner',
+    estimatedTimeMinutes: opts.minutes || 10,
+    tools: ['Packet Tracer', 'GNS3'],
+    examRelevance: 'core',
+    scenario: opts.scenario,
+    learningGoals: opts.goals,
+    topologyId: `TOPO-${opts.id}`,
+    prerequisites: opts.prerequisites || [],
+    tasks: opts.tasks,
+    verificationCommands: opts.verify || [],
+    successCriteria: opts.success,
+    failureCriteria: opts.failure || ['Misread show output or reversed protocol comparison'],
+    commonMistakes: opts.mistakes,
+    source: { name: LAB_SOURCES.blueprint, chapter: opts.chapter, confidence: 0.9 },
+    metadata: { version: '1', status: 'validated', confidence: 0.9 },
+  }
+  const topo = { id: lab.topologyId, title: lab.title, objectiveId: lab.objectiveId, nodes: opts.topoNodes, links: opts.topoLinks }
+  const validator = {
+    labId: lab.id,
+    requiredCommands: opts.required,
+    verificationChecks: opts.verificationChecks || [{ id: 'v1', device: opts.required[0]?.device || 'WLC1', command: opts.verifyCmd, expectedResult: opts.verifyExpect, passCondition: 'ok' }],
+  }
+  const diagram = mkDiagram(`DIAG-${lab.id}`, lab.title, lab.objectiveId, opts.diagNodes, opts.diagLinks)
+  return {
+    lab,
+    topology: topo,
+    validator,
+    diagram,
+    packetFlows: mkFlows(`FLOW-${lab.id}`, lab.title, `DIAG-${lab.id}`, lab.ckuIds, opts.flowSteps),
+  }
+}
+
 function tsLab(id, title, objectiveId, domainId, scenario, tasks, requiredCommands, mistakes) {
   return {
     id, title, domainId, objectiveId, ckuIds: ['CKU-TROUBLESHOOTING'],
@@ -357,6 +400,297 @@ const TS_WLAN = tsBundle(LAB_TS_WLAN,
   [{ id: 'l1', source: 'wlc', target: 'cli', status: 'blocked' }],
   [{ device: 'WLC1', command: 'interface vlan 20' }])
 
+/* ---- Phase 3 Wave — 1.5 MAC forwarding + 5.8–5.11 security ---- */
+
+const MAC_FORWARD_15 = mkGuided({
+  id: 'LAB-MAC-FORWARD-15',
+  title: 'Observe Switch MAC Learning and Forwarding',
+  domainId: 'fundamentals',
+  objectiveId: '1.5',
+  ckuIds: ['CKU-MAC-ADDRESS-TABLE', 'CKU-MAC-LEARNING', 'CKU-FRAME-FORWARDING'],
+  chapter: '1.5 Switch forwarding',
+  minutes: 8,
+  difficulty: 'beginner',
+  scenario: 'SW1 connects PC-A on Fa0/1 and PC-B on Fa0/2 in VLAN 10. Observe how the switch learns source MACs, forwards known unicast, and how you verify the CAM table with show commands.',
+  goals: ['Read show mac address-table after traffic', 'Add a static MAC binding', 'Adjust aging timer from default 300s'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Access ports', device: 'SW1', instruction: 'Set Fa0/1 and Fa0/2 as access ports in VLAN 10.', expectedCommands: ['interface fa0/1', 'switchport mode access', 'switchport access vlan 10', 'interface fa0/2', 'switchport access vlan 10'] },
+    { id: 't2', order: 2, title: 'Baseline MAC table', device: 'SW1', instruction: 'Run show mac address-table — note dynamic entries appear after hosts send frames (source learning).', expectedCommands: ['show mac address-table'] },
+    { id: 't3', order: 3, title: 'Static server MAC', device: 'SW1', instruction: 'Bind server MAC 0011.2233.4455 to Fa0/1 VLAN 10 — static entries never age out.', expectedCommands: ['mac address-table static 0011.2233.4455 vlan 10 interface fa0/1'] },
+    { id: 't4', order: 4, title: 'Aging timer', device: 'SW1', instruction: 'Change global aging time to 600 seconds (default is 300).', expectedCommands: ['mac address-table aging-time 600'] },
+    { id: 't5', order: 5, title: 'Verify', device: 'SW1', instruction: 'Confirm static and dynamic entries with show mac address-table dynamic and show mac address-table count.', expectedCommands: ['show mac address-table dynamic', 'show mac address-table count'] },
+  ],
+  required: [
+    { device: 'SW1', command: 'switchport access vlan 10' },
+    { device: 'SW1', command: 'show mac address-table' },
+    { device: 'SW1', command: 'mac address-table static 0011.2233.4455 vlan 10 interface fa0/1' },
+    { device: 'SW1', command: 'mac address-table aging-time 600' },
+  ],
+  verify: ['show mac address-table', 'show mac address-table dynamic', 'show mac address-table count'],
+  verifyCmd: 'show mac address-table',
+  verifyExpect: '0011.2233.4455',
+  success: ['PC source MACs learned on correct ports', 'Static entry present for server MAC', 'Aging timer set to 600 seconds'],
+  mistakes: ['Confusing source MAC (learned) with destination MAC (lookup)', 'Expecting ARP table on the switch — switches use MAC table only'],
+  topoNodes: [{ id: 'sw1', label: 'SW1 VLAN 10', type: 'switch', x: 50, y: 45 }, { id: 'pca', label: 'PC-A Fa0/1', type: 'pc', x: 25, y: 75 }, { id: 'pcb', label: 'PC-B Fa0/2', type: 'pc', x: 75, y: 75 }],
+  topoLinks: [{ id: 'l1', source: 'pca', target: 'sw1', status: 'forwarding' }, { id: 'l2', source: 'pcb', target: 'sw1', status: 'forwarding' }],
+  diagNodes: [{ id: 'learn', label: 'Learn source MAC', type: 'process', x: 30, y: 40, status: 'highlighted' }, { id: 'sw', label: 'CAM table', type: 'switch', x: 50, y: 55 }, { id: 'fwd', label: 'Forward to dest port', type: 'process', x: 70, y: 40 }],
+  diagLinks: [{ id: 'd1', source: 'learn', target: 'sw', status: 'forwarded' }, { id: 'd2', source: 'sw', target: 'fwd', status: 'forwarded' }],
+  flowSteps: [
+    { id: 's1', order: 1, title: 'Learn', action: 'Switch records source MAC + VLAN + ingress port', successState: 'learned' },
+    { id: 's2', order: 2, title: 'Lookup', action: 'Destination MAC lookup — known unicast forwards to one port', successState: 'matched' },
+    { id: 's3', order: 3, title: 'Flood', action: 'Unknown unicast or broadcast floods all VLAN ports except source', successState: 'forwarded' },
+  ],
+})
+
+const CLI_WLAN_SEC_58 = {
+  'show wireless security summary': `Wireless Security Protocol Summary (WLC1)
+────────────────────────────────────────────────────────────
+Protocol   Encryption   Status on WLANs        CCNA exam note
+WEP        RC4          DEPRECATED — none        Never deploy; cracked
+WPA        TKIP         DEPRECATED — legacy      Weak; avoid
+WPA2       AES-CCMP     ACTIVE — 3 WLANs         Current minimum (Personal + Enterprise)
+WPA3       AES-GCMP     ACTIVE — 1 WLAN          SAE replaces PSK 4-way; PMF mandatory
+
+WPA2-Personal  = PSK passphrase (8–63 chars) + AES
+WPA2-Enterprise = 802.1X/EAP + RADIUS per-user credentials + AES
+WPA3-Personal  = SAE resists offline dictionary attacks`,
+  'show wlan 1': `WLAN ID 1: CORP_WIFI
+SSID ................ CORP_WIFI
+Status .............. ENABLED
+Layer 2 Security .... WPA2
+Auth Key Mgmt ....... PSK
+Cipher .............. AES-CCMP (CCMP)
+PMF ................. Optional (WPA2)
+
+WLAN ID 4: LEGACY_OPEN (disabled — do not use)
+Layer 2 Security .... None — OPEN (security risk)`,
+  'show wlan 4': `WLAN ID 4: LEGACY_OPEN
+Status .............. DISABLED
+Layer 2 Security .... None
+Note: Open WLANs provide no confidentiality — exam expects WPA2-AES minimum.`,
+}
+
+const WLAN_SEC_58 = mkInterpretGuided({
+  id: 'LAB-WLAN-SEC-58',
+  title: 'Compare Wireless Security Protocols on a WLC',
+  domainId: 'security',
+  objectiveId: '5.8',
+  ckuIds: ['CKU-WLAN-SEC'],
+  chapter: '5.8 Wireless security protocols',
+  minutes: 10,
+  cliShowOutput: CLI_WLAN_SEC_58,
+  scenario: 'WLC1 runs multiple WLANs with different security generations. Read static show output to rank WEP → WPA → WPA2 → WPA3 and explain why CCNA expects WPA2-AES (or WPA3) — never WEP or open WLANs in production.',
+  goals: ['Rank WEP/WPA/WPA2/WPA3 by strength', 'Contrast WPA2-Personal (PSK) vs Enterprise (802.1X)', 'Identify AES-CCMP as WPA2 encryption standard'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Security summary', device: 'WLC1', instruction: 'Run show wireless security summary — note which protocols are deprecated vs active and the WPA2/WPA3 exam expectations.', expectedCommands: ['enable', 'show wireless security summary'] },
+    { id: 't2', order: 2, title: 'WPA2 WLAN detail', device: 'WLC1', instruction: 'Run show wlan 1 — confirm CORP_WIFI uses WPA2 + PSK + AES-CCMP (not TKIP or WEP).', expectedCommands: ['show wlan 1'] },
+    { id: 't3', order: 3, title: 'Deprecated open WLAN', device: 'WLC1', instruction: 'Run show wlan 4 — explain why LEGACY_OPEN is disabled and unsuitable for production.', expectedCommands: ['show wlan 4'] },
+  ],
+  required: [
+    { device: 'WLC1', command: 'show wireless security summary' },
+    { device: 'WLC1', command: 'show wlan 1' },
+    { device: 'WLC1', command: 'show wlan 4' },
+  ],
+  verify: ['show wireless security summary', 'show wlan 1', 'show wlan 4'],
+  verifyCmd: 'show wireless security summary',
+  verifyExpect: 'WPA2',
+  verificationChecks: [
+    { id: 'v1', device: 'WLC1', command: 'show wireless security summary', expectedResult: 'WEP/WPA deprecated; WPA2-AES active', passCondition: 'protocol ranking' },
+    { id: 'v2', device: 'WLC1', command: 'show wlan 1', expectedResult: 'WPA2 PSK AES-CCMP', passCondition: 'WPA2 personal settings' },
+  ],
+  success: ['WEP and WPA marked deprecated', 'WPA2 uses AES-CCMP with PSK or 802.1X', 'Open WLAN identified as insecure'],
+  mistakes: ['Choosing WEP or WPA-TKIP as acceptable', 'Confusing WPA3-SAE with removing passphrase requirement'],
+  topoNodes: [{ id: 'wlc', label: 'WLC1', type: 'server', x: 50, y: 25 }, { id: 'wpa2', label: 'WPA2-AES', type: 'process', x: 30, y: 65, status: 'highlighted' }, { id: 'wep', label: 'WEP (deprecated)', type: 'process', x: 70, y: 65, status: 'error' }],
+  topoLinks: [{ id: 'l1', source: 'wlc', target: 'wpa2', status: 'forwarding' }, { id: 'l2', source: 'wlc', target: 'wep', status: 'blocked' }],
+  diagNodes: [{ id: 'wep', label: 'WEP — broken', type: 'process', x: 15, y: 55, status: 'error' }, { id: 'wpa2', label: 'WPA2-AES', type: 'process', x: 50, y: 55, status: 'highlighted' }, { id: 'wpa3', label: 'WPA3-SAE', type: 'process', x: 85, y: 55 }],
+  diagLinks: [{ id: 'd1', source: 'wep', target: 'wpa2', label: 'upgrade', status: 'forwarded' }, { id: 'd2', source: 'wpa2', target: 'wpa3', status: 'forwarded' }],
+  flowSteps: [
+    { id: 's1', order: 1, title: 'Deprecated', action: 'WEP/WPA-TKIP must not be deployed — easily cracked', successState: 'noted' },
+    { id: 's2', order: 2, title: 'WPA2', action: 'AES-CCMP encryption; Personal uses PSK, Enterprise uses 802.1X/RADIUS', successState: 'noted' },
+    { id: 's3', order: 3, title: 'WPA3', action: 'SAE improves PSK exchange; PMF protects management frames', successState: 'noted' },
+  ],
+})
+
+const WPA2_PSK_59 = mkGuided({
+  id: 'LAB-WPA2-PSK-59',
+  title: 'Configure a WPA2-PSK WLAN with AES on a WLC',
+  domainId: 'security',
+  objectiveId: '5.9',
+  ckuIds: ['CKU-WPA2-PSK'],
+  chapter: '5.9 WPA2-PSK WLAN',
+  minutes: 15,
+  scenario: 'WLC1 must offer guest Wi-Fi on VLAN 30 (192.168.30.0/24). Create WLAN GUEST_WIFI with WPA2-Personal, AES-CCMP cipher, PSK passphrase, and map the SSID to the VLAN 30 dynamic interface so clients receive the correct DHCP scope.',
+  goals: ['Create WLAN/SSID with WPA2-PSK + AES', 'Map WLAN to VLAN dynamic interface', 'Verify with show wlan summary'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Dynamic interface VLAN 30', device: 'WLC1', instruction: 'Create dynamic interface VLAN30 with IP 192.168.30.1/24 — this is the client gateway/subnet.', expectedCommands: ['interface vlan 30', 'ip address 192.168.30.1 255.255.255.0'] },
+    { id: 't2', order: 2, title: 'Create WLAN', device: 'WLC1', instruction: 'Create WLAN GUEST_WIFI with SSID GUEST_WIFI and enable it.', expectedCommands: ['wlan GUEST_WIFI', 'ssid GUEST_WIFI'] },
+    { id: 't3', order: 3, title: 'WPA2-PSK AES', device: 'WLC1', instruction: 'Set Layer 2 security to WPA2 with PSK and AES cipher (not TKIP). Use passphrase GuestPass123!.', expectedCommands: ['security wpa akm psk', 'security wpa wpa2 ciphers aes', 'security wpa psk GuestPass123!'] },
+    { id: 't4', order: 4, title: 'Map to VLAN 30', device: 'WLC1', instruction: 'Bind GUEST_WIFI to the VLAN30 dynamic interface so clients get 192.168.30.x addresses.', expectedCommands: ['interface vlan 30'] },
+    { id: 't5', order: 5, title: 'Verify', device: 'WLC1', instruction: 'Confirm WLAN is enabled with WPA2-PSK and correct interface mapping.', expectedCommands: ['show wlan summary', 'show wlan GUEST_WIFI'] },
+  ],
+  required: [
+    { device: 'WLC1', command: 'wlan GUEST_WIFI' },
+    { device: 'WLC1', command: 'security wpa akm psk' },
+    { device: 'WLC1', command: 'security wpa wpa2 ciphers aes' },
+    { device: 'WLC1', command: 'interface vlan 30' },
+  ],
+  verify: ['show wlan summary', 'show wlan GUEST_WIFI'],
+  verifyCmd: 'show wlan summary',
+  verifyExpect: 'GUEST_WIFI',
+  success: ['WLAN enabled with WPA2-PSK and AES', 'SSID mapped to VLAN 30 interface', 'Clients receive 192.168.30.x DHCP scope'],
+  mistakes: ['Using WPA2-TKIP instead of AES-CCMP', 'Forgetting WLAN-to-VLAN mapping — clients associate but get wrong subnet', 'PSK shorter than 8 characters'],
+  topoNodes: [{ id: 'wlc', label: 'WLC1', type: 'router', x: 40, y: 35 }, { id: 'ap', label: 'LWAP', type: 'switch', x: 70, y: 50 }, { id: 'guest', label: 'Guest client', type: 'pc', x: 70, y: 75 }],
+  topoLinks: [{ id: 'l1', source: 'wlc', target: 'ap', label: 'CAPWAP', status: 'forwarding' }, { id: 'l2', source: 'ap', target: 'guest', label: 'GUEST_WIFI', status: 'forwarding' }],
+  diagNodes: [{ id: 'ssid', label: 'GUEST_WIFI', type: 'process', x: 45, y: 45, status: 'highlighted' }, { id: 'vlan', label: 'VLAN 30', type: 'subnet', x: 70, y: 45 }],
+  diagLinks: [{ id: 'd1', source: 'ssid', target: 'vlan', status: 'forwarded' }],
+  flowSteps: [
+    { id: 's1', order: 1, title: 'Associate', action: 'Client selects GUEST_WIFI and enters PSK', successState: 'matched' },
+    { id: 's2', order: 2, title: '4-way handshake', action: 'Unique per-session keys derived from shared passphrase', successState: 'forwarded' },
+    { id: 's3', order: 3, title: 'VLAN map', action: 'WLC maps client to VLAN 30 for DHCP 192.168.30.x', successState: 'forwarded' },
+  ],
+})
+
+const CLI_VPN_510 = {
+  'show vpn sessiondb summary': `VPN Session Database Summary
+────────────────────────────────────────────────────────────
+Session Type          Active   Remote Peer / Client
+Site-to-site IPsec    2        Branch-RTR ↔ HQ-RTR (permanent tunnel)
+Remote-access SSL     14       AnyConnect clients → HQ headend
+Remote-access IPsec   3        Legacy IPsec VPN clients
+
+Site-to-site: connects two networks (gateway-to-gateway) — transparent to users.
+Remote-access: connects individual users to corporate network (AnyConnect/SSL or IPsec client).`,
+  'show crypto ipsec sa': `Crypto IPsec Security Associations
+Interface: Tunnel0 (site-to-site to Branch)
+  local  ident: 203.0.113.10/32
+  remote ident: 198.51.100.20/32
+  #pkts encrypt: 48201  #pkts decrypt: 47988
+  transform: esp-aes 256 esp-sha256-hmac
+  Status: ACTIVE (IKE Phase 2 up)
+
+Interface: Virtual-Access2 (remote-access client)
+  local  ident: 10.50.1.0/24 (pool)
+  remote ident: user-jdoe
+  transform: esp-aes 256 esp-sha256-hmac`,
+  'show crypto isakmp sa': `ISAKMP Security Associations (Phase 1)
+dst             src             state          conn id  slot
+198.51.100.20   203.0.113.10    QM_IDLE        1        0   (site-to-site)
+10.20.30.44     203.0.113.10    QM_IDLE        7        0   (remote-access)
+
+IKE negotiates Phase 1 (ISAKMP SA); IPsec Phase 2 protects data traffic.`,
+}
+
+const VPN_TYPES_510 = mkInterpretGuided({
+  id: 'LAB-VPN-TYPES-510',
+  title: 'Differentiate Site-to-Site and Remote-Access VPNs',
+  domainId: 'security',
+  objectiveId: '5.10',
+  ckuIds: ['CKU-VPN'],
+  chapter: '5.10 VPN types',
+  minutes: 10,
+  cliShowOutput: CLI_VPN_510,
+  scenario: 'HQ-RTR terminates both a permanent site-to-site IPsec tunnel to a branch and remote-access AnyConnect sessions. Read static show output to contrast gateway-to-gateway vs user VPN and identify IPsec Phase 1/2 roles.',
+  goals: ['Contrast site-to-site vs remote-access VPN use cases', 'Read IPsec SA output for encryption/integrity transforms', 'Map IKE (Phase 1) to ISAKMP SA establishment'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Session types', device: 'R1', instruction: 'Run show vpn sessiondb summary — count site-to-site vs remote-access sessions and who initiates each.', expectedCommands: ['enable', 'show vpn sessiondb summary'] },
+    { id: 't2', order: 2, title: 'IPsec SAs', device: 'R1', instruction: 'Run show crypto ipsec sa — compare Tunnel0 (site-to-site) with Virtual-Access (remote client) SAs and note AES + SHA transforms.', expectedCommands: ['show crypto ipsec sa'] },
+    { id: 't3', order: 3, title: 'IKE Phase 1', device: 'R1', instruction: 'Run show crypto isakmp sa — IKE negotiates Phase 1 before IPsec Phase 2 protects user data.', expectedCommands: ['show crypto isakmp sa'] },
+  ],
+  required: [
+    { device: 'R1', command: 'show vpn sessiondb summary' },
+    { device: 'R1', command: 'show crypto ipsec sa' },
+    { device: 'R1', command: 'show crypto isakmp sa' },
+  ],
+  verify: ['show vpn sessiondb summary', 'show crypto ipsec sa', 'show crypto isakmp sa'],
+  verifyCmd: 'show vpn sessiondb summary',
+  verifyExpect: 'Site-to-site',
+  verificationChecks: [
+    { id: 'v1', device: 'R1', command: 'show vpn sessiondb summary', expectedResult: 'Site-to-site vs remote-access counts', passCondition: 'VPN type differentiation' },
+    { id: 'v2', device: 'R1', command: 'show crypto ipsec sa', expectedResult: 'esp-aes esp-sha256 active SAs', passCondition: 'IPsec confidentiality + integrity' },
+  ],
+  success: ['Site-to-site connects networks; remote-access connects users', 'IPsec ESP provides encryption and authentication', 'IKE Phase 1 visible in ISAKMP SA table'],
+  mistakes: ['Claiming IPsec only encrypts without integrity (ESP includes both)', 'Treating site-to-site and remote-access as identical deployment models'],
+  topoNodes: [{ id: 'hq', label: 'HQ-RTR', type: 'router', x: 50, y: 30 }, { id: 'branch', label: 'Branch (site-to-site)', type: 'router', x: 20, y: 70 }, { id: 'user', label: 'Remote user (SSL/IPsec)', type: 'pc', x: 80, y: 70 }],
+  topoLinks: [{ id: 'l1', source: 'hq', target: 'branch', label: 'IPsec tunnel', status: 'forwarding' }, { id: 'l2', source: 'user', target: 'hq', label: 'AnyConnect', status: 'forwarding' }],
+  diagNodes: [{ id: 's2s', label: 'Site-to-site\nnetwork↔network', type: 'process', x: 30, y: 55, status: 'highlighted' }, { id: 'ra', label: 'Remote-access\nuser↔network', type: 'process', x: 70, y: 55 }],
+  diagLinks: [{ id: 'd1', source: 's2s', target: 'ra', label: 'both use IPsec/SSL', status: 'forwarding' }],
+  flowSteps: [
+    { id: 's1', order: 1, title: 'Site-to-site', action: 'Branch and HQ routers build permanent encrypted tunnel — users unaware', successState: 'noted' },
+    { id: 's2', order: 2, title: 'Remote-access', action: 'Individual client VPNs into HQ for corporate resources', successState: 'noted' },
+    { id: 's3', order: 3, title: 'IPsec', action: 'IKE Phase 1 then ESP Phase 2 — AES encrypts, SHA authenticates', successState: 'noted' },
+  ],
+})
+
+const CLI_SEGMENT_511 = {
+  'show vlan brief': `VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+10   USERS                            active    Fa0/1-12
+20   SERVERS                          active    Fa0/13-18
+30   GUEST                            active    Fa0/19-24
+99   MGMT                             active    Gi0/1
+
+Note: VLANs segment L2 broadcast domains — routing/ACLs still required for L3 policy.`,
+  'show zone security': `Zone Security Configuration
+Zone name         Member interfaces
+──────────────────────────────────────
+INSIDE            Vlan10, Vlan20
+OUTSIDE           Gi0/0
+GUEST             Vlan30
+DMZ               Vlan40 (web servers)
+
+Default policy: traffic between zones denied unless explicitly permitted.`,
+  'show zone-pair security': `Zone-pair Security Policies
+Source Zone    Dest Zone     Policy type        Action
+──────────────────────────────────────────────────────────
+INSIDE         OUTSIDE       inspect ip         permit + stateful
+GUEST          INSIDE        ACL GUEST-TO-INSIDE  deny (default)
+GUEST          OUTSIDE       inspect ip         permit internet only
+INSIDE         GUEST         —                  deny (no lateral)
+
+Micro-segmentation: granular policy per zone/workload limits blast radius.`,
+}
+
+const SEGMENT_511 = mkInterpretGuided({
+  id: 'LAB-SEGMENT-511',
+  title: 'Interpret Network Segmentation and Zone Policies',
+  domainId: 'security',
+  objectiveId: '5.11',
+  ckuIds: ['CKU-SEGMENTATION'],
+  chapter: '5.11 Network segmentation',
+  minutes: 10,
+  cliShowOutput: CLI_SEGMENT_511,
+  scenario: 'A campus firewall separates INSIDE, GUEST, OUTSIDE, and DMZ zones. VLANs alone are not enough — read show output to see how zone pairs and stateful inspection limit lateral movement between segments.',
+  goals: ['Explain VLANs as L2 segmentation only', 'Read zone and zone-pair policies on an NGFW', 'Relate micro-segmentation to limiting blast radius'],
+  tasks: [
+    { id: 't1', order: 1, title: 'VLAN segments', device: 'FW1', instruction: 'Run show vlan brief — VLANs divide broadcast domains but do not alone enforce security between routed subnets.', expectedCommands: ['enable', 'show vlan brief'] },
+    { id: 't2', order: 2, title: 'Security zones', device: 'FW1', instruction: 'Run show zone security — note which interfaces belong to INSIDE, GUEST, OUTSIDE, DMZ trust zones.', expectedCommands: ['show zone security'] },
+    { id: 't3', order: 3, title: 'Zone-pair policy', device: 'FW1', instruction: 'Run show zone-pair security — GUEST→INSIDE is denied; INSIDE→OUTSIDE uses stateful inspect.', expectedCommands: ['show zone-pair security'] },
+  ],
+  required: [
+    { device: 'FW1', command: 'show vlan brief' },
+    { device: 'FW1', command: 'show zone security' },
+    { device: 'FW1', command: 'show zone-pair security' },
+  ],
+  verify: ['show vlan brief', 'show zone security', 'show zone-pair security'],
+  verifyCmd: 'show zone-pair security',
+  verifyExpect: 'GUEST',
+  verificationChecks: [
+    { id: 'v1', device: 'FW1', command: 'show vlan brief', expectedResult: 'Separate VLANs for users/servers/guest', passCondition: 'L2 segmentation' },
+    { id: 'v2', device: 'FW1', command: 'show zone-pair security', expectedResult: 'GUEST→INSIDE deny; INSIDE→OUTSIDE inspect', passCondition: 'zone policy' },
+  ],
+  success: ['VLANs segment L2; firewalls enforce L3/L4 policy between zones', 'Guest zone blocked from inside resources', 'Stateful inspect on inside-to-outside'],
+  mistakes: ['Assuming VLANs alone stop routed attacks between subnets', 'Confusing micro-segmentation with one flat VLAN for all servers'],
+  topoNodes: [{ id: 'fw', label: 'FW1 NGFW', type: 'router', x: 50, y: 40 }, { id: 'inside', label: 'INSIDE VLANs', type: 'switch', x: 25, y: 70 }, { id: 'guest', label: 'GUEST VLAN', type: 'pc', x: 75, y: 70 }],
+  topoLinks: [{ id: 'l1', source: 'inside', target: 'fw', status: 'forwarding' }, { id: 'l2', source: 'guest', target: 'fw', label: 'deny→inside', status: 'blocked' }],
+  diagNodes: [{ id: 'vlan', label: 'VLAN L2 boundary', type: 'subnet', x: 25, y: 50 }, { id: 'zone', label: 'Zone L3 policy', type: 'process', x: 75, y: 50, status: 'highlighted' }],
+  diagLinks: [{ id: 'd1', source: 'vlan', target: 'zone', label: 'firewall required', status: 'forwarded' }],
+  flowSteps: [
+    { id: 's1', order: 1, title: 'Segment', action: 'VLANs/VRFs divide networks into smaller trust zones', successState: 'noted' },
+    { id: 's2', order: 2, title: 'Policy', action: 'NGFW zone-pairs permit or deny inter-zone traffic', successState: 'noted' },
+    { id: 's3', order: 3, title: 'Limit blast', action: 'Micro-segmentation restricts lateral movement after a breach', successState: 'noted' },
+  ],
+})
+
 /* ---- Phase 4 ---- */
 
 const LLDP = mkGuided({
@@ -477,5 +811,6 @@ export const PHASE_LAB_BUNDLES = [
   PORT_SECURITY, EXTENDED_ACL_BUILD, STATIC_NAT, INTERVLAN_SVI,
   STP_PORTFAST, IPV6_STATIC, OSPF_DEFAULT,
   WLAN_SSID, TS_WLAN,
+  MAC_FORWARD_15, WLAN_SEC_58, WPA2_PSK_59, VPN_TYPES_510, SEGMENT_511,
   LLDP, SNMP, PAGP_EC, L3_EC,
 ]

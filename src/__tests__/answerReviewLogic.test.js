@@ -9,6 +9,7 @@ import {
 import { isFallbackExplanation, scoreAnswerReview } from '../answerReview/answerReviewQuality.js'
 import { goldAnswerReviewFor } from '../answerReview/goldAnswerReviews.js'
 import { ASAP_SCENARIO_GOLD } from '../answerReview/goldAnswerReviewsAsap.js'
+import { HIGH_TRAFFIC_GOLD } from '../answerReview/goldAnswerReviewsHighTraffic.js'
 
 const MAC_Q = {
   id: '1.5-c-q1',
@@ -88,6 +89,27 @@ describe('answerReviewLogic', () => {
     expect(ar.incorrect).toHaveLength(3)
     const texts = ar.incorrect.map(i => i.explanation)
     expect(new Set(texts).size).toBe(3)
+  })
+
+  it('high-traffic gold reviews meet count and SADE quality bar', () => {
+    expect(Object.keys(HIGH_TRAFFIC_GOLD).length).toBeGreaterThanOrEqual(25)
+    for (const [id, gold] of Object.entries(HIGH_TRAFFIC_GOLD)) {
+      const q = {
+        id,
+        question: `High-traffic stem for ${id}`,
+        choices: ['A', 'B', 'C', 'D'],
+        correctIndex: gold.correct.choiceIndex,
+        explanation: gold.correct.explanation,
+        answerReview: { ...gold, incorrect: gold.incorrect },
+      }
+      const ar = generateAnswerReview(q)
+      expect(goldAnswerReviewFor(id)).toBeTruthy()
+      expect(ar.incorrect.length).toBeGreaterThanOrEqual(1)
+      ar.incorrect.forEach(item => {
+        expect(isFallbackExplanation(item.explanation)).toBe(false)
+      })
+      expect(scoreAnswerReview({ ...q, answerReview: ar }).min).toBeGreaterThanOrEqual(3)
+    }
   })
 
   it('ASAP scenario gold reviews pass SADE quality bar', () => {
