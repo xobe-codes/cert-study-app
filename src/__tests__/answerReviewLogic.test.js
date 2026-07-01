@@ -212,6 +212,12 @@ describe('answerReviewLogic', () => {
     }
   })
 
+  it('Batch 6 gold reviews have unique topic-specific exam tips', () => {
+    const tips = Object.values(BATCH6_GOLD).map(g => g.examTip)
+    expect(new Set(tips).size).toBeGreaterThanOrEqual(45)
+    expect(tips.some(t => /trap:/i.test(t))).toBe(false)
+  })
+
   it('Batch 6 gold reviews pass SADE quality bar', () => {
     expect(Object.keys(BATCH6_GOLD).length).toBe(50)
     for (const [id, gold] of Object.entries(BATCH6_GOLD)) {

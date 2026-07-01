@@ -52,7 +52,7 @@
             "whyWrongHere": "Given administrative distance, The static route, because it has the lower administrative distance matches the tested behavior — Neither route — the router flags a conflict applies a different mechanism."
           }
         ],
-        "examTip": "Routing trap: read show ip route brackets — code, AD, metric — before changing config."
+        "examTip": "Same prefix, multiple sources → lowest AD wins."
       }
     },
     {
@@ -297,7 +297,7 @@
             "whyWrongHere": "Given floating static route, Only when the OSPF route is no longer available matches the tested behavior — Only after the router reboots applies a different mechanism."
           }
         ],
-        "examTip": "Routing trap: read show ip route brackets — code, AD, metric — before changing config."
+        "examTip": "Floating static = higher AD backup when primary fails."
       }
     },
     {

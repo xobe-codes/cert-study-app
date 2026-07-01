@@ -100,7 +100,7 @@
             "whyWrongHere": "Given cloud management use case, A cloud-based management platform (e.g., Meraki dashboard) matches the tested behavior — Telnet to each device's management IP applies a different mechanism."
           }
         ],
-        "examTip": "Services trap: DHCP/DNS/QoS failures are often placement or relay — not “server is down.”"
+        "examTip": "Fleet-wide template push → cloud controller (DNA Center class)."
       }
     },
     {
@@ -492,7 +492,7 @@
             "whyWrongHere": "Given choosing management model, A single highly-regulated data center where all management traffic must remain on an isolated, air-gapped internal network with no internet access matches the tested behavior — A school district wanting centralized visibility across 30 campuses applies a different mechanism."
           }
         ],
-        "examTip": "Services trap: DHCP/DNS/QoS failures are often placement or relay — not “server is down.”"
+        "examTip": "Cloud dashboard unreachable → fall back to local CLI/console."
       }
     }
   ]

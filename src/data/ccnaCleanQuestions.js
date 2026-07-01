@@ -24836,7 +24836,7 @@ export const CLEAN_QUESTIONS = {
             "whyWrongHere": "Given administrative distance, The static route, because it has the lower administrative distance matches the tested behavior — Neither route — the router flags a conflict applies a different mechanism."
           }
         ],
-        "examTip": "Routing trap: read show ip route brackets — code, AD, metric — before changing config."
+        "examTip": "Same prefix, multiple sources → lowest AD wins."
       }
     },
     {
@@ -25081,7 +25081,7 @@ export const CLEAN_QUESTIONS = {
             "whyWrongHere": "Given floating static route, Only when the OSPF route is no longer available matches the tested behavior — Only after the router reboots applies a different mechanism."
           }
         ],
-        "examTip": "Routing trap: read show ip route brackets — code, AD, metric — before changing config."
+        "examTip": "Floating static = higher AD backup when primary fails."
       }
     },
     {
@@ -26114,7 +26114,7 @@ export const CLEAN_QUESTIONS = {
             "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from inside global addresses. applies a different mechanism."
           }
         ],
-        "examTip": "Services trap: DHCP/DNS/QoS failures are often placement or relay — not “server is down.”"
+        "examTip": "NAT ACL must match inside local addresses permitted to translate."
       }
     },
     {
@@ -31849,7 +31849,7 @@ export const CLEAN_QUESTIONS = {
             "whyWrongHere": "Given cloud management use case, A cloud-based management platform (e.g., Meraki dashboard) matches the tested behavior — Telnet to each device's management IP applies a different mechanism."
           }
         ],
-        "examTip": "Services trap: DHCP/DNS/QoS failures are often placement or relay — not “server is down.”"
+        "examTip": "Fleet-wide template push → cloud controller (DNA Center class)."
       }
     },
     {
@@ -32241,7 +32241,7 @@ export const CLEAN_QUESTIONS = {
             "whyWrongHere": "Given choosing management model, A single highly-regulated data center where all management traffic must remain on an isolated, air-gapped internal network with no internet access matches the tested behavior — A school district wanting centralized visibility across 30 campuses applies a different mechanism."
           }
         ],
-        "examTip": "Services trap: DHCP/DNS/QoS failures are often placement or relay — not “server is down.”"
+        "examTip": "Cloud dashboard unreachable → fall back to local CLI/console."
       }
     }
   ],
@@ -47153,7 +47153,7 @@ export const CLEAN_QUESTIONS = {
             "whyWrongHere": "Given accounting use case, Accounting matches the tested behavior — Encryption applies a different mechanism."
           }
         ],
-        "examTip": "Security trap: ACL order, implicit deny, AAA separation — authentication ≠ authorization."
+        "examTip": "Accounting logs what the user did after authZ."
       }
     },
     {
@@ -47451,7 +47451,7 @@ export const CLEAN_QUESTIONS = {
             "whyWrongHere": "Given segmentation and malware containment, The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the tested behavior — A flat network automatically isolates infected hosts applies a different mechanism."
           }
         ],
-        "examTip": "Security trap: ACL order, implicit deny, AAA separation — authentication ≠ authorization."
+        "examTip": "Flat LAN → malware lateral movement with no segmentation."
       }
     },
     {
@@ -47600,7 +47600,7 @@ export const CLEAN_QUESTIONS = {
             "whyWrongHere": "Given guest network segmentation, Place guest traffic on a separate VLAN/subnet with restricted or no access to internal corporate resources, typically routed directly to the internet matches the tested behavior — Give guest devices a higher VLAN priority than corporate traffic applies a different mechanism."
           }
         ],
-        "examTip": "Security trap: ACL order, implicit deny, AAA separation — authentication ≠ authorization."
+        "examTip": "Guest users → dedicated VLAN/subnet + policy, not corp flat."
       }
     },
     {
@@ -47698,7 +47698,7 @@ export const CLEAN_QUESTIONS = {
             "whyWrongHere": "Given out-of-band management segmentation, It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the tested behavior — It allows users to bypass authentication for management access applies a different mechanism."
           }
         ],
-        "examTip": "Security trap: ACL order, implicit deny, AAA separation — authentication ≠ authorization."
+        "examTip": "Device admin → out-of-band mgmt network isolated from users."
       }
     }
   ]

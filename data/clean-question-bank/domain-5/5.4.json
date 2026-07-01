@@ -446,7 +446,7 @@
             "whyWrongHere": "Given accounting use case, Accounting matches the tested behavior — Encryption applies a different mechanism."
           }
         ],
-        "examTip": "Security trap: ACL order, implicit deny, AAA separation — authentication ≠ authorization."
+        "examTip": "Accounting logs what the user did after authZ."
       }
     },
     {

@@ -832,7 +832,7 @@
             "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from inside global addresses. applies a different mechanism."
           }
         ],
-        "examTip": "Services trap: DHCP/DNS/QoS failures are often placement or relay — not “server is down.”"
+        "examTip": "NAT ACL must match inside local addresses permitted to translate."
       }
     },
     {
