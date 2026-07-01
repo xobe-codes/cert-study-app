@@ -15,7 +15,7 @@ test.describe('AnswerReview mobile debrief (390×844)', () => {
 
     await page.goto('/#/objective/1.5/Practice')
     await expect(page.locator('.ccna-quiz-idle')).toBeVisible({ timeout: 20_000 })
-    await page.getByRole('button', { name: /Practice \d+ question/i }).click({ timeout: 20_000 })
+    await page.getByRole('button', { name: /(?:Practice \d+ questions?|Start practice)/i }).click({ timeout: 20_000 })
 
     let found = false
     for (let attempt = 0; attempt < 12 && !found; attempt++) {

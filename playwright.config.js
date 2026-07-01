@@ -18,7 +18,8 @@ export default defineConfig({
     baseURL: E2E_BASE,
     trace: 'on-first-retry',
     browserName: 'chromium',
-    ...(process.env.PW_CHANNEL ? { channel: process.env.PW_CHANNEL } : {}),
+    // CI installs Playwright Chromium; locally fall back to system Chrome when bundled browser is missing.
+    ...(process.env.CI ? {} : { channel: process.env.PW_CHANNEL || 'chrome' }),
     ...devices['Pixel 5'],
   },
   webServer: {

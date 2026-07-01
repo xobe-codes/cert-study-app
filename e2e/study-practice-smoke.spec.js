@@ -13,7 +13,7 @@ test.describe('Study Practice smoke', () => {
 
     await page.goto('/#/objective/1.5/Practice')
     await expect(page.locator('.ccna-quiz-idle')).toBeVisible({ timeout: 20_000 })
-    await page.getByRole('button', { name: /Practice \d+ question/i }).click({ timeout: 20_000 })
+    await page.getByRole('button', { name: /(?:Practice \d+ questions?|Start practice)/i }).click({ timeout: 20_000 })
 
     let reviewVisible = false
     for (let attempt = 0; attempt < 12 && !reviewVisible; attempt++) {
