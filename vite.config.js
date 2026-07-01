@@ -37,6 +37,24 @@ export default defineConfig({
             },
           },
           {
+            urlPattern: /\/assets\/mock-exam[^/?]*\.js$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'ccna-mock-exam',
+              expiration: { maxEntries: 4, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
+            urlPattern: /\/assets\/labs[^/?]*\.js$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'ccna-labs-chunk',
+              expiration: { maxEntries: 4, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
             urlPattern: /\/assets\/[^/?]+\.(?:js|css)$/i,
             handler: 'NetworkFirst',
             options: {

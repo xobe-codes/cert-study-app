@@ -28,6 +28,7 @@ import { summarizeWrongTraps } from './missed/missedTrapGroups.js'
 import { computeCkuWeakness } from './weaknessUtils.js'
 import { applyAnswerReviewToQuestion, inferTrapForChoice } from './answerReviewLogic.js'
 import DeferredExamTips from './components/DeferredExamTips.jsx'
+import MockExamDebriefActions from './features/mockExam/MockExamDebriefActions.jsx'
 import Spinner from './components/Spinner.jsx'
 import ErrorBox from './components/ErrorBox.jsx'
 import { useNavHint } from './components/NavHintProvider.jsx'
@@ -48,7 +49,7 @@ function formatSeconds(total) {
   return `${m}:${String(s).padStart(2, '0')}`
 }
 
-export default function MockExam({ onExit, examMode = false, missed = [], onOpenLab }) {
+export default function MockExam({ onExit, examMode = false, missed = [], onOpenLab, onOpenTrapDrill }) {
   const showNavHint = useNavHint()
   const doneHintFired = useRef(false)
   const [phase, setPhase] = useState('intro') // intro | loading | active | done | review | error
@@ -424,6 +425,19 @@ export default function MockExam({ onExit, examMode = false, missed = [], onOpen
             </ul>
           </div>
         )}
+        <MockExamDebriefActions
+          report={report}
+          questions={questions}
+          responses={responses}
+          domains={DOMAINS}
+          onOpenTrapDrill={onOpenTrapDrill}
+          onOpenLab={onOpenLab}
+          onStudyDomain={(domainId) => {
+            setSelectedDomainIds([domainId])
+            setIntroTab('domain')
+            setPhase('intro')
+          }}
+        />
         {report.deferredTips?.length > 0 && <DeferredExamTips tips={report.deferredTips} />}
         {(() => {
           const firstWrongIdx = questions.findIndex((qItem, idx) => {

@@ -1,4 +1,4 @@
-/** Curated trap-drill MC — 3 questions per top trap CKU (75 total). */
+/** Curated trap-drill MC — 3 questions per top trap CKU (105 total). */
 
 export const TRAP_DRILL_CKUS = [
   {
@@ -125,6 +125,56 @@ export const TRAP_DRILL_CKUS = [
     ckuId: 'CKU-WIFI',
     trapLabel: 'Expecting 5 GHz to penetrate walls better than 2.4 GHz.',
     objectiveId: '1.11',
+  },
+  {
+    ckuId: 'CKU-VTP',
+    trapLabel: 'Expecting VTP to assign IP addresses to VLANs.',
+    objectiveId: '2.2',
+  },
+  {
+    ckuId: 'CKU-BPDU-GUARD',
+    trapLabel: 'Enabling BPDU Guard on trunk uplinks.',
+    objectiveId: '2.5',
+  },
+  {
+    ckuId: 'CKU-SNMPv2',
+    trapLabel: 'Using SNMPv1 community strings for write access.',
+    objectiveId: '4.4',
+  },
+  {
+    ckuId: 'CKU-QoS-TRUST',
+    trapLabel: 'Trusting DSCP on an access port facing end hosts.',
+    objectiveId: '4.7',
+  },
+  {
+    ckuId: 'CKU-WILDCARD-ACL',
+    trapLabel: 'Using subnet mask syntax in a standard ACL.',
+    objectiveId: '5.5',
+  },
+  {
+    ckuId: 'CKU-VLAN-1',
+    trapLabel: 'Deleting VLAN 1 because it is unused.',
+    objectiveId: '2.1',
+  },
+  {
+    ckuId: 'CKU-DUPLEX',
+    trapLabel: 'Leaving one side half-duplex on a Gigabit link.',
+    objectiveId: '1.4',
+  },
+  {
+    ckuId: 'CKU-REST-API',
+    trapLabel: 'Confusing northbound REST with southbound NETCONF.',
+    objectiveId: '6.3',
+  },
+  {
+    ckuId: 'CKU-CONTROLLER',
+    trapLabel: 'Expecting each switch to keep independent control-plane policy in SDN.',
+    objectiveId: '6.2',
+  },
+  {
+    ckuId: 'CKU-SYSLOG',
+    trapLabel: 'Setting all syslog messages to severity 7 (debug).',
+    objectiveId: '4.5',
   },
 ]
 
@@ -1373,6 +1423,166 @@ const QUESTIONS = [
     explanation: 'SSID is the human-readable network name — VLAN mapping is a separate design step on the WLC/AP.',
     type: 'definition',
     concept: 'wireless',
+  },
+  // CKU-VTP (3)
+  {
+    id: 'trap-vtp-1', ckuId: 'CKU-VTP', trapLabel: 'Expecting VTP to assign IP addresses to VLANs.', objectiveId: '2.2',
+    question: 'What does VTP synchronize between switches?', choices: ['IP helper addresses', 'VLAN database and names', 'OSPF routes', 'MAC address tables'],
+    correctIndex: 1, explanation: 'VTP propagates VLAN configuration — not IP addressing or routing.', type: 'definition', concept: 'vtp',
+  },
+  {
+    id: 'trap-vtp-2', ckuId: 'CKU-VTP', trapLabel: 'Expecting VTP to assign IP addresses to VLANs.', objectiveId: '2.2',
+    question: 'A new VLAN exists on SW1 but not SW2 in the same VTP domain. Likely cause?', choices: ['Missing ip routing', 'VTP not propagating or wrong mode', 'STP blocking', 'CDP disabled'],
+    correctIndex: 1, explanation: 'VTP domain/mode/revision controls VLAN propagation — not Layer 3.', type: 'scenario', concept: 'vtp',
+  },
+  {
+    id: 'trap-vtp-3', ckuId: 'CKU-VTP', trapLabel: 'Expecting VTP to assign IP addresses to VLANs.', objectiveId: '2.2',
+    question: 'Which device role creates VLANs that propagate via VTP?', choices: ['VTP client only', 'VTP server', 'Access port', 'DHCP server'],
+    correctIndex: 1, explanation: 'VTP server can create/modify VLANs that clients learn — clients cannot create VLANs.', type: 'definition', concept: 'vtp',
+  },
+  // CKU-BPDU-GUARD (3)
+  {
+    id: 'trap-bpdu-1', ckuId: 'CKU-BPDU-GUARD', trapLabel: 'Enabling BPDU Guard on trunk uplinks.', objectiveId: '2.5',
+    question: 'BPDU Guard should be enabled on which ports?', choices: ['Trunk uplinks to core', 'Access ports with PortFast edge', 'Loopback interfaces', 'SVIs'],
+    correctIndex: 1, explanation: 'BPDU Guard protects PortFast edge ports — not trunk uplinks carrying legitimate BPDUs.', type: 'scenario', concept: 'stp',
+  },
+  {
+    id: 'trap-bpdu-2', ckuId: 'CKU-BPDU-GUARD', trapLabel: 'Enabling BPDU Guard on trunk uplinks.', objectiveId: '2.5',
+    question: 'An access port with BPDU Guard receives a BPDU. What happens?', choices: ['Port stays forwarding', 'Port err-disables', 'Root bridge changes', 'VTP revision increments'],
+    correctIndex: 1, explanation: 'BPDU on an edge port triggers err-disable — prevents rogue switch attachment.', type: 'application', concept: 'stp',
+  },
+  {
+    id: 'trap-bpdu-3', ckuId: 'CKU-BPDU-GUARD', trapLabel: 'Enabling BPDU Guard on trunk uplinks.', objectiveId: '2.5',
+    question: 'Which feature pairs with PortFast on user-facing switch ports?', choices: ['Root guard on uplink', 'BPDU Guard on access', 'EtherChannel LACP', 'VTP pruning'],
+    correctIndex: 1, explanation: 'PortFast + BPDU Guard is the classic access-edge hardening pair.', type: 'definition', concept: 'stp',
+  },
+  // CKU-SNMPv2 (3)
+  {
+    id: 'trap-snmp-1', ckuId: 'CKU-SNMPv2', trapLabel: 'Using SNMPv1 community strings for write access.', objectiveId: '4.4',
+    question: 'SNMPv2c read-only monitoring typically uses which community string keyword?', choices: ['rw', 'RO', 'enable', 'secret'],
+    correctIndex: 1, explanation: 'RO (read-only) community limits polling — RW is for configuration changes.', type: 'definition', concept: 'snmp',
+  },
+  {
+    id: 'trap-snmp-2', ckuId: 'CKU-SNMPv2', trapLabel: 'Using SNMPv1 community strings for write access.', objectiveId: '4.4',
+    question: 'Why avoid SNMPv1/v2c RW communities on production devices?', choices: ['They block syslog', 'Community strings are cleartext and allow config changes', 'They disable CDP', 'They break NTP'],
+    correctIndex: 1, explanation: 'SNMPv2c communities are plaintext — RW grants dangerous remote control.', type: 'scenario', concept: 'snmp',
+  },
+  {
+    id: 'trap-snmp-3', ckuId: 'CKU-SNMPv2', trapLabel: 'Using SNMPv1 community strings for write access.', objectiveId: '4.4',
+    question: 'Which SNMP version adds encryption and user-based security?', choices: ['SNMPv1', 'SNMPv2c', 'SNMPv3', 'SNMPv4'],
+    correctIndex: 2, explanation: 'SNMPv3 provides authPriv — v1/v2c rely on community strings only.', type: 'definition', concept: 'snmp',
+  },
+  // CKU-QoS-TRUST (3)
+  {
+    id: 'trap-qos-1', ckuId: 'CKU-QoS-TRUST', trapLabel: 'Trusting DSCP on an access port facing end hosts.', objectiveId: '4.7',
+    question: 'Where should QoS classification and marking ideally occur?', choices: ['Access port facing PCs', 'Network edge/trust boundary', 'End-user laptop', 'DNS server'],
+    correctIndex: 1, explanation: 'Mark at controlled trust boundaries — not on untrusted host-facing ports.', type: 'definition', concept: 'qos',
+  },
+  {
+    id: 'trap-qos-2', ckuId: 'CKU-QoS-TRUST', trapLabel: 'Trusting DSCP on an access port facing end hosts.', objectiveId: '4.7',
+    question: 'A PC marks all traffic EF to game the queue. Best mitigation?', choices: ['Trust DSCP on access port', 'Remap/untrust at access — reclassify at edge', 'Disable QoS globally', 'Increase bandwidth only'],
+    correctIndex: 1, explanation: 'Do not trust host markings — police/reclassify at the access layer.', type: 'scenario', concept: 'qos',
+  },
+  {
+    id: 'trap-qos-3', ckuId: 'CKU-QoS-TRUST', trapLabel: 'Trusting DSCP on an access port facing end hosts.', objectiveId: '4.7',
+    question: 'Voice is typically marked with which DSCP class?', choices: ['AF21', 'EF', 'CS0', 'AF32'],
+    correctIndex: 1, explanation: 'Expedited Forwarding (EF, DSCP 46) is the standard voice marking.', type: 'definition', concept: 'qos',
+  },
+  // CKU-WILDCARD-ACL (3)
+  {
+    id: 'trap-wacl-1', ckuId: 'CKU-WILDCARD-ACL', trapLabel: 'Using subnet mask syntax in a standard ACL.', objectiveId: '5.5',
+    question: 'Standard numbered ACLs match traffic based on…', choices: ['Source IP only', 'Source and destination IP', 'Layer 4 ports only', 'MAC addresses'],
+    correctIndex: 0, explanation: 'Standard ACLs filter source address only — extended ACLs add destination and ports.', type: 'definition', concept: 'acl',
+  },
+  {
+    id: 'trap-wacl-2', ckuId: 'CKU-WILDCARD-ACL', trapLabel: 'Using subnet mask syntax in a standard ACL.', objectiveId: '5.5',
+    question: 'In `access-list 10 permit 192.168.1.0 0.0.0.255`, what is `0.0.0.255`?', choices: ['Subnet mask', 'Wildcard mask', 'Default gateway', 'VLAN ID'],
+    correctIndex: 1, explanation: 'IOS ACLs use wildcard masks — inverse of subnet masks.', type: 'definition', concept: 'acl',
+  },
+  {
+    id: 'trap-wacl-3', ckuId: 'CKU-WILDCARD-ACL', trapLabel: 'Using subnet mask syntax in a standard ACL.', objectiveId: '5.5',
+    question: 'Which ACL type can filter TCP destination port 443?', choices: ['Standard numbered ACL', 'Extended named ACL', 'Standard named only', 'VLAN map ACL'],
+    correctIndex: 1, explanation: 'Extended ACLs match protocol and port — standard ACLs cannot.', type: 'application', concept: 'acl',
+  },
+  // CKU-VLAN-1 (3)
+  {
+    id: 'trap-vlan1-1', ckuId: 'CKU-VLAN-1', trapLabel: 'Deleting VLAN 1 because it is unused.', objectiveId: '2.1',
+    question: 'Can VLAN 1 be deleted on a Cisco switch?', choices: ['Yes, like any VLAN', 'No — VLAN 1 is default and cannot be removed', 'Only on routers', 'Only with VTP transparent'],
+    correctIndex: 1, explanation: 'VLAN 1 is the default — you can move ports off it but not delete it.', type: 'definition', concept: 'vlan',
+  },
+  {
+    id: 'trap-vlan1-2', ckuId: 'CKU-VLAN-1', trapLabel: 'Deleting VLAN 1 because it is unused.', objectiveId: '2.1',
+    question: 'Best practice for unused default VLAN 1?', choices: ['Delete VLAN 1', 'Move access ports to dedicated VLANs and shut unused VLAN 1 SVI if present', 'Disable STP', 'Set native VLAN to 999 only'],
+    correctIndex: 1, explanation: 'Segment users off VLAN 1 — do not attempt to delete the default VLAN.', type: 'scenario', concept: 'vlan',
+  },
+  {
+    id: 'trap-vlan1-3', ckuId: 'CKU-VLAN-1', trapLabel: 'Deleting VLAN 1 because it is unused.', objectiveId: '2.1',
+    question: 'Inter-VLAN routing on an L3 switch typically uses…', choices: ['VLAN 1 only', 'SVIs per VLAN', 'PortFast', 'CDP'],
+    correctIndex: 1, explanation: 'Each routed VLAN gets an SVI — not reliance on undeletable VLAN 1 alone.', type: 'definition', concept: 'vlan',
+  },
+  // CKU-DUPLEX (3)
+  {
+    id: 'trap-dup-1', ckuId: 'CKU-DUPLEX', trapLabel: 'Leaving one side half-duplex on a Gigabit link.', objectiveId: '1.4',
+    question: 'A Gigabit link shows late collisions and CRC errors. First check?', choices: ['OSPF area', 'Speed/duplex mismatch', 'DNS', 'VTP domain'],
+    correctIndex: 1, explanation: 'Duplex mismatch causes collisions/CRC — classic physical-layer symptom.', type: 'scenario', concept: 'physical',
+  },
+  {
+    id: 'trap-dup-2', ckuId: 'CKU-DUPLEX', trapLabel: 'Leaving one side half-duplex on a Gigabit link.', objectiveId: '1.4',
+    question: 'Two auto-negotiating Gigabit ports should settle on…', choices: ['Half duplex', 'Full duplex', 'Simplex only', '10 Mbps half'],
+    correctIndex: 1, explanation: 'Gigabit Ethernet auto-negotiates full duplex when both sides support it.', type: 'definition', concept: 'physical',
+  },
+  {
+    id: 'trap-dup-3', ckuId: 'CKU-DUPLEX', trapLabel: 'Leaving one side half-duplex on a Gigabit link.', objectiveId: '1.4',
+    question: 'Which counter growth suggests duplex mismatch?', choices: ['Input errors and late collisions', 'OSPF adjacency drops', 'DHCP declines', 'ARP time-outs only'],
+    correctIndex: 0, explanation: 'Late collisions on full-speed links often mean one end is half-duplex.', type: 'application', concept: 'physical',
+  },
+  // CKU-REST-API (3)
+  {
+    id: 'trap-rest-1', ckuId: 'CKU-REST-API', trapLabel: 'Confusing northbound REST with southbound NETCONF.', objectiveId: '6.3',
+    question: 'A network automation app talks to the SDN controller GUI API. Which direction is this?', choices: ['Southbound', 'Northbound', 'East-west', 'Data plane'],
+    correctIndex: 1, explanation: 'Northbound APIs face applications/orchestration above the controller.', type: 'definition', concept: 'sdn',
+  },
+  {
+    id: 'trap-rest-2', ckuId: 'CKU-REST-API', trapLabel: 'Confusing northbound REST with southbound NETCONF.', objectiveId: '6.3',
+    question: 'The controller pushes config to switches via NETCONF. This is…', choices: ['Northbound REST', 'Southbound device API', 'DNS', 'SNMP trap only'],
+    correctIndex: 1, explanation: 'Southbound protocols connect controller to infrastructure devices.', type: 'definition', concept: 'sdn',
+  },
+  {
+    id: 'trap-rest-3', ckuId: 'CKU-REST-API', trapLabel: 'Confusing northbound REST with southbound NETCONF.', objectiveId: '6.3',
+    question: 'JSON is commonly used with which controller interface style?', choices: ['Only console', 'REST northbound APIs', 'Ethernet frames', 'CDP TLVs'],
+    correctIndex: 1, explanation: 'REST/JSON is typical for northbound automation integrations.', type: 'application', concept: 'sdn',
+  },
+  // CKU-CONTROLLER (3)
+  {
+    id: 'trap-ctrl-1', ckuId: 'CKU-CONTROLLER', trapLabel: 'Expecting each switch to keep independent control-plane policy in SDN.', objectiveId: '6.2',
+    question: 'In controller-based networking, where is control-plane policy centralized?', choices: ['Every access port', 'The SDN controller', 'DNS server', 'DHCP scope'],
+    correctIndex: 1, explanation: 'SDN centralizes control decisions in the controller — devices forward data plane.', type: 'definition', concept: 'sdn',
+  },
+  {
+    id: 'trap-ctrl-2', ckuId: 'CKU-CONTROLLER', trapLabel: 'Expecting each switch to keep independent control-plane policy in SDN.', objectiveId: '6.2',
+    question: 'Traditional networking vs SDN — key difference?', choices: ['No data plane in SDN', 'Distributed control plane vs centralized controller', 'SDN removes VLANs', 'Traditional uses only APIs'],
+    correctIndex: 1, explanation: 'Traditional = per-device control plane; SDN = centralized control with distributed forwarding.', type: 'definition', concept: 'sdn',
+  },
+  {
+    id: 'trap-ctrl-3', ckuId: 'CKU-CONTROLLER', trapLabel: 'Expecting each switch to keep independent control-plane policy in SDN.', objectiveId: '6.2',
+    question: 'Cisco DNA Center provides which benefit over box-by-box CLI?', choices: ['Eliminates switching', 'Centralized design, policy, and assurance', 'Removes need for routing', 'Disables APIs'],
+    correctIndex: 1,     explanation: 'Controller platforms unify design, provisioning, and telemetry across the campus.', type: 'scenario', concept: 'sdn',
+  },
+  // CKU-SYSLOG (3)
+  {
+    id: 'trap-syslog-1', ckuId: 'CKU-SYSLOG', trapLabel: 'Setting all syslog messages to severity 7 (debug).', objectiveId: '4.5',
+    question: 'Which syslog severity level is **informational** (not debug)?', choices: ['0 — emergency', '6 — informational', '7 — debug', '4 — warning only'],
+    correctIndex: 1, explanation: 'Severity 6 is informational — level 7 is debug and floods the collector.', type: 'definition', concept: 'syslog',
+  },
+  {
+    id: 'trap-syslog-2', ckuId: 'CKU-SYSLOG', trapLabel: 'Setting all syslog messages to severity 7 (debug).', objectiveId: '4.5',
+    question: 'An interface flaps — which severity is appropriate for logging without debug noise?', choices: ['7 debug', '4 warning / 3 error', '0 emergency only', '6 informational only'],
+    correctIndex: 1, explanation: 'Link down events are typically warning/error — not every debug line.', type: 'scenario', concept: 'syslog',
+  },
+  {
+    id: 'trap-syslog-3', ckuId: 'CKU-SYSLOG', trapLabel: 'Setting all syslog messages to severity 7 (debug).', objectiveId: '4.5',
+    question: 'Lower syslog severity numbers mean…', choices: ['Less important', 'More severe / higher priority', 'Only local console', 'Encrypted messages'],
+    correctIndex: 1, explanation: '0 = emergency, 7 = debug — lower number = more critical.', type: 'definition', concept: 'syslog',
   },
 ]
 

@@ -3,8 +3,8 @@ import { getStemReplayLab, hasStemReplayLab, stemReplayMapSize } from '../featur
 import { getLab } from '../data/ccnaLabs.js'
 
 describe('stemReplayLabs', () => {
-  it('maps at least 30 high-traffic questions to real labs', () => {
-    expect(stemReplayMapSize()).toBeGreaterThanOrEqual(30)
+  it('maps at least 50 high-traffic questions to real labs', () => {
+    expect(stemReplayMapSize()).toBeGreaterThanOrEqual(50)
   })
 
   it('every new wave-2 mapping resolves via getLab', () => {

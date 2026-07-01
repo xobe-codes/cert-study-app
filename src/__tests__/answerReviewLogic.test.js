@@ -12,6 +12,7 @@ import { ASAP_SCENARIO_GOLD } from '../answerReview/goldAnswerReviewsAsap.js'
 import { BATCH2_GOLD } from '../answerReview/goldAnswerReviewsBatch2.js'
 import { BATCH3_GOLD } from '../answerReview/goldAnswerReviewsBatch3.js'
 import { BATCH4_GOLD } from '../answerReview/goldAnswerReviewsBatch4.js'
+import { BATCH5_GOLD } from '../answerReview/goldAnswerReviewsBatch5.js'
 import { HIGH_TRAFFIC_GOLD } from '../answerReview/goldAnswerReviewsHighTraffic.js'
 
 const MAC_Q = {
@@ -116,10 +117,11 @@ describe('answerReviewLogic', () => {
   })
 
   it('total unique gold answer reviews meet count bar', () => {
-    expect(Object.keys(GOLD_ANSWER_REVIEWS).length).toBeGreaterThanOrEqual(150)
+    expect(Object.keys(GOLD_ANSWER_REVIEWS).length).toBeGreaterThanOrEqual(200)
     expect(Object.keys(BATCH2_GOLD).length).toBe(25)
     expect(Object.keys(BATCH3_GOLD).length).toBe(25)
     expect(Object.keys(BATCH4_GOLD).length).toBe(47)
+    expect(Object.keys(BATCH5_GOLD).length).toBe(50)
   })
 
   it('Batch 3 gold reviews pass SADE quality bar', () => {
@@ -179,6 +181,28 @@ describe('answerReviewLogic', () => {
       const ar = generateAnswerReview(q)
       expect(goldAnswerReviewFor(id)).toBeTruthy()
       expect(ar.incorrect).toHaveLength(3)
+      ar.incorrect.forEach(item => {
+        expect(isFallbackExplanation(item.explanation)).toBe(false)
+      })
+      expect(scoreAnswerReview({ ...q, answerReview: ar }).min).toBeGreaterThanOrEqual(3)
+    }
+  })
+
+  it('Batch 5 gold reviews pass SADE quality bar', () => {
+    expect(Object.keys(BATCH5_GOLD).length).toBe(50)
+    for (const [id, gold] of Object.entries(BATCH5_GOLD)) {
+      const q = {
+        id,
+        question: `Batch 5 stem for ${id}`,
+        choices: ['A', 'B', 'C', 'D'],
+        correctIndex: gold.correct.choiceIndex,
+        explanation: gold.correct.explanation,
+        type: 'scenario',
+        answerReview: { ...gold, incorrect: gold.incorrect },
+      }
+      const ar = generateAnswerReview(q)
+      expect(goldAnswerReviewFor(id)).toBeTruthy()
+      expect(ar.incorrect.length).toBeGreaterThanOrEqual(1)
       ar.incorrect.forEach(item => {
         expect(isFallbackExplanation(item.explanation)).toBe(false)
       })

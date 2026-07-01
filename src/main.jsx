@@ -37,6 +37,10 @@ try {
   document.documentElement.setAttribute('data-theme', 'dark')
 }
 
+if (import.meta.env.DEV) {
+  import('./e2eTestHooks.js').then(m => m.installE2eTestHooks())
+}
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AppErrorBoundary>

@@ -7,9 +7,9 @@ import {
 } from '../features/trapDrill/trapDrillQuestions.js'
 
 describe('trapDrillQuestions', () => {
-  it('defines 25 trap CKUs with 3 questions each (75 total)', () => {
-    expect(TRAP_DRILL_CKUS).toHaveLength(25)
-    expect(getAllTrapDrillQuestions()).toHaveLength(75)
+  it('defines 35 trap CKUs with 3 questions each (105 total)', () => {
+    expect(TRAP_DRILL_CKUS).toHaveLength(35)
+    expect(getAllTrapDrillQuestions()).toHaveLength(105)
   })
 
   it('returns 3 questions per CKU by id', () => {
@@ -40,14 +40,14 @@ describe('trapDrillQuestions', () => {
     ]))
   })
 
-  it('includes expanded trap topics: EIGRP, portfast, SSH, ARP, IPv6', () => {
+  it('includes expanded wave-2 trap topics: VTP, QoS trust, wildcard ACL', () => {
     const ids = TRAP_DRILL_CKUS.map(c => c.ckuId)
     expect(ids).toEqual(expect.arrayContaining([
-      'CKU-EIGRP',
-      'CKU-PORTFAST',
-      'CKU-TELNET-SSH',
-      'CKU-ARP',
-      'CKU-IPV6',
+      'CKU-VTP',
+      'CKU-QoS-TRUST',
+      'CKU-WILDCARD-ACL',
+      'CKU-REST-API',
+      'CKU-CONTROLLER',
     ]))
   })
 })
