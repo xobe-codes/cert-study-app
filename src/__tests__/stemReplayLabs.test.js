@@ -3,8 +3,20 @@ import { getStemReplayLab, hasStemReplayLab, stemReplayMapSize } from '../featur
 import { getLab } from '../data/ccnaLabs.js'
 
 describe('stemReplayLabs', () => {
-  it('maps at least 15 high-traffic questions to real labs', () => {
-    expect(stemReplayMapSize()).toBeGreaterThanOrEqual(15)
+  it('maps at least 30 high-traffic questions to real labs', () => {
+    expect(stemReplayMapSize()).toBeGreaterThanOrEqual(30)
+  })
+
+  it('every new wave-2 mapping resolves via getLab', () => {
+    const sampleIds = [
+      '1.1-c-q1', '1.6-c-q1', 'obj-2.4-source-q001', '3.1-q1',
+      'obj-3.5-source-q001', 'obj-4.3-source-q001', 'obj-4.6-source-q001',
+    ]
+    for (const qid of sampleIds) {
+      const replay = getStemReplayLab(qid)
+      expect(replay, qid).not.toBeNull()
+      expect(getLab(replay.labId)?.lab.id).toBe(replay.labId)
+    }
   })
 
   it('maps high-traffic ACL question to ACL lab', () => {

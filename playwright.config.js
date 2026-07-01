@@ -1,9 +1,13 @@
 import { defineConfig, devices } from '@playwright/test'
 
+const E2E_HOST = '127.0.0.1'
+const E2E_PORT = process.env.E2E_PORT || '5199'
+const E2E_BASE = `http://${E2E_HOST}:${E2E_PORT}`
+
 export default defineConfig({
   testDir: './e2e',
   testMatch: '**/*.spec.js',
-  fullyParallel: true,
+  fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   workers: 1,
@@ -11,14 +15,15 @@ export default defineConfig({
   reporter: 'list',
   expect: { timeout: 15_000 },
   use: {
-    baseURL: 'http://127.0.0.1:5173',
+    baseURL: E2E_BASE,
     trace: 'on-first-retry',
     browserName: 'chromium',
+    ...(process.env.PW_CHANNEL ? { channel: process.env.PW_CHANNEL } : {}),
     ...devices['Pixel 5'],
   },
   webServer: {
-    command: 'npm run dev -- --host 127.0.0.1 --port 5173',
-    url: 'http://127.0.0.1:5173',
+    command: `npm run dev -- --host ${E2E_HOST} --port ${E2E_PORT} --strictPort`,
+    url: E2E_BASE,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
   },

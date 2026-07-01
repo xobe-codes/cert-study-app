@@ -21,6 +21,22 @@ export default defineConfig({
             options: { cacheName: 'ccna-pages', networkTimeoutSeconds: 5 },
           },
           {
+            urlPattern: /\/assets\/clean-questions[^/?]*\.js$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'ccna-clean-questions',
+              expiration: { maxEntries: 4, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              cacheableResponse: { statuses: [0, 200] },
+              plugins: [{
+                cacheWillUpdate: async ({ response }) => {
+                  const len = Number(response.headers.get('content-length') || 0)
+                  if (len > 5 * 1024 * 1024) return null
+                  return response
+                },
+              }],
+            },
+          },
+          {
             urlPattern: /\/assets\/[^/?]+\.(?:js|css)$/i,
             handler: 'NetworkFirst',
             options: {

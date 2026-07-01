@@ -8,9 +8,13 @@ test.describe('AnswerReview mobile debrief (390×844)', () => {
     await page.waitForFunction(() => typeof window.storage?.getItem === 'function')
     await page.evaluate(async () => {
       await window.storage.setItem('ccna_onboard_done_v1', true)
+      await window.storage.setItem('ccna_progress_v1', {
+        '1.5': { status: 'in_progress', quizScores: [], lastSeen: Date.now(), studySectionsViewed: true },
+      })
     })
 
     await page.goto('/#/objective/1.5/Practice')
+    await expect(page.locator('.ccna-quiz-idle')).toBeVisible({ timeout: 20_000 })
     await page.getByRole('button', { name: /Practice \d+ question/i }).click({ timeout: 20_000 })
 
     let found = false

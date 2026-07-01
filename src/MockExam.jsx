@@ -9,6 +9,7 @@ import {
   staticMockExamReady,
   buildStaticMockExamPool,
   buildBlueprintWeightedPool,
+  computeDomainWeakness,
 } from './mockExamConfig.js'
 import {
   buildDomainStudyPool,
@@ -120,9 +121,10 @@ export default function MockExam({ onExit, examMode = false, missed = [], onOpen
       if (!staticMockExamReady(DOMAINS, getMc)) {
         throw new Error('Not enough static questions for a full exam. Add more questions to the bank.')
       }
-      const weakIds = computeCkuWeakness(missed).slice(0, 12).map(w => w.id)
-      const final = weakIds.length
-        ? buildBlueprintWeightedPool(DOMAINS, getMc, weakIds, shuffleArray)
+      const weakCkuIds = computeCkuWeakness(missed).slice(0, 12).map(w => w.id)
+      const weakDomainIds = computeDomainWeakness(missed, DOMAINS).slice(0, 3).map(w => w.id)
+      const final = (weakCkuIds.length || weakDomainIds.length)
+        ? buildBlueprintWeightedPool(DOMAINS, getMc, weakCkuIds, shuffleArray, MOCK_EXAM_QUESTION_COUNT, weakDomainIds)
         : buildStaticMockExamPool(DOMAINS, getMc, shuffleArray)
       setQuestions(final)
       setResponses({})
@@ -134,7 +136,7 @@ export default function MockExam({ onExit, examMode = false, missed = [], onOpen
       setError(err.message)
       setPhase('error')
     }
-  }, [])
+  }, [missed])
 
   // Countdown timer (full mock exam only — study mode has no countdown)
   useEffect(() => {

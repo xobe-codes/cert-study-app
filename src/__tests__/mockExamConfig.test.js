@@ -6,6 +6,8 @@ import {
   buildMockExamDomainCounts,
   buildBlueprintWeightedPool,
   sampleAdaptiveQuestions,
+  applyWeakDomainSlotBoost,
+  computeDomainWeakness,
 } from '../mockExamConfig.js'
 import { preloadCleanBank } from '../data/cleanQuestionAdapter.js'
 import { getCuratedQuestions } from '../data/ccnaCurated.js'
@@ -67,5 +69,40 @@ describe('mockExamConfig', () => {
     expect(pool.every(q => isMcQuestion(q))).toBe(true)
     const staticPool = buildStaticMockExamPool(DOMAINS, getMc, arr => [...arr])
     expect(staticPool.length).toBe(MOCK_EXAM_QUESTION_COUNT)
+  })
+
+  it('applyWeakDomainSlotBoost shifts one slot to weak domain from strongest', () => {
+    const base = buildMockExamDomainCounts(DOMAINS, MOCK_EXAM_QUESTION_COUNT)
+    const adjusted = applyWeakDomainSlotBoost(base, ['security'])
+    const total = adjusted.reduce((n, c) => n + c.count, 0)
+    expect(total).toBe(MOCK_EXAM_QUESTION_COUNT)
+    const secBase = base.find(c => c.domain.id === 'security').count
+    const secAdj = adjusted.find(c => c.domain.id === 'security').count
+    expect(secAdj).toBe(secBase + 1)
+    const connectivityAdj = adjusted.find(c => c.domain.id === 'connectivity').count
+    const connectivityBase = base.find(c => c.domain.id === 'connectivity').count
+    expect(connectivityAdj).toBe(connectivityBase - 1)
+  })
+
+  it('computeDomainWeakness aggregates missed questions by domain', () => {
+    const missed = [
+      { objectiveId: '5.5' },
+      { objectiveId: '5.6' },
+      { objectiveId: '3.2' },
+    ]
+    const weak = computeDomainWeakness(missed, DOMAINS)
+    expect(weak[0]).toEqual({ id: 'security', count: 2 })
+    expect(weak.find(w => w.id === 'connectivity')).toEqual({ id: 'connectivity', count: 1 })
+  })
+
+  it('buildBlueprintWeightedPool with weakDomainIds boosts weak domain slots', () => {
+    const getMc = id => getCuratedQuestions(id).filter(isMcQuestion)
+    const baseCounts = buildMockExamDomainCounts(DOMAINS, MOCK_EXAM_QUESTION_COUNT)
+    const boostedCounts = buildMockExamDomainCounts(DOMAINS, MOCK_EXAM_QUESTION_COUNT, ['security'])
+    const secBoost = boostedCounts.find(c => c.domain.id === 'security').count
+    const secBase = baseCounts.find(c => c.domain.id === 'security').count
+    expect(secBoost).toBe(secBase + 1)
+    const pool = buildBlueprintWeightedPool(DOMAINS, getMc, [], arr => [...arr], MOCK_EXAM_QUESTION_COUNT, ['security'])
+    expect(pool.length).toBe(MOCK_EXAM_QUESTION_COUNT)
   })
 })

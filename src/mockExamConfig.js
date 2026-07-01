@@ -4,7 +4,50 @@ export const MOCK_EXAM_DURATION_MIN = 120
 /** Max AI-generated questions per mock attempt when hybrid mode is enabled. */
 export const MOCK_EXAM_AI_CAP = 8
 
-export function buildMockExamDomainCounts(domains, questionCount = MOCK_EXAM_QUESTION_COUNT) {
+/** Aggregate missed-question counts by blueprint domain id. */
+export function computeDomainWeakness(missed = [], domains = []) {
+  const numToId = {}
+  for (const d of domains) {
+    const num = d.objectives?.[0]?.id?.split('.')?.[0]
+    if (num) numToId[num] = d.id
+  }
+  const counts = {}
+  for (const m of missed) {
+    const num = (m.objectiveId || '1.1').split('.')[0]
+    const id = numToId[num]
+    if (id) counts[id] = (counts[id] || 0) + 1
+  }
+  return Object.entries(counts)
+    .sort((a, b) => b[1] - a[1])
+    .map(([id, count]) => ({ id, count }))
+}
+
+/**
+ * Boost each weak domain by +1 slot, stealing from the strongest other domain.
+ * Total question count is preserved.
+ */
+export function applyWeakDomainSlotBoost(domainCounts, weakDomainIds = []) {
+  if (!weakDomainIds?.length) return domainCounts
+  const counts = domainCounts.map(c => ({ ...c, count: c.count }))
+  for (const weakId of weakDomainIds) {
+    const weakIdx = counts.findIndex(c => c.domain.id === weakId)
+    if (weakIdx < 0) continue
+    let strongestIdx = -1
+    let maxCount = 0
+    counts.forEach((c, i) => {
+      if (i !== weakIdx && c.count > maxCount) {
+        maxCount = c.count
+        strongestIdx = i
+      }
+    })
+    if (strongestIdx < 0 || maxCount <= 1) continue
+    counts[weakIdx].count += 1
+    counts[strongestIdx].count -= 1
+  }
+  return counts
+}
+
+export function buildMockExamDomainCounts(domains, questionCount = MOCK_EXAM_QUESTION_COUNT, weakDomainIds) {
   const counts = []
   let allocated = 0
   domains.forEach((domain, idx) => {
@@ -17,7 +60,7 @@ export function buildMockExamDomainCounts(domains, questionCount = MOCK_EXAM_QUE
     }
     counts.push({ domain, count })
   })
-  return counts
+  return weakDomainIds?.length ? applyWeakDomainSlotBoost(counts, weakDomainIds) : counts
 }
 
 /** True when every domain has enough MC questions to fill its weighted slot. */
@@ -77,10 +120,17 @@ export function sampleAdaptiveQuestions(questions, weakCkuIds, count, shuffle = 
  * Full mock exam pool: CCNA blueprint domain weights, with optional weak-CKU
  * weighting applied within each domain slice.
  */
-export function buildBlueprintWeightedPool(domains, getMcQuestions, weakCkuIds, shuffle, questionCount = MOCK_EXAM_QUESTION_COUNT) {
+export function buildBlueprintWeightedPool(
+  domains,
+  getMcQuestions,
+  weakCkuIds,
+  shuffle,
+  questionCount = MOCK_EXAM_QUESTION_COUNT,
+  weakDomainIds,
+) {
   const weak = weakCkuIds || []
   const all = []
-  for (const { domain, count } of buildMockExamDomainCounts(domains, questionCount)) {
+  for (const { domain, count } of buildMockExamDomainCounts(domains, questionCount, weakDomainIds)) {
     const domainPool = domain.objectives.flatMap(o =>
       getMcQuestions(o.id).map(q => ({ ...q, objectiveId: o.id })),
     )

@@ -11,6 +11,7 @@ import { goldAnswerReviewFor, GOLD_ANSWER_REVIEWS } from '../answerReview/goldAn
 import { ASAP_SCENARIO_GOLD } from '../answerReview/goldAnswerReviewsAsap.js'
 import { BATCH2_GOLD } from '../answerReview/goldAnswerReviewsBatch2.js'
 import { BATCH3_GOLD } from '../answerReview/goldAnswerReviewsBatch3.js'
+import { BATCH4_GOLD } from '../answerReview/goldAnswerReviewsBatch4.js'
 import { HIGH_TRAFFIC_GOLD } from '../answerReview/goldAnswerReviewsHighTraffic.js'
 
 const MAC_Q = {
@@ -115,9 +116,10 @@ describe('answerReviewLogic', () => {
   })
 
   it('total unique gold answer reviews meet count bar', () => {
-    expect(Object.keys(GOLD_ANSWER_REVIEWS).length).toBeGreaterThanOrEqual(100)
+    expect(Object.keys(GOLD_ANSWER_REVIEWS).length).toBeGreaterThanOrEqual(150)
     expect(Object.keys(BATCH2_GOLD).length).toBe(25)
     expect(Object.keys(BATCH3_GOLD).length).toBe(25)
+    expect(Object.keys(BATCH4_GOLD).length).toBe(47)
   })
 
   it('Batch 3 gold reviews pass SADE quality bar', () => {
@@ -150,6 +152,28 @@ describe('answerReviewLogic', () => {
         choices: ['A', 'B', 'C', 'D'],
         correctIndex: gold.correct.choiceIndex,
         explanation: gold.correct.explanation,
+        answerReview: { ...gold, incorrect: gold.incorrect },
+      }
+      const ar = generateAnswerReview(q)
+      expect(goldAnswerReviewFor(id)).toBeTruthy()
+      expect(ar.incorrect).toHaveLength(3)
+      ar.incorrect.forEach(item => {
+        expect(isFallbackExplanation(item.explanation)).toBe(false)
+      })
+      expect(scoreAnswerReview({ ...q, answerReview: ar }).min).toBeGreaterThanOrEqual(3)
+    }
+  })
+
+  it('Batch 4 gold reviews pass SADE quality bar', () => {
+    expect(Object.keys(BATCH4_GOLD).length).toBe(47)
+    for (const [id, gold] of Object.entries(BATCH4_GOLD)) {
+      const q = {
+        id,
+        question: `Batch 4 stem for ${id}`,
+        choices: ['A', 'B', 'C', 'D'],
+        correctIndex: gold.correct.choiceIndex,
+        explanation: gold.correct.explanation,
+        type: 'scenario',
         answerReview: { ...gold, incorrect: gold.incorrect },
       }
       const ar = generateAnswerReview(q)

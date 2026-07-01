@@ -88,6 +88,19 @@ export default function CLIDrillTab({ objective }) {
 
   const completed = statuses.filter(Boolean).length
 
+  function getTeachHint(raw) {
+    const nextIdx = statuses.findIndex(s => !s)
+    if (nextIdx < 0) return null
+    const nextCmd = drills[nextIdx].answer
+    const trimmed = normalizeCmd(raw)
+    if (!trimmed || trimmed.length < 2) return null
+    const nextNorm = normalizeCmd(nextCmd)
+    if (nextNorm.startsWith(trimmed) && trimmed !== nextNorm) {
+      return `Next: ${nextCmd}`
+    }
+    return null
+  }
+
   return (
     <div>
       <p style={{ ...styles.small, marginBottom: 10 }}>
@@ -124,6 +137,7 @@ export default function CLIDrillTab({ objective }) {
           input={input}
           onInputChange={setInput}
           onSubmit={submit}
+          teachHint={getTeachHint(input)}
           disabled={done}
           emptyMessage={`${host} terminal ready. Type enable to begin.`}
         />

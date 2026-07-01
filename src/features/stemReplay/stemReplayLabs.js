@@ -17,6 +17,21 @@ const STEM_REPLAY_MAP = {
   '1.10-c-q2': 'LAB-D11-110',
   'obj-2.3-source-q001': 'LAB-LLDP',
   'obj-2.8-source-q001': 'LAB-WLAN-SSID',
+  '1.1-c-q1': 'LAB-D11-11',
+  '1.2-c-q1': 'LAB-D11-12',
+  '1.3-c-q1': 'LAB-D11-13',
+  '1.4-c-q1': 'LAB-D11-14',
+  '1.6-c-q1': 'LAB-IPV4-SUBNETTING',
+  '1.7-c-q1': 'LAB-D11-17',
+  '1.8-c-q1': 'LAB-D11-18',
+  '1.9-c-q1': 'LAB-D11-19',
+  '1.11-c-q1': 'LAB-D11-111',
+  '1.12-c-q1': 'LAB-D11-112',
+  'obj-2.4-source-q001': 'LAB-ETHERCHANNEL',
+  '3.1-q1': 'LAB-ROUTE-TABLE-31',
+  'obj-3.5-source-q001': 'LAB-HSRP-GATEWAY',
+  'obj-4.3-source-q001': 'LAB-DHCP-DNS-FLOW',
+  'obj-4.6-source-q001': 'LAB-DHCP-RELAY',
 }
 
 /** @returns {{ labId: string, lab: import('../../data/ccnaLabs.js').LabBundle['lab'] } | null} */

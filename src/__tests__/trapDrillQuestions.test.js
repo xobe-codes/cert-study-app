@@ -7,9 +7,9 @@ import {
 } from '../features/trapDrill/trapDrillQuestions.js'
 
 describe('trapDrillQuestions', () => {
-  it('defines 15 trap CKUs with 3 questions each (45 total)', () => {
-    expect(TRAP_DRILL_CKUS).toHaveLength(15)
-    expect(getAllTrapDrillQuestions()).toHaveLength(45)
+  it('defines 25 trap CKUs with 3 questions each (75 total)', () => {
+    expect(TRAP_DRILL_CKUS).toHaveLength(25)
+    expect(getAllTrapDrillQuestions()).toHaveLength(75)
   })
 
   it('returns 3 questions per CKU by id', () => {
@@ -37,6 +37,17 @@ describe('trapDrillQuestions', () => {
       'CKU-NAT-PAT',
       'CKU-HSRP',
       'CKU-VLAN-TRUNK',
+    ]))
+  })
+
+  it('includes expanded trap topics: EIGRP, portfast, SSH, ARP, IPv6', () => {
+    const ids = TRAP_DRILL_CKUS.map(c => c.ckuId)
+    expect(ids).toEqual(expect.arrayContaining([
+      'CKU-EIGRP',
+      'CKU-PORTFAST',
+      'CKU-TELNET-SSH',
+      'CKU-ARP',
+      'CKU-IPV6',
     ]))
   })
 })
