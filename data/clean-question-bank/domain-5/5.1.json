@@ -508,35 +508,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Perimeter\"."
+          "explanation": "The perimeter is the network edge outside the corporate firewall — the untrusted external boundary facing the Internet."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "DMZ describes a mechanism that could sound plausible for security concepts. Given security concepts, Perimeter matches the tested behavior — DMZ applies a different mechanism.",
+            "explanation": "DMZ is a screened subnet between internal and external networks — perimeter describes the broader outside edge.",
+            "misconceptionTested": "Equating DMZ subnet with entire outside perimeter",
             "whatItDoes": "DMZ describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Perimeter matches the tested behavior — DMZ applies a different mechanism.",
-            "misconceptionTested": "Applying \"DMZ\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Perimeter matches the tested behavior — DMZ applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Internal describes a mechanism that could sound plausible for security concepts. Given security concepts, Perimeter matches the tested behavior — Internal applies a different mechanism.",
+            "explanation": "Internal networks sit behind the firewall — perimeter is outside the protected corporate boundary.",
+            "misconceptionTested": "Labeling internal network as outside perimeter",
             "whatItDoes": "Internal describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Perimeter matches the tested behavior — Internal applies a different mechanism.",
-            "misconceptionTested": "Applying \"Internal\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Perimeter matches the tested behavior — Internal applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Trusted describes a mechanism that could sound plausible for security concepts. Given security concepts, Perimeter matches the tested behavior — Trusted applies a different mechanism.",
+            "explanation": "Trusted network refers to protected inside zones — perimeter is the untrusted outside of the firewall.",
+            "misconceptionTested": "Confusing trusted zone with external perimeter",
             "whatItDoes": "Trusted describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Perimeter matches the tested behavior — Trusted applies a different mechanism.",
-            "misconceptionTested": "Applying \"Trusted\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Perimeter matches the tested behavior — Trusted applies a different mechanism."
           }
         ],
-        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
+        "examTip": "Perimeter = untrusted outside edge; DMZ = semi-trusted zone between inside and outside."
       }
     },
     {
@@ -563,35 +560,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"DMZ\"."
+          "explanation": "A DMZ (demilitarized zone) hosts Internet-facing servers yet sits behind firewall policy — accessible but segmented from the internal LAN."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Perimeter describes a mechanism that could sound plausible for security concepts. Given security concepts, DMZ matches the tested behavior — Perimeter applies a different mechanism.",
+            "explanation": "Perimeter describes the external boundary broadly — DMZ is the specific screened subnet for public-facing services.",
+            "misconceptionTested": "Using perimeter label for DMZ screened subnet",
             "whatItDoes": "Perimeter describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, DMZ matches the tested behavior — Perimeter applies a different mechanism.",
-            "misconceptionTested": "Applying \"Perimeter\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, DMZ matches the tested behavior — Perimeter applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Internal describes a mechanism that could sound plausible for security concepts. Given security concepts, DMZ matches the tested behavior — Internal applies a different mechanism.",
+            "explanation": "Internal networks are not Internet-accessible by design — DMZ is deliberately reachable from outside with controls.",
+            "misconceptionTested": "Calling protected internal LAN a DMZ",
             "whatItDoes": "Internal describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, DMZ matches the tested behavior — Internal applies a different mechanism.",
-            "misconceptionTested": "Applying \"Internal\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, DMZ matches the tested behavior — Internal applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Trusted describes a mechanism that could sound plausible for security concepts. Given security concepts, DMZ matches the tested behavior — Trusted applies a different mechanism.",
+            "explanation": "Trusted network is the protected inside — DMZ is less trusted than internal but more exposed than the core LAN.",
+            "misconceptionTested": "Equating trusted internal with DMZ",
             "whatItDoes": "Trusted describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, DMZ matches the tested behavior — Trusted applies a different mechanism.",
-            "misconceptionTested": "Applying \"Trusted\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, DMZ matches the tested behavior — Trusted applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
+        "examTip": "DMZ = Internet-reachable but firewall-screened servers (web, mail, DNS)."
       }
     },
     {
@@ -669,35 +663,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Internal network\"."
+          "explanation": "Trusted network means the protected internal corporate LAN behind the firewall — highest trust zone for users and data."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The Internet describes a mechanism that could sound plausible for security concepts. Given security concepts, Internal network matches the tested behavior — The Internet applies a different mechanism.",
+            "explanation": "The Internet is untrusted external space — trusted network is inside the security perimeter.",
+            "misconceptionTested": "Calling the Internet a trusted network",
             "whatItDoes": "The Internet describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Internal network matches the tested behavior — The Internet applies a different mechanism.",
-            "misconceptionTested": "Applying \"The Internet\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Internal network matches the tested behavior — The Internet applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The DMZ describes a mechanism that could sound plausible for security concepts. Given security concepts, Internal network matches the tested behavior — The DMZ applies a different mechanism.",
+            "explanation": "DMZ is semi-trusted for public services — trusted network is the private internal zone with stricter access.",
+            "misconceptionTested": "Labeling DMZ as fully trusted internal",
             "whatItDoes": "The DMZ describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Internal network matches the tested behavior — The DMZ applies a different mechanism.",
-            "misconceptionTested": "Applying \"The DMZ\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Internal network matches the tested behavior — The DMZ applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "A network with SSL describes a mechanism that could sound plausible for security concepts. Given security concepts, Internal network matches the tested behavior — A network with SSL applies a different mechanism.",
+            "explanation": "SSL encrypts sessions — trust zone naming is about network segmentation, not transport encryption alone.",
+            "misconceptionTested": "Defining trusted network by SSL presence",
             "whatItDoes": "A network with SSL describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Internal network matches the tested behavior — A network with SSL applies a different mechanism.",
-            "misconceptionTested": "Applying \"A network with SSL\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Internal network matches the tested behavior — A network with SSL applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
+        "examTip": "Firewall zones: trusted = internal LAN; DMZ = semi-trusted; outside = Internet."
       }
     },
     {
@@ -724,35 +715,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Distributed denial of service\"."
+          "explanation": "Distributed denial of service (DDoS) floods a target from many coordinated Internet sources — overwhelming services at scale."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Denial of service describes a mechanism that could sound plausible for security concepts. Given security concepts, Distributed denial of service matches the tested behavior — Denial of service applies a different mechanism.",
+            "explanation": "Single-source DoS can overwhelm a service — DDoS specifically involves multiple distributed attack sources.",
+            "misconceptionTested": "Selecting single-source DoS for distributed attack stem",
             "whatItDoes": "Denial of service describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Distributed denial of service matches the tested behavior — Denial of service applies a different mechanism.",
-            "misconceptionTested": "Applying \"Denial of service\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Distributed denial of service matches the tested behavior — Denial of service applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "IP address spoofing shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given security concepts, Distributed denial of service matches the tested behavior — IP address spoofing applies a different mechanism.",
+            "explanation": "IP spoofing falsifies source addresses — it may aid attacks but does not by itself describe multi-source traffic floods.",
+            "misconceptionTested": "Equating spoofing with distributed flood attack",
             "whatItDoes": "IP address spoofing shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given security concepts, Distributed denial of service matches the tested behavior — IP address spoofing applies a different mechanism.",
-            "misconceptionTested": "Applying \"IP address spoofing\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Distributed denial of service matches the tested behavior — IP address spoofing applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Session hijacking describes a mechanism that could sound plausible for security concepts. Given security concepts, Distributed denial of service matches the tested behavior — Session hijacking applies a different mechanism.",
+            "explanation": "Session hijacking takes over an established session — DDoS is volumetric flooding from many hosts.",
+            "misconceptionTested": "Confusing session hijack with DDoS flood",
             "whatItDoes": "Session hijacking describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Distributed denial of service matches the tested behavior — Session hijacking applies a different mechanism.",
-            "misconceptionTested": "Applying \"Session hijacking\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Distributed denial of service matches the tested behavior — Session hijacking applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
+        "examTip": "DDoS = many sources; DoS = one source — both aim to exhaust availability."
       }
     },
     {
@@ -779,35 +767,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"IDS\"."
+          "explanation": "An IDS (Intrusion Detection System) monitors traffic and alerts on suspicious activity — detection without inline blocking."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Honey pots describes a mechanism that could sound plausible for security concepts. Given security concepts, IDS matches the tested behavior — Honey pots applies a different mechanism.",
+            "explanation": "Honeypots lure attackers into decoy systems — they do not broadly detect intrusions across production traffic like an IDS.",
+            "misconceptionTested": "Expecting honeypots to serve as network IDS",
             "whatItDoes": "Honey pots describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IDS matches the tested behavior — Honey pots applies a different mechanism.",
-            "misconceptionTested": "Applying \"Honey pots\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IDS matches the tested behavior — Honey pots applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "IPS describes a mechanism that could sound plausible for security concepts. Given security concepts, IDS matches the tested behavior — IPS applies a different mechanism.",
+            "explanation": "IPS detects and can block inline — the stem asks for detection; IDS is the classic detect-and-alert role.",
+            "misconceptionTested": "Choosing IPS when only detection is asked",
             "whatItDoes": "IPS describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IDS matches the tested behavior — IPS applies a different mechanism.",
-            "misconceptionTested": "Applying \"IPS\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IDS matches the tested behavior — IPS applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "HIDS describes a mechanism that could sound plausible for security concepts. Given security concepts, IDS matches the tested behavior — HIDS applies a different mechanism.",
+            "explanation": "HIDS is host-based IDS on endpoints — the question targets network intrusion detection (IDS generically).",
+            "misconceptionTested": "Narrowing to host IDS when network IDS fits",
             "whatItDoes": "HIDS describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IDS matches the tested behavior — HIDS applies a different mechanism.",
-            "misconceptionTested": "Applying \"HIDS\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IDS matches the tested behavior — HIDS applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
+        "examTip": "IDS = detect + alert; IPS = detect + inline prevent."
       }
     },
     {
@@ -833,35 +818,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Blocking ICMP echo requests and echo replies at the perimeter\"."
+          "explanation": "Blocking ICMP echo request/reply at the perimeter stops ping responses used in ping-sweep reconnaissance."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Deploying host intrusion detection systems describes a mechanism that could sound plausible for security concepts. Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Deploying host intrusion detection systems applies a different mechanism.",
+            "explanation": "HIDS on endpoints does not stop perimeter ping sweeps — block ICMP at the edge to hide live hosts from sweep tools.",
+            "misconceptionTested": "Relying on host IDS to stop ping sweeps",
             "whatItDoes": "Deploying host intrusion detection systems describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Deploying host intrusion detection systems applies a different mechanism.",
-            "misconceptionTested": "Applying \"Deploying host intrusion detection s\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Deploying host intrusion detection systems applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Deploying network intrusion detection systems describes a mechanism that could sound plausible for security concepts. Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Deploying network intrusion detection systems applies a different mechanism.",
+            "explanation": "Network IDS may detect sweeps after they occur — preventing echo replies at the firewall stops the scan technique.",
+            "misconceptionTested": "Expecting NIDS alone to prevent ping sweeps",
             "whatItDoes": "Deploying network intrusion detection systems describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Deploying network intrusion detection systems applies a different mechanism.",
-            "misconceptionTested": "Applying \"Deploying network intrusion detectio\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Deploying network intrusion detection systems applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Blocking RFC 1918 addresses at the perimeter describes a mechanism that could sound plausible for security concepts. Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Blocking RFC 1918 addresses at the perimeter applies a different mechanism.",
+            "explanation": "RFC 1918 blocking filters private ranges — ping sweeps use ICMP echo to discover responsive hosts, not RFC 1918 rules.",
+            "misconceptionTested": "Blocking RFC 1918 as ping sweep countermeasure",
             "whatItDoes": "Blocking RFC 1918 addresses at the perimeter describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Blocking RFC 1918 addresses at the perimeter applies a different mechanism.",
-            "misconceptionTested": "Applying \"Blocking RFC 1918 addresses at the p\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Blocking RFC 1918 addresses at the perimeter applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
+        "examTip": "Stop ping sweeps at the edge → deny ICMP echo (type 8/0) on the perimeter."
       }
     },
     {
@@ -889,35 +871,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"IPS\"."
+          "explanation": "An IPS (Intrusion Prevention System) can drop malicious traffic inline — actively mitigating denial-of-service floods."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Honey pots describes a mechanism that could sound plausible for security concepts. Given security concepts, IPS matches the tested behavior — Honey pots applies a different mechanism.",
+            "explanation": "Honeypots divert attackers to decoys — they do not inline-mitigate volumetric DoS against production services.",
+            "misconceptionTested": "Using honeypots for DoS mitigation",
             "whatItDoes": "Honey pots describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — Honey pots applies a different mechanism.",
-            "misconceptionTested": "Applying \"Honey pots\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — Honey pots applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "IDS describes a mechanism that could sound plausible for security concepts. Given security concepts, IPS matches the tested behavior — IDS applies a different mechanism.",
+            "explanation": "IDS detects and alerts but typically does not block — IPS provides inline prevention against DoS traffic.",
+            "misconceptionTested": "Expecting IDS to mitigate DoS inline",
             "whatItDoes": "IDS describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — IDS applies a different mechanism.",
-            "misconceptionTested": "Applying \"IDS\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — IDS applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "HIDS describes a mechanism that could sound plausible for security concepts. Given security concepts, IPS matches the tested behavior — HIDS applies a different mechanism.",
+            "explanation": "HIDS protects individual hosts — network IPS at the perimeter is positioned to drop flood traffic before it hits servers.",
+            "misconceptionTested": "Choosing host IDS for network DoS mitigation",
             "whatItDoes": "HIDS describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — HIDS applies a different mechanism.",
-            "misconceptionTested": "Applying \"HIDS\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — HIDS applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
+        "examTip": "Mitigate floods inline → IPS (or dedicated anti-DDoS) at the perimeter."
       }
     },
     {
@@ -944,35 +923,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"IP address spoofing\"."
+          "explanation": "IP address spoofing sends packets with a forged source address — impersonating another host to bypass trust or filters."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Denial of service describes a mechanism that could sound plausible for security concepts. Given security concepts, IP address spoofing matches the tested behavior — Denial of service applies a different mechanism.",
+            "explanation": "DoS floods exhaust resources — spoofing falsifies identity rather than primarily overwhelming bandwidth.",
+            "misconceptionTested": "Selecting DoS for identity impersonation attack",
             "whatItDoes": "Denial of service describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IP address spoofing matches the tested behavior — Denial of service applies a different mechanism.",
-            "misconceptionTested": "Applying \"Denial of service\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IP address spoofing matches the tested behavior — Denial of service applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Distributed denial of service describes a mechanism that could sound plausible for security concepts. Given security concepts, IP address spoofing matches the tested behavior — Distributed denial of service applies a different mechanism.",
+            "explanation": "DDoS uses many sources to flood a target — spoofing is about false source identity, not distributed volume alone.",
+            "misconceptionTested": "Confusing DDoS flood with address spoofing",
             "whatItDoes": "Distributed denial of service describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IP address spoofing matches the tested behavior — Distributed denial of service applies a different mechanism.",
-            "misconceptionTested": "Applying \"Distributed denial of service\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IP address spoofing matches the tested behavior — Distributed denial of service applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Session hijacking describes a mechanism that could sound plausible for security concepts. Given security concepts, IP address spoofing matches the tested behavior — Session hijacking applies a different mechanism.",
+            "explanation": "Session hijacking steals an established TCP session — spoofing forges source IPs in new packets.",
+            "misconceptionTested": "Equating session hijack with IP spoofing",
             "whatItDoes": "Session hijacking describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IP address spoofing matches the tested behavior — Session hijacking applies a different mechanism.",
-            "misconceptionTested": "Applying \"Session hijacking\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IP address spoofing matches the tested behavior — Session hijacking applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
+        "examTip": "Spoofing = fake source identity; hijacking = take over an existing session."
       }
     },
     {

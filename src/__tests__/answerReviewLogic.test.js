@@ -17,6 +17,7 @@ import { BATCH6_GOLD } from '../answerReview/goldAnswerReviewsBatch6.js'
 import { BATCH7_GOLD } from '../answerReview/goldAnswerReviewsBatch7.js'
 import { BATCH8_GOLD } from '../answerReview/goldAnswerReviewsBatch8.js'
 import { BATCH9_GOLD } from '../answerReview/goldAnswerReviewsBatch9.js'
+import { BATCH10_GOLD } from '../answerReview/goldAnswerReviewsBatch10.js'
 import { HIGH_TRAFFIC_GOLD } from '../answerReview/goldAnswerReviewsHighTraffic.js'
 
 const MAC_Q = {
@@ -121,7 +122,7 @@ describe('answerReviewLogic', () => {
   })
 
   it('total unique gold answer reviews meet count bar', () => {
-    expect(Object.keys(GOLD_ANSWER_REVIEWS).length).toBeGreaterThanOrEqual(325)
+    expect(Object.keys(GOLD_ANSWER_REVIEWS).length).toBeGreaterThanOrEqual(350)
     expect(Object.keys(BATCH2_GOLD).length).toBe(25)
     expect(Object.keys(BATCH3_GOLD).length).toBe(25)
     expect(Object.keys(BATCH4_GOLD).length).toBe(47)
@@ -130,6 +131,7 @@ describe('answerReviewLogic', () => {
     expect(Object.keys(BATCH7_GOLD).length).toBe(25)
     expect(Object.keys(BATCH8_GOLD).length).toBe(25)
     expect(Object.keys(BATCH9_GOLD).length).toBe(25)
+    expect(Object.keys(BATCH10_GOLD).length).toBe(25)
   })
 
   it('Batch 3 gold reviews pass SADE quality bar', () => {
@@ -319,6 +321,38 @@ describe('answerReviewLogic', () => {
       const q = {
         id,
         question: `Batch 9 stem for ${id}`,
+        choices: ['A', 'B', 'C', 'D'],
+        correctIndex: gold.correct.choiceIndex,
+        explanation: gold.correct.explanation,
+        type: 'scenario',
+        answerReview: { ...gold, incorrect: gold.incorrect },
+      }
+      const ar = generateAnswerReview(q)
+      expect(goldAnswerReviewFor(id)).toBeTruthy()
+      expect(ar.incorrect).toHaveLength(3)
+      ar.incorrect.forEach(item => {
+        expect(isFallbackExplanation(item.explanation)).toBe(false)
+        expect(item.explanation).not.toMatch(/fails here because/i)
+      })
+      expect(scoreAnswerReview({ ...q, answerReview: ar }).min).toBeGreaterThanOrEqual(3)
+    }
+  })
+
+  it('Batch 10 gold reviews have unique topic-specific exam tips', () => {
+    const tips = Object.values(BATCH10_GOLD).map(g => g.examTip)
+    expect(new Set(tips).size).toBeGreaterThanOrEqual(20)
+    expect(tips.some(t => /trap:/i.test(t))).toBe(false)
+    expect(tips.some(t => /Access trap:/i.test(t))).toBe(false)
+    expect(tips.some(t => /Services trap:/i.test(t))).toBe(false)
+    expect(tips.some(t => /Security trap:/i.test(t))).toBe(false)
+  })
+
+  it('Batch 10 gold reviews pass SADE quality bar', () => {
+    expect(Object.keys(BATCH10_GOLD).length).toBe(25)
+    for (const [id, gold] of Object.entries(BATCH10_GOLD)) {
+      const q = {
+        id,
+        question: `Batch 10 stem for ${id}`,
         choices: ['A', 'B', 'C', 'D'],
         correctIndex: gold.correct.choiceIndex,
         explanation: gold.correct.explanation,

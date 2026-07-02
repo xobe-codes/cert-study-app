@@ -10,6 +10,18 @@ const CKU_CASES = [
     ckuId: 'CKU-FLEXCONNECT',
     trapLabel: /Believing all WLAN traffic must switch centrally at the WLC/i,
   },
+  {
+    ckuId: 'CKU-WPA3',
+    trapLabel: /Choosing WPA3-Personal when enterprise 802\.1X is required/i,
+  },
+  {
+    ckuId: 'CKU-LACP-MODE',
+    trapLabel: /Mismatched LACP active\/passive modes prevent channel formation/i,
+  },
+  {
+    ckuId: 'CKU-ROOT-GUARD',
+    trapLabel: /Enabling Root Guard on the actual root bridge uplink/i,
+  },
 ]
 
 async function startTrapDrillCku(page, ckuId) {
@@ -22,8 +34,24 @@ async function startTrapDrillCku(page, ckuId) {
 
 async function answerFirstTrapQuestion(page) {
   await expect(page.locator('[role="radiogroup"]').first()).toBeVisible({ timeout: 15_000 })
-  await page.getByRole('radio').first().click()
-  await expect(page.locator('.ccna-answer-review').first()).toBeVisible({ timeout: 10_000 })
+
+  const radios = page.getByRole('radio')
+  const count = await radios.count()
+  for (let i = 0; i < count; i++) {
+    await radios.nth(i).click()
+    const incorrect = page.getByText(/^✗ Incorrect$/).first()
+    if (await incorrect.isVisible().catch(() => false)) {
+      await expect(page.locator('.ccna-answer-review').first()).toBeVisible({ timeout: 10_000 })
+      return
+    }
+    const correct = page.getByText(/^✓ Correct$/).first()
+    if (await correct.isVisible().catch(() => false)) continue
+    if (await page.getByText(/WHY [A-F] IS WRONG/i).count()) {
+      await expect(page.locator('.ccna-answer-review').first()).toBeVisible({ timeout: 10_000 })
+      return
+    }
+  }
+  throw new Error('No wrong-choice debrief appeared after trying all radios')
 }
 
 test.describe('Trap drill CKU sessions', () => {

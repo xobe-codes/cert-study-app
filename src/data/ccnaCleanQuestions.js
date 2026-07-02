@@ -6082,32 +6082,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "lldp run enables LLDP globally, including LLDP-MED capabilities."
+          "explanation": "LLDP-MED for non-Cisco phones requires global lldp run from configuration mode so the switch can negotiate power and capabilities."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#lldp run describes a mechanism that could sound plausible for lldp run enables LLDP globally, including LLDP-MED capabilities. Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch#lldp run applies a different mechanism.",
+            "explanation": "Global configuration uses (config)# — Switch#lldp run is not valid privileged-exec syntax for enabling LLDP.",
+            "misconceptionTested": "Running lldp run from privileged exec instead of config mode",
             "whatItDoes": "Switch#lldp run describes a mechanism that could sound plausible for lldp run enables LLDP globally, including LLDP-MED capabilities.",
-            "whyWrongHere": "Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch#lldp run applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#lldp run\" without matching cdp"
+            "whyWrongHere": "Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch#lldp run applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config)#lldp enable describes a mechanism that could sound plausible for lldp run enables LLDP globally, including LLDP-MED capabilities. Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch(config)#lldp enable applies a different mechanism.",
+            "explanation": "lldp enable is not the standard global IOS command — use lldp run in configuration mode.",
+            "misconceptionTested": "Substituting lldp enable for lldp run",
             "whatItDoes": "Switch(config)#lldp enable describes a mechanism that could sound plausible for lldp run enables LLDP globally, including LLDP-MED capabilities.",
-            "whyWrongHere": "Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch(config)#lldp enable applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#lldp enable\" without matching cdp"
+            "whyWrongHere": "Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch(config)#lldp enable applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch#lldp enable describes a mechanism that could sound plausible for lldp run enables LLDP globally, including LLDP-MED capabilities. Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch#lldp enable applies a different mechanism.",
+            "explanation": "LLDP must be configured from global configuration mode — privileged exec # prompt cannot enable lldp run.",
+            "misconceptionTested": "Attempting global LLDP enable from exec mode",
             "whatItDoes": "Switch#lldp enable describes a mechanism that could sound plausible for lldp run enables LLDP globally, including LLDP-MED capabilities.",
-            "whyWrongHere": "Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch#lldp enable applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#lldp enable\" without matching cdp"
+            "whyWrongHere": "Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch#lldp enable applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: lldp run enables LLDP globally, including LLDP-MED capabilities."
+        "examTip": "PoE + multivendor phones → lldp run globally for LLDP-MED power negotiation."
       }
     },
     {
@@ -6184,32 +6184,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "LLDP advertises every 30 seconds by default."
+          "explanation": "LLDP sends neighbor advertisements every 30 seconds by default — faster than CDP's 60-second interval."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "60 seconds uses the wrong value. The tested fact calls for 30 — not 60.",
+            "explanation": "60 seconds is the default CDP advertisement interval — LLDP defaults to 30 seconds.",
+            "misconceptionTested": "Applying CDP 60 s default to LLDP",
             "whatItDoes": "60 seconds describes a mechanism that could sound plausible for LLDP advertises every 30 seconds by default.",
-            "whyWrongHere": "Given LLDP advertises every 30 seconds by default, 30 seconds matches the tested behavior — 60 seconds applies a different mechanism.",
-            "misconceptionTested": "Memorizing 60 instead of the correct 30"
+            "whyWrongHere": "Given LLDP advertises every 30 seconds by default, 30 seconds matches the tested behavior — 60 seconds applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "90 seconds uses the wrong value. The tested fact calls for 30 — not 90.",
+            "explanation": "90 seconds is not the LLDP default advertisement timer — stock IOS uses 30 seconds.",
+            "misconceptionTested": "Selecting tripled LLDP interval",
             "whatItDoes": "90 seconds describes a mechanism that could sound plausible for LLDP advertises every 30 seconds by default.",
-            "whyWrongHere": "Given LLDP advertises every 30 seconds by default, 30 seconds matches the tested behavior — 90 seconds applies a different mechanism.",
-            "misconceptionTested": "Memorizing 90 instead of the correct 30"
+            "whyWrongHere": "Given LLDP advertises every 30 seconds by default, 30 seconds matches the tested behavior — 90 seconds applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "120 seconds uses the wrong value. The tested fact calls for 30 — not 120.",
+            "explanation": "120 seconds is the LLDP holdtime default, not the transmit interval — advertisements go out every 30 s.",
+            "misconceptionTested": "Confusing LLDP holdtime with advertisement interval",
             "whatItDoes": "120 seconds describes a mechanism that could sound plausible for LLDP advertises every 30 seconds by default.",
-            "whyWrongHere": "Given LLDP advertises every 30 seconds by default, 30 seconds matches the tested behavior — 120 seconds applies a different mechanism.",
-            "misconceptionTested": "Memorizing 120 instead of the correct 30"
+            "whyWrongHere": "Given LLDP advertises every 30 seconds by default, 30 seconds matches the tested behavior — 120 seconds applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: LLDP advertises every 30 seconds by default."
+        "examTip": "LLDP timers: TX every 30 s; holdtime 120 s — do not swap with CDP 60/180."
       }
     },
     {
@@ -6235,32 +6235,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "no lldp transmit suppresses outgoing LLDP on an interface."
+          "explanation": "no lldp transmit on the interface stops outgoing LLDP advertisements on that port while leaving LLDP active elsewhere."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config-if)#no lldp describes a mechanism that could sound plausible for no lldp transmit suppresses outgoing LLDP on an interface. Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp applies a different mechanism.",
+            "explanation": "no lldp is not valid per-interface syntax — suppress outbound LLDP with no lldp transmit.",
+            "misconceptionTested": "Using blanket no lldp on interface",
             "whatItDoes": "Switch(config-if)#no lldp describes a mechanism that could sound plausible for no lldp transmit suppresses outgoing LLDP on an interface.",
-            "whyWrongHere": "Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#no lldp\" without matching cdp"
+            "whyWrongHere": "Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config-if)#no lldp receive describes a mechanism that could sound plausible for no lldp transmit suppresses outgoing LLDP on an interface. Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp receive applies a different mechanism.",
+            "explanation": "no lldp receive blocks inbound LLDP processing — the stem asks to stop sending advertisements outbound.",
+            "misconceptionTested": "Disabling receive when transmit must be stopped",
             "whatItDoes": "Switch(config-if)#no lldp receive describes a mechanism that could sound plausible for no lldp transmit suppresses outgoing LLDP on an interface.",
-            "whyWrongHere": "Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp receive applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#no lldp receive\" without matching cdp"
+            "whyWrongHere": "Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp receive applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config-if)#no lldp enable describes a mechanism that could sound plausible for no lldp transmit suppresses outgoing LLDP on an interface. Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp enable applies a different mechanism.",
+            "explanation": "no lldp enable is not standard IOS interface syntax — use no lldp transmit to stop outbound ads.",
+            "misconceptionTested": "Inventing no lldp enable interface command",
             "whatItDoes": "Switch(config-if)#no lldp enable describes a mechanism that could sound plausible for no lldp transmit suppresses outgoing LLDP on an interface.",
-            "whyWrongHere": "Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp enable applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#no lldp enable\" without matching cdp"
+            "whyWrongHere": "Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp enable applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: no lldp transmit suppresses outgoing LLDP on an interface."
+        "examTip": "Stop LLDP outbound only on one port → no lldp transmit under the interface."
       }
     },
     {
@@ -6286,32 +6286,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "LLDP holdtime defaults to 120 seconds."
+          "explanation": "LLDP neighbor entries expire after a default holdtime of 120 seconds if no fresh advertisement is received."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "30 seconds uses the wrong value. The tested fact calls for 120 — not 30.",
+            "explanation": "30 seconds is the LLDP advertisement interval — holdtime before aging a neighbor is 120 seconds.",
+            "misconceptionTested": "Equating LLDP TX interval with holdtime",
             "whatItDoes": "30 seconds describes a mechanism that could sound plausible for LLDP holdtime defaults to 120 seconds.",
-            "whyWrongHere": "Given LLDP holdtime defaults to 120 seconds, 120 seconds matches the tested behavior — 30 seconds applies a different mechanism.",
-            "misconceptionTested": "Memorizing 30 instead of the correct 120"
+            "whyWrongHere": "Given LLDP holdtime defaults to 120 seconds, 120 seconds matches the tested behavior — 30 seconds applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "60 seconds uses the wrong value. The tested fact calls for 120 — not 60.",
+            "explanation": "60 seconds is CDP's advertisement default — LLDP holdtime is 120 seconds.",
+            "misconceptionTested": "Using CDP timer for LLDP holdtime",
             "whatItDoes": "60 seconds describes a mechanism that could sound plausible for LLDP holdtime defaults to 120 seconds.",
-            "whyWrongHere": "Given LLDP holdtime defaults to 120 seconds, 120 seconds matches the tested behavior — 60 seconds applies a different mechanism.",
-            "misconceptionTested": "Memorizing 60 instead of the correct 120"
+            "whyWrongHere": "Given LLDP holdtime defaults to 120 seconds, 120 seconds matches the tested behavior — 60 seconds applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "90 seconds uses the wrong value. The tested fact calls for 120 — not 90.",
+            "explanation": "90 seconds is not the LLDP holdtime default — Cisco IOS uses 120 seconds for neighbor entry aging.",
+            "misconceptionTested": "Selecting non-default LLDP holdtime value",
             "whatItDoes": "90 seconds describes a mechanism that could sound plausible for LLDP holdtime defaults to 120 seconds.",
-            "whyWrongHere": "Given LLDP holdtime defaults to 120 seconds, 120 seconds matches the tested behavior — 90 seconds applies a different mechanism.",
-            "misconceptionTested": "Memorizing 90 instead of the correct 120"
+            "whyWrongHere": "Given LLDP holdtime defaults to 120 seconds, 120 seconds matches the tested behavior — 90 seconds applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: LLDP holdtime defaults to 120 seconds."
+        "examTip": "LLDP holdtime default = 120 s; advertisements every 30 s."
       }
     },
     {
@@ -6339,32 +6339,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "CDP detail output identifies the local and remote interfaces, holdtime, and management address."
+          "explanation": "The Interface field shows the local port receiving CDP (Gi0/2 on this switch) — it connects to the neighbor's Port ID (Gi0/1 on SwitchB)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The advertisement was seen 162 seconds ago. describes a mechanism that could sound plausible for neighbor. Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — The advertisement was seen 162 seconds ago. applies a different mechanism.",
+            "explanation": "Holdtime (162 sec) is time remaining before the entry ages — not when the last advertisement was seen.",
+            "misconceptionTested": "Reading holdtime as last-seen timestamp",
             "whatItDoes": "The advertisement was seen 162 seconds ago. describes a mechanism that could sound plausible for neighbor.",
-            "whyWrongHere": "Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — The advertisement was seen 162 seconds ago. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The advertisement was seen 162 secon\" without matching cdp"
+            "whyWrongHere": "Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — The advertisement was seen 162 seconds ago. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch B interface Gi0/1 connects to Switch A. describes a mechanism that could sound plausible for neighbor. Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — Switch B interface Gi0/1 connects to Switch A. applies a different mechanism.",
+            "explanation": "Port ID lists the neighbor's outgoing interface (Gi0/1 on SwitchB) — the local Interface field is Gi0/2 facing SwitchB.",
+            "misconceptionTested": "Swapping local Interface with neighbor Port ID",
             "whatItDoes": "Switch B interface Gi0/1 connects to Switch A. describes a mechanism that could sound plausible for neighbor.",
-            "whyWrongHere": "Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — Switch B interface Gi0/1 connects to Switch A. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch B interface Gi0/1 connects to\" without matching cdp"
+            "whyWrongHere": "Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — Switch B interface Gi0/1 connects to Switch A. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The IP address of Switch B is 192.168.1.1. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — The IP address of Switch B is 192.168.1.1. applies a different mechanism.",
+            "explanation": "Entry address shows SwitchB management IP 192.168.1.2 — 192.168.1.1 is not listed in this CDP detail output.",
+            "misconceptionTested": "Inventing neighbor IP not shown in CDP output",
             "whatItDoes": "The IP address of Switch B is 192.168.1.1. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — The IP address of Switch B is 192.168.1.1. applies a different mechanism.",
-            "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process"
+            "whyWrongHere": "Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — The IP address of Switch B is 192.168.1.1. applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: CDP detail output identifies the local and remote interfaces, holdtime, and management address."
+        "examTip": "CDP detail: Interface = local port; Port ID = neighbor's port facing you."
       }
     },
     {
@@ -6390,32 +6390,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "no cdp enable disables CDP advertisements on one interface."
+          "explanation": "no cdp enable on the ISP-facing interface stops CDP advertisements on that link only — CDP remains active on other ports."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#cdp disable describes a mechanism that could sound plausible for no cdp enable disables CDP advertisements on one interface. Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config)#cdp disable applies a different mechanism.",
+            "explanation": "cdp disable is not valid global syntax — per-interface suppression uses no cdp enable under the interface.",
+            "misconceptionTested": "Using invented cdp disable global command",
             "whatItDoes": "Switch(config)#cdp disable describes a mechanism that could sound plausible for no cdp enable disables CDP advertisements on one interface.",
-            "whyWrongHere": "Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config)#cdp disable applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#cdp disable\" without matching cdp"
+            "whyWrongHere": "Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config)#cdp disable applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config-if)#no cdp describes a mechanism that could sound plausible for no cdp enable disables CDP advertisements on one interface. Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config-if)#no cdp applies a different mechanism.",
+            "explanation": "no cdp is incomplete interface syntax — the command to stop CDP on one port is no cdp enable.",
+            "misconceptionTested": "Using no cdp instead of no cdp enable",
             "whatItDoes": "Switch(config-if)#no cdp describes a mechanism that could sound plausible for no cdp enable disables CDP advertisements on one interface.",
-            "whyWrongHere": "Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config-if)#no cdp applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#no cdp\" without matching cdp"
+            "whyWrongHere": "Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config-if)#no cdp applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config-if)#no cdp disable describes a mechanism that could sound plausible for no cdp enable disables CDP advertisements on one interface. Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config-if)#no cdp disable applies a different mechanism.",
+            "explanation": "no cdp disable would re-enable CDP if disable were set — it does not selectively stop advertisements to the ISP.",
+            "misconceptionTested": "Negating disable instead of disabling CDP on interface",
             "whatItDoes": "Switch(config-if)#no cdp disable describes a mechanism that could sound plausible for no cdp enable disables CDP advertisements on one interface.",
-            "whyWrongHere": "Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config-if)#no cdp disable applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#no cdp disable\" without matching cdp"
+            "whyWrongHere": "Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config-if)#no cdp disable applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: no cdp enable disables CDP advertisements on one interface."
+        "examTip": "Hide switch capabilities from one link → no cdp enable on that interface only."
       }
     },
     {
@@ -26276,35 +26276,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"NAT\"."
+          "explanation": "NAT translates private RFC 1918 addresses to routable public addresses so inside hosts can reach the Internet."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "CIDR describes a mechanism that could sound plausible for addresses. Given addresses, NAT matches the tested behavior — CIDR applies a different mechanism.",
+            "explanation": "CIDR is an addressing/aggregation scheme — it does not translate private addresses for Internet egress.",
+            "misconceptionTested": "Expecting CIDR to provide private-to-public translation",
             "whatItDoes": "CIDR describes a mechanism that could sound plausible for addresses.",
-            "whyWrongHere": "Given addresses, NAT matches the tested behavior — CIDR applies a different mechanism.",
-            "misconceptionTested": "Applying \"CIDR\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given addresses, NAT matches the tested behavior — CIDR applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Classful addressing describes a mechanism that could sound plausible for addresses. Given addresses, NAT matches the tested behavior — Classful addressing applies a different mechanism.",
+            "explanation": "Classful addressing is a legacy model — RFC 1918 hosts still need NAT (or similar) to reach the public Internet.",
+            "misconceptionTested": "Believing classful rules alone enable Internet use of RFC 1918",
             "whatItDoes": "Classful addressing describes a mechanism that could sound plausible for addresses.",
-            "whyWrongHere": "Given addresses, NAT matches the tested behavior — Classful addressing applies a different mechanism.",
-            "misconceptionTested": "Applying \"Classful addressing\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given addresses, NAT matches the tested behavior — Classful addressing applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "VPN describes a mechanism that could sound plausible for addresses. Given addresses, NAT matches the tested behavior — VPN applies a different mechanism.",
+            "explanation": "VPNs tunnel traffic between sites — they do not by themselves translate RFC 1918 hosts to public Internet addresses.",
+            "misconceptionTested": "Substituting VPN for address translation to the Internet",
             "whatItDoes": "VPN describes a mechanism that could sound plausible for addresses.",
-            "whyWrongHere": "Given addresses, NAT matches the tested behavior — VPN applies a different mechanism.",
-            "misconceptionTested": "Applying \"VPN\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given addresses, NAT matches the tested behavior — VPN applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "RFC 1918 → Internet egress needs NAT (or carrier-grade NAT) to a public address."
       }
     },
     {
@@ -26332,35 +26329,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"192.168.1.2 Host A\"."
+          "explanation": "Inside local is the private address as configured on the host inside the network — Host A at 192.168.1.2."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local. Given inside local, 192.168.1.2 Host A matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
+            "explanation": "192.168.1.1 is the inside router interface — inside local refers to the end host address before translation.",
+            "misconceptionTested": "Labeling inside router interface as inside local host",
             "whatItDoes": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 192.168.1.2 Host A matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"192.168.1.1 Router A Gi0/0\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given inside local, 192.168.1.2 Host A matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "179.43.44.1 Router A S0/0 describes a mechanism that could sound plausible for inside local. Given inside local, 192.168.1.2 Host A matches the tested behavior — 179.43.44.1 Router A S0/0 applies a different mechanism.",
+            "explanation": "179.43.44.1 is the inside global address on the WAN interface — inside local stays private (192.168.1.x).",
+            "misconceptionTested": "Confusing inside global WAN address with inside local",
             "whatItDoes": "179.43.44.1 Router A S0/0 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 192.168.1.2 Host A matches the tested behavior — 179.43.44.1 Router A S0/0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"179.43.44.1 Router A S0/0\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given inside local, 192.168.1.2 Host A matches the tested behavior — 179.43.44.1 Router A S0/0 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "198.23.53.3 web server describes a mechanism that could sound plausible for inside local. Given inside local, 192.168.1.2 Host A matches the tested behavior — 198.23.53.3 web server applies a different mechanism.",
+            "explanation": "198.23.53.3 is an outside global Internet server — inside local addresses live on the private LAN.",
+            "misconceptionTested": "Selecting outside global address for inside local question",
             "whatItDoes": "198.23.53.3 web server describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 192.168.1.2 Host A matches the tested behavior — 198.23.53.3 web server applies a different mechanism.",
-            "misconceptionTested": "Applying \"198.23.53.3 web server\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given inside local, 192.168.1.2 Host A matches the tested behavior — 198.23.53.3 web server applies a different mechanism."
           }
         ],
-        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
+        "examTip": "NAT quadrants: inside local = private host IP before translation."
       }
     },
     {
@@ -26388,35 +26382,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"179.43.44.1 Router A S0/0\"."
+          "explanation": "Inside global is the public address representing an inside host to the outside world — here 179.43.44.1 on Router A S0/0."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "192.168.1.2 Host A describes a mechanism that could sound plausible for inside local. Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 192.168.1.2 Host A applies a different mechanism.",
+            "explanation": "192.168.1.2 is Host A's inside local address — inside global is the routable address seen outside the NAT domain.",
+            "misconceptionTested": "Equating inside local host with inside global",
             "whatItDoes": "192.168.1.2 Host A describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 192.168.1.2 Host A applies a different mechanism.",
-            "misconceptionTested": "Applying \"192.168.1.2 Host A\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 192.168.1.2 Host A applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local. Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
+            "explanation": "192.168.1.1 is the inside LAN gateway — inside global is the translated/public representation, not the private gateway.",
+            "misconceptionTested": "Choosing inside LAN gateway as inside global",
             "whatItDoes": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"192.168.1.1 Router A Gi0/0\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "198.23.53.3 web server describes a mechanism that could sound plausible for inside local. Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 198.23.53.3 web server applies a different mechanism.",
+            "explanation": "198.23.53.3 is an outside global destination on the Internet — inside global belongs to the enterprise NAT side.",
+            "misconceptionTested": "Selecting outside global server for inside global slot",
             "whatItDoes": "198.23.53.3 web server describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 198.23.53.3 web server applies a different mechanism.",
-            "misconceptionTested": "Applying \"198.23.53.3 web server\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 198.23.53.3 web server applies a different mechanism."
           }
         ],
-        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
+        "examTip": "Inside global = public address outsiders see for an inside host."
       }
     },
     {
@@ -26444,35 +26435,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"198.23.53.3 web server\"."
+          "explanation": "Outside global is the Internet-routable address of the remote server as seen by the inside network — 198.23.53.3."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "192.168.1.2 Host A describes a mechanism that could sound plausible for inside local. Given inside local, 198.23.53.3 web server matches the tested behavior — 192.168.1.2 Host A applies a different mechanism.",
+            "explanation": "192.168.1.2 is an inside local host — outside global addresses belong to destinations outside the NAT domain.",
+            "misconceptionTested": "Labeling inside local host as outside global",
             "whatItDoes": "192.168.1.2 Host A describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 198.23.53.3 web server matches the tested behavior — 192.168.1.2 Host A applies a different mechanism.",
-            "misconceptionTested": "Applying \"192.168.1.2 Host A\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given inside local, 198.23.53.3 web server matches the tested behavior — 192.168.1.2 Host A applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local. Given inside local, 198.23.53.3 web server matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
+            "explanation": "192.168.1.1 is the inside router LAN interface — it is not the outside global web server address.",
+            "misconceptionTested": "Confusing inside gateway with outside global destination",
             "whatItDoes": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 198.23.53.3 web server matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"192.168.1.1 Router A Gi0/0\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given inside local, 198.23.53.3 web server matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "179.43.44.1 Router A S0/0 describes a mechanism that could sound plausible for inside local. Given inside local, 198.23.53.3 web server matches the tested behavior — 179.43.44.1 Router A S0/0 applies a different mechanism.",
+            "explanation": "179.43.44.1 is the enterprise inside global on the WAN — outside global is the remote Internet server IP.",
+            "misconceptionTested": "Mixing inside global WAN with outside global destination",
             "whatItDoes": "179.43.44.1 Router A S0/0 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 198.23.53.3 web server matches the tested behavior — 179.43.44.1 Router A S0/0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"179.43.44.1 Router A S0/0\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given inside local, 198.23.53.3 web server matches the tested behavior — 179.43.44.1 Router A S0/0 applies a different mechanism."
           }
         ],
-        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
+        "examTip": "Outside global = remote host's public IP as your network sees it."
       }
     },
     {
@@ -26499,35 +26487,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Router#show ip nat translations\"."
+          "explanation": "show ip nat translations displays active NAT translation entries — inside/outside local and global address mappings."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router#show nat translations describes a mechanism that could sound plausible for translations. Given translations, Router#show ip nat translations matches the tested behavior — Router#show nat translations applies a different mechanism.",
+            "explanation": "show nat translations omits the required ip keyword — Cisco IOS uses show ip nat translations.",
+            "misconceptionTested": "Dropping ip keyword from show nat command",
             "whatItDoes": "Router#show nat translations describes a mechanism that could sound plausible for translations.",
-            "whyWrongHere": "Given translations, Router#show ip nat translations matches the tested behavior — Router#show nat translations applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show nat translations\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given translations, Router#show ip nat translations matches the tested behavior — Router#show nat translations applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#debug ip nat translations describes a mechanism that could sound plausible for translations. Given translations, Router#show ip nat translations matches the tested behavior — Router#debug ip nat translations applies a different mechanism.",
+            "explanation": "debug ip nat translations floods real-time events — use show ip nat translations for the current translation table.",
+            "misconceptionTested": "Using debug instead of show for translation table",
             "whatItDoes": "Router#debug ip nat translations describes a mechanism that could sound plausible for translations.",
-            "whyWrongHere": "Given translations, Router#show ip nat translations matches the tested behavior — Router#debug ip nat translations applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#debug ip nat translations\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given translations, Router#show ip nat translations matches the tested behavior — Router#debug ip nat translations applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show translations nat describes a mechanism that could sound plausible for translations. Given translations, Router#show ip nat translations matches the tested behavior — Router#show translations nat applies a different mechanism.",
+            "explanation": "show translations nat reverses the IOS syntax — the valid command is show ip nat translations.",
+            "misconceptionTested": "Reordering show ip nat keywords",
             "whatItDoes": "Router#show translations nat describes a mechanism that could sound plausible for translations.",
-            "whyWrongHere": "Given translations, Router#show ip nat translations matches the tested behavior — Router#show translations nat applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show translations nat\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given translations, Router#show ip nat translations matches the tested behavior — Router#show translations nat applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "Active NAT mappings → show ip nat translations (not debug)."
       }
     },
     {
@@ -26555,35 +26540,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Router#show ip nat statistics\"."
+          "explanation": "show ip nat statistics summarizes translation counts, hits/misses, and NAT configuration overview — not every individual entry."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#show ip nat translations describes a mechanism that could sound plausible for overview. Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat translations applies a different mechanism.",
+            "explanation": "show ip nat translations lists each active translation — statistics gives aggregate counters and summary data.",
+            "misconceptionTested": "Using translations table for overview statistics",
             "whatItDoes": "Router#show ip nat translations describes a mechanism that could sound plausible for overview.",
-            "whyWrongHere": "Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat translations applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip nat translations\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat translations applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router#show ip nat summary describes a mechanism that could sound plausible for overview. Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat summary applies a different mechanism.",
+            "explanation": "show ip nat summary is not standard IOS syntax — overview statistics use show ip nat statistics.",
+            "misconceptionTested": "Inventing show ip nat summary command",
             "whatItDoes": "Router#show ip nat summary describes a mechanism that could sound plausible for overview.",
-            "whyWrongHere": "Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat summary applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip nat summary\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat summary applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#show ip nat status describes a mechanism that could sound plausible for overview. Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat status applies a different mechanism.",
+            "explanation": "show ip nat status is not the overview command — use show ip nat statistics for hit counts and totals.",
+            "misconceptionTested": "Selecting nonexistent show ip nat status",
             "whatItDoes": "Router#show ip nat status describes a mechanism that could sound plausible for overview.",
-            "whyWrongHere": "Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat status applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip nat status\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat status applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT overview/counters → show ip nat statistics; per-entry table → show ip nat translations."
       }
     },
     {
@@ -26610,35 +26592,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1\"."
+          "explanation": "Static NAT uses ip nat inside source static <inside-local> <inside-global> — mapping 192.168.1.3 to 179.43.44.1."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "RouterA(config)#nat source static 192.168.1.3 179.43.44.1 reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
+            "explanation": "Valid static NAT requires the ip nat prefix and inside keyword — nat source static alone is incomplete IOS syntax.",
+            "misconceptionTested": "Omitting ip nat inside keywords from static NAT",
             "whatItDoes": "RouterA(config)#nat source static 192.168.1.3 179.43.44.1 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the tested behavior — RouterA(config)#nat source static 192.168.1.3 179.43.44.1 applies a different mechanism.",
-            "misconceptionTested": "Expecting static NAT to serve many hosts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given inside local, RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the tested behavior — RouterA(config)#nat source static 192.168.1.3 179.43.44.1 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
+            "explanation": "ip nat static is not the full command form — Cisco uses ip nat inside source static <local> <global>.",
+            "misconceptionTested": "Using shortened ip nat static syntax",
             "whatItDoes": "RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the tested behavior — RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 applies a different mechanism.",
-            "misconceptionTested": "Expecting static NAT to serve many hosts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given inside local, RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the tested behavior — RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
+            "explanation": "ip nat source static drops the required inside keyword — static mappings need ip nat inside source static.",
+            "misconceptionTested": "Missing inside keyword in static NAT command",
             "whatItDoes": "RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the tested behavior — RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 applies a different mechanism.",
-            "misconceptionTested": "Expecting static NAT to serve many hosts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given inside local, RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the tested behavior — RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 applies a different mechanism."
           }
         ],
-        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
+        "examTip": "Static NAT: ip nat inside source static <private> <public>."
       }
     },
     {
@@ -26668,35 +26647,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\"."
+          "explanation": "A dynamic NAT pool names the pool, sets start/end addresses (179.43.44.2–179.43.44.15), and specifies the subnet netmask."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 describes a mechanism that could sound plausible for inside local. Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.0/28 applies a different mechanism.",
+            "explanation": "NAT pool syntax uses host address ranges, not CIDR slash notation — ip nat pool Name start end netmask.",
+            "misconceptionTested": "Using CIDR notation inside ip nat pool command",
             "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.0/28 applies a different mechanism.",
-            "misconceptionTested": "Applying \"RouterA(config)#ip nat pool EntPool \" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.0/28 applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 describes a mechanism that could sound plausible for inside local. Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 applies a different mechanism.",
+            "explanation": "ip pool is not NAT pool syntax — dynamic pools are defined with ip nat pool <name> <start> <end> netmask.",
+            "misconceptionTested": "Using ip pool instead of ip nat pool",
             "whatItDoes": "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"RouterA(config)#ip pool EntPool 179.\" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 describes a mechanism that could sound plausible for inside local. Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 applies a different mechanism.",
+            "explanation": "179.43.44.1 is the router WAN interface — usable pool hosts start at .2; the keyed pool uses .2–.15 with netmask.",
+            "misconceptionTested": "Including interface address as pool start",
             "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 applies a different mechanism.",
-            "misconceptionTested": "Applying \"RouterA(config)#ip nat pool EntPool \" without matching nat",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 applies a different mechanism."
           }
         ],
-        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
+        "examTip": "Dynamic NAT pool: ip nat pool <name> <first> <last> netmask <mask>."
       }
     },
     {
@@ -32709,35 +32685,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Perimeter\"."
+          "explanation": "The perimeter is the network edge outside the corporate firewall — the untrusted external boundary facing the Internet."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "DMZ describes a mechanism that could sound plausible for security concepts. Given security concepts, Perimeter matches the tested behavior — DMZ applies a different mechanism.",
+            "explanation": "DMZ is a screened subnet between internal and external networks — perimeter describes the broader outside edge.",
+            "misconceptionTested": "Equating DMZ subnet with entire outside perimeter",
             "whatItDoes": "DMZ describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Perimeter matches the tested behavior — DMZ applies a different mechanism.",
-            "misconceptionTested": "Applying \"DMZ\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Perimeter matches the tested behavior — DMZ applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Internal describes a mechanism that could sound plausible for security concepts. Given security concepts, Perimeter matches the tested behavior — Internal applies a different mechanism.",
+            "explanation": "Internal networks sit behind the firewall — perimeter is outside the protected corporate boundary.",
+            "misconceptionTested": "Labeling internal network as outside perimeter",
             "whatItDoes": "Internal describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Perimeter matches the tested behavior — Internal applies a different mechanism.",
-            "misconceptionTested": "Applying \"Internal\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Perimeter matches the tested behavior — Internal applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Trusted describes a mechanism that could sound plausible for security concepts. Given security concepts, Perimeter matches the tested behavior — Trusted applies a different mechanism.",
+            "explanation": "Trusted network refers to protected inside zones — perimeter is the untrusted outside of the firewall.",
+            "misconceptionTested": "Confusing trusted zone with external perimeter",
             "whatItDoes": "Trusted describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Perimeter matches the tested behavior — Trusted applies a different mechanism.",
-            "misconceptionTested": "Applying \"Trusted\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Perimeter matches the tested behavior — Trusted applies a different mechanism."
           }
         ],
-        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
+        "examTip": "Perimeter = untrusted outside edge; DMZ = semi-trusted zone between inside and outside."
       }
     },
     {
@@ -32764,35 +32737,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"DMZ\"."
+          "explanation": "A DMZ (demilitarized zone) hosts Internet-facing servers yet sits behind firewall policy — accessible but segmented from the internal LAN."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Perimeter describes a mechanism that could sound plausible for security concepts. Given security concepts, DMZ matches the tested behavior — Perimeter applies a different mechanism.",
+            "explanation": "Perimeter describes the external boundary broadly — DMZ is the specific screened subnet for public-facing services.",
+            "misconceptionTested": "Using perimeter label for DMZ screened subnet",
             "whatItDoes": "Perimeter describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, DMZ matches the tested behavior — Perimeter applies a different mechanism.",
-            "misconceptionTested": "Applying \"Perimeter\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, DMZ matches the tested behavior — Perimeter applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Internal describes a mechanism that could sound plausible for security concepts. Given security concepts, DMZ matches the tested behavior — Internal applies a different mechanism.",
+            "explanation": "Internal networks are not Internet-accessible by design — DMZ is deliberately reachable from outside with controls.",
+            "misconceptionTested": "Calling protected internal LAN a DMZ",
             "whatItDoes": "Internal describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, DMZ matches the tested behavior — Internal applies a different mechanism.",
-            "misconceptionTested": "Applying \"Internal\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, DMZ matches the tested behavior — Internal applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Trusted describes a mechanism that could sound plausible for security concepts. Given security concepts, DMZ matches the tested behavior — Trusted applies a different mechanism.",
+            "explanation": "Trusted network is the protected inside — DMZ is less trusted than internal but more exposed than the core LAN.",
+            "misconceptionTested": "Equating trusted internal with DMZ",
             "whatItDoes": "Trusted describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, DMZ matches the tested behavior — Trusted applies a different mechanism.",
-            "misconceptionTested": "Applying \"Trusted\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, DMZ matches the tested behavior — Trusted applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
+        "examTip": "DMZ = Internet-reachable but firewall-screened servers (web, mail, DNS)."
       }
     },
     {
@@ -32870,35 +32840,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Internal network\"."
+          "explanation": "Trusted network means the protected internal corporate LAN behind the firewall — highest trust zone for users and data."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The Internet describes a mechanism that could sound plausible for security concepts. Given security concepts, Internal network matches the tested behavior — The Internet applies a different mechanism.",
+            "explanation": "The Internet is untrusted external space — trusted network is inside the security perimeter.",
+            "misconceptionTested": "Calling the Internet a trusted network",
             "whatItDoes": "The Internet describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Internal network matches the tested behavior — The Internet applies a different mechanism.",
-            "misconceptionTested": "Applying \"The Internet\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Internal network matches the tested behavior — The Internet applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The DMZ describes a mechanism that could sound plausible for security concepts. Given security concepts, Internal network matches the tested behavior — The DMZ applies a different mechanism.",
+            "explanation": "DMZ is semi-trusted for public services — trusted network is the private internal zone with stricter access.",
+            "misconceptionTested": "Labeling DMZ as fully trusted internal",
             "whatItDoes": "The DMZ describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Internal network matches the tested behavior — The DMZ applies a different mechanism.",
-            "misconceptionTested": "Applying \"The DMZ\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Internal network matches the tested behavior — The DMZ applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "A network with SSL describes a mechanism that could sound plausible for security concepts. Given security concepts, Internal network matches the tested behavior — A network with SSL applies a different mechanism.",
+            "explanation": "SSL encrypts sessions — trust zone naming is about network segmentation, not transport encryption alone.",
+            "misconceptionTested": "Defining trusted network by SSL presence",
             "whatItDoes": "A network with SSL describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Internal network matches the tested behavior — A network with SSL applies a different mechanism.",
-            "misconceptionTested": "Applying \"A network with SSL\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Internal network matches the tested behavior — A network with SSL applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
+        "examTip": "Firewall zones: trusted = internal LAN; DMZ = semi-trusted; outside = Internet."
       }
     },
     {
@@ -32925,35 +32892,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Distributed denial of service\"."
+          "explanation": "Distributed denial of service (DDoS) floods a target from many coordinated Internet sources — overwhelming services at scale."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Denial of service describes a mechanism that could sound plausible for security concepts. Given security concepts, Distributed denial of service matches the tested behavior — Denial of service applies a different mechanism.",
+            "explanation": "Single-source DoS can overwhelm a service — DDoS specifically involves multiple distributed attack sources.",
+            "misconceptionTested": "Selecting single-source DoS for distributed attack stem",
             "whatItDoes": "Denial of service describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Distributed denial of service matches the tested behavior — Denial of service applies a different mechanism.",
-            "misconceptionTested": "Applying \"Denial of service\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Distributed denial of service matches the tested behavior — Denial of service applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "IP address spoofing shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given security concepts, Distributed denial of service matches the tested behavior — IP address spoofing applies a different mechanism.",
+            "explanation": "IP spoofing falsifies source addresses — it may aid attacks but does not by itself describe multi-source traffic floods.",
+            "misconceptionTested": "Equating spoofing with distributed flood attack",
             "whatItDoes": "IP address spoofing shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given security concepts, Distributed denial of service matches the tested behavior — IP address spoofing applies a different mechanism.",
-            "misconceptionTested": "Applying \"IP address spoofing\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Distributed denial of service matches the tested behavior — IP address spoofing applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Session hijacking describes a mechanism that could sound plausible for security concepts. Given security concepts, Distributed denial of service matches the tested behavior — Session hijacking applies a different mechanism.",
+            "explanation": "Session hijacking takes over an established session — DDoS is volumetric flooding from many hosts.",
+            "misconceptionTested": "Confusing session hijack with DDoS flood",
             "whatItDoes": "Session hijacking describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Distributed denial of service matches the tested behavior — Session hijacking applies a different mechanism.",
-            "misconceptionTested": "Applying \"Session hijacking\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Distributed denial of service matches the tested behavior — Session hijacking applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
+        "examTip": "DDoS = many sources; DoS = one source — both aim to exhaust availability."
       }
     },
     {
@@ -32980,35 +32944,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"IDS\"."
+          "explanation": "An IDS (Intrusion Detection System) monitors traffic and alerts on suspicious activity — detection without inline blocking."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Honey pots describes a mechanism that could sound plausible for security concepts. Given security concepts, IDS matches the tested behavior — Honey pots applies a different mechanism.",
+            "explanation": "Honeypots lure attackers into decoy systems — they do not broadly detect intrusions across production traffic like an IDS.",
+            "misconceptionTested": "Expecting honeypots to serve as network IDS",
             "whatItDoes": "Honey pots describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IDS matches the tested behavior — Honey pots applies a different mechanism.",
-            "misconceptionTested": "Applying \"Honey pots\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IDS matches the tested behavior — Honey pots applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "IPS describes a mechanism that could sound plausible for security concepts. Given security concepts, IDS matches the tested behavior — IPS applies a different mechanism.",
+            "explanation": "IPS detects and can block inline — the stem asks for detection; IDS is the classic detect-and-alert role.",
+            "misconceptionTested": "Choosing IPS when only detection is asked",
             "whatItDoes": "IPS describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IDS matches the tested behavior — IPS applies a different mechanism.",
-            "misconceptionTested": "Applying \"IPS\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IDS matches the tested behavior — IPS applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "HIDS describes a mechanism that could sound plausible for security concepts. Given security concepts, IDS matches the tested behavior — HIDS applies a different mechanism.",
+            "explanation": "HIDS is host-based IDS on endpoints — the question targets network intrusion detection (IDS generically).",
+            "misconceptionTested": "Narrowing to host IDS when network IDS fits",
             "whatItDoes": "HIDS describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IDS matches the tested behavior — HIDS applies a different mechanism.",
-            "misconceptionTested": "Applying \"HIDS\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IDS matches the tested behavior — HIDS applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
+        "examTip": "IDS = detect + alert; IPS = detect + inline prevent."
       }
     },
     {
@@ -33034,35 +32995,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Blocking ICMP echo requests and echo replies at the perimeter\"."
+          "explanation": "Blocking ICMP echo request/reply at the perimeter stops ping responses used in ping-sweep reconnaissance."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Deploying host intrusion detection systems describes a mechanism that could sound plausible for security concepts. Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Deploying host intrusion detection systems applies a different mechanism.",
+            "explanation": "HIDS on endpoints does not stop perimeter ping sweeps — block ICMP at the edge to hide live hosts from sweep tools.",
+            "misconceptionTested": "Relying on host IDS to stop ping sweeps",
             "whatItDoes": "Deploying host intrusion detection systems describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Deploying host intrusion detection systems applies a different mechanism.",
-            "misconceptionTested": "Applying \"Deploying host intrusion detection s\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Deploying host intrusion detection systems applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Deploying network intrusion detection systems describes a mechanism that could sound plausible for security concepts. Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Deploying network intrusion detection systems applies a different mechanism.",
+            "explanation": "Network IDS may detect sweeps after they occur — preventing echo replies at the firewall stops the scan technique.",
+            "misconceptionTested": "Expecting NIDS alone to prevent ping sweeps",
             "whatItDoes": "Deploying network intrusion detection systems describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Deploying network intrusion detection systems applies a different mechanism.",
-            "misconceptionTested": "Applying \"Deploying network intrusion detectio\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Deploying network intrusion detection systems applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Blocking RFC 1918 addresses at the perimeter describes a mechanism that could sound plausible for security concepts. Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Blocking RFC 1918 addresses at the perimeter applies a different mechanism.",
+            "explanation": "RFC 1918 blocking filters private ranges — ping sweeps use ICMP echo to discover responsive hosts, not RFC 1918 rules.",
+            "misconceptionTested": "Blocking RFC 1918 as ping sweep countermeasure",
             "whatItDoes": "Blocking RFC 1918 addresses at the perimeter describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Blocking RFC 1918 addresses at the perimeter applies a different mechanism.",
-            "misconceptionTested": "Applying \"Blocking RFC 1918 addresses at the p\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Blocking RFC 1918 addresses at the perimeter applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
+        "examTip": "Stop ping sweeps at the edge → deny ICMP echo (type 8/0) on the perimeter."
       }
     },
     {
@@ -33090,35 +33048,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"IPS\"."
+          "explanation": "An IPS (Intrusion Prevention System) can drop malicious traffic inline — actively mitigating denial-of-service floods."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Honey pots describes a mechanism that could sound plausible for security concepts. Given security concepts, IPS matches the tested behavior — Honey pots applies a different mechanism.",
+            "explanation": "Honeypots divert attackers to decoys — they do not inline-mitigate volumetric DoS against production services.",
+            "misconceptionTested": "Using honeypots for DoS mitigation",
             "whatItDoes": "Honey pots describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — Honey pots applies a different mechanism.",
-            "misconceptionTested": "Applying \"Honey pots\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — Honey pots applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "IDS describes a mechanism that could sound plausible for security concepts. Given security concepts, IPS matches the tested behavior — IDS applies a different mechanism.",
+            "explanation": "IDS detects and alerts but typically does not block — IPS provides inline prevention against DoS traffic.",
+            "misconceptionTested": "Expecting IDS to mitigate DoS inline",
             "whatItDoes": "IDS describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — IDS applies a different mechanism.",
-            "misconceptionTested": "Applying \"IDS\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — IDS applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "HIDS describes a mechanism that could sound plausible for security concepts. Given security concepts, IPS matches the tested behavior — HIDS applies a different mechanism.",
+            "explanation": "HIDS protects individual hosts — network IPS at the perimeter is positioned to drop flood traffic before it hits servers.",
+            "misconceptionTested": "Choosing host IDS for network DoS mitigation",
             "whatItDoes": "HIDS describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — HIDS applies a different mechanism.",
-            "misconceptionTested": "Applying \"HIDS\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — HIDS applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
+        "examTip": "Mitigate floods inline → IPS (or dedicated anti-DDoS) at the perimeter."
       }
     },
     {
@@ -33145,35 +33100,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"IP address spoofing\"."
+          "explanation": "IP address spoofing sends packets with a forged source address — impersonating another host to bypass trust or filters."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Denial of service describes a mechanism that could sound plausible for security concepts. Given security concepts, IP address spoofing matches the tested behavior — Denial of service applies a different mechanism.",
+            "explanation": "DoS floods exhaust resources — spoofing falsifies identity rather than primarily overwhelming bandwidth.",
+            "misconceptionTested": "Selecting DoS for identity impersonation attack",
             "whatItDoes": "Denial of service describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IP address spoofing matches the tested behavior — Denial of service applies a different mechanism.",
-            "misconceptionTested": "Applying \"Denial of service\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IP address spoofing matches the tested behavior — Denial of service applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Distributed denial of service describes a mechanism that could sound plausible for security concepts. Given security concepts, IP address spoofing matches the tested behavior — Distributed denial of service applies a different mechanism.",
+            "explanation": "DDoS uses many sources to flood a target — spoofing is about false source identity, not distributed volume alone.",
+            "misconceptionTested": "Confusing DDoS flood with address spoofing",
             "whatItDoes": "Distributed denial of service describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IP address spoofing matches the tested behavior — Distributed denial of service applies a different mechanism.",
-            "misconceptionTested": "Applying \"Distributed denial of service\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IP address spoofing matches the tested behavior — Distributed denial of service applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Session hijacking describes a mechanism that could sound plausible for security concepts. Given security concepts, IP address spoofing matches the tested behavior — Session hijacking applies a different mechanism.",
+            "explanation": "Session hijacking steals an established TCP session — spoofing forges source IPs in new packets.",
+            "misconceptionTested": "Equating session hijack with IP spoofing",
             "whatItDoes": "Session hijacking describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IP address spoofing matches the tested behavior — Session hijacking applies a different mechanism.",
-            "misconceptionTested": "Applying \"Session hijacking\" without matching security concepts",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given security concepts, IP address spoofing matches the tested behavior — Session hijacking applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
+        "examTip": "Spoofing = fake source identity; hijacking = take over an existing session."
       }
     },
     {

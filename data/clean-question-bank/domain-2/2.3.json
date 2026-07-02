@@ -381,32 +381,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "lldp run enables LLDP globally, including LLDP-MED capabilities."
+          "explanation": "LLDP-MED for non-Cisco phones requires global lldp run from configuration mode so the switch can negotiate power and capabilities."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#lldp run describes a mechanism that could sound plausible for lldp run enables LLDP globally, including LLDP-MED capabilities. Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch#lldp run applies a different mechanism.",
+            "explanation": "Global configuration uses (config)# — Switch#lldp run is not valid privileged-exec syntax for enabling LLDP.",
+            "misconceptionTested": "Running lldp run from privileged exec instead of config mode",
             "whatItDoes": "Switch#lldp run describes a mechanism that could sound plausible for lldp run enables LLDP globally, including LLDP-MED capabilities.",
-            "whyWrongHere": "Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch#lldp run applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#lldp run\" without matching cdp"
+            "whyWrongHere": "Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch#lldp run applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config)#lldp enable describes a mechanism that could sound plausible for lldp run enables LLDP globally, including LLDP-MED capabilities. Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch(config)#lldp enable applies a different mechanism.",
+            "explanation": "lldp enable is not the standard global IOS command — use lldp run in configuration mode.",
+            "misconceptionTested": "Substituting lldp enable for lldp run",
             "whatItDoes": "Switch(config)#lldp enable describes a mechanism that could sound plausible for lldp run enables LLDP globally, including LLDP-MED capabilities.",
-            "whyWrongHere": "Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch(config)#lldp enable applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#lldp enable\" without matching cdp"
+            "whyWrongHere": "Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch(config)#lldp enable applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch#lldp enable describes a mechanism that could sound plausible for lldp run enables LLDP globally, including LLDP-MED capabilities. Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch#lldp enable applies a different mechanism.",
+            "explanation": "LLDP must be configured from global configuration mode — privileged exec # prompt cannot enable lldp run.",
+            "misconceptionTested": "Attempting global LLDP enable from exec mode",
             "whatItDoes": "Switch#lldp enable describes a mechanism that could sound plausible for lldp run enables LLDP globally, including LLDP-MED capabilities.",
-            "whyWrongHere": "Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch#lldp enable applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#lldp enable\" without matching cdp"
+            "whyWrongHere": "Given lldp run enables LLDP globally, including LLDP-MED capabilities, Switch(config)#lldp run matches the tested behavior — Switch#lldp enable applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: lldp run enables LLDP globally, including LLDP-MED capabilities."
+        "examTip": "PoE + multivendor phones → lldp run globally for LLDP-MED power negotiation."
       }
     },
     {
@@ -483,32 +483,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "LLDP advertises every 30 seconds by default."
+          "explanation": "LLDP sends neighbor advertisements every 30 seconds by default — faster than CDP's 60-second interval."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "60 seconds uses the wrong value. The tested fact calls for 30 — not 60.",
+            "explanation": "60 seconds is the default CDP advertisement interval — LLDP defaults to 30 seconds.",
+            "misconceptionTested": "Applying CDP 60 s default to LLDP",
             "whatItDoes": "60 seconds describes a mechanism that could sound plausible for LLDP advertises every 30 seconds by default.",
-            "whyWrongHere": "Given LLDP advertises every 30 seconds by default, 30 seconds matches the tested behavior — 60 seconds applies a different mechanism.",
-            "misconceptionTested": "Memorizing 60 instead of the correct 30"
+            "whyWrongHere": "Given LLDP advertises every 30 seconds by default, 30 seconds matches the tested behavior — 60 seconds applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "90 seconds uses the wrong value. The tested fact calls for 30 — not 90.",
+            "explanation": "90 seconds is not the LLDP default advertisement timer — stock IOS uses 30 seconds.",
+            "misconceptionTested": "Selecting tripled LLDP interval",
             "whatItDoes": "90 seconds describes a mechanism that could sound plausible for LLDP advertises every 30 seconds by default.",
-            "whyWrongHere": "Given LLDP advertises every 30 seconds by default, 30 seconds matches the tested behavior — 90 seconds applies a different mechanism.",
-            "misconceptionTested": "Memorizing 90 instead of the correct 30"
+            "whyWrongHere": "Given LLDP advertises every 30 seconds by default, 30 seconds matches the tested behavior — 90 seconds applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "120 seconds uses the wrong value. The tested fact calls for 30 — not 120.",
+            "explanation": "120 seconds is the LLDP holdtime default, not the transmit interval — advertisements go out every 30 s.",
+            "misconceptionTested": "Confusing LLDP holdtime with advertisement interval",
             "whatItDoes": "120 seconds describes a mechanism that could sound plausible for LLDP advertises every 30 seconds by default.",
-            "whyWrongHere": "Given LLDP advertises every 30 seconds by default, 30 seconds matches the tested behavior — 120 seconds applies a different mechanism.",
-            "misconceptionTested": "Memorizing 120 instead of the correct 30"
+            "whyWrongHere": "Given LLDP advertises every 30 seconds by default, 30 seconds matches the tested behavior — 120 seconds applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: LLDP advertises every 30 seconds by default."
+        "examTip": "LLDP timers: TX every 30 s; holdtime 120 s — do not swap with CDP 60/180."
       }
     },
     {
@@ -534,32 +534,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "no lldp transmit suppresses outgoing LLDP on an interface."
+          "explanation": "no lldp transmit on the interface stops outgoing LLDP advertisements on that port while leaving LLDP active elsewhere."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config-if)#no lldp describes a mechanism that could sound plausible for no lldp transmit suppresses outgoing LLDP on an interface. Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp applies a different mechanism.",
+            "explanation": "no lldp is not valid per-interface syntax — suppress outbound LLDP with no lldp transmit.",
+            "misconceptionTested": "Using blanket no lldp on interface",
             "whatItDoes": "Switch(config-if)#no lldp describes a mechanism that could sound plausible for no lldp transmit suppresses outgoing LLDP on an interface.",
-            "whyWrongHere": "Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#no lldp\" without matching cdp"
+            "whyWrongHere": "Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config-if)#no lldp receive describes a mechanism that could sound plausible for no lldp transmit suppresses outgoing LLDP on an interface. Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp receive applies a different mechanism.",
+            "explanation": "no lldp receive blocks inbound LLDP processing — the stem asks to stop sending advertisements outbound.",
+            "misconceptionTested": "Disabling receive when transmit must be stopped",
             "whatItDoes": "Switch(config-if)#no lldp receive describes a mechanism that could sound plausible for no lldp transmit suppresses outgoing LLDP on an interface.",
-            "whyWrongHere": "Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp receive applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#no lldp receive\" without matching cdp"
+            "whyWrongHere": "Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp receive applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config-if)#no lldp enable describes a mechanism that could sound plausible for no lldp transmit suppresses outgoing LLDP on an interface. Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp enable applies a different mechanism.",
+            "explanation": "no lldp enable is not standard IOS interface syntax — use no lldp transmit to stop outbound ads.",
+            "misconceptionTested": "Inventing no lldp enable interface command",
             "whatItDoes": "Switch(config-if)#no lldp enable describes a mechanism that could sound plausible for no lldp transmit suppresses outgoing LLDP on an interface.",
-            "whyWrongHere": "Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp enable applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#no lldp enable\" without matching cdp"
+            "whyWrongHere": "Given no lldp transmit suppresses outgoing LLDP on an interface, Switch(config-if)#no lldp transmit matches the tested behavior — Switch(config-if)#no lldp enable applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: no lldp transmit suppresses outgoing LLDP on an interface."
+        "examTip": "Stop LLDP outbound only on one port → no lldp transmit under the interface."
       }
     },
     {
@@ -585,32 +585,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "LLDP holdtime defaults to 120 seconds."
+          "explanation": "LLDP neighbor entries expire after a default holdtime of 120 seconds if no fresh advertisement is received."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "30 seconds uses the wrong value. The tested fact calls for 120 — not 30.",
+            "explanation": "30 seconds is the LLDP advertisement interval — holdtime before aging a neighbor is 120 seconds.",
+            "misconceptionTested": "Equating LLDP TX interval with holdtime",
             "whatItDoes": "30 seconds describes a mechanism that could sound plausible for LLDP holdtime defaults to 120 seconds.",
-            "whyWrongHere": "Given LLDP holdtime defaults to 120 seconds, 120 seconds matches the tested behavior — 30 seconds applies a different mechanism.",
-            "misconceptionTested": "Memorizing 30 instead of the correct 120"
+            "whyWrongHere": "Given LLDP holdtime defaults to 120 seconds, 120 seconds matches the tested behavior — 30 seconds applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "60 seconds uses the wrong value. The tested fact calls for 120 — not 60.",
+            "explanation": "60 seconds is CDP's advertisement default — LLDP holdtime is 120 seconds.",
+            "misconceptionTested": "Using CDP timer for LLDP holdtime",
             "whatItDoes": "60 seconds describes a mechanism that could sound plausible for LLDP holdtime defaults to 120 seconds.",
-            "whyWrongHere": "Given LLDP holdtime defaults to 120 seconds, 120 seconds matches the tested behavior — 60 seconds applies a different mechanism.",
-            "misconceptionTested": "Memorizing 60 instead of the correct 120"
+            "whyWrongHere": "Given LLDP holdtime defaults to 120 seconds, 120 seconds matches the tested behavior — 60 seconds applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "90 seconds uses the wrong value. The tested fact calls for 120 — not 90.",
+            "explanation": "90 seconds is not the LLDP holdtime default — Cisco IOS uses 120 seconds for neighbor entry aging.",
+            "misconceptionTested": "Selecting non-default LLDP holdtime value",
             "whatItDoes": "90 seconds describes a mechanism that could sound plausible for LLDP holdtime defaults to 120 seconds.",
-            "whyWrongHere": "Given LLDP holdtime defaults to 120 seconds, 120 seconds matches the tested behavior — 90 seconds applies a different mechanism.",
-            "misconceptionTested": "Memorizing 90 instead of the correct 120"
+            "whyWrongHere": "Given LLDP holdtime defaults to 120 seconds, 120 seconds matches the tested behavior — 90 seconds applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: LLDP holdtime defaults to 120 seconds."
+        "examTip": "LLDP holdtime default = 120 s; advertisements every 30 s."
       }
     },
     {
@@ -638,32 +638,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "CDP detail output identifies the local and remote interfaces, holdtime, and management address."
+          "explanation": "The Interface field shows the local port receiving CDP (Gi0/2 on this switch) — it connects to the neighbor's Port ID (Gi0/1 on SwitchB)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The advertisement was seen 162 seconds ago. describes a mechanism that could sound plausible for neighbor. Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — The advertisement was seen 162 seconds ago. applies a different mechanism.",
+            "explanation": "Holdtime (162 sec) is time remaining before the entry ages — not when the last advertisement was seen.",
+            "misconceptionTested": "Reading holdtime as last-seen timestamp",
             "whatItDoes": "The advertisement was seen 162 seconds ago. describes a mechanism that could sound plausible for neighbor.",
-            "whyWrongHere": "Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — The advertisement was seen 162 seconds ago. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The advertisement was seen 162 secon\" without matching cdp"
+            "whyWrongHere": "Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — The advertisement was seen 162 seconds ago. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch B interface Gi0/1 connects to Switch A. describes a mechanism that could sound plausible for neighbor. Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — Switch B interface Gi0/1 connects to Switch A. applies a different mechanism.",
+            "explanation": "Port ID lists the neighbor's outgoing interface (Gi0/1 on SwitchB) — the local Interface field is Gi0/2 facing SwitchB.",
+            "misconceptionTested": "Swapping local Interface with neighbor Port ID",
             "whatItDoes": "Switch B interface Gi0/1 connects to Switch A. describes a mechanism that could sound plausible for neighbor.",
-            "whyWrongHere": "Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — Switch B interface Gi0/1 connects to Switch A. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch B interface Gi0/1 connects to\" without matching cdp"
+            "whyWrongHere": "Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — Switch B interface Gi0/1 connects to Switch A. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The IP address of Switch B is 192.168.1.1. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — The IP address of Switch B is 192.168.1.1. applies a different mechanism.",
+            "explanation": "Entry address shows SwitchB management IP 192.168.1.2 — 192.168.1.1 is not listed in this CDP detail output.",
+            "misconceptionTested": "Inventing neighbor IP not shown in CDP output",
             "whatItDoes": "The IP address of Switch B is 192.168.1.1. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — The IP address of Switch B is 192.168.1.1. applies a different mechanism.",
-            "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process"
+            "whyWrongHere": "Given neighbor, Switch B interface Gi0/2 connects to Switch A. matches the tested behavior — The IP address of Switch B is 192.168.1.1. applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: CDP detail output identifies the local and remote interfaces, holdtime, and management address."
+        "examTip": "CDP detail: Interface = local port; Port ID = neighbor's port facing you."
       }
     },
     {
@@ -689,32 +689,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "no cdp enable disables CDP advertisements on one interface."
+          "explanation": "no cdp enable on the ISP-facing interface stops CDP advertisements on that link only — CDP remains active on other ports."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#cdp disable describes a mechanism that could sound plausible for no cdp enable disables CDP advertisements on one interface. Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config)#cdp disable applies a different mechanism.",
+            "explanation": "cdp disable is not valid global syntax — per-interface suppression uses no cdp enable under the interface.",
+            "misconceptionTested": "Using invented cdp disable global command",
             "whatItDoes": "Switch(config)#cdp disable describes a mechanism that could sound plausible for no cdp enable disables CDP advertisements on one interface.",
-            "whyWrongHere": "Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config)#cdp disable applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#cdp disable\" without matching cdp"
+            "whyWrongHere": "Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config)#cdp disable applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config-if)#no cdp describes a mechanism that could sound plausible for no cdp enable disables CDP advertisements on one interface. Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config-if)#no cdp applies a different mechanism.",
+            "explanation": "no cdp is incomplete interface syntax — the command to stop CDP on one port is no cdp enable.",
+            "misconceptionTested": "Using no cdp instead of no cdp enable",
             "whatItDoes": "Switch(config-if)#no cdp describes a mechanism that could sound plausible for no cdp enable disables CDP advertisements on one interface.",
-            "whyWrongHere": "Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config-if)#no cdp applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#no cdp\" without matching cdp"
+            "whyWrongHere": "Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config-if)#no cdp applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config-if)#no cdp disable describes a mechanism that could sound plausible for no cdp enable disables CDP advertisements on one interface. Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config-if)#no cdp disable applies a different mechanism.",
+            "explanation": "no cdp disable would re-enable CDP if disable were set — it does not selectively stop advertisements to the ISP.",
+            "misconceptionTested": "Negating disable instead of disabling CDP on interface",
             "whatItDoes": "Switch(config-if)#no cdp disable describes a mechanism that could sound plausible for no cdp enable disables CDP advertisements on one interface.",
-            "whyWrongHere": "Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config-if)#no cdp disable applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#no cdp disable\" without matching cdp"
+            "whyWrongHere": "Given no cdp enable disables CDP advertisements on one interface, Switch(config-if)#no cdp enable matches the tested behavior — Switch(config-if)#no cdp disable applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: no cdp enable disables CDP advertisements on one interface."
+        "examTip": "Hide switch capabilities from one link → no cdp enable on that interface only."
       }
     },
     {
