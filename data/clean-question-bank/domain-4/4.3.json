@@ -24,35 +24,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"A reverse lookup is the resolution of an IP address to FQDN.\"."
+          "explanation": "Reverse DNS resolves an IP address to an FQDN — forward DNS maps names to addresses."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "A reverse lookup is when the request needs to be reversed to another DNS server. describes a mechanism that could sound plausible for statement. Given statement, A reverse lookup is the resolution of an IP address to FQDN. matches the tested behavior — A reverse lookup is when the request needs to be reversed to another DNS server. applies a different mechanism.",
+            "explanation": "Forwarding to another DNS server is recursion/referral — reverse lookup specifically means IP-to-name resolution.",
+            "misconceptionTested": "Defining reverse lookup as server referral",
             "whatItDoes": "A reverse lookup is when the request needs to be reversed to another DNS server. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, A reverse lookup is the resolution of an IP address to FQDN. matches the tested behavior — A reverse lookup is when the request needs to be reversed to another DNS server. applies a different mechanism.",
-            "misconceptionTested": "Applying \"A reverse lookup is when the request\" without matching dns",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given statement, A reverse lookup is the resolution of an IP address to FQDN. matches the tested behavior — A reverse lookup is when the request needs to be reversed to another DNS server. applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "A reverse lookup is when the DNS queried can answer the request without asking another DNS server. describes a mechanism that could sound plausible for statement. Given statement, A reverse lookup is the resolution of an IP address to FQDN. matches the tested behavior — A reverse lookup is when the DNS queried can answer the request without asking another DNS server. applies a different mechanism.",
+            "explanation": "Answering without recursion describes an authoritative response — reverse lookup is about query direction (IP → name).",
+            "misconceptionTested": "Equating reverse with non-recursive answer",
             "whatItDoes": "A reverse lookup is when the DNS queried can answer the request without asking another DNS server. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, A reverse lookup is the resolution of an IP address to FQDN. matches the tested behavior — A reverse lookup is when the DNS queried can answer the request without asking another DNS server. applies a different mechanism.",
-            "misconceptionTested": "Applying \"A reverse lookup is when the DNS que\" without matching dns",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given statement, A reverse lookup is the resolution of an IP address to FQDN. matches the tested behavior — A reverse lookup is when the DNS queried can answer the request without asking another DNS server. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "A reverse lookup is the resolution of an FQDN to an IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given statement, A reverse lookup is the resolution of an IP address to FQDN. matches the tested behavior — A reverse lookup is the resolution of an FQDN to an IP address. applies a different mechanism.",
+            "explanation": "FQDN-to-IP is forward DNS (A/AAAA records) — reverse uses PTR in in-addr.arpa zones.",
+            "misconceptionTested": "Swapping forward and reverse DNS definitions",
             "whatItDoes": "A reverse lookup is the resolution of an FQDN to an IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given statement, A reverse lookup is the resolution of an IP address to FQDN. matches the tested behavior — A reverse lookup is the resolution of an FQDN to an IP address. applies a different mechanism.",
-            "misconceptionTested": "Applying \"A reverse lookup is the resolution o\" without matching dns",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given statement, A reverse lookup is the resolution of an IP address to FQDN. matches the tested behavior — A reverse lookup is the resolution of an FQDN to an IP address. applies a different mechanism."
           }
         ],
-        "examTip": "Forward = name→IP; reverse = IP→name (PTR)."
+        "examTip": "Reverse DNS = IP → FQDN (PTR); forward = name → IP."
       }
     },
     {

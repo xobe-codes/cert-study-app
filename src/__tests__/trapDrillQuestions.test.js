@@ -7,9 +7,9 @@ import {
 } from '../features/trapDrill/trapDrillQuestions.js'
 
 describe('trapDrillQuestions', () => {
-  it('defines 50 trap CKUs with 3 questions each (150 total)', () => {
-    expect(TRAP_DRILL_CKUS).toHaveLength(50)
-    expect(getAllTrapDrillQuestions()).toHaveLength(150)
+  it('defines 55 trap CKUs with 3 questions each (165 total)', () => {
+    expect(TRAP_DRILL_CKUS).toHaveLength(55)
+    expect(getAllTrapDrillQuestions()).toHaveLength(165)
   })
 
   it('returns 3 questions per CKU by id', () => {
@@ -77,6 +77,22 @@ describe('trapDrillQuestions', () => {
       const qs = getTrapDrillQuestions({ ckuId })
       expect(qs, ckuId).toHaveLength(3)
       expect(qs.every(q => q.objectiveId.startsWith('3.'))).toBe(true)
+    }
+  })
+
+  it('includes domain-2 wave trap topics: DTP, FlexConnect, WPA3, LACP mode, Root Guard', () => {
+    const ids = TRAP_DRILL_CKUS.map(c => c.ckuId)
+    expect(ids).toEqual(expect.arrayContaining([
+      'CKU-DTP',
+      'CKU-FLEXCONNECT',
+      'CKU-WPA3',
+      'CKU-LACP-MODE',
+      'CKU-ROOT-GUARD',
+    ]))
+    for (const ckuId of ['CKU-DTP', 'CKU-FLEXCONNECT', 'CKU-WPA3', 'CKU-LACP-MODE', 'CKU-ROOT-GUARD']) {
+      const qs = getTrapDrillQuestions({ ckuId })
+      expect(qs, ckuId).toHaveLength(3)
+      expect(qs.every(q => q.objectiveId.startsWith('2.'))).toBe(true)
     }
   })
 })

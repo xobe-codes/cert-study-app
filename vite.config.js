@@ -102,6 +102,16 @@ export default defineConfig({
             },
           },
           {
+            urlPattern: /\/assets\/skill-questions[^/?]*\.js$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'ccna-skill-questions',
+              expiration: { maxEntries: 4, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              cacheableResponse: { statuses: [0, 200] },
+              plugins: [rejectHtmlAsScript],
+            },
+          },
+          {
             urlPattern: /\/assets\/[^/?]+\.(?:js|css)$/i,
             handler: 'NetworkFirst',
             options: {

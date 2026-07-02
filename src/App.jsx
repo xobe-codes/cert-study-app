@@ -34,7 +34,7 @@ import DeferredExamTips from './components/DeferredExamTips.jsx'
 import { ExplainTab, QuizTab, objectiveTabId, objectivePanelId, SubnetPracticeHome } from './tabs/studyQuizTabs.jsx'
 import { BOOK_REF } from './data/bookRefFull.js'
 import { formatCuratedAttribution } from './curatedDisplay.js'
-import { STORAGE_KEYS } from './storageKeys.js'
+import { STORAGE_KEYS, TRAP_DRILL_PREFILL_EVENT } from './storageKeys.js'
 import McChoices from './components/McChoices.jsx'
 import AnswerReview from './components/AnswerReview.jsx'
 import { QuizRichText, QuestionMeta, OrderingQuestion } from './components/QuizQuestionChrome.jsx'
@@ -1218,6 +1218,25 @@ export default function App() {
   const clearExamTrapPrefill = useCallback(() => setExamTrapPrefill(null), [])
   const clearTrapDrillPrefill = useCallback(() => setTrapDrillPrefill(null), [])
 
+  const consumeTrapDrillPrefill = useCallback(async () => {
+    const raw = await window.storage.getItem(STORAGE_KEYS.trapDrillPrefill)
+    if (!raw) return
+    await window.storage.removeItem(STORAGE_KEYS.trapDrillPrefill)
+    setTrapDrillPrefill(raw)
+  }, [])
+
+  useEffect(() => {
+    if (!loaded) return
+    const onPrefill = () => { consumeTrapDrillPrefill() }
+    window.addEventListener(TRAP_DRILL_PREFILL_EVENT, onPrefill)
+    return () => window.removeEventListener(TRAP_DRILL_PREFILL_EVENT, onPrefill)
+  }, [loaded, consumeTrapDrillPrefill])
+
+  useEffect(() => {
+    if (!loaded || view !== 'trapdrill') return
+    consumeTrapDrillPrefill()
+  }, [loaded, view, consumeTrapDrillPrefill])
+
   const goBack = useCallback(() => {
     setView(returnToView)
   }, [returnToView])
@@ -1539,6 +1558,7 @@ export default function App() {
         )}
         {view === 'trapdrill' && (
           <TrapDrillSession
+            key={trapDrillPrefill?.ckuId ?? 'all'}
             prefill={trapDrillPrefill}
             onBack={() => { clearTrapDrillPrefill(); goBack() }}
           />

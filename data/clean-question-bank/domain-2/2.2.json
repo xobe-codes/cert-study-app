@@ -216,32 +216,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "switchport mode trunk sets the port to trunking."
+          "explanation": "switchport mode trunk forces the port to operate as an 802.1Q trunk regardless of DTP negotiation."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "switchport mode access reflects a common trap: A trunk is faster than an access port. A trunk simply carries multiple VLANs; speed depends on the physical link.",
+            "explanation": "switchport mode access keeps the port in access mode — it will not carry multiple VLANs as a trunk.",
+            "misconceptionTested": "Selecting access mode when trunk is required",
             "whatItDoes": "switchport mode access describes a mechanism that could sound plausible for config trunk.",
-            "whyWrongHere": "Given config trunk, switchport mode trunk matches the tested behavior — switchport mode access applies a different mechanism.",
-            "misconceptionTested": "A trunk is faster than an access port"
+            "whyWrongHere": "Given config trunk, switchport mode trunk matches the tested behavior — switchport mode access applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "switchport trunk allowed vlan reflects a common trap: A trunk is faster than an access port. A trunk simply carries multiple VLANs; speed depends on the physical link.",
+            "explanation": "switchport trunk allowed vlan filters which VLANs cross the trunk — it does not change the port to trunk mode by itself.",
+            "misconceptionTested": "Believing allowed-VLAN command sets trunk mode",
             "whatItDoes": "switchport trunk allowed vlan describes a mechanism that could sound plausible for config trunk.",
-            "whyWrongHere": "Given config trunk, switchport mode trunk matches the tested behavior — switchport trunk allowed vlan applies a different mechanism.",
-            "misconceptionTested": "A trunk is faster than an access port"
+            "whyWrongHere": "Given config trunk, switchport mode trunk matches the tested behavior — switchport trunk allowed vlan applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "switchport nonegotiate describes a mechanism that could sound plausible for config trunk. Given config trunk, switchport mode trunk matches the tested behavior — switchport nonegotiate applies a different mechanism.",
+            "explanation": "switchport nonegotiate disables DTP but does not force trunk — you still need switchport mode trunk (or dynamic desirable/auto).",
+            "misconceptionTested": "Equating nonegotiate with forcing trunk mode",
             "whatItDoes": "switchport nonegotiate describes a mechanism that could sound plausible for config trunk.",
-            "whyWrongHere": "Given config trunk, switchport mode trunk matches the tested behavior — switchport nonegotiate applies a different mechanism.",
-            "misconceptionTested": "Applying \"switchport nonegotiate\" without matching config trunk"
+            "whyWrongHere": "Given config trunk, switchport mode trunk matches the tested behavior — switchport nonegotiate applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: A trunk is faster than an access port — A trunk simply carries multiple VLANs; speed depends on the physical link"
+        "examTip": "Force trunk → switchport mode trunk (then tune allowed/native VLANs)."
       }
     },
     {
@@ -264,32 +264,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "switchport nonegotiate stops DTP, a hardening best practice."
+          "explanation": "switchport nonegotiate stops DTP from sending negotiation frames — the port stays in whatever mode you configured manually."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "no dtp describes a mechanism that could sound plausible for DTP security. Given DTP security, switchport nonegotiate matches the tested behavior — no dtp applies a different mechanism.",
+            "explanation": "no dtp is not standard IOS trunk syntax — DTP is disabled per interface with switchport nonegotiate.",
+            "misconceptionTested": "Inventing global no dtp command",
             "whatItDoes": "no dtp describes a mechanism that could sound plausible for DTP security.",
-            "whyWrongHere": "Given DTP security, switchport nonegotiate matches the tested behavior — no dtp applies a different mechanism.",
-            "misconceptionTested": "Applying \"no dtp\" without matching DTP security"
+            "whyWrongHere": "Given DTP security, switchport nonegotiate matches the tested behavior — no dtp applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "switchport mode dynamic describes a mechanism that could sound plausible for DTP security. Given DTP security, switchport nonegotiate matches the tested behavior — switchport mode dynamic applies a different mechanism.",
+            "explanation": "switchport mode dynamic participates in DTP negotiation — it does not disable auto-negotiation.",
+            "misconceptionTested": "Using dynamic mode to stop DTP",
             "whatItDoes": "switchport mode dynamic describes a mechanism that could sound plausible for DTP security.",
-            "whyWrongHere": "Given DTP security, switchport nonegotiate matches the tested behavior — switchport mode dynamic applies a different mechanism.",
-            "misconceptionTested": "Applying \"switchport mode dynamic\" without matching DTP security"
+            "whyWrongHere": "Given DTP security, switchport nonegotiate matches the tested behavior — switchport mode dynamic applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "no switchport trunk describes a mechanism that could sound plausible for DTP security. Given DTP security, switchport nonegotiate matches the tested behavior — no switchport trunk applies a different mechanism.",
+            "explanation": "no switchport trunk is not the command to disable DTP — use switchport nonegotiate on the interface.",
+            "misconceptionTested": "Negating switchport trunk instead of nonegotiate",
             "whatItDoes": "no switchport trunk describes a mechanism that could sound plausible for DTP security.",
-            "whyWrongHere": "Given DTP security, switchport nonegotiate matches the tested behavior — no switchport trunk applies a different mechanism.",
-            "misconceptionTested": "Applying \"no switchport trunk\" without matching DTP security"
+            "whyWrongHere": "Given DTP security, switchport nonegotiate matches the tested behavior — no switchport trunk applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Leaving DTP on for untrusted ports — Disable DTP with switchport nonegotiate to prevent VLAN hopping"
+        "examTip": "Disable DTP on a trunk → switchport nonegotiate after setting the mode."
       }
     },
     {
@@ -312,32 +312,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "show interfaces trunk lists trunking details."
+          "explanation": "show interfaces trunk lists trunking status, native VLAN, and allowed VLANs per trunk interface."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "show vlan brief describes a mechanism that could sound plausible for verify trunk. Given verify trunk, show interfaces trunk matches the tested behavior — show vlan brief applies a different mechanism.",
+            "explanation": "show vlan brief lists VLAN IDs and port assignments — it does not show trunk encapsulation, native VLAN, or allowed lists.",
+            "misconceptionTested": "Using VLAN brief for trunk operational detail",
             "whatItDoes": "show vlan brief describes a mechanism that could sound plausible for verify trunk.",
-            "whyWrongHere": "Given verify trunk, show interfaces trunk matches the tested behavior — show vlan brief applies a different mechanism.",
-            "misconceptionTested": "Applying \"show vlan brief\" without matching verify trunk"
+            "whyWrongHere": "Given verify trunk, show interfaces trunk matches the tested behavior — show vlan brief applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "show ip interface brief describes a mechanism that could sound plausible for verify trunk. Given verify trunk, show interfaces trunk matches the tested behavior — show ip interface brief applies a different mechanism.",
+            "explanation": "show ip interface brief summarizes Layer 3 status — trunk mode and allowed VLANs are Layer 2 trunk parameters.",
+            "misconceptionTested": "Checking IP brief for trunk VLAN details",
             "whatItDoes": "show ip interface brief describes a mechanism that could sound plausible for verify trunk.",
-            "whyWrongHere": "Given verify trunk, show interfaces trunk matches the tested behavior — show ip interface brief applies a different mechanism.",
-            "misconceptionTested": "Applying \"show ip interface brief\" without matching verify trunk"
+            "whyWrongHere": "Given verify trunk, show interfaces trunk matches the tested behavior — show ip interface brief applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "show cdp neighbors describes a mechanism that could sound plausible for verify trunk. Given verify trunk, show interfaces trunk matches the tested behavior — show cdp neighbors applies a different mechanism.",
+            "explanation": "show cdp neighbors discovers adjacent devices — it does not report 802.1Q trunk configuration.",
+            "misconceptionTested": "Using CDP neighbors for trunk verification",
             "whatItDoes": "show cdp neighbors describes a mechanism that could sound plausible for verify trunk.",
-            "whyWrongHere": "Given verify trunk, show interfaces trunk matches the tested behavior — show cdp neighbors applies a different mechanism.",
-            "misconceptionTested": "Applying \"show cdp neighbors\" without matching verify trunk"
+            "whyWrongHere": "Given verify trunk, show interfaces trunk matches the tested behavior — show cdp neighbors applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: A trunk is faster than an access port — A trunk simply carries multiple VLANs; speed depends on the physical link"
+        "examTip": "Verify trunk/native/allowed → show interfaces trunk."
       }
     },
     {

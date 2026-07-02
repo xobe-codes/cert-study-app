@@ -120,32 +120,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "WPA3 uses SAE for more robust authentication vs WPA2-PSK."
+          "explanation": "WPA3 replaces WPA2-PSK four-way handshake with SAE (Simultaneous Authentication of Equals) for stronger password-based authentication."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "WEP is deprecated and insecure — CCNA expects WPA2/WPA3 for real deployments.",
+            "explanation": "WEP is deprecated and broken — WPA3 moves forward with SAE, not WEP compatibility.",
+            "misconceptionTested": "Believing WPA3 restores WEP compatibility",
             "whatItDoes": "WEP compatibility describes a mechanism that could sound plausible for WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
-            "whyWrongHere": "Given WPA3 uses SAE for more robust authentication vs WPA2-PSK, SAE key exchange (stronger handshake) matches the tested behavior — WEP compatibility applies a different mechanism.",
-            "misconceptionTested": "Choosing WEP for compatibility"
+            "whyWrongHere": "Given WPA3 uses SAE for more robust authentication vs WPA2-PSK, SAE key exchange (stronger handshake) matches the tested behavior — WEP compatibility applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Open unsecured networks describes a mechanism that could sound plausible for WPA3 uses SAE for more robust authentication vs WPA2-PSK. Given WPA3 uses SAE for more robust authentication vs WPA2-PSK, SAE key exchange (stronger handshake) matches the tested behavior — Open unsecured networks applies a different mechanism.",
+            "explanation": "Open networks have no encryption — WPA3 strengthens authenticated networks; it does not promote open SSIDs.",
+            "misconceptionTested": "Associating WPA3 with open unsecured networks",
             "whatItDoes": "Open unsecured networks describes a mechanism that could sound plausible for WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
-            "whyWrongHere": "Given WPA3 uses SAE for more robust authentication vs WPA2-PSK, SAE key exchange (stronger handshake) matches the tested behavior — Open unsecured networks applies a different mechanism.",
-            "misconceptionTested": "Applying \"Open unsecured networks\" without matching wpa3"
+            "whyWrongHere": "Given WPA3 uses SAE for more robust authentication vs WPA2-PSK, SAE key exchange (stronger handshake) matches the tested behavior — Open unsecured networks applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Removing AES describes a mechanism that could sound plausible for WPA3 uses SAE for more robust authentication vs WPA2-PSK. Given WPA3 uses SAE for more robust authentication vs WPA2-PSK, SAE key exchange (stronger handshake) matches the tested behavior — Removing AES applies a different mechanism.",
+            "explanation": "WPA3 still uses AES encryption — it improves the key exchange (SAE), not by removing AES.",
+            "misconceptionTested": "Thinking WPA3 removes AES encryption",
             "whatItDoes": "Removing AES describes a mechanism that could sound plausible for WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
-            "whyWrongHere": "Given WPA3 uses SAE for more robust authentication vs WPA2-PSK, SAE key exchange (stronger handshake) matches the tested behavior — Removing AES applies a different mechanism.",
-            "misconceptionTested": "Applying \"Removing AES\" without matching wpa3"
+            "whyWrongHere": "Given WPA3 uses SAE for more robust authentication vs WPA2-PSK, SAE key exchange (stronger handshake) matches the tested behavior — Removing AES applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "WPA3 headline upgrade: SAE handshake replaces WPA2-PSK four-way exchange."
       }
     },
     {
@@ -200,32 +200,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "802.11ax = Wi‑Fi 6 (802.11ac = Wi‑Fi 5, 802.11n = Wi‑Fi 4)."
+          "explanation": "IEEE 802.11ax is marketed as Wi-Fi 6 — higher efficiency (OFDMA, MU-MIMO) than 802.11ac (Wi-Fi 5)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Wi‑Fi 3 uses the wrong value. The tested fact calls for 802 — not 3.",
+            "explanation": "Wi-Fi 3 maps to 802.11g-era branding — 802.11ax is Wi-Fi 6.",
+            "misconceptionTested": "Mislabeling 802.11ax as Wi-Fi 3",
             "whatItDoes": "Wi‑Fi 3 describes a mechanism that could sound plausible for 802.11ax.",
-            "whyWrongHere": "Given 802.11ax, Wi‑Fi 6 matches the tested behavior — Wi‑Fi 3 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 3 instead of the correct 802"
+            "whyWrongHere": "Given 802.11ax, Wi‑Fi 6 matches the tested behavior — Wi‑Fi 3 applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Wi‑Fi 4 uses the wrong value. The tested fact calls for 802 — not 4.",
+            "explanation": "Wi-Fi 4 is 802.11n — 802.11ax is two generations newer (Wi-Fi 6).",
+            "misconceptionTested": "Mapping 802.11ax to Wi-Fi 4 (802.11n)",
             "whatItDoes": "Wi‑Fi 4 describes a mechanism that could sound plausible for 802.11ax.",
-            "whyWrongHere": "Given 802.11ax, Wi‑Fi 6 matches the tested behavior — Wi‑Fi 4 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 4 instead of the correct 802"
+            "whyWrongHere": "Given 802.11ax, Wi‑Fi 6 matches the tested behavior — Wi‑Fi 4 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Wi‑Fi 5 uses the wrong value. The tested fact calls for 802 — not 5.",
+            "explanation": "Wi-Fi 5 is 802.11ac — 802.11ax is Wi-Fi 6 with OFDMA and target wake time improvements.",
+            "misconceptionTested": "Confusing 802.11ac Wi-Fi 5 with 802.11ax",
             "whatItDoes": "Wi‑Fi 5 describes a mechanism that could sound plausible for 802.11ax.",
-            "whyWrongHere": "Given 802.11ax, Wi‑Fi 6 matches the tested behavior — Wi‑Fi 5 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 5 instead of the correct 802"
+            "whyWrongHere": "Given 802.11ax, Wi‑Fi 6 matches the tested behavior — Wi‑Fi 5 applies a different mechanism."
           }
         ],
-        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
+        "examTip": "802.11 naming: n=Wi-Fi 4, ac=Wi-Fi 5, ax=Wi-Fi 6."
       }
     },
     {

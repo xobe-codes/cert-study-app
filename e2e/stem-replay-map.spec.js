@@ -1,12 +1,12 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('Stem replay map', () => {
-  test('exposes 102+ verified question→lab mappings via dev hooks', async ({ page }) => {
+  test('exposes 119+ verified question→lab mappings via dev hooks', async ({ page }) => {
     await page.goto('/')
     await page.waitForFunction(() => typeof window.__ccnaTestHooks?.stemReplaySize === 'function')
 
     const size = await page.evaluate(() => window.__ccnaTestHooks.stemReplaySize())
-    expect(size).toBeGreaterThanOrEqual(102)
+    expect(size).toBeGreaterThanOrEqual(119)
 
     const aclLab = await page.evaluate(() => window.__ccnaTestHooks.stemReplayLab('5.5-c-q1'))
     expect(aclLab).toBe('LAB-ACL-CONFIG')

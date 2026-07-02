@@ -432,32 +432,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "show lldp neighbor detail shows detailed LLDP neighbor information."
+          "explanation": "show lldp neighbor detail displays LLDP-discovered neighbors, capabilities, and connected interfaces."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#show lldp describes a mechanism that could sound plausible for show lldp neighbor detail shows detailed LLDP neighbor information. Given show lldp neighbor detail shows detailed LLDP neighbor information, Switch#show lldp neighbor detail matches the tested behavior — Switch#show lldp applies a different mechanism.",
+            "explanation": "show lldp alone is incomplete syntax on many platforms — neighbor detail is the standard verification command.",
+            "misconceptionTested": "Using bare show lldp without neighbor keyword",
             "whatItDoes": "Switch#show lldp describes a mechanism that could sound plausible for show lldp neighbor detail shows detailed LLDP neighbor information.",
-            "whyWrongHere": "Given show lldp neighbor detail shows detailed LLDP neighbor information, Switch#show lldp neighbor detail matches the tested behavior — Switch#show lldp applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show lldp\" without matching cdp"
+            "whyWrongHere": "Given show lldp neighbor detail shows detailed LLDP neighbor information, Switch#show lldp neighbor detail matches the tested behavior — Switch#show lldp applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch#show lldp devices describes a mechanism that could sound plausible for show lldp neighbor detail shows detailed LLDP neighbor information. Given show lldp neighbor detail shows detailed LLDP neighbor information, Switch#show lldp neighbor detail matches the tested behavior — Switch#show lldp devices applies a different mechanism.",
+            "explanation": "show lldp devices is not standard IOS — use show lldp neighbors or show lldp neighbor detail.",
+            "misconceptionTested": "Inventing show lldp devices command",
             "whatItDoes": "Switch#show lldp devices describes a mechanism that could sound plausible for show lldp neighbor detail shows detailed LLDP neighbor information.",
-            "whyWrongHere": "Given show lldp neighbor detail shows detailed LLDP neighbor information, Switch#show lldp neighbor detail matches the tested behavior — Switch#show lldp devices applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show lldp devices\" without matching cdp"
+            "whyWrongHere": "Given show lldp neighbor detail shows detailed LLDP neighbor information, Switch#show lldp neighbor detail matches the tested behavior — Switch#show lldp devices applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch#show cdp neighbor detail describes a mechanism that could sound plausible for show lldp neighbor detail shows detailed LLDP neighbor information. Given show lldp neighbor detail shows detailed LLDP neighbor information, Switch#show lldp neighbor detail matches the tested behavior — Switch#show cdp neighbor detail applies a different mechanism.",
+            "explanation": "show cdp neighbor detail reports Cisco CDP neighbors — LLDP is the IEEE multi-vendor discovery protocol.",
+            "misconceptionTested": "Verifying LLDP with CDP show command",
             "whatItDoes": "Switch#show cdp neighbor detail describes a mechanism that could sound plausible for show lldp neighbor detail shows detailed LLDP neighbor information.",
-            "whyWrongHere": "Given show lldp neighbor detail shows detailed LLDP neighbor information, Switch#show lldp neighbor detail matches the tested behavior — Switch#show cdp neighbor detail applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show cdp neighbor detail\" without matching cdp"
+            "whyWrongHere": "Given show lldp neighbor detail shows detailed LLDP neighbor information, Switch#show lldp neighbor detail matches the tested behavior — Switch#show cdp neighbor detail applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: show lldp neighbor detail shows detailed LLDP neighbor information."
+        "examTip": "LLDP neighbors → show lldp neighbor detail (enable with lldp run first)."
       }
     },
     {

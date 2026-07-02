@@ -168,32 +168,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Traceroute reveals each router hop toward the destination."
+          "explanation": "Traceroute (tracert on Windows) lists each router hop and round-trip time toward the destination — a path-discovery tool."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "MAC address table expects router forwarding to use a MAC/CAM table lookup. The stem targets router behavior (Traceroute reveals each router hop toward the destination). Hop-by-hop path to a destination uses IP routing — not a switch CAM table.",
+            "explanation": "MAC address tables live on switches — traceroute probes Layer 3 hops with TTL-expired ICMP/time-exceeded responses.",
+            "misconceptionTested": "Expecting traceroute to show switch CAM tables",
             "whatItDoes": "MAC address table expects router forwarding to use a MAC/CAM table lookup.",
-            "whyWrongHere": "The stem targets router behavior (Traceroute reveals each router hop toward the destination). Hop-by-hop path to a destination uses IP routing — not a switch CAM table.",
-            "misconceptionTested": "Using switch/L2 forwarding behavior on a router question"
+            "whyWrongHere": "The stem targets router behavior (Traceroute reveals each router hop toward the destination). Hop-by-hop path to a destination uses IP routing — not a switch CAM table."
           },
           {
             "choiceIndex": 2,
-            "explanation": "DHCP lease time only describes a mechanism that could sound plausible for Traceroute reveals each router hop toward the destination. Given Traceroute reveals each router hop toward the destination, Hop-by-hop path to a destination matches the tested behavior — DHCP lease time only applies a different mechanism.",
+            "explanation": "DHCP lease time comes from ipconfig /all or show ip dhcp binding — not from traceroute.",
+            "misconceptionTested": "Using traceroute for DHCP lease information",
             "whatItDoes": "DHCP lease time only describes a mechanism that could sound plausible for Traceroute reveals each router hop toward the destination.",
-            "whyWrongHere": "Given Traceroute reveals each router hop toward the destination, Hop-by-hop path to a destination matches the tested behavior — DHCP lease time only applies a different mechanism.",
-            "misconceptionTested": "Applying \"DHCP lease time only\" without matching tracert"
+            "whyWrongHere": "Given Traceroute reveals each router hop toward the destination, Hop-by-hop path to a destination matches the tested behavior — DHCP lease time only applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Wi‑Fi channel describes a mechanism that could sound plausible for Traceroute reveals each router hop toward the destination. Given Traceroute reveals each router hop toward the destination, Hop-by-hop path to a destination matches the tested behavior — Wi‑Fi channel applies a different mechanism.",
+            "explanation": "Wi-Fi channel is a wireless RF setting — traceroute traces the routed IP path, not RF parameters.",
+            "misconceptionTested": "Linking traceroute output to Wi-Fi channel selection",
             "whatItDoes": "Wi‑Fi channel describes a mechanism that could sound plausible for Traceroute reveals each router hop toward the destination.",
-            "whyWrongHere": "Given Traceroute reveals each router hop toward the destination, Hop-by-hop path to a destination matches the tested behavior — Wi‑Fi channel applies a different mechanism.",
-            "misconceptionTested": "Applying \"Wi‑Fi channel\" without matching tracert"
+            "whyWrongHere": "Given Traceroute reveals each router hop toward the destination, Hop-by-hop path to a destination matches the tested behavior — Wi‑Fi channel applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: ping failure always means the remote host is down — Firewalls may block ICMP; also local misconfig can fail before the path is tested"
+        "examTip": "tracert/traceroute → hop-by-hop Layer 3 path and latency per router."
       }
     },
     {

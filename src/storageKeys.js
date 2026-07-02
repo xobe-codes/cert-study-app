@@ -26,4 +26,8 @@ export const STORAGE_KEYS = {
   topicFocusPins: 'ccna_topic_focus_pins_v1',
   questionHealthFlags: 'ccna_question_health_flags_v1',
   questionHealthSignals: 'ccna_question_health_signals_v1',
+  trapDrillPrefill: 'ccna_trap_drill_prefill_v1',
 }
+
+/** CustomEvent name for dev/e2e trap-drill prefill handoff. */
+export const TRAP_DRILL_PREFILL_EVENT = 'ccna-trap-drill-prefill'

@@ -176,32 +176,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "LACP is the IEEE 802.3ad link aggregation standard."
+          "explanation": "LACP (802.3ad) is the IEEE standard link aggregation protocol — PAgP is Cisco proprietary."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "802.1Q uses the wrong value. The tested fact calls for 3 — not 802.",
+            "explanation": "802.1Q is VLAN trunk encapsulation — not a link aggregation negotiation protocol.",
+            "misconceptionTested": "Confusing 802.1Q tagging with EtherChannel negotiation",
             "whatItDoes": "802.1Q describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, LACP matches the tested behavior — 802.1Q applies a different mechanism.",
-            "misconceptionTested": "Memorizing 802 instead of the correct 3"
+            "whyWrongHere": "Given etherchannel, LACP matches the tested behavior — 802.1Q applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "PAgP describes a mechanism that could sound plausible for etherchannel. Given etherchannel, LACP matches the tested behavior — PAgP applies a different mechanism.",
+            "explanation": "PAgP is Cisco proprietary — the IEEE standard for EtherChannel negotiation is LACP (802.3ad).",
+            "misconceptionTested": "Selecting PAgP as the IEEE standard",
             "whatItDoes": "PAgP describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, LACP matches the tested behavior — PAgP applies a different mechanism.",
-            "misconceptionTested": "Applying \"PAgP\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, LACP matches the tested behavior — PAgP applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "802.1X uses the wrong value. The tested fact calls for 3 — not 802.",
+            "explanation": "802.1X is port-based network access control — unrelated to bundling physical links.",
+            "misconceptionTested": "Equating 802.1X with link aggregation",
             "whatItDoes": "802.1X describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, LACP matches the tested behavior — 802.1X applies a different mechanism.",
-            "misconceptionTested": "Memorizing 802 instead of the correct 3"
+            "whyWrongHere": "Given etherchannel, LACP matches the tested behavior — 802.1X applies a different mechanism."
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "IEEE EtherChannel protocol → LACP (802.3ad); Cisco-only → PAgP."
       }
     },
     {
@@ -329,32 +329,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "on mode forms an unconditional port channel without LACP or PAgP."
+          "explanation": "Channel-group mode on forces the bundle without LACP or PAgP — both sides must match on."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "LACP off mode describes a mechanism that could sound plausible for etherchannel. Given etherchannel, On mode matches the tested behavior — LACP off mode applies a different mechanism.",
+            "explanation": "LACP uses active/passive negotiation — on mode bypasses LACP entirely.",
+            "misconceptionTested": "Calling forced bundle LACP off mode",
             "whatItDoes": "LACP off mode describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, On mode matches the tested behavior — LACP off mode applies a different mechanism.",
-            "misconceptionTested": "Applying \"LACP off mode\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, On mode matches the tested behavior — LACP off mode applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "PAgP off mode describes a mechanism that could sound plausible for etherchannel. Given etherchannel, On mode matches the tested behavior — PAgP off mode applies a different mechanism.",
+            "explanation": "PAgP uses desirable/auto — on mode does not use PAgP at all.",
+            "misconceptionTested": "Labeling on mode as PAgP off",
             "whatItDoes": "PAgP off mode describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, On mode matches the tested behavior — PAgP off mode applies a different mechanism.",
-            "misconceptionTested": "Applying \"PAgP off mode\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, On mode matches the tested behavior — PAgP off mode applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "802.3ad mode describes a mechanism that could sound plausible for etherchannel. Given etherchannel, On mode matches the tested behavior — 802.3ad mode applies a different mechanism.",
+            "explanation": "802.3ad is LACP — on mode forms an unconditional static port-channel without control protocol.",
+            "misconceptionTested": "Equating on mode with 802.3ad LACP",
             "whatItDoes": "802.3ad mode describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, On mode matches the tested behavior — 802.3ad mode applies a different mechanism.",
-            "misconceptionTested": "Applying \"802.3ad mode\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, On mode matches the tested behavior — 802.3ad mode applies a different mechanism."
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "No negotiation protocol → channel-group <n> mode on on both ends."
       }
     },
     {
@@ -735,32 +735,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "On plus on forms an unconditional port channel."
+          "explanation": "When both sides use mode on, IOS forms an unconditional port-channel without LACP or PAgP packets."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The channel group will use PAgP. describes a mechanism that could sound plausible for etherchannel. Given etherchannel, An unconditional port channel will be formed. matches the tested behavior — The channel group will use PAgP. applies a different mechanism.",
+            "explanation": "PAgP requires desirable/auto modes — dual on does not send PAgP hellos.",
+            "misconceptionTested": "Expecting PAgP with both sides in on mode",
             "whatItDoes": "The channel group will use PAgP. describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, An unconditional port channel will be formed. matches the tested behavior — The channel group will use PAgP. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The channel group will use PAgP.\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, An unconditional port channel will be formed. matches the tested behavior — The channel group will use PAgP. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The channel group will not be formed. describes a mechanism that could sound plausible for etherchannel. Given etherchannel, An unconditional port channel will be formed. matches the tested behavior — The channel group will not be formed. applies a different mechanism.",
+            "explanation": "Matching on mode on both switches forms the bundle — mismatched modes fail, not matching on/on.",
+            "misconceptionTested": "Believing on/on prevents channel formation",
             "whatItDoes": "The channel group will not be formed. describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, An unconditional port channel will be formed. matches the tested behavior — The channel group will not be formed. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The channel group will not be formed\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, An unconditional port channel will be formed. matches the tested behavior — The channel group will not be formed. applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The channel group will use LACP. describes a mechanism that could sound plausible for etherchannel. Given etherchannel, An unconditional port channel will be formed. matches the tested behavior — The channel group will use LACP. applies a different mechanism.",
+            "explanation": "LACP requires active/passive — on/on is static bundling without LACP.",
+            "misconceptionTested": "Expecting LACP when both sides are on",
             "whatItDoes": "The channel group will use LACP. describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, An unconditional port channel will be formed. matches the tested behavior — The channel group will use LACP. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The channel group will use LACP.\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, An unconditional port channel will be formed. matches the tested behavior — The channel group will use LACP. applies a different mechanism."
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "Both ends mode on → static port-channel (no LACP/PAgP)."
       }
     }
   ]

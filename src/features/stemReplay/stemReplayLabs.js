@@ -112,6 +112,21 @@ const STEM_REPLAY_MAP = {
   'obj-3.5-source-q003': 'LAB-HSRP-VERIFY-35',
   '3.6-legacy-q001': 'LAB-ROUTE-FORWARD-32',
   '3.6-legacy-q008': 'LAB-ROUTE-FORWARD-32',
+  // Domain 2 wave — VLAN, trunk, STP, EtherChannel, LLDP, wireless
+  '2.1-c-q3': 'LAB-INTERVLAN-SVI',
+  '2.2-c-q5': 'LAB-D22-22',
+  '2.2-c-q6': 'LAB-D22-22',
+  '2.2-c-q7': 'LAB-D22-22',
+  '2.5-c-q2': 'LAB-STP-ROOT',
+  '2.5-c-q4': 'LAB-STP-ROOT',
+  '2.5-c-q5': 'LAB-STP-PORTFAST',
+  '2.5-c-q7': 'LAB-STP-ROOT',
+  'obj-2.3-source-q009': 'LAB-LLDP',
+  'obj-2.4-source-q004': 'LAB-ETHERCHANNEL',
+  'obj-2.4-source-q007': 'LAB-ETHERCHANNEL',
+  'obj-2.4-source-q015': 'LAB-ETHERCHANNEL-PAGP',
+  'obj-2.6-source-q002': 'LAB-WLAN-SEC-58',
+  'obj-2.9-source-q011': 'LAB-WPA2-PSK-59',
 }
 
 /** @returns {{ labId: string, lab: import('../../data/ccnaLabs.js').LabBundle['lab'] } | null} */

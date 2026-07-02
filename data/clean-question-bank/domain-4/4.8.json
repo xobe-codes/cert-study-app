@@ -132,35 +132,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Switch(config-line)#transport ssh telnet\"."
+          "explanation": "transport input ssh telnet under line vty allows SSH with Telnet fallback — configure after generating keys for SSH."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Telnet sends credentials in cleartext — SSH is required for secure device management.",
+            "explanation": "login ssh telnet is not valid global config — transport protocols are set under line vty.",
+            "misconceptionTested": "Configuring transport at global config",
             "whatItDoes": "Switch(config)#login ssh telnet describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Switch(config-line)#transport ssh telnet matches the tested behavior — Switch(config)#login ssh telnet applies a different mechanism.",
-            "misconceptionTested": "Picking Telnet when secure management is required",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given configure, Switch(config-line)#transport ssh telnet matches the tested behavior — Switch(config)#login ssh telnet applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config-line)#login ssh telnet describes a mechanism that could sound plausible for configure. Given configure, Switch(config-line)#transport ssh telnet matches the tested behavior — Switch(config-line)#login ssh telnet applies a different mechanism.",
+            "explanation": "login controls authentication method — allowed protocols are set with transport input on the line.",
+            "misconceptionTested": "Using login instead of transport input",
             "whatItDoes": "Switch(config-line)#login ssh telnet describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Switch(config-line)#transport ssh telnet matches the tested behavior — Switch(config-line)#login ssh telnet applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-line)#login ssh telnet\" without matching ssh",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given configure, Switch(config-line)#transport ssh telnet matches the tested behavior — Switch(config-line)#login ssh telnet applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config)#transport ssh telnet describes a mechanism that could sound plausible for configure. Given configure, Switch(config-line)#transport ssh telnet matches the tested behavior — Switch(config)#transport ssh telnet applies a different mechanism.",
+            "explanation": "transport input must be under config-line — global config#transport is wrong context.",
+            "misconceptionTested": "Setting transport input at wrong config level",
             "whatItDoes": "Switch(config)#transport ssh telnet describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Switch(config-line)#transport ssh telnet matches the tested behavior — Switch(config)#transport ssh telnet applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#transport ssh telnet\" without matching ssh",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given configure, Switch(config-line)#transport ssh telnet matches the tested behavior — Switch(config)#transport ssh telnet applies a different mechanism."
           }
         ],
-        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
+        "examTip": "VTY: transport input ssh telnet under line vty (after ip domain-name + crypto key)."
       }
     },
     {

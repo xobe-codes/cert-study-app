@@ -79,35 +79,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Jitter\"."
+          "explanation": "Jitter measures variation in inter-packet delay — critical for voice and video QoS."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Bandwidth describes a mechanism that could sound plausible for measurement. Given measurement, Jitter matches the tested behavior — Bandwidth applies a different mechanism.",
+            "explanation": "Bandwidth is capacity (bits per second) — not the time variation between consecutive packets.",
+            "misconceptionTested": "Confusing bandwidth with delay variation",
             "whatItDoes": "Bandwidth describes a mechanism that could sound plausible for measurement.",
-            "whyWrongHere": "Given measurement, Jitter matches the tested behavior — Bandwidth applies a different mechanism.",
-            "misconceptionTested": "Applying \"Bandwidth\" without matching qos",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given measurement, Jitter matches the tested behavior — Bandwidth applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Delay describes a mechanism that could sound plausible for measurement. Given measurement, Jitter matches the tested behavior — Delay applies a different mechanism.",
+            "explanation": "Delay is one-way latency — jitter is the change in delay between packets.",
+            "misconceptionTested": "Equating constant delay with jitter",
             "whatItDoes": "Delay describes a mechanism that could sound plausible for measurement.",
-            "whyWrongHere": "Given measurement, Jitter matches the tested behavior — Delay applies a different mechanism.",
-            "misconceptionTested": "Applying \"Delay\" without matching qos",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given measurement, Jitter matches the tested behavior — Delay applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Loss describes a mechanism that could sound plausible for measurement. Given measurement, Jitter matches the tested behavior — Loss applies a different mechanism.",
+            "explanation": "Packet loss is dropped packets — jitter specifically tracks delay inconsistency.",
+            "misconceptionTested": "Selecting loss for delay variation metric",
             "whatItDoes": "Loss describes a mechanism that could sound plausible for measurement.",
-            "whyWrongHere": "Given measurement, Jitter matches the tested behavior — Loss applies a different mechanism.",
-            "misconceptionTested": "Applying \"Loss\" without matching qos",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given measurement, Jitter matches the tested behavior — Loss applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "Voice/video QoS watch jitter — variation in packet arrival timing."
       }
     },
     {
@@ -132,35 +129,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"The Class of Service field is only present in 802.1Q frames.\"."
+          "explanation": "CoS (3 bits) lives in the 802.1Q tag — it is a Layer 2 marking present only on tagged Ethernet frames."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The Class of Service field is a layer 3 field. describes a mechanism that could sound plausible for statement. Given statement, The Class of Service field is only present in 802.1Q frames. matches the tested behavior — The Class of Service field is a layer 3 field. applies a different mechanism.",
+            "explanation": "Layer 3 marking uses IP DSCP/ToS — CoS is the 802.1Q priority field at Layer 2.",
+            "misconceptionTested": "Placing CoS at Layer 3 with DSCP",
             "whatItDoes": "The Class of Service field is a layer 3 field. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, The Class of Service field is only present in 802.1Q frames. matches the tested behavior — The Class of Service field is a layer 3 field. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The Class of Service field is a laye\" without matching qos",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given statement, The Class of Service field is only present in 802.1Q frames. matches the tested behavior — The Class of Service field is a layer 3 field. applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The Class of Service field is present from end to end of a transmission. describes a mechanism that could sound plausible for statement. Given statement, The Class of Service field is only present in 802.1Q frames. matches the tested behavior — The Class of Service field is present from end to end of a transmission. applies a different mechanism.",
+            "explanation": "CoS does not survive end-to-end across an IP cloud unchanged — it is a LAN 802.1Q field remapped at trust boundaries.",
+            "misconceptionTested": "Believing CoS persists end-to-end over WAN",
             "whatItDoes": "The Class of Service field is present from end to end of a transmission. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, The Class of Service field is only present in 802.1Q frames. matches the tested behavior — The Class of Service field is present from end to end of a transmission. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The Class of Service field is presen\" without matching qos",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given statement, The Class of Service field is only present in 802.1Q frames. matches the tested behavior — The Class of Service field is present from end to end of a transmission. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The Class of Service field is 6 bits. describes a mechanism that could sound plausible for statement. Given statement, The Class of Service field is only present in 802.1Q frames. matches the tested behavior — The Class of Service field is 6 bits. applies a different mechanism.",
+            "explanation": "CoS is 3 bits (0–7) — DSCP is 6 bits in the IP header.",
+            "misconceptionTested": "Confusing 6-bit DSCP with 3-bit CoS",
             "whatItDoes": "The Class of Service field is 6 bits. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, The Class of Service field is only present in 802.1Q frames. matches the tested behavior — The Class of Service field is 6 bits. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The Class of Service field is 6 bits\" without matching qos",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given statement, The Class of Service field is only present in 802.1Q frames. matches the tested behavior — The Class of Service field is 6 bits. applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for qos before picking a familiar-sounding wrong term."
+        "examTip": "CoS = 3-bit 802.1Q tag; DSCP = 6-bit IP marking."
       }
     },
     {

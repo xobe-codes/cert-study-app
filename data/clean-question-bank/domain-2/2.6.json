@@ -76,32 +76,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "Monitor mode can detect sources of wireless interference such as Bluetooth."
+          "explanation": "Monitor mode dedicates the AP radio to scanning (including Bluetooth/Wi-Fi interference) without serving clients."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "BT mode describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Monitor mode matches the tested behavior — BT mode applies a different mechanism.",
+            "explanation": "BT mode is not a Cisco AP operating mode — monitor mode performs spectrum and interference analysis.",
+            "misconceptionTested": "Inventing BT mode for interference detection",
             "whatItDoes": "BT mode describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Monitor mode matches the tested behavior — BT mode applies a different mechanism.",
-            "misconceptionTested": "Applying \"BT mode\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Monitor mode matches the tested behavior — BT mode applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Sniffing mode describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Monitor mode matches the tested behavior — Sniffing mode applies a different mechanism.",
+            "explanation": "Sniffer mode captures frames for analysis — monitor mode is the WLC-driven scan role for RF interference.",
+            "misconceptionTested": "Confusing sniffer with monitor mode",
             "whatItDoes": "Sniffing mode describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Monitor mode matches the tested behavior — Sniffing mode applies a different mechanism.",
-            "misconceptionTested": "Applying \"Sniffing mode\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Monitor mode matches the tested behavior — Sniffing mode applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Analysis mode describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Monitor mode matches the tested behavior — Analysis mode applies a different mechanism.",
+            "explanation": "Analysis mode is not standard AP role naming — Cisco uses monitor for dedicated scanning.",
+            "misconceptionTested": "Selecting generic analysis mode label",
             "whatItDoes": "Analysis mode describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Monitor mode matches the tested behavior — Analysis mode applies a different mechanism.",
-            "misconceptionTested": "Applying \"Analysis mode\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Monitor mode matches the tested behavior — Analysis mode applies a different mechanism."
           }
         ],
-        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
+        "examTip": "Detect RF/Bluetooth interference → AP in monitor mode (no client service)."
       }
     },
     {

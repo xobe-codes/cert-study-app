@@ -251,6 +251,31 @@ export const TRAP_DRILL_CKUS = [
     trapLabel: 'Expecting DR/BDR on point-to-point links.',
     objectiveId: '3.4',
   },
+  {
+    ckuId: 'CKU-DTP',
+    trapLabel: 'Expecting DTP to negotiate when `switchport nonegotiate` is set.',
+    objectiveId: '2.2',
+  },
+  {
+    ckuId: 'CKU-FLEXCONNECT',
+    trapLabel: 'Believing all WLAN traffic must switch centrally at the WLC.',
+    objectiveId: '2.6',
+  },
+  {
+    ckuId: 'CKU-WPA3',
+    trapLabel: 'Choosing WPA3-Personal when enterprise 802.1X is required.',
+    objectiveId: '2.8',
+  },
+  {
+    ckuId: 'CKU-LACP-MODE',
+    trapLabel: 'Mismatched LACP active/passive modes prevent channel formation.',
+    objectiveId: '2.4',
+  },
+  {
+    ckuId: 'CKU-ROOT-GUARD',
+    trapLabel: 'Enabling Root Guard on the actual root bridge uplink.',
+    objectiveId: '2.5',
+  },
 ]
 
 const QUESTIONS = [
@@ -1898,6 +1923,86 @@ const QUESTIONS = [
     id: 'trap-ospf-nbr-3', ckuId: 'CKU-OSPF-NEIGHBOR', trapLabel: 'Expecting DR/BDR on point-to-point links.', objectiveId: '3.4',
     question: 'Two OSPF routers on Ethernet tie on priority 1. Tie-breaker for DR is…', choices: ['Lowest MAC', 'Highest Router ID', 'Lowest interface IP', 'Random selection'],
     correctIndex: 1, explanation: 'Equal priority → highest Router ID becomes DR; second highest becomes BDR.', type: 'application', concept: 'ospf',
+  },
+  // CKU-DTP (3)
+  {
+    id: 'trap-dtp-1', ckuId: 'CKU-DTP', trapLabel: 'Expecting DTP to negotiate when `switchport nonegotiate` is set.', objectiveId: '2.2',
+    question: 'A trunk port has `switchport mode trunk` and `switchport nonegotiate`. The neighbor still sends DTP. What happens on this port?', choices: ['This port reverts to access mode', 'This port ignores DTP and stays trunk — no negotiation', 'VTP blocks the trunk', 'STP disables the link'],
+    correctIndex: 1, explanation: 'Nonegotiate stops outbound DTP but the configured trunk mode remains — the port does not auto-fallback to access.', type: 'scenario', concept: 'trunk',
+  },
+  {
+    id: 'trap-dtp-2', ckuId: 'CKU-DTP', trapLabel: 'Expecting DTP to negotiate when `switchport nonegotiate` is set.', objectiveId: '2.2',
+    question: 'SW1: `switchport mode dynamic desirable`. SW2: `switchport mode trunk` + `switchport nonegotiate`. Likely result?', choices: ['Trunk forms via DTP on both sides', 'Link may not trunk — desirable expects negotiation; nonegotiate side will not respond', 'Access on both', 'EtherChannel forms instead'],
+    correctIndex: 1, explanation: 'Dynamic desirable needs DTP agreement — a nonegotiate trunk peer will not negotiate, often leaving a mismatch.', type: 'troubleshooting', concept: 'trunk',
+  },
+  {
+    id: 'trap-dtp-3', ckuId: 'CKU-DTP', trapLabel: 'Expecting DTP to negotiate when `switchport nonegotiate` is set.', objectiveId: '2.2',
+    question: 'Which command disables DTP on an interface while keeping an administratively set trunk?', choices: ['no switchport trunk', 'switchport nonegotiate', 'no dtp enable', 'switchport mode access'],
+    correctIndex: 1, explanation: 'Use `switchport nonegotiate` after setting trunk mode — DTP frames are not sent.', type: 'definition', concept: 'trunk',
+  },
+  // CKU-FLEXCONNECT (3)
+  {
+    id: 'trap-flex-1', ckuId: 'CKU-FLEXCONNECT', trapLabel: 'Believing all WLAN traffic must switch centrally at the WLC.', objectiveId: '2.6',
+    question: 'A branch office loses WAN connectivity to the WLC. FlexConnect APs are configured with local switching. Client traffic to the local VLAN…', choices: ['Stops entirely until WAN returns', 'Can continue switching locally at the AP for locally switched WLANs', 'Must tunnel to the data center', 'Falls back to autonomous IOS on the AP'],
+    correctIndex: 1, explanation: 'FlexConnect local switching keeps branch VLAN traffic on-site when the CAPWAP tunnel to the WLC is down.', type: 'scenario', concept: 'wireless',
+  },
+  {
+    id: 'trap-flex-2', ckuId: 'CKU-FLEXCONNECT', trapLabel: 'Believing all WLAN traffic must switch centrally at the WLC.', objectiveId: '2.6',
+    question: 'When is central switching at the WLC preferred over FlexConnect local switching?', choices: ['Always — WLC must switch every frame', 'When uniform policy enforcement and hairpin routing at the WLC are required', 'Only for 2.4 GHz SSIDs', 'Never — FlexConnect replaces all WLC switching'],
+    correctIndex: 1, explanation: 'Central switching keeps all client traffic anchored at the WLC — FlexConnect trades survivability for local offload.', type: 'application', concept: 'wireless',
+  },
+  {
+    id: 'trap-flex-3', ckuId: 'CKU-FLEXCONNECT', trapLabel: 'Believing all WLAN traffic must switch centrally at the WLC.', objectiveId: '2.6',
+    question: 'FlexConnect is primarily designed for which deployment?', choices: ['Core data center aggregation', 'Branch offices that need local survivability when WAN to WLC fails', 'Home consumer Wi-Fi', 'Replacing all Ethernet switches'],
+    correctIndex: 1, explanation: 'FlexConnect targets remote sites — local VLAN switching when the controller path is unavailable.', type: 'definition', concept: 'wireless',
+  },
+  // CKU-WPA3 (3)
+  {
+    id: 'trap-wpa3-1', ckuId: 'CKU-WPA3', trapLabel: 'Choosing WPA3-Personal when enterprise 802.1X is required.', objectiveId: '2.8',
+    question: 'Corporate policy requires per-user certificates via RADIUS. Which WLAN security is appropriate?', choices: ['WPA3-Personal (SAE/PSK)', 'WPA2-Enterprise (802.1X)', 'Open with MAC filtering', 'WEP shared key'],
+    correctIndex: 1, explanation: 'Enterprise 802.1X with RADIUS assigns unique credentials — PSK is one shared passphrase for all users.', type: 'scenario', concept: 'wireless-security',
+  },
+  {
+    id: 'trap-wpa3-2', ckuId: 'CKU-WPA3', trapLabel: 'Choosing WPA3-Personal when enterprise 802.1X is required.', objectiveId: '2.8',
+    question: 'A guest network needs a simple passphrase printed on a sign. Best fit?', choices: ['WPA3-Enterprise', 'WPA3-Personal (SAE)', '802.1X with machine certs', 'Open authentication'],
+    correctIndex: 1, explanation: 'WPA3-Personal (SAE) improves PSK security for shared-passphrase guest WLANs — enterprise 802.1X is overkill.', type: 'application', concept: 'wireless-security',
+  },
+  {
+    id: 'trap-wpa3-3', ckuId: 'CKU-WPA3', trapLabel: 'Choosing WPA3-Personal when enterprise 802.1X is required.', objectiveId: '2.8',
+    question: 'WPA3-Personal primarily improves which weakness of WPA2-PSK?', choices: ['Offline dictionary attacks on the captured 4-way handshake', 'Need for a RADIUS server', 'VLAN assignment per SSID', 'Channel bonding on 5 GHz'],
+    correctIndex: 0, explanation: 'SAE (WPA3-Personal) resists offline PSK cracking better than WPA2 PSK — it does not replace 802.1X.', type: 'definition', concept: 'wireless-security',
+  },
+  // CKU-LACP-MODE (3)
+  {
+    id: 'trap-lacp-1', ckuId: 'CKU-LACP-MODE', trapLabel: 'Mismatched LACP active/passive modes prevent channel formation.', objectiveId: '2.4',
+    question: 'SW1 interfaces are `channel-group 1 mode active`. SW2 are `channel-group 1 mode passive`. Expected result?', choices: ['Bundle forms — active negotiates with passive', 'No bundle — both must be active', 'PAgP takes over', 'STP blocks one link only'],
+    correctIndex: 0, explanation: 'LACP active initiates; passive responds — active/passive is a valid LACP pairing.', type: 'scenario', concept: 'etherchannel',
+  },
+  {
+    id: 'trap-lacp-2', ckuId: 'CKU-LACP-MODE', trapLabel: 'Mismatched LACP active/passive modes prevent channel formation.', objectiveId: '2.4',
+    question: 'Both switches use `channel-group 1 mode passive`. What happens?', choices: ['Port-channel forms immediately', 'LACP cannot start — both sides wait; bundle fails to form', 'Falls back to PAgP desirable', 'On mode is auto-enabled'],
+    correctIndex: 1, explanation: 'Passive/passive never initiates LACP — at least one side must be active (or use mode on).', type: 'troubleshooting', concept: 'etherchannel',
+  },
+  {
+    id: 'trap-lacp-3', ckuId: 'CKU-LACP-MODE', trapLabel: 'Mismatched LACP active/passive modes prevent channel formation.', objectiveId: '2.4',
+    question: 'Which LACP mode pairing will NOT form a channel?', choices: ['active + passive', 'active + active', 'passive + passive', 'on + on'],
+    correctIndex: 2, explanation: 'Passive on both ends waits forever — active/passive or active/active (or on/on) is required.', type: 'definition', concept: 'etherchannel',
+  },
+  // CKU-ROOT-GUARD (3)
+  {
+    id: 'trap-rootguard-1', ckuId: 'CKU-ROOT-GUARD', trapLabel: 'Enabling Root Guard on the actual root bridge uplink.', objectiveId: '2.5',
+    question: 'Root Guard is enabled on a distribution switch port toward access switches. A new switch advertises superior BPDU. That port…', choices: ['Becomes the new root port', 'Moves to root-inconsistent (blocking) — prevents rogue root', 'Enters err-disabled immediately', 'Converts to trunk'],
+    correctIndex: 1, explanation: 'Root Guard blocks superior BPDUs on designated ports — port goes root-inconsistent, not forwarding.', type: 'scenario', concept: 'stp',
+  },
+  {
+    id: 'trap-rootguard-2', ckuId: 'CKU-ROOT-GUARD', trapLabel: 'Enabling Root Guard on the actual root bridge uplink.', objectiveId: '2.5',
+    question: 'Where should Root Guard be applied?', choices: ['On every port including the known root bridge uplink', 'On downstream/designated ports where a rogue root must not appear', 'Only on access ports with PortFast', 'On router WAN interfaces'],
+    correctIndex: 1, explanation: 'Apply Root Guard toward access layers — never on the port that should accept the real root BPDU.', type: 'application', concept: 'stp',
+  },
+  {
+    id: 'trap-rootguard-3', ckuId: 'CKU-ROOT-GUARD', trapLabel: 'Enabling Root Guard on the actual root bridge uplink.', objectiveId: '2.5',
+    question: 'Root Guard is configured on the uplink toward the legitimate root bridge. Effect?', choices: ['Improves convergence', 'Blocks valid root BPDUs — network may lose root path', 'Enables BPDU filtering', 'Replaces BPDU Guard'],
+    correctIndex: 1, explanation: 'Root Guard on the real root-facing port rejects superior BPDUs — breaks proper STP topology.', type: 'troubleshooting', concept: 'stp',
   },
 ]
 

@@ -120,32 +120,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Set the mode to access, then assign the VLAN."
+          "explanation": "Access mode plus switchport access vlan 10 assigns the port to VLAN 10 as an untagged access port."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "switchport trunk vlan 10 describes a mechanism that could sound plausible for access port config. Given access port config, switchport mode access / switchport access vlan 10 matches the tested behavior — switchport trunk vlan 10 applies a different mechanism.",
+            "explanation": "switchport trunk vlan 10 is not valid access-port syntax — trunks carry tagged VLANs; access ports use switchport mode access and switchport access vlan.",
+            "misconceptionTested": "Using trunk commands to assign an access VLAN",
             "whatItDoes": "switchport trunk vlan 10 describes a mechanism that could sound plausible for access port config.",
-            "whyWrongHere": "Given access port config, switchport mode access / switchport access vlan 10 matches the tested behavior — switchport trunk vlan 10 applies a different mechanism.",
-            "misconceptionTested": "Applying \"switchport trunk vlan 10\" without matching access port config"
+            "whyWrongHere": "Given access port config, switchport mode access / switchport access vlan 10 matches the tested behavior — switchport trunk vlan 10 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "vlan 10 / no shutdown describes a mechanism that could sound plausible for access port config. Given access port config, switchport mode access / switchport access vlan 10 matches the tested behavior — vlan 10 / no shutdown applies a different mechanism.",
+            "explanation": "vlan 10 creates the VLAN in the VLAN database — it does not assign a physical interface to VLAN 10.",
+            "misconceptionTested": "Confusing VLAN creation with port assignment",
             "whatItDoes": "vlan 10 / no shutdown describes a mechanism that could sound plausible for access port config.",
-            "whyWrongHere": "Given access port config, switchport mode access / switchport access vlan 10 matches the tested behavior — vlan 10 / no shutdown applies a different mechanism.",
-            "misconceptionTested": "Applying \"vlan 10 / no shutdown\" without matching access port config"
+            "whyWrongHere": "Given access port config, switchport mode access / switchport access vlan 10 matches the tested behavior — vlan 10 / no shutdown applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "switchport voice vlan 10 describes a mechanism that could sound plausible for access port config. Given access port config, switchport mode access / switchport access vlan 10 matches the tested behavior — switchport voice vlan 10 applies a different mechanism.",
+            "explanation": "switchport voice vlan is for Cisco IP phone auxiliary VLAN tagging — not the command pair for a standard data access port in VLAN 10.",
+            "misconceptionTested": "Using voice VLAN command for standard access assignment",
             "whatItDoes": "switchport voice vlan 10 describes a mechanism that could sound plausible for access port config.",
-            "whyWrongHere": "Given access port config, switchport mode access / switchport access vlan 10 matches the tested behavior — switchport voice vlan 10 applies a different mechanism.",
-            "misconceptionTested": "Applying \"switchport voice vlan 10\" without matching access port config"
+            "whyWrongHere": "Given access port config, switchport mode access / switchport access vlan 10 matches the tested behavior — switchport voice vlan 10 applies a different mechanism."
           }
         ],
-        "examTip": "Access = one VLAN; trunk tags frames. Native VLAN must match on both ends or you get silent mis-forwarding."
+        "examTip": "Access port → switchport mode access + switchport access vlan <id>."
       }
     },
     {

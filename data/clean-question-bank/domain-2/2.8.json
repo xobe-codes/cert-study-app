@@ -1048,32 +1048,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The WPA2 personal/PSK security."
+          "explanation": "WPA2-PSK with AES (CCMP) is the shown profile — pre-shared key with AES encryption."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "WPA is enabled. describes a mechanism that could sound plausible for The WPA2 personal/PSK security. Given The WPA2 personal/PSK security, WPA2 personal is enabled. matches the tested behavior — WPA is enabled. applies a different mechanism.",
+            "explanation": "WEP is obsolete — the profile explicitly shows WPA2 with AES, not WEP.",
+            "misconceptionTested": "Choosing WEP when WPA2-AES is configured",
             "whatItDoes": "WPA is enabled. describes a mechanism that could sound plausible for The WPA2 personal/PSK security.",
-            "whyWrongHere": "Given The WPA2 personal/PSK security, WPA2 personal is enabled. matches the tested behavior — WPA is enabled. applies a different mechanism.",
-            "misconceptionTested": "Applying \"WPA is enabled.\" without matching wlan"
+            "whyWrongHere": "Given The WPA2 personal/PSK security, WPA2 personal is enabled. matches the tested behavior — WPA is enabled. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "WPA2 enterprise is enabled. describes a mechanism that could sound plausible for The WPA2 personal/PSK security. Given The WPA2 personal/PSK security, WPA2 personal is enabled. matches the tested behavior — WPA2 enterprise is enabled. applies a different mechanism.",
+            "explanation": "WPA (TKIP) is older than WPA2 — the WLAN summary lists WPA2 security policy.",
+            "misconceptionTested": "Downgrading WPA2 profile to original WPA",
             "whatItDoes": "WPA2 enterprise is enabled. describes a mechanism that could sound plausible for The WPA2 personal/PSK security.",
-            "whyWrongHere": "Given The WPA2 personal/PSK security, WPA2 personal is enabled. matches the tested behavior — WPA2 enterprise is enabled. applies a different mechanism.",
-            "misconceptionTested": "Applying \"WPA2 enterprise is enabled.\" without matching wlan"
+            "whyWrongHere": "Given The WPA2 personal/PSK security, WPA2 personal is enabled. matches the tested behavior — WPA2 enterprise is enabled. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "802.1X is enabled. uses the wrong value. The tested fact calls for 2 — not 802.",
+            "explanation": "Open authentication has no PSK — this WLAN uses WPA2 with PSK key management.",
+            "misconceptionTested": "Selecting open auth on a WPA2-PSK WLAN",
             "whatItDoes": "802.1X is enabled. describes a mechanism that could sound plausible for The WPA2 personal/PSK security.",
-            "whyWrongHere": "Given The WPA2 personal/PSK security, WPA2 personal is enabled. matches the tested behavior — 802.1X is enabled. applies a different mechanism.",
-            "misconceptionTested": "Memorizing 802 instead of the correct 2"
+            "whyWrongHere": "Given The WPA2 personal/PSK security, WPA2 personal is enabled. matches the tested behavior — 802.1X is enabled. applies a different mechanism."
           }
         ],
-        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
+        "examTip": "WLC WLAN WPA2 + PSK + AES = WPA2-Personal (not WEP/Open)."
       }
     },
     {

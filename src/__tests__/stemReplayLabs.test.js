@@ -3,8 +3,8 @@ import { getStemReplayLab, hasStemReplayLab, stemReplayMapSize } from '../featur
 import { getLab } from '../data/ccnaLabs.js'
 
 describe('stemReplayLabs', () => {
-  it('maps at least 102 high-traffic questions to real labs', () => {
-    expect(stemReplayMapSize()).toBeGreaterThanOrEqual(102)
+  it('maps at least 119 high-traffic questions to real labs', () => {
+    expect(stemReplayMapSize()).toBeGreaterThanOrEqual(119)
   })
 
   it('every new wave-2 mapping resolves via getLab', () => {
@@ -63,6 +63,22 @@ describe('stemReplayLabs', () => {
       ['3.6-legacy-q008', 'LAB-ROUTE-FORWARD-32'],
     ]
     for (const [qid, labId] of domain3Cases) {
+      const replay = getStemReplayLab(qid)
+      expect(replay?.labId, qid).toBe(labId)
+      expect(getLab(labId)?.lab.id).toBe(labId)
+    }
+  })
+
+  it('maps domain 2 objectives to access labs', () => {
+    const domain2Cases = [
+      ['2.2-c-q5', 'LAB-D22-22'],
+      ['2.5-c-q2', 'LAB-STP-ROOT'],
+      ['2.5-c-q5', 'LAB-STP-PORTFAST'],
+      ['obj-2.4-source-q004', 'LAB-ETHERCHANNEL'],
+      ['obj-2.3-source-q009', 'LAB-LLDP'],
+      ['obj-2.9-source-q011', 'LAB-WPA2-PSK-59'],
+    ]
+    for (const [qid, labId] of domain2Cases) {
       const replay = getStemReplayLab(qid)
       expect(replay?.labId, qid).toBe(labId)
       expect(getLab(labId)?.lab.id).toBe(labId)

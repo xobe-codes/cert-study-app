@@ -75,35 +75,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Router(config)#ntp master\"."
+          "explanation": "ntp master configures the device to act as an authoritative NTP time source using its system clock."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#ntp server describes a mechanism that could sound plausible for configures. Given configures, Router(config)#ntp master matches the tested behavior — Router(config)#ntp server applies a different mechanism.",
+            "explanation": "ntp server points to an upstream NTP peer — it does not declare this device as the master clock.",
+            "misconceptionTested": "Using ntp server to become time master",
             "whatItDoes": "Router(config)#ntp server describes a mechanism that could sound plausible for configures.",
-            "whyWrongHere": "Given configures, Router(config)#ntp master matches the tested behavior — Router(config)#ntp server applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#ntp server\" without matching ntp",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given configures, Router(config)#ntp master matches the tested behavior — Router(config)#ntp server applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#ntp clock source describes a mechanism that could sound plausible for configures. Given configures, Router(config)#ntp master matches the tested behavior — Router(config)#ntp clock source applies a different mechanism.",
+            "explanation": "ntp clock source is not standard syntax for designating the local device as master.",
+            "misconceptionTested": "Inventing ntp clock source command",
             "whatItDoes": "Router(config)#ntp clock source describes a mechanism that could sound plausible for configures.",
-            "whyWrongHere": "Given configures, Router(config)#ntp master matches the tested behavior — Router(config)#ntp clock source applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#ntp clock source\" without matching ntp",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given configures, Router(config)#ntp master matches the tested behavior — Router(config)#ntp clock source applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#ntp trusted describes a mechanism that could sound plausible for configures. Given configures, Router(config)#ntp master matches the tested behavior — Router(config)#ntp trusted applies a different mechanism.",
+            "explanation": "ntp trusted marks peers as trusted for ACL purposes — it does not make the router the master clock.",
+            "misconceptionTested": "Confusing ntp trusted with ntp master",
             "whatItDoes": "Router(config)#ntp trusted describes a mechanism that could sound plausible for configures.",
-            "whyWrongHere": "Given configures, Router(config)#ntp master matches the tested behavior — Router(config)#ntp trusted applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#ntp trusted\" without matching ntp",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given configures, Router(config)#ntp master matches the tested behavior — Router(config)#ntp trusted applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
+        "examTip": "Device is the time authority → ntp master (after setting clock or syncing once)."
       }
     },
     {

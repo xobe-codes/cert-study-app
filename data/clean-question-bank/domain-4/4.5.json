@@ -133,35 +133,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Switch(config)#logging trap 4\"."
+          "explanation": "logging trap 4 sends severity 0–4 (emergency through warning) to the syslog server — warnings are level 4."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#logging server 4 describes a mechanism that could sound plausible for warnings. Given warnings, Switch(config)#logging trap 4 matches the tested behavior — Switch(config)#logging server 4 applies a different mechanism.",
+            "explanation": "logging server 4 treats 4 as an IP octet or invalid server syntax — trap level uses logging trap <severity>.",
+            "misconceptionTested": "Using logging server with severity number as address",
             "whatItDoes": "Switch(config)#logging server 4 describes a mechanism that could sound plausible for warnings.",
-            "whyWrongHere": "Given warnings, Switch(config)#logging trap 4 matches the tested behavior — Switch(config)#logging server 4 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#logging server 4\" without matching syslog",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given warnings, Switch(config)#logging trap 4 matches the tested behavior — Switch(config)#logging server 4 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config)#logging trap 5 describes a mechanism that could sound plausible for warnings. Given warnings, Switch(config)#logging trap 4 matches the tested behavior — Switch(config)#logging trap 5 applies a different mechanism.",
+            "explanation": "Severity 5 is notice — warnings are level 4; trap 5 would exclude some warnings depending on interpretation.",
+            "misconceptionTested": "Setting trap level 5 when warnings are level 4",
             "whatItDoes": "Switch(config)#logging trap 5 describes a mechanism that could sound plausible for warnings.",
-            "whyWrongHere": "Given warnings, Switch(config)#logging trap 4 matches the tested behavior — Switch(config)#logging trap 5 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#logging trap 5\" without matching syslog",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given warnings, Switch(config)#logging trap 4 matches the tested behavior — Switch(config)#logging trap 5 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config)#logging server 5 describes a mechanism that could sound plausible for warnings. Given warnings, Switch(config)#logging trap 4 matches the tested behavior — Switch(config)#logging server 5 applies a different mechanism.",
+            "explanation": "logging server 5 is not the trap-severity command — configure the server IP separately, then logging trap 4.",
+            "misconceptionTested": "Confusing syslog server IP with trap severity",
             "whatItDoes": "Switch(config)#logging server 5 describes a mechanism that could sound plausible for warnings.",
-            "whyWrongHere": "Given warnings, Switch(config)#logging trap 4 matches the tested behavior — Switch(config)#logging server 5 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#logging server 5\" without matching syslog",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given warnings, Switch(config)#logging trap 4 matches the tested behavior — Switch(config)#logging server 5 applies a different mechanism."
           }
         ],
-        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
+        "examTip": "Send warnings and above → logging trap 4 (0=emerg … 4=warning)."
       }
     },
     {

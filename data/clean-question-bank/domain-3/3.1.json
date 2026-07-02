@@ -563,35 +563,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"The 4 represents the metric.\"."
+          "explanation": "In [110/20], the value after the slash is the routing protocol metric (20 for OSPF cost here) — AD is before the slash."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The 4 represents the administrative distance. describes a mechanism that could sound plausible for routing table. Given routing table, The 4 represents the metric. matches the tested behavior — The 4 represents the administrative distance. applies a different mechanism.",
+            "explanation": "Administrative distance is the first number inside the brackets (110 for OSPF) — the post-slash value is metric.",
+            "misconceptionTested": "Reading post-slash value as administrative distance",
             "whatItDoes": "The 4 represents the administrative distance. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The 4 represents the metric. matches the tested behavior — The 4 represents the administrative distance. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The 4 represents the administrative \" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, The 4 represents the metric. matches the tested behavior — The 4 represents the administrative distance. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The 4 represents the protocol. describes a mechanism that could sound plausible for routing table. Given routing table, The 4 represents the metric. matches the tested behavior — The 4 represents the protocol. applies a different mechanism.",
+            "explanation": "The leading route code (O) identifies the protocol — the bracketed numbers are AD and metric, not protocol ID.",
+            "misconceptionTested": "Interpreting bracket digits as protocol identifier",
             "whatItDoes": "The 4 represents the protocol. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The 4 represents the metric. matches the tested behavior — The 4 represents the protocol. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The 4 represents the protocol.\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, The 4 represents the metric. matches the tested behavior — The 4 represents the protocol. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The 4 represents the position in the routing table. reflects a common trap: Forgetting AD 255 behavior. A route with AD 255 is considered unusable and is never installed in the routing table.",
+            "explanation": "Route position in the table is not encoded in [AD/metric] — that tuple is trust and cost for the prefix.",
+            "misconceptionTested": "Treating bracket values as table row index",
             "whatItDoes": "The 4 represents the position in the routing table. relies on a router routing table rather than switch MAC/CAM forwarding.",
-            "whyWrongHere": "Given routing table, The 4 represents the metric. matches the tested behavior — The 4 represents the position in the routing table. applies a different mechanism.",
-            "misconceptionTested": "Forgetting AD 255 behavior",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, The 4 represents the metric. matches the tested behavior — The 4 represents the position in the routing table. applies a different mechanism."
           }
         ],
-        "examTip": "Route table: C/L = AD 0; compare AD between sources, metric within one protocol."
+        "examTip": "show ip route brackets: [AD / metric] — slash separates trust from protocol cost."
       }
     },
     {
@@ -953,35 +950,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"AD of 1\"."
+          "explanation": "A manually configured static route has default administrative distance 1 — more trusted than dynamic protocols except connected (0)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "AD of 0 describes a mechanism that could sound plausible for routing table. Given routing table, AD of 1 matches the tested behavior — AD of 0 applies a different mechanism.",
+            "explanation": "AD 0 is reserved for directly connected networks — static routes default to 1.",
+            "misconceptionTested": "Assigning connected AD to static routes",
             "whatItDoes": "AD of 0 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, AD of 1 matches the tested behavior — AD of 0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"AD of 0\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, AD of 1 matches the tested behavior — AD of 0 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "AD of 2 describes a mechanism that could sound plausible for routing table. Given routing table, AD of 1 matches the tested behavior — AD of 2 applies a different mechanism.",
+            "explanation": "AD 2 is not the static default — Cisco static routes use AD 1 unless overridden.",
+            "misconceptionTested": "Selecting AD 2 for static routes",
             "whatItDoes": "AD of 2 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, AD of 1 matches the tested behavior — AD of 2 applies a different mechanism.",
-            "misconceptionTested": "Applying \"AD of 2\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, AD of 1 matches the tested behavior — AD of 2 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "AD of 255 describes a mechanism that could sound plausible for routing table. Given routing table, AD of 1 matches the tested behavior — AD of 255 applies a different mechanism.",
+            "explanation": "AD 255 marks an unusable route — static defaults to 1, the most trusted non-connected source.",
+            "misconceptionTested": "Believing static routes use AD 255",
             "whatItDoes": "AD of 255 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, AD of 1 matches the tested behavior — AD of 255 applies a different mechanism.",
-            "misconceptionTested": "Applying \"AD of 255\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, AD of 1 matches the tested behavior — AD of 255 applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
+        "examTip": "Static route default AD = 1; connected = 0; EIGRP internal = 90; OSPF = 110; RIP = 120."
       }
     },
     {
@@ -1007,35 +1001,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"AD of 120\"."
+          "explanation": "RIP (v1/v2) uses administrative distance 120 — less preferred than OSPF (110) or EIGRP (90)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "AD of 90 describes a mechanism that could sound plausible for routing table. Given routing table, AD of 120 matches the tested behavior — AD of 90 applies a different mechanism.",
+            "explanation": "AD 90 belongs to internal EIGRP — RIP is 120.",
+            "misconceptionTested": "Confusing EIGRP AD with RIP",
             "whatItDoes": "AD of 90 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, AD of 120 matches the tested behavior — AD of 90 applies a different mechanism.",
-            "misconceptionTested": "Applying \"AD of 90\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, AD of 120 matches the tested behavior — AD of 90 applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "AD of 100 describes a mechanism that could sound plausible for routing table. Given routing table, AD of 120 matches the tested behavior — AD of 100 applies a different mechanism.",
+            "explanation": "AD 100 is not RIP — it is not a standard Cisco AD for these common IGPs.",
+            "misconceptionTested": "Selecting nonstandard AD 100 for RIP",
             "whatItDoes": "AD of 100 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, AD of 120 matches the tested behavior — AD of 100 applies a different mechanism.",
-            "misconceptionTested": "Applying \"AD of 100\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, AD of 120 matches the tested behavior — AD of 100 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "AD of 110 describes a mechanism that could sound plausible for routing table. Given routing table, AD of 120 matches the tested behavior — AD of 110 applies a different mechanism.",
+            "explanation": "AD 110 is OSPF — RIP sits lower in the trust order at 120.",
+            "misconceptionTested": "Assigning OSPF AD to RIP",
             "whatItDoes": "AD of 110 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, AD of 120 matches the tested behavior — AD of 110 applies a different mechanism.",
-            "misconceptionTested": "Applying \"AD of 110\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, AD of 120 matches the tested behavior — AD of 110 applies a different mechanism."
           }
         ],
-        "examTip": "AD picks the route source for the same prefix; longest match still wins first."
+        "examTip": "Memorize the ladder: connected 0 → static 1 → EIGRP 90 → OSPF 110 → RIP 120."
       }
     },
     {
@@ -1113,35 +1104,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"The AD is 0.\"."
+          "explanation": "Directly connected routes have administrative distance 0 — the most trusted source in the routing table."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The AD is 1. describes a mechanism that could sound plausible for routing table. Given routing table, The AD is 0. matches the tested behavior — The AD is 1. applies a different mechanism.",
+            "explanation": "AD 1 is the default for static routes — connected interfaces are more trusted at 0.",
+            "misconceptionTested": "Equating connected AD with static route AD",
             "whatItDoes": "The AD is 1. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The AD is 0. matches the tested behavior — The AD is 1. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The AD is 1.\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, The AD is 0. matches the tested behavior — The AD is 1. applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The AD is 5. describes a mechanism that could sound plausible for routing table. Given routing table, The AD is 0. matches the tested behavior — The AD is 5. applies a different mechanism.",
+            "explanation": "AD 5 is not used for connected routes on Cisco IOS — connected is always 0.",
+            "misconceptionTested": "Inventing AD 5 for connected networks",
             "whatItDoes": "The AD is 5. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The AD is 0. matches the tested behavior — The AD is 5. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The AD is 5.\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, The AD is 0. matches the tested behavior — The AD is 5. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Directly connected networks do not have an AD. describes a mechanism that could sound plausible for routing table. Given routing table, The AD is 0. matches the tested behavior — Directly connected networks do not have an AD. applies a different mechanism.",
+            "explanation": "Connected networks absolutely have an AD — it is 0, the lowest (best) value.",
+            "misconceptionTested": "Believing connected routes lack administrative distance",
             "whatItDoes": "Directly connected networks do not have an AD. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The AD is 0. matches the tested behavior — Directly connected networks do not have an AD. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Directly connected networks do not h\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, The AD is 0. matches the tested behavior — Directly connected networks do not have an AD. applies a different mechanism."
           }
         ],
-        "examTip": "AD picks the route source for the same prefix; longest match still wins first."
+        "examTip": "Connected = AD 0 — always wins over static or dynamic unless overridden by policy."
       }
     },
     {
@@ -1167,35 +1155,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"90\"."
+          "explanation": "Internal EIGRP routes use administrative distance 90 — more trusted than OSPF (110) and RIP (120)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "100 describes a mechanism that could sound plausible for routing table. Given routing table, 90 matches the tested behavior — 100 applies a different mechanism.",
+            "explanation": "AD 100 is not internal EIGRP — EIGRP summary/external routes may differ, but internal is 90.",
+            "misconceptionTested": "Selecting AD 100 for internal EIGRP",
             "whatItDoes": "100 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, 90 matches the tested behavior — 100 applies a different mechanism.",
-            "misconceptionTested": "Applying \"100\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, 90 matches the tested behavior — 100 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "110 describes a mechanism that could sound plausible for routing table. Given routing table, 90 matches the tested behavior — 110 applies a different mechanism.",
+            "explanation": "AD 110 is OSPF — internal EIGRP is more trusted at 90.",
+            "misconceptionTested": "Assigning OSPF AD to EIGRP",
             "whatItDoes": "110 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, 90 matches the tested behavior — 110 applies a different mechanism.",
-            "misconceptionTested": "Applying \"110\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, 90 matches the tested behavior — 110 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "120 describes a mechanism that could sound plausible for routing table. Given routing table, 90 matches the tested behavior — 120 applies a different mechanism.",
+            "explanation": "AD 120 is RIP — EIGRP internal routes are preferred at 90.",
+            "misconceptionTested": "Confusing RIP AD with EIGRP",
             "whatItDoes": "120 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, 90 matches the tested behavior — 120 applies a different mechanism.",
-            "misconceptionTested": "Applying \"120\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, 90 matches the tested behavior — 120 applies a different mechanism."
           }
         ],
-        "examTip": "AD picks the route source for the same prefix; longest match still wins first."
+        "examTip": "EIGRP internal AD 90; external/summary EIGRP routes use 170 — know both."
       }
     },
     {
@@ -1391,35 +1376,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"The route is chosen with the lowest AD.\"."
+          "explanation": "When multiple protocols advertise the same prefix, the router installs the route with the lowest administrative distance — metric breaks ties only within one protocol."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The route is chosen with the highest AD. reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "explanation": "Lower AD wins, not higher — highest AD would be least trusted and discarded first.",
+            "misconceptionTested": "Choosing highest AD across protocols",
             "whatItDoes": "The route is chosen with the highest AD. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The route is chosen with the lowest AD. matches the tested behavior — The route is chosen with the highest AD. applies a different mechanism.",
-            "misconceptionTested": "A lower metric can beat a more-specific route",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, The route is chosen with the lowest AD. matches the tested behavior — The route is chosen with the highest AD. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The route chosen has the lowest metric. reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "explanation": "Lowest metric applies after AD selects the protocol — cross-protocol decisions use AD first.",
+            "misconceptionTested": "Comparing metrics before administrative distance",
             "whatItDoes": "The route chosen has the lowest metric. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The route is chosen with the lowest AD. matches the tested behavior — The route chosen has the lowest metric. applies a different mechanism.",
-            "misconceptionTested": "A lower metric can beat a more-specific route",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, The route is chosen with the lowest AD. matches the tested behavior — The route chosen has the lowest metric. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The route chosen has the highest metric. reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "explanation": "Highest metric is worst within a protocol — cross-protocol selection is AD-driven, not highest metric.",
+            "misconceptionTested": "Selecting highest metric across protocols",
             "whatItDoes": "The route chosen has the highest metric. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The route is chosen with the lowest AD. matches the tested behavior — The route chosen has the highest metric. applies a different mechanism.",
-            "misconceptionTested": "A lower metric can beat a more-specific route",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given routing table, The route is chosen with the lowest AD. matches the tested behavior — The route chosen has the highest metric. applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
+        "examTip": "Cross-protocol tie: lowest AD wins; metric only compares routes from the same protocol."
       }
     },
     {

@@ -25,35 +25,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"SNMP version 3\"."
+          "explanation": "SNMPv3 adds authentication and encryption (priv) — v1/v2c rely on community strings in cleartext."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SNMP version 1 describes a mechanism that could sound plausible for authentication. Given authentication, SNMP version 3 matches the tested behavior — SNMP version 1 applies a different mechanism.",
+            "explanation": "SNMPv1 has no encryption or strong authentication — community strings are sent in clear text.",
+            "misconceptionTested": "Expecting SNMPv1 to provide encryption",
             "whatItDoes": "SNMP version 1 describes a mechanism that could sound plausible for authentication.",
-            "whyWrongHere": "Given authentication, SNMP version 3 matches the tested behavior — SNMP version 1 applies a different mechanism.",
-            "misconceptionTested": "Applying \"SNMP version 1\" without matching snmp",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given authentication, SNMP version 3 matches the tested behavior — SNMP version 1 applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "SNMP version 2e describes a mechanism that could sound plausible for authentication. Given authentication, SNMP version 3 matches the tested behavior — SNMP version 2e applies a different mechanism.",
+            "explanation": "SNMPv2e is not a standard version — v2c improved operations but still uses communities without encryption.",
+            "misconceptionTested": "Selecting nonstandard v2e for security",
             "whatItDoes": "SNMP version 2e describes a mechanism that could sound plausible for authentication.",
-            "whyWrongHere": "Given authentication, SNMP version 3 matches the tested behavior — SNMP version 2e applies a different mechanism.",
-            "misconceptionTested": "Applying \"SNMP version 2e\" without matching snmp",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given authentication, SNMP version 3 matches the tested behavior — SNMP version 2e applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SNMP version 2c describes a mechanism that could sound plausible for authentication. Given authentication, SNMP version 3 matches the tested behavior — SNMP version 2c applies a different mechanism.",
+            "explanation": "SNMPv2c adds 64-bit counters but still uses community strings — only v3 offers authPriv security.",
+            "misconceptionTested": "Believing v2c community strings are encrypted",
             "whatItDoes": "SNMP version 2c describes a mechanism that could sound plausible for authentication.",
-            "whyWrongHere": "Given authentication, SNMP version 3 matches the tested behavior — SNMP version 2c applies a different mechanism.",
-            "misconceptionTested": "Applying \"SNMP version 2c\" without matching snmp",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given authentication, SNMP version 3 matches the tested behavior — SNMP version 2c applies a different mechanism."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "SNMP with auth + encryption → SNMPv3 (not v1/v2c communities)."
       }
     },
     {

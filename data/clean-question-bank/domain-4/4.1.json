@@ -214,33 +214,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "PAT: ip nat inside source list <ACL> interface <if> overload."
+          "explanation": "ip nat inside source list 1 interface g0/0 overload enables PAT using the outside interface address."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "ip nat inside source static reflects a common trap: Every inside host needs its own public IP. PAT lets thousands of hosts share one public IP via ports.",
+            "explanation": "Static NAT maps one inside to one outside — PAT needs overload on an interface or pool.",
+            "misconceptionTested": "Using static syntax for many-to-one PAT",
             "whatItDoes": "ip nat inside source static describes a mechanism that could sound plausible for overload command.",
-            "whyWrongHere": "Given overload command, ip nat inside source list 1 interface g0/0 overload matches the tested behavior — ip nat inside source static applies a different mechanism.",
-            "misconceptionTested": "Every inside host needs its own public IP"
+            "whyWrongHere": "Given overload command, ip nat inside source list 1 interface g0/0 overload matches the tested behavior — ip nat inside source static applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "ip nat pool MYPOOL describes a mechanism that could sound plausible for overload command. Given overload command, ip nat inside source list 1 interface g0/0 overload matches the tested behavior — ip nat pool MYPOOL applies a different mechanism.",
+            "explanation": "A NAT pool supports dynamic NAT — PAT overload typically uses the outside interface keyword with overload.",
+            "misconceptionTested": "Expecting pool alone to provide PAT",
             "whatItDoes": "ip nat pool MYPOOL describes a mechanism that could sound plausible for overload command.",
-            "whyWrongHere": "Given overload command, ip nat inside source list 1 interface g0/0 overload matches the tested behavior — ip nat pool MYPOOL applies a different mechanism.",
-            "misconceptionTested": "Applying \"ip nat pool MYPOOL\" without matching overload command"
+            "whyWrongHere": "Given overload command, ip nat inside source list 1 interface g0/0 overload matches the tested behavior — ip nat pool MYPOOL applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "ip nat outside source list 1 describes a mechanism that could sound plausible for overload command. Given overload command, ip nat inside source list 1 interface g0/0 overload matches the tested behavior — ip nat outside source list 1 applies a different mechanism.",
+            "explanation": "Outside source NAT reverses direction — inside hosts sharing one public IP use inside source with overload.",
+            "misconceptionTested": "Configuring outside source for inside PAT",
             "whatItDoes": "ip nat outside source list 1 describes a mechanism that could sound plausible for overload command.",
-            "whyWrongHere": "Given overload command, ip nat inside source list 1 interface g0/0 overload matches the tested behavior — ip nat outside source list 1 applies a different mechanism.",
-            "misconceptionTested": "Applying \"ip nat outside source list 1\" without matching overload command"
+            "whyWrongHere": "Given overload command, ip nat inside source list 1 interface g0/0 overload matches the tested behavior — ip nat outside source list 1 applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Every inside host needs its own public IP — PAT lets thousands of hosts share one public IP via ports",
-        "memoryHook": "PAT = many tenants, one door — ports are the apartment numbers."
+        "examTip": "PAT to outside interface → ip nat inside source list <acl> interface <if> overload."
       }
     },
     {
@@ -263,32 +262,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Inside local = the private address of an inside host."
+          "explanation": "Inside local is the host private address as known on the internal network before translation."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Inside global reflects a common trap: Mixing up inside local and inside global. Inside local = private host; inside global = its public mapping.",
+            "explanation": "Inside global is the translated public address as seen externally — not the private address inside the LAN.",
+            "misconceptionTested": "Swapping inside local with inside global",
             "whatItDoes": "Inside global describes a mechanism that could sound plausible for terminology.",
-            "whyWrongHere": "Given terminology, Inside local matches the tested behavior — Inside global applies a different mechanism.",
-            "misconceptionTested": "Mixing up inside local and inside global"
+            "whyWrongHere": "Given terminology, Inside local matches the tested behavior — Inside global applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Outside global reflects a common trap: Forgetting the inside/outside interface tags. Without ip nat inside/outside, NAT translates nothing.",
+            "explanation": "Outside global is the remote public address — inside local refers to the internal host private IP.",
+            "misconceptionTested": "Labeling remote public as inside local",
             "whatItDoes": "Outside global describes a mechanism that could sound plausible for terminology.",
-            "whyWrongHere": "Given terminology, Inside local matches the tested behavior — Outside global applies a different mechanism.",
-            "misconceptionTested": "Forgetting the inside/outside interface tags"
+            "whyWrongHere": "Given terminology, Inside local matches the tested behavior — Outside global applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Outside local reflects a common trap: Forgetting the inside/outside interface tags. Without ip nat inside/outside, NAT translates nothing.",
+            "explanation": "Outside local is how the internal network sees an outside address — not the host private IP.",
+            "misconceptionTested": "Confusing outside local with host private address",
             "whatItDoes": "Outside local describes a mechanism that could sound plausible for terminology.",
-            "whyWrongHere": "Given terminology, Inside local matches the tested behavior — Outside local applies a different mechanism.",
-            "misconceptionTested": "Forgetting the inside/outside interface tags"
+            "whyWrongHere": "Given terminology, Inside local matches the tested behavior — Outside local applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Forgetting the inside/outside interface tags — Without ip nat inside/outside, NAT translates nothing"
+        "examTip": "NAT naming: inside local = private IP before translation on the LAN."
       }
     },
     {
@@ -311,32 +310,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "show ip nat translations lists the current mappings."
+          "explanation": "show ip nat translations displays active inside/outside address mappings currently in the NAT table."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "show ip route describes a mechanism that could sound plausible for show ip nat translations lists the current mappings. Given show ip nat translations lists the current mappings, show ip nat translations matches the tested behavior — show ip route applies a different mechanism.",
+            "explanation": "show ip route lists routing table entries — NAT translations live in the NAT table, not the RIB.",
+            "misconceptionTested": "Using routing table for NAT translation verification",
             "whatItDoes": "show ip route describes a mechanism that could sound plausible for show ip nat translations lists the current mappings.",
-            "whyWrongHere": "Given show ip nat translations lists the current mappings, show ip nat translations matches the tested behavior — show ip route applies a different mechanism.",
-            "misconceptionTested": "Applying \"show ip route\" without matching verify"
+            "whyWrongHere": "Given show ip nat translations lists the current mappings, show ip nat translations matches the tested behavior — show ip route applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "show running-config describes a mechanism that could sound plausible for show ip nat translations lists the current mappings. Given show ip nat translations lists the current mappings, show ip nat translations matches the tested behavior — show running-config applies a different mechanism.",
+            "explanation": "Running-config shows configured NAT policies — active live translations require show ip nat translations.",
+            "misconceptionTested": "Checking running-config for active translation state",
             "whatItDoes": "show running-config describes a mechanism that could sound plausible for show ip nat translations lists the current mappings.",
-            "whyWrongHere": "Given show ip nat translations lists the current mappings, show ip nat translations matches the tested behavior — show running-config applies a different mechanism.",
-            "misconceptionTested": "Applying \"show running-config\" without matching verify"
+            "whyWrongHere": "Given show ip nat translations lists the current mappings, show ip nat translations matches the tested behavior — show running-config applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "show ip nat inside describes a mechanism that could sound plausible for show ip nat translations lists the current mappings. Given show ip nat translations lists the current mappings, show ip nat translations matches the tested behavior — show ip nat inside applies a different mechanism.",
+            "explanation": "show ip nat inside is not standard verification syntax — use show ip nat translations for the translation table.",
+            "misconceptionTested": "Inventing show ip nat inside command",
             "whatItDoes": "show ip nat inside describes a mechanism that could sound plausible for show ip nat translations lists the current mappings.",
-            "whyWrongHere": "Given show ip nat translations lists the current mappings, show ip nat translations matches the tested behavior — show ip nat inside applies a different mechanism.",
-            "misconceptionTested": "Applying \"show ip nat inside\" without matching verify"
+            "whyWrongHere": "Given show ip nat translations lists the current mappings, show ip nat translations matches the tested behavior — show ip nat inside applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "Active NAT entries → show ip nat translations."
       }
     },
     {

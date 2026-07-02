@@ -79,35 +79,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"The layer 2 source is the MAC address of the server.\"."
+          "explanation": "The DHCP Offer is sent from the server MAC as the Layer 2 source — L3 may still be broadcast until the client has an IP."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The layer 3 destination is a unicast to the DHCP client. describes a mechanism that could sound plausible for dhcp client. The stem asks what gets learned (dhcp client). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
+            "explanation": "During DORA the client often has no IP yet — Offer is frequently broadcast at Layer 3, not unicast to client IP.",
+            "misconceptionTested": "Expecting unicast L3 Offer before client has address",
             "whatItDoes": "The layer 3 destination is a unicast to the DHCP client. describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "The stem asks what gets learned (dhcp client). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
-            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
-            "needsExplanationReview": true
+            "whyWrongHere": "The stem asks what gets learned (dhcp client). Switches record the source MAC on ingress — destination MAC is for lookup, not learning."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The layer 2 destination is the MAC address of the DHCP client. describes a mechanism that could sound plausible for dhcp client. The stem asks what gets learned (dhcp client). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
+            "explanation": "Layer 2 destination is often broadcast (ff:ff:ff:ff:ff:ff) because the client may not have bound the offered IP yet.",
+            "misconceptionTested": "Assuming Offer is always unicast to client MAC",
             "whatItDoes": "The layer 2 destination is the MAC address of the DHCP client. describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "The stem asks what gets learned (dhcp client). Switches record the source MAC on ingress — destination MAC is for lookup, not learning. Picking The layer 2 destination is the MAC address of the DHCP client. misses the exact behavior this stem tests.",
-            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
-            "needsExplanationReview": true
+            "whyWrongHere": "The stem asks what gets learned (dhcp client). Switches record the source MAC on ingress — destination MAC is for lookup, not learning. Picking The layer 2 destination is the MAC address of the DHCP client. misses the exact behavior this stem tests."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The layer 3 source is a link-local address of the client. describes a mechanism that could sound plausible for dhcp client. Given dhcp client, The layer 2 source is the MAC address of the server. matches the tested behavior — The layer 3 source is a link-local address of the client. applies a different mechanism.",
+            "explanation": "The Layer 3 source is the server address — link-local is not the standard Offer source on IPv4 DHCP.",
+            "misconceptionTested": "Claiming Offer L3 source is client link-local",
             "whatItDoes": "The layer 3 source is a link-local address of the client. describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, The layer 2 source is the MAC address of the server. matches the tested behavior — The layer 3 source is a link-local address of the client. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The layer 3 source is a link-local a\" without matching dhcp client",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given dhcp client, The layer 2 source is the MAC address of the server. matches the tested behavior — The layer 3 source is a link-local address of the client. applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "DHCP Offer → server MAC as L2 source; L2 dest often broadcast pre-ACK."
       }
     },
     {

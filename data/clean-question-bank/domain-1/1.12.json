@@ -72,32 +72,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Type 2 is hosted — e.g. Workstation on Windows/macOS."
+          "explanation": "Type 2 (hosted) hypervisors install as an application on top of a host OS — e.g. VMware Workstation on Windows."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Directly on bare metal only describes a mechanism that could sound plausible for Type 2 is hosted — e. Given Type 2 is hosted — e, On top of a host operating system matches the tested behavior — Directly on bare metal only applies a different mechanism.",
+            "explanation": "Bare-metal-only describes Type 1 hypervisors (ESXi, Hyper-V on server) — Type 2 runs on a host operating system.",
+            "misconceptionTested": "Labeling Type 2 as bare-metal hypervisor",
             "whatItDoes": "Directly on bare metal only describes a mechanism that could sound plausible for Type 2 is hosted — e.",
-            "whyWrongHere": "Given Type 2 is hosted — e, On top of a host operating system matches the tested behavior — Directly on bare metal only applies a different mechanism.",
-            "misconceptionTested": "Applying \"Directly on bare metal only\" without matching type2"
+            "whyWrongHere": "Given Type 2 is hosted — e, On top of a host operating system matches the tested behavior — Directly on bare metal only applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Inside a container only describes a mechanism that could sound plausible for Type 2 is hosted — e. Given Type 2 is hosted — e, On top of a host operating system matches the tested behavior — Inside a container only applies a different mechanism.",
+            "explanation": "Containers are not hypervisors — Type 2 hypervisors run VMs as guest OS instances above the host OS.",
+            "misconceptionTested": "Placing Type 2 hypervisor inside a container only",
             "whatItDoes": "Inside a container only describes a mechanism that could sound plausible for Type 2 is hosted — e.",
-            "whyWrongHere": "Given Type 2 is hosted — e, On top of a host operating system matches the tested behavior — Inside a container only applies a different mechanism.",
-            "misconceptionTested": "Applying \"Inside a container only\" without matching type2"
+            "whyWrongHere": "Given Type 2 is hosted — e, On top of a host operating system matches the tested behavior — Inside a container only applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Without any VMs describes a mechanism that could sound plausible for Type 2 is hosted — e. Given Type 2 is hosted — e, On top of a host operating system matches the tested behavior — Without any VMs applies a different mechanism.",
+            "explanation": "Type 2 hypervisors exist to run VMs — they require a host OS and create virtual machines on top of it.",
+            "misconceptionTested": "Believing Type 2 hypervisors run without VMs",
             "whatItDoes": "Without any VMs describes a mechanism that could sound plausible for Type 2 is hosted — e.",
-            "whyWrongHere": "Given Type 2 is hosted — e, On top of a host operating system matches the tested behavior — Without any VMs applies a different mechanism.",
-            "misconceptionTested": "Applying \"Without any VMs\" without matching type2"
+            "whyWrongHere": "Given Type 2 is hosted — e, On top of a host operating system matches the tested behavior — Without any VMs applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Virtualization eliminates physical networks — VMs/containers still need virtual and physical switching/routing underneath"
+        "examTip": "Type 1 = bare metal; Type 2 = hosted on a desktop/server OS."
       }
     },
     {
@@ -168,32 +168,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "VRF creates separate routing/forwarding instances on one device."
+          "explanation": "VRF (Virtual Routing and Forwarding) creates multiple isolated routing/forwarding tables on one physical router."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Wireless encryption describes a mechanism that could sound plausible for VRF creates separate routing/forwarding instances on one device. Given VRF creates separate routing/forwarding instances on one device, Multiple isolated routing tables matches the tested behavior — Wireless encryption applies a different mechanism.",
+            "explanation": "Wireless encryption (WPA/WPA2/WPA3) secures 802.11 frames — VRF segments Layer 3 routing instances.",
+            "misconceptionTested": "Equating VRF with WLAN encryption",
             "whatItDoes": "Wireless encryption describes a mechanism that could sound plausible for VRF creates separate routing/forwarding instances on one device.",
-            "whyWrongHere": "Given VRF creates separate routing/forwarding instances on one device, Multiple isolated routing tables matches the tested behavior — Wireless encryption applies a different mechanism.",
-            "misconceptionTested": "Applying \"Wireless encryption\" without matching vrf"
+            "whyWrongHere": "Given VRF creates separate routing/forwarding instances on one device, Multiple isolated routing tables matches the tested behavior — Wireless encryption applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Fiber transceiver support describes a mechanism that could sound plausible for VRF creates separate routing/forwarding instances on one device. Given VRF creates separate routing/forwarding instances on one device, Multiple isolated routing tables matches the tested behavior — Fiber transceiver support applies a different mechanism.",
+            "explanation": "Fiber transceivers are physical Layer 1 optics — VRF is a control/data-plane virtualization feature.",
+            "misconceptionTested": "Assigning transceiver support to VRF",
             "whatItDoes": "Fiber transceiver support describes a mechanism that could sound plausible for VRF creates separate routing/forwarding instances on one device.",
-            "whyWrongHere": "Given VRF creates separate routing/forwarding instances on one device, Multiple isolated routing tables matches the tested behavior — Fiber transceiver support applies a different mechanism.",
-            "misconceptionTested": "Applying \"Fiber transceiver support\" without matching vrf"
+            "whyWrongHere": "Given VRF creates separate routing/forwarding instances on one device, Multiple isolated routing tables matches the tested behavior — Fiber transceiver support applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "DHCP server redundancy describes a mechanism that could sound plausible for VRF creates separate routing/forwarding instances on one device. Given VRF creates separate routing/forwarding instances on one device, Multiple isolated routing tables matches the tested behavior — DHCP server redundancy applies a different mechanism.",
+            "explanation": "DHCP redundancy uses multiple servers or failover mechanisms — VRF isolates routing tables, not DHCP HA by itself.",
+            "misconceptionTested": "Expecting VRF to provide DHCP server redundancy",
             "whatItDoes": "DHCP server redundancy describes a mechanism that could sound plausible for VRF creates separate routing/forwarding instances on one device.",
-            "whyWrongHere": "Given VRF creates separate routing/forwarding instances on one device, Multiple isolated routing tables matches the tested behavior — DHCP server redundancy applies a different mechanism.",
-            "misconceptionTested": "Applying \"DHCP server redundancy\" without matching vrf"
+            "whyWrongHere": "Given VRF creates separate routing/forwarding instances on one device, Multiple isolated routing tables matches the tested behavior — DHCP server redundancy applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Equating VRF with VLAN — VRF isolates L3 routing; VLAN isolates L2 broadcast domains"
+        "examTip": "VRF = separate routing tables on one router — like virtual routers sharing hardware."
       }
     },
     {
