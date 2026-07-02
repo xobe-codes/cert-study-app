@@ -225,32 +225,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands."
+          "explanation": "aaa new-model is the global configuration command that enables the AAA access-control model on the device."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "ip aaa enable describes a mechanism that could sound plausible for aaa new-model. Given aaa new-model, aaa new-model matches the tested behavior — ip aaa enable applies a different mechanism.",
+            "explanation": "ip aaa enable is not valid IOS syntax — AAA begins with aaa new-model before authentication/authorization lines.",
+            "misconceptionTested": "Inventing ip aaa enable as AAA prerequisite",
             "whatItDoes": "ip aaa enable describes a mechanism that could sound plausible for aaa new-model.",
-            "whyWrongHere": "Given aaa new-model, aaa new-model matches the tested behavior — ip aaa enable applies a different mechanism.",
-            "misconceptionTested": "Applying \"ip aaa enable\" without matching aaa new-model"
+            "whyWrongHere": "Given aaa new-model, aaa new-model matches the tested behavior — ip aaa enable applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "service aaa describes a mechanism that could sound plausible for aaa new-model. Given aaa new-model, aaa new-model matches the tested behavior — service aaa applies a different mechanism.",
+            "explanation": "service aaa does not exist as the AAA enabler — use aaa new-model in global configuration.",
+            "misconceptionTested": "Using service aaa instead of aaa new-model",
             "whatItDoes": "service aaa describes a mechanism that could sound plausible for aaa new-model.",
-            "whyWrongHere": "Given aaa new-model, aaa new-model matches the tested behavior — service aaa applies a different mechanism.",
-            "misconceptionTested": "Applying \"service aaa\" without matching aaa new-model"
+            "whyWrongHere": "Given aaa new-model, aaa new-model matches the tested behavior — service aaa applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "aaa start describes a mechanism that could sound plausible for aaa new-model. Given aaa new-model, aaa new-model matches the tested behavior — aaa start applies a different mechanism.",
+            "explanation": "aaa start is not the IOS command — aaa new-model must be configured before any aaa authentication lines take effect.",
+            "misconceptionTested": "Choosing aaa start as AAA enabler",
             "whatItDoes": "aaa start describes a mechanism that could sound plausible for aaa new-model.",
-            "whyWrongHere": "Given aaa new-model, aaa new-model matches the tested behavior — aaa start applies a different mechanism.",
-            "misconceptionTested": "Applying \"aaa start\" without matching aaa new-model"
+            "whyWrongHere": "Given aaa new-model, aaa new-model matches the tested behavior — aaa start applies a different mechanism."
           }
         ],
-        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
+        "examTip": "Before any AAA lines → aaa new-model in global config."
       }
     },
     {

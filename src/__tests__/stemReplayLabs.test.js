@@ -3,8 +3,8 @@ import { getStemReplayLab, hasStemReplayLab, stemReplayMapSize } from '../featur
 import { getLab } from '../data/ccnaLabs.js'
 
 describe('stemReplayLabs', () => {
-  it('maps at least 80 high-traffic questions to real labs', () => {
-    expect(stemReplayMapSize()).toBeGreaterThanOrEqual(80)
+  it('maps at least 102 high-traffic questions to real labs', () => {
+    expect(stemReplayMapSize()).toBeGreaterThanOrEqual(102)
   })
 
   it('every new wave-2 mapping resolves via getLab', () => {
@@ -51,5 +51,21 @@ describe('stemReplayLabs', () => {
 
   it('hasStemReplayLab is true for mapped ids', () => {
     expect(hasStemReplayLab('5.5-c-q1')).toBe(true)
+  })
+
+  it('maps domain 3 objectives 3.1–3.6 to connectivity labs', () => {
+    const domain3Cases = [
+      ['3.1-q2', 'LAB-ROUTE-TABLE-31'],
+      ['3.2-c-q3', 'LAB-ROUTE-FORWARD-32'],
+      ['3.3-q2', 'LAB-IPV6-STATIC'],
+      ['3.4-c-q2', 'LAB-OSPF-SINGLE-AREA'],
+      ['obj-3.5-source-q002', 'LAB-HSRP-GATEWAY'],
+      ['3.6-legacy-q008', 'LAB-ROUTE-FORWARD-32'],
+    ]
+    for (const [qid, labId] of domain3Cases) {
+      const replay = getStemReplayLab(qid)
+      expect(replay?.labId, qid).toBe(labId)
+      expect(getLab(labId)?.lab.id).toBe(labId)
+    }
   })
 })

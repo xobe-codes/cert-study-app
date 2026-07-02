@@ -44,7 +44,6 @@ const STEM_REPLAY_MAP = {
   '2.2-c-q2': 'LAB-D22-22',
   '3.3-q4': 'LAB-IPV6-STATIC',
   '3.4-c-q9': 'LAB-OSPF-VERIFY-34',
-  'obj-3.5-source-q001': 'LAB-HSRP-VERIFY-35',
   '5.5-ts-placement': 'LAB-EXTENDED-ACL-BUILD',
   'obj-6.1-source-q003': 'LAB-D410-410',
   '1.5-c-q2': 'LAB-MAC-FORWARD-15',
@@ -94,6 +93,25 @@ const STEM_REPLAY_MAP = {
   'obj-6.4-source-q003': 'LAB-AUTO-DNA-64',
   'obj-6.5-source-q001': 'LAB-AUTO-REST-65',
   'obj-6.6-source-q001': 'LAB-AUTO-JSON-66',
+  // Domain 3 wave — IP connectivity (3.1–3.6)
+  '3.1-q2': 'LAB-ROUTE-TABLE-31',
+  '3.1-q3': 'LAB-31-ROUTE-INTERPRET',
+  'obj-3.1-source-q001': 'LAB-ROUTE-TABLE-31',
+  'obj-3.1-source-q002': 'LAB-31-ROUTE-INTERPRET',
+  '3.2-c-q3': 'LAB-ROUTE-FORWARD-32',
+  '3.2-c-q4': 'LAB-STATIC-FLOATING',
+  'obj-3.2-source-q001': 'LAB-31-ROUTE-INTERPRET',
+  '3.3-q2': 'LAB-IPV6-STATIC',
+  '3.3-q3': 'LAB-STATIC-FLOATING',
+  '3.3-q5': 'LAB-IPV6-STATIC',
+  '3.4-c-q2': 'LAB-OSPF-SINGLE-AREA',
+  '3.4-c-q3': 'LAB-OSPF-SINGLE-AREA',
+  'obj-3.4-source-q001': 'LAB-OSPF-VERIFY-34',
+  'obj-3.4-source-q002': 'LAB-OSPF-DEFAULT',
+  'obj-3.5-source-q002': 'LAB-HSRP-GATEWAY',
+  'obj-3.5-source-q003': 'LAB-HSRP-VERIFY-35',
+  '3.6-legacy-q001': 'LAB-ROUTE-FORWARD-32',
+  '3.6-legacy-q008': 'LAB-ROUTE-FORWARD-32',
 }
 
 /** @returns {{ labId: string, lab: import('../../data/ccnaLabs.js').LabBundle['lab'] } | null} */

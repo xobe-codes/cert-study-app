@@ -24860,32 +24860,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "A next-hop (recursive) static route requires the router to look up the routing table again to determine which interface reaches the next-hop IP, adding extra processing versus a directly-attached exit-interface route."
+          "explanation": "A next-hop (recursive) static route requires the router to look up the routing table again to determine which interface reaches the next-hop IP."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "A switch forwards frames using MAC addresses — it does not originate ARP on behalf of every unknown unicast frame arrival.",
+            "explanation": "ARP resolves next-hop MAC on the local segment — the router first needs a recursive route lookup to know which interface reaches the next-hop IP.",
+            "misconceptionTested": "Skipping recursive lookup and ARPing destination host",
             "whatItDoes": "An ARP request to the destination host directly describes a mechanism that could sound plausible for recursive route lookup.",
-            "whyWrongHere": "Given recursive route lookup, A recursive lookup to find the exit interface for the next-hop IP matches the tested behavior — An ARP request to the destination host directly applies a different mechanism.",
-            "misconceptionTested": "Expecting the switch to ARP before forwarding at Layer 2"
+            "whyWrongHere": "Given recursive route lookup, A recursive lookup to find the exit interface for the next-hop IP matches the tested behavior — An ARP request to the destination host directly applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "A DNS lookup to resolve the next-hop IP describes a mechanism that could sound plausible for recursive route lookup. Given recursive route lookup, A recursive lookup to find the exit interface for the next-hop IP matches the tested behavior — A DNS lookup to resolve the next-hop IP applies a different mechanism.",
+            "explanation": "DNS resolves hostnames — static route forwarding to a next-hop IP uses routing table recursion, not DNS.",
+            "misconceptionTested": "Using DNS lookup for next-hop static routes",
             "whatItDoes": "A DNS lookup to resolve the next-hop IP describes a mechanism that could sound plausible for recursive route lookup.",
-            "whyWrongHere": "Given recursive route lookup, A recursive lookup to find the exit interface for the next-hop IP matches the tested behavior — A DNS lookup to resolve the next-hop IP applies a different mechanism.",
-            "misconceptionTested": "Applying \"A DNS lookup to resolve the next-hop\" without matching recursive route lookup"
+            "whyWrongHere": "Given recursive route lookup, A recursive lookup to find the exit interface for the next-hop IP matches the tested behavior — A DNS lookup to resolve the next-hop IP applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Nothing — next-hop routes forward immediately describes a mechanism that could sound plausible for recursive route lookup. Given recursive route lookup, A recursive lookup to find the exit interface for the next-hop IP matches the tested behavior — Nothing — next-hop routes forward immediately applies a different mechanism.",
+            "explanation": "Next-hop static routes are not immediately forwardable — IOS must resolve which egress interface reaches the next-hop address.",
+            "misconceptionTested": "Believing next-hop routes forward without lookup",
             "whatItDoes": "Nothing — next-hop routes forward immediately describes a mechanism that could sound plausible for recursive route lookup.",
-            "whyWrongHere": "Given recursive route lookup, A recursive lookup to find the exit interface for the next-hop IP matches the tested behavior — Nothing — next-hop routes forward immediately applies a different mechanism.",
-            "misconceptionTested": "Applying \"Nothing — next-hop routes forward im\" without matching recursive route lookup"
+            "whyWrongHere": "Given recursive route lookup, A recursive lookup to find the exit interface for the next-hop IP matches the tested behavior — Nothing — next-hop routes forward immediately applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests recursive route lookup — exam distractors swap similar terms; anchor on: A next-hop (recursive) static route requires the router to look up the routing table again to determine which interface reaches the next-hop IP, adding extra processing versus a directly-attached exit-interface route."
+        "examTip": "Static via next-hop IP → recursive lookup for egress interface."
       }
     },
     {
@@ -24914,27 +24914,27 @@ export const CLEAN_QUESTIONS = {
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "It remains in the table but is marked inactive describes a mechanism that could sound plausible for static route dependency. Given static route dependency, It is removed from the routing table until the interface comes back up matches the tested behavior — It remains in the table but is marked inactive applies a different mechanism.",
+            "explanation": "IOS removes unreachable static routes from the table — it does not leave them installed as inactive entries when the exit interface is down.",
+            "misconceptionTested": "Expecting inactive static routes to remain installed",
             "whatItDoes": "It remains in the table but is marked inactive describes a mechanism that could sound plausible for static route dependency.",
-            "whyWrongHere": "Given static route dependency, It is removed from the routing table until the interface comes back up matches the tested behavior — It remains in the table but is marked inactive applies a different mechanism.",
-            "misconceptionTested": "Applying \"It remains in the table but is marke\" without matching static route dependency"
+            "whyWrongHere": "Given static route dependency, It is removed from the routing table until the interface comes back up matches the tested behavior — It remains in the table but is marked inactive applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "It is automatically replaced by a default route describes a mechanism that could sound plausible for static route dependency. Given static route dependency, It is removed from the routing table until the interface comes back up matches the tested behavior — It is automatically replaced by a default route applies a different mechanism.",
+            "explanation": "Default routes are configured separately — a down exit interface does not auto-replace a static with a default route.",
+            "misconceptionTested": "Believing default route auto-replaces failed static",
             "whatItDoes": "It is automatically replaced by a default route describes a mechanism that could sound plausible for static route dependency.",
-            "whyWrongHere": "Given static route dependency, It is removed from the routing table until the interface comes back up matches the tested behavior — It is automatically replaced by a default route applies a different mechanism.",
-            "misconceptionTested": "Applying \"It is automatically replaced by a de\" without matching static route dependency"
+            "whyWrongHere": "Given static route dependency, It is removed from the routing table until the interface comes back up matches the tested behavior — It is automatically replaced by a default route applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "It stays active but stops forwarding traffic silently describes a mechanism that could sound plausible for static route dependency. Given static route dependency, It is removed from the routing table until the interface comes back up matches the tested behavior — It stays active but stops forwarding traffic silently applies a different mechanism.",
+            "explanation": "IOS withdraws the route when the exit path fails — it does not keep a silent broken route that appears active.",
+            "misconceptionTested": "Thinking static stays active while interface is down",
             "whatItDoes": "It stays active but stops forwarding traffic silently describes a mechanism that could sound plausible for static route dependency.",
-            "whyWrongHere": "Given static route dependency, It is removed from the routing table until the interface comes back up matches the tested behavior — It stays active but stops forwarding traffic silently applies a different mechanism.",
-            "misconceptionTested": "Applying \"It stays active but stops forwarding\" without matching static route dependency"
+            "whyWrongHere": "Given static route dependency, It is removed from the routing table until the interface comes back up matches the tested behavior — It stays active but stops forwarding traffic silently applies a different mechanism."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Exit interface down → static route removed until path returns."
       }
     },
     {
@@ -24958,32 +24958,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Local-subnet connectivity working but remote connectivity failing is the classic symptom of a missing or incorrect default gateway — the host has no way to route off-subnet traffic."
+          "explanation": "Local-subnet connectivity working but remote connectivity failing is the classic symptom of a missing or incorrect default gateway."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The host's DNS server is unreachable describes a mechanism that could sound plausible for default gateway. Given default gateway, The host is missing a default gateway, or the gateway is misconfigured matches the tested behavior — The host's DNS server is unreachable applies a different mechanism.",
+            "explanation": "DNS affects name resolution — ping to remote IP addresses fails without DNS involvement when the default gateway is missing.",
+            "misconceptionTested": "Blaming DNS for remote IP unreachable with local OK",
             "whatItDoes": "The host's DNS server is unreachable describes a mechanism that could sound plausible for default gateway.",
-            "whyWrongHere": "Given default gateway, The host is missing a default gateway, or the gateway is misconfigured matches the tested behavior — The host's DNS server is unreachable applies a different mechanism.",
-            "misconceptionTested": "Applying \"The host's DNS server is unreachable\" without matching default gateway"
+            "whyWrongHere": "Given default gateway, The host is missing a default gateway, or the gateway is misconfigured matches the tested behavior — The host's DNS server is unreachable applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The switch port is in the wrong VLAN describes a mechanism that could sound plausible for default gateway. Given default gateway, The host is missing a default gateway, or the gateway is misconfigured matches the tested behavior — The switch port is in the wrong VLAN applies a different mechanism.",
+            "explanation": "Wrong VLAN would typically break local subnet communication too — local ping OK with remote failure points to gateway/default route on the host.",
+            "misconceptionTested": "Choosing VLAN mismatch when local subnet works",
             "whatItDoes": "The switch port is in the wrong VLAN describes a mechanism that could sound plausible for default gateway.",
-            "whyWrongHere": "Given default gateway, The host is missing a default gateway, or the gateway is misconfigured matches the tested behavior — The switch port is in the wrong VLAN applies a different mechanism.",
-            "misconceptionTested": "Applying \"The switch port is in the wrong VLAN\" without matching default gateway"
+            "whyWrongHere": "Given default gateway, The host is missing a default gateway, or the gateway is misconfigured matches the tested behavior — The switch port is in the wrong VLAN applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The host has a duplicate IP address shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given default gateway, The host is missing a default gateway, or the gateway is misconfigured matches the tested behavior — The host has a duplicate IP address applies a different mechanism.",
+            "explanation": "Duplicate IP often causes intermittent local issues — classic remote-only failure with correct mask is missing default gateway.",
+            "misconceptionTested": "Selecting duplicate IP over missing gateway",
             "whatItDoes": "The host has a duplicate IP address shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given default gateway, The host is missing a default gateway, or the gateway is misconfigured matches the tested behavior — The host has a duplicate IP address applies a different mechanism.",
-            "misconceptionTested": "Applying \"The host has a duplicate IP address\" without matching default gateway"
+            "whyWrongHere": "Given default gateway, The host is missing a default gateway, or the gateway is misconfigured matches the tested behavior — The host has a duplicate IP address applies a different mechanism."
           }
         ],
-        "examTip": "Local L2 works but remote fails? Check the host default gateway before blaming routing protocols."
+        "examTip": "Local subnet OK, remote fails → default gateway on host."
       }
     },
     {
@@ -25204,32 +25204,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "A default route being present in the table doesn't guarantee end-to-end reachability. Common remaining causes are an unreachable next hop (203.0.113.1) or missing NAT/PAT translation for internal private addresses going to the internet."
+          "explanation": "A default route being present in the table does not guarantee end-to-end reachability. Common remaining causes are an unreachable next hop or missing NAT/PAT translation for internal private addresses."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The default route mask must be 255.255.255.255, not 0.0.0.0 reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "0.0.0.0/0 is the correct mask for a default route — the issue is next-hop reachability or missing NAT, not the mask value.",
+            "misconceptionTested": "Believing default route needs /32 mask",
             "whatItDoes": "The default route mask must be 255.255.255.255, not 0.0.0.0 describes a mechanism that could sound plausible for default route troubleshooting.",
-            "whyWrongHere": "Given default route troubleshooting, 203.0.113.1 itself may be unreachable, or NAT is not configured for the internal hosts matches the tested behavior — The default route mask must be 255.255.255.255, not 0.0.0.0 applies a different mechanism.",
-            "misconceptionTested": "Treating the default route as a normal match"
+            "whyWrongHere": "Given default route troubleshooting, 203.0.113.1 itself may be unreachable, or NAT is not configured for the internal hosts matches the tested behavior — The default route mask must be 255.255.255.255, not 0.0.0.0 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Default routes are not supported on edge routers reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "Edge routers commonly use default routes — the problem is usually unreachable next-hop or no NAT for private hosts.",
+            "misconceptionTested": "Claiming default routes unsupported on edge routers",
             "whatItDoes": "Default routes are not supported on edge routers describes a mechanism that could sound plausible for default route troubleshooting.",
-            "whyWrongHere": "Given default route troubleshooting, 203.0.113.1 itself may be unreachable, or NAT is not configured for the internal hosts matches the tested behavior — Default routes are not supported on edge routers applies a different mechanism.",
-            "misconceptionTested": "Treating the default route as a normal match"
+            "whyWrongHere": "Given default route troubleshooting, 203.0.113.1 itself may be unreachable, or NAT is not configured for the internal hosts matches the tested behavior — Default routes are not supported on edge routers applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The route needs to be redistributed into OSPF before it can be used reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "Static default routes work without OSPF redistribution — verify next-hop reachability and NAT for internet access.",
+            "misconceptionTested": "Requiring OSPF redistribution for static default",
             "whatItDoes": "The route needs to be redistributed into OSPF before it can be used describes a mechanism that could sound plausible for default route troubleshooting.",
-            "whyWrongHere": "Given default route troubleshooting, 203.0.113.1 itself may be unreachable, or NAT is not configured for the internal hosts matches the tested behavior — The route needs to be redistributed into OSPF before it can be used applies a different mechanism.",
-            "misconceptionTested": "Treating the default route as a normal match"
+            "whyWrongHere": "Given default route troubleshooting, 203.0.113.1 itself may be unreachable, or NAT is not configured for the internal hosts matches the tested behavior — The route needs to be redistributed into OSPF before it can be used applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
+        "examTip": "Default route in table but no internet → next-hop up + NAT."
       }
     },
     {
@@ -25254,32 +25254,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "show ip ospf neighbor shows the state of OSPF adjacencies (e.g., FULL). If R1 and R2 haven't formed a FULL adjacency, R1 won't receive R2's routes regardless of what show ip route ospf shows."
+          "explanation": "show ip ospf neighbor shows the state of OSPF adjacencies (e.g., FULL). If R1 and R2 have not formed a FULL adjacency, R1 will not receive R2 routes."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "show ip route ospf describes a mechanism that could sound plausible for OSPF adjacency troubleshooting. Given OSPF adjacency troubleshooting, show ip ospf neighbor matches the tested behavior — show ip route ospf applies a different mechanism.",
+            "explanation": "show ip route ospf lists learned routes — if adjacency never formed, this shows nothing useful for confirming neighbor state.",
+            "misconceptionTested": "Checking OSPF routes before confirming neighbor adjacency",
             "whatItDoes": "show ip route ospf describes a mechanism that could sound plausible for OSPF adjacency troubleshooting.",
-            "whyWrongHere": "Given OSPF adjacency troubleshooting, show ip ospf neighbor matches the tested behavior — show ip route ospf applies a different mechanism.",
-            "misconceptionTested": "Applying \"show ip route ospf\" without matching OSPF adjacency troubleshooting"
+            "whyWrongHere": "Given OSPF adjacency troubleshooting, show ip ospf neighbor matches the tested behavior — show ip route ospf applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "show ip interface brief describes a mechanism that could sound plausible for OSPF adjacency troubleshooting. Given OSPF adjacency troubleshooting, show ip ospf neighbor matches the tested behavior — show ip interface brief applies a different mechanism.",
+            "explanation": "show ip interface brief shows up/down status — it does not confirm OSPF neighbor FULL state on a link.",
+            "misconceptionTested": "Using interface brief instead of OSPF neighbor table",
             "whatItDoes": "show ip interface brief describes a mechanism that could sound plausible for OSPF adjacency troubleshooting.",
-            "whyWrongHere": "Given OSPF adjacency troubleshooting, show ip ospf neighbor matches the tested behavior — show ip interface brief applies a different mechanism.",
-            "misconceptionTested": "Applying \"show ip interface brief\" without matching OSPF adjacency troubleshooting"
+            "whyWrongHere": "Given OSPF adjacency troubleshooting, show ip ospf neighbor matches the tested behavior — show ip interface brief applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "show vlan brief describes a mechanism that could sound plausible for OSPF adjacency troubleshooting. Given OSPF adjacency troubleshooting, show ip ospf neighbor matches the tested behavior — show vlan brief applies a different mechanism.",
+            "explanation": "show vlan brief is Layer 2 switching — OSPF neighbor verification requires show ip ospf neighbor.",
+            "misconceptionTested": "Checking VLAN brief for OSPF adjacency",
             "whatItDoes": "show vlan brief describes a mechanism that could sound plausible for OSPF adjacency troubleshooting.",
-            "whyWrongHere": "Given OSPF adjacency troubleshooting, show ip ospf neighbor matches the tested behavior — show vlan brief applies a different mechanism.",
-            "misconceptionTested": "Applying \"show vlan brief\" without matching OSPF adjacency troubleshooting"
+            "whyWrongHere": "Given OSPF adjacency troubleshooting, show ip ospf neighbor matches the tested behavior — show vlan brief applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Using a subnet mask in the network statement — OSPF network uses a WILDCARD mask (0.0.0.255 for /24)"
+        "examTip": "Missing OSPF routes → show ip ospf neighbor for FULL state."
       }
     }
   ],
@@ -46932,32 +46932,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands."
+          "explanation": "aaa new-model is the global configuration command that enables the AAA access-control model on the device."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "ip aaa enable describes a mechanism that could sound plausible for aaa new-model. Given aaa new-model, aaa new-model matches the tested behavior — ip aaa enable applies a different mechanism.",
+            "explanation": "ip aaa enable is not valid IOS syntax — AAA begins with aaa new-model before authentication/authorization lines.",
+            "misconceptionTested": "Inventing ip aaa enable as AAA prerequisite",
             "whatItDoes": "ip aaa enable describes a mechanism that could sound plausible for aaa new-model.",
-            "whyWrongHere": "Given aaa new-model, aaa new-model matches the tested behavior — ip aaa enable applies a different mechanism.",
-            "misconceptionTested": "Applying \"ip aaa enable\" without matching aaa new-model"
+            "whyWrongHere": "Given aaa new-model, aaa new-model matches the tested behavior — ip aaa enable applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "service aaa describes a mechanism that could sound plausible for aaa new-model. Given aaa new-model, aaa new-model matches the tested behavior — service aaa applies a different mechanism.",
+            "explanation": "service aaa does not exist as the AAA enabler — use aaa new-model in global configuration.",
+            "misconceptionTested": "Using service aaa instead of aaa new-model",
             "whatItDoes": "service aaa describes a mechanism that could sound plausible for aaa new-model.",
-            "whyWrongHere": "Given aaa new-model, aaa new-model matches the tested behavior — service aaa applies a different mechanism.",
-            "misconceptionTested": "Applying \"service aaa\" without matching aaa new-model"
+            "whyWrongHere": "Given aaa new-model, aaa new-model matches the tested behavior — service aaa applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "aaa start describes a mechanism that could sound plausible for aaa new-model. Given aaa new-model, aaa new-model matches the tested behavior — aaa start applies a different mechanism.",
+            "explanation": "aaa start is not the IOS command — aaa new-model must be configured before any aaa authentication lines take effect.",
+            "misconceptionTested": "Choosing aaa start as AAA enabler",
             "whatItDoes": "aaa start describes a mechanism that could sound plausible for aaa new-model.",
-            "whyWrongHere": "Given aaa new-model, aaa new-model matches the tested behavior — aaa start applies a different mechanism.",
-            "misconceptionTested": "Applying \"aaa start\" without matching aaa new-model"
+            "whyWrongHere": "Given aaa new-model, aaa new-model matches the tested behavior — aaa start applies a different mechanism."
           }
         ],
-        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
+        "examTip": "Before any AAA lines → aaa new-model in global config."
       }
     },
     {
@@ -47229,32 +47229,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Segmentation divides a network into smaller zones with controlled boundaries, so that if one segment is compromised, an attacker's ability to move laterally to other segments is restricted."
+          "explanation": "Segmentation divides a network into smaller zones with controlled boundaries, restricting lateral movement after compromise."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "It increases the total bandwidth available to every device describes a mechanism that could sound plausible for segmentation purpose. Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It increases the total bandwidth available to every device applies a different mechanism.",
+            "explanation": "Segmentation controls blast radius — it does not increase total bandwidth available to every device.",
+            "misconceptionTested": "Choosing bandwidth gain as primary segmentation benefit",
             "whatItDoes": "It increases the total bandwidth available to every device describes a mechanism that could sound plausible for segmentation purpose.",
-            "whyWrongHere": "Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It increases the total bandwidth available to every device applies a different mechanism.",
-            "misconceptionTested": "Applying \"It increases the total bandwidth ava\" without matching segmentation purpose"
+            "whyWrongHere": "Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It increases the total bandwidth available to every device applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "It eliminates the need for firewalls describes a mechanism that could sound plausible for segmentation purpose. Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It eliminates the need for firewalls applies a different mechanism.",
+            "explanation": "Segmentation complements firewalls — it does not eliminate the need for policy enforcement between zones.",
+            "misconceptionTested": "Believing segmentation removes firewall need",
             "whatItDoes": "It eliminates the need for firewalls describes a mechanism that could sound plausible for segmentation purpose.",
-            "whyWrongHere": "Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It eliminates the need for firewalls applies a different mechanism.",
-            "misconceptionTested": "Applying \"It eliminates the need for firewalls\" without matching segmentation purpose"
+            "whyWrongHere": "Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It eliminates the need for firewalls applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "It automatically encrypts all traffic on the network describes a mechanism that could sound plausible for segmentation purpose. Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It automatically encrypts all traffic on the network applies a different mechanism.",
+            "explanation": "VLANs segment broadcast domains but do not automatically encrypt traffic — encryption requires explicit protocols.",
+            "misconceptionTested": "Expecting automatic encryption from segmentation",
             "whatItDoes": "It automatically encrypts all traffic on the network describes a mechanism that could sound plausible for segmentation purpose.",
-            "whyWrongHere": "Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It automatically encrypts all traffic on the network applies a different mechanism.",
-            "misconceptionTested": "Applying \"It automatically encrypts all traffi\" without matching segmentation purpose"
+            "whyWrongHere": "Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It automatically encrypts all traffic on the network applies a different mechanism."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Segmentation limits lateral movement after breach."
       }
     },
     {
@@ -47525,32 +47525,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Zero trust rejects the older model of \"trusted inside, untrusted outside.\" Every access request is verified based on identity and policy, regardless of network location — segmentation/microsegmentation is a key enabler of enforcing this."
+          "explanation": "Zero trust rejects trusted-inside/untrusted-outside — every access request is verified regardless of network location."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Once a device is on the internal network, it is trusted to access anything describes a mechanism that could sound plausible for zero trust. Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Once a device is on the internal network, it is trusted to access anything applies a different mechanism.",
+            "explanation": "Zero trust explicitly denies implicit internal trust — location inside the perimeter does not grant automatic access.",
+            "misconceptionTested": "Trusting all internal devices by default",
             "whatItDoes": "Once a device is on the internal network, it is trusted to access anything describes a mechanism that could sound plausible for zero trust.",
-            "whyWrongHere": "Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Once a device is on the internal network, it is trusted to access anything applies a different mechanism.",
-            "misconceptionTested": "Applying \"Once a device is on the internal net\" without matching zero trust"
+            "whyWrongHere": "Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Once a device is on the internal network, it is trusted to access anything applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Zero trust means no authentication is required for internal traffic describes a mechanism that could sound plausible for zero trust. Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Zero trust means no authentication is required for internal traffic applies a different mechanism.",
+            "explanation": "Zero trust increases verification — it does not remove authentication for internal traffic.",
+            "misconceptionTested": "Believing zero trust means no internal authentication",
             "whatItDoes": "Zero trust means no authentication is required for internal traffic describes a mechanism that could sound plausible for zero trust.",
-            "whyWrongHere": "Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Zero trust means no authentication is required for internal traffic applies a different mechanism.",
-            "misconceptionTested": "Applying \"Zero trust means no authentication i\" without matching zero trust"
+            "whyWrongHere": "Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Zero trust means no authentication is required for internal traffic applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Zero trust applies only to wireless networks describes a mechanism that could sound plausible for zero trust. Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Zero trust applies only to wireless networks applies a different mechanism.",
+            "explanation": "Zero trust applies to wired and wireless — it is a security model for all access, not wireless-only.",
+            "misconceptionTested": "Limiting zero trust to wireless networks",
             "whatItDoes": "Zero trust applies only to wireless networks describes a mechanism that could sound plausible for zero trust.",
-            "whyWrongHere": "Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Zero trust applies only to wireless networks applies a different mechanism.",
-            "misconceptionTested": "Applying \"Zero trust applies only to wireless \" without matching zero trust"
+            "whyWrongHere": "Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Zero trust applies only to wireless networks applies a different mechanism."
           }
         ],
-        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
+        "examTip": "Zero trust = verify every request — no implicit LAN trust."
       }
     },
     {

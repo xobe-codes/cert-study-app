@@ -26,32 +26,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Segmentation divides a network into smaller zones with controlled boundaries, so that if one segment is compromised, an attacker's ability to move laterally to other segments is restricted."
+          "explanation": "Segmentation divides a network into smaller zones with controlled boundaries, restricting lateral movement after compromise."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "It increases the total bandwidth available to every device describes a mechanism that could sound plausible for segmentation purpose. Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It increases the total bandwidth available to every device applies a different mechanism.",
+            "explanation": "Segmentation controls blast radius — it does not increase total bandwidth available to every device.",
+            "misconceptionTested": "Choosing bandwidth gain as primary segmentation benefit",
             "whatItDoes": "It increases the total bandwidth available to every device describes a mechanism that could sound plausible for segmentation purpose.",
-            "whyWrongHere": "Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It increases the total bandwidth available to every device applies a different mechanism.",
-            "misconceptionTested": "Applying \"It increases the total bandwidth ava\" without matching segmentation purpose"
+            "whyWrongHere": "Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It increases the total bandwidth available to every device applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "It eliminates the need for firewalls describes a mechanism that could sound plausible for segmentation purpose. Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It eliminates the need for firewalls applies a different mechanism.",
+            "explanation": "Segmentation complements firewalls — it does not eliminate the need for policy enforcement between zones.",
+            "misconceptionTested": "Believing segmentation removes firewall need",
             "whatItDoes": "It eliminates the need for firewalls describes a mechanism that could sound plausible for segmentation purpose.",
-            "whyWrongHere": "Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It eliminates the need for firewalls applies a different mechanism.",
-            "misconceptionTested": "Applying \"It eliminates the need for firewalls\" without matching segmentation purpose"
+            "whyWrongHere": "Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It eliminates the need for firewalls applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "It automatically encrypts all traffic on the network describes a mechanism that could sound plausible for segmentation purpose. Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It automatically encrypts all traffic on the network applies a different mechanism.",
+            "explanation": "VLANs segment broadcast domains but do not automatically encrypt traffic — encryption requires explicit protocols.",
+            "misconceptionTested": "Expecting automatic encryption from segmentation",
             "whatItDoes": "It automatically encrypts all traffic on the network describes a mechanism that could sound plausible for segmentation purpose.",
-            "whyWrongHere": "Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It automatically encrypts all traffic on the network applies a different mechanism.",
-            "misconceptionTested": "Applying \"It automatically encrypts all traffi\" without matching segmentation purpose"
+            "whyWrongHere": "Given segmentation purpose, It limits the scope of a security breach by restricting lateral movement between segments matches the tested behavior — It automatically encrypts all traffic on the network applies a different mechanism."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Segmentation limits lateral movement after breach."
       }
     },
     {
@@ -322,32 +322,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Zero trust rejects the older model of \"trusted inside, untrusted outside.\" Every access request is verified based on identity and policy, regardless of network location — segmentation/microsegmentation is a key enabler of enforcing this."
+          "explanation": "Zero trust rejects trusted-inside/untrusted-outside — every access request is verified regardless of network location."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Once a device is on the internal network, it is trusted to access anything describes a mechanism that could sound plausible for zero trust. Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Once a device is on the internal network, it is trusted to access anything applies a different mechanism.",
+            "explanation": "Zero trust explicitly denies implicit internal trust — location inside the perimeter does not grant automatic access.",
+            "misconceptionTested": "Trusting all internal devices by default",
             "whatItDoes": "Once a device is on the internal network, it is trusted to access anything describes a mechanism that could sound plausible for zero trust.",
-            "whyWrongHere": "Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Once a device is on the internal network, it is trusted to access anything applies a different mechanism.",
-            "misconceptionTested": "Applying \"Once a device is on the internal net\" without matching zero trust"
+            "whyWrongHere": "Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Once a device is on the internal network, it is trusted to access anything applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Zero trust means no authentication is required for internal traffic describes a mechanism that could sound plausible for zero trust. Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Zero trust means no authentication is required for internal traffic applies a different mechanism.",
+            "explanation": "Zero trust increases verification — it does not remove authentication for internal traffic.",
+            "misconceptionTested": "Believing zero trust means no internal authentication",
             "whatItDoes": "Zero trust means no authentication is required for internal traffic describes a mechanism that could sound plausible for zero trust.",
-            "whyWrongHere": "Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Zero trust means no authentication is required for internal traffic applies a different mechanism.",
-            "misconceptionTested": "Applying \"Zero trust means no authentication i\" without matching zero trust"
+            "whyWrongHere": "Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Zero trust means no authentication is required for internal traffic applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Zero trust applies only to wireless networks describes a mechanism that could sound plausible for zero trust. Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Zero trust applies only to wireless networks applies a different mechanism.",
+            "explanation": "Zero trust applies to wired and wireless — it is a security model for all access, not wireless-only.",
+            "misconceptionTested": "Limiting zero trust to wireless networks",
             "whatItDoes": "Zero trust applies only to wireless networks describes a mechanism that could sound plausible for zero trust.",
-            "whyWrongHere": "Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Zero trust applies only to wireless networks applies a different mechanism.",
-            "misconceptionTested": "Applying \"Zero trust applies only to wireless \" without matching zero trust"
+            "whyWrongHere": "Given zero trust, No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the tested behavior — Zero trust applies only to wireless networks applies a different mechanism."
           }
         ],
-        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
+        "examTip": "Zero trust = verify every request — no implicit LAN trust."
       }
     },
     {

@@ -1,4 +1,4 @@
-/** Curated trap-drill MC — 3 questions per top trap CKU (135 total). */
+/** Curated trap-drill MC — 3 questions per top trap CKU (150 total). */
 
 export const TRAP_DRILL_CKUS = [
   {
@@ -225,6 +225,31 @@ export const TRAP_DRILL_CKUS = [
     ckuId: 'CKU-JSON-ANSIBLE',
     trapLabel: 'Thinking Ansible requires an agent on Cisco IOS.',
     objectiveId: '6.6',
+  },
+  {
+    ckuId: 'CKU-FLOATING-STATIC',
+    trapLabel: 'A floating static needs AD HIGHER than the dynamic protocol.',
+    objectiveId: '3.3',
+  },
+  {
+    ckuId: 'CKU-PASSIVE-INTERFACE',
+    trapLabel: '`passive-interface` advertises a network but stops hellos.',
+    objectiveId: '3.4',
+  },
+  {
+    ckuId: 'CKU-LOAD-BALANCING',
+    trapLabel: 'Assuming only the first equal-cost route is installed.',
+    objectiveId: '3.6',
+  },
+  {
+    ckuId: 'CKU-NETWORK-MASK',
+    trapLabel: 'Using a subnet mask in the OSPF `network` command.',
+    objectiveId: '3.4',
+  },
+  {
+    ckuId: 'CKU-OSPF-NEIGHBOR',
+    trapLabel: 'Expecting DR/BDR on point-to-point links.',
+    objectiveId: '3.4',
   },
 ]
 
@@ -1793,6 +1818,86 @@ const QUESTIONS = [
     id: 'trap-ansible-3', ckuId: 'CKU-JSON-ANSIBLE', trapLabel: 'Thinking Ansible requires an agent on Cisco IOS.', objectiveId: '6.6',
     question: 'Puppet/Chef on network devices often differ from Ansible because they…', choices: ['Never use YAML', 'Use agent-based pull models on managed nodes', 'Cannot configure VLANs', 'Require WEP'],
     correctIndex: 1, explanation: 'Puppet/Chef agents check in to a master; Ansible pushes over SSH without an agent.', type: 'definition', concept: 'automation',
+  },
+  // CKU-FLOATING-STATIC (3)
+  {
+    id: 'trap-float-1', ckuId: 'CKU-FLOATING-STATIC', trapLabel: 'A floating static needs AD HIGHER than the dynamic protocol.', objectiveId: '3.3',
+    question: 'R1 learns 10.0.0.0/8 via OSPF (AD 110). Which static backup installs only when OSPF fails?', choices: ['`ip route 10.0.0.0 255.0.0.0 192.168.1.1 90`', '`ip route 10.0.0.0 255.0.0.0 192.168.1.1 130`', '`ip route 10.0.0.0 0.255.255.255 192.168.1.1`', '`ip route 0.0.0.0 0.0.0.0 192.168.1.1`'],
+    correctIndex: 1, explanation: 'AD 130 is higher than OSPF AD 110 — the static is backup-only. AD 90 would always beat OSPF.', type: 'application', concept: 'static-routing',
+  },
+  {
+    id: 'trap-float-2', ckuId: 'CKU-FLOATING-STATIC', trapLabel: 'A floating static needs AD HIGHER than the dynamic protocol.', objectiveId: '3.3',
+    question: 'A floating static to back up EIGRP (AD 90) should use administrative distance…', choices: ['Lower than 90', 'Exactly 90', 'Higher than 90 (e.g. 120)', '255 only'],
+    correctIndex: 2, explanation: 'Floating statics must float above the primary protocol AD — lower AD would become primary.', type: 'definition', concept: 'static-routing',
+  },
+  {
+    id: 'trap-float-3', ckuId: 'CKU-FLOATING-STATIC', trapLabel: 'A floating static needs AD HIGHER than the dynamic protocol.', objectiveId: '3.3',
+    question: 'OSPF route to 172.16.0.0/16 is active. A static `ip route 172.16.0.0 255.255.0.0 10.1.1.1 1` also exists. Which is used?', choices: ['The static (AD 1)', 'OSPF (AD 110)', 'Both load-balanced', 'Neither — conflict'],
+    correctIndex: 0, explanation: 'Lowest AD wins for the same prefix length — AD 1 static beats OSPF even if you intended a backup.', type: 'scenario', concept: 'static-routing',
+  },
+  // CKU-PASSIVE-INTERFACE (3)
+  {
+    id: 'trap-passive-1', ckuId: 'CKU-PASSIVE-INTERFACE', trapLabel: '`passive-interface` advertises a network but stops hellos.', objectiveId: '3.4',
+    question: 'Gi0/0 faces user PCs; you want OSPF to advertise the subnet but not form neighbors with hosts. What do you configure?', choices: ['`shutdown` on Gi0/0', '`passive-interface Gi0/0` under router ospf', '`no ip ospf network`', '`ip ospf priority 0` on PCs'],
+    correctIndex: 1, explanation: 'Passive-interface advertises the prefix into OSPF but suppresses hellos on that interface.', type: 'application', concept: 'ospf',
+  },
+  {
+    id: 'trap-passive-2', ckuId: 'CKU-PASSIVE-INTERFACE', trapLabel: '`passive-interface` advertises a network but stops hellos.', objectiveId: '3.4',
+    question: 'After `passive-interface default` and `no passive-interface Gi0/1`, which interfaces send OSPF hellos?', choices: ['None — default blocks all', 'Only Gi0/1', 'All except Gi0/1', 'Only loopbacks'],
+    correctIndex: 1, explanation: 'Passive default silences all; `no passive-interface` re-enables hellos on listed interfaces only.', type: 'application', concept: 'ospf',
+  },
+  {
+    id: 'trap-passive-3', ckuId: 'CKU-PASSIVE-INTERFACE', trapLabel: '`passive-interface` advertises a network but stops hellos.', objectiveId: '3.4',
+    question: 'A LAN interface is OSPF passive. `show ip ospf interface` still lists the network. Why?', choices: ['Passive removes the network from OSPF', 'Passive stops hellos but the subnet is still advertised', 'OSPF is broken', 'DR election failed'],
+    correctIndex: 1, explanation: 'Passive does not withdraw the prefix — it only stops multicast hellos toward connected hosts.', type: 'scenario', concept: 'ospf',
+  },
+  // CKU-LOAD-BALANCING (3)
+  {
+    id: 'trap-ecmp-1', ckuId: 'CKU-LOAD-BALANCING', trapLabel: 'Assuming only the first equal-cost route is installed.', objectiveId: '3.6',
+    question: 'Two static routes to 10.10.10.0/24 via 10.0.0.1 and 10.0.0.2 share the same AD. What does the routing table show?', choices: ['Only the first configured route', 'Both next-hops installed for equal-cost load balancing', 'Router rejects the duplicate', 'Higher next-hop IP wins'],
+    correctIndex: 1, explanation: 'Equal AD and cost statics both install — IOS load-balances per destination (or per packet).', type: 'scenario', concept: 'routing',
+  },
+  {
+    id: 'trap-ecmp-2', ckuId: 'CKU-LOAD-BALANCING', trapLabel: 'Assuming only the first equal-cost route is installed.', objectiveId: '3.6',
+    question: 'OSPF shows two paths to 192.168.50.0/24 with identical total cost. How are they treated?', choices: ['Only lowest Router ID path is used', 'Both paths are in the table for ECMP', 'OSPF picks one at random permanently', 'BDR blocks the second path'],
+    correctIndex: 1, explanation: 'OSPF installs multiple equal-cost routes (up to platform max) when SPF finds ties.', type: 'definition', concept: 'ospf',
+  },
+  {
+    id: 'trap-ecmp-3', ckuId: 'CKU-LOAD-BALANCING', trapLabel: 'Assuming only the first equal-cost route is installed.', objectiveId: '3.6',
+    question: 'You add a second static default via a different ISP with the same AD as the first. Expected forwarding behavior?', choices: ['First default only', 'Traffic may share across both defaults (ECMP)', 'Router enters err-disabled', 'AD automatically increments on the second route'],
+    correctIndex: 1, explanation: 'Same prefix, same AD → multiple next-hops install unless you raise AD on one to prefer a primary.', type: 'application', concept: 'routing',
+  },
+  // CKU-NETWORK-MASK (3)
+  {
+    id: 'trap-netmask-1', ckuId: 'CKU-NETWORK-MASK', trapLabel: 'Using a subnet mask in the OSPF `network` command.', objectiveId: '3.4',
+    question: 'Which OSPF network statement correctly enables 192.168.1.0/24 in area 0?', choices: ['`network 192.168.1.0 255.255.255.0 area 0`', '`network 192.168.1.0 0.0.0.255 area 0`', '`network 192.168.1.0 0.255.255.255 area 0`', '`network 0.0.0.0 255.255.255.0 area 0`'],
+    correctIndex: 1, explanation: 'OSPF `network` uses a wildcard (inverse) mask — /24 = 0.0.0.255, not 255.255.255.0.', type: 'application', concept: 'ospf',
+  },
+  {
+    id: 'trap-netmask-2', ckuId: 'CKU-NETWORK-MASK', trapLabel: 'Using a subnet mask in the OSPF `network` command.', objectiveId: '3.4',
+    question: '`network 10.0.0.0 255.0.0.0 area 1` is entered under `router ospf 1`. What is wrong?', choices: ['Area 1 cannot be used', 'Second octet should be wildcard 0.255.255.255, not subnet mask 255.0.0.0', 'Process ID must match area', '10.0.0.0 requires area 0'],
+    correctIndex: 1, explanation: '255.0.0.0 is a subnet mask — OSPF expects wildcard 0.255.255.255 for 10.0.0.0/8.', type: 'troubleshooting', concept: 'ospf',
+  },
+  {
+    id: 'trap-netmask-3', ckuId: 'CKU-NETWORK-MASK', trapLabel: 'Using a subnet mask in the OSPF `network` command.', objectiveId: '3.4',
+    question: 'To match every interface on a router with one OSPF statement, which wildcard is correct?', choices: ['`network 0.0.0.0 255.255.255.255 area 0`', '`network 0.0.0.0 0.0.0.0 area 0`', '`network 255.255.255.255 0.0.0.0 area 0`', '`network any any area 0`'],
+    correctIndex: 0, explanation: 'Wildcard 255.255.255.255 matches all addresses — the inverse of a /0 mask.', type: 'application', concept: 'ospf',
+  },
+  // CKU-OSPF-NEIGHBOR (3)
+  {
+    id: 'trap-ospf-nbr-1', ckuId: 'CKU-OSPF-NEIGHBOR', trapLabel: 'Expecting DR/BDR on point-to-point links.', objectiveId: '3.4',
+    question: 'On a serial point-to-point OSPF link, what DR/BDR roles exist?', choices: ['DR and BDR are elected', 'No DR/BDR — point-to-point adjacency only', 'BDR only', 'DR on the higher bandwidth side'],
+    correctIndex: 1, explanation: 'Point-to-point networks skip DR/BDR election — neighbors go straight to Full.', type: 'definition', concept: 'ospf',
+  },
+  {
+    id: 'trap-ospf-nbr-2', ckuId: 'CKU-OSPF-NEIGHBOR', trapLabel: 'Expecting DR/BDR on point-to-point links.', objectiveId: '3.4',
+    question: 'Four routers on a multi-access Ethernet segment. R3 has priority 200, highest RID. R4 has priority 0. Who becomes DR?', choices: ['R4 (priority 0 is special)', 'R3 (highest priority)', 'Lowest IP address', 'First router to boot'],
+    correctIndex: 1, explanation: 'Highest OSPF priority wins DR election; priority 0 never becomes DR/BDR.', type: 'scenario', concept: 'ospf',
+  },
+  {
+    id: 'trap-ospf-nbr-3', ckuId: 'CKU-OSPF-NEIGHBOR', trapLabel: 'Expecting DR/BDR on point-to-point links.', objectiveId: '3.4',
+    question: 'Two OSPF routers on Ethernet tie on priority 1. Tie-breaker for DR is…', choices: ['Lowest MAC', 'Highest Router ID', 'Lowest interface IP', 'Random selection'],
+    correctIndex: 1, explanation: 'Equal priority → highest Router ID becomes DR; second highest becomes BDR.', type: 'application', concept: 'ospf',
   },
 ]
 

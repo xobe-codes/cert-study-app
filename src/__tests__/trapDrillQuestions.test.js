@@ -7,9 +7,9 @@ import {
 } from '../features/trapDrill/trapDrillQuestions.js'
 
 describe('trapDrillQuestions', () => {
-  it('defines 45 trap CKUs with 3 questions each (135 total)', () => {
-    expect(TRAP_DRILL_CKUS).toHaveLength(45)
-    expect(getAllTrapDrillQuestions()).toHaveLength(135)
+  it('defines 50 trap CKUs with 3 questions each (150 total)', () => {
+    expect(TRAP_DRILL_CKUS).toHaveLength(50)
+    expect(getAllTrapDrillQuestions()).toHaveLength(150)
   })
 
   it('returns 3 questions per CKU by id', () => {
@@ -62,5 +62,21 @@ describe('trapDrillQuestions', () => {
       'CKU-JSON-ANSIBLE',
       'CKU-DNA',
     ]))
+  })
+
+  it('includes domain-3 wave trap topics: floating static, passive-if, ECMP, OSPF neighbor', () => {
+    const ids = TRAP_DRILL_CKUS.map(c => c.ckuId)
+    expect(ids).toEqual(expect.arrayContaining([
+      'CKU-FLOATING-STATIC',
+      'CKU-PASSIVE-INTERFACE',
+      'CKU-LOAD-BALANCING',
+      'CKU-NETWORK-MASK',
+      'CKU-OSPF-NEIGHBOR',
+    ]))
+    for (const ckuId of ['CKU-FLOATING-STATIC', 'CKU-PASSIVE-INTERFACE', 'CKU-LOAD-BALANCING']) {
+      const qs = getTrapDrillQuestions({ ckuId })
+      expect(qs, ckuId).toHaveLength(3)
+      expect(qs.every(q => q.objectiveId.startsWith('3.'))).toBe(true)
+    }
   })
 })
