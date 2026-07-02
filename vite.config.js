@@ -122,13 +122,24 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
+          // React must be a single shared chunk — broad /lab/ and MockExam splits caused
+          // index.js to import lazy chunks at startup with undefined React (blank screen).
+          if (id.includes('node_modules/react-dom') || id.includes('node_modules/react/')) {
+            return 'vendor-react'
+          }
           if (id.includes('ccnaCleanQuestions')) return 'clean-questions'
           if (id.includes('ccnaShelvedQuestions')) return 'shelved-questions'
           if (id.includes('ccnaSkillQuestions')) return 'skill-questions'
-          if (id.includes('MockExam')) return 'mock-exam'
-          if (id.includes('/lab/') || id.includes('ccnaLabs')) return 'labs'
-          if (id.includes('ExtraStudyMode') || id.includes('ExamTrapStudyMode') || id.includes('RoutingDecoderMode')) return 'study-modes'
-          if (id.includes('TopicFocus') || id.includes('CommandHub') || id.includes('StudyLens')) return 'studios'
+          // Lazy route entry points only — not entire /lab/ tree (CLIDrillTab is eager in App).
+          if (id.endsWith('/MockExam.jsx')) return 'mock-exam'
+          if (id.endsWith('/lab/LabsHub.jsx') || id.endsWith('/lab/LabView.jsx')) return 'labs'
+          if (id.endsWith('/ExtraStudyMode.jsx') || id.endsWith('/ExamTrapStudyMode.jsx') || id.endsWith('/RoutingDecoderMode.jsx')) {
+            return 'study-modes'
+          }
+          if (id.endsWith('/TopicFocusStudio.jsx') || id.endsWith('/TopicFocusSession.jsx')
+            || id.endsWith('/CommandHubStudio.jsx') || id.endsWith('/StudyLensStudio.jsx')) {
+            return 'studios'
+          }
         },
       },
     },
