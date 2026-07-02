@@ -2,6 +2,25 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
+/** Reject SPA HTML fallbacks cached as JS/CSS (breaks module load → blank screen). */
+const rejectHtmlAsScript = {
+  cacheWillUpdate: async ({ response }) => {
+    const type = response.headers.get('content-type') || ''
+    if (/text\/html/i.test(type)) return null
+    return response
+  },
+}
+
+const chunkCacheGuard = {
+  cacheWillUpdate: async ({ response }) => {
+    const type = response.headers.get('content-type') || ''
+    if (/text\/html/i.test(type)) return null
+    const len = Number(response.headers.get('content-length') || 0)
+    if (len > 5 * 1024 * 1024) return null
+    return response
+  },
+}
+
 export default defineConfig({
   plugins: [
     react(),
@@ -10,11 +29,23 @@ export default defineConfig({
       includeAssets: ['icon-192.svg', 'manifest.webmanifest'],
       manifest: false,
       workbox: {
-        globPatterns: ['**/*.{html,css,ico,svg,webmanifest}', 'registerSW.js'],
+        // Do not precache index.html — stale shell + new hashed chunks = blank screen on mobile.
+        globPatterns: ['**/*.{css,ico,svg,webmanifest}', 'registerSW.js'],
         globIgnores: ['**/clean-questions*.js', '**/mock-exam*.js'],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
         navigateFallback: 'index.html',
+        navigateFallbackDenylist: [/^\/assets\//, /^\/api\//],
+        cleanupOutdatedCaches: true,
         runtimeCaching: [
+          {
+            urlPattern: ({ request }) => request.mode === 'navigate',
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'ccna-html',
+              networkTimeoutSeconds: 5,
+              plugins: [rejectHtmlAsScript],
+            },
+          },
           {
             urlPattern: /^https:\/\/master\.ccna-study-tool\.pages\.dev\/.*/i,
             handler: 'NetworkFirst',
@@ -27,13 +58,7 @@ export default defineConfig({
               cacheName: 'ccna-clean-questions',
               expiration: { maxEntries: 4, maxAgeSeconds: 60 * 60 * 24 * 30 },
               cacheableResponse: { statuses: [0, 200] },
-              plugins: [{
-                cacheWillUpdate: async ({ response }) => {
-                  const len = Number(response.headers.get('content-length') || 0)
-                  if (len > 5 * 1024 * 1024) return null
-                  return response
-                },
-              }],
+              plugins: [chunkCacheGuard],
             },
           },
           {
@@ -43,6 +68,7 @@ export default defineConfig({
               cacheName: 'ccna-mock-exam',
               expiration: { maxEntries: 4, maxAgeSeconds: 60 * 60 * 24 * 30 },
               cacheableResponse: { statuses: [0, 200] },
+              plugins: [rejectHtmlAsScript],
             },
           },
           {
@@ -52,6 +78,7 @@ export default defineConfig({
               cacheName: 'ccna-labs-chunk',
               expiration: { maxEntries: 4, maxAgeSeconds: 60 * 60 * 24 * 30 },
               cacheableResponse: { statuses: [0, 200] },
+              plugins: [rejectHtmlAsScript],
             },
           },
           {
@@ -61,6 +88,7 @@ export default defineConfig({
               cacheName: 'ccna-study-modes',
               expiration: { maxEntries: 4, maxAgeSeconds: 60 * 60 * 24 * 30 },
               cacheableResponse: { statuses: [0, 200] },
+              plugins: [rejectHtmlAsScript],
             },
           },
           {
@@ -70,6 +98,7 @@ export default defineConfig({
               cacheName: 'ccna-studios',
               expiration: { maxEntries: 4, maxAgeSeconds: 60 * 60 * 24 * 30 },
               cacheableResponse: { statuses: [0, 200] },
+              plugins: [rejectHtmlAsScript],
             },
           },
           {
@@ -79,6 +108,7 @@ export default defineConfig({
               cacheName: 'ccna-chunks',
               networkTimeoutSeconds: 5,
               expiration: { maxEntries: 80, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              plugins: [rejectHtmlAsScript],
             },
           },
         ],

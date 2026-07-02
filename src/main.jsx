@@ -49,8 +49,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </React.StrictMode>,
 )
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(() => {})
-  })
+// registerSW.js (injected by vite-plugin-pwa) handles SW registration.
+// Purge legacy hand-written SW caches that could serve stale index.html shells.
+if ('caches' in window) {
+  caches.keys().then((keys) => {
+    for (const key of keys) {
+      if (key === 'ccna-curated-v3') caches.delete(key)
+    }
+  }).catch(() => {})
 }
