@@ -10,6 +10,6 @@ test.describe('Trap drill smoke', () => {
 
     await page.goto('/#/trapdrill')
     await expect(page.getByText(/high-frequency exam traps/i)).toBeVisible({ timeout: 20_000 })
-    await expect(page.getByText(/55 high-frequency exam traps/i)).toBeVisible({ timeout: 10_000 })
+    await expect(page.getByText(/60 high-frequency exam traps/i)).toBeVisible({ timeout: 10_000 })
   })
 })

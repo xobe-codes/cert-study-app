@@ -187,35 +187,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Trap message\"."
+          "explanation": "SNMP trap messages are unsolicited alerts sent from the agent to the NMS when an event occurs (e.g., interface down)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Get-request message describes a mechanism that could sound plausible for an interface goes down. Given an interface goes down, Trap message matches the tested behavior — Get-request message applies a different mechanism.",
+            "explanation": "Get-request is polled by the NMS — traps are agent-initiated without a prior poll when link state changes.",
+            "misconceptionTested": "Using Get-request for unsolicited interface-down alert",
             "whatItDoes": "Get-request message describes a mechanism that could sound plausible for an interface goes down.",
-            "whyWrongHere": "Given an interface goes down, Trap message matches the tested behavior — Get-request message applies a different mechanism.",
-            "misconceptionTested": "Applying \"Get-request message\" without matching snmp",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given an interface goes down, Trap message matches the tested behavior — Get-request message applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Get-response message describes a mechanism that could sound plausible for an interface goes down. Given an interface goes down, Trap message matches the tested behavior — Get-response message applies a different mechanism.",
+            "explanation": "Get-response replies to a Get-request — interface-down notification is an autonomous trap, not a poll response.",
+            "misconceptionTested": "Selecting Get-response for agent-initiated alert",
             "whatItDoes": "Get-response message describes a mechanism that could sound plausible for an interface goes down.",
-            "whyWrongHere": "Given an interface goes down, Trap message matches the tested behavior — Get-response message applies a different mechanism.",
-            "misconceptionTested": "Applying \"Get-response message\" without matching snmp",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given an interface goes down, Trap message matches the tested behavior — Get-response message applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Set-request message describes a mechanism that could sound plausible for an interface goes down. Given an interface goes down, Trap message matches the tested behavior — Set-request message applies a different mechanism.",
+            "explanation": "Set-request writes a value from the NMS — link-down events generate traps, not Set operations.",
+            "misconceptionTested": "Expecting Set-request for link-down notification",
             "whatItDoes": "Set-request message describes a mechanism that could sound plausible for an interface goes down.",
-            "whyWrongHere": "Given an interface goes down, Trap message matches the tested behavior — Set-request message applies a different mechanism.",
-            "misconceptionTested": "Applying \"Set-request message\" without matching snmp",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given an interface goes down, Trap message matches the tested behavior — Set-request message applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for snmp before picking a familiar-sounding wrong term."
+        "examTip": "Agent pushes event to NMS without poll → SNMP trap (or inform with ack)."
       }
     },
     {

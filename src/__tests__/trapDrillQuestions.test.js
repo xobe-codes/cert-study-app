@@ -7,9 +7,9 @@ import {
 } from '../features/trapDrill/trapDrillQuestions.js'
 
 describe('trapDrillQuestions', () => {
-  it('defines 55 trap CKUs with 3 questions each (165 total)', () => {
-    expect(TRAP_DRILL_CKUS).toHaveLength(55)
-    expect(getAllTrapDrillQuestions()).toHaveLength(165)
+  it('defines 60 trap CKUs with 3 questions each (180 total)', () => {
+    expect(TRAP_DRILL_CKUS).toHaveLength(60)
+    expect(getAllTrapDrillQuestions()).toHaveLength(180)
   })
 
   it('returns 3 questions per CKU by id', () => {
@@ -93,6 +93,21 @@ describe('trapDrillQuestions', () => {
       const qs = getTrapDrillQuestions({ ckuId })
       expect(qs, ckuId).toHaveLength(3)
       expect(qs.every(q => q.objectiveId.startsWith('2.'))).toBe(true)
+    }
+  })
+
+  it('includes wave-4 trap topics: CAPWAP, DNS records, NTP stratum, extended ACL, DHCP snooping', () => {
+    const ids = TRAP_DRILL_CKUS.map(c => c.ckuId)
+    expect(ids).toEqual(expect.arrayContaining([
+      'CKU-CAPWAP',
+      'CKU-DNS-RECORDS',
+      'CKU-NTP-STRATUM',
+      'CKU-EXTENDED-ACL',
+      'CKU-DHCP-SNOOPING',
+    ]))
+    for (const ckuId of ['CKU-CAPWAP', 'CKU-DNS-RECORDS', 'CKU-NTP-STRATUM', 'CKU-EXTENDED-ACL', 'CKU-DHCP-SNOOPING']) {
+      const qs = getTrapDrillQuestions({ ckuId })
+      expect(qs, ckuId).toHaveLength(3)
     }
   })
 })

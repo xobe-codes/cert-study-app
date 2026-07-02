@@ -10062,32 +10062,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "IBSS is ad hoc wireless without infrastructure."
+          "explanation": "IBSS (Independent Basic Service Set) is ad hoc wireless — clients connect peer-to-peer without an AP or WLAN infrastructure."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "BSS describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, IBSS matches the tested behavior — BSS applies a different mechanism.",
+            "explanation": "BSS is a single AP serving clients — it requires infrastructure (an access point), not ad hoc peer mode.",
+            "misconceptionTested": "Choosing BSS for infrastructure-free wireless",
             "whatItDoes": "BSS describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, IBSS matches the tested behavior — BSS applies a different mechanism.",
-            "misconceptionTested": "Applying \"BSS\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, IBSS matches the tested behavior — BSS applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "ESS describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, IBSS matches the tested behavior — ESS applies a different mechanism.",
+            "explanation": "ESS is multiple APs under one logical network — still infrastructure-based, not ad hoc IBSS.",
+            "misconceptionTested": "Selecting ESS for peer-to-peer wireless",
             "whatItDoes": "ESS describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, IBSS matches the tested behavior — ESS applies a different mechanism.",
-            "misconceptionTested": "Applying \"ESS\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, IBSS matches the tested behavior — ESS applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "DS describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, IBSS matches the tested behavior — DS applies a different mechanism.",
+            "explanation": "DS (Distribution System) is the wired backbone linking APs — not a client connection mode without infrastructure.",
+            "misconceptionTested": "Confusing distribution system with ad hoc mode",
             "whatItDoes": "DS describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, IBSS matches the tested behavior — DS applies a different mechanism.",
-            "misconceptionTested": "Applying \"DS\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, IBSS matches the tested behavior — DS applies a different mechanism."
           }
         ],
-        "examTip": "AD picks the route source for the same prefix; longest match still wins first."
+        "examTip": "No AP/infrastructure → IBSS (ad hoc); BSS/ESS need access points."
       }
     },
     {
@@ -10113,32 +10113,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Non-root wireless devices connect to root devices."
+          "explanation": "Non-root wireless devices (clients, repeaters in client role) associate with root devices (APs or root bridges) — they do not peer with each other as roots."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Non-root devices can connect to other non-root devices. describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Non-root devices can connect to other non-root devices. applies a different mechanism.",
+            "explanation": "Non-root devices do not connect to other non-root devices in standard bridge/repeater topologies — they uplink to a root AP or bridge.",
+            "misconceptionTested": "Expecting non-root to non-root peering",
             "whatItDoes": "Non-root devices can connect to other non-root devices. describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Non-root devices can connect to other non-root devices. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Non-root devices can connect to othe\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Non-root devices can connect to other non-root devices. applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Root devices can connect to other root devices. describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Root devices can connect to other root devices. applies a different mechanism.",
+            "explanation": "Root devices serve as the central point — two root bridges do not connect root-to-root in typical point-to-multipoint designs.",
+            "misconceptionTested": "Allowing root-to-root wireless links",
             "whatItDoes": "Root devices can connect to other root devices. describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Root devices can connect to other root devices. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Root devices can connect to other ro\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Root devices can connect to other root devices. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Repeaters are considered root devices. describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Repeaters are considered root devices. applies a different mechanism.",
+            "explanation": "Repeaters operate as non-root clients of a root AP — they extend coverage but are not classified as root devices.",
+            "misconceptionTested": "Labeling repeaters as root devices",
             "whatItDoes": "Repeaters are considered root devices. describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Repeaters are considered root devices. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Repeaters are considered root device\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Repeaters are considered root devices. applies a different mechanism."
           }
         ],
-        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
+        "examTip": "Wireless hierarchy: non-root associates up to root AP/bridge — not root-to-root."
       }
     },
     {
@@ -10163,32 +10163,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "Autonomous APs can operate independently."
+          "explanation": "Autonomous (standalone) APs run full IOS locally and can serve clients without a wireless LAN controller."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Lightweight WAP describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Autonomous WAP matches the tested behavior — Lightweight WAP applies a different mechanism.",
+            "explanation": "Lightweight APs depend on a WLC for control and configuration — they cannot operate independently in lightweight mode.",
+            "misconceptionTested": "Expecting lightweight APs to run standalone",
             "whatItDoes": "Lightweight WAP describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Autonomous WAP matches the tested behavior — Lightweight WAP applies a different mechanism.",
-            "misconceptionTested": "Applying \"Lightweight WAP\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Autonomous WAP matches the tested behavior — Lightweight WAP applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "WLC describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Autonomous WAP matches the tested behavior — WLC applies a different mechanism.",
+            "explanation": "A WLC is the controller, not an access point — it manages APs but does not replace an autonomous AP role.",
+            "misconceptionTested": "Selecting WLC as independently operating WAP",
             "whatItDoes": "WLC describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Autonomous WAP matches the tested behavior — WLC applies a different mechanism.",
-            "misconceptionTested": "Applying \"WLC\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Autonomous WAP matches the tested behavior — WLC applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Mesh describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Autonomous WAP matches the tested behavior — Mesh applies a different mechanism.",
+            "explanation": "Mesh APs in a controller-based design still require WLC management — they are not the autonomous standalone model.",
+            "misconceptionTested": "Treating mesh AP as autonomous standalone",
             "whatItDoes": "Mesh describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Autonomous WAP matches the tested behavior — Mesh applies a different mechanism.",
-            "misconceptionTested": "Applying \"Mesh\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Autonomous WAP matches the tested behavior — Mesh applies a different mechanism."
           }
         ],
-        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
+        "examTip": "Standalone operation → autonomous AP; lightweight APs need a WLC."
       }
     },
     {
@@ -10214,32 +10214,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Point-to-multipoint wireless bridges connect multiple nearby buildings to a central point."
+          "explanation": "Point-to-multipoint wireless bridges connect multiple nearby buildings (non-root sites) to one central root location across short outdoor links."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Point-to-point wireless bridge is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
+            "explanation": "Point-to-point links only two endpoints — three buildings to one hub needs point-to-multipoint, not a single P2P span.",
+            "misconceptionTested": "Using point-to-point for one-to-many building links",
             "whatItDoes": "Point-to-point wireless bridge describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Point-to-multipoint wireless bridge matches the tested behavior — Point-to-point wireless bridge applies a different mechanism.",
-            "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
+            "whyWrongHere": "Given wireless architectures, Point-to-multipoint wireless bridge matches the tested behavior — Point-to-point wireless bridge applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Mesh wireless network describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Point-to-multipoint wireless bridge matches the tested behavior — Mesh wireless network applies a different mechanism.",
+            "explanation": "Mesh networks self-form multi-hop coverage for clients — building-to-central backhaul is classic point-to-multipoint bridging.",
+            "misconceptionTested": "Choosing mesh for fixed building backhaul",
             "whatItDoes": "Mesh wireless network describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Point-to-multipoint wireless bridge matches the tested behavior — Mesh wireless network applies a different mechanism.",
-            "misconceptionTested": "Applying \"Mesh wireless network\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Point-to-multipoint wireless bridge matches the tested behavior — Mesh wireless network applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Autonomous wireless network describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Point-to-multipoint wireless bridge matches the tested behavior — Autonomous wireless network applies a different mechanism.",
+            "explanation": "Autonomous WLANs serve indoor clients — outdoor building interconnection uses wireless bridge modes, not autonomous AP service.",
+            "misconceptionTested": "Deploying autonomous WLAN for building backhaul",
             "whatItDoes": "Autonomous wireless network describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Point-to-multipoint wireless bridge matches the tested behavior — Autonomous wireless network applies a different mechanism.",
-            "misconceptionTested": "Applying \"Autonomous wireless network\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Point-to-multipoint wireless bridge matches the tested behavior — Autonomous wireless network applies a different mechanism."
           }
         ],
-        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
+        "examTip": "Several buildings → one central site = point-to-multipoint wireless bridge."
       }
     },
     {
@@ -10316,32 +10316,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "Lightweight APs require a wireless LAN controller."
+          "explanation": "Lightweight (LWAPP/CAPWAP) APs require a wireless LAN controller for control, configuration, and firmware — they cannot run lightweight mode alone."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "BSS describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Lightweight WAP matches the tested behavior — BSS applies a different mechanism.",
+            "explanation": "BSS is a wireless service set topology term — not an AP type that requires a controller.",
+            "misconceptionTested": "Selecting BSS as controller-dependent AP type",
             "whatItDoes": "BSS describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Lightweight WAP matches the tested behavior — BSS applies a different mechanism.",
-            "misconceptionTested": "Applying \"BSS\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Lightweight WAP matches the tested behavior — BSS applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Bridges describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Lightweight WAP matches the tested behavior — Bridges applies a different mechanism.",
+            "explanation": "Wireless bridges can be autonomous or controller-based — the stem asks specifically for AP type requiring a WLC (lightweight).",
+            "misconceptionTested": "Answering bridges when lightweight AP is asked",
             "whatItDoes": "Bridges describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Lightweight WAP matches the tested behavior — Bridges applies a different mechanism.",
-            "misconceptionTested": "Applying \"Bridges\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Lightweight WAP matches the tested behavior — Bridges applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Autonomous WAP describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Lightweight WAP matches the tested behavior — Autonomous WAP applies a different mechanism.",
+            "explanation": "Autonomous APs operate independently with local IOS — they do not require a WLC.",
+            "misconceptionTested": "Expecting autonomous AP to need WLC",
             "whatItDoes": "Autonomous WAP describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Lightweight WAP matches the tested behavior — Autonomous WAP applies a different mechanism.",
-            "misconceptionTested": "Applying \"Autonomous WAP\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Lightweight WAP matches the tested behavior — Autonomous WAP applies a different mechanism."
           }
         ],
-        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
+        "examTip": "Lightweight AP = must join a WLC; autonomous AP runs standalone."
       }
     },
     {
@@ -10419,32 +10419,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally."
+          "explanation": "Local mode tunnels client data traffic to the WLC over CAPWAP — centralized switching at the controller."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Flex Connect mode creates a CAPWAP tunnel to the WLC to transport data. describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Flex Connect mode creates a CAPWAP tunnel to the WLC to transport data. applies a different mechanism.",
+            "explanation": "FlexConnect (formerly H-REAP) can switch client traffic locally at the AP — Local mode tunnels data to the WLC, not FlexConnect.",
+            "misconceptionTested": "Assigning CAPWAP data tunnel to FlexConnect",
             "whatItDoes": "Flex Connect mode creates a CAPWAP tunnel to the WLC to transport data. describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Flex Connect mode creates a CAPWAP tunnel to the WLC to transport data. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Flex Connect mode creates a CAPWAP t\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Flex Connect mode creates a CAPWAP tunnel to the WLC to transport data. applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Local mode allows for switching of VLANs at the WAP. describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Local mode allows for switching of VLANs at the WAP. applies a different mechanism.",
+            "explanation": "Local mode centralizes switching at the WLC — VLAN switching at the WAP describes FlexConnect/local switching, not Local mode.",
+            "misconceptionTested": "Crediting Local mode with AP-side VLAN switching",
             "whatItDoes": "Local mode allows for switching of VLANs at the WAP. describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Local mode allows for switching of VLANs at the WAP. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Local mode allows for switching of V\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Local mode allows for switching of VLANs at the WAP. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Flex Connect mode allows for switching of VLANs at the WLC. describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Flex Connect mode allows for switching of VLANs at the WLC. applies a different mechanism.",
+            "explanation": "FlexConnect allows local switching at the AP when WAN links are constrained — VLAN switching at the WLC describes Local mode behavior.",
+            "misconceptionTested": "Swapping FlexConnect and Local mode roles",
             "whatItDoes": "Flex Connect mode allows for switching of VLANs at the WLC. describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Flex Connect mode allows for switching of VLANs at the WLC. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Flex Connect mode allows for switchi\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Flex Connect mode allows for switching of VLANs at the WLC. applies a different mechanism."
           }
         ],
-        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
+        "examTip": "Local mode = client data CAPWAP-tunneled to WLC; FlexConnect can switch locally."
       }
     }
   ],
@@ -10473,32 +10473,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "A WLC connection can use EtherChannel/LAG to increase bandwidth."
+          "explanation": "Bundle the two Gigabit Ethernet links into an EtherChannel/LAG between router and WLC to aggregate bandwidth beyond a single 1 Gbps uplink."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Nothing. Routers cannot aggregate bandwidth from multiple connections. describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Bundle both Gigabit Ethernet connections in an EtherChannel. matches the tested behavior — Nothing. Routers cannot aggregate bandwidth from multiple connections. applies a different mechanism.",
+            "explanation": "Routers and WLCs support link aggregation — EtherChannel/LAG is the standard way to combine multiple physical links.",
+            "misconceptionTested": "Believing routers cannot aggregate uplinks",
             "whatItDoes": "Nothing. Routers cannot aggregate bandwidth from multiple connections. describes a mechanism that could sound plausible for wlc connections.",
-            "whyWrongHere": "Given wlc connections, Bundle both Gigabit Ethernet connections in an EtherChannel. matches the tested behavior — Nothing. Routers cannot aggregate bandwidth from multiple connections. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Nothing. Routers cannot aggregate ba\" without matching wlc connections"
+            "whyWrongHere": "Given wlc connections, Bundle both Gigabit Ethernet connections in an EtherChannel. matches the tested behavior — Nothing. Routers cannot aggregate bandwidth from multiple connections. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Use RIP to balance the bandwidth. describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Bundle both Gigabit Ethernet connections in an EtherChannel. matches the tested behavior — Use RIP to balance the bandwidth. applies a different mechanism.",
+            "explanation": "RIP is a routing protocol for route exchange — it does not bond physical interfaces or increase Layer 2 bandwidth.",
+            "misconceptionTested": "Using routing protocol for link aggregation",
             "whatItDoes": "Use RIP to balance the bandwidth. describes a mechanism that could sound plausible for wlc connections.",
-            "whyWrongHere": "Given wlc connections, Bundle both Gigabit Ethernet connections in an EtherChannel. matches the tested behavior — Use RIP to balance the bandwidth. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Use RIP to balance the bandwidth.\" without matching wlc connections"
+            "whyWrongHere": "Given wlc connections, Bundle both Gigabit Ethernet connections in an EtherChannel. matches the tested behavior — Use RIP to balance the bandwidth. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Use the wireless controller to perform inter-VLAN routing. describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Bundle both Gigabit Ethernet connections in an EtherChannel. matches the tested behavior — Use the wireless controller to perform inter-VLAN routing. applies a different mechanism.",
+            "explanation": "Inter-VLAN routing on the WLC does not multiply uplink throughput — more physical bandwidth needs port bundling.",
+            "misconceptionTested": "Expecting inter-VLAN routing to add bandwidth",
             "whatItDoes": "Use the wireless controller to perform inter-VLAN routing. describes a mechanism that could sound plausible for wlc connections.",
-            "whyWrongHere": "Given wlc connections, Bundle both Gigabit Ethernet connections in an EtherChannel. matches the tested behavior — Use the wireless controller to perform inter-VLAN routing. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Use the wireless controller to perfo\" without matching wlc connections"
+            "whyWrongHere": "Given wlc connections, Bundle both Gigabit Ethernet connections in an EtherChannel. matches the tested behavior — Use the wireless controller to perform inter-VLAN routing. applies a different mechanism."
           }
         ],
-        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
+        "examTip": "More router↔WLC bandwidth → EtherChannel/LAG on spare GigE ports."
       }
     },
     {
@@ -10524,32 +10524,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "A WLC link should be a trunk when several VLANs must be carried."
+          "explanation": "A WLC trunk port carries multiple VLANs (voice, data, management) tagged to the controller — access mode only allows one VLAN."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Access port describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Trunk port matches the tested behavior — Access port applies a different mechanism.",
+            "explanation": "Access ports carry a single VLAN — multiple segments (voice + data) require a trunk to the WLC.",
+            "misconceptionTested": "Using access port for multi-VLAN WLC uplink",
             "whatItDoes": "Access port describes a mechanism that could sound plausible for wlc connections.",
-            "whyWrongHere": "Given wlc connections, Trunk port matches the tested behavior — Access port applies a different mechanism.",
-            "misconceptionTested": "Applying \"Access port\" without matching wlc connections"
+            "whyWrongHere": "Given wlc connections, Trunk port matches the tested behavior — Access port applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Voice port describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Trunk port matches the tested behavior — Voice port applies a different mechanism.",
+            "explanation": "Voice VLAN is an access-port feature for phones — the WLC uplink itself should be a trunk carrying all required VLANs.",
+            "misconceptionTested": "Configuring voice port instead of WLC trunk",
             "whatItDoes": "Voice port describes a mechanism that could sound plausible for wlc connections.",
-            "whyWrongHere": "Given wlc connections, Trunk port matches the tested behavior — Voice port applies a different mechanism.",
-            "misconceptionTested": "Applying \"Voice port\" without matching wlc connections"
+            "whyWrongHere": "Given wlc connections, Trunk port matches the tested behavior — Voice port applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Routed switch port describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Trunk port matches the tested behavior — Routed switch port applies a different mechanism.",
+            "explanation": "Routed switch ports terminate Layer 3 on the switch — WLC connectivity for multiple client VLANs uses Layer 2 trunks.",
+            "misconceptionTested": "Using routed port for WLC multi-VLAN trunk",
             "whatItDoes": "Routed switch port describes a mechanism that could sound plausible for wlc connections.",
-            "whyWrongHere": "Given wlc connections, Trunk port matches the tested behavior — Routed switch port applies a different mechanism.",
-            "misconceptionTested": "Applying \"Routed switch port\" without matching wlc connections"
+            "whyWrongHere": "Given wlc connections, Trunk port matches the tested behavior — Routed switch port applies a different mechanism."
           }
         ],
-        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
+        "examTip": "WLC needs voice + data VLANs → configure switch port as trunk."
       }
     },
     {
@@ -10575,32 +10575,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "WLCs use LAG, not LACP/PAgP, for bundling links."
+          "explanation": "Cisco WLCs use LAG (Link Aggregation) for port bundling — on non-Cisco switches research their LAG/static EtherChannel equivalent, not LACP/PAgP negotiation with the WLC."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "LACP describes a mechanism that could sound plausible for wlc connections. Given wlc connections, LAG matches the tested behavior — LACP applies a different mechanism.",
+            "explanation": "LACP is IEEE negotiation used between Cisco switches — WLC LAG does not use LACP; it uses static LAG bundling.",
+            "misconceptionTested": "Applying LACP to WLC port bundling",
             "whatItDoes": "LACP describes a mechanism that could sound plausible for wlc connections.",
-            "whyWrongHere": "Given wlc connections, LAG matches the tested behavior — LACP applies a different mechanism.",
-            "misconceptionTested": "Applying \"LACP\" without matching wlc connections"
+            "whyWrongHere": "Given wlc connections, LAG matches the tested behavior — LACP applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "PAgP describes a mechanism that could sound plausible for wlc connections. Given wlc connections, LAG matches the tested behavior — PAgP applies a different mechanism.",
+            "explanation": "PAgP is Cisco proprietary between switches — WLC to switch aggregation uses LAG, not PAgP.",
+            "misconceptionTested": "Using PAgP for WLC link aggregation",
             "whatItDoes": "PAgP describes a mechanism that could sound plausible for wlc connections.",
-            "whyWrongHere": "Given wlc connections, LAG matches the tested behavior — PAgP applies a different mechanism.",
-            "misconceptionTested": "Applying \"PAgP\" without matching wlc connections"
+            "whyWrongHere": "Given wlc connections, LAG matches the tested behavior — PAgP applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "PortChannel describes a mechanism that could sound plausible for wlc connections. Given wlc connections, LAG matches the tested behavior — PortChannel applies a different mechanism.",
+            "explanation": "PortChannel is Cisco switch terminology for the bundle — the non-Cisco side needs LAG/EtherChannel support researched generically as LAG.",
+            "misconceptionTested": "Naming Cisco PortChannel instead of cross-vendor LAG",
             "whatItDoes": "PortChannel describes a mechanism that could sound plausible for wlc connections.",
-            "whyWrongHere": "Given wlc connections, LAG matches the tested behavior — PortChannel applies a different mechanism.",
-            "misconceptionTested": "Applying \"PortChannel\" without matching wlc connections"
+            "whyWrongHere": "Given wlc connections, LAG matches the tested behavior — PortChannel applies a different mechanism."
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "WLC port bundling = LAG (static) — not LACP/PAgP negotiation."
       }
     },
     {
@@ -10626,32 +10626,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "WLC LAG load balancing is hash-based."
+          "explanation": "WLC LAG load-balances traffic across bundled links using a hash of source/destination addresses — not round-robin or FIFO."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Round robin describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Hash based matches the tested behavior — Round robin applies a different mechanism.",
+            "explanation": "Round robin is not how WLC LAG distributes frames — Cisco WLC LAG uses hash-based load balancing per flow.",
+            "misconceptionTested": "Expecting round-robin LAG on WLC",
             "whatItDoes": "Round robin describes a mechanism that could sound plausible for wlc connections.",
-            "whyWrongHere": "Given wlc connections, Hash based matches the tested behavior — Round robin applies a different mechanism.",
-            "misconceptionTested": "Applying \"Round robin\" without matching wlc connections"
+            "whyWrongHere": "Given wlc connections, Hash based matches the tested behavior — Round robin applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "First in, first out (FIFO) describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Hash based matches the tested behavior — First in, first out (FIFO) applies a different mechanism.",
+            "explanation": "FIFO is queuing order — LAG load distribution uses hashing, not first-in-first-out across member links.",
+            "misconceptionTested": "Confusing queue discipline with LAG hashing",
             "whatItDoes": "First in, first out (FIFO) describes a mechanism that could sound plausible for wlc connections.",
-            "whyWrongHere": "Given wlc connections, Hash based matches the tested behavior — First in, first out (FIFO) applies a different mechanism.",
-            "misconceptionTested": "Applying \"First in, first out (FIFO)\" without matching wlc connections"
+            "whyWrongHere": "Given wlc connections, Hash based matches the tested behavior — First in, first out (FIFO) applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Spill and fill describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Hash based matches the tested behavior — Spill and fill applies a different mechanism.",
+            "explanation": "Spill-and-fill fills one link before using the next — WLC LAG hashes flows across all members simultaneously.",
+            "misconceptionTested": "Using spill-and-fill for WLC LAG",
             "whatItDoes": "Spill and fill describes a mechanism that could sound plausible for wlc connections.",
-            "whyWrongHere": "Given wlc connections, Hash based matches the tested behavior — Spill and fill applies a different mechanism.",
-            "misconceptionTested": "Applying \"Spill and fill\" without matching wlc connections"
+            "whyWrongHere": "Given wlc connections, Hash based matches the tested behavior — Spill and fill applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests wlc connections — exam distractors swap similar terms; anchor on: WLC LAG load balancing is hash-based."
+        "examTip": "WLC LAG load balance = hash-based (src/dst), not round-robin."
       }
     },
     {
@@ -10779,32 +10779,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs."
+          "explanation": "Controller-based AP switch ports are configured as trunks — they carry management, multiple client VLANs, and sometimes native VLAN for AP management."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Access port describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Trunk port matches the tested behavior — Access port applies a different mechanism.",
+            "explanation": "Access mode allows only one VLAN — lightweight APs need a trunk to carry multiple WLAN VLANs to the WLC.",
+            "misconceptionTested": "Using access port for WLC-managed AP",
             "whatItDoes": "Access port describes a mechanism that could sound plausible for wlc connections.",
-            "whyWrongHere": "Given wlc connections, Trunk port matches the tested behavior — Access port applies a different mechanism.",
-            "misconceptionTested": "Applying \"Access port\" without matching wlc connections"
+            "whyWrongHere": "Given wlc connections, Trunk port matches the tested behavior — Access port applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Wireless port describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Trunk port matches the tested behavior — Wireless port applies a different mechanism.",
+            "explanation": "Wireless port is not standard Cisco switch port terminology — AP uplinks use trunk (or LAG trunk) configuration.",
+            "misconceptionTested": "Inventing wireless port type for AP uplink",
             "whatItDoes": "Wireless port describes a mechanism that could sound plausible for wlc connections.",
-            "whyWrongHere": "Given wlc connections, Trunk port matches the tested behavior — Wireless port applies a different mechanism.",
-            "misconceptionTested": "Applying \"Wireless port\" without matching wlc connections"
+            "whyWrongHere": "Given wlc connections, Trunk port matches the tested behavior — Wireless port applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "LAG port describes a mechanism that could sound plausible for wlc connections. Given wlc connections, Trunk port matches the tested behavior — LAG port applies a different mechanism.",
+            "explanation": "LAG bundles links but each member is still a trunk — the stem asks port mode for a new WAP, which is trunk before optional LAG.",
+            "misconceptionTested": "Choosing LAG instead of trunk mode for AP port",
             "whatItDoes": "LAG port describes a mechanism that could sound plausible for wlc connections.",
-            "whyWrongHere": "Given wlc connections, Trunk port matches the tested behavior — LAG port applies a different mechanism.",
-            "misconceptionTested": "Applying \"LAG port\" without matching wlc connections"
+            "whyWrongHere": "Given wlc connections, Trunk port matches the tested behavior — LAG port applies a different mechanism."
           }
         ],
-        "examTip": "Access = one VLAN; trunk tags frames. Native VLAN must match on both ends or you get silent mis-forwarding."
+        "examTip": "Lightweight AP switch port → trunk (multiple VLANs to WLC)."
       }
     }
   ],
@@ -10831,32 +10831,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Telnet provides terminal emulation over a network but is not encrypted."
+          "explanation": "Telnet provides terminal emulation over TCP — remote CLI access to routers and switches (insecure; SSH preferred)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SNMP describes a mechanism that could sound plausible for management access. Given management access, Telnet matches the tested behavior — SNMP applies a different mechanism.",
+            "explanation": "SNMP is network management polling/traps — it does not provide interactive terminal emulation.",
+            "misconceptionTested": "Using SNMP for terminal emulation",
             "whatItDoes": "SNMP describes a mechanism that could sound plausible for management access.",
-            "whyWrongHere": "Given management access, Telnet matches the tested behavior — SNMP applies a different mechanism.",
-            "misconceptionTested": "Applying \"SNMP\" without matching management access"
+            "whyWrongHere": "Given management access, Telnet matches the tested behavior — SNMP applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "HTTP describes a mechanism that could sound plausible for management access. Given management access, Telnet matches the tested behavior — HTTP applies a different mechanism.",
+            "explanation": "HTTP serves web pages — it is not a CLI terminal emulation protocol like Telnet or SSH.",
+            "misconceptionTested": "Selecting HTTP for terminal access",
             "whatItDoes": "HTTP describes a mechanism that could sound plausible for management access.",
-            "whyWrongHere": "Given management access, Telnet matches the tested behavior — HTTP applies a different mechanism.",
-            "misconceptionTested": "Applying \"HTTP\" without matching management access"
+            "whyWrongHere": "Given management access, Telnet matches the tested behavior — HTTP applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "TFTP describes a mechanism that could sound plausible for management access. Given management access, Telnet matches the tested behavior — TFTP applies a different mechanism.",
+            "explanation": "TFTP transfers files on UDP 69 — it does not offer interactive terminal sessions.",
+            "misconceptionTested": "Confusing TFTP file transfer with terminal emulation",
             "whatItDoes": "TFTP describes a mechanism that could sound plausible for management access.",
-            "whyWrongHere": "Given management access, Telnet matches the tested behavior — TFTP applies a different mechanism.",
-            "misconceptionTested": "Applying \"TFTP\" without matching management access"
+            "whyWrongHere": "Given management access, Telnet matches the tested behavior — TFTP applies a different mechanism."
           }
         ],
-        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
+        "examTip": "Terminal emulation over network → Telnet (legacy) or SSH (secure)."
       }
     },
     {
@@ -11085,32 +11085,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "WAP debug output appears on the console by default."
+          "explanation": "WAP debug output appears on the console port by default — connect a serial console cable for real-time debug messages."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "SSH describes a mechanism that could sound plausible for management access. Given management access, Console matches the tested behavior — SSH applies a different mechanism.",
+            "explanation": "SSH provides remote management — debug output defaults to console unless explicitly redirected to logging.",
+            "misconceptionTested": "Expecting SSH as default debug display",
             "whatItDoes": "SSH describes a mechanism that could sound plausible for management access.",
-            "whyWrongHere": "Given management access, Console matches the tested behavior — SSH applies a different mechanism.",
-            "misconceptionTested": "Applying \"SSH\" without matching management access"
+            "whyWrongHere": "Given management access, Console matches the tested behavior — SSH applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Logging server describes a mechanism that could sound plausible for management access. Given management access, Console matches the tested behavior — Logging server applies a different mechanism.",
+            "explanation": "Syslog server receives forwarded logs if configured — default debug display is local console, not remote logging.",
+            "misconceptionTested": "Assuming debug goes to logging server by default",
             "whatItDoes": "Logging server describes a mechanism that could sound plausible for management access.",
-            "whyWrongHere": "Given management access, Console matches the tested behavior — Logging server applies a different mechanism.",
-            "misconceptionTested": "Applying \"Logging server\" without matching management access"
+            "whyWrongHere": "Given management access, Console matches the tested behavior — Logging server applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Local storage describes a mechanism that could sound plausible for management access. Given management access, Console matches the tested behavior — Local storage applies a different mechanism.",
+            "explanation": "Local flash stores configs and images — debug messages stream to console, not flash storage by default.",
+            "misconceptionTested": "Expecting debug stored in local flash",
             "whatItDoes": "Local storage describes a mechanism that could sound plausible for management access.",
-            "whyWrongHere": "Given management access, Console matches the tested behavior — Local storage applies a different mechanism.",
-            "misconceptionTested": "Applying \"Local storage\" without matching management access"
+            "whyWrongHere": "Given management access, Console matches the tested behavior — Local storage applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests management access — exam distractors swap similar terms; anchor on: WAP debug output appears on the console by default."
+        "examTip": "AP/router debug → watch console by default; redirect with logging if needed."
       }
     },
     {
@@ -11340,32 +11340,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "An SSID can be up to 32 characters."
+          "explanation": "An SSID name can be up to 32 characters — the IEEE 802.11 standard limit for the SSID field."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "16 characters uses the wrong value. The tested fact calls for 32 — not 16.",
+            "explanation": "16 characters is below the maximum — 802.11 allows SSIDs up to 32 characters.",
+            "misconceptionTested": "Underestimating SSID length limit",
             "whatItDoes": "16 characters describes a mechanism that could sound plausible for An SSID can be up to 32 characters.",
-            "whyWrongHere": "Given An SSID can be up to 32 characters, 32 characters matches the tested behavior — 16 characters applies a different mechanism.",
-            "misconceptionTested": "Memorizing 16 instead of the correct 32"
+            "whyWrongHere": "Given An SSID can be up to 32 characters, 32 characters matches the tested behavior — 16 characters applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "48 characters uses the wrong value. The tested fact calls for 32 — not 48.",
+            "explanation": "48 characters exceeds the 802.11 SSID field — maximum is 32 characters.",
+            "misconceptionTested": "Overestimating SSID to 48 characters",
             "whatItDoes": "48 characters describes a mechanism that could sound plausible for An SSID can be up to 32 characters.",
-            "whyWrongHere": "Given An SSID can be up to 32 characters, 32 characters matches the tested behavior — 48 characters applies a different mechanism.",
-            "misconceptionTested": "Memorizing 48 instead of the correct 32"
+            "whyWrongHere": "Given An SSID can be up to 32 characters, 32 characters matches the tested behavior — 48 characters applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "64 characters uses the wrong value. The tested fact calls for 32 — not 64.",
+            "explanation": "64 characters is double the allowed SSID length — memorize 32 for CCNA.",
+            "misconceptionTested": "Confusing SSID limit with 64-bit WPA key",
             "whatItDoes": "64 characters describes a mechanism that could sound plausible for An SSID can be up to 32 characters.",
-            "whyWrongHere": "Given An SSID can be up to 32 characters, 32 characters matches the tested behavior — 64 characters applies a different mechanism.",
-            "misconceptionTested": "Memorizing 64 instead of the correct 32"
+            "whyWrongHere": "Given An SSID can be up to 32 characters, 32 characters matches the tested behavior — 64 characters applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests wlan — exam distractors swap similar terms; anchor on: An SSID can be up to 32 characters."
+        "examTip": "SSID max length = 32 characters (802.11); WPA2-PSK passphrase is separate."
       }
     },
     {
@@ -11493,32 +11493,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "A short-range personal wireless network is a WPAN."
+          "explanation": "WPAN (Wireless Personal Area Network) covers short range (~10–30 feet) — Bluetooth and similar personal devices."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "WLAN describes a mechanism that could sound plausible for A short-range personal wireless network is a WPAN. Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WLAN applies a different mechanism.",
+            "explanation": "WLAN is a local area wireless network (building/campus scale) — not a 30-foot personal bubble.",
+            "misconceptionTested": "Labeling short-range personal network as WLAN",
             "whatItDoes": "WLAN describes a mechanism that could sound plausible for A short-range personal wireless network is a WPAN.",
-            "whyWrongHere": "Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WLAN applies a different mechanism.",
-            "misconceptionTested": "Applying \"WLAN\" without matching wlan"
+            "whyWrongHere": "Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WLAN applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "WMAN describes a mechanism that could sound plausible for A short-range personal wireless network is a WPAN. Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WMAN applies a different mechanism.",
+            "explanation": "WMAN is metropolitan-scale wireless (city coverage) — far larger than 30 feet.",
+            "misconceptionTested": "Selecting metropolitan WMAN for 30-foot network",
             "whatItDoes": "WMAN describes a mechanism that could sound plausible for A short-range personal wireless network is a WPAN.",
-            "whyWrongHere": "Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WMAN applies a different mechanism.",
-            "misconceptionTested": "Applying \"WMAN\" without matching wlan"
+            "whyWrongHere": "Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WMAN applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "WWAN describes a mechanism that could sound plausible for A short-range personal wireless network is a WPAN. Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WWAN applies a different mechanism.",
+            "explanation": "WWAN is wide-area cellular/mobile — not a small personal wireless network.",
+            "misconceptionTested": "Confusing WWAN with personal short-range",
             "whatItDoes": "WWAN describes a mechanism that could sound plausible for A short-range personal wireless network is a WPAN.",
-            "whyWrongHere": "Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WWAN applies a different mechanism.",
-            "misconceptionTested": "Applying \"WWAN\" without matching wlan"
+            "whyWrongHere": "Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WWAN applies a different mechanism."
           }
         ],
-        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
+        "examTip": "Short personal range (~30 ft) → WPAN; building = WLAN; city = WMAN."
       }
     },
     {
@@ -27614,35 +27614,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"The PTR record\"."
+          "explanation": "PTR records map an IPv4 address to an FQDN (reverse DNS) — forward name-to-IP uses A records."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The A record describes a mechanism that could sound plausible for dns. Given dns, The PTR record matches the tested behavior — The A record applies a different mechanism.",
+            "explanation": "A records map hostname to IPv4 address (forward DNS) — IP-to-FQDN reverse lookup uses PTR in in-addr.arpa zones.",
+            "misconceptionTested": "Using A record for reverse IP-to-name lookup",
             "whatItDoes": "The A record describes a mechanism that could sound plausible for dns.",
-            "whyWrongHere": "Given dns, The PTR record matches the tested behavior — The A record applies a different mechanism.",
-            "misconceptionTested": "Applying \"The A record\" without matching dns",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given dns, The PTR record matches the tested behavior — The A record applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The CName record describes a mechanism that could sound plausible for dns. Given dns, The PTR record matches the tested behavior — The CName record applies a different mechanism.",
+            "explanation": "CNAME is an alias pointing one name to another hostname — it does not perform IP-to-FQDN reverse resolution.",
+            "misconceptionTested": "Selecting CNAME for reverse DNS",
             "whatItDoes": "The CName record describes a mechanism that could sound plausible for dns.",
-            "whyWrongHere": "Given dns, The PTR record matches the tested behavior — The CName record applies a different mechanism.",
-            "misconceptionTested": "Applying \"The CName record\" without matching dns",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given dns, The PTR record matches the tested behavior — The CName record applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The AAAA record describes a mechanism that could sound plausible for dns. Given dns, The PTR record matches the tested behavior — The AAAA record applies a different mechanism.",
+            "explanation": "AAAA records map hostname to IPv6 — reverse IPv4-to-FQDN uses PTR, not AAAA.",
+            "misconceptionTested": "Confusing AAAA with IPv4 reverse PTR",
             "whatItDoes": "The AAAA record describes a mechanism that could sound plausible for dns.",
-            "whyWrongHere": "Given dns, The PTR record matches the tested behavior — The AAAA record applies a different mechanism.",
-            "misconceptionTested": "Applying \"The AAAA record\" without matching dns",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given dns, The PTR record matches the tested behavior — The AAAA record applies a different mechanism."
           }
         ],
-        "examTip": "Forward = name→IP; reverse = IP→name (PTR)."
+        "examTip": "IP → name = PTR (reverse); name → IP = A (forward)."
       }
     },
     {
@@ -27780,35 +27777,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"The A record\"."
+          "explanation": "A records hold the IPv4 address for a hostname — the primary forward DNS mapping for IPv4 hosts."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The CName record describes a mechanism that could sound plausible for hostname. Given hostname, The A record matches the tested behavior — The CName record applies a different mechanism.",
+            "explanation": "CNAME creates an alias to another DNS name — it does not directly store the IPv4 address.",
+            "misconceptionTested": "Using CNAME to store IPv4 address",
             "whatItDoes": "The CName record describes a mechanism that could sound plausible for hostname.",
-            "whyWrongHere": "Given hostname, The A record matches the tested behavior — The CName record applies a different mechanism.",
-            "misconceptionTested": "Applying \"The CName record\" without matching dns",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given hostname, The A record matches the tested behavior — The CName record applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The PTR record describes a mechanism that could sound plausible for hostname. Given hostname, The A record matches the tested behavior — The PTR record applies a different mechanism.",
+            "explanation": "PTR records map IP to hostname (reverse DNS) — forward hostname-to-IPv4 uses A records.",
+            "misconceptionTested": "Selecting PTR for forward IPv4 lookup",
             "whatItDoes": "The PTR record describes a mechanism that could sound plausible for hostname.",
-            "whyWrongHere": "Given hostname, The A record matches the tested behavior — The PTR record applies a different mechanism.",
-            "misconceptionTested": "Applying \"The PTR record\" without matching dns",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given hostname, The A record matches the tested behavior — The PTR record applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The AAAA record describes a mechanism that could sound plausible for hostname. Given hostname, The A record matches the tested behavior — The AAAA record applies a different mechanism.",
+            "explanation": "AAAA records store IPv6 addresses — IPv4 hostname resolution uses A records.",
+            "misconceptionTested": "Choosing AAAA for IPv4 hostname mapping",
             "whatItDoes": "The AAAA record describes a mechanism that could sound plausible for hostname.",
-            "whyWrongHere": "Given hostname, The A record matches the tested behavior — The AAAA record applies a different mechanism.",
-            "misconceptionTested": "Applying \"The AAAA record\" without matching dns",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given hostname, The A record matches the tested behavior — The AAAA record applies a different mechanism."
           }
         ],
-        "examTip": "Forward = name→IP; reverse = IP→name (PTR)."
+        "examTip": "Hostname → IPv4 = A record; IPv6 = AAAA; reverse = PTR."
       }
     },
     {
@@ -28381,35 +28375,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Trap message\"."
+          "explanation": "SNMP trap messages are unsolicited alerts sent from the agent to the NMS when an event occurs (e.g., interface down)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Get-request message describes a mechanism that could sound plausible for an interface goes down. Given an interface goes down, Trap message matches the tested behavior — Get-request message applies a different mechanism.",
+            "explanation": "Get-request is polled by the NMS — traps are agent-initiated without a prior poll when link state changes.",
+            "misconceptionTested": "Using Get-request for unsolicited interface-down alert",
             "whatItDoes": "Get-request message describes a mechanism that could sound plausible for an interface goes down.",
-            "whyWrongHere": "Given an interface goes down, Trap message matches the tested behavior — Get-request message applies a different mechanism.",
-            "misconceptionTested": "Applying \"Get-request message\" without matching snmp",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given an interface goes down, Trap message matches the tested behavior — Get-request message applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Get-response message describes a mechanism that could sound plausible for an interface goes down. Given an interface goes down, Trap message matches the tested behavior — Get-response message applies a different mechanism.",
+            "explanation": "Get-response replies to a Get-request — interface-down notification is an autonomous trap, not a poll response.",
+            "misconceptionTested": "Selecting Get-response for agent-initiated alert",
             "whatItDoes": "Get-response message describes a mechanism that could sound plausible for an interface goes down.",
-            "whyWrongHere": "Given an interface goes down, Trap message matches the tested behavior — Get-response message applies a different mechanism.",
-            "misconceptionTested": "Applying \"Get-response message\" without matching snmp",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given an interface goes down, Trap message matches the tested behavior — Get-response message applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Set-request message describes a mechanism that could sound plausible for an interface goes down. Given an interface goes down, Trap message matches the tested behavior — Set-request message applies a different mechanism.",
+            "explanation": "Set-request writes a value from the NMS — link-down events generate traps, not Set operations.",
+            "misconceptionTested": "Expecting Set-request for link-down notification",
             "whatItDoes": "Set-request message describes a mechanism that could sound plausible for an interface goes down.",
-            "whyWrongHere": "Given an interface goes down, Trap message matches the tested behavior — Set-request message applies a different mechanism.",
-            "misconceptionTested": "Applying \"Set-request message\" without matching snmp",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given an interface goes down, Trap message matches the tested behavior — Set-request message applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for snmp before picking a familiar-sounding wrong term."
+        "examTip": "Agent pushes event to NMS without poll → SNMP trap (or inform with ack)."
       }
     },
     {

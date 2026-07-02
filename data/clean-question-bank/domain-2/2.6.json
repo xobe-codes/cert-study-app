@@ -127,32 +127,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "IBSS is ad hoc wireless without infrastructure."
+          "explanation": "IBSS (Independent Basic Service Set) is ad hoc wireless — clients connect peer-to-peer without an AP or WLAN infrastructure."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "BSS describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, IBSS matches the tested behavior — BSS applies a different mechanism.",
+            "explanation": "BSS is a single AP serving clients — it requires infrastructure (an access point), not ad hoc peer mode.",
+            "misconceptionTested": "Choosing BSS for infrastructure-free wireless",
             "whatItDoes": "BSS describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, IBSS matches the tested behavior — BSS applies a different mechanism.",
-            "misconceptionTested": "Applying \"BSS\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, IBSS matches the tested behavior — BSS applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "ESS describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, IBSS matches the tested behavior — ESS applies a different mechanism.",
+            "explanation": "ESS is multiple APs under one logical network — still infrastructure-based, not ad hoc IBSS.",
+            "misconceptionTested": "Selecting ESS for peer-to-peer wireless",
             "whatItDoes": "ESS describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, IBSS matches the tested behavior — ESS applies a different mechanism.",
-            "misconceptionTested": "Applying \"ESS\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, IBSS matches the tested behavior — ESS applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "DS describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, IBSS matches the tested behavior — DS applies a different mechanism.",
+            "explanation": "DS (Distribution System) is the wired backbone linking APs — not a client connection mode without infrastructure.",
+            "misconceptionTested": "Confusing distribution system with ad hoc mode",
             "whatItDoes": "DS describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, IBSS matches the tested behavior — DS applies a different mechanism.",
-            "misconceptionTested": "Applying \"DS\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, IBSS matches the tested behavior — DS applies a different mechanism."
           }
         ],
-        "examTip": "AD picks the route source for the same prefix; longest match still wins first."
+        "examTip": "No AP/infrastructure → IBSS (ad hoc); BSS/ESS need access points."
       }
     },
     {
@@ -178,32 +178,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Non-root wireless devices connect to root devices."
+          "explanation": "Non-root wireless devices (clients, repeaters in client role) associate with root devices (APs or root bridges) — they do not peer with each other as roots."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Non-root devices can connect to other non-root devices. describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Non-root devices can connect to other non-root devices. applies a different mechanism.",
+            "explanation": "Non-root devices do not connect to other non-root devices in standard bridge/repeater topologies — they uplink to a root AP or bridge.",
+            "misconceptionTested": "Expecting non-root to non-root peering",
             "whatItDoes": "Non-root devices can connect to other non-root devices. describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Non-root devices can connect to other non-root devices. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Non-root devices can connect to othe\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Non-root devices can connect to other non-root devices. applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Root devices can connect to other root devices. describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Root devices can connect to other root devices. applies a different mechanism.",
+            "explanation": "Root devices serve as the central point — two root bridges do not connect root-to-root in typical point-to-multipoint designs.",
+            "misconceptionTested": "Allowing root-to-root wireless links",
             "whatItDoes": "Root devices can connect to other root devices. describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Root devices can connect to other root devices. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Root devices can connect to other ro\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Root devices can connect to other root devices. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Repeaters are considered root devices. describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Repeaters are considered root devices. applies a different mechanism.",
+            "explanation": "Repeaters operate as non-root clients of a root AP — they extend coverage but are not classified as root devices.",
+            "misconceptionTested": "Labeling repeaters as root devices",
             "whatItDoes": "Repeaters are considered root devices. describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Repeaters are considered root devices. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Repeaters are considered root device\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Non-root devices can connect to root devices. matches the tested behavior — Repeaters are considered root devices. applies a different mechanism."
           }
         ],
-        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
+        "examTip": "Wireless hierarchy: non-root associates up to root AP/bridge — not root-to-root."
       }
     },
     {
@@ -228,32 +228,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "Autonomous APs can operate independently."
+          "explanation": "Autonomous (standalone) APs run full IOS locally and can serve clients without a wireless LAN controller."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Lightweight WAP describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Autonomous WAP matches the tested behavior — Lightweight WAP applies a different mechanism.",
+            "explanation": "Lightweight APs depend on a WLC for control and configuration — they cannot operate independently in lightweight mode.",
+            "misconceptionTested": "Expecting lightweight APs to run standalone",
             "whatItDoes": "Lightweight WAP describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Autonomous WAP matches the tested behavior — Lightweight WAP applies a different mechanism.",
-            "misconceptionTested": "Applying \"Lightweight WAP\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Autonomous WAP matches the tested behavior — Lightweight WAP applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "WLC describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Autonomous WAP matches the tested behavior — WLC applies a different mechanism.",
+            "explanation": "A WLC is the controller, not an access point — it manages APs but does not replace an autonomous AP role.",
+            "misconceptionTested": "Selecting WLC as independently operating WAP",
             "whatItDoes": "WLC describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Autonomous WAP matches the tested behavior — WLC applies a different mechanism.",
-            "misconceptionTested": "Applying \"WLC\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Autonomous WAP matches the tested behavior — WLC applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Mesh describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Autonomous WAP matches the tested behavior — Mesh applies a different mechanism.",
+            "explanation": "Mesh APs in a controller-based design still require WLC management — they are not the autonomous standalone model.",
+            "misconceptionTested": "Treating mesh AP as autonomous standalone",
             "whatItDoes": "Mesh describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Autonomous WAP matches the tested behavior — Mesh applies a different mechanism.",
-            "misconceptionTested": "Applying \"Mesh\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Autonomous WAP matches the tested behavior — Mesh applies a different mechanism."
           }
         ],
-        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
+        "examTip": "Standalone operation → autonomous AP; lightweight APs need a WLC."
       }
     },
     {
@@ -279,32 +279,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Point-to-multipoint wireless bridges connect multiple nearby buildings to a central point."
+          "explanation": "Point-to-multipoint wireless bridges connect multiple nearby buildings (non-root sites) to one central root location across short outdoor links."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Point-to-point wireless bridge is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
+            "explanation": "Point-to-point links only two endpoints — three buildings to one hub needs point-to-multipoint, not a single P2P span.",
+            "misconceptionTested": "Using point-to-point for one-to-many building links",
             "whatItDoes": "Point-to-point wireless bridge describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Point-to-multipoint wireless bridge matches the tested behavior — Point-to-point wireless bridge applies a different mechanism.",
-            "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
+            "whyWrongHere": "Given wireless architectures, Point-to-multipoint wireless bridge matches the tested behavior — Point-to-point wireless bridge applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Mesh wireless network describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Point-to-multipoint wireless bridge matches the tested behavior — Mesh wireless network applies a different mechanism.",
+            "explanation": "Mesh networks self-form multi-hop coverage for clients — building-to-central backhaul is classic point-to-multipoint bridging.",
+            "misconceptionTested": "Choosing mesh for fixed building backhaul",
             "whatItDoes": "Mesh wireless network describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Point-to-multipoint wireless bridge matches the tested behavior — Mesh wireless network applies a different mechanism.",
-            "misconceptionTested": "Applying \"Mesh wireless network\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Point-to-multipoint wireless bridge matches the tested behavior — Mesh wireless network applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Autonomous wireless network describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Point-to-multipoint wireless bridge matches the tested behavior — Autonomous wireless network applies a different mechanism.",
+            "explanation": "Autonomous WLANs serve indoor clients — outdoor building interconnection uses wireless bridge modes, not autonomous AP service.",
+            "misconceptionTested": "Deploying autonomous WLAN for building backhaul",
             "whatItDoes": "Autonomous wireless network describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Point-to-multipoint wireless bridge matches the tested behavior — Autonomous wireless network applies a different mechanism.",
-            "misconceptionTested": "Applying \"Autonomous wireless network\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Point-to-multipoint wireless bridge matches the tested behavior — Autonomous wireless network applies a different mechanism."
           }
         ],
-        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
+        "examTip": "Several buildings → one central site = point-to-multipoint wireless bridge."
       }
     },
     {
@@ -381,32 +381,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "Lightweight APs require a wireless LAN controller."
+          "explanation": "Lightweight (LWAPP/CAPWAP) APs require a wireless LAN controller for control, configuration, and firmware — they cannot run lightweight mode alone."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "BSS describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Lightweight WAP matches the tested behavior — BSS applies a different mechanism.",
+            "explanation": "BSS is a wireless service set topology term — not an AP type that requires a controller.",
+            "misconceptionTested": "Selecting BSS as controller-dependent AP type",
             "whatItDoes": "BSS describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Lightweight WAP matches the tested behavior — BSS applies a different mechanism.",
-            "misconceptionTested": "Applying \"BSS\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Lightweight WAP matches the tested behavior — BSS applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Bridges describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Lightweight WAP matches the tested behavior — Bridges applies a different mechanism.",
+            "explanation": "Wireless bridges can be autonomous or controller-based — the stem asks specifically for AP type requiring a WLC (lightweight).",
+            "misconceptionTested": "Answering bridges when lightweight AP is asked",
             "whatItDoes": "Bridges describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Lightweight WAP matches the tested behavior — Bridges applies a different mechanism.",
-            "misconceptionTested": "Applying \"Bridges\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Lightweight WAP matches the tested behavior — Bridges applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Autonomous WAP describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Lightweight WAP matches the tested behavior — Autonomous WAP applies a different mechanism.",
+            "explanation": "Autonomous APs operate independently with local IOS — they do not require a WLC.",
+            "misconceptionTested": "Expecting autonomous AP to need WLC",
             "whatItDoes": "Autonomous WAP describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Lightweight WAP matches the tested behavior — Autonomous WAP applies a different mechanism.",
-            "misconceptionTested": "Applying \"Autonomous WAP\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Lightweight WAP matches the tested behavior — Autonomous WAP applies a different mechanism."
           }
         ],
-        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
+        "examTip": "Lightweight AP = must join a WLC; autonomous AP runs standalone."
       }
     },
     {
@@ -484,32 +484,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally."
+          "explanation": "Local mode tunnels client data traffic to the WLC over CAPWAP — centralized switching at the controller."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Flex Connect mode creates a CAPWAP tunnel to the WLC to transport data. describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Flex Connect mode creates a CAPWAP tunnel to the WLC to transport data. applies a different mechanism.",
+            "explanation": "FlexConnect (formerly H-REAP) can switch client traffic locally at the AP — Local mode tunnels data to the WLC, not FlexConnect.",
+            "misconceptionTested": "Assigning CAPWAP data tunnel to FlexConnect",
             "whatItDoes": "Flex Connect mode creates a CAPWAP tunnel to the WLC to transport data. describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Flex Connect mode creates a CAPWAP tunnel to the WLC to transport data. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Flex Connect mode creates a CAPWAP t\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Flex Connect mode creates a CAPWAP tunnel to the WLC to transport data. applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Local mode allows for switching of VLANs at the WAP. describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Local mode allows for switching of VLANs at the WAP. applies a different mechanism.",
+            "explanation": "Local mode centralizes switching at the WLC — VLAN switching at the WAP describes FlexConnect/local switching, not Local mode.",
+            "misconceptionTested": "Crediting Local mode with AP-side VLAN switching",
             "whatItDoes": "Local mode allows for switching of VLANs at the WAP. describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Local mode allows for switching of VLANs at the WAP. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Local mode allows for switching of V\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Local mode allows for switching of VLANs at the WAP. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Flex Connect mode allows for switching of VLANs at the WLC. describes a mechanism that could sound plausible for wireless architectures. Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Flex Connect mode allows for switching of VLANs at the WLC. applies a different mechanism.",
+            "explanation": "FlexConnect allows local switching at the AP when WAN links are constrained — VLAN switching at the WLC describes Local mode behavior.",
+            "misconceptionTested": "Swapping FlexConnect and Local mode roles",
             "whatItDoes": "Flex Connect mode allows for switching of VLANs at the WLC. describes a mechanism that could sound plausible for wireless architectures.",
-            "whyWrongHere": "Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Flex Connect mode allows for switching of VLANs at the WLC. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Flex Connect mode allows for switchi\" without matching wireless architectures"
+            "whyWrongHere": "Given wireless architectures, Local mode creates a CAPWAP tunnel to the WLC to transport data. matches the tested behavior — Flex Connect mode allows for switching of VLANs at the WLC. applies a different mechanism."
           }
         ],
-        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
+        "examTip": "Local mode = client data CAPWAP-tunneled to WLC; FlexConnect can switch locally."
       }
     }
   ]

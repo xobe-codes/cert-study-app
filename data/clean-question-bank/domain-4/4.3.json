@@ -75,35 +75,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"The PTR record\"."
+          "explanation": "PTR records map an IPv4 address to an FQDN (reverse DNS) — forward name-to-IP uses A records."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The A record describes a mechanism that could sound plausible for dns. Given dns, The PTR record matches the tested behavior — The A record applies a different mechanism.",
+            "explanation": "A records map hostname to IPv4 address (forward DNS) — IP-to-FQDN reverse lookup uses PTR in in-addr.arpa zones.",
+            "misconceptionTested": "Using A record for reverse IP-to-name lookup",
             "whatItDoes": "The A record describes a mechanism that could sound plausible for dns.",
-            "whyWrongHere": "Given dns, The PTR record matches the tested behavior — The A record applies a different mechanism.",
-            "misconceptionTested": "Applying \"The A record\" without matching dns",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given dns, The PTR record matches the tested behavior — The A record applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The CName record describes a mechanism that could sound plausible for dns. Given dns, The PTR record matches the tested behavior — The CName record applies a different mechanism.",
+            "explanation": "CNAME is an alias pointing one name to another hostname — it does not perform IP-to-FQDN reverse resolution.",
+            "misconceptionTested": "Selecting CNAME for reverse DNS",
             "whatItDoes": "The CName record describes a mechanism that could sound plausible for dns.",
-            "whyWrongHere": "Given dns, The PTR record matches the tested behavior — The CName record applies a different mechanism.",
-            "misconceptionTested": "Applying \"The CName record\" without matching dns",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given dns, The PTR record matches the tested behavior — The CName record applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The AAAA record describes a mechanism that could sound plausible for dns. Given dns, The PTR record matches the tested behavior — The AAAA record applies a different mechanism.",
+            "explanation": "AAAA records map hostname to IPv6 — reverse IPv4-to-FQDN uses PTR, not AAAA.",
+            "misconceptionTested": "Confusing AAAA with IPv4 reverse PTR",
             "whatItDoes": "The AAAA record describes a mechanism that could sound plausible for dns.",
-            "whyWrongHere": "Given dns, The PTR record matches the tested behavior — The AAAA record applies a different mechanism.",
-            "misconceptionTested": "Applying \"The AAAA record\" without matching dns",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given dns, The PTR record matches the tested behavior — The AAAA record applies a different mechanism."
           }
         ],
-        "examTip": "Forward = name→IP; reverse = IP→name (PTR)."
+        "examTip": "IP → name = PTR (reverse); name → IP = A (forward)."
       }
     },
     {
@@ -241,35 +238,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"The A record\"."
+          "explanation": "A records hold the IPv4 address for a hostname — the primary forward DNS mapping for IPv4 hosts."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The CName record describes a mechanism that could sound plausible for hostname. Given hostname, The A record matches the tested behavior — The CName record applies a different mechanism.",
+            "explanation": "CNAME creates an alias to another DNS name — it does not directly store the IPv4 address.",
+            "misconceptionTested": "Using CNAME to store IPv4 address",
             "whatItDoes": "The CName record describes a mechanism that could sound plausible for hostname.",
-            "whyWrongHere": "Given hostname, The A record matches the tested behavior — The CName record applies a different mechanism.",
-            "misconceptionTested": "Applying \"The CName record\" without matching dns",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given hostname, The A record matches the tested behavior — The CName record applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The PTR record describes a mechanism that could sound plausible for hostname. Given hostname, The A record matches the tested behavior — The PTR record applies a different mechanism.",
+            "explanation": "PTR records map IP to hostname (reverse DNS) — forward hostname-to-IPv4 uses A records.",
+            "misconceptionTested": "Selecting PTR for forward IPv4 lookup",
             "whatItDoes": "The PTR record describes a mechanism that could sound plausible for hostname.",
-            "whyWrongHere": "Given hostname, The A record matches the tested behavior — The PTR record applies a different mechanism.",
-            "misconceptionTested": "Applying \"The PTR record\" without matching dns",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given hostname, The A record matches the tested behavior — The PTR record applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The AAAA record describes a mechanism that could sound plausible for hostname. Given hostname, The A record matches the tested behavior — The AAAA record applies a different mechanism.",
+            "explanation": "AAAA records store IPv6 addresses — IPv4 hostname resolution uses A records.",
+            "misconceptionTested": "Choosing AAAA for IPv4 hostname mapping",
             "whatItDoes": "The AAAA record describes a mechanism that could sound plausible for hostname.",
-            "whyWrongHere": "Given hostname, The A record matches the tested behavior — The AAAA record applies a different mechanism.",
-            "misconceptionTested": "Applying \"The AAAA record\" without matching dns",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given hostname, The A record matches the tested behavior — The AAAA record applies a different mechanism."
           }
         ],
-        "examTip": "Forward = name→IP; reverse = IP→name (PTR)."
+        "examTip": "Hostname → IPv4 = A record; IPv6 = AAAA; reverse = PTR."
       }
     },
     {

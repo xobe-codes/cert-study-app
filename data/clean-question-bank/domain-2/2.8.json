@@ -24,32 +24,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Telnet provides terminal emulation over a network but is not encrypted."
+          "explanation": "Telnet provides terminal emulation over TCP — remote CLI access to routers and switches (insecure; SSH preferred)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SNMP describes a mechanism that could sound plausible for management access. Given management access, Telnet matches the tested behavior — SNMP applies a different mechanism.",
+            "explanation": "SNMP is network management polling/traps — it does not provide interactive terminal emulation.",
+            "misconceptionTested": "Using SNMP for terminal emulation",
             "whatItDoes": "SNMP describes a mechanism that could sound plausible for management access.",
-            "whyWrongHere": "Given management access, Telnet matches the tested behavior — SNMP applies a different mechanism.",
-            "misconceptionTested": "Applying \"SNMP\" without matching management access"
+            "whyWrongHere": "Given management access, Telnet matches the tested behavior — SNMP applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "HTTP describes a mechanism that could sound plausible for management access. Given management access, Telnet matches the tested behavior — HTTP applies a different mechanism.",
+            "explanation": "HTTP serves web pages — it is not a CLI terminal emulation protocol like Telnet or SSH.",
+            "misconceptionTested": "Selecting HTTP for terminal access",
             "whatItDoes": "HTTP describes a mechanism that could sound plausible for management access.",
-            "whyWrongHere": "Given management access, Telnet matches the tested behavior — HTTP applies a different mechanism.",
-            "misconceptionTested": "Applying \"HTTP\" without matching management access"
+            "whyWrongHere": "Given management access, Telnet matches the tested behavior — HTTP applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "TFTP describes a mechanism that could sound plausible for management access. Given management access, Telnet matches the tested behavior — TFTP applies a different mechanism.",
+            "explanation": "TFTP transfers files on UDP 69 — it does not offer interactive terminal sessions.",
+            "misconceptionTested": "Confusing TFTP file transfer with terminal emulation",
             "whatItDoes": "TFTP describes a mechanism that could sound plausible for management access.",
-            "whyWrongHere": "Given management access, Telnet matches the tested behavior — TFTP applies a different mechanism.",
-            "misconceptionTested": "Applying \"TFTP\" without matching management access"
+            "whyWrongHere": "Given management access, Telnet matches the tested behavior — TFTP applies a different mechanism."
           }
         ],
-        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
+        "examTip": "Terminal emulation over network → Telnet (legacy) or SSH (secure)."
       }
     },
     {
@@ -278,32 +278,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "WAP debug output appears on the console by default."
+          "explanation": "WAP debug output appears on the console port by default — connect a serial console cable for real-time debug messages."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "SSH describes a mechanism that could sound plausible for management access. Given management access, Console matches the tested behavior — SSH applies a different mechanism.",
+            "explanation": "SSH provides remote management — debug output defaults to console unless explicitly redirected to logging.",
+            "misconceptionTested": "Expecting SSH as default debug display",
             "whatItDoes": "SSH describes a mechanism that could sound plausible for management access.",
-            "whyWrongHere": "Given management access, Console matches the tested behavior — SSH applies a different mechanism.",
-            "misconceptionTested": "Applying \"SSH\" without matching management access"
+            "whyWrongHere": "Given management access, Console matches the tested behavior — SSH applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Logging server describes a mechanism that could sound plausible for management access. Given management access, Console matches the tested behavior — Logging server applies a different mechanism.",
+            "explanation": "Syslog server receives forwarded logs if configured — default debug display is local console, not remote logging.",
+            "misconceptionTested": "Assuming debug goes to logging server by default",
             "whatItDoes": "Logging server describes a mechanism that could sound plausible for management access.",
-            "whyWrongHere": "Given management access, Console matches the tested behavior — Logging server applies a different mechanism.",
-            "misconceptionTested": "Applying \"Logging server\" without matching management access"
+            "whyWrongHere": "Given management access, Console matches the tested behavior — Logging server applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Local storage describes a mechanism that could sound plausible for management access. Given management access, Console matches the tested behavior — Local storage applies a different mechanism.",
+            "explanation": "Local flash stores configs and images — debug messages stream to console, not flash storage by default.",
+            "misconceptionTested": "Expecting debug stored in local flash",
             "whatItDoes": "Local storage describes a mechanism that could sound plausible for management access.",
-            "whyWrongHere": "Given management access, Console matches the tested behavior — Local storage applies a different mechanism.",
-            "misconceptionTested": "Applying \"Local storage\" without matching management access"
+            "whyWrongHere": "Given management access, Console matches the tested behavior — Local storage applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests management access — exam distractors swap similar terms; anchor on: WAP debug output appears on the console by default."
+        "examTip": "AP/router debug → watch console by default; redirect with logging if needed."
       }
     },
     {
@@ -533,32 +533,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "An SSID can be up to 32 characters."
+          "explanation": "An SSID name can be up to 32 characters — the IEEE 802.11 standard limit for the SSID field."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "16 characters uses the wrong value. The tested fact calls for 32 — not 16.",
+            "explanation": "16 characters is below the maximum — 802.11 allows SSIDs up to 32 characters.",
+            "misconceptionTested": "Underestimating SSID length limit",
             "whatItDoes": "16 characters describes a mechanism that could sound plausible for An SSID can be up to 32 characters.",
-            "whyWrongHere": "Given An SSID can be up to 32 characters, 32 characters matches the tested behavior — 16 characters applies a different mechanism.",
-            "misconceptionTested": "Memorizing 16 instead of the correct 32"
+            "whyWrongHere": "Given An SSID can be up to 32 characters, 32 characters matches the tested behavior — 16 characters applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "48 characters uses the wrong value. The tested fact calls for 32 — not 48.",
+            "explanation": "48 characters exceeds the 802.11 SSID field — maximum is 32 characters.",
+            "misconceptionTested": "Overestimating SSID to 48 characters",
             "whatItDoes": "48 characters describes a mechanism that could sound plausible for An SSID can be up to 32 characters.",
-            "whyWrongHere": "Given An SSID can be up to 32 characters, 32 characters matches the tested behavior — 48 characters applies a different mechanism.",
-            "misconceptionTested": "Memorizing 48 instead of the correct 32"
+            "whyWrongHere": "Given An SSID can be up to 32 characters, 32 characters matches the tested behavior — 48 characters applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "64 characters uses the wrong value. The tested fact calls for 32 — not 64.",
+            "explanation": "64 characters is double the allowed SSID length — memorize 32 for CCNA.",
+            "misconceptionTested": "Confusing SSID limit with 64-bit WPA key",
             "whatItDoes": "64 characters describes a mechanism that could sound plausible for An SSID can be up to 32 characters.",
-            "whyWrongHere": "Given An SSID can be up to 32 characters, 32 characters matches the tested behavior — 64 characters applies a different mechanism.",
-            "misconceptionTested": "Memorizing 64 instead of the correct 32"
+            "whyWrongHere": "Given An SSID can be up to 32 characters, 32 characters matches the tested behavior — 64 characters applies a different mechanism."
           }
         ],
-        "examTip": "This stem tests wlan — exam distractors swap similar terms; anchor on: An SSID can be up to 32 characters."
+        "examTip": "SSID max length = 32 characters (802.11); WPA2-PSK passphrase is separate."
       }
     },
     {
@@ -686,32 +686,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "A short-range personal wireless network is a WPAN."
+          "explanation": "WPAN (Wireless Personal Area Network) covers short range (~10–30 feet) — Bluetooth and similar personal devices."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "WLAN describes a mechanism that could sound plausible for A short-range personal wireless network is a WPAN. Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WLAN applies a different mechanism.",
+            "explanation": "WLAN is a local area wireless network (building/campus scale) — not a 30-foot personal bubble.",
+            "misconceptionTested": "Labeling short-range personal network as WLAN",
             "whatItDoes": "WLAN describes a mechanism that could sound plausible for A short-range personal wireless network is a WPAN.",
-            "whyWrongHere": "Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WLAN applies a different mechanism.",
-            "misconceptionTested": "Applying \"WLAN\" without matching wlan"
+            "whyWrongHere": "Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WLAN applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "WMAN describes a mechanism that could sound plausible for A short-range personal wireless network is a WPAN. Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WMAN applies a different mechanism.",
+            "explanation": "WMAN is metropolitan-scale wireless (city coverage) — far larger than 30 feet.",
+            "misconceptionTested": "Selecting metropolitan WMAN for 30-foot network",
             "whatItDoes": "WMAN describes a mechanism that could sound plausible for A short-range personal wireless network is a WPAN.",
-            "whyWrongHere": "Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WMAN applies a different mechanism.",
-            "misconceptionTested": "Applying \"WMAN\" without matching wlan"
+            "whyWrongHere": "Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WMAN applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "WWAN describes a mechanism that could sound plausible for A short-range personal wireless network is a WPAN. Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WWAN applies a different mechanism.",
+            "explanation": "WWAN is wide-area cellular/mobile — not a small personal wireless network.",
+            "misconceptionTested": "Confusing WWAN with personal short-range",
             "whatItDoes": "WWAN describes a mechanism that could sound plausible for A short-range personal wireless network is a WPAN.",
-            "whyWrongHere": "Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WWAN applies a different mechanism.",
-            "misconceptionTested": "Applying \"WWAN\" without matching wlan"
+            "whyWrongHere": "Given A short-range personal wireless network is a WPAN, WPAN matches the tested behavior — WWAN applies a different mechanism."
           }
         ],
-        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
+        "examTip": "Short personal range (~30 ft) → WPAN; building = WLAN; city = WMAN."
       }
     },
     {

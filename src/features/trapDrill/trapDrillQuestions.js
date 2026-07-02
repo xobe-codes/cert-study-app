@@ -1,4 +1,4 @@
-/** Curated trap-drill MC — 3 questions per top trap CKU (150 total). */
+/** Curated trap-drill MC — 3 questions per top trap CKU (180 total). */
 
 export const TRAP_DRILL_CKUS = [
   {
@@ -275,6 +275,31 @@ export const TRAP_DRILL_CKUS = [
     ckuId: 'CKU-ROOT-GUARD',
     trapLabel: 'Enabling Root Guard on the actual root bridge uplink.',
     objectiveId: '2.5',
+  },
+  {
+    ckuId: 'CKU-CAPWAP',
+    trapLabel: 'Confusing CAPWAP control and data tunnel ports.',
+    objectiveId: '2.6',
+  },
+  {
+    ckuId: 'CKU-DNS-RECORDS',
+    trapLabel: 'Using an A record when reverse lookup is required.',
+    objectiveId: '4.3',
+  },
+  {
+    ckuId: 'CKU-NTP-STRATUM',
+    trapLabel: 'Thinking stratum 1 means the local router is the reference clock.',
+    objectiveId: '4.2',
+  },
+  {
+    ckuId: 'CKU-EXTENDED-ACL',
+    trapLabel: 'Placing extended ACLs close to the destination instead of the source.',
+    objectiveId: '5.5',
+  },
+  {
+    ckuId: 'CKU-DHCP-SNOOPING',
+    trapLabel: 'Marking all access ports as DHCP snooping trusted.',
+    objectiveId: '5.6',
   },
 ]
 
@@ -2003,6 +2028,86 @@ const QUESTIONS = [
     id: 'trap-rootguard-3', ckuId: 'CKU-ROOT-GUARD', trapLabel: 'Enabling Root Guard on the actual root bridge uplink.', objectiveId: '2.5',
     question: 'Root Guard is configured on the uplink toward the legitimate root bridge. Effect?', choices: ['Improves convergence', 'Blocks valid root BPDUs — network may lose root path', 'Enables BPDU filtering', 'Replaces BPDU Guard'],
     correctIndex: 1, explanation: 'Root Guard on the real root-facing port rejects superior BPDUs — breaks proper STP topology.', type: 'troubleshooting', concept: 'stp',
+  },
+  // CKU-CAPWAP (3)
+  {
+    id: 'trap-capwap-1', ckuId: 'CKU-CAPWAP', trapLabel: 'Confusing CAPWAP control and data tunnel ports.', objectiveId: '2.6',
+    question: 'Lightweight APs tunnel management to a WLC using CAPWAP. Which UDP ports are used?', choices: ['TCP 443 and TCP 8443', 'UDP 5246 (control) and UDP 5247 (data)', 'UDP 67 and UDP 68', 'TCP 22 and TCP 23'],
+    correctIndex: 1, explanation: 'CAPWAP uses UDP 5246 for control/management and UDP 5247 for data between AP and WLC.', type: 'definition', concept: 'wireless',
+  },
+  {
+    id: 'trap-capwap-2', ckuId: 'CKU-CAPWAP', trapLabel: 'Confusing CAPWAP control and data tunnel ports.', objectiveId: '2.6',
+    question: 'A firewall blocks UDP 5246 but permits UDP 5247. What fails first?', choices: ['Client Wi-Fi data only', 'AP join and WLC management — control tunnel cannot form', 'DHCP for wireless clients', 'DNS resolution on the WLC'],
+    correctIndex: 1, explanation: 'Control tunnel (5246) carries join, config, and keepalive — without it the AP cannot join the WLC.', type: 'scenario', concept: 'wireless',
+  },
+  {
+    id: 'trap-capwap-3', ckuId: 'CKU-CAPWAP', trapLabel: 'Confusing CAPWAP control and data tunnel ports.', objectiveId: '2.6',
+    question: 'CAPWAP replaced which legacy Cisco lightweight AP protocol?', choices: ['802.1X', 'LWAPP', 'WEP', 'LLDP'],
+    correctIndex: 1, explanation: 'CAPWAP (RFC 5415) superseded LWAPP as the standard AP-to-controller tunnel protocol.', type: 'definition', concept: 'wireless',
+  },
+  // CKU-DNS-RECORDS (3)
+  {
+    id: 'trap-dnsrec-1', ckuId: 'CKU-DNS-RECORDS', trapLabel: 'Using an A record when reverse lookup is required.', objectiveId: '4.3',
+    question: 'Which DNS record maps a hostname to an IPv4 address?', choices: ['PTR', 'A', 'MX', 'CNAME'],
+    correctIndex: 1, explanation: 'A records map names to IPv4 — PTR records map IP addresses back to names (reverse lookup).', type: 'definition', concept: 'dns',
+  },
+  {
+    id: 'trap-dnsrec-2', ckuId: 'CKU-DNS-RECORDS', trapLabel: 'Using an A record when reverse lookup is required.', objectiveId: '4.3',
+    question: 'Mail delivery uses which DNS record type to find the mail server for a domain?', choices: ['A', 'AAAA', 'MX', 'NS'],
+    correctIndex: 2, explanation: 'MX (Mail Exchange) records point to the hostname that receives email for the domain.', type: 'application', concept: 'dns',
+  },
+  {
+    id: 'trap-dnsrec-3', ckuId: 'CKU-DNS-RECORDS', trapLabel: 'Using an A record when reverse lookup is required.', objectiveId: '4.3',
+    question: 'www.example.com is an alias for server1.example.com. Which record type is used?', choices: ['A', 'CNAME', 'PTR', 'TXT'],
+    correctIndex: 1, explanation: 'CNAME creates an alias — multiple names can point to one canonical A record.', type: 'definition', concept: 'dns',
+  },
+  // CKU-NTP-STRATUM (3)
+  {
+    id: 'trap-ntpstr-1', ckuId: 'CKU-NTP-STRATUM', trapLabel: 'Thinking stratum 1 means the local router is the reference clock.', objectiveId: '4.2',
+    question: 'A router syncs to an NTP server at stratum 2. What stratum does the router report?', choices: ['Stratum 1', 'Stratum 2', 'Stratum 3', 'Stratum 16 (unsynchronized)'],
+    correctIndex: 2, explanation: 'Client stratum = server stratum + 1 — stratum 1 is the reference clock (GPS/atomic), not the client.', type: 'scenario', concept: 'ntp',
+  },
+  {
+    id: 'trap-ntpstr-2', ckuId: 'CKU-NTP-STRATUM', trapLabel: 'Thinking stratum 1 means the local router is the reference clock.', objectiveId: '4.2',
+    question: 'Which stratum level represents a directly connected reference clock source?', choices: ['Stratum 0', 'Stratum 1', 'Stratum 2', 'Stratum 15'],
+    correctIndex: 1, explanation: 'Stratum 1 servers attach directly to reference clocks — stratum 0 is the clock itself (not assigned to NTP peers).', type: 'definition', concept: 'ntp',
+  },
+  {
+    id: 'trap-ntpstr-3', ckuId: 'CKU-NTP-STRATUM', trapLabel: 'Thinking stratum 1 means the local router is the reference clock.', objectiveId: '4.2',
+    question: 'Lower NTP stratum number means…', choices: ['Farther from the reference clock — less accurate', 'Closer to the reference clock — more authoritative', 'The server is unsynchronized', 'The server uses manual `clock set`'],
+    correctIndex: 1, explanation: 'Stratum increases with each hop from the reference — lower stratum = closer to the authoritative time source.', type: 'definition', concept: 'ntp',
+  },
+  // CKU-EXTENDED-ACL (3)
+  {
+    id: 'trap-extacl-1', ckuId: 'CKU-EXTENDED-ACL', trapLabel: 'Placing extended ACLs close to the destination instead of the source.', objectiveId: '5.5',
+    question: 'Where should an extended ACL filtering traffic FROM subnet A be applied?', choices: ['On the router interface closest to subnet A (source)', 'On the router interface closest to the destination', 'On the DHCP server', 'On every switch in the path'],
+    correctIndex: 0, explanation: 'Extended ACLs go near the source — filter unwanted traffic before it consumes bandwidth across the network.', type: 'application', concept: 'acl',
+  },
+  {
+    id: 'trap-extacl-2', ckuId: 'CKU-EXTENDED-ACL', trapLabel: 'Placing extended ACLs close to the destination instead of the source.', objectiveId: '5.5',
+    question: 'Standard ACLs (1–99) should generally be placed…', choices: ['Near the source of traffic', 'Near the destination of traffic', 'On the DHCP relay interface', 'On loopback interfaces only'],
+    correctIndex: 1, explanation: 'Standard ACLs match source only — place near destination to avoid blocking transit traffic unintentionally.', type: 'definition', concept: 'acl',
+  },
+  {
+    id: 'trap-extacl-3', ckuId: 'CKU-EXTENDED-ACL', trapLabel: 'Placing extended ACLs close to the destination instead of the source.', objectiveId: '5.5',
+    question: 'An extended ACL on R2 (between sites) blocks Telnet from Site A to Site B. Best placement?', choices: ['Inbound on R2 interface toward Site B', 'Outbound on R1 interface leaving Site A', 'On the Site B access switch', 'On the DNS server'],
+    correctIndex: 1, explanation: 'Apply outbound on the source-side router — Telnet is stopped before crossing the WAN link.', type: 'scenario', concept: 'acl',
+  },
+  // CKU-DHCP-SNOOPING (3)
+  {
+    id: 'trap-dhcpsnoop-1', ckuId: 'CKU-DHCP-SNOOPING', trapLabel: 'Marking all access ports as DHCP snooping trusted.', objectiveId: '5.6',
+    question: 'Which ports should be configured as DHCP snooping trusted?', choices: ['All access ports facing end users', 'Only ports connected to legitimate DHCP servers or uplinks toward them', 'Every port on the switch', 'Only trunk ports'],
+    correctIndex: 1, explanation: 'Trusted ports allow DHCP server messages — typically uplinks toward the real DHCP server, not client-facing access ports.', type: 'definition', concept: 'layer2-security',
+  },
+  {
+    id: 'trap-dhcpsnoop-2', ckuId: 'CKU-DHCP-SNOOPING', trapLabel: 'Marking all access ports as DHCP snooping trusted.', objectiveId: '5.6',
+    question: 'A rogue DHCP server connects to an untrusted access port. DHCP snooping will…', choices: ['Permit all DHCP offers', 'Drop DHCP OFFER/ACK from untrusted ports', 'Disable the VLAN', 'Convert the port to trunk'],
+    correctIndex: 1, explanation: 'Snooping blocks DHCP server messages on untrusted ports — only trusted ports can send offers/acks.', type: 'scenario', concept: 'layer2-security',
+  },
+  {
+    id: 'trap-dhcpsnoop-3', ckuId: 'CKU-DHCP-SNOOPING', trapLabel: 'Marking all access ports as DHCP snooping trusted.', objectiveId: '5.6',
+    question: 'DHCP snooping builds a binding table used by which companion feature?', choices: ['VTP pruning', 'Dynamic ARP Inspection (DAI)', 'EtherChannel LACP', 'OSPF passive-interface'],
+    correctIndex: 1, explanation: 'DAI validates ARP against the DHCP snooping binding table — stops ARP spoofing on untrusted ports.', type: 'application', concept: 'layer2-security',
   },
 ]
 

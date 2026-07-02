@@ -39,13 +39,11 @@ async function answerFirstTrapQuestion(page) {
   const count = await radios.count()
   for (let i = 0; i < count; i++) {
     await radios.nth(i).click()
-    const incorrect = page.getByText(/^✗ Incorrect$/).first()
-    if (await incorrect.isVisible().catch(() => false)) {
+    await page.waitForTimeout(150)
+    if (await page.getByText(/^✗ Incorrect$/).count()) {
       await expect(page.locator('.ccna-answer-review').first()).toBeVisible({ timeout: 10_000 })
       return
     }
-    const correct = page.getByText(/^✓ Correct$/).first()
-    if (await correct.isVisible().catch(() => false)) continue
     if (await page.getByText(/WHY [A-F] IS WRONG/i).count()) {
       await expect(page.locator('.ccna-answer-review').first()).toBeVisible({ timeout: 10_000 })
       return
@@ -63,6 +61,7 @@ test.describe('Trap drill CKU sessions', () => {
     test(`${ckuId} shows trap label and AnswerReview after one answer`, async ({ page }) => {
       await startTrapDrillCku(page, ckuId)
       await expect(page.getByText(trapLabel)).toBeVisible({ timeout: 15_000 })
+      await expect(page.locator('[role="radiogroup"]').first()).toBeVisible({ timeout: 15_000 })
       await answerFirstTrapQuestion(page)
       await expect(page.getByText(/What this choice implies/i)).toBeVisible()
       await expect(page.getByText(/Why it is wrong here/i)).toBeVisible()

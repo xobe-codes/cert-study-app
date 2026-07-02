@@ -1,6 +1,78 @@
 /** Exam-trap enrichment for factory reading shells (Tier C zero-trap objectives). */
 
 export const FACTORY_TRAP_PATCHES = {
+  '1.1': {
+    examTraps: [
+      { id: '1.1-t1', trap: 'Routers and switches both forward traffic using IP addresses.', correction: 'Switches forward at Layer 2 using MAC addresses; routers forward at Layer 3 using IP addresses.', ckuIds: ['CKU-SWITCH', 'CKU-ROUTER'] },
+      { id: '1.1-t2', trap: 'A firewall and a router are the same device class on the exam.', correction: 'Routers route between networks; firewalls enforce security policy — often combined but distinct roles.', ckuIds: ['CKU-FIREWALL', 'CKU-ROUTER'] },
+    ],
+  },
+  '1.5': {
+    examTraps: [
+      { id: '1.5-t1', trap: 'A switch always floods every frame to all ports.', correction: 'Known unicast is forwarded to the learned port; flooding applies to unknown unicast, broadcast, and multicast.', ckuIds: ['CKU-FRAME-FLOODING', 'CKU-MAC-LEARNING'] },
+      { id: '1.5-t2', trap: 'The MAC address table never ages out learned entries.', correction: 'Aging timers remove stale entries — if a host moves, the switch re-learns on the new port.', ckuIds: ['CKU-MAC-AGING', 'CKU-MAC-ADDRESS-TABLE'] },
+    ],
+  },
+  '1.6': {
+    examTraps: [
+      { id: '1.6-t1', trap: 'A /26 subnet provides 64 usable host addresses.', correction: '2^6 = 64 addresses minus network and broadcast = 62 usable hosts.', ckuIds: ['CKU-SUBNETTING'] },
+      { id: '1.6-t2', trap: 'Subnet mask and wildcard mask use the same bit logic.', correction: 'Subnet mask: 1 = network portion; wildcard mask: 0 = match — they are inverses for ACL and OSPF.', ckuIds: ['CKU-SUBNET-MASK', 'CKU-BLOCK-SIZE'] },
+    ],
+  },
+  '2.1': {
+    examTraps: [
+      { id: '2.1-t1', trap: 'VLANs on a Layer 2 switch route between each other automatically.', correction: 'Inter-VLAN routing requires a Layer 3 device — router, L3 switch SVI, or router-on-a-stick.', ckuIds: ['CKU-VLAN'] },
+      { id: '2.1-t2', trap: 'Deleting unused VLAN 1 improves security with no side effects.', correction: 'VLAN 1 is the default — traffic and management may depend on it; create other VLANs instead of deleting 1.', ckuIds: ['CKU-VLAN', 'CKU-ACCESS-PORT'] },
+    ],
+  },
+  '2.2': {
+    examTraps: [
+      { id: '2.2-t1', trap: 'All VLANs including the native VLAN are tagged on an 802.1Q trunk.', correction: 'Native VLAN frames are untagged — native VLAN ID must match on both trunk ends.', ckuIds: ['CKU-NATIVE-VLAN', 'CKU-TRUNKING'] },
+      { id: '2.2-t2', trap: 'DTP is required for a manually configured trunk to work.', correction: 'Administrative `switchport mode trunk` works without DTP — use `switchport nonegotiate` to disable DTP.', ckuIds: ['CKU-DTP', 'CKU-TRUNKING'] },
+    ],
+  },
+  '2.5': {
+    examTraps: [
+      { id: '2.5-t1', trap: 'The switch with the highest bridge priority becomes the STP root.', correction: 'Lowest numeric bridge priority wins — default is 32768; lower is better.', ckuIds: ['CKU-ROOT-BRIDGE', 'CKU-STP'] },
+      { id: '2.5-t2', trap: 'PortFast is safe on trunk and uplink ports.', correction: 'PortFast skips listening/learning on access ports with a single end host — never on trunks or uplinks.', ckuIds: ['CKU-STP-PORTFAST', 'CKU-STP'] },
+    ],
+  },
+  '3.1': {
+    examTraps: [
+      { id: '3.1-t1', trap: 'Route code C and L in `show ip route` mean the same thing.', correction: 'C = connected network subnet; L = local /32 address assigned to the router interface.', ckuIds: ['CKU-CONNECTED-LOCAL-ROUTES', 'CKU-ROUTE-SOURCE-CODES'] },
+      { id: '3.1-t2', trap: 'A directly connected route appears without an interface IP configured.', correction: 'Connected routes are created when an interface has an IP address and is administratively up.', ckuIds: ['CKU-CONNECTED-LOCAL-ROUTES', 'CKU-ROUTING-TABLE-ENTRY'] },
+    ],
+  },
+  '3.2': {
+    examTraps: [
+      { id: '3.2-t1', trap: 'Lowest administrative distance always wins regardless of prefix length.', correction: 'Longest prefix match is evaluated first — then AD, then metric within the same protocol.', ckuIds: ['CKU-LONGEST-PREFIX-MATCH', 'CKU-ADMINISTRATIVE-DISTANCE'] },
+      { id: '3.2-t2', trap: 'OSPF and EIGRP metrics are directly comparable on the exam.', correction: 'Each protocol uses its own metric scale — compare routes via AD and prefix length, not cross-protocol metrics.', ckuIds: ['CKU-METRIC', 'CKU-ADMINISTRATIVE-DISTANCE'] },
+    ],
+  },
+  '3.4': {
+    examTraps: [
+      { id: '3.4-t1', trap: 'OSPF `network` statements use subnet masks like RIP.', correction: 'OSPF expects a wildcard mask — e.g. 10.0.0.0 0.255.255.255, not 255.0.0.0.', ckuIds: ['CKU-OSPF', 'CKU-SINGLE-AREA-OSPF'] },
+      { id: '3.4-t2', trap: 'All OSPF areas can function without a backbone area 0.', correction: 'Inter-area routing requires area 0 — non-backbone areas must connect through the backbone.', ckuIds: ['CKU-SINGLE-AREA-OSPF', 'CKU-ROUTER-ID'] },
+    ],
+  },
+  '4.1': {
+    examTraps: [
+      { id: '4.1-t1', trap: 'Static NAT is the best choice when many inside hosts share one public IP.', correction: 'Use PAT (NAT overload) for many-to-one; static NAT maps one inside address to one global address.', ckuIds: ['CKU-PAT', 'CKU-NAT'] },
+      { id: '4.1-t2', trap: 'Inside local and inside global addresses are always the same.', correction: 'Inside local = address as seen on the LAN; inside global = translated address as seen on the Internet.', ckuIds: ['CKU-NAT-TERMS', 'CKU-NAT'] },
+    ],
+  },
+  '5.5': {
+    examTraps: [
+      { id: '5.5-t1', trap: 'Standard ACLs filter both source and destination addresses.', correction: 'Standard ACLs (1–99, 1300–1999) match source only; extended ACLs match source, destination, and protocol/port.', ckuIds: ['CKU-ACL-STANDARD', 'CKU-ACL-EXTENDED'] },
+      { id: '5.5-t2', trap: 'Extended ACLs should be placed close to the destination.', correction: 'Place extended ACLs near the source so unwanted traffic is filtered before crossing the network.', ckuIds: ['CKU-ACL-EXTENDED', 'CKU-ACL'] },
+    ],
+  },
+  '5.6': {
+    examTraps: [
+      { id: '5.6-t1', trap: 'Port security and DHCP snooping solve the same problem.', correction: 'Port security limits MAC addresses on access ports; DHCP snooping blocks rogue DHCP servers on untrusted ports.', ckuIds: ['CKU-PORT-SECURITY', 'CKU-DHCP-SNOOPING'] },
+      { id: '5.6-t2', trap: 'DHCP snooping trusted ports can be any switch port.', correction: 'Only ports toward legitimate DHCP servers are trusted — all access ports facing clients should be untrusted.', ckuIds: ['CKU-DHCP-SNOOPING', 'CKU-LAYER2-SECURITY'] },
+    ],
+  },
   '2.3': {
     examTraps: [
       { id: '2.3-t1', trap: 'CDP discovers neighbors through a router.', correction: 'CDP is Layer 2 only — it sees directly connected neighbors on the same link, not beyond a router hop.', ckuIds: ['CKU-CDP'] },
