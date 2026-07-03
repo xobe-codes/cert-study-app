@@ -3,6 +3,7 @@ import { COLORS, styles } from '../../ui/appTheme.js'
 import { STORAGE_KEYS } from '../../storageKeys.js'
 import { askClaudeStream, cachedSystem } from '../../ai/claudeClient.js'
 import { buildTutorSystemPrompt } from './tutorPrompt.js'
+import { retrieveTutorRag } from './tutorRag.js'
 import { EXAM_SOURCES } from '../../tabs/studyConstants.js'
 import { QuizRichText } from '../../components/QuizQuestionChrome.jsx'
 import Spinner from '../../components/Spinner.jsx'
@@ -15,6 +16,7 @@ export default function TutorChat({ progress, missed, onBack }) {
   const [error, setError] = useState(null)
   const [restored, setRestored] = useState(false)
   const [streamingText, setStreamingText] = useState(null)
+  const [ragSources, setRagSources] = useState(null)
   const scrollRef = useRef(null)
 
   useEffect(() => {
@@ -43,8 +45,11 @@ export default function TutorChat({ progress, missed, onBack }) {
     setLoading(true)
     setError(null)
     setStreamingText('')
+    setRagSources(null)
     try {
-      const system = await buildTutorSystemPrompt(progress, missed)
+      const rag = retrieveTutorRag(text)
+      setRagSources(rag.selected)
+      const system = await buildTutorSystemPrompt(progress, missed, rag.contextBlock)
       let acc = ''
       const reply = await askClaudeStream({
         system: cachedSystem(system),
@@ -53,7 +58,11 @@ export default function TutorChat({ progress, missed, onBack }) {
         feature: 'tutor',
         onDelta: chunk => { acc += chunk; setStreamingText(acc) },
       })
-      setMessages(m => [...m, { role: 'assistant', content: reply }])
+      setMessages(m => [...m, {
+        role: 'assistant',
+        content: reply,
+        ragSources: rag.selected?.map(h => ({ id: h.id, title: h.title, objectiveId: h.objectiveIds?.[0] })),
+      }])
     } catch (err) {
       setError(err.message)
     } finally {
@@ -80,7 +89,7 @@ export default function TutorChat({ progress, missed, onBack }) {
         {messages.length === 0 && (
           <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}` }}>
             <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.6 }}>
-              Hi! I know your scores and what you've mastered so far. Ask me anything — e.g. "Explain HSRP vs VRRP" or "What should I focus on this week?"
+              Hi! I know your scores and what you've mastered so far. Ask me anything — answers are grounded in your bundled study library (terms, reading, traps, commands) plus your progress. Try "Explain HSRP vs VRRP" or "What should I focus on this week?"
             </div>
           </div>
         )}
@@ -92,6 +101,12 @@ export default function TutorChat({ progress, missed, onBack }) {
             whiteSpace: 'pre-wrap', fontSize: 'var(--ccna-type-md)', lineHeight: 1.5,
           }}>
             <QuizRichText text={m.content} />
+            {m.role === 'assistant' && m.ragSources?.length > 0 && (
+              <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 8, lineHeight: 1.4 }}>
+                Library-backed ({m.ragSources.length}): {m.ragSources.slice(0, 3).map(s => s.title).join(' · ')}
+                {m.ragSources.length > 3 ? ' …' : ''}
+              </div>
+            )}
           </div>
         ))}
         {loading && (
@@ -101,7 +116,14 @@ export default function TutorChat({ progress, missed, onBack }) {
               <span className="ccna-pulse" style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: COLORS.sky, marginLeft: 4 }} />
             </div>
           ) : (
-            <Spinner label="Tutor is thinking..." />
+            <>
+              {ragSources?.length > 0 && (
+                <div style={{ ...styles.small, color: COLORS.mint, marginBottom: 8 }}>
+                  Retrieved {ragSources.length} library source{ragSources.length === 1 ? '' : 's'}…
+                </div>
+              )}
+              <Spinner label="Tutor is thinking..." />
+            </>
           )
         )}
         {error && <ErrorBox message={error} onRetry={send} />}

@@ -1,5 +1,6 @@
 import { buildLearnerSummary } from '../../home/learnerHome.js'
 import { ALL_OBJECTIVES } from '../../data/ccnaDomains.js'
+import { formatTutorRagPromptSection } from './tutorRag.js'
 
 export function summarizeForTutor(summary) {
   const { perObjective, domainStats, missedByObj, recentTopics } = summary
@@ -31,9 +32,10 @@ export function summarizeForTutor(summary) {
   ].join('\n')
 }
 
-export async function buildTutorSystemPrompt(progress, missed) {
+export async function buildTutorSystemPrompt(progress, missed, ragContextBlock = null) {
   const summary = await buildLearnerSummary(progress, missed || [])
   const behaviour = summarizeForTutor(summary)
+  const ragSection = ragContextBlock ? formatTutorRagPromptSection(ragContextBlock) : ''
 
   return `You are a friendly, encouraging CCNA 200-301 tutor and study partner. The student originally failed the exam, weakest in Network Access and IP Connectivity, so keep those a priority when relevant.
 
@@ -41,6 +43,7 @@ Here is the student's CURRENT activity, computed from their actual study data:
 ${behaviour}
 
 Use this to give specific, contextual advice — reference their weak objectives, recurring misses, and what they studied recently by name. When they ask "what should I study?", recommend from the weakest objectives and explain why. Keep answers conversational, encouraging, and focused on CCNA exam content. Ground technical explanations in standard CCNA 200-301 material. Keep responses reasonably concise (a few short paragraphs or a short list) unless the student asks for depth.
+${ragSection}
 
 When you discuss a specific exam concept, end that part of your answer with the matching CCNA 200-301 exam topic number(s) in parentheses, e.g. "(exam topic 1.1)", so the student can open that objective's Explain tab and verify against the cited cert guide — don't invent numbers, only cite ones you're confident map to the official blueprint.`
 }

@@ -6,7 +6,7 @@
 |-------|------|--------|
 | **A** | Exam-ready core (free path, no AI) | **Done** |
 | **B** | Final polish pass | **Done** |
-| **C** | Deferred (RAG/tutor, premium AI) | Back burner |
+| **C** | Premium AI (RAG tutor, Study Lens) | **Done** |
 
 ### Track A — Exam-ready core (shipped)
 
@@ -31,10 +31,16 @@
 
 **Ship gate:** `verify:ship` includes offline + diagram iPad smokes
 
-### Track C — Deferred
+### Track C — Premium AI (shipped)
 
-- Phase 10 RAG / AI Tutor (premium-only)
-- Live AI on free-tier load (forbidden)
+| # | Slice | Shipped |
+|---|--------|---------|
+| 1 | **RAG tutor** — `tutorRag.js` retrieves curated library chunks per message; injected into tutor system prompt | ✓ |
+| 2 | **Premium gate** — Tutor remains premium-only; no live AI on free-tier page load | ✓ |
+| 3 | **UX** — Library source count while thinking; sources listed on assistant replies | ✓ |
+| 4 | **Tests** — `tutorRag.test.js` + `e2e/tutor-premium-smoke.spec.js` in `verify:ship` | ✓ |
+
+**Note:** Client-side curated RAG (Study Lens library index) — no pgvector/Vectorize yet.
 
 ---
 
@@ -44,7 +50,7 @@
 |-------|------|--------|
 | 1–8 | Audit, enrichment, App.jsx extraction wave 1 | Done |
 | 9 | PWA curated cache | Done |
-| 10 | RAG/tutor | Deferred → Track C |
+| 10 | RAG/tutor | Done → Track C |
 | 11 | Domain Pass | Done |
 | 12 | Gold batch 12 + celebration | Done |
 | 13 | Gold batch 13 (5.1, 5.5, 1.8, 3.1) | Done |
