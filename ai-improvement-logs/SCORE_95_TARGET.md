@@ -1,19 +1,19 @@
 # Path to 95+ — living checklist
 
-North star: **95+ overall**. Baseline after lab/responsive/premium sprint: **~79**. **Post–Track A/B (Jun 2026): ~84.** **Post–Track C: ~86.**
+North star: **95+ overall**. Baseline after lab/responsive/premium sprint: **~79**. **Post–Track A/B (Jun 2026): ~84.** **Post–Track C: ~86.** **Post–tiers 1–4: ~88.** **Post–tier 5: ~89.**
 
 ## Score targets (must all be ≥90 for 95+ overall)
 
-| Area | Was (~79) | Now (~86) | 95+ target | Highest-leverage work |
+| Area | Was (~79) | Now (~89) | 95+ target | Highest-leverage work |
 |------|--------:|----------:|-------------:|------------------------|
 | Coverage breadth | 92 | 92 | 95 | Remaining factory shells → rich diagrams |
-| Coverage depth | 72 | 76 | 95 | Gold reviews 450+; CKU traps + verify per domain |
-| Learning flow | 82 | 90 | 95 | RAG tutor + Study Lens; Domain Pass → mock |
+| Coverage depth | 72 | 78 | 95 | Gold reviews 500+; CKU traps + verify per domain |
+| Learning flow | 82 | 91 | 95 | Weak-area dashboard; Domain Pass → mock |
 | Labs / CLI | 76 | 80 | 95 | Automation lab smoke; +routing labs from queue |
-| Mobile / responsive | 78 | 84 | 95 | iPad diagram expand; offline e2e |
-| Exam traps | 83 | 85 | 95 | Trap drills linked from quiz misses |
-| Maintainability | 64 | 70 | 90 | Tutor RAG module; more App.jsx extraction |
-| Tests / CI | 85 | 91 | 95 | `verify:ship` 7 e2e specs; 539+ unit tests |
+| Mobile / responsive | 78 | 85 | 95 | iPad diagram expand; offline e2e |
+| Exam traps | 83 | 86 | 95 | Trap drills linked from quiz misses |
+| Maintainability | 64 | 72 | 90 | Tutor RAG pipeline + TTS module; more App.jsx extraction |
+| Tests / CI | 85 | 93 | 95 | `verify:ship` + `validate:pipeline`; 541+ unit tests |
 
 ## Automatic agent behavior
 

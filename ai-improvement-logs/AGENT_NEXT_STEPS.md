@@ -30,7 +30,6 @@ Run `npm run audit:show-next-task` for acceptance criteria and file hints.
 - `bulk_factory_traps` — 44 traps across 22 factory objectives
 
 ## Known follow-ups (not queued)
-- `validate:pipeline` — `1.1/1.1-c-q3` missing incorrect answerReview for choiceIndex 0
 - Close superseded draft PRs #1–#4 (work merged to master)
 
 ## Audit shortcuts

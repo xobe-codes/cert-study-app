@@ -3,11 +3,12 @@ import { COLORS, styles } from '../../ui/appTheme.js'
 import { STORAGE_KEYS } from '../../storageKeys.js'
 import { askClaudeStream, cachedSystem } from '../../ai/claudeClient.js'
 import { buildTutorSystemPrompt } from './tutorPrompt.js'
-import { retrieveTutorRag } from './tutorRag.js'
+import { retrieveTutorContext } from './tutorRagPipeline.js'
 import { EXAM_SOURCES } from '../../tabs/studyConstants.js'
 import { QuizRichText } from '../../components/QuizQuestionChrome.jsx'
 import Spinner from '../../components/Spinner.jsx'
 import ErrorBox from '../../components/ErrorBox.jsx'
+import { isTtsSupported, speak, stopSpeaking } from '../../lib/browserTts.js'
 
 export default function TutorChat({ progress, missed, onBack }) {
   const [messages, setMessages] = useState([])
@@ -17,15 +18,27 @@ export default function TutorChat({ progress, missed, onBack }) {
   const [restored, setRestored] = useState(false)
   const [streamingText, setStreamingText] = useState(null)
   const [ragSources, setRagSources] = useState(null)
+  const [ttsEnabled, setTtsEnabled] = useState(false)
+  const [ttsReady, setTtsReady] = useState(false)
   const scrollRef = useRef(null)
 
   useEffect(() => {
     (async () => {
       const saved = await window.storage.getItem(STORAGE_KEYS.tutorChat)
       if (saved && Array.isArray(saved) && saved.length) setMessages(saved)
+      const tts = await window.storage.getItem(STORAGE_KEYS.tutorTtsEnabled)
+      if (tts) setTtsEnabled(true)
       setRestored(true)
+      setTtsReady(true)
     })()
   }, [])
+
+  useEffect(() => () => stopSpeaking(), [])
+
+  useEffect(() => {
+    if (!ttsReady) return
+    window.storage.setItem(STORAGE_KEYS.tutorTtsEnabled, ttsEnabled || null)
+  }, [ttsEnabled, ttsReady])
 
   useEffect(() => {
     if (!restored) return
@@ -47,7 +60,7 @@ export default function TutorChat({ progress, missed, onBack }) {
     setStreamingText('')
     setRagSources(null)
     try {
-      const rag = retrieveTutorRag(text)
+      const rag = await retrieveTutorContext(text)
       setRagSources(rag.selected)
       const system = await buildTutorSystemPrompt(progress, missed, rag.contextBlock)
       let acc = ''
@@ -63,6 +76,7 @@ export default function TutorChat({ progress, missed, onBack }) {
         content: reply,
         ragSources: rag.selected?.map(h => ({ id: h.id, title: h.title, objectiveId: h.objectiveIds?.[0] })),
       }])
+      if (ttsEnabled) speak(reply)
     } catch (err) {
       setError(err.message)
     } finally {
@@ -72,17 +86,39 @@ export default function TutorChat({ progress, missed, onBack }) {
   }
 
   function clearChat() {
+    stopSpeaking()
     setMessages([])
     setError(null)
   }
 
+  function toggleTts() {
+    if (ttsEnabled) stopSpeaking()
+    setTtsEnabled(v => !v)
+  }
+
+  function readMessage(content) {
+    speak(content)
+  }
+
   return (
     <div className="tutor-shell">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0, gap: 8, flexWrap: 'wrap' }}>
         <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
-        {messages.length > 0 && (
-          <button style={{ ...styles.secondaryBtn, width: 'auto', minHeight: 36, padding: '6px 14px', fontSize: 'var(--ccna-type-xs)' }} onClick={clearChat}>Clear chat</button>
-        )}
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+          {isTtsSupported() && (
+            <button
+              type="button"
+              aria-pressed={ttsEnabled}
+              style={{ ...styles.secondaryBtn, width: 'auto', minHeight: 36, padding: '6px 14px', fontSize: 'var(--ccna-type-xs)' }}
+              onClick={toggleTts}
+            >
+              {ttsEnabled ? '🔊 Read aloud on' : '🔈 Read aloud off'}
+            </button>
+          )}
+          {messages.length > 0 && (
+            <button style={{ ...styles.secondaryBtn, width: 'auto', minHeight: 36, padding: '6px 14px', fontSize: 'var(--ccna-type-xs)' }} onClick={clearChat}>Clear chat</button>
+          )}
+        </div>
       </div>
       <h1 style={styles.h1}>AI Tutor Chat</h1>
       <div ref={scrollRef} className="tutor-messages internal-scroll" style={{ marginBottom: 10 }}>
@@ -101,6 +137,15 @@ export default function TutorChat({ progress, missed, onBack }) {
             whiteSpace: 'pre-wrap', fontSize: 'var(--ccna-type-md)', lineHeight: 1.5,
           }}>
             <QuizRichText text={m.content} />
+            {m.role === 'assistant' && isTtsSupported() && (
+              <button
+                type="button"
+                style={{ ...styles.secondaryBtn, width: 'auto', minHeight: 32, padding: '4px 10px', fontSize: 'var(--ccna-type-xs)', marginTop: 8 }}
+                onClick={() => readMessage(m.content)}
+              >
+                Listen
+              </button>
+            )}
             {m.role === 'assistant' && m.ragSources?.length > 0 && (
               <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 8, lineHeight: 1.4 }}>
                 Library-backed ({m.ragSources.length}): {m.ragSources.slice(0, 3).map(s => s.title).join(' · ')}

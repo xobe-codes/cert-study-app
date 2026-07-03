@@ -47,7 +47,7 @@
     "onenote:pipeline": "npm run onenote:sync && npm run validate:topic-map && npm run onenote:import && npm run sanitize:kb-prose && npm run kb:merge-onenote && npm run kb:compile-curated && npm run validate:onenote-import && npm run validate:single-source && npm run validate:content-depth",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "verify:ship": "npm test && npm run build && CI=1 npx playwright test e2e/ship-smoke.spec.js e2e/domain-pass-smoke.spec.js e2e/mock-exam-smoke.spec.js e2e/automation-lab-smoke.spec.js e2e/offline-curated-smoke.spec.js e2e/diagram-ipad-smoke.spec.js e2e/tutor-premium-smoke.spec.js e2e/device-matrix.spec.js && CI=1 E2E_PREVIEW=1 npx playwright test e2e/offline-preview-smoke.spec.js",
+    "verify:ship": "npm test && npm run validate:pipeline && npm run build && CI=1 npx playwright test e2e/ship-smoke.spec.js e2e/domain-pass-smoke.spec.js e2e/mock-exam-smoke.spec.js e2e/automation-lab-smoke.spec.js e2e/offline-curated-smoke.spec.js e2e/diagram-ipad-smoke.spec.js e2e/tutor-premium-smoke.spec.js e2e/device-matrix.spec.js && CI=1 E2E_PREVIEW=1 npx playwright test e2e/offline-preview-smoke.spec.js",
     "audit:scan-content": "node scripts/runAudit.mjs --phase scan-content",
     "audit:refresh-logs": "node scripts/runAudit.mjs --phase refresh-logs",
     "audit:check-home-ui": "node scripts/runAudit.mjs --phase check-home-ui",
