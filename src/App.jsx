@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useMemo, useCallback, useRef, useId, lazy, Suspense } from 'react'
+import React, { useState, useEffect, useMemo, useCallback, useRef, useId, lazy } from 'react'
 import { getCurated, hasCuratedReading, hasCuratedQuestions, getCuratedQuestions } from './data/ccnaCurated.js'
-import { getLab } from './data/ccnaLabs.js'
 import {
   TYPE_LABEL, SKILL_LABEL, isOrderingQuestion, isMcQuestion, gradeQuestion, correctAnswerLabel,
   shuffleArrayCopy, randomizeQuestionOrder, computeBankMix, normalizeQuestionForBank, inferSkill, buildMissedEntry,
@@ -31,7 +30,7 @@ import { useVisualViewportBottomInset } from './ui/visualViewportInset.js'
 import CuratedStaticBadge from './components/CuratedStaticBadge.jsx'
 import OverflowMarquee from './components/OverflowMarquee.jsx'
 import DeferredExamTips from './components/DeferredExamTips.jsx'
-import { ExplainTab, QuizTab, objectiveTabId, objectivePanelId, SubnetPracticeHome } from './tabs/studyQuizTabs.jsx'
+import { ExplainTab, QuizTab, objectiveTabId, objectivePanelId } from './tabs/studyQuizTabs.jsx'
 import { BOOK_REF } from './data/bookRefFull.js'
 import { formatCuratedAttribution } from './curatedDisplay.js'
 import { STORAGE_KEYS, TRAP_DRILL_PREFILL_EVENT } from './storageKeys.js'
@@ -46,17 +45,14 @@ import HomeScreen from './HomeScreen.jsx'
 import ObjectiveScreen from './ObjectiveScreen.jsx'
 import { bumpSessionStudy } from './home/sessionRecap.js'
 const MockExamRoute = lazy(() => import('./features/mockExam/MockExamRoute.jsx'))
-const ExtraStudyMode = lazy(() => import('./ExtraStudyMode.jsx'))
-const ExamTrapStudyMode = lazy(() => import('./ExamTrapStudyMode.jsx'))
-const RoutingDecoderMode = lazy(() => import('./RoutingDecoderMode.jsx'))
+import LazyRoute from './components/LazyRoute.jsx'
 import { DEFAULT_QUIZ_SESSION_SIZE, MAX_QUIZ_SESSION_SIZE, clampQuizSessionSize, loadQuizSessionSize, saveQuizSessionSize } from './quizSessionConfig.js'
 import { loadDueQuestions, countDueQuestions, REVIEW_SESSION_CAP } from './quiz/srsReview.js'
 import { NavHintProvider, useNavHint } from './components/NavHintProvider.jsx'
 import StudyBlockProvider, { useStudyBlock } from './components/StudyBlockProvider.jsx'
 import SvgConfetti from './components/SvgConfetti.jsx'
 import RouteShell from './components/RouteShell.jsx'
-import SettingsSheet from './components/SettingsSheet.jsx'
-import { PremiumBlockedShell, PremiumToast } from './components/PremiumPreview.jsx'
+import { PremiumBlockedShell } from './components/PremiumPreview.jsx'
 import {
   loadPremiumUnlocked,
   savePremiumUnlocked,
@@ -64,18 +60,9 @@ import {
   PREMIUM_FEATURES,
   PREMIUM_COMING_SOON_LABEL,
 } from './premium/premiumFeatures.js'
-import AppTour from './components/AppTour.jsx'
 import BottomNav from './components/BottomNav.jsx'
-const LabsHub = lazy(() => import('./lab/LabsHub.jsx'))
-const LabView = lazy(() => import('./lab/LabView.jsx'))
-const TopicFocusStudio = lazy(() => import('./topic/TopicFocusStudio.jsx'))
-const TopicFocusSession = lazy(() => import('./topic/TopicFocusSession.jsx'))
-const CommandHubStudio = lazy(() => import('./commands/CommandHubStudio.jsx'))
-const StudyLensStudio = lazy(() => import('./lens/StudyLensStudio.jsx'))
-import { COMMAND_DRILLS } from './lab/commandDrills.js'
-import CLIDrillTab from './lab/CLIDrillTab.jsx'
-import DomainPassHub from './features/domainPass/DomainPassHub.jsx'
-import DomainPassSession from './features/domainPass/DomainPassSession.jsx'
+import StudyModeRoutes from './features/study/StudyModeRoutes.jsx'
+import AppChromeOverlays from './features/shell/AppChromeOverlays.jsx'
 import { loadDomainPassRecords, countPassedDomains } from './features/domainPass/domainPassStorage.js'
 import { warmCuratedChunksForOffline } from './offline/warmCuratedChunks.js'
 import {
@@ -111,27 +98,21 @@ import {
 import { computeMastery } from './netUtils.js'
 import { logEvent } from './eventLog.js'
 import { importCcnaJsonFromFile } from './features/export/importCcnaJson.js'
-import ExportModal from './features/export/ExportModal.jsx'
-import SyncModal from './features/sync/SyncModal.jsx'
-import GlobalSearchModal from './features/search/GlobalSearchModal.jsx'
 import { useGlobalSearchHotkey } from './features/search/useGlobalSearchHotkey.js'
 import OfflineBanner from './features/shell/OfflineBanner.jsx'
 import TutorChat from './features/tutor/TutorChat.jsx'
 import MockInterview from './features/mockExam/MockInterview.jsx'
 import PracticeRoutes from './features/practice/PracticeRoutes.jsx'
 import Onboarding from './features/onboarding/Onboarding.jsx'
-import TrapDrillSession from './features/trapDrill/TrapDrillSession.jsx'
 import {
   generateSyncCode, loadSyncBundle, saveSyncBundle, mergeSyncData, pullSync, pushSync,
 } from './features/sync/syncMerge.js'
 import { EXPLAIN_CACHE_KEY, EXPLAIN_PROMPT_SYSTEM, EXPLAIN_SCHEMA } from './tabs/studyConstants.js'
 import { SubnettingTab, VLSMTab, IPv6CalcTab, ACLWildcardTab } from './tabs/subnetPracticeTabs.jsx'
+import CLIDrillTab from './lab/CLIDrillTab.jsx'
+import { COMMAND_DRILLS } from './lab/commandDrills.js'
 
 const quizFeedbackA11y = { role: 'status', 'aria-live': 'polite', 'aria-atomic': true }
-
-function LazyRoute({ children, label = 'Loading…' }) {
-  return <Suspense fallback={<Spinner label={label} />}>{children}</Suspense>
-}
 
 const PREMIUM_TOAST_MESSAGES = {
   [PREMIUM_FEATURES.tutor]: 'AI Tutor and Study Lens synthesis unlock with supporter access.',
@@ -1301,126 +1282,35 @@ export default function App() {
             ? <TutorChat progress={progress} missed={missed} onBack={goBack} />
             : <PremiumBlockedShell title="AI Tutor" onBack={goBack} />
         )}
-        {view === 'labs' && (
-          <LazyRoute label="Loading labs…">
-            <LabsHub onBack={goBack} onOpenLab={(id) => openLab(id, 'labs')} />
-          </LazyRoute>
-        )}
-        {view === 'lab' && selectedLab && (
-          <LazyRoute label="Loading lab…">
-            <LabView
-              bundle={getLab(selectedLab)}
-              onBack={() => {
-                if (labReturn === 'objective') setView('objective')
-                else if (labReturn === 'mock') setView('mock')
-                else if (labReturn === 'domainpass') setView('domainpass')
-                else setView('labs')
-              }}
-              celebrate={celebrate}
-              haptic={haptic}
-            />
-          </LazyRoute>
-        )}
-        {view === 'topicfocus' && (
-          <LazyRoute label="Loading topic focus…">
-            <TopicFocusStudio
-              missed={missed}
-              haptic={haptic}
-              onBack={goBack}
-              onStart={(config) => { setTopicFocusConfig(config); navigateTo('topicfocussession') }}
-            />
-          </LazyRoute>
-        )}
-        {view === 'topicfocussession' && topicFocusConfig && (
-          <LazyRoute label="Loading session…">
-            <TopicFocusSession
-              config={topicFocusConfig}
-              onBack={goBack}
-              onMissed={handleMissed}
-              onDone={refreshDue}
-            />
-          </LazyRoute>
-        )}
-        {view === 'commandhub' && (
-          <LazyRoute label="Loading command hub…">
-            <CommandHubStudio
-              onBack={goBack}
-              onSelectObjective={(objectiveId) => {
-                const obj = ALL_OBJECTIVES.find(o => o.id === objectiveId)
-                if (obj) selectObjective(obj)
-              }}
-            />
-          </LazyRoute>
-        )}
-        {view === 'studylens' && (
-          <LazyRoute label="Loading study lens…">
-            <StudyLensStudio
-              onBack={goBack}
-              premiumUnlocked={premiumUnlocked}
-              onPremiumBlocked={handlePremiumBlocked}
-              onSelectObjective={(objectiveId) => {
-                const obj = ALL_OBJECTIVES.find(o => o.id === objectiveId)
-                if (obj) selectObjective(obj)
-              }}
-            />
-          </LazyRoute>
-        )}
-        {view === 'examtraps' && (
-          <LazyRoute label="Loading exam traps…">
-            <ExamTrapStudyMode
-              styles={styles}
-              onBack={goBack}
-              prefill={examTrapPrefill}
-              onPrefillConsumed={clearExamTrapPrefill}
-            />
-          </LazyRoute>
-        )}
-        {view === 'trapdrill' && (
-          <TrapDrillSession
-            key={trapDrillPrefill?.ckuId ?? 'all'}
-            prefill={trapDrillPrefill}
-            onBack={() => { clearTrapDrillPrefill(); goBack() }}
-          />
-        )}
-        {view === 'domainpass' && !activeDomainPassId && (
-          <DomainPassHub
-            onExit={goBack}
-            onStartDomain={(id) => setActiveDomainPassId(id)}
-            onStartMockExam={openMockExam}
-            onOpenSettings={() => setShowSettings(true)}
-          />
-        )}
-        {view === 'domainpass' && activeDomainPassId && (
-          <DomainPassSession
-            key={activeDomainPassId}
-            domainId={activeDomainPassId}
-            onExit={() => { setActiveDomainPassId(null); refreshDomainPassCount() }}
-            onOpenMock={(id) => openMockExam({ domainId: id })}
-            onOpenTrapDrill={(ckuId) => openTrapDrill({ ckuId })}
-            onOpenLab={(id) => openLab(id, 'domainpass')}
-            examMode={settingsExamMode}
-            missed={missed}
-          />
-        )}
-        {view === 'subnet' && <SubnetPracticeHome onBack={goBack} />}
-        {view === 'routing' && (
-          <LazyRoute label="Loading routing decoder…">
-            <RoutingDecoderMode styles={styles} COLORS={COLORS} onBack={goBack} />
-          </LazyRoute>
-        )}
-        {view === 'extrastudy' && (
-          <LazyRoute label="Loading extra study…">
-            <ExtraStudyMode
-              styles={styles}
-              COLORS={COLORS}
-              accentColors={accentColors}
-              AnswerReview={AnswerReview}
-              QuestionMeta={QuestionMeta}
-              McChoices={McChoices}
-              onBack={goBack}
-            />
-          </LazyRoute>
-        )}
+        <StudyModeRoutes
+          view={view}
+          selectedLab={selectedLab}
+          labReturn={labReturn}
+          topicFocusConfig={topicFocusConfig}
+          setTopicFocusConfig={setTopicFocusConfig}
+          examTrapPrefill={examTrapPrefill}
+          clearExamTrapPrefill={clearExamTrapPrefill}
+          trapDrillPrefill={trapDrillPrefill}
+          clearTrapDrillPrefill={clearTrapDrillPrefill}
+          activeDomainPassId={activeDomainPassId}
+          setActiveDomainPassId={setActiveDomainPassId}
+          settingsExamMode={settingsExamMode}
+          missed={missed}
+          onBack={goBack}
+          onNavigate={setView}
+          onOpenLab={openLab}
+          onOpenMockExam={openMockExam}
+          onOpenTrapDrill={openTrapDrill}
+          onSelectObjective={selectObjective}
+          onRefreshDomainPassCount={refreshDomainPassCount}
+          onMissed={handleMissed}
+          onDone={refreshDue}
+          onOpenSettings={() => setShowSettings(true)}
+          celebrate={celebrate}
+          haptic={haptic}
+          premiumUnlocked={premiumUnlocked}
+          onPremiumBlocked={handlePremiumBlocked}
+        />
       </RouteShell>
       {showBottomNav && (
         <div className="app-chrome-bottom app-chrome-bottom--dock site-column">
@@ -1435,57 +1325,67 @@ export default function App() {
           />
         </div>
       )}
-      {showExport && <ExportModal progress={progress} missed={missed} streak={streak} onImport={handleImport} onClose={() => setShowExport(false)} />}
-      {showSearch && <GlobalSearchModal progress={progress} onSelectObjective={selectObjective} onClose={() => setShowSearch(false)} />}
-      {showSync && (
-        <SyncModal
-          syncCode={syncCode}
-          lastSynced={lastSynced}
-          busy={syncBusy}
-          msg={syncMsg}
-          online={apiOnline}
-          onGenerate={handleGenerateSync}
-          onLink={handleLinkSync}
-          onSyncNow={() => doSync()}
-          onUnlink={handleUnlinkSync}
-          onClose={() => setShowSync(false)}
-        />
-      )}
-      {showSettings && (
-        <SettingsSheet
-          onClose={() => setShowSettings(false)}
-          theme={theme}
-          onToggleTheme={toggleTheme}
-          examDate={settingsExamDate}
-          onSaveExamDate={handleSaveExamDate}
-          onClearExamDate={handleClearExamDate}
-          quizSessionSize={settingsQuizSize}
-          onQuizSessionSizeChange={handleQuizSessionSizeChange}
-          reduceMotion={settingsReduceMotion}
-          onReduceMotionChange={handleReduceMotionChange}
-          examMode={settingsExamMode}
-          onExamModeChange={handleExamModeChange}
-          cleanBankGenericExamTips={cleanBankStats.genericExamTips}
-          onReplayPlacement={replayPlacementCheck}
-          onShowTour={showTourAgain}
-          onOpenSync={() => setShowSync(true)}
-          onOpenExport={() => setShowExport(true)}
-          onImportPick={pickImportFile}
-          onClearTutorChat={handleClearTutorChat}
-          onClearAiCaches={handleClearAiCaches}
-          onResetProgress={handleResetProgress}
-          offlineReadyCount={offlineReady.size}
-          objectiveCount={ALL_OBJECTIVES.length}
-          cleanBankObjectives={cleanBankStats.objectives}
-          cleanBankQuestions={cleanBankStats.questions}
-          appVersion={pkg.version}
-          onDonatePreview={() => handlePremiumBlocked(PREMIUM_FEATURES.donate_preview, 'settings')}
-          premiumUnlocked={premiumUnlocked}
-          onTogglePremium={handleTogglePremium}
-        />
-      )}
-      <PremiumToast message={premiumToast} onDismiss={() => setPremiumToast(null)} />
-      {showTour && <AppTour onComplete={completeTour} onSkip={skipTour} />}
+      <AppChromeOverlays
+        showExport={showExport}
+        showSearch={showSearch}
+        showSync={showSync}
+        showSettings={showSettings}
+        showTour={showTour}
+        progress={progress}
+        missed={missed}
+        streak={streak}
+        onImport={handleImport}
+        onCloseExport={() => setShowExport(false)}
+        onSelectObjective={selectObjective}
+        onCloseSearch={() => setShowSearch(false)}
+        sync={{
+          syncCode,
+          lastSynced,
+          busy: syncBusy,
+          msg: syncMsg,
+          online: apiOnline,
+          onGenerate: handleGenerateSync,
+          onLink: handleLinkSync,
+          onSyncNow: () => doSync(),
+          onUnlink: handleUnlinkSync,
+        }}
+        onCloseSync={() => setShowSync(false)}
+        settings={{
+          onClose: () => setShowSettings(false),
+          theme,
+          onToggleTheme: toggleTheme,
+          examDate: settingsExamDate,
+          onSaveExamDate: handleSaveExamDate,
+          onClearExamDate: handleClearExamDate,
+          quizSessionSize: settingsQuizSize,
+          onQuizSessionSizeChange: handleQuizSessionSizeChange,
+          reduceMotion: settingsReduceMotion,
+          onReduceMotionChange: handleReduceMotionChange,
+          examMode: settingsExamMode,
+          onExamModeChange: handleExamModeChange,
+          cleanBankGenericExamTips: cleanBankStats.genericExamTips,
+          onReplayPlacement: replayPlacementCheck,
+          onShowTour: showTourAgain,
+          onOpenSync: () => setShowSync(true),
+          onOpenExport: () => setShowExport(true),
+          onImportPick: pickImportFile,
+          onClearTutorChat: handleClearTutorChat,
+          onClearAiCaches: handleClearAiCaches,
+          onResetProgress: handleResetProgress,
+          offlineReadyCount: offlineReady.size,
+          objectiveCount: ALL_OBJECTIVES.length,
+          cleanBankObjectives: cleanBankStats.objectives,
+          cleanBankQuestions: cleanBankStats.questions,
+          appVersion: pkg.version,
+          onDonatePreview: () => handlePremiumBlocked(PREMIUM_FEATURES.donate_preview, 'settings'),
+          premiumUnlocked,
+          onTogglePremium: handleTogglePremium,
+        }}
+        premiumToast={premiumToast}
+        onDismissPremiumToast={() => setPremiumToast(null)}
+        onCompleteTour={completeTour}
+        onSkipTour={skipTour}
+      />
     </AppShell>
     </StudyBlockProvider>
     </NavHintProvider>

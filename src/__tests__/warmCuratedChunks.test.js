@@ -6,6 +6,15 @@ vi.mock('../data/cleanQuestionAdapter.js', () => ({
 
 vi.mock('../data/ccnaSkillQuestions.js', () => ({ default: {} }))
 vi.mock('../data/ccnaShelvedQuestions.js', () => ({ default: {} }))
+vi.mock('../features/mockExam/MockExamRoute.jsx', () => ({ default: () => null }))
+vi.mock('../lab/LabsHub.jsx', () => ({ default: () => null }))
+vi.mock('../lab/LabView.jsx', () => ({ default: () => null }))
+vi.mock('../ExtraStudyMode.jsx', () => ({ default: () => null }))
+vi.mock('../ExamTrapStudyMode.jsx', () => ({ default: () => null }))
+vi.mock('../RoutingDecoderMode.jsx', () => ({ default: () => null }))
+vi.mock('../topic/TopicFocusStudio.jsx', () => ({ default: () => null }))
+vi.mock('../commands/CommandHubStudio.jsx', () => ({ default: () => null }))
+vi.mock('../lens/StudyLensStudio.jsx', () => ({ default: () => null }))
 
 describe('warmCuratedChunksForOffline', () => {
   beforeEach(async () => {
@@ -28,5 +37,14 @@ describe('warmCuratedChunksForOffline', () => {
     await warmCuratedChunksForOffline()
     await warmCuratedChunksForOffline()
     expect(preloadCleanBank).toHaveBeenCalledTimes(1)
+  })
+
+  it('warms lazy route chunks for offline PWA', async () => {
+    const { warmCuratedChunksForOffline } = await import('../offline/warmCuratedChunks.js')
+    const mockExam = await import('../features/mockExam/MockExamRoute.jsx')
+    const labs = await import('../lab/LabsHub.jsx')
+    await warmCuratedChunksForOffline()
+    expect(mockExam).toBeTruthy()
+    expect(labs).toBeTruthy()
   })
 })

@@ -6,6 +6,7 @@ import {
   APP_SRS_IMPORTS,
   STUDY_QUIZ_TAB_IMPORTS,
   hasNamedImport,
+  hasLazyImport,
   usesSymbol,
 } from './importContracts.js'
 
@@ -26,15 +27,17 @@ describe('App.jsx import regression', () => {
     })
   }
 
-  it('does not reference LabsHub without import', () => {
-    if (usesSymbol(appSource, 'LabsHub')) {
-      expect(hasNamedImport(appSource, 'LabsHub', './lab/LabsHub.jsx')).toBe(true)
+  it('does not reference LabsHub without import in study routes', () => {
+    const studySource = readFileSync(resolve(ROOT, 'features/study/StudyModeRoutes.jsx'), 'utf8')
+    if (usesSymbol(studySource, 'LabsHub')) {
+      expect(hasLazyImport(studySource, 'LabsHub', '../../lab/LabsHub.jsx')).toBe(true)
     }
   })
 
-  it('does not reference SubnetPracticeHome without import', () => {
-    if (usesSymbol(appSource, 'SubnetPracticeHome')) {
-      expect(hasNamedImport(appSource, 'SubnetPracticeHome', './tabs/studyQuizTabs.jsx')).toBe(true)
+  it('does not reference SubnetPracticeHome without import in study routes', () => {
+    const studySource = readFileSync(resolve(ROOT, 'features/study/StudyModeRoutes.jsx'), 'utf8')
+    if (usesSymbol(studySource, 'SubnetPracticeHome')) {
+      expect(hasNamedImport(studySource, 'SubnetPracticeHome', '../../tabs/studyQuizTabs.jsx')).toBe(true)
     }
   })
 })

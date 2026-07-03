@@ -4,7 +4,7 @@ import { retrieveTutorRag } from './tutorRag.js'
 export const VECTOR_RAG_STATIC_DEPTH_GATE = 85
 
 /** Living estimate — bump when audit depth score moves (see SCORE_95_TARGET.md). */
-export const CURRENT_STATIC_DEPTH_SCORE = 80
+export const CURRENT_STATIC_DEPTH_SCORE = 82
 
 /** Flip when Worker + Vectorize index is wired; still gated by depth score. */
 export const VECTOR_RAG_FEATURE_FLAG = false
