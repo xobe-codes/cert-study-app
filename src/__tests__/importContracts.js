@@ -10,6 +10,11 @@ export const APP_IMPORTS = [
   { symbol: 'useAppOnboarding', from: './features/onboarding/useAppOnboarding.js' },
   { symbol: 'useAppBootstrap', from: './features/bootstrap/useAppBootstrap.js' },
   { symbol: 'useAppSettings', from: './features/settings/useAppSettings.js' },
+  { symbol: 'useAppNavigation', from: './features/navigation/useAppNavigation.js' },
+  { symbol: 'AppNavigationLifecycle', from: './features/navigation/useAppNavigation.js' },
+  { symbol: 'useAppPremium', from: './features/premium/useAppPremium.js' },
+  { symbol: 'useAppProgress', from: './features/progress/useAppProgress.js' },
+  { symbol: 'useAppChrome', from: './features/shell/useAppChrome.js' },
 ]
 
 export const STUDY_QUIZ_TAB_IMPORTS = [

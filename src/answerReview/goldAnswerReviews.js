@@ -27,6 +27,11 @@ import { BATCH23_GOLD } from './goldAnswerReviewsBatch23.js'
 import { BATCH24_GOLD } from './goldAnswerReviewsBatch24.js'
 import { BATCH25_GOLD } from './goldAnswerReviewsBatch25.js'
 import { BATCH26_GOLD } from './goldAnswerReviewsBatch26.js'
+import { BATCH27_GOLD } from './goldAnswerReviewsBatch27.js'
+import { BATCH28_GOLD } from './goldAnswerReviewsBatch28.js'
+import { BATCH29_GOLD } from './goldAnswerReviewsBatch29.js'
+import { BATCH30_GOLD } from './goldAnswerReviewsBatch30.js'
+import { CURATED61_GOLD } from './goldAnswerReviewsCurated61.js'
 import { HIGH_TRAFFIC_GOLD } from './goldAnswerReviewsHighTraffic.js'
 import { WLAN_58_GOLD } from './goldAnswerReviewsWlan58.js'
 
@@ -132,6 +137,11 @@ export const GOLD_ANSWER_REVIEWS = {
   ...BATCH24_GOLD,
   ...BATCH25_GOLD,
   ...BATCH26_GOLD,
+  ...BATCH27_GOLD,
+  ...BATCH28_GOLD,
+  ...BATCH29_GOLD,
+  ...BATCH30_GOLD,
+  ...CURATED61_GOLD,
 }
 
 export function goldAnswerReviewFor(questionId) {

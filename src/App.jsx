@@ -1,79 +1,93 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react'
-import { DOMAINS, ALL_OBJECTIVES } from './data/ccnaDomains.js'
+import React, { useCallback } from 'react'
+import { ALL_OBJECTIVES } from './data/ccnaDomains.js'
 import { useVisualViewportBottomInset } from './ui/visualViewportInset.js'
 import { celebrate, haptic } from './ui/feedbackHelpers.jsx'
-import { STORAGE_KEYS, TRAP_DRILL_PREFILL_EVENT } from './storageKeys.js'
 import Spinner from './components/Spinner.jsx'
 import { NavHintProvider } from './components/NavHintProvider.jsx'
 import StudyBlockProvider from './components/StudyBlockProvider.jsx'
 import RouteShell from './components/RouteShell.jsx'
 import AppShell from './features/shell/AppShell.jsx'
 import AppShellStyles from './features/shell/AppShellStyles.jsx'
-import {
-  savePremiumUnlocked,
-  logPremiumBlocked,
-  PREMIUM_FEATURES,
-} from './premium/premiumFeatures.js'
+import { useAppChrome } from './features/shell/useAppChrome.js'
+import { PREMIUM_FEATURES } from './premium/premiumFeatures.js'
 import BottomNav from './components/BottomNav.jsx'
 import StudyModeRoutes from './features/study/StudyModeRoutes.jsx'
 import AppChromeOverlays from './features/shell/AppChromeOverlays.jsx'
 import CoreStudyRoutes from './features/shell/CoreStudyRoutes.jsx'
-import { loadDomainPassRecords, countPassedDomains } from './features/domainPass/domainPassStorage.js'
-import { packageObjectiveOffline } from './offline/objectivePackaging.js'
-import { saveProgress, saveMissed, bumpStreak } from './storage/appPersistence.js'
-import { parseAppHash, syncAppHash } from './routing/appHashRouting.js'
+import { bumpStreak } from './storage/appPersistence.js'
 import { useGlobalSearchHotkey } from './features/search/useGlobalSearchHotkey.js'
 import { useAppSync } from './features/sync/useAppSync.js'
 import { useAppOnboarding } from './features/onboarding/useAppOnboarding.js'
 import { useAppBootstrap } from './features/bootstrap/useAppBootstrap.js'
 import { useAppSettings } from './features/settings/useAppSettings.js'
+import {
+  useAppNavigation,
+  AppNavigationLifecycle,
+  bottomNavState,
+} from './features/navigation/useAppNavigation.js'
+import { useAppPremium } from './features/premium/useAppPremium.js'
+import { useAppProgress } from './features/progress/useAppProgress.js'
 import OfflineBanner from './features/shell/OfflineBanner.jsx'
 import PracticeRoutes from './features/practice/PracticeRoutes.jsx'
-import { bumpSessionStudy } from './home/sessionRecap.js'
 import pkg from '../package.json'
 import { computeMastery } from './netUtils.js'
 import { logEvent } from './eventLog.js'
 
-const PREMIUM_TOAST_MESSAGES = {
-  [PREMIUM_FEATURES.tutor]: 'AI Tutor and Study Lens synthesis unlock with supporter access.',
-  [PREMIUM_FEATURES.mock_interview]: 'Live AI exam-day interview practice unlocks with supporter access.',
-  [PREMIUM_FEATURES.offline_pack]: 'Offline AI packaging is a premium feature.',
-  [PREMIUM_FEATURES.ai_visual]: 'Custom AI visuals require supporter access.',
-  [PREMIUM_FEATURES.ai_terms]: 'AI key-term flashcards require supporter access.',
-  [PREMIUM_FEATURES.ai_explain]: 'AI-generated explanations require supporter access.',
-  [PREMIUM_FEATURES.quiz_generate]: 'Generating new quiz questions is a premium feature.',
-  [PREMIUM_FEATURES.donate_preview]: 'Donations are not enabled yet — thank you for your interest.',
-}
-
-
-
-/* =========================================================================
-   APP ROOT
-   ========================================================================= */
 export default function App() {
-  const [view, setView] = useState('home')
-  const [returnToView, setReturnToView] = useState('home')
-  const [topicFocusConfig, setTopicFocusConfig] = useState(null)
-  const [examTrapPrefill, setExamTrapPrefill] = useState(null)
-  const [trapDrillPrefill, setTrapDrillPrefill] = useState(null)
-  const [activeDomainPassId, setActiveDomainPassId] = useState(null)
-  const [domainPassPassedCount, setDomainPassPassedCount] = useState(0)
-  const [domainPassRecords, setDomainPassRecords] = useState({})
-  const [mockDomainPrefill, setMockDomainPrefill] = useState(null)
-  const [selectedObjective, setSelectedObjective] = useState(null)
-  const [showExport, setShowExport] = useState(false)
-  const [packagingId, setPackagingId] = useState(null)
-  const [showSync, setShowSync] = useState(false)
-  const [showSearch, setShowSearch] = useState(false)
-  const [showSettings, setShowSettings] = useState(false)
-  const mainRef = useRef(null)
-  const homeScrollRef = useRef(0)
-  const prevViewRef = useRef('home')
-  const [openDomain, setOpenDomain] = useState(null)
-  const [selectedLab, setSelectedLab] = useState(null)
-  const [labReturn, setLabReturn] = useState('labs')
-  const openLab = useCallback((labId, from = 'labs') => { setSelectedLab(labId); setLabReturn(from); setView('lab') }, [])
-  const [premiumToast, setPremiumToast] = useState(null)
+  const nav = useAppNavigation()
+  const {
+    view,
+    setView,
+    topicFocusConfig,
+    setTopicFocusConfig,
+    examTrapPrefill,
+    trapDrillPrefill,
+    activeDomainPassId,
+    setActiveDomainPassId,
+    domainPassPassedCount,
+    domainPassRecords,
+    mockDomainPrefill,
+    setMockDomainPrefill,
+    selectedObjective,
+    openDomain,
+    setOpenDomain,
+    selectedLab,
+    labReturn,
+    openLab,
+    mainRef,
+    selectObjective,
+    navigateTo,
+    openExamTraps,
+    openTrapDrill,
+    openDomainPass,
+    openMockExam,
+    clearExamTrapPrefill,
+    clearTrapDrillPrefill,
+    refreshDomainPassCount,
+    goBack,
+    routeScrolls,
+    compactTopChrome,
+    showNavBack,
+    objectiveBackLabel,
+  } = nav
+
+  const {
+    showExport,
+    showSync,
+    showSearch,
+    showSettings,
+    closeExport,
+    closeSync,
+    closeSearch,
+    closeSettings,
+    openSearch,
+    openSync,
+    openExport,
+    openSettings,
+    panelOverlayOpen,
+    hotkeyBlocked,
+    setShowSettings,
+  } = useAppChrome()
 
   const {
     progress, setProgress,
@@ -87,7 +101,11 @@ export default function App() {
     theme, toggleTheme,
     refreshOffline,
     refreshDue,
-  } = useAppBootstrap({ setView, setReturnToView, setSelectedObjective })
+  } = useAppBootstrap({
+    setView: nav.setView,
+    setReturnToView: nav.setReturnToView,
+    setSelectedObjective: nav.setSelectedObjective,
+  })
 
   const {
     settingsExamDate,
@@ -105,15 +123,16 @@ export default function App() {
     handleResetProgress,
   } = useAppSettings({ showSettings, loaded, setProgress, setMissed, setStreak, setDueCount, refreshOffline })
 
-  const handlePremiumBlocked = useCallback((feature, source, extra) => {
-    logPremiumBlocked(feature, source, extra)
-    setPremiumToast(PREMIUM_TOAST_MESSAGES[feature] || 'This coach feature will unlock with supporter access.')
-  }, [])
+  const {
+    premiumToast,
+    packagingId,
+    handlePremiumBlocked,
+    handleTogglePremium,
+    dismissPremiumToast,
+    packageObjective,
+  } = useAppPremium({ premiumUnlocked, setPremiumUnlocked, apiOnline, offlineReady, refreshOffline })
 
-  const handleTogglePremium = useCallback(async (on) => {
-    await savePremiumUnlocked(on)
-    setPremiumUnlocked(!!on)
-  }, [setPremiumUnlocked])
+  const { updateProgress, handleMissed, removeMissed } = useAppProgress({ setProgress, setMissed })
 
   const {
     syncCode,
@@ -140,205 +159,21 @@ export default function App() {
     showTourAgain,
   } = useAppOnboarding({ loaded, view, setView, setProgress })
 
-  // Recompute the due-review count whenever we land back on Home.
-  useEffect(() => { if (view === 'home') refreshDue() }, [view, refreshDue])
-
-  // Cmd+K / Ctrl+K opens global search (Phase 6).
   useGlobalSearchHotkey({
     enabled: loaded,
-    blocked: showExport || showSync || showSettings,
-    onOpen: () => setShowSearch(true),
+    blocked: hotkeyBlocked,
+    onOpen: openSearch,
   })
-
-  // Preserve Home scroll position when leaving and returning (Phase 8).
-  useEffect(() => {
-    const prev = prevViewRef.current
-    if (prev === 'home' && view !== 'home' && mainRef.current) {
-      homeScrollRef.current = mainRef.current.scrollTop
-    }
-    if (view === 'home' && mainRef.current) {
-      requestAnimationFrame(() => {
-        if (mainRef.current) mainRef.current.scrollTop = homeScrollRef.current
-      })
-    }
-    prevViewRef.current = view
-  }, [view])
-
-  useEffect(() => {
-    if (!loaded) return
-    syncAppHash(view, selectedObjective)
-  }, [loaded, view, selectedObjective])
-
-  useEffect(() => {
-    if (!loaded) return
-    function onHashChange() {
-      const route = parseAppHash()
-      if (route?.objective) {
-        setReturnToView('home')
-        setSelectedObjective(route.objective)
-        setView('objective')
-      } else if (route?.view) {
-        setSelectedObjective(null)
-        setReturnToView('home')
-        setView(route.view)
-      } else {
-        setReturnToView('home')
-        setView('home')
-      }
-    }
-    window.addEventListener('hashchange', onHashChange)
-    return () => window.removeEventListener('hashchange', onHashChange)
-  }, [loaded])
-
-  // Pre-fetch every AI asset for a topic so it works offline. No-op when offline.
-  // Returns true on success. Used both manually and automatically on mastery.
-  const packageObjective = useCallback(async (objective) => {
-    if (!premiumUnlocked) {
-      handlePremiumBlocked(PREMIUM_FEATURES.offline_pack, 'objective', { objectiveId: objective?.id })
-      return false
-    }
-    if (!apiOnline || !objective) return false
-    if (offlineReady.has(objective.id)) return true
-    setPackagingId(objective.id)
-    try {
-      await packageObjectiveOffline(objective)
-      await refreshOffline()
-      return true
-    } catch {
-      return false
-    } finally {
-      setPackagingId(null)
-    }
-  }, [apiOnline, offlineReady, refreshOffline, premiumUnlocked, handlePremiumBlocked])
-
-  // Periodically check API reachability for the offline banner
-  useEffect(() => {
-    let cancelled = false
-    async function check() {
-      const online = await checkApiReachable()
-      if (!cancelled) setApiOnline(online)
-    }
-    check()
-    const id = setInterval(check, 60000)
-    return () => { cancelled = true; clearInterval(id) }
-  }, [])
-
-  const updateProgress = useCallback((objectiveId, patch) => {
-    setProgress(prev => {
-      const next = {
-        ...prev,
-        [objectiveId]: { status: 'unseen', quizScores: [], ...prev[objectiveId], ...patch },
-      }
-      saveProgress(next)
-      return next
-    })
-  }, [])
-
-  const handleMissed = useCallback((entry) => {
-    setMissed(prev => {
-      const next = [...prev, entry]
-      saveMissed(next)
-      return next
-    })
-  }, [])
-
-  const removeMissed = useCallback((idx) => {
-    setMissed(prev => {
-      const next = prev.filter((_, i) => i !== idx)
-      saveMissed(next)
-      return next
-    })
-  }, [])
-
-  function selectObjective(obj) {
-    setReturnToView(view)
-    bumpSessionStudy('objective', obj.id) // #16: track objective visits for session recap
-    setSelectedObjective(obj)
-    setView('objective')
-  }
-
-  const navigateTo = useCallback((nextView) => {
-    setReturnToView(view)
-    setView(nextView)
-  }, [view])
-
-  const openExamTraps = useCallback((prefill) => {
-    setExamTrapPrefill(prefill || null)
-    navigateTo('examtraps')
-  }, [navigateTo])
-
-  const openTrapDrill = useCallback((prefill) => {
-    setTrapDrillPrefill(prefill || null)
-    navigateTo('trapdrill')
-  }, [navigateTo])
-
-  const refreshDomainPassCount = useCallback(async () => {
-    const records = await loadDomainPassRecords()
-    setDomainPassRecords(records)
-    setDomainPassPassedCount(countPassedDomains(records, DOMAINS))
-  }, [])
-
-  const openDomainPass = useCallback((opts) => {
-    setActiveDomainPassId(opts?.domainId || null)
-    navigateTo('domainpass')
-  }, [navigateTo])
-
-  const openMockExam = useCallback((opts) => {
-    setMockDomainPrefill(opts?.domainId || null)
-    navigateTo('mock')
-  }, [navigateTo])
-
-  const clearExamTrapPrefill = useCallback(() => setExamTrapPrefill(null), [])
-  const clearTrapDrillPrefill = useCallback(() => setTrapDrillPrefill(null), [])
-
-  const consumeTrapDrillPrefill = useCallback(async () => {
-    const raw = await window.storage.getItem(STORAGE_KEYS.trapDrillPrefill)
-    if (!raw) return
-    await window.storage.removeItem(STORAGE_KEYS.trapDrillPrefill)
-    setTrapDrillPrefill(raw)
-  }, [])
-
-  useEffect(() => {
-    if (!loaded) return
-    const onPrefill = () => { consumeTrapDrillPrefill() }
-    window.addEventListener(TRAP_DRILL_PREFILL_EVENT, onPrefill)
-    return () => window.removeEventListener(TRAP_DRILL_PREFILL_EVENT, onPrefill)
-  }, [loaded, consumeTrapDrillPrefill])
-
-  useEffect(() => {
-    if (!loaded || view !== 'trapdrill') return
-    consumeTrapDrillPrefill()
-  }, [loaded, view, consumeTrapDrillPrefill])
-
-  useEffect(() => {
-    if (!loaded) return
-    if (view !== 'home' && view !== 'domainpass') return
-    refreshDomainPassCount()
-  }, [loaded, view, refreshDomainPassCount])
-
-  const goBack = useCallback(() => {
-    setView(returnToView)
-  }, [returnToView])
-
-  useEffect(() => {
-    if (!loaded || view !== 'objective' || selectedObjective) return
-    const route = parseAppHash()
-    if (route?.objective) {
-      setSelectedObjective(route.objective)
-      setReturnToView('home')
-      return
-    }
-    setView('home')
-  }, [loaded, view, selectedObjective])
 
   const handleFocusBlockCompleted = useCallback(async () => {
     const next = await bumpStreak()
     setStreak(next)
-  }, [])
+  }, [setStreak])
 
-  const chromeOverlayOpen = showExport || showSync || showSearch || showSettings || showTour
+  const chromeOverlayOpen = panelOverlayOpen || showTour
   const showBottomNav = loaded && !chromeOverlayOpen && !['onboarding', 'tutor', 'mockinterview', 'lab'].includes(view)
   useVisualViewportBottomInset(showBottomNav || view === 'objective' || view === 'tutor' || view === 'mockinterview')
+  const { active: bottomNavActive, compact: bottomNavCompact } = bottomNavState({ view, showSettings, showSearch, showNavBack })
 
   if (!loaded) {
     return (
@@ -353,16 +188,10 @@ export default function App() {
     )
   }
 
-  const routeScrolls = view !== 'objective' && view !== 'tutor' && view !== 'mockinterview'
-  const compactTopChrome = view === 'objective' || view === 'tutor' || view === 'mockinterview'
-  const showNavBack = view !== 'home' && view !== 'onboarding' && view !== 'objective'
-  const objectiveBackLabel = returnToView === 'home' ? 'Topics' : 'Back'
-  const bottomNavActive = showSettings ? 'more' : showSearch ? 'search' : view === 'home' ? 'home' : view === 'objective' ? 'home' : null
-  const bottomNavCompact = view === 'objective'
-
   return (
     <NavHintProvider>
     <StudyBlockProvider onFocusBlockCompleted={handleFocusBlockCompleted}>
+    <AppNavigationLifecycle nav={nav} loaded={loaded} refreshDue={refreshDue} />
     <AppShell view={view} compactTopChrome={compactTopChrome} withBottomNav={showBottomNav}>
       <AppShellStyles />
       <input ref={importFileRef} type="file" accept="application/json,.json" style={{ display: 'none' }} onChange={handleImportFile} />
@@ -456,7 +285,7 @@ export default function App() {
           onRefreshDomainPassCount={refreshDomainPassCount}
           onMissed={handleMissed}
           onDone={refreshDue}
-          onOpenSettings={() => setShowSettings(true)}
+          onOpenSettings={openSettings}
           celebrate={celebrate}
           haptic={haptic}
           premiumUnlocked={premiumUnlocked}
@@ -471,8 +300,8 @@ export default function App() {
             homeLabel={showNavBack ? 'Back' : 'Home'}
             homeIcon={showNavBack ? 'back' : 'home'}
             onHome={showNavBack ? goBack : () => setView('home')}
-            onSearch={() => setShowSearch(true)}
-            onMore={() => setShowSettings(true)}
+            onSearch={openSearch}
+            onMore={openSettings}
           />
         </div>
       )}
@@ -486,9 +315,9 @@ export default function App() {
         missed={missed}
         streak={streak}
         onImport={handleImport}
-        onCloseExport={() => setShowExport(false)}
+        onCloseExport={closeExport}
         onSelectObjective={selectObjective}
-        onCloseSearch={() => setShowSearch(false)}
+        onCloseSearch={closeSearch}
         sync={{
           syncCode,
           lastSynced,
@@ -500,9 +329,9 @@ export default function App() {
           onSyncNow: () => doSync(),
           onUnlink: handleUnlinkSync,
         }}
-        onCloseSync={() => setShowSync(false)}
+        onCloseSync={closeSync}
         settings={{
-          onClose: () => setShowSettings(false),
+          onClose: closeSettings,
           theme,
           onToggleTheme: toggleTheme,
           examDate: settingsExamDate,
@@ -517,8 +346,8 @@ export default function App() {
           cleanBankGenericExamTips: cleanBankStats.genericExamTips,
           onReplayPlacement: replayPlacementCheck,
           onShowTour: showTourAgain,
-          onOpenSync: () => setShowSync(true),
-          onOpenExport: () => setShowExport(true),
+          onOpenSync: openSync,
+          onOpenExport: openExport,
           onImportPick: pickImportFile,
           onClearTutorChat: handleClearTutorChat,
           onClearAiCaches: handleClearAiCaches,
@@ -533,7 +362,7 @@ export default function App() {
           onTogglePremium: handleTogglePremium,
         }}
         premiumToast={premiumToast}
-        onDismissPremiumToast={() => setPremiumToast(null)}
+        onDismissPremiumToast={dismissPremiumToast}
         onCompleteTour={completeTour}
         onSkipTour={skipTour}
       />

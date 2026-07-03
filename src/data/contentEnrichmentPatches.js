@@ -14,10 +14,12 @@ import { CONTENT_DEPTH_WAVE5_PATCHES } from './contentDepthWave5Patches.js'
 import { CONTENT_DEPTH_WAVE6_PATCHES } from './contentDepthWave6Patches.js'
 import { CONTENT_DEPTH_WAVE7_PATCHES } from './contentDepthWave7Patches.js'
 import { CONTENT_DEPTH_WAVE8_PATCHES } from './contentDepthWave8Patches.js'
+import { CONTENT_DEPTH_WAVE9_PATCHES } from './contentDepthWave9Patches.js'
 import { TIER_B_TRAP_WAVE6_PATCHES } from './tierBTrapWave6Patches.js'
 import { TIER_B_TRAP_WAVE7_PATCHES } from './tierBTrapWave7Patches.js'
 import { TIER_B_TRAP_WAVE8_PATCHES } from './tierBTrapWave8Patches.js'
 import { TIER_B_TRAP_WAVE9_PATCHES } from './tierBTrapWave9Patches.js'
+import { TIER_B_TRAP_WAVE10_PATCHES } from './tierBTrapWave10Patches.js'
 
 function factoryPatchFor(objectiveId) {
   const traps = FACTORY_TRAP_PATCHES[objectiveId]
@@ -136,6 +138,61 @@ const ENGINEER_34 = {
   },
 }
 
+const ENGINEER_33 = {
+  title: 'Engineer view — static routing verify',
+  summary: 'Confirm statics are installed, next-hop is reachable, and return path exists.',
+  verifyCommands: [
+    { command: 'show ip route static', purpose: 'Lists configured statics — prefix, AD, next-hop or exit interface.' },
+    { command: 'show ip route', purpose: 'Confirms which static won (if overlapping) and gateway of last resort.' },
+    { command: 'ping <next-hop>', purpose: 'Verifies L3 reachability to the static route next-hop before blaming routing logic.' },
+  ],
+  symptoms: [
+    'Static in table but traffic fails — next-hop unreachable or outgoing interface down.',
+    'One-way connectivity — static on A toward B but no return route on B.',
+  ],
+  trapCallout: {
+    trap: 'Floating static with equal AD to dynamic route',
+    correction: 'Raise floating static AD above the dynamic protocol (e.g. 200) so it backs up, not competes at install.',
+  },
+}
+
+const ENGINEER_35 = {
+  title: 'Engineer view — HSRP verify',
+  summary: 'Virtual IP must respond from Active router — verify roles before changing host gateways.',
+  verifyCommands: [
+    { command: 'show standby brief', purpose: 'Active/Standby per group, priority, preempt, and virtual IP at a glance.' },
+    { command: 'show standby', purpose: 'Timers, virtual MAC, tracked interfaces, and state transitions.' },
+    { command: 'ping <virtual-ip>', purpose: 'Confirms the FHRP virtual gateway responds from the current Active router.' },
+  ],
+  symptoms: [
+    'Both routers Active — mismatched group number or virtual IP on the segment.',
+    'Gateway unreachable after failover — preempt disabled on higher-priority router or interface tracking down.',
+  ],
+  trapCallout: {
+    trap: 'HSRP group or virtual IP mismatch between peers',
+    correction: 'Group ID and virtual IP must match on all routers in the FHRP group on that VLAN.',
+  },
+}
+
+const ENGINEER_36 = {
+  title: 'Engineer view — routing troubleshoot',
+  summary: 'Layered verify: interface → ARP → route → ACL — isolate the break before changing config.',
+  verifyCommands: [
+    { command: 'show ip interface brief', purpose: 'Admin/oper status and IP on every interface — first check for down/shutdown.' },
+    { command: 'show ip route', purpose: 'Prefix installed, next-hop reachable, and gateway of last resort present.' },
+    { command: 'traceroute <destination>', purpose: 'Shows where the path stops — pinpoints missing route or ACL hop.' },
+    { command: 'show ip ospf neighbor', purpose: 'When dynamic routing expected — confirms FULL adjacency before chasing routes.' },
+  ],
+  symptoms: [
+    'Ping fails with interface up/up — ACL blocking, wrong VLAN, or asymmetric return path.',
+    'Intermittent loss — duplex mismatch, STP blocking, or flapping next-hop.',
+  ],
+  trapCallout: {
+    trap: 'Adding routes before fixing down interfaces',
+    correction: 'Routes do not forward through administratively down or err-disabled interfaces — fix L1/L2 first.',
+  },
+}
+
 const ENGINEER_41 = {
   title: 'Engineer view — NAT verify',
   summary: 'Inside/outside interfaces must be correct before translations appear.',
@@ -244,7 +301,10 @@ export const CONTENT_ENRICHMENT_PATCHES = {
   '2.5': { engineerView: ENGINEER_25 },
   '3.1': { engineerView: ENGINEER_31 },
   '3.2': { engineerView: ENGINEER_32 },
+  '3.3': { engineerView: ENGINEER_33 },
   '3.4': { engineerView: ENGINEER_34 },
+  '3.5': { engineerView: ENGINEER_35 },
+  '3.6': { engineerView: ENGINEER_36 },
   '4.1': { engineerView: ENGINEER_41 },
   '4.6': { engineerView: ENGINEER_46 },
   '4.8': { engineerView: ENGINEER_48 },
@@ -444,6 +504,9 @@ export function getEnrichmentPatchQuestions(objectiveId) {
   if (CONTENT_DEPTH_WAVE8_PATCHES[objectiveId]?.questions?.length) {
     qs.push(...CONTENT_DEPTH_WAVE8_PATCHES[objectiveId].questions)
   }
+  if (CONTENT_DEPTH_WAVE9_PATCHES[objectiveId]?.questions?.length) {
+    qs.push(...CONTENT_DEPTH_WAVE9_PATCHES[objectiveId].questions)
+  }
   if (WLAN_ENRICHMENT_WAVE5_PATCHES[objectiveId]?.questions?.length) {
     qs.push(...WLAN_ENRICHMENT_WAVE5_PATCHES[objectiveId].questions)
   }
@@ -461,14 +524,16 @@ export function applyContentEnrichment(base, objectiveId) {
   const wave6 = CONTENT_DEPTH_WAVE6_PATCHES[objectiveId]
   const wave7 = CONTENT_DEPTH_WAVE7_PATCHES[objectiveId]
   const wave8 = CONTENT_DEPTH_WAVE8_PATCHES[objectiveId]
+  const wave9 = CONTENT_DEPTH_WAVE9_PATCHES[objectiveId]
   const trapWave4 = TIER_B_TRAP_WAVE4_PATCHES[objectiveId]
   const trapWave5 = TIER_B_TRAP_WAVE5_PATCHES[objectiveId]
   const trapWave6 = TIER_B_TRAP_WAVE6_PATCHES[objectiveId]
   const trapWave7 = TIER_B_TRAP_WAVE7_PATCHES[objectiveId]
   const trapWave8 = TIER_B_TRAP_WAVE8_PATCHES[objectiveId]
   const trapWave9 = TIER_B_TRAP_WAVE9_PATCHES[objectiveId]
+  const trapWave10 = TIER_B_TRAP_WAVE10_PATCHES[objectiveId]
   const wlanWave5 = WLAN_ENRICHMENT_WAVE5_PATCHES[objectiveId]
-  if (!factory && !patch && !wave3 && !wave4 && !wave5 && !wave6 && !wave7 && !wave8 && !trapWave4 && !trapWave5 && !trapWave6 && !trapWave7 && !trapWave8 && !trapWave9 && !wlanWave5) return base
+  if (!factory && !patch && !wave3 && !wave4 && !wave5 && !wave6 && !wave7 && !wave8 && !wave9 && !trapWave4 && !trapWave5 && !trapWave6 && !trapWave7 && !trapWave8 && !trapWave9 && !trapWave10 && !wlanWave5) return base
   const mergeList = (a, b) => (b?.length ? [...(a || []), ...b] : a)
   let examTraps = base.examTraps
   let flashcards = base.flashcards
@@ -481,6 +546,7 @@ export function applyContentEnrichment(base, objectiveId) {
   if (trapWave7?.examTraps) examTraps = mergeList(examTraps, trapWave7.examTraps)
   if (trapWave8?.examTraps) examTraps = mergeList(examTraps, trapWave8.examTraps)
   if (trapWave9?.examTraps) examTraps = mergeList(examTraps, trapWave9.examTraps)
+  if (trapWave10?.examTraps) examTraps = mergeList(examTraps, trapWave10.examTraps)
   if (wlanWave5?.examTraps) examTraps = mergeList(examTraps, wlanWave5.examTraps)
   if (factory?.flashcards) flashcards = mergeList(flashcards, factory.flashcards)
   if (patch?.flashcards) flashcards = mergeList(flashcards, patch.flashcards)
@@ -490,6 +556,7 @@ export function applyContentEnrichment(base, objectiveId) {
   if (trapWave7?.flashcards) flashcards = mergeList(flashcards, trapWave7.flashcards)
   if (trapWave8?.flashcards) flashcards = mergeList(flashcards, trapWave8.flashcards)
   if (trapWave9?.flashcards) flashcards = mergeList(flashcards, trapWave9.flashcards)
+  if (trapWave10?.flashcards) flashcards = mergeList(flashcards, trapWave10.flashcards)
   if (wlanWave5?.flashcards) flashcards = mergeList(flashcards, wlanWave5.flashcards)
   if (factory?.questions) questions = mergeList(questions, factory.questions)
   if (patch?.questions) questions = mergeList(questions, patch.questions)
@@ -499,6 +566,7 @@ export function applyContentEnrichment(base, objectiveId) {
   if (wave6?.questions) questions = mergeList(questions, wave6.questions)
   if (wave7?.questions) questions = mergeList(questions, wave7.questions)
   if (wave8?.questions) questions = mergeList(questions, wave8.questions)
+  if (wave9?.questions) questions = mergeList(questions, wave9.questions)
   if (wlanWave5?.questions) questions = mergeList(questions, wlanWave5.questions)
   return {
     ...base,
