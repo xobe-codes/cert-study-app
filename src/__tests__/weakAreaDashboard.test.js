@@ -27,6 +27,7 @@ describe('buildWeakAreaRows', () => {
     expect(rows.some(r => r.cta === 'Domain pass' && r.label.includes('Security'))).toBe(true)
     expect(rows.some(r => r.cta === 'Open Study' && r.label.includes('weak objective'))).toBe(true)
     expect(rows.some(r => r.cta === 'Open Study' && r.label.includes('Last mock 62%'))).toBe(true)
+    expect(rows.some(r => r.cta === 'Interview' && r.label.includes('Verbal warm-up'))).toBe(true)
   })
 })
 

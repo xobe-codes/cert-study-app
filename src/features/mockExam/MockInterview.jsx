@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { COLORS, styles } from '../../ui/appTheme.js'
+import { STORAGE_KEYS } from '../../storageKeys.js'
 import { askClaudeStream, cachedSystem } from '../../ai/claudeClient.js'
 import { buildMockInterviewSystemPrompt } from './mockInterviewPrompt.js'
 import { buildMockInterviewCards } from './mockInterviewCards.js'
+import { loadMockInterviewChat, saveMockInterviewChat, clearMockInterviewChat } from './mockInterviewChatStorage.js'
 import { QuizRichText } from '../../components/QuizQuestionChrome.jsx'
 import Spinner from '../../components/Spinner.jsx'
 import ErrorBox from '../../components/ErrorBox.jsx'
@@ -19,6 +21,7 @@ export default function MockInterview({
   const [cardsLoading, setCardsLoading] = useState(true)
   const [expandedId, setExpandedId] = useState(null)
   const [messages, setMessages] = useState([])
+  const [chatRestored, setChatRestored] = useState(false)
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -29,14 +32,25 @@ export default function MockInterview({
     let cancelled = false
     ;(async () => {
       setCardsLoading(true)
-      const built = await buildMockInterviewCards(progress, missed)
+      const [mockHistory, savedChat] = await Promise.all([
+        window.storage.getItem(STORAGE_KEYS.mockHistory).then(h => h || []),
+        loadMockInterviewChat(),
+      ])
+      const built = await buildMockInterviewCards(progress, missed, { mockHistory })
       if (!cancelled) {
         setCards(built)
+        if (savedChat.length) setMessages(savedChat)
+        setChatRestored(true)
         setCardsLoading(false)
       }
     })()
     return () => { cancelled = true }
   }, [progress, missed])
+
+  useEffect(() => {
+    if (!chatRestored) return
+    saveMockInterviewChat(messages)
+  }, [messages, chatRestored])
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' })
@@ -84,9 +98,23 @@ export default function MockInterview({
     <div className="tutor-shell">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0, gap: 8, flexWrap: 'wrap' }}>
         <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
-        {!premiumUnlocked && (
-          <span style={{ ...styles.pill('amber'), fontSize: 'var(--ccna-type-micro)' }}>Curated prompts — AI chat with supporter access</span>
-        )}
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+          {!premiumUnlocked && (
+            <span style={{ ...styles.pill('amber'), fontSize: 'var(--ccna-type-micro)' }}>Curated prompts — AI chat with supporter access</span>
+          )}
+          {premiumUnlocked && messages.length > 0 && (
+            <button
+              type="button"
+              style={{ ...styles.secondaryBtn, width: 'auto', padding: '6px 12px', fontSize: 'var(--ccna-type-xs)' }}
+              onClick={async () => {
+                await clearMockInterviewChat()
+                setMessages([])
+              }}
+            >
+              Clear chat
+            </button>
+          )}
+        </div>
       </div>
       <h1 style={styles.h1}>Exam day interview</h1>
       <p style={{ ...styles.small, color: COLORS.silverMid, marginTop: -8, marginBottom: 12, lineHeight: 1.5 }}>

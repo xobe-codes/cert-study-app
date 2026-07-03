@@ -82,6 +82,143 @@ export const MOCK_INTERVIEW_PROMPTS = {
       ],
     },
   ],
+  '2.1': [
+    {
+      id: 'mi-2.1-1',
+      prompt: 'Hosts in VLAN 10 cannot reach hosts in VLAN 20 on the same switch. What is missing?',
+      coachingPoints: [
+        'Inter-VLAN routing — SVI or router-on-a-stick with subinterfaces.',
+        'Verify `show vlan brief` — both VLANs exist and access ports are assigned correctly.',
+        'Trunk must carry both VLANs if routing is on another device.',
+      ],
+    },
+  ],
+  '3.1': [
+    {
+      id: 'mi-3.1-1',
+      prompt: 'Walk through reading one line of `show ip route` — code, prefix, bracket, next-hop.',
+      coachingPoints: [
+        'Code first: C=connected, S=static, O=OSPF, D=EIGRP, * = candidate default.',
+        '[AD/metric] — AD breaks ties when installing; metric picks best path within protocol.',
+        'Longest match forwards — not administrative distance at forward time.',
+      ],
+    },
+  ],
+  '4.2': [
+    {
+      id: 'mi-4.2-1',
+      prompt: 'A router clock is wrong and logs show inconsistent timestamps. How do you fix NTP on IOS?',
+      coachingPoints: [
+        '`ntp server <ip>` on the client — verify with `show ntp status` (synchronized).',
+        'Stratum 16 = unsynchronized — check reachability to server UDP/123.',
+        'Accurate time matters for syslog correlation and certificate validation.',
+      ],
+    },
+  ],
+  '4.3': [
+    {
+      id: 'mi-4.3-1',
+      prompt: 'Clients get IP addresses but no default gateway. Which DHCP pool command fixes it?',
+      coachingPoints: [
+        '`default-router <ip>` sets option 3 — gateway for DHCP clients.',
+        '`dns-server` is option 6 — separate from gateway.',
+        'On the server: `ip dhcp pool` + `network` — not `ip helper-address` (that is relay).',
+      ],
+    },
+    {
+      id: 'mi-4.3-2',
+      prompt: 'You need to reserve 192.168.10.1–10 for static devices in a DHCP pool. What command?',
+      coachingPoints: [
+        '`ip dhcp excluded-address 192.168.10.1 192.168.10.10` before or after pool config.',
+        'Without exclusions, the server may lease the gateway IP to a client.',
+        'Verify bindings: `show ip dhcp binding`.',
+      ],
+    },
+  ],
+  '4.4': [
+    {
+      id: 'mi-4.4-1',
+      prompt: 'An NMS polls a router but gets authentication errors. What SNMPv2c setting is required?',
+      coachingPoints: [
+        '`snmp-server community <string> RO` for read-only polling.',
+        'Community string is like a password — RW only when writes/traps need it.',
+        'Traps are agent→NMS push; GET polling uses UDP/161 with community.',
+      ],
+    },
+    {
+      id: 'mi-4.4-2',
+      prompt: 'Difference between SNMP trap and SNMP inform?',
+      coachingPoints: [
+        'Trap: unsolicited UDP alert — no delivery guarantee.',
+        'Inform: acknowledged trap — receiver sends response.',
+        'Both require `snmp-server host` / trap receiver config on the agent.',
+      ],
+    },
+  ],
+  '4.5': [
+    {
+      id: 'mi-4.5-1',
+      prompt: 'Logs stay on the console only — nothing reaches the SIEM. What two commands send remote syslog?',
+      coachingPoints: [
+        '`logging host <ip>` — destination syslog server (UDP/514).',
+        '`logging trap informational` (or appropriate level) — filters what is sent.',
+        '`service timestamps log datetime msec` helps correlate events.',
+      ],
+    },
+  ],
+  '4.9': [
+    {
+      id: 'mi-4.9-1',
+      prompt: 'Backup running-config to TFTP — state the IOS copy command and direction.',
+      coachingPoints: [
+        '`copy running-config tftp:` — running-config is source, TFTP is destination.',
+        'Reversed (`copy tftp: running-config`) restores/downloads — not a backup.',
+        'TFTP uses UDP/69, no authentication — trusted LAN only.',
+      ],
+    },
+    {
+      id: 'mi-4.9-2',
+      prompt: 'When would you choose FTP over TFTP for IOS file transfer?',
+      coachingPoints: [
+        'FTP supports username/password (TCP/21) — TFTP has no auth.',
+        'Both are unencrypted — SCP/SFTP for secure transfer.',
+        'TFTP is simpler for LAN image copy labs; FTP when server requires login.',
+      ],
+    },
+  ],
+  '6.1': [
+    {
+      id: 'mi-6.1-1',
+      prompt: 'Explain Ansible agentless automation vs Puppet/Chef agent model.',
+      coachingPoints: [
+        'Ansible pushes tasks over SSH from control node — no agent on devices.',
+        'Puppet/Chef often run agents that pull from a master.',
+        'Playbooks are YAML ordered task lists applied to inventory hosts.',
+      ],
+    },
+  ],
+  '6.2': [
+    {
+      id: 'mi-6.2-1',
+      prompt: 'In SDN, what is the difference between control plane and data plane?',
+      coachingPoints: [
+        'Control plane: routing decisions, policy — controller or distributed protocols.',
+        'Data plane: actual packet forwarding using FIB/ASIC tables.',
+        'Southbound API = controller to devices; northbound = apps to controller.',
+      ],
+    },
+  ],
+  '6.5': [
+    {
+      id: 'mi-6.5-1',
+      prompt: 'A REST API returns HTTP 404 for GET /devices/interfaces. What does that mean?',
+      coachingPoints: [
+        '404 Not Found — URI/resource missing; server may still be up.',
+        'GET is read-only; POST/PUT/PATCH modify state.',
+        '401/403 = auth; 5xx = server error — different troubleshooting paths.',
+      ],
+    },
+  ],
 }
 
 const FALLBACK_PROMPTS = [
@@ -109,21 +246,38 @@ const FALLBACK_PROMPTS = [
 
 /**
  * Build curated interview prompt cards from weak objectives (free tier).
+ * @param {object} [options]
+ * @param {Array<{ weakObjectiveIds?: string[] }>} [options.mockHistory]
  * @returns {Promise<Array<{ id, objectiveId, objectiveTitle, prompt, coachingPoints }>>}
  */
-export async function buildMockInterviewCards(progress, missed = []) {
+export async function buildMockInterviewCards(progress, missed = [], options = {}) {
   const summary = await buildLearnerSummary(progress, missed)
   const weak = summary.perObjective
     .filter(o => o.attempts > 0)
     .sort((a, b) => a.mastery - b.mastery)
 
+  const mockPriority = []
+  const hist = options.mockHistory || []
+  if (hist.length) {
+    const last = hist[hist.length - 1]
+    for (const oid of last.weakObjectiveIds || []) {
+      if (!mockPriority.includes(oid)) mockPriority.push(oid)
+    }
+  }
+
+  const orderedObjectives = [
+    ...mockPriority.map(id => weak.find(o => o.id === id) || { id, mastery: 0, attempts: 1, title: id }),
+    ...weak.filter(o => !mockPriority.includes(o.id)),
+  ]
+
   const cards = []
   const seen = new Set()
 
-  for (const obj of weak) {
+  for (const obj of orderedObjectives) {
     const prompts = MOCK_INTERVIEW_PROMPTS[obj.id]
     if (!prompts?.length) continue
-    const pick = prompts[0]
+    const pickIdx = (obj.attempts || mockPriority.indexOf(obj.id) + 1) % prompts.length
+    const pick = prompts[pickIdx]
     if (seen.has(pick.id)) continue
     seen.add(pick.id)
     const meta = ALL_OBJECTIVES.find(x => x.id === obj.id)

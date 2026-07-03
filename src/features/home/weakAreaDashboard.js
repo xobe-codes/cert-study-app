@@ -78,6 +78,19 @@ export function buildWeakAreaRows({ missed = [], readiness, domainPassRecords = 
           })
         }
       }
+      if (last.weakObjectiveIds?.length) {
+        const key = 'mockinterview:last'
+        if (!seen.has(key)) {
+          seen.add(key)
+          rows.push({
+            id: key,
+            label: `Verbal warm-up — mock weak spots (${last.weakObjectiveIds.slice(0, 2).join(', ')})`,
+            cta: 'Interview',
+            action: 'mockInterview',
+            payload: { objectiveIds: last.weakObjectiveIds },
+          })
+        }
+      }
     }
   }
 

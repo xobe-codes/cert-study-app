@@ -1172,6 +1172,7 @@ export default function App() {
             offlineReady={offlineReady}
             onSelectObjective={selectObjective}
             onOpenMock={openMockExam}
+            onOpenMockInterview={() => navigateTo('mockinterview')}
             onOpenMissed={() => navigateTo('missed')}
             onOpenTutor={() => navigateTo('tutor')}
             premiumUnlocked={premiumUnlocked}

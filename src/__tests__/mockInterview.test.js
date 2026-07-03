@@ -3,7 +3,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import React from 'react'
 import { WLAN_ENRICHMENT_WAVE5_PATCHES } from '../data/wlanEnrichmentWave5.js'
 import { applyContentEnrichment, getEnrichmentPatchQuestions } from '../data/contentEnrichmentPatches.js'
-import { buildMockInterviewCards } from '../features/mockExam/mockInterviewCards.js'
+import { buildMockInterviewCards, MOCK_INTERVIEW_PROMPTS } from '../features/mockExam/mockInterviewCards.js'
 import { buildMockInterviewSystemPrompt } from '../features/mockExam/mockInterviewPrompt.js'
 import MockInterview from '../features/mockExam/MockInterview.jsx'
 
@@ -51,6 +51,21 @@ describe('mockInterview', () => {
     expect(cards[0].prompt).toBeTruthy()
     expect(cards[0].coachingPoints?.length).toBeGreaterThan(0)
     expect(cards[0].objectiveId).toBeTruthy()
+  })
+
+  it('prioritizes mock history weak objectives when prompts exist', async () => {
+    const cards = await buildMockInterviewCards(
+      { '4.3': { attempts: 1, correct: 0 } },
+      [],
+      { mockHistory: [{ pct: 55, weakObjectiveIds: ['4.3', '4.9'] }] },
+    )
+    expect(cards.some(c => c.objectiveId === '4.3')).toBe(true)
+  })
+
+  it('covers services and automation objectives in prompt bank', () => {
+    for (const oid of ['4.2', '4.3', '4.4', '4.5', '4.9', '6.1', '6.2', '6.5']) {
+      expect(MOCK_INTERVIEW_PROMPTS[oid]?.length).toBeGreaterThan(0)
+    }
   })
 
   it('buildMockInterviewSystemPrompt includes exam-day examiner tone', async () => {

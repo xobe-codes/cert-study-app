@@ -51,6 +51,10 @@ export async function clearTutorChat() {
   await window.storage.setItem(STORAGE_KEYS.tutorChat, [])
 }
 
+export async function clearMockInterviewChat() {
+  await window.storage.setItem(STORAGE_KEYS.mockInterviewChat, [])
+}
+
 export async function clearAiCaches() {
   await Promise.all(AI_CACHE_KEYS.map(key => window.storage.setItem(key, {})))
 }

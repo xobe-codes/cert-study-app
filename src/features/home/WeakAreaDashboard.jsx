@@ -13,6 +13,7 @@ export default function WeakAreaDashboard({
   onOpenTrapDrill,
   onOpenDomainPass,
   onOpenMock,
+  onOpenMockInterview,
 }) {
   const [mockHistory, setMockHistory] = useState([])
 
@@ -47,6 +48,9 @@ export default function WeakAreaDashboard({
       }
       case 'mock':
         onOpenMock?.(row.payload)
+        break
+      case 'mockInterview':
+        onOpenMockInterview?.()
         break
       default:
         break

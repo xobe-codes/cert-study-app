@@ -462,6 +462,15 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
           }}
           onSelectObjective={onSelectObjective}
         />
+        {onOpenMockInterview && pct < 80 && (
+          <button
+            type="button"
+            style={{ ...styles.secondaryBtn, marginTop: 8 }}
+            onClick={onOpenMockInterview}
+          >
+            Exam day interview — verbal warm-up on weak spots
+          </button>
+        )}
         {report.deferredTips?.length > 0 && <DeferredExamTips tips={report.deferredTips} />}
         {(() => {
           const firstWrongIdx = questions.findIndex((qItem, idx) => {

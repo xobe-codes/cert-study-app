@@ -316,7 +316,7 @@ function StudyModeBtn({ onClick, children, primary, disabled }) {
   )
 }
 
-export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onPremiumBlocked, premiumUnlocked = false, onOpenMetrics, onOpenStats, onOpenSettings, onOpenReview, onOpenLabs, onOpenFocus, onOpenTopicFocus, onOpenCommandHub, onOpenStudyLens, onOpenExamTraps, onOpenTrapDrill, onOpenDomainPass, domainPassPassedCount = 0, domainPassRecords = {}, examDate = null, onOpenSubnet, onOpenRouting, onOpenExtraStudy, commandDrills = {}, theme, onToggleTheme }) {
+export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMockInterview, onOpenMissed, onOpenTutor, onPremiumBlocked, premiumUnlocked = false, onOpenMetrics, onOpenStats, onOpenSettings, onOpenReview, onOpenLabs, onOpenFocus, onOpenTopicFocus, onOpenCommandHub, onOpenStudyLens, onOpenExamTraps, onOpenTrapDrill, onOpenDomainPass, domainPassPassedCount = 0, domainPassRecords = {}, examDate = null, onOpenSubnet, onOpenRouting, onOpenExtraStudy, commandDrills = {}, theme, onToggleTheme }) {
   const [suggestions, setSuggestions] = useState([])
   const [learnerSummary, setLearnerSummary] = useState(null)
   const [retention, setRetention] = useState([])
@@ -429,6 +429,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         onOpenTrapDrill={onOpenTrapDrill}
         onOpenDomainPass={onOpenDomainPass}
         onOpenMock={onOpenMock}
+        onOpenMockInterview={onOpenMockInterview}
       />
 
       {onOpenDomainPass && (

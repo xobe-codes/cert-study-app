@@ -10,6 +10,7 @@ export const STORAGE_KEYS = {
   syncLast: 'ccna_sync_last_v1',
   usage: 'ccna_usage_v1',
   tutorChat: 'ccna_tutor_chat_v1',
+  mockInterviewChat: 'ccna_mock_interview_chat_v1',
   labDone: 'ccna_lab_done_v1',
   theme: 'ccna_theme_v1',
   onboardDone: 'ccna_onboard_done_v1',
