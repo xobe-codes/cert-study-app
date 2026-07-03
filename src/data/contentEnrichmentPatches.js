@@ -15,6 +15,7 @@ import { CONTENT_DEPTH_WAVE6_PATCHES } from './contentDepthWave6Patches.js'
 import { CONTENT_DEPTH_WAVE7_PATCHES } from './contentDepthWave7Patches.js'
 import { TIER_B_TRAP_WAVE6_PATCHES } from './tierBTrapWave6Patches.js'
 import { TIER_B_TRAP_WAVE7_PATCHES } from './tierBTrapWave7Patches.js'
+import { TIER_B_TRAP_WAVE8_PATCHES } from './tierBTrapWave8Patches.js'
 
 function factoryPatchFor(objectiveId) {
   const traps = FACTORY_TRAP_PATCHES[objectiveId]
@@ -458,8 +459,9 @@ export function applyContentEnrichment(base, objectiveId) {
   const trapWave5 = TIER_B_TRAP_WAVE5_PATCHES[objectiveId]
   const trapWave6 = TIER_B_TRAP_WAVE6_PATCHES[objectiveId]
   const trapWave7 = TIER_B_TRAP_WAVE7_PATCHES[objectiveId]
+  const trapWave8 = TIER_B_TRAP_WAVE8_PATCHES[objectiveId]
   const wlanWave5 = WLAN_ENRICHMENT_WAVE5_PATCHES[objectiveId]
-  if (!factory && !patch && !wave3 && !wave4 && !wave5 && !wave6 && !wave7 && !trapWave4 && !trapWave5 && !trapWave6 && !trapWave7 && !wlanWave5) return base
+  if (!factory && !patch && !wave3 && !wave4 && !wave5 && !wave6 && !wave7 && !trapWave4 && !trapWave5 && !trapWave6 && !trapWave7 && !trapWave8 && !wlanWave5) return base
   const mergeList = (a, b) => (b?.length ? [...(a || []), ...b] : a)
   let examTraps = base.examTraps
   let flashcards = base.flashcards
@@ -470,6 +472,7 @@ export function applyContentEnrichment(base, objectiveId) {
   if (trapWave5?.examTraps) examTraps = mergeList(examTraps, trapWave5.examTraps)
   if (trapWave6?.examTraps) examTraps = mergeList(examTraps, trapWave6.examTraps)
   if (trapWave7?.examTraps) examTraps = mergeList(examTraps, trapWave7.examTraps)
+  if (trapWave8?.examTraps) examTraps = mergeList(examTraps, trapWave8.examTraps)
   if (wlanWave5?.examTraps) examTraps = mergeList(examTraps, wlanWave5.examTraps)
   if (factory?.flashcards) flashcards = mergeList(flashcards, factory.flashcards)
   if (patch?.flashcards) flashcards = mergeList(flashcards, patch.flashcards)
@@ -477,6 +480,7 @@ export function applyContentEnrichment(base, objectiveId) {
   if (trapWave5?.flashcards) flashcards = mergeList(flashcards, trapWave5.flashcards)
   if (trapWave6?.flashcards) flashcards = mergeList(flashcards, trapWave6.flashcards)
   if (trapWave7?.flashcards) flashcards = mergeList(flashcards, trapWave7.flashcards)
+  if (trapWave8?.flashcards) flashcards = mergeList(flashcards, trapWave8.flashcards)
   if (wlanWave5?.flashcards) flashcards = mergeList(flashcards, wlanWave5.flashcards)
   if (factory?.questions) questions = mergeList(questions, factory.questions)
   if (patch?.questions) questions = mergeList(questions, patch.questions)

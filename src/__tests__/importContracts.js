@@ -1,5 +1,7 @@
 /** Static import contracts — catches missing imports after tab/route extractions. */
 export const APP_IMPORTS = [
+  { symbol: 'AppShell', from: './features/shell/AppShell.jsx' },
+  { symbol: 'AppShellStyles', from: './features/shell/AppShellStyles.jsx' },
   { symbol: 'CoreStudyRoutes', from: './features/shell/CoreStudyRoutes.jsx' },
   { symbol: 'StudyModeRoutes', from: './features/study/StudyModeRoutes.jsx' },
   { symbol: 'AppChromeOverlays', from: './features/shell/AppChromeOverlays.jsx' },
