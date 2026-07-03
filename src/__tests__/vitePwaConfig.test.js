@@ -19,8 +19,15 @@ describe('vite PWA runtime caching', () => {
   })
 
   it('keeps other large chunk CacheFirst rules', () => {
-    for (const name of ['clean-questions', 'mock-exam', 'labs', 'study-modes', 'studios']) {
+    for (const name of ['clean-questions', 'mock-exam', 'labs', 'study-modes', 'studios', 'shelved-questions', 'vendor-react']) {
       expect(viteConfig).toContain(name)
     }
+  })
+
+  it('includes CacheFirst rule for shelved-questions and vendor-react', () => {
+    expect(viteConfig).toMatch(/urlPattern:\s*\/\\\/assets\\\/shelved-questions\[\^\/\?\]\*\\\.js\$\/i/)
+    expect(viteConfig).toMatch(/cacheName:\s*'ccna-shelved-questions'/)
+    expect(viteConfig).toMatch(/urlPattern:\s*\/\\\/assets\\\/vendor-react\[\^\/\?\]\*\\\.js\$\/i/)
+    expect(viteConfig).toMatch(/cacheName:\s*'ccna-vendor-react'/)
   })
 })

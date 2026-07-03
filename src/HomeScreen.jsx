@@ -24,6 +24,7 @@ import ProgressRing from './components/ProgressRing.jsx'
 import { todayStr } from './home/sessionUtils.js'
 import { getSessionStudy, isRecapDismissed, dismissSessionRecap } from './home/sessionRecap.js'
 import { groupMissedByTrap } from './missed/missedTrapGroups.js'
+import DomainPassCompleteCard from './features/domainPass/DomainPassCompleteCard.jsx'
 import {
   HOME_SECTION_GAP,
   homeCard,
@@ -445,9 +446,13 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8, flexWrap: 'wrap', gap: 8 }}>
             <div style={homeSectionLabel(COLORS.purple)}>DOMAIN PASS: {domainPassPassedCount}/6</div>
-            <span style={{ ...homePill('purple'), fontSize: 'var(--ccna-type-xs)' }}>
-              {Math.round((domainPassPassedCount / 6) * 100)}% complete
-            </span>
+            {domainPassPassedCount === 6 ? (
+              <DomainPassCompleteCard compact />
+            ) : (
+              <span style={{ ...homePill('purple'), fontSize: 'var(--ccna-type-xs)' }}>
+                {Math.round((domainPassPassedCount / 6) * 100)}% complete
+              </span>
+            )}
           </div>
           <div style={{ height: 8, borderRadius: 999, background: COLORS.surface, overflow: 'hidden', marginBottom: 10 }}>
             <div

@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 import {
   DOMAIN_PASS_PASS_PCT,
   domainPassQuestionCount,
@@ -80,5 +80,24 @@ describe('countPassedDomains', () => {
     const domains = [{ id: 'a' }, { id: 'b' }]
     const records = { a: { passed: true }, b: { passed: false, attempts: 1 } }
     expect(countPassedDomains(records, domains)).toBe(1)
+  })
+})
+
+describe('domainPassCelebrated storage', () => {
+  beforeEach(() => {
+    vi.stubGlobal('window', {
+      storage: {
+        _data: {},
+        async getItem(k) { return this._data[k] ?? null },
+        async setItem(k, v) { this._data[k] = v },
+      },
+    })
+  })
+
+  it('defaults celebrated to false and persists true', async () => {
+    const { loadDomainPassCelebrated, saveDomainPassCelebrated } = await import('../features/domainPass/domainPassStorage.js')
+    expect(await loadDomainPassCelebrated()).toBe(false)
+    await saveDomainPassCelebrated(true)
+    expect(await loadDomainPassCelebrated()).toBe(true)
   })
 })

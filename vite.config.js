@@ -112,6 +112,26 @@ export default defineConfig({
             },
           },
           {
+            urlPattern: /\/assets\/shelved-questions[^/?]*\.js$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'ccna-shelved-questions',
+              expiration: { maxEntries: 4, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              cacheableResponse: { statuses: [0, 200] },
+              plugins: [rejectHtmlAsScript],
+            },
+          },
+          {
+            urlPattern: /\/assets\/vendor-react[^/?]*\.js$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'ccna-vendor-react',
+              expiration: { maxEntries: 2, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              cacheableResponse: { statuses: [0, 200] },
+              plugins: [rejectHtmlAsScript],
+            },
+          },
+          {
             urlPattern: /\/assets\/[^/?]+\.(?:js|css)$/i,
             handler: 'NetworkFirst',
             options: {

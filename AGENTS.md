@@ -15,15 +15,17 @@
 npm run audit:scan-and-refresh   # optional after content changes
 npm run audit:show-next-task
 # … implement ONE item …
-npm run audit:test-and-build
+npm run verify:ship
 npm run audit:mark-done -- <queue-id> "what shipped"
 ```
+
+`verify:ship` = unit tests + production build + ship e2e (`ship-smoke`, domain-pass, mock-exam).
 
 Or say: **audit pass** / **implement next** — Cursor rules trigger the same playbook.
 
 ## Ship
 
-User must say **c&d**, **commit & deploy**, or **ship it**. Then: test → build → commit → push → `wrangler pages deploy`.
+User must say **c&d**, **commit & deploy**, or **ship it**. Then: **`npm run verify:ship`** → commit → push → `wrangler pages deploy`.
 
 ## Every implementation must end with
 
@@ -42,6 +44,7 @@ Theme tokens (`src/ui/appTheme.js`), hash routing in `App.jsx`, `.env*`, live AI
 
 | Command | Purpose |
 |---------|---------|
+| `npm run verify:ship` | Unit + build + ship e2e smoke (run before every c&d) |
 | `npm run audit:help` | All audit shortcuts |
 | `npm run audit:full` | Scan → refresh → UI check → test/build → summary |
 | `npm run audit:mark-done` | Mark queue item done + append COMPLETED_CHANGES |

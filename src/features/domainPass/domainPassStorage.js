@@ -108,3 +108,15 @@ export async function appendMissedEntry(entry) {
   const missed = (await window.storage.getItem(STORAGE_KEYS.missed)) || []
   await window.storage.setItem(STORAGE_KEYS.missed, [...missed, entry])
 }
+
+export async function loadDomainPassCelebrated() {
+  try {
+    return Boolean(await window.storage.getItem(STORAGE_KEYS.domainPassCelebrated))
+  } catch {
+    return false
+  }
+}
+
+export async function saveDomainPassCelebrated(value = true) {
+  await window.storage.setItem(STORAGE_KEYS.domainPassCelebrated, Boolean(value))
+}

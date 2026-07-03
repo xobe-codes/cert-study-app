@@ -57,12 +57,10 @@ const PHASES = {
     npm: 'audit:test-and-build',
     name: 'Test and build',
     auto: true,
-    desc: 'Run npm test && npm run build',
+    desc: 'Run npm run verify:ship (unit tests + build + ship e2e smoke)',
     run: () => {
-      const test = spawnSync('npm', ['test'], { cwd: ROOT, stdio: 'inherit', shell: true })
-      if (test.status !== 0) return test.status ?? 1
-      const build = spawnSync('npm', ['run', 'build'], { cwd: ROOT, stdio: 'inherit', shell: true })
-      return build.status ?? 1
+      const r = spawnSync('npm', ['run', 'verify:ship'], { cwd: ROOT, stdio: 'inherit', shell: true })
+      return r.status ?? 1
     },
   },
   'print-summary': {
@@ -126,7 +124,7 @@ CCNA audit — descriptive npm shortcuts
   npm run audit:refresh-logs       Regenerate ai-improvement-logs/ reports
   npm run audit:check-home-ui      Home/mobile UI pattern check
   npm run audit:show-next-task     Print next queue item to implement
-  npm run audit:test-and-build     npm test && npm run build
+  npm run audit:test-and-build     npm run verify:ship (test + build + ship e2e)
   npm run audit:print-summary      Print tier/gap/queue summary
   npm run audit:scan-and-refresh   Scan + refresh logs (common pair)
   npm run audit:full               All automated steps (skips show-next-task)

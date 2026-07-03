@@ -28,6 +28,7 @@ export const STORAGE_KEYS = {
   questionHealthSignals: 'ccna_question_health_signals_v1',
   trapDrillPrefill: 'ccna_trap_drill_prefill_v1',
   domainPass: 'ccna_domain_pass_v1',
+  domainPassCelebrated: 'ccna_domain_pass_celebrated_v1',
 }
 
 /** CustomEvent name for dev/e2e trap-drill prefill handoff. */

@@ -77,6 +77,7 @@ import CLIDrillTab from './lab/CLIDrillTab.jsx'
 import DomainPassHub from './features/domainPass/DomainPassHub.jsx'
 import DomainPassSession from './features/domainPass/DomainPassSession.jsx'
 import { loadDomainPassRecords, countPassedDomains } from './features/domainPass/domainPassStorage.js'
+import { warmCuratedChunksForOffline } from './offline/warmCuratedChunks.js'
 import {
   QUIZ_BANK_MIN, MASTERY_GATE,
   loadQuizBank, saveQuizBank, mergeIntoBank, enableSectionReview,
@@ -865,6 +866,7 @@ export default function App() {
       }
       const updatedStreak = await bumpStreak()
       setStreak(updatedStreak)
+      warmCuratedChunksForOffline()
     })()
   }, [])
 
@@ -1596,6 +1598,7 @@ export default function App() {
           <DomainPassHub
             onExit={goBack}
             onStartDomain={(id) => setActiveDomainPassId(id)}
+            onStartMockExam={() => navigateTo('mock')}
           />
         )}
         {view === 'domainpass' && activeDomainPassId && (

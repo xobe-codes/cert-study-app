@@ -11,6 +11,7 @@ import {
   setTimerEnabled,
   countPassedDomains,
 } from './domainPassStorage.js'
+import DomainPassCompleteCard from './DomainPassCompleteCard.jsx'
 import {
   homeCard,
   homeSectionLabel,
@@ -27,7 +28,7 @@ function formatAttemptDate(ts) {
 /**
  * Hub for per-domain CCNA pass attempts — progress meter, timer toggle, domain cards.
  */
-export default function DomainPassHub({ onExit, onStartDomain }) {
+export default function DomainPassHub({ onExit, onStartDomain, onStartMockExam }) {
   const [records, setRecords] = useState({})
   const [timerOn, setTimerOn] = useState(true)
   const [loaded, setLoaded] = useState(false)
@@ -46,6 +47,7 @@ export default function DomainPassHub({ onExit, onStartDomain }) {
 
   const passedCount = countPassedDomains(records, DOMAINS)
   const progressPct = Math.round((passedCount / DOMAINS.length) * 100)
+  const allPassed = passedCount === DOMAINS.length
 
   const toggleTimer = useCallback(async () => {
     const next = !timerOn
@@ -78,6 +80,8 @@ export default function DomainPassHub({ onExit, onStartDomain }) {
           Pass each domain at 80%+ to complete your blueprint. Tap a domain to start or retake.
         </p>
       </div>
+
+      {allPassed && <DomainPassCompleteCard onStartMockExam={onStartMockExam} />}
 
       <div style={homeCard()}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12 }}>

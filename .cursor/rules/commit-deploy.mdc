@@ -10,7 +10,7 @@ When the user says **commit & deploy**, **c&d**, or **ship it**, run this workfl
 ## Steps (in order)
 
 1. `git status`, `git diff`, `git log -3 --oneline` — if nothing to commit, say so and still build + deploy.
-2. `npm test && npm run build` — fix failures before committing.
+2. `npm run verify:ship` — fix failures before committing (unit tests + production build + ship e2e smoke).
 3. Stage only app-relevant changes. **Do not** add `docs/ux-audit/`, `.env*`, or secrets unless the user asks.
 4. Commit with a concise HEREDOC message (1–2 sentences, focus on why).
 5. `git push origin master` (request approval if the environment blocks protected-branch push).
