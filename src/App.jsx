@@ -43,7 +43,6 @@ import ErrorBox from './components/ErrorBox.jsx'
 import StatusDot from './components/StatusDot.jsx'
 import StatusLabel from './components/StatusLabel.jsx'
 import HomeScreen from './HomeScreen.jsx'
-import StatsPage from './StatsPage.jsx'
 import ObjectiveScreen from './ObjectiveScreen.jsx'
 import { bumpSessionStudy } from './home/sessionRecap.js'
 const MockExamRoute = lazy(() => import('./features/mockExam/MockExamRoute.jsx'))
@@ -119,12 +118,9 @@ import { useGlobalSearchHotkey } from './features/search/useGlobalSearchHotkey.j
 import OfflineBanner from './features/shell/OfflineBanner.jsx'
 import TutorChat from './features/tutor/TutorChat.jsx'
 import MockInterview from './features/mockExam/MockInterview.jsx'
-import FocusModeSession from './features/focus/FocusModeSession.jsx'
-import ReviewSession from './features/review/ReviewSession.jsx'
+import PracticeRoutes from './features/practice/PracticeRoutes.jsx'
 import Onboarding from './features/onboarding/Onboarding.jsx'
-import MissedReview from './features/missed/MissedReview.jsx'
 import TrapDrillSession from './features/trapDrill/TrapDrillSession.jsx'
-import MetricsDashboard from './features/metrics/MetricsDashboard.jsx'
 import {
   generateSyncCode, loadSyncBundle, saveSyncBundle, mergeSyncData, pullSync, pushSync,
 } from './features/sync/syncMerge.js'
@@ -1281,29 +1277,29 @@ export default function App() {
             onPremiumBlocked={handlePremiumBlocked}
           />
         )}
-        {view === 'missed' && (
-          <MissedReview
-            missed={missed}
-            onBack={goBack}
-            onRemove={removeMissed}
-            onOpenExamTraps={openExamTraps}
-            onOpenTrapDrill={openTrapDrill}
-          />
-        )}
+        <PracticeRoutes
+          view={view}
+          progress={progress}
+          streak={streak}
+          missed={missed}
+          dueCount={dueCount}
+          onBack={goBack}
+          onMissed={handleMissed}
+          onDone={refreshDue}
+          onOpenSection={selectObjective}
+          onOpenMetrics={() => navigateTo('metrics')}
+          onOpenStats={() => navigateTo('stats')}
+          onOpenReview={() => navigateTo('review')}
+          onOpenExamTraps={openExamTraps}
+          onOpenTrapDrill={openTrapDrill}
+          onRemoveMissed={removeMissed}
+          onSelectObjective={selectObjective}
+        />
         {view === 'tutor' && (
           premiumUnlocked
             ? <TutorChat progress={progress} missed={missed} onBack={goBack} />
             : <PremiumBlockedShell title="AI Tutor" onBack={goBack} />
         )}
-        {view === 'stats' && (
-          <StatsPage
-            progress={progress}
-            streak={streak}
-            onBack={goBack}
-            onOpenMetrics={() => navigateTo('metrics')}
-          />
-        )}
-        {view === 'metrics' && <MetricsDashboard progress={progress} missed={missed} dueCount={dueCount} onBack={goBack} onSelectObjective={selectObjective} onOpenReview={() => navigateTo('review')} onOpenStats={() => navigateTo('stats')} />}
         {view === 'labs' && (
           <LazyRoute label="Loading labs…">
             <LabsHub onBack={goBack} onOpenLab={(id) => openLab(id, 'labs')} />
@@ -1324,8 +1320,6 @@ export default function App() {
             />
           </LazyRoute>
         )}
-        {view === 'review' && <ReviewSession onBack={goBack} onMissed={handleMissed} onDone={refreshDue} onOpenSection={selectObjective} />}
-        {view === 'focus' && <FocusModeSession progress={progress} onBack={goBack} onMissed={handleMissed} onDone={refreshDue} />}
         {view === 'topicfocus' && (
           <LazyRoute label="Loading topic focus…">
             <TopicFocusStudio

@@ -6,6 +6,9 @@ const NEW_LAB_IDS = [
   'LAB-OSPF-ADJ-34',
   'LAB-ACL-CONFIG-55',
   'LAB-PORTSEC-56',
+  'LAB-DHCP-POOL-43',
+  'LAB-SNMP-CONFIG-44',
+  'LAB-TFTP-CONFIG-49',
 ]
 
 function bundleFor(labId) {
@@ -52,5 +55,21 @@ describe('ccnaLabsExtended routing switching security gaps', () => {
     const ids = labsForObjective('5.6').map(l => l.id)
     expect(ids).toContain('LAB-PORTSEC-56')
     expect(getLab('LAB-PORTSEC-56')?.lab.objectiveId).toBe('5.6')
+  })
+
+  it('objective 4.3 includes DHCP pool config lab', () => {
+    const ids = labsForObjective('4.3').map(l => l.id)
+    expect(ids).toContain('LAB-DHCP-POOL-43')
+    expect(getLab('LAB-DHCP-POOL-43')?.lab.objectiveId).toBe('4.3')
+  })
+
+  it('objective 4.4 includes SNMP config lab', () => {
+    const ids = labsForObjective('4.4').map(l => l.id)
+    expect(ids).toContain('LAB-SNMP-CONFIG-44')
+  })
+
+  it('objective 4.9 includes TFTP backup lab', () => {
+    const ids = labsForObjective('4.9').map(l => l.id)
+    expect(ids).toContain('LAB-TFTP-CONFIG-49')
   })
 })

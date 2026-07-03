@@ -22,6 +22,7 @@ import {
 import { COLORS, styles, accentColors } from './ui/appTheme.js'
 import { STATIC_COPY } from './ui/staticContentCopy.js'
 import { STORAGE_KEYS } from './storageKeys.js'
+import { buildMockHistoryEntry } from './features/mockExam/mockHistoryEntry.js'
 import McChoices from './components/McChoices.jsx'
 import AnswerReview from './components/AnswerReview.jsx'
 import { summarizeWrongTraps } from './missed/missedTrapGroups.js'
@@ -219,7 +220,13 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
     if (!isStudyMode) {
       ;(async () => {
         const hist = (await window.storage.getItem(STORAGE_KEYS.mockHistory)) || []
-        hist.push({ date: Date.now(), pct: Math.round((correct / Math.max(questions.length, 1)) * 100), correct, total: questions.length })
+        hist.push(buildMockHistoryEntry({
+          correct,
+          total: questions.length,
+          questions,
+          responses,
+          byDomain,
+        }))
         await window.storage.setItem(STORAGE_KEYS.mockHistory, hist.slice(-30))
       })()
     }

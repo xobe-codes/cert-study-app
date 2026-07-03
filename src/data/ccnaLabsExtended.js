@@ -868,6 +868,172 @@ const DHCP_DNS_43 = {
   ]),
 }
 
+/* ---- DHCP pool config (4.3) ---- */
+const LAB_DHCP_POOL_43 = {
+  id: 'LAB-DHCP-POOL-43',
+  title: 'Configure a DHCP Address Pool',
+  domainId: 'ip_services',
+  objectiveId: '4.3',
+  ckuIds: ['CKU-DHCP'],
+  labType: 'guided',
+  difficulty: 'intermediate',
+  estimatedTimeMinutes: 12,
+  tools: ['Packet Tracer', 'GNS3'],
+  examRelevance: 'core',
+  scenario: 'R1 serves DHCP for VLAN 10 (192.168.10.0/24). Create pool LAN10 with network 192.168.10.0/24, default-router 192.168.10.1, dns-server 8.8.8.8, and exclude 192.168.10.1–192.168.10.10 for static devices.',
+  learningGoals: ['ip dhcp pool', 'network / default-router / dns-server', 'ip dhcp excluded-address'],
+  topologyId: 'TOPO-DHCP-POOL-43',
+  prerequisites: [],
+  tasks: [
+    { id: 't1', order: 1, title: 'Enable DHCP service', device: 'R1', instruction: 'Ensure DHCP is not disabled globally.',
+      expectedCommands: ['service dhcp'] },
+    { id: 't2', order: 2, title: 'Exclude static range', device: 'R1', instruction: 'Reserve 192.168.10.1 through 192.168.10.10 for routers and servers.',
+      expectedCommands: ['ip dhcp excluded-address 192.168.10.1 192.168.10.10'] },
+    { id: 't3', order: 3, title: 'Create DHCP pool', device: 'R1', instruction: 'Create pool LAN10 with network, default-router, and dns-server options.',
+      expectedCommands: ['ip dhcp pool LAN10', 'network 192.168.10.0 255.255.255.0', 'default-router 192.168.10.1', 'dns-server 8.8.8.8'] },
+    { id: 't4', order: 4, title: 'Verify pool', device: 'R1', instruction: 'Confirm pool settings and bindings.',
+      expectedCommands: ['show ip dhcp pool', 'show ip dhcp binding'] },
+  ],
+  verificationCommands: ['show ip dhcp pool', 'show running-config | section dhcp'],
+  successCriteria: ['Pool LAN10 shows network 192.168.10.0', 'default-router and dns-server present', 'Excluded range configured'],
+  failureCriteria: ['Missing default-router — clients get IP but no gateway'],
+  commonMistakes: ['Using ip helper-address instead of dhcp pool on the server', 'Forgetting excluded-address for gateway IP'],
+  source: { name: LAB_SOURCES.blueprint, chapter: '4.3 Configure and verify DHCP client and server', confidence: 0.9 },
+  metadata: { version: '1', status: 'validated', confidence: 0.9 },
+}
+const TOPO_DHCP_POOL_43 = {
+  id: 'TOPO-DHCP-POOL-43', title: 'R1 as DHCP server', objectiveId: '4.3',
+  nodes: [{ id: 'pc', label: 'PC DHCP client', type: 'pc', x: 25, y: 50 }, { id: 'r1', label: 'R1 DHCP server', type: 'router', x: 75, y: 50 }],
+  links: [{ id: 'l1', source: 'pc', target: 'r1', label: 'Gi0/0 192.168.10.0/24', status: 'forwarding' }],
+}
+const VALIDATOR_DHCP_POOL_43 = {
+  labId: 'LAB-DHCP-POOL-43',
+  requiredCommands: [
+    { device: 'R1', command: 'ip dhcp excluded-address 192.168.10.1 192.168.10.10' },
+    { device: 'R1', command: 'ip dhcp pool LAN10' },
+    { device: 'R1', command: 'default-router 192.168.10.1' },
+    { device: 'R1', command: 'dns-server 8.8.8.8' },
+  ],
+  verificationChecks: [{ id: 'v1', device: 'R1', command: 'show ip dhcp pool', expectedResult: 'LAN10', passCondition: 'pool configured' }],
+}
+const DHCP_POOL_43 = {
+  lab: LAB_DHCP_POOL_43, topology: TOPO_DHCP_POOL_43, validator: VALIDATOR_DHCP_POOL_43,
+  diagram: mkDiagram('DIAG-DHCP-POOL-43', 'DHCP pool options', '4.3',
+    [{ id: 'r1', label: 'R1 pool LAN10', type: 'router', x: 35, y: 50 }, { id: 'opts', label: 'default-router\ndns-server', type: 'process', x: 65, y: 50, status: 'highlighted' }],
+    [{ id: 'd1', source: 'r1', target: 'opts', status: 'forwarding' }]),
+  packetFlows: mkFlows('FLOW-DHCP-POOL-43', 'Pool serves clients', 'DIAG-DHCP-POOL-43', ['CKU-DHCP'], [
+    { id: 's1', order: 1, title: 'Offer', action: 'Pool LAN10 offers IP with gateway and DNS options', successState: 'offered' },
+  ]),
+}
+
+/* ---- SNMP community config (4.4) ---- */
+const LAB_SNMP_CONFIG_44 = {
+  id: 'LAB-SNMP-CONFIG-44',
+  title: 'Configure SNMPv2c Read-Only Community',
+  domainId: 'services',
+  objectiveId: '4.4',
+  ckuIds: ['CKU-SNMP'],
+  labType: 'guided',
+  difficulty: 'beginner',
+  estimatedTimeMinutes: 10,
+  tools: ['Packet Tracer', 'GNS3'],
+  examRelevance: 'core',
+  scenario: 'Enable SNMPv2c on R1 with read-only community CCNAro for NMS polling. Set contact and location strings for inventory clarity.',
+  learningGoals: ['snmp-server community RO', 'snmp-server contact/location', 'show snmp community'],
+  topologyId: 'TOPO-SNMP-CONFIG-44',
+  prerequisites: [],
+  tasks: [
+    { id: 't1', order: 1, title: 'SNMP contact', device: 'R1', instruction: 'Set snmp-server contact for the NMS inventory.',
+      expectedCommands: ['snmp-server contact NetOps Team'] },
+    { id: 't2', order: 2, title: 'SNMP location', device: 'R1', instruction: 'Set snmp-server location for rack identification.',
+      expectedCommands: ['snmp-server location DC1-Rack12'] },
+    { id: 't3', order: 3, title: 'RO community', device: 'R1', instruction: 'Create read-only community CCNAro (v2c).',
+      expectedCommands: ['snmp-server community CCNAro RO'] },
+    { id: 't4', order: 4, title: 'Verify', device: 'R1', instruction: 'Show configured SNMP communities.',
+      expectedCommands: ['show snmp community'] },
+  ],
+  verificationCommands: ['show snmp community', 'show running-config | include snmp'],
+  successCriteria: ['Community CCNAro RO present', 'Contact and location strings set'],
+  failureCriteria: ['RW community when only polling needed — security risk'],
+  commonMistakes: ['Using snmp-server host instead of community for basic polling setup', 'Confusing traps (agent→NMS) with GET polling'],
+  source: { name: LAB_SOURCES.blueprint, chapter: '4.4 Configure and verify SNMP', confidence: 0.9 },
+  metadata: { version: '1', status: 'validated', confidence: 0.9 },
+}
+const TOPO_SNMP_CONFIG_44 = {
+  id: 'TOPO-SNMP-CONFIG-44', title: 'SNMP polling', objectiveId: '4.4',
+  nodes: [{ id: 'nms', label: 'NMS poller', type: 'server', x: 25, y: 50 }, { id: 'r1', label: 'R1 SNMP agent', type: 'router', x: 75, y: 50 }],
+  links: [{ id: 'l1', source: 'nms', target: 'r1', label: 'UDP/161 GET', status: 'forwarding' }],
+}
+const VALIDATOR_SNMP_CONFIG_44 = {
+  labId: 'LAB-SNMP-CONFIG-44',
+  requiredCommands: [
+    { device: 'R1', command: 'snmp-server community CCNAro RO' },
+    { device: 'R1', command: 'snmp-server contact NetOps Team' },
+    { device: 'R1', command: 'snmp-server location DC1-Rack12' },
+  ],
+  verificationChecks: [{ id: 'v1', device: 'R1', command: 'show snmp community', expectedResult: 'CCNAro', passCondition: 'ro community' }],
+}
+const SNMP_CONFIG_44 = {
+  lab: LAB_SNMP_CONFIG_44, topology: TOPO_SNMP_CONFIG_44, validator: VALIDATOR_SNMP_CONFIG_44,
+  diagram: mkDiagram('DIAG-SNMP-CONFIG-44', 'NMS polls RO community', '4.4',
+    [{ id: 'nms', label: 'NMS', type: 'server', x: 20, y: 50 }, { id: 'snmp', label: 'CCNAro RO', type: 'process', x: 55, y: 50, status: 'highlighted' }, { id: 'r1', label: 'R1', type: 'router', x: 85, y: 50 }],
+    [{ id: 'd1', source: 'nms', target: 'snmp', status: 'forwarding' }, { id: 'd2', source: 'snmp', target: 'r1', status: 'forwarding' }]),
+  packetFlows: mkFlows('FLOW-SNMP-CONFIG-44', 'GET poll with RO community', 'DIAG-SNMP-CONFIG-44', ['CKU-SNMP'], [
+    { id: 's1', order: 1, title: 'Poll', action: 'NMS sends SNMP GET with community CCNAro', successState: 'matched' },
+  ]),
+}
+
+/* ---- TFTP backup (4.9) ---- */
+const LAB_TFTP_CONFIG_49 = {
+  id: 'LAB-TFTP-CONFIG-49',
+  title: 'Backup Running Config via TFTP',
+  domainId: 'services',
+  objectiveId: '4.9',
+  ckuIds: ['CKU-TFTP-FTP', 'CKU-COPY-TFTP-RUNNING-CONFIG'],
+  labType: 'guided',
+  difficulty: 'beginner',
+  estimatedTimeMinutes: 10,
+  tools: ['Packet Tracer', 'GNS3'],
+  examRelevance: 'core',
+  scenario: 'Back up R1 running-config to TFTP server 192.168.1.50 as r1-backup.cfg. Verify connectivity to the server before copying.',
+  learningGoals: ['copy running-config tftp:', 'TFTP source/destination order', 'ping before copy'],
+  topologyId: 'TOPO-TFTP-CONFIG-49',
+  prerequisites: [],
+  tasks: [
+    { id: 't1', order: 1, title: 'Verify reachability', device: 'R1', instruction: 'Ping TFTP server 192.168.1.50 before copy.',
+      expectedCommands: ['ping 192.168.1.50'] },
+    { id: 't2', order: 2, title: 'Copy to TFTP', device: 'R1', instruction: 'Upload running-config to TFTP — running-config is source, tftp is destination.',
+      expectedCommands: ['copy running-config tftp:'] },
+    { id: 't3', order: 3, title: 'Confirm filename', device: 'R1', instruction: 'When prompted, use remote filename r1-backup.cfg and server 192.168.1.50.',
+      expectedCommands: ['192.168.1.50', 'r1-backup.cfg'] },
+  ],
+  verificationCommands: ['show flash:', 'dir tftp:'],
+  successCriteria: ['Copy completes without error', 'TFTP server receives r1-backup.cfg'],
+  failureCriteria: ['Reversed copy tftp: running-config — downloads instead of backup'],
+  commonMistakes: ['copy tftp: running-config reverses direction (restore, not backup)', 'TFTP uses UDP/69 — no auth on untrusted networks'],
+  source: { name: LAB_SOURCES.blueprint, chapter: '4.9 TFTP and FTP capabilities', confidence: 0.85 },
+  metadata: { version: '1', status: 'validated', confidence: 0.85 },
+}
+const TOPO_TFTP_CONFIG_49 = {
+  id: 'TOPO-TFTP-CONFIG-49', title: 'TFTP backup', objectiveId: '4.9',
+  nodes: [{ id: 'r1', label: 'R1', type: 'router', x: 30, y: 50 }, { id: 'tftp', label: 'TFTP .50', type: 'server', x: 75, y: 50 }],
+  links: [{ id: 'l1', source: 'r1', target: 'tftp', label: 'UDP/69', status: 'forwarding' }],
+}
+const VALIDATOR_TFTP_CONFIG_49 = {
+  labId: 'LAB-TFTP-CONFIG-49',
+  requiredCommands: [{ device: 'R1', command: 'copy running-config tftp:' }],
+  verificationChecks: [{ id: 'v1', device: 'R1', command: 'ping 192.168.1.50', expectedResult: 'Success rate', passCondition: 'server reachable' }],
+}
+const TFTP_CONFIG_49 = {
+  lab: LAB_TFTP_CONFIG_49, topology: TOPO_TFTP_CONFIG_49, validator: VALIDATOR_TFTP_CONFIG_49,
+  diagram: mkDiagram('DIAG-TFTP-CONFIG-49', 'Config backup to TFTP', '4.9',
+    [{ id: 'r1', label: 'running-config', type: 'router', x: 25, y: 50 }, { id: 'copy', label: 'copy run tftp:', type: 'process', x: 55, y: 50, status: 'highlighted' }, { id: 'srv', label: 'TFTP server', type: 'server', x: 85, y: 50 }],
+    [{ id: 'd1', source: 'r1', target: 'copy', status: 'forwarding' }, { id: 'd2', source: 'copy', target: 'srv', status: 'forwarding' }]),
+  packetFlows: mkFlows('FLOW-TFTP-CONFIG-49', 'Upload config file', 'DIAG-TFTP-CONFIG-49', ['CKU-TFTP-FTP'], [
+    { id: 's1', order: 1, title: 'Backup', action: 'Running-config copied to TFTP server via UDP/69', successState: 'forwarded' },
+  ]),
+}
+
 /* ---- SSH VTY access (5.3) ---- */
 const LAB_SSH_VTY = {
   id: 'LAB-SSH-VTY',
@@ -2079,6 +2245,7 @@ export const EXTENDED_LAB_BUNDLES = [
   HSRP, HSRP_VERIFY_35, ROUTE_FORWARD_32, OSPF_VERIFY_34, OSPF_ADJ_34,
   DHCP_RELAY, DHCP_SNOOP_27, ETHERCHANNEL, STP, DEVICE_ACCESS, NTP, AAA, SYSLOG,
   TS_OSPF, TS_TRUNK, TS_IF, TS_ACL, TS_ROUTE, TS_DHCP, TS_HSRP, TS_MASK, TS_STATIC_NH,
-  WIRELESS_26, DHCP_DNS_43, DEVICE_ACCESS_53, ACL_CONFIG_55, PORTSEC_56, ROUTE_TABLE_31,
+  WIRELESS_26, DHCP_DNS_43, DHCP_POOL_43, SNMP_CONFIG_44, TFTP_CONFIG_49,
+  DEVICE_ACCESS_53, ACL_CONFIG_55, PORTSEC_56, ROUTE_TABLE_31,
   AUTO_MGMT_61, AUTO_CTRL_62, AUTO_SDN_63, AUTO_DNA_64, AUTO_REST_65, AUTO_JSON_66,
 ]

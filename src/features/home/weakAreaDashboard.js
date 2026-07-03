@@ -58,18 +58,23 @@ export function buildWeakAreaRows({ missed = [], readiness, domainPassRecords = 
 
   if (mockHistory?.length) {
     const last = mockHistory[mockHistory.length - 1]
-    if (last.pct < 70 && domainStats.length) {
-      const weakest = [...domainStats].sort((a, b) => a.avg - b.avg)[0]
-      if (weakest) {
-        const key = `mock:${weakest.id}`
+    if (last.pct < 70) {
+      const domainId = last.weakDomainId
+        || (domainStats.length ? [...domainStats].sort((a, b) => a.avg - b.avg)[0]?.id : null)
+      if (domainId) {
+        const domain = DOMAINS.find(d => d.id === domainId)
+        const key = `mock:${domainId}`
         if (!seen.has(key)) {
           seen.add(key)
+          const objHint = last.weakObjectiveIds?.[0]
           rows.push({
             id: key,
-            label: `Last mock ${last.pct}% — focus ${weakest.name}`,
-            cta: 'Mock',
-            action: 'mock',
-            payload: { domainId: weakest.id },
+            label: objHint
+              ? `Last mock ${last.pct}% — review ${objHint}`
+              : `Last mock ${last.pct}% — focus ${domain?.name || domainId}`,
+            cta: objHint ? 'Open Study' : 'Mock',
+            action: objHint ? 'study' : 'mock',
+            payload: objHint ? { objectiveId: objHint } : { domainId },
           })
         }
       }
