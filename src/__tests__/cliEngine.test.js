@@ -11,6 +11,8 @@ import {
   deviceHostname,
   CLI_SHOW_OUTPUT,
   CLI_ROUTE_31_SHOW_OUTPUT,
+  CLI_ROUTE_32_SHOW_OUTPUT,
+  CLI_OSPF_VERIFY_34_SHOW_OUTPUT,
 } from '../lab/cliEngine.js'
 import { labProgress } from '../data/ccnaLabs.js'
 
@@ -400,5 +402,31 @@ describe('cliEngine', () => {
     const prog = labProgress('LAB-31-ROUTE-INTERPRET', entered)
     expect(prog.complete).toBe(true)
     expect(prog.done.length).toBe(6)
+  })
+
+  it('lab_32_forwarding show ip route 192.168.2.0 returns OSPF lookup', () => {
+    const r = processCliLine({
+      raw: 'show ip route 192.168.2.0',
+      mode: 'priv',
+      host: 'R1',
+      objectives: [{ answer: ['show ip route 192.168.2.0'] }],
+      completed: [false],
+      showOutput: CLI_ROUTE_32_SHOW_OUTPUT,
+    })
+    expect(r.newlyCompleted).toEqual([0])
+    expect(r.lines.some(l => l.text.includes('Known via "ospf 1"'))).toBe(true)
+  })
+
+  it('lab_34_ospf_verify show ip ospf neighbor returns FULL', () => {
+    const r = processCliLine({
+      raw: 'show ip ospf neighbor',
+      mode: 'priv',
+      host: 'R1',
+      objectives: [{ answer: ['show ip ospf neighbor'] }],
+      completed: [false],
+      showOutput: CLI_OSPF_VERIFY_34_SHOW_OUTPUT,
+    })
+    expect(r.newlyCompleted).toEqual([0])
+    expect(r.lines.some(l => l.text.includes('FULL'))).toBe(true)
   })
 })

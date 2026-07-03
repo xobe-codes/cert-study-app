@@ -1,5 +1,7 @@
 /* Extended CCNA labs — guided config gaps + troubleshooting scenarios. */
 
+import { CLI_ROUTE_32_SHOW_OUTPUT, CLI_OSPF_VERIFY_34_SHOW_OUTPUT } from '../lab/cliEngine.js'
+
 const LAB_SOURCES = {
   workbook: 'CCNA in 60 Days — Lab Workbook (Browning)',
   blueprint: 'Cisco CCNA 200-301 v1.1 Exam Topics',
@@ -1480,11 +1482,12 @@ const LAB_ROUTE_FORWARD_32 = {
   objectiveId: '3.2',
   ckuIds: ['CKU-LONGEST-PREFIX-MATCH', 'CKU-ROUTING-TABLE'],
   labType: 'guided',
+  interpretOnly: true,
   difficulty: 'intermediate',
   estimatedTimeMinutes: 12,
   tools: ['Packet Tracer', 'GNS3'],
   examRelevance: 'core',
-  scenario: 'R1 is pre-configured with connected, static, and OSPF routes. A packet to 192.168.2.50 must match the most specific route (192.168.2.0/24 OSPF), not the summary static 172.16.0.0/16 or default route. Use show commands to read the routing table and explain the forwarding decision.',
+  scenario: 'R1 is pre-configured with connected, static, and OSPF routes. A packet to 192.168.2.50 must match the most specific route (192.168.2.0/24 OSPF), not the summary static 172.16.0.0/16 or default route. Configuration is already loaded — run show commands and explain the forwarding decision.',
   learningGoals: [
     'Read source codes (C, L, S, O) and [AD/metric] brackets',
     'Apply longest-prefix-match for a host destination',
@@ -1519,6 +1522,7 @@ const LAB_ROUTE_FORWARD_32 = {
   ],
   source: { name: LAB_SOURCES.blueprint, chapter: '3.2 Forwarding decision', confidence: 0.9 },
   metadata: { version: '1', status: 'validated', confidence: 0.9 },
+  cliShowOutput: CLI_ROUTE_32_SHOW_OUTPUT,
 }
 const TOPO_ROUTE_FORWARD_32 = { id: 'TOPO-ROUTE-FORWARD-32', title: 'R1 multi-route lookup', objectiveId: '3.2',
   nodes: [{ id: 'r1', label: 'R1', type: 'router', x: 50, y: 40 }, { id: 'lan1', label: 'LAN1 .1.0/24', type: 'pc', x: 20, y: 75 }, { id: 'r2', label: 'R2 OSPF peer', type: 'router', x: 80, y: 75 }],
@@ -1547,11 +1551,12 @@ const LAB_OSPF_VERIFY_34 = {
   objectiveId: '3.4',
   ckuIds: ['CKU-OSPF', 'CKU-OSPF-NEIGHBOR'],
   labType: 'guided',
+  interpretOnly: true,
   difficulty: 'intermediate',
   estimatedTimeMinutes: 10,
   tools: ['Packet Tracer', 'GNS3'],
   examRelevance: 'core',
-  scenario: 'R1 and R2 are already configured with OSPFv2 in area 0 on 10.0.12.0/30 and each LAN. Verify neighbor FULL state, OSPF routes in the table, and AD 110 on learned prefixes.',
+  scenario: 'R1 and R2 are already configured with OSPFv2 in area 0 on 10.0.12.0/30 and each LAN. OSPF is pre-loaded — verify neighbor FULL state, OSPF routes in the table, and AD 110 on learned prefixes.',
   learningGoals: [
     'Confirm OSPF neighbor state FULL with show ip ospf neighbor',
     'Filter OSPF routes with show ip route ospf',
@@ -1564,12 +1569,12 @@ const LAB_OSPF_VERIFY_34 = {
       expectedCommands: ['show ip ospf neighbor'] },
     { id: 't2', order: 2, title: 'OSPF routes on R1', device: 'R1', instruction: 'Run show ip route ospf — verify O 10.0.2.0/24 [110/20] via 10.0.12.2.',
       expectedCommands: ['show ip route ospf'] },
-    { id: 't3', order: 3, title: 'OSPF routes on R2', device: 'R2', instruction: 'On R2, run show ip route ospf — verify O 10.0.1.0/24 learned from R1.',
-      expectedCommands: ['show ip route ospf'] },
+    { id: 't3', order: 3, title: 'OSPF interfaces', device: 'R1', instruction: 'Run show ip ospf interface brief — confirm Gi0/0 is in area 0 with a neighbor; Gi0/1 LAN is passive (no neighbor expected).',
+      expectedCommands: ['show ip ospf interface brief'] },
     { id: 't4', order: 4, title: 'Protocol summary', device: 'R1', instruction: 'Run show ip protocols — confirm OSPF process 1 and area 0 network statements.',
       expectedCommands: ['show ip protocols'] },
   ],
-  verificationCommands: ['show ip ospf neighbor', 'show ip route ospf', 'show ip protocols'],
+  verificationCommands: ['show ip ospf neighbor', 'show ip route ospf', 'show ip ospf interface brief', 'show ip protocols'],
   successCriteria: [
     'Neighbor state FULL on both ends of 10.0.12.0/30',
     'Each router learns the remote LAN via O with AD 110',
@@ -1586,6 +1591,7 @@ const LAB_OSPF_VERIFY_34 = {
   ],
   source: { name: LAB_SOURCES.blueprint, chapter: '3.4 OSPFv2 verify', confidence: 0.9 },
   metadata: { version: '1', status: 'validated', confidence: 0.9 },
+  cliShowOutput: CLI_OSPF_VERIFY_34_SHOW_OUTPUT,
 }
 const TOPO_OSPF_VERIFY_34 = { id: 'TOPO-OSPF-VERIFY-34', title: 'OSPF area 0 verify', objectiveId: '3.4',
   nodes: [{ id: 'r1', label: 'R1 1.1.1.1', type: 'router', x: 30, y: 45 }, { id: 'r2', label: 'R2 2.2.2.2', type: 'router', x: 70, y: 45 }, { id: 'lan1', label: '10.0.1.0/24', type: 'pc', x: 15, y: 80 }, { id: 'lan2', label: '10.0.2.0/24', type: 'pc', x: 85, y: 80 }],
@@ -1593,7 +1599,8 @@ const TOPO_OSPF_VERIFY_34 = { id: 'TOPO-OSPF-VERIFY-34', title: 'OSPF area 0 ver
 const VALIDATOR_OSPF_VERIFY_34 = { labId: 'LAB-OSPF-VERIFY-34', requiredCommands: [
   { device: 'R1', command: 'show ip ospf neighbor' },
   { device: 'R1', command: 'show ip route ospf' },
-  { device: 'R2', command: 'show ip route ospf' },
+  { device: 'R1', command: 'show ip ospf interface brief' },
+  { device: 'R1', command: 'show ip protocols' },
 ], verificationChecks: [
   { id: 'v1', device: 'R1', command: 'show ip ospf neighbor', expectedResult: 'FULL', passCondition: 'adjacency up' },
 ] }

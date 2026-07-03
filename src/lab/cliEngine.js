@@ -210,6 +210,51 @@ S       10.10.10.0/24 [1/0] via 203.0.113.1
 S*      0.0.0.0/0 [1/0] via 203.0.113.1`,
 }
 
+/** R1 routing table for LAB-ROUTE-FORWARD-32 (objective 3.2 — LPM / AD). */
+export const CLI_ROUTE_32_SHOW_OUTPUT = {
+  'show ip route': `Codes: C - connected, L - local, S - static, O - OSPF
+Gateway of last resort is 10.0.0.1 to network 0.0.0.0
+
+      10.0.0.0/8 is variably subnetted, 3 subnets, 3 masks
+C       192.168.1.0/24 is directly connected, GigabitEthernet0/0
+L       192.168.1.1/32 is directly connected, GigabitEthernet0/0
+O       192.168.2.0/24 [110/20] via 10.0.0.2, 00:12:04, GigabitEthernet0/1
+S       172.16.0.0/16 [1/0] via 10.0.0.2
+S*      0.0.0.0/0 [1/0] via 10.0.0.1`,
+  'show ip route 192.168.2.0': `Routing entry for 192.168.2.0/24
+  Known via "ospf 1", distance 110, metric 20, type intra area
+  Last update from 10.0.0.2 on GigabitEthernet0/1, 00:12:04 ago
+  Routing Descriptor Blocks:
+  * 10.0.0.2, from 2.2.2.2, 00:12:04 ago, via GigabitEthernet0/1
+    Route metric is 20, traffic share count is 1`,
+  'show ip route ospf': `Codes: O - OSPF
+O       192.168.2.0/24 [110/20] via 10.0.0.2, 00:12:04, GigabitEthernet0/1`,
+  'show ip route static': `Codes: S - static
+S       172.16.0.0/16 [1/0] via 10.0.0.2
+S*      0.0.0.0/0 [1/0] via 10.0.0.1`,
+}
+
+/** OSPF verify outputs for LAB-OSPF-VERIFY-34 (objective 3.4). */
+export const CLI_OSPF_VERIFY_34_SHOW_OUTPUT = {
+  'show ip ospf neighbor': `Neighbor ID     Pri   State           Dead Time   Address         Interface
+2.2.2.2           1   FULL/  -        00:00:35    10.0.12.2       GigabitEthernet0/0`,
+  'show ip route ospf': `Codes: O - OSPF
+O       10.0.2.0/24 [110/20] via 10.0.12.2, 00:08:22, GigabitEthernet0/0`,
+  'show ip protocols': `Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 1.1.1.1
+  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Routing for Networks:
+    10.0.1.0 0.0.0.255 area 0
+    10.0.12.0 0.0.0.3 area 0
+  Passive Interface(s):
+    GigabitEthernet0/1`,
+  'show ip ospf interface brief': `Interface    PID   Area            IP Address/Mask    Cost  State Nbrs F/C
+Gi0/0        1     0               10.0.12.1/30     2     BDR   1/1
+Gi0/1        1     0               10.0.1.1/24      1     DR    0/0`,
+}
+
 export function cliNavTarget(norm) {
   if (/^(enable|en)$/.test(norm)) return { to: 'priv', from: ['user', 'priv'] }
   if (/^disable$/.test(norm)) return { to: 'user', from: ['priv'] }

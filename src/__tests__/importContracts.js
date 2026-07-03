@@ -15,6 +15,7 @@ export const APP_IMPORTS = [
   { symbol: 'useAppPremium', from: './features/premium/useAppPremium.js' },
   { symbol: 'useAppProgress', from: './features/progress/useAppProgress.js' },
   { symbol: 'useAppChrome', from: './features/shell/useAppChrome.js' },
+  { symbol: 'useAppStudyBlock', from: './features/study/useAppStudyBlock.js' },
 ]
 
 export const STUDY_QUIZ_TAB_IMPORTS = [

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import { ALL_OBJECTIVES } from './data/ccnaDomains.js'
 import { useVisualViewportBottomInset } from './ui/visualViewportInset.js'
 import { celebrate, haptic } from './ui/feedbackHelpers.jsx'
@@ -14,7 +14,6 @@ import BottomNav from './components/BottomNav.jsx'
 import StudyModeRoutes from './features/study/StudyModeRoutes.jsx'
 import AppChromeOverlays from './features/shell/AppChromeOverlays.jsx'
 import CoreStudyRoutes from './features/shell/CoreStudyRoutes.jsx'
-import { bumpStreak } from './storage/appPersistence.js'
 import { useGlobalSearchHotkey } from './features/search/useGlobalSearchHotkey.js'
 import { useAppSync } from './features/sync/useAppSync.js'
 import { useAppOnboarding } from './features/onboarding/useAppOnboarding.js'
@@ -27,6 +26,7 @@ import {
 } from './features/navigation/useAppNavigation.js'
 import { useAppPremium } from './features/premium/useAppPremium.js'
 import { useAppProgress } from './features/progress/useAppProgress.js'
+import { useAppStudyBlock } from './features/study/useAppStudyBlock.js'
 import OfflineBanner from './features/shell/OfflineBanner.jsx'
 import PracticeRoutes from './features/practice/PracticeRoutes.jsx'
 import pkg from '../package.json'
@@ -165,10 +165,7 @@ export default function App() {
     onOpen: openSearch,
   })
 
-  const handleFocusBlockCompleted = useCallback(async () => {
-    const next = await bumpStreak()
-    setStreak(next)
-  }, [setStreak])
+  const { handleFocusBlockCompleted } = useAppStudyBlock({ setStreak })
 
   const chromeOverlayOpen = panelOverlayOpen || showTour
   const showBottomNav = loaded && !chromeOverlayOpen && !['onboarding', 'tutor', 'mockinterview', 'lab'].includes(view)
