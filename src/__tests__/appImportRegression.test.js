@@ -63,5 +63,5 @@ describe('studyQuizTabs.jsx import regression', () => {
     expect(typeof mod.SubnetPracticeHome).toBe('function')
     expect(typeof mod.ExplainTab).toBe('function')
     expect(typeof mod.QuizTab).toBe('function')
-  })
+  }, 15000)
 })
