@@ -1,34 +1,47 @@
 # Implementation Phase Plan
 
+## Tracks (exam-ready reorganized)
+
+| Track | Goal | Status |
+|-------|------|--------|
+| **A** | Exam-ready core (free path, no AI) | **Done** |
+| **B** | Final polish pass | Pending |
+| **C** | Deferred (RAG/tutor, premium AI) | Back burner |
+
+### Track A — Exam-ready core (shipped)
+
+| # | Slice | Shipped |
+|---|--------|---------|
+| 1 | **Content** — Gold batch 14 (450 total): MAC 1.5, private IP 1.7, IPv6 1.9, OSPF 3.4 | ✓ |
+| 2 | **Labs** — Automation 6.1 labs verified in hub + `e2e/automation-lab-smoke.spec.js` | ✓ |
+| 3 | **Learning flow** — Domain Pass 6/6 exam-date nudge + timed mock CTA | ✓ |
+| 4 | **Mobile** — CLI terminal `scrollIntoView` on input focus + safe-area input row | ✓ |
+| 5 | **Maintainability** — `useGlobalSearchHotkey` extracted from `App.jsx` | ✓ |
+
+**Ship gate:** `npm run verify:ship` (unit + build + ship e2e including automation lab smoke)
+
+### Track B — Final polish (next)
+
+- Full device matrix / airplane-mode QA
+- iPad diagram touch affordances
+- Post-6/6 mock scheduling UX polish
+- Score self-check vs `SCORE_95_TARGET.md`
+
+### Track C — Deferred
+
+- Phase 10 RAG / AI Tutor (premium-only)
+- Live AI on free-tier load (forbidden)
+
+---
+
+## Legacy phases (1–13)
+
 | Phase | Goal | Status |
 |-------|------|--------|
-| 1 | Read-only audit | Done |
-| 2 | ai-improvement-logs/ | Done |
-| 3 | Checklist + weak-area fix | Done |
-| 4 | Pilot 2.1 Engineer View | Done |
-| 5 | Enrich STP, 3.1, 5.9, 6.x | Done |
-| 6 | Build-time scanner | Done |
-| 7 | Bulk factory enrichment | Done |
-| 8 | Extract tabs from App.jsx | Done |
+| 1–8 | Audit, enrichment, App.jsx extraction wave 1 | Done |
 | 9 | PWA curated cache | Done |
-| 10 | RAG/tutor | Deferred |
-| 11 | Domain Pass (6 gates, 80% bar, adaptive retake) | Done |
-| 12 | Gold batch 12 + Domain Pass celebration | Done |
-
-## Phase 9 — PWA curated cache (shipped)
-
-- CacheFirst runtime rules: clean-questions, mock-exam, labs, study-modes, studios, skill-questions, **shelved-questions**, **vendor-react**
-- `warmCuratedChunksForOffline()` prefetches curated chunks after first load
-- index.html intentionally **not** precached (blank-screen guard)
-
-## Phase 11 — Domain Pass (shipped)
-
-- **Route:** `/#/domainpass` — hub + per-domain sessions
-- **Pass bar:** 80% per domain; progress meter **X/6** on home + hub
-- **Storage:** `ccna_domain_pass_v1` — best score, weak objectives, pass sticky
-- **6/6 celebration:** `DomainPassCompleteCard` + share text + confetti (once)
-
-## Phase 12 — Gold batch 12 (shipped)
-
-- **400** hand-authored gold reviews (+25: subnetting 1.6, NAT 4.1, security 5.1)
-- Generator: `scripts/_genGoldBatch12.py` → `goldAnswerReviewsBatch12.js`
+| 10 | RAG/tutor | Deferred → Track C |
+| 11 | Domain Pass | Done |
+| 12 | Gold batch 12 + celebration | Done |
+| 13 | Gold batch 13 (5.1, 5.5, 1.8, 3.1) | Done |
+| 14 | Gold batch 14 (1.5, 1.7, 1.9, 3.4) | Done |

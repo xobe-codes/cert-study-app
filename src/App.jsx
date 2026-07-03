@@ -114,6 +114,7 @@ import { importCcnaJsonFromFile } from './features/export/importCcnaJson.js'
 import ExportModal from './features/export/ExportModal.jsx'
 import SyncModal from './features/sync/SyncModal.jsx'
 import GlobalSearchModal from './features/search/GlobalSearchModal.jsx'
+import { useGlobalSearchHotkey } from './features/search/useGlobalSearchHotkey.js'
 import OfflineBanner from './features/shell/OfflineBanner.jsx'
 import TutorChat from './features/tutor/TutorChat.jsx'
 import FocusModeSession from './features/focus/FocusModeSession.jsx'
@@ -1010,17 +1011,11 @@ export default function App() {
   useEffect(() => { if (view === 'home') refreshDue() }, [view, refreshDue])
 
   // Cmd+K / Ctrl+K opens global search (Phase 6).
-  useEffect(() => {
-    function onKey(e) {
-      if (!(e.metaKey || e.ctrlKey) || e.key.toLowerCase() !== 'k') return
-      const tag = document.activeElement?.tagName
-      if (tag === 'INPUT' || tag === 'TEXTAREA' || document.activeElement?.isContentEditable) return
-      e.preventDefault()
-      if (!showExport && !showSync && !showSettings) setShowSearch(true)
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [showExport, showSync])
+  useGlobalSearchHotkey({
+    enabled: loaded,
+    blocked: showExport || showSync || showSettings,
+    onOpen: () => setShowSearch(true),
+  })
 
   // Preserve Home scroll position when leaving and returning (Phase 8).
   useEffect(() => {

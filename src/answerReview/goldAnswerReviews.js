@@ -13,6 +13,8 @@ import { BATCH9_GOLD } from './goldAnswerReviewsBatch9.js'
 import { BATCH10_GOLD } from './goldAnswerReviewsBatch10.js'
 import { BATCH11_GOLD } from './goldAnswerReviewsBatch11.js'
 import { BATCH12_GOLD } from './goldAnswerReviewsBatch12.js'
+import { BATCH13_GOLD } from './goldAnswerReviewsBatch13.js'
+import { BATCH14_GOLD } from './goldAnswerReviewsBatch14.js'
 import { HIGH_TRAFFIC_GOLD } from './goldAnswerReviewsHighTraffic.js'
 import { WLAN_58_GOLD } from './goldAnswerReviewsWlan58.js'
 
@@ -104,6 +106,8 @@ export const GOLD_ANSWER_REVIEWS = {
   ...BATCH10_GOLD,
   ...BATCH11_GOLD,
   ...BATCH12_GOLD,
+  ...BATCH13_GOLD,
+  ...BATCH14_GOLD,
 }
 
 export function goldAnswerReviewFor(questionId) {

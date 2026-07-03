@@ -20,6 +20,8 @@ import { BATCH9_GOLD } from '../answerReview/goldAnswerReviewsBatch9.js'
 import { BATCH10_GOLD } from '../answerReview/goldAnswerReviewsBatch10.js'
 import { BATCH11_GOLD } from '../answerReview/goldAnswerReviewsBatch11.js'
 import { BATCH12_GOLD } from '../answerReview/goldAnswerReviewsBatch12.js'
+import { BATCH13_GOLD } from '../answerReview/goldAnswerReviewsBatch13.js'
+import { BATCH14_GOLD } from '../answerReview/goldAnswerReviewsBatch14.js'
 import { HIGH_TRAFFIC_GOLD } from '../answerReview/goldAnswerReviewsHighTraffic.js'
 
 const MAC_Q = {
@@ -124,7 +126,7 @@ describe('answerReviewLogic', () => {
   })
 
   it('total unique gold answer reviews meet count bar', () => {
-    expect(Object.keys(GOLD_ANSWER_REVIEWS).length).toBeGreaterThanOrEqual(400)
+    expect(Object.keys(GOLD_ANSWER_REVIEWS).length).toBeGreaterThanOrEqual(450)
     expect(Object.keys(BATCH2_GOLD).length).toBe(25)
     expect(Object.keys(BATCH3_GOLD).length).toBe(25)
     expect(Object.keys(BATCH4_GOLD).length).toBe(47)
@@ -136,6 +138,8 @@ describe('answerReviewLogic', () => {
     expect(Object.keys(BATCH10_GOLD).length).toBe(25)
     expect(Object.keys(BATCH11_GOLD).length).toBe(25)
     expect(Object.keys(BATCH12_GOLD).length).toBe(25)
+    expect(Object.keys(BATCH13_GOLD).length).toBe(25)
+    expect(Object.keys(BATCH14_GOLD).length).toBe(25)
   })
 
   it('Batch 3 gold reviews pass SADE quality bar', () => {

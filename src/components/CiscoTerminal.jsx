@@ -21,9 +21,17 @@ export default function CiscoTerminal({
 }) {
   const scrollRef = useRef(null)
 
+  const inputRef = useRef(null)
+
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight })
   }, [history])
+
+  function handleInputFocus() {
+    requestAnimationFrame(() => {
+      inputRef.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+    })
+  }
 
   const isFluid = height == null
   const rootClass = ['cisco-terminal', isFluid && 'cisco-terminal--fluid', className].filter(Boolean).join(' ')
@@ -56,8 +64,10 @@ export default function CiscoTerminal({
             {host}{CLI_MODE_PROMPT[mode]}
           </span>
           <input
+            ref={inputRef}
             style={{ ...styles.input, fontFamily: 'ui-monospace, Menlo, monospace', background: '#0a0c12', border: `1px solid ${COLORS.border}`, color: '#d9d9d9' }}
             value={input}
+            onFocus={handleInputFocus}
             onChange={e => onInputChange(e.target.value)}
             onKeyDown={e => { if (e.key === 'Enter') onSubmit?.() }}
             placeholder={placeholder}
