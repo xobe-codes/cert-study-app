@@ -1,0 +1,52 @@
+import { describe, it, expect } from 'vitest'
+import { renderToStaticMarkup } from 'react-dom/server'
+import React from 'react'
+import { buildWeakAreaRows } from '../features/home/weakAreaDashboard.js'
+import WeakAreaDashboard from '../features/home/WeakAreaDashboard.jsx'
+
+describe('buildWeakAreaRows', () => {
+  it('aggregates trap groups, weak domain, and domain-pass objectives', () => {
+    const rows = buildWeakAreaRows({
+      missed: [
+        { objectiveId: '5.5', misconceptionTested: 'Forgetting the implicit deny.' },
+        { objectiveId: '5.5', misconceptionTested: 'Forgetting the implicit deny.' },
+      ],
+      readiness: {
+        domainStats: [
+          { id: 'security', name: 'Security Fundamentals', avg: 0.4 },
+          { id: 'access', name: 'Network Access', avg: 0.9 },
+        ],
+      },
+      domainPassRecords: {
+        security: { weakObjectives: ['5.3', '5.4'] },
+      },
+      mockHistory: [{ date: Date.now(), pct: 62, correct: 18, total: 30 }],
+    })
+
+    expect(rows.some(r => r.cta === 'Trap drill' && r.label.includes('implicit deny'))).toBe(true)
+    expect(rows.some(r => r.cta === 'Domain pass' && r.label.includes('Security'))).toBe(true)
+    expect(rows.some(r => r.cta === 'Open Study' && r.label.includes('weak objective'))).toBe(true)
+    expect(rows.some(r => r.cta === 'Mock' && r.label.includes('Last mock 62%'))).toBe(true)
+  })
+})
+
+describe('WeakAreaDashboard', () => {
+  it('renders weak-area rows with CTAs', () => {
+    const html = renderToStaticMarkup(
+      React.createElement(WeakAreaDashboard, {
+        missed: [{ objectiveId: '2.1', misconceptionTested: 'Mismatched native VLANs.' }],
+        readiness: {
+          domainStats: [{ id: 'access', name: 'Network Access', avg: 0.5 }],
+        },
+        domainPassRecords: {},
+        onSelectObjective: () => {},
+        onOpenTrapDrill: () => {},
+        onOpenDomainPass: () => {},
+        onOpenMock: () => {},
+      }),
+    )
+    expect(html).toContain('WEAK AREAS')
+    expect(html).toContain('Trap drill')
+    expect(html).toContain('Domain pass')
+  })
+})

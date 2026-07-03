@@ -1018,6 +1018,155 @@ const DEVICE_ACCESS_53 = {
   ]),
 }
 
+/* ---- Extended ACL placement (5.5) ---- */
+const LAB_ACL_CONFIG_55 = {
+  id: 'LAB-ACL-CONFIG-55',
+  title: 'Configure Extended ACL Placement and Rules',
+  domainId: 'security',
+  objectiveId: '5.5',
+  ckuIds: ['CKU-EXTENDED-ACL', 'CKU-ACL-PLACEMENT', 'CKU-WILDCARD-MASK'],
+  labType: 'guided',
+  difficulty: 'intermediate',
+  estimatedTimeMinutes: 15,
+  tools: ['Packet Tracer', 'GNS3'],
+  examRelevance: 'core',
+  scenario: 'R1 connects Sales LAN 192.168.10.0/24 (Gi0/0) to a server subnet 10.1.1.0/24 (Gi0/1). Sales hosts may reach servers only on HTTP (TCP port 80). Build a named extended ACL with explicit permit and deny rules, then apply it inbound on Gi0/0 — close to the source, as extended ACLs require.',
+  learningGoals: [
+    'Write extended ACL entries with source, destination, protocol, and port',
+    'Place extended ACL inbound on the source-facing interface (Gi0/0)',
+    'Understand implicit deny — explicit deny ip catches non-HTTP traffic',
+    'Verify with show access-lists and show ip interface',
+  ],
+  topologyId: 'TOPO-ACL-CONFIG-55',
+  prerequisites: ['CKU-WILDCARD-MASK'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Configure R1 interfaces', device: 'R1', instruction: 'Set Gi0/0 to 192.168.10.1/24 (Sales) and Gi0/1 to 10.1.1.1/24 (servers). Bring both up.',
+      expectedCommands: ['interface gi0/0', 'ip address 192.168.10.1 255.255.255.0', 'no shutdown', 'interface gi0/1', 'ip address 10.1.1.1 255.255.255.0', 'no shutdown'] },
+    { id: 't2', order: 2, title: 'Create extended ACL', device: 'R1', instruction: 'Create ip access-list extended SALES_TO_SRV. Permit tcp from 192.168.10.0/24 to 10.1.1.0/24 eq 80, then deny ip from sales to servers. Wildcard masks: 0.0.0.255 for both /24s.',
+      expectedCommands: ['ip access-list extended SALES_TO_SRV', 'permit tcp 192.168.10.0 0.0.0.255 10.1.1.0 0.0.0.255 eq 80', 'deny ip 192.168.10.0 0.0.0.255 10.1.1.0 0.0.0.255'] },
+    { id: 't3', order: 3, title: 'Apply ACL inbound on source', device: 'R1', instruction: 'On Gi0/0 (Sales LAN), apply ip access-group SALES_TO_SRV in. Inbound on the source interface filters traffic as it enters the router from sales.',
+      expectedCommands: ['interface gi0/0', 'ip access-group SALES_TO_SRV in'] },
+    { id: 't4', order: 4, title: 'Verify ACL', device: 'R1', instruction: 'Run show access-lists and show ip interface gi0/0 — confirm SALES_TO_SRV is the inbound access list.',
+      expectedCommands: ['show access-lists', 'show ip interface gi0/0'] },
+  ],
+  verificationCommands: ['show access-lists', 'show ip interface gi0/0', 'show running-config | section access-list'],
+  successCriteria: [
+    'HTTP (tcp/80) from 192.168.10.0/24 to 10.1.1.0/24 permitted',
+    'Other IP traffic from sales to servers denied by explicit deny',
+    'ACL applied inbound on Gi0/0 (source-facing)',
+    'show access-lists shows match counters on permit and deny lines',
+  ],
+  failureCriteria: [
+    'ACL applied outbound on Gi0/1 — wrong direction for source filtering',
+    'Subnet mask used instead of wildcard — matches wrong addresses',
+    'Missing explicit deny — implicit deny still drops, but exam expects ordered rules',
+  ],
+  commonMistakes: [
+    'Placing extended ACL on destination interface outbound — extended ACLs go near source',
+    'Confusing subnet mask with wildcard mask (0.0.0.255 for /24)',
+    'Using eq 443 when scenario requires only HTTP port 80',
+    'Applying ACL outbound on Gi0/0 instead of inbound',
+  ],
+  source: { name: LAB_SOURCES.blueprint, chapter: '5.5 Extended ACL placement', confidence: 0.9 },
+  metadata: { version: '1', status: 'validated', confidence: 0.9 },
+}
+const TOPO_ACL_CONFIG_55 = { id: 'TOPO-ACL-CONFIG-55', title: 'Extended ACL source placement', objectiveId: '5.5',
+  nodes: [{ id: 'sales', label: 'Sales 192.168.10.0/24', type: 'pc', x: 15, y: 50 }, { id: 'r1', label: 'R1', type: 'router', x: 50, y: 50 }, { id: 'srv', label: 'Servers 10.1.1.0/24', type: 'server', x: 85, y: 50 }],
+  links: [{ id: 'l1', source: 'sales', target: 'r1', label: 'Gi0/0 SALES_TO_SRV in', status: 'forwarding' }, { id: 'l2', source: 'r1', target: 'srv', label: 'Gi0/1 tcp/80 only', status: 'forwarding' }] }
+const VALIDATOR_ACL_CONFIG_55 = { labId: 'LAB-ACL-CONFIG-55', requiredCommands: [
+  { device: 'R1', command: 'ip access-list extended SALES_TO_SRV' },
+  { device: 'R1', command: 'permit tcp 192.168.10.0 0.0.0.255 10.1.1.0 0.0.0.255 eq 80' },
+  { device: 'R1', command: 'deny ip 192.168.10.0 0.0.0.255 10.1.1.0 0.0.0.255' },
+  { device: 'R1', command: 'ip access-group SALES_TO_SRV in' },
+], verificationChecks: [
+  { id: 'v1', device: 'R1', command: 'show access-lists', expectedResult: 'SALES_TO_SRV permit tcp eq 80', passCondition: 'extended ACL present' },
+  { id: 'v2', device: 'R1', command: 'show ip interface gi0/0', expectedResult: 'Inbound access list SALES_TO_SRV', passCondition: 'inbound on source' },
+] }
+const ACL_CONFIG_55 = { lab: LAB_ACL_CONFIG_55, topology: TOPO_ACL_CONFIG_55, validator: VALIDATOR_ACL_CONFIG_55,
+  diagram: mkDiagram('DIAG-ACL-CONFIG-55', 'Extended ACL near source', '5.5',
+    [{ id: 'src', label: 'Sales LAN', type: 'pc', x: 12, y: 50 }, { id: 'acl', label: 'SALES_TO_SRV\ninbound Gi0/0', type: 'process', x: 38, y: 50, status: 'highlighted' }, { id: 'r1', label: 'R1', type: 'router', x: 55, y: 50 }, { id: 'dst', label: 'Server subnet', type: 'server', x: 88, y: 50 }],
+    [{ id: 'd1', source: 'src', target: 'acl', status: 'forwarding' }, { id: 'd2', source: 'acl', target: 'r1', status: 'forwarding' }, { id: 'd3', source: 'r1', target: 'dst', label: 'permit :80', status: 'forwarding' }]),
+  packetFlows: mkFlows('FLOW-ACL-CONFIG-55', 'HTTP permitted, other IP denied', 'DIAG-ACL-CONFIG-55', ['CKU-EXTENDED-ACL', 'CKU-ACL-PLACEMENT'], [
+    { id: 's1', order: 1, title: 'Inbound check', action: 'Sales packet enters Gi0/0 — SALES_TO_SRV evaluated inbound', successState: 'matched' },
+    { id: 's2', order: 2, title: 'Permit HTTP', action: 'tcp dst-port 80 matches permit line — forwarded to servers', successState: 'forwarded' },
+    { id: 's3', order: 3, title: 'Deny other', action: 'Telnet/ICMP hits deny ip line — dropped before Gi0/1', successState: 'dropped' },
+  ]) }
+
+/* ---- Port security (5.6) ---- */
+const LAB_PORTSEC_56 = {
+  id: 'LAB-PORTSEC-56',
+  title: 'Configure Port Security on an Access Port',
+  domainId: 'security',
+  objectiveId: '5.6',
+  ckuIds: ['CKU-PORT-SECURITY'],
+  labType: 'guided',
+  difficulty: 'beginner',
+  estimatedTimeMinutes: 12,
+  tools: ['Packet Tracer', 'GNS3'],
+  examRelevance: 'core',
+  scenario: 'SW1 Gi0/1 is an access port to a single workstation. Enable port security with maximum 1 MAC address and violation mode shutdown so a second device triggers err-disable.',
+  learningGoals: [
+    'Set switchport mode access before port security',
+    'Enable switchport port-security and set maximum MAC count',
+    'Configure violation shutdown for exam-standard response',
+    'Verify with show port-security interface',
+  ],
+  topologyId: 'TOPO-PORTSEC-56',
+  prerequisites: ['CKU-VLAN-BASIC'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Access port mode', device: 'SW1', instruction: 'On Gi0/1, set switchport mode access — port security applies to access ports, not trunks.',
+      expectedCommands: ['interface gi0/1', 'switchport mode access'] },
+    { id: 't2', order: 2, title: 'Enable port security', device: 'SW1', instruction: 'Enable switchport port-security on Gi0/1.',
+      expectedCommands: ['switchport port-security'] },
+    { id: 't3', order: 3, title: 'Limit MAC addresses', device: 'SW1', instruction: 'Set switchport port-security maximum 1 — only one learned/sticky MAC allowed.',
+      expectedCommands: ['switchport port-security maximum 1'] },
+    { id: 't4', order: 4, title: 'Violation shutdown', device: 'SW1', instruction: 'Set switchport port-security violation shutdown — extra MAC err-disables the port (default is shutdown, but configure explicitly for the exam).',
+      expectedCommands: ['switchport port-security violation shutdown'] },
+    { id: 't5', order: 5, title: 'Verify port security', device: 'SW1', instruction: 'Run show port-security interface gi0/1 — confirm Port Security enabled, Max Addresses 1, Violation Mode Shutdown.',
+      expectedCommands: ['show port-security interface gi0/1'] },
+  ],
+  verificationCommands: ['show port-security', 'show port-security interface gi0/1', 'show interfaces status err-disabled'],
+  successCriteria: [
+    'Port security enabled on Gi0/1 access port',
+    'Maximum 1 secure MAC address configured',
+    'Violation mode is Shutdown',
+    'Second MAC causes err-disabled state',
+  ],
+  failureCriteria: [
+    'Port security on trunk — not supported for typical exam scenarios',
+    'Maximum 0 or unset — feature ineffective',
+    'Violation protect/restrict when shutdown required',
+  ],
+  commonMistakes: [
+    'Applying port security to a trunk port',
+    'Forgetting switchport mode access first',
+    'Not knowing recovery: shutdown / no shutdown after err-disable',
+    'Confusing violation modes: protect (drop), restrict (drop+log), shutdown (err-disable)',
+  ],
+  source: { name: LAB_SOURCES.blueprint, chapter: '5.6 Port security', confidence: 0.9 },
+  metadata: { version: '1', status: 'validated', confidence: 0.9 },
+}
+const TOPO_PORTSEC_56 = { id: 'TOPO-PORTSEC-56', title: 'Port security access port', objectiveId: '5.6',
+  nodes: [{ id: 'sw1', label: 'SW1', type: 'switch', x: 50, y: 40 }, { id: 'pc', label: 'Workstation', type: 'pc', x: 50, y: 75 }, { id: 'rogue', label: 'Rogue MAC', type: 'attacker', x: 20, y: 75, status: 'error' }],
+  links: [{ id: 'l1', source: 'sw1', target: 'pc', label: 'Gi0/1 max 1', status: 'forwarding' }, { id: 'l2', source: 'rogue', target: 'sw1', label: 'violation', status: 'blocked' }] }
+const VALIDATOR_PORTSEC_56 = { labId: 'LAB-PORTSEC-56', requiredCommands: [
+  { device: 'SW1', command: 'switchport mode access' },
+  { device: 'SW1', command: 'switchport port-security' },
+  { device: 'SW1', command: 'switchport port-security maximum 1' },
+  { device: 'SW1', command: 'switchport port-security violation shutdown' },
+], verificationChecks: [
+  { id: 'v1', device: 'SW1', command: 'show port-security interface gi0/1', expectedResult: 'Port Security: Enabled', passCondition: 'port security active' },
+] }
+const PORTSEC_56 = { lab: LAB_PORTSEC_56, topology: TOPO_PORTSEC_56, validator: VALIDATOR_PORTSEC_56,
+  diagram: mkDiagram('DIAG-PORTSEC-56', 'One MAC, shutdown on violation', '5.6',
+    [{ id: 'sw', label: 'SW1 Gi0/1', type: 'switch', x: 50, y: 45, status: 'highlighted' }, { id: 'ok', label: '1st MAC\nlearned', type: 'pc', x: 30, y: 75 }, { id: 'bad', label: '2nd MAC\nerr-disable', type: 'attacker', x: 70, y: 75, status: 'error' }],
+    [{ id: 'd1', source: 'ok', target: 'sw', status: 'forwarding' }, { id: 'd2', source: 'bad', target: 'sw', label: 'shutdown', status: 'blocked' }]),
+  packetFlows: mkFlows('FLOW-PORTSEC-56', 'Second MAC triggers shutdown', 'DIAG-PORTSEC-56', ['CKU-PORT-SECURITY'], [
+    { id: 's1', order: 1, title: 'Learn MAC', action: 'First workstation MAC learned — count 1 of 1', successState: 'matched' },
+    { id: 's2', order: 2, title: 'Violation', action: 'Second MAC exceeds maximum — port err-disabled', successState: 'blocked' },
+    { id: 's3', order: 3, title: 'Recovery', action: 'Admin runs shutdown/no shutdown to re-enable port', successState: 'noted' },
+  ]) }
+
 /* ---- Routing table interpret (3.1) ---- */
 const LAB_ROUTE_TABLE_31 = {
   id: 'LAB-ROUTE-TABLE-31',
@@ -1289,6 +1438,87 @@ const OSPF_VERIFY_34 = { lab: LAB_OSPF_VERIFY_34, topology: TOPO_OSPF_VERIFY_34,
   packetFlows: mkFlows('FLOW-OSPF-VERIFY-34', 'LSAs exchanged in area 0', 'DIAG-OSPF-VERIFY-34', ['CKU-OSPF'], [
     { id: 's1', order: 1, title: 'Hello', action: 'R1/R2 form FULL on 10.0.12.0/30', successState: 'noted' },
     { id: 's2', order: 2, title: 'Install routes', action: 'Each router adds O routes for remote LAN', successState: 'forwarded' },
+  ]) }
+
+/* ---- OSPF adjacency config (3.4) — network statement + passive-interface trap ---- */
+const LAB_OSPF_ADJ_34 = {
+  id: 'LAB-OSPF-ADJ-34',
+  title: 'Configure OSPFv2 Neighbor Adjacency and Passive Interfaces',
+  domainId: 'connectivity',
+  objectiveId: '3.4',
+  ckuIds: ['CKU-OSPF', 'CKU-OSPF-NEIGHBOR'],
+  labType: 'guided',
+  difficulty: 'intermediate',
+  estimatedTimeMinutes: 18,
+  tools: ['Packet Tracer', 'GNS3'],
+  examRelevance: 'core',
+  scenario: 'R1 and R2 connect on 10.0.12.0/30 (Gi0/0). Each router has a LAN access port (Gi0/1) with hosts only — no OSPF peer expected there. Configure OSPFv2 process 1 in area 0 with correct wildcard network statements, set passive-interface on each LAN, and verify FULL adjacency only on the point-to-point link.',
+  learningGoals: [
+    'Advertise link and LAN subnets with network <addr> <wildcard> area 0',
+    'Use passive-interface on LAN ports so OSPF hellos are suppressed toward hosts',
+    'Confirm adjacency FULL only on the inter-router link — not on passive LANs',
+    'Verify remote LAN routes appear via show ip route ospf',
+  ],
+  topologyId: 'TOPO-OSPF-ADJ-34',
+  prerequisites: ['CKU-OSPF'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Address R1 interfaces', device: 'R1', instruction: 'Configure Gi0/0 as 10.0.12.1/30 (link to R2) and Gi0/1 as 10.0.1.1/24 (LAN1). Bring both up.',
+      expectedCommands: ['interface gi0/0', 'ip address 10.0.12.1 255.255.255.252', 'no shutdown', 'interface gi0/1', 'ip address 10.0.1.1 255.255.255.0', 'no shutdown'] },
+    { id: 't2', order: 2, title: 'Address R2 interfaces', device: 'R2', instruction: 'Configure Gi0/0 as 10.0.12.2/30 and Gi0/1 as 10.0.2.1/24 (LAN2). Bring both up.',
+      expectedCommands: ['interface gi0/0', 'ip address 10.0.12.2 255.255.255.252', 'no shutdown', 'interface gi0/1', 'ip address 10.0.2.1 255.255.255.0', 'no shutdown'] },
+    { id: 't3', order: 3, title: 'OSPF on R1 with passive LAN', device: 'R1', instruction: 'Start router ospf 1 with router-id 1.1.1.1. Advertise 10.0.12.0/30 (wildcard 0.0.0.3) and 10.0.1.0/24 (wildcard 0.0.0.255) into area 0. Then passive-interface gi0/1 — the LAN has hosts, not OSPF neighbors.',
+      expectedCommands: ['router ospf 1', 'router-id 1.1.1.1', 'network 10.0.12.0 0.0.0.3 area 0', 'network 10.0.1.0 0.0.0.255 area 0', 'passive-interface gi0/1'] },
+    { id: 't4', order: 4, title: 'OSPF on R2 with passive LAN', device: 'R2', instruction: 'Start router ospf 1 with router-id 2.2.2.2. Advertise both R2 networks into area 0, then passive-interface gi0/1 on the LAN.',
+      expectedCommands: ['router ospf 1', 'router-id 2.2.2.2', 'network 10.0.12.0 0.0.0.3 area 0', 'network 10.0.2.0 0.0.0.255 area 0', 'passive-interface gi0/1'] },
+    { id: 't5', order: 5, title: 'Verify adjacency', device: 'R1', instruction: 'Run show ip ospf neighbor — R2 (2.2.2.2) should be FULL on Gi0/0 only. No neighbor on Gi0/1 because it is passive.',
+      expectedCommands: ['show ip ospf neighbor'] },
+    { id: 't6', order: 6, title: 'Verify OSPF routes', device: 'R1', instruction: 'Run show ip route ospf — confirm O 10.0.2.0/24 via 10.0.12.2 with AD 110.',
+      expectedCommands: ['show ip route ospf'] },
+  ],
+  verificationCommands: ['show ip ospf neighbor', 'show ip route ospf', 'show ip protocols', 'show ip ospf interface brief'],
+  successCriteria: [
+    'FULL adjacency between R1 and R2 on 10.0.12.0/30',
+    'No OSPF neighbor on passive LAN interfaces',
+    'Each router learns the remote LAN via O with AD 110',
+    'show ip protocols lists passive-interface Gi0/1',
+  ],
+  failureCriteria: [
+    'Subnet mask instead of wildcard in network statement — link or LAN not advertised',
+    'Missing passive-interface on LAN — hellos sent to hosts; exam trap',
+    'Mismatched area numbers — adjacency never reaches FULL',
+  ],
+  commonMistakes: [
+    'Using subnet mask 255.255.255.252 instead of wildcard 0.0.0.3 in network command',
+    'Forgetting passive-interface on access LAN — OSPF sends hellos to PCs',
+    'Passive-interface on Gi0/0 — kills the only adjacency to R2',
+    'Expecting routes before neighbor state reaches FULL',
+  ],
+  source: { name: LAB_SOURCES.blueprint, chapter: '3.4 OSPFv2 adjacency', confidence: 0.9 },
+  metadata: { version: '1', status: 'validated', confidence: 0.9 },
+}
+const TOPO_OSPF_ADJ_34 = { id: 'TOPO-OSPF-ADJ-34', title: 'OSPF adjacency + passive LAN', objectiveId: '3.4',
+  nodes: [{ id: 'r1', label: 'R1 1.1.1.1', type: 'router', x: 30, y: 45 }, { id: 'r2', label: 'R2 2.2.2.2', type: 'router', x: 70, y: 45 }, { id: 'lan1', label: 'LAN1 passive', type: 'pc', x: 15, y: 80 }, { id: 'lan2', label: 'LAN2 passive', type: 'pc', x: 85, y: 80 }],
+  links: [{ id: 'l1', source: 'r1', target: 'r2', label: '10.0.12.0/30 area 0', status: 'forwarding' }, { id: 'l2', source: 'r1', target: 'lan1', label: 'passive Gi0/1', status: 'forwarding' }, { id: 'l3', source: 'r2', target: 'lan2', label: 'passive Gi0/1', status: 'forwarding' }] }
+const VALIDATOR_OSPF_ADJ_34 = { labId: 'LAB-OSPF-ADJ-34', requiredCommands: [
+  { device: 'R1', command: 'router ospf 1' },
+  { device: 'R1', command: 'network 10.0.12.0 0.0.0.3 area 0' },
+  { device: 'R1', command: 'network 10.0.1.0 0.0.0.255 area 0' },
+  { device: 'R1', command: 'passive-interface gi0/1' },
+  { device: 'R2', command: 'router ospf 1' },
+  { device: 'R2', command: 'network 10.0.12.0 0.0.0.3 area 0' },
+  { device: 'R2', command: 'network 10.0.2.0 0.0.0.255 area 0' },
+  { device: 'R2', command: 'passive-interface gi0/1' },
+], verificationChecks: [
+  { id: 'v1', device: 'R1', command: 'show ip ospf neighbor', expectedResult: 'FULL', passCondition: 'adjacency up on link only' },
+] }
+const OSPF_ADJ_34 = { lab: LAB_OSPF_ADJ_34, topology: TOPO_OSPF_ADJ_34, validator: VALIDATOR_OSPF_ADJ_34,
+  diagram: mkDiagram('DIAG-OSPF-ADJ-34', 'Passive LAN vs active link', '3.4',
+    [{ id: 'r1', label: 'R1', type: 'router', x: 25, y: 50 }, { id: 'link', label: 'Hellos\nGi0/0', type: 'process', x: 50, y: 35, status: 'highlighted' }, { id: 'r2', label: 'R2', type: 'router', x: 75, y: 50 }, { id: 'lan', label: 'LAN\nno hellos', type: 'pc', x: 25, y: 80 }],
+    [{ id: 'd1', source: 'r1', target: 'link', status: 'forwarding' }, { id: 'd2', source: 'link', target: 'r2', status: 'forwarding' }, { id: 'd3', source: 'r1', target: 'lan', label: 'passive', status: 'blocked' }]),
+  packetFlows: mkFlows('FLOW-OSPF-ADJ-34', 'Hellos only on router link', 'DIAG-OSPF-ADJ-34', ['CKU-OSPF', 'CKU-OSPF-NEIGHBOR'], [
+    { id: 's1', order: 1, title: 'Network statements', action: 'Wildcard masks include link /30 and LAN /24 in area 0', successState: 'matched' },
+    { id: 's2', order: 2, title: 'Passive LAN', action: 'passive-interface Gi0/1 suppresses hellos toward hosts', successState: 'noted' },
+    { id: 's3', order: 3, title: 'FULL adjacency', action: 'R1 and R2 exchange hellos on Gi0/0 and reach FULL', successState: 'forwarded' },
   ]) }
 
 /* ---- HSRP verify (3.5) ---- */
@@ -1846,9 +2076,9 @@ const AUTO_JSON_66 = autoInterpretBundle(
 )
 
 export const EXTENDED_LAB_BUNDLES = [
-  HSRP, HSRP_VERIFY_35, ROUTE_FORWARD_32, OSPF_VERIFY_34,
+  HSRP, HSRP_VERIFY_35, ROUTE_FORWARD_32, OSPF_VERIFY_34, OSPF_ADJ_34,
   DHCP_RELAY, DHCP_SNOOP_27, ETHERCHANNEL, STP, DEVICE_ACCESS, NTP, AAA, SYSLOG,
   TS_OSPF, TS_TRUNK, TS_IF, TS_ACL, TS_ROUTE, TS_DHCP, TS_HSRP, TS_MASK, TS_STATIC_NH,
-  WIRELESS_26, DHCP_DNS_43, DEVICE_ACCESS_53, ROUTE_TABLE_31,
+  WIRELESS_26, DHCP_DNS_43, DEVICE_ACCESS_53, ACL_CONFIG_55, PORTSEC_56, ROUTE_TABLE_31,
   AUTO_MGMT_61, AUTO_CTRL_62, AUTO_SDN_63, AUTO_DNA_64, AUTO_REST_65, AUTO_JSON_66,
 ]

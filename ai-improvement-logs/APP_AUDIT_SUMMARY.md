@@ -1,10 +1,10 @@
 # App Audit Summary
 
-**Generated:** 2026-07-03T10:59:59.398Z  
+**Generated:** 2026-07-03T11:54:05.562Z  
 **Overall learning quality:** ~74/100
 
 ## Strengths
-- 53/53 objectives have reading + clean-bank questions (1222 total Q)
+- 53/53 objectives have reading + clean-bank questions (1239 total Q)
 - Tier A exam-ready packs: 13 objectives
 - Gold answer-review pipeline, SRS, trap-grouped missed review
 - 37 CLI labs with validators; Study/Practice tab consolidation

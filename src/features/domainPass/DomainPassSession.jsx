@@ -46,6 +46,7 @@ function formatSeconds(total) {
 export default function DomainPassSession({
   domainId,
   onExit,
+  onOpenMock,
   onOpenTrapDrill,
   onOpenLab,
   examMode = false,
@@ -211,6 +212,11 @@ export default function DomainPassSession({
           onOpenTrapDrill={onOpenTrapDrill}
           onOpenLab={onOpenLab}
         />
+        {onOpenMock && (
+          <button type="button" style={{ ...styles.secondaryBtn, marginBottom: 8 }} onClick={() => onOpenMock(domainId)}>
+            Take domain mock
+          </button>
+        )}
         <button type="button" style={styles.primaryBtn} onClick={startSession}>Retake domain pass</button>
         <button type="button" style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={onExit}>Back to domains</button>
       </div>

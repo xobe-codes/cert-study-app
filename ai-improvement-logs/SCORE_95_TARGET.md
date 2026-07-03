@@ -1,19 +1,19 @@
 # Path to 95+ — living checklist
 
-North star: **95+ overall**. Baseline after lab/responsive/premium sprint: **~79**. **Post–Track A/B (Jun 2026): ~84.** **Post–Track C: ~86.** **Post–tiers 1–4: ~88.** **Post–tier 5: ~89.**
+North star: **95+ overall**. Baseline after lab/responsive/premium sprint: **~79**. **Post–tier 5: ~89.** **Post–build-order wave: ~91.**
 
 ## Score targets (must all be ≥90 for 95+ overall)
 
-| Area | Was (~79) | Now (~89) | 95+ target | Highest-leverage work |
+| Area | Was (~79) | Now (~91) | 95+ target | Highest-leverage work |
 |------|--------:|----------:|-------------:|------------------------|
-| Coverage breadth | 92 | 92 | 95 | Remaining factory shells → rich diagrams |
-| Coverage depth | 72 | 78 | 95 | Gold reviews 500+; CKU traps + verify per domain |
-| Learning flow | 82 | 91 | 95 | Weak-area dashboard; Domain Pass → mock |
-| Labs / CLI | 76 | 80 | 95 | Automation lab smoke; +routing labs from queue |
-| Mobile / responsive | 78 | 85 | 95 | iPad diagram expand; offline e2e |
-| Exam traps | 83 | 86 | 95 | Trap drills linked from quiz misses |
-| Maintainability | 64 | 72 | 90 | Tutor RAG pipeline + TTS module; more App.jsx extraction |
-| Tests / CI | 85 | 93 | 95 | `verify:ship` + `validate:pipeline`; 541+ unit tests |
+| Coverage breadth | 92 | 93 | 95 | Rich diagrams on remaining factory shells |
+| Coverage depth | 72 | 82 | 95 | Gold reviews 500+; wave 5 depth for remaining Tier B |
+| Learning flow | 82 | 93 | 95 | Mock interview polish; per-domain mock history |
+| Labs / CLI | 76 | 86 | 95 | Stem-replay links for new labs; more 4.x services labs |
+| Mobile / responsive | 78 | 87 | 95 | Lab landscape in ship gate; broader offline chunks |
+| Exam traps | 83 | 88 | 95 | Trap wave 5 for objectives still at 2 traps |
+| Maintainability | 64 | 76 | 90 | Continue App.jsx extraction (session/review views) |
+| Tests / CI | 85 | 94 | 95 | 572 unit + 15 e2e in verify:ship |
 
 ## Automatic agent behavior
 

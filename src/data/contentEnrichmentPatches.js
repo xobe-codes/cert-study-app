@@ -6,6 +6,9 @@ import { FACTORY_ENGINEER_VIEW_PATCHES } from './factoryEngineerViewPatches.js'
 import { FACTORY_DEPTH_WAVE3_QUESTIONS } from './factoryDepthWave3Questions.js'
 import { FACTORY_DEPTH_WAVE4_QUESTIONS } from './factoryDepthWave4Questions.js'
 import { CONTENT_DEPTH_WAVE3_PATCHES } from './contentDepthWave3Patches.js'
+import { CONTENT_DEPTH_WAVE4_PATCHES } from './contentDepthWave4Patches.js'
+import { TIER_B_TRAP_WAVE4_PATCHES } from './tierBTrapWave4Patches.js'
+import { WLAN_ENRICHMENT_WAVE5_PATCHES } from './wlanEnrichmentWave5.js'
 
 function factoryPatchFor(objectiveId) {
   const traps = FACTORY_TRAP_PATCHES[objectiveId]
@@ -417,6 +420,12 @@ export function getEnrichmentPatchQuestions(objectiveId) {
   if (CONTENT_DEPTH_WAVE3_PATCHES[objectiveId]?.questions?.length) {
     qs.push(...CONTENT_DEPTH_WAVE3_PATCHES[objectiveId].questions)
   }
+  if (CONTENT_DEPTH_WAVE4_PATCHES[objectiveId]?.questions?.length) {
+    qs.push(...CONTENT_DEPTH_WAVE4_PATCHES[objectiveId].questions)
+  }
+  if (WLAN_ENRICHMENT_WAVE5_PATCHES[objectiveId]?.questions?.length) {
+    qs.push(...WLAN_ENRICHMENT_WAVE5_PATCHES[objectiveId].questions)
+  }
   return qs
 }
 
@@ -426,18 +435,27 @@ export function applyContentEnrichment(base, objectiveId) {
   const factory = factoryPatchFor(objectiveId)
   const patch = CONTENT_ENRICHMENT_PATCHES[objectiveId]
   const wave3 = CONTENT_DEPTH_WAVE3_PATCHES[objectiveId]
-  if (!factory && !patch && !wave3) return base
+  const wave4 = CONTENT_DEPTH_WAVE4_PATCHES[objectiveId]
+  const trapWave4 = TIER_B_TRAP_WAVE4_PATCHES[objectiveId]
+  const wlanWave5 = WLAN_ENRICHMENT_WAVE5_PATCHES[objectiveId]
+  if (!factory && !patch && !wave3 && !wave4 && !trapWave4 && !wlanWave5) return base
   const mergeList = (a, b) => (b?.length ? [...(a || []), ...b] : a)
   let examTraps = base.examTraps
   let flashcards = base.flashcards
   let questions = base.questions
   if (factory?.examTraps) examTraps = mergeList(examTraps, factory.examTraps)
   if (patch?.examTraps) examTraps = mergeList(examTraps, patch.examTraps)
+  if (trapWave4?.examTraps) examTraps = mergeList(examTraps, trapWave4.examTraps)
+  if (wlanWave5?.examTraps) examTraps = mergeList(examTraps, wlanWave5.examTraps)
   if (factory?.flashcards) flashcards = mergeList(flashcards, factory.flashcards)
   if (patch?.flashcards) flashcards = mergeList(flashcards, patch.flashcards)
+  if (trapWave4?.flashcards) flashcards = mergeList(flashcards, trapWave4.flashcards)
+  if (wlanWave5?.flashcards) flashcards = mergeList(flashcards, wlanWave5.flashcards)
   if (factory?.questions) questions = mergeList(questions, factory.questions)
   if (patch?.questions) questions = mergeList(questions, patch.questions)
   if (wave3?.questions) questions = mergeList(questions, wave3.questions)
+  if (wave4?.questions) questions = mergeList(questions, wave4.questions)
+  if (wlanWave5?.questions) questions = mergeList(questions, wlanWave5.questions)
   return {
     ...base,
     ...(patch?.engineerView || factory?.engineerView

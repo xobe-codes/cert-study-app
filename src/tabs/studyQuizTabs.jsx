@@ -57,6 +57,25 @@ import { recordQuestionHealthSignal } from '../quiz/questionHealthSignals.js'
 import { applyAnswerReviewToQuestion, inferTrapForChoice } from '../answerReviewLogic.js'
 import { isActionableMissedTrap } from '../missed/missedTrapGroups.js'
 
+/** Resolve trap-drill prefill from a missed MC question (infer trap or objective examTraps). */
+function resolveQuizTrapDrillPrefill(question, objective, selected) {
+  const enriched = applyAnswerReviewToQuestion(question)
+  let trap = inferTrapForChoice(enriched, selected)
+  let ckuId = question.ckuIds?.[0] || enriched.ckuIds?.[0]
+
+  if (!trap || !isActionableMissedTrap(trap)) {
+    const examTraps = getCurated(objective.id)?.examTraps || []
+    const match = examTraps.find(t => t.ckuIds?.some(id => id === ckuId)) || examTraps[0]
+    if (match?.trap) {
+      trap = match.trap
+      ckuId = ckuId || match.ckuIds?.[0]
+    }
+  }
+
+  if (!trap) return null
+  return { trapLabel: trap, objectiveId: objective.id, ckuId }
+}
+
 function VisualBadge({ children, accent }) {
   const c = accent || COLORS.purpleGlow
   return (
@@ -1822,15 +1841,13 @@ export function QuizTab({
             </div>
             <AnswerReview q={current} selected={selected} hideExamTip={examMode} objectiveId={objective.id} showQuestionFlag onOpenLab={onOpenLab} />
             {!isCorrect && onOpenTrapDrill && (() => {
-              const enriched = applyAnswerReviewToQuestion(current)
-              const trap = inferTrapForChoice(enriched, selected)
-              if (!isActionableMissedTrap(trap)) return null
-              const ckuId = current.ckuIds?.[0] || enriched.ckuIds?.[0]
+              const prefill = resolveQuizTrapDrillPrefill(current, objective, selected)
+              if (!prefill) return null
               return (
                 <button
                   type="button"
                   style={{ ...styles.secondaryBtn, marginTop: 10, width: '100%' }}
-                  onClick={() => onOpenTrapDrill({ trapLabel: trap, objectiveId: objective.id, ckuId })}
+                  onClick={() => onOpenTrapDrill(prefill)}
                 >
                   Drill this trap →
                 </button>

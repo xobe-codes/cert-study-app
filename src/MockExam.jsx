@@ -49,7 +49,7 @@ function formatSeconds(total) {
   return `${m}:${String(s).padStart(2, '0')}`
 }
 
-export default function MockExam({ onExit, examMode = false, missed = [], onOpenLab, onOpenTrapDrill, onSelectObjective }) {
+export default function MockExam({ onExit, examMode = false, missed = [], initialDomainId = null, onOpenLab, onOpenTrapDrill, onSelectObjective, onOpenMockInterview }) {
   const showNavHint = useNavHint()
   const doneHintFired = useRef(false)
   const [phase, setPhase] = useState('intro') // intro | loading | active | done | review | error
@@ -69,6 +69,13 @@ export default function MockExam({ onExit, examMode = false, missed = [], onOpen
   useEffect(() => {
     preloadCleanBank().then(() => setBankReady(true))
   }, [])
+
+  useEffect(() => {
+    if (!initialDomainId) return
+    setIntroTab('domain')
+    setSelectedDomainIds([initialDomainId])
+    setIntroError(null)
+  }, [initialDomainId])
 
   const getMcForObjective = useCallback((objectiveId) => (
     getCuratedQuestions(objectiveId).filter(isMcQuestion)
@@ -272,6 +279,15 @@ export default function MockExam({ onExit, examMode = false, missed = [], onOpen
             <button style={styles.primaryBtn} onClick={start} disabled={!bankReady || !canUseStaticOnly}>
               {bankReady ? 'Start Mock Exam' : 'Loading question bank…'}
             </button>
+            {onOpenMockInterview && (
+              <button
+                type="button"
+                style={{ ...styles.secondaryBtn, marginTop: 10 }}
+                onClick={onOpenMockInterview}
+              >
+                Exam day interview
+              </button>
+            )}
           </>
         ) : (
           <>

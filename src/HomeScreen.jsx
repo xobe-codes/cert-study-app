@@ -25,6 +25,7 @@ import { todayStr } from './home/sessionUtils.js'
 import { getSessionStudy, isRecapDismissed, dismissSessionRecap } from './home/sessionRecap.js'
 import { groupMissedByTrap } from './missed/missedTrapGroups.js'
 import DomainPassCompleteCard from './features/domainPass/DomainPassCompleteCard.jsx'
+import WeakAreaDashboard from './features/home/WeakAreaDashboard.jsx'
 import ExamReadyBanner from './home/ExamReadyBanner.jsx'
 import {
   HOME_SECTION_GAP,
@@ -65,11 +66,9 @@ function ContentTrustCard() {
   )
 }
 
-function YourProgressCard({ progress, missed, readiness, onOpenMissed, onOpenStats }) {
+function YourProgressCard({ progress, readiness, onOpenStats }) {
   const [dismissed, setDismissed] = useState(isRecapDismissed())
   const data = useMemo(() => getSessionStudy(), [])
-  const trapGroups = useMemo(() => groupMissedByTrap(missed || []), [missed])
-  const topTraps = trapGroups.slice(0, 2)
   const total = data.correct + data.incorrect
 
   function dismiss() { dismissSessionRecap(); setDismissed(true) }
@@ -82,7 +81,7 @@ function YourProgressCard({ progress, missed, readiness, onOpenMissed, onOpenSta
           Stats & trends →
         </button>
       </div>
-      <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start', marginBottom: topTraps.length || (!dismissed && total > 0) ? 12 : 0 }}>
+      <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start', marginBottom: !dismissed && total > 0 ? 12 : 0 }}>
         <ProgressRing value={readiness.score} size={68} accent="purple" caption="Exam readiness" />
         <div style={{ flex: 1, minWidth: 0 }}>
           {readiness.domainStats.slice(0, 3).map(d => {
@@ -102,23 +101,9 @@ function YourProgressCard({ progress, missed, readiness, onOpenMissed, onOpenSta
         </div>
       </div>
       {!dismissed && total > 0 && (
-        <div style={{ ...homeBodySm, padding: '8px 10px', borderRadius: 14, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, marginBottom: topTraps.length ? 10 : 0, position: 'relative' }}>
+        <div style={{ ...homeBodySm, padding: '8px 10px', borderRadius: 14, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, marginBottom: 0, position: 'relative' }}>
           <button type="button" onClick={dismiss} aria-label="Dismiss session recap" style={homeDismissBtn}>×</button>
           <strong style={{ color: COLORS.sky }}>Last session:</strong> {total} question{total === 1 ? '' : 's'} · {data.correct} correct
-        </div>
-      )}
-      {topTraps.length > 0 && (
-        <div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-            <span style={{ ...homeSectionLabel(COLORS.rose), marginBottom: 0 }}>Top trap patterns</span>
-            <button type="button" onClick={onOpenMissed} style={homeLinkBtn(COLORS.rose)}>Review missed →</button>
-          </div>
-          {topTraps.map(g => (
-            <div key={g.trap} style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver, lineHeight: 1.45, marginBottom: 4 }}>
-              <span style={{ ...homePillCount('rose'), marginRight: 6 }}>{g.count}×</span>
-              {g.trap}
-            </div>
-          ))}
         </div>
       )}
     </div>
@@ -331,7 +316,7 @@ function StudyModeBtn({ onClick, children, primary, disabled }) {
   )
 }
 
-export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onPremiumBlocked, premiumUnlocked = false, onOpenMetrics, onOpenStats, onOpenSettings, onOpenReview, onOpenLabs, onOpenFocus, onOpenTopicFocus, onOpenCommandHub, onOpenStudyLens, onOpenExamTraps, onOpenTrapDrill, onOpenDomainPass, domainPassPassedCount = 0, examDate = null, onOpenSubnet, onOpenRouting, onOpenExtraStudy, commandDrills = {}, theme, onToggleTheme }) {
+export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onPremiumBlocked, premiumUnlocked = false, onOpenMetrics, onOpenStats, onOpenSettings, onOpenReview, onOpenLabs, onOpenFocus, onOpenTopicFocus, onOpenCommandHub, onOpenStudyLens, onOpenExamTraps, onOpenTrapDrill, onOpenDomainPass, domainPassPassedCount = 0, domainPassRecords = {}, examDate = null, onOpenSubnet, onOpenRouting, onOpenExtraStudy, commandDrills = {}, theme, onToggleTheme }) {
   const [suggestions, setSuggestions] = useState([])
   const [learnerSummary, setLearnerSummary] = useState(null)
   const [retention, setRetention] = useState([])
@@ -434,7 +419,17 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
 
       <ContentTrustCard />
 
-      <YourProgressCard progress={progress} missed={missed} readiness={readiness} onOpenMissed={onOpenMissed} onOpenStats={onOpenStats} />
+      <YourProgressCard progress={progress} readiness={readiness} onOpenStats={onOpenStats} />
+
+      <WeakAreaDashboard
+        missed={missed}
+        readiness={readiness}
+        domainPassRecords={domainPassRecords}
+        onSelectObjective={onSelectObjective}
+        onOpenTrapDrill={onOpenTrapDrill}
+        onOpenDomainPass={onOpenDomainPass}
+        onOpenMock={onOpenMock}
+      />
 
       {onOpenDomainPass && (
         <button

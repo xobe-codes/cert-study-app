@@ -6,7 +6,7 @@ export const APP_IMPORTS = [
   { symbol: 'objectivePanelId', from: './tabs/studyQuizTabs.jsx' },
   { symbol: 'ExplainTab', from: './tabs/studyQuizTabs.jsx' },
   { symbol: 'QuizTab', from: './tabs/studyQuizTabs.jsx' },
-  { symbol: 'MockExam', from: './MockExam.jsx' },
+  { symbol: 'MockExamRoute', from: './features/mockExam/MockExamRoute.jsx' },
   { symbol: 'ObjectiveScreen', from: './ObjectiveScreen.jsx' },
   { symbol: 'HomeScreen', from: './HomeScreen.jsx' },
   { symbol: 'LabView', from: './lab/LabView.jsx' },

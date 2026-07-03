@@ -46,7 +46,7 @@ import HomeScreen from './HomeScreen.jsx'
 import StatsPage from './StatsPage.jsx'
 import ObjectiveScreen from './ObjectiveScreen.jsx'
 import { bumpSessionStudy } from './home/sessionRecap.js'
-const MockExam = lazy(() => import('./MockExam.jsx'))
+const MockExamRoute = lazy(() => import('./features/mockExam/MockExamRoute.jsx'))
 const ExtraStudyMode = lazy(() => import('./ExtraStudyMode.jsx'))
 const ExamTrapStudyMode = lazy(() => import('./ExamTrapStudyMode.jsx'))
 const RoutingDecoderMode = lazy(() => import('./RoutingDecoderMode.jsx'))
@@ -118,6 +118,7 @@ import GlobalSearchModal from './features/search/GlobalSearchModal.jsx'
 import { useGlobalSearchHotkey } from './features/search/useGlobalSearchHotkey.js'
 import OfflineBanner from './features/shell/OfflineBanner.jsx'
 import TutorChat from './features/tutor/TutorChat.jsx'
+import MockInterview from './features/mockExam/MockInterview.jsx'
 import FocusModeSession from './features/focus/FocusModeSession.jsx'
 import ReviewSession from './features/review/ReviewSession.jsx'
 import Onboarding from './features/onboarding/Onboarding.jsx'
@@ -138,6 +139,7 @@ function LazyRoute({ children, label = 'Loading…' }) {
 
 const PREMIUM_TOAST_MESSAGES = {
   [PREMIUM_FEATURES.tutor]: 'AI Tutor and Study Lens synthesis unlock with supporter access.',
+  [PREMIUM_FEATURES.mock_interview]: 'Live AI exam-day interview practice unlocks with supporter access.',
   [PREMIUM_FEATURES.offline_pack]: 'Offline AI packaging is a premium feature.',
   [PREMIUM_FEATURES.ai_visual]: 'Custom AI visuals require supporter access.',
   [PREMIUM_FEATURES.ai_terms]: 'AI key-term flashcards require supporter access.',
@@ -477,7 +479,7 @@ function parseAppHash() {
   // topicfocussession needs live config (topicFocusConfig) — restore picker on refresh instead.
   if (simple === 'topicfocussession') return { view: 'topicfocus' }
   if ([
-    'mock', 'metrics', 'stats', 'review', 'missed', 'labs', 'focus', 'tutor',
+    'mock', 'mockinterview', 'metrics', 'stats', 'review', 'missed', 'labs', 'focus', 'tutor',
     'topicfocus', 'commandhub', 'studylens', 'examtraps', 'trapdrill', 'subnet', 'routing', 'extrastudy',
     'domainpass',
   ].includes(simple)) {
@@ -515,13 +517,15 @@ function AppShell({ view, compactTopChrome, withBottomNav, children }) {
    APP ROOT
    ========================================================================= */
 export default function App() {
-  const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | stats | focus | topicfocus | topicfocussession | commandhub | studylens | examtraps | trapdrill | subnet | routing | extrastudy | domainpass
+  const [view, setView] = useState('home') // home | objective | mock | mockinterview | missed | tutor | ...
   const [returnToView, setReturnToView] = useState('home')
   const [topicFocusConfig, setTopicFocusConfig] = useState(null)
   const [examTrapPrefill, setExamTrapPrefill] = useState(null)
   const [trapDrillPrefill, setTrapDrillPrefill] = useState(null)
   const [activeDomainPassId, setActiveDomainPassId] = useState(null)
   const [domainPassPassedCount, setDomainPassPassedCount] = useState(0)
+  const [domainPassRecords, setDomainPassRecords] = useState({})
+  const [mockDomainPrefill, setMockDomainPrefill] = useState(null)
   const [selectedObjective, setSelectedObjective] = useState(null)
   const [progress, setProgress] = useState({})
   const [missed, setMissed] = useState([])
@@ -991,12 +995,18 @@ export default function App() {
 
   const refreshDomainPassCount = useCallback(async () => {
     const records = await loadDomainPassRecords()
+    setDomainPassRecords(records)
     setDomainPassPassedCount(countPassedDomains(records, DOMAINS))
   }, [])
 
-  const openDomainPass = useCallback(() => {
-    setActiveDomainPassId(null)
+  const openDomainPass = useCallback((opts) => {
+    setActiveDomainPassId(opts?.domainId || null)
     navigateTo('domainpass')
+  }, [navigateTo])
+
+  const openMockExam = useCallback((opts) => {
+    setMockDomainPrefill(opts?.domainId || null)
+    navigateTo('mock')
   }, [navigateTo])
 
   const clearExamTrapPrefill = useCallback(() => setExamTrapPrefill(null), [])
@@ -1048,8 +1058,8 @@ export default function App() {
   }, [])
 
   const chromeOverlayOpen = showExport || showSync || showSearch || showSettings || showTour
-  const showBottomNav = loaded && !chromeOverlayOpen && !['onboarding', 'tutor', 'lab'].includes(view)
-  useVisualViewportBottomInset(showBottomNav || view === 'objective' || view === 'tutor')
+  const showBottomNav = loaded && !chromeOverlayOpen && !['onboarding', 'tutor', 'mockinterview', 'lab'].includes(view)
+  useVisualViewportBottomInset(showBottomNav || view === 'objective' || view === 'tutor' || view === 'mockinterview')
 
   if (!loaded) {
     return (
@@ -1064,8 +1074,8 @@ export default function App() {
     )
   }
 
-  const routeScrolls = view !== 'objective' && view !== 'tutor'
-  const compactTopChrome = view === 'objective' || view === 'tutor'
+  const routeScrolls = view !== 'objective' && view !== 'tutor' && view !== 'mockinterview'
+  const compactTopChrome = view === 'objective' || view === 'tutor' || view === 'mockinterview'
   const showNavBack = view !== 'home' && view !== 'onboarding' && view !== 'objective'
   const objectiveBackLabel = returnToView === 'home' ? 'Topics' : 'Back'
   const bottomNavActive = showSettings ? 'more' : showSearch ? 'search' : view === 'home' ? 'home' : view === 'objective' ? 'home' : null
@@ -1165,7 +1175,7 @@ export default function App() {
             apiOnline={apiOnline}
             offlineReady={offlineReady}
             onSelectObjective={selectObjective}
-            onOpenMock={() => navigateTo('mock')}
+            onOpenMock={openMockExam}
             onOpenMissed={() => navigateTo('missed')}
             onOpenTutor={() => navigateTo('tutor')}
             premiumUnlocked={premiumUnlocked}
@@ -1183,6 +1193,7 @@ export default function App() {
             onOpenTrapDrill={openTrapDrill}
             onOpenDomainPass={openDomainPass}
             domainPassPassedCount={domainPassPassedCount}
+            domainPassRecords={domainPassRecords}
             examDate={settingsExamDate}
             onOpenSubnet={() => navigateTo('subnet')}
             onOpenRouting={() => navigateTo('routing')}
@@ -1246,18 +1257,29 @@ export default function App() {
         )}
         {view === 'mock' && (
           <LazyRoute label="Loading mock exam…">
-            <MockExam
-              onExit={goBack}
+            <MockExamRoute
+              onExit={() => { setMockDomainPrefill(null); goBack() }}
               examMode={settingsExamMode}
               missed={missed}
+              initialDomainId={mockDomainPrefill}
               onOpenLab={(id) => openLab(id, 'mock')}
               onOpenTrapDrill={(prefill) => openTrapDrill(typeof prefill === 'string' ? { ckuId: prefill } : prefill)}
               onSelectObjective={(id) => {
                 const obj = ALL_OBJECTIVES.find(o => o.id === id)
                 if (obj) selectObjective(obj)
               }}
+              onOpenMockInterview={() => navigateTo('mockinterview')}
             />
           </LazyRoute>
+        )}
+        {view === 'mockinterview' && (
+          <MockInterview
+            progress={progress}
+            missed={missed}
+            premiumUnlocked={premiumUnlocked}
+            onBack={goBack}
+            onPremiumBlocked={handlePremiumBlocked}
+          />
         )}
         {view === 'missed' && (
           <MissedReview
@@ -1369,7 +1391,7 @@ export default function App() {
           <DomainPassHub
             onExit={goBack}
             onStartDomain={(id) => setActiveDomainPassId(id)}
-            onStartMockExam={() => navigateTo('mock')}
+            onStartMockExam={openMockExam}
             onOpenSettings={() => setShowSettings(true)}
           />
         )}
@@ -1378,6 +1400,7 @@ export default function App() {
             key={activeDomainPassId}
             domainId={activeDomainPassId}
             onExit={() => { setActiveDomainPassId(null); refreshDomainPassCount() }}
+            onOpenMock={(id) => openMockExam({ domainId: id })}
             onOpenTrapDrill={(ckuId) => openTrapDrill({ ckuId })}
             onOpenLab={(id) => openLab(id, 'domainpass')}
             examMode={settingsExamMode}

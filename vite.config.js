@@ -30,6 +30,9 @@ export default defineConfig({
       manifest: false,
       workbox: {
         // Do not precache index.html — stale shell + new hashed chunks = blank screen on mobile.
+        // Large curated study chunks (clean-questions, mock-exam, labs, study-modes, studios,
+        // skill-questions, shelved-questions) are excluded from globPatterns via globIgnores
+        // and cached on demand through runtimeCaching below.
         globPatterns: ['**/*.{css,ico,svg,webmanifest}', 'registerSW.js'],
         globIgnores: ['**/clean-questions*.js', '**/mock-exam*.js'],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,

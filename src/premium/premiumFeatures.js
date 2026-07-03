@@ -9,6 +9,7 @@ export const PREMIUM_FEATURES = {
   ai_explain: 'ai_explain',
   quiz_generate: 'quiz_generate',
   donate_preview: 'donate_preview',
+  mock_interview: 'mock_interview',
 }
 
 export const PREMIUM_COMING_SOON_LABEL = 'Premium — coming soon'

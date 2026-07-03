@@ -54,7 +54,7 @@ Start at **#38** (Voice / TTS mode) or **#39** (exam-day mock interview) unless 
 | 36 | Adaptive question pacing within session | UX | ~~Queued~~ — **done** (Timeline 19) |
 | 37 | Auto cross-device sync / setup nudge | UX | ~~Queued~~ — **done** (Timeline 21) | — |
 | 38 | Voice / TTS mode for tutor | Better AI | **Done** | Browser `speechSynthesis` in TutorChat |
-| 39 | AI "exam day" mock interview | Better AI | Queued | Late-stage exam prep |
+| 39 | AI "exam day" mock interview | Better AI | **Done** | `MockInterview.jsx` — curated free + premium AI |
 | 40 | API cost / reliability hardening | Infra | ~~Queued~~ — **done** (Timeline 21) | — |
 | 41 | Finish "MVP 12" curated objectives | Less AI | ~~In progress~~ — **done** (Timeline 20) | — |
 | 42 | Static reading stubs for Q-only objectives | Less AI | ~~Queued~~ — **done** (Timeline 20) | — |
