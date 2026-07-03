@@ -1,15 +1,9 @@
 /** Static import contracts — catches missing imports after tab/route extractions. */
 export const APP_IMPORTS = [
+  { symbol: 'CoreStudyRoutes', from: './features/shell/CoreStudyRoutes.jsx' },
   { symbol: 'StudyModeRoutes', from: './features/study/StudyModeRoutes.jsx' },
   { symbol: 'AppChromeOverlays', from: './features/shell/AppChromeOverlays.jsx' },
-  { symbol: 'objectiveTabId', from: './tabs/studyQuizTabs.jsx' },
-  { symbol: 'objectivePanelId', from: './tabs/studyQuizTabs.jsx' },
-  { symbol: 'ExplainTab', from: './tabs/studyQuizTabs.jsx' },
-  { symbol: 'QuizTab', from: './tabs/studyQuizTabs.jsx' },
-  { symbol: 'MockExamRoute', from: './features/mockExam/MockExamRoute.jsx' },
-  { symbol: 'ObjectiveScreen', from: './ObjectiveScreen.jsx' },
-  { symbol: 'HomeScreen', from: './HomeScreen.jsx' },
-  { symbol: 'LazyRoute', from: './components/LazyRoute.jsx' },
+  { symbol: 'PracticeRoutes', from: './features/practice/PracticeRoutes.jsx' },
 ]
 
 export const STUDY_QUIZ_TAB_IMPORTS = [

@@ -40,6 +40,13 @@ describe('App.jsx import regression', () => {
       expect(hasNamedImport(studySource, 'SubnetPracticeHome', '../../tabs/studyQuizTabs.jsx')).toBe(true)
     }
   })
+
+  it('does not reference HomeScreen without import in core routes', () => {
+    const coreSource = readFileSync(resolve(ROOT, 'features/shell/CoreStudyRoutes.jsx'), 'utf8')
+    if (usesSymbol(coreSource, 'HomeScreen')) {
+      expect(hasNamedImport(coreSource, 'HomeScreen', '../../HomeScreen.jsx')).toBe(true)
+    }
+  })
 })
 
 describe('studyQuizTabs.jsx import regression', () => {

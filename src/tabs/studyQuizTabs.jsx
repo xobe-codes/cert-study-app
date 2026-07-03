@@ -23,6 +23,7 @@ import CuratedDiagram from '../components/CuratedDiagram.jsx'
 import CuratedStaticBadge from '../components/CuratedStaticBadge.jsx'
 import OverflowMarquee from '../components/OverflowMarquee.jsx'
 import EngineerViewSection from '../components/EngineerViewSection.jsx'
+import TabSectionLabel from '../components/TabSectionLabel.jsx'
 import QuestionHealthAdminSection from '../components/QuestionHealthAdminSection.jsx'
 import { shouldDefaultOpenRealWorld } from '../lesson/readingEnrichment.js'
 import { formatCuratedAttribution } from '../curatedDisplay.js'
@@ -719,7 +720,7 @@ function LessonReferencePanel({ objectiveId, defaultOpen = true }) {
   const openDefault = defaultOpen
   return (
     <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.skyBorder}` }}>
-      <SectionLabel icon="📚" label="REFERENCE" />
+      <TabSectionLabel icon="📚" label="REFERENCE" />
       {ref.summary && <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.55, marginBottom: 10 }}><RichText text={ref.summary} /></div>}
       {ref.glossary.length > 0 && (
         <ExplainBlock icon="📖" title="GLOSSARY" accent="sky" collapsible defaultOpen={openDefault}>

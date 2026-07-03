@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback, useRef, useId, lazy } from 'react'
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { getCurated, hasCuratedReading, hasCuratedQuestions, getCuratedQuestions } from './data/ccnaCurated.js'
 import {
   TYPE_LABEL, SKILL_LABEL, isOrderingQuestion, isMcQuestion, gradeQuestion, correctAnswerLabel,
@@ -30,7 +30,6 @@ import { useVisualViewportBottomInset } from './ui/visualViewportInset.js'
 import CuratedStaticBadge from './components/CuratedStaticBadge.jsx'
 import OverflowMarquee from './components/OverflowMarquee.jsx'
 import DeferredExamTips from './components/DeferredExamTips.jsx'
-import { ExplainTab, QuizTab, objectiveTabId, objectivePanelId } from './tabs/studyQuizTabs.jsx'
 import { BOOK_REF } from './data/bookRefFull.js'
 import { formatCuratedAttribution } from './curatedDisplay.js'
 import { STORAGE_KEYS, TRAP_DRILL_PREFILL_EVENT } from './storageKeys.js'
@@ -39,13 +38,6 @@ import AnswerReview from './components/AnswerReview.jsx'
 import { QuizRichText, QuestionMeta, OrderingQuestion } from './components/QuizQuestionChrome.jsx'
 import Spinner from './components/Spinner.jsx'
 import ErrorBox from './components/ErrorBox.jsx'
-import StatusDot from './components/StatusDot.jsx'
-import StatusLabel from './components/StatusLabel.jsx'
-import HomeScreen from './HomeScreen.jsx'
-import ObjectiveScreen from './ObjectiveScreen.jsx'
-import { bumpSessionStudy } from './home/sessionRecap.js'
-const MockExamRoute = lazy(() => import('./features/mockExam/MockExamRoute.jsx'))
-import LazyRoute from './components/LazyRoute.jsx'
 import { DEFAULT_QUIZ_SESSION_SIZE, MAX_QUIZ_SESSION_SIZE, clampQuizSessionSize, loadQuizSessionSize, saveQuizSessionSize } from './quizSessionConfig.js'
 import { loadDueQuestions, countDueQuestions, REVIEW_SESSION_CAP } from './quiz/srsReview.js'
 import { NavHintProvider, useNavHint } from './components/NavHintProvider.jsx'
@@ -63,11 +55,12 @@ import {
 import BottomNav from './components/BottomNav.jsx'
 import StudyModeRoutes from './features/study/StudyModeRoutes.jsx'
 import AppChromeOverlays from './features/shell/AppChromeOverlays.jsx'
+import CoreStudyRoutes from './features/shell/CoreStudyRoutes.jsx'
 import { loadDomainPassRecords, countPassedDomains } from './features/domainPass/domainPassStorage.js'
 import { warmCuratedChunksForOffline } from './offline/warmCuratedChunks.js'
 import {
-  QUIZ_BANK_MIN, MASTERY_GATE,
-  loadQuizBank, saveQuizBank, mergeIntoBank, enableSectionReview,
+  QUIZ_BANK_MIN,
+  loadQuizBank, saveQuizBank, mergeIntoBank,
 } from './quiz/quizBankStorage.js'
 import { flushQuestionFlagQueue } from './quiz/questionHealthClient.js'
 import { NAV_HINT_KEYS } from './ui/navHintConfig.js'
@@ -100,17 +93,12 @@ import { logEvent } from './eventLog.js'
 import { importCcnaJsonFromFile } from './features/export/importCcnaJson.js'
 import { useGlobalSearchHotkey } from './features/search/useGlobalSearchHotkey.js'
 import OfflineBanner from './features/shell/OfflineBanner.jsx'
-import TutorChat from './features/tutor/TutorChat.jsx'
-import MockInterview from './features/mockExam/MockInterview.jsx'
 import PracticeRoutes from './features/practice/PracticeRoutes.jsx'
-import Onboarding from './features/onboarding/Onboarding.jsx'
 import {
   generateSyncCode, loadSyncBundle, saveSyncBundle, mergeSyncData, pullSync, pushSync,
 } from './features/sync/syncMerge.js'
 import { EXPLAIN_CACHE_KEY, EXPLAIN_PROMPT_SYSTEM, EXPLAIN_SCHEMA } from './tabs/studyConstants.js'
-import { SubnettingTab, VLSMTab, IPv6CalcTab, ACLWildcardTab } from './tabs/subnetPracticeTabs.jsx'
-import CLIDrillTab from './lab/CLIDrillTab.jsx'
-import { COMMAND_DRILLS } from './lab/commandDrills.js'
+import { bumpSessionStudy } from './home/sessionRecap.js'
 
 const quizFeedbackA11y = { role: 'status', 'aria-live': 'polite', 'aria-atomic': true }
 
@@ -187,39 +175,10 @@ async function bumpStreak() {
    MOCK EXAM — domain-weighted question selection
    ========================================================================= */
 
-function SectionLabel({ icon, label }) {
-  return (
-    <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, letterSpacing: 0.9, marginBottom: 8, display: 'flex', alignItems: 'center', gap: 5 }}>
-      <span>{icon}</span><span>{label}</span>
-    </div>
-  )
-}
-
-
 /* =========================================================================
    PROGRESS PRIMITIVES — local, data-driven, no API. Every bar is fed real
    learner numbers by its caller and carries a clear label.
    ========================================================================= */
-function clamp01(n) { return Math.max(0, Math.min(1, isFinite(n) ? n : 0)) }
-
-// Animates 0 -> target with easeOutCubic. Respects reduced-motion by snapping.
-function useCountUp(target, ms = 700) {
-  const [n, setN] = useState(target)
-  const prefersReduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  useEffect(() => {
-    if (prefersReduced) { setN(target); return }
-    let raf, start
-    const tick = t => {
-      start ??= t
-      const p = Math.min((t - start) / ms, 1)
-      setN(target * (1 - Math.pow(1 - p, 3)))
-      if (p < 1) raf = requestAnimationFrame(tick)
-    }
-    raf = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(raf)
-  }, [target, ms, prefersReduced])
-  return n
-}
 
 // Skeleton placeholder block (shimmer). width/height accept any CSS length.
 function Skeleton({ width = '100%', height = 14, style }) {
@@ -261,63 +220,6 @@ function celebrate() {
     else canvas.remove()
   }
   requestAnimationFrame(frame)
-}
-
-// Labeled linear completion/strength bar — gradient fill + subtle shimmer.
-function ProgressBar({ value, max = 1, label, sublabel, accent = 'purple', height = 8 }) {
-  const pct = clamp01(max ? value / max : 0)
-  const c = accentColors(accent)
-  return (
-    <div style={{ marginBottom: 10 }}>
-      {(label || sublabel) && (
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4, gap: 8, minWidth: 0 }}>
-          {label && <OverflowMarquee text={label} style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver }} />}
-          {sublabel && <span style={{ fontSize: 'var(--ccna-type-xs)', color: c.text, fontWeight: 600, whiteSpace: 'nowrap', flexShrink: 0 }}>{sublabel}</span>}
-        </div>
-      )}
-      <div style={{ background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 999, height, overflow: 'hidden' }}>
-        <div className="ccna-shimmer" style={{ width: `${pct * 100}%`, height: '100%', background: `linear-gradient(90deg, ${c.border}, ${c.text})`, borderRadius: 999, transition: 'width .5s ease' }} />
-      </div>
-    </div>
-  )
-}
-
-// Circular mastery ring — gradient stroke + glow + animated count-up.
-function ProgressRing({ value, size = 72, stroke = 7, accent = 'purple', caption }) {
-  const pct = clamp01(value)
-  const shown = useCountUp(pct, 800)
-  const r = (size - stroke) / 2
-  const circ = 2 * Math.PI * r
-  const c = accentColors(accent)
-  const gid = useId().replace(/:/g, '')
-  const pctLabel = `${Math.round(shown * 100)}%`
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, flexShrink: 0 }}>
-      <div style={{ position: 'relative', width: size, height: size }}>
-        <svg
-          width={size} height={size} viewBox={`0 0 ${size} ${size}`}
-          role="img" aria-label={caption ? `${caption}: ${pctLabel}` : pctLabel}
-          style={{ display: 'block', overflow: 'visible' }}
-        >
-          <defs>
-            <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor={c.border} /><stop offset="100%" stopColor={c.text} />
-            </linearGradient>
-          </defs>
-          <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke={COLORS.border} strokeWidth={stroke} opacity="0.55" />
-          <circle
-            cx={size / 2} cy={size / 2} r={r} fill="none" stroke={`url(#${gid})`} strokeWidth={stroke}
-            strokeDasharray={circ} strokeDashoffset={circ * (1 - shown)} strokeLinecap="round"
-            transform={`rotate(-90 ${size / 2} ${size / 2})`} style={{ filter: `drop-shadow(0 0 4px ${c.text}55)` }}
-          />
-        </svg>
-        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
-          <span style={{ fontSize: `clamp(12px, ${Math.max(13, size * 0.28)}px, var(--ccna-type-sm))`, fontWeight: 700, color: COLORS.silver, lineHeight: 1 }}>{pctLabel}</span>
-        </div>
-      </div>
-      {caption && <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, textAlign: 'center', maxWidth: size + 16, lineHeight: 1.3 }}>{caption}</span>}
-    </div>
-  )
 }
 
 /* =========================================================================
@@ -1142,123 +1044,49 @@ export default function App() {
         </div>
       )}
       <RouteShell scroll={routeScrolls} ref={mainRef} innerClassName="ccna-route-in" key={view}>
-        {view === 'onboarding' && <Onboarding onComplete={finishOnboarding} onSkip={skipOnboarding} />}
-        {view === 'home' && (
-          <HomeScreen
-            progress={progress}
-            streak={streak}
-            missed={missed}
-            missedCount={missed.length}
-            apiOnline={apiOnline}
-            offlineReady={offlineReady}
-            onSelectObjective={selectObjective}
-            onOpenMock={openMockExam}
-            onOpenMockInterview={() => navigateTo('mockinterview')}
-            onOpenMissed={() => navigateTo('missed')}
-            onOpenTutor={() => navigateTo('tutor')}
-            premiumUnlocked={premiumUnlocked}
-            onPremiumBlocked={handlePremiumBlocked}
-            onOpenMetrics={() => navigateTo('metrics')}
-            onOpenStats={() => navigateTo('stats')}
-            onOpenSettings={() => setShowSettings(true)}
-            onOpenLabs={() => navigateTo('labs')}
-            onOpenReview={() => navigateTo('review')}
-            onOpenFocus={() => navigateTo('focus')}
-            onOpenTopicFocus={() => navigateTo('topicfocus')}
-            onOpenCommandHub={() => navigateTo('commandhub')}
-            onOpenStudyLens={() => navigateTo('studylens')}
-            onOpenExamTraps={openExamTraps}
-            onOpenTrapDrill={openTrapDrill}
-            onOpenDomainPass={openDomainPass}
-            domainPassPassedCount={domainPassPassedCount}
-            domainPassRecords={domainPassRecords}
-            examDate={settingsExamDate}
-            onOpenSubnet={() => navigateTo('subnet')}
-            onOpenRouting={() => navigateTo('routing')}
-            onOpenExtraStudy={() => navigateTo('extrastudy')}
-            dueCount={dueCount}
-            openDomain={openDomain}
-            onOpenDomain={setOpenDomain}
-            commandDrills={COMMAND_DRILLS}
-            theme={theme}
-            onToggleTheme={toggleTheme}
-          />
-        )}
-        {view === 'objective' && !selectedObjective && (
-          <Spinner label="Loading topic…" />
-        )}
-        {view === 'objective' && selectedObjective && (
-          <ObjectiveScreen
-            objective={selectedObjective}
-            progress={progress}
-            apiOnline={apiOnline}
-            offlineReady={offlineReady}
-            packagingId={packagingId}
-            onPackage={packageObjective}
-            onBack={goBack}
-            backLabel={objectiveBackLabel}
-            onUpdateProgress={updateProgress}
-            onMissed={handleMissed}
-            missed={missed}
-            onOpenLab={(id) => openLab(id, 'objective')}
-            onSelectObjective={selectObjective}
-            onOpenMissed={() => setView('missed')}
-            onOpenTrapDrill={openTrapDrill}
-            ExplainTab={ExplainTab}
-            VisualAidTab={VisualAidTab}
-            QuizTab={QuizTab}
-            CLIDrillTab={CLIDrillTab}
-            SubnettingTab={SubnettingTab}
-            VLSMTab={VLSMTab}
-            IPv6CalcTab={IPv6CalcTab}
-            ACLCalcTab={ACLWildcardTab}
-            SectionLabel={SectionLabel}
-            StatusLabel={StatusLabel}
-            StatusDot={StatusDot}
-            ProgressBar={ProgressBar}
-            objectiveTabId={objectiveTabId}
-            objectivePanelId={objectivePanelId}
-            commandDrills={COMMAND_DRILLS}
-            computeMastery={computeMastery}
-            logEvent={logEvent}
-            masteryGate={MASTERY_GATE}
-            enableSectionReview={enableSectionReview}
-            bumpSessionStudy={bumpSessionStudy}
-            celebrate={celebrate}
-            haptic={haptic}
-            examMode={settingsExamMode}
-            premiumUnlocked={premiumUnlocked}
-            onPremiumBlocked={handlePremiumBlocked}
-            onToggleTheme={toggleTheme}
-            theme={theme}
-          />
-        )}
-        {view === 'mock' && (
-          <LazyRoute label="Loading mock exam…">
-            <MockExamRoute
-              onExit={() => { setMockDomainPrefill(null); goBack() }}
-              examMode={settingsExamMode}
-              missed={missed}
-              initialDomainId={mockDomainPrefill}
-              onOpenLab={(id) => openLab(id, 'mock')}
-              onOpenTrapDrill={(prefill) => openTrapDrill(typeof prefill === 'string' ? { ckuId: prefill } : prefill)}
-              onSelectObjective={(id) => {
-                const obj = ALL_OBJECTIVES.find(o => o.id === id)
-                if (obj) selectObjective(obj)
-              }}
-              onOpenMockInterview={() => navigateTo('mockinterview')}
-            />
-          </LazyRoute>
-        )}
-        {view === 'mockinterview' && (
-          <MockInterview
-            progress={progress}
-            missed={missed}
-            premiumUnlocked={premiumUnlocked}
-            onBack={goBack}
-            onPremiumBlocked={handlePremiumBlocked}
-          />
-        )}
+        <CoreStudyRoutes
+          view={view}
+          onFinishOnboarding={finishOnboarding}
+          onSkipOnboarding={skipOnboarding}
+          progress={progress}
+          streak={streak}
+          missed={missed}
+          apiOnline={apiOnline}
+          offlineReady={offlineReady}
+          selectObjective={selectObjective}
+          openMockExam={openMockExam}
+          navigateTo={navigateTo}
+          handlePremiumBlocked={handlePremiumBlocked}
+          premiumUnlocked={premiumUnlocked}
+          domainPassPassedCount={domainPassPassedCount}
+          domainPassRecords={domainPassRecords}
+          settingsExamDate={settingsExamDate}
+          dueCount={dueCount}
+          openDomain={openDomain}
+          setOpenDomain={setOpenDomain}
+          openExamTraps={openExamTraps}
+          openTrapDrill={openTrapDrill}
+          openDomainPass={openDomainPass}
+          theme={theme}
+          toggleTheme={toggleTheme}
+          setShowSettings={setShowSettings}
+          selectedObjective={selectedObjective}
+          packagingId={packagingId}
+          packageObjective={packageObjective}
+          goBack={goBack}
+          objectiveBackLabel={objectiveBackLabel}
+          updateProgress={updateProgress}
+          handleMissed={handleMissed}
+          openLab={openLab}
+          setView={setView}
+          computeMastery={computeMastery}
+          logEvent={logEvent}
+          celebrate={celebrate}
+          haptic={haptic}
+          settingsExamMode={settingsExamMode}
+          mockDomainPrefill={mockDomainPrefill}
+          setMockDomainPrefill={setMockDomainPrefill}
+        />
         <PracticeRoutes
           view={view}
           progress={progress}
@@ -1277,11 +1105,6 @@ export default function App() {
           onRemoveMissed={removeMissed}
           onSelectObjective={selectObjective}
         />
-        {view === 'tutor' && (
-          premiumUnlocked
-            ? <TutorChat progress={progress} missed={missed} onBack={goBack} />
-            : <PremiumBlockedShell title="AI Tutor" onBack={goBack} />
-        )}
         <StudyModeRoutes
           view={view}
           selectedLab={selectedLab}
