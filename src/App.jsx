@@ -42,18 +42,14 @@ import {
   resetStudyProgress,
   loadQuizSessionSizePref,
   saveQuizSessionSizePref,
-  loadTourDone,
-  saveTourDone,
   loadExamMode,
   saveExamMode,
 } from './settings/settingsActions.js'
-import { importCcnaJsonFromFile } from './features/export/importCcnaJson.js'
 import { useGlobalSearchHotkey } from './features/search/useGlobalSearchHotkey.js'
+import { useAppSync } from './features/sync/useAppSync.js'
+import { useAppOnboarding, resolveOnboardingBootstrap } from './features/onboarding/useAppOnboarding.js'
 import OfflineBanner from './features/shell/OfflineBanner.jsx'
 import PracticeRoutes from './features/practice/PracticeRoutes.jsx'
-import {
-  generateSyncCode, loadSyncBundle, saveSyncBundle, mergeSyncData, pullSync, pushSync,
-} from './features/sync/syncMerge.js'
 import { bumpSessionStudy } from './home/sessionRecap.js'
 import pkg from '../package.json'
 import { checkApiReachable } from './ai/claudeClient.js'
@@ -98,22 +94,14 @@ export default function App() {
   const [showSync, setShowSync] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
-  const [showTour, setShowTour] = useState(false)
-  const onboardingReplayRef = useRef(false)
-  const tourQueuedRef = useRef(false)
   const [settingsExamDate, setSettingsExamDate] = useState(null)
   const [settingsQuizSize, setSettingsQuizSize] = useState(5)
   const [settingsReduceMotion, setSettingsReduceMotion] = useState(false)
   const [settingsExamMode, setSettingsExamMode] = useState(false)
   const [cleanBankStats, setCleanBankStats] = useState({ objectives: 0, questions: 0, genericExamTips: 0 })
-  const importFileRef = useRef(null)
   const mainRef = useRef(null)
   const homeScrollRef = useRef(0)
   const prevViewRef = useRef('home')
-  const [syncCode, setSyncCode] = useState(null)
-  const [lastSynced, setLastSynced] = useState(null)
-  const [syncBusy, setSyncBusy] = useState(false)
-  const [syncMsg, setSyncMsg] = useState('')
   const [dueCount, setDueCount] = useState(0)
   const [openDomain, setOpenDomain] = useState(null)
   const [selectedLab, setSelectedLab] = useState(null)
@@ -160,19 +148,15 @@ export default function App() {
 
   useEffect(() => {
     (async () => {
-      const [p, m, s, off, code, last, due, onboardDone, premium, examDate] = await Promise.all([
+      const [p, m, s, off, due, premium, examDate] = await Promise.all([
         loadProgress(), loadMissed(), loadStreak(), loadOfflineReadyIds(),
-        window.storage.getItem(STORAGE_KEYS.syncCode), window.storage.getItem(STORAGE_KEYS.syncLast),
-        countDueQuestions(), window.storage.getItem(STORAGE_KEYS.onboardDone),
-        loadPremiumUnlocked(),
+        countDueQuestions(), loadPremiumUnlocked(),
         loadExamDate(),
       ])
       setProgress(p)
       setMissed(m)
       setStreak(s)
       setOfflineReady(off)
-      setSyncCode(code || null)
-      setLastSynced(last || null)
       setDueCount(due)
       setPremiumUnlocked(premium)
       setSettingsExamDate(examDate)
@@ -182,14 +166,10 @@ export default function App() {
       applyReduceMotionPreference(reduceMotion)
       setSettingsReduceMotion(reduceMotion)
       setSettingsExamMode(await loadExamMode())
-      if (!onboardDone) {
-        if (Object.keys(p).length === 0) {
-          setView('onboarding')
-        } else {
-          await window.storage.setItem(STORAGE_KEYS.onboardDone, true)
-        }
-      }
-      if (onboardDone || Object.keys(p).length > 0) {
+      const onboardingView = await resolveOnboardingBootstrap(p)
+      if (onboardingView) {
+        setView(onboardingView)
+      } else if (Object.keys(p).length > 0) {
         const hashRoute = parseAppHash()
         if (hashRoute?.objective) {
           setReturnToView('home')
@@ -206,72 +186,34 @@ export default function App() {
     })()
   }, [])
 
-  // Diagnostic placement check: seed quizScores for sampled objectives, then
-  // hand off to the normal dashboard.
-
-  const finishOnboarding = useCallback(async (results) => {
-    if (!onboardingReplayRef.current) {
-      setProgress(prev => {
-        const next = { ...prev }
-        for (const [objectiveId, r] of Object.entries(results || {})) {
-          const entry = next[objectiveId] || { status: 'unseen', quizScores: [] }
-          const newScores = [...(entry.quizScores || []), { score: r.correct, total: r.total, date: Date.now() }]
-          const { score: masteryScore, mastered } = computeMastery({ quizScores: newScores, confidenceRatings: entry.confidenceRatings || [] })
-          next[objectiveId] = { ...entry, status: mastered ? 'mastered' : 'in_progress', quizScores: newScores, masteryScore, lastSeen: Date.now() }
-        }
-        saveProgress(next)
-        return next
-      })
-      logEvent('user_completed_onboarding', { objectivesCovered: Object.keys(results || {}).length })
-    } else {
-      logEvent('user_replayed_onboarding', { objectivesCovered: Object.keys(results || {}).length })
-    }
-    const wasReplay = onboardingReplayRef.current
-    onboardingReplayRef.current = false
-    await window.storage.setItem(STORAGE_KEYS.onboardDone, true)
-    if (!wasReplay) {
-      tourQueuedRef.current = true
-      setShowTour(true)
-    }
-    setView('home')
+  const refreshOffline = useCallback(async () => {
+    setOfflineReady(await loadOfflineReadyIds())
   }, [])
 
-  const skipOnboarding = useCallback(async () => {
-    onboardingReplayRef.current = false
-    await window.storage.setItem(STORAGE_KEYS.onboardDone, true)
-    logEvent('user_skipped_onboarding', {})
-    setView('home')
-  }, [])
+  const {
+    syncCode,
+    lastSynced,
+    syncBusy,
+    syncMsg,
+    importFileRef,
+    doSync,
+    handleGenerateSync,
+    handleLinkSync,
+    handleUnlinkSync,
+    handleImport,
+    handleImportFile,
+    pickImportFile,
+  } = useAppSync({ loaded, setProgress, setMissed, setStreak, refreshOffline })
 
-  const replayPlacementCheck = useCallback(() => {
-    onboardingReplayRef.current = true
-    setView('onboarding')
-  }, [])
-
-  const completeTour = useCallback(async () => {
-    await saveTourDone(true)
-    setShowTour(false)
-  }, [])
-
-  const skipTour = useCallback(async () => {
-    await saveTourDone(true)
-    setShowTour(false)
-  }, [])
-
-  const showTourAgain = useCallback(() => {
-    setShowTour(true)
-  }, [])
-
-  useEffect(() => {
-    if (!loaded || view !== 'home' || showTour || tourQueuedRef.current) return
-    ;(async () => {
-      const tourDone = await loadTourDone()
-      if (!tourDone) {
-        tourQueuedRef.current = true
-        setShowTour(true)
-      }
-    })()
-  }, [loaded, view, showTour])
+  const {
+    showTour,
+    finishOnboarding,
+    skipOnboarding,
+    replayPlacementCheck,
+    completeTour,
+    skipTour,
+    showTourAgain,
+  } = useAppOnboarding({ loaded, view, setView, setProgress })
 
   useEffect(() => {
     if (!showSettings) return
@@ -319,10 +261,6 @@ export default function App() {
   }, [])
 
   const handleClearTutorChat = useCallback(() => clearTutorChat(), [])
-
-  const refreshOffline = useCallback(async () => {
-    setOfflineReady(await loadOfflineReadyIds())
-  }, [])
 
   const handleClearAiCaches = useCallback(async () => {
     await clearAiCaches()
@@ -390,85 +328,6 @@ export default function App() {
     }
     window.addEventListener('hashchange', onHashChange)
     return () => window.removeEventListener('hashchange', onHashChange)
-  }, [loaded])
-
-  // Pull remote → merge with local → save → refresh UI → push merged back.
-  // Deterministic and convergent, so it's safe to run on any device.
-  const doSync = useCallback(async (code) => {
-    const useCode = code || syncCode
-    if (!useCode) return
-    setSyncBusy(true); setSyncMsg('Syncing…')
-    try {
-      const local = await loadSyncBundle()
-      const remote = await pullSync(useCode)
-      const merged = mergeSyncData(local, remote || {})
-      await saveSyncBundle(merged)
-      setProgress(merged.progress)
-      setMissed(merged.missed)
-      setStreak(merged.streak)
-      await pushSync(useCode, merged)
-      const now = Date.now()
-      await window.storage.setItem(STORAGE_KEYS.syncLast, now)
-      setLastSynced(now)
-      await refreshOffline()
-      setSyncMsg('Synced ✓')
-    } catch (e) {
-      setSyncMsg(/failed to fetch/i.test(e.message) ? 'Could not reach the sync server (works on the deployed site only).' : e.message)
-    } finally {
-      setSyncBusy(false)
-    }
-  }, [syncCode, refreshOffline])
-
-  const handleGenerateSync = useCallback(async () => {
-    const code = generateSyncCode()
-    await window.storage.setItem(STORAGE_KEYS.syncCode, code)
-    setSyncCode(code)
-    doSync(code)
-  }, [doSync])
-
-  const handleLinkSync = useCallback(async (code) => {
-    await window.storage.setItem(STORAGE_KEYS.syncCode, code)
-    setSyncCode(code)
-    doSync(code)
-  }, [doSync])
-
-  const handleUnlinkSync = useCallback(async () => {
-    await window.storage.removeItem(STORAGE_KEYS.syncCode)
-    setSyncCode(null)
-    setLastSynced(null)
-    setSyncMsg('')
-  }, [])
-
-  // Restore a Raw Data export: merge it into local data (same safe merge as
-  // sync — nothing is overwritten) and refresh the UI.
-  const handleImport = useCallback(async (incoming) => {
-    const local = await loadSyncBundle()
-    const merged = mergeSyncData(local, incoming || {})
-    await saveSyncBundle(merged)
-    setProgress(merged.progress)
-    setMissed(merged.missed)
-    setStreak(merged.streak)
-    await refreshOffline()
-  }, [refreshOffline])
-
-  const handleImportFile = useCallback(async (e) => {
-    const file = e.target.files?.[0]
-    if (!file) return
-    try {
-      await importCcnaJsonFromFile(file, handleImport)
-    } catch {
-      // invalid JSON — user can retry via Export modal for feedback
-    } finally {
-      if (importFileRef.current) importFileRef.current.value = ''
-    }
-  }, [handleImport])
-
-  const pickImportFile = useCallback(() => { importFileRef.current?.click() }, [])
-
-  // Auto-sync once on load if this device is already linked.
-  useEffect(() => {
-    if (loaded && syncCode) doSync(syncCode)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loaded])
 
   // Pre-fetch every AI asset for a topic so it works offline. No-op when offline.

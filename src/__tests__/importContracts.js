@@ -6,6 +6,8 @@ export const APP_IMPORTS = [
   { symbol: 'StudyModeRoutes', from: './features/study/StudyModeRoutes.jsx' },
   { symbol: 'AppChromeOverlays', from: './features/shell/AppChromeOverlays.jsx' },
   { symbol: 'PracticeRoutes', from: './features/practice/PracticeRoutes.jsx' },
+  { symbol: 'useAppSync', from: './features/sync/useAppSync.js' },
+  { symbol: 'useAppOnboarding', from: './features/onboarding/useAppOnboarding.js' },
 ]
 
 export const STUDY_QUIZ_TAB_IMPORTS = [
