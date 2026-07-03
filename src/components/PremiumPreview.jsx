@@ -2,22 +2,32 @@ import React from 'react'
 import { COLORS, styles } from '../ui/appTheme.js'
 import { PREMIUM_COMING_SOON_LABEL } from '../premium/premiumFeatures.js'
 
-export function PremiumSettingsCard({ onDonatePreview }) {
+export function PremiumSettingsCard({ premiumUnlocked = false, onTogglePremium, onDonatePreview }) {
   return (
     <div style={{
       ...styles.card,
       marginBottom: 16,
       padding: 14,
-      borderColor: COLORS.border,
-      background: COLORS.surface,
-      opacity: 0.92,
+      borderColor: premiumUnlocked ? COLORS.mintBorder : COLORS.border,
+      background: premiumUnlocked ? COLORS.mintDim : COLORS.surface,
     }}>
       <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.silver, marginBottom: 4 }}>
-        {PREMIUM_COMING_SOON_LABEL}
+        {premiumUnlocked ? 'AI Tutor access enabled' : PREMIUM_COMING_SOON_LABEL}
       </div>
       <p style={{ ...styles.small, margin: '0 0 12px', lineHeight: 1.45 }}>
-        AI Tutor and other coach features are in preview. Bundled lessons and quizzes stay free and offline.
+        {premiumUnlocked
+          ? 'AI Tutor, Study Lens synthesis, and custom visuals are unlocked on this device.'
+          : 'AI Tutor and other coach features unlock with supporter access. Bundled lessons and quizzes stay free and offline.'}
       </p>
+      {onTogglePremium && (
+        <button
+          type="button"
+          onClick={() => onTogglePremium(!premiumUnlocked)}
+          style={{ ...styles.primaryBtn, width: '100%', marginBottom: 8 }}
+        >
+          {premiumUnlocked ? 'Disable supporter access' : 'Enable supporter preview access'}
+        </button>
+      )}
       <button
         type="button"
         onClick={onDonatePreview}

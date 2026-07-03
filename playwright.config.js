@@ -22,10 +22,17 @@ export default defineConfig({
     ...(process.env.CI ? {} : { channel: process.env.PW_CHANNEL || 'chrome' }),
     ...devices['Pixel 5'],
   },
-  webServer: {
-    command: `npm run dev -- --host ${E2E_HOST} --port ${E2E_PORT} --strictPort`,
-    url: E2E_BASE,
-    reuseExistingServer: !process.env.CI,
-    timeout: 120_000,
-  },
+  webServer: process.env.E2E_PREVIEW
+    ? {
+        command: `npm run preview -- --host ${E2E_HOST} --port ${E2E_PORT} --strictPort`,
+        url: E2E_BASE,
+        reuseExistingServer: !process.env.CI,
+        timeout: 120_000,
+      }
+    : {
+        command: `npm run dev -- --host ${E2E_HOST} --port ${E2E_PORT} --strictPort`,
+        url: E2E_BASE,
+        reuseExistingServer: !process.env.CI,
+        timeout: 120_000,
+      },
 })

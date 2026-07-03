@@ -1,57 +1,15 @@
 # Implementation Phase Plan
 
-## Tracks (exam-ready reorganized)
-
-| Track | Goal | Status |
-|-------|------|--------|
-| **A** | Exam-ready core (free path, no AI) | **Done** |
-| **B** | Final polish pass | **Done** |
-| **C** | Premium AI (RAG tutor, Study Lens) | **Done** |
-
-### Track A — Exam-ready core (shipped)
-
-| # | Slice | Shipped |
-|---|--------|---------|
-| 1 | **Content** — Gold batch 14 (450 total): MAC 1.5, private IP 1.7, IPv6 1.9, OSPF 3.4 | ✓ |
-| 2 | **Labs** — Automation 6.1 labs verified in hub + `e2e/automation-lab-smoke.spec.js` | ✓ |
-| 3 | **Learning flow** — Domain Pass 6/6 exam-date nudge + timed mock CTA | ✓ |
-| 4 | **Mobile** — CLI terminal `scrollIntoView` on input focus + safe-area input row | ✓ |
-| 5 | **Maintainability** — `useGlobalSearchHotkey` extracted from `App.jsx` | ✓ |
-
-**Ship gate:** `npm run verify:ship` (unit + build + ship e2e including automation lab smoke)
-
-### Track B — Final polish (shipped)
-
-| # | Slice | Shipped |
-|---|--------|---------|
-| 1 | **Mobile** — iPad diagram expand e2e + `useCompactViewport(1024)` | ✓ |
-| 2 | **PWA** — `e2e/offline-curated-smoke.spec.js` (airplane mode reload) | ✓ |
-| 3 | **Learning flow** — `ExamReadyBanner` on home 6/6; exam date on boot; Domain Pass settings CTA | ✓ |
-| 4 | **Score** — `SCORE_95_TARGET.md` post–Track A/B self-check | ✓ |
-
-**Ship gate:** `verify:ship` includes offline + diagram iPad smokes
-
-### Track C — Premium AI (shipped)
-
-| # | Slice | Shipped |
-|---|--------|---------|
-| 1 | **RAG tutor** — `tutorRag.js` retrieves curated library chunks per message; injected into tutor system prompt | ✓ |
-| 2 | **Premium gate** — Tutor remains premium-only; no live AI on free-tier page load | ✓ |
-| 3 | **UX** — Library source count while thinking; sources listed on assistant replies | ✓ |
-| 4 | **Tests** — `tutorRag.test.js` + `e2e/tutor-premium-smoke.spec.js` in `verify:ship` | ✓ |
-
-**Note:** Client-side curated RAG (Study Lens library index) — no pgvector/Vectorize yet.
-
----
-
-## Legacy phases (1–13)
-
 | Phase | Goal | Status |
 |-------|------|--------|
-| 1–8 | Audit, enrichment, App.jsx extraction wave 1 | Done |
-| 9 | PWA curated cache | Done |
-| 10 | RAG/tutor | Done → Track C |
-| 11 | Domain Pass | Done |
-| 12 | Gold batch 12 + celebration | Done |
-| 13 | Gold batch 13 (5.1, 5.5, 1.8, 3.1) | Done |
-| 14 | Gold batch 14 (1.5, 1.7, 1.9, 3.4) | Done |
+| 1 | Read-only audit | Done |
+| 2 | ai-improvement-logs/ | Done |
+| 3 | Checklist + weak-area fix | Done |
+| 4 | Pilot 2.1 Engineer View | Done |
+| 5 | Enrich STP, 3.1, 5.9, 6.x | Done |
+| 6 | Build-time scanner | Done |
+| 7 | Bulk factory enrichment | Done |
+| 8 | Extract tabs from App.jsx | Done |
+| 9 | PWA curated cache | Pending |
+| 10 | RAG/tutor | Deferred |
+

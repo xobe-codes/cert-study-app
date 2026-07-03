@@ -84,6 +84,8 @@ export default function SettingsSheet({
   cleanBankGenericExamTips,
   appVersion,
   onDonatePreview,
+  premiumUnlocked = false,
+  onTogglePremium,
 }) {
   const dialogRef = useRef(null)
   const sheetRef = useRef(null)
@@ -247,7 +249,11 @@ export default function SettingsSheet({
           Show app tour again
         </button>
 
-        <PremiumSettingsCard onDonatePreview={onDonatePreview} />
+        <PremiumSettingsCard
+          premiumUnlocked={premiumUnlocked}
+          onTogglePremium={onTogglePremium}
+          onDonatePreview={onDonatePreview}
+        />
         </div>
 
         <div id="settings-ai">

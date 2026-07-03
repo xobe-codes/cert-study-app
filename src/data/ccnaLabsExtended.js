@@ -115,6 +115,52 @@ const DHCP_RELAY = { lab: LAB_DHCP, topology: TOPO_DHCP, validator: VALIDATOR_DH
     { id: 's2', order: 2, title: 'Relay', action: 'R2 forwards unicast to 10.0.0.1 via helper-address', successState: 'modified' },
   ]) }
 
+/* ---- DHCP snooping (2.7) ---- */
+const LAB_DHCP_SNOOP = {
+  id: 'LAB-DHCP-SNOOP-27',
+  title: 'Enable DHCP Snooping on Access Switch',
+  domainId: 'access',
+  objectiveId: '2.7',
+  ckuIds: ['CKU-DHCP-SNOOPING'],
+  labType: 'guided',
+  difficulty: 'intermediate',
+  estimatedTimeMinutes: 12,
+  tools: ['Packet Tracer', 'GNS3'],
+  examRelevance: 'core',
+  scenario: 'SW1 connects trusted uplink Gi0/1 to the distribution switch and untrusted access ports. Enable DHCP snooping globally, trust the uplink, and verify bindings.',
+  learningGoals: ['Enable ip dhcp snooping', 'Mark trusted vs untrusted ports', 'Verify bindings with show ip dhcp snooping'],
+  topologyId: 'TOPO-DHCP-SNOOP',
+  prerequisites: ['CKU-VLAN-BASIC'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Enable globally', device: 'SW1', instruction: 'Turn on DHCP snooping for the switch.',
+      expectedCommands: ['ip dhcp snooping'] },
+    { id: 't2', order: 2, title: 'Trust uplink', device: 'SW1', instruction: 'On Gi0/1 (uplink), configure as trusted.',
+      expectedCommands: ['interface gi0/1', 'ip dhcp snooping trust'] },
+    { id: 't3', order: 3, title: 'Verify', device: 'SW1', instruction: 'Confirm snooping is active and uplink is trusted.',
+      expectedCommands: ['show ip dhcp snooping'] },
+  ],
+  verificationCommands: ['show ip dhcp snooping', 'show ip dhcp snooping binding'],
+  successCriteria: ['DHCP snooping enabled', 'Uplink Gi0/1 trusted', 'Rogue server offers blocked on access ports'],
+  failureCriteria: ['Trusting access ports allows rogue DHCP', 'Snooping not enabled globally'],
+  commonMistakes: ['Trusting user access ports', 'Forgetting global ip dhcp snooping', 'Not enabling snooping on the client VLAN'],
+  source: { name: LAB_SOURCES.blueprint, chapter: '2.7 DHCP snooping', confidence: 0.9 },
+  metadata: { version: '1', status: 'validated', confidence: 0.9 },
+}
+const TOPO_DHCP_SNOOP = { id: 'TOPO-DHCP-SNOOP', title: 'DHCP snooping access', objectiveId: '2.7',
+  nodes: [{ id: 'dist', label: 'Dist switch', type: 'switch', x: 50, y: 20 }, { id: 'sw1', label: 'SW1 access', type: 'switch', x: 50, y: 55 }, { id: 'pc', label: 'Client', type: 'pc', x: 50, y: 85 }],
+  links: [{ id: 'l1', source: 'dist', target: 'sw1', label: 'trusted uplink', status: 'forwarding' }, { id: 'l2', source: 'sw1', target: 'pc', label: 'untrusted', status: 'forwarding' }] }
+const VALIDATOR_DHCP_SNOOP = { labId: 'LAB-DHCP-SNOOP-27', requiredCommands: [
+  { device: 'SW1', command: 'ip dhcp snooping' }, { device: 'SW1', command: 'ip dhcp snooping trust' },
+], verificationChecks: [{ id: 'v1', device: 'SW1', command: 'show ip dhcp snooping', expectedResult: 'DHCP snooping is enabled', passCondition: 'enabled' }] }
+const DHCP_SNOOP_27 = { lab: LAB_DHCP_SNOOP, topology: TOPO_DHCP_SNOOP, validator: VALIDATOR_DHCP_SNOOP,
+  diagram: mkDiagram('DIAG-DHCP-SNOOP', 'Trusted uplink vs untrusted access', '2.7',
+    [{ id: 'srv', label: 'Legit DHCP', type: 'server', x: 50, y: 15 }, { id: 'sw', label: 'SW1 snooping', type: 'switch', x: 50, y: 50, status: 'highlighted' }, { id: 'rogue', label: 'Rogue DHCP', type: 'pc', x: 20, y: 80, status: 'error' }],
+    [{ id: 'd1', source: 'srv', target: 'sw', status: 'forwarding' }, { id: 'd2', source: 'rogue', target: 'sw', label: 'blocked', status: 'blocked' }]),
+  packetFlows: mkFlows('FLOW-DHCP-SNOOP', 'Snooping filters rogue offers', 'DIAG-DHCP-SNOOP', ['CKU-DHCP-SNOOPING'], [
+    { id: 's1', order: 1, title: 'Enable', action: 'Global ip dhcp snooping + trusted uplink', successState: 'matched' },
+    { id: 's2', order: 2, title: 'Block', action: 'DHCP server messages on untrusted ports dropped', successState: 'blocked' },
+  ]) }
+
 /* ---- EtherChannel (2.4) ---- */
 const LAB_EC = {
   id: 'LAB-ETHERCHANNEL',
@@ -1801,7 +1847,7 @@ const AUTO_JSON_66 = autoInterpretBundle(
 
 export const EXTENDED_LAB_BUNDLES = [
   HSRP, HSRP_VERIFY_35, ROUTE_FORWARD_32, OSPF_VERIFY_34,
-  DHCP_RELAY, ETHERCHANNEL, STP, DEVICE_ACCESS, NTP, AAA, SYSLOG,
+  DHCP_RELAY, DHCP_SNOOP_27, ETHERCHANNEL, STP, DEVICE_ACCESS, NTP, AAA, SYSLOG,
   TS_OSPF, TS_TRUNK, TS_IF, TS_ACL, TS_ROUTE, TS_DHCP, TS_HSRP, TS_MASK, TS_STATIC_NH,
   WIRELESS_26, DHCP_DNS_43, DEVICE_ACCESS_53, ROUTE_TABLE_31,
   AUTO_MGMT_61, AUTO_CTRL_62, AUTO_SDN_63, AUTO_DNA_64, AUTO_REST_65, AUTO_JSON_66,

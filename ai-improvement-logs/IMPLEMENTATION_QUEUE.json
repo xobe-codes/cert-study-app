@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-30T09:59:34.838Z",
+  "generatedAt": "2026-07-03T10:59:59.398Z",
   "items": [
     {
       "id": "improve_vlan_engineer_verify",
@@ -176,30 +176,6 @@
         "src/routes/"
       ],
       "completedAt": "2026-06-30T09:23:49.890Z"
-    },
-    {
-      "id": "labs_connectivity_wave",
-      "priority": "high",
-      "status": "done",
-      "area": "labs",
-      "objectiveNumber": "3.2/3.4/3.5",
-      "problem": "29 objectives have no lab; routing/FHRP gaps remain",
-      "recommendedImprovement": "Labs for 3.2 VLSM, 3.4 OSPF, 3.5 HSRP verify",
-      "riskLevel": "medium",
-      "confidenceScore": 74,
-      "acceptance": [
-        "Add labs for 3.2 VLSM, 3.4 OSPF multi-area, 3.5 HSRP verify (objectives lacking labs)",
-        "npm test && npm run build pass"
-      ],
-      "effort": "M",
-      "scoreImpact": {
-        "labs": 10
-      },
-      "files": [
-        "src/data/ccnaLabsExtended.js",
-        "src/lab/cliEngine.js"
-      ],
-      "completedAt": "2026-06-30T09:23:50.485Z"
     },
     {
       "id": "pwa_offline_curated",

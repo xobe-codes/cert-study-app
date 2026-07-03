@@ -129,8 +129,9 @@ export default function CLIDrillTab({ objective }) {
         ))}
       </div>
 
-      <div style={{ ...styles.card, padding: 0, overflow: 'hidden', border: `1px solid ${COLORS.border}`, marginBottom: 8 }}>
+      <div style={{ ...styles.card, padding: 0, overflow: 'hidden', border: `1px solid ${COLORS.border}`, marginBottom: 8, display: 'flex', flexDirection: 'column', minHeight: 'min(36dvh, 320px)' }}>
         <CiscoTerminal
+          className="cisco-terminal--fluid lab-practice-terminal"
           host={host}
           mode={mode}
           history={history}

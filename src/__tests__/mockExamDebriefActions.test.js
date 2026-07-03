@@ -14,19 +14,24 @@ describe('MockExamDebriefActions', () => {
           },
           trapDebrief: [{ trap: 'Forgetting the implicit deny.', count: 2, objectiveIds: ['5.5'] }],
         },
-        questions: [{ id: '5.5-c-q1', correctIndex: 0 }],
-        responses: { 0: 1 },
+        questions: [
+          { id: '5.5-c-q1', objectiveId: '5.5', correctIndex: 0 },
+          { id: '5.1-q3', objectiveId: '5.1', correctIndex: 1 },
+        ],
+        responses: { 0: 1, 1: 0 },
         domains: [
-          { id: 'security', name: 'Security' },
-          { id: 'access', name: 'Network Access' },
+          { id: 'security', name: 'Security', objectives: [{ id: '5.5' }, { id: '5.1' }] },
+          { id: 'access', name: 'Network Access', objectives: [{ id: '2.1' }] },
         ],
         onOpenTrapDrill: () => {},
         onOpenLab: () => {},
         onStudyDomain: () => {},
+        onSelectObjective: () => {},
       }),
     )
     expect(html).toContain('Next steps')
     expect(html).toContain('Study Security')
     expect(html).toContain('Trap drill')
+    expect(html).toContain('Open weakest topic')
   })
 })

@@ -1825,11 +1825,12 @@ export function QuizTab({
               const enriched = applyAnswerReviewToQuestion(current)
               const trap = inferTrapForChoice(enriched, selected)
               if (!isActionableMissedTrap(trap)) return null
+              const ckuId = current.ckuIds?.[0] || enriched.ckuIds?.[0]
               return (
                 <button
                   type="button"
                   style={{ ...styles.secondaryBtn, marginTop: 10, width: '100%' }}
-                  onClick={() => onOpenTrapDrill({ trapLabel: trap, objectiveId: objective.id })}
+                  onClick={() => onOpenTrapDrill({ trapLabel: trap, objectiveId: objective.id, ckuId })}
                 >
                   Drill this trap →
                 </button>

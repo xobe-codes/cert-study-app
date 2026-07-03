@@ -3,7 +3,7 @@ import { COLORS, styles } from '../../ui/appTheme.js'
 import { getStemReplayLab } from '../stemReplay/stemReplayLabs.js'
 import { resolveTrapDrillCku } from '../trapDrill/trapDrillQuestions.js'
 
-/** Post-mock CTAs — weak domains, trap drill, and stem-replay lab from first miss. */
+/** Post-mock CTAs — weak domains, trap drill, stem-replay lab, and objective deep-links. */
 export default function MockExamDebriefActions({
   report,
   questions,
@@ -12,8 +12,27 @@ export default function MockExamDebriefActions({
   onOpenTrapDrill,
   onOpenLab,
   onStudyDomain,
+  onSelectObjective,
 }) {
   if (!report) return null
+
+  function weakestObjectiveInDomain(domainId) {
+    const domain = domains.find(d => d.id === domainId)
+    if (!domain) return null
+    const stats = {}
+    for (const o of domain.objectives) stats[o.id] = { correct: 0, total: 0 }
+    questions.forEach((q, idx) => {
+      const oid = q.objectiveId
+      if (!oid || !stats[oid]) return
+      stats[oid].total++
+      if (responses[idx] === q.correctIndex) stats[oid].correct++
+    })
+    const ranked = Object.entries(stats)
+      .filter(([, s]) => s.total > 0)
+      .map(([id, s]) => ({ id, pct: s.correct / s.total }))
+      .sort((a, b) => a.pct - b.pct)
+    return ranked[0]?.id || domain.objectives[0]?.id
+  }
 
   const weakDomains = domains
     .map(d => {
@@ -44,20 +63,34 @@ export default function MockExamDebriefActions({
         Target your weakest areas from this session.
       </p>
       {weakDomains.map(d => (
-        <button
-          key={d.id}
-          type="button"
-          style={{ ...styles.secondaryBtn, marginBottom: 8, width: '100%', textAlign: 'left' }}
-          onClick={() => onStudyDomain?.(d.id)}
-        >
-          Study {d.name} — {d.correct}/{d.total} ({d.pct}%)
-        </button>
+        <div key={d.id} style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 8 }}>
+          <button
+            type="button"
+            style={{ ...styles.secondaryBtn, width: '100%', textAlign: 'left' }}
+            onClick={() => onStudyDomain?.(d.id)}
+          >
+            Study {d.name} — {d.correct}/{d.total} ({d.pct}%)
+          </button>
+          {onSelectObjective && (() => {
+            const oid = weakestObjectiveInDomain(d.id)
+            if (!oid) return null
+            return (
+              <button
+                type="button"
+                style={{ ...styles.secondaryBtn, width: '100%', textAlign: 'left', fontSize: 'var(--ccna-type-sm)' }}
+                onClick={() => onSelectObjective(oid)}
+              >
+                Open weakest topic {oid} →
+              </button>
+            )
+          })()}
+        </div>
       ))}
       {trapCku && onOpenTrapDrill && (
         <button
           type="button"
           style={{ ...styles.secondaryBtn, marginBottom: 8, width: '100%', textAlign: 'left' }}
-          onClick={() => onOpenTrapDrill(trapCku.ckuId)}
+          onClick={() => onOpenTrapDrill({ ckuId: trapCku.ckuId, trapLabel: trapCku.trapLabel })}
         >
           Trap drill → {trapCku.trapLabel.slice(0, 60)}
         </button>

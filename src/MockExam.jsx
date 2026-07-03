@@ -49,7 +49,7 @@ function formatSeconds(total) {
   return `${m}:${String(s).padStart(2, '0')}`
 }
 
-export default function MockExam({ onExit, examMode = false, missed = [], onOpenLab, onOpenTrapDrill }) {
+export default function MockExam({ onExit, examMode = false, missed = [], onOpenLab, onOpenTrapDrill, onSelectObjective }) {
   const showNavHint = useNavHint()
   const doneHintFired = useRef(false)
   const [phase, setPhase] = useState('intro') // intro | loading | active | done | review | error
@@ -437,6 +437,7 @@ export default function MockExam({ onExit, examMode = false, missed = [], onOpen
             setIntroTab('domain')
             setPhase('intro')
           }}
+          onSelectObjective={onSelectObjective}
         />
         {report.deferredTips?.length > 0 && <DeferredExamTips tips={report.deferredTips} />}
         {(() => {

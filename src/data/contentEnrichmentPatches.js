@@ -5,6 +5,7 @@ import { FACTORY_FLASHCARD_PATCHES } from './factoryFlashcardPatches.js'
 import { FACTORY_ENGINEER_VIEW_PATCHES } from './factoryEngineerViewPatches.js'
 import { FACTORY_DEPTH_WAVE3_QUESTIONS } from './factoryDepthWave3Questions.js'
 import { FACTORY_DEPTH_WAVE4_QUESTIONS } from './factoryDepthWave4Questions.js'
+import { CONTENT_DEPTH_WAVE3_PATCHES } from './contentDepthWave3Patches.js'
 
 function factoryPatchFor(objectiveId) {
   const traps = FACTORY_TRAP_PATCHES[objectiveId]
@@ -413,6 +414,9 @@ export function getEnrichmentPatchQuestions(objectiveId) {
   const qs = []
   if (factory?.questions?.length) qs.push(...factory.questions)
   if (patch?.questions?.length) qs.push(...patch.questions)
+  if (CONTENT_DEPTH_WAVE3_PATCHES[objectiveId]?.questions?.length) {
+    qs.push(...CONTENT_DEPTH_WAVE3_PATCHES[objectiveId].questions)
+  }
   return qs
 }
 
@@ -421,7 +425,8 @@ export function applyContentEnrichment(base, objectiveId) {
   if (!base) return base
   const factory = factoryPatchFor(objectiveId)
   const patch = CONTENT_ENRICHMENT_PATCHES[objectiveId]
-  if (!factory && !patch) return base
+  const wave3 = CONTENT_DEPTH_WAVE3_PATCHES[objectiveId]
+  if (!factory && !patch && !wave3) return base
   const mergeList = (a, b) => (b?.length ? [...(a || []), ...b] : a)
   let examTraps = base.examTraps
   let flashcards = base.flashcards
@@ -432,6 +437,7 @@ export function applyContentEnrichment(base, objectiveId) {
   if (patch?.flashcards) flashcards = mergeList(flashcards, patch.flashcards)
   if (factory?.questions) questions = mergeList(questions, factory.questions)
   if (patch?.questions) questions = mergeList(questions, patch.questions)
+  if (wave3?.questions) questions = mergeList(questions, wave3.questions)
   return {
     ...base,
     ...(patch?.engineerView || factory?.engineerView
