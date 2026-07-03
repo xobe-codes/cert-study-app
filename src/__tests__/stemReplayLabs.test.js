@@ -3,8 +3,8 @@ import { getStemReplayLab, hasStemReplayLab, stemReplayMapSize } from '../featur
 import { getLab } from '../data/ccnaLabs.js'
 
 describe('stemReplayLabs', () => {
-  it('maps at least 119 high-traffic questions to real labs', () => {
-    expect(stemReplayMapSize()).toBeGreaterThanOrEqual(119)
+  it('maps at least 145 high-traffic questions to real labs', () => {
+    expect(stemReplayMapSize()).toBeGreaterThanOrEqual(145)
   })
 
   it('every new wave-2 mapping resolves via getLab', () => {
@@ -31,6 +31,21 @@ describe('stemReplayLabs', () => {
     expect(getStemReplayLab('obj-3.4-source-q008')?.labId).toBe('LAB-OSPF-ADJ-34')
     expect(getStemReplayLab('obj-5.5-source-q002')?.labId).toBe('LAB-ACL-CONFIG-55')
     expect(getStemReplayLab('obj-5.6-source-q010')?.labId).toBe('LAB-PORTSEC-56')
+  })
+
+  it('maps services config labs for DHCP pool, SNMP, syslog, TFTP, and NTP', () => {
+    const cases = [
+      ['obj-4.3-source-q003', 'LAB-DHCP-POOL-43'],
+      ['obj-4.4-source-q002', 'LAB-SNMP-CONFIG-44'],
+      ['obj-4.5-source-q002', 'LAB-SYSLOG-REMOTE'],
+      ['obj-4.9-source-q003', 'LAB-TFTP-CONFIG-49'],
+      ['obj-4.2-source-q001', 'LAB-NTP-CLIENT'],
+    ]
+    for (const [qid, labId] of cases) {
+      const replay = getStemReplayLab(qid)
+      expect(replay?.labId, qid).toBe(labId)
+      expect(getLab(labId)?.lab.id).toBe(labId)
+    }
   })
 
   it('maps NAT/PAT, trunk, routing, and STP questions to real labs', () => {
