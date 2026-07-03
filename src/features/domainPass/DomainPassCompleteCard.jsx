@@ -37,7 +37,7 @@ function buildShareText() {
 /**
  * Celebration + share card when all blueprint domains are passed.
  */
-export default function DomainPassCompleteCard({ onStartMockExam, compact = false }) {
+export default function DomainPassCompleteCard({ onStartMockExam, onOpenSettings, compact = false }) {
   const [showConfetti, setShowConfetti] = useState(false)
   const [copied, setCopied] = useState(false)
   const [examDays, setExamDays] = useState(null)
@@ -130,7 +130,12 @@ export default function DomainPassCompleteCard({ onStartMockExam, compact = fals
               {examDays != null && examDays <= 14 ? 'Start timed mock →' : 'Full mock exam →'}
             </button>
           )}
-          <button type="button" style={onStartMockExam ? styles.secondaryBtn : styles.primaryBtn} onClick={copyShare}>
+          {examDays == null && onOpenSettings && (
+            <button type="button" style={onStartMockExam ? styles.secondaryBtn : styles.primaryBtn} onClick={onOpenSettings}>
+              Set exam date
+            </button>
+          )}
+          <button type="button" style={styles.secondaryBtn} onClick={copyShare}>
             {copied ? 'Copied!' : 'Copy share text'}
           </button>
         </div>

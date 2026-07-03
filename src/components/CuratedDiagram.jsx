@@ -8,7 +8,7 @@ const DIAGRAM_NODE_COLOR = { router: 'mint', switch: 'purple', subnet: 'sky', pr
 const DIAGRAM_NODE_ICON = { router: 'R', switch: 'S', pc: 'PC', server: 'SV', cloud: '☁', firewall: 'FW', attacker: '!', process: '●', subnet: 'NET', default: '·' }
 const TYPE_SHORT = { router: 'Router', switch: 'Switch', pc: 'PC', server: 'Server', subnet: 'Net', firewall: 'FW', cloud: 'Cloud', process: 'Step', attacker: 'Threat' }
 
-function useCompactViewport(maxWidth = 900) {
+function useCompactViewport(maxWidth = 1024) {
   const [compact, setCompact] = useState(() =>
     typeof window !== 'undefined' && window.matchMedia(`(max-width: ${maxWidth}px)`).matches,
   )

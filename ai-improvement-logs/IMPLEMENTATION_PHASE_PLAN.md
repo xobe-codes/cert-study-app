@@ -5,7 +5,7 @@
 | Track | Goal | Status |
 |-------|------|--------|
 | **A** | Exam-ready core (free path, no AI) | **Done** |
-| **B** | Final polish pass | Pending |
+| **B** | Final polish pass | **Done** |
 | **C** | Deferred (RAG/tutor, premium AI) | Back burner |
 
 ### Track A — Exam-ready core (shipped)
@@ -20,12 +20,16 @@
 
 **Ship gate:** `npm run verify:ship` (unit + build + ship e2e including automation lab smoke)
 
-### Track B — Final polish (next)
+### Track B — Final polish (shipped)
 
-- Full device matrix / airplane-mode QA
-- iPad diagram touch affordances
-- Post-6/6 mock scheduling UX polish
-- Score self-check vs `SCORE_95_TARGET.md`
+| # | Slice | Shipped |
+|---|--------|---------|
+| 1 | **Mobile** — iPad diagram expand e2e + `useCompactViewport(1024)` | ✓ |
+| 2 | **PWA** — `e2e/offline-curated-smoke.spec.js` (airplane mode reload) | ✓ |
+| 3 | **Learning flow** — `ExamReadyBanner` on home 6/6; exam date on boot; Domain Pass settings CTA | ✓ |
+| 4 | **Score** — `SCORE_95_TARGET.md` post–Track A/B self-check | ✓ |
+
+**Ship gate:** `verify:ship` includes offline + diagram iPad smokes
 
 ### Track C — Deferred
 

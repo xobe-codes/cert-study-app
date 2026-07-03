@@ -25,6 +25,7 @@ import { todayStr } from './home/sessionUtils.js'
 import { getSessionStudy, isRecapDismissed, dismissSessionRecap } from './home/sessionRecap.js'
 import { groupMissedByTrap } from './missed/missedTrapGroups.js'
 import DomainPassCompleteCard from './features/domainPass/DomainPassCompleteCard.jsx'
+import ExamReadyBanner from './home/ExamReadyBanner.jsx'
 import {
   HOME_SECTION_GAP,
   homeCard,
@@ -330,7 +331,7 @@ function StudyModeBtn({ onClick, children, primary, disabled }) {
   )
 }
 
-export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onPremiumBlocked, premiumUnlocked = false, onOpenMetrics, onOpenStats, onOpenSettings, onOpenReview, onOpenLabs, onOpenFocus, onOpenTopicFocus, onOpenCommandHub, onOpenStudyLens, onOpenExamTraps, onOpenTrapDrill, onOpenDomainPass, domainPassPassedCount = 0, onOpenSubnet, onOpenRouting, onOpenExtraStudy, commandDrills = {}, theme, onToggleTheme }) {
+export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onPremiumBlocked, premiumUnlocked = false, onOpenMetrics, onOpenStats, onOpenSettings, onOpenReview, onOpenLabs, onOpenFocus, onOpenTopicFocus, onOpenCommandHub, onOpenStudyLens, onOpenExamTraps, onOpenTrapDrill, onOpenDomainPass, domainPassPassedCount = 0, examDate = null, onOpenSubnet, onOpenRouting, onOpenExtraStudy, commandDrills = {}, theme, onToggleTheme }) {
   const [suggestions, setSuggestions] = useState([])
   const [learnerSummary, setLearnerSummary] = useState(null)
   const [retention, setRetention] = useState([])
@@ -418,6 +419,14 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
       </div>
 
       <StudyNextStrip next={studyNext} onSelectObjective={onSelectObjective} onOpenReview={onOpenReview} />
+
+      {domainPassPassedCount === 6 && (
+        <ExamReadyBanner
+          examDate={examDate}
+          onOpenMock={onOpenMock}
+          onOpenSettings={onOpenSettings}
+        />
+      )}
 
       <TrapHeatmapStrip missed={missed} onOpenTrapDrill={onOpenTrapDrill} onOpenMissed={onOpenMissed} />
 

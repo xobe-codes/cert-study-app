@@ -28,7 +28,7 @@ function formatAttemptDate(ts) {
 /**
  * Hub for per-domain CCNA pass attempts — progress meter, timer toggle, domain cards.
  */
-export default function DomainPassHub({ onExit, onStartDomain, onStartMockExam }) {
+export default function DomainPassHub({ onExit, onStartDomain, onStartMockExam, onOpenSettings }) {
   const [records, setRecords] = useState({})
   const [timerOn, setTimerOn] = useState(true)
   const [loaded, setLoaded] = useState(false)
@@ -81,7 +81,7 @@ export default function DomainPassHub({ onExit, onStartDomain, onStartMockExam }
         </p>
       </div>
 
-      {allPassed && <DomainPassCompleteCard onStartMockExam={onStartMockExam} />}
+      {allPassed && <DomainPassCompleteCard onStartMockExam={onStartMockExam} onOpenSettings={onOpenSettings} />}
 
       <div style={homeCard()}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12 }}>

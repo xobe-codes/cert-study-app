@@ -827,11 +827,12 @@ export default function App() {
 
   useEffect(() => {
     (async () => {
-      const [p, m, s, off, code, last, due, onboardDone, premium] = await Promise.all([
+      const [p, m, s, off, code, last, due, onboardDone, premium, examDate] = await Promise.all([
         loadProgress(), loadMissed(), loadStreak(), loadOfflineReadyIds(),
         window.storage.getItem(STORAGE_KEYS.syncCode), window.storage.getItem(STORAGE_KEYS.syncLast),
         countDueQuestions(), window.storage.getItem(STORAGE_KEYS.onboardDone),
         loadPremiumUnlocked(),
+        loadExamDate(),
       ])
       setProgress(p)
       setMissed(m)
@@ -841,6 +842,7 @@ export default function App() {
       setLastSynced(last || null)
       setDueCount(due)
       setPremiumUnlocked(premium)
+      setSettingsExamDate(examDate)
       setLoaded(true)
       flushQuestionFlagQueue().catch(() => {})
       const reduceMotion = await loadReduceMotion()
@@ -1412,6 +1414,7 @@ export default function App() {
             onOpenTrapDrill={openTrapDrill}
             onOpenDomainPass={openDomainPass}
             domainPassPassedCount={domainPassPassedCount}
+            examDate={settingsExamDate}
             onOpenSubnet={() => navigateTo('subnet')}
             onOpenRouting={() => navigateTo('routing')}
             onOpenExtraStudy={() => navigateTo('extrastudy')}
@@ -1594,6 +1597,7 @@ export default function App() {
             onExit={goBack}
             onStartDomain={(id) => setActiveDomainPassId(id)}
             onStartMockExam={() => navigateTo('mock')}
+            onOpenSettings={() => setShowSettings(true)}
           />
         )}
         {view === 'domainpass' && activeDomainPassId && (

@@ -6,6 +6,7 @@ export async function seedOnboarding(page, extra = {}) {
   await page.waitForFunction(() => typeof window.storage?.getItem === 'function')
   await page.evaluate(async (payload) => {
     await window.storage.setItem('ccna_onboard_done_v1', true)
+    await window.storage.setItem('ccna_tour_done_v1', true)
     for (const [key, value] of Object.entries(payload)) {
       await window.storage.setItem(key, value)
     }
