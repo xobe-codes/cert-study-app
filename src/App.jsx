@@ -74,6 +74,9 @@ const CommandHubStudio = lazy(() => import('./commands/CommandHubStudio.jsx'))
 const StudyLensStudio = lazy(() => import('./lens/StudyLensStudio.jsx'))
 import { COMMAND_DRILLS } from './lab/commandDrills.js'
 import CLIDrillTab from './lab/CLIDrillTab.jsx'
+import DomainPassHub from './features/domainPass/DomainPassHub.jsx'
+import DomainPassSession from './features/domainPass/DomainPassSession.jsx'
+import { loadDomainPassRecords, countPassedDomains } from './features/domainPass/domainPassStorage.js'
 import {
   QUIZ_BANK_MIN, MASTERY_GATE,
   loadQuizBank, saveQuizBank, mergeIntoBank, enableSectionReview,
@@ -710,6 +713,7 @@ function parseAppHash() {
   if ([
     'mock', 'metrics', 'stats', 'review', 'missed', 'labs', 'focus', 'tutor',
     'topicfocus', 'commandhub', 'studylens', 'examtraps', 'trapdrill', 'subnet', 'routing', 'extrastudy',
+    'domainpass',
   ].includes(simple)) {
     return { view: simple }
   }
@@ -745,11 +749,13 @@ function AppShell({ view, compactTopChrome, withBottomNav, children }) {
    APP ROOT
    ========================================================================= */
 export default function App() {
-  const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | stats | focus | topicfocus | topicfocussession | commandhub | studylens | examtraps | trapdrill | subnet | routing | extrastudy
+  const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | stats | focus | topicfocus | topicfocussession | commandhub | studylens | examtraps | trapdrill | subnet | routing | extrastudy | domainpass
   const [returnToView, setReturnToView] = useState('home')
   const [topicFocusConfig, setTopicFocusConfig] = useState(null)
   const [examTrapPrefill, setExamTrapPrefill] = useState(null)
   const [trapDrillPrefill, setTrapDrillPrefill] = useState(null)
+  const [activeDomainPassId, setActiveDomainPassId] = useState(null)
+  const [domainPassPassedCount, setDomainPassPassedCount] = useState(0)
   const [selectedObjective, setSelectedObjective] = useState(null)
   const [progress, setProgress] = useState({})
   const [missed, setMissed] = useState([])
@@ -1215,6 +1221,16 @@ export default function App() {
     navigateTo('trapdrill')
   }, [navigateTo])
 
+  const refreshDomainPassCount = useCallback(async () => {
+    const records = await loadDomainPassRecords()
+    setDomainPassPassedCount(countPassedDomains(records, DOMAINS))
+  }, [])
+
+  const openDomainPass = useCallback(() => {
+    setActiveDomainPassId(null)
+    navigateTo('domainpass')
+  }, [navigateTo])
+
   const clearExamTrapPrefill = useCallback(() => setExamTrapPrefill(null), [])
   const clearTrapDrillPrefill = useCallback(() => setTrapDrillPrefill(null), [])
 
@@ -1236,6 +1252,12 @@ export default function App() {
     if (!loaded || view !== 'trapdrill') return
     consumeTrapDrillPrefill()
   }, [loaded, view, consumeTrapDrillPrefill])
+
+  useEffect(() => {
+    if (!loaded) return
+    if (view !== 'home' && view !== 'domainpass') return
+    refreshDomainPassCount()
+  }, [loaded, view, refreshDomainPassCount])
 
   const goBack = useCallback(() => {
     setView(returnToView)
@@ -1391,6 +1413,8 @@ export default function App() {
             onOpenStudyLens={() => navigateTo('studylens')}
             onOpenExamTraps={openExamTraps}
             onOpenTrapDrill={openTrapDrill}
+            onOpenDomainPass={openDomainPass}
+            domainPassPassedCount={domainPassPassedCount}
             onOpenSubnet={() => navigateTo('subnet')}
             onOpenRouting={() => navigateTo('routing')}
             onOpenExtraStudy={() => navigateTo('extrastudy')}
@@ -1494,7 +1518,12 @@ export default function App() {
           <LazyRoute label="Loading lab…">
             <LabView
               bundle={getLab(selectedLab)}
-              onBack={() => setView(labReturn === 'objective' ? 'objective' : 'labs')}
+              onBack={() => {
+                if (labReturn === 'objective') setView('objective')
+                else if (labReturn === 'mock') setView('mock')
+                else if (labReturn === 'domainpass') setView('domainpass')
+                else setView('labs')
+              }}
               celebrate={celebrate}
               haptic={haptic}
             />
@@ -1561,6 +1590,23 @@ export default function App() {
             key={trapDrillPrefill?.ckuId ?? 'all'}
             prefill={trapDrillPrefill}
             onBack={() => { clearTrapDrillPrefill(); goBack() }}
+          />
+        )}
+        {view === 'domainpass' && !activeDomainPassId && (
+          <DomainPassHub
+            onExit={goBack}
+            onStartDomain={(id) => setActiveDomainPassId(id)}
+          />
+        )}
+        {view === 'domainpass' && activeDomainPassId && (
+          <DomainPassSession
+            key={activeDomainPassId}
+            domainId={activeDomainPassId}
+            onExit={() => { setActiveDomainPassId(null); refreshDomainPassCount() }}
+            onOpenTrapDrill={(ckuId) => openTrapDrill({ ckuId })}
+            onOpenLab={(id) => openLab(id, 'domainpass')}
+            examMode={settingsExamMode}
+            missed={missed}
           />
         )}
         {view === 'subnet' && <SubnetPracticeHome onBack={goBack} />}

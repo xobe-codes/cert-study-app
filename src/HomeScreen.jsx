@@ -329,7 +329,7 @@ function StudyModeBtn({ onClick, children, primary, disabled }) {
   )
 }
 
-export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onPremiumBlocked, premiumUnlocked = false, onOpenMetrics, onOpenStats, onOpenSettings, onOpenReview, onOpenLabs, onOpenFocus, onOpenTopicFocus, onOpenCommandHub, onOpenStudyLens, onOpenExamTraps, onOpenTrapDrill, onOpenSubnet, onOpenRouting, onOpenExtraStudy, commandDrills = {}, theme, onToggleTheme }) {
+export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onPremiumBlocked, premiumUnlocked = false, onOpenMetrics, onOpenStats, onOpenSettings, onOpenReview, onOpenLabs, onOpenFocus, onOpenTopicFocus, onOpenCommandHub, onOpenStudyLens, onOpenExamTraps, onOpenTrapDrill, onOpenDomainPass, domainPassPassedCount = 0, onOpenSubnet, onOpenRouting, onOpenExtraStudy, commandDrills = {}, theme, onToggleTheme }) {
   const [suggestions, setSuggestions] = useState([])
   const [learnerSummary, setLearnerSummary] = useState(null)
   const [retention, setRetention] = useState([])
@@ -426,6 +426,49 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
 
       <YourProgressCard progress={progress} missed={missed} readiness={readiness} onOpenMissed={onOpenMissed} onOpenStats={onOpenStats} />
 
+      {onOpenDomainPass && (
+        <button
+          type="button"
+          className="ccna-hover"
+          onClick={onOpenDomainPass}
+          style={{
+            ...homeCard({
+              marginBottom: HOME_SECTION_GAP,
+              width: '100%',
+              textAlign: 'left',
+              cursor: 'pointer',
+              fontFamily: 'inherit',
+              border: `1px solid ${COLORS.purpleBorder}`,
+              background: COLORS.purpleDim,
+            }),
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8, flexWrap: 'wrap', gap: 8 }}>
+            <div style={homeSectionLabel(COLORS.purple)}>DOMAIN PASS: {domainPassPassedCount}/6</div>
+            <span style={{ ...homePill('purple'), fontSize: 'var(--ccna-type-xs)' }}>
+              {Math.round((domainPassPassedCount / 6) * 100)}% complete
+            </span>
+          </div>
+          <div style={{ height: 8, borderRadius: 999, background: COLORS.surface, overflow: 'hidden', marginBottom: 10 }}>
+            <div
+              style={{
+                height: '100%',
+                width: `${Math.round((domainPassPassedCount / 6) * 100)}%`,
+                borderRadius: 999,
+                background: COLORS.purple,
+                transition: 'width .3s ease',
+              }}
+            />
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8 }}>
+            <div style={{ ...homeBodySm, margin: 0 }}>
+              Pass each blueprint domain at 80%+ — adaptive retakes target weak objectives.
+            </div>
+            <span style={{ ...styles.small, color: COLORS.purple, fontWeight: 600, flexShrink: 0 }}>Open →</span>
+          </div>
+        </button>
+      )}
+
       {showNudge && (
         <div style={homeCard({ background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, position: 'relative' })}>
           <button onClick={dismissNudge} style={homeDismissBtn} aria-label="Dismiss">×</button>
@@ -483,6 +526,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         <div style={sectionLabel}>STUDY MODES</div>
         <div className="home-study-grid">
           <StudyModeBtn primary onClick={onOpenMock}>Mock Exam</StudyModeBtn>
+          <StudyModeBtn onClick={onOpenDomainPass}>Domain Pass ({domainPassPassedCount}/6)</StudyModeBtn>
           <StudyModeBtn onClick={onOpenFocus}>Weak Areas</StudyModeBtn>
           <StudyModeBtn onClick={onOpenTopicFocus}>Topic Focus</StudyModeBtn>
           <StudyModeBtn onClick={onOpenCommandHub}>Command Hub</StudyModeBtn>
