@@ -13,6 +13,7 @@ import { WLAN_ENRICHMENT_WAVE5_PATCHES } from './wlanEnrichmentWave5.js'
 import { CONTENT_DEPTH_WAVE5_PATCHES } from './contentDepthWave5Patches.js'
 import { CONTENT_DEPTH_WAVE6_PATCHES } from './contentDepthWave6Patches.js'
 import { CONTENT_DEPTH_WAVE7_PATCHES } from './contentDepthWave7Patches.js'
+import { CONTENT_DEPTH_WAVE8_PATCHES } from './contentDepthWave8Patches.js'
 import { TIER_B_TRAP_WAVE6_PATCHES } from './tierBTrapWave6Patches.js'
 import { TIER_B_TRAP_WAVE7_PATCHES } from './tierBTrapWave7Patches.js'
 import { TIER_B_TRAP_WAVE8_PATCHES } from './tierBTrapWave8Patches.js'
@@ -440,6 +441,9 @@ export function getEnrichmentPatchQuestions(objectiveId) {
   if (CONTENT_DEPTH_WAVE7_PATCHES[objectiveId]?.questions?.length) {
     qs.push(...CONTENT_DEPTH_WAVE7_PATCHES[objectiveId].questions)
   }
+  if (CONTENT_DEPTH_WAVE8_PATCHES[objectiveId]?.questions?.length) {
+    qs.push(...CONTENT_DEPTH_WAVE8_PATCHES[objectiveId].questions)
+  }
   if (WLAN_ENRICHMENT_WAVE5_PATCHES[objectiveId]?.questions?.length) {
     qs.push(...WLAN_ENRICHMENT_WAVE5_PATCHES[objectiveId].questions)
   }
@@ -456,6 +460,7 @@ export function applyContentEnrichment(base, objectiveId) {
   const wave5 = CONTENT_DEPTH_WAVE5_PATCHES[objectiveId]
   const wave6 = CONTENT_DEPTH_WAVE6_PATCHES[objectiveId]
   const wave7 = CONTENT_DEPTH_WAVE7_PATCHES[objectiveId]
+  const wave8 = CONTENT_DEPTH_WAVE8_PATCHES[objectiveId]
   const trapWave4 = TIER_B_TRAP_WAVE4_PATCHES[objectiveId]
   const trapWave5 = TIER_B_TRAP_WAVE5_PATCHES[objectiveId]
   const trapWave6 = TIER_B_TRAP_WAVE6_PATCHES[objectiveId]
@@ -463,7 +468,7 @@ export function applyContentEnrichment(base, objectiveId) {
   const trapWave8 = TIER_B_TRAP_WAVE8_PATCHES[objectiveId]
   const trapWave9 = TIER_B_TRAP_WAVE9_PATCHES[objectiveId]
   const wlanWave5 = WLAN_ENRICHMENT_WAVE5_PATCHES[objectiveId]
-  if (!factory && !patch && !wave3 && !wave4 && !wave5 && !wave6 && !wave7 && !trapWave4 && !trapWave5 && !trapWave6 && !trapWave7 && !trapWave8 && !trapWave9 && !wlanWave5) return base
+  if (!factory && !patch && !wave3 && !wave4 && !wave5 && !wave6 && !wave7 && !wave8 && !trapWave4 && !trapWave5 && !trapWave6 && !trapWave7 && !trapWave8 && !trapWave9 && !wlanWave5) return base
   const mergeList = (a, b) => (b?.length ? [...(a || []), ...b] : a)
   let examTraps = base.examTraps
   let flashcards = base.flashcards
@@ -493,6 +498,7 @@ export function applyContentEnrichment(base, objectiveId) {
   if (wave5?.questions) questions = mergeList(questions, wave5.questions)
   if (wave6?.questions) questions = mergeList(questions, wave6.questions)
   if (wave7?.questions) questions = mergeList(questions, wave7.questions)
+  if (wave8?.questions) questions = mergeList(questions, wave8.questions)
   if (wlanWave5?.questions) questions = mergeList(questions, wlanWave5.questions)
   return {
     ...base,
