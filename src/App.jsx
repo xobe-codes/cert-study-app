@@ -1,50 +1,17 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
-import { getCurated, hasCuratedReading, hasCuratedQuestions, getCuratedQuestions } from './data/ccnaCurated.js'
-import {
-  TYPE_LABEL, SKILL_LABEL, isOrderingQuestion, isMcQuestion, gradeQuestion, correctAnswerLabel,
-  shuffleArrayCopy, randomizeQuestionOrder, computeBankMix, normalizeQuestionForBank, inferSkill, buildMissedEntry,
-} from './questionUtils.js'
-import { getLessonReference, hasLessonReference } from './lesson/knowledgeReference.js'
-import { pickReviewSet, computeCkuCoverage, getObjectiveCkuIds } from './lesson/quizCoverage.js'
-import {
-  READING_TIERS,
-  computeDefaultReadingTier,
-  getReadingTier,
-  readingTierHint,
-  studyMetaToProgress,
-  READING_TIER_KEYS,
-} from './lesson/readingTier.js'
-import {
-  explanationBodyFromReading,
-  explanationBodyFromAi,
-  resolveBigTakeaway,
-  resolveAiTakeaway,
-} from './lesson/explanationFormat.js'
-import VisualAidTab from './features/visual/VisualAidTab.jsx'
 import { preloadCleanBank, getCleanBankStats } from './data/cleanQuestionAdapter.js'
 import { DOMAINS, ALL_OBJECTIVES } from './data/ccnaDomains.js'
-import { PALETTES, COLORS, THEME_CSS, accentColors, styles } from './ui/appTheme.js'
-import { STATIC_COPY } from './ui/staticContentCopy.js'
+import { COLORS, THEME_CSS } from './ui/appTheme.js'
 import { buildAppShellCss } from './ui/appShell.js'
 import { useVisualViewportBottomInset } from './ui/visualViewportInset.js'
-import CuratedStaticBadge from './components/CuratedStaticBadge.jsx'
-import OverflowMarquee from './components/OverflowMarquee.jsx'
-import DeferredExamTips from './components/DeferredExamTips.jsx'
-import { BOOK_REF } from './data/bookRefFull.js'
-import { formatCuratedAttribution } from './curatedDisplay.js'
+import { celebrate, haptic } from './ui/feedbackHelpers.jsx'
 import { STORAGE_KEYS, TRAP_DRILL_PREFILL_EVENT } from './storageKeys.js'
-import McChoices from './components/McChoices.jsx'
-import AnswerReview from './components/AnswerReview.jsx'
-import { QuizRichText, QuestionMeta, OrderingQuestion } from './components/QuizQuestionChrome.jsx'
 import Spinner from './components/Spinner.jsx'
-import ErrorBox from './components/ErrorBox.jsx'
-import { DEFAULT_QUIZ_SESSION_SIZE, MAX_QUIZ_SESSION_SIZE, clampQuizSessionSize, loadQuizSessionSize, saveQuizSessionSize } from './quizSessionConfig.js'
-import { loadDueQuestions, countDueQuestions, REVIEW_SESSION_CAP } from './quiz/srsReview.js'
-import { NavHintProvider, useNavHint } from './components/NavHintProvider.jsx'
+import { DEFAULT_QUIZ_SESSION_SIZE, clampQuizSessionSize, loadQuizSessionSize, saveQuizSessionSize } from './quizSessionConfig.js'
+import { loadDueQuestions, countDueQuestions } from './quiz/srsReview.js'
+import { NavHintProvider } from './components/NavHintProvider.jsx'
 import StudyBlockProvider, { useStudyBlock } from './components/StudyBlockProvider.jsx'
-import SvgConfetti from './components/SvgConfetti.jsx'
 import RouteShell from './components/RouteShell.jsx'
-import { PremiumBlockedShell } from './components/PremiumPreview.jsx'
 import {
   loadPremiumUnlocked,
   savePremiumUnlocked,
@@ -58,10 +25,9 @@ import AppChromeOverlays from './features/shell/AppChromeOverlays.jsx'
 import CoreStudyRoutes from './features/shell/CoreStudyRoutes.jsx'
 import { loadDomainPassRecords, countPassedDomains } from './features/domainPass/domainPassStorage.js'
 import { warmCuratedChunksForOffline } from './offline/warmCuratedChunks.js'
-import {
-  QUIZ_BANK_MIN,
-  loadQuizBank, saveQuizBank, mergeIntoBank,
-} from './quiz/quizBankStorage.js'
+import { packageObjectiveOffline, loadOfflineReadyIds } from './offline/objectivePackaging.js'
+import { loadProgress, saveProgress, loadMissed, saveMissed, loadStreak, saveStreak, bumpStreak } from './storage/appPersistence.js'
+import { parseAppHash, syncAppHash } from './routing/appHashRouting.js'
 import { flushQuestionFlagQueue } from './quiz/questionHealthClient.js'
 import { NAV_HINT_KEYS } from './ui/navHintConfig.js'
 import {
@@ -81,15 +47,6 @@ import {
   loadExamMode,
   saveExamMode,
 } from './settings/settingsActions.js'
-import { applyAnswerReviewToQuestion, inferTrapForChoice } from './answerReviewLogic.js'
-import { groupMissedByTrap } from './missed/missedTrapGroups.js'
-import pkg from '../package.json'
-import {
-  askClaudeJSON, MODELS, QUIZ_SCHEMA, TERMS_SCHEMA, VISUAL_SCHEMA,
-  checkApiReachable,
-} from './ai/claudeClient.js'
-import { computeMastery } from './netUtils.js'
-import { logEvent } from './eventLog.js'
 import { importCcnaJsonFromFile } from './features/export/importCcnaJson.js'
 import { useGlobalSearchHotkey } from './features/search/useGlobalSearchHotkey.js'
 import OfflineBanner from './features/shell/OfflineBanner.jsx'
@@ -97,10 +54,11 @@ import PracticeRoutes from './features/practice/PracticeRoutes.jsx'
 import {
   generateSyncCode, loadSyncBundle, saveSyncBundle, mergeSyncData, pullSync, pushSync,
 } from './features/sync/syncMerge.js'
-import { EXPLAIN_CACHE_KEY, EXPLAIN_PROMPT_SYSTEM, EXPLAIN_SCHEMA } from './tabs/studyConstants.js'
 import { bumpSessionStudy } from './home/sessionRecap.js'
-
-const quizFeedbackA11y = { role: 'status', 'aria-live': 'polite', 'aria-atomic': true }
+import pkg from '../package.json'
+import { checkApiReachable } from './ai/claudeClient.js'
+import { computeMastery } from './netUtils.js'
+import { logEvent } from './eventLog.js'
 
 const PREMIUM_TOAST_MESSAGES = {
   [PREMIUM_FEATURES.tutor]: 'AI Tutor and Study Lens synthesis unlock with supporter access.',
@@ -114,274 +72,6 @@ const PREMIUM_TOAST_MESSAGES = {
 }
 
 
-
-/* =========================================================================
-   PERSISTENCE — all reads/writes go through window.storage
-   ========================================================================= */
-
-// progress shape: { [objectiveId]: { status: 'unseen'|'in_progress'|'mastered', quizScores: [{score,total,date}], lastSeen } }
-async function loadProgress() {
-  const stored = await window.storage.getItem(STORAGE_KEYS.progress)
-  return stored || {}
-}
-async function saveProgress(progress) {
-  await window.storage.setItem(STORAGE_KEYS.progress, progress)
-}
-
-// missed shape: [{ objectiveId, question, choices, correctIndex, explanation, addedAt }]
-async function loadMissed() {
-  const stored = await window.storage.getItem(STORAGE_KEYS.missed)
-  return stored || []
-}
-async function saveMissed(missed) {
-  await window.storage.setItem(STORAGE_KEYS.missed, missed)
-}
-
-// streak shape: { count, lastStudyDate (YYYY-MM-DD) }
-async function loadStreak() {
-  const stored = await window.storage.getItem(STORAGE_KEYS.streak)
-  return stored || { count: 0, lastStudyDate: null }
-}
-async function saveStreak(streak) {
-  await window.storage.setItem(STORAGE_KEYS.streak, streak)
-}
-
-function todayStr() {
-  return new Date().toISOString().slice(0, 10)
-}
-function daysBetween(a, b) {
-  const ms = new Date(b) - new Date(a)
-  return Math.round(ms / 86400000)
-}
-// Call whenever the user does study activity. Returns the updated streak.
-async function bumpStreak() {
-  const streak = await loadStreak()
-  const today = todayStr()
-  if (streak.lastStudyDate === today) return streak
-  if (streak.lastStudyDate) {
-    const diff = daysBetween(streak.lastStudyDate, today)
-    if (diff === 1) streak.count += 1
-    else if (diff > 1) streak.count = 1
-    else streak.count = streak.count || 1
-  } else {
-    streak.count = 1
-  }
-  streak.lastStudyDate = today
-  await saveStreak(streak)
-  return streak
-}
-
-/* =========================================================================
-   MOCK EXAM — domain-weighted question selection
-   ========================================================================= */
-
-/* =========================================================================
-   PROGRESS PRIMITIVES — local, data-driven, no API. Every bar is fed real
-   learner numbers by its caller and carries a clear label.
-   ========================================================================= */
-
-// Skeleton placeholder block (shimmer). width/height accept any CSS length.
-function Skeleton({ width = '100%', height = 14, style }) {
-  return <div className="ccna-skeleton" style={{ width, height, marginBottom: 8, ...style }} />
-}
-
-// Short haptic pulse on supported devices (mobile). Silent no-op elsewhere.
-function haptic(pattern) {
-  try { if (navigator.vibrate) navigator.vibrate(pattern) } catch { /* unsupported */ }
-}
-
-// Lightweight, dependency-free confetti burst (used on mastery). Self-cleans.
-function celebrate() {
-  if (typeof document === 'undefined') return
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-  const colors = ['#EE4540', '#C72B40', '#7F1437', '#baf0fa', '#d4f7d4', '#fcd980']
-  const canvas = document.createElement('canvas')
-  canvas.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9999'
-  canvas.width = window.innerWidth; canvas.height = window.innerHeight
-  document.body.appendChild(canvas)
-  const ctx = canvas.getContext('2d')
-  const N = 110
-  const parts = Array.from({ length: N }, () => ({
-    x: canvas.width / 2, y: canvas.height * 0.35,
-    vx: (Math.random() - 0.5) * 14, vy: Math.random() * -12 - 4,
-    s: Math.random() * 5 + 3, c: colors[(Math.random() * colors.length) | 0],
-    rot: Math.random() * 6.28, vr: (Math.random() - 0.5) * 0.4, life: 1,
-  }))
-  const start = performance.now()
-  function frame(t) {
-    const elapsed = t - start
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    parts.forEach(p => {
-      p.vy += 0.35; p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.life = 1 - elapsed / 1300
-      ctx.save(); ctx.globalAlpha = Math.max(0, p.life); ctx.translate(p.x, p.y); ctx.rotate(p.rot)
-      ctx.fillStyle = p.c; ctx.fillRect(-p.s / 2, -p.s / 2, p.s, p.s * 1.6); ctx.restore()
-    })
-    if (elapsed < 1300) requestAnimationFrame(frame)
-    else canvas.remove()
-  }
-  requestAnimationFrame(frame)
-}
-
-/* =========================================================================
-   OFFLINE PACKAGING
-   Every AI asset (explanation, key terms, visual aid, quiz bank) is cached in
-   window.storage. A topic is "offline-ready" once all four exist locally, after
-   which it works with no network. Packaging pre-generates only what's missing
-   (online required); re-viewing packaged content later costs zero API calls.
-   ========================================================================= */
-const TERMS_CACHE_KEY = 'ccna_terms_cache_v1'
-const TERMS_PROMPT_SYSTEM = `You are a CCNA 200-301 study aid generator. Use the provided reference notes as your primary source; where the notes don't fully cover a detail a CCNA candidate needs, fill the gap with accurate CCNA 200-301 knowledge consistent with the notes. Produce 6-8 key-term flashcards for this objective — the most exam-relevant terms, acronyms, commands, or concepts to know cold.
-
-Respond with ONLY valid JSON (no markdown fences, no commentary), in this exact shape:
-{"cards":[{"term":"...","detail":"..."}]}
-
-"term": a short label, max ~4 words (a word, acronym, command, or short phrase).
-"detail": 1-2 short sentences with the key fact, definition, or syntax.`
-const QUIZ_PROMPT_SYSTEM = `You are a CCNA 200-301 quiz generator. Use the provided reference notes as your primary source; where the notes don't cover a detail needed for a good question, you may draw on accurate broader CCNA 200-301 knowledge consistent with the notes. Write questions at genuine CCNA exam difficulty with 4 choices, short explanations, and tags for type, difficulty, skill, and concept.`
-
-const VISUAL_CACHE_KEY = STORAGE_KEYS.visualCache
-
-async function ensureExplanationCached(objective) {
-  // Curated objectives render from bundled data — no cache entry needed
-  if (hasCuratedReading(objective.id)) return
-  const cache = (await window.storage.getItem(EXPLAIN_CACHE_KEY)) || {}
-  if (cache[objective.id]) return
-  const refNotes = BOOK_REF[objective.id] || ''
-  const data = await askClaudeJSON({
-    system: EXPLAIN_PROMPT_SYSTEM,
-    messages: [{ role: 'user', content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nExplain this objective for a CCNA candidate.` }],
-    max_tokens: 1100, schema: EXPLAIN_SCHEMA, toolName: 'emit_explanation', feature: 'explain',
-  })
-  cache[objective.id] = data
-  await window.storage.setItem(EXPLAIN_CACHE_KEY, cache)
-}
-async function ensureTermsCached(objective) {
-  // Curated objectives serve flashcards from bundled data — no cache entry needed
-  if (getCurated(objective.id)?.flashcards?.length) return
-  const cache = (await window.storage.getItem(TERMS_CACHE_KEY)) || {}
-  if (cache[objective.id]) return
-  const refNotes = BOOK_REF[objective.id] || ''
-  const data = await askClaudeJSON({
-    system: TERMS_PROMPT_SYSTEM,
-    messages: [{ role: 'user', content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nGenerate key-term flashcards for this objective.` }],
-    max_tokens: 700, model: MODELS.fast, schema: TERMS_SCHEMA, toolName: 'emit_terms', feature: 'terms',
-  })
-  if ((data.cards || []).length === 0) throw new Error('Could not generate key terms.')
-  cache[objective.id] = data.cards
-  await window.storage.setItem(TERMS_CACHE_KEY, cache)
-}
-async function ensureVisualCached(objective) {
-  // Curated objectives serve diagrams from bundled data — no cache entry needed
-  if (getCurated(objective.id)?.diagram) return
-  const cache = (await window.storage.getItem(VISUAL_CACHE_KEY)) || {}
-  if (cache[objective.id]) return
-  const refNotes = BOOK_REF[objective.id] || ''
-  const data = await askClaudeJSON({
-    system: VISUAL_PROMPT_SYSTEM,
-    messages: [{ role: 'user', content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nDesign one visual aid for this objective.` }],
-    max_tokens: 700, model: MODELS.fast, schema: VISUAL_SCHEMA, toolName: 'emit_visual', feature: 'visual',
-  })
-  if (!data || !data.type) throw new Error('Could not generate a visual aid.')
-  cache[objective.id] = data
-  await window.storage.setItem(VISUAL_CACHE_KEY, cache)
-}
-async function ensureQuizBankFilled(objective) {
-  let bank = await loadQuizBank()
-  // Seed curated questions first; only call AI if bank is still thin
-  const curatedQs = getCuratedQuestions(objective.id)
-  if (curatedQs.length && (bank[objective.id] || []).length < curatedQs.length) {
-    bank = mergeIntoBank(bank, objective.id, curatedQs)
-    await saveQuizBank(bank)
-  }
-  if ((bank[objective.id] || []).length >= QUIZ_BANK_MIN) return
-  const refNotes = BOOK_REF[objective.id] || ''
-  const data = await askClaudeJSON({
-    system: QUIZ_PROMPT_SYSTEM,
-    messages: [{ role: 'user', content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nGenerate 8 multiple-choice questions for this objective.` }],
-    max_tokens: 2200, model: MODELS.fast, schema: QUIZ_SCHEMA, toolName: 'emit_quiz', feature: 'quiz',
-  })
-  bank = mergeIntoBank(bank, objective.id, data.questions || [])
-  await saveQuizBank(bank)
-}
-// Generates whatever is missing so the topic is fully usable offline.
-async function packageObjectiveOffline(objective) {
-  await ensureExplanationCached(objective)
-  await ensureTermsCached(objective)
-  await ensureVisualCached(objective)
-  await ensureQuizBankFilled(objective)
-  logEvent('user_packaged_offline', { objectiveId: objective.id })
-}
-// Returns the Set of objective ids whose four assets are all cached locally.
-// Curated objectives are always "ready" since their content is bundled.
-async function loadOfflineReadyIds() {
-  const [ex, tm, vs, bank] = await Promise.all([
-    window.storage.getItem(EXPLAIN_CACHE_KEY),
-    window.storage.getItem(TERMS_CACHE_KEY),
-    window.storage.getItem(VISUAL_CACHE_KEY),
-    loadQuizBank(),
-  ])
-  const ids = ALL_OBJECTIVES.filter(o => {
-    const isCurated = hasCuratedReading(o.id)
-    const hasTerms = getCurated(o.id)?.flashcards?.length || (tm && tm[o.id])
-    const hasVisual = getCurated(o.id)?.diagram || (vs && vs[o.id])
-    const hasExplain = isCurated || (ex && ex[o.id])
-    const hasBank = getCuratedQuestions(o.id).length >= QUIZ_BANK_MIN || (bank[o.id] || []).length >= QUIZ_BANK_MIN
-    return hasExplain && hasTerms && hasVisual && hasBank
-  }).map(o => o.id)
-  return new Set(ids)
-}
-
-
-function parseAppHash() {
-  const raw = window.location.hash.replace(/^#/, '')
-  if (!raw) return null
-  const objMatch = raw.match(/^\/objective\/([^/]+)(?:\/(.+))?$/)
-  if (objMatch) {
-    const id = decodeURIComponent(objMatch[1])
-    const tab = objMatch[2] ? decodeURIComponent(objMatch[2]) : null
-    const obj = ALL_OBJECTIVES.find(o => o.id === id)
-    if (!obj) return null
-    const domain = DOMAINS.find(d => d.objectives.some(o => o.id === id))
-    if (!domain) return null
-    return {
-      view: 'objective',
-      objective: {
-        ...obj,
-        domainId: domain.id,
-        domainName: domain.name,
-        accent: domain.accent,
-        ...(tab ? { __initialTab: tab } : {}),
-      },
-    }
-  }
-  const simple = raw.replace(/^\//, '')
-  // topicfocussession needs live config (topicFocusConfig) — restore picker on refresh instead.
-  if (simple === 'topicfocussession') return { view: 'topicfocus' }
-  if ([
-    'mock', 'mockinterview', 'metrics', 'stats', 'review', 'missed', 'labs', 'focus', 'tutor',
-    'topicfocus', 'commandhub', 'studylens', 'examtraps', 'trapdrill', 'subnet', 'routing', 'extrastudy',
-    'domainpass',
-  ].includes(simple)) {
-    return { view: simple }
-  }
-  return null
-}
-
-function syncAppHash(view, objective) {
-  if (typeof window === 'undefined') return
-  const base = window.location.pathname + window.location.search
-  let next = ''
-  if (view === 'objective' && objective) {
-    const tab = objective.__initialTab
-    next = tab ? `#/objective/${objective.id}/${encodeURIComponent(tab)}` : `#/objective/${objective.id}`
-  } else if (view !== 'home' && view !== 'onboarding' && view !== 'lab') {
-    next = `#/${view}`
-  }
-  const target = next ? base + next : base
-  if (window.location.pathname + window.location.search + window.location.hash !== target && (next || window.location.hash)) {
-    window.history.replaceState(null, '', target)
-  }
-}
 
 /* =========================================================================
    APP SHELL — study-block aware layout wrapper

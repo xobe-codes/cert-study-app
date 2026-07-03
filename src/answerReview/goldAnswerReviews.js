@@ -22,6 +22,7 @@ import { BATCH18_GOLD } from './goldAnswerReviewsBatch18.js'
 import { BATCH19_GOLD } from './goldAnswerReviewsBatch19.js'
 import { BATCH20_GOLD } from './goldAnswerReviewsBatch20.js'
 import { BATCH21_GOLD } from './goldAnswerReviewsBatch21.js'
+import { BATCH22_GOLD } from './goldAnswerReviewsBatch22.js'
 import { HIGH_TRAFFIC_GOLD } from './goldAnswerReviewsHighTraffic.js'
 import { WLAN_58_GOLD } from './goldAnswerReviewsWlan58.js'
 
@@ -122,6 +123,7 @@ export const GOLD_ANSWER_REVIEWS = {
   ...BATCH19_GOLD,
   ...BATCH20_GOLD,
   ...BATCH21_GOLD,
+  ...BATCH22_GOLD,
 }
 
 export function goldAnswerReviewFor(questionId) {

@@ -19,7 +19,6 @@ export const STUDY_QUIZ_TAB_IMPORTS = [
 export const APP_SRS_IMPORTS = [
   { symbol: 'loadDueQuestions', from: './quiz/srsReview.js' },
   { symbol: 'countDueQuestions', from: './quiz/srsReview.js' },
-  { symbol: 'REVIEW_SESSION_CAP', from: './quiz/srsReview.js' },
 ]
 
 function escapeRe(s) {
