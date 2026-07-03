@@ -1,58 +1,36 @@
-import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
-import { preloadCleanBank, getCleanBankStats } from './data/cleanQuestionAdapter.js'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { DOMAINS, ALL_OBJECTIVES } from './data/ccnaDomains.js'
 import { useVisualViewportBottomInset } from './ui/visualViewportInset.js'
 import { celebrate, haptic } from './ui/feedbackHelpers.jsx'
 import { STORAGE_KEYS, TRAP_DRILL_PREFILL_EVENT } from './storageKeys.js'
 import Spinner from './components/Spinner.jsx'
-import { DEFAULT_QUIZ_SESSION_SIZE, clampQuizSessionSize, loadQuizSessionSize, saveQuizSessionSize } from './quizSessionConfig.js'
-import { loadDueQuestions, countDueQuestions } from './quiz/srsReview.js'
 import { NavHintProvider } from './components/NavHintProvider.jsx'
 import StudyBlockProvider from './components/StudyBlockProvider.jsx'
 import RouteShell from './components/RouteShell.jsx'
 import AppShell from './features/shell/AppShell.jsx'
 import AppShellStyles from './features/shell/AppShellStyles.jsx'
 import {
-  loadPremiumUnlocked,
   savePremiumUnlocked,
   logPremiumBlocked,
   PREMIUM_FEATURES,
-  PREMIUM_COMING_SOON_LABEL,
 } from './premium/premiumFeatures.js'
 import BottomNav from './components/BottomNav.jsx'
 import StudyModeRoutes from './features/study/StudyModeRoutes.jsx'
 import AppChromeOverlays from './features/shell/AppChromeOverlays.jsx'
 import CoreStudyRoutes from './features/shell/CoreStudyRoutes.jsx'
 import { loadDomainPassRecords, countPassedDomains } from './features/domainPass/domainPassStorage.js'
-import { warmCuratedChunksForOffline } from './offline/warmCuratedChunks.js'
-import { packageObjectiveOffline, loadOfflineReadyIds } from './offline/objectivePackaging.js'
-import { loadProgress, saveProgress, loadMissed, saveMissed, loadStreak, saveStreak, bumpStreak } from './storage/appPersistence.js'
+import { packageObjectiveOffline } from './offline/objectivePackaging.js'
+import { saveProgress, saveMissed, bumpStreak } from './storage/appPersistence.js'
 import { parseAppHash, syncAppHash } from './routing/appHashRouting.js'
-import { flushQuestionFlagQueue } from './quiz/questionHealthClient.js'
-import { NAV_HINT_KEYS } from './ui/navHintConfig.js'
-import {
-  loadExamDate,
-  saveExamDate,
-  clearExamDate,
-  loadReduceMotion,
-  saveReduceMotion,
-  applyReduceMotionPreference,
-  clearTutorChat,
-  clearAiCaches,
-  resetStudyProgress,
-  loadQuizSessionSizePref,
-  saveQuizSessionSizePref,
-  loadExamMode,
-  saveExamMode,
-} from './settings/settingsActions.js'
 import { useGlobalSearchHotkey } from './features/search/useGlobalSearchHotkey.js'
 import { useAppSync } from './features/sync/useAppSync.js'
-import { useAppOnboarding, resolveOnboardingBootstrap } from './features/onboarding/useAppOnboarding.js'
+import { useAppOnboarding } from './features/onboarding/useAppOnboarding.js'
+import { useAppBootstrap } from './features/bootstrap/useAppBootstrap.js'
+import { useAppSettings } from './features/settings/useAppSettings.js'
 import OfflineBanner from './features/shell/OfflineBanner.jsx'
 import PracticeRoutes from './features/practice/PracticeRoutes.jsx'
 import { bumpSessionStudy } from './home/sessionRecap.js'
 import pkg from '../package.json'
-import { checkApiReachable } from './ai/claudeClient.js'
 import { computeMastery } from './netUtils.js'
 import { logEvent } from './eventLog.js'
 
@@ -73,7 +51,7 @@ const PREMIUM_TOAST_MESSAGES = {
    APP ROOT
    ========================================================================= */
 export default function App() {
-  const [view, setView] = useState('home') // home | objective | mock | mockinterview | missed | tutor | ...
+  const [view, setView] = useState('home')
   const [returnToView, setReturnToView] = useState('home')
   const [topicFocusConfig, setTopicFocusConfig] = useState(null)
   const [examTrapPrefill, setExamTrapPrefill] = useState(null)
@@ -83,34 +61,49 @@ export default function App() {
   const [domainPassRecords, setDomainPassRecords] = useState({})
   const [mockDomainPrefill, setMockDomainPrefill] = useState(null)
   const [selectedObjective, setSelectedObjective] = useState(null)
-  const [progress, setProgress] = useState({})
-  const [missed, setMissed] = useState([])
-  const [streak, setStreak] = useState({ count: 0, lastStudyDate: null })
-  const [apiOnline, setApiOnline] = useState(true)
   const [showExport, setShowExport] = useState(false)
-  const [loaded, setLoaded] = useState(false)
-  const [offlineReady, setOfflineReady] = useState(() => new Set())
-  const [packagingId, setPackagingId] = useState(null) // objective id currently being packaged
+  const [packagingId, setPackagingId] = useState(null)
   const [showSync, setShowSync] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
-  const [settingsExamDate, setSettingsExamDate] = useState(null)
-  const [settingsQuizSize, setSettingsQuizSize] = useState(5)
-  const [settingsReduceMotion, setSettingsReduceMotion] = useState(false)
-  const [settingsExamMode, setSettingsExamMode] = useState(false)
-  const [cleanBankStats, setCleanBankStats] = useState({ objectives: 0, questions: 0, genericExamTips: 0 })
   const mainRef = useRef(null)
   const homeScrollRef = useRef(0)
   const prevViewRef = useRef('home')
-  const [dueCount, setDueCount] = useState(0)
   const [openDomain, setOpenDomain] = useState(null)
   const [selectedLab, setSelectedLab] = useState(null)
-  const [labReturn, setLabReturn] = useState('labs') // where the lab's Back goes
+  const [labReturn, setLabReturn] = useState('labs')
   const openLab = useCallback((labId, from = 'labs') => { setSelectedLab(labId); setLabReturn(from); setView('lab') }, [])
-  const [theme, setTheme] = useState(() =>
-    (typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme')) || 'dark')
-  const [premiumUnlocked, setPremiumUnlocked] = useState(false)
   const [premiumToast, setPremiumToast] = useState(null)
+
+  const {
+    progress, setProgress,
+    missed, setMissed,
+    streak, setStreak,
+    loaded,
+    offlineReady,
+    dueCount, setDueCount,
+    premiumUnlocked, setPremiumUnlocked,
+    apiOnline,
+    theme, toggleTheme,
+    refreshOffline,
+    refreshDue,
+  } = useAppBootstrap({ setView, setReturnToView, setSelectedObjective })
+
+  const {
+    settingsExamDate,
+    settingsQuizSize,
+    settingsReduceMotion,
+    settingsExamMode,
+    cleanBankStats,
+    handleSaveExamDate,
+    handleClearExamDate,
+    handleQuizSessionSizeChange,
+    handleReduceMotionChange,
+    handleExamModeChange,
+    handleClearTutorChat,
+    handleClearAiCaches,
+    handleResetProgress,
+  } = useAppSettings({ showSettings, loaded, setProgress, setMissed, setStreak, setDueCount, refreshOffline })
 
   const handlePremiumBlocked = useCallback((feature, source, extra) => {
     logPremiumBlocked(feature, source, extra)
@@ -120,75 +113,7 @@ export default function App() {
   const handleTogglePremium = useCallback(async (on) => {
     await savePremiumUnlocked(on)
     setPremiumUnlocked(!!on)
-  }, [])
-
-  // Flip the theme: update the root attribute (re-themes instantly via CSS
-  // vars) and persist the choice. Available from a fixed control at all times.
-  const toggleTheme = useCallback(() => {
-    setTheme(prev => {
-      const next = prev === 'dark' ? 'light' : 'dark'
-      document.documentElement.setAttribute('data-theme', next)
-      const meta = document.querySelector('meta[name="theme-color"]')
-      if (meta) meta.setAttribute('content', next === 'dark' ? '#2a1229' : '#f5f0f8')
-      window.storage.setItem(STORAGE_KEYS.theme, next)
-      return next
-    })
-  }, [])
-
-  // Preload clean-question chunk during idle time so first quiz/mock is instant.
-  useEffect(() => {
-    const run = () => { preloadCleanBank().catch(() => {}) }
-    if (typeof requestIdleCallback === 'function') {
-      const id = requestIdleCallback(run, { timeout: 4000 })
-      return () => cancelIdleCallback(id)
-    }
-    const t = setTimeout(run, 1500)
-    return () => clearTimeout(t)
-  }, [])
-
-  useEffect(() => {
-    (async () => {
-      const [p, m, s, off, due, premium, examDate] = await Promise.all([
-        loadProgress(), loadMissed(), loadStreak(), loadOfflineReadyIds(),
-        countDueQuestions(), loadPremiumUnlocked(),
-        loadExamDate(),
-      ])
-      setProgress(p)
-      setMissed(m)
-      setStreak(s)
-      setOfflineReady(off)
-      setDueCount(due)
-      setPremiumUnlocked(premium)
-      setSettingsExamDate(examDate)
-      setLoaded(true)
-      flushQuestionFlagQueue().catch(() => {})
-      const reduceMotion = await loadReduceMotion()
-      applyReduceMotionPreference(reduceMotion)
-      setSettingsReduceMotion(reduceMotion)
-      setSettingsExamMode(await loadExamMode())
-      const onboardingView = await resolveOnboardingBootstrap(p)
-      if (onboardingView) {
-        setView(onboardingView)
-      } else if (Object.keys(p).length > 0) {
-        const hashRoute = parseAppHash()
-        if (hashRoute?.objective) {
-          setReturnToView('home')
-          setSelectedObjective(hashRoute.objective)
-          setView('objective')
-        } else if (hashRoute?.view) {
-          setReturnToView('home')
-          setView(hashRoute.view)
-        }
-      }
-      const updatedStreak = await bumpStreak()
-      setStreak(updatedStreak)
-      warmCuratedChunksForOffline()
-    })()
-  }, [])
-
-  const refreshOffline = useCallback(async () => {
-    setOfflineReady(await loadOfflineReadyIds())
-  }, [])
+  }, [setPremiumUnlocked])
 
   const {
     syncCode,
@@ -214,71 +139,6 @@ export default function App() {
     skipTour,
     showTourAgain,
   } = useAppOnboarding({ loaded, view, setView, setProgress })
-
-  useEffect(() => {
-    if (!showSettings) return
-    let cancelled = false
-    ;(async () => {
-      const [exam, quiz, examMode] = await Promise.all([
-        loadExamDate(),
-        loadQuizSessionSizePref(),
-        loadExamMode(),
-      ])
-      if (!cancelled) {
-        setSettingsExamDate(exam)
-        setSettingsQuizSize(quiz)
-        setSettingsExamMode(examMode)
-      }
-      await preloadCleanBank()
-      if (!cancelled) setCleanBankStats(getCleanBankStats())
-    })()
-    return () => { cancelled = true }
-  }, [showSettings])
-
-  const handleSaveExamDate = useCallback(async (iso) => {
-    const saved = await saveExamDate(iso)
-    setSettingsExamDate(saved)
-  }, [])
-
-  const handleClearExamDate = useCallback(async () => {
-    await clearExamDate()
-    setSettingsExamDate(null)
-  }, [])
-
-  const handleQuizSessionSizeChange = useCallback(async (size) => {
-    const saved = await saveQuizSessionSizePref(size)
-    setSettingsQuizSize(saved)
-  }, [])
-
-  const handleReduceMotionChange = useCallback(async (on) => {
-    await saveReduceMotion(on)
-    setSettingsReduceMotion(on)
-  }, [])
-
-  const handleExamModeChange = useCallback(async (on) => {
-    await saveExamMode(on)
-    setSettingsExamMode(on)
-  }, [])
-
-  const handleClearTutorChat = useCallback(() => clearTutorChat(), [])
-
-  const handleClearAiCaches = useCallback(async () => {
-    await clearAiCaches()
-    await refreshOffline()
-  }, [refreshOffline])
-
-  const handleResetProgress = useCallback(async () => {
-    await resetStudyProgress()
-    setProgress({})
-    setMissed([])
-    setStreak({ count: 0, lastStudyDate: null })
-    setDueCount(0)
-    await refreshOffline()
-  }, [refreshOffline])
-
-  const refreshDue = useCallback(async () => {
-    setDueCount(await countDueQuestions())
-  }, [])
 
   // Recompute the due-review count whenever we land back on Home.
   useEffect(() => { if (view === 'home') refreshDue() }, [view, refreshDue])

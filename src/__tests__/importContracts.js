@@ -8,6 +8,8 @@ export const APP_IMPORTS = [
   { symbol: 'PracticeRoutes', from: './features/practice/PracticeRoutes.jsx' },
   { symbol: 'useAppSync', from: './features/sync/useAppSync.js' },
   { symbol: 'useAppOnboarding', from: './features/onboarding/useAppOnboarding.js' },
+  { symbol: 'useAppBootstrap', from: './features/bootstrap/useAppBootstrap.js' },
+  { symbol: 'useAppSettings', from: './features/settings/useAppSettings.js' },
 ]
 
 export const STUDY_QUIZ_TAB_IMPORTS = [
@@ -21,8 +23,7 @@ export const STUDY_QUIZ_TAB_IMPORTS = [
 ]
 
 export const APP_SRS_IMPORTS = [
-  { symbol: 'loadDueQuestions', from: './quiz/srsReview.js' },
-  { symbol: 'countDueQuestions', from: './quiz/srsReview.js' },
+  { symbol: 'countDueQuestions', from: '../../quiz/srsReview.js', file: 'features/bootstrap/useAppBootstrap.js' },
 ]
 
 function escapeRe(s) {

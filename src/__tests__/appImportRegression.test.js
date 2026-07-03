@@ -21,9 +21,10 @@ describe('App.jsx import regression', () => {
     })
   }
 
-  for (const { symbol, from } of APP_SRS_IMPORTS) {
+  for (const { symbol, from, file } of APP_SRS_IMPORTS) {
     it(`imports ${symbol} from ${from}`, () => {
-      expect(hasNamedImport(appSource, symbol, from)).toBe(true)
+      const source = file ? readFileSync(resolve(ROOT, file), 'utf8') : appSource
+      expect(hasNamedImport(source, symbol, from)).toBe(true)
     })
   }
 
