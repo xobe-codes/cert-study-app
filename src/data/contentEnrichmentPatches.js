@@ -22,15 +22,24 @@ import { TIER_B_TRAP_WAVE9_PATCHES } from './tierBTrapWave9Patches.js'
 import { TIER_B_TRAP_WAVE10_PATCHES } from './tierBTrapWave10Patches.js'
 import { TIER_B_TRAP_WAVE11_PATCHES } from './tierBTrapWave11Patches.js'
 import { FACTORY_ENGINEER_VIEW_WAVE3_SUPPLEMENTS } from './factoryEngineerViewPatchesWave3.js'
+import { FACTORY_ENGINEER_VIEW_WAVE4_SUPPLEMENTS } from './factoryEngineerViewPatchesWave4.js'
+
+const ENGINEER_VIEW_WAVE_SUPPLEMENTS = [
+  FACTORY_ENGINEER_VIEW_WAVE3_SUPPLEMENTS,
+  FACTORY_ENGINEER_VIEW_WAVE4_SUPPLEMENTS,
+]
 
 function augmentEngineerView(ev, objectiveId) {
   if (!ev) return ev
-  const sup = FACTORY_ENGINEER_VIEW_WAVE3_SUPPLEMENTS[objectiveId]
-  if (!sup?.verifyCommands?.length) return ev
-  return {
-    ...ev,
-    verifyCommands: [...(ev.verifyCommands || []), ...sup.verifyCommands],
+  let verifyCommands = [...(ev.verifyCommands || [])]
+  for (const wave of ENGINEER_VIEW_WAVE_SUPPLEMENTS) {
+    const sup = wave[objectiveId]
+    if (sup?.verifyCommands?.length) {
+      verifyCommands = [...verifyCommands, ...sup.verifyCommands]
+    }
   }
+  if (verifyCommands.length === (ev.verifyCommands || []).length) return ev
+  return { ...ev, verifyCommands }
 }
 function factoryPatchFor(objectiveId) {
   const traps = FACTORY_TRAP_PATCHES[objectiveId]

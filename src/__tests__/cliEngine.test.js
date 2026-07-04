@@ -13,6 +13,7 @@ import {
   CLI_ROUTE_31_SHOW_OUTPUT,
   CLI_ROUTE_32_SHOW_OUTPUT,
   CLI_OSPF_VERIFY_34_SHOW_OUTPUT,
+  CLI_HSRP_VERIFY_35_SHOW_OUTPUT,
 } from '../lab/cliEngine.js'
 import { labProgress } from '../data/ccnaLabs.js'
 
@@ -428,5 +429,18 @@ describe('cliEngine', () => {
     })
     expect(r.newlyCompleted).toEqual([0])
     expect(r.lines.some(l => l.text.includes('FULL'))).toBe(true)
+  })
+
+  it('lab_35_hsrp_verify show standby brief returns Active', () => {
+    const r = processCliLine({
+      raw: 'show standby brief',
+      mode: 'priv',
+      host: 'R1',
+      objectives: [{ answer: ['show standby brief'] }],
+      completed: [false],
+      showOutput: CLI_HSRP_VERIFY_35_SHOW_OUTPUT,
+    })
+    expect(r.newlyCompleted).toEqual([0])
+    expect(r.lines.some(l => l.text.includes('Active'))).toBe(true)
   })
 })

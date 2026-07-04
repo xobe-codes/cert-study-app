@@ -255,6 +255,30 @@ Gi0/0        1     0               10.0.12.1/30     2     BDR   1/1
 Gi0/1        1     0               10.0.1.1/24      1     DR    0/0`,
 }
 
+/** HSRP verify outputs for LAB-HSRP-VERIFY-35 (objective 3.5). */
+export const CLI_HSRP_VERIFY_35_SHOW_OUTPUT = {
+  'show standby brief': `                     P indicates configured to preempt.
+                     |
+Interface   Grp  Pri P State   Active          Standby         Virtual IP
+Gi0/0       1    150 P Active  local           192.168.1.3     192.168.1.1`,
+  'show standby': `GigabitEthernet0/0 - Group 1
+  State is Active
+  5 state changes, last state change 00:12:30
+  Virtual IP address is 192.168.1.1
+  Active virtual MAC address is 0000.0c07.ac01
+  Local virtual MAC address is 0000.0c07.ac01 (bia 0000.0c07.ac01)
+  Hello time 3 sec, hold time 10 sec
+  Next hello sent in 1.892 secs
+  Preemption enabled
+  Active router is local
+  Standby router is 192.168.1.3, priority 100
+  Priority 150 (configured 150)
+  Group name is "hsrp-Gi0/0-1" (default)`,
+  'show ip interface brief': `Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0     192.168.1.2     YES manual up                    up
+GigabitEthernet0/1     unassigned      YES unset  administratively down down`,
+}
+
 export function cliNavTarget(norm) {
   if (/^(enable|en)$/.test(norm)) return { to: 'priv', from: ['user', 'priv'] }
   if (/^disable$/.test(norm)) return { to: 'user', from: ['priv'] }

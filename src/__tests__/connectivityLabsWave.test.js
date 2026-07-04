@@ -24,5 +24,8 @@ describe('labs_connectivity_wave', () => {
     const ids = labsForObjective('3.5').map(l => l.id)
     expect(ids).toContain('LAB-HSRP-GATEWAY')
     expect(ids).toContain('LAB-HSRP-VERIFY-35')
+    const lab = getLab('LAB-HSRP-VERIFY-35')?.lab
+    expect(lab?.interpretOnly).toBe(true)
+    expect(lab?.cliShowOutput).toBeTruthy()
   })
 })

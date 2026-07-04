@@ -1,6 +1,6 @@
 /* Extended CCNA labs — guided config gaps + troubleshooting scenarios. */
 
-import { CLI_ROUTE_32_SHOW_OUTPUT, CLI_OSPF_VERIFY_34_SHOW_OUTPUT } from '../lab/cliEngine.js'
+import { CLI_ROUTE_32_SHOW_OUTPUT, CLI_OSPF_VERIFY_34_SHOW_OUTPUT, CLI_HSRP_VERIFY_35_SHOW_OUTPUT } from '../lab/cliEngine.js'
 
 const LAB_SOURCES = {
   workbook: 'CCNA in 60 Days — Lab Workbook (Browning)',
@@ -1702,11 +1702,12 @@ const LAB_HSRP_VERIFY_35 = {
   objectiveId: '3.5',
   ckuIds: ['CKU-HSRP'],
   labType: 'guided',
+  interpretOnly: true,
   difficulty: 'beginner',
   estimatedTimeMinutes: 8,
   tools: ['Packet Tracer', 'GNS3'],
   examRelevance: 'core',
-  scenario: 'R1 and R2 are configured with HSRP group 1 virtual IP 192.168.1.1/24 on Gi0/0. R1 should be Active (priority 150, preempt); R2 Standby. Verify roles without changing configuration.',
+  scenario: 'R1 and R2 are configured with HSRP group 1 virtual IP 192.168.1.1/24 on Gi0/0. R1 should be Active (priority 150, preempt); R2 Standby. HSRP is pre-loaded — verify roles and virtual IP without changing configuration.',
   learningGoals: [
     'Read Active/Standby state from show standby brief',
     'Confirm virtual IP and group number match on both routers',
@@ -1719,10 +1720,10 @@ const LAB_HSRP_VERIFY_35 = {
       expectedCommands: ['show standby brief'] },
     { id: 't2', order: 2, title: 'HSRP detail on R1', device: 'R1', instruction: 'Run show standby — confirm priority 150 and preempt enabled (P flag).',
       expectedCommands: ['show standby'] },
-    { id: 't3', order: 3, title: 'HSRP summary on R2', device: 'R2', instruction: 'On R2, run show standby brief — Gi0/0 group 1 should be Standby with the same virtual IP.',
-      expectedCommands: ['show standby brief'] },
+    { id: 't3', order: 3, title: 'Physical vs virtual IP', device: 'R1', instruction: 'Run show ip interface brief — physical Gi0/0 is 192.168.1.2; hosts use virtual 192.168.1.1 as default gateway.',
+      expectedCommands: ['show ip interface brief'] },
   ],
-  verificationCommands: ['show standby brief', 'show standby'],
+  verificationCommands: ['show standby brief', 'show standby', 'show ip interface brief'],
   successCriteria: [
     'R1 Active, R2 Standby for group 1',
     'Virtual IP 192.168.1.1 on both routers',
@@ -1739,6 +1740,7 @@ const LAB_HSRP_VERIFY_35 = {
   ],
   source: { name: LAB_SOURCES.blueprint, chapter: '3.5 HSRP verify', confidence: 0.9 },
   metadata: { version: '1', status: 'validated', confidence: 0.9 },
+  cliShowOutput: CLI_HSRP_VERIFY_35_SHOW_OUTPUT,
 }
 const TOPO_HSRP_VERIFY_35 = { id: 'TOPO-HSRP-VERIFY-35', title: 'HSRP verify topology', objectiveId: '3.5',
   nodes: [{ id: 'r1', label: 'R1 Active', type: 'router', x: 30, y: 40 }, { id: 'r2', label: 'R2 Standby', type: 'router', x: 70, y: 40 }, { id: 'pc', label: 'GW 192.168.1.1', type: 'pc', x: 50, y: 80 }],
@@ -1746,7 +1748,7 @@ const TOPO_HSRP_VERIFY_35 = { id: 'TOPO-HSRP-VERIFY-35', title: 'HSRP verify top
 const VALIDATOR_HSRP_VERIFY_35 = { labId: 'LAB-HSRP-VERIFY-35', requiredCommands: [
   { device: 'R1', command: 'show standby brief' },
   { device: 'R1', command: 'show standby' },
-  { device: 'R2', command: 'show standby brief' },
+  { device: 'R1', command: 'show ip interface brief' },
 ], verificationChecks: [
   { id: 'v1', device: 'R1', command: 'show standby brief', expectedResult: 'Active', passCondition: 'R1 is active gateway' },
 ] }
