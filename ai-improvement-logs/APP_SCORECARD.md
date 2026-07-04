@@ -9,10 +9,10 @@
 | Learning flow | 92 | OK |
 | Engineer perspective | 97 | OK |
 | CLI verification | 96 | OK |
-| Exam traps | 83 | Watch |
+| Exam traps | 93 | OK |
 | Lab coverage | 88 | Watch |
 | Maintainability | 92 | OK |
-| **Overall** | **92** | |
+| **Overall** | **93** | |
 
 Tier breakdown: A=53, B=0, C=0.
 

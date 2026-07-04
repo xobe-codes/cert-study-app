@@ -1,4 +1,15 @@
 import { getLab } from '../../data/ccnaLabs.js'
+import { getInterpretAlternate } from '../../data/labTierStrategy.js'
+
+/** Prefer interpret-only / lab-lite target for stem-replay CTAs. */
+export function resolveStemReplayLabId(rawLabId) {
+  if (!rawLabId) return null
+  const bundle = getLab(rawLabId)
+  if (bundle?.lab?.interpretOnly) return rawLabId
+  const alt = getInterpretAlternate(rawLabId)
+  if (alt && getLab(alt)?.lab) return alt
+  return rawLabId
+}
 
 /** High-traffic practice question → hands-on lab replay. */
 const STEM_REPLAY_MAP = {
@@ -179,8 +190,9 @@ const STEM_REPLAY_MAP = {
 
 /** @returns {{ labId: string, lab: import('../../data/ccnaLabs.js').LabBundle['lab'] } | null} */
 export function getStemReplayLab(questionId) {
-  const labId = STEM_REPLAY_MAP[questionId]
-  if (!labId) return null
+  const rawLabId = STEM_REPLAY_MAP[questionId]
+  if (!rawLabId) return null
+  const labId = resolveStemReplayLabId(rawLabId)
   const bundle = getLab(labId)
   if (!bundle?.lab) return null
   return { labId, lab: bundle.lab }

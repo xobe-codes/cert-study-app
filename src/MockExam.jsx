@@ -371,10 +371,10 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
     const skippedCount = report.total - Object.keys(responses).length
     const wrongCount = report.total - report.correct - skippedCount
     return (
-      <div>
+      <div className="ccna-mock-results">
         <button style={styles.backBtn} onClick={onExit}>‹ Back to Home</button>
         <h1 style={styles.h1}>{isStudyMode ? 'Study Results' : 'Exam Results'}</h1>
-        <div style={styles.card}>
+        <div className="ccna-mock-results__score" style={styles.card}>
           <div style={{ fontSize: 'var(--ccna-type-display)', fontWeight: 700, color: pct >= 70 ? COLORS.mint : COLORS.rose }}>{pct}%</div>
           <div style={styles.small}>{report.correct} / {report.total} correct</div>
           <div style={{ display: 'flex', gap: 16, marginTop: 10, flexWrap: 'wrap' }}>
@@ -383,9 +383,9 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
             {skippedCount > 0 && <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.amber }}>— {skippedCount} skipped</span>}
           </div>
         </div>
-        <div style={styles.card}>
+        <div className="ccna-mock-results__grid" style={styles.card}>
           <h2 style={styles.h2}>Question summary</h2>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 8 }}>
+          <div className="ccna-mock-results__qgrid" style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 8 }}>
             {questions.map((qItem, idx) => {
               const sel = responses[idx]
               const isCorrect = sel != null && sel === qItem.correctIndex
@@ -413,7 +413,7 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
           </div>
           <div style={{ ...styles.small, color: COLORS.silverMid }}>Tap any number to jump straight to that question's review</div>
         </div>
-        <div style={styles.card}>
+        <div className="ccna-mock-results__domains" style={styles.card}>
           <h2 style={styles.h2}>By Domain</h2>
           {DOMAINS.map(d => {
             const r = report.byDomain[d.id]
@@ -432,22 +432,6 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
             )
           })}
         </div>
-        {report.trapDebrief?.length > 0 && (
-          <div style={styles.card}>
-            <h2 style={styles.h2}>Trap debrief</h2>
-            <p style={{ ...styles.small, marginBottom: 10 }}>
-              {isStudyMode ? 'Patterns behind your missed answers in this session.' : 'Patterns behind your missed answers — study these before retaking.'}
-            </p>
-            <ul style={{ margin: 0, paddingLeft: 18, fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.5 }}>
-              {report.trapDebrief.map((t, i) => (
-                <li key={i} style={{ marginBottom: 6 }}>
-                  <strong>{t.trap}</strong> — {t.count} miss{t.count === 1 ? '' : 'es'}
-                  {t.objectiveIds?.length ? ` (${t.objectiveIds.join(', ')})` : ''}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
         <MockExamDebriefActions
           report={report}
           questions={questions}
@@ -511,7 +495,7 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
     const isCorrect = selected != null && gradeQuestion(q, selected)
     const unanswered = selected == null
     return (
-      <div>
+      <div className="ccna-review-flow ccna-mock-review">
         <button style={styles.backBtn} onClick={() => setPhase('done')}>‹ Results</button>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8 }}>
           <h1 style={{ ...styles.h1, margin: 0 }}>Answer review</h1>

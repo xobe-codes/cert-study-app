@@ -1,6 +1,6 @@
 # Path to 95+ — living checklist
 
-North star: **95+ overall**. **Current audit score: ~92/100** (2026-07-04).
+North star: **95+ overall**. **Current audit score: ~93/100** (2026-07-04).
 
 ## Score targets (must all be ≥90 for 95+ overall)
 
@@ -11,7 +11,7 @@ North star: **95+ overall**. **Current audit score: ~92/100** (2026-07-04).
 | Learning flow | 92 | 95 | Stem-replay wave 14; mock debrief polish |
 | Labs / CLI | 88 | 95 | Config lab tiering (25 typing labs) |
 | Mobile / responsive | 87 | 95 | offline_chunks_broaden; Practice stack compaction |
-| Exam traps | 83 | 95 | depth_trap_wave14 |
+| Exam traps | 93 | 95 | depth_trap_wave14 |
 | Maintainability | 92 | 90 | objective_screen_extract |
 | Tests / CI | 94+ | 95 | verify:ship (762+ unit, 16 e2e) |
 

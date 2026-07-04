@@ -541,6 +541,52 @@ Group Port-channel  Protocol    Ports
   MTU 1500 bytes, BW 2000000 Kbit/sec`,
 }
 
+/** PortFast / BPDU Guard verify for LAB-STP-PORTFAST (objective 2.5). */
+export const CLI_STP_PORTFAST_25_SHOW_OUTPUT = {
+  'show spanning-tree interface fa0/1 portfast': 'PortFast is enabled',
+  'show running-config | include portfast': `spanning-tree portfast
+spanning-tree bpduguard enable`,
+  'show spanning-tree interface fa0/1': `Vlan1
+  PortFast is enabled
+  BPDU guard is enabled`,
+}
+
+/** Floating static verify for LAB-STATIC-FLOATING (objective 3.3). */
+export const CLI_FLOATING_STATIC_33_SHOW_OUTPUT = {
+  'show ip route static': `Codes: S - static
+S     10.0.2.0/24 [1/0] via 10.0.12.2`,
+  'show running-config | include ip route': `ip route 10.0.2.0 255.255.255.0 10.0.12.2
+ip route 10.0.2.0 255.255.255.0 10.0.13.2 5`,
+  'show ip route 10.0.2.0': `Routing entry for 10.0.2.0/24
+  Known via "static", distance 1, metric 0
+  Routing Descriptor Blocks:
+  * 10.0.12.2
+    Route metric is 0, traffic share count is 1`,
+}
+
+/** LLDP verify for LAB-LLDP (objective 2.3). */
+export const CLI_LLDP_23_SHOW_OUTPUT = {
+  'show lldp neighbors': `Device ID        Local Intf     Hold-time  Capability      Port ID
+SW2              Gi0/1          120        B,R             Gi0/1`,
+  'show running-config | include cdp': 'no cdp run',
+  'show running-config | include lldp': 'lldp run',
+}
+
+/** DAI + DHCP snooping verify for LAB-DAI-DHCP-SNOOPING (objective 5.6). */
+export const CLI_DAI_56_SHOW_OUTPUT = {
+  'show ip dhcp snooping': `Switch DHCP snooping is enabled
+DHCP snooping is configured on following VLANs:
+1
+DHCP snooping is operational on following VLANs:
+1`,
+  'show ip dhcp snooping binding': `MacAddress          IpAddress        Lease(sec)  Type           VLAN  Interface
+------------------  ---------------  ----------  -------------  ----  ----------
+aabb.cc00.0201        192.168.10.50     86400      dhcp-snooping   1     Gi0/1`,
+  'show ip arp inspection vlan 1': `Vlan   Configuration    Operation   ACL Name   Static ACL
+----   -------------    ---------   --------   ----------
+1      Enabled          Active`,
+}
+
 /** AAA local verify for LAB-AAA-LOCAL (objective 5.4). */
 export const CLI_AAA_54_SHOW_OUTPUT = {
   'show running-config | section aaa': `aaa new-model

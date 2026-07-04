@@ -23,6 +23,7 @@ export default function PracticeRoutes({
   onOpenTrapDrill,
   onRemoveMissed,
   onSelectObjective,
+  onOpenLab,
 }) {
   if (view === 'missed') {
     return (
@@ -32,6 +33,7 @@ export default function PracticeRoutes({
         onRemove={onRemoveMissed}
         onOpenExamTraps={onOpenExamTraps}
         onOpenTrapDrill={onOpenTrapDrill}
+        onOpenLab={onOpenLab}
       />
     )
   }

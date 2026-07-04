@@ -1470,5 +1470,125 @@ export function buildAppShellCss(colors) {
     .study-lens-studio .study-lens-list {
       max-height: none;
     }
+
+    .ccna-mock-results {
+      min-width: 0;
+      padding-bottom: calc(env(safe-area-inset-bottom) + var(--vv-bottom-inset, 0px) + 8px);
+    }
+    .ccna-review-flow {
+      min-width: 0;
+      max-height: min(100vh, calc(100vh - 64px));
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+      padding-bottom: calc(env(safe-area-inset-bottom) + var(--vv-bottom-inset, 0px) + 12px);
+    }
+    @supports (height: 100dvh) {
+      .ccna-review-flow {
+        max-height: min(92dvh, calc(100dvh - 72px));
+      }
+    }
+    .app-shell--with-bottom-nav .ccna-review-flow {
+      padding-bottom: calc(var(--ccna-bottom-nav-height) + env(safe-area-inset-bottom) + var(--vv-bottom-inset, 0px) + 16px);
+    }
+    .ccna-practice-active {
+      min-width: 0;
+    }
+    .objective-body .ccna-review-flow {
+      max-height: none;
+      overflow: visible;
+      padding-bottom: 0;
+    }
+    .objective-body:has(.ccna-practice-active) .objective-body-intro .ccna-mastery-checklist {
+      display: none;
+    }
+    @media (max-width: 480px) {
+      .ccna-mock-results > h1 {
+        font-size: var(--ccna-type-xl);
+        margin: 4px 0 8px;
+      }
+      .ccna-mock-results .ccna-mock-results__score,
+      .ccna-mock-results .ccna-mock-results__grid,
+      .ccna-mock-results .ccna-mock-results__domains,
+      .ccna-mock-debrief {
+        padding: 10px 12px !important;
+        margin-bottom: 8px !important;
+      }
+      .ccna-mock-results .ccna-mock-results__qgrid button {
+        min-width: 36px;
+        min-height: 36px;
+        padding: 4px 6px;
+        font-size: var(--ccna-type-xs);
+      }
+      .ccna-mock-debrief__title {
+        font-size: var(--ccna-type-lg) !important;
+        margin-bottom: 2px !important;
+      }
+      .ccna-mock-debrief__lead {
+        margin-bottom: 6px !important;
+        font-size: var(--ccna-type-caption) !important;
+      }
+      .ccna-trap-debrief__item {
+        padding: 6px 8px !important;
+        margin-bottom: 4px !important;
+      }
+      .ccna-mock-debrief__actions button {
+        padding: 7px 8px !important;
+        font-size: var(--ccna-type-xs) !important;
+      }
+      .ccna-study-practice-cta {
+        padding: 10px 12px !important;
+        font-size: var(--ccna-type-sm) !important;
+        margin-top: 8px !important;
+      }
+      .ccna-quiz-idle--slim .ccna-quiz-idle__lead {
+        font-size: var(--ccna-type-sm);
+        margin-bottom: 2px;
+      }
+      .ccna-quiz-idle--slim > p:nth-of-type(2) {
+        margin-bottom: 6px;
+        font-size: var(--ccna-type-caption);
+      }
+    }
+    @media (orientation: landscape) and (max-height: 500px) {
+      .ccna-mock-results > h1 {
+        font-size: var(--ccna-type-lg);
+        margin: 2px 0 6px;
+      }
+      .ccna-mock-results .ccna-mock-results__score {
+        padding: 8px 10px !important;
+        margin-bottom: 6px !important;
+      }
+      .ccna-mock-results .ccna-mock-results__score p {
+        font-size: var(--ccna-type-xl) !important;
+        margin: 2px 0 !important;
+      }
+      .ccna-mock-results .ccna-mock-results__grid,
+      .ccna-mock-results .ccna-mock-results__domains {
+        padding: 8px 10px !important;
+        margin-bottom: 6px !important;
+      }
+      .ccna-mock-debrief {
+        padding: 8px 10px !important;
+        margin-bottom: 6px !important;
+      }
+      .ccna-mock-debrief__lead {
+        display: none;
+      }
+      .ccna-mock-results .ccna-mock-results__qgrid button {
+        min-width: 32px;
+        min-height: 32px;
+        font-size: var(--ccna-type-caption);
+      }
+      .ccna-review-flow > h1,
+      .ccna-mock-review > h1 {
+        font-size: var(--ccna-type-md);
+        margin: 2px 0 4px;
+      }
+      .ccna-review-flow .ccna-quiz-reveal {
+        padding: 6px 8px !important;
+        margin-top: 4px !important;
+      }
+    }
   `
 }

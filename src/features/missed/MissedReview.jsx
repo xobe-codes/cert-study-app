@@ -3,12 +3,13 @@ import { randomizeQuestionOrder } from '../../questionUtils.js'
 import { COLORS, styles } from '../../ui/appTheme.js'
 import { groupMissedByTrap, getMissedTrapInfo, isActionableMissedTrap } from '../../missed/missedTrapGroups.js'
 import OverflowMarquee from '../../components/OverflowMarquee.jsx'
+import StemReplayCTA from '../stemReplay/StemReplayCTA.jsx'
 
 function normalizeQuestionText(q) {
   return (q || '').trim().toLowerCase().replace(/\s+/g, ' ')
 }
 
-export default function MissedReview({ missed, onBack, onRemove, onOpenExamTraps, onOpenTrapDrill }) {
+export default function MissedReview({ missed, onBack, onRemove, onOpenExamTraps, onOpenTrapDrill, onOpenLab }) {
   const [revealedIdx, setRevealedIdx] = useState(null)
   const [trapFilter, setTrapFilter] = useState(null)
   const trapGroups = useMemo(() => groupMissedByTrap(missed), [missed])
@@ -30,7 +31,7 @@ export default function MissedReview({ missed, onBack, onRemove, onOpenExamTraps
   }
 
   return (
-    <div>
+    <div className="ccna-review-flow">
       <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
       <h1 style={styles.h1}>Missed Questions</h1>
       <p style={{ ...styles.small, marginBottom: 14 }}>{missed.length} question{missed.length === 1 ? '' : 's'} saved for review.</p>
@@ -119,6 +120,7 @@ export default function MissedReview({ missed, onBack, onRemove, onOpenExamTraps
                   </>
                 )
               })()}
+              <StemReplayCTA questionId={m.questionId} onOpenLab={onOpenLab} />
               <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => onRemove(missed.indexOf(m))}>Mark as reviewed (remove)</button>
             </div>
           ) : (

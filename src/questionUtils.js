@@ -53,6 +53,7 @@ export function correctAnswerLabel(q) {
 export function buildMissedEntry(objectiveId, q, extra = {}) {
   return {
     objectiveId,
+    ...(q.id ? { questionId: q.id } : {}),
     question: q.question,
     choices: q.choices,
     correctIndex: q.correctIndex,

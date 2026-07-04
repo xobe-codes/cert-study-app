@@ -7,7 +7,7 @@ export default function MasteryChecklist({ progressEntry, compact = false }) {
   const steps = rows.filter(r => r.id !== 'mastered')
   const done = steps.filter(r => r.met).length
   return (
-    <div style={{
+    <div className="ccna-mastery-checklist" style={{
       padding: compact ? '8px 10px' : '10px 12px',
       borderRadius: 8,
       border: `1px solid ${COLORS.border}`,

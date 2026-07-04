@@ -10,6 +10,10 @@ function replayPriority(objectiveId) {
   return 2
 }
 
+function trapObjectiveId(trap) {
+  return trap?.objectiveIds?.[0] || null
+}
+
 /** Post-mock CTAs — weak domains, trap drill, stem-replay lab, and objective deep-links. */
 export default function MockExamDebriefActions({
   report,
@@ -52,8 +56,7 @@ export default function MockExamDebriefActions({
     .sort((a, b) => a.pct - b.pct)
     .slice(0, 3)
 
-  const topTrap = report.trapDebrief?.[0]
-  const trapCku = topTrap ? resolveTrapDrillCku({ trapLabel: topTrap.trap }) : null
+  const trapItems = (report.trapDebrief || []).slice(0, 4)
 
   const firstWrongIdx = questions.findIndex((q, idx) => {
     const sel = responses[idx]
@@ -86,67 +89,97 @@ export default function MockExamDebriefActions({
     return replay ? { domainId: d.id, ...replay } : null
   }).filter(Boolean)
 
-  if (!weakDomains.length && !trapCku && !stemReplay && !wrongStemReplays.length && !weakDomainLabReplays.length) return null
+  if (!weakDomains.length && !trapItems.length && !stemReplay && !wrongStemReplays.length && !weakDomainLabReplays.length) return null
+
+  const btnCompact = {
+    ...styles.secondaryBtn,
+    width: '100%',
+    textAlign: 'left',
+    fontSize: 'var(--ccna-type-sm)',
+    padding: '8px 10px',
+  }
 
   return (
-    <div className="ccna-mock-debrief" style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim }}>
-      <h2 style={{ ...styles.h2, color: COLORS.sky, marginBottom: 8 }}>Next steps</h2>
-      <p style={{ ...styles.small, marginBottom: 10, color: COLORS.silver }}>
-        Target your weakest areas from this session.
+    <div className="ccna-mock-debrief" style={{ ...styles.card, marginBottom: 8, border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim }}>
+      <h2 className="ccna-mock-debrief__title" style={{ ...styles.h2, color: COLORS.sky, marginBottom: 4 }}>Next steps</h2>
+      <p className="ccna-mock-debrief__lead" style={{ ...styles.small, marginBottom: 8, color: COLORS.silver }}>
+        Target weak domains, exam traps, and hands-on verify labs from this session.
       </p>
-      {weakDomains.map(d => (
-        <div key={d.id} style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 8 }}>
-          <button
-            type="button"
-            style={{ ...styles.secondaryBtn, width: '100%', textAlign: 'left' }}
-            onClick={() => onStudyDomain?.(d.id)}
-          >
-            Study {d.name} — {d.correct}/{d.total} ({d.pct}%)
-          </button>
-          {onSelectObjective && (() => {
-            const oid = weakestObjectiveInDomain(d.id)
-            if (!oid) return null
-            return (
-              <button
-                type="button"
-                style={{ ...styles.secondaryBtn, width: '100%', textAlign: 'left', fontSize: 'var(--ccna-type-sm)' }}
-                onClick={() => onSelectObjective(oid)}
-              >
-                Open weakest topic {oid} →
-              </button>
-            )
-          })()}
-          {(() => {
-            const domainReplay = weakDomainLabReplays.find(r => r.domainId === d.id)
-            if (!domainReplay || !onOpenLab) return null
-            return (
-              <button
-                type="button"
-                style={{ ...styles.secondaryBtn, width: '100%', textAlign: 'left', fontSize: 'var(--ccna-type-sm)' }}
-                onClick={() => onOpenLab(domainReplay.labId)}
-              >
-                Lab for {d.name} → {domainReplay.lab.title}
-              </button>
-            )
-          })()}
+
+      {trapItems.length > 0 && (
+        <div className="ccna-trap-debrief" style={{ marginBottom: 10 }}>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.amber, marginBottom: 6, letterSpacing: 0.3 }}>
+            Trap patterns you missed
+          </div>
+          <ul className="ccna-trap-debrief__list" style={{ margin: 0, padding: 0, listStyle: 'none' }}>
+            {trapItems.map((t, i) => {
+              const oid = trapObjectiveId(t)
+              const trapCku = resolveTrapDrillCku({ trapLabel: t.trap })
+              return (
+                <li key={`${t.trap}-${i}`} className="ccna-trap-debrief__item" style={{ marginBottom: 6, padding: '8px 10px', borderRadius: 8, background: COLORS.surface, border: `1px solid ${COLORS.border}` }}>
+                  <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.4 }}>
+                    <strong>{t.trap}</strong>
+                    <span style={{ color: COLORS.silverMid }}> — {t.count} miss{t.count === 1 ? '' : 'es'}</span>
+                    {oid ? <span style={{ color: COLORS.silverMid }}> · {oid}</span> : null}
+                  </div>
+                  <div className="ccna-mock-debrief__actions" style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 6 }}>
+                    {oid && onSelectObjective && (
+                      <button type="button" style={{ ...btnCompact, width: 'auto', flex: '1 1 140px' }} onClick={() => onSelectObjective(oid)}>
+                        Study {oid} →
+                      </button>
+                    )}
+                    {trapCku && onOpenTrapDrill && (
+                      <button
+                        type="button"
+                        style={{ ...btnCompact, width: 'auto', flex: '1 1 140px', borderColor: COLORS.amberBorder, color: COLORS.amber }}
+                        onClick={() => onOpenTrapDrill({ ckuId: trapCku.ckuId, trapLabel: trapCku.trapLabel })}
+                      >
+                        Drill trap →
+                      </button>
+                    )}
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
         </div>
-      ))}
-      {trapCku && onOpenTrapDrill && (
-        <button
-          type="button"
-          style={{ ...styles.secondaryBtn, marginBottom: 8, width: '100%', textAlign: 'left' }}
-          onClick={() => onOpenTrapDrill({ ckuId: trapCku.ckuId, trapLabel: trapCku.trapLabel })}
-        >
-          Trap drill → {trapCku.trapLabel.slice(0, 60)}
-        </button>
       )}
+
+      <div className="ccna-mock-debrief__actions" style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+        {weakDomains.map(d => (
+          <div key={d.id} className="ccna-mock-debrief__domain" style={{ display: 'flex', flexDirection: 'column', gap: 4, marginBottom: 4 }}>
+            <button type="button" style={btnCompact} onClick={() => onStudyDomain?.(d.id)}>
+              Study {d.name} — {d.correct}/{d.total} ({d.pct}%)
+            </button>
+            {onSelectObjective && (() => {
+              const oid = weakestObjectiveInDomain(d.id)
+              if (!oid) return null
+              return (
+                <button type="button" style={btnCompact} onClick={() => onSelectObjective(oid)}>
+                  Weakest topic {oid} →
+                </button>
+              )
+            })()}
+            {(() => {
+              const domainReplay = weakDomainLabReplays.find(r => r.domainId === d.id)
+              if (!domainReplay || !onOpenLab) return null
+              return (
+                <button type="button" style={btnCompact} onClick={() => onOpenLab(domainReplay.labId)}>
+                  Lab · {domainReplay.lab.title}
+                </button>
+              )
+            })()}
+          </div>
+        ))}
+      </div>
+
       {wrongStemReplays.length > 0 && onOpenLab && (
-        <div className="ccna-mock-debrief__labs" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <div className="ccna-mock-debrief__labs" style={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: 6 }}>
           {wrongStemReplays.map(replay => (
             <button
               key={`${replay.questionId}-${replay.labId}`}
               type="button"
-              style={{ ...styles.secondaryBtn, width: '100%', textAlign: 'left', fontSize: 'var(--ccna-type-sm)' }}
+              style={btnCompact}
               onClick={() => onOpenLab(replay.labId)}
             >
               Lab replay {replay.objectiveId ? `(${replay.objectiveId})` : ''} → {replay.lab.title}
@@ -155,11 +188,7 @@ export default function MockExamDebriefActions({
         </div>
       )}
       {!wrongStemReplays.length && stemReplay && onOpenLab && (
-        <button
-          type="button"
-          style={{ ...styles.secondaryBtn, width: '100%', textAlign: 'left', marginTop: 8 }}
-          onClick={() => onOpenLab(stemReplay.labId)}
-        >
+        <button type="button" style={{ ...btnCompact, marginTop: 6 }} onClick={() => onOpenLab(stemReplay.labId)}>
           Lab replay → {stemReplay.lab.title}
         </button>
       )}

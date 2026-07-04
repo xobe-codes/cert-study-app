@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { getStemReplayLab, hasStemReplayLab, stemReplayMapSize } from '../features/stemReplay/stemReplayLabs.js'
+import { getStemReplayLab, hasStemReplayLab, stemReplayMapSize, resolveStemReplayLabId } from '../features/stemReplay/stemReplayLabs.js'
 import { getLab } from '../data/ccnaLabs.js'
 
 describe('stemReplayLabs', () => {
@@ -119,5 +119,21 @@ describe('stemReplayLabs', () => {
       expect(getStemReplayLab(qid)?.labId, qid).toBe(labId)
       expect(getLab(labId)?.lab.interpretOnly, labId).toBe(true)
     }
+  })
+
+  it('resolves config stem-replay targets to interpret-only lab-lite labs', () => {
+    const liteCases = [
+      ['2.5-c-q5', 'LAB-STP-PORTFAST'],
+      ['3.2-c-q2', 'LAB-STATIC-FLOATING'],
+      ['obj-2.3-source-q001', 'LAB-LLDP'],
+      ['obj-4.4-source-q001', 'LAB-SNMP'],
+      ['2.2-c-q2', 'LAB-D22-22'],
+    ]
+    for (const [qid, labId] of liteCases) {
+      const replay = getStemReplayLab(qid)
+      expect(replay?.labId, qid).toBe(labId)
+      expect(replay?.lab.interpretOnly, qid).toBe(true)
+    }
+    expect(resolveStemReplayLabId('LAB-L3-ETHERCHANNEL')).toBe('LAB-ETHERCHANNEL')
   })
 })

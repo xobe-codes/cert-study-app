@@ -10,7 +10,7 @@
 - **53 objectives** · Tier A: **53** · B: 0 · C: 0
 - **Zero traps: 0** · **Zero flashcards: 0** · **Zero cmds: 0**
 - **82 labs** (57 interpret-only · 25 config)
-- **Overall score: ~92/100** (see `APP_SCORECARD.md`)
+- **Overall score: ~93/100** (see `APP_SCORECARD.md`)
 
 ## Queue status — polish phase
 Run `npm run audit:show-next-task` for the highest-priority **pending** item.

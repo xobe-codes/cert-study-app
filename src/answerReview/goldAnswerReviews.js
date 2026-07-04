@@ -35,6 +35,7 @@ import { CURATED61_GOLD } from './goldAnswerReviewsCurated61.js'
 import { HIGH_TRAFFIC_GOLD } from './goldAnswerReviewsHighTraffic.js'
 import { WLAN_58_GOLD } from './goldAnswerReviewsWlan58.js'
 import { WLAN_AUTOMATION_POLISH_GOLD } from './goldAnswerReviewsWlanAutomationPolish.js'
+import { SECURITY_IPV6_POLISH_GOLD } from './goldAnswerReviewsSecurityIpv6Polish.js'
 
 export const GOLD_ANSWER_REVIEWS = {
   '1.5-c-q3': {
@@ -144,6 +145,7 @@ export const GOLD_ANSWER_REVIEWS = {
   ...BATCH30_GOLD,
   ...CURATED61_GOLD,
   ...WLAN_AUTOMATION_POLISH_GOLD,
+  ...SECURITY_IPV6_POLISH_GOLD,
 }
 
 export function goldAnswerReviewFor(questionId) {

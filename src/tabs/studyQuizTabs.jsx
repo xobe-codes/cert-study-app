@@ -15,7 +15,7 @@ import {
 import {
   explanationBodyFromReading, explanationBodyFromAi, resolveBigTakeaway, resolveAiTakeaway,
 } from '../lesson/explanationFormat.js'
-import { getMasteryChecklist, masteryBreakdown } from '../lesson/masteryCriteria.js'
+import { masteryBreakdown } from '../lesson/masteryCriteria.js'
 import { computeMastery } from '../netUtils.js'
 import { parseRichTextSegments } from '../lesson/richTextParse.js'
 import { preloadCleanBank } from '../data/cleanQuestionAdapter.js'
@@ -33,7 +33,6 @@ import ErrorBox from '../components/ErrorBox.jsx'
 import Spinner from '../components/Spinner.jsx'
 import SvgConfetti from '../components/SvgConfetti.jsx'
 import DeferredExamTips from '../components/DeferredExamTips.jsx'
-import MasteryChecklist from '../components/MasteryChecklist.jsx'
 import { COLORS, accentColors, styles } from '../ui/appTheme.js'
 import { STATIC_COPY } from '../ui/staticContentCopy.js'
 import { useNavHint } from '../components/NavHintProvider.jsx'
@@ -1108,7 +1107,7 @@ export function ExplainTab({
             <KeyTermsCarousel objective={objective} premiumUnlocked={premiumUnlocked} onPremiumBlocked={onPremiumBlocked} />
           )}
           {isStudy && onStartPractice && (curated || recalled) && (
-            <button type="button" style={{ ...styles.primaryBtn, marginTop: 12 }} onClick={onStartPractice}>
+            <button type="button" className="ccna-study-practice-cta" style={{ ...styles.secondaryBtn, marginTop: 12, width: '100%' }} onClick={onStartPractice}>
               Start practice →
             </button>
           )}
@@ -1715,9 +1714,9 @@ export function QuizTab({
     const reviewCount = hasBank ? Math.min(sessionSize, bankSize) : sessionSize
     const emptyPool = !hasBank && curatedPoolSize === 0
     return (
-      <div className="ccna-quiz-idle">
-        <p style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, color: COLORS.silver, margin: '0 0 4px', lineHeight: 1.35 }}>
-          {emptyPool ? 'Ready to practice?' : 'How many questions do you want?'}
+      <div className={`ccna-quiz-idle${hasBank ? ' ccna-quiz-idle--slim' : ''}`}>
+        <p className="ccna-quiz-idle__lead" style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, color: COLORS.silver, margin: '0 0 4px', lineHeight: 1.35 }}>
+          {emptyPool ? 'Ready to practice?' : hasBank ? 'Practice from your bank' : 'How many questions do you want?'}
         </p>
         <p style={{ ...styles.small, marginBottom: 10, color: COLORS.silverMid }}>
           {hasBank ? (
@@ -1816,7 +1815,7 @@ export function QuizTab({
   const ordering = isOrderingQuestion(current)
   const isCorrect = revealed && (ordering ? gradeQuestion(current, orderDraft) : gradeQuestion(current, selected))
   return (
-    <div>
+    <div className="ccna-practice-active ccna-review-flow">
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
         <div style={styles.small}>Question {stats.total + 1}{queue.length > 0 ? ` · ${queue.length} remaining` : ''}</div>
         {streak >= 3 && <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-micro)' }}>🔥 {streak} streak</span>}

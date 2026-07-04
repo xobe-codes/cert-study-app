@@ -9,6 +9,13 @@ import {
   CLI_PORTSEC_56_SHOW_OUTPUT,
   CLI_ACL_CONFIG_55_SHOW_OUTPUT,
   CLI_DHCP_POOL_43_SHOW_OUTPUT,
+  CLI_STP_PORTFAST_25_SHOW_OUTPUT,
+  CLI_FLOATING_STATIC_33_SHOW_OUTPUT,
+  CLI_SSH_53_SHOW_OUTPUT,
+  CLI_SNMP_44_SHOW_OUTPUT,
+  CLI_EC_24_SHOW_OUTPUT,
+  CLI_LLDP_23_SHOW_OUTPUT,
+  CLI_DAI_56_SHOW_OUTPUT,
 } from '../lab/cliEngine.js'
 
 export const CONFIG_LAB_LITE_IDS = new Set([
@@ -19,6 +26,14 @@ export const CONFIG_LAB_LITE_IDS = new Set([
   'LAB-EXTENDED-ACL-BUILD',
   'LAB-DHCP-DNS-FLOW',
   'LAB-ACL-CONFIG',
+  'LAB-STP-PORTFAST',
+  'LAB-STATIC-FLOATING',
+  'LAB-SSH-ACCESS',
+  'LAB-SNMP',
+  'LAB-ETHERCHANNEL-PAGP',
+  'LAB-D22-22',
+  'LAB-LLDP',
+  'LAB-DAI-DHCP-SNOOPING',
 ])
 
 const LITE_TASKS = {
@@ -52,6 +67,38 @@ const LITE_TASKS = {
     { id: 't1', order: 1, title: 'Standard ACL', device: 'R1', instruction: 'Verify ACL 10 denies blocked host, permits others.', expectedCommands: ['show access-lists'] },
     { id: 't2', order: 2, title: 'Extended ACL', device: 'R1', instruction: 'Confirm extended ACL on Gi0/2 outbound.', expectedCommands: ['show ip interface gi0/2'] },
   ],
+  'LAB-STP-PORTFAST': [
+    { id: 't1', order: 1, title: 'PortFast', device: 'SW1', instruction: 'Confirm PortFast on Fa0/1 access port.', expectedCommands: ['show spanning-tree interface fa0/1 portfast'] },
+    { id: 't2', order: 2, title: 'BPDU Guard', device: 'SW1', instruction: 'Verify BPDU Guard enabled on the edge port.', expectedCommands: ['show running-config | include portfast'] },
+  ],
+  'LAB-STATIC-FLOATING': [
+    { id: 't1', order: 1, title: 'Primary static', device: 'R1', instruction: 'Confirm active static to 10.0.2.0/24 via primary next-hop (AD 1).', expectedCommands: ['show ip route static'] },
+    { id: 't2', order: 2, title: 'Floating backup', device: 'R1', instruction: 'Verify floating static exists with AD 5 on backup path.', expectedCommands: ['show running-config | include ip route'] },
+  ],
+  'LAB-SSH-ACCESS': [
+    { id: 't1', order: 1, title: 'SSH service', device: 'R1', instruction: 'Confirm SSH v2 enabled with RSA keys.', expectedCommands: ['show ip ssh'] },
+    { id: 't2', order: 2, title: 'VTY restriction', device: 'R1', instruction: 'Verify VTY lines allow SSH only with local login.', expectedCommands: ['show running-config | section line vty'] },
+  ],
+  'LAB-SNMP': [
+    { id: 't1', order: 1, title: 'RO community', device: 'R1', instruction: 'Confirm read-only SNMP community configured.', expectedCommands: ['show snmp community'] },
+    { id: 't2', order: 2, title: 'Trap host', device: 'R1', instruction: 'Verify trap destination and SNMP settings.', expectedCommands: ['show snmp'] },
+  ],
+  'LAB-ETHERCHANNEL-PAGP': [
+    { id: 't1', order: 1, title: 'EtherChannel summary', device: 'SW1', instruction: 'Confirm Po2 bundled with member ports up.', expectedCommands: ['show etherchannel summary'] },
+    { id: 't2', order: 2, title: 'Member config', device: 'SW1', instruction: 'Verify channel-group mode desirable on trunks.', expectedCommands: ['show running-config | section interface'] },
+  ],
+  'LAB-D22-22': [
+    { id: 't1', order: 1, title: 'Trunk status', device: 'SW1', instruction: 'Confirm 802.1Q trunk up with allowed VLANs.', expectedCommands: ['show interfaces trunk'] },
+    { id: 't2', order: 2, title: 'VLANs', device: 'SW1', instruction: 'Verify VLANs carried on the trunk.', expectedCommands: ['show vlan brief'] },
+  ],
+  'LAB-LLDP': [
+    { id: 't1', order: 1, title: 'LLDP neighbors', device: 'SW1', instruction: 'Confirm LLDP discovers SW2 on Gi0/1.', expectedCommands: ['show lldp neighbors'] },
+    { id: 't2', order: 2, title: 'CDP disabled', device: 'SW1', instruction: 'Verify CDP is off and LLDP is running.', expectedCommands: ['show running-config | include cdp'] },
+  ],
+  'LAB-DAI-DHCP-SNOOPING': [
+    { id: 't1', order: 1, title: 'DHCP snooping', device: 'SW1', instruction: 'Confirm snooping enabled on VLAN 1 with bindings.', expectedCommands: ['show ip dhcp snooping binding'] },
+    { id: 't2', order: 2, title: 'DAI status', device: 'SW1', instruction: 'Verify Dynamic ARP Inspection active on VLAN 1.', expectedCommands: ['show ip arp inspection vlan 1'] },
+  ],
 }
 
 const CLI_OUTPUT = {
@@ -62,6 +109,14 @@ const CLI_OUTPUT = {
   'LAB-EXTENDED-ACL-BUILD': CLI_ACL_CONFIG_55_SHOW_OUTPUT,
   'LAB-DHCP-DNS-FLOW': CLI_DHCP_POOL_43_SHOW_OUTPUT,
   'LAB-ACL-CONFIG': CLI_ACL_CONFIG_55_SHOW_OUTPUT,
+  'LAB-STP-PORTFAST': CLI_STP_PORTFAST_25_SHOW_OUTPUT,
+  'LAB-STATIC-FLOATING': CLI_FLOATING_STATIC_33_SHOW_OUTPUT,
+  'LAB-SSH-ACCESS': CLI_SSH_53_SHOW_OUTPUT,
+  'LAB-SNMP': CLI_SNMP_44_SHOW_OUTPUT,
+  'LAB-ETHERCHANNEL-PAGP': CLI_EC_24_SHOW_OUTPUT,
+  'LAB-D22-22': CLI_VLAN_TRUNK_21_SHOW_OUTPUT,
+  'LAB-LLDP': CLI_LLDP_23_SHOW_OUTPUT,
+  'LAB-DAI-DHCP-SNOOPING': CLI_DAI_56_SHOW_OUTPUT,
 }
 
 export function applyConfigLabLite(bundle) {

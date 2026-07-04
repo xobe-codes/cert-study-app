@@ -192,6 +192,7 @@ export default function AppLoadedShell({
           onOpenTrapDrill={openTrapDrill}
           onRemoveMissed={removeMissed}
           onSelectObjective={selectObjective}
+          onOpenLab={openLab}
         />
         <StudyModeRoutes
           view={view}

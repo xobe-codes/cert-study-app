@@ -66,7 +66,7 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection 
     recordQuizResult(current.objectiveId, current.id, { correct })
     logEvent('user_reviewed_concept', { objectiveId: current.objectiveId, questionId: current.id, correct })
     if (!correct) {
-      onMissed({ objectiveId: current.objectiveId, question: current.question, choices: current.choices, correctIndex: current.correctIndex, selectedIndex: idx, explanation: current.explanation, concept: current.concept, type: current.type, skill: current.skill, addedAt: Date.now() })
+      onMissed({ objectiveId: current.objectiveId, questionId: current.id, question: current.question, choices: current.choices, correctIndex: current.correctIndex, selectedIndex: idx, explanation: current.explanation, concept: current.concept, type: current.type, skill: current.skill, addedAt: Date.now() })
     }
   }
   function submitOrder() {
@@ -78,7 +78,7 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection 
     recordQuizResult(current.objectiveId, current.id, { correct })
     logEvent('user_reviewed_concept', { objectiveId: current.objectiveId, questionId: current.id, correct })
     if (!correct) {
-      onMissed({ objectiveId: current.objectiveId, question: current.question, orderItems: current.orderItems, orderAnswer: orderDraft, explanation: current.explanation, concept: current.concept, type: current.type, skill: current.skill, addedAt: Date.now() })
+      onMissed({ objectiveId: current.objectiveId, questionId: current.id, question: current.question, orderItems: current.orderItems, orderAnswer: orderDraft, explanation: current.explanation, concept: current.concept, type: current.type, skill: current.skill, addedAt: Date.now() })
     }
   }
   function next() {
@@ -114,7 +114,7 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection 
   const isCorrect = revealed && (ordering ? gradeQuestion(current, orderDraft) : gradeQuestion(current, selected))
   const obj = ALL_OBJECTIVES.find(o => o.id === current.objectiveId)
   return (
-    <div>
+    <div className="ccna-review-flow">
       <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4 }}>
         <h1 style={{ ...styles.h1, margin: 0 }}>Daily Review</h1>

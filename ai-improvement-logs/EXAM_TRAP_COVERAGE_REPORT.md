@@ -2,5 +2,5 @@
 
 - 0 objectives with zero examTraps.
 - 0 objectives at trap floor (4) — wave 14 queued for depth.
-- Average traps/objective: 6.1.
+- Average traps/objective: 10.0.
 
