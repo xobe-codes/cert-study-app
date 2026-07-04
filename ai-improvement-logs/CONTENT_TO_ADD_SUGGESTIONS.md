@@ -1,8 +1,6 @@
 # Content to Add Suggestions
 
-- 2.1: Engineer View with show vlan brief + native VLAN trap (done).
-- 2.5: Engineer View with show spanning-tree interpret (done).
-- 3.1: show ip route line-by-line interpret section (done).
-- 5.9: WPA2-PSK traps + flashcards (done).
-- 6.x: REST/JSON traps + flashcards (done).
+- Stem-replay: 2.4, 4.1, 4.6, 5.4, 3.6 TS lab IDs.
+- Trap wave 14: +1 trap for 0 at-floor objectives.
+- Gold answer reviews on high-miss WLAN and automation stems.
 

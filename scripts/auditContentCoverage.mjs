@@ -10,7 +10,7 @@ import { ALL_OBJECTIVES } from '../src/data/ccnaDomains.js'
 import { getCurated, curatedObjectiveIds } from '../src/data/ccnaCurated.js'
 import { countObjectiveQuestions } from '../src/data/questionBankCount.js'
 import { KB_COMPILED_OBJECTIVE_IDS } from '../src/data/kbCompiledPatches.js'
-import { labsForObjective } from '../src/data/ccnaLabs.js'
+import { labsForObjective, allLabs } from '../src/data/ccnaLabs.js'
 import { getLessonReference } from '../src/lesson/knowledgeReference.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -75,6 +75,7 @@ function main() {
     return row
   })
 
+  const labs = allLabs()
   const summary = {
     generatedAt: new Date().toISOString(),
     totalObjectives: rows.length,
@@ -88,14 +89,22 @@ function main() {
     zeroCommands: rows.filter(r => r.commands === 0).map(r => r.objectiveId),
     noLab: rows.filter(r => !r.hasLab).map(r => r.objectiveId),
     lowQuestions: rows.filter(r => r.questions < 8).map(r => ({ id: r.objectiveId, count: r.questions })),
+    trapAtFloor: rows.filter(r => r.traps <= 4).map(r => r.objectiveId),
     automation: rows.filter(r => r.domainId === 'automation'),
     wlanThin: rows.filter(r => ['5.8', '5.9'].includes(r.objectiveId)),
+    labStats: {
+      total: labs.length,
+      interpretOnly: labs.filter(l => l.interpretOnly).length,
+      config: labs.filter(l => !l.interpretOnly).length,
+      troubleshoot: labs.filter(l => l.labType === 'troubleshooting').length,
+    },
   }
 
   writeFileSync(join(OUT_DIR, 'coverage-data.json'), JSON.stringify({ summary, rows }, null, 2))
   console.log(`✓ audit:coverage — ${rows.length} objectives → ai-improvement-logs/coverage-data.json`)
   console.log(`  Tier A: ${summary.tierCounts.A} · B: ${summary.tierCounts.B} · C: ${summary.tierCounts.C}`)
   console.log(`  Zero traps: ${summary.zeroTraps.length} · Zero flashcards: ${summary.zeroFlashcards.length}`)
+  console.log(`  Labs: ${summary.labStats.total} (${summary.labStats.interpretOnly} interpret-only) · Trap floor: ${summary.trapAtFloor.length}`)
 }
 
 main()

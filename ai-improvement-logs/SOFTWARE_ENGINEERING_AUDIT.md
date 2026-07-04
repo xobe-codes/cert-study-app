@@ -1,6 +1,6 @@
 # Software Engineering Audit
 
-- App.jsx was ~7k lines — ExplainTab/QuizTab extracted to src/tabs/.
+- App.jsx ~371 lines — tutor/search/modals extracted to src/features/.
+- ObjectiveScreen.jsx ~354 lines — candidate for next extract.
 - Mastery math duplicated across netUtils, learnerHome, statsSeries.
-- BOOK_REF duplicated vs bookRefNotes — consolidate when safe.
 

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-04T03:11:49.211Z",
+  "generatedAt": "2026-07-04T04:24:26.666Z",
   "items": [
     {
       "id": "improve_vlan_engineer_verify",
@@ -183,7 +183,7 @@
       "status": "done",
       "area": "mobile",
       "objectiveNumber": "app",
-      "problem": "PWA caches shell only — curated content offline gap",
+      "problem": "PWA caches shell only",
       "recommendedImprovement": "Cache static question/reading chunks in service worker",
       "riskLevel": "medium",
       "confidenceScore": 68,
@@ -201,6 +201,135 @@
         "public/sw.js"
       ],
       "completedAt": "2026-06-30T09:39:00.462Z"
+    },
+    {
+      "id": "gap_closure_waves_2_11_13",
+      "priority": "critical",
+      "status": "done",
+      "area": "content",
+      "objectiveNumber": "53 objs",
+      "problem": "Remaining Tier B/C gaps",
+      "recommendedImprovement": "Reading cmds wave 2, trap wave 13, depth wave 11, lab-lite batch",
+      "riskLevel": "low",
+      "confidenceScore": 90
+    },
+    {
+      "id": "stem_replay_wave14",
+      "priority": "high",
+      "status": "done",
+      "area": "learning_flow",
+      "objectiveNumber": "labs",
+      "problem": "New lab-lite batch (2.4, 4.1, 4.6, 5.4, 3.6 TS) missing stem-replay links",
+      "recommendedImprovement": "Wire stemReplayLabs.js missed-question → lab CTAs",
+      "riskLevel": "low",
+      "confidenceScore": 88,
+      "acceptance": [
+        "Stem-replay maps for LAB-ETHERCHANNEL, LAB-NAT-PAT, LAB-DHCP-RELAY, LAB-AAA-LOCAL, LAB-TS-*",
+        "npm test passes"
+      ],
+      "effort": "S",
+      "scoreImpact": {
+        "learning_flow": 6,
+        "labs": 4
+      },
+      "files": [
+        "src/features/stemReplay/stemReplayLabs.js"
+      ],
+      "completedAt": "2026-07-04T04:24:32.993Z"
+    },
+    {
+      "id": "learning_flow_mock_polish",
+      "priority": "medium",
+      "status": "done",
+      "area": "learning_flow",
+      "objectiveNumber": "app",
+      "problem": "Practice post-answer stack tall on mobile; mock debrief lab CTAs incomplete",
+      "recommendedImprovement": "Compact AnswerReview on small screens + mock debrief lab links",
+      "riskLevel": "low",
+      "confidenceScore": 80,
+      "acceptance": [
+        "Compact Practice post-answer stack on mobile (390px)",
+        "Mock debrief lab CTAs for missed routing/security stems"
+      ],
+      "effort": "M",
+      "scoreImpact": {
+        "learning_flow": 8,
+        "mobile": 4
+      },
+      "files": [
+        "src/tabs/QuizTab.jsx",
+        "src/components/AnswerReview.jsx"
+      ],
+      "completedAt": "2026-07-04T04:24:47.416Z"
+    },
+    {
+      "id": "config_lab_strategy",
+      "priority": "low",
+      "status": "pending",
+      "area": "labs",
+      "objectiveNumber": "app",
+      "problem": "25 labs still require live IOS config entry (not interpret-only)",
+      "recommendedImprovement": "Tier config labs as advanced path or convert high-traffic labs to lab-lite",
+      "riskLevel": "medium",
+      "confidenceScore": 72,
+      "acceptance": [
+        "Document or tier 25 config labs (advanced vs interpret-only)",
+        "Top-traffic config labs get lab-lite alternates or clear UI labeling"
+      ],
+      "effort": "L",
+      "scoreImpact": {
+        "labs": 6
+      },
+      "files": [
+        "src/data/ccnaLabsPhases.js",
+        "src/lab/LabView.jsx"
+      ]
+    },
+    {
+      "id": "offline_chunks_broaden",
+      "priority": "medium",
+      "status": "pending",
+      "area": "mobile",
+      "objectiveNumber": "app",
+      "problem": "Offline shell works but not all curated chunks precached",
+      "recommendedImprovement": "Broaden service worker precache for question/reading JSON",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "acceptance": [
+        "Service worker precaches additional curated JSON chunks beyond shell",
+        "offline-curated e2e still passes"
+      ],
+      "effort": "M",
+      "scoreImpact": {
+        "mobile": 6
+      },
+      "files": [
+        "vite.config.js",
+        "src/sw.js"
+      ]
+    },
+    {
+      "id": "objective_screen_extract",
+      "priority": "medium",
+      "status": "pending",
+      "area": "maintainability",
+      "objectiveNumber": "app",
+      "problem": "ObjectiveScreen.jsx still ~354 lines",
+      "recommendedImprovement": "Extract mock/session or review views into src/features/objective/",
+      "riskLevel": "medium",
+      "confidenceScore": 71,
+      "acceptance": [
+        "Extract mock/session or review blocks from ObjectiveScreen.jsx",
+        "ObjectiveScreen.jsx reduced by ≥150 lines; npm test && npm run build pass"
+      ],
+      "effort": "M",
+      "scoreImpact": {
+        "maintainability": 8
+      },
+      "files": [
+        "src/ObjectiveScreen.jsx",
+        "src/features/objective/"
+      ]
     }
   ]
 }

@@ -1861,13 +1861,13 @@ export function QuizTab({
         <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitOrder}>Check order</button>
       )}
       {revealed && (
-        <div style={{ marginBottom: 10 }}>
+        <div className="ccna-confidence-strip" style={{ marginBottom: 10 }}>
           {overconfidentCallout && (
             <div style={{ ...styles.small, marginBottom: 8, padding: '8px 10px', borderRadius: 8, border: `1px solid ${COLORS.amberBorder}`, background: COLORS.amberDim, color: COLORS.amber }}>
               You marked this <strong>Easy</strong> but missed it — a common exam trap. Re-read the explanation before moving on.
             </div>
           )}
-          <div style={{ ...styles.small, marginBottom: 6 }}>How confident did you feel?</div>
+          <div className="ccna-confidence-strip__label" style={{ ...styles.small, marginBottom: 6 }}>How confident did you feel?</div>
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
             {CONFIDENCE_OPTIONS.map(opt => {
               const active = rating === opt.value

@@ -1,6 +1,6 @@
 # CLI Verification Gap Report
 
-- 15 objectives have CLI drills; 31 lack surfaced verify commands in Study UI.
-- command-bank.json has commands not wired for thin objectives.
-- Engineer View surfaces `show vlan brief`, `show spanning-tree`, `show ip route` on enriched objectives.
+- 53/53 objectives have ≥2 reading-tab commands.
+- Zero-command objectives: 0.
+- Engineer View surfaces verify commands on Study tab for enriched objectives.
 

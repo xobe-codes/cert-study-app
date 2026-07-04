@@ -47,3 +47,5 @@
 - **2026-06-30** `labs_connectivity_wave`: Added LAB-ROUTE-FORWARD-32, LAB-OSPF-VERIFY-34, LAB-HSRP-VERIFY-35 + cliEngine show standby/protocols
 - **2026-06-30** `engineer_view_tier_c`: 10 Tier C engineerView patches via factoryEngineerViewPatches.js
 - **2026-06-30** `pwa_offline_curated`: SW ccna-curated-v3 stale-while-revalidate for question chunks
+- **2026-07-04** `stem_replay_wave14`: Wave 14 stem-replay mappings for lab-lite + TS diagnose labs
+- **2026-07-04** `learning_flow_mock_polish`: Compact mobile answer review, mock debrief lab CTAs, confidence strip CSS

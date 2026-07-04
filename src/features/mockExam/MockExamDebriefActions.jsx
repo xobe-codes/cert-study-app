@@ -3,6 +3,13 @@ import { COLORS, styles } from '../../ui/appTheme.js'
 import { getStemReplayLab } from '../stemReplay/stemReplayLabs.js'
 import { resolveTrapDrillCku } from '../trapDrill/trapDrillQuestions.js'
 
+function replayPriority(objectiveId) {
+  if (!objectiveId) return 3
+  if (objectiveId.startsWith('3.')) return 0
+  if (objectiveId.startsWith('5.')) return 1
+  return 2
+}
+
 /** Post-mock CTAs — weak domains, trap drill, stem-replay lab, and objective deep-links. */
 export default function MockExamDebriefActions({
   report,
@@ -54,6 +61,19 @@ export default function MockExamDebriefActions({
   })
   const stemReplay = firstWrongIdx >= 0 ? getStemReplayLab(questions[firstWrongIdx]?.id) : null
 
+  const wrongStemReplays = questions
+    .map((q, idx) => {
+      const sel = responses[idx]
+      if (sel == null || sel === q.correctIndex) return null
+      const replay = getStemReplayLab(q.id)
+      if (!replay) return null
+      return { questionId: q.id, objectiveId: q.objectiveId, ...replay }
+    })
+    .filter(Boolean)
+    .sort((a, b) => replayPriority(a.objectiveId) - replayPriority(b.objectiveId))
+    .filter((item, idx, arr) => arr.findIndex(x => x.labId === item.labId) === idx)
+    .slice(0, 4)
+
   const weakDomainLabReplays = weakDomains.map(d => {
     const oid = weakestObjectiveInDomain(d.id)
     if (!oid) return null
@@ -66,10 +86,10 @@ export default function MockExamDebriefActions({
     return replay ? { domainId: d.id, ...replay } : null
   }).filter(Boolean)
 
-  if (!weakDomains.length && !trapCku && !stemReplay && !weakDomainLabReplays.length) return null
+  if (!weakDomains.length && !trapCku && !stemReplay && !wrongStemReplays.length && !weakDomainLabReplays.length) return null
 
   return (
-    <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim }}>
+    <div className="ccna-mock-debrief" style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim }}>
       <h2 style={{ ...styles.h2, color: COLORS.sky, marginBottom: 8 }}>Next steps</h2>
       <p style={{ ...styles.small, marginBottom: 10, color: COLORS.silver }}>
         Target your weakest areas from this session.
@@ -120,10 +140,24 @@ export default function MockExamDebriefActions({
           Trap drill → {trapCku.trapLabel.slice(0, 60)}
         </button>
       )}
-      {stemReplay && onOpenLab && (
+      {wrongStemReplays.length > 0 && onOpenLab && (
+        <div className="ccna-mock-debrief__labs" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          {wrongStemReplays.map(replay => (
+            <button
+              key={`${replay.questionId}-${replay.labId}`}
+              type="button"
+              style={{ ...styles.secondaryBtn, width: '100%', textAlign: 'left', fontSize: 'var(--ccna-type-sm)' }}
+              onClick={() => onOpenLab(replay.labId)}
+            >
+              Lab replay {replay.objectiveId ? `(${replay.objectiveId})` : ''} → {replay.lab.title}
+            </button>
+          ))}
+        </div>
+      )}
+      {!wrongStemReplays.length && stemReplay && onOpenLab && (
         <button
           type="button"
-          style={{ ...styles.secondaryBtn, width: '100%', textAlign: 'left' }}
+          style={{ ...styles.secondaryBtn, width: '100%', textAlign: 'left', marginTop: 8 }}
           onClick={() => onOpenLab(stemReplay.labId)}
         >
           Lab replay → {stemReplay.lab.title}

@@ -1,6 +1,6 @@
 # Diagram and Visual Aid Audit
 
-- 20 rich visual supplements; 33 generic factory shell diagrams.
+- 53/53 objectives have diagram or packet-flow visuals.
+- 0 objectives lack dedicated diagram — factory shells may be decorative.
 - Expand modal improves mobile diagram study.
-- Generic shells are decorative — low instructional value.
 

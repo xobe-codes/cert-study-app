@@ -4,6 +4,7 @@ import { resolveIncorrectItem } from '../answerReviewLogic.js'
 import QuestionFlagPanel from './QuestionFlagPanel.jsx'
 import StemReplayCTA from '../features/stemReplay/StemReplayCTA.jsx'
 import QuestionUnderReviewBanner from './QuestionUnderReviewBanner.jsx'
+import { useCompactMobile } from '../hooks/useCompactMobile.js'
 import { COLORS, accentColors } from '../ui/appTheme.js'
 
 const CHOICE_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F']
@@ -75,6 +76,7 @@ function WrongChoiceReview({ q, item }) {
 
 /** Post-reveal breakdown — correct + your pick expanded; other distractors collapsed. */
 export default function AnswerReview({ q, selected, hideExamTip = false, objectiveId, showQuestionFlag = false, onOpenLab }) {
+  const compactMobile = useCompactMobile()
   const correctIdx = q.correctIndex
   if (!Array.isArray(q.choices) || typeof correctIdx !== 'number') {
     return <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}>{q.explanation}</div>
@@ -91,9 +93,9 @@ export default function AnswerReview({ q, selected, hideExamTip = false, objecti
   const otherWrong = incorrect.filter(item => item.choiceIndex !== selectedWrongIdx)
 
   return (
-    <div className="ccna-answer-review" style={{ marginTop: 8, minWidth: 0 }}>
+    <div className={`ccna-answer-review${compactMobile ? ' ccna-answer-review--compact' : ''}`} style={{ marginTop: compactMobile ? 6 : 8, minWidth: 0 }}>
       <QuestionUnderReviewBanner questionId={q?.id} />
-      <ReviewBlock icon="✅" title={`CORRECT ANSWER: ${CHOICE_LETTERS[correctIdx] || correctIdx}`} accent="mint" collapsible={selectedWrongIdx != null} defaultOpen={selectedWrongIdx == null}>
+      <ReviewBlock icon="✅" title={`CORRECT ANSWER: ${CHOICE_LETTERS[correctIdx] || correctIdx}`} accent="mint" collapsible={selectedWrongIdx != null || compactMobile} defaultOpen={selectedWrongIdx == null && !compactMobile}>
         <RichText text={ar?.correct?.explanation || q.explanation} />
       </ReviewBlock>
       {yourWrong.map(item => (

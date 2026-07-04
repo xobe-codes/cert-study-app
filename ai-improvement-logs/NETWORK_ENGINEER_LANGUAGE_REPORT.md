@@ -1,6 +1,6 @@
 # Network Engineer Language Report
 
-- Rich objectives (OBJ_21 pattern) include verify commands and trap wording.
-- Factory objectives answer "what is it?" not "what breaks / how to verify".
-- Engineer View pilot on 2.1 sets pattern for verify + symptom callouts.
+- Engineer View on 53/53 objectives.
+- Rich objectives include verify commands and trap wording.
+- Interpret-only labs teach show-command diagnosis without config typing.
 

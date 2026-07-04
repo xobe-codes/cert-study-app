@@ -1,6 +1,7 @@
 # Lab Audit Report
 
-- 37 lab bundles — strong scenarios and validators where present.
-- 0 labs for objectives 6.1–6.6 (automation).
-- 0 labs for 3.1 routing table interpret.
+- 82 lab bundles with validators.
+- 53/53 objectives have at least one lab.
+- 57 interpret-only · 25 full config · 10 troubleshoot.
+- Automation 6.1–6.6: interpret-only lab-lite via cliShowOutput.
 

@@ -1,6 +1,6 @@
 # Learning Gap Analysis
 
-- Depth gap: 31 tier-C factory objectives.
-- Engineer layer missing on thin objectives.
-- Automation + WLAN highest pass-risk despite appearing covered.
+- Coverage thresholds met — shift to polish phase (95+ north star).
+- Trap depth: 0 objectives at minimum 4 traps.
+- Config lab path: 25 labs require typing vs 57 interpret-only.
 

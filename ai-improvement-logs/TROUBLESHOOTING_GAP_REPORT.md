@@ -1,6 +1,6 @@
 # Troubleshooting Gap Report
 
-- Labs include troubleshooting scenarios; readings often lack failure symptoms.
-- 3.1 routing table interpret has no lab-lite.
-- STP verify (`show spanning-tree`) in reading but no CLI drill.
+- 10 troubleshoot labs — all interpret-only diagnose flows.
+- 3.6 TS labs use show-only tasks (area mismatch, native VLAN, ACL, static NH, etc.).
+- Readings could add more failure-symptom callouts on theory-only objectives.
 

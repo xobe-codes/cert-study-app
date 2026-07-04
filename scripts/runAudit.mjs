@@ -182,6 +182,11 @@ function printReport() {
   const { summary, rows } = JSON.parse(readFileSync(covPath, 'utf8'))
   let pending = 0
   let done = 0
+  let overall = null
+  if (existsSync(join(OUT, 'APP_SCORECARD.md'))) {
+    const m = readFileSync(join(OUT, 'APP_SCORECARD.md'), 'utf8').match(/\*\*Overall\*\* \| \*\*(\d+)\*\*/)
+    if (m) overall = m[1]
+  }
   if (existsSync(queuePath)) {
     const { items } = JSON.parse(readFileSync(queuePath, 'utf8'))
     pending = items.filter(i => i.status === 'pending').length
@@ -196,6 +201,10 @@ function printReport() {
   console.log(`  Zero FC:      ${summary.zeroFlashcards.length}`)
   console.log(`  No lab:       ${summary.noLab.length}`)
   console.log(`  Questions:    ${totalQ} total`)
+  if (summary.labStats) {
+    console.log(`  Labs:         ${summary.labStats.total} (${summary.labStats.interpretOnly} interpret-only)`)
+  }
+  if (overall) console.log(`  Score:        ~${overall}/100`)
   console.log(`  Queue:        ${done} done · ${pending} pending`)
   console.log(`  Logs:         ai-improvement-logs/`)
   console.log('')

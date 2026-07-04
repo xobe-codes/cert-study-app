@@ -105,4 +105,19 @@ describe('stemReplayLabs', () => {
       expect(getLab(labId)?.lab.id).toBe(labId)
     }
   })
+
+  it('maps wave 14 lab-lite and TS diagnose labs', () => {
+    const cases = [
+      ['4.1-ts-nat', 'LAB-NAT-PAT'],
+      ['obj-4.6-source-q002', 'LAB-DHCP-RELAY'],
+      ['obj-5.4-source-q003', 'LAB-AAA-LOCAL'],
+      ['obj-3.4-source-q004', 'LAB-OSPF-SINGLE-AREA'],
+      ['3.6-legacy-q010', 'LAB-TS-OSPF-AREA'],
+      ['5.5-ts-placement', 'LAB-TS-ACL-PLACEMENT'],
+    ]
+    for (const [qid, labId] of cases) {
+      expect(getStemReplayLab(qid)?.labId, qid).toBe(labId)
+      expect(getLab(labId)?.lab.interpretOnly, labId).toBe(true)
+    }
+  })
 })

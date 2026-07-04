@@ -1119,12 +1119,39 @@ export function buildAppShellCss(colors) {
       .ccna-answer-review .ccna-review-block {
         padding: 8px 10px;
       }
+      .ccna-answer-review--compact .ccna-review-block {
+        margin-bottom: 6px;
+      }
+      .ccna-answer-review--compact .ccna-review-block__body {
+        margin-top: 6px;
+        font-size: var(--ccna-type-sm);
+        line-height: 1.45;
+      }
       .ccna-answer-review .ccna-review-block .ccna-review-block {
         padding: 8px;
         margin-bottom: 6px;
       }
       .ccna-answer-review .ccna-review-block__title {
         font-size: var(--ccna-type-caption);
+      }
+      .ccna-quiz-reveal {
+        padding: 8px 10px !important;
+        margin-top: 6px !important;
+      }
+      .ccna-confidence-strip {
+        margin-bottom: 8px;
+      }
+      .ccna-confidence-strip .ccna-confidence-strip__label {
+        font-size: var(--ccna-type-caption);
+        margin-bottom: 4px;
+      }
+      .ccna-confidence-strip button {
+        min-height: 36px !important;
+        padding: 6px 4px !important;
+        font-size: var(--ccna-type-caption) !important;
+      }
+      .ccna-mock-debrief__labs button {
+        padding: 8px 10px;
       }
     }
     .key-term-card {

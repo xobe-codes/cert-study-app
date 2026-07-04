@@ -1,5 +1,5 @@
 # Topology Accuracy Report
 
-- Hand-curated diagrams match CCNA reference models.
-- Factory diagram shells use generic placeholders — accuracy ~60%.
+- Hand-curated and lab-lite diagrams match CCNA reference models.
+- Generic factory diagram shells lower instructional value where no custom diagram exists.
 
