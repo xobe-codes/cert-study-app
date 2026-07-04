@@ -16,7 +16,7 @@ describe('labs_connectivity_wave', () => {
     expect(ids).toContain('LAB-OSPF-VERIFY-34')
     expect(ids).toContain('LAB-OSPF-ADJ-34')
     expect(ids).toContain('LAB-OSPF-SINGLE-AREA')
-    for (const labId of ['LAB-OSPF-VERIFY-34', 'LAB-OSPF-ADJ-34']) {
+    for (const labId of ['LAB-OSPF-VERIFY-34', 'LAB-OSPF-ADJ-34', 'LAB-OSPF-SINGLE-AREA']) {
       const lab = getLab(labId)?.lab
       expect(lab?.interpretOnly).toBe(true)
       expect(lab?.cliShowOutput).toBeTruthy()

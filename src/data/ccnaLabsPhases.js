@@ -1,5 +1,7 @@
 /* Phases 1–4 labs — port security, NAT, SVI, STP edge, IPv6, OSPF default, wireless, LLDP, SNMP, EtherChannel variants. */
 
+import { CLI_TS_SHOW_OUTPUT } from '../lab/cliEngine.js'
+
 const LAB_SOURCES = {
   workbook: 'CCNA in 60 Days — Lab Workbook (Browning)',
   blueprint: 'Cisco CCNA 200-301 v1.1 Exam Topics',
@@ -98,31 +100,39 @@ function mkInterpretGuided(opts) {
   }
 }
 
-function tsLab(id, title, objectiveId, domainId, scenario, tasks, requiredCommands, mistakes) {
+function tsLab(id, title, objectiveId, domainId, scenario, tasks, requiredCommands, verify, mistakes) {
   return {
     id, title, domainId, objectiveId, ckuIds: ['CKU-TROUBLESHOOTING'],
-    labType: 'troubleshooting', difficulty: 'intermediate', estimatedTimeMinutes: 15,
+    labType: 'troubleshooting', interpretOnly: true, difficulty: 'intermediate', estimatedTimeMinutes: 12,
     tools: ['Packet Tracer', 'GNS3'], examRelevance: 'core', scenario,
-    learningGoals: ['Use show commands to isolate fault', 'Apply minimal fix commands'],
+    learningGoals: ['Use show commands to isolate fault', 'Interpret misconfiguration from CLI output'],
     topologyId: `TOPO-${id}`, prerequisites: [],
-    tasks, verificationCommands: ['show running-config'],
-    successCriteria: ['Symptom resolved after fix commands entered'],
-    failureCriteria: ['Fix applied on wrong interface or VLAN'],
+    tasks, verificationCommands: verify || ['show running-config'],
+    successCriteria: ['Root cause identified from show command output'],
+    failureCriteria: ['Misread show output — wrong layer diagnosed'],
     commonMistakes: mistakes,
     source: { name: LAB_SOURCES.blueprint, chapter: 'Troubleshooting', confidence: 0.9 },
     metadata: { version: '1', status: 'validated', confidence: 0.9 },
+    cliShowOutput: CLI_TS_SHOW_OUTPUT,
   }
 }
 
-function tsBundle(lab, nodes, links, fixCmd) {
+function tsBundle(lab, nodes, links, verifyCmds) {
   const topo = { id: lab.topologyId, title: lab.title, objectiveId: lab.objectiveId, nodes, links }
-  const validator = { labId: lab.id, requiredCommands: fixCmd, verificationChecks: [{ id: 'v1', device: fixCmd[0]?.device || 'R1', command: 'show running-config', expectedResult: 'Fix applied', passCondition: 'fixed' }] }
+  const validator = {
+    labId: lab.id,
+    requiredCommands: verifyCmds,
+    verificationChecks: verifyCmds.map((c, i) => ({
+      id: `v${i + 1}`, device: c.device, command: c.command,
+      expectedResult: 'Root cause visible in output', passCondition: 'diagnosed',
+    })),
+  }
   const diagram = mkDiagram(`DIAG-${lab.id}`, lab.title, lab.objectiveId,
-    [{ id: 'bad', label: 'Fault', type: 'process', x: 30, y: 50, status: 'error' }, { id: 'fix', label: 'Fixed', type: 'process', x: 70, y: 50, status: 'highlighted' }],
+    [{ id: 'bad', label: 'Fault', type: 'process', x: 30, y: 50, status: 'error' }, { id: 'fix', label: 'Diagnose', type: 'process', x: 70, y: 50, status: 'highlighted' }],
     [{ id: 'd1', source: 'bad', target: 'fix', status: 'forwarding' }])
-  return { lab, topology: topo, validator, diagram, packetFlows: mkFlows(`FLOW-${lab.id}`, 'Fix fault', `DIAG-${lab.id}`, ['CKU-TROUBLESHOOTING'], [
+  return { lab, topology: topo, validator, diagram, packetFlows: mkFlows(`FLOW-${lab.id}`, 'Isolate fault', `DIAG-${lab.id}`, ['CKU-TROUBLESHOOTING'], [
     { id: 's1', order: 1, title: 'Symptom', action: scenarioShort(lab.scenario), successState: 'failed' },
-    { id: 's2', order: 2, title: 'Fix', action: 'Correct configuration restores service', successState: 'forwarded' },
+    { id: 's2', order: 2, title: 'Diagnose', action: 'Show commands reveal root cause', successState: 'learned' },
   ]) }
 }
 
@@ -386,19 +396,23 @@ const WLAN_SSID = mkGuided({
 })
 
 const LAB_TS_WLAN = tsLab('LAB-TS-WLAN-VLAN', 'Troubleshoot WLAN Wrong VLAN Mapping', '3.6', 'access',
-  'Symptom: Wireless clients associate to CORP_WIFI but receive 192.168.10.x instead of 192.168.20.x. WLC dynamic interface for the WLAN points to VLAN10 — change interface mapping to VLAN20 (192.168.20.1/24).',
+  'Symptom: Wireless clients associate to CORP_WIFI but receive 192.168.10.x instead of 192.168.20.x. Use WLC show commands to identify wrong VLAN interface mapping.',
   [
-    { id: 't1', order: 1, title: 'Check client subnet', device: 'WLC1', instruction: 'show client detail — client on wrong 192.168.10.x subnet.', expectedCommands: ['show client summary'] },
-    { id: 't2', order: 2, title: 'Fix WLAN interface', device: 'WLC1', instruction: 'Map WLAN CORP_WIFI to VLAN20 interface.', expectedCommands: ['wlan CORP_WIFI', 'interface vlan 20'] },
-    { id: 't3', order: 3, title: 'Verify', device: 'WLC1', instruction: 'Confirm new clients get 192.168.20.x.', expectedCommands: ['show wlan summary'] },
+    { id: 't1', order: 1, title: 'Client subnet', device: 'WLC1', instruction: 'Run show client summary — clients on wrong 192.168.10.x subnet.',
+      expectedCommands: ['show client summary'] },
+    { id: 't2', order: 2, title: 'WLAN mapping', device: 'WLC1', instruction: 'Run show wlan summary — CORP_WIFI mapped to VLAN10 interface instead of VLAN20.',
+      expectedCommands: ['show wlan summary'] },
+    { id: 't3', order: 3, title: 'Root cause', device: 'WLC1', instruction: 'Diagnosis: WLAN dynamic interface points to VLAN10 — clients get 10.x addresses.',
+      expectedCommands: ['show wlan summary'] },
   ],
-  [{ device: 'WLC1', command: 'interface vlan 20' }],
+  [],
+  ['show client summary', 'show wlan summary'],
   ['Mapping SSID to management VLAN instead of user VLAN'])
 
 const TS_WLAN = tsBundle(LAB_TS_WLAN,
   [{ id: 'wlc', label: 'WLC wrong VLAN', type: 'router', x: 50, y: 40, status: 'error' }, { id: 'cli', label: 'Client .10.x', type: 'pc', x: 50, y: 75 }],
   [{ id: 'l1', source: 'wlc', target: 'cli', status: 'blocked' }],
-  [{ device: 'WLC1', command: 'interface vlan 20' }])
+  [{ device: 'WLC1', command: 'show client summary' }, { device: 'WLC1', command: 'show wlan summary' }])
 
 /* ---- Phase 3 Wave — 1.5 MAC forwarding + 5.8–5.11 security ---- */
 

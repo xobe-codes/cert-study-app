@@ -25,7 +25,10 @@ import { TIER_B_TRAP_WAVE12_PATCHES } from './tierBTrapWave12Patches.js'
 import { FACTORY_ENGINEER_VIEW_WAVE3_SUPPLEMENTS } from './factoryEngineerViewPatchesWave3.js'
 import { FACTORY_ENGINEER_VIEW_WAVE4_SUPPLEMENTS } from './factoryEngineerViewPatchesWave4.js'
 import { READING_COMMANDS_WAVE1_PATCHES } from './readingCommandsWave1Patches.js'
+import { READING_COMMANDS_WAVE2_PATCHES } from './readingCommandsWave2Patches.js'
 import { CONTENT_DEPTH_WAVE10_PATCHES } from './contentDepthWave10Patches.js'
+import { CONTENT_DEPTH_WAVE11_PATCHES } from './contentDepthWave11Patches.js'
+import { TIER_B_TRAP_WAVE13_PATCHES } from './tierBTrapWave13Patches.js'
 
 const ENGINEER_VIEW_WAVE_SUPPLEMENTS = [
   FACTORY_ENGINEER_VIEW_WAVE3_SUPPLEMENTS,
@@ -557,10 +560,13 @@ export function applyContentEnrichment(base, objectiveId) {
   const trapWave10 = TIER_B_TRAP_WAVE10_PATCHES[objectiveId]
   const trapWave11 = TIER_B_TRAP_WAVE11_PATCHES[objectiveId]
   const trapWave12 = TIER_B_TRAP_WAVE12_PATCHES[objectiveId]
+  const trapWave13 = TIER_B_TRAP_WAVE13_PATCHES[objectiveId]
   const wlanWave5 = WLAN_ENRICHMENT_WAVE5_PATCHES[objectiveId]
-  const readingCmds = READING_COMMANDS_WAVE1_PATCHES[objectiveId]
+  const readingW1 = READING_COMMANDS_WAVE1_PATCHES[objectiveId]
+  const readingW2 = READING_COMMANDS_WAVE2_PATCHES[objectiveId]
   const wave10 = CONTENT_DEPTH_WAVE10_PATCHES[objectiveId]
-  if (!factory && !patch && !wave3 && !wave4 && !wave5 && !wave6 && !wave7 && !wave8 && !wave9 && !trapWave4 && !trapWave5 && !trapWave6 && !trapWave7 && !trapWave8 && !trapWave9 && !trapWave10 && !trapWave11 && !trapWave12 && !wlanWave5 && !readingCmds && !wave10) return base
+  const wave11 = CONTENT_DEPTH_WAVE11_PATCHES[objectiveId]
+  if (!factory && !patch && !wave3 && !wave4 && !wave5 && !wave6 && !wave7 && !wave8 && !wave9 && !trapWave4 && !trapWave5 && !trapWave6 && !trapWave7 && !trapWave8 && !trapWave9 && !trapWave10 && !trapWave11 && !trapWave12 && !trapWave13 && !wlanWave5 && !readingW1 && !readingW2 && !wave10 && !wave11) return base
   const mergeList = (a, b) => (b?.length ? [...(a || []), ...b] : a)
   let examTraps = base.examTraps
   let flashcards = base.flashcards
@@ -576,6 +582,7 @@ export function applyContentEnrichment(base, objectiveId) {
   if (trapWave10?.examTraps) examTraps = mergeList(examTraps, trapWave10.examTraps)
   if (trapWave11?.examTraps) examTraps = mergeList(examTraps, trapWave11.examTraps)
   if (trapWave12?.examTraps) examTraps = mergeList(examTraps, trapWave12.examTraps)
+  if (trapWave13?.examTraps) examTraps = mergeList(examTraps, trapWave13.examTraps)
   if (wlanWave5?.examTraps) examTraps = mergeList(examTraps, wlanWave5.examTraps)
   if (factory?.flashcards) flashcards = mergeList(flashcards, factory.flashcards)
   if (patch?.flashcards) flashcards = mergeList(flashcards, patch.flashcards)
@@ -600,8 +607,13 @@ export function applyContentEnrichment(base, objectiveId) {
   if (wave9?.questions) questions = mergeList(questions, wave9.questions)
   if (wlanWave5?.questions) questions = mergeList(questions, wlanWave5.questions)
   if (wave10?.flashcards) flashcards = mergeList(flashcards, wave10.flashcards)
-  const commands = readingCmds?.commands?.length
-    ? mergeList(base.commands, readingCmds.commands)
+  if (wave11?.flashcards) flashcards = mergeList(flashcards, wave11.flashcards)
+  const readingMerged = [
+    ...(readingW1?.commands || []),
+    ...(readingW2?.commands || []),
+  ]
+  const commands = readingMerged.length
+    ? mergeList(base.commands, readingMerged)
     : base.commands
   const engineerView = augmentEngineerView(patch?.engineerView || factory?.engineerView, objectiveId)
   return {

@@ -1,11 +1,11 @@
 # App Audit Summary
 
-**Generated:** 2026-07-04T00:57:32.211Z  
+**Generated:** 2026-07-04T03:11:49.211Z  
 **Overall learning quality:** ~74/100
 
 ## Strengths
 - 53/53 objectives have reading + clean-bank questions (1313 total Q)
-- Tier A exam-ready packs: 21 objectives
+- Tier A exam-ready packs: 53 objectives
 - Gold answer-review pipeline, SRS, trap-grouped missed review
 - 37 CLI labs with validators; Study/Practice tab consolidation
 
@@ -20,8 +20,8 @@
 ## Coverage tiers
 | Tier | Count | Pass risk |
 |------|------:|-----------|
-| A | 21 | Low |
-| B | 32 | Medium |
+| A | 53 | Low |
+| B | 0 | Medium |
 | C | 0 | **High** |
 
 See `CCNA_OBJECTIVE_COVERAGE_MATRIX.md` for per-objective detail.

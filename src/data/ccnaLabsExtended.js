@@ -1,6 +1,6 @@
 /* Extended CCNA labs — guided config gaps + troubleshooting scenarios. */
 
-import { CLI_ROUTE_31_SHOW_OUTPUT, CLI_ROUTE_32_SHOW_OUTPUT, CLI_OSPF_VERIFY_34_SHOW_OUTPUT, CLI_OSPF_ADJ_34_SHOW_OUTPUT, CLI_HSRP_VERIFY_35_SHOW_OUTPUT, CLI_HSRP_GATEWAY_35_SHOW_OUTPUT, CLI_ACL_CONFIG_55_SHOW_OUTPUT, CLI_PORTSEC_56_SHOW_OUTPUT, CLI_NTP_42_SHOW_OUTPUT, CLI_DHCP_POOL_43_SHOW_OUTPUT, CLI_SNMP_44_SHOW_OUTPUT, CLI_SYSLOG_45_SHOW_OUTPUT, CLI_TFTP_49_SHOW_OUTPUT, CLI_STP_25_SHOW_OUTPUT, CLI_ACCESS_53_SHOW_OUTPUT, CLI_SSH_53_SHOW_OUTPUT } from '../lab/cliEngine.js'
+import { CLI_ROUTE_31_SHOW_OUTPUT, CLI_ROUTE_32_SHOW_OUTPUT, CLI_OSPF_VERIFY_34_SHOW_OUTPUT, CLI_OSPF_ADJ_34_SHOW_OUTPUT, CLI_HSRP_VERIFY_35_SHOW_OUTPUT, CLI_HSRP_GATEWAY_35_SHOW_OUTPUT, CLI_ACL_CONFIG_55_SHOW_OUTPUT, CLI_PORTSEC_56_SHOW_OUTPUT, CLI_NTP_42_SHOW_OUTPUT, CLI_DHCP_POOL_43_SHOW_OUTPUT, CLI_SNMP_44_SHOW_OUTPUT, CLI_SYSLOG_45_SHOW_OUTPUT, CLI_TFTP_49_SHOW_OUTPUT, CLI_STP_25_SHOW_OUTPUT, CLI_ACCESS_53_SHOW_OUTPUT, CLI_SSH_53_SHOW_OUTPUT, CLI_EC_24_SHOW_OUTPUT, CLI_AAA_54_SHOW_OUTPUT, CLI_DHCP_RELAY_46_SHOW_OUTPUT, CLI_TS_SHOW_OUTPUT } from '../lab/cliEngine.js'
 
 const LAB_SOURCES = {
   workbook: 'CCNA in 60 Days — Lab Workbook (Browning)',
@@ -73,39 +73,42 @@ const LAB_DHCP = {
   objectiveId: '4.6',
   ckuIds: ['CKU-DHCP'],
   labType: 'guided',
+  interpretOnly: true,
   difficulty: 'intermediate',
-  estimatedTimeMinutes: 15,
+  estimatedTimeMinutes: 10,
   tools: ['Packet Tracer', 'GNS3'],
   examRelevance: 'core',
-  scenario: 'R1 is the DHCP server on 10.0.0.0/24. Remote LAN 192.168.10.0/24 is behind R2. Configure a DHCP pool on R1 and `ip helper-address` on R2 so remote PCs receive addresses.',
-  learningGoals: ['Create DHCP pool and excluded addresses', 'Configure helper-address on the client-facing interface', 'Verify bindings'],
+  scenario: 'R1 is the DHCP server on 10.0.0.0/24 with pool REMOTE_LAN for 192.168.10.0/24. R2 has ip helper-address on Gi0/1 toward R1. Configuration is pre-loaded — verify pool, relay, and bindings without changing config.',
+  learningGoals: [
+    'Read DHCP pool network and default-router in running-config',
+    'Confirm ip helper-address on the client-facing interface',
+    'Verify active leases with show ip dhcp binding',
+  ],
   topologyId: 'TOPO-DHCP-RELAY',
   prerequisites: ['CKU-IP-ADDRESSING'],
   tasks: [
-    { id: 't1', order: 1, title: 'R1 server interface', device: 'R1', instruction: 'Configure Gi0/0 as 10.0.0.1/24 and enable it.',
-      expectedCommands: ['interface gi0/0', 'ip address 10.0.0.1 255.255.255.0', 'no shutdown'] },
-    { id: 't2', order: 2, title: 'DHCP pool on R1', device: 'R1', instruction: 'Create pool REMOTE_LAN for 192.168.10.0/24 with default-router 192.168.10.1.',
-      expectedCommands: ['ip dhcp pool REMOTE_LAN', 'network 192.168.10.0 255.255.255.0', 'default-router 192.168.10.1'] },
-    { id: 't3', order: 3, title: 'R2 client subnet', device: 'R2', instruction: 'Configure Gi0/1 (LAN) as 192.168.10.1/24.',
-      expectedCommands: ['interface gi0/1', 'ip address 192.168.10.1 255.255.255.0', 'no shutdown'] },
-    { id: 't4', order: 4, title: 'Helper-address on R2', device: 'R2', instruction: 'On Gi0/1, add ip helper-address pointing to R1 (10.0.0.1) to relay DHCP broadcasts.',
-      expectedCommands: ['ip helper-address 10.0.0.1'] },
-    { id: 't5', order: 5, title: 'Verify', device: 'R1', instruction: 'Confirm DHCP bindings appear after a client requests an address.',
+    { id: 't1', order: 1, title: 'DHCP pool on R1', device: 'R1', instruction: 'Run show running-config | section dhcp — confirm pool REMOTE_LAN for 192.168.10.0/24 with default-router 192.168.10.1.',
+      expectedCommands: ['show running-config | section dhcp'] },
+    { id: 't2', order: 2, title: 'Helper-address on R2', device: 'R2', instruction: 'Run show running-config interface gi0/1 — confirm ip helper-address 10.0.0.1 on the client LAN.',
+      expectedCommands: ['show running-config interface gi0/1'] },
+    { id: 't3', order: 3, title: 'Active bindings', device: 'R1', instruction: 'Run show ip dhcp binding — confirm a lease in 192.168.10.0/24.',
       expectedCommands: ['show ip dhcp binding'] },
   ],
-  verificationCommands: ['show ip dhcp binding', 'show ip dhcp pool'],
-  successCriteria: ['Remote PC receives 192.168.10.x address', 'Binding visible on R1', 'Default gateway is 192.168.10.1'],
-  failureCriteria: ['Helper-address on wrong interface', 'Pool network does not match remote subnet'],
+  verificationCommands: ['show ip dhcp binding', 'show running-config | section dhcp'],
+  successCriteria: ['Pool matches remote subnet', 'Helper-address on client LAN interface', 'Binding visible for remote PC'],
+  failureCriteria: ['Helper-address on server-facing interface instead of client LAN'],
   commonMistakes: ['Placing helper-address on the server-facing interface instead of the client LAN', 'Forgetting default-router in the pool'],
   source: { name: LAB_SOURCES.workbook, chapter: 'DHCP Relay', confidence: 0.9 },
   metadata: { version: '1', status: 'validated', confidence: 0.9 },
+  cliShowOutput: CLI_DHCP_RELAY_46_SHOW_OUTPUT,
 }
 const TOPO_DHCP = { id: 'TOPO-DHCP-RELAY', title: 'DHCP relay topology', objectiveId: '4.6',
   nodes: [{ id: 'r1', label: 'R1 DHCP server', type: 'router', x: 20, y: 50 }, { id: 'r2', label: 'R2 relay', type: 'router', x: 55, y: 50 }, { id: 'pc', label: 'Remote PC', type: 'pc', x: 85, y: 50 }],
   links: [{ id: 'l1', source: 'r1', target: 'r2', status: 'forwarding' }, { id: 'l2', source: 'r2', target: 'pc', label: 'helper-address', status: 'forwarding' }] }
 const VALIDATOR_DHCP = { labId: 'LAB-DHCP-RELAY', requiredCommands: [
-  { device: 'R1', command: 'ip dhcp pool REMOTE_LAN' }, { device: 'R1', command: 'network 192.168.10.0 255.255.255.0' },
-  { device: 'R2', command: 'ip helper-address 10.0.0.1' },
+  { device: 'R1', command: 'show running-config | section dhcp' },
+  { device: 'R2', command: 'show running-config interface gi0/1' },
+  { device: 'R1', command: 'show ip dhcp binding' },
 ], verificationChecks: [{ id: 'v1', device: 'R1', command: 'show ip dhcp binding', expectedResult: 'Lease for remote PC', passCondition: 'binding present' }] }
 const DHCP_RELAY = { lab: LAB_DHCP, topology: TOPO_DHCP, validator: VALIDATOR_DHCP,
   diagram: mkDiagram('DIAG-DHCP-RELAY', 'DHCP broadcast relayed', '4.6',
@@ -170,25 +173,26 @@ const LAB_EC = {
   objectiveId: '2.4',
   ckuIds: ['CKU-ETHERCHANNEL'],
   labType: 'guided',
+  interpretOnly: true,
   difficulty: 'intermediate',
-  estimatedTimeMinutes: 15,
+  estimatedTimeMinutes: 10,
   tools: ['Packet Tracer', 'GNS3'],
   examRelevance: 'core',
-  scenario: 'SW1 and SW2 are connected via Gi0/1 and Gi0/2. Bundle both links into Port-channel 1 using LACP active mode for redundant trunk bandwidth.',
-  learningGoals: ['Match channel-group mode on both sides', 'Verify Po1 in show etherchannel summary'],
+  scenario: 'SW1 and SW2 are pre-configured with LACP active EtherChannel Po1 on Gi0/1 and Gi0/2. Verify the bundle without changing configuration.',
+  learningGoals: [
+    'Read channel-group mode active on member ports',
+    'Confirm Po1 (SU) in show etherchannel summary',
+    'Verify two active member links in the bundle',
+  ],
   topologyId: 'TOPO-EC',
   prerequisites: ['CKU-TRUNKING'],
   tasks: [
-    { id: 't1', order: 1, title: 'SW1 Gi0/1', device: 'SW1', instruction: 'Set Gi0/1 to trunk and add to channel-group 1 mode active.',
-      expectedCommands: ['interface gi0/1', 'switchport mode trunk', 'channel-group 1 mode active'] },
-    { id: 't2', order: 2, title: 'SW1 Gi0/2', device: 'SW1', instruction: 'Repeat on Gi0/2 for the second member link.',
-      expectedCommands: ['interface gi0/2', 'channel-group 1 mode active'] },
-    { id: 't3', order: 3, title: 'SW2 Gi0/1', device: 'SW2', instruction: 'Configure matching trunk + channel-group on SW2 Gi0/1.',
-      expectedCommands: ['interface gi0/1', 'switchport mode trunk', 'channel-group 1 mode active'] },
-    { id: 't4', order: 4, title: 'SW2 Gi0/2', device: 'SW2', instruction: 'Add Gi0/2 to the same channel-group on SW2.',
-      expectedCommands: ['interface gi0/2', 'channel-group 1 mode active'] },
-    { id: 't5', order: 5, title: 'Verify', device: 'SW1', instruction: 'Confirm Port-channel 1 is up with two active member ports.',
+    { id: 't1', order: 1, title: 'Member port config', device: 'SW1', instruction: 'Run show running-config | section interface — find channel-group 1 mode active on Gi0/1 and Gi0/2.',
+      expectedCommands: ['show running-config | section interface'] },
+    { id: 't2', order: 2, title: 'Bundle status', device: 'SW1', instruction: 'Run show etherchannel summary — confirm Po1(SU) with two ports in bundle.',
       expectedCommands: ['show etherchannel summary'] },
+    { id: 't3', order: 3, title: 'Port-channel interface', device: 'SW1', instruction: 'Run show interfaces port-channel 1 — verify line protocol up.',
+      expectedCommands: ['show interfaces port-channel 1'] },
   ],
   verificationCommands: ['show etherchannel summary', 'show interfaces port-channel 1'],
   successCriteria: ['Po1 shows (SU) — bundled and in use', 'Two ports listed as active members'],
@@ -196,12 +200,15 @@ const LAB_EC = {
   commonMistakes: ['Configuring channel-group on only one link', 'Mismatched channel-group number'],
   source: { name: LAB_SOURCES.blueprint, chapter: '2.4 EtherChannel', confidence: 0.9 },
   metadata: { version: '1', status: 'validated', confidence: 0.9 },
+  cliShowOutput: CLI_EC_24_SHOW_OUTPUT,
 }
 const TOPO_EC = { id: 'TOPO-EC', title: 'EtherChannel topology', objectiveId: '2.4',
   nodes: [{ id: 'sw1', label: 'SW1', type: 'switch', x: 30, y: 50 }, { id: 'sw2', label: 'SW2', type: 'switch', x: 70, y: 50 }],
   links: [{ id: 'l1', source: 'sw1', target: 'sw2', label: 'Gi0/1 Po1', status: 'forwarding' }, { id: 'l2', source: 'sw1', target: 'sw2', label: 'Gi0/2 Po1', status: 'forwarding' }] }
 const VALIDATOR_EC = { labId: 'LAB-ETHERCHANNEL', requiredCommands: [
-  { device: 'SW1', command: 'channel-group 1 mode active' }, { device: 'SW2', command: 'channel-group 1 mode active' },
+  { device: 'SW1', command: 'show running-config | section interface' },
+  { device: 'SW1', command: 'show etherchannel summary' },
+  { device: 'SW1', command: 'show interfaces port-channel 1' },
 ], verificationChecks: [{ id: 'v1', device: 'SW1', command: 'show etherchannel summary', expectedResult: 'Po1 up with 2 ports', passCondition: 'bundle up' }] }
 const ETHERCHANNEL = { lab: LAB_EC, topology: TOPO_EC, validator: VALIDATOR_EC,
   diagram: mkDiagram('DIAG-EC', 'Two links bundled', '2.4',
@@ -378,38 +385,42 @@ const LAB_AAA = {
   objectiveId: '5.4',
   ckuIds: ['CKU-AAA'],
   labType: 'guided',
+  interpretOnly: true,
   difficulty: 'intermediate',
-  estimatedTimeMinutes: 12,
+  estimatedTimeMinutes: 10,
   tools: ['Packet Tracer', 'GNS3'],
   examRelevance: 'core',
-  scenario: 'Enable AAA new-model on R1 and use the local database for VTY login authentication (simplified alternative to TACACS+ when no server is available).',
-  learningGoals: ['aaa new-model', 'aaa authentication login default local', 'Contrast with TACACS+ for centralized auth'],
+  scenario: 'R1 has AAA new-model with local login authentication for VTY lines and user netadmin. Configuration is pre-loaded — verify AAA method lists and VTY login policy without changing config.',
+  learningGoals: [
+    'Confirm aaa new-model and login default local in running-config',
+    'Verify VTY lines use login authentication default',
+    'Read local user entries with show aaa user all',
+  ],
   topologyId: 'TOPO-AAA',
   prerequisites: ['CKU-LOCAL-AUTH'],
   tasks: [
-    { id: 't1', order: 1, title: 'Local user', device: 'R1', instruction: 'Create user netadmin privilege 15 secret NetPass123.',
-      expectedCommands: ['username netadmin privilege 15 secret NetPass123'] },
-    { id: 't2', order: 2, title: 'Enable AAA', device: 'R1', instruction: 'Enable AAA new model.',
-      expectedCommands: ['aaa new-model'] },
-    { id: 't3', order: 3, title: 'Login method list', device: 'R1', instruction: 'Set default login authentication to use the local database.',
-      expectedCommands: ['aaa authentication login default local'] },
-    { id: 't4', order: 4, title: 'VTY login', device: 'R1', instruction: 'Apply login authentication on VTY lines 0-4.',
-      expectedCommands: ['line vty 0 4', 'login authentication default'] },
-    { id: 't5', order: 5, title: 'Verify', device: 'R1', instruction: 'Show AAA configuration.',
+    { id: 't1', order: 1, title: 'AAA config', device: 'R1', instruction: 'Run show running-config | section aaa — confirm aaa new-model and aaa authentication login default local.',
+      expectedCommands: ['show running-config | section aaa'] },
+    { id: 't2', order: 2, title: 'VTY login policy', device: 'R1', instruction: 'Run show running-config | section line vty — confirm login authentication default on lines 0-4.',
+      expectedCommands: ['show running-config | section line vty'] },
+    { id: 't3', order: 3, title: 'Local users', device: 'R1', instruction: 'Run show aaa user all — confirm netadmin is in the local database.',
       expectedCommands: ['show aaa user all'] },
   ],
   verificationCommands: ['show run | section aaa', 'show aaa user all'],
-  successCriteria: ['AAA enabled', 'VTY uses login authentication default', 'Local user can authenticate'],
+  successCriteria: ['AAA enabled', 'VTY uses login authentication default', 'Local user netadmin present'],
   failureCriteria: ['aaa new-model without login list — VTY may break'],
   commonMistakes: ['Forgetting username before switching to aaa authentication login default local'],
   source: { name: LAB_SOURCES.blueprint, chapter: '5.4 AAA', confidence: 0.85 },
   metadata: { version: '1', status: 'validated', confidence: 0.85 },
+  cliShowOutput: CLI_AAA_54_SHOW_OUTPUT,
 }
 const TOPO_AAA = { id: 'TOPO-AAA', title: 'AAA local auth', objectiveId: '5.4',
   nodes: [{ id: 'pc', label: 'Admin PC', type: 'pc', x: 25, y: 50 }, { id: 'r1', label: 'R1 AAA local', type: 'router', x: 75, y: 50 }],
   links: [{ id: 'l1', source: 'pc', target: 'r1', status: 'forwarding' }] }
 const VALIDATOR_AAA = { labId: 'LAB-AAA-LOCAL', requiredCommands: [
-  { device: 'R1', command: 'aaa new-model' }, { device: 'R1', command: 'aaa authentication login default local' }, { device: 'R1', command: 'login authentication default' },
+  { device: 'R1', command: 'show running-config | section aaa' },
+  { device: 'R1', command: 'show running-config | section line vty' },
+  { device: 'R1', command: 'show aaa user all' },
 ], verificationChecks: [{ id: 'v1', device: 'R1', command: 'show run | section aaa', expectedResult: 'aaa authentication login default local', passCondition: 'aaa on' }] }
 const AAA = { lab: LAB_AAA, topology: TOPO_AAA, validator: VALIDATOR_AAA,
   diagram: mkDiagram('DIAG-AAA', 'Local AAA method list', '5.4',
@@ -472,185 +483,183 @@ const SYSLOG = { lab: LAB_SYSLOG, topology: TOPO_SYSLOG, validator: VALIDATOR_SY
 /* =========================================================================
    TROUBLESHOOTING SCENARIOS (3.6 + cross-topic)
    ========================================================================= */
-function tsLab(id, title, objectiveId, domainId, scenario, tasks, requiredCommands, verify, mistakes) {
+function tsLab(id, title, objectiveId, domainId, scenario, tasks, requiredCommands, verify, mistakes, cliShowOutput = CLI_TS_SHOW_OUTPUT) {
   return {
     id, title, domainId, objectiveId, ckuIds: ['CKU-TROUBLESHOOTING'],
-    labType: 'troubleshooting', difficulty: 'intermediate', estimatedTimeMinutes: 15,
+    labType: 'troubleshooting', interpretOnly: true, difficulty: 'intermediate', estimatedTimeMinutes: 12,
     tools: ['Packet Tracer', 'GNS3'], examRelevance: 'core', scenario,
-    learningGoals: ['Use show commands to isolate fault', 'Apply minimal fix commands'],
+    learningGoals: ['Use show commands to isolate fault', 'Interpret misconfiguration from CLI output'],
     topologyId: `TOPO-${id}`, prerequisites: [],
     tasks, verificationCommands: verify || ['show ip interface brief', 'show running-config'],
-    successCriteria: ['Symptom resolved after fix commands entered'],
-    failureCriteria: ['Fix applied on wrong interface or wrong direction'],
+    successCriteria: ['Root cause identified from show command output'],
+    failureCriteria: ['Misread show output — wrong layer diagnosed'],
     commonMistakes: mistakes,
     source: { name: LAB_SOURCES.blueprint, chapter: '3.6 Troubleshooting', confidence: 0.9 },
     metadata: { version: '1', status: 'validated', confidence: 0.9 },
+    cliShowOutput,
   }
 }
 
 const LAB_TS_OSPF = tsLab('LAB-TS-OSPF-AREA', 'Troubleshoot OSPF Area Mismatch', '3.6', 'connectivity',
-  'Symptom: R1 and R2 are connected on 10.0.12.0/30 but `show ip ospf neighbor` shows no FULL adjacency. R2 was misconfigured with network 10.0.12.0 in area 1 instead of area 0. Fix R2 so both routers are in area 0.',
+  'Symptom: R1 and R2 are connected on 10.0.12.0/30 but show ip ospf neighbor shows INIT/DROTHER — not FULL. Use show commands to identify the area mismatch on R2.',
   [
-    { id: 't1', order: 1, title: 'Gather data', device: 'R2', instruction: 'Run show ip ospf neighbor and show run | section router ospf to find the area mismatch.',
-      expectedCommands: ['show ip ospf neighbor', 'show running-config | section router ospf'] },
-    { id: 't2', order: 2, title: 'Fix area on R2', device: 'R2', instruction: 'Re-advertise 10.0.12.0/30 into area 0 (not area 1).',
-      expectedCommands: ['router ospf 1', 'network 10.0.12.0 0.0.0.3 area 0'] },
-    { id: 't3', order: 3, title: 'Verify adjacency', device: 'R1', instruction: 'Confirm FULL neighbor state.',
+    { id: 't1', order: 1, title: 'Neighbor state', device: 'R2', instruction: 'Run show ip ospf neighbor — adjacency stuck in INIT/DROTHER, not FULL.',
       expectedCommands: ['show ip ospf neighbor'] },
+    { id: 't2', order: 2, title: 'OSPF config', device: 'R2', instruction: 'Run show running-config | section router ospf — network 10.0.12.0 is in area 1 instead of area 0.',
+      expectedCommands: ['show running-config | section router ospf'] },
+    { id: 't3', order: 3, title: 'Root cause', device: 'R2', instruction: 'Diagnosis: area mismatch — R2 advertises the link in area 1 while R1 uses area 0.',
+      expectedCommands: ['show running-config | section router ospf'] },
   ],
-  [{ device: 'R2', command: 'network 10.0.12.0 0.0.0.3 area 0' }],
-  ['show ip ospf neighbor'],
+  [],
+  ['show ip ospf neighbor', 'show running-config | section router ospf'],
   ['Wildcard mask off by one bit', 'Network statement in wrong area'])
 
 const LAB_TS_TRUNK = tsLab('LAB-TS-NATIVE-VLAN', 'Troubleshoot Native VLAN Mismatch', '3.6', 'connectivity',
-  'Symptom: CDP reports native VLAN mismatch between SW1 and SW2 on the Gi0/1 trunk. SW1 uses native VLAN 1; SW2 was set to native VLAN 99. Align SW2 to VLAN 1.',
+  'Symptom: CDP reports native VLAN mismatch between SW1 and SW2 on Gi0/1. Use show commands to identify the native VLAN disagreement.',
   [
-    { id: 't1', order: 1, title: 'Inspect CDP', device: 'SW1', instruction: 'Use show cdp neighbors detail to read the native VLAN mismatch warning.',
+    { id: 't1', order: 1, title: 'CDP warning', device: 'SW1', instruction: 'Run show cdp neighbors detail — read Native VLAN mismatch discovered on Gi0/1.',
       expectedCommands: ['show cdp neighbors detail'] },
-    { id: 't2', order: 2, title: 'Fix SW2 native VLAN', device: 'SW2', instruction: 'On Gi0/1 trunk, set native VLAN back to 1 to match SW1.',
-      expectedCommands: ['interface gi0/1', 'switchport trunk native vlan 1'] },
-    { id: 't3', order: 3, title: 'Verify trunk', device: 'SW2', instruction: 'Confirm trunk encapsulation and native VLAN.',
+    { id: 't2', order: 2, title: 'Trunk status', device: 'SW2', instruction: 'Run show interfaces trunk — compare native VLAN on both ends of the trunk.',
+      expectedCommands: ['show interfaces trunk'] },
+    { id: 't3', order: 3, title: 'Root cause', device: 'SW2', instruction: 'Diagnosis: SW2 native VLAN 99 does not match SW1 native VLAN 1.',
       expectedCommands: ['show interfaces trunk'] },
   ],
-  [{ device: 'SW2', command: 'switchport trunk native vlan 1' }],
-  ['show interfaces trunk'],
+  [],
+  ['show cdp neighbors detail', 'show interfaces trunk'],
   ['Changing allowed VLAN list instead of native VLAN'])
 
 const LAB_TS_IF = tsLab('LAB-TS-SHUTDOWN-IF', 'Troubleshoot Shutdown Interface', '3.6', 'connectivity',
-  'Symptom: PC1 cannot ping its gateway 192.168.1.1 on R1. `show ip interface brief` shows Gi0/0 administratively down. Bring the interface up.',
+  'Symptom: PC1 cannot ping gateway 192.168.1.1 on R1. Use show commands to find the administratively down interface.',
   [
-    { id: 't1', order: 1, title: 'Identify down interface', device: 'R1', instruction: 'Run show ip interface brief — Gi0/0 is administratively down.',
+    { id: 't1', order: 1, title: 'Interface status', device: 'R1', instruction: 'Run show ip interface brief — Gi0/0 is administratively down.',
       expectedCommands: ['show ip interface brief'] },
-    { id: 't2', order: 2, title: 'Enable interface', device: 'R1', instruction: 'Enter interface Gi0/0 and issue no shutdown.',
-      expectedCommands: ['interface gi0/0', 'no shutdown'] },
-    { id: 't3', order: 3, title: 'Test connectivity', device: 'PC1', instruction: 'Ping the gateway 192.168.1.1.',
-      expectedCommands: ['ping 192.168.1.1'] },
+    { id: 't2', order: 2, title: 'Root cause', device: 'R1', instruction: 'Diagnosis: Gi0/0 is shutdown — line protocol down until no shutdown is applied.',
+      expectedCommands: ['show ip interface brief'] },
   ],
-  [{ device: 'R1', command: 'no shutdown' }],
+  [],
   ['show ip interface brief'],
   ['Fixing IP address when the issue is simply shutdown'])
 
 const LAB_TS_ACL = tsLab('LAB-TS-ACL-PLACEMENT', 'Troubleshoot ACL Blocking Return Traffic', '3.6', 'security',
-  'Symptom: Office PC can initiate ping to server 10.0.0.10 but gets no reply. An extended ACL OFFICE_TO_SERVERS on Gi0/0 IN permits icmp out but has an explicit deny ip any any at the end, blocking return traffic. Add permit ip any any after the icmp permit (before implicit deny) — or replace with permit ip 192.168.1.0 0.0.0.255 10.0.0.0 0.0.0.255.',
+  'Symptom: Office PC can initiate ping to server 10.0.0.10 but gets no reply. Use show access-lists to find which ACE blocks return traffic.',
   [
-    { id: 't1', order: 1, title: 'Inspect ACL hits', device: 'R1', instruction: 'show access-lists — note deny counters incrementing on return traffic.',
+    { id: 't1', order: 1, title: 'ACL hit counters', device: 'R1', instruction: 'Run show access-lists — note deny ip any any counters incrementing on return traffic.',
       expectedCommands: ['show access-lists'] },
-    { id: 't2', order: 2, title: 'Fix ACL', device: 'R1', instruction: 'Inside OFFICE_TO_SERVERS, add: permit ip 192.168.1.0 0.0.0.255 10.0.0.0 0.0.0.255',
-      expectedCommands: ['ip access-list extended OFFICE_TO_SERVERS', 'permit ip 192.168.1.0 0.0.0.255 10.0.0.0 0.0.0.255'] },
-    { id: 't3', order: 3, title: 'Retest', device: 'PC1', instruction: 'Ping 10.0.0.10 again.',
-      expectedCommands: ['ping 10.0.0.10'] },
+    { id: 't2', order: 2, title: 'Root cause', device: 'R1', instruction: 'Diagnosis: extended ACL permits icmp out but explicit deny ip any any blocks return IP traffic.',
+      expectedCommands: ['show access-lists'] },
   ],
-  [{ device: 'R1', command: 'permit ip 192.168.1.0 0.0.0.255 10.0.0.0 0.0.0.255' }],
+  [],
   ['show access-lists'],
   ['Moving ACL to wrong interface instead of fixing entries'])
 
 const LAB_TS_ROUTE = tsLab('LAB-TS-MISSING-ROUTE', 'Troubleshoot Missing Default Route', '3.6', 'connectivity',
-  'Symptom: R1 LAN hosts reach local subnets but cannot reach internet 198.51.100.1. R1 has no default route. Add ip route 0.0.0.0 0.0.0.0 203.0.113.1 on R1.',
+  'Symptom: R1 LAN hosts reach local subnets but cannot reach internet 198.51.100.1. Use show ip route to confirm no gateway of last resort.',
   [
-    { id: 't1', order: 1, title: 'Check routing table', device: 'R1', instruction: 'show ip route — no gateway of last resort.',
+    { id: 't1', order: 1, title: 'Routing table', device: 'R1', instruction: 'Run show ip route — Gateway of last resort is not set.',
       expectedCommands: ['show ip route'] },
-    { id: 't2', order: 2, title: 'Add default route', device: 'R1', instruction: 'Point default traffic to ISP next-hop 203.0.113.1.',
-      expectedCommands: ['ip route 0.0.0.0 0.0.0.0 203.0.113.1'] },
-    { id: 't3', order: 3, title: 'Verify', device: 'PC1', instruction: 'Ping internet host 198.51.100.1.',
-      expectedCommands: ['ping 198.51.100.1'] },
+    { id: 't2', order: 2, title: 'Root cause', device: 'R1', instruction: 'Diagnosis: no default static route (0.0.0.0/0) toward ISP next-hop.',
+      expectedCommands: ['show ip route'] },
   ],
-  [{ device: 'R1', command: 'ip route 0.0.0.0 0.0.0.0 203.0.113.1' }],
+  [],
   ['show ip route'],
   ['Static route to wrong next-hop'])
 
 const LAB_TS_DHCP = tsLab('LAB-TS-DHCP-RELAY', 'Troubleshoot Missing DHCP Relay', '3.6', 'services',
-  'Symptom: Remote PCs on R2 Gi0/1 (192.168.10.0/24) never receive DHCP addresses. R1 has a correct pool but R2 is missing helper-address. Add ip helper-address 10.0.0.1 on R2 Gi0/1.',
+  'Symptom: Remote PCs on R2 Gi0/1 (192.168.10.0/24) never receive DHCP addresses. R1 has a correct pool. Use show commands to find the missing relay.',
   [
-    { id: 't1', order: 1, title: 'Verify no leases', device: 'R1', instruction: 'show ip dhcp binding — empty for remote subnet.',
+    { id: 't1', order: 1, title: 'No leases', device: 'R1', instruction: 'Run show ip dhcp binding — empty for remote subnet.',
       expectedCommands: ['show ip dhcp binding'] },
-    { id: 't2', order: 2, title: 'Inspect R2', device: 'R2', instruction: 'show run interface gi0/1 — no helper-address.',
+    { id: 't2', order: 2, title: 'R2 interface', device: 'R2', instruction: 'Run show running-config interface gi0/1 — no ip helper-address toward DHCP server.',
       expectedCommands: ['show running-config interface gi0/1'] },
-    { id: 't3', order: 3, title: 'Add relay', device: 'R2', instruction: 'Configure ip helper-address 10.0.0.1 on Gi0/1.',
-      expectedCommands: ['interface gi0/1', 'ip helper-address 10.0.0.1'] },
+    { id: 't3', order: 3, title: 'Root cause', device: 'R2', instruction: 'Diagnosis: missing ip helper-address 10.0.0.1 on client-facing Gi0/1.',
+      expectedCommands: ['show running-config interface gi0/1'] },
   ],
-  [{ device: 'R2', command: 'ip helper-address 10.0.0.1' }],
-  ['show ip dhcp binding'],
+  [],
+  ['show ip dhcp binding', 'show running-config interface gi0/1'],
   ['Helper on server interface instead of client LAN'])
 
 const LAB_TS_HSRP = tsLab('LAB-TS-HSRP-PRIORITY', 'Troubleshoot HSRP Active on Wrong Router', '3.6', 'connectivity',
-  'Symptom: R2 (lower priority) is Active and R1 (intended primary) is Standby. R1 is missing preempt. On R1, add standby 1 preempt and standby 1 priority 150.',
+  'Symptom: R2 (lower priority) is Active and R1 (intended primary) is Standby. Use show standby brief to identify missing preempt or priority on R1.',
   [
-    { id: 't1', order: 1, title: 'Check standby roles', device: 'R1', instruction: 'show standby brief — R2 is Active unexpectedly.',
+    { id: 't1', order: 1, title: 'Standby roles', device: 'R1', instruction: 'Run show standby brief — R2 is Active unexpectedly; R1 is Standby.',
       expectedCommands: ['show standby brief'] },
-    { id: 't2', order: 2, title: 'Fix R1 priority/preempt', device: 'R1', instruction: 'Set priority 150 and enable preempt on group 1.',
-      expectedCommands: ['interface gi0/0', 'standby 1 priority 150', 'standby 1 preempt'] },
-    { id: 't3', order: 3, title: 'Confirm failover', device: 'R1', instruction: 'Verify R1 becomes Active.',
+    { id: 't2', order: 2, title: 'Root cause', device: 'R1', instruction: 'Diagnosis: R1 lacks preempt and/or higher priority — R2 won Active role.',
       expectedCommands: ['show standby brief'] },
   ],
-  [{ device: 'R1', command: 'standby 1 preempt' }, { device: 'R1', command: 'standby 1 priority 150' }],
+  [],
   ['show standby brief'],
   ['Changing virtual IP instead of priority/preempt'])
 
 const LAB_TS_MASK = tsLab('LAB-TS-WRONG-MASK', 'Troubleshoot Wrong Subnet Mask', '3.6', 'fundamentals',
-  'Symptom: PC1 (192.168.1.10/24) cannot ping gateway 192.168.1.1. R1 Gi0/0 has wrong mask 255.255.255.128 — fix to 255.255.255.0.',
+  'Symptom: PC1 (192.168.1.10/24) cannot ping gateway 192.168.1.1. Use show ip interface to find the mask mismatch on R1 Gi0/0.',
   [
-    { id: 't1', order: 1, title: 'Inspect interface', device: 'R1', instruction: 'show ip interface gi0/0 — mask is /25 instead of /24.',
+    { id: 't1', order: 1, title: 'Interface mask', device: 'R1', instruction: 'Run show ip interface gi0/0 — mask is /25 (255.255.255.128) instead of /24.',
       expectedCommands: ['show ip interface gi0/0'] },
-    { id: 't2', order: 2, title: 'Correct mask', device: 'R1', instruction: 'Reconfigure ip address 192.168.1.1 255.255.255.0.',
-      expectedCommands: ['interface gi0/0', 'ip address 192.168.1.1 255.255.255.0'] },
-    { id: 't3', order: 3, title: 'Test ping', device: 'PC1', instruction: 'Ping 192.168.1.1.',
-      expectedCommands: ['ping 192.168.1.1'] },
+    { id: 't2', order: 2, title: 'Root cause', device: 'R1', instruction: 'Diagnosis: router /25 does not match PC /24 — same subnet math fails.',
+      expectedCommands: ['show ip interface gi0/0'] },
   ],
-  [{ device: 'R1', command: 'ip address 192.168.1.1 255.255.255.0' }],
+  [],
   ['show ip interface gi0/0'],
   ['Changing PC mask when router mask is wrong'])
 
-function tsBundle(lab, nodes, links, fixCmd) {
+function tsBundle(lab, nodes, links, verifyCmds) {
   const topo = { id: lab.topologyId, title: lab.title, objectiveId: lab.objectiveId, nodes, links }
-  const validator = { labId: lab.id, requiredCommands: fixCmd, verificationChecks: [{ id: 'v1', device: 'R1', command: 'show ip interface brief', expectedResult: 'Symptom cleared', passCondition: 'fixed' }] }
+  const validator = {
+    labId: lab.id,
+    requiredCommands: verifyCmds,
+    verificationChecks: verifyCmds.map((c, i) => ({
+      id: `v${i + 1}`, device: c.device, command: c.command,
+      expectedResult: 'Root cause visible in output', passCondition: 'diagnosed',
+    })),
+  }
   const diagram = mkDiagram(`DIAG-${lab.id}`, lab.title, lab.objectiveId,
-    [{ id: 'bad', label: 'Fault', type: 'process', x: 30, y: 50, status: 'error' }, { id: 'fix', label: 'Fix applied', type: 'process', x: 70, y: 50, status: 'highlighted' }],
+    [{ id: 'bad', label: 'Fault', type: 'process', x: 30, y: 50, status: 'error' }, { id: 'fix', label: 'Diagnose', type: 'process', x: 70, y: 50, status: 'highlighted' }],
     [{ id: 'd1', source: 'bad', target: 'fix', status: 'forwarding' }])
-  return { lab, topology: topo, validator: validator, diagram, packetFlows: mkFlows(`FLOW-${lab.id}`, 'Isolate and fix', `DIAG-${lab.id}`, ['CKU-TROUBLESHOOTING'], [
+  return { lab, topology: topo, validator: validator, diagram, packetFlows: mkFlows(`FLOW-${lab.id}`, 'Isolate fault', `DIAG-${lab.id}`, ['CKU-TROUBLESHOOTING'], [
     { id: 's1', order: 1, title: 'Symptom', action: lab.scenario.slice(0, 80), successState: 'failed' },
-    { id: 's2', order: 2, title: 'Fix', action: 'Correct command restores expected behavior', successState: 'forwarded' },
+    { id: 's2', order: 2, title: 'Diagnose', action: 'Show commands reveal root cause', successState: 'learned' },
   ]) }
 }
 
 const TS_OSPF = tsBundle(LAB_TS_OSPF,
   [{ id: 'r1', label: 'R1 area 0', type: 'router', x: 30, y: 50 }, { id: 'r2', label: 'R2 area 1 (wrong)', type: 'router', x: 70, y: 50, status: 'error' }],
   [{ id: 'l1', source: 'r1', target: 'r2', status: 'blocked' }],
-  [{ device: 'R2', command: 'network 10.0.12.0 0.0.0.3 area 0' }])
+  [{ device: 'R2', command: 'show ip ospf neighbor' }, { device: 'R2', command: 'show running-config | section router ospf' }])
 
 const TS_TRUNK = tsBundle(LAB_TS_TRUNK,
   [{ id: 'sw1', label: 'SW1 native 1', type: 'switch', x: 30, y: 50 }, { id: 'sw2', label: 'SW2 native 99', type: 'switch', x: 70, y: 50, status: 'error' }],
   [{ id: 'l1', source: 'sw1', target: 'sw2', status: 'blocked' }],
-  [{ device: 'SW2', command: 'switchport trunk native vlan 1' }])
+  [{ device: 'SW1', command: 'show cdp neighbors detail' }, { device: 'SW2', command: 'show interfaces trunk' }])
 
 const TS_IF = tsBundle(LAB_TS_IF,
   [{ id: 'r1', label: 'R1 Gi0/0 down', type: 'router', x: 50, y: 30, status: 'error' }, { id: 'pc', label: 'PC1', type: 'pc', x: 50, y: 75 }],
   [{ id: 'l1', source: 'pc', target: 'r1', status: 'blocked' }],
-  [{ device: 'R1', command: 'no shutdown' }])
+  [{ device: 'R1', command: 'show ip interface brief' }])
 
 const TS_ACL = tsBundle(LAB_TS_ACL,
   [{ id: 'pc', label: 'PC', type: 'pc', x: 20, y: 50 }, { id: 'r1', label: 'R1 ACL deny', type: 'router', x: 55, y: 50, status: 'error' }, { id: 'srv', label: 'Server', type: 'server', x: 85, y: 50 }],
   [{ id: 'l1', source: 'pc', target: 'r1', status: 'forwarding' }, { id: 'l2', source: 'r1', target: 'srv', status: 'blocked' }],
-  [{ device: 'R1', command: 'permit ip 192.168.1.0 0.0.0.255 10.0.0.0 0.0.0.255' }])
+  [{ device: 'R1', command: 'show access-lists' }])
 
 const TS_ROUTE = tsBundle(LAB_TS_ROUTE,
   [{ id: 'r1', label: 'R1 no default', type: 'router', x: 40, y: 50, status: 'error' }, { id: 'isp', label: 'Internet', type: 'cloud', x: 80, y: 50 }],
   [{ id: 'l1', source: 'r1', target: 'isp', status: 'blocked' }],
-  [{ device: 'R1', command: 'ip route 0.0.0.0 0.0.0.0 203.0.113.1' }])
+  [{ device: 'R1', command: 'show ip route' }])
 
 const TS_DHCP = tsBundle(LAB_TS_DHCP,
   [{ id: 'r1', label: 'R1 DHCP server', type: 'router', x: 20, y: 50 }, { id: 'r2', label: 'R2 no relay', type: 'router', x: 55, y: 50, status: 'error' }, { id: 'pc', label: 'PC no IP', type: 'pc', x: 85, y: 50 }],
   [{ id: 'l1', source: 'r1', target: 'r2', status: 'forwarding' }, { id: 'l2', source: 'r2', target: 'pc', status: 'blocked' }],
-  [{ device: 'R2', command: 'ip helper-address 10.0.0.1' }])
+  [{ device: 'R1', command: 'show ip dhcp binding' }, { device: 'R2', command: 'show running-config interface gi0/1' }])
 
 const TS_HSRP = tsBundle(LAB_TS_HSRP,
   [{ id: 'r1', label: 'R1 Standby', type: 'router', x: 30, y: 50 }, { id: 'r2', label: 'R2 Active', type: 'router', x: 70, y: 50, status: 'highlighted' }],
   [{ id: 'l1', source: 'r1', target: 'r2', label: 'VIP .1', status: 'forwarding' }],
-  [{ device: 'R1', command: 'standby 1 preempt' }, { device: 'R1', command: 'standby 1 priority 150' }])
+  [{ device: 'R1', command: 'show standby brief' }])
 
 const TS_MASK = tsBundle(LAB_TS_MASK,
   [{ id: 'r1', label: 'R1 /25 wrong', type: 'router', x: 55, y: 40, status: 'error' }, { id: 'pc', label: 'PC /24', type: 'pc', x: 55, y: 75 }],
   [{ id: 'l1', source: 'pc', target: 'r1', status: 'blocked' }],
-  [{ device: 'R1', command: 'ip address 192.168.1.1 255.255.255.0' }])
+  [{ device: 'R1', command: 'show ip interface gi0/0' }])
 
 /* ---- Wireless Architecture (2.6) ---- */
 const LAB_WIRELESS_26 = {
@@ -1731,25 +1740,23 @@ const HSRP_VERIFY_35 = { lab: LAB_HSRP_VERIFY_35, topology: TOPO_HSRP_VERIFY_35,
    ROUTING TROUBLESHOOT — static next-hop unreachable (3.6)
    ========================================================================= */
 const LAB_TS_STATIC_NH = tsLab('LAB-TS-STATIC-NH', 'Troubleshoot Static Route with Unreachable Next-Hop', '3.6', 'connectivity',
-  'Symptom: Branch PC cannot reach 172.16.50.0/24. `show running-config` lists `ip route 172.16.50.0 255.255.255.0 10.0.12.99` but `show ip route` has no S entry — next-hop 10.0.12.99 is not reachable on the 10.0.12.0/30 link (R2 is 10.0.12.2). Fix the static route next-hop to 10.0.12.2.',
+  'Symptom: Branch PC cannot reach 172.16.50.0/24. running-config lists ip route 172.16.50.0 255.255.255.0 10.0.12.99 but show ip route has no S entry — use show commands to find the unreachable next-hop.',
   [
-    { id: 't1', order: 1, title: 'Confirm symptom', device: 'R1', instruction: 'Run show ip route 172.16.50.0 — route not installed. Run show ip route static — empty or missing entry.',
+    { id: 't1', order: 1, title: 'Route not installed', device: 'R1', instruction: 'Run show ip route 172.16.50.0 — route not in RIB. Run show ip route static — empty or missing entry.',
       expectedCommands: ['show ip route 172.16.50.0', 'show ip route static'] },
-    { id: 't2', order: 2, title: 'Find bad next-hop', device: 'R1', instruction: 'Run show running-config | include ip route — note next-hop 10.0.12.99. Run show ip interface brief — Gi0/1 is 10.0.12.1/30; only .2 is reachable.',
+    { id: 't2', order: 2, title: 'Bad next-hop', device: 'R1', instruction: 'Run show running-config | include ip route — next-hop 10.0.12.99. Run show ip interface brief — Gi0/1 is 10.0.12.1/30; only .2 is reachable.',
       expectedCommands: ['show running-config | include ip route', 'show ip interface brief'] },
-    { id: 't3', order: 3, title: 'Fix static route', device: 'R1', instruction: 'Remove the bad route and add ip route 172.16.50.0 255.255.255.0 10.0.12.2.',
-      expectedCommands: ['no ip route 172.16.50.0 255.255.255.0 10.0.12.99', 'ip route 172.16.50.0 255.255.255.0 10.0.12.2'] },
-    { id: 't4', order: 4, title: 'Verify install', device: 'R1', instruction: 'Confirm S entry appears in the routing table.',
-      expectedCommands: ['show ip route static'] },
+    { id: 't3', order: 3, title: 'Root cause', device: 'R1', instruction: 'Diagnosis: static route references unreachable next-hop 10.0.12.99 — IOS will not install it.',
+      expectedCommands: ['show running-config | include ip route'] },
   ],
-  [{ device: 'R1', command: 'ip route 172.16.50.0 255.255.255.0 10.0.12.2' }],
+  [],
   ['show ip route static', 'show running-config | include ip route'],
   ['Changing OSPF instead of fixing static next-hop', 'Assuming config in running-config always installs into RIB'])
 
 const TS_STATIC_NH = tsBundle(LAB_TS_STATIC_NH,
   [{ id: 'r1', label: 'R1 bad static NH', type: 'router', x: 40, y: 50, status: 'error' }, { id: 'r2', label: 'R2 .12.2', type: 'router', x: 75, y: 50 }, { id: 'lan', label: '172.16.50.0/24', type: 'pc', x: 75, y: 80 }],
   [{ id: 'l1', source: 'r1', target: 'r2', label: '10.0.12.0/30', status: 'blocked' }, { id: 'l2', source: 'r2', target: 'lan', status: 'forwarding' }],
-  [{ device: 'R1', command: 'ip route 172.16.50.0 255.255.255.0 10.0.12.2' }])
+  [{ device: 'R1', command: 'show ip route 172.16.50.0' }, { device: 'R1', command: 'show running-config | include ip route' }, { device: 'R1', command: 'show ip interface brief' }])
 
 /* =========================================================================
    AUTOMATION DOMAIN — interpret-only lab-lite (6.1–6.6)

@@ -60,7 +60,7 @@ describe('reading enrichment', () => {
 
   it('configure objectives default-open real-world section', () => {
     expect(shouldDefaultOpenRealWorld(getCurated('2.1'))).toBe(true)
-    expect(shouldDefaultOpenRealWorld(getCurated('6.2'))).toBe(false)
+    expect(shouldDefaultOpenRealWorld(getCurated('6.2'))).toBe(true)
   })
 
   it('getCurated 1.6 keeps subnetting bigTakeaway not KB OSI text', () => {

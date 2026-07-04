@@ -20,7 +20,7 @@ export const LAB_SOURCES = {
 
 import { EXTENDED_LAB_BUNDLES } from './ccnaLabsExtended.js'
 import { PHASE_LAB_BUNDLES } from './ccnaLabsPhases.js'
-import { CLI_ROUTE_31_SHOW_OUTPUT, CLI_VLAN_TRUNK_21_SHOW_OUTPUT } from '../lab/cliEngine.js'
+import { CLI_ROUTE_31_SHOW_OUTPUT, CLI_VLAN_TRUNK_21_SHOW_OUTPUT, CLI_OSPF_SINGLE_34_SHOW_OUTPUT, CLI_NAT_41_SHOW_OUTPUT } from '../lab/cliEngine.js'
 
 /* -------------------------------------------------------------------------
    LAB: Dynamic ARP Inspection with DHCP Snooping
@@ -333,62 +333,51 @@ const LAB_OSPF = {
   objectiveId: '3.4',
   ckuIds: ['CKU-OSPF', 'CKU-OSPF-NEIGHBOR', 'CKU-OSPF-COST'],
   labType: 'guided',
+  interpretOnly: true,
   difficulty: 'intermediate',
-  estimatedTimeMinutes: 18,
+  estimatedTimeMinutes: 10,
   tools: ['Packet Tracer', 'GNS3', 'CML'],
   examRelevance: 'core',
-  scenario: 'R1 and R2 are connected via a point-to-point link and each have a LAN behind them. You will configure IP addressing, enable OSPFv2 in area 0 on both routers, and verify the neighbor adjacency forms and both LANs appear in each router\'s routing table.',
+  scenario: 'R1 and R2 are pre-configured with OSPFv2 in area 0 on 10.0.12.0/30 and each LAN. Verify neighbor FULL adjacency, OSPF routes in the table, and area 0 network statements without changing configuration.',
   learningGoals: [
-    'Configure interface IP addressing for a point-to-point link and a LAN.',
-    'Enable OSPFv2 with a router ID and area 0 network statements.',
-    'Verify OSPF neighbor adjacency (state FULL).',
-    'Verify OSPF routes appear in the routing table with AD 110.',
+    'Confirm OSPF neighbor state FULL with show ip ospf neighbor',
+    'Verify OSPF routes appear with AD 110 via show ip route ospf',
+    'Read router-id and area 0 networks from show ip protocols',
   ],
   topologyId: 'TOPO-OSPF',
   prerequisites: ['CKU-ROUTING-TABLE'],
 
   tasks: [
-    { id: 't1', order: 1, title: 'Addressing on R1', device: 'R1', instruction: 'Configure R1: Gi0/0 = 10.0.12.1/30 (link to R2), Gi0/1 = 10.0.1.1/24 (LAN1). Bring both interfaces up.',
-      expectedCommands: ['interface gi0/0', 'ip address 10.0.12.1 255.255.255.252', 'no shutdown', 'interface gi0/1', 'ip address 10.0.1.1 255.255.255.0'] },
-    { id: 't2', order: 2, title: 'Addressing on R2', device: 'R2', instruction: 'Configure R2: Gi0/0 = 10.0.12.2/30 (link to R1), Gi0/1 = 10.0.2.1/24 (LAN2). Bring both interfaces up.',
-      expectedCommands: ['interface gi0/0', 'ip address 10.0.12.2 255.255.255.252', 'no shutdown', 'interface gi0/1', 'ip address 10.0.2.1 255.255.255.0'] },
-    { id: 't3', order: 3, title: 'Enable OSPF on R1', device: 'R1', instruction: 'Start OSPF process 1 with router-id 1.1.1.1, and advertise both R1 networks into area 0.',
-      expectedCommands: ['router ospf 1', 'router-id 1.1.1.1', 'network 10.0.12.0 0.0.0.3 area 0', 'network 10.0.1.0 0.0.0.255 area 0'] },
-    { id: 't4', order: 4, title: 'Enable OSPF on R2', device: 'R2', instruction: 'Start OSPF process 1 with router-id 2.2.2.2, and advertise both R2 networks into area 0.',
-      expectedCommands: ['router ospf 1', 'router-id 2.2.2.2', 'network 10.0.12.0 0.0.0.3 area 0', 'network 10.0.2.0 0.0.0.255 area 0'] },
-    { id: 't5', order: 5, title: 'Verify adjacency', device: 'R1', instruction: 'Confirm R1 and R2 have formed a FULL OSPF neighbor adjacency.',
+    { id: 't1', order: 1, title: 'Neighbor adjacency', device: 'R1', instruction: 'Run show ip ospf neighbor — confirm R2 (2.2.2.2) in state FULL on Gi0/0.',
       expectedCommands: ['show ip ospf neighbor'] },
-    { id: 't6', order: 6, title: 'Verify routes', device: 'R1', instruction: 'Confirm R1\'s routing table contains an OSPF (O) route to R2\'s LAN (10.0.2.0/24).',
+    { id: 't2', order: 2, title: 'OSPF routes', device: 'R1', instruction: 'Run show ip route ospf — verify O 10.0.2.0/24 [110/2] via 10.0.12.2.',
       expectedCommands: ['show ip route ospf'] },
+    { id: 't3', order: 3, title: 'OSPF process', device: 'R1', instruction: 'Run show ip protocols — confirm router-id 1.1.1.1 and networks in area 0.',
+      expectedCommands: ['show ip protocols'] },
   ],
 
   verificationCommands: [
     'show ip ospf neighbor',
     'show ip route ospf',
     'show ip protocols',
-    'show ip ospf interface brief',
   ],
   successCriteria: [
-    'show ip ospf neighbor shows R2 (or R1) in state FULL.',
+    'show ip ospf neighbor shows R2 in state FULL.',
     'show ip route ospf on R1 shows O 10.0.2.0/24 via 10.0.12.2.',
-    'show ip route ospf on R2 shows O 10.0.1.0/24 via 10.0.12.1.',
-    'Routes show administrative distance 110 (O).',
-    'A PC on LAN1 can ping a PC on LAN2.',
+    'show ip protocols lists area 0 network statements.',
   ],
   failureCriteria: [
     'Mismatched area numbers on the two ends of a link → neighbors never form.',
     'Wrong wildcard mask on the network statement → the link or LAN is not advertised.',
-    'Mismatched hello/dead timers → adjacency stuck in a non-FULL state.',
-    'Interface left administratively down (`shutdown`) → no adjacency at all.',
   ],
   commonMistakes: [
-    'Using a subnet mask instead of a wildcard mask in the `network` command.',
-    'Forgetting `no shutdown` on newly configured interfaces.',
+    'Using a subnet mask instead of a wildcard mask in the network command.',
     'Putting the two ends of the same link in different OSPF areas.',
     'Expecting routes to appear before the neighbor adjacency reaches FULL.',
   ],
   source: { name: LAB_SOURCES.workbook, chapter: 'OSPFv2 Single Area', confidence: 0.95 },
   metadata: { version: '1', status: 'validated', confidence: 0.95 },
+  cliShowOutput: CLI_OSPF_SINGLE_34_SHOW_OUTPUT,
 }
 
 const TOPO_OSPF = {
@@ -413,21 +402,13 @@ const TOPO_OSPF = {
 const VALIDATOR_OSPF = {
   labId: 'LAB-OSPF-SINGLE-AREA',
   requiredCommands: [
-    { device: 'R1', command: 'ip address 10.0.12.1 255.255.255.252' },
-    { device: 'R1', command: 'ip address 10.0.1.1 255.255.255.0' },
-    { device: 'R1', command: 'router ospf 1' },
-    { device: 'R1', command: 'network 10.0.12.0 0.0.0.3 area 0' },
-    { device: 'R1', command: 'network 10.0.1.0 0.0.0.255 area 0' },
-    { device: 'R2', command: 'ip address 10.0.12.2 255.255.255.252' },
-    { device: 'R2', command: 'ip address 10.0.2.1 255.255.255.0' },
-    { device: 'R2', command: 'router ospf 1' },
-    { device: 'R2', command: 'network 10.0.12.0 0.0.0.3 area 0' },
-    { device: 'R2', command: 'network 10.0.2.0 0.0.0.255 area 0' },
+    { device: 'R1', command: 'show ip ospf neighbor' },
+    { device: 'R1', command: 'show ip route ospf' },
+    { device: 'R1', command: 'show ip protocols' },
   ],
   verificationChecks: [
     { id: 'v1', device: 'R1', command: 'show ip ospf neighbor', expectedResult: 'Neighbor 2.2.2.2 in state FULL.', passCondition: 'neighbor FULL' },
     { id: 'v2', device: 'R1', command: 'show ip route ospf', expectedResult: 'O 10.0.2.0/24 [110/...] via 10.0.12.2', passCondition: 'OSPF route present' },
-    { id: 'v3', device: 'R2', command: 'show ip route ospf', expectedResult: 'O 10.0.1.0/24 [110/...] via 10.0.12.1', passCondition: 'OSPF route present' },
   ],
   failureChecks: [
     { id: 'f1', device: 'R1', command: 'show ip ospf neighbor', expectedFailure: 'No neighbors listed', reason: 'Mismatched area, wildcard mask, or a shutdown interface prevents the adjacency from forming.' },
@@ -486,31 +467,27 @@ const LAB_NAT = {
   objectiveId: '4.1',
   ckuIds: ['CKU-NAT', 'CKU-PAT', 'CKU-NAT-TERMS'],
   labType: 'guided',
+  interpretOnly: true,
   difficulty: 'intermediate',
-  estimatedTimeMinutes: 15,
+  estimatedTimeMinutes: 10,
   tools: ['Packet Tracer', 'GNS3', 'CML'],
   examRelevance: 'core',
-  scenario: 'R1 connects a private LAN (192.168.1.0/24) to the internet via its Gi0/0 outside interface (203.0.113.1/30). You will mark the inside/outside interfaces, define which inside addresses are allowed to be translated, and configure PAT so every inside host shares the single outside IP.',
+  scenario: 'R1 connects private LAN 192.168.1.0/24 (inside) to the internet via Gi0/0 (outside). PAT overload is pre-configured — verify inside/outside markers, overload statement, and active translations without changing config.',
   learningGoals: [
-    'Mark interfaces as NAT inside vs outside.',
-    'Write a standard ACL describing the inside addresses to translate.',
-    'Configure NAT overload (PAT) referencing the ACL and outside interface.',
-    'Verify active translations with show ip nat translations.',
+    'Read ip nat inside/outside on interfaces in running-config',
+    'Confirm ip nat inside source list ... overload PAT statement',
+    'Verify active translations and hit counters',
   ],
   topologyId: 'TOPO-NAT',
   prerequisites: ['CKU-PRIVATE-IPV4'],
 
   tasks: [
-    { id: 't1', order: 1, title: 'Addressing', device: 'R1', instruction: 'Configure Gi0/1 (inside) = 192.168.1.1/24 and Gi0/0 (outside) = 203.0.113.1/30. Bring both up.',
-      expectedCommands: ['interface gi0/1', 'ip address 192.168.1.1 255.255.255.0', 'no shutdown', 'interface gi0/0', 'ip address 203.0.113.1 255.255.255.252'] },
-    { id: 't2', order: 2, title: 'Mark inside/outside', device: 'R1', instruction: 'Mark Gi0/1 as the NAT inside interface and Gi0/0 as the NAT outside interface.',
-      expectedCommands: ['interface gi0/1', 'ip nat inside', 'interface gi0/0', 'ip nat outside'] },
-    { id: 't3', order: 3, title: 'Define inside addresses', device: 'R1', instruction: 'Create standard ACL 1 permitting the 192.168.1.0/24 network — this defines which addresses get translated.',
-      expectedCommands: ['access-list 1 permit 192.168.1.0 0.0.0.255'] },
-    { id: 't4', order: 4, title: 'Enable PAT', device: 'R1', instruction: 'Configure NAT overload (PAT) so ACL 1 traffic is translated to the Gi0/0 outside IP with port-level multiplexing.',
-      expectedCommands: ['ip nat inside source list 1 interface gi0/0 overload'] },
-    { id: 't5', order: 5, title: 'Generate and verify traffic', device: 'PC1', instruction: 'From an inside host (192.168.1.10), ping an outside address, then verify the translation table on R1.',
-      expectedCommands: ['ping 198.51.100.1'] },
+    { id: 't1', order: 1, title: 'NAT config', device: 'R1', instruction: 'Run show running-config | include nat — confirm inside/outside interfaces and overload statement.',
+      expectedCommands: ['show running-config | include nat'] },
+    { id: 't2', order: 2, title: 'Translation table', device: 'R1', instruction: 'Run show ip nat translations — confirm inside local mapped to outside global with port multiplexing.',
+      expectedCommands: ['show ip nat translations'] },
+    { id: 't3', order: 3, title: 'NAT statistics', device: 'R1', instruction: 'Run show ip nat statistics — note hits on dynamic overload translation.',
+      expectedCommands: ['show ip nat statistics'] },
   ],
 
   verificationCommands: [
@@ -519,25 +496,22 @@ const LAB_NAT = {
     'show running-config | include nat',
   ],
   successCriteria: [
-    'show ip nat translations shows 192.168.1.10:xxxxx translated to 203.0.113.1:xxxxx after the ping.',
-    'The outside host receives traffic only from 203.0.113.1 — never sees the 192.168.1.x address.',
-    'Multiple inside hosts can be active at once, each using a different source port on 203.0.113.1.',
-    'show ip nat statistics shows hits incrementing for the overload translation.',
+    'show ip nat translations shows 192.168.1.10 translated to 203.0.113.1 with port mapping.',
+    'Inside/outside interfaces correctly marked on Gi0/1 and Gi0/0.',
+    'show ip nat statistics shows hits incrementing.',
   ],
   failureCriteria: [
-    'ACL written too narrow (e.g. host instead of /24) → only one inside host can be translated.',
-    'Interfaces not marked inside/outside → "translation failed" — no inside/outside interfaces.',
-    'Using `ip nat inside source static` instead of `list ... overload` → only one-to-one mapping, no port sharing.',
-    'ACL with an implicit deny that blocks the real inside subnet → traffic not translated, dropped outbound.',
+    'Interfaces not marked inside/outside → translation failed.',
+    'Missing overload → only one inside host per outside IP.',
   ],
   commonMistakes: [
-    'Forgetting `overload`, which limits NAT to one inside host per outside IP (no PAT).',
-    'Marking both interfaces as "inside" or both as "outside".',
-    'Writing the ACL wildcard mask backwards (e.g. 255.255.255.0 instead of 0.0.0.255).',
-    'Expecting `show ip nat translations` to show entries before any traffic has been sent.',
+    'Forgetting overload, which limits NAT to one inside host per outside IP (no PAT).',
+    'Marking both interfaces as inside or both as outside.',
+    'Expecting show ip nat translations before any traffic has been sent.',
   ],
   source: { name: LAB_SOURCES.workbook, chapter: 'NAT Overload (PAT)', confidence: 0.95 },
   metadata: { version: '1', status: 'validated', confidence: 0.95 },
+  cliShowOutput: CLI_NAT_41_SHOW_OUTPUT,
 }
 
 const TOPO_NAT = {
@@ -559,19 +533,16 @@ const TOPO_NAT = {
 const VALIDATOR_NAT = {
   labId: 'LAB-NAT-PAT',
   requiredCommands: [
-    { device: 'R1', command: 'ip address 192.168.1.1 255.255.255.0' },
-    { device: 'R1', command: 'ip address 203.0.113.1 255.255.255.252' },
-    { device: 'R1', command: 'ip nat inside' },
-    { device: 'R1', command: 'ip nat outside' },
-    { device: 'R1', command: 'access-list 1 permit 192.168.1.0 0.0.0.255' },
-    { device: 'R1', command: 'ip nat inside source list 1 interface gi0/0 overload' },
+    { device: 'R1', command: 'show running-config | include nat' },
+    { device: 'R1', command: 'show ip nat translations' },
+    { device: 'R1', command: 'show ip nat statistics' },
   ],
   verificationChecks: [
-    { id: 'v1', device: 'R1', command: 'show ip nat translations', expectedResult: '192.168.1.10:xxxxx <-> 203.0.113.1:xxxxx entry appears after traffic.', passCondition: 'translation present' },
+    { id: 'v1', device: 'R1', command: 'show ip nat translations', expectedResult: '192.168.1.10 <-> 203.0.113.1 translation present.', passCondition: 'translation present' },
     { id: 'v2', device: 'R1', command: 'show ip nat statistics', expectedResult: 'Hits counter > 0 for the dynamic overload translation.', passCondition: 'hits > 0' },
   ],
   failureChecks: [
-    { id: 'f1', device: 'R1', command: 'show ip nat translations', expectedFailure: 'No entries after a ping from PC1', reason: 'Missing `ip nat inside`/`outside` markers or a too-narrow ACL prevents translation.' },
+    { id: 'f1', device: 'R1', command: 'show ip nat translations', expectedFailure: 'No entries after traffic', reason: 'Missing ip nat inside/outside markers or a too-narrow ACL prevents translation.' },
   ],
 }
 

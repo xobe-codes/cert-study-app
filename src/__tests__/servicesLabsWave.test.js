@@ -3,15 +3,19 @@ import { labsForObjective, getLab } from '../data/ccnaLabs.js'
 
 const LAB_LITE_IDS = [
   ['2.1', 'LAB-VLAN-TRUNK'],
+  ['2.4', 'LAB-ETHERCHANNEL'],
   ['2.5', 'LAB-STP-ROOT'],
   ['3.1', 'LAB-ROUTE-TABLE-31'],
+  ['4.1', 'LAB-NAT-PAT'],
   ['4.2', 'LAB-NTP-CLIENT'],
   ['4.3', 'LAB-DHCP-POOL-43'],
   ['4.4', 'LAB-SNMP-CONFIG-44'],
   ['4.5', 'LAB-SYSLOG-REMOTE'],
+  ['4.6', 'LAB-DHCP-RELAY'],
   ['4.9', 'LAB-TFTP-CONFIG-49'],
   ['5.3', 'LAB-DEVICE-ACCESS'],
   ['5.3', 'LAB-SSH-VTY'],
+  ['5.4', 'LAB-AAA-LOCAL'],
 ]
 
 describe('services_labs_wave', () => {

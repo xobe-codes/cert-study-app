@@ -12,5 +12,5 @@
 | Maintainability | 58 | Critical |
 | **Overall** | **74** | |
 
-Tier breakdown: A=21, B=32, C=0.
+Tier breakdown: A=53, B=0, C=0.
 

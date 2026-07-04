@@ -519,6 +519,122 @@ Trunking Native Mode VLAN: 1 (default)
 Trunking VLANs Enabled: 10,20`,
 }
 
+/** EtherChannel verify for LAB-ETHERCHANNEL (objective 2.4). */
+export const CLI_EC_24_SHOW_OUTPUT = {
+  'show running-config | section interface': `interface GigabitEthernet0/1
+ switchport mode trunk
+ channel-group 1 mode active
+interface GigabitEthernet0/2
+ switchport mode trunk
+ channel-group 1 mode active`,
+  'show etherchannel summary': `Flags:  D - down        P - bundled in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      f - failed to allocate aggregator
+
+Group Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+1      Po1(SU)       LACP        Gi0/1(P)    Gi0/2(P)`,
+  'show interfaces port-channel 1': `Port-channel1 is up, line protocol is up
+  Hardware is EtherChannel, address is aabb.cc00.0100
+  MTU 1500 bytes, BW 2000000 Kbit/sec`,
+}
+
+/** AAA local verify for LAB-AAA-LOCAL (objective 5.4). */
+export const CLI_AAA_54_SHOW_OUTPUT = {
+  'show running-config | section aaa': `aaa new-model
+aaa authentication login default local
+aaa authorization exec default local`,
+  'show running-config | section line vty': `line vty 0 4
+ login authentication default
+ transport input ssh`,
+  'show aaa user all': `                    Username                    Unique_ID
+ netadmin                            0x00000001`,
+}
+
+/** DHCP relay verify for LAB-DHCP-RELAY (objective 4.6). */
+export const CLI_DHCP_RELAY_46_SHOW_OUTPUT = {
+  'show running-config | section dhcp': `ip dhcp pool REMOTE_LAN
+ network 192.168.10.0 255.255.255.0
+ default-router 192.168.10.1`,
+  'show running-config interface gi0/1': `interface GigabitEthernet0/1
+ ip address 192.168.10.1 255.255.255.0
+ ip helper-address 10.0.0.1`,
+  'show ip dhcp binding': `IP address       Client-ID/Hardware address/   Lease expiration        Type
+192.168.10.50    0063.0000.0000.0a               Mar 02 2025 10:00 AM    Automatic`,
+}
+
+/** Single-area OSPF verify for LAB-OSPF-SINGLE-AREA (objective 3.4). */
+export const CLI_OSPF_SINGLE_34_SHOW_OUTPUT = {
+  'show ip ospf neighbor': `Neighbor ID     Pri   State           Dead Time   Address         Interface
+2.2.2.2           1   FULL/  -        00:00:35    10.0.12.2       GigabitEthernet0/0`,
+  'show ip route ospf': `Codes: O - OSPF
+O       10.0.2.0/24 [110/2] via 10.0.12.2, 00:05:00, GigabitEthernet0/0`,
+  'show ip protocols': `Routing Protocol is "ospf 1"
+  Router ID 1.1.1.1
+  Routing for Networks:
+    10.0.1.0 0.0.0.255 area 0
+    10.0.12.0 0.0.0.3 area 0`,
+}
+
+/** NAT PAT verify for LAB-NAT-PAT (objective 4.1). */
+export const CLI_NAT_41_SHOW_OUTPUT = {
+  'show running-config | include nat': `ip nat inside source list 1 interface GigabitEthernet0/0 overload
+interface GigabitEthernet0/0
+ ip nat outside
+interface GigabitEthernet0/1
+ ip nat inside`,
+  'show ip nat translations': `Pro Inside global      Inside local       Outside local      Outside global
+icmp 203.0.113.1:1024   192.168.1.10:1024  198.51.100.1:1024  198.51.100.1:1024`,
+  'show ip nat statistics': `Total active translations: 1 (0 static, 1 dynamic; 0 extended)
+Outside interfaces:
+  GigabitEthernet0/0
+Inside interfaces:
+  GigabitEthernet0/1
+Hits: 12  Misses: 0`,
+}
+
+/** Troubleshoot lab show outputs (objective 3.6 TS labs). */
+export const CLI_TS_SHOW_OUTPUT = {
+  'show ip ospf neighbor': `Neighbor ID     Pri   State           Dead Time   Address         Interface
+2.2.2.2           1   INIT/DROTHER    00:00:38    10.0.12.2       GigabitEthernet0/0`,
+  'show running-config | section router ospf': `router ospf 1
+ network 10.0.12.0 0.0.0.3 area 1`,
+  'show cdp neighbors detail': `Device ID: SW2
+IP address: 192.168.1.2
+Platform: cisco WS-C2960,  Capabilities: Switch
+Interface: GigabitEthernet0/1,  Port ID (outgoing port): GigabitEthernet0/1
+Native VLAN mismatch discovered on GigabitEthernet0/1`,
+  'show interfaces trunk': `Port        Mode         Encapsulation  Status        Native vlan
+Gi0/1       on           802.1q         trunking      1`,
+  'show ip interface brief': `Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0     192.168.1.1     YES manual administratively down down`,
+  'show access-lists': `Extended IP access list OFFICE_TO_SERVERS
+    10 permit icmp 192.168.1.0 0.0.0.255 10.0.0.0 0.0.0.255 (5 matches)
+    20 deny ip any any (42 matches)`,
+  'show ip route': `Codes: C - connected, L - local, S - static, O - OSPF
+Gateway of last resort is not set
+      10.0.0.0/8 is variably subnetted, 2 subnets, 2 masks
+C       192.168.1.0/24 is directly connected, GigabitEthernet0/1`,
+  'show ip dhcp binding': `Bindings from all pools not associated with VRF:`,
+  'show running-config interface gi0/1': `interface GigabitEthernet0/1
+ ip address 192.168.10.1 255.255.255.0`,
+  'show standby brief': `Interface   Grp  Pri P State   Active          Standby         Virtual IP
+Gi0/0       1    100   Standby 192.168.1.3     local           192.168.1.1`,
+  'show ip interface gi0/0': `GigabitEthernet0/0 is up, line protocol is up
+  Internet address is 192.168.1.1/25
+  Wrong subnet mask — should be /24 (255.255.255.0)`,
+  'show ip route 172.16.50.0': `% Network not in table`,
+  'show ip route static': `Codes: S - static`,
+  'show running-config | include ip route': `ip route 172.16.50.0 255.255.255.0 10.0.12.99`,
+  'show client summary': `Number of Clients: 3
+MAC Address       IP Address      AP Name           SSID
+aabb.cc00.0101    192.168.10.50   AP-Floor1         CORP_WIFI`,
+  'show wlan summary': `WLAN ID  SSID        Status    Interface
+1        CORP_WIFI   Enabled   VLAN10`,
+}
+
 export function cliNavTarget(norm) {
   if (/^(enable|en)$/.test(norm)) return { to: 'priv', from: ['user', 'priv'] }
   if (/^disable$/.test(norm)) return { to: 'user', from: ['priv'] }
