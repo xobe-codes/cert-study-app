@@ -1,8 +1,10 @@
 import { DOMAINS, ALL_OBJECTIVES } from '../../data/ccnaDomains.js'
 import { groupMissedByTrap } from '../../missed/missedTrapGroups.js'
+import { placementDomainIds } from '../domainPlacement/placementBlueprints.js'
+import { shouldSuggestPlacement } from '../domainPlacement/domainPlacementStorage.js'
 
 /** Build actionable weak-area rows for the home dashboard. */
-export function buildWeakAreaRows({ missed = [], readiness, domainPassRecords = {}, mockHistory = [] }) {
+export function buildWeakAreaRows({ missed = [], readiness, domainPassRecords = {}, mockHistory = [], placementRecords = {} }) {
   const rows = []
   const seen = new Set()
 
@@ -19,6 +21,26 @@ export function buildWeakAreaRows({ missed = [], readiness, domainPassRecords = 
       action: 'trapDrill',
       payload: { trapLabel: g.trap, objectiveId: g.items[0]?.objectiveId },
     })
+  }
+
+  for (const domainId of placementDomainIds()) {
+    const record = placementRecords[domainId]
+    if (!shouldSuggestPlacement(record)) continue
+    const key = `placement:${domainId}`
+    if (seen.has(key)) continue
+    seen.add(key)
+    const domain = DOMAINS.find(d => d.id === domainId)
+    const last = record?.lastAttempt
+    rows.push({
+      id: key,
+      label: last
+        ? `${domain?.name || domainId} placement ${last.pct}% — recheck your level`
+        : `${domain?.name || domainId} — establish placement baseline`,
+      cta: 'Check level',
+      action: 'domainPlacement',
+      payload: { domainId },
+    })
+    break
   }
 
   const domainStats = readiness?.domainStats || []

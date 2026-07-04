@@ -27,6 +27,7 @@ describe('CoreStudyRoutes', () => {
     openExamTraps: () => {},
     openTrapDrill: () => {},
     openDomainPass: () => {},
+    openDomainPlacement: () => {},
     theme: 'dark',
     toggleTheme: () => {},
     setShowSettings: () => {},

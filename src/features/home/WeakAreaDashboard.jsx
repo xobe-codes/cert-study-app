@@ -4,6 +4,7 @@ import { STORAGE_KEYS } from '../../storageKeys.js'
 import OverflowMarquee from '../../components/OverflowMarquee.jsx'
 import { homeCard, homeSectionLabel, homePillCount } from '../../home/homeUi.js'
 import { buildWeakAreaRows, resolveWeakAreaStudyObjective } from './weakAreaDashboard.js'
+import { loadAllPlacementRecords } from '../domainPlacement/domainPlacementStorage.js'
 
 export default function WeakAreaDashboard({
   missed,
@@ -12,23 +13,29 @@ export default function WeakAreaDashboard({
   onSelectObjective,
   onOpenTrapDrill,
   onOpenDomainPass,
+  onOpenDomainPlacement,
   onOpenMock,
   onOpenMockInterview,
 }) {
   const [mockHistory, setMockHistory] = useState([])
+  const [placementRecords, setPlacementRecords] = useState({})
 
   useEffect(() => {
     let cancelled = false
     ;(async () => {
       const hist = (await window.storage.getItem(STORAGE_KEYS.mockHistory)) || []
-      if (!cancelled) setMockHistory(hist)
+      const recs = await loadAllPlacementRecords()
+      if (!cancelled) {
+        setMockHistory(hist)
+        setPlacementRecords(recs || {})
+      }
     })()
     return () => { cancelled = true }
   }, [])
 
   const rows = useMemo(
-    () => buildWeakAreaRows({ missed, readiness, domainPassRecords, mockHistory }),
-    [missed, readiness, domainPassRecords, mockHistory],
+    () => buildWeakAreaRows({ missed, readiness, domainPassRecords, mockHistory, placementRecords }),
+    [missed, readiness, domainPassRecords, mockHistory, placementRecords],
   )
 
   if (!rows.length) return null
@@ -40,6 +47,9 @@ export default function WeakAreaDashboard({
         break
       case 'domainPass':
         onOpenDomainPass?.(row.payload)
+        break
+      case 'domainPlacement':
+        onOpenDomainPlacement?.(row.payload)
         break
       case 'study': {
         const obj = resolveWeakAreaStudyObjective(row.payload.objectiveId)

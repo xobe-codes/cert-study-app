@@ -31,6 +31,7 @@ export const STORAGE_KEYS = {
   trapDrillPrefill: 'ccna_trap_drill_prefill_v1',
   domainPass: 'ccna_domain_pass_v1',
   domainPassCelebrated: 'ccna_domain_pass_celebrated_v1',
+  domainPlacement: 'ccna_domain_placement_v1',
 }
 
 /** CustomEvent name for dev/e2e trap-drill prefill handoff. */

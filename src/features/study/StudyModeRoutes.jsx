@@ -9,6 +9,8 @@ import { QuestionMeta } from '../../components/QuizQuestionChrome.jsx'
 import { SubnetPracticeHome } from '../../tabs/studyQuizTabs.jsx'
 import DomainPassHub from '../domainPass/DomainPassHub.jsx'
 import DomainPassSession from '../domainPass/DomainPassSession.jsx'
+import DomainPlacementIntro from '../domainPlacement/DomainPlacementIntro.jsx'
+import DomainPlacementSession from '../domainPlacement/DomainPlacementSession.jsx'
 import TrapDrillSession from '../trapDrill/TrapDrillSession.jsx'
 
 const LabsHub = lazy(() => import('../../lab/LabsHub.jsx'))
@@ -34,6 +36,8 @@ export default function StudyModeRoutes({
   clearTrapDrillPrefill,
   activeDomainPassId,
   setActiveDomainPassId,
+  activeDomainPlacementId,
+  setActiveDomainPlacementId,
   settingsExamMode,
   missed,
   onBack,
@@ -41,6 +45,7 @@ export default function StudyModeRoutes({
   onOpenLab,
   onOpenMockExam,
   onOpenTrapDrill,
+  onOpenDomainPlacement,
   onSelectObjective,
   onRefreshDomainPassCount,
   onMissed,
@@ -67,6 +72,7 @@ export default function StudyModeRoutes({
             if (labReturn === 'objective') onNavigate('objective')
             else if (labReturn === 'mock') onNavigate('mock')
             else if (labReturn === 'domainpass') onNavigate('domainpass')
+            else if (labReturn === 'domainplacement') onNavigate('domainplacement')
             else onNavigate('labs')
           }}
           onOpenLab={(id) => onOpenLab(id, labReturn || 'labs')}
@@ -156,6 +162,7 @@ export default function StudyModeRoutes({
         onStartDomain={(id) => setActiveDomainPassId(id)}
         onStartMockExam={onOpenMockExam}
         onOpenSettings={onOpenSettings}
+        onOpenDomainPlacement={onOpenDomainPlacement}
       />
     )
   }
@@ -170,6 +177,29 @@ export default function StudyModeRoutes({
         onOpenLab={(id) => onOpenLab(id, 'domainpass')}
         examMode={settingsExamMode}
         missed={missed}
+      />
+    )
+  }
+  if (view === 'domainplacement' && !activeDomainPlacementId) {
+    return (
+      <DomainPlacementIntro
+        onExit={onBack}
+        onStart={(id) => setActiveDomainPlacementId(id)}
+      />
+    )
+  }
+  if (view === 'domainplacement' && activeDomainPlacementId) {
+    return (
+      <DomainPlacementSession
+        key={activeDomainPlacementId}
+        domainId={activeDomainPlacementId}
+        onExit={() => setActiveDomainPlacementId(null)}
+        onStudyObjective={(objectiveId) => {
+          const obj = ALL_OBJECTIVES.find(o => o.id === objectiveId)
+          if (obj) onSelectObjective(obj)
+        }}
+        onOpenTrapDrill={(prefill) => onOpenTrapDrill(prefill)}
+        onOpenLab={(id) => onOpenLab(id, 'domainplacement')}
       />
     )
   }

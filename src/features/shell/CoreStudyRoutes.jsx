@@ -48,6 +48,7 @@ export default function CoreStudyRoutes({
   openExamTraps,
   openTrapDrill,
   openDomainPass,
+  openDomainPlacement,
   theme,
   toggleTheme,
   setShowSettings,
@@ -102,6 +103,7 @@ export default function CoreStudyRoutes({
         onOpenExamTraps={openExamTraps}
         onOpenTrapDrill={openTrapDrill}
         onOpenDomainPass={openDomainPass}
+        onOpenDomainPlacement={openDomainPlacement}
         domainPassPassedCount={domainPassPassedCount}
         domainPassRecords={domainPassRecords}
         examDate={settingsExamDate}

@@ -45,6 +45,7 @@ export default function AppLoadedShell({
   openExamTraps,
   openTrapDrill,
   openDomainPass,
+  openDomainPlacement,
   theme,
   toggleTheme,
   setShowSettings,
@@ -75,6 +76,8 @@ export default function AppLoadedShell({
   clearTrapDrillPrefill,
   activeDomainPassId,
   setActiveDomainPassId,
+  activeDomainPlacementId,
+  setActiveDomainPlacementId,
   refreshDomainPassCount,
   refreshDue,
   openSettings,
@@ -155,6 +158,7 @@ export default function AppLoadedShell({
           openExamTraps={openExamTraps}
           openTrapDrill={openTrapDrill}
           openDomainPass={openDomainPass}
+          openDomainPlacement={openDomainPlacement}
           theme={theme}
           toggleTheme={toggleTheme}
           setShowSettings={setShowSettings}
@@ -206,6 +210,8 @@ export default function AppLoadedShell({
           clearTrapDrillPrefill={clearTrapDrillPrefill}
           activeDomainPassId={activeDomainPassId}
           setActiveDomainPassId={setActiveDomainPassId}
+          activeDomainPlacementId={activeDomainPlacementId}
+          setActiveDomainPlacementId={setActiveDomainPlacementId}
           settingsExamMode={settingsExamMode}
           missed={missed}
           onBack={goBack}
@@ -213,6 +219,7 @@ export default function AppLoadedShell({
           onOpenLab={openLab}
           onOpenMockExam={openMockExam}
           onOpenTrapDrill={openTrapDrill}
+          onOpenDomainPlacement={openDomainPlacement}
           onSelectObjective={selectObjective}
           onRefreshDomainPassCount={refreshDomainPassCount}
           onMissed={handleMissed}

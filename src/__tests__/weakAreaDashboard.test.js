@@ -21,6 +21,12 @@ describe('buildWeakAreaRows', () => {
         security: { weakObjectives: ['5.3', '5.4'] },
       },
       mockHistory: [{ date: Date.now(), pct: 62, correct: 18, total: 30, weakDomainId: 'security', weakObjectiveIds: ['5.5'] }],
+      placementRecords: Object.fromEntries(
+        ['fundamentals', 'access', 'connectivity', 'services', 'security', 'automation'].map(id => [
+          id,
+          { lastAttempt: { at: Date.now(), pct: 85 } },
+        ]),
+      ),
     })
 
     expect(rows.some(r => r.cta === 'Trap drill' && r.label.includes('implicit deny'))).toBe(true)
@@ -28,6 +34,18 @@ describe('buildWeakAreaRows', () => {
     expect(rows.some(r => r.cta === 'Open Study' && r.label.includes('weak objective'))).toBe(true)
     expect(rows.some(r => r.cta === 'Open Study' && r.label.includes('Last mock 62%'))).toBe(true)
     expect(rows.some(r => r.cta === 'Interview' && r.label.includes('Verbal warm-up'))).toBe(true)
+  })
+
+  it('suggests placement when stale or never taken', () => {
+    const rows = buildWeakAreaRows({
+      missed: [],
+      readiness: {},
+      domainPassRecords: {},
+      mockHistory: [],
+      placementRecords: {},
+    })
+    expect(rows.some(r => r.cta === 'Check level' && r.action === 'domainPlacement')).toBe(true)
+    expect(rows.find(r => r.action === 'domainPlacement')?.payload?.domainId).toBe('fundamentals')
   })
 })
 

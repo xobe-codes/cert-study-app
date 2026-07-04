@@ -16,6 +16,7 @@ export function useAppNavigation() {
   const [examTrapPrefill, setExamTrapPrefill] = useState(null)
   const [trapDrillPrefill, setTrapDrillPrefill] = useState(null)
   const [activeDomainPassId, setActiveDomainPassId] = useState(null)
+  const [activeDomainPlacementId, setActiveDomainPlacementId] = useState(null)
   const [domainPassPassedCount, setDomainPassPassedCount] = useState(0)
   const [domainPassRecords, setDomainPassRecords] = useState({})
   const [mockDomainPrefill, setMockDomainPrefill] = useState(null)
@@ -69,6 +70,12 @@ export function useAppNavigation() {
     setView('domainpass')
   }, [view])
 
+  const openDomainPlacement = useCallback((opts) => {
+    setActiveDomainPlacementId(opts?.domainId || null)
+    setReturnToView(view)
+    setView('domainplacement')
+  }, [view])
+
   const openMockExam = useCallback((opts) => {
     setMockDomainPrefill(opts?.domainId || null)
     setReturnToView(view)
@@ -105,6 +112,8 @@ export function useAppNavigation() {
     trapDrillPrefill,
     activeDomainPassId,
     setActiveDomainPassId,
+    activeDomainPlacementId,
+    setActiveDomainPlacementId,
     domainPassPassedCount,
     domainPassRecords,
     mockDomainPrefill,
@@ -124,6 +133,7 @@ export function useAppNavigation() {
     openExamTraps,
     openTrapDrill,
     openDomainPass,
+    openDomainPlacement,
     openMockExam,
     clearExamTrapPrefill,
     clearTrapDrillPrefill,

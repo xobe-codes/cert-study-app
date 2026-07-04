@@ -29,4 +29,12 @@ test.describe('Device matrix — home screen', () => {
     await page.goto('/#/mock')
     await expect(page.getByRole('heading', { name: /Mock Exam/i })).toBeVisible({ timeout: 20_000 })
   })
+
+  test('iPhone 13 — Domain placement hub loads', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
+    await seedOnboarding(page)
+    await page.goto('/#/domainplacement')
+    await expect(page.getByRole('heading', { name: /Domain Placement/i })).toBeVisible({ timeout: 20_000 })
+    await expect(page.getByRole('button', { name: /Network Fundamentals/i }).first()).toBeVisible({ timeout: 10_000 })
+  })
 })

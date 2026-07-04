@@ -19,6 +19,7 @@ import {
   homeBodySm,
   HOME_SECTION_GAP,
 } from '../../home/homeUi.js'
+import { isPlacementDomain } from '../domainPlacement/placementBlueprints.js'
 
 function formatAttemptDate(ts) {
   if (!ts) return '—'
@@ -28,7 +29,7 @@ function formatAttemptDate(ts) {
 /**
  * Hub for per-domain CCNA pass attempts — progress meter, timer toggle, domain cards.
  */
-export default function DomainPassHub({ onExit, onStartDomain, onStartMockExam, onOpenSettings }) {
+export default function DomainPassHub({ onExit, onStartDomain, onStartMockExam, onOpenSettings, onOpenDomainPlacement }) {
   const [records, setRecords] = useState({})
   const [timerOn, setTimerOn] = useState(true)
   const [loaded, setLoaded] = useState(false)
@@ -149,6 +150,24 @@ export default function DomainPassHub({ onExit, onStartDomain, onStartMockExam, 
                 </div>
                 <span style={{ ...styles.small, color: accent.text, fontWeight: 600 }}>{actionLabel} →</span>
               </div>
+              {isPlacementDomain(domain.id) && onOpenDomainPlacement && (
+                <button
+                  type="button"
+                  className="ccna-hover"
+                  onClick={(e) => { e.stopPropagation(); onOpenDomainPlacement({ domainId: domain.id }) }}
+                  style={{
+                    ...styles.secondaryBtn,
+                    marginTop: 10,
+                    marginBottom: 0,
+                    width: '100%',
+                    fontSize: 'var(--ccna-type-xs)',
+                    padding: '8px 12px',
+                    minHeight: 36,
+                  }}
+                >
+                  Check my level (placement) →
+                </button>
+              )}
             </button>
           )
         })}
