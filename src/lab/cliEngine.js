@@ -279,6 +279,94 @@ GigabitEthernet0/0     192.168.1.2     YES manual up                    up
 GigabitEthernet0/1     unassigned      YES unset  administratively down down`,
 }
 
+/** OSPF passive-interface outputs for LAB-OSPF-ADJ-34 (objective 3.4). */
+export const CLI_OSPF_ADJ_34_SHOW_OUTPUT = {
+  'show ip protocols': `Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 1.1.1.1
+  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Routing for Networks:
+    10.0.1.0 0.0.0.255 area 0
+    10.0.12.0 0.0.0.3 area 0
+  Passive Interface(s):
+    GigabitEthernet0/1`,
+  'show ip ospf interface brief': `Interface    PID   Area            IP Address/Mask    Cost  State Nbrs F/C
+Gi0/0        1     0               10.0.12.1/30     2     BDR   1/1
+Gi0/1        1     0               10.0.1.1/24      1     DR    0/0`,
+  'show ip ospf neighbor': `Neighbor ID     Pri   State           Dead Time   Address         Interface
+2.2.2.2           1   FULL/  -        00:00:35    10.0.12.2       GigabitEthernet0/0`,
+  'show ip route ospf': `Codes: O - OSPF
+O       10.0.2.0/24 [110/20] via 10.0.12.2, 00:08:22, GigabitEthernet0/0`,
+}
+
+/** HSRP gateway config read for LAB-HSRP-GATEWAY (objective 3.5). */
+export const CLI_HSRP_GATEWAY_35_SHOW_OUTPUT = {
+  'show running-config | section interface gi0/0': `interface GigabitEthernet0/0
+ ip address 192.168.1.2 255.255.255.0
+ standby 1 ip 192.168.1.1
+ standby 1 priority 150
+ standby 1 preempt`,
+  'show standby brief': `                     P indicates configured to preempt.
+                     |
+Interface   Grp  Pri P State   Active          Standby         Virtual IP
+Gi0/0       1    150 P Active  local           192.168.1.3     192.168.1.1`,
+  'show standby': `GigabitEthernet0/0 - Group 1
+  State is Active
+  5 state changes, last state change 00:12:30
+  Virtual IP address is 192.168.1.1
+  Active virtual MAC address is 0000.0c07.ac01
+  Local virtual MAC address is 0000.0c07.ac01 (bia 0000.0c07.ac01)
+  Hello time 3 sec, hold time 10 sec
+  Preemption enabled
+  Active router is local
+  Standby router is 192.168.1.3, priority 100
+  Priority 150 (configured 150)
+  Group name is "hsrp-Gi0/0-1" (default)`,
+}
+
+/** Extended ACL verify for LAB-ACL-CONFIG-55 (objective 5.5). */
+export const CLI_ACL_CONFIG_55_SHOW_OUTPUT = {
+  'show running-config | section access-list': `ip access-list extended SALES_TO_SRV
+ permit tcp 192.168.10.0 0.0.0.255 10.1.1.0 0.0.0.255 eq 80
+ deny ip 192.168.10.0 0.0.0.255 10.1.1.0 0.0.0.255`,
+  'show access-lists': `Extended IP access list SALES_TO_SRV
+    10 permit tcp 192.168.10.0 0.0.0.255 10.1.1.0 0.0.0.255 eq www
+    20 deny ip 192.168.10.0 0.0.0.255 10.1.1.0 0.0.0.255 (42 matches)`,
+  'show ip interface gi0/0': `GigabitEthernet0/0 is up, line protocol is up
+  Internet address is 192.168.10.1/24
+  Inbound  access list is SALES_TO_SRV
+  Outgoing access list is not set`,
+}
+
+/** Port security verify for LAB-PORTSEC-56 (objective 5.6). */
+export const CLI_PORTSEC_56_SHOW_OUTPUT = {
+  'show running-config interface gi0/1': `interface GigabitEthernet0/1
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 1
+ switchport port-security violation shutdown`,
+  'show port-security interface gi0/1': `Port Security              : Enabled
+ Port Status                : Secure-up
+ Violation Mode             : Shutdown
+ Aging Time                 : 0 mins
+ Aging Type                 : Absolute
+ SecureStatic Address Aging : Disabled
+ Maximum MAC Addresses      : 1
+ Total MAC Addresses        : 1
+ Configured MAC Addresses   : 0
+ Sticky MAC Addresses       : 0
+ Last Source Address:Vlan   : aabb.cc00.0101:10
+ Security Violation Count   : 0`,
+  'show port-security': `Secure Port  MaxSecureAddr  CurrentAddr  SecurityViolation  Security Action
+                (Count)       (Count)          (Count)
+---------------------------------------------------------------------------
+  Gi0/1              1             1                  0         Shutdown
+---------------------------------------------------------------------------
+Total Addresses in System (excluding one mac per port)     : 0
+Max Addresses limit in System (excluding one mac per port) : 8192`,
+}
+
 export function cliNavTarget(norm) {
   if (/^(enable|en)$/.test(norm)) return { to: 'priv', from: ['user', 'priv'] }
   if (/^disable$/.test(norm)) return { to: 'user', from: ['priv'] }

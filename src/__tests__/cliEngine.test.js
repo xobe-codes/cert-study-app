@@ -14,6 +14,10 @@ import {
   CLI_ROUTE_32_SHOW_OUTPUT,
   CLI_OSPF_VERIFY_34_SHOW_OUTPUT,
   CLI_HSRP_VERIFY_35_SHOW_OUTPUT,
+  CLI_OSPF_ADJ_34_SHOW_OUTPUT,
+  CLI_HSRP_GATEWAY_35_SHOW_OUTPUT,
+  CLI_ACL_CONFIG_55_SHOW_OUTPUT,
+  CLI_PORTSEC_56_SHOW_OUTPUT,
 } from '../lab/cliEngine.js'
 import { labProgress } from '../data/ccnaLabs.js'
 
@@ -442,5 +446,59 @@ describe('cliEngine', () => {
     })
     expect(r.newlyCompleted).toEqual([0])
     expect(r.lines.some(l => l.text.includes('Active'))).toBe(true)
+  })
+
+  it('lab_34_ospf_adj show ip protocols lists passive Gi0/1', () => {
+    const r = processCliLine({
+      raw: 'show ip protocols',
+      mode: 'priv',
+      host: 'R1',
+      objectives: [{ answer: ['show ip protocols'] }],
+      completed: [false],
+      showOutput: CLI_OSPF_ADJ_34_SHOW_OUTPUT,
+    })
+    expect(r.newlyCompleted).toEqual([0])
+    expect(r.lines.some(l => l.text.includes('GigabitEthernet0/1'))).toBe(true)
+  })
+
+  it('lab_35_hsrp_gateway show run section returns standby config', () => {
+    const r = processCliLine({
+      raw: 'show running-config | section interface gi0/0',
+      mode: 'priv',
+      host: 'R1',
+      objectives: [{ answer: ['show running-config | section interface gi0/0'] }],
+      completed: [false],
+      showOutput: CLI_HSRP_GATEWAY_35_SHOW_OUTPUT,
+    })
+    expect(r.newlyCompleted).toEqual([0])
+    expect(r.lines.some(l => l.text.includes('standby 1 preempt'))).toBe(true)
+  })
+
+  it('lab_55_acl_config show access-lists lists SALES_TO_SRV permit eq www', () => {
+    const r = processCliLine({
+      raw: 'show access-lists',
+      mode: 'priv',
+      host: 'R1',
+      objectives: [{ answer: ['show access-lists'] }],
+      completed: [false],
+      showOutput: CLI_ACL_CONFIG_55_SHOW_OUTPUT,
+    })
+    expect(r.newlyCompleted).toEqual([0])
+    expect(r.lines.some(l => l.text.includes('SALES_TO_SRV'))).toBe(true)
+    expect(r.lines.some(l => l.text.includes('eq www'))).toBe(true)
+  })
+
+  it('lab_56_portsec show port-security interface reports shutdown violation', () => {
+    const r = processCliLine({
+      raw: 'show port-security interface gi0/1',
+      mode: 'priv',
+      host: 'SW1',
+      objectives: [{ answer: ['show port-security interface gi0/1'] }],
+      completed: [false],
+      showOutput: CLI_PORTSEC_56_SHOW_OUTPUT,
+    })
+    expect(r.newlyCompleted).toEqual([0])
+    expect(r.lines.some(l => l.text.includes('Violation Mode'))).toBe(true)
+    expect(r.lines.some(l => l.text.includes('Shutdown'))).toBe(true)
   })
 })
