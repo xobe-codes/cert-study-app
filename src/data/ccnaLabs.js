@@ -20,7 +20,7 @@ export const LAB_SOURCES = {
 
 import { EXTENDED_LAB_BUNDLES } from './ccnaLabsExtended.js'
 import { PHASE_LAB_BUNDLES } from './ccnaLabsPhases.js'
-import { CLI_ROUTE_31_SHOW_OUTPUT } from '../lab/cliEngine.js'
+import { CLI_ROUTE_31_SHOW_OUTPUT, CLI_VLAN_TRUNK_21_SHOW_OUTPUT } from '../lab/cliEngine.js'
 
 /* -------------------------------------------------------------------------
    LAB: Dynamic ARP Inspection with DHCP Snooping
@@ -191,33 +191,27 @@ const LAB_VLAN_TRUNK = {
   objectiveId: '2.1',
   ckuIds: ['CKU-VLAN', 'CKU-ACCESS-PORT', 'CKU-TRUNKING', 'CKU-NATIVE-VLAN'],
   labType: 'guided',
+  interpretOnly: true,
   difficulty: 'beginner',
-  estimatedTimeMinutes: 15,
+  estimatedTimeMinutes: 10,
   tools: ['Packet Tracer', 'GNS3', 'CML'],
   examRelevance: 'core',
-  scenario: 'SW1 and SW2 each host PCs in two departments — Sales (VLAN 10) and Engineering (VLAN 20). You will create both VLANs on each switch, assign access ports, and configure the link between SW1 and SW2 as an 802.1Q trunk so VLAN 10 and 20 traffic can both cross between switches.',
+  scenario: 'SW1 and SW2 are pre-configured with VLANs 10 (Sales) and 20 (Engineering), access ports, and an 802.1Q trunk on Gi0/3. Verify VLAN membership and trunk status without changing configuration.',
   learningGoals: [
-    'Create VLANs and assign descriptive names.',
-    'Assign access ports to the correct VLAN with switchport mode access.',
-    'Configure a trunk port and verify the native VLAN matches on both ends.',
-    'Verify VLAN membership and trunk status.',
+    'Read VLAN 10 and 20 membership from show vlan brief',
+    'Confirm Gi0/3 trunk allows VLANs 10 and 20',
+    'Verify native VLAN and encapsulation on the trunk port',
   ],
   topologyId: 'TOPO-VLAN-TRUNK',
   prerequisites: ['CKU-MAC-ADDRESS-TABLE'],
 
   tasks: [
-    { id: 't1', order: 1, title: 'Create VLANs on SW1', device: 'SW1', instruction: 'Create VLAN 10 (name Sales) and VLAN 20 (name Engineering) on SW1.',
-      expectedCommands: ['vlan 10', 'name Sales', 'vlan 20', 'name Engineering'] },
-    { id: 't2', order: 2, title: 'Create VLANs on SW2', device: 'SW2', instruction: 'Create the same two VLANs (10 Sales, 20 Engineering) on SW2.',
-      expectedCommands: ['vlan 10', 'name Sales', 'vlan 20', 'name Engineering'] },
-    { id: 't3', order: 3, title: 'Assign access ports on SW1', device: 'SW1', instruction: 'Set Gi0/1 as an access port in VLAN 10 (PC1) and Gi0/2 as an access port in VLAN 20 (PC2).',
-      expectedCommands: ['interface gi0/1', 'switchport mode access', 'switchport access vlan 10', 'interface gi0/2', 'switchport access vlan 20'] },
-    { id: 't4', order: 4, title: 'Assign access port on SW2', device: 'SW2', instruction: 'Set Gi0/1 as an access port in VLAN 10 (PC3).',
-      expectedCommands: ['interface gi0/1', 'switchport mode access', 'switchport access vlan 10'] },
-    { id: 't5', order: 5, title: 'Configure the trunk on SW1', device: 'SW1', instruction: 'Configure Gi0/3 (link to SW2) as an 802.1Q trunk carrying VLANs 10 and 20, with the default native VLAN 1.',
-      expectedCommands: ['interface gi0/3', 'switchport trunk encapsulation dot1q', 'switchport mode trunk', 'switchport trunk allowed vlan 10,20'] },
-    { id: 't6', order: 6, title: 'Configure the trunk on SW2', device: 'SW2', instruction: 'Configure Gi0/3 (link to SW1) as a matching 802.1Q trunk carrying VLANs 10 and 20.',
-      expectedCommands: ['interface gi0/3', 'switchport trunk encapsulation dot1q', 'switchport mode trunk', 'switchport trunk allowed vlan 10,20'] },
+    { id: 't1', order: 1, title: 'VLAN membership', device: 'SW1', instruction: 'Run show vlan brief — confirm VLAN 10 Sales and VLAN 20 Engineering with access ports.',
+      expectedCommands: ['show vlan brief'] },
+    { id: 't2', order: 2, title: 'Trunk summary', device: 'SW1', instruction: 'Run show interfaces trunk — confirm Gi0/3 trunking with VLANs 10,20 allowed.',
+      expectedCommands: ['show interfaces trunk'] },
+    { id: 't3', order: 3, title: 'Trunk port detail', device: 'SW1', instruction: 'Run show interfaces gi0/3 switchport — verify dot1q encapsulation and native VLAN 1.',
+      expectedCommands: ['show interfaces gi0/3 switchport'] },
   ],
 
   verificationCommands: [
@@ -245,6 +239,7 @@ const LAB_VLAN_TRUNK = {
   ],
   source: { name: LAB_SOURCES.workbook, chapter: 'VLANs and Trunking', confidence: 0.95 },
   metadata: { version: '1', status: 'validated', confidence: 0.95 },
+  cliShowOutput: CLI_VLAN_TRUNK_21_SHOW_OUTPUT,
 }
 
 const TOPO_VLAN_TRUNK = {
@@ -270,21 +265,13 @@ const TOPO_VLAN_TRUNK = {
 const VALIDATOR_VLAN_TRUNK = {
   labId: 'LAB-VLAN-TRUNK',
   requiredCommands: [
-    { device: 'SW1', command: 'vlan 10' },
-    { device: 'SW1', command: 'vlan 20' },
-    { device: 'SW1', command: 'switchport access vlan 10' },
-    { device: 'SW1', command: 'switchport access vlan 20' },
-    { device: 'SW1', command: 'switchport mode trunk' },
-    { device: 'SW1', command: 'switchport trunk allowed vlan 10,20' },
-    { device: 'SW2', command: 'vlan 10' },
-    { device: 'SW2', command: 'switchport access vlan 10' },
-    { device: 'SW2', command: 'switchport mode trunk' },
-    { device: 'SW2', command: 'switchport trunk allowed vlan 10,20' },
+    { device: 'SW1', command: 'show vlan brief' },
+    { device: 'SW1', command: 'show interfaces trunk' },
+    { device: 'SW1', command: 'show interfaces gi0/3 switchport' },
   ],
   verificationChecks: [
     { id: 'v1', device: 'SW1', command: 'show vlan brief', expectedResult: 'VLAN 10 (Sales) and VLAN 20 (Engineering) listed with Gi0/1 and Gi0/2 respectively.', passCondition: 'VLANs active with correct ports' },
     { id: 'v2', device: 'SW1', command: 'show interfaces trunk', expectedResult: 'Gi0/3 listed as a trunk, allowed VLANs 10,20.', passCondition: 'trunk active' },
-    { id: 'v3', device: 'PC1', command: 'ping <PC3-IP>', expectedResult: 'Ping succeeds — both in VLAN 10, reachable across the trunk.', passCondition: 'ping success' },
   ],
   failureChecks: [
     { id: 'f1', device: 'SW1', command: 'show interfaces trunk', expectedFailure: 'VLAN 20 missing from the allowed list', reason: 'If `switchport trunk allowed vlan` excludes 20, VLAN 20 traffic cannot cross the trunk.' },

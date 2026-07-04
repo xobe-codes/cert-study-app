@@ -54,7 +54,19 @@ export default function MockExamDebriefActions({
   })
   const stemReplay = firstWrongIdx >= 0 ? getStemReplayLab(questions[firstWrongIdx]?.id) : null
 
-  if (!weakDomains.length && !trapCku && !stemReplay) return null
+  const weakDomainLabReplays = weakDomains.map(d => {
+    const oid = weakestObjectiveInDomain(d.id)
+    if (!oid) return null
+    const wrongQ = questions.find((q, idx) => {
+      if (q.objectiveId !== oid) return false
+      const sel = responses[idx]
+      return sel != null && sel !== q.correctIndex
+    })
+    const replay = wrongQ ? getStemReplayLab(wrongQ.id) : null
+    return replay ? { domainId: d.id, ...replay } : null
+  }).filter(Boolean)
+
+  if (!weakDomains.length && !trapCku && !stemReplay && !weakDomainLabReplays.length) return null
 
   return (
     <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim }}>
@@ -81,6 +93,19 @@ export default function MockExamDebriefActions({
                 onClick={() => onSelectObjective(oid)}
               >
                 Open weakest topic {oid} →
+              </button>
+            )
+          })()}
+          {(() => {
+            const domainReplay = weakDomainLabReplays.find(r => r.domainId === d.id)
+            if (!domainReplay || !onOpenLab) return null
+            return (
+              <button
+                type="button"
+                style={{ ...styles.secondaryBtn, width: '100%', textAlign: 'left', fontSize: 'var(--ccna-type-sm)' }}
+                onClick={() => onOpenLab(domainReplay.labId)}
+              >
+                Lab for {d.name} → {domainReplay.lab.title}
               </button>
             )
           })()}

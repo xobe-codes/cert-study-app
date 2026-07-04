@@ -93,7 +93,7 @@ export default function AnswerReview({ q, selected, hideExamTip = false, objecti
   return (
     <div className="ccna-answer-review" style={{ marginTop: 8, minWidth: 0 }}>
       <QuestionUnderReviewBanner questionId={q?.id} />
-      <ReviewBlock icon="✅" title={`CORRECT ANSWER: ${CHOICE_LETTERS[correctIdx] || correctIdx}`} accent="mint">
+      <ReviewBlock icon="✅" title={`CORRECT ANSWER: ${CHOICE_LETTERS[correctIdx] || correctIdx}`} accent="mint" collapsible={selectedWrongIdx != null} defaultOpen={selectedWrongIdx == null}>
         <RichText text={ar?.correct?.explanation || q.explanation} />
       </ReviewBlock>
       {yourWrong.map(item => (
@@ -128,7 +128,7 @@ export default function AnswerReview({ q, selected, hideExamTip = false, objecti
           ))}
         </ReviewBlock>
       )}
-      {(!hideExamTip && ar?.examTip) && <ReviewBlock icon="💡" title="EXAM TIP" accent="amber"><RichText text={ar.examTip} /></ReviewBlock>}
+      {(!hideExamTip && ar?.examTip) && <ReviewBlock icon="💡" title="EXAM TIP" accent="amber" collapsible defaultOpen={false}><RichText text={ar.examTip} /></ReviewBlock>}
       {ar?.memoryHook && (
         <ReviewBlock icon="🧠" title="MEMORY HOOK" accent="purple" collapsible defaultOpen={false}>
           <RichText text={ar.memoryHook} />

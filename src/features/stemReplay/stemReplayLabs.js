@@ -7,6 +7,7 @@ const STEM_REPLAY_MAP = {
   '2.2-c-q1': 'LAB-VLAN-TRUNK',
   '3.2-c-q1': 'LAB-31-ROUTE-INTERPRET',
   '2.5-c-q1': 'LAB-STP-ROOT',
+  'obj-4.2-source-q005': 'LAB-NTP-CLIENT',
   '2.1-c-q1': 'LAB-INTERVLAN-SVI',
   '3.4-c-q1': 'LAB-OSPF-DEFAULT',
   '3.3-q1': 'LAB-IPV6-STATIC',

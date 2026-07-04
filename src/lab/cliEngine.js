@@ -367,6 +367,158 @@ Total Addresses in System (excluding one mac per port)     : 0
 Max Addresses limit in System (excluding one mac per port) : 8192`,
 }
 
+/** NTP client verify for LAB-NTP-CLIENT (objective 4.2). */
+export const CLI_NTP_42_SHOW_OUTPUT = {
+  'show running-config | include ntp': 'ntp server 203.0.113.1',
+  'show ntp status': `Clock is synchronized, stratum 2, reference is 203.0.113.1
+nominal freq is 250.0000 Hz, actual freq is 249.9987 Hz, precision is 2**18
+reference time is E7A5B2C3.12345678 (12:34:56.123 UTC Mon Mar 1 2025)
+clock offset is 0.1234 msec, root delay is 12.34 msec
+root dispersion is 1.23 msec, peer dispersion is 0.45 msec`,
+  'show ntp associations': `      address         ref clock   st   when   poll reach  delay     offset    disp
+*~203.0.113.1     .GPS.           1    34    64   377  12.3   -0.45     0.8
+ * sys.peer, # selected, + candidate, - outlyer, x falseticker, ~ configured`,
+}
+
+/** DHCP pool verify for LAB-DHCP-POOL-43 (objective 4.3). */
+export const CLI_DHCP_POOL_43_SHOW_OUTPUT = {
+  'show running-config | section dhcp': `ip dhcp excluded-address 192.168.10.1 192.168.10.10
+!
+ip dhcp pool LAN10
+ network 192.168.10.0 255.255.255.0
+ default-router 192.168.10.1
+ dns-server 8.8.8.8`,
+  'show ip dhcp pool': `Pool LAN10 :
+ Utilization mark (high/low)    : 100 / 0
+ Subnet size (first/next)       : 0 / 0
+ Total addresses                : 244
+ Leased addresses               : 1
+ Pending event                  : none
+ 1 subnet is currently in the pool
+ Current index        IP address range                    Leased addresses
+ 192.168.10.0         192.168.10.11    - 192.168.10.254     1
+
+Pool LAN10 domain name: (not set)
+ DNS server 8.8.8.8
+ Default router 192.168.10.1
+ NetBIOS name server: (not set)`,
+  'show ip dhcp binding': `Bindings from all pools not associated with VRF:
+IP address       Client-ID/Hardware address/   Lease expiration        Type
+                 User name
+192.168.10.11    0063.0000.0000.01               Mar 01 2025 08:00 AM    Automatic`,
+}
+
+/** SNMP verify for LAB-SNMP-CONFIG-44 (objective 4.4). */
+export const CLI_SNMP_44_SHOW_OUTPUT = {
+  'show running-config | include snmp': `snmp-server community CCNAro RO
+snmp-server location DC1-Rack12
+snmp-server contact NetOps Team`,
+  'show snmp community': `Community name: CCNAro
+Community Index: internal00000001
+Community SecurityName: CCNAro
+storage-type: nonvolatile active
+access-list: SNMP-READ`,
+  'show snmp': `Chassis: CISCO2911/K9
+Contact: NetOps Team
+Location: DC1-Rack12
+0 SNMP packets input
+0 SNMP packets output`,
+}
+
+/** Syslog verify for LAB-SYSLOG-REMOTE (objective 4.5). */
+export const CLI_SYSLOG_45_SHOW_OUTPUT = {
+  'show running-config | include logging': `service timestamps log datetime msec
+logging host 192.168.1.100
+logging trap informational`,
+  'show logging': `Syslog logging: enabled (0 messages dropped, 0 flushes, 0 overruns)
+    Console logging: level debugging, 12 messages logged
+    Monitor logging: level debugging, 0 messages logged
+    Buffer logging:  level debugging, 12 messages logged
+    Logging to 192.168.1.100  (udp port 514,  audit disabled,
+              authentication disabled, encryption disabled, link up),
+              8 message lines logged`,
+}
+
+/** TFTP backup verify for LAB-TFTP-CONFIG-49 (objective 4.9). */
+export const CLI_TFTP_49_SHOW_OUTPUT = {
+  'ping 192.168.1.50': `Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.1.50, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/2/4 ms`,
+  'show archive': `The maximum archive configurations allowed is 10
+There are currently 1 archive configurations saved
+The next archive file will be named flash:archive-2
+ Archive #1 saved at 12:34:56 UTC Mon Mar 1 2025`,
+  'dir tftp:': `Directory of tftp://192.168.1.50/
+  1  -rw-     4521  r1-backup.cfg`,
+}
+
+/** STP root verify for LAB-STP-ROOT (objective 2.5). */
+export const CLI_STP_25_SHOW_OUTPUT = {
+  'show running-config | include spanning-tree': 'spanning-tree vlan 1 root primary',
+  'show spanning-tree vlan 1': `VLAN0001
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    24577
+             Address     aabb.cc00.0100
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+  Bridge ID  Priority    24577  (priority 24576 sys-id-ext 1)
+             Address     aabb.cc00.0100`,
+  'show spanning-tree root': `                                        Root    Hello Max Fwd
+Vlan                   Root ID          Cost    Time Age Dly  Root Port
+---------------- -------------------- --------- ----- --- ---  ----------
+VLAN0001         aabb.cc00.0100       0         2     20  15`,
+}
+
+/** Device access verify for LAB-DEVICE-ACCESS (objective 5.3). */
+export const CLI_ACCESS_53_SHOW_OUTPUT = {
+  'show running-config | section username': `username admin privilege 15 secret 5 $1$mERr$hx5PtPdXFCZepYLX4qzPn.`,
+  'show running-config | section line con': `line con 0
+ login local`,
+  'show running-config | include enable': 'enable secret 5 $1$mERr$hx5PtPdXFCZepYLX4qzPn.',
+}
+
+/** SSH VTY verify for LAB-SSH-VTY (objective 5.3 / 4.8). */
+export const CLI_SSH_53_SHOW_OUTPUT = {
+  'show running-config | section line vty': `line vty 0 4
+ transport input ssh
+ login local`,
+  'show ip ssh': `SSH Enabled - version 2.0
+Authentication timeout: 120 secs; Authentication retries: 3
+Minimum expected Diffie Hellman key size : 1024 bits
+IOS Keys in SECSH format(ssh-rsa, base64 encoded):
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC...`,
+  'show users': `    Line       User       Host(s)              Idle       Location
+*  1 vty 0    admin      idle                 00:00:00    192.168.1.100`,
+}
+
+/** VLAN/trunk verify for LAB-VLAN-TRUNK (objective 2.1). */
+export const CLI_VLAN_TRUNK_21_SHOW_OUTPUT = {
+  'show vlan brief': `VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Gi0/3
+10   Sales                            active    Gi0/1
+20   Engineering                      active    Gi0/2`,
+  'show interfaces trunk': `Port        Mode         Encapsulation  Status        Native vlan
+Gi0/3       on           802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Gi0/3       10,20
+
+Port        Vlans allowed and active in management domain
+Gi0/3       10,20`,
+  'show interfaces gi0/3 switchport': `Name: Gi0/3
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: trunk
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Trunking VLANs Enabled: 10,20`,
+}
+
 export function cliNavTarget(norm) {
   if (/^(enable|en)$/.test(norm)) return { to: 'priv', from: ['user', 'priv'] }
   if (/^disable$/.test(norm)) return { to: 'user', from: ['priv'] }

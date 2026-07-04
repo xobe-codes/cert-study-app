@@ -43,7 +43,9 @@ describe('command hub', () => {
     const index = buildCommandIndex()
     const ntp = index.commands.find(c => c.command === 'show ntp status')
     expect(ntp).toBeTruthy()
-    expect(ntp.source).toBe('registry')
+    expect(ntp.source).toBe('curated')
+    const fromRegistry = index.commands.filter(c => c.source === 'registry')
+    expect(fromRegistry.length).toBeGreaterThan(0)
     expect(getCommandById(ntp.id, index)).toBe(ntp)
   })
 
