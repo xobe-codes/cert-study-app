@@ -128,12 +128,17 @@ describe('stemReplayLabs', () => {
       ['obj-2.3-source-q001', 'LAB-LLDP'],
       ['obj-4.4-source-q001', 'LAB-SNMP'],
       ['2.2-c-q2', 'LAB-D22-22'],
+      ['1.6-c-q1', 'LAB-IPV4-SUBNETTING'],
+      ['3.3-q2', 'LAB-IPV6-STATIC'],
+      ['1.5-c-q3', 'LAB-MAC-FORWARD-15'],
+      ['5.8-c-q1', 'LAB-WPA2-PSK-59'],
+      ['1.8-c-q1', 'LAB-D11-18'],
     ]
     for (const [qid, labId] of liteCases) {
       const replay = getStemReplayLab(qid)
       expect(replay?.labId, qid).toBe(labId)
       expect(replay?.lab.interpretOnly, qid).toBe(true)
     }
-    expect(resolveStemReplayLabId('LAB-L3-ETHERCHANNEL')).toBe('LAB-ETHERCHANNEL')
+    expect(resolveStemReplayLabId('LAB-L3-ETHERCHANNEL')).toBe('LAB-L3-ETHERCHANNEL')
   })
 })

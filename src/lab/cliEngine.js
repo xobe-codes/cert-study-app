@@ -641,6 +641,154 @@ Inside interfaces:
 Hits: 12  Misses: 0`,
 }
 
+/** IPv4 subnetting verify for LAB-IPV4-SUBNETTING (objective 1.6). */
+export const CLI_SUBNET_16_SHOW_OUTPUT = {
+  'show ip route': `Codes: C - connected, S - static
+Gateway of last resort is not set
+
+C    192.168.10.0/26 is directly connected, GigabitEthernet0/0.10
+C    192.168.10.64/27 is directly connected, GigabitEthernet0/0.20`,
+  'show ip interface brief': `Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0.10  192.168.10.1    YES manual up                    up
+GigabitEthernet0/0.20  192.168.10.65   YES manual up                    up`,
+  'show interfaces trunk': `Port        Mode         Encapsulation  Status        Native vlan
+Gi0/0       on           802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Gi0/0       10,20`,
+}
+
+/** DHCP snooping verify for LAB-DHCP-SNOOP-27 (objective 2.7). */
+export const CLI_DHCP_SNOOP_27_SHOW_OUTPUT = {
+  'show ip dhcp snooping': `Switch DHCP snooping is enabled
+Switch DHCP snooping is configured on following VLANs:
+1
+DHCP snooping is operational on following VLANs:
+1
+DHCP snooping is configured on the following L3 Interfaces:
+
+Interface                  Trusted
+-------------------        -------
+GigabitEthernet0/1         yes`,
+  'show ip dhcp snooping binding': `MacAddress          IpAddress        Lease(sec)  Type           VLAN  Interface
+------------------  ---------------  ----------  -------------  ----  ----------
+aabb.cc00.0101      192.168.1.50     86400       dhcp-snooping  1     FastEthernet0/5`,
+}
+
+/** WLC lightweight AP verify for LAB-WIRELESS-ARCH (objective 2.6). */
+export const CLI_WIRELESS_ARCH_26_SHOW_OUTPUT = {
+  'show ap summary': `Number of APs............................ 3
+Global AP User Name...................... admin
+
+AP Name             Slots  AP Model  Ethernet MAC    Location
+------------------  -----  --------  --------------    --------
+AP-Floor1-01        2      AIR-CAP   aabb.cc00.0101    default
+AP-Floor1-02        2      AIR-CAP   aabb.cc00.0102    default
+AP-Floor2-01        2      AIR-CAP   aabb.cc00.0103    default
+
+State: All APs Joined — Lightweight mode (CAPWAP-managed)`,
+  'show wireless client summary': `Number of Clients...................... 4
+
+MAC Address       AP Name          WLAN  VLAN  Protocol
+----------------  ---------------  ----  ----  --------
+aabb.cc00.c001    AP-Floor1-01     1     20    802.11ax
+aabb.cc00.c002    AP-Floor1-02     1     20    802.11ax`,
+  'show capwap detail': `AP Name: AP-Floor1-01
+  CAPWAP Control Channel: UP (UDP 5246, DTLS)
+  CAPWAP Data Channel:    UP (UDP 5247)
+AP Name: AP-Floor1-02
+  CAPWAP Control Channel: UP (UDP 5246, DTLS)
+  CAPWAP Data Channel:    UP (UDP 5247)`,
+}
+
+/** IPv6 static route verify for LAB-IPV6-STATIC (objective 3.3). */
+export const CLI_IPV6_STATIC_33_SHOW_OUTPUT = {
+  'show ipv6 route static': `IPv6 Routing Table - default - 3 entries
+Codes: C - Connected, S - Static
+S   2001:DB8:20::/64 [1/0]
+     via 2001:DB8:12::2`,
+  'show ipv6 interface brief': `Interface              IPv6-Address                              Status
+GigabitEthernet0/0     2001:DB8:12::1/64                         [up/up]`,
+}
+
+/** WLAN SSID verify for LAB-WLAN-SSID (objective 2.8). */
+export const CLI_WLAN_SSID_28_SHOW_OUTPUT = {
+  'show wlan summary': `Number of WLANs: 1
+
+WLAN ID  SSID         Status   Security
+-------  -----------  -------  -----------------
+1        CORP_WIFI    Enabled  WPA2 PSK + AES-CCMP`,
+  'show ap summary': `Number of APs............................ 2
+AP Name             State
+------------------  ------
+AP-01               Joined
+AP-02               Joined`,
+}
+
+/** MAC learning verify for LAB-MAC-FORWARD-15 (objective 1.5). */
+export const CLI_MAC_FORWARD_15_SHOW_OUTPUT = {
+  'show mac address-table': `Mac Address Table
+Vlan    Mac Address       Type        Ports
+----    -----------       ----        -----
+  10    aabb.cc00.0101    DYNAMIC     Fa0/2
+  10    0011.2233.4455    STATIC      Fa0/1`,
+  'show mac address-table dynamic': `Vlan    Mac Address       Type        Ports
+----    -----------       ----        -----
+  10    aabb.cc00.0101    DYNAMIC     Fa0/2`,
+  'show mac address-table count': `Dynamic Address Count: 1
+Static Address Count:  1
+Total Mac Addresses:   2`,
+}
+
+/** WPA2-PSK WLAN verify for LAB-WPA2-PSK-59 (objective 5.9). */
+export const CLI_WPA2_PSK_59_SHOW_OUTPUT = {
+  'show wlan summary': `WLAN ID  SSID         Status   Security
+1        GUEST_WIFI   Enabled  WPA2 PSK + AES-CCMP`,
+  'show wlan GUEST_WIFI': `WLAN ID: 1
+SSID: GUEST_WIFI
+Status: Enabled
+Security: WPA2 Personal (PSK)
+Cipher: AES-CCMP
+Interface: VLAN30 (192.168.30.0/24)`,
+}
+
+/** L3 EtherChannel verify for LAB-L3-ETHERCHANNEL (objective 2.4). */
+export const CLI_L3_EC_24_SHOW_OUTPUT = {
+  'show etherchannel summary': `Flags:  D - down        P - bundled in port-channel
+        R - Layer3      U - in use
+
+Group Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+1      Po1(RU)       LACP        Gi0/1(P)    Gi0/2(P)`,
+  'show ip interface brief': `Interface              IP-Address      OK? Method Status                Protocol
+Port-channel1          10.0.12.1       YES manual up                    up
+GigabitEthernet0/1     unassigned      YES unset  up                    up
+GigabitEthernet0/2     unassigned      YES unset  up                    up`,
+}
+
+/** IPv6 addressing verify for LAB-D11-18 (objective 1.8). */
+export const CLI_IPV6_ADDR_18_SHOW_OUTPUT = {
+  'show ipv6 interface brief': `Interface              IPv6-Address                              Status
+GigabitEthernet0/0     2001:DB8:ACAD:1::1/64                     [up/up]
+                       FE80::1:1FF:FE00:1                        [up/up]`,
+  'show ipv6 interface gi0/0': `GigabitEthernet0/0 is up, line protocol is up
+  IPv6 is enabled, link-local address is FE80::1:1FF:FE00:1
+  Global unicast address(es):
+    2001:DB8:ACAD:1::1, subnet is 2001:DB8:ACAD:1::/64`,
+}
+
+/** TFTP/flash backup verify for LAB-D49-49 (objective 4.9). */
+export const CLI_TFTP_BACKUP_49_SHOW_OUTPUT = {
+  'show flash:': `-#- --length-- -----date/time------ path
+1   125829120  Mar 01 2025 12:00:00 +00:00  c2960-lanbasek9-mz.152-7.E.bin
+2      4521   Mar 01 2025 12:34:56 +00:00  vlan.dat`,
+  'show file systems': `File Systems:
+
+     Size(b)     Free(b)      Type  Flags  Prefixes
+*   125829120    45000000     flash     rw   flash:
+           -           -    opaque     rw   archive:`,
+}
+
 /** Troubleshoot lab show outputs (objective 3.6 TS labs). */
 export const CLI_TS_SHOW_OUTPUT = {
   'show ip ospf neighbor': `Neighbor ID     Pri   State           Dead Time   Address         Interface

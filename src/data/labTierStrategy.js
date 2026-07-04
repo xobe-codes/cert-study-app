@@ -1,21 +1,10 @@
 /**
- * Config vs interpret-only lab tiering — 25 labs require IOS config entry;
- * high-traffic objectives also ship interpret-only alternates for exam prep.
+ * Config vs interpret-only lab tiering — all former typing labs ship as lab-lite verify paths.
+ * High-traffic objectives also ship interpret-only alternates for exam prep / stem-replay.
  */
 
 /** @type {Set<string>} */
-export const CONFIG_LAB_IDS = new Set([
-  'LAB-IPV4-SUBNETTING',
-  'LAB-DHCP-SNOOP-27',
-  'LAB-WIRELESS-ARCH',
-  'LAB-IPV6-STATIC',
-  'LAB-WLAN-SSID',
-  'LAB-MAC-FORWARD-15',
-  'LAB-WPA2-PSK-59',
-  'LAB-L3-ETHERCHANNEL',
-  'LAB-D11-18',
-  'LAB-D49-49',
-])
+export const CONFIG_LAB_IDS = new Set([])
 
 /** Preferred interpret-only alternate for stem-replay / exam-prep paths. */
 export const INTERPRET_ALTERNATE_BY_CONFIG = {
@@ -33,6 +22,13 @@ export const INTERPRET_ALTERNATE_BY_CONFIG = {
   'LAB-SNMP': 'LAB-SNMP-CONFIG-44',
   'LAB-D49-49': 'LAB-TFTP-CONFIG-49',
   'LAB-DHCP-SNOOP-27': 'LAB-D27-27',
+  'LAB-IPV4-SUBNETTING': 'LAB-VLAN-TRUNK',
+  'LAB-IPV6-STATIC': 'LAB-31-ROUTE-INTERPRET',
+  'LAB-WLAN-SSID': 'LAB-WLAN-SEC-58',
+  'LAB-WPA2-PSK-59': 'LAB-WLAN-SEC-58',
+  'LAB-WIRELESS-ARCH': 'LAB-WLAN-SEC-58',
+  'LAB-MAC-FORWARD-15': 'LAB-D11-11',
+  'LAB-D11-18': 'LAB-D11-19',
 }
 
 export function isConfigLab(labOrId) {

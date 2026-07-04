@@ -45,17 +45,20 @@ describe('phase3_lab_wave', () => {
     })
   }
 
-  it('LAB-WPA2-PSK-59 has WPA2 security expected commands', () => {
-    const tasks = getLab('LAB-WPA2-PSK-59')?.lab?.tasks || []
-    const cmds = tasks.flatMap(t => t.expectedCommands || []).join(' ')
-    expect(cmds).toMatch(/security wpa akm psk/)
-    expect(cmds).toMatch(/security wpa wpa2 ciphers aes/)
+  it('LAB-WPA2-PSK-59 is lab-lite with WPA2 verify show commands', () => {
+    const lab = getLab('LAB-WPA2-PSK-59')?.lab
+    expect(lab?.interpretOnly).toBe(true)
+    const cmds = (lab?.tasks || []).flatMap(t => t.expectedCommands || []).join(' ')
+    expect(cmds).toMatch(/show wlan summary/)
+    expect(cmds).toMatch(/show wlan GUEST_WIFI/)
   })
 
-  it('LAB-MAC-FORWARD-15 covers MAC table verify commands', () => {
+  it('LAB-MAC-FORWARD-15 is lab-lite with MAC table verify commands', () => {
     const lab = getLab('LAB-MAC-FORWARD-15')?.lab
+    expect(lab?.interpretOnly).toBe(true)
     expect(lab?.objectiveId).toBe('1.5')
-    expect(lab?.verificationCommands).toContain('show mac address-table')
+    const cmds = (lab?.tasks || []).flatMap(t => t.expectedCommands || [])
+    expect(cmds.some(c => c.includes('show mac address-table'))).toBe(true)
   })
 })
 
