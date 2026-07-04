@@ -1,0 +1,302 @@
+import React from 'react'
+import { ALL_OBJECTIVES } from '../../data/ccnaDomains.js'
+import { useVisualViewportBottomInset } from '../../ui/visualViewportInset.js'
+import RouteShell from '../../components/RouteShell.jsx'
+import AppShell from './AppShell.jsx'
+import AppShellStyles from './AppShellStyles.jsx'
+import BottomNav from '../../components/BottomNav.jsx'
+import StudyModeRoutes from '../study/StudyModeRoutes.jsx'
+import AppChromeOverlays from './AppChromeOverlays.jsx'
+import CoreStudyRoutes from './CoreStudyRoutes.jsx'
+import OfflineBanner from './OfflineBanner.jsx'
+import PracticeRoutes from '../practice/PracticeRoutes.jsx'
+import { PREMIUM_FEATURES } from '../../premium/premiumFeatures.js'
+import pkg from '../../../package.json'
+
+/** Loaded app shell — routes, bottom nav, and chrome overlays (extracted from App.jsx). */
+export default function AppLoadedShell({
+  view,
+  setView,
+  routeScrolls,
+  mainRef,
+  compactTopChrome,
+  showBottomNav,
+  bottomNavActive,
+  bottomNavCompact,
+  showNavBack,
+  apiOnline,
+  importFileRef,
+  handleImportFile,
+  progress,
+  streak,
+  missed,
+  offlineReady,
+  selectObjective,
+  openMockExam,
+  navigateTo,
+  handlePremiumBlocked,
+  premiumUnlocked,
+  domainPassPassedCount,
+  domainPassRecords,
+  settingsExamDate,
+  dueCount,
+  openDomain,
+  setOpenDomain,
+  openExamTraps,
+  openTrapDrill,
+  openDomainPass,
+  theme,
+  toggleTheme,
+  setShowSettings,
+  selectedObjective,
+  packagingId,
+  packageObjective,
+  goBack,
+  objectiveBackLabel,
+  updateProgress,
+  handleMissed,
+  openLab,
+  computeMastery,
+  logEvent,
+  celebrate,
+  haptic,
+  settingsExamMode,
+  mockDomainPrefill,
+  setMockDomainPrefill,
+  finishOnboarding,
+  skipOnboarding,
+  selectedLab,
+  labReturn,
+  topicFocusConfig,
+  setTopicFocusConfig,
+  examTrapPrefill,
+  clearExamTrapPrefill,
+  trapDrillPrefill,
+  clearTrapDrillPrefill,
+  activeDomainPassId,
+  setActiveDomainPassId,
+  refreshDomainPassCount,
+  refreshDue,
+  openSettings,
+  openSearch,
+  removeMissed,
+  showExport,
+  showSearch,
+  showSync,
+  showSettings,
+  showTour,
+  closeExport,
+  closeSearch,
+  closeSync,
+  closeSettings,
+  syncCode,
+  lastSynced,
+  syncBusy,
+  syncMsg,
+  doSync,
+  handleGenerateSync,
+  handleLinkSync,
+  handleUnlinkSync,
+  handleImport,
+  pickImportFile,
+  settingsQuizSize,
+  settingsReduceMotion,
+  handleSaveExamDate,
+  handleClearExamDate,
+  handleQuizSessionSizeChange,
+  handleReduceMotionChange,
+  handleExamModeChange,
+  cleanBankStats,
+  replayPlacementCheck,
+  showTourAgain,
+  openSync,
+  openExport,
+  handleClearTutorChat,
+  handleClearAiCaches,
+  handleResetProgress,
+  handleTogglePremium,
+  premiumToast,
+  dismissPremiumToast,
+  completeTour,
+  skipTour,
+}) {
+  useVisualViewportBottomInset(showBottomNav || view === 'objective' || view === 'tutor' || view === 'mockinterview')
+
+  return (
+    <AppShell view={view} compactTopChrome={compactTopChrome} withBottomNav={showBottomNav}>
+      <AppShellStyles />
+      <input ref={importFileRef} type="file" accept="application/json,.json" style={{ display: 'none' }} onChange={handleImportFile} />
+      {!apiOnline && (
+        <div className="app-chrome-top site-column">
+          <OfflineBanner />
+        </div>
+      )}
+      <RouteShell scroll={routeScrolls} ref={mainRef} innerClassName="ccna-route-in" key={view}>
+        <CoreStudyRoutes
+          view={view}
+          onFinishOnboarding={finishOnboarding}
+          onSkipOnboarding={skipOnboarding}
+          progress={progress}
+          streak={streak}
+          missed={missed}
+          apiOnline={apiOnline}
+          offlineReady={offlineReady}
+          selectObjective={selectObjective}
+          openMockExam={openMockExam}
+          navigateTo={navigateTo}
+          handlePremiumBlocked={handlePremiumBlocked}
+          premiumUnlocked={premiumUnlocked}
+          domainPassPassedCount={domainPassPassedCount}
+          domainPassRecords={domainPassRecords}
+          settingsExamDate={settingsExamDate}
+          dueCount={dueCount}
+          openDomain={openDomain}
+          setOpenDomain={setOpenDomain}
+          openExamTraps={openExamTraps}
+          openTrapDrill={openTrapDrill}
+          openDomainPass={openDomainPass}
+          theme={theme}
+          toggleTheme={toggleTheme}
+          setShowSettings={setShowSettings}
+          selectedObjective={selectedObjective}
+          packagingId={packagingId}
+          packageObjective={packageObjective}
+          goBack={goBack}
+          objectiveBackLabel={objectiveBackLabel}
+          updateProgress={updateProgress}
+          handleMissed={handleMissed}
+          openLab={openLab}
+          setView={setView}
+          computeMastery={computeMastery}
+          logEvent={logEvent}
+          celebrate={celebrate}
+          haptic={haptic}
+          settingsExamMode={settingsExamMode}
+          mockDomainPrefill={mockDomainPrefill}
+          setMockDomainPrefill={setMockDomainPrefill}
+        />
+        <PracticeRoutes
+          view={view}
+          progress={progress}
+          streak={streak}
+          missed={missed}
+          dueCount={dueCount}
+          onBack={goBack}
+          onMissed={handleMissed}
+          onDone={refreshDue}
+          onOpenSection={selectObjective}
+          onOpenMetrics={() => navigateTo('metrics')}
+          onOpenStats={() => navigateTo('stats')}
+          onOpenReview={() => navigateTo('review')}
+          onOpenExamTraps={openExamTraps}
+          onOpenTrapDrill={openTrapDrill}
+          onRemoveMissed={removeMissed}
+          onSelectObjective={selectObjective}
+        />
+        <StudyModeRoutes
+          view={view}
+          selectedLab={selectedLab}
+          labReturn={labReturn}
+          topicFocusConfig={topicFocusConfig}
+          setTopicFocusConfig={setTopicFocusConfig}
+          examTrapPrefill={examTrapPrefill}
+          clearExamTrapPrefill={clearExamTrapPrefill}
+          trapDrillPrefill={trapDrillPrefill}
+          clearTrapDrillPrefill={clearTrapDrillPrefill}
+          activeDomainPassId={activeDomainPassId}
+          setActiveDomainPassId={setActiveDomainPassId}
+          settingsExamMode={settingsExamMode}
+          missed={missed}
+          onBack={goBack}
+          onNavigate={setView}
+          onOpenLab={openLab}
+          onOpenMockExam={openMockExam}
+          onOpenTrapDrill={openTrapDrill}
+          onSelectObjective={selectObjective}
+          onRefreshDomainPassCount={refreshDomainPassCount}
+          onMissed={handleMissed}
+          onDone={refreshDue}
+          onOpenSettings={openSettings}
+          celebrate={celebrate}
+          haptic={haptic}
+          premiumUnlocked={premiumUnlocked}
+          onPremiumBlocked={handlePremiumBlocked}
+        />
+      </RouteShell>
+      {showBottomNav && (
+        <div className="app-chrome-bottom app-chrome-bottom--dock site-column">
+          <BottomNav
+            active={bottomNavActive}
+            compact={bottomNavCompact}
+            homeLabel={showNavBack ? 'Back' : 'Home'}
+            homeIcon={showNavBack ? 'back' : 'home'}
+            onHome={showNavBack ? goBack : () => setView('home')}
+            onSearch={openSearch}
+            onMore={openSettings}
+          />
+        </div>
+      )}
+      <AppChromeOverlays
+        showExport={showExport}
+        showSearch={showSearch}
+        showSync={showSync}
+        showSettings={showSettings}
+        showTour={showTour}
+        progress={progress}
+        missed={missed}
+        streak={streak}
+        onImport={handleImport}
+        onCloseExport={closeExport}
+        onSelectObjective={selectObjective}
+        onCloseSearch={closeSearch}
+        sync={{
+          syncCode,
+          lastSynced,
+          busy: syncBusy,
+          msg: syncMsg,
+          online: apiOnline,
+          onGenerate: handleGenerateSync,
+          onLink: handleLinkSync,
+          onSyncNow: () => doSync(),
+          onUnlink: handleUnlinkSync,
+        }}
+        onCloseSync={closeSync}
+        settings={{
+          onClose: closeSettings,
+          theme,
+          onToggleTheme: toggleTheme,
+          examDate: settingsExamDate,
+          onSaveExamDate: handleSaveExamDate,
+          onClearExamDate: handleClearExamDate,
+          quizSessionSize: settingsQuizSize,
+          onQuizSessionSizeChange: handleQuizSessionSizeChange,
+          reduceMotion: settingsReduceMotion,
+          onReduceMotionChange: handleReduceMotionChange,
+          examMode: settingsExamMode,
+          onExamModeChange: handleExamModeChange,
+          cleanBankGenericExamTips: cleanBankStats.genericExamTips,
+          onReplayPlacement: replayPlacementCheck,
+          onShowTour: showTourAgain,
+          onOpenSync: openSync,
+          onOpenExport: openExport,
+          onImportPick: pickImportFile,
+          onClearTutorChat: handleClearTutorChat,
+          onClearAiCaches: handleClearAiCaches,
+          onResetProgress: handleResetProgress,
+          offlineReadyCount: offlineReady.size,
+          objectiveCount: ALL_OBJECTIVES.length,
+          cleanBankObjectives: cleanBankStats.objectives,
+          cleanBankQuestions: cleanBankStats.questions,
+          appVersion: pkg.version,
+          onDonatePreview: () => handlePremiumBlocked(PREMIUM_FEATURES.donate_preview, 'settings'),
+          premiumUnlocked,
+          onTogglePremium: handleTogglePremium,
+        }}
+        premiumToast={premiumToast}
+        onDismissPremiumToast={dismissPremiumToast}
+        onCompleteTour={completeTour}
+        onSkipTour={skipTour}
+      />
+    </AppShell>
+  )
+}

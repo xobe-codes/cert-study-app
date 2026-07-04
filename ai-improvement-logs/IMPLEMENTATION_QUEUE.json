@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-04T04:24:26.666Z",
+  "generatedAt": "2026-07-04T05:41:09.048Z",
   "items": [
     {
       "id": "improve_vlan_engineer_verify",
@@ -265,7 +265,7 @@
     {
       "id": "config_lab_strategy",
       "priority": "low",
-      "status": "pending",
+      "status": "done",
       "area": "labs",
       "objectiveNumber": "app",
       "problem": "25 labs still require live IOS config entry (not interpret-only)",
@@ -283,12 +283,13 @@
       "files": [
         "src/data/ccnaLabsPhases.js",
         "src/lab/LabView.jsx"
-      ]
+      ],
+      "completedAt": "2026-07-04T04:34:49.419Z"
     },
     {
       "id": "offline_chunks_broaden",
       "priority": "medium",
-      "status": "pending",
+      "status": "done",
       "area": "mobile",
       "objectiveNumber": "app",
       "problem": "Offline shell works but not all curated chunks precached",
@@ -306,30 +307,8 @@
       "files": [
         "vite.config.js",
         "src/sw.js"
-      ]
-    },
-    {
-      "id": "objective_screen_extract",
-      "priority": "medium",
-      "status": "pending",
-      "area": "maintainability",
-      "objectiveNumber": "app",
-      "problem": "ObjectiveScreen.jsx still ~354 lines",
-      "recommendedImprovement": "Extract mock/session or review views into src/features/objective/",
-      "riskLevel": "medium",
-      "confidenceScore": 71,
-      "acceptance": [
-        "Extract mock/session or review blocks from ObjectiveScreen.jsx",
-        "ObjectiveScreen.jsx reduced by ≥150 lines; npm test && npm run build pass"
       ],
-      "effort": "M",
-      "scoreImpact": {
-        "maintainability": 8
-      },
-      "files": [
-        "src/ObjectiveScreen.jsx",
-        "src/features/objective/"
-      ]
+      "completedAt": "2026-07-04T04:34:49.895Z"
     }
   ]
 }

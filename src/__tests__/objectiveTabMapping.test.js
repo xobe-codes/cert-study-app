@@ -1,14 +1,5 @@
 import { describe, it, expect } from 'vitest'
-
-function mapLegacyTab(tab) {
-  if (!tab) return 'Study'
-  const key = tab.length > 1 ? tab.charAt(0).toUpperCase() + tab.slice(1).toLowerCase() : tab
-  if (key === 'Explain' || key === 'Visual') return 'Study'
-  if (key === 'Quiz') return 'Practice'
-  if (key === 'Study' || key === 'Practice') return key
-  if (tab === 'Study' || tab === 'Practice') return tab
-  return null
-}
+import { mapLegacyTab } from '../features/objective/objectiveTabUtils.js'
 
 describe('objective tab mapping', () => {
   it('maps legacy Explain/Visual to Study', () => {

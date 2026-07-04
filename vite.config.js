@@ -29,12 +29,21 @@ export default defineConfig({
       includeAssets: ['icon-192.svg', 'manifest.webmanifest'],
       manifest: false,
       workbox: {
-        // Do not precache index.html — stale shell + new hashed chunks = blank screen on mobile.
-        // Large curated study chunks (clean-questions, mock-exam, labs, study-modes, studios,
-        // skill-questions, shelved-questions) are excluded from globPatterns via globIgnores
-        // and cached on demand through runtimeCaching below.
-        globPatterns: ['**/*.{css,ico,svg,webmanifest}', 'registerSW.js'],
-        globIgnores: ['**/clean-questions*.js', '**/mock-exam*.js'],
+        // Curated study chunks precached at install (hashed filenames from build).
+        // index.html and index-*.js stay network-first to avoid stale-shell blank screens.
+        globPatterns: [
+          '**/*.{css,ico,svg,webmanifest}',
+          'registerSW.js',
+          'assets/clean-questions*.js',
+          'assets/mock-exam*.js',
+          'assets/study-modes*.js',
+          'assets/labs*.js',
+          'assets/studios*.js',
+          'assets/skill-questions*.js',
+          'assets/shelved-questions*.js',
+          'assets/vendor-react*.js',
+        ],
+        globIgnores: ['**/index*.js', '**/index.html'],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
         navigateFallback: 'index.html',
         navigateFallbackDenylist: [/^\/assets\//, /^\/api\//],

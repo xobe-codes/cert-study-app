@@ -7,6 +7,8 @@ import CiscoTerminal from '../components/CiscoTerminal.jsx'
 import { deviceHostname, normalizeCmd, processCliLine, CLI_SHOW_OUTPUT } from './cliEngine.js'
 import { markLabDone } from './labStorage.js'
 import LabLearnPanel from './LabLearnPanel.jsx'
+import { LabTierBadge, LabConfigBanner } from './LabTierBadge.jsx'
+import { isConfigLab } from '../data/labTierStrategy.js'
 
 const LAB_DIFF_ACCENT = { beginner: 'mint', intermediate: 'sky', advanced: 'amber' }
 
@@ -24,7 +26,7 @@ function LabSection({ icon, title, accent, items }) {
   )
 }
 
-export default function LabView({ bundle, onBack, onDone, celebrate, haptic }) {
+export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, haptic }) {
   const { lab, topology, validator, diagram, packetFlows } = bundle
   const showNavHint = useNavHint()
 
@@ -163,11 +165,14 @@ export default function LabView({ bundle, onBack, onDone, celebrate, haptic }) {
       <h1 style={styles.h1}>{lab.title}</h1>
       <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 10 }}>
         <span style={{ ...styles.pill(LAB_DIFF_ACCENT[lab.difficulty] || 'sky'), fontSize: 'var(--ccna-type-micro)' }}>{lab.difficulty.toUpperCase()}</span>
+        <LabTierBadge lab={lab} />
         {lab.labType === 'troubleshooting' && <span style={{ ...styles.pill('amber'), fontSize: 'var(--ccna-type-micro)' }}>TROUBLESHOOT</span>}
         <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>~{lab.estimatedTimeMinutes} MIN</span>
         <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>{lab.objectiveId}</span>
         {prog.complete && <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-micro)' }}>✓ COMPLETE</span>}
       </div>
+
+      {isConfigLab(lab) && <LabConfigBanner labId={lab.id} onOpenLab={onOpenLab} />}
 
       {phase === 'learn' && (
         <LabLearnPanel

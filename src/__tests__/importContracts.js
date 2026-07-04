@@ -2,10 +2,7 @@
 export const APP_IMPORTS = [
   { symbol: 'AppShell', from: './features/shell/AppShell.jsx' },
   { symbol: 'AppShellStyles', from: './features/shell/AppShellStyles.jsx' },
-  { symbol: 'CoreStudyRoutes', from: './features/shell/CoreStudyRoutes.jsx' },
-  { symbol: 'StudyModeRoutes', from: './features/study/StudyModeRoutes.jsx' },
-  { symbol: 'AppChromeOverlays', from: './features/shell/AppChromeOverlays.jsx' },
-  { symbol: 'PracticeRoutes', from: './features/practice/PracticeRoutes.jsx' },
+  { symbol: 'AppLoadedShell', from: './features/shell/AppLoadedShell.jsx' },
   { symbol: 'useAppSync', from: './features/sync/useAppSync.js' },
   { symbol: 'useAppOnboarding', from: './features/onboarding/useAppOnboarding.js' },
   { symbol: 'useAppBootstrap', from: './features/bootstrap/useAppBootstrap.js' },
@@ -16,6 +13,13 @@ export const APP_IMPORTS = [
   { symbol: 'useAppProgress', from: './features/progress/useAppProgress.js' },
   { symbol: 'useAppChrome', from: './features/shell/useAppChrome.js' },
   { symbol: 'useAppStudyBlock', from: './features/study/useAppStudyBlock.js' },
+]
+
+export const APP_LOADED_SHELL_IMPORTS = [
+  { symbol: 'CoreStudyRoutes', from: './CoreStudyRoutes.jsx' },
+  { symbol: 'StudyModeRoutes', from: '../study/StudyModeRoutes.jsx' },
+  { symbol: 'AppChromeOverlays', from: './AppChromeOverlays.jsx' },
+  { symbol: 'PracticeRoutes', from: '../practice/PracticeRoutes.jsx' },
 ]
 
 export const STUDY_QUIZ_TAB_IMPORTS = [

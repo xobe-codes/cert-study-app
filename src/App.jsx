@@ -1,6 +1,4 @@
 import React from 'react'
-import { ALL_OBJECTIVES } from './data/ccnaDomains.js'
-import { useVisualViewportBottomInset } from './ui/visualViewportInset.js'
 import { celebrate, haptic } from './ui/feedbackHelpers.jsx'
 import Spinner from './components/Spinner.jsx'
 import { NavHintProvider } from './components/NavHintProvider.jsx'
@@ -9,11 +7,6 @@ import RouteShell from './components/RouteShell.jsx'
 import AppShell from './features/shell/AppShell.jsx'
 import AppShellStyles from './features/shell/AppShellStyles.jsx'
 import { useAppChrome } from './features/shell/useAppChrome.js'
-import { PREMIUM_FEATURES } from './premium/premiumFeatures.js'
-import BottomNav from './components/BottomNav.jsx'
-import StudyModeRoutes from './features/study/StudyModeRoutes.jsx'
-import AppChromeOverlays from './features/shell/AppChromeOverlays.jsx'
-import CoreStudyRoutes from './features/shell/CoreStudyRoutes.jsx'
 import { useGlobalSearchHotkey } from './features/search/useGlobalSearchHotkey.js'
 import { useAppSync } from './features/sync/useAppSync.js'
 import { useAppOnboarding } from './features/onboarding/useAppOnboarding.js'
@@ -27,152 +20,51 @@ import {
 import { useAppPremium } from './features/premium/useAppPremium.js'
 import { useAppProgress } from './features/progress/useAppProgress.js'
 import { useAppStudyBlock } from './features/study/useAppStudyBlock.js'
-import OfflineBanner from './features/shell/OfflineBanner.jsx'
-import PracticeRoutes from './features/practice/PracticeRoutes.jsx'
-import pkg from '../package.json'
+import AppLoadedShell from './features/shell/AppLoadedShell.jsx'
 import { computeMastery } from './netUtils.js'
 import { logEvent } from './eventLog.js'
 
 export default function App() {
   const nav = useAppNavigation()
-  const {
-    view,
-    setView,
-    topicFocusConfig,
-    setTopicFocusConfig,
-    examTrapPrefill,
-    trapDrillPrefill,
-    activeDomainPassId,
-    setActiveDomainPassId,
-    domainPassPassedCount,
-    domainPassRecords,
-    mockDomainPrefill,
-    setMockDomainPrefill,
-    selectedObjective,
-    openDomain,
-    setOpenDomain,
-    selectedLab,
-    labReturn,
-    openLab,
-    mainRef,
-    selectObjective,
-    navigateTo,
-    openExamTraps,
-    openTrapDrill,
-    openDomainPass,
-    openMockExam,
-    clearExamTrapPrefill,
-    clearTrapDrillPrefill,
-    refreshDomainPassCount,
-    goBack,
-    routeScrolls,
-    compactTopChrome,
-    showNavBack,
-    objectiveBackLabel,
-  } = nav
-
-  const {
-    showExport,
-    showSync,
-    showSearch,
-    showSettings,
-    closeExport,
-    closeSync,
-    closeSearch,
-    closeSettings,
-    openSearch,
-    openSync,
-    openExport,
-    openSettings,
-    panelOverlayOpen,
-    hotkeyBlocked,
-    setShowSettings,
-  } = useAppChrome()
-
-  const {
-    progress, setProgress,
-    missed, setMissed,
-    streak, setStreak,
-    loaded,
-    offlineReady,
-    dueCount, setDueCount,
-    premiumUnlocked, setPremiumUnlocked,
-    apiOnline,
-    theme, toggleTheme,
-    refreshOffline,
-    refreshDue,
-  } = useAppBootstrap({
+  const chrome = useAppChrome()
+  const bootstrap = useAppBootstrap({
     setView: nav.setView,
     setReturnToView: nav.setReturnToView,
     setSelectedObjective: nav.setSelectedObjective,
   })
-
-  const {
-    settingsExamDate,
-    settingsQuizSize,
-    settingsReduceMotion,
-    settingsExamMode,
-    cleanBankStats,
-    handleSaveExamDate,
-    handleClearExamDate,
-    handleQuizSessionSizeChange,
-    handleReduceMotionChange,
-    handleExamModeChange,
-    handleClearTutorChat,
-    handleClearAiCaches,
-    handleResetProgress,
-  } = useAppSettings({ showSettings, loaded, setProgress, setMissed, setStreak, setDueCount, refreshOffline })
-
-  const {
-    premiumToast,
-    packagingId,
-    handlePremiumBlocked,
-    handleTogglePremium,
-    dismissPremiumToast,
-    packageObjective,
-  } = useAppPremium({ premiumUnlocked, setPremiumUnlocked, apiOnline, offlineReady, refreshOffline })
-
-  const { updateProgress, handleMissed, removeMissed } = useAppProgress({ setProgress, setMissed })
-
-  const {
-    syncCode,
-    lastSynced,
-    syncBusy,
-    syncMsg,
-    importFileRef,
-    doSync,
-    handleGenerateSync,
-    handleLinkSync,
-    handleUnlinkSync,
-    handleImport,
-    handleImportFile,
-    pickImportFile,
-  } = useAppSync({ loaded, setProgress, setMissed, setStreak, refreshOffline })
-
-  const {
-    showTour,
-    finishOnboarding,
-    skipOnboarding,
-    replayPlacementCheck,
-    completeTour,
-    skipTour,
-    showTourAgain,
-  } = useAppOnboarding({ loaded, view, setView, setProgress })
-
-  useGlobalSearchHotkey({
-    enabled: loaded,
-    blocked: hotkeyBlocked,
-    onOpen: openSearch,
+  const settings = useAppSettings({
+    showSettings: chrome.showSettings,
+    loaded: bootstrap.loaded,
+    setProgress: bootstrap.setProgress,
+    setMissed: bootstrap.setMissed,
+    setStreak: bootstrap.setStreak,
+    setDueCount: bootstrap.setDueCount,
+    refreshOffline: bootstrap.refreshOffline,
   })
+  const premium = useAppPremium({
+    premiumUnlocked: bootstrap.premiumUnlocked,
+    setPremiumUnlocked: bootstrap.setPremiumUnlocked,
+    apiOnline: bootstrap.apiOnline,
+    offlineReady: bootstrap.offlineReady,
+    refreshOffline: bootstrap.refreshOffline,
+  })
+  const progressApi = useAppProgress({ setProgress: bootstrap.setProgress, setMissed: bootstrap.setMissed })
+  const sync = useAppSync({
+    loaded: bootstrap.loaded,
+    setProgress: bootstrap.setProgress,
+    setMissed: bootstrap.setMissed,
+    setStreak: bootstrap.setStreak,
+    refreshOffline: bootstrap.refreshOffline,
+  })
+  const onboarding = useAppOnboarding({ loaded: bootstrap.loaded, view: nav.view, setView: nav.setView, setProgress: bootstrap.setProgress })
+  useGlobalSearchHotkey({ enabled: bootstrap.loaded, blocked: chrome.hotkeyBlocked, onOpen: chrome.openSearch })
+  const studyBlock = useAppStudyBlock({ setStreak: bootstrap.setStreak })
 
-  const { handleFocusBlockCompleted } = useAppStudyBlock({ setStreak })
+  const chromeOverlayOpen = chrome.panelOverlayOpen || onboarding.showTour
+  const showBottomNav = bootstrap.loaded && !chromeOverlayOpen && !['onboarding', 'tutor', 'mockinterview', 'lab'].includes(nav.view)
+  const bottomNav = bottomNavState({ view: nav.view, showSettings: chrome.showSettings, showSearch: chrome.showSearch, showNavBack: nav.showNavBack })
 
-  const chromeOverlayOpen = panelOverlayOpen || showTour
-  const showBottomNav = loaded && !chromeOverlayOpen && !['onboarding', 'tutor', 'mockinterview', 'lab'].includes(view)
-  useVisualViewportBottomInset(showBottomNav || view === 'objective' || view === 'tutor' || view === 'mockinterview')
-  const { active: bottomNavActive, compact: bottomNavCompact } = bottomNavState({ view, showSettings, showSearch, showNavBack })
-
-  if (!loaded) {
+  if (!bootstrap.loaded) {
     return (
       <NavHintProvider>
         <AppShell>
@@ -187,184 +79,115 @@ export default function App() {
 
   return (
     <NavHintProvider>
-    <StudyBlockProvider onFocusBlockCompleted={handleFocusBlockCompleted}>
-    <AppNavigationLifecycle nav={nav} loaded={loaded} refreshDue={refreshDue} />
-    <AppShell view={view} compactTopChrome={compactTopChrome} withBottomNav={showBottomNav}>
-      <AppShellStyles />
-      <input ref={importFileRef} type="file" accept="application/json,.json" style={{ display: 'none' }} onChange={handleImportFile} />
-      {!apiOnline && (
-        <div className="app-chrome-top site-column">
-          <OfflineBanner />
-        </div>
-      )}
-      <RouteShell scroll={routeScrolls} ref={mainRef} innerClassName="ccna-route-in" key={view}>
-        <CoreStudyRoutes
-          view={view}
-          onFinishOnboarding={finishOnboarding}
-          onSkipOnboarding={skipOnboarding}
-          progress={progress}
-          streak={streak}
-          missed={missed}
-          apiOnline={apiOnline}
-          offlineReady={offlineReady}
-          selectObjective={selectObjective}
-          openMockExam={openMockExam}
-          navigateTo={navigateTo}
-          handlePremiumBlocked={handlePremiumBlocked}
-          premiumUnlocked={premiumUnlocked}
-          domainPassPassedCount={domainPassPassedCount}
-          domainPassRecords={domainPassRecords}
-          settingsExamDate={settingsExamDate}
-          dueCount={dueCount}
-          openDomain={openDomain}
-          setOpenDomain={setOpenDomain}
-          openExamTraps={openExamTraps}
-          openTrapDrill={openTrapDrill}
-          openDomainPass={openDomainPass}
-          theme={theme}
-          toggleTheme={toggleTheme}
-          setShowSettings={setShowSettings}
-          selectedObjective={selectedObjective}
-          packagingId={packagingId}
-          packageObjective={packageObjective}
-          goBack={goBack}
-          objectiveBackLabel={objectiveBackLabel}
-          updateProgress={updateProgress}
-          handleMissed={handleMissed}
-          openLab={openLab}
-          setView={setView}
+      <StudyBlockProvider onFocusBlockCompleted={studyBlock.handleFocusBlockCompleted}>
+        <AppNavigationLifecycle nav={nav} loaded={bootstrap.loaded} refreshDue={bootstrap.refreshDue} />
+        <AppLoadedShell
+          view={nav.view}
+          setView={nav.setView}
+          routeScrolls={nav.routeScrolls}
+          mainRef={nav.mainRef}
+          compactTopChrome={nav.compactTopChrome}
+          showBottomNav={showBottomNav}
+          bottomNavActive={bottomNav.active}
+          bottomNavCompact={bottomNav.compact}
+          showNavBack={nav.showNavBack}
+          apiOnline={bootstrap.apiOnline}
+          importFileRef={sync.importFileRef}
+          handleImportFile={sync.handleImportFile}
+          progress={bootstrap.progress}
+          streak={bootstrap.streak}
+          missed={bootstrap.missed}
+          offlineReady={bootstrap.offlineReady}
+          selectObjective={nav.selectObjective}
+          openMockExam={nav.openMockExam}
+          navigateTo={nav.navigateTo}
+          handlePremiumBlocked={premium.handlePremiumBlocked}
+          premiumUnlocked={bootstrap.premiumUnlocked}
+          domainPassPassedCount={nav.domainPassPassedCount}
+          domainPassRecords={nav.domainPassRecords}
+          settingsExamDate={settings.settingsExamDate}
+          dueCount={bootstrap.dueCount}
+          openDomain={nav.openDomain}
+          setOpenDomain={nav.setOpenDomain}
+          openExamTraps={nav.openExamTraps}
+          openTrapDrill={nav.openTrapDrill}
+          openDomainPass={nav.openDomainPass}
+          theme={bootstrap.theme}
+          toggleTheme={bootstrap.toggleTheme}
+          setShowSettings={chrome.setShowSettings}
+          selectedObjective={nav.selectedObjective}
+          packagingId={premium.packagingId}
+          packageObjective={premium.packageObjective}
+          goBack={nav.goBack}
+          objectiveBackLabel={nav.objectiveBackLabel}
+          updateProgress={progressApi.updateProgress}
+          handleMissed={progressApi.handleMissed}
+          openLab={nav.openLab}
           computeMastery={computeMastery}
           logEvent={logEvent}
           celebrate={celebrate}
           haptic={haptic}
-          settingsExamMode={settingsExamMode}
-          mockDomainPrefill={mockDomainPrefill}
-          setMockDomainPrefill={setMockDomainPrefill}
+          settingsExamMode={settings.settingsExamMode}
+          mockDomainPrefill={nav.mockDomainPrefill}
+          setMockDomainPrefill={nav.setMockDomainPrefill}
+          finishOnboarding={onboarding.finishOnboarding}
+          skipOnboarding={onboarding.skipOnboarding}
+          selectedLab={nav.selectedLab}
+          labReturn={nav.labReturn}
+          topicFocusConfig={nav.topicFocusConfig}
+          setTopicFocusConfig={nav.setTopicFocusConfig}
+          examTrapPrefill={nav.examTrapPrefill}
+          clearExamTrapPrefill={nav.clearExamTrapPrefill}
+          trapDrillPrefill={nav.trapDrillPrefill}
+          clearTrapDrillPrefill={nav.clearTrapDrillPrefill}
+          activeDomainPassId={nav.activeDomainPassId}
+          setActiveDomainPassId={nav.setActiveDomainPassId}
+          refreshDomainPassCount={nav.refreshDomainPassCount}
+          refreshDue={bootstrap.refreshDue}
+          openSettings={chrome.openSettings}
+          openSearch={chrome.openSearch}
+          removeMissed={progressApi.removeMissed}
+          showExport={chrome.showExport}
+          showSearch={chrome.showSearch}
+          showSync={chrome.showSync}
+          showSettings={chrome.showSettings}
+          showTour={onboarding.showTour}
+          closeExport={chrome.closeExport}
+          closeSearch={chrome.closeSearch}
+          closeSync={chrome.closeSync}
+          closeSettings={chrome.closeSettings}
+          syncCode={sync.syncCode}
+          lastSynced={sync.lastSynced}
+          syncBusy={sync.syncBusy}
+          syncMsg={sync.syncMsg}
+          doSync={sync.doSync}
+          handleGenerateSync={sync.handleGenerateSync}
+          handleLinkSync={sync.handleLinkSync}
+          handleUnlinkSync={sync.handleUnlinkSync}
+          handleImport={sync.handleImport}
+          pickImportFile={sync.pickImportFile}
+          settingsQuizSize={settings.settingsQuizSize}
+          settingsReduceMotion={settings.settingsReduceMotion}
+          handleSaveExamDate={settings.handleSaveExamDate}
+          handleClearExamDate={settings.handleClearExamDate}
+          handleQuizSessionSizeChange={settings.handleQuizSessionSizeChange}
+          handleReduceMotionChange={settings.handleReduceMotionChange}
+          handleExamModeChange={settings.handleExamModeChange}
+          cleanBankStats={settings.cleanBankStats}
+          replayPlacementCheck={onboarding.replayPlacementCheck}
+          showTourAgain={onboarding.showTourAgain}
+          openSync={chrome.openSync}
+          openExport={chrome.openExport}
+          handleClearTutorChat={settings.handleClearTutorChat}
+          handleClearAiCaches={settings.handleClearAiCaches}
+          handleResetProgress={settings.handleResetProgress}
+          handleTogglePremium={premium.handleTogglePremium}
+          premiumToast={premium.premiumToast}
+          dismissPremiumToast={premium.dismissPremiumToast}
+          completeTour={onboarding.completeTour}
+          skipTour={onboarding.skipTour}
         />
-        <PracticeRoutes
-          view={view}
-          progress={progress}
-          streak={streak}
-          missed={missed}
-          dueCount={dueCount}
-          onBack={goBack}
-          onMissed={handleMissed}
-          onDone={refreshDue}
-          onOpenSection={selectObjective}
-          onOpenMetrics={() => navigateTo('metrics')}
-          onOpenStats={() => navigateTo('stats')}
-          onOpenReview={() => navigateTo('review')}
-          onOpenExamTraps={openExamTraps}
-          onOpenTrapDrill={openTrapDrill}
-          onRemoveMissed={removeMissed}
-          onSelectObjective={selectObjective}
-        />
-        <StudyModeRoutes
-          view={view}
-          selectedLab={selectedLab}
-          labReturn={labReturn}
-          topicFocusConfig={topicFocusConfig}
-          setTopicFocusConfig={setTopicFocusConfig}
-          examTrapPrefill={examTrapPrefill}
-          clearExamTrapPrefill={clearExamTrapPrefill}
-          trapDrillPrefill={trapDrillPrefill}
-          clearTrapDrillPrefill={clearTrapDrillPrefill}
-          activeDomainPassId={activeDomainPassId}
-          setActiveDomainPassId={setActiveDomainPassId}
-          settingsExamMode={settingsExamMode}
-          missed={missed}
-          onBack={goBack}
-          onNavigate={setView}
-          onOpenLab={openLab}
-          onOpenMockExam={openMockExam}
-          onOpenTrapDrill={openTrapDrill}
-          onSelectObjective={selectObjective}
-          onRefreshDomainPassCount={refreshDomainPassCount}
-          onMissed={handleMissed}
-          onDone={refreshDue}
-          onOpenSettings={openSettings}
-          celebrate={celebrate}
-          haptic={haptic}
-          premiumUnlocked={premiumUnlocked}
-          onPremiumBlocked={handlePremiumBlocked}
-        />
-      </RouteShell>
-      {showBottomNav && (
-        <div className="app-chrome-bottom app-chrome-bottom--dock site-column">
-          <BottomNav
-            active={bottomNavActive}
-            compact={bottomNavCompact}
-            homeLabel={showNavBack ? 'Back' : 'Home'}
-            homeIcon={showNavBack ? 'back' : 'home'}
-            onHome={showNavBack ? goBack : () => setView('home')}
-            onSearch={openSearch}
-            onMore={openSettings}
-          />
-        </div>
-      )}
-      <AppChromeOverlays
-        showExport={showExport}
-        showSearch={showSearch}
-        showSync={showSync}
-        showSettings={showSettings}
-        showTour={showTour}
-        progress={progress}
-        missed={missed}
-        streak={streak}
-        onImport={handleImport}
-        onCloseExport={closeExport}
-        onSelectObjective={selectObjective}
-        onCloseSearch={closeSearch}
-        sync={{
-          syncCode,
-          lastSynced,
-          busy: syncBusy,
-          msg: syncMsg,
-          online: apiOnline,
-          onGenerate: handleGenerateSync,
-          onLink: handleLinkSync,
-          onSyncNow: () => doSync(),
-          onUnlink: handleUnlinkSync,
-        }}
-        onCloseSync={closeSync}
-        settings={{
-          onClose: closeSettings,
-          theme,
-          onToggleTheme: toggleTheme,
-          examDate: settingsExamDate,
-          onSaveExamDate: handleSaveExamDate,
-          onClearExamDate: handleClearExamDate,
-          quizSessionSize: settingsQuizSize,
-          onQuizSessionSizeChange: handleQuizSessionSizeChange,
-          reduceMotion: settingsReduceMotion,
-          onReduceMotionChange: handleReduceMotionChange,
-          examMode: settingsExamMode,
-          onExamModeChange: handleExamModeChange,
-          cleanBankGenericExamTips: cleanBankStats.genericExamTips,
-          onReplayPlacement: replayPlacementCheck,
-          onShowTour: showTourAgain,
-          onOpenSync: openSync,
-          onOpenExport: openExport,
-          onImportPick: pickImportFile,
-          onClearTutorChat: handleClearTutorChat,
-          onClearAiCaches: handleClearAiCaches,
-          onResetProgress: handleResetProgress,
-          offlineReadyCount: offlineReady.size,
-          objectiveCount: ALL_OBJECTIVES.length,
-          cleanBankObjectives: cleanBankStats.objectives,
-          cleanBankQuestions: cleanBankStats.questions,
-          appVersion: pkg.version,
-          onDonatePreview: () => handlePremiumBlocked(PREMIUM_FEATURES.donate_preview, 'settings'),
-          premiumUnlocked,
-          onTogglePremium: handleTogglePremium,
-        }}
-        premiumToast={premiumToast}
-        onDismissPremiumToast={dismissPremiumToast}
-        onCompleteTour={completeTour}
-        onSkipTour={skipTour}
-      />
-    </AppShell>
-    </StudyBlockProvider>
+      </StudyBlockProvider>
     </NavHintProvider>
   )
 }

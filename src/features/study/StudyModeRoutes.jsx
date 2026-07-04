@@ -69,6 +69,7 @@ export default function StudyModeRoutes({
             else if (labReturn === 'domainpass') onNavigate('domainpass')
             else onNavigate('labs')
           }}
+          onOpenLab={(id) => onOpenLab(id, labReturn || 'labs')}
           celebrate={celebrate}
           haptic={haptic}
         />

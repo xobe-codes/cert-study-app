@@ -49,3 +49,5 @@
 - **2026-06-30** `pwa_offline_curated`: SW ccna-curated-v3 stale-while-revalidate for question chunks
 - **2026-07-04** `stem_replay_wave14`: Wave 14 stem-replay mappings for lab-lite + TS diagnose labs
 - **2026-07-04** `learning_flow_mock_polish`: Compact mobile answer review, mock debrief lab CTAs, confidence strip CSS
+- **2026-07-04** `config_lab_strategy`: 25 config labs tiered with INTERPRET/CONFIG badges and interpret alternates
+- **2026-07-04** `offline_chunks_broaden`: PWA precaches 9 curated study chunks at install

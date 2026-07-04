@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import {
   APP_IMPORTS,
+  APP_LOADED_SHELL_IMPORTS,
   APP_SRS_IMPORTS,
   STUDY_QUIZ_TAB_IMPORTS,
   hasNamedImport,
@@ -12,12 +13,19 @@ import {
 
 const ROOT = resolve(import.meta.dirname, '..')
 const appSource = readFileSync(resolve(ROOT, 'App.jsx'), 'utf8')
+const loadedShellSource = readFileSync(resolve(ROOT, 'features/shell/AppLoadedShell.jsx'), 'utf8')
 const tabsSource = readFileSync(resolve(ROOT, 'tabs/studyQuizTabs.jsx'), 'utf8')
 
 describe('App.jsx import regression', () => {
   for (const { symbol, from } of APP_IMPORTS) {
     it(`imports ${symbol} from ${from}`, () => {
       expect(hasNamedImport(appSource, symbol, from)).toBe(true)
+    })
+  }
+
+  for (const { symbol, from } of APP_LOADED_SHELL_IMPORTS) {
+    it(`AppLoadedShell imports ${symbol} from ${from}`, () => {
+      expect(hasNamedImport(loadedShellSource, symbol, from)).toBe(true)
     })
   }
 

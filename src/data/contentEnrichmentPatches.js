@@ -30,6 +30,7 @@ import { CONTENT_DEPTH_WAVE10_PATCHES } from './contentDepthWave10Patches.js'
 import { CONTENT_DEPTH_WAVE11_PATCHES } from './contentDepthWave11Patches.js'
 import { TIER_B_TRAP_WAVE13_PATCHES } from './tierBTrapWave13Patches.js'
 import { TIER_B_TRAP_WAVE14_PATCHES } from './tierBTrapWave14Patches.js'
+import { TIER_B_TRAP_WAVE15_PATCHES } from './tierBTrapWave15Patches.js'
 
 const ENGINEER_VIEW_WAVE_SUPPLEMENTS = [
   FACTORY_ENGINEER_VIEW_WAVE3_SUPPLEMENTS,
@@ -563,12 +564,13 @@ export function applyContentEnrichment(base, objectiveId) {
   const trapWave12 = TIER_B_TRAP_WAVE12_PATCHES[objectiveId]
   const trapWave13 = TIER_B_TRAP_WAVE13_PATCHES[objectiveId]
   const trapWave14 = TIER_B_TRAP_WAVE14_PATCHES[objectiveId]
+  const trapWave15 = TIER_B_TRAP_WAVE15_PATCHES[objectiveId]
   const wlanWave5 = WLAN_ENRICHMENT_WAVE5_PATCHES[objectiveId]
   const readingW1 = READING_COMMANDS_WAVE1_PATCHES[objectiveId]
   const readingW2 = READING_COMMANDS_WAVE2_PATCHES[objectiveId]
   const wave10 = CONTENT_DEPTH_WAVE10_PATCHES[objectiveId]
   const wave11 = CONTENT_DEPTH_WAVE11_PATCHES[objectiveId]
-  if (!factory && !patch && !wave3 && !wave4 && !wave5 && !wave6 && !wave7 && !wave8 && !wave9 && !trapWave4 && !trapWave5 && !trapWave6 && !trapWave7 && !trapWave8 && !trapWave9 && !trapWave10 && !trapWave11 && !trapWave12 && !trapWave13 && !trapWave14 && !wlanWave5 && !readingW1 && !readingW2 && !wave10 && !wave11) return base
+  if (!factory && !patch && !wave3 && !wave4 && !wave5 && !wave6 && !wave7 && !wave8 && !wave9 && !trapWave4 && !trapWave5 && !trapWave6 && !trapWave7 && !trapWave8 && !trapWave9 && !trapWave10 && !trapWave11 && !trapWave12 && !trapWave13 && !trapWave14 && !trapWave15 && !wlanWave5 && !readingW1 && !readingW2 && !wave10 && !wave11) return base
   const mergeList = (a, b) => (b?.length ? [...(a || []), ...b] : a)
   let examTraps = base.examTraps
   let flashcards = base.flashcards
@@ -586,6 +588,7 @@ export function applyContentEnrichment(base, objectiveId) {
   if (trapWave12?.examTraps) examTraps = mergeList(examTraps, trapWave12.examTraps)
   if (trapWave13?.examTraps) examTraps = mergeList(examTraps, trapWave13.examTraps)
   if (trapWave14?.examTraps) examTraps = mergeList(examTraps, trapWave14.examTraps)
+  if (trapWave15?.examTraps) examTraps = mergeList(examTraps, trapWave15.examTraps)
   if (wlanWave5?.examTraps) examTraps = mergeList(examTraps, wlanWave5.examTraps)
   if (factory?.flashcards) flashcards = mergeList(flashcards, factory.flashcards)
   if (patch?.flashcards) flashcards = mergeList(flashcards, patch.flashcards)

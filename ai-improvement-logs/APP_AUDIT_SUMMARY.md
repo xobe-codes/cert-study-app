@@ -1,14 +1,14 @@
 # App Audit Summary
 
-**Generated:** 2026-07-04T04:24:26.666Z  
-**Overall learning quality:** ~91/100
+**Generated:** 2026-07-04T05:41:09.048Z  
+**Overall learning quality:** ~92/100
 
 ## Strengths
 - 53/53 objectives have reading + clean-bank questions (1313 total Q)
 - Tier A exam-ready packs: **53** objectives (B=0, C=0)
 - 82 CLI labs (57 interpret-only, 25 config, 10 troubleshoot)
 - Gold answer-review pipeline, SRS, trap-grouped missed review, daily review in `verify:ship`
-- App shell extracted: `App.jsx` ~371 lines; Study/Practice tab consolidation
+- App shell extracted: `App.jsx` ~194 lines; Study/Practice tab consolidation
 
 ## Coverage complete (audit thresholds met)
 - Zero traps: **0**
