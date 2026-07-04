@@ -1,4 +1,5 @@
 import { STORAGE_KEYS } from '../../storageKeys.js'
+import { computeWeakObjectivesFromPlacement } from './placementAdaptiveRetake.js'
 
 const KEY = STORAGE_KEYS.domainPlacement
 
@@ -31,7 +32,10 @@ export async function savePlacementAttempt(domainId, attempt) {
   const nextHistory = prev ? [...history, prev].slice(-5) : history
 
   const record = {
-    lastAttempt: attempt,
+    lastAttempt: {
+      ...attempt,
+      weakObjectives: computeWeakObjectivesFromPlacement(attempt.byObjective),
+    },
     previousAttempt: prev,
     history: nextHistory,
     attempts: (store[domainId]?.attempts || 0) + 1,
@@ -40,6 +44,11 @@ export async function savePlacementAttempt(domainId, attempt) {
   store[domainId] = record
   await saveStore(store)
   return record
+}
+
+export function countPlacementBaselines(records, domainIds) {
+  if (!records || !domainIds?.length) return 0
+  return domainIds.filter(id => records[id]?.lastAttempt).length
 }
 
 export function shouldSuggestPlacement(record, now = Date.now()) {

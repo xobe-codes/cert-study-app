@@ -7,6 +7,10 @@ import { computePlacementReport } from '../features/domainPlacement/computePlace
 import { computePlacementDelta } from '../features/domainPlacement/computePlacementDelta.js'
 import { pickPlacementCta } from '../features/domainPlacement/pickPlacementCta.js'
 import { shouldSuggestPlacement } from '../features/domainPlacement/domainPlacementStorage.js'
+import {
+  computeWeakObjectivesFromPlacement,
+  orderPlacementBlueprintItems,
+} from '../features/domainPlacement/placementAdaptiveRetake.js'
 import { gradeQuestion } from '../questionUtils.js'
 
 beforeAll(async () => {
@@ -112,6 +116,47 @@ describe('pickPlacementCta', () => {
     const cta = pickPlacementCta(report)
     expect(cta?.kind).toMatch(/trapDrill|study|lab/)
     expect(cta?.label).toBeTruthy()
+  })
+})
+
+describe('placement adaptive retake', () => {
+  it('computes weak objectives from prior attempt stats', () => {
+    const weak = computeWeakObjectivesFromPlacement({
+      '5.1': { correct: 2, total: 2 },
+      '5.2': { correct: 0, total: 2 },
+      '5.3': { correct: 1, total: 2 },
+    })
+    expect(weak).toContain('5.2')
+    expect(weak).toContain('5.3')
+    expect(weak).not.toContain('5.1')
+    expect(weak[0]).toBe('5.2')
+  })
+
+  it('front-loads weak blueprint items on adaptive retake', () => {
+    const items = [
+      { id: 'a', objectiveId: '1.1' },
+      { id: 'b', objectiveId: '1.2' },
+      { id: 'c', objectiveId: '1.3' },
+      { id: 'd', objectiveId: '1.1' },
+      { id: 'e', objectiveId: '1.2' },
+    ]
+    const ordered = orderPlacementBlueprintItems(items, {
+      weakObjectiveIds: ['1.2'],
+      shuffle: arr => arr,
+    })
+    const weakIdx = ordered.findIndex(i => i.objectiveId === '1.2')
+    const otherIdx = ordered.findIndex(i => i.objectiveId === '1.3')
+    expect(weakIdx).toBeLessThan(otherIdx)
+    expect(ordered.map(i => i.id).sort()).toEqual(items.map(i => i.id).sort())
+  })
+
+  it('builds adaptive pool with same stems as baseline', () => {
+    const baseline = buildPlacementPool('fundamentals')
+    const adaptive = buildPlacementPool('fundamentals', { weakObjectiveIds: ['1.1', '1.2'] })
+    expect(adaptive.mode).toBe('adaptive')
+    expect(adaptive.questions).toHaveLength(15)
+    expect(adaptive.questions.map(q => q.id).sort()).toEqual(baseline.questions.map(q => q.id).sort())
+    expect(adaptive.questions[0].objectiveId).toMatch(/^1\.(1|2)$/)
   })
 })
 

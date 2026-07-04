@@ -19,6 +19,8 @@ export default function DomainPlacementDebrief({
   onOpenLab,
   onRetake,
   onExit,
+  sessionMode = 'baseline',
+  adaptiveWeakObjectives = [],
 }) {
   const band = placementReadyBand(report.pct)
   const delta = computePlacementDelta(
@@ -51,7 +53,23 @@ export default function DomainPlacementDebrief({
             Trap resistance: {report.trapPct}% ({report.trapCorrect}/{report.trapTotal})
           </div>
         )}
+      {report.weakestObjective && (
+        <div style={{ ...styles.small, marginTop: 8, color: COLORS.silverMid }}>
+          Weakest objective: {report.weakestObjective}
+        </div>
+      )}
       </div>
+
+      {sessionMode === 'adaptive' && adaptiveWeakObjectives.length > 0 && (
+        <div style={{ ...styles.card, marginBottom: 8, borderColor: COLORS.purpleBorder }}>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.purple, marginBottom: 6 }}>
+            Adaptive retake
+          </div>
+          <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.45 }}>
+            Same 15 stems — weak objectives front-loaded: {adaptiveWeakObjectives.join(', ')}
+          </div>
+        </div>
+      )}
 
       {delta && (
         <div style={{ ...styles.card, marginBottom: 8 }}>
@@ -94,7 +112,9 @@ export default function DomainPlacementDebrief({
         </button>
       )}
       <button type="button" style={{ ...styles.secondaryBtn, marginBottom: 8 }} onClick={onRetake}>
-        Retake placement
+        {(previousAttempt?.weakObjectives?.length || adaptiveWeakObjectives.length)
+          ? 'Adaptive retake'
+          : 'Retake placement'}
       </button>
       <button type="button" style={styles.secondaryBtn} onClick={onExit}>
         Done

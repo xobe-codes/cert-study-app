@@ -105,6 +105,12 @@ export default function DomainPlacementIntro({ onExit, onStart }) {
                 </div>
                 <span style={{ ...styles.small, color: accent.text, fontWeight: 600 }}>{actionLabel} →</span>
               </div>
+              {last?.weakObjectives?.length > 0 && (
+                <div style={{ ...styles.small, marginTop: 8, color: COLORS.purple }}>
+                  Retake adapts — weak objectives first: {last.weakObjectives.slice(0, 3).join(', ')}
+                  {last.weakObjectives.length > 3 ? '…' : ''}
+                </div>
+              )}
             </button>
           )
         })}

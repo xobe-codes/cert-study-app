@@ -26,6 +26,8 @@ import { getSessionStudy, isRecapDismissed, dismissSessionRecap } from './home/s
 import { groupMissedByTrap } from './missed/missedTrapGroups.js'
 import DomainPassCompleteCard from './features/domainPass/DomainPassCompleteCard.jsx'
 import WeakAreaDashboard from './features/home/WeakAreaDashboard.jsx'
+import { loadAllPlacementRecords, countPlacementBaselines } from './features/domainPlacement/domainPlacementStorage.js'
+import { placementDomainIds } from './features/domainPlacement/placementBlueprints.js'
 import ExamReadyBanner from './home/ExamReadyBanner.jsx'
 import {
   HOME_SECTION_GAP,
@@ -321,6 +323,17 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
   const [learnerSummary, setLearnerSummary] = useState(null)
   const [retention, setRetention] = useState([])
   const [showNudge, setShowNudge] = useState(false)
+  const [placementBaselineCount, setPlacementBaselineCount] = useState(0)
+
+  useEffect(() => {
+    let cancelled = false
+    loadAllPlacementRecords().then(records => {
+      if (!cancelled) {
+        setPlacementBaselineCount(countPlacementBaselines(records, placementDomainIds()))
+      }
+    })
+    return () => { cancelled = true }
+  }, [])
 
   // Recompute the "For You" cards locally whenever progress or the missed bank
   // changes. Fully deterministic — no API call.
@@ -538,6 +551,9 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         <div className="home-study-grid">
           <StudyModeBtn primary onClick={onOpenMock}>Mock Exam</StudyModeBtn>
           <StudyModeBtn onClick={onOpenDomainPass}>Domain Pass ({domainPassPassedCount}/6)</StudyModeBtn>
+          {onOpenDomainPlacement && (
+            <StudyModeBtn onClick={() => onOpenDomainPlacement()}>Check Level ({placementBaselineCount}/6)</StudyModeBtn>
+          )}
           <StudyModeBtn onClick={onOpenFocus}>Weak Areas</StudyModeBtn>
           <StudyModeBtn onClick={onOpenTopicFocus}>Topic Focus</StudyModeBtn>
           <StudyModeBtn onClick={onOpenCommandHub}>Command Hub</StudyModeBtn>

@@ -8,7 +8,7 @@ import AnswerReview from '../../components/AnswerReview.jsx'
 import { QuestionMeta } from '../../components/QuizQuestionChrome.jsx'
 import Spinner from '../../components/Spinner.jsx'
 import ErrorBox from '../../components/ErrorBox.jsx'
-import { buildPlacementPool } from './buildPlacementPool.js'
+import { buildPlacementPool, computeWeakObjectivesFromPlacement } from './buildPlacementPool.js'
 import { computePlacementReport } from './computePlacementReport.js'
 import { loadPlacementRecord, savePlacementAttempt } from './domainPlacementStorage.js'
 import DomainPlacementDebrief from './DomainPlacementDebrief.jsx'
@@ -34,6 +34,8 @@ export default function DomainPlacementSession({
   const [responses, setResponses] = useState({})
   const [revealed, setRevealed] = useState({})
   const [previousAttempt, setPreviousAttempt] = useState(null)
+  const [sessionMode, setSessionMode] = useState('baseline')
+  const [adaptiveWeakObjectives, setAdaptiveWeakObjectives] = useState([])
   const finishSaved = useRef(false)
 
   const startSession = useCallback(async () => {
@@ -49,10 +51,16 @@ export default function DomainPlacementSession({
       await preloadCleanBank()
       const record = await loadPlacementRecord(domainId)
       setPreviousAttempt(record?.lastAttempt || null)
-      const pool = buildPlacementPool(domainId)
+      const weakIds = record?.lastAttempt
+        ? (record.lastAttempt.weakObjectives
+          || computeWeakObjectivesFromPlacement(record.lastAttempt.byObjective))
+        : []
+      const pool = buildPlacementPool(domainId, { weakObjectiveIds: weakIds })
       setQuestions(pool.questions)
       setTrapByQuestionId(pool.trapByQuestionId)
       setBlueprintVersion(pool.blueprintVersion)
+      setSessionMode(pool.mode)
+      setAdaptiveWeakObjectives(pool.weakObjectiveIds || [])
       setResponses({})
       setRevealed({})
       setCurrent(0)
@@ -122,6 +130,8 @@ export default function DomainPlacementSession({
           domainName={domain.name}
           report={report}
           previousAttempt={previousAttempt}
+          sessionMode={sessionMode}
+          adaptiveWeakObjectives={adaptiveWeakObjectives}
           onStudyObjective={onStudyObjective}
           onOpenTrapDrill={onOpenTrapDrill}
           onOpenLab={onOpenLab}
@@ -145,7 +155,10 @@ export default function DomainPlacementSession({
         <span style={styles.small}>{answered} / {questions.length} · Placement</span>
       </div>
       <div style={{ ...styles.small, marginBottom: 8, color: COLORS.silverMid }}>
-        {domain.name} — fixed diagnostic set (compare scores over time)
+        {domain.name}
+        {sessionMode === 'adaptive'
+          ? ` — adaptive retake (${adaptiveWeakObjectives.length} weak objective${adaptiveWeakObjectives.length === 1 ? '' : 's'} first)`
+          : ' — fixed diagnostic set (compare scores over time)'}
       </div>
       <div style={styles.card}>
         <QuestionMeta q={q} />
