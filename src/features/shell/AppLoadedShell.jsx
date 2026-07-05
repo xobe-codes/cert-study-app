@@ -38,6 +38,9 @@ export default function AppLoadedShell({
   premiumUnlocked,
   domainPassPassedCount,
   domainPassRecords,
+  placementBaselineCount,
+  placementTestedOutCount,
+  placementRecords,
   settingsExamDate,
   dueCount,
   openDomain,
@@ -78,6 +81,7 @@ export default function AppLoadedShell({
   setActiveDomainPassId,
   activeDomainPlacementId,
   setActiveDomainPlacementId,
+  exitDomainPlacement,
   refreshDomainPassCount,
   refreshDue,
   openSettings,
@@ -151,6 +155,9 @@ export default function AppLoadedShell({
           premiumUnlocked={premiumUnlocked}
           domainPassPassedCount={domainPassPassedCount}
           domainPassRecords={domainPassRecords}
+          placementBaselineCount={placementBaselineCount}
+          placementTestedOutCount={placementTestedOutCount}
+          placementRecords={placementRecords}
           settingsExamDate={settingsExamDate}
           dueCount={dueCount}
           openDomain={openDomain}
@@ -212,6 +219,7 @@ export default function AppLoadedShell({
           setActiveDomainPassId={setActiveDomainPassId}
           activeDomainPlacementId={activeDomainPlacementId}
           setActiveDomainPlacementId={setActiveDomainPlacementId}
+          exitDomainPlacement={exitDomainPlacement}
           settingsExamMode={settingsExamMode}
           missed={missed}
           onBack={goBack}

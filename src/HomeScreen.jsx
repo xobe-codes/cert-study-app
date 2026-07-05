@@ -26,8 +26,12 @@ import { getSessionStudy, isRecapDismissed, dismissSessionRecap } from './home/s
 import { groupMissedByTrap } from './missed/missedTrapGroups.js'
 import DomainPassCompleteCard from './features/domainPass/DomainPassCompleteCard.jsx'
 import WeakAreaDashboard from './features/home/WeakAreaDashboard.jsx'
-import { loadAllPlacementRecords, countPlacementBaselines } from './features/domainPlacement/domainPlacementStorage.js'
-import { placementDomainIds } from './features/domainPlacement/placementBlueprints.js'
+import DomainBaselinePanel from './features/domainPlacement/DomainBaselinePanel.jsx'
+import DomainBaselinePrompt from './features/domainPlacement/DomainBaselinePrompt.jsx'
+import { buildDomainBaselineSummary, domainBaselineBand } from './features/domainPlacement/domainBaselineProfile.js'
+import { pickBaselineAwareStudyNext } from './features/domainPlacement/domainBaselineStudyPlan.js'
+import { isPlacementDomain } from './features/domainPlacement/placementBlueprints.js'
+import { DomainBaselineStatusMark } from './features/domainPlacement/DomainBaselineStatusPill.jsx'
 import ExamReadyBanner from './home/ExamReadyBanner.jsx'
 import {
   HOME_SECTION_GAP,
@@ -318,24 +322,11 @@ function StudyModeBtn({ onClick, children, primary, disabled }) {
   )
 }
 
-export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMockInterview, onOpenMissed, onOpenTutor, onPremiumBlocked, premiumUnlocked = false, onOpenMetrics, onOpenStats, onOpenSettings, onOpenReview, onOpenLabs, onOpenFocus, onOpenTopicFocus, onOpenCommandHub, onOpenStudyLens, onOpenExamTraps, onOpenTrapDrill, onOpenDomainPass, onOpenDomainPlacement, domainPassPassedCount = 0, domainPassRecords = {}, examDate = null, onOpenSubnet, onOpenRouting, onOpenExtraStudy, commandDrills = {}, theme, onToggleTheme }) {
+export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMockInterview, onOpenMissed, onOpenTutor, onPremiumBlocked, premiumUnlocked = false, onOpenMetrics, onOpenStats, onOpenSettings, onOpenReview, onOpenLabs, onOpenFocus, onOpenTopicFocus, onOpenCommandHub, onOpenStudyLens, onOpenExamTraps, onOpenTrapDrill, onOpenDomainPass, onOpenDomainPlacement, domainPassPassedCount = 0, placementBaselineCount = 0, placementTestedOutCount = 0, placementRecords = {}, domainPassRecords = {}, examDate = null, onOpenSubnet, onOpenRouting, onOpenExtraStudy, commandDrills = {}, theme, onToggleTheme }) {
   const [suggestions, setSuggestions] = useState([])
   const [learnerSummary, setLearnerSummary] = useState(null)
   const [retention, setRetention] = useState([])
   const [showNudge, setShowNudge] = useState(false)
-  const [placementBaselineCount, setPlacementBaselineCount] = useState(0)
-
-  useEffect(() => {
-    let cancelled = false
-    loadAllPlacementRecords().then(records => {
-      if (!cancelled) {
-        setPlacementBaselineCount(countPlacementBaselines(records, placementDomainIds()))
-      }
-    })
-    return () => { cancelled = true }
-  }, [])
-
-  // Recompute the "For You" cards locally whenever progress or the missed bank
   // changes. Fully deterministic — no API call.
   useEffect(() => {
     let cancelled = false
@@ -375,7 +366,11 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
   }
 
   const readiness = useMemo(() => computeReadinessScore(progress, retention), [progress, retention])
-  const studyNext = useMemo(() => pickStudyNext(learnerSummary, dueCount), [learnerSummary, dueCount])
+  const studyNext = useMemo(() => {
+    const baselineNext = pickBaselineAwareStudyNext({ placementRecords, dueCount })
+    if (baselineNext) return baselineNext
+    return pickStudyNext(learnerSummary, dueCount)
+  }, [learnerSummary, dueCount, placementRecords])
 
   const totals = useMemo(() => {
     let mastered = 0, inProgress = 0
@@ -416,7 +411,21 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         {offlineReady?.size > 0 && <> · ⤓ {offlineReady.size} offline-ready</>}
       </div>
 
-      <StudyNextStrip next={studyNext} onSelectObjective={onSelectObjective} onOpenReview={onOpenReview} />
+      <StudyNextStrip
+        next={studyNext}
+        onSelectObjective={onSelectObjective}
+        onOpenReview={onOpenReview}
+        onOpenDomainPlacement={onOpenDomainPlacement}
+      />
+
+      {onOpenDomainPlacement && (
+        <DomainBaselinePrompt
+          placementBaselineCount={placementBaselineCount}
+          placementRecords={placementRecords}
+          onOpenDomainPlacement={onOpenDomainPlacement}
+          onOpenDomain={onOpenDomain}
+        />
+      )}
 
       {domainPassPassedCount === 6 && (
         <ExamReadyBanner
@@ -552,7 +561,9 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
           <StudyModeBtn primary onClick={onOpenMock}>Mock Exam</StudyModeBtn>
           <StudyModeBtn onClick={onOpenDomainPass}>Domain Pass ({domainPassPassedCount}/6)</StudyModeBtn>
           {onOpenDomainPlacement && (
-            <StudyModeBtn onClick={() => onOpenDomainPlacement()}>Check Level ({placementBaselineCount}/6)</StudyModeBtn>
+            <StudyModeBtn onClick={() => onOpenDomainPlacement()}>
+              Baseline ({placementBaselineCount}/6 · {placementTestedOutCount} tested out)
+            </StudyModeBtn>
           )}
           <StudyModeBtn onClick={onOpenFocus}>Weak Areas</StudyModeBtn>
           <StudyModeBtn onClick={onOpenTopicFocus}>Topic Focus</StudyModeBtn>
@@ -583,6 +594,19 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         const objs = domain.objectives
         const masteredCount = objs.filter(o => progress[o.id]?.status === 'mastered').length
         const accent = accentColors(domain.accent)
+        const placementRecord = placementRecords[domain.id]
+        const baselineSummary = isPlacementDomain(domain.id)
+          ? buildDomainBaselineSummary({ domain, lastAttempt: placementRecord?.lastAttempt })
+          : null
+        const baselineBand = baselineSummary ? domainBaselineBand(baselineSummary.domainStatus) : null
+
+        function studyObjective(objectiveId) {
+          const obj = objs.find(o => o.id === objectiveId)
+          if (obj) {
+            onSelectObjective({ ...obj, domainId: domain.id, domainName: domain.name, accent: domain.accent })
+          }
+        }
+
         return (
           <div key={domain.id} className="ccna-hover" style={homeCard({ marginBottom: HOME_SECTION_GAP })}>
             <button
@@ -595,8 +619,24 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 2, flexWrap: 'wrap' }}>
                   <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, lineHeight: 1.35 }}>{domain.name}</div>
                   <span style={homePill(domain.accent)}>{domain.weight}% exam weight</span>
+                  {baselineBand && (
+                    <span style={homePill(baselineBand.accent)}>
+                      {baselineSummary.testedOut ? '✓ Tested out' : `${baselineSummary.pct}% ${baselineBand.label}`}
+                    </span>
+                  )}
                 </div>
-                <div style={{ ...homeBodySm, marginBottom: 6 }}>{masteredCount}/{objs.length} mastered</div>
+                <div style={{ ...homeBodySm, marginBottom: 6 }}>
+                  {masteredCount}/{objs.length} studied
+                  {placementRecord?.lastAttempt ? (
+                    <>
+                      {' · '}
+                      {baselineSummary.strongObjectives.length} strong
+                      {baselineSummary.weakObjectives.length > 0 && ` · ${baselineSummary.weakObjectives.length} weak`}
+                    </>
+                  ) : isPlacementDomain(domain.id) ? (
+                    <> · Set baseline to map strong vs weak</>
+                  ) : null}
+                </div>
                 {/* Outer bar width = exam weight (so D4@25% appears wider than D1@20%); fill = mastery */}
                 <div style={{ width: '100%', height: 6, borderRadius: 999, background: COLORS.surface, overflow: 'hidden' }}>
                   <div style={{ width: `${domain.weight}%`, height: '100%', borderRadius: 999, background: COLORS.surface, position: 'relative', display: 'inline-block' }}>
@@ -609,15 +649,29 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
             </button>
             {isOpen && (
               <div id={`domain-panel-${domain.id}`} className="domain-accordion-panel" role="region" aria-label={`${domain.name} objectives`} style={{ marginTop: 10, borderTop: `1px solid ${COLORS.border}`, paddingTop: 8 }}>
+                {isPlacementDomain(domain.id) && onOpenDomainPlacement && (
+                  <DomainBaselinePanel
+                    domain={domain}
+                    record={placementRecord}
+                    onCheckLevel={(domainId) => onOpenDomainPlacement({ domainId, expandOnReturn: true })}
+                    onStudyObjective={studyObjective}
+                    onOpenDomainPass={onOpenDomainPass}
+                  />
+                )}
                 {objs.map(o => {
                   const status = progress[o.id]?.status || 'unseen'
+                  const baselineStatus = placementRecord?.lastAttempt?.objectiveProfiles?.[o.id]?.status
                   return (
                     <button
                       key={o.id}
                       onClick={() => onSelectObjective({ ...o, domainId: domain.id, domainName: domain.name, accent: domain.accent })}
-                      style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', minWidth: 0, background: 'none', border: 'none', color: COLORS.silver, cursor: 'pointer', minHeight: 44, padding: '8px 0', textAlign: 'left', borderBottom: `1px solid ${COLORS.border}` }}
+                      style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', minWidth: 0, background: baselineStatus === 'weak' ? COLORS.roseDim : 'none', border: baselineStatus === 'weak' ? `1px solid ${COLORS.roseBorder}` : 'none', borderRadius: baselineStatus === 'weak' ? 8 : 0, color: COLORS.silver, cursor: 'pointer', minHeight: 44, padding: baselineStatus === 'weak' ? '8px 10px' : '8px 0', marginBottom: baselineStatus === 'weak' ? 6 : 0, textAlign: 'left', borderBottom: baselineStatus === 'weak' ? 'none' : `1px solid ${COLORS.border}` }}
                     >
-                      <StatusDot status={status} />
+                      {baselineStatus ? (
+                        <DomainBaselineStatusMark status={baselineStatus} />
+                      ) : (
+                        <StatusDot status={status} />
+                      )}
                       <OverflowMarquee
                         text={`${o.id} ${o.title}`}
                         style={{ fontSize: 'var(--ccna-type-sm)' }}

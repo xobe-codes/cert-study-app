@@ -105,6 +105,9 @@ export default function App() {
           premiumUnlocked={bootstrap.premiumUnlocked}
           domainPassPassedCount={nav.domainPassPassedCount}
           domainPassRecords={nav.domainPassRecords}
+          placementBaselineCount={nav.placementBaselineCount}
+          placementTestedOutCount={nav.placementTestedOutCount}
+          placementRecords={nav.placementRecords}
           settingsExamDate={settings.settingsExamDate}
           dueCount={bootstrap.dueCount}
           openDomain={nav.openDomain}
@@ -143,8 +146,7 @@ export default function App() {
           clearTrapDrillPrefill={nav.clearTrapDrillPrefill}
           activeDomainPassId={nav.activeDomainPassId}
           setActiveDomainPassId={nav.setActiveDomainPassId}
-          activeDomainPlacementId={nav.activeDomainPlacementId}
-          setActiveDomainPlacementId={nav.setActiveDomainPlacementId}
+          activeDomainPlacementId={nav.activeDomainPlacementId} setActiveDomainPlacementId={nav.setActiveDomainPlacementId} exitDomainPlacement={nav.exitDomainPlacement}
           refreshDomainPassCount={nav.refreshDomainPassCount}
           refreshDue={bootstrap.refreshDue}
           openSettings={chrome.openSettings}

@@ -8,9 +8,8 @@ import {
 import { searchTopicsGlobal, dictionaryEntriesForDomain } from './topicSearch.js'
 import { estimateTopicFocusQuestions } from './topicFocusQuiz.js'
 import { preloadCleanBank } from '../data/cleanQuestionAdapter.js'
-import {
-  loadFocusSets, saveFocusSet, deleteFocusSet, loadPinnedConcepts, togglePinnedConcept,
-} from './topicFocusStorage.js'
+import { loadAllPlacementRecords } from '../features/domainPlacement/domainPlacementStorage.js'
+import { collectBaselineWeakObjectives } from '../features/domainPlacement/domainBaselineStudyPlan.js'
 import TopicTermDetail from './TopicTermDetail.jsx'
 import StudyModeHeader from '../components/StudyModeHeader.jsx'
 
@@ -77,6 +76,21 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [], haptic 
   useEffect(() => () => {
     if (toastTimerRef.current) clearTimeout(toastTimerRef.current)
     if (flashTimerRef.current) clearTimeout(flashTimerRef.current)
+  }, [])
+
+  useEffect(() => {
+    let cancelled = false
+    loadAllPlacementRecords().then(records => {
+      if (cancelled) return
+      const weakIds = collectBaselineWeakObjectives(records || {})
+      if (!weakIds.length) return
+      setSelectedObjectives(prev => {
+        const next = new Set(prev)
+        weakIds.slice(0, 8).forEach(id => next.add(id))
+        return next
+      })
+    })
+    return () => { cancelled = true }
   }, [])
 
   const notifySelection = useCallback((message) => {

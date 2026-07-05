@@ -4,6 +4,8 @@ import { saveProgress } from '../../storage/appPersistence.js'
 import { loadTourDone, saveTourDone } from '../../settings/settingsActions.js'
 import { computeMastery } from '../../netUtils.js'
 import { logEvent } from '../../eventLog.js'
+import { loadAllPlacementRecords } from '../domainPlacement/domainPlacementStorage.js'
+import { getNextUncheckedBaselineDomain } from '../domainPlacement/domainBaselineStudyPlan.js'
 
 /** Placement onboarding + product tour — extracted from App.jsx (P8). */
 export function useAppOnboarding({ loaded, view, setView, setProgress }) {
@@ -43,6 +45,14 @@ export function useAppOnboarding({ loaded, view, setView, setProgress }) {
     if (!wasReplay) {
       tourQueuedRef.current = true
       setShowTour(true)
+      const records = await loadAllPlacementRecords()
+      const nextDomain = getNextUncheckedBaselineDomain(records)
+      if (nextDomain) {
+        await window.storage.setItem(STORAGE_KEYS.baselineHandoff, {
+          domainId: nextDomain.id,
+          at: Date.now(),
+        })
+      }
     }
     setView('home')
   }, [setProgress, setView])
@@ -51,6 +61,14 @@ export function useAppOnboarding({ loaded, view, setView, setProgress }) {
     onboardingReplayRef.current = false
     await window.storage.setItem(STORAGE_KEYS.onboardDone, true)
     logEvent('user_skipped_onboarding', {})
+    const records = await loadAllPlacementRecords()
+    const nextDomain = getNextUncheckedBaselineDomain(records)
+    if (nextDomain) {
+      await window.storage.setItem(STORAGE_KEYS.baselineHandoff, {
+        domainId: nextDomain.id,
+        at: Date.now(),
+      })
+    }
     setView('home')
   }, [setView])
 

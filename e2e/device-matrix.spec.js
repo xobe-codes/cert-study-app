@@ -34,7 +34,7 @@ test.describe('Device matrix — home screen', () => {
     await page.setViewportSize({ width: 390, height: 844 })
     await seedOnboarding(page)
     await page.goto('/#/domainplacement')
-    await expect(page.getByRole('heading', { name: /Domain Placement/i })).toBeVisible({ timeout: 20_000 })
+    await expect(page.getByRole('heading', { name: /Domain baseline/i })).toBeVisible({ timeout: 20_000 })
     await expect(page.getByRole('button', { name: /Network Fundamentals/i }).first()).toBeVisible({ timeout: 10_000 })
   })
 })

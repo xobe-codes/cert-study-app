@@ -41,6 +41,9 @@ export default function CoreStudyRoutes({
   premiumUnlocked,
   domainPassPassedCount,
   domainPassRecords,
+  placementBaselineCount,
+  placementTestedOutCount,
+  placementRecords,
   settingsExamDate,
   dueCount,
   openDomain,
@@ -106,6 +109,9 @@ export default function CoreStudyRoutes({
         onOpenDomainPlacement={openDomainPlacement}
         domainPassPassedCount={domainPassPassedCount}
         domainPassRecords={domainPassRecords}
+        placementBaselineCount={placementBaselineCount}
+        placementTestedOutCount={placementTestedOutCount}
+        placementRecords={placementRecords}
         examDate={settingsExamDate}
         onOpenSubnet={() => navigateTo('subnet')}
         onOpenRouting={() => navigateTo('routing')}

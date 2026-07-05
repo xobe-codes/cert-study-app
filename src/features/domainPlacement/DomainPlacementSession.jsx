@@ -11,6 +11,8 @@ import ErrorBox from '../../components/ErrorBox.jsx'
 import { buildPlacementPool, computeWeakObjectivesFromPlacement } from './buildPlacementPool.js'
 import { computePlacementReport } from './computePlacementReport.js'
 import { loadPlacementRecord, savePlacementAttempt } from './domainPlacementStorage.js'
+import { buildDomainBaselineSummary } from './domainBaselineProfile.js'
+import { getSprintObjectiveIdsForDomain } from './domainBaselineStudyPlan.js'
 import DomainPlacementDebrief from './DomainPlacementDebrief.jsx'
 import { appendMissedEntry } from '../domainPass/domainPassStorage.js'
 
@@ -55,7 +57,23 @@ export default function DomainPlacementSession({
         ? (record.lastAttempt.weakObjectives
           || computeWeakObjectivesFromPlacement(record.lastAttempt.byObjective))
         : []
-      const pool = buildPlacementPool(domainId, { weakObjectiveIds: weakIds })
+
+      let pool
+      if (record?.lastAttempt) {
+        const summary = buildDomainBaselineSummary({ domain, lastAttempt: record.lastAttempt })
+        const sprintIds = getSprintObjectiveIdsForDomain(domain, record)
+        if (sprintIds.length && sprintIds.length < domain.objectives.length) {
+          pool = buildPlacementPool(domainId, {
+            mode: 'sprint',
+            sprintObjectiveIds: sprintIds,
+            weakObjectiveIds: summary.weakObjectives,
+          })
+        } else {
+          pool = buildPlacementPool(domainId, { weakObjectiveIds: weakIds })
+        }
+      } else {
+        pool = buildPlacementPool(domainId)
+      }
       setQuestions(pool.questions)
       setTrapByQuestionId(pool.trapByQuestionId)
       setBlueprintVersion(pool.blueprintVersion)
@@ -106,6 +124,7 @@ export default function DomainPlacementSession({
       pct: report.pct,
       trapPct: report.trapPct,
       byObjective: report.byObjective,
+      trapMisses: report.trapMisses,
       blueprintVersion,
       correct: report.correct,
       total: report.total,
@@ -127,7 +146,9 @@ export default function DomainPlacementSession({
       <div className="ccna-placement-flow ccna-review-flow">
         <button type="button" style={styles.backBtn} onClick={onExit}>‹ Back</button>
         <DomainPlacementDebrief
+          domainId={domainId}
           domainName={domain.name}
+          domain={domain}
           report={report}
           previousAttempt={previousAttempt}
           sessionMode={sessionMode}
@@ -147,6 +168,7 @@ export default function DomainPlacementSession({
   const isRevealed = !!revealed[current]
   const isCorrect = isRevealed && selected != null && gradeQuestion(q, selected)
   const answered = Object.keys(revealed).length
+  const progressPct = questions.length ? Math.round((answered / questions.length) * 100) : 0
 
   return (
     <div className="ccna-placement-flow ccna-review-flow">
@@ -154,11 +176,27 @@ export default function DomainPlacementSession({
         <button type="button" style={{ ...styles.backBtn, marginBottom: 0, padding: '8px 0' }} onClick={onExit}>‹ Exit</button>
         <span style={styles.small}>{answered} / {questions.length} · Placement</span>
       </div>
+      <div
+        style={{ height: 4, borderRadius: 999, background: COLORS.surface, marginBottom: 10, overflow: 'hidden' }}
+        aria-hidden
+      >
+        <div
+          style={{
+            height: '100%',
+            width: `${progressPct}%`,
+            borderRadius: 999,
+            background: COLORS.sky,
+            transition: 'width .25s ease',
+          }}
+        />
+      </div>
       <div style={{ ...styles.small, marginBottom: 8, color: COLORS.silverMid }}>
         {domain.name}
-        {sessionMode === 'adaptive'
-          ? ` — adaptive retake (${adaptiveWeakObjectives.length} weak objective${adaptiveWeakObjectives.length === 1 ? '' : 's'} first)`
-          : ' — fixed diagnostic set (compare scores over time)'}
+        {sessionMode === 'sprint'
+          ? ' — sprint (weak + unsampled objectives only)'
+          : sessionMode === 'adaptive'
+            ? ` — adaptive retake (${adaptiveWeakObjectives.length} weak objective${adaptiveWeakObjectives.length === 1 ? '' : 's'} first)`
+            : ' — fixed diagnostic set (compare scores over time)'}
       </div>
       <div style={styles.card}>
         <QuestionMeta q={q} />

@@ -1,7 +1,10 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { DOMAINS } from '../../data/ccnaDomains.js'
-import { STORAGE_KEYS, TRAP_DRILL_PREFILL_EVENT } from '../../storageKeys.js'
+import { STORAGE_KEYS, TRAP_DRILL_PREFILL_EVENT, PLACEMENT_BASELINE_REFRESH_EVENT } from '../../storageKeys.js'
 import { loadDomainPassRecords, countPassedDomains } from '../domainPass/domainPassStorage.js'
+import { loadAllPlacementRecords, countPlacementBaselines } from '../domainPlacement/domainPlacementStorage.js'
+import { countTestedOutDomains } from '../domainPlacement/domainBaselineProfile.js'
+import { placementDomainIds } from '../domainPlacement/placementBlueprints.js'
 import { parseAppHash, syncAppHash } from '../../routing/appHashRouting.js'
 import { bumpSessionStudy } from '../../home/sessionRecap.js'
 
@@ -19,6 +22,9 @@ export function useAppNavigation() {
   const [activeDomainPlacementId, setActiveDomainPlacementId] = useState(null)
   const [domainPassPassedCount, setDomainPassPassedCount] = useState(0)
   const [domainPassRecords, setDomainPassRecords] = useState({})
+  const [placementBaselineCount, setPlacementBaselineCount] = useState(0)
+  const [placementTestedOutCount, setPlacementTestedOutCount] = useState(0)
+  const [placementRecords, setPlacementRecords] = useState({})
   const [mockDomainPrefill, setMockDomainPrefill] = useState(null)
   const [selectedObjective, setSelectedObjective] = useState(null)
   const [openDomain, setOpenDomain] = useState(null)
@@ -27,6 +33,7 @@ export function useAppNavigation() {
   const mainRef = useRef(null)
   const homeScrollRef = useRef(0)
   const prevViewRef = useRef('home')
+  const placementExpandOnReturnRef = useRef(null)
 
   const openLab = useCallback((labId, from = 'labs') => {
     setSelectedLab(labId)
@@ -64,6 +71,14 @@ export function useAppNavigation() {
     setDomainPassPassedCount(countPassedDomains(records, DOMAINS))
   }, [])
 
+  const refreshPlacementBaselineCount = useCallback(async () => {
+    const records = await loadAllPlacementRecords()
+    const ids = placementDomainIds()
+    setPlacementRecords(records || {})
+    setPlacementBaselineCount(countPlacementBaselines(records, ids))
+    setPlacementTestedOutCount(countTestedOutDomains(records, ids))
+  }, [])
+
   const openDomainPass = useCallback((opts) => {
     setActiveDomainPassId(opts?.domainId || null)
     setReturnToView(view)
@@ -72,9 +87,23 @@ export function useAppNavigation() {
 
   const openDomainPlacement = useCallback((opts) => {
     setActiveDomainPlacementId(opts?.domainId || null)
+    placementExpandOnReturnRef.current = opts?.expandOnReturn ? (opts?.domainId || null) : null
     setReturnToView(view)
     setView('domainplacement')
   }, [view])
+
+  const exitDomainPlacement = useCallback(() => {
+    const expandId = placementExpandOnReturnRef.current
+    setActiveDomainPlacementId(null)
+    placementExpandOnReturnRef.current = null
+    if (expandId) {
+      setOpenDomain(expandId)
+      setReturnToView('home')
+      setView('home')
+      return
+    }
+    setView(returnToView)
+  }, [returnToView])
 
   const openMockExam = useCallback((opts) => {
     setMockDomainPrefill(opts?.domainId || null)
@@ -116,6 +145,9 @@ export function useAppNavigation() {
     setActiveDomainPlacementId,
     domainPassPassedCount,
     domainPassRecords,
+    placementBaselineCount,
+    placementTestedOutCount,
+    placementRecords,
     mockDomainPrefill,
     setMockDomainPrefill,
     selectedObjective,
@@ -134,11 +166,13 @@ export function useAppNavigation() {
     openTrapDrill,
     openDomainPass,
     openDomainPlacement,
+    exitDomainPlacement,
     openMockExam,
     clearExamTrapPrefill,
     clearTrapDrillPrefill,
     consumeTrapDrillPrefill,
     refreshDomainPassCount,
+    refreshPlacementBaselineCount,
     goBack,
     routeScrolls,
     compactTopChrome,
@@ -164,9 +198,23 @@ export function AppNavigationLifecycle({
     prevViewRef,
     consumeTrapDrillPrefill,
     refreshDomainPassCount,
+    refreshPlacementBaselineCount,
+    setOpenDomain,
   } = nav
 
   useEffect(() => { if (view === 'home') refreshDue() }, [view, refreshDue])
+
+  useEffect(() => {
+    if (!loaded || view !== 'home') return undefined
+    let cancelled = false
+    ;(async () => {
+      const handoff = await window.storage.getItem(STORAGE_KEYS.baselineHandoff)
+      if (cancelled || !handoff?.domainId) return
+      await window.storage.removeItem(STORAGE_KEYS.baselineHandoff)
+      setOpenDomain(handoff.domainId)
+    })()
+    return () => { cancelled = true }
+  }, [loaded, view, setOpenDomain])
 
   useEffect(() => {
     const prev = prevViewRef.current
@@ -221,9 +269,17 @@ export function AppNavigationLifecycle({
 
   useEffect(() => {
     if (!loaded) return
-    if (view !== 'home' && view !== 'domainpass') return
+    const onPlacementSaved = () => { refreshPlacementBaselineCount() }
+    window.addEventListener(PLACEMENT_BASELINE_REFRESH_EVENT, onPlacementSaved)
+    return () => window.removeEventListener(PLACEMENT_BASELINE_REFRESH_EVENT, onPlacementSaved)
+  }, [loaded, refreshPlacementBaselineCount])
+
+  useEffect(() => {
+    if (!loaded) return
+    if (view !== 'home' && view !== 'domainpass' && view !== 'domainplacement') return
     refreshDomainPassCount()
-  }, [loaded, view, refreshDomainPassCount])
+    refreshPlacementBaselineCount()
+  }, [loaded, view, refreshDomainPassCount, refreshPlacementBaselineCount])
 
   useEffect(() => {
     if (!loaded || view !== 'objective' || selectedObjective) return

@@ -44,6 +44,20 @@ describe('placement blueprint + pool', () => {
     expect(getPlacementBlueprint('unknown')).toBeNull()
     expect(() => buildPlacementPool('unknown')).toThrow(/not available/i)
   })
+
+  it('sprint mode filters to weak and unsampled objectives', () => {
+    const pool = buildPlacementPool('security', {
+      mode: 'sprint',
+      sprintObjectiveIds: ['5.1', '5.3', '5.5'],
+      weakObjectiveIds: ['5.3', '5.5'],
+    })
+    expect(pool.mode).toBe('sprint')
+    expect(pool.questions.length).toBeGreaterThan(0)
+    expect(pool.questions.length).toBeLessThanOrEqual(15)
+    const objectiveIds = new Set(pool.questions.map(q => q.objectiveId))
+    expect(objectiveIds.has('5.1') || objectiveIds.has('5.3')).toBe(true)
+    expect(objectiveIds.has('5.8')).toBe(false)
+  })
 })
 
 describe('computePlacementReport', () => {
@@ -166,5 +180,33 @@ describe('shouldSuggestPlacement', () => {
     expect(shouldSuggestPlacement({ lastAttempt: { at: Date.now() - 20 * 24 * 60 * 60 * 1000, pct: 90 } })).toBe(true)
     expect(shouldSuggestPlacement({ lastAttempt: { at: Date.now(), pct: 55 } })).toBe(true)
     expect(shouldSuggestPlacement({ lastAttempt: { at: Date.now(), pct: 85 } })).toBe(false)
+  })
+})
+
+describe('placement objective breakdown', () => {
+  it('sorts objectives weakest-first for debrief rows', async () => {
+    const { default: DomainPlacementObjectiveBreakdown } = await import('../features/domainPlacement/DomainPlacementObjectiveBreakdown.jsx')
+    const { renderToStaticMarkup } = await import('react-dom/server')
+    const React = await import('react')
+    const html = renderToStaticMarkup(
+      React.createElement(DomainPlacementObjectiveBreakdown, {
+        domainId: 'security',
+        byObjective: { '5.1': { correct: 0, total: 2 }, '5.2': { correct: 2, total: 2 } },
+        previousByObjective: { '5.1': { correct: 1, total: 2 } },
+        onStudyObjective: () => {},
+        showAllObjectives: true,
+      }),
+    )
+    expect(html).toContain('Baseline map')
+    expect(html).toContain('Study')
+    expect(html).toContain('5.1')
+    expect(html.indexOf('5.1')).toBeLessThan(html.indexOf('5.2'))
+  })
+
+  it('exports objectiveRows weakest-first', async () => {
+    const { objectiveRows } = await import('../features/domainPlacement/DomainPlacementObjectiveBreakdown.jsx')
+    const rows = objectiveRows({ '5.2': { correct: 2, total: 2 }, '5.1': { correct: 0, total: 2 } })
+    expect(rows[0].id).toBe('5.1')
+    expect(rows[0].pct).toBe(0)
   })
 })

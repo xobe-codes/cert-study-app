@@ -32,7 +32,11 @@ export const STORAGE_KEYS = {
   domainPass: 'ccna_domain_pass_v1',
   domainPassCelebrated: 'ccna_domain_pass_celebrated_v1',
   domainPlacement: 'ccna_domain_placement_v1',
+  baselineHandoff: 'ccna_baseline_handoff_v1',
 }
 
 /** CustomEvent name for dev/e2e trap-drill prefill handoff. */
 export const TRAP_DRILL_PREFILL_EVENT = 'ccna-trap-drill-prefill'
+
+/** Fired after a domain placement attempt is saved — refresh home baseline count. */
+export const PLACEMENT_BASELINE_REFRESH_EVENT = 'ccna-placement-baseline-refresh'

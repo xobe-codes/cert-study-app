@@ -5,6 +5,7 @@ import { PLACEMENT_QUESTION_COUNT } from './domainPlacementConfig.js'
 import { placementDomainIds } from './placementBlueprints.js'
 import { loadAllPlacementRecords } from './domainPlacementStorage.js'
 import { placementReadyBand } from './domainPlacementConfig.js'
+import { PLACEMENT_BASELINE_REFRESH_EVENT } from '../../storageKeys.js'
 import {
   homeCard,
   homeSectionLabel,
@@ -29,13 +30,20 @@ export default function DomainPlacementIntro({ onExit, onStart }) {
 
   useEffect(() => {
     let cancelled = false
-    loadAllPlacementRecords().then(rec => {
-      if (!cancelled) {
-        setRecords(rec || {})
-        setLoaded(true)
-      }
-    })
-    return () => { cancelled = true }
+    const refresh = () => {
+      loadAllPlacementRecords().then(rec => {
+        if (!cancelled) {
+          setRecords(rec || {})
+          setLoaded(true)
+        }
+      })
+    }
+    refresh()
+    window.addEventListener(PLACEMENT_BASELINE_REFRESH_EVENT, refresh)
+    return () => {
+      cancelled = true
+      window.removeEventListener(PLACEMENT_BASELINE_REFRESH_EVENT, refresh)
+    }
   }, [])
 
   const checkedCount = placementDomains.filter(d => records[d.id]?.lastAttempt).length
@@ -43,13 +51,13 @@ export default function DomainPlacementIntro({ onExit, onStart }) {
   return (
     <div className="ccna-placement-intro">
       <button type="button" style={styles.backBtn} onClick={onExit}>‹ Back</button>
-      <h1 style={styles.h1}>Domain Placement</h1>
+      <h1 style={styles.h1}>Domain baseline</h1>
 
       <div style={homeCard({ border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim })}>
-        <div style={homeSectionLabel(COLORS.sky)}>CHECK YOUR LEVEL</div>
+        <div style={homeSectionLabel(COLORS.sky)}>MAP STRONG VS WEAK</div>
         <p style={{ ...homeBodySm, margin: 0 }}>
-          {PLACEMENT_QUESTION_COUNT}-question fixed set per domain — same stems each time so you can track progress, not luck.
-          Untimed · instant feedback · trap + objective breakdown · one recommended next step.
+          {PLACEMENT_QUESTION_COUNT}-question check per domain — test out whole domains at 80%+, mark strong subsections complete, highlight weak ones so you study faster.
+          Untimed · instant feedback · one recommended next step.
         </p>
         {loaded && (
           <p style={{ ...homeBodySm, margin: '8px 0 0', color: COLORS.silverMid }}>
@@ -63,9 +71,10 @@ export default function DomainPlacementIntro({ onExit, onStart }) {
           const record = records[domain.id]
           const last = record?.lastAttempt
           const band = last ? placementReadyBand(last.pct) : null
+          const testedOut = last?.testedOut
           const accent = accentColors(domain.accent)
-          const badgeAccent = last ? band.accent : 'silver'
-          const badge = last ? `${last.pct}%` : 'Not started'
+          const badgeAccent = testedOut ? 'mint' : last ? band.accent : 'silver'
+          const badge = testedOut ? '✓ Tested out' : last ? `${last.pct}%` : 'Not started'
           const actionLabel = last ? 'Retake' : 'Start'
 
           return (
@@ -117,7 +126,7 @@ export default function DomainPlacementIntro({ onExit, onStart }) {
       </div>
 
       <p style={{ ...styles.small, marginTop: 4, color: COLORS.silverMid }}>
-        Domain Pass tests pass/fail at 80%. Placement shows trend and weak objectives without a gate.
+        Domain Pass tests pass/fail at 80%. Baseline maps strong vs weak and tests out whole domains when ready.
       </p>
     </div>
   )

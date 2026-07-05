@@ -8,6 +8,23 @@ export function buildWeakAreaRows({ missed = [], readiness, domainPassRecords = 
   const rows = []
   const seen = new Set()
 
+  for (const domain of DOMAINS) {
+    const weakObjs = placementRecords[domain.id]?.lastAttempt?.weakObjectives || []
+    if (!weakObjs.length) continue
+    const key = `baseline:${domain.id}:${weakObjs[0]}`
+    if (seen.has(key)) continue
+    seen.add(key)
+    rows.push({
+      id: key,
+      label: `${domain.name} baseline — focus ${weakObjs.slice(0, 2).join(', ')}${weakObjs.length > 2 ? '…' : ''}`,
+      badge: '!',
+      cta: 'Study',
+      action: 'study',
+      payload: { objectiveId: weakObjs[0] },
+    })
+    if (rows.length >= 2) break
+  }
+
   const trapGroups = groupMissedByTrap(missed).slice(0, 2)
   for (const g of trapGroups) {
     const key = `trap:${g.trap}`

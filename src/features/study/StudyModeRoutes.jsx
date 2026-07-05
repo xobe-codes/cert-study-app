@@ -38,6 +38,7 @@ export default function StudyModeRoutes({
   setActiveDomainPassId,
   activeDomainPlacementId,
   setActiveDomainPlacementId,
+  exitDomainPlacement,
   settingsExamMode,
   missed,
   onBack,
@@ -193,7 +194,7 @@ export default function StudyModeRoutes({
       <DomainPlacementSession
         key={activeDomainPlacementId}
         domainId={activeDomainPlacementId}
-        onExit={() => setActiveDomainPlacementId(null)}
+        onExit={exitDomainPlacement || (() => setActiveDomainPlacementId(null))}
         onStudyObjective={(objectiveId) => {
           const obj = ALL_OBJECTIVES.find(o => o.id === objectiveId)
           if (obj) onSelectObjective(obj)
