@@ -3,6 +3,7 @@ import { COLORS, styles } from '../../ui/appTheme.js'
 import { homeBodySm, homeSectionLabel } from '../../home/homeUi.js'
 import { PLACEMENT_QUESTION_COUNT, PLACEMENT_MAINTENANCE_TRAP_COUNT } from './domainPlacementConfig.js'
 import { buildDomainBaselineSummary, domainBaselineBand } from './domainBaselineProfile.js'
+import { baselineBlueprintIsStale } from './placementBlueprintCoverage.js'
 import DomainBaselineStatusPill from './DomainBaselineStatusPill.jsx'
 import { isPlacementDomain } from './placementBlueprints.js'
 
@@ -85,15 +86,18 @@ export default function DomainBaselinePanel({
   const last = record?.lastAttempt
   const band = domainBaselineBand(summary.domainStatus)
   const hasBaseline = Boolean(last)
+  const blueprintStale = hasBaseline && baselineBlueprintIsStale(last, domain.id)
   const sprintAvailable = hasBaseline && !summary.testedOut
     && (summary.weakObjectives.length + summary.notCheckedObjectives.length) < domain.objectives.length
   const ctaLabel = !hasBaseline
     ? 'Set baseline'
-    : summary.testedOut
-      ? null
-      : sprintAvailable
-        ? 'Sprint update'
-        : 'Update baseline'
+    : blueprintStale
+      ? 'Full remap'
+      : summary.testedOut
+        ? null
+        : sprintAvailable
+          ? 'Sprint update'
+          : 'Update baseline'
 
   const weakObjs = domain.objectives.filter(o => summary.weakObjectives.includes(o.id))
   const buildingObjs = domain.objectives.filter(o => summary.buildingObjectives.includes(o.id))
@@ -124,7 +128,7 @@ export default function DomainBaselinePanel({
               </>
             ) : (
               <span style={{ ...homeBodySm, margin: 0 }}>
-                {PLACEMENT_QUESTION_COUNT}-question check — maps strong vs weak subsections
+                {PLACEMENT_QUESTION_COUNT}-question check — every subsection sampled once
               </span>
             )}
           </div>
@@ -133,12 +137,28 @@ export default function DomainBaselinePanel({
               {formatDate(last.at)}
               {summary.strongObjectives.length > 0 && ` · ${summary.strongObjectives.length} strong`}
               {summary.weakObjectives.length > 0 && ` · ${summary.weakObjectives.length} weak`}
-              {summary.notCheckedObjectives.length > 0 && ` · ${summary.notCheckedObjectives.length} not sampled`}
+              {summary.notCheckedObjectives.length > 0 && ` · ${summary.notCheckedObjectives.length} skipped (sprint)`}
             </div>
           )}
         </div>
         {summary.testedOut ? (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flexShrink: 0, minWidth: 140 }}>
+            {blueprintStale && (
+              <button
+                type="button"
+                className="ccna-hover"
+                style={{
+                  ...styles.primaryBtn,
+                  marginBottom: 0,
+                  fontSize: 'var(--ccna-type-xs)',
+                  padding: '10px 14px',
+                  minHeight: 40,
+                }}
+                onClick={() => onCheckLevel?.(domain.id)}
+              >
+                Full remap ({PLACEMENT_QUESTION_COUNT} Q) →
+              </button>
+            )}
             <button
               type="button"
               className="ccna-hover"
@@ -179,6 +199,7 @@ export default function DomainBaselinePanel({
               fontSize: 'var(--ccna-type-xs)',
               padding: '10px 14px',
               minHeight: 40,
+              ...(blueprintStale ? { borderColor: COLORS.amberBorder, background: COLORS.amberDim } : {}),
             }}
             onClick={() => onCheckLevel?.(domain.id)}
           >
@@ -186,6 +207,12 @@ export default function DomainBaselinePanel({
           </button>
         )}
       </div>
+
+      {blueprintStale && (
+        <div style={{ ...homeBodySm, margin: '0 0 10px', color: COLORS.amber, lineHeight: 1.45 }}>
+          Updated baseline map — retake for full subsection coverage (new objectives added).
+        </div>
+      )}
 
       {summary.testedOut && onOpenDomainPass && (
         <div style={{ marginBottom: 10 }}>
@@ -256,7 +283,7 @@ export default function DomainBaselinePanel({
           {uncheckedObjs.length > 0 && (
             <div>
               <div style={{ fontSize: 'var(--ccna-type-micro)', fontWeight: 700, color: COLORS.silverMid, marginBottom: 4 }}>
-                NOT SAMPLED IN BASELINE
+                SKIPPED IN SPRINT (STRONG SUBSECTIONS)
               </div>
               <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.45 }}>
                 {uncheckedObjs.map(o => o.id).join(', ')}

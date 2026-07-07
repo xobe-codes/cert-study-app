@@ -202,7 +202,7 @@ export default function DomainPlacementSession({
             ? ' — sprint (weak + unsampled objectives only)'
             : sessionMode === 'adaptive'
               ? ` — adaptive retake (${adaptiveWeakObjectives.length} weak objective${adaptiveWeakObjectives.length === 1 ? '' : 's'} first)`
-              : ' — fixed diagnostic set (compare scores over time)'}
+              : ' — full domain map (every subsection sampled once)'}
       </div>
       <div style={styles.card}>
         <QuestionMeta q={q} />

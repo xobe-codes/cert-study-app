@@ -35,7 +35,7 @@ describe('placement blueprint + pool', () => {
 
       const pool = buildPlacementPool(domainId)
       expect(pool.questions).toHaveLength(15)
-      expect(pool.blueprintVersion).toBe(1)
+      expect(pool.blueprintVersion).toBe(getPlacementBlueprint(domainId).version)
       expect(Object.keys(pool.trapByQuestionId).length).toBe(15)
     }
   })

@@ -118,7 +118,7 @@ export default function DomainPlacementObjectiveBreakdown({
                 </div>
               )}
               {notChecked ? (
-                <span style={{ flex: 1, minWidth: 0, color: COLORS.silverMid }}>Not in this check</span>
+                <span style={{ flex: 1, minWidth: 0, color: COLORS.silverMid }}>Skipped in sprint</span>
               ) : (
                 <>
                   <span style={{ flexShrink: 0, minWidth: 40, textAlign: 'right', color: band ? COLORS[band.accent] : COLORS.silver, fontWeight: 600 }}>

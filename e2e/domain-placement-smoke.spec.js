@@ -34,6 +34,46 @@ async function seedSecurityAdaptivePlacement(page) {
   })
 }
 
+async function completePlacementSession(page) {
+  for (let q = 0; q < 15; q++) {
+    await expect(page.locator('[role="radiogroup"]').first()).toBeVisible({ timeout: 30_000 })
+    const radios = page.getByRole('radio')
+    await (q === 0 ? radios.nth(1) : radios.first()).click()
+    await expect(page.getByText(/Correct|Incorrect/).first()).toBeVisible({ timeout: 10_000 })
+    if (q < 14) await page.getByRole('button', { name: 'Next' }).click()
+  }
+  await page.getByRole('button', { name: /See results/i }).click()
+}
+
+async function seedFundamentalsStalePlacement(page) {
+  await page.evaluate(async () => {
+    await window.storage.setItem('ccna_domain_placement_v1', {
+      fundamentals: {
+        lastAttempt: {
+          at: Date.now() - 5 * 24 * 60 * 60 * 1000,
+          pct: 72,
+          correct: 11,
+          total: 15,
+          blueprintVersion: 1,
+          byObjective: {
+            '1.1': { correct: 1, total: 2 },
+            '1.2': { correct: 1, total: 2 },
+            '1.3': { correct: 1, total: 2 },
+            '1.4': { correct: 1, total: 2 },
+            '1.5': { correct: 1, total: 2 },
+            '1.6': { correct: 1, total: 2 },
+            '1.7': { correct: 1, total: 2 },
+            '1.8': { correct: 1, total: 1 },
+          },
+          weakObjectives: ['1.2', '1.5'],
+        },
+        attempts: 1,
+        history: [],
+      },
+    })
+  })
+}
+
 test.describe('Domain placement smoke', () => {
   test('hub lists 6 domains and session answers one question', async ({ page }) => {
     await seedOnboarding(page)
@@ -99,17 +139,35 @@ test.describe('Domain placement smoke', () => {
 
     await page.goto('/#/domainplacement')
     await page.getByRole('button', { name: /Security Fundamentals/i }).first().click()
+    await completePlacementSession(page)
 
-    for (let q = 0; q < 15; q++) {
-      await expect(page.locator('[role="radiogroup"]').first()).toBeVisible({ timeout: 30_000 })
-      const radios = page.getByRole('radio')
-      await (q === 0 ? radios.nth(1) : radios.first()).click()
-      await expect(page.getByText(/Correct|Incorrect/).first()).toBeVisible({ timeout: 10_000 })
-      if (q < 14) await page.getByRole('button', { name: 'Next' }).click()
-    }
-
-    await page.getByRole('button', { name: /See results/i }).click()
     await expect(page.getByText(/Baseline map/i)).toBeVisible({ timeout: 15_000 })
     await expect(page.getByRole('button', { name: 'Study' }).first()).toBeVisible({ timeout: 10_000 })
+  })
+
+  test('full baseline debrief maps every subsection with no sprint skips', async ({ page }) => {
+    await seedOnboarding(page)
+
+    await page.goto('/#/domainplacement')
+    await page.getByRole('button', { name: /Network Fundamentals/i }).first().click()
+    await expect(page.getByText(/every subsection sampled once/i)).toBeVisible({ timeout: 30_000 })
+    await completePlacementSession(page)
+
+    await expect(page.getByText(/Baseline map/i)).toBeVisible({ timeout: 15_000 })
+    await expect(page.getByText(/Skipped in sprint/i)).toHaveCount(0)
+    await expect(page.getByText(/Not in this check/i)).toHaveCount(0)
+    for (const id of ['1.1', '1.9', '1.12']) {
+      await expect(page.getByText(id, { exact: true }).first()).toBeVisible()
+    }
+  })
+
+  test('stale v1 baseline shows Full remap on home domain panel', async ({ page }) => {
+    await seedOnboarding(page)
+    await seedFundamentalsStalePlacement(page)
+
+    await page.goto('/')
+    await page.getByRole('button', { name: /Network Fundamentals/i }).click()
+    await expect(page.getByRole('button', { name: /Full remap/i })).toBeVisible({ timeout: 15_000 })
+    await expect(page.getByText(/full subsection coverage/i)).toBeVisible()
   })
 })

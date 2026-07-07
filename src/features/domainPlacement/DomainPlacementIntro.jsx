@@ -5,6 +5,7 @@ import { PLACEMENT_QUESTION_COUNT } from './domainPlacementConfig.js'
 import { placementDomainIds } from './placementBlueprints.js'
 import { loadAllPlacementRecords } from './domainPlacementStorage.js'
 import { placementReadyBand } from './domainPlacementConfig.js'
+import { baselineBlueprintIsStale } from './placementBlueprintCoverage.js'
 import { PLACEMENT_BASELINE_REFRESH_EVENT } from '../../storageKeys.js'
 import {
   homeCard,
@@ -54,9 +55,9 @@ export default function DomainPlacementIntro({ onExit, onStart }) {
       <h1 style={styles.h1}>Domain baseline</h1>
 
       <div style={homeCard({ border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim })}>
-        <div style={homeSectionLabel(COLORS.sky)}>MAP STRONG VS WEAK</div>
+        <div style={homeSectionLabel(COLORS.sky)}>FULL DOMAIN MAP</div>
         <p style={{ ...homeBodySm, margin: 0 }}>
-          {PLACEMENT_QUESTION_COUNT}-question check per domain — test out whole domains at 80%+, mark strong subsections complete, highlight weak ones so you study faster.
+          {PLACEMENT_QUESTION_COUNT}-question check per domain — <strong>every subsection sampled once</strong>, then strong vs weak routing. Test out whole domains at 80%+.
           Untimed · instant feedback · one recommended next step.
         </p>
         {loaded && (
@@ -72,10 +73,11 @@ export default function DomainPlacementIntro({ onExit, onStart }) {
           const last = record?.lastAttempt
           const band = last ? placementReadyBand(last.pct) : null
           const testedOut = last?.testedOut
+          const staleBlueprint = last && baselineBlueprintIsStale(last, domain.id)
           const accent = accentColors(domain.accent)
           const badgeAccent = testedOut ? 'mint' : last ? band.accent : 'silver'
-          const badge = testedOut ? '✓ Tested out' : last ? `${last.pct}%` : 'Not started'
-          const actionLabel = last ? 'Retake' : 'Start'
+          const badge = testedOut ? '✓ Tested out' : staleBlueprint ? 'Remap' : last ? `${last.pct}%` : 'Not started'
+          const actionLabel = staleBlueprint ? 'Full remap' : last ? 'Retake' : 'Start'
 
           return (
             <button
@@ -114,7 +116,12 @@ export default function DomainPlacementIntro({ onExit, onStart }) {
                 </div>
                 <span style={{ ...styles.small, color: accent.text, fontWeight: 600 }}>{actionLabel} →</span>
               </div>
-              {last?.weakObjectives?.length > 0 && (
+              {staleBlueprint && (
+                <div style={{ ...styles.small, marginTop: 8, color: COLORS.amber }}>
+                  Full remap — every subsection now sampled in the baseline map
+                </div>
+              )}
+              {last?.weakObjectives?.length > 0 && !staleBlueprint && (
                 <div style={{ ...styles.small, marginTop: 8, color: COLORS.purple }}>
                   Retake adapts — weak objectives first: {last.weakObjectives.slice(0, 3).join(', ')}
                   {last.weakObjectives.length > 3 ? '…' : ''}
@@ -126,7 +133,7 @@ export default function DomainPlacementIntro({ onExit, onStart }) {
       </div>
 
       <p style={{ ...styles.small, marginTop: 4, color: COLORS.silverMid }}>
-        Domain Pass tests pass/fail at 80%. Baseline maps strong vs weak and tests out whole domains when ready.
+        Domain Pass tests pass/fail at 80%. Baseline samples every subsection and maps strong vs weak before you test out.
       </p>
     </div>
   )

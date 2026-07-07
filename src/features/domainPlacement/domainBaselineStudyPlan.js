@@ -28,7 +28,7 @@ export function collectBaselineWeakObjectives(records = {}) {
   return ids
 }
 
-/** Sprint pool targets: weak + not sampled, excluding strong. */
+/** Sprint pool targets: weak + any still-unchecked (e.g. pre-v2 baselines); strong subsections skipped. */
 export function getSprintObjectiveIdsForDomain(domain, record) {
   if (!domain || !record?.lastAttempt) return []
   const summary = buildDomainBaselineSummary({ domain, lastAttempt: record.lastAttempt })

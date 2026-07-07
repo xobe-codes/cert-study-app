@@ -38,6 +38,7 @@ import { WLAN_AUTOMATION_POLISH_GOLD } from './goldAnswerReviewsWlanAutomationPo
 import { SECURITY_IPV6_POLISH_GOLD } from './goldAnswerReviewsSecurityIpv6Polish.js'
 import { PLACEMENT_TRAP_GOLD } from './goldAnswerReviewsPlacementTraps.js'
 import { PLACEMENT_TRAP_GOLD_BATCH2 } from './goldAnswerReviewsPlacementTrapsBatch2.js'
+import { PLACEMENT_TRAP_GOLD_BATCH3 } from './goldAnswerReviewsPlacementTrapsBatch3.js'
 
 export const GOLD_ANSWER_REVIEWS = {
   '1.5-c-q3': {
@@ -150,6 +151,7 @@ export const GOLD_ANSWER_REVIEWS = {
   ...SECURITY_IPV6_POLISH_GOLD,
   ...PLACEMENT_TRAP_GOLD,
   ...PLACEMENT_TRAP_GOLD_BATCH2,
+  ...PLACEMENT_TRAP_GOLD_BATCH3,
 }
 
 export function goldAnswerReviewFor(questionId) {

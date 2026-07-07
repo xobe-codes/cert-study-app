@@ -108,7 +108,7 @@ export default function DomainPlacementDebrief({
             Sprint check
           </div>
           <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.45 }}>
-            Skipped strong objectives — only weak and unsampled subsections in this update.
+            Skipped strong objectives — only weak and any legacy unchecked subsections in this update.
           </div>
         </div>
       )}
