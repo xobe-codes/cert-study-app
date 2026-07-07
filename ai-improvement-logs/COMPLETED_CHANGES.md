@@ -53,3 +53,4 @@
 - **2026-07-04** `offline_chunks_broaden`: PWA precaches 9 curated study chunks at install
 - **2026-07-07** `baseline_routing_95`: Stale v1 baseline remap CTAs, Study Next stale routing, weak-area dashboard hooks, `validatePlacementBlueprints` CI gate
 - **2026-07-07** Doc consolidation: `IMPLEMENTATION_TRACKER.md` replaces AGENT_NEXT_STEPS / SCORE_95_TARGET / HIGH_IMPACT / PROJECT_LOG / ENHANCEMENT_PRIORITIES for active tracking
+- **2026-07-07** `score_99_push`: 99-capable audit rubric (10 dimensions incl. mobile/a11y + tests/CI, backed by real file-based signals); extracted `ObjectiveBody.jsx` from ObjectiveScreen; split `cliEngine.js`→`cliProcess.js` and `appShell.js`→`appShellResponsiveCss.js`; added `a11y-smoke` e2e to ship gate; raised vitest timeout for bank-preload tests. Overall audit ~93→**99**.

@@ -3,7 +3,7 @@
  * Build-time coverage scanner — writes objective-level metrics to ai-improvement-logs/.
  * No runtime cost; safe to run in CI.
  */
-import { mkdirSync, writeFileSync } from 'node:fs'
+import { mkdirSync, writeFileSync, readdirSync, existsSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { ALL_OBJECTIVES } from '../src/data/ccnaDomains.js'
@@ -35,6 +35,39 @@ function passImpact(objectiveId) {
 /** Count quiz items for coverage (clean bank + skill; hand-curated when no clean file). */
 function questionCountFor(objectiveId) {
   return countObjectiveQuestions(objectiveId)
+}
+
+/** Recursively collect files matching a predicate under a directory. */
+function collectFiles(dir, predicate, acc = []) {
+  if (!existsSync(dir)) return acc
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name === 'node_modules') continue
+    const full = join(dir, entry.name)
+    if (entry.isDirectory()) collectFiles(full, predicate, acc)
+    else if (predicate(entry.name, full)) acc.push(full)
+  }
+  return acc
+}
+
+/**
+ * Real, file-based test/e2e/accessibility signals that back the mobile and
+ * tests/CI score dimensions. No test execution — pure inventory, safe in CI.
+ */
+function qualitySignals() {
+  const e2eDir = join(ROOT, 'e2e')
+  const e2eSpecs = existsSync(e2eDir)
+    ? readdirSync(e2eDir).filter(f => f.endsWith('.spec.js'))
+    : []
+  const mobileRe = /device|landscape|ipad|mobile|offline/i
+  const mobileE2e = e2eSpecs.filter(f => mobileRe.test(f)).length
+  const a11yE2e = e2eSpecs.some(f => /a11y|accessib/i.test(f))
+  const unitTestFiles = collectFiles(join(ROOT, 'src'), name => /\.test\.(js|jsx)$/.test(name)).length
+  return {
+    e2eSpecCount: e2eSpecs.length,
+    mobileE2eCount: mobileE2e,
+    a11yE2e,
+    unitTestFileCount: unitTestFiles,
+  }
 }
 
 function main() {
@@ -98,6 +131,7 @@ function main() {
       config: labs.filter(l => !l.interpretOnly).length,
       troubleshoot: labs.filter(l => l.labType === 'troubleshooting').length,
     },
+    quality: qualitySignals(),
   }
 
   writeFileSync(join(OUT_DIR, 'coverage-data.json'), JSON.stringify({ summary, rows }, null, 2))
@@ -105,6 +139,7 @@ function main() {
   console.log(`  Tier A: ${summary.tierCounts.A} · B: ${summary.tierCounts.B} · C: ${summary.tierCounts.C}`)
   console.log(`  Zero traps: ${summary.zeroTraps.length} · Zero flashcards: ${summary.zeroFlashcards.length}`)
   console.log(`  Labs: ${summary.labStats.total} (${summary.labStats.interpretOnly} interpret-only) · Trap floor: ${summary.trapAtFloor.length}`)
+  console.log(`  Tests: ${summary.quality.unitTestFileCount} unit files · ${summary.quality.e2eSpecCount} e2e (${summary.quality.mobileE2eCount} mobile · a11y ${summary.quality.a11yE2e ? '✓' : '—'})`)
 }
 
 main()

@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { isCuratedPack, getObjectiveWhyLine } from './curatedDisplay.js'
-import StudyBlockCompleteCard from './components/StudyBlockCompleteCard.jsx'
 import { useStudyBlock } from './components/StudyBlockProvider.jsx'
 import { useNavHint } from './components/NavHintProvider.jsx'
 import { labsForObjective } from './data/ccnaLabs.js'
-import ObjectiveHeader, { ObjectiveBodyIntro } from './features/objective/ObjectiveHeader.jsx'
-import ObjectiveToolPanels from './features/objective/ObjectiveToolPanels.jsx'
-import ObjectiveTabPanels from './features/objective/ObjectiveTabPanels.jsx'
+import ObjectiveHeader from './features/objective/ObjectiveHeader.jsx'
+import ObjectiveBody from './features/objective/ObjectiveBody.jsx'
 import { mapLegacyTab, TOOL_TAB_MAP } from './features/objective/objectiveTabUtils.js'
 import { useObjectiveQuizProgress } from './features/objective/useObjectiveQuizProgress.js'
 import { useObjectiveSiblings, useObjectiveToolItems } from './features/objective/useObjectiveNavigation.js'
@@ -126,63 +124,46 @@ export default function ObjectiveScreen({
         theme={theme}
       />
 
-      <div className="objective-body internal-scroll">
-        <ObjectiveBodyIntro
-          whyLine={whyLine}
-          switchPrompt={switchPrompt}
-          blockState={blockState}
-          confirmSwitch={confirmSwitch}
-          setSwitchPrompt={setSwitchPrompt}
-          tab={tab}
-          toolPanel={toolPanel}
-          progressEntry={progress[objective.id]}
-          computeMastery={computeMastery}
-          masteryPct={masteryPct}
-          objective={objective}
-          ProgressBar={ProgressBar}
-        />
-        <StudyBlockCompleteCard
-          objectiveId={objective.id}
-          masteryPct={masteryPct}
-          onQuiz={() => { setTab('Practice'); setToolPanel(null) }}
-        />
-        <ObjectiveToolPanels
-          toolPanel={toolPanel}
-          objective={objective}
-          SectionLabel={SectionLabel}
-          CLIDrillTab={CLIDrillTab}
-          SubnettingTab={SubnettingTab}
-          VLSMTab={VLSMTab}
-          IPv6CalcTab={IPv6CalcTab}
-          ACLCalcTab={ACLCalcTab}
-        />
-        <ObjectiveTabPanels
-          objective={objective}
-          tab={tab}
-          toolPanel={toolPanel}
-          progress={progress}
-          missed={missed}
-          nextObj={nextObj}
-          objectiveTabId={objectiveTabId}
-          objectivePanelId={objectivePanelId}
-          ExplainTab={ExplainTab}
-          VisualAidTab={VisualAidTab}
-          QuizTab={QuizTab}
-          onMissed={onMissed}
-          onScoreSaved={handleScoreSaved}
-          onSelectObjective={onSelectObjective}
-          onOpenMissed={onOpenMissed}
-          onOpenTrapDrill={onOpenTrapDrill}
-          onOpenLab={onOpenLab}
-          onSwitchTab={(t) => setTab(t === 'Explain' ? 'Study' : t === 'Quiz' ? 'Practice' : t)}
-          examMode={examMode}
-          premiumUnlocked={premiumUnlocked}
-          onPremiumBlocked={onPremiumBlocked}
-          showPreAssessFirst={showPreAssess}
-          onUpdateProgress={onUpdateProgress}
-          setTab={setTab}
-        />
-      </div>
+      <ObjectiveBody
+        objective={objective}
+        progress={progress}
+        missed={missed}
+        nextObj={nextObj}
+        tab={tab}
+        toolPanel={toolPanel}
+        setTab={setTab}
+        setToolPanel={setToolPanel}
+        whyLine={whyLine}
+        switchPrompt={switchPrompt}
+        blockState={blockState}
+        confirmSwitch={confirmSwitch}
+        setSwitchPrompt={setSwitchPrompt}
+        computeMastery={computeMastery}
+        masteryPct={masteryPct}
+        ProgressBar={ProgressBar}
+        SectionLabel={SectionLabel}
+        objectiveTabId={objectiveTabId}
+        objectivePanelId={objectivePanelId}
+        ExplainTab={ExplainTab}
+        VisualAidTab={VisualAidTab}
+        QuizTab={QuizTab}
+        CLIDrillTab={CLIDrillTab}
+        SubnettingTab={SubnettingTab}
+        VLSMTab={VLSMTab}
+        IPv6CalcTab={IPv6CalcTab}
+        ACLCalcTab={ACLCalcTab}
+        onMissed={onMissed}
+        onScoreSaved={handleScoreSaved}
+        onSelectObjective={onSelectObjective}
+        onOpenMissed={onOpenMissed}
+        onOpenTrapDrill={onOpenTrapDrill}
+        onOpenLab={onOpenLab}
+        examMode={examMode}
+        premiumUnlocked={premiumUnlocked}
+        onPremiumBlocked={onPremiumBlocked}
+        showPreAssess={showPreAssess}
+        onUpdateProgress={onUpdateProgress}
+      />
     </div>
   )
 }
