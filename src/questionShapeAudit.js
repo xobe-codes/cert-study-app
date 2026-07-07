@@ -1,0 +1,38 @@
+import { isMcQuestion, isOrderingQuestion } from './questionUtils.js'
+
+/** Human-readable issues when question type does not match answer shape. */
+export function auditQuestionShape(q) {
+  const issues = []
+  const stem = String(q?.question || '').trim()
+  if (!stem) issues.push('empty-stem')
+
+  const ordering = isOrderingQuestion(q)
+  const hasOrderItems = Array.isArray(q?.orderItems) && q.orderItems.length >= 3
+  const hasChoices = Array.isArray(q?.choices) && q.choices.length > 0
+  const mc = isMcQuestion(q)
+
+  if (q?.type === 'ordering') {
+    if (!hasOrderItems) issues.push('ordering-missing-orderItems')
+    if (hasChoices) issues.push('ordering-has-choices')
+  } else if (ordering) {
+    if (q?.type !== 'ordering') issues.push('orderItems-without-ordering-type')
+  }
+
+  if (mc) {
+    if (q.choices.length < 2) issues.push('mc-too-few-choices')
+    if (q.correctIndex < 0 || q.correctIndex >= q.choices.length) issues.push('mc-bad-correctIndex')
+    const blankChoices = q.choices.filter(c => !String(c ?? '').trim()).length
+    if (blankChoices) issues.push(`mc-blank-choice-text:${blankChoices}`)
+    if (q.type === 'true-false' && q.choices.length !== 2) issues.push('true-false-not-two-choices')
+  } else if (!ordering) {
+    if (!hasChoices && !hasOrderItems) issues.push('unplayable-no-answers')
+    else if (hasChoices && !mc) issues.push('choices-not-valid-mc')
+  }
+
+  return issues
+}
+
+/** MC questions safe for Domain Pass / mock MC-only surfaces. */
+export function isPlayableMcQuestion(q) {
+  return auditQuestionShape(q).length === 0 && isMcQuestion(q)
+}

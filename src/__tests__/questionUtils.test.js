@@ -54,6 +54,12 @@ describe('isMcQuestion', () => {
   it('returns false when choices missing', () => {
     expect(isMcQuestion({ correctIndex: 0 })).toBe(false)
   })
+  it('returns false for empty choices array', () => {
+    expect(isMcQuestion({ choices: [], correctIndex: 0 })).toBe(false)
+  })
+  it('returns false when correctIndex is out of range', () => {
+    expect(isMcQuestion({ choices: ['a', 'b'], correctIndex: 2 })).toBe(false)
+  })
 })
 
 describe('gradeQuestion', () => {

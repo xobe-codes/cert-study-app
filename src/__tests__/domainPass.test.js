@@ -73,6 +73,19 @@ describe('buildDomainPassPool', () => {
     expect(weak).toContain('1.1')
     expect(weak).not.toContain('1.2')
   })
+
+  it('excludes unplayable missed stems from the pool', () => {
+    const pool = buildDomainPassPool({
+      domain: mockDomain,
+      getMcQuestions: getMc,
+      shuffle: a => [...a],
+      missedQuestions: [
+        { objectiveId: '1.1', questionId: 'ghost', question: 'No choices here' },
+        { objectiveId: '1.1', question: 'Ordering only', type: 'ordering', orderItems: ['a', 'b', 'c'] },
+      ],
+    })
+    expect(pool.every(q => Array.isArray(q.choices) && q.choices.length >= 2)).toBe(true)
+  })
 })
 
 describe('countPassedDomains', () => {

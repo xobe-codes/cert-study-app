@@ -20,7 +20,10 @@ export function isOrderingQuestion(q) {
 }
 
 export function isMcQuestion(q) {
-  return !isOrderingQuestion(q) && Array.isArray(q?.choices) && typeof q.correctIndex === 'number'
+  if (isOrderingQuestion(q)) return false
+  if (!Array.isArray(q?.choices) || q.choices.length < 2) return false
+  if (typeof q.correctIndex !== 'number') return false
+  return q.correctIndex >= 0 && q.correctIndex < q.choices.length
 }
 
 export function inferSkill(q) {

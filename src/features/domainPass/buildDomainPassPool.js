@@ -1,4 +1,5 @@
 import { DOMAIN_PASS_PASS_PCT, domainPassQuestionCount } from './domainPassConfig.js'
+import { isMcQuestion } from '../../questionUtils.js'
 
 function dedupeById(questions) {
   const seen = new Set()
@@ -18,6 +19,27 @@ function collectDomainQuestions(domain, getMcQuestions) {
   return (domain?.objectives || []).flatMap(o =>
     getMcQuestions(o.id).map(q => ({ ...q, objectiveId: q.objectiveId || o.id })),
   )
+}
+
+function findMcById(domain, getMcQuestions, questionId) {
+  if (!questionId) return null
+  for (const obj of domain?.objectives || []) {
+    const found = getMcQuestions(obj.id).find(q => q.id === questionId)
+    if (found && isMcQuestion(found)) {
+      return { ...found, objectiveId: found.objectiveId || obj.id }
+    }
+  }
+  return null
+}
+
+/** Resolve missed/partial entries to full MC stems from the curated bank. */
+export function hydrateMcQuestion(entry, domain, getMcQuestions) {
+  if (!entry) return null
+  if (isMcQuestion(entry)) return { ...entry, objectiveId: entry.objectiveId }
+  const questionId = entry.id ?? entry.questionId
+  const hydrated = findMcById(domain, getMcQuestions, questionId)
+  if (!hydrated) return null
+  return { ...hydrated, objectiveId: entry.objectiveId || hydrated.objectiveId }
 }
 
 function responseForIndex(responses, idx) {
@@ -44,15 +66,20 @@ export function buildDomainPassPool({
 }) {
   const count = domainPassQuestionCount(domain)
   const shuf = shuffle || (arr => [...arr])
-  let pool = collectDomainQuestions(domain, getMcQuestions)
+  const objectiveIds = new Set((domain.objectives || []).map(o => o.id))
+
+  let pool = collectDomainQuestions(domain, getMcQuestions).filter(isMcQuestion)
 
   if (missedQuestions?.length) {
-    const objectiveIds = new Set((domain.objectives || []).map(o => o.id))
-    const domainMissed = missedQuestions.filter(m => objectiveIds.has(m.objectiveId))
-    pool = dedupeById([...pool, ...domainMissed])
+    const domainMissed = missedQuestions
+      .filter(m => objectiveIds.has(m.objectiveId))
+      .map(m => hydrateMcQuestion(m, domain, getMcQuestions))
+      .filter(Boolean)
+    pool = dedupeById([...pool, ...domainMissed]).filter(isMcQuestion)
+  } else {
+    pool = dedupeById(pool).filter(isMcQuestion)
   }
 
-  pool = dedupeById(pool)
   const weakSet = new Set(weakObjectiveIds || [])
 
   if (weakSet.size === 0) {
@@ -66,7 +93,7 @@ export function buildDomainPassPool({
   const picked = dedupeById([
     ...shuf(weakPool).slice(0, weakCount),
     ...shuf(otherPool).slice(0, otherCount),
-  ])
+  ]).filter(isMcQuestion)
 
   return shuf(picked).slice(0, Math.min(count, picked.length))
 }
