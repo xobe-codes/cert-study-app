@@ -1,10 +1,10 @@
 # CCNA Study App — Agent entry point
 
-**North star:** 95+ overall quality. **Baseline:** ~79. See `ai-improvement-logs/SCORE_95_TARGET.md`.
+**North star:** 99+ overall quality. **Current:** ~93/100. See `ai-improvement-logs/IMPLEMENTATION_TRACKER.md`.
 
 ## Session start (read in order)
 
-1. `ai-improvement-logs/AGENT_NEXT_STEPS.md`
+1. `ai-improvement-logs/IMPLEMENTATION_TRACKER.md`
 2. `ai-improvement-logs/DO_NOT_TOUCH.md`
 3. `ai-improvement-logs/IMPLEMENTATION_QUEUE.json`
 4. `npm run audit:show-next-task`
@@ -30,7 +30,7 @@ User must say **c&d**, **commit & deploy**, or **ship it**. Then: **`npm run ver
 ## Every implementation must end with
 
 - **Changes table** (file | change)
-- **Path to 95+** (what moved, what blocks, top 1–3 next moves)
+- **Path to 99+** (what moved, what blocks, top 1–3 next moves)
 
 ## Safe to edit
 

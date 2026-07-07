@@ -2,11 +2,27 @@ import { DOMAINS, ALL_OBJECTIVES } from '../../data/ccnaDomains.js'
 import { groupMissedByTrap } from '../../missed/missedTrapGroups.js'
 import { placementDomainIds } from '../domainPlacement/placementBlueprints.js'
 import { shouldSuggestPlacement } from '../domainPlacement/domainPlacementStorage.js'
+import { getStaleBaselineDomains } from '../domainPlacement/placementBlueprintCoverage.js'
 
 /** Build actionable weak-area rows for the home dashboard. */
 export function buildWeakAreaRows({ missed = [], readiness, domainPassRecords = {}, mockHistory = [], placementRecords = {} }) {
   const rows = []
   const seen = new Set()
+
+  for (const domain of getStaleBaselineDomains(placementRecords)) {
+    const key = `remap:${domain.id}`
+    if (seen.has(key)) continue
+    seen.add(key)
+    rows.push({
+      id: key,
+      label: `${domain.name} — full remap (every subsection now sampled)`,
+      badge: '↻',
+      cta: 'Full remap',
+      action: 'domainPlacement',
+      payload: { domainId: domain.id, expandOnReturn: true },
+    })
+    if (rows.length >= 2) break
+  }
 
   for (const domain of DOMAINS) {
     const weakObjs = placementRecords[domain.id]?.lastAttempt?.weakObjectives || []

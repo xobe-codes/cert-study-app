@@ -24,7 +24,7 @@ describe('buildWeakAreaRows', () => {
       placementRecords: Object.fromEntries(
         ['fundamentals', 'access', 'connectivity', 'services', 'security', 'automation'].map(id => [
           id,
-          { lastAttempt: { at: Date.now(), pct: 85 } },
+          { lastAttempt: { at: Date.now(), pct: 85, blueprintVersion: 2 } },
         ]),
       ),
     })
@@ -46,6 +46,21 @@ describe('buildWeakAreaRows', () => {
     })
     expect(rows.some(r => r.cta === 'Check level' && r.action === 'domainPlacement')).toBe(true)
     expect(rows.find(r => r.action === 'domainPlacement')?.payload?.domainId).toBe('fundamentals')
+  })
+
+  it('prioritizes full remap for stale v1 baselines', () => {
+    const rows = buildWeakAreaRows({
+      missed: [],
+      readiness: {},
+      domainPassRecords: {},
+      mockHistory: [],
+      placementRecords: {
+        fundamentals: { lastAttempt: { at: 1, pct: 80, blueprintVersion: 1 } },
+        access: { lastAttempt: { at: 1, pct: 85, blueprintVersion: 2 } },
+      },
+    })
+    expect(rows[0]?.cta).toBe('Full remap')
+    expect(rows[0]?.payload?.domainId).toBe('fundamentals')
   })
 })
 

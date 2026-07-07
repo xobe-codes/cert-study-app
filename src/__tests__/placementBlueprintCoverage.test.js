@@ -48,4 +48,16 @@ describe('placementBlueprintCoverage', () => {
       expect(summary.notCheckedObjectives, domain.id).toEqual([])
     }
   })
+
+  it('detects stale v1 baselines needing remap', async () => {
+    const { getStaleBaselineDomains, getNextStaleBaselineDomain } = await import('../features/domainPlacement/placementBlueprintCoverage.js')
+    const records = {
+      fundamentals: { lastAttempt: { blueprintVersion: 1, pct: 80 } },
+      services: { lastAttempt: { blueprintVersion: 1, pct: 75 } },
+      security: { lastAttempt: { blueprintVersion: 1, pct: 82 } },
+    }
+    const stale = getStaleBaselineDomains(records)
+    expect(stale.map(d => d.id)).toEqual(['fundamentals', 'services'])
+    expect(getNextStaleBaselineDomain(records)?.id).toBe('fundamentals')
+  })
 })

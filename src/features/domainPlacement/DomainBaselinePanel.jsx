@@ -6,6 +6,7 @@ import { buildDomainBaselineSummary, domainBaselineBand } from './domainBaseline
 import { baselineBlueprintIsStale } from './placementBlueprintCoverage.js'
 import DomainBaselineStatusPill from './DomainBaselineStatusPill.jsx'
 import { isPlacementDomain } from './placementBlueprints.js'
+import { auditPlacementBlueprintCoverage } from './placementBlueprintCoverage.js'
 
 function formatDate(ts) {
   if (!ts) return null
@@ -87,6 +88,10 @@ export default function DomainBaselinePanel({
   const band = domainBaselineBand(summary.domainStatus)
   const hasBaseline = Boolean(last)
   const blueprintStale = hasBaseline && baselineBlueprintIsStale(last, domain.id)
+  const coverage = auditPlacementBlueprintCoverage(domain.id)
+  const mappedCount = hasBaseline
+    ? domain.objectives.length - summary.notCheckedObjectives.length
+    : 0
   const sprintAvailable = hasBaseline && !summary.testedOut
     && (summary.weakObjectives.length + summary.notCheckedObjectives.length) < domain.objectives.length
   const ctaLabel = !hasBaseline
@@ -128,13 +133,14 @@ export default function DomainBaselinePanel({
               </>
             ) : (
               <span style={{ ...homeBodySm, margin: 0 }}>
-                {PLACEMENT_QUESTION_COUNT}-question check — every subsection sampled once
+                {PLACEMENT_QUESTION_COUNT}-question check — all {coverage.objectiveCount} subsections sampled
               </span>
             )}
           </div>
           {hasBaseline && (
             <div style={{ ...homeBodySm, margin: '6px 0 0', color: COLORS.silverMid }}>
               {formatDate(last.at)}
+              {mappedCount > 0 && ` · ${mappedCount}/${domain.objectives.length} subsections mapped`}
               {summary.strongObjectives.length > 0 && ` · ${summary.strongObjectives.length} strong`}
               {summary.weakObjectives.length > 0 && ` · ${summary.weakObjectives.length} weak`}
               {summary.notCheckedObjectives.length > 0 && ` · ${summary.notCheckedObjectives.length} skipped (sprint)`}

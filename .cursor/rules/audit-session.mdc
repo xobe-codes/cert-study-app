@@ -15,4 +15,4 @@ When the user says **audit**, **audit pass**, **implement next**, **full pass**,
 
 Do not refresh all logs unless user asked for a full audit (`npm run audit:full`).
 
-If queue is empty, say so and suggest the highest-impact item from `SCORE_95_TARGET.md` quick wins.
+If queue is empty, say so and suggest the highest-impact item from `IMPLEMENTATION_TRACKER.md` backlog.

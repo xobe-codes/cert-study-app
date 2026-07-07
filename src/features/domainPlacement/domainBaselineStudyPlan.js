@@ -2,6 +2,7 @@ import { DOMAINS } from '../../data/ccnaDomains.js'
 import { ALL_OBJECTIVES } from '../../data/ccnaDomains.js'
 import { placementDomainIds } from './placementBlueprints.js'
 import { buildDomainBaselineSummary } from './domainBaselineProfile.js'
+import { getNextStaleBaselineDomain } from './placementBlueprintCoverage.js'
 
 /** First placement-enabled domain without a baseline attempt. */
 export function getNextUncheckedBaselineDomain(records = {}) {
@@ -53,6 +54,16 @@ export function pickBaselineAwareStudyNext({ placementRecords = {}, dueCount = 0
       accent: 'sky',
       shortTitle: `Set baseline — ${nextDomain.name} (~15 min)`,
       domainId: nextDomain.id,
+    }
+  }
+
+  const staleDomain = getNextStaleBaselineDomain(placementRecords)
+  if (staleDomain) {
+    return {
+      kind: 'baselineRemap',
+      accent: 'amber',
+      shortTitle: `Full remap — ${staleDomain.name} (every subsection)`,
+      domainId: staleDomain.id,
     }
   }
 

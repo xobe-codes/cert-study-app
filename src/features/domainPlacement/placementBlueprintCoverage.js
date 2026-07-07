@@ -51,3 +51,15 @@ export function baselineBlueprintIsStale(lastAttempt, domainId) {
   if (!lastAttempt || !blueprint) return false
   return (lastAttempt.blueprintVersion || 1) < blueprint.version
 }
+
+/** Domains with a baseline on an older blueprint (missing subsection coverage). */
+export function getStaleBaselineDomains(records = {}) {
+  return placementDomainIds()
+    .filter(id => baselineBlueprintIsStale(records[id]?.lastAttempt, id))
+    .map(id => DOMAINS.find(d => d.id === id))
+    .filter(Boolean)
+}
+
+export function getNextStaleBaselineDomain(records = {}) {
+  return getStaleBaselineDomains(records)[0] || null
+}

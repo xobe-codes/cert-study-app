@@ -491,36 +491,14 @@ Per audit constraints — agents must not modify:
 - \`.env*\`
 `)
 
-  write('AGENT_NEXT_STEPS.md', `# Agent Next Steps
+  const trackerStub = (title) => `# ${title}
 
-1. Read \`APP_AUDIT_SUMMARY.md\` → \`DO_NOT_TOUCH.md\` → \`IMPLEMENTATION_QUEUE.json\`
-2. Pick **one** pending queue item (\`npm run audit:show-next-task\`)
-3. Smallest safe diff; no theme/route changes; no live AI on load
-4. Run \`npm run verify:ship\`
-5. Mark queue item \`done\` via \`npm run audit:mark-done -- <id> "summary"\`
+**→ Read [\`IMPLEMENTATION_TRACKER.md\`](./IMPLEMENTATION_TRACKER.md)** — single source of truth (99+ north star, queue, backlog, shipped).
 
-## Coverage snapshot (${summary.generatedAt.slice(0, 10)})
-- **${summary.totalObjectives} objectives** · Tier A: **${summary.tierCounts.A}** · B: ${summary.tierCounts.B} · C: ${summary.tierCounts.C}
-- **Zero traps: ${summary.zeroTraps.length}** · **Zero flashcards: ${summary.zeroFlashcards.length}** · **Zero cmds: ${summary.zeroCommands.length}**
-- **${metrics.totalLabs} labs** (${metrics.interpretLabCount} interpret-only · ${metrics.configLabCount} config)
-- **Overall score: ~${scores.overall}/100** (see \`APP_SCORECARD.md\`)
+Quick start: \`DO_NOT_TOUCH.md\` → \`IMPLEMENTATION_QUEUE.json\` → \`npm run audit:show-next-task\`
+`
 
-## Queue status — polish phase
-Run \`npm run audit:show-next-task\` for the highest-priority **pending** item.
-
-| Priority | Typical next ids | area |
-|----------|------------------|------|
-| **Next** | \`stem_replay_wave14\` | Missed Q → lab CTAs for new lab-lite |
-| medium | \`depth_trap_wave14\` | +1 trap for ${metrics.trapAtFloor} objs at floor |
-| medium | \`learning_flow_mock_polish\` | Mobile Practice + mock debrief |
-| low | \`config_lab_strategy\` | ${metrics.configLabCount} config labs tiering |
-
-## Recently completed
-- Gap closure: waves 2/11/13 + lab-lite (EC, AAA, DHCP, OSPF, NAT, TS) — **53/53 Tier A**
-- \`extract_app_shell_modules\`, \`pwa_offline_curated\`, trap waves 12–13, reading commands waves 1–2
-
-See \`AUDIT_SHORTCUTS.md\` or run \`npm run audit:help\`.
-`)
+  write('AGENT_NEXT_STEPS.md', trackerStub('Agent Next Steps'))
 
   write('CURRENT_APP_AND_DATABASE_INVENTORY.md', `# Current App and Database Inventory
 
@@ -710,13 +688,10 @@ Tier breakdown: A=${summary.tierCounts.A}, B=${summary.tierCounts.B}, C=${summar
     'Stem-replay in stemReplayLabs.js for lab CTAs from Practice misses.',
   ]))
 
-  write('HIGH_IMPACT_CCNA_GAPS.md', reportStub('High Impact CCNA Gaps', [
-    'gap_coverage_complete — 53/53 Tier A (resolved)',
-    'gap_stem_replay_wave14 — lab CTAs from missed questions (pending)',
-    `gap_trap_floor — ${metrics.trapAtFloor} objs at 4 traps (pending wave 14)`,
-    'gap_mock_mobile_polish — Practice stack + debrief (pending)',
-    `gap_config_lab_tier — ${metrics.configLabCount} config labs (pending strategy)`,
-  ]))
+  write('HIGH_IMPACT_CCNA_GAPS.md', `# High Impact CCNA Gaps
+
+**→ Superseded by [\`IMPLEMENTATION_TRACKER.md\`](./IMPLEMENTATION_TRACKER.md)** — see **Backlog** and **Scorecard → 99+** sections.
+`)
 
   write('CONTENT_TO_ADD_SUGGESTIONS.md', reportStub('Content to Add Suggestions', [
     'Stem-replay: 2.4, 4.1, 4.6, 5.4, 3.6 TS lab IDs.',
@@ -764,32 +739,9 @@ Tier breakdown: A=${summary.tierCounts.A}, B=${summary.tierCounts.B}, C=${summar
 
   write('SCORE_95_TARGET.md', `# Path to 95+ — living checklist
 
-North star: **95+ overall**. **Current audit score: ~${scores.overall}/100** (${summary.generatedAt.slice(0, 10)}).
+**→ Superseded by [\`IMPLEMENTATION_TRACKER.md\`](./IMPLEMENTATION_TRACKER.md)** (99+ north star, scorecard, backlog).
 
-## Score targets (must all be ≥90 for 95+ overall)
-
-| Area | Now | 95+ target | Highest-leverage work |
-|------|----:|-------------:|------------------------|
-| Coverage breadth | ${scores.coverageBreadth} | 95 | ${scores.coverageBreadth >= 95 ? '✓ Met' : 'Rich diagrams on objectives without custom visuals'} |
-| Coverage depth | ${scores.coverageDepth} | 95 | Trap wave 14 (${metrics.trapAtFloor} at floor); gold reviews |
-| Learning flow | ${scores.learningFlow} | 95 | Stem-replay wave 14; mock debrief polish |
-| Labs / CLI | ${scores.labCoverage} | 95 | Config lab tiering (${metrics.configLabCount} typing labs) |
-| Mobile / responsive | ${scores.learningFlow >= 88 ? 87 : 82} | 95 | offline_chunks_broaden; Practice stack compaction |
-| Exam traps | ${scores.examTraps} | 95 | depth_trap_wave14 |
-| Maintainability | ${scores.maintainability} | 90 | objective_screen_extract |
-| Tests / CI | 94+ | 95 | verify:ship (762+ unit, 16 e2e) |
-
-## Definition of done at 95+
-
-- Free path: curated lesson + diagram + terms + quiz with **zero** AI required ✓
-- Labs: learn → IOS practice → verify for every config-heavy objective ✓ (interpret + config tier)
-- Works on iPhone portrait/landscape, iPad, MacBook without layout breaks ✓
-- Tests green in verify:ship ✓
-- No regressions in premium gates or offline curated content ✓
-
-## Next queue items
-
-Run \`npm run audit:show-next-task\` — typically \`stem_replay_wave14\` first.
+Run \`npm run audit:scan-and-refresh\` to regenerate scores after content changes.
 `)
 
   const queue = mergeQueueItems([
@@ -811,6 +763,84 @@ Run \`npm run audit:show-next-task\` — typically \`stem_replay_wave14\` first.
   ], existingById)
 
   write('IMPLEMENTATION_QUEUE.json', JSON.stringify({ generatedAt: summary.generatedAt, items: queue }, null, 2))
+
+  const pendingItems = queue.filter(i => i.status === 'pending')
+  const pendingRows = pendingItems.length
+    ? pendingItems.map(i => `| \`${i.id}\` | ${i.priority} | ${i.area} | ${i.recommendedImprovement} |`).join('\n')
+    : '| _empty_ | — | — | Run \`npm run audit:scan-and-refresh\` or pick backlog row below |'
+
+  write('IMPLEMENTATION_TRACKER.md', `# Implementation Tracker — 99+ North Star
+
+**Single source of truth** for current work, queue, scores, and shipped history.
+**Updated:** ${summary.generatedAt.slice(0, 10)} · **Overall:** ~${scores.overall}/100 → target **99+** (all areas ≥95)
+
+---
+
+## Agent playbook (every session)
+
+1. Read this file → \`DO_NOT_TOUCH.md\` → \`IMPLEMENTATION_QUEUE.json\`
+2. \`npm run audit:show-next-task\` — pick **one** pending item (or backlog below if queue empty)
+3. Smallest safe diff · no theme tokens · no hash routing · curated-first
+4. \`npm run verify:ship\`
+5. \`npm run audit:mark-done -- <id> "summary"\` · append **Shipped** · \`npm run audit:scan-and-refresh\`
+
+**Ship:** user says **c&d** → verify → commit → push → wrangler pages deploy
+
+---
+
+## Coverage snapshot
+
+| Metric | Value |
+|--------|------:|
+| Objectives | ${summary.totalObjectives} · Tier A **${summary.tierCounts.A}** · B ${summary.tierCounts.B} · C ${summary.tierCounts.C} |
+| Labs | ${metrics.totalLabs} (${metrics.interpretLabCount} interpret · ${metrics.configLabCount} config) |
+| Trap / flashcard / cmd gaps | **${summary.zeroTraps.length} / ${summary.zeroFlashcards.length} / ${summary.zeroCommands.length}** |
+| App.jsx | ~${metrics.appLines} lines |
+
+---
+
+## Scorecard → 99+
+
+| Area | Now | 99+ bar | Gap-closers |
+|------|----:|--------:|-------------|
+| Coverage breadth | ${scores.coverageBreadth} | 95 | ${scores.coverageBreadth >= 95 ? '✓ Met' : 'Diagrams on thin objectives'} |
+| Coverage depth | ${scores.coverageDepth} | 95 | Gold reviews; trap floor ${metrics.trapAtFloor} |
+| Learning flow | ${scores.learningFlow} | 95 | SRS e2e; reading tier de-dupe |
+| Labs / CLI | ${scores.labCoverage} | 95 | Config→lab-lite for top traffic (${metrics.configLabCount} typing) |
+| Mobile | 87 | 95 | Offline chunks; Practice stack |
+| Exam traps | ${scores.examTraps} | 95 | Placement-trap gold reviews |
+| Maintainability | ${scores.maintainability} | 95 | ObjectiveScreen extract (~${metrics.objectiveScreenLines} lines) |
+| Tests / CI | 94+ | 95 | verify:ship green |
+
+---
+
+## Queue (\`IMPLEMENTATION_QUEUE.json\`)
+
+**Pending:** ${pendingItems.length} · **Total:** ${queue.length}
+
+| id | priority | area | work |
+|----|----------|------|------|
+${pendingRows}
+
+---
+
+## Backlog (when queue empty)
+
+| id | area | work |
+|----|------|------|
+| \`gold_reviews_wave15\` | content | Expand gold answer reviews |
+| \`objective_screen_extract\` | maintainability | Split ObjectiveScreen.jsx |
+| \`config_lab_lite_wave\` | labs | Lab-lite for top config labs |
+| \`srs_e2e_full\` | learning_flow | Daily Review due-count e2e |
+
+Full shipped history: \`COMPLETED_CHANGES.md\`
+
+---
+
+## Do not touch
+
+\`.env*\` · \`src/ui/appTheme.js\` · hash routing in \`App.jsx\` · live AI on load. See \`DO_NOT_TOUCH.md\`.
+`)
 
   const gapQueue = tierC.map(r => ({
     gapId: `gap_${r.objectiveId.replace('.', '_')}`,

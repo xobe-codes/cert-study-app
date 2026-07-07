@@ -28,11 +28,30 @@ describe('domainBaselineStudyPlan', () => {
     expect(next?.domainId).toBe('fundamentals')
   })
 
+  it('prioritizes stale blueprint remap before weak objective study', () => {
+    const records = Object.fromEntries(
+      ['fundamentals', 'access', 'connectivity', 'services', 'security', 'automation'].map(id => [
+        id,
+        {
+          lastAttempt: {
+            at: 1,
+            pct: 75,
+            blueprintVersion: id === 'fundamentals' ? 1 : 2,
+            weakObjectives: id === 'security' ? ['5.3'] : [],
+          },
+        },
+      ]),
+    )
+    const next = pickBaselineAwareStudyNext({ placementRecords: records, dueCount: 0 })
+    expect(next?.kind).toBe('baselineRemap')
+    expect(next?.domainId).toBe('fundamentals')
+  })
+
   it('suggests weak objective study when baselines exist', () => {
     const records = Object.fromEntries(
       ['fundamentals', 'access', 'connectivity', 'services', 'security', 'automation'].map(id => [
         id,
-        { lastAttempt: { at: 1, pct: 75, weakObjectives: id === 'security' ? ['5.3'] : [] } },
+        { lastAttempt: { at: 1, pct: 75, blueprintVersion: 2, weakObjectives: id === 'security' ? ['5.3'] : [] } },
       ]),
     )
     const next = pickBaselineAwareStudyNext({ placementRecords: records, dueCount: 0 })

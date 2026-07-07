@@ -51,3 +51,5 @@
 - **2026-07-04** `learning_flow_mock_polish`: Compact mobile answer review, mock debrief lab CTAs, confidence strip CSS
 - **2026-07-04** `config_lab_strategy`: 25 config labs tiered with INTERPRET/CONFIG badges and interpret alternates
 - **2026-07-04** `offline_chunks_broaden`: PWA precaches 9 curated study chunks at install
+- **2026-07-07** `baseline_routing_95`: Stale v1 baseline remap CTAs, Study Next stale routing, weak-area dashboard hooks, `validatePlacementBlueprints` CI gate
+- **2026-07-07** Doc consolidation: `IMPLEMENTATION_TRACKER.md` replaces AGENT_NEXT_STEPS / SCORE_95_TARGET / HIGH_IMPACT / PROJECT_LOG / ENHANCEMENT_PRIORITIES for active tracking

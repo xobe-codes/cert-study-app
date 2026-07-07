@@ -8,7 +8,7 @@ export default function StudyNextStrip({ next, onSelectObjective, onOpenReview, 
   const c = accentColors(next.accent)
   const onClick = next.kind === 'review'
     ? onOpenReview
-    : next.kind === 'baseline'
+    : (next.kind === 'baseline' || next.kind === 'baselineRemap')
       ? () => onOpenDomainPlacement?.({ domainId: next.domainId, expandOnReturn: true })
       : () => onSelectObjective?.({ ...next.objective, __initialTab: next.tab })
   return (

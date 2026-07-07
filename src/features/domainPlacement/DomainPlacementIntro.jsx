@@ -6,6 +6,7 @@ import { placementDomainIds } from './placementBlueprints.js'
 import { loadAllPlacementRecords } from './domainPlacementStorage.js'
 import { placementReadyBand } from './domainPlacementConfig.js'
 import { baselineBlueprintIsStale } from './placementBlueprintCoverage.js'
+import { auditPlacementBlueprintCoverage } from './placementBlueprintCoverage.js'
 import { PLACEMENT_BASELINE_REFRESH_EVENT } from '../../storageKeys.js'
 import {
   homeCard,
@@ -74,6 +75,7 @@ export default function DomainPlacementIntro({ onExit, onStart }) {
           const band = last ? placementReadyBand(last.pct) : null
           const testedOut = last?.testedOut
           const staleBlueprint = last && baselineBlueprintIsStale(last, domain.id)
+          const coverage = auditPlacementBlueprintCoverage(domain.id)
           const accent = accentColors(domain.accent)
           const badgeAccent = testedOut ? 'mint' : last ? band.accent : 'silver'
           const badge = testedOut ? '✓ Tested out' : staleBlueprint ? 'Remap' : last ? `${last.pct}%` : 'Not started'
@@ -112,7 +114,7 @@ export default function DomainPlacementIntro({ onExit, onStart }) {
                 <div style={{ ...homeBodySm, margin: 0 }}>
                   {last
                     ? `Last: ${formatDate(last.at)} · ${last.correct}/${last.total}${last.trapPct != null ? ` · Traps ${last.trapPct}%` : ''}`
-                    : 'Establish your baseline for this domain'}
+                    : `All ${coverage.objectiveCount} subsections sampled · establish your baseline`}
                 </div>
                 <span style={{ ...styles.small, color: accent.text, fontWeight: 600 }}>{actionLabel} →</span>
               </div>

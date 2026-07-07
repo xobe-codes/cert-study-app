@@ -74,6 +74,11 @@ export default function DomainPlacementDebrief({
             Domain tested out — strong subsections marked complete; focus weak areas when you study.
           </div>
         )}
+        {baselineSummary && baselineSummary.notCheckedObjectives.length === 0 && sessionMode !== 'maintenance' && (
+          <div style={{ ...styles.small, marginTop: 8, color: COLORS.sky, fontWeight: 600 }}>
+            Full domain map — all {domain?.objectives?.length || 0} subsections sampled in this check.
+          </div>
+        )}
         {baselineSummary && !baselineSummary.testedOut && baselineSummary.weakObjectives.length > 0 && (
           <div style={{ ...styles.small, marginTop: 8, color: COLORS.rose }}>
             Focus: {baselineSummary.weakObjectives.join(', ')}

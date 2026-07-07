@@ -47,6 +47,7 @@ async function completePlacementSession(page) {
 
 async function seedFundamentalsStalePlacement(page) {
   await page.evaluate(async () => {
+    const v2 = { at: Date.now(), pct: 85, blueprintVersion: 2, correct: 12, total: 15 }
     await window.storage.setItem('ccna_domain_placement_v1', {
       fundamentals: {
         lastAttempt: {
@@ -70,6 +71,11 @@ async function seedFundamentalsStalePlacement(page) {
         attempts: 1,
         history: [],
       },
+      access: { lastAttempt: { ...v2 }, attempts: 1 },
+      connectivity: { lastAttempt: { ...v2 }, attempts: 1 },
+      services: { lastAttempt: { ...v2 }, attempts: 1 },
+      security: { lastAttempt: { ...v2 }, attempts: 1 },
+      automation: { lastAttempt: { ...v2 }, attempts: 1 },
     })
   })
 }
@@ -166,8 +172,16 @@ test.describe('Domain placement smoke', () => {
     await seedFundamentalsStalePlacement(page)
 
     await page.goto('/')
-    await page.getByRole('button', { name: /Network Fundamentals/i }).click()
-    await expect(page.getByRole('button', { name: /Full remap/i })).toBeVisible({ timeout: 15_000 })
-    await expect(page.getByText(/full subsection coverage/i)).toBeVisible()
+    await expect(page.getByText(/UPDATE YOUR BASELINE MAP/i)).toBeVisible({ timeout: 20_000 })
+    await expect(page.getByRole('button', { name: /Full remap Network Fundamentals/i })).toBeVisible()
+  })
+
+  test('study next surfaces full remap for stale fundamentals baseline', async ({ page }) => {
+    await seedOnboarding(page)
+    await seedFundamentalsStalePlacement(page)
+
+    await page.goto('/')
+    await expect(page.getByRole('button', { name: /STUDY NEXT/i })).toBeVisible({ timeout: 20_000 })
+    await expect(page.getByText(/Full remap — Network Fundamentals/i)).toBeVisible()
   })
 })

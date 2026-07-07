@@ -631,11 +631,12 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
                   {placementRecord?.lastAttempt ? (
                     <>
                       {' · '}
-                      {baselineSummary.strongObjectives.length} strong
+                      {objs.length - baselineSummary.notCheckedObjectives.length}/{objs.length} mapped
+                      {baselineSummary.strongObjectives.length > 0 && ` · ${baselineSummary.strongObjectives.length} strong`}
                       {baselineSummary.weakObjectives.length > 0 && ` · ${baselineSummary.weakObjectives.length} weak`}
                     </>
                   ) : isPlacementDomain(domain.id) ? (
-                    <> · Set baseline to map strong vs weak</>
+                    <> · {objs.length} subsections · set baseline</>
                   ) : null}
                 </div>
                 {/* Outer bar width = exam weight (so D4@25% appears wider than D1@20%); fill = mastery */}
