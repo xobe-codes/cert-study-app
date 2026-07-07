@@ -91,6 +91,17 @@ export default function DomainPlacementDebrief({
         )}
       </div>
 
+      {sessionMode === 'maintenance' && (
+        <div style={{ ...styles.card, marginBottom: 8, borderColor: COLORS.mintBorder }}>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.mint, marginBottom: 6 }}>
+            Maintenance pulse
+          </div>
+          <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.45 }}>
+            Three trap stems only — your baseline map and tested-out status stay unchanged.
+          </div>
+        </div>
+      )}
+
       {sessionMode === 'sprint' && (
         <div style={{ ...styles.card, marginBottom: 8, borderColor: COLORS.skyBorder }}>
           <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.sky, marginBottom: 6 }}>
@@ -163,9 +174,11 @@ export default function DomainPlacementDebrief({
         </button>
       )}
       <button type="button" style={{ ...styles.secondaryBtn, marginBottom: 8 }} onClick={onRetake}>
-        {(previousAttempt?.weakObjectives?.length || adaptiveWeakObjectives.length)
-          ? 'Adaptive retake'
-          : 'Retake placement'}
+        {sessionMode === 'maintenance'
+          ? 'Run maintenance again'
+          : (previousAttempt?.weakObjectives?.length || adaptiveWeakObjectives.length)
+            ? 'Adaptive retake'
+            : 'Retake placement'}
       </button>
       <button type="button" style={styles.secondaryBtn} onClick={onExit}>
         Done

@@ -172,6 +172,13 @@ describe('placement adaptive retake', () => {
     expect(adaptive.questions.map(q => q.id).sort()).toEqual(baseline.questions.map(q => q.id).sort())
     expect(adaptive.questions[0].objectiveId).toMatch(/^1\.(1|2)$/)
   })
+
+  it('builds maintenance pool with trap stems only', () => {
+    const pool = buildPlacementPool('security', { mode: 'maintenance' })
+    expect(pool.mode).toBe('maintenance')
+    expect(pool.questions).toHaveLength(3)
+    expect(Object.values(pool.trapByQuestionId).filter(Boolean).length).toBeGreaterThan(0)
+  })
 })
 
 describe('shouldSuggestPlacement', () => {

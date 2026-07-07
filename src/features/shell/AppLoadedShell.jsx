@@ -81,6 +81,7 @@ export default function AppLoadedShell({
   setActiveDomainPassId,
   activeDomainPlacementId,
   setActiveDomainPlacementId,
+  placementSessionMode,
   exitDomainPlacement,
   refreshDomainPassCount,
   refreshDue,
@@ -219,6 +220,7 @@ export default function AppLoadedShell({
           setActiveDomainPassId={setActiveDomainPassId}
           activeDomainPlacementId={activeDomainPlacementId}
           setActiveDomainPlacementId={setActiveDomainPlacementId}
+          placementSessionMode={placementSessionMode}
           exitDomainPlacement={exitDomainPlacement}
           settingsExamMode={settingsExamMode}
           missed={missed}

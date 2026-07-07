@@ -7,7 +7,7 @@ import {
   computeWeakObjectivesFromPlacement,
   orderPlacementBlueprintItems,
 } from './placementAdaptiveRetake.js'
-import { PLACEMENT_QUESTION_COUNT } from './domainPlacementConfig.js'
+import { PLACEMENT_QUESTION_COUNT, PLACEMENT_MAINTENANCE_TRAP_COUNT } from './domainPlacementConfig.js'
 
 function findQuestionInDomain(domain, questionId) {
   for (const obj of domain.objectives) {
@@ -51,17 +51,32 @@ export function buildPlacementPool(domainId, {
   const weakIds = weakObjectiveIds?.length ? weakObjectiveIds : []
   let items = [...(blueprint.items || [])]
   let mode = requestedMode || (weakIds.length ? 'adaptive' : 'baseline')
+  const shuf = shuffle || (arr => [...arr])
 
-  if (mode === 'sprint' && sprintObjectiveIds?.length) {
+  if (mode === 'maintenance') {
+    const trapItems = items.filter(i => i.trap)
+    let picked = shuf(trapItems.length ? trapItems : items)
+    if (picked.length < PLACEMENT_MAINTENANCE_TRAP_COUNT) {
+      const used = new Set(picked.map(i => i.id))
+      for (const item of shuf(items)) {
+        if (picked.length >= PLACEMENT_MAINTENANCE_TRAP_COUNT) break
+        if (used.has(item.id)) continue
+        picked.push(item)
+        used.add(item.id)
+      }
+    }
+    items = picked.slice(0, PLACEMENT_MAINTENANCE_TRAP_COUNT)
+  } else if (mode === 'sprint' && sprintObjectiveIds?.length) {
     const sprintSet = new Set(sprintObjectiveIds)
     const filtered = items.filter(i => sprintSet.has(i.objectiveId))
     if (filtered.length) items = filtered
   }
 
+  const cap = mode === 'maintenance' ? PLACEMENT_MAINTENANCE_TRAP_COUNT : PLACEMENT_QUESTION_COUNT
   const orderedItems = orderPlacementBlueprintItems(items, {
     weakObjectiveIds: mode === 'sprint' ? weakIds : weakIds,
     shuffle,
-  }).slice(0, PLACEMENT_QUESTION_COUNT)
+  }).slice(0, cap)
 
   const { questions, trapByQuestionId } = materializeItems(domain, orderedItems, {})
 

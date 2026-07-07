@@ -4,6 +4,9 @@ import { isPlacementDomain, placementDomainIds } from './placementBlueprints.js'
 
 export const PLACEMENT_QUESTION_COUNT = 15
 
+/** Trap-only pulse after domain test-out. */
+export const PLACEMENT_MAINTENANCE_TRAP_COUNT = 3
+
 export const PLACEMENT_STALE_MS = 14 * 24 * 60 * 60 * 1000
 
 export { isPlacementDomain, placementDomainIds }

@@ -25,6 +25,7 @@ export function useAppNavigation() {
   const [placementBaselineCount, setPlacementBaselineCount] = useState(0)
   const [placementTestedOutCount, setPlacementTestedOutCount] = useState(0)
   const [placementRecords, setPlacementRecords] = useState({})
+  const [placementSessionMode, setPlacementSessionMode] = useState(null)
   const [mockDomainPrefill, setMockDomainPrefill] = useState(null)
   const [selectedObjective, setSelectedObjective] = useState(null)
   const [openDomain, setOpenDomain] = useState(null)
@@ -87,6 +88,7 @@ export function useAppNavigation() {
 
   const openDomainPlacement = useCallback((opts) => {
     setActiveDomainPlacementId(opts?.domainId || null)
+    setPlacementSessionMode(opts?.placementMode || null)
     placementExpandOnReturnRef.current = opts?.expandOnReturn ? (opts?.domainId || null) : null
     setReturnToView(view)
     setView('domainplacement')
@@ -95,6 +97,7 @@ export function useAppNavigation() {
   const exitDomainPlacement = useCallback(() => {
     const expandId = placementExpandOnReturnRef.current
     setActiveDomainPlacementId(null)
+    setPlacementSessionMode(null)
     placementExpandOnReturnRef.current = null
     if (expandId) {
       setOpenDomain(expandId)
@@ -143,6 +146,7 @@ export function useAppNavigation() {
     setActiveDomainPassId,
     activeDomainPlacementId,
     setActiveDomainPlacementId,
+    placementSessionMode,
     domainPassPassedCount,
     domainPassRecords,
     placementBaselineCount,

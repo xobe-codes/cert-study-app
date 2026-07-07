@@ -21,6 +21,7 @@ import { appendMissedEntry } from '../domainPass/domainPassStorage.js'
  */
 export default function DomainPlacementSession({
   domainId,
+  sessionModeHint = null,
   onExit,
   onStudyObjective,
   onOpenTrapDrill,
@@ -59,7 +60,9 @@ export default function DomainPlacementSession({
         : []
 
       let pool
-      if (record?.lastAttempt) {
+      if (sessionModeHint === 'maintenance' && record?.lastAttempt?.testedOut) {
+        pool = buildPlacementPool(domainId, { mode: 'maintenance' })
+      } else if (record?.lastAttempt) {
         const summary = buildDomainBaselineSummary({ domain, lastAttempt: record.lastAttempt })
         const sprintIds = getSprintObjectiveIdsForDomain(domain, record)
         if (sprintIds.length && sprintIds.length < domain.objectives.length) {
@@ -87,7 +90,7 @@ export default function DomainPlacementSession({
       setError(err.message)
       setPhase('error')
     }
-  }, [domain, domainId])
+  }, [domain, domainId, sessionModeHint])
 
   useEffect(() => {
     startSession()
@@ -119,6 +122,7 @@ export default function DomainPlacementSession({
   useEffect(() => {
     if (phase !== 'done' || !report || finishSaved.current) return
     finishSaved.current = true
+    if (sessionMode === 'maintenance') return
     savePlacementAttempt(domainId, {
       at: Date.now(),
       pct: report.pct,
@@ -129,7 +133,7 @@ export default function DomainPlacementSession({
       correct: report.correct,
       total: report.total,
     })
-  }, [phase, report, domainId, blueprintVersion])
+  }, [phase, report, domainId, blueprintVersion, sessionMode])
 
   if (!domain && phase !== 'loading') {
     return <ErrorBox message="Unknown domain." onRetry={onExit} />
@@ -192,11 +196,13 @@ export default function DomainPlacementSession({
       </div>
       <div style={{ ...styles.small, marginBottom: 8, color: COLORS.silverMid }}>
         {domain.name}
-        {sessionMode === 'sprint'
-          ? ' — sprint (weak + unsampled objectives only)'
-          : sessionMode === 'adaptive'
-            ? ` — adaptive retake (${adaptiveWeakObjectives.length} weak objective${adaptiveWeakObjectives.length === 1 ? '' : 's'} first)`
-            : ' — fixed diagnostic set (compare scores over time)'}
+        {sessionMode === 'maintenance'
+          ? ' — maintenance pulse (3 trap stems, baseline unchanged)'
+          : sessionMode === 'sprint'
+            ? ' — sprint (weak + unsampled objectives only)'
+            : sessionMode === 'adaptive'
+              ? ` — adaptive retake (${adaptiveWeakObjectives.length} weak objective${adaptiveWeakObjectives.length === 1 ? '' : 's'} first)`
+              : ' — fixed diagnostic set (compare scores over time)'}
       </div>
       <div style={styles.card}>
         <QuestionMeta q={q} />

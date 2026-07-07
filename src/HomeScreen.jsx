@@ -323,6 +323,7 @@ function StudyModeBtn({ onClick, children, primary, disabled }) {
 }
 
 export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMockInterview, onOpenMissed, onOpenTutor, onPremiumBlocked, premiumUnlocked = false, onOpenMetrics, onOpenStats, onOpenSettings, onOpenReview, onOpenLabs, onOpenFocus, onOpenTopicFocus, onOpenCommandHub, onOpenStudyLens, onOpenExamTraps, onOpenTrapDrill, onOpenDomainPass, onOpenDomainPlacement, domainPassPassedCount = 0, placementBaselineCount = 0, placementTestedOutCount = 0, placementRecords = {}, domainPassRecords = {}, examDate = null, onOpenSubnet, onOpenRouting, onOpenExtraStudy, commandDrills = {}, theme, onToggleTheme }) {
+  const [showStrongObjectives, setShowStrongObjectives] = useState({})
   const [suggestions, setSuggestions] = useState([])
   const [learnerSummary, setLearnerSummary] = useState(null)
   const [retention, setRetention] = useState([])
@@ -653,12 +654,26 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
                   <DomainBaselinePanel
                     domain={domain}
                     record={placementRecord}
-                    onCheckLevel={(domainId) => onOpenDomainPlacement({ domainId, expandOnReturn: true })}
+                    onCheckLevel={(domainId, opts) => onOpenDomainPlacement({
+                      domainId,
+                      expandOnReturn: true,
+                      placementMode: opts?.placementMode,
+                    })}
                     onStudyObjective={studyObjective}
                     onOpenDomainPass={onOpenDomainPass}
                   />
                 )}
-                {objs.map(o => {
+                {(() => {
+                  const strongObjs = baselineSummary?.testedOut
+                    ? objs.filter(o => placementRecord?.lastAttempt?.objectiveProfiles?.[o.id]?.status === 'strong')
+                    : []
+                  const hideStrong = baselineSummary?.testedOut && !showStrongObjectives[domain.id]
+                  const visibleObjs = hideStrong
+                    ? objs.filter(o => placementRecord?.lastAttempt?.objectiveProfiles?.[o.id]?.status !== 'strong')
+                    : objs
+                  return (
+                    <>
+                      {visibleObjs.map(o => {
                   const status = progress[o.id]?.status || 'unseen'
                   const baselineStatus = placementRecord?.lastAttempt?.objectiveProfiles?.[o.id]?.status
                   return (
@@ -686,6 +701,26 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
                     </button>
                   )
                 })}
+                      {hideStrong && strongObjs.length > 0 && (
+                        <button
+                          type="button"
+                          className="ccna-hover"
+                          onClick={() => setShowStrongObjectives(s => ({ ...s, [domain.id]: true }))}
+                          style={{
+                            ...styles.secondaryBtn,
+                            width: '100%',
+                            marginTop: 4,
+                            marginBottom: 0,
+                            fontSize: 'var(--ccna-type-xs)',
+                            minHeight: 40,
+                          }}
+                        >
+                          Show {strongObjs.length} strong (complete)
+                        </button>
+                      )}
+                    </>
+                  )
+                })()}
               </div>
             )}
           </div>

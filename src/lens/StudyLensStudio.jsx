@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { DOMAINS } from '../data/ccnaDomains.js'
 import { COLORS, styles } from '../ui/appTheme.js'
 import { parseRichTextSegments } from '../lesson/richTextParse.js'
@@ -9,6 +9,8 @@ import { buildInstantAnswer } from '../library/instantAnswer.js'
 import { detectIntent, INTENT_LABEL } from '../library/intentDetect.js'
 import { synthesizeLibraryAnswer, synthesisCacheKey } from '../library/synthesizeAnswer.js'
 import { loadSynthesisCache, saveSynthesisCache } from '../lens/lensStorage.js'
+import { loadAllPlacementRecords } from '../features/domainPlacement/domainPlacementStorage.js'
+import { collectBaselineWeakObjectives } from '../features/domainPlacement/domainBaselineStudyPlan.js'
 import StudyModeHeader from '../components/StudyModeHeader.jsx'
 
 const SUGGESTED = [
@@ -50,16 +52,33 @@ export default function StudyLensStudio({
 }) {
   const [query, setQuery] = useState(initialQuery)
   const [domainFilter, setDomainFilter] = useState('all')
+  const [baselineFocus, setBaselineFocus] = useState(false)
+  const [placementRecords, setPlacementRecords] = useState({})
   const [submitted, setSubmitted] = useState(initialQuery.trim())
   const [synthesized, setSynthesized] = useState(null)
   const [streaming, setStreaming] = useState(null)
   const [synthLoading, setSynthLoading] = useState(false)
   const [synthError, setSynthError] = useState(null)
 
+  useEffect(() => {
+    loadAllPlacementRecords().then(setPlacementRecords).catch(() => {})
+  }, [])
+
+  const weakObjectiveIds = useMemo(
+    () => collectBaselineWeakObjectives(placementRecords),
+    [placementRecords],
+  )
+  const weakObjectiveSet = useMemo(() => new Set(weakObjectiveIds), [weakObjectiveIds])
+
   const searchResult = useMemo(() => {
     if (!submitted.trim()) return null
-    return searchLibrary(submitted, { domainFilter, scopeObjectiveId })
-  }, [submitted, domainFilter, scopeObjectiveId])
+    const raw = searchLibrary(submitted, { domainFilter, scopeObjectiveId })
+    if (!baselineFocus || !raw?.hits?.length) return raw
+    const hits = raw.hits.filter(hit =>
+      hit.objectiveIds?.some(id => weakObjectiveSet.has(id)),
+    )
+    return { ...raw, hits, totalMatches: hits.length }
+  }, [submitted, domainFilter, scopeObjectiveId, baselineFocus, weakObjectiveSet])
 
   const instant = useMemo(() => {
     if (!searchResult?.hits?.length) return null
@@ -158,6 +177,20 @@ export default function StudyLensStudio({
             {d.weight}%
           </button>
         ))}
+        {weakObjectiveIds.length > 0 && (
+          <button
+            type="button"
+            onClick={() => setBaselineFocus(v => !v)}
+            style={{
+              ...styles.pill(baselineFocus ? 'rose' : 'silver'),
+              border: 'none',
+              cursor: 'pointer',
+              fontFamily: 'inherit',
+            }}
+          >
+            Baseline focus{baselineFocus ? ` (${weakObjectiveIds.length} weak)` : ''}
+          </button>
+        )}
       </div>
 
       {!submitted && (

@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { COLORS, styles } from '../../ui/appTheme.js'
 import { homeBodySm, homeSectionLabel } from '../../home/homeUi.js'
-import { PLACEMENT_QUESTION_COUNT } from './domainPlacementConfig.js'
+import { PLACEMENT_QUESTION_COUNT, PLACEMENT_MAINTENANCE_TRAP_COUNT } from './domainPlacementConfig.js'
 import { buildDomainBaselineSummary, domainBaselineBand } from './domainBaselineProfile.js'
 import DomainBaselineStatusPill from './DomainBaselineStatusPill.jsx'
 import { isPlacementDomain } from './placementBlueprints.js'
@@ -90,7 +90,7 @@ export default function DomainBaselinePanel({
   const ctaLabel = !hasBaseline
     ? 'Set baseline'
     : summary.testedOut
-      ? 'Refresh check'
+      ? null
       : sprintAvailable
         ? 'Sprint update'
         : 'Update baseline'
@@ -137,32 +137,68 @@ export default function DomainBaselinePanel({
             </div>
           )}
         </div>
-        <button
-          type="button"
-          className="ccna-hover"
-          style={{
-            ...styles.primaryBtn,
-            marginBottom: 0,
-            flexShrink: 0,
-            fontSize: 'var(--ccna-type-xs)',
-            padding: '10px 14px',
-            minHeight: 40,
-          }}
-          onClick={() => onCheckLevel?.(domain.id)}
-        >
-          {ctaLabel} →
-        </button>
+        {summary.testedOut ? (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flexShrink: 0, minWidth: 140 }}>
+            <button
+              type="button"
+              className="ccna-hover"
+              style={{
+                ...styles.primaryBtn,
+                marginBottom: 0,
+                fontSize: 'var(--ccna-type-xs)',
+                padding: '10px 14px',
+                minHeight: 40,
+              }}
+              onClick={() => onCheckLevel?.(domain.id, { placementMode: 'maintenance' })}
+            >
+              Maintenance ({PLACEMENT_MAINTENANCE_TRAP_COUNT} traps) →
+            </button>
+            <button
+              type="button"
+              className="ccna-hover"
+              style={{
+                ...styles.secondaryBtn,
+                marginBottom: 0,
+                fontSize: 'var(--ccna-type-xs)',
+                padding: '8px 12px',
+                minHeight: 36,
+              }}
+              onClick={() => onCheckLevel?.(domain.id)}
+            >
+              Full refresh ({PLACEMENT_QUESTION_COUNT} Q) →
+            </button>
+          </div>
+        ) : (
+          <button
+            type="button"
+            className="ccna-hover"
+            style={{
+              ...styles.primaryBtn,
+              marginBottom: 0,
+              flexShrink: 0,
+              fontSize: 'var(--ccna-type-xs)',
+              padding: '10px 14px',
+              minHeight: 40,
+            }}
+            onClick={() => onCheckLevel?.(domain.id)}
+          >
+            {ctaLabel} →
+          </button>
+        )}
       </div>
 
       {summary.testedOut && onOpenDomainPass && (
         <div style={{ marginBottom: 10 }}>
+          <div style={{ ...homeBodySm, margin: '0 0 8px', color: COLORS.mint, lineHeight: 1.45 }}>
+            Baseline tested out — subsections mapped. Domain Pass is the timed exam gate when you are ready.
+          </div>
           <button
             type="button"
             className="ccna-hover"
             style={{ ...styles.secondaryBtn, marginBottom: 0, width: '100%', fontSize: 'var(--ccna-type-xs)' }}
             onClick={() => onOpenDomainPass({ domainId: domain.id })}
           >
-            Ready for Domain Pass? →
+            Start Domain Pass →
           </button>
         </div>
       )}
@@ -201,7 +237,7 @@ export default function DomainBaselinePanel({
             </div>
           )}
 
-          {strongObjs.length > 0 && (
+          {strongObjs.length > 0 && !summary.testedOut && (
             <div style={{ marginBottom: uncheckedObjs.length ? 8 : 0 }}>
               <div style={{ fontSize: 'var(--ccna-type-micro)', fontWeight: 700, color: COLORS.mint, marginBottom: 4 }}>
                 STRONG — COMPLETE FOR ROUTING

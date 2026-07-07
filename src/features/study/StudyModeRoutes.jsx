@@ -38,6 +38,7 @@ export default function StudyModeRoutes({
   setActiveDomainPassId,
   activeDomainPlacementId,
   setActiveDomainPlacementId,
+  placementSessionMode = null,
   exitDomainPlacement,
   settingsExamMode,
   missed,
@@ -192,8 +193,9 @@ export default function StudyModeRoutes({
   if (view === 'domainplacement' && activeDomainPlacementId) {
     return (
       <DomainPlacementSession
-        key={activeDomainPlacementId}
+        key={`${activeDomainPlacementId}-${placementSessionMode || 'baseline'}`}
         domainId={activeDomainPlacementId}
+        sessionModeHint={placementSessionMode}
         onExit={exitDomainPlacement || (() => setActiveDomainPlacementId(null))}
         onStudyObjective={(objectiveId) => {
           const obj = ALL_OBJECTIVES.find(o => o.id === objectiveId)
