@@ -17,6 +17,15 @@ const TARGETS = [
   join(ROOT, 'src/home/StudyNextStrip.jsx'),
 ]
 
+const RESPONSIVE_CSS = join(ROOT, 'src/ui/appShellResponsiveCss.js')
+
+function studyGridHasMinmax(homeSrc) {
+  if (homeSrc.includes('minmax(0, 1fr)')) return true
+  if (!homeSrc.includes('home-study-grid')) return false
+  const css = readFileSync(RESPONSIVE_CSS, 'utf8')
+  return css.includes('.home-study-grid') && css.includes('minmax(0, 1fr)')
+}
+
 function checkFile(path, src) {
   const findings = []
   const rel = path.replace(ROOT + '/', '')
@@ -28,7 +37,7 @@ function checkFile(path, src) {
     if (!src.includes('flexWrap')) {
       findings.push({ severity: 'medium', issue: 'Missing flexWrap on header/domain rows (mobile wrap risk)' })
     }
-    if (!src.includes('minmax(0, 1fr)')) {
+    if (!studyGridHasMinmax(src)) {
       findings.push({ severity: 'medium', issue: 'Study modes grid missing minmax(0, 1fr) columns' })
     }
     if (/borderRadius:\s*10/.test(src) && /borderRadius:\s*14/.test(src)) {

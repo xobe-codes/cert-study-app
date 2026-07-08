@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { parseRichTextSegments } from '../lesson/richTextParse.js'
 import { resolveIncorrectItem } from '../answerReviewLogic.js'
 import { isMcQuestion, isCliQuestion, isOrderingQuestion, correctAnswerLabel, gradeQuestion } from '../questionUtils.js'
+import { goldCliReviewFor } from '../answerReview/goldAnswerReviewsCliSkill.js'
 import QuestionFlagPanel from './QuestionFlagPanel.jsx'
 import StemReplayCTA from '../features/stemReplay/StemReplayCTA.jsx'
 import QuestionUnderReviewBanner from './QuestionUnderReviewBanner.jsx'
@@ -82,15 +83,23 @@ export default function AnswerReview({ q, selected, cliAnswer, orderAnswer, hide
   if (isCliQuestion(q)) {
     const correct = correctAnswerLabel(q)
     const userCmd = String(cliAnswer || '').trim()
+    const cliGold = goldCliReviewFor(q?.id)
     return (
       <div className={`ccna-answer-review${compactMobile ? ' ccna-answer-review--compact' : ''}`} style={{ marginTop: compactMobile ? 6 : 8, minWidth: 0 }}>
         <QuestionUnderReviewBanner questionId={q?.id} />
         <ReviewBlock icon="✅" title={`CORRECT COMMAND: ${correct}`} accent="mint">
-          <RichText text={q.explanation} />
+          <RichText text={cliGold?.explanation || q.explanation} />
         </ReviewBlock>
         {!gradeQuestion(q, cliAnswer) && userCmd && (
           <ReviewBlock icon="✗" title={`YOUR COMMAND: ${userCmd}`} accent="rose">
-            <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid }}>Accepted forms include shorthand such as <code>sh</code>, <code>conf t</code>, and interface abbreviations.</div>
+            <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid }}>
+              {cliGold?.wrongPattern || 'Accepted forms include shorthand such as sh, conf t, and interface abbreviations.'}
+            </div>
+          </ReviewBlock>
+        )}
+        {!hideExamTip && cliGold?.examTip && (
+          <ReviewBlock icon="💡" title="EXAM TIP" accent="amber" collapsible defaultOpen={false}>
+            <RichText text={cliGold.examTip} />
           </ReviewBlock>
         )}
         {showQuestionFlag && objectiveId && <QuestionFlagPanel questionId={q.id} objectiveId={objectiveId} />}

@@ -33,15 +33,15 @@
 | Area | Now | 99+ bar | Signal / gap-closer |
 |------|----:|--------:|---------------------|
 | Coverage breadth | 99 | 97 | Tier-A ratio (53/53) |
-| Coverage depth | 99 | 97 | avg 25 Q · 11 traps/obj |
+| Coverage depth | 99 | 97 | avg 25 Q · 12 traps/obj |
 | Learning flow | 99 | 97 | SRS + stem-replay loops; question volume |
 | Engineer perspective | 99 | 97 | engineer view 53/53 |
 | CLI verification | 99 | 96 | ≥2 verify cmds 53/53 |
-| Exam traps | 100 | 97 | avg 11 traps · floor 0 |
+| Exam traps | 100 | 97 | avg 12 traps · floor 0 |
 | Labs / CLI | 99 | 97 | lab/obj + 57 interpret + 10 TS |
 | Maintainability | 97 | 96 | App 196L · ObjScreen 170L · 0 files >900L |
 | Mobile / a11y | 99 | 96 | 6 mobile e2e · a11y ✓ |
-| Tests / CI | 99 | 96 | 117 unit files · 27 e2e |
+| Tests / CI | 99 | 96 | 119 unit files · 28 e2e |
 
 ---
 
@@ -59,10 +59,9 @@
 
 | id | area | work |
 |----|------|------|
-| `split_study_quiz_tabs` | maintainability | Split `studyQuizTabs.jsx` (5L) + appShell core (873L) under 900 |
-| `gold_reviews_wave15` | content | Expand gold answer reviews for high-miss stems |
-| `config_lab_lite_wave` | labs | Lab-lite alternates for remaining config labs |
-| `trap_depth_wave15` | exam_traps | Raise avg traps/objective beyond 11 |
+| `trap_depth_wave22` | exam_traps | Further trap depth beyond avg 12 |
+| `config_lab_convert` | labs | Convert remaining 25 config labs to lab-lite |
+| `chunk_split_domains` | mobile | Split clean-question chunk by domain for faster first paint |
 
 Full shipped history: `COMPLETED_CHANGES.md`
 

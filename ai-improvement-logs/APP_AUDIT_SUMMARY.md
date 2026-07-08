@@ -1,6 +1,6 @@
 # App Audit Summary
 
-**Generated:** 2026-07-08T10:43:13.872Z  
+**Generated:** 2026-07-08T11:08:37.791Z  
 **Overall learning quality:** ~99/100
 
 ## Strengths
@@ -17,11 +17,11 @@
 - Objectives without lab: **0**
 - Engineer View on objectives: **53/53**
 
-## Polish phase (95+ north star)
-- **0** objectives at trap floor (4 traps) — depth wave 14 queued
-- **25** config labs still require IOS typing — tier or convert
-- Stem-replay wiring for latest lab-lite batch — queued
-- Mobile: compact Practice stack + broader offline chunks — queued
+## Polish phase (99+ maintenance)
+- **Queue empty** — all 18 implementation items shipped
+- **0** objectives at trap floor · avg **12** traps/objective
+- **25** config labs tiered advanced (interpret alternates + UI labels shipped)
+- CLI skill gold debriefs, home 390px e2e, trap wave 21 — maintenance polish complete
 
 ## Coverage tiers
 | Tier | Count | Pass risk |

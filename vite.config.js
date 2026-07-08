@@ -161,6 +161,7 @@ export default defineConfig({
   // Cloudflare Pages: `/`. GitHub Pages project site: set VITE_BASE=/cert-study-app/ in deploy workflow.
   base: process.env.VITE_BASE || '/',
   build: {
+    chunkSizeWarningLimit: 1500,
     rollupOptions: {
       output: {
         manualChunks(id) {

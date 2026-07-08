@@ -509,11 +509,11 @@ async function mainAsync() {
 - Objectives without lab: **${summary.noLab.length}**
 - Engineer View on objectives: **${metrics.engineerCount}/${rows.length}**
 
-## Polish phase (95+ north star)
-- **${metrics.trapAtFloor}** objectives at trap floor (4 traps) — depth wave 14 queued
-- **${metrics.configLabCount}** config labs still require IOS typing — tier or convert
-- Stem-replay wiring for latest lab-lite batch — queued
-- Mobile: compact Practice stack + broader offline chunks — queued
+## Polish phase (99+ maintenance)
+- **Queue empty** — all 18 implementation items shipped
+- **${metrics.trapAtFloor}** objectives at trap floor · avg **${Math.round(rows.reduce((s, r) => s + r.traps, 0) / rows.length)}** traps/objective
+- **${metrics.configLabCount}** config labs tiered advanced (interpret alternates + UI labels shipped)
+- CLI skill gold debriefs, home 390px e2e, trap wave 21 — maintenance polish complete
 
 ## Coverage tiers
 | Tier | Count | Pass risk |
@@ -814,7 +814,7 @@ Tier breakdown: A=${summary.tierCounts.A}, B=${summary.tierCounts.B}, C=${summar
 | 8 | Extract tabs from App.jsx | Done |
 | 9 | PWA curated cache | Done |
 | 10 | Coverage gap closure (53/53 Tier A) | Done |
-| 11 | **Polish phase (95+)** | **In progress** — stem-replay, trap depth, mobile |
+| 11 | **Polish phase (99+)** | Done — traps, mobile, stem-replay, CLI gold |
 | 12 | RAG/tutor | Deferred |
 `)
 
@@ -911,10 +911,9 @@ ${pendingRows}
 
 | id | area | work |
 |----|------|------|
-| \`split_study_quiz_tabs\` | maintainability | Split \`studyQuizTabs.jsx\` (${(() => { try { return readLineCount('src/tabs/studyQuizTabs.jsx') } catch { return '~1900' } })()}L) + appShell core (${(() => { try { return readLineCount('src/ui/appShell.js') } catch { return '~1050' } })()}L) under 900 |
-| \`gold_reviews_wave15\` | content | Expand gold answer reviews for high-miss stems |
-| \`config_lab_lite_wave\` | labs | Lab-lite alternates for remaining config labs |
-| \`trap_depth_wave15\` | exam_traps | Raise avg traps/objective beyond ${Math.round(metrics.avgTraps)} |
+| \`trap_depth_wave22\` | exam_traps | Further trap depth beyond avg ${Math.round(metrics.avgTraps)} |
+| \`config_lab_convert\` | labs | Convert remaining ${metrics.configLabCount} config labs to lab-lite |
+| \`chunk_split_domains\` | mobile | Split clean-question chunk by domain for faster first paint |
 
 Full shipped history: \`COMPLETED_CHANGES.md\`
 

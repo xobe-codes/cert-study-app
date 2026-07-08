@@ -12,6 +12,6 @@
 | 8 | Extract tabs from App.jsx | Done |
 | 9 | PWA curated cache | Done |
 | 10 | Coverage gap closure (53/53 Tier A) | Done |
-| 11 | **Polish phase (95+)** | **In progress** — stem-replay, trap depth, mobile |
+| 11 | **Polish phase (99+)** | Done — traps, mobile, stem-replay, CLI gold |
 | 12 | RAG/tutor | Deferred |
 
