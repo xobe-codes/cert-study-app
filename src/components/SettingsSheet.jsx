@@ -166,7 +166,7 @@ export default function SettingsSheet({
           overflowY: 'auto',
           borderRadius: '16px 16px 0 0',
           marginBottom: 0,
-          paddingBottom: 'calc(env(safe-area-inset-bottom) + 16px)',
+          paddingBottom: 'calc(var(--ccna-safe-bottom) + 16px)',
           transform: dragY ? `translateY(${dragY}px)` : undefined,
           transition: dragY ? 'none' : 'transform .25s ease',
         }}

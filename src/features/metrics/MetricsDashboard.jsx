@@ -262,7 +262,7 @@ export default function MetricsDashboard({ progress, missed, dueCount = 0, onBac
       <div style={{ ...styles.small, marginBottom: 10 }}>Everything below is {STATIC_COPY.metrics}.</div>
 
       {studyNext && (
-        <div style={{ position: 'sticky', top: 0, zIndex: 5, background: COLORS.bg, paddingBottom: 10, marginBottom: 4 }}>
+        <div className="ccna-safe-sticky-top" style={{ paddingBottom: 10, marginBottom: 4 }}>
           <StudyNextStrip next={studyNext} onSelectObjective={onSelectObjective} onOpenReview={onOpenReview} sticky />
         </div>
       )}

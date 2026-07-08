@@ -15,6 +15,7 @@ import McChoices from '../../components/McChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
 import { QuizRichText, QuestionMeta, OrderingQuestion, CliAnswerInput } from '../../components/QuizQuestionChrome.jsx'
 import Spinner from '../../components/Spinner.jsx'
+import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import { useMasteryProgress } from '../progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
 
@@ -106,12 +107,11 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection 
     setCurrent(queue[0]); setQueue(q => q.slice(1)); setSelected(null); setRevealed(false); setCliAnswer('')
   }
 
-  if (phase === 'loading') return <div><button style={styles.backBtn} onClick={onBack}>‹ Back</button><Spinner label="Gathering your reviews..." /></div>
+  if (phase === 'loading') return <div><StudyModeHeader title="Daily Review" onBack={onBack} /><Spinner label="Gathering your reviews..." /></div>
   if (phase === 'empty') {
     return (
       <div>
-        <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
-        <h1 style={styles.h1}>Daily Review</h1>
+        <StudyModeHeader title="Daily Review" onBack={onBack} />
         <p style={styles.small}>Nothing due right now. Spaced repetition brings questions back on their schedule — take some quizzes and they'll reappear here over the coming days.</p>
       </div>
     )
@@ -119,7 +119,7 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection 
   if (phase === 'done') {
     return (
       <div>
-        <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
+        <StudyModeHeader title="Daily Review" onBack={onBack} />
         <div style={styles.card}>
           <h2 style={styles.h2}>Review complete</h2>
           <p style={{ fontSize: 'var(--ccna-type-2xl)', fontWeight: 700, color: COLORS.mint, margin: '4px 0' }}>{stats.correct} / {stats.total}</p>
@@ -136,9 +136,8 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection 
   const obj = ALL_OBJECTIVES.find(o => o.id === current.objectiveId)
   return (
     <div className="ccna-review-flow">
-      <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4 }}>
-        <h1 style={{ ...styles.h1, margin: 0 }}>Daily Review</h1>
+      <StudyModeHeader title="Daily Review" onBack={onBack} />
+      <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'baseline', marginBottom: 4 }}>
         <span style={styles.small}>{total - queue.length} of {total}</span>
       </div>
       <div style={{ ...styles.small, marginBottom: 8 }}>Mixed sections · retrieval practice{revealed ? '' : ' — answer before revealing'}</div>

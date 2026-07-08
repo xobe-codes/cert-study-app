@@ -10,6 +10,7 @@ import {
 } from './data/knowledgeStudy.js'
 import { STATIC_COPY } from './ui/staticContentCopy.js'
 import { COLORS } from './ui/appTheme.js'
+import StudyModeHeader from './components/StudyModeHeader.jsx'
 import { TRAP_DOMAIN_NUMBERS, trapDomainMeta } from './study/trapDomainConstants.js'
 import { useMasteryProgress } from './features/progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from './features/progress/masteryEngagement.js'
@@ -191,8 +192,7 @@ export default function ExamTrapStudyMode({ styles, onBack, prefill, onPrefillCo
   if (!traps.length) {
     return (
       <div>
-        <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
-        <h1 style={styles.h1}>Exam Trap Drill</h1>
+        <StudyModeHeader title="Exam Trap Drill" onBack={onBack} />
         <DomainPicker domainId={domainId} onChange={switchDomain} styles={styles} trapCounts={trapCounts} />
         <ObjectiveFilter objectiveId={objectiveFilter} objectives={objectives} onChange={setObjectiveFilter} styles={styles} />
         <div style={styles.small}>
@@ -205,10 +205,7 @@ export default function ExamTrapStudyMode({ styles, onBack, prefill, onPrefillCo
 
   return (
     <div className="exam-trap-study">
-      <div className="trap-drill-sticky-header">
-        <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      </div>
-      <h1 style={styles.h1}>Exam Trap Drill</h1>
+      <StudyModeHeader title="Exam Trap Drill" onBack={onBack} />
       <DomainPicker domainId={domainId} onChange={switchDomain} styles={styles} trapCounts={trapCounts} />
       {!trapFilter && (
         <ObjectiveFilter

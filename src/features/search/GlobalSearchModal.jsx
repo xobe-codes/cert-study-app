@@ -58,10 +58,6 @@ export default function GlobalSearchModal({ progress, onSelectObjective, onClose
       style={{
         position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.7)', zIndex: MODAL_Z,
         display: 'flex', flexDirection: 'column', alignItems: 'center',
-        paddingTop: 'max(60px, env(safe-area-inset-top))',
-        paddingLeft: 'max(16px, env(safe-area-inset-left))',
-        paddingRight: 'max(16px, env(safe-area-inset-right))',
-        paddingBottom: 'max(16px, env(safe-area-inset-bottom))',
       }}
       onClick={e => { if (e.target === e.currentTarget) onClose() }}
     >

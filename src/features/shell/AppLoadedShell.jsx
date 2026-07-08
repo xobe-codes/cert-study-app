@@ -136,7 +136,19 @@ export default function AppLoadedShell({
   skipTour,
   pullRefresh,
 }) {
-  useVisualViewportBottomInset(showBottomNav || view === 'objective' || view === 'tutor' || view === 'mockinterview')
+  useVisualViewportBottomInset(
+    showBottomNav
+    || view === 'objective'
+    || view === 'tutor'
+    || view === 'mockinterview'
+    || view === 'lab'
+    || view === 'labs'
+    || view === 'trapdrill'
+    || view === 'examtraps'
+    || view === 'review'
+    || view === 'focus'
+    || view === 'subnet',
+  )
 
   return (
     <AppShell view={view} compactTopChrome={compactTopChrome} withBottomNav={showBottomNav}>

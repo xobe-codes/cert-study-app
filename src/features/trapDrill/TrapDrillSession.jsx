@@ -10,6 +10,7 @@ import {
 } from './trapDrillQuestions.js'
 import { trapDomainMeta } from '../../study/trapDomainConstants.js'
 import TrapDrillHub from './TrapDrillHub.jsx'
+import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import { useMasteryProgress } from '../progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
 
@@ -111,8 +112,7 @@ export default function TrapDrillSession({ prefill, onBack }) {
   if (!questions.length) {
     return (
       <div>
-        <button type="button" style={styles.backBtn} onClick={backToHub}>‹ Choose domain</button>
-        <h1 style={styles.h1}>Trap Drill</h1>
+        <StudyModeHeader title="Trap Drill" onBack={backToHub} backLabel="Choose domain" />
         <p style={styles.small}>No drill questions match this scope. Pick another domain or pattern.</p>
         <button type="button" style={styles.secondaryBtn} onClick={backToHub}>Back to domain picker</button>
       </div>
@@ -124,8 +124,7 @@ export default function TrapDrillSession({ prefill, onBack }) {
     const domainMeta = scope.kind === 'domain' ? trapDomainMeta(scope.domainId) : null
     return (
       <div>
-        <button type="button" style={styles.backBtn} onClick={backToHub}>‹ Choose domain</button>
-        <h1 style={styles.h1}>Trap Drill Complete</h1>
+        <StudyModeHeader title="Trap Drill Complete" onBack={backToHub} backLabel="Choose domain" />
         <div style={styles.card}>
           <div style={{ fontSize: 'var(--ccna-type-display)', fontWeight: 700, color: pct >= 70 ? COLORS.mint : COLORS.amber }}>{pct}%</div>
           <div style={styles.small}>{stats.correct} / {stats.total} correct</div>
@@ -153,10 +152,7 @@ export default function TrapDrillSession({ prefill, onBack }) {
 
   return (
     <div className="trap-drill-session">
-      <div className="trap-drill-sticky-header">
-        <button type="button" style={styles.backBtn} onClick={backToHub}>‹ Domains</button>
-      </div>
-      <h1 style={styles.h1}>Trap Drill</h1>
+      <StudyModeHeader title="Trap Drill" onBack={backToHub} backLabel="Domains" />
       {resolved ? (
         <div style={{ ...styles.pill('amber'), display: 'inline-block', marginBottom: 10, fontSize: 'var(--ccna-type-xs)' }}>
           {resolved.trapLabel}

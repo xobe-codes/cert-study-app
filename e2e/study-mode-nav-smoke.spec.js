@@ -29,6 +29,8 @@ test.describe('Study mode navigation', () => {
       const bottomBack = page.getByRole('navigation', { name: /main navigation/i }).getByRole('button', { name: 'Back', exact: true })
       if (await bottomBack.isVisible().catch(() => false)) {
         await bottomBack.click()
+      } else if (await page.locator('.study-mode-back-btn').isVisible().catch(() => false)) {
+        await page.locator('.study-mode-back-btn').click()
       } else {
         await page.getByRole('button', { name: /^‹ Back$/ }).first().click()
       }
@@ -45,7 +47,7 @@ test.describe('Study mode navigation', () => {
   test('bottom nav Back returns from labs to home', async ({ page }) => {
     await page.goto('/#/labs')
     await expect(page.getByRole('heading', { name: /Hands-on Labs/i })).toBeVisible({ timeout: 20_000 })
-    await page.getByRole('button', { name: 'Back', exact: true }).click()
+    await page.getByRole('navigation', { name: /main navigation/i }).getByRole('button', { name: 'Back', exact: true }).click()
     await expect(page.getByRole('heading', { name: /CCNA 200-301/i })).toBeVisible({ timeout: 15_000 })
   })
 })

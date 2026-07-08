@@ -8,6 +8,10 @@ const FLUID_TYPE_CSS = `
     :root {
       --ccna-bottom-nav-height: 64px;
       --vv-bottom-inset: 0px;
+      --ccna-safe-top: env(safe-area-inset-top, 0px);
+      --ccna-safe-right: env(safe-area-inset-right, 0px);
+      --ccna-safe-bottom: env(safe-area-inset-bottom, 0px);
+      --ccna-safe-left: env(safe-area-inset-left, 0px);
       --ccna-type-caption: clamp(12px, 0.65vmin + 10px, 14px);
       --ccna-type-micro: clamp(12px, 0.55vmin + 10px, 13px);
       --ccna-type-xs: clamp(13px, 0.7vmin + 11px, 15px);
@@ -115,16 +119,16 @@ export function buildAppShellCss(colors) {
       max-width: min(${SITE_COLUMN_MAX}px, 100%);
       margin-left: auto;
       margin-right: auto;
-      padding-left: max(16px, env(safe-area-inset-left));
-      padding-right: max(16px, env(safe-area-inset-right));
+      padding-left: max(16px, var(--ccna-safe-left));
+      padding-right: max(16px, var(--ccna-safe-right));
       box-sizing: border-box;
       min-width: 0;
       overflow-x: hidden;
     }
     @media (min-width: 768px) {
       .site-column {
-        padding-left: max(24px, env(safe-area-inset-left));
-        padding-right: max(24px, env(safe-area-inset-right));
+        padding-left: max(24px, var(--ccna-safe-left));
+        padding-right: max(24px, var(--ccna-safe-right));
       }
     }
     ${buildAppShellChromeCss(colors)}
@@ -231,6 +235,7 @@ export function buildAppShellCss(colors) {
     .objective-header--sticky .objective-sticky-chrome {
       position: static;
       box-shadow: none;
+      padding-top: calc(var(--ccna-safe-top) + 2px);
       background: linear-gradient(
         to bottom,
         color-mix(in srgb, ${colors.bg} 96%, transparent) 0%,
@@ -547,8 +552,8 @@ export function buildAppShellCss(colors) {
     @media (max-width: 640px) {
       .app-shell--compact-top > .app-chrome-toolbar {
         position: absolute;
-        top: calc(env(safe-area-inset-top) + 2px);
-        right: max(16px, env(safe-area-inset-right));
+        top: calc(var(--ccna-safe-top) + 2px);
+        right: max(16px, var(--ccna-safe-right));
         left: auto;
         width: auto;
         z-index: 130;
@@ -567,7 +572,7 @@ export function buildAppShellCss(colors) {
         font-size: 16px;
       }
       .app-shell--compact-top .route-inner.ccna-container.page-fill {
-        padding-top: calc(env(safe-area-inset-top) + 2px);
+        padding-top: calc(var(--ccna-safe-top) + 2px);
       }
       .app-shell--compact-top .objective-header {
         padding-right: 0;
@@ -595,7 +600,7 @@ export function buildAppShellCss(colors) {
     }
     @media (max-width: 640px) {
       .app-chrome-toolbar {
-        padding-top: calc(env(safe-area-inset-top) + 4px);
+        padding-top: calc(var(--ccna-safe-top) + 4px);
         padding-bottom: 4px;
       }
     }
@@ -609,10 +614,10 @@ export function buildAppShellCss(colors) {
     }
     .study-mode-header {
       position: sticky;
-      top: 0;
+      top: var(--ccna-safe-top);
       z-index: 45;
       margin: 0 0 10px;
-      padding: calc(env(safe-area-inset-top) + 2px) 0 10px;
+      padding: 6px 0 10px;
       background: linear-gradient(
         to bottom,
         color-mix(in srgb, ${colors.bg} 98%, transparent) 0%,
@@ -650,10 +655,24 @@ export function buildAppShellCss(colors) {
       color: ${colors.silver};
     }
     .study-mode-header__subtitle {
-      margin: 0;
+      margin: 0 0 8px;
       font-size: var(--ccna-type-sm);
-      line-height: 1.5;
+      line-height: 1.45;
       color: ${colors.silverMid};
+    }
+    .ccna-safe-sticky-top {
+      position: sticky;
+      top: var(--ccna-safe-top);
+      z-index: 8;
+      padding-top: 4px;
+      padding-bottom: 8px;
+      margin-bottom: 4px;
+      background: linear-gradient(
+        to bottom,
+        color-mix(in srgb, ${colors.bg} 98%, transparent) 0%,
+        color-mix(in srgb, ${colors.bg} 90%, transparent) 88%,
+        transparent 100%
+      );
     }
     .stats-bottom-bar {
       margin-bottom: 8px;
@@ -718,7 +737,7 @@ export function buildAppShellCss(colors) {
       -webkit-overflow-scrolling: touch;
     }
     .app-shell--with-bottom-nav .objective-body {
-      padding-bottom: calc(var(--ccna-bottom-nav-height) + env(safe-area-inset-bottom) + var(--vv-bottom-inset, 0px) + 8px);
+      padding-bottom: calc(var(--ccna-bottom-nav-height) + var(--ccna-safe-bottom) + var(--vv-bottom-inset, 0px) + 8px);
     }
     html[data-reduce-motion="true"] .domain-accordion-panel,
     html[data-reduce-motion="true"] .objective-tab-panel,
@@ -736,7 +755,7 @@ export function buildAppShellCss(colors) {
       flex-shrink: 0;
       display: flex;
       gap: 8px;
-      padding-bottom: calc(env(safe-area-inset-bottom) + var(--vv-bottom-inset, 0px));
+      padding-bottom: calc(var(--ccna-safe-bottom) + var(--vv-bottom-inset, 0px));
     }
     .ccna-overlay {
       position: fixed;
@@ -750,7 +769,7 @@ export function buildAppShellCss(colors) {
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      padding: 0 max(16px, env(safe-area-inset-right)) calc(env(safe-area-inset-bottom) + 72px) max(16px, env(safe-area-inset-left));
+      padding: 0 max(16px, var(--ccna-safe-right)) calc(var(--ccna-safe-bottom) + 72px) max(16px, var(--ccna-safe-left));
       pointer-events: none;
     }
     .nav-hint-toast {

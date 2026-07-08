@@ -11,7 +11,7 @@ export function buildAppShellChromeCss(colors) {
       align-items: center;
       justify-content: flex-end;
       gap: 8px;
-      padding-top: calc(env(safe-area-inset-top) + 6px);
+      padding-top: calc(var(--ccna-safe-top) + 6px);
       padding-bottom: 6px;
       min-height: 0;
       width: 100%;
@@ -22,7 +22,7 @@ export function buildAppShellChromeCss(colors) {
       justify-content: center;
       width: 100%;
       padding-top: 8px;
-      padding-bottom: calc(env(safe-area-inset-bottom) + 10px);
+      padding-bottom: calc(var(--ccna-safe-bottom) + 10px);
       z-index: 120;
       background: linear-gradient(to top, ${colors.bg} 70%, transparent);
     }
@@ -54,7 +54,7 @@ export function buildAppShellChromeCss(colors) {
       background: color-mix(in srgb, ${colors.bg} 94%, transparent);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      padding-bottom: env(safe-area-inset-bottom);
+      padding-bottom: var(--ccna-safe-bottom);
       z-index: 125;
       box-shadow: 0 -4px 24px color-mix(in srgb, ${colors.bg} 55%, transparent);
     }
@@ -108,7 +108,7 @@ export function buildAppShellChromeCss(colors) {
     .app-shell--with-bottom-nav .route-scroll .route-inner.ccna-container,
     .app-shell--with-bottom-nav .route-shell--fill .route-inner.ccna-container:not(.page-fill) {
       padding-bottom: calc(
-        var(--ccna-bottom-nav-height) + env(safe-area-inset-bottom) + var(--vv-bottom-inset, 0px) + 16px
+        var(--ccna-bottom-nav-height) + var(--ccna-safe-bottom) + var(--vv-bottom-inset, 0px) + 16px
       );
     }
     html[data-reduce-motion="true"] .ccna-view,

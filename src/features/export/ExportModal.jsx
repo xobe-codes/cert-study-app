@@ -78,7 +78,7 @@ export default function ExportModal({ progress, missed, streak, onImport, onClos
 
   return (
     <div ref={dialogRef} className="ccna-overlay" role="dialog" aria-modal="true" aria-labelledby="export-modal-title" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: MODAL_Z, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }} onClick={onClose}>
-      <div className="ccna-sheet" style={{ ...styles.card, marginBottom: 0, paddingBottom: 'calc(env(safe-area-inset-bottom) + 16px)' }} onClick={e => e.stopPropagation()}>
+      <div className="ccna-sheet" style={{ ...styles.card, marginBottom: 0, paddingBottom: 'calc(var(--ccna-safe-bottom) + 16px)' }} onClick={e => e.stopPropagation()}>
         <h2 id="export-modal-title" style={styles.h2}>Export Reports</h2>
         <p style={{ ...styles.small, marginBottom: 12 }}>All reports are {STATIC_COPY.reports}.</p>
 

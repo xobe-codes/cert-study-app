@@ -34,8 +34,8 @@ export function buildAppShellResponsiveCss(colors) {
     }
     @media (min-width: 1024px) {
       .site-column {
-        padding-left: max(28px, env(safe-area-inset-left));
-        padding-right: max(28px, env(safe-area-inset-right));
+        padding-left: max(28px, var(--ccna-safe-left));
+        padding-right: max(28px, var(--ccna-safe-right));
       }
     }
 
@@ -152,7 +152,7 @@ export function buildAppShellResponsiveCss(colors) {
       align-items: center;
       flex-wrap: wrap;
       flex-shrink: 0;
-      padding: 8px 12px calc(12px + env(safe-area-inset-bottom, 0px));
+      padding: 8px 12px calc(12px + var(--ccna-safe-bottom));
       border-top: 1px solid ${colors.border};
     }
     .cisco-terminal-prompt {
@@ -173,16 +173,16 @@ export function buildAppShellResponsiveCss(colors) {
     }
     .lab-sticky-header {
       position: sticky;
-      top: 0;
+      top: var(--ccna-safe-top);
       z-index: 12;
       display: flex;
       align-items: center;
       gap: 8px;
       padding: 6px 0 10px;
       margin: -4px 0 4px;
-      background: linear-gradient(180deg, ${colors.bg} 70%, transparent);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, color-mix(in srgb, ${colors.bg} 96%, transparent) 0%, color-mix(in srgb, ${colors.bg} 70%, transparent) 100%);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
     .lab-sticky-back {
       flex-shrink: 0;
@@ -203,10 +203,13 @@ export function buildAppShellResponsiveCss(colors) {
     }
     .trap-drill-sticky-header {
       position: sticky;
-      top: 0;
-      z-index: 8;
-      padding: 4px 0 8px;
-      background: linear-gradient(180deg, ${colors.bg} 75%, transparent);
+      top: var(--ccna-safe-top);
+      z-index: 12;
+      padding: 6px 0 8px;
+      margin-bottom: 4px;
+      background: linear-gradient(180deg, color-mix(in srgb, ${colors.bg} 96%, transparent) 0%, color-mix(in srgb, ${colors.bg} 75%, transparent) 100%);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
     .trap-drill-sticky-header .ccna-back-btn,
     .trap-drill-sticky-header button[style] {
@@ -240,6 +243,12 @@ export function buildAppShellResponsiveCss(colors) {
       }
     }
 
+    .global-search-overlay {
+      padding-top: max(60px, var(--ccna-safe-top));
+      padding-left: max(16px, var(--ccna-safe-left));
+      padding-right: max(16px, var(--ccna-safe-right));
+      padding-bottom: max(16px, var(--ccna-safe-bottom));
+    }
     .global-search-panel {
       width: 100%;
       max-width: min(540px, 100%);
@@ -251,7 +260,9 @@ export function buildAppShellResponsiveCss(colors) {
     }
     @media (orientation: landscape) and (max-height: 500px) {
       .global-search-overlay {
-        padding-top: max(12px, env(safe-area-inset-top)) !important;
+        padding-top: max(12px, var(--ccna-safe-top)) !important;
+        padding-left: max(12px, var(--ccna-safe-left)) !important;
+        padding-right: max(12px, var(--ccna-safe-right)) !important;
       }
       .global-search-results {
         max-height: min(50dvh, 280px);
@@ -294,6 +305,23 @@ export function buildAppShellResponsiveCss(colors) {
       .objective-sticky-chrome .objective-tab-bar {
         margin-bottom: 4px !important;
       }
+      .lab-sticky-header {
+        padding-top: 4px;
+        padding-bottom: 6px;
+      }
+      .lab-sticky-title {
+        font-size: var(--ccna-type-xs);
+      }
+      .trap-drill-sticky-header,
+      .study-mode-header {
+        padding-top: 4px;
+        padding-bottom: 6px;
+        margin-bottom: 6px;
+      }
+      .study-mode-header__title {
+        font-size: var(--ccna-type-lg);
+        margin-bottom: 2px;
+      }
       .cisco-terminal-scroll {
         height: clamp(24dvh, 28dvh, 180px);
         min-height: 20dvh;
@@ -301,6 +329,9 @@ export function buildAppShellResponsiveCss(colors) {
       .home-study-grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 6px;
+      }
+      .lab-practice-layout {
+        min-height: min(52dvh, 360px) !important;
       }
     }
 
@@ -314,11 +345,11 @@ export function buildAppShellResponsiveCss(colors) {
       position: fixed;
       left: 50%;
       transform: translateX(-50%);
-      bottom: calc(var(--ccna-bottom-nav-height) + env(safe-area-inset-bottom) + var(--vv-bottom-inset, 0px));
+      bottom: calc(var(--ccna-bottom-nav-height) + var(--ccna-safe-bottom) + var(--vv-bottom-inset, 0px));
       width: 100%;
       max-width: min(${SITE_COLUMN_MAX}px, 100%);
       margin: 0;
-      padding: 10px max(16px, env(safe-area-inset-left)) 10px max(16px, env(safe-area-inset-right));
+      padding: 10px max(16px, var(--ccna-safe-left)) 10px max(16px, var(--ccna-safe-right));
       background: color-mix(in srgb, ${colors.card} 94%, transparent);
       border-top: 1px solid ${colors.border};
       backdrop-filter: blur(10px);
@@ -405,10 +436,10 @@ export function buildAppShellResponsiveCss(colors) {
       animation: topic-focus-pill-pop 0.28s ease both;
     }
     .onboarding-shell {
-      padding-bottom: calc(env(safe-area-inset-bottom) + 16px);
+      padding-bottom: calc(var(--ccna-safe-bottom) + 16px);
     }
     .onboarding-shell--quiz {
-      padding-bottom: calc(env(safe-area-inset-bottom) + 24px);
+      padding-bottom: calc(var(--ccna-safe-bottom) + 24px);
     }
     @keyframes topic-focus-pill-pop {
       0% { transform: scale(0.94); }
@@ -422,10 +453,10 @@ export function buildAppShellResponsiveCss(colors) {
       animation: none !important;
     }
     .app-shell--with-bottom-nav .topic-focus-list {
-      padding-bottom: calc(var(--ccna-bottom-nav-height) + 120px + env(safe-area-inset-bottom) + var(--vv-bottom-inset, 0px));
+      padding-bottom: calc(var(--ccna-bottom-nav-height) + 120px + var(--ccna-safe-bottom) + var(--vv-bottom-inset, 0px));
     }
     .topic-focus-session {
-      padding-bottom: calc(var(--ccna-bottom-nav-height) + env(safe-area-inset-bottom) + var(--vv-bottom-inset, 0px) + 16px);
+      padding-bottom: calc(var(--ccna-bottom-nav-height) + var(--ccna-safe-bottom) + var(--vv-bottom-inset, 0px) + 16px);
     }
     .topic-focus-studio .topic-focus-list {
       max-height: none;
@@ -468,7 +499,7 @@ export function buildAppShellResponsiveCss(colors) {
 
     .ccna-mock-results {
       min-width: 0;
-      padding-bottom: calc(env(safe-area-inset-bottom) + var(--vv-bottom-inset, 0px) + 8px);
+      padding-bottom: calc(var(--ccna-safe-bottom) + var(--vv-bottom-inset, 0px) + 8px);
     }
     .ccna-review-flow {
       min-width: 0;
@@ -476,7 +507,7 @@ export function buildAppShellResponsiveCss(colors) {
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       overscroll-behavior: contain;
-      padding-bottom: calc(env(safe-area-inset-bottom) + var(--vv-bottom-inset, 0px) + 12px);
+      padding-bottom: calc(var(--ccna-safe-bottom) + var(--vv-bottom-inset, 0px) + 12px);
     }
     @supports (height: 100dvh) {
       .ccna-review-flow {
@@ -484,7 +515,7 @@ export function buildAppShellResponsiveCss(colors) {
       }
     }
     .app-shell--with-bottom-nav .ccna-review-flow {
-      padding-bottom: calc(var(--ccna-bottom-nav-height) + env(safe-area-inset-bottom) + var(--vv-bottom-inset, 0px) + 16px);
+      padding-bottom: calc(var(--ccna-bottom-nav-height) + var(--ccna-safe-bottom) + var(--vv-bottom-inset, 0px) + 16px);
     }
     .ccna-practice-active {
       min-width: 0;

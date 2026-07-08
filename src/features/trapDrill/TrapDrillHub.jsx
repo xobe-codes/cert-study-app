@@ -2,6 +2,7 @@ import React from 'react'
 import { COLORS, styles } from '../../ui/appTheme.js'
 import { TRAP_DOMAIN_NUMBERS, trapDomainMeta } from '../../study/trapDomainConstants.js'
 import { getTrapDrillCkusForDomain } from './trapDrillQuestions.js'
+import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 
 function DomainChip({ meta, active, count, onClick }) {
   return (
@@ -34,8 +35,7 @@ export default function TrapDrillHub({ onBack, prefill, onStartDomain, onStartCk
 
   return (
     <div>
-      <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <h1 style={styles.h1}>Trap Drill</h1>
+      <StudyModeHeader title="Trap Drill" onBack={onBack} />
       <div style={{ ...styles.card, background: COLORS.amberDim, border: `1px solid ${COLORS.amberBorder}`, marginBottom: 14 }}>
         <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.amber, marginBottom: 6 }}>HOW IT WORKS</div>
         <p style={{ ...styles.small, margin: 0, lineHeight: 1.5 }}>

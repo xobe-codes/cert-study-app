@@ -7,6 +7,7 @@ import { COLORS, styles } from '../ui/appTheme.js'
 import { STATIC_COPY } from '../ui/staticContentCopy.js'
 import { loadLabDone } from './labStorage.js'
 import { LabTierBadge } from './LabTierBadge.jsx'
+import StudyModeHeader from '../components/StudyModeHeader.jsx'
 
 const LAB_DIFF_ACCENT = { beginner: 'mint', intermediate: 'sky', advanced: 'amber' }
 
@@ -89,8 +90,7 @@ export default function LabsHub({ onBack, onOpenLab, initialDomainFilter = null 
 
   return (
     <div>
-      <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <h1 style={styles.h1}>🧪 Hands-on Labs</h1>
+      <StudyModeHeader title="Hands-on Labs" onBack={onBack} />
       <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, marginBottom: 14 }}>
         <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.sky, marginBottom: 6 }}>HOW LABS WORK</div>
         <ol style={{ margin: 0, paddingLeft: 18, fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.5 }}>

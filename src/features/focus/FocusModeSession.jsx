@@ -15,6 +15,7 @@ import McChoices from '../../components/McChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
 import { QuizRichText, QuestionMeta, OrderingQuestion, CliAnswerInput } from '../../components/QuizQuestionChrome.jsx'
 import Spinner from '../../components/Spinner.jsx'
+import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import { useMasteryProgress } from '../progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
 
@@ -127,17 +128,16 @@ export default function FocusModeSession({ progress, onBack, onMissed, onDone })
   const isCorrect = revealed && (ordering ? gradeQuestion(current, orderDraft) : cli ? gradeQuestion(current, cliAnswer) : gradeQuestion(current, selected))
   const obj = current ? ALL_OBJECTIVES.find(o => o.id === current.objectiveId) : null
 
-  if (phase === 'loading') return <div><button style={styles.backBtn} onClick={onBack}>‹ Back</button><Spinner label="Finding your weak areas..." /></div>
+  if (phase === 'loading') return <div><StudyModeHeader title="Weak Areas" onBack={onBack} /><Spinner label="Finding your weak areas..." /></div>
   if (phase === 'empty') return (
     <div>
-      <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <h1 style={styles.h1}>Weak Areas</h1>
+      <StudyModeHeader title="Weak Areas" onBack={onBack} />
       <p style={styles.small}>No weak areas found! All studied objectives are above 50% mastery. Keep quizzing to identify gaps, or take a mock exam to find where to focus.</p>
     </div>
   )
   if (phase === 'done') return (
     <div>
-      <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
+      <StudyModeHeader title="Weak Areas" onBack={onBack} />
       <div style={styles.card}>
         <h2 style={styles.h2}>Weak Areas complete</h2>
         <p style={{ fontSize: 'var(--ccna-type-2xl)', fontWeight: 700, color: COLORS.mint, margin: '4px 0' }}>{stats.correct} / {stats.total}</p>
@@ -149,9 +149,8 @@ export default function FocusModeSession({ progress, onBack, onMissed, onDone })
 
   return (
     <div>
-      <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4 }}>
-        <h1 style={{ ...styles.h1, margin: 0 }}>Weak Areas</h1>
+      <StudyModeHeader title="Weak Areas" onBack={onBack} />
+      <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'baseline', marginBottom: 4 }}>
         <span style={styles.small}>{total - queue.length} of {total}</span>
       </div>
       <div style={{ ...styles.small, marginBottom: 8 }}>{weakIds.length} weak objective{weakIds.length !== 1 ? 's' : ''} · {total} question{total === 1 ? '' : 's'} in this drill</div>
