@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { DOMAINS } from '../data/ccnaDomains.js'
-import { labsByDomain, troubleshootingLabs } from '../data/ccnaLabs.js'
+import { buildLabModules } from '../data/labModules.js'
 import { getInterpretAlternate } from '../data/labTierStrategy.js'
 import { COLORS, styles } from '../ui/appTheme.js'
 import { STATIC_COPY } from '../ui/staticContentCopy.js'
@@ -13,9 +12,7 @@ export default function LabsHub({ onBack, onOpenLab }) {
   const [done, setDone] = useState([])
   useEffect(() => { loadLabDone().then(setDone) }, [])
 
-  const byDomain = labsByDomain()
-  const tsLabs = troubleshootingLabs()
-  const domainName = (id) => DOMAINS.find(d => d.id === id)?.name || id
+  const modules = buildLabModules()
 
   const labCard = (lab) => {
     const interpretAlt = getInterpretAlternate(lab.id)
@@ -65,21 +62,24 @@ export default function LabsHub({ onBack, onOpenLab }) {
           <li><strong>Verify</strong> — confirm with <code>show</code> commands in the terminal</li>
         </ol>
         <p style={{ ...styles.small, margin: '8px 0 0' }}>{STATIC_COPY.lab}</p>
+        <p style={{ ...styles.small, margin: '8px 0 0', color: COLORS.silverMid }}>Modules run top to bottom — foundation first, capstone last. Within each, labs go beginner → advanced.</p>
       </div>
 
-      {tsLabs.length > 0 && (
-        <div style={{ marginBottom: 18 }}>
-          <div style={{ ...styles.small, fontWeight: 700, color: COLORS.amber, marginBottom: 8, letterSpacing: 0.4 }}>🔧 TROUBLESHOOTING SCENARIOS</div>
-          {tsLabs.map(labCard)}
-        </div>
-      )}
-
-      {Object.keys(byDomain).length === 0 && <p style={styles.small}>No labs available yet.</p>}
-      {Object.entries(byDomain).map(([domainId, labs]) => (
-        <div key={domainId} style={{ marginBottom: 16 }}>
-          <div style={{ ...styles.small, fontWeight: 700, color: COLORS.silver, marginBottom: 8, letterSpacing: 0.4 }}>{domainName(domainId).toUpperCase()}</div>
-          {labs.filter(l => l.labType !== 'troubleshooting').map(labCard)}
-        </div>
+      {modules.length === 0 && <p style={styles.small}>No labs available yet.</p>}
+      {modules.map((mod) => (
+        <section key={mod.id} style={{ marginBottom: 20 }} aria-label={`Module ${mod.order}: ${mod.title}`}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
+            <span style={{ ...styles.pill(mod.accent), fontSize: 'var(--ccna-type-micro)', fontWeight: 700 }}>
+              MODULE {mod.order} · {mod.level.toUpperCase()}
+            </span>
+            <span style={{ fontSize: 'var(--ccna-type-lg)', fontWeight: 700, color: COLORS.silver }}>{mod.title}</span>
+            <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>{mod.labs.length} labs</span>
+          </div>
+          {mod.blurb && (
+            <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.45, marginBottom: 8 }}>{mod.blurb}</div>
+          )}
+          {mod.labs.map(labCard)}
+        </section>
       ))}
     </div>
   )

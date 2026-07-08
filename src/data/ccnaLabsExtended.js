@@ -786,7 +786,7 @@ const WIRELESS_26 = {
 const LAB_DHCP_DNS_43 = {
   id: 'LAB-DHCP-DNS-FLOW',
   title: 'Verify DHCP Negotiation and DNS Resolution',
-  domainId: 'ip_services',
+  domainId: 'services',
   objectiveId: '4.3',
   ckuIds: ['CKU-DHCP', 'CKU-DNS'],
   labType: 'guided',
@@ -906,7 +906,7 @@ const DHCP_DNS_43 = {
 const LAB_DHCP_POOL_43 = {
   id: 'LAB-DHCP-POOL-43',
   title: 'Configure a DHCP Address Pool',
-  domainId: 'ip_services',
+  domainId: 'services',
   objectiveId: '4.3',
   ckuIds: ['CKU-DHCP'],
   labType: 'guided',
