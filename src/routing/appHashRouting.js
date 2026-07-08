@@ -22,6 +22,14 @@ export function parseAppHash() {
       },
     }
   }
+  const labsMatch = raw.match(/^\/labs(?:\/([^/]+))?$/)
+  if (labsMatch) {
+    const segment = labsMatch[1] ? decodeURIComponent(labsMatch[1]) : null
+    const validDomain = segment && (
+      segment === 'capstone' || DOMAINS.some(d => d.id === segment)
+    )
+    return { view: 'labs', labsDomainId: validDomain ? segment : null }
+  }
   const simple = raw.replace(/^\//, '')
   // topicfocussession needs live config (topicFocusConfig) — restore picker on refresh instead.
   if (simple === 'topicfocussession') return { view: 'topicfocus' }
@@ -35,13 +43,15 @@ export function parseAppHash() {
   return null
 }
 
-export function syncAppHash(view, objective) {
+export function syncAppHash(view, objective, labsDomainId = null) {
   if (typeof window === 'undefined') return
   const base = window.location.pathname + window.location.search
   let next = ''
   if (view === 'objective' && objective) {
     const tab = objective.__initialTab
     next = tab ? `#/objective/${objective.id}/${encodeURIComponent(tab)}` : `#/objective/${objective.id}`
+  } else if (view === 'labs' && labsDomainId) {
+    next = `#/labs/${encodeURIComponent(labsDomainId)}`
   } else if (view !== 'home' && view !== 'onboarding' && view !== 'lab') {
     next = `#/${view}`
   }

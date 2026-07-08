@@ -24,6 +24,8 @@ export const STORAGE_KEYS = {
   studyBlock: 'ccna_study_block_v1',
   premiumUnlocked: 'ccna_premium_unlocked_v1',
   tutorTtsEnabled: 'ccna_tutor_tts_v1',
+  readingTtsEnabled: 'ccna_reading_tts_v1',
+  labsDomainFilter: 'ccna_labs_domain_filter_v1',
   topicFocusSets: 'ccna_topic_focus_sets_v1',
   topicFocusPins: 'ccna_topic_focus_pins_v1',
   questionHealthFlags: 'ccna_question_health_flags_v1',

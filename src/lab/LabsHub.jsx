@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { DOMAINS } from '../data/ccnaDomains.js'
+import { STORAGE_KEYS } from '../storageKeys.js'
 import { buildLabModules, filterLabModules, labDomainDoneCount } from '../data/labModules.js'
 import { getInterpretAlternate } from '../data/labTierStrategy.js'
 import { COLORS, styles } from '../ui/appTheme.js'
@@ -21,10 +22,27 @@ function domainChipLabel(domain, domainNumber) {
   return `D${domainNumber} ${short[domain.id] || domain.name}`
 }
 
-export default function LabsHub({ onBack, onOpenLab }) {
+export default function LabsHub({ onBack, onOpenLab, initialDomainFilter = null }) {
   const [done, setDone] = useState([])
   const [domainFilter, setDomainFilter] = useState('all')
+  const [filterReady, setFilterReady] = useState(false)
   useEffect(() => { loadLabDone().then(setDone) }, [])
+
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      let next = initialDomainFilter
+      if (!next) next = await window.storage?.getItem(STORAGE_KEYS.labsDomainFilter)
+      if (!cancelled && next) setDomainFilter(next)
+      if (!cancelled) setFilterReady(true)
+    })()
+    return () => { cancelled = true }
+  }, [initialDomainFilter])
+
+  useEffect(() => {
+    if (!filterReady) return
+    window.storage?.setItem(STORAGE_KEYS.labsDomainFilter, domainFilter === 'all' ? null : domainFilter)
+  }, [domainFilter, filterReady])
 
   const modules = useMemo(() => buildLabModules(), [])
   const visibleModules = useMemo(

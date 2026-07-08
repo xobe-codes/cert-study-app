@@ -1,7 +1,4 @@
-/**
- * Study-mode navigation helpers — keep hash routes, return stack, and nested
- * session state (domain pass, placement, labs, topic focus) in sync.
- */
+import { STORAGE_KEYS } from '../../storageKeys.js'
 
 /** Ignore React synthetic events when handlers are wired as onClick={fn}. */
 export function studyModeOpts(opts) {
@@ -85,6 +82,10 @@ export function applyParsedHashRoute(route, api) {
   if (route.view) {
     api.setSelectedObjective?.(null)
     api.setReturnToView?.('home')
+    if (route.labsDomainId) {
+      api.setLabsDomainPrefill?.(route.labsDomainId)
+      window.storage?.setItem(STORAGE_KEYS.labsDomainFilter, route.labsDomainId)
+    }
     if (STUDY_HUB_VIEWS.has(route.view)) resetHubSessionState(route.view, api)
     api.setView?.(route.view)
   }

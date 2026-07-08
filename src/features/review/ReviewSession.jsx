@@ -150,7 +150,7 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection 
         {revealed && (
           <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `2px solid ${isCorrect ? COLORS.mintBorder : COLORS.rose}` }} {...quizFeedbackA11y}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
-            <AnswerReview q={current} selected={selected} />
+            <AnswerReview q={current} selected={selected} cliAnswer={cliAnswer} orderAnswer={orderDraft} />
             {obj && (
               <button
                 onClick={() => onOpenSection?.(obj)}

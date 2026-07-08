@@ -50,7 +50,9 @@ describe('CoreStudyRoutes', () => {
     haptic: () => {},
     settingsExamMode: false,
     mockDomainPrefill: null,
+    labsDomainPrefill: null,
     setMockDomainPrefill: () => {},
+    openLabs: () => {},
   }
 
   it('returns null for non-core views', () => {

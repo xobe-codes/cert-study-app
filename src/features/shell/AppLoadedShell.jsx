@@ -33,6 +33,7 @@ export default function AppLoadedShell({
   offlineReady,
   selectObjective,
   openMockExam,
+  openLabs,
   navigateTo,
   handlePremiumBlocked,
   premiumUnlocked,
@@ -68,6 +69,7 @@ export default function AppLoadedShell({
   haptic,
   settingsExamMode,
   mockDomainPrefill,
+  labsDomainPrefill,
   setMockDomainPrefill,
   finishOnboarding,
   skipOnboarding,
@@ -154,6 +156,7 @@ export default function AppLoadedShell({
           offlineReady={offlineReady}
           selectObjective={selectObjective}
           openMockExam={openMockExam}
+          openLabs={openLabs}
           navigateTo={navigateTo}
           handlePremiumBlocked={handlePremiumBlocked}
           premiumUnlocked={premiumUnlocked}
@@ -188,6 +191,7 @@ export default function AppLoadedShell({
           haptic={haptic}
           settingsExamMode={settingsExamMode}
           mockDomainPrefill={mockDomainPrefill}
+          labsDomainPrefill={labsDomainPrefill}
           setMockDomainPrefill={setMockDomainPrefill}
         />
         <PracticeRoutes
@@ -232,6 +236,7 @@ export default function AppLoadedShell({
           onPushView={navigateTo}
           onOpenLab={openLab}
           onOpenMockExam={openMockExam}
+          labsDomainPrefill={labsDomainPrefill}
           onOpenTrapDrill={openTrapDrill}
           onOpenDomainPlacement={openDomainPlacement}
           onSelectObjective={selectObjective}

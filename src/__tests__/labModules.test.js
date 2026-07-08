@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { buildLabModules, difficultyRank, LAB_MODULE_DEFS, canonicalLabDomain, filterLabModules, labDomainDoneCount } from '../data/labModules.js'
+import { buildLabModules, difficultyRank, LAB_MODULE_DEFS, canonicalLabDomain, filterLabModules, labDomainDoneCount, labsForDomain } from '../data/labModules.js'
 import { allLabs } from '../data/ccnaLabs.js'
 import { DOMAINS } from '../data/ccnaDomains.js'
 
@@ -85,5 +85,12 @@ describe('lab curriculum modules', () => {
     const counts = labDomainDoneCount(modules, [first], 'all')
     expect(counts.done).toBe(1)
     expect(counts.total).toBe(labs.length)
+  })
+
+  it('labsForDomain returns guided labs for canonical domain', () => {
+    const access = labsForDomain('access')
+    expect(access.length).toBeGreaterThan(0)
+    expect(access.every(l => canonicalLabDomain(l.domainId) === 'access')).toBe(true)
+    expect(labsForDomain('ip_services').map(l => l.id)).toEqual(labsForDomain('services').map(l => l.id))
   })
 })

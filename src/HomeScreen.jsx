@@ -3,6 +3,7 @@ import { DOMAINS, ALL_OBJECTIVES } from './data/ccnaDomains.js'
 import { COLORS, accentColors, styles } from './ui/appTheme.js'
 import { STORAGE_KEYS } from './storageKeys.js'
 import { getCurated, hasCuratedReading, hasCuratedQuestions } from './data/ccnaCurated.js'
+import { labsForDomain } from './data/labModules.js'
 import { isCuratedPack } from './curatedDisplay.js'
 import CuratedStaticBadge from './components/CuratedStaticBadge.jsx'
 import OverflowMarquee from './components/OverflowMarquee.jsx'
@@ -651,6 +652,16 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
             </button>
             {isOpen && (
               <div id={`domain-panel-${domain.id}`} className="domain-accordion-panel" role="region" aria-label={`${domain.name} objectives`} style={{ marginTop: 10, borderTop: `1px solid ${COLORS.border}`, paddingTop: 8 }}>
+                {onOpenLabs && labsForDomain(domain.id).length > 0 && (
+                  <button
+                    type="button"
+                    className="ccna-hover"
+                    onClick={() => onOpenLabs({ domainId: domain.id })}
+                    style={{ ...styles.secondaryBtn, width: '100%', marginBottom: 10, minHeight: 40, fontSize: 'var(--ccna-type-xs)' }}
+                  >
+                    🧪 Domain labs ({labsForDomain(domain.id).length})
+                  </button>
+                )}
                 {isPlacementDomain(domain.id) && onOpenDomainPlacement && (
                   <DomainBaselinePanel
                     domain={domain}

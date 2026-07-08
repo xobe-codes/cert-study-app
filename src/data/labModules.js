@@ -104,6 +104,14 @@ export function filterLabModules(modules, domainFilter = 'all') {
   return modules.filter(m => m.domainId === domainFilter)
 }
 
+/** Labs for one CCNA domain (guided only, sorted). */
+export function labsForDomain(domainId, labs = allLabs()) {
+  const canon = canonicalLabDomain(domainId)
+  return labs
+    .filter(l => l.labType !== 'troubleshooting' && canonicalLabDomain(l.domainId) === canon)
+    .sort(compareLabs)
+}
+
 /** Done/total counts for a domain filter chip. */
 export function labDomainDoneCount(modules, doneIds, domainFilter) {
   const scoped = filterLabModules(modules, domainFilter)

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { parseRichTextSegments } from '../lesson/richTextParse.js'
 import { resolveIncorrectItem } from '../answerReviewLogic.js'
+import { isMcQuestion, isCliQuestion, isOrderingQuestion, correctAnswerLabel, gradeQuestion } from '../questionUtils.js'
 import QuestionFlagPanel from './QuestionFlagPanel.jsx'
 import StemReplayCTA from '../features/stemReplay/StemReplayCTA.jsx'
 import QuestionUnderReviewBanner from './QuestionUnderReviewBanner.jsx'
@@ -75,12 +76,56 @@ function WrongChoiceReview({ q, item }) {
 }
 
 /** Post-reveal breakdown — correct + your pick expanded; other distractors collapsed. */
-export default function AnswerReview({ q, selected, hideExamTip = false, objectiveId, showQuestionFlag = false, onOpenLab }) {
+export default function AnswerReview({ q, selected, cliAnswer, orderAnswer, hideExamTip = false, objectiveId, showQuestionFlag = false, onOpenLab }) {
   const compactMobile = useCompactMobile()
-  const correctIdx = q.correctIndex
-  if (!Array.isArray(q.choices) || typeof correctIdx !== 'number') {
-    return <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}>{q.explanation}</div>
+
+  if (isCliQuestion(q)) {
+    const correct = correctAnswerLabel(q)
+    const userCmd = String(cliAnswer || '').trim()
+    return (
+      <div className={`ccna-answer-review${compactMobile ? ' ccna-answer-review--compact' : ''}`} style={{ marginTop: compactMobile ? 6 : 8, minWidth: 0 }}>
+        <QuestionUnderReviewBanner questionId={q?.id} />
+        <ReviewBlock icon="✅" title={`CORRECT COMMAND: ${correct}`} accent="mint">
+          <RichText text={q.explanation} />
+        </ReviewBlock>
+        {!gradeQuestion(q, cliAnswer) && userCmd && (
+          <ReviewBlock icon="✗" title={`YOUR COMMAND: ${userCmd}`} accent="rose">
+            <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid }}>Accepted forms include shorthand such as <code>sh</code>, <code>conf t</code>, and interface abbreviations.</div>
+          </ReviewBlock>
+        )}
+        {showQuestionFlag && objectiveId && <QuestionFlagPanel questionId={q.id} objectiveId={objectiveId} />}
+        <StemReplayCTA questionId={q?.id} onOpenLab={onOpenLab} />
+      </div>
+    )
   }
+
+  if (isOrderingQuestion(q)) {
+    const correctOrder = q.orderItems || []
+    const given = orderAnswer || []
+    const ok = gradeQuestion(q, given)
+    return (
+      <div className={`ccna-answer-review${compactMobile ? ' ccna-answer-review--compact' : ''}`} style={{ marginTop: compactMobile ? 6 : 8, minWidth: 0 }}>
+        <QuestionUnderReviewBanner questionId={q?.id} />
+        <ReviewBlock icon="✅" title="CORRECT ORDER" accent="mint">
+          <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}>{correctAnswerLabel(q)}</div>
+          <div style={{ marginTop: 8 }}><RichText text={q.explanation} /></div>
+        </ReviewBlock>
+        {!ok && given.length > 0 && (
+          <ReviewBlock icon="✗" title="YOUR ORDER" accent="rose">
+            <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}>{given.map((s, i) => `${i + 1}. ${s}`).join(' → ')}</div>
+          </ReviewBlock>
+        )}
+        {showQuestionFlag && objectiveId && <QuestionFlagPanel questionId={q.id} objectiveId={objectiveId} />}
+        <StemReplayCTA questionId={q?.id} onOpenLab={onOpenLab} />
+      </div>
+    )
+  }
+
+  if (!isMcQuestion(q)) {
+    return <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}><RichText text={q.explanation} /></div>
+  }
+
+  const correctIdx = q.correctIndex
   const ar = q.answerReview
   const incorrect = ar
     ? (ar.incorrect || []).filter(item => item.choiceIndex !== correctIdx)

@@ -25,7 +25,9 @@ import OverflowMarquee from '../components/OverflowMarquee.jsx'
 import EngineerViewSection from '../components/EngineerViewSection.jsx'
 import TabSectionLabel from '../components/TabSectionLabel.jsx'
 import QuestionHealthAdminSection from '../components/QuestionHealthAdminSection.jsx'
+import { ReadingTtsControls, SectionListenButton } from '../components/ReadingTtsControls.jsx'
 import { shouldDefaultOpenRealWorld } from '../lesson/readingEnrichment.js'
+import { buildCuratedReadingSpeech, buildAiReadingSpeech, bulletsToSpeech } from '../lib/readingTts.js'
 import { formatCuratedAttribution } from '../curatedDisplay.js'
 import McChoices from '../components/McChoices.jsx'
 import AnswerReview from '../components/AnswerReview.jsx'
@@ -465,7 +467,7 @@ function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked = fals
 }
 
 /* ---- Structured explanation renderer (progressive disclosure) ---- */
-function ExplainBlock({ icon, title, accent, children, collapsible, defaultOpen = true }) {
+function ExplainBlock({ icon, title, accent, children, collapsible, defaultOpen = true, speechText }) {
   const [open, setOpen] = useState(defaultOpen)
   const c = accentColors(accent)
   return (
@@ -474,7 +476,10 @@ function ExplainBlock({ icon, title, accent, children, collapsible, defaultOpen 
         onClick={() => collapsible && setOpen(o => !o)}
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: collapsible ? 'pointer' : 'default', color: c.text }}
       >
-        <span style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, letterSpacing: 0.3 }}>{icon} {title}</span>
+        <span style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, letterSpacing: 0.3, display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+          {icon} {title}
+          <SectionListenButton speechText={speechText} />
+        </span>
         {collapsible && <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid }}>{open ? '−' : '+'}</span>}
       </button>
       {open && <div style={{ marginTop: 8, fontSize: 'var(--ccna-type-md)', lineHeight: 1.55, color: COLORS.silver }}>{children}</div>}
@@ -540,14 +545,16 @@ function ExplanationSection({ body, takeaway }) {
 }
 
 function StructuredExplanation({ data }) {
+  const speechText = useMemo(() => buildAiReadingSpeech(data), [data])
   return (
     <div className="ccna-stagger">
+      <ReadingTtsControls speechText={speechText} />
       <ExplanationSection body={explanationBodyFromAi(data)} takeaway={resolveAiTakeaway(data)} />
-      <ExplainBlock icon="📌" title="KEY POINTS" accent="amber"><Bullets items={data.keyPoints} /></ExplainBlock>
-      <ExplainBlock icon="⚠️" title="COMMON MISTAKES" accent="rose"><Bullets items={data.commonMistakes} /></ExplainBlock>
-      {data.realWorld && <ExplainBlock icon="🔧" title="REAL-WORLD APPLICATION" accent="purple" collapsible defaultOpen={false}><RichText text={data.realWorld} /></ExplainBlock>}
-      {data.advanced && <ExplainBlock icon="🧬" title="ADVANCED DETAILS" accent="silver" collapsible defaultOpen={false}><RichText text={data.advanced} /></ExplainBlock>}
-      {data.related?.length > 0 && <ExplainBlock icon="🔗" title="RELATED CONCEPTS" accent="sky" collapsible defaultOpen={false}><Bullets items={data.related} /></ExplainBlock>}
+      <ExplainBlock icon="📌" title="KEY POINTS" accent="amber" speechText={bulletsToSpeech(data.keyPoints)}><Bullets items={data.keyPoints} /></ExplainBlock>
+      <ExplainBlock icon="⚠️" title="COMMON MISTAKES" accent="rose" speechText={bulletsToSpeech(data.commonMistakes)}><Bullets items={data.commonMistakes} /></ExplainBlock>
+      {data.realWorld && <ExplainBlock icon="🔧" title="REAL-WORLD APPLICATION" accent="purple" collapsible defaultOpen={false} speechText={data.realWorld}><RichText text={data.realWorld} /></ExplainBlock>}
+      {data.advanced && <ExplainBlock icon="🧬" title="ADVANCED DETAILS" accent="silver" collapsible defaultOpen={false} speechText={data.advanced}><RichText text={data.advanced} /></ExplainBlock>}
+      {data.related?.length > 0 && <ExplainBlock icon="🔗" title="RELATED CONCEPTS" accent="sky" collapsible defaultOpen={false} speechText={bulletsToSpeech(data.related)}><Bullets items={data.related} /></ExplainBlock>}
     </div>
   )
 }
@@ -573,6 +580,7 @@ function CuratedReading({ data, progressEntry, onTierChange, onOpenReference, on
   }
 
   const r = data.reading
+  const speechText = useMemo(() => buildCuratedReadingSpeech(r, tier), [r, tier])
   const openRealWorld = shouldDefaultOpenRealWorld(data)
   const attribution = formatCuratedAttribution(r.sourceRefs, data.objectiveId)
   return (
@@ -626,16 +634,17 @@ function CuratedReading({ data, progressEntry, onTierChange, onOpenReference, on
           )
         })}
       </div>
+      <ReadingTtsControls speechText={speechText} />
       <ExplanationSection
         body={explanationBodyFromReading(r, tier)}
         takeaway={resolveBigTakeaway(r)}
       />
       <CoreConceptsBlock ckus={data.ckus} />
-      <ExplainBlock icon="📌" title="KEY POINTS" accent="amber"><Bullets items={r.keyPoints} /></ExplainBlock>
-      <ExplainBlock icon="⚠️" title="COMMON MISTAKES" accent="rose"><Bullets items={r.commonMistakes} /></ExplainBlock>
-      {r.realWorld && <ExplainBlock icon="🔧" title="REAL-WORLD APPLICATION" accent="purple" collapsible defaultOpen={openRealWorld}><RichText text={r.realWorld} /></ExplainBlock>}
-      {r.advanced && <ExplainBlock icon="🧬" title="ADVANCED DETAILS" accent="silver" collapsible defaultOpen={false}><RichText text={r.advanced} /></ExplainBlock>}
-      {r.related?.length > 0 && <ExplainBlock icon="🔗" title="RELATED CONCEPTS" accent="sky" collapsible defaultOpen={false}><Bullets items={r.related} /></ExplainBlock>}
+      <ExplainBlock icon="📌" title="KEY POINTS" accent="amber" speechText={bulletsToSpeech(r.keyPoints)}><Bullets items={r.keyPoints} /></ExplainBlock>
+      <ExplainBlock icon="⚠️" title="COMMON MISTAKES" accent="rose" speechText={bulletsToSpeech(r.commonMistakes)}><Bullets items={r.commonMistakes} /></ExplainBlock>
+      {r.realWorld && <ExplainBlock icon="🔧" title="REAL-WORLD APPLICATION" accent="purple" collapsible defaultOpen={openRealWorld} speechText={r.realWorld}><RichText text={r.realWorld} /></ExplainBlock>}
+      {r.advanced && <ExplainBlock icon="🧬" title="ADVANCED DETAILS" accent="silver" collapsible defaultOpen={false} speechText={r.advanced}><RichText text={r.advanced} /></ExplainBlock>}
+      {r.related?.length > 0 && <ExplainBlock icon="🔗" title="RELATED CONCEPTS" accent="sky" collapsible defaultOpen={false} speechText={bulletsToSpeech(r.related)}><Bullets items={r.related} /></ExplainBlock>}
       {data.engineerView && <EngineerViewSection data={data.engineerView} defaultOpen={openRealWorld} />}
       <QuestionHealthAdminSection objectiveId={data.objectiveId} />
       {firstLabId && (

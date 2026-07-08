@@ -37,6 +37,7 @@ export default function CoreStudyRoutes({
   selectObjective,
   openMockExam,
   navigateTo,
+  openLabs,
   handlePremiumBlocked,
   premiumUnlocked,
   domainPassPassedCount,
@@ -71,6 +72,7 @@ export default function CoreStudyRoutes({
   haptic,
   settingsExamMode,
   // mock
+  labsDomainPrefill,
   mockDomainPrefill,
   setMockDomainPrefill,
 }) {
@@ -97,7 +99,7 @@ export default function CoreStudyRoutes({
         onOpenMetrics={() => navigateTo('metrics')}
         onOpenStats={() => navigateTo('stats')}
         onOpenSettings={() => setShowSettings(true)}
-        onOpenLabs={() => navigateTo('labs')}
+        onOpenLabs={openLabs || (() => navigateTo('labs'))}
         onOpenReview={() => navigateTo('review')}
         onOpenFocus={() => navigateTo('focus')}
         onOpenTopicFocus={() => navigateTo('topicfocus')}

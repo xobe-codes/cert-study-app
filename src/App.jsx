@@ -60,7 +60,6 @@ export default function App() {
   const onboarding = useAppOnboarding({ loaded: bootstrap.loaded, view: nav.view, setView: nav.setView, setProgress: bootstrap.setProgress })
   useGlobalSearchHotkey({ enabled: bootstrap.loaded, blocked: chrome.hotkeyBlocked, onOpen: chrome.openSearch })
   const studyBlock = useAppStudyBlock({ setStreak: bootstrap.setStreak })
-
   const chromeOverlayOpen = chrome.panelOverlayOpen || onboarding.showTour
   const showBottomNav = bootstrap.loaded && !chromeOverlayOpen && !['onboarding', 'tutor', 'mockinterview', 'lab'].includes(nav.view)
   const bottomNav = bottomNavState({ view: nav.view, showSettings: chrome.showSettings, showSearch: chrome.showSearch, showNavBack: nav.showNavBack })
@@ -68,12 +67,7 @@ export default function App() {
   if (!bootstrap.loaded) {
     return (
       <NavHintProvider>
-        <AppShell>
-          <AppShellStyles minimal />
-          <RouteShell>
-            <Spinner label="Loading your progress..." />
-          </RouteShell>
-        </AppShell>
+        <AppShell><AppShellStyles minimal /><RouteShell><Spinner label="Loading your progress..." /></RouteShell></AppShell>
       </NavHintProvider>
     )
   }
@@ -101,6 +95,7 @@ export default function App() {
           offlineReady={bootstrap.offlineReady}
           selectObjective={nav.selectObjective}
           openMockExam={nav.openMockExam}
+          openLabs={nav.openLabs}
           navigateTo={nav.navigateTo}
           handlePremiumBlocked={premium.handlePremiumBlocked}
           premiumUnlocked={bootstrap.premiumUnlocked}
@@ -134,6 +129,7 @@ export default function App() {
           haptic={haptic}
           settingsExamMode={settings.settingsExamMode}
           mockDomainPrefill={nav.mockDomainPrefill}
+          labsDomainPrefill={nav.labsDomainPrefill}
           setMockDomainPrefill={nav.setMockDomainPrefill}
           finishOnboarding={onboarding.finishOnboarding}
           skipOnboarding={onboarding.skipOnboarding}

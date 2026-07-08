@@ -35,6 +35,7 @@ export function useAppNavigation() {
   const [placementRecords, setPlacementRecords] = useState({})
   const [placementSessionMode, setPlacementSessionMode] = useState(null)
   const [mockDomainPrefill, setMockDomainPrefill] = useState(null)
+  const [labsDomainPrefill, setLabsDomainPrefill] = useState(null)
   const [selectedObjective, setSelectedObjective] = useState(null)
   const [openDomain, setOpenDomain] = useState(null)
   const [selectedLab, setSelectedLab] = useState(null)
@@ -52,6 +53,7 @@ export function useAppNavigation() {
     setActiveDomainPlacementId,
     setPlacementSessionMode,
     setMockDomainPrefill,
+    setLabsDomainPrefill,
     setExamTrapPrefill,
     setTrapDrillPrefill,
     setSelectedObjective,
@@ -156,6 +158,16 @@ export function useAppNavigation() {
     navigateTo('mock')
   }, [navigateTo])
 
+  const openLabs = useCallback((opts) => {
+    const safe = studyModeOpts(opts)
+    const domainId = safe?.domainId
+    if (domainId) {
+      setLabsDomainPrefill(domainId)
+      window.storage?.setItem(STORAGE_KEYS.labsDomainFilter, domainId)
+    }
+    navigateTo('labs')
+  }, [navigateTo])
+
   const clearExamTrapPrefill = useCallback(() => setExamTrapPrefill(null), [])
   const clearTrapDrillPrefill = useCallback(() => setTrapDrillPrefill(null), [])
 
@@ -201,6 +213,8 @@ export function useAppNavigation() {
     placementRecords,
     mockDomainPrefill,
     setMockDomainPrefill,
+    labsDomainPrefill,
+    setLabsDomainPrefill,
     selectedObjective,
     setSelectedObjective,
     openDomain,
@@ -222,6 +236,7 @@ export function useAppNavigation() {
     openDomainPlacement,
     exitDomainPlacement,
     openMockExam,
+    openLabs,
     clearExamTrapPrefill,
     clearTrapDrillPrefill,
     consumeTrapDrillPrefill,
@@ -288,8 +303,8 @@ export function AppNavigationLifecycle({
 
   useEffect(() => {
     if (!loaded) return
-    syncAppHash(view, selectedObjective)
-  }, [loaded, view, selectedObjective])
+    syncAppHash(view, selectedObjective, nav.labsDomainPrefill)
+  }, [loaded, view, selectedObjective, nav.labsDomainPrefill])
 
   useEffect(() => {
     if (!loaded || hashBootstrapped.current) return
