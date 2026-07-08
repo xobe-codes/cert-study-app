@@ -44,6 +44,7 @@ export default function StudyModeRoutes({
   missed,
   onBack,
   onNavigate,
+  onPushView,
   onOpenLab,
   onOpenMockExam,
   onOpenTrapDrill,
@@ -91,7 +92,7 @@ export default function StudyModeRoutes({
           missed={missed}
           haptic={haptic}
           onBack={onBack}
-          onStart={(config) => { setTopicFocusConfig(config); onNavigate('topicfocussession') }}
+          onStart={(config) => { setTopicFocusConfig(config); onPushView('topicfocussession') }}
         />
       </LazyRoute>
     )

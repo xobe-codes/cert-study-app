@@ -12,6 +12,13 @@ import { loadAllPlacementRecords } from '../features/domainPlacement/domainPlace
 import { collectBaselineWeakObjectives } from '../features/domainPlacement/domainBaselineStudyPlan.js'
 import TopicTermDetail from './TopicTermDetail.jsx'
 import StudyModeHeader from '../components/StudyModeHeader.jsx'
+import {
+  deleteFocusSet,
+  loadFocusSets,
+  loadPinnedConcepts,
+  saveFocusSet,
+  togglePinnedConcept,
+} from './topicFocusStorage.js'
 
 const SORT_OPTIONS = [
   { id: 'domain', label: 'Domain' },

@@ -25,7 +25,8 @@ function normTrapLabel(s) {
 }
 
 /** Match KB exam traps by id or trap label (exact then partial). */
-export function matchExamTraps(traps, { trapId, trapLabel } = {}) {
+export function matchExamTraps(traps, filter) {
+  const { trapId, trapLabel } = filter || {}
   if (!traps?.length) return []
   if (trapId) {
     const byId = traps.filter(t => t.id === trapId)

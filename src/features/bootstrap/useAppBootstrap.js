@@ -11,6 +11,7 @@ import {
 import { flushQuestionFlagQueue } from '../../quiz/questionHealthClient.js'
 import { warmCuratedChunksForOffline } from '../../offline/warmCuratedChunks.js'
 import { parseAppHash } from '../../routing/appHashRouting.js'
+import { applyParsedHashRoute } from '../navigation/studyModeNavigation.js'
 import { resolveOnboardingBootstrap } from '../onboarding/useAppOnboarding.js'
 import { checkApiReachable } from '../../ai/claudeClient.js'
 import { STORAGE_KEYS } from '../../storageKeys.js'
@@ -23,6 +24,7 @@ export function useAppBootstrap({
   setView,
   setReturnToView,
   setSelectedObjective,
+  nestedApi,
 }) {
   const [progress, setProgress] = useState({})
   const [missed, setMissed] = useState([])
@@ -85,15 +87,10 @@ export function useAppBootstrap({
       const onboardingView = await resolveOnboardingBootstrap(p)
       if (onboardingView) {
         setView(onboardingView)
-      } else if (Object.keys(p).length > 0) {
+      } else {
         const hashRoute = parseAppHash()
-        if (hashRoute?.objective) {
-          setReturnToView('home')
-          setSelectedObjective(hashRoute.objective)
-          setView('objective')
-        } else if (hashRoute?.view) {
-          setReturnToView('home')
-          setView(hashRoute.view)
+        if (hashRoute && nestedApi?.current) {
+          applyParsedHashRoute(hashRoute, nestedApi.current)
         }
       }
       const updatedStreak = await bumpStreak()

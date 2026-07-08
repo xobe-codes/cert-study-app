@@ -31,6 +31,7 @@ export default function App() {
     setView: nav.setView,
     setReturnToView: nav.setReturnToView,
     setSelectedObjective: nav.setSelectedObjective,
+    nestedApi: nav.nestedApi,
   })
   const settings = useAppSettings({
     showSettings: chrome.showSettings,
@@ -122,7 +123,7 @@ export default function App() {
           selectedObjective={nav.selectedObjective}
           packagingId={premium.packagingId}
           packageObjective={premium.packageObjective}
-          goBack={nav.goBack}
+          goBack={nav.goBack} navigateHome={nav.navigateHome} replaceView={nav.replaceView}
           objectiveBackLabel={nav.objectiveBackLabel}
           updateProgress={progressApi.updateProgress}
           handleMissed={progressApi.handleMissed}

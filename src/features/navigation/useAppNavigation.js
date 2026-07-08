@@ -7,6 +7,14 @@ import { countTestedOutDomains } from '../domainPlacement/domainBaselineProfile.
 import { placementDomainIds } from '../domainPlacement/placementBlueprints.js'
 import { parseAppHash, syncAppHash } from '../../routing/appHashRouting.js'
 import { bumpSessionStudy } from '../../home/sessionRecap.js'
+import {
+  applyParsedHashRoute,
+  clearAllNestedState,
+  clearViewNestedState,
+  resetHubSessionState,
+  studyModeOpts,
+  STUDY_HUB_VIEWS,
+} from './studyModeNavigation.js'
 
 /**
  * View/routing state and navigation handlers — extracted from App.jsx.
@@ -36,11 +44,27 @@ export function useAppNavigation() {
   const prevViewRef = useRef('home')
   const placementExpandOnReturnRef = useRef(null)
 
+  const nestedApi = useRef(null)
+  nestedApi.current = {
+    setSelectedLab,
+    setTopicFocusConfig,
+    setActiveDomainPassId,
+    setActiveDomainPlacementId,
+    setPlacementSessionMode,
+    setMockDomainPrefill,
+    setExamTrapPrefill,
+    setTrapDrillPrefill,
+    setSelectedObjective,
+    setReturnToView,
+    setView,
+  }
+
   const openLab = useCallback((labId, from = 'labs') => {
     setSelectedLab(labId)
     setLabReturn(from)
+    setReturnToView(view)
     setView('lab')
-  }, [])
+  }, [view])
 
   const selectObjective = useCallback((obj) => {
     setReturnToView(view)
@@ -49,22 +73,40 @@ export function useAppNavigation() {
     setView('objective')
   }, [view])
 
+  /** Push a new top-level study mode (updates back stack). */
   const navigateTo = useCallback((nextView) => {
+    if (nextView !== view) {
+      clearViewNestedState(view, nestedApi.current)
+      if (STUDY_HUB_VIEWS.has(nextView)) resetHubSessionState(nextView, nestedApi.current)
+    }
     setReturnToView(view)
     setView(nextView)
   }, [view])
 
+  /** Replace view without changing the back stack (lab return paths, etc.). */
+  const replaceView = useCallback((nextView) => {
+    setView(nextView)
+  }, [])
+
+  const navigateHome = useCallback(() => {
+    clearAllNestedState(nestedApi.current)
+    setReturnToView('home')
+    setView('home')
+  }, [])
+
   const openExamTraps = useCallback((prefill) => {
-    setExamTrapPrefill(prefill || null)
-    setReturnToView(view)
-    setView('examtraps')
-  }, [view])
+    const safe = studyModeOpts(prefill)
+    const trapPrefill = safe && (safe.trapId || safe.trapLabel || safe.domainId) ? safe : null
+    setExamTrapPrefill(trapPrefill)
+    navigateTo('examtraps')
+  }, [navigateTo])
 
   const openTrapDrill = useCallback((prefill) => {
-    setTrapDrillPrefill(prefill || null)
-    setReturnToView(view)
-    setView('trapdrill')
-  }, [view])
+    const safe = studyModeOpts(prefill)
+    const drillPrefill = safe && (safe.ckuId || safe.trapLabel || safe.objectiveId) ? safe : null
+    setTrapDrillPrefill(drillPrefill)
+    navigateTo('trapdrill')
+  }, [navigateTo])
 
   const refreshDomainPassCount = useCallback(async () => {
     const records = await loadDomainPassRecords()
@@ -81,18 +123,18 @@ export function useAppNavigation() {
   }, [])
 
   const openDomainPass = useCallback((opts) => {
-    setActiveDomainPassId(opts?.domainId || null)
-    setReturnToView(view)
-    setView('domainpass')
-  }, [view])
+    const safe = studyModeOpts(opts)
+    setActiveDomainPassId(safe?.domainId || null)
+    navigateTo('domainpass')
+  }, [navigateTo])
 
   const openDomainPlacement = useCallback((opts) => {
-    setActiveDomainPlacementId(opts?.domainId || null)
-    setPlacementSessionMode(opts?.placementMode || null)
-    placementExpandOnReturnRef.current = opts?.expandOnReturn ? (opts?.domainId || null) : null
-    setReturnToView(view)
-    setView('domainplacement')
-  }, [view])
+    const safe = studyModeOpts(opts)
+    setActiveDomainPlacementId(safe?.domainId || null)
+    setPlacementSessionMode(safe?.placementMode || null)
+    placementExpandOnReturnRef.current = safe?.expandOnReturn ? (safe?.domainId || null) : null
+    navigateTo('domainplacement')
+  }, [navigateTo])
 
   const exitDomainPlacement = useCallback(() => {
     const expandId = placementExpandOnReturnRef.current
@@ -109,10 +151,10 @@ export function useAppNavigation() {
   }, [returnToView])
 
   const openMockExam = useCallback((opts) => {
-    setMockDomainPrefill(opts?.domainId || null)
-    setReturnToView(view)
-    setView('mock')
-  }, [view])
+    const safe = studyModeOpts(opts)
+    setMockDomainPrefill(safe?.domainId || null)
+    navigateTo('mock')
+  }, [navigateTo])
 
   const clearExamTrapPrefill = useCallback(() => setExamTrapPrefill(null), [])
   const clearTrapDrillPrefill = useCallback(() => setTrapDrillPrefill(null), [])
@@ -125,8 +167,13 @@ export function useAppNavigation() {
   }, [])
 
   const goBack = useCallback(() => {
+    if (view === 'topicfocussession' && returnToView === 'topicfocus') {
+      setView('topicfocus')
+      return
+    }
+    clearViewNestedState(view, nestedApi.current)
     setView(returnToView)
-  }, [returnToView])
+  }, [view, returnToView])
 
   const routeScrolls = view !== 'objective' && view !== 'tutor' && view !== 'mockinterview'
   const compactTopChrome = view === 'objective' || view === 'tutor' || view === 'mockinterview'
@@ -164,8 +211,11 @@ export function useAppNavigation() {
     mainRef,
     homeScrollRef,
     prevViewRef,
+    nestedApi,
     selectObjective,
     navigateTo,
+    replaceView,
+    navigateHome,
     openExamTraps,
     openTrapDrill,
     openDomainPass,
@@ -204,7 +254,10 @@ export function AppNavigationLifecycle({
     refreshDomainPassCount,
     refreshPlacementBaselineCount,
     setOpenDomain,
+    nestedApi,
   } = nav
+
+  const hashBootstrapped = useRef(false)
 
   useEffect(() => { if (view === 'home') refreshDue() }, [view, refreshDue])
 
@@ -239,25 +292,23 @@ export function AppNavigationLifecycle({
   }, [loaded, view, selectedObjective])
 
   useEffect(() => {
+    if (!loaded || hashBootstrapped.current) return
+    if (view === 'onboarding') return
+    const route = parseAppHash()
+    if (route) {
+      applyParsedHashRoute(route, nestedApi.current)
+      hashBootstrapped.current = true
+    }
+  }, [loaded, view, nestedApi])
+
+  useEffect(() => {
     if (!loaded) return
     function onHashChange() {
-      const route = parseAppHash()
-      if (route?.objective) {
-        setReturnToView('home')
-        setSelectedObjective(route.objective)
-        setView('objective')
-      } else if (route?.view) {
-        setSelectedObjective(null)
-        setReturnToView('home')
-        setView(route.view)
-      } else {
-        setReturnToView('home')
-        setView('home')
-      }
+      applyParsedHashRoute(parseAppHash(), nestedApi.current)
     }
     window.addEventListener('hashchange', onHashChange)
     return () => window.removeEventListener('hashchange', onHashChange)
-  }, [loaded, setView, setReturnToView, setSelectedObjective])
+  }, [loaded, nestedApi])
 
   useEffect(() => {
     if (!loaded) return

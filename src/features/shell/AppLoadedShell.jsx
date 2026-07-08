@@ -56,6 +56,8 @@ export default function AppLoadedShell({
   packagingId,
   packageObjective,
   goBack,
+  navigateHome,
+  replaceView,
   objectiveBackLabel,
   updateProgress,
   handleMissed,
@@ -225,7 +227,8 @@ export default function AppLoadedShell({
           settingsExamMode={settingsExamMode}
           missed={missed}
           onBack={goBack}
-          onNavigate={setView}
+          onNavigate={replaceView}
+          onPushView={navigateTo}
           onOpenLab={openLab}
           onOpenMockExam={openMockExam}
           onOpenTrapDrill={openTrapDrill}
@@ -248,7 +251,7 @@ export default function AppLoadedShell({
             compact={bottomNavCompact}
             homeLabel={showNavBack ? 'Back' : 'Home'}
             homeIcon={showNavBack ? 'back' : 'home'}
-            onHome={showNavBack ? goBack : () => setView('home')}
+            onHome={showNavBack ? goBack : navigateHome}
             onSearch={openSearch}
             onMore={openSettings}
           />
