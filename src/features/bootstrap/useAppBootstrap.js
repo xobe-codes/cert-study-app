@@ -14,7 +14,7 @@ import { parseAppHash } from '../../routing/appHashRouting.js'
 import { applyParsedHashRoute } from '../navigation/studyModeNavigation.js'
 import { resolveOnboardingBootstrap } from '../onboarding/useAppOnboarding.js'
 import { checkApiReachable } from '../../ai/claudeClient.js'
-import { STORAGE_KEYS } from '../../storageKeys.js'
+import { STORAGE_KEYS, APP_REFRESH_EVENT } from '../../storageKeys.js'
 
 /**
  * App bootstrap — initial data load, preload, theme init, API health polling.
@@ -54,6 +54,29 @@ export function useAppBootstrap({
 
   const refreshDue = useCallback(async () => {
     setDueCount(await countDueQuestions())
+  }, [])
+
+  const refreshApp = useCallback(async () => {
+    const [p, m, s, off, due, premium, online] = await Promise.all([
+      loadProgress(),
+      loadMissed(),
+      loadStreak(),
+      loadOfflineReadyIds(),
+      countDueQuestions(),
+      loadPremiumUnlocked(),
+      checkApiReachable(),
+    ])
+    setProgress(p)
+    setMissed(m)
+    setStreak(s)
+    setOfflineReady(off)
+    setDueCount(due)
+    setPremiumUnlocked(premium)
+    setApiOnline(online)
+    flushQuestionFlagQueue().catch(() => {})
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent(APP_REFRESH_EVENT))
+    }
   }, [])
 
   // Preload clean-question chunk during idle time
@@ -129,5 +152,6 @@ export function useAppBootstrap({
     toggleTheme,
     refreshOffline,
     refreshDue,
+    refreshApp,
   }
 }

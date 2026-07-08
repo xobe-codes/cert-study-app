@@ -190,8 +190,8 @@ export default function App() {
           handleTogglePremium={premium.handleTogglePremium}
           premiumToast={premium.premiumToast}
           dismissPremiumToast={premium.dismissPremiumToast}
-          completeTour={onboarding.completeTour}
-          skipTour={onboarding.skipTour}
+          completeTour={onboarding.completeTour} skipTour={onboarding.skipTour}
+          pullRefresh={{ onRefresh: bootstrap.refreshApp, enabled: !chromeOverlayOpen && nav.view !== 'onboarding', reduceMotion: settings.settingsReduceMotion }}
         />
       </StudyBlockProvider>
     </NavHintProvider>

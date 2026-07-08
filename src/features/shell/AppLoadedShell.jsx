@@ -129,6 +129,7 @@ export default function AppLoadedShell({
   dismissPremiumToast,
   completeTour,
   skipTour,
+  pullRefresh,
 }) {
   useVisualViewportBottomInset(showBottomNav || view === 'objective' || view === 'tutor' || view === 'mockinterview')
 
@@ -141,7 +142,7 @@ export default function AppLoadedShell({
           <OfflineBanner />
         </div>
       )}
-      <RouteShell scroll={routeScrolls} ref={mainRef} innerClassName="ccna-route-in" key={view}>
+      <RouteShell scroll={routeScrolls} ref={mainRef} innerClassName="ccna-route-in" key={view} pullRefresh={pullRefresh}>
         <CoreStudyRoutes
           view={view}
           onFinishOnboarding={finishOnboarding}

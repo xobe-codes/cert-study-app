@@ -40,3 +40,6 @@ export const TRAP_DRILL_PREFILL_EVENT = 'ccna-trap-drill-prefill'
 
 /** Fired after a domain placement attempt is saved — refresh home baseline count. */
 export const PLACEMENT_BASELINE_REFRESH_EVENT = 'ccna-placement-baseline-refresh'
+
+/** Fired after pull-to-refresh reloads persisted study data. */
+export const APP_REFRESH_EVENT = 'ccna-app-refresh'

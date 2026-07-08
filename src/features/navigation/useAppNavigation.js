@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { DOMAINS } from '../../data/ccnaDomains.js'
-import { STORAGE_KEYS, TRAP_DRILL_PREFILL_EVENT, PLACEMENT_BASELINE_REFRESH_EVENT } from '../../storageKeys.js'
+import { STORAGE_KEYS, TRAP_DRILL_PREFILL_EVENT, PLACEMENT_BASELINE_REFRESH_EVENT, APP_REFRESH_EVENT } from '../../storageKeys.js'
 import { loadDomainPassRecords, countPassedDomains } from '../domainPass/domainPassStorage.js'
 import { loadAllPlacementRecords, countPlacementBaselines } from '../domainPlacement/domainPlacementStorage.js'
 import { countTestedOutDomains } from '../domainPlacement/domainBaselineProfile.js'
@@ -321,6 +321,16 @@ export function AppNavigationLifecycle({
     if (!loaded || view !== 'trapdrill') return
     consumeTrapDrillPrefill()
   }, [loaded, view, consumeTrapDrillPrefill])
+
+  useEffect(() => {
+    if (!loaded) return
+    const onAppRefresh = () => {
+      refreshDomainPassCount()
+      refreshPlacementBaselineCount()
+    }
+    window.addEventListener(APP_REFRESH_EVENT, onAppRefresh)
+    return () => window.removeEventListener(APP_REFRESH_EVENT, onAppRefresh)
+  }, [loaded, refreshDomainPassCount, refreshPlacementBaselineCount])
 
   useEffect(() => {
     if (!loaded) return

@@ -1,6 +1,7 @@
 import React from 'react'
 import { COLORS, THEME_CSS } from '../../ui/appTheme.js'
 import { buildAppShellCss } from '../../ui/appShell.js'
+import { buildPullToRefreshCss } from '../../ui/pullToRefreshCss.js'
 
 /** Runtime shell CSS — appShell tokens, theme, animations, and touch polish. */
 export default function AppShellStyles({ minimal = false }) {
@@ -11,6 +12,7 @@ export default function AppShellStyles({ minimal = false }) {
   return (
     <style>{`
       ${buildAppShellCss(COLORS)}
+      ${buildPullToRefreshCss(COLORS)}
       ${THEME_CSS}
       * { -webkit-tap-highlight-color: transparent; }
       button { transition: transform .12s ease, opacity .12s ease, box-shadow .12s ease; }
