@@ -4,14 +4,30 @@ import { COLORS, styles } from '../../ui/appTheme.js'
 import McChoices from '../../components/McChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
 import { applyAnswerReviewToQuestion } from '../../answerReviewLogic.js'
-import { getTrapDrillQuestions, resolveTrapDrillCku, TRAP_DRILL_CKUS } from './trapDrillQuestions.js'
+import {
+  getTrapDrillQuestions,
+  resolveTrapDrillCku,
+} from './trapDrillQuestions.js'
+import { trapDomainMeta } from '../../study/trapDomainConstants.js'
+import TrapDrillHub from './TrapDrillHub.jsx'
 
 export default function TrapDrillSession({ prefill, onBack }) {
   const resolved = useMemo(() => resolveTrapDrillCku(prefill || {}), [prefill])
+  const [scope, setScope] = useState(() => {
+    if (resolved || prefill?.ckuId || prefill?.trapLabel) return { kind: 'cku', ...prefill }
+    if (prefill?.domainId) return { kind: 'domain', domainId: String(prefill.domainId) }
+    return null
+  })
+
   const questions = useMemo(() => {
-    const pool = getTrapDrillQuestions(prefill || {})
-    return randomizeQuestionOrder(pool.length ? pool : getTrapDrillQuestions())
-  }, [prefill])
+    if (!scope) return []
+    const pool = getTrapDrillQuestions(
+      scope.kind === 'domain'
+        ? { domainId: scope.domainId }
+        : { ckuId: scope.ckuId, trapLabel: scope.trapLabel },
+    )
+    return randomizeQuestionOrder(pool)
+  }, [scope])
 
   const [idx, setIdx] = useState(0)
   const [selected, setSelected] = useState(null)
@@ -19,7 +35,31 @@ export default function TrapDrillSession({ prefill, onBack }) {
   const [stats, setStats] = useState({ correct: 0, total: 0 })
 
   const current = questions[idx]
-  const done = idx >= questions.length
+  const done = scope && idx >= questions.length
+
+  function startDomain(domainId) {
+    setScope({ kind: 'domain', domainId: String(domainId) })
+    setIdx(0)
+    setSelected(null)
+    setRevealed(false)
+    setStats({ correct: 0, total: 0 })
+  }
+
+  function startCku(ckuId) {
+    setScope({ kind: 'cku', ckuId })
+    setIdx(0)
+    setSelected(null)
+    setRevealed(false)
+    setStats({ correct: 0, total: 0 })
+  }
+
+  function backToHub() {
+    setScope(null)
+    setIdx(0)
+    setSelected(null)
+    setRevealed(false)
+    setStats({ correct: 0, total: 0 })
+  }
 
   function selectChoice(choiceIdx) {
     if (revealed || !current) return
@@ -47,21 +87,34 @@ export default function TrapDrillSession({ prefill, onBack }) {
     setStats({ correct: 0, total: 0 })
   }
 
+  if (!scope) {
+    return (
+      <TrapDrillHub
+        prefill={prefill}
+        onBack={onBack}
+        onStartDomain={startDomain}
+        onStartCku={startCku}
+      />
+    )
+  }
+
   if (!questions.length) {
     return (
       <div>
-        <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
+        <button type="button" style={styles.backBtn} onClick={backToHub}>‹ Choose domain</button>
         <h1 style={styles.h1}>Trap Drill</h1>
-        <p style={styles.small}>No drill questions match this trap yet. Try another pattern from your missed bank.</p>
+        <p style={styles.small}>No drill questions match this scope. Pick another domain or pattern.</p>
+        <button type="button" style={styles.secondaryBtn} onClick={backToHub}>Back to domain picker</button>
       </div>
     )
   }
 
   if (done) {
     const pct = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0
+    const domainMeta = scope.kind === 'domain' ? trapDomainMeta(scope.domainId) : null
     return (
       <div>
-        <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
+        <button type="button" style={styles.backBtn} onClick={backToHub}>‹ Choose domain</button>
         <h1 style={styles.h1}>Trap Drill Complete</h1>
         <div style={styles.card}>
           <div style={{ fontSize: 'var(--ccna-type-display)', fontWeight: 700, color: pct >= 70 ? COLORS.mint : COLORS.amber }}>{pct}%</div>
@@ -71,8 +124,14 @@ export default function TrapDrillSession({ prefill, onBack }) {
               Pattern: {resolved.trapLabel}
             </div>
           )}
+          {domainMeta && (
+            <div style={{ ...styles.small, marginTop: 8, color: COLORS.silverMid }}>
+              Domain: {domainMeta.label}
+            </div>
+          )}
         </div>
         <button type="button" style={styles.primaryBtn} onClick={restart}>Drill again</button>
+        <button type="button" style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={backToHub}>Pick another domain</button>
         <button type="button" style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={onBack}>Done</button>
       </div>
     )
@@ -80,20 +139,23 @@ export default function TrapDrillSession({ prefill, onBack }) {
 
   const enriched = applyAnswerReviewToQuestion(current)
   const isCorrect = revealed && gradeQuestion(enriched, selected)
+  const domainMeta = scope.kind === 'domain' ? trapDomainMeta(scope.domainId) : null
 
   return (
-    <div>
-      <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
+    <div className="trap-drill-session">
+      <div className="trap-drill-sticky-header">
+        <button type="button" style={styles.backBtn} onClick={backToHub}>‹ Domains</button>
+      </div>
       <h1 style={styles.h1}>Trap Drill</h1>
       {resolved ? (
         <div style={{ ...styles.pill('amber'), display: 'inline-block', marginBottom: 10, fontSize: 'var(--ccna-type-xs)' }}>
           {resolved.trapLabel}
         </div>
-      ) : (
-        <p style={{ ...styles.small, marginBottom: 10 }}>
-          {TRAP_DRILL_CKUS.length} high-frequency exam traps · {questions.length} questions
-        </p>
-      )}
+      ) : domainMeta ? (
+        <div style={{ ...styles.pill(domainMeta.accent), display: 'inline-block', marginBottom: 10, fontSize: 'var(--ccna-type-xs)' }}>
+          {domainMeta.chip} · {questions.length} questions
+        </div>
+      ) : null}
       <div style={styles.small}>Question {idx + 1} / {questions.length}</div>
       <div style={styles.card}>
         {current.objectiveId && (

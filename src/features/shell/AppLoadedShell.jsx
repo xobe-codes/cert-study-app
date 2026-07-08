@@ -59,6 +59,7 @@ export default function AppLoadedShell({
   goBack,
   navigateHome,
   replaceView,
+  exitLab,
   objectiveBackLabel,
   updateProgress,
   handleMissed,
@@ -233,6 +234,7 @@ export default function AppLoadedShell({
           missed={missed}
           onBack={goBack}
           onNavigate={replaceView}
+          onExitLab={exitLab}
           onPushView={navigateTo}
           onOpenLab={openLab}
           onOpenMockExam={openMockExam}

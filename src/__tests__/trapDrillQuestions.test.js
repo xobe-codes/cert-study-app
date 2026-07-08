@@ -3,10 +3,21 @@ import {
   TRAP_DRILL_CKUS,
   getTrapDrillQuestions,
   getAllTrapDrillQuestions,
+  getTrapDrillCkusForDomain,
   resolveTrapDrillCku,
 } from '../features/trapDrill/trapDrillQuestions.js'
 
 describe('trapDrillQuestions', () => {
+  it('returns empty pool when unscoped (hub picks domain first)', () => {
+    expect(getTrapDrillQuestions()).toEqual([])
+  })
+
+  it('returns domain-scoped questions', () => {
+    const d1 = getTrapDrillQuestions({ domainId: '1' })
+    expect(d1.length).toBe(getTrapDrillCkusForDomain('1').length * 3)
+    expect(d1.every(q => String(q.objectiveId).startsWith('1.'))).toBe(true)
+  })
+
   it('defines 60 trap CKUs with 3 questions each (180 total)', () => {
     expect(TRAP_DRILL_CKUS).toHaveLength(60)
     expect(getAllTrapDrillQuestions()).toHaveLength(180)

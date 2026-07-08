@@ -171,6 +171,47 @@ export function buildAppShellResponsiveCss(colors) {
       display: flex;
       flex-direction: column;
     }
+    .lab-sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 12;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 0 10px;
+      margin: -4px 0 4px;
+      background: linear-gradient(180deg, ${colors.bg} 70%, transparent);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .lab-sticky-back {
+      flex-shrink: 0;
+      margin-bottom: 0 !important;
+    }
+    .lab-sticky-title {
+      flex: 1;
+      min-width: 0;
+      font-size: var(--ccna-type-sm);
+      font-weight: 600;
+      color: ${colors.silver};
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .lab-view--complete .lab-practice-layout {
+      opacity: 0.92;
+    }
+    .trap-drill-sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 8;
+      padding: 4px 0 8px;
+      background: linear-gradient(180deg, ${colors.bg} 75%, transparent);
+    }
+    .trap-drill-sticky-header .ccna-back-btn,
+    .trap-drill-sticky-header button[style] {
+      margin-bottom: 0 !important;
+    }
     .lab-practice-tasks {
       min-width: 0;
     }

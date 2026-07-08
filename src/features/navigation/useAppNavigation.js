@@ -105,7 +105,7 @@ export function useAppNavigation() {
 
   const openTrapDrill = useCallback((prefill) => {
     const safe = studyModeOpts(prefill)
-    const drillPrefill = safe && (safe.ckuId || safe.trapLabel || safe.objectiveId) ? safe : null
+    const drillPrefill = safe && (safe.ckuId || safe.trapLabel || safe.objectiveId || safe.domainId) ? safe : null
     setTrapDrillPrefill(drillPrefill)
     navigateTo('trapdrill')
   }, [navigateTo])
@@ -187,6 +187,16 @@ export function useAppNavigation() {
     setView(returnToView)
   }, [view, returnToView])
 
+  const exitLab = useCallback(() => {
+    const dest = labReturn || 'labs'
+    setSelectedLab(null)
+    if (dest === 'objective') replaceView('objective')
+    else if (dest === 'mock') replaceView('mock')
+    else if (dest === 'domainpass') replaceView('domainpass')
+    else if (dest === 'domainplacement') replaceView('domainplacement')
+    else replaceView('labs')
+  }, [labReturn, replaceView])
+
   const routeScrolls = view !== 'objective' && view !== 'tutor' && view !== 'mockinterview'
   const compactTopChrome = view === 'objective' || view === 'tutor' || view === 'mockinterview'
   const showNavBack = view !== 'home' && view !== 'onboarding' && view !== 'objective'
@@ -243,6 +253,7 @@ export function useAppNavigation() {
     refreshDomainPassCount,
     refreshPlacementBaselineCount,
     goBack,
+    exitLab,
     routeScrolls,
     compactTopChrome,
     showNavBack,

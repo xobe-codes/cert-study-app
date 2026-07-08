@@ -13,6 +13,14 @@ import DomainPlacementIntro from '../domainPlacement/DomainPlacementIntro.jsx'
 import DomainPlacementSession from '../domainPlacement/DomainPlacementSession.jsx'
 import TrapDrillSession from '../trapDrill/TrapDrillSession.jsx'
 
+const LAB_EXIT_LABELS = {
+  labs: '‹ Back to Labs',
+  objective: '‹ Back to objective',
+  mock: '‹ Back to mock exam',
+  domainpass: '‹ Back to domain pass',
+  domainplacement: '‹ Back to placement',
+}
+
 const LabsHub = lazy(() => import('../../lab/LabsHub.jsx'))
 const LabView = lazy(() => import('../../lab/LabView.jsx'))
 const TopicFocusStudio = lazy(() => import('../../topic/TopicFocusStudio.jsx'))
@@ -44,6 +52,7 @@ export default function StudyModeRoutes({
   missed,
   onBack,
   onNavigate,
+  onExitLab,
   onPushView,
   onOpenLab,
   onOpenMockExam,
@@ -76,13 +85,14 @@ export default function StudyModeRoutes({
       <LazyRoute label="Loading lab…">
         <LabView
           bundle={getLab(selectedLab)}
-          onBack={() => {
+          onBack={onExitLab || (() => {
             if (labReturn === 'objective') onNavigate('objective')
             else if (labReturn === 'mock') onNavigate('mock')
             else if (labReturn === 'domainpass') onNavigate('domainpass')
             else if (labReturn === 'domainplacement') onNavigate('domainplacement')
             else onNavigate('labs')
-          }}
+          })}
+          exitLabel={LAB_EXIT_LABELS[labReturn] || LAB_EXIT_LABELS.labs}
           onOpenLab={(id) => onOpenLab(id, labReturn || 'labs')}
           celebrate={celebrate}
           haptic={haptic}

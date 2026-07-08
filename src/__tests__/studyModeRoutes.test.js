@@ -20,6 +20,7 @@ describe('StudyModeRoutes', () => {
     missed: [],
     onBack: () => {},
     onNavigate: () => {},
+    onExitLab: () => {},
     onOpenLab: () => {},
     onOpenMockExam: () => {},
     onOpenTrapDrill: () => {},

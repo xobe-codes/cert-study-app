@@ -26,7 +26,7 @@ function LabSection({ icon, title, accent, items }) {
   )
 }
 
-export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, haptic }) {
+export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, haptic, exitLabel }) {
   const { lab, topology, validator, diagram, packetFlows } = bundle
   const showNavHint = useNavHint()
 
@@ -159,9 +159,17 @@ export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, 
     setPhase('practice')
   }
 
+  const backLabel = exitLabel || 'Back'
+
   return (
-    <div>
-      <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
+    <div className={prog.complete ? 'lab-view lab-view--complete' : 'lab-view'}>
+      <div className="lab-sticky-header">
+        <button type="button" className="lab-sticky-back" style={styles.backBtn} onClick={onBack}>{backLabel}</button>
+        <div className="lab-sticky-title">{lab.title}</div>
+        {prog.complete && (
+          <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-micro)', flexShrink: 0 }}>✓ DONE</span>
+        )}
+      </div>
       <h1 style={styles.h1}>{lab.title}</h1>
       <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 10 }}>
         <span style={{ ...styles.pill(LAB_DIFF_ACCENT[lab.difficulty] || 'sky'), fontSize: 'var(--ccna-type-micro)' }}>{lab.difficulty.toUpperCase()}</span>
@@ -270,11 +278,12 @@ export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, 
       )}
 
       {prog.complete && (
-        <div style={{ ...styles.card, background: COLORS.mintDim, border: `1px solid ${COLORS.mintBorder}`, marginBottom: 12 }}>
+        <div className="lab-complete-banner" style={{ ...styles.card, background: COLORS.mintDim, border: `1px solid ${COLORS.mintBorder}`, marginBottom: 12 }}>
           <div style={{ fontWeight: 700, color: COLORS.mint, fontSize: 'var(--ccna-type-md)' }}>✓ Lab complete</div>
-          <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, marginTop: 4 }}>
-            All required commands entered with IOS-style validation. Try the verify commands below in the terminal with show.
+          <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, marginTop: 4, marginBottom: 12 }}>
+            All required commands entered with IOS-style validation. Expand verify below or exit when ready.
           </div>
+          <button type="button" style={styles.primaryBtn} onClick={onBack}>{backLabel}</button>
         </div>
       )}
 

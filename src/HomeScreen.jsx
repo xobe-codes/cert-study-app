@@ -573,6 +573,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
           <StudyModeBtn onClick={onOpenStudyLens}>Study Lens</StudyModeBtn>
           <StudyModeBtn onClick={onOpenMissed}>Missed ({missedCount})</StudyModeBtn>
           <StudyModeBtn onClick={onOpenExamTraps}>Exam Traps</StudyModeBtn>
+          <StudyModeBtn onClick={() => onOpenTrapDrill?.()}>Trap Drill</StudyModeBtn>
           <StudyModeBtn onClick={onOpenLabs}>Labs</StudyModeBtn>
           <StudyModeBtn onClick={onOpenSubnet}>Subnetting</StudyModeBtn>
           <StudyModeBtn onClick={onOpenRouting}>Routing</StudyModeBtn>

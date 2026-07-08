@@ -80,7 +80,7 @@ const HINTS = {
   [NAV_HINT_KEYS.LAB_DONE]: {
     icon: 'check',
     accent: 'mint',
-    message: () => 'Lab complete — try the **Quiz** on this topic or pick the next **CLI Drill**.',
+    message: () => 'Lab complete — use **Back to Labs** in the sticky header, completion card, or bottom nav.',
   },
 }
 

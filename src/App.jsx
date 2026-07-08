@@ -61,7 +61,7 @@ export default function App() {
   useGlobalSearchHotkey({ enabled: bootstrap.loaded, blocked: chrome.hotkeyBlocked, onOpen: chrome.openSearch })
   const studyBlock = useAppStudyBlock({ setStreak: bootstrap.setStreak })
   const chromeOverlayOpen = chrome.panelOverlayOpen || onboarding.showTour
-  const showBottomNav = bootstrap.loaded && !chromeOverlayOpen && !['onboarding', 'tutor', 'mockinterview', 'lab'].includes(nav.view)
+  const showBottomNav = bootstrap.loaded && !chromeOverlayOpen && !['onboarding', 'tutor', 'mockinterview'].includes(nav.view)
   const bottomNav = bottomNavState({ view: nav.view, showSettings: chrome.showSettings, showSearch: chrome.showSearch, showNavBack: nav.showNavBack })
 
   if (!bootstrap.loaded) {
@@ -119,6 +119,7 @@ export default function App() {
           packagingId={premium.packagingId}
           packageObjective={premium.packageObjective}
           goBack={nav.goBack} navigateHome={nav.navigateHome} replaceView={nav.replaceView}
+          exitLab={nav.exitLab}
           objectiveBackLabel={nav.objectiveBackLabel}
           updateProgress={progressApi.updateProgress}
           handleMissed={progressApi.handleMissed}

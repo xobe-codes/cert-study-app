@@ -2131,14 +2131,25 @@ export function resolveTrapDrillCku({ trapLabel, ckuId } = {}) {
   }) || null
 }
 
-/** Questions for one trap CKU, or all if no filter. */
-export function getTrapDrillQuestions({ trapLabel, ckuId } = {}) {
+/** Trap CKUs scoped to one CCNA exam domain (1–6). */
+export function getTrapDrillCkusForDomain(domainId) {
+  const d = String(domainId || '')
+  if (!d) return []
+  return TRAP_DRILL_CKUS.filter(c => String(c.objectiveId).startsWith(`${d}.`))
+}
+
+/** Questions for one trap CKU, one domain, or none when unscoped. */
+export function getTrapDrillQuestions({ trapLabel, ckuId, domainId } = {}) {
   const resolved = resolveTrapDrillCku({ trapLabel, ckuId })
   if (resolved) {
     return QUESTIONS.filter(q => q.ckuId === resolved.ckuId)
   }
+  if (domainId) {
+    const ckuIds = new Set(getTrapDrillCkusForDomain(domainId).map(c => c.ckuId))
+    return QUESTIONS.filter(q => ckuIds.has(q.ckuId))
+  }
   if (trapLabel || ckuId) return []
-  return [...QUESTIONS]
+  return []
 }
 
 export function getAllTrapDrillQuestions() {

@@ -10,14 +10,15 @@ import {
 } from './data/knowledgeStudy.js'
 import { STATIC_COPY } from './ui/staticContentCopy.js'
 import { COLORS } from './ui/appTheme.js'
+import { TRAP_DOMAIN_NUMBERS, trapDomainMeta } from './study/trapDomainConstants.js'
 
 const DOMAINS = [
-  { id: '1', label: 'Domain 1 — Network Fundamentals', getTraps: getAllDomain1ExamTraps },
-  { id: '2', label: 'Domain 2 — Network Access', getTraps: getAllDomain2ExamTraps },
-  { id: '3', label: 'Domain 3 — IP Connectivity', getTraps: getAllDomain3ExamTraps },
-  { id: '4', label: 'Domain 4 — IP Services', getTraps: getAllDomain4ExamTraps },
-  { id: '5', label: 'Domain 5 — Security', getTraps: getAllDomain5ExamTraps },
-  { id: '6', label: 'Domain 6 — Automation', getTraps: getAllDomain6ExamTraps },
+  { id: '1', getTraps: getAllDomain1ExamTraps },
+  { id: '2', getTraps: getAllDomain2ExamTraps },
+  { id: '3', getTraps: getAllDomain3ExamTraps },
+  { id: '4', getTraps: getAllDomain4ExamTraps },
+  { id: '5', getTraps: getAllDomain5ExamTraps },
+  { id: '6', getTraps: getAllDomain6ExamTraps },
 ]
 
 function normTrapLabel(s) {
@@ -42,17 +43,74 @@ export function matchExamTraps(traps, filter) {
   })
 }
 
-function DomainPicker({ domainId, onChange, styles }) {
+function uniqueObjectiveIds(traps) {
+  return [...new Set((traps || []).map(t => t.objectiveId).filter(Boolean))].sort()
+}
+
+function DomainPicker({ domainId, onChange, styles, trapCounts }) {
   return (
-    <div style={{ display: 'flex', gap: 6, marginBottom: 12, flexWrap: 'wrap' }}>
-      {DOMAINS.map(d => (
+    <div
+      className="ccna-h-scroll"
+      role="tablist"
+      aria-label="Filter exam traps by domain"
+      style={{ display: 'flex', gap: 6, marginBottom: 12, flexWrap: 'wrap', overflowX: 'auto', paddingBottom: 4 }}
+    >
+      {TRAP_DOMAIN_NUMBERS.map((id) => {
+        const meta = trapDomainMeta(id)
+        const count = trapCounts[id] ?? 0
+        return (
+          <button
+            key={id}
+            type="button"
+            role="tab"
+            aria-selected={domainId === id}
+            onClick={() => onChange(id)}
+            style={{
+              ...styles.pill(domainId === id ? meta.accent : 'silver'),
+              cursor: 'pointer',
+              border: 'none',
+              fontFamily: 'inherit',
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+              fontSize: 'var(--ccna-type-xs)',
+            }}
+          >
+            {meta.chip} · {count}
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
+function ObjectiveFilter({ objectiveId, objectives, onChange, styles }) {
+  if (objectives.length < 2) return null
+  return (
+    <div
+      className="ccna-h-scroll"
+      role="tablist"
+      aria-label="Filter by objective"
+      style={{ display: 'flex', gap: 6, marginBottom: 12, overflowX: 'auto', paddingBottom: 2 }}
+    >
+      <button
+        type="button"
+        role="tab"
+        aria-selected={!objectiveId}
+        onClick={() => onChange(null)}
+        style={{ ...styles.pill(!objectiveId ? 'sky' : 'silver'), border: 'none', cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0, fontSize: 'var(--ccna-type-xs)' }}
+      >
+        All objectives
+      </button>
+      {objectives.map((oid) => (
         <button
-          key={d.id}
+          key={oid}
           type="button"
-          onClick={() => onChange(d.id)}
-          style={{ ...styles.pill(domainId === d.id ? 'sky' : 'silver'), cursor: 'pointer', border: 'none', fontFamily: 'inherit' }}
+          role="tab"
+          aria-selected={objectiveId === oid}
+          onClick={() => onChange(oid)}
+          style={{ ...styles.pill(objectiveId === oid ? 'sky' : 'silver'), border: 'none', cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0, fontSize: 'var(--ccna-type-xs)' }}
         >
-          D{d.id}
+          {oid}
         </button>
       ))}
     </div>
@@ -60,23 +118,40 @@ function DomainPicker({ domainId, onChange, styles }) {
 }
 
 export default function ExamTrapStudyMode({ styles, onBack, prefill, onPrefillConsumed }) {
+  const trapCounts = useMemo(() => {
+    const counts = {}
+    for (const d of DOMAINS) counts[d.id] = d.getTraps().length
+    return counts
+  }, [])
+
   const [domainId, setDomainId] = useState(() => String(prefill?.domainId || '1'))
+  const [objectiveFilter, setObjectiveFilter] = useState(null)
   const [trapFilter, setTrapFilter] = useState(() => (
     prefill?.trapId || prefill?.trapLabel
       ? { trapId: prefill.trapId, trapLabel: prefill.trapLabel }
       : null
   ))
+  const [showIndex, setShowIndex] = useState(false)
+
   const domain = DOMAINS.find(d => d.id === domainId) || DOMAINS[0]
+  const domainMeta = trapDomainMeta(domainId)
+  const domainTraps = useMemo(() => domain.getTraps(), [domain])
+
   const traps = useMemo(() => {
-    const raw = domain.getTraps()
+    let raw = domainTraps
     const matched = matchExamTraps(raw, trapFilter)
     if (matched.length) return matched
+    if (objectiveFilter) raw = raw.filter(t => t.objectiveId === objectiveFilter)
     return randomizeQuestionOrder(raw)
-  }, [domain, trapFilter])
+  }, [domainTraps, trapFilter, objectiveFilter])
+
+  const objectives = useMemo(() => uniqueObjectiveIds(domainTraps), [domainTraps])
+
   const [idx, setIdx] = useState(0)
   const [revealed, setRevealed] = useState(false)
   const trap = traps[idx]
-  const filteredFromMiss = Boolean(trapFilter && matchExamTraps(domain.getTraps(), trapFilter).length)
+  const filteredFromMiss = Boolean(trapFilter && matchExamTraps(domainTraps, trapFilter).length)
+  const atEnd = traps.length > 0 && idx >= traps.length - 1 && revealed
 
   useEffect(() => {
     if (!prefill) return
@@ -91,9 +166,11 @@ export default function ExamTrapStudyMode({ styles, onBack, prefill, onPrefillCo
 
   function switchDomain(id) {
     setDomainId(id)
+    setObjectiveFilter(null)
     setTrapFilter(null)
     setIdx(0)
     setRevealed(false)
+    setShowIndex(false)
   }
 
   function clearTrapFilter() {
@@ -102,25 +179,42 @@ export default function ExamTrapStudyMode({ styles, onBack, prefill, onPrefillCo
     setRevealed(false)
   }
 
+  function jumpToTrap(i) {
+    setIdx(i)
+    setRevealed(false)
+    setShowIndex(false)
+  }
+
   if (!traps.length) {
     return (
       <div>
         <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
         <h1 style={styles.h1}>Exam Trap Drill</h1>
-        <DomainPicker domainId={domainId} onChange={switchDomain} styles={styles} />
+        <DomainPicker domainId={domainId} onChange={switchDomain} styles={styles} trapCounts={trapCounts} />
+        <ObjectiveFilter objectiveId={objectiveFilter} objectives={objectives} onChange={setObjectiveFilter} styles={styles} />
         <div style={styles.small}>
-          No exam traps for {domain.label} in the KB yet.
-          {domainId === '6' ? ' Automation traps are sparse — review curated reading and quiz explanations.' : ' Complete reading for those objectives to populate traps.'}
+          No exam traps for {domainMeta.label} with this filter.
+          {domainId === '6' ? ' Automation traps are sparse — review curated reading and quiz explanations.' : ' Try another objective or domain.'}
         </div>
       </div>
     )
   }
 
   return (
-    <div>
-      <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
+    <div className="exam-trap-study">
+      <div className="trap-drill-sticky-header">
+        <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
+      </div>
       <h1 style={styles.h1}>Exam Trap Drill</h1>
-      <DomainPicker domainId={domainId} onChange={switchDomain} styles={styles} />
+      <DomainPicker domainId={domainId} onChange={switchDomain} styles={styles} trapCounts={trapCounts} />
+      {!trapFilter && (
+        <ObjectiveFilter
+          objectiveId={objectiveFilter}
+          objectives={objectives}
+          onChange={(oid) => { setObjectiveFilter(oid); setIdx(0); setRevealed(false) }}
+          styles={styles}
+        />
+      )}
       {filteredFromMiss && (
         <div style={{ ...styles.card, marginBottom: 12, padding: 10, borderColor: COLORS.amberBorder, background: COLORS.amberDim }}>
           <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.amber, fontWeight: 600, marginBottom: 6 }}>
@@ -134,8 +228,47 @@ export default function ExamTrapStudyMode({ styles, onBack, prefill, onPrefillCo
           </button>
         </div>
       )}
-      <div style={styles.small}>{domain.label} · {traps.length} trap{traps.length === 1 ? '' : 's'} · {STATIC_COPY.examTraps}</div>
-      <div style={{ ...styles.card, marginTop: 12 }}>
+      <div style={styles.small}>
+        {domainMeta.label} · {traps.length} trap{traps.length === 1 ? '' : 's'} · {STATIC_COPY.examTraps}
+      </div>
+
+      <div style={{ display: 'flex', gap: 8, marginTop: 10, marginBottom: 8, flexWrap: 'wrap' }}>
+        <button type="button" style={{ ...styles.secondaryBtn, flex: '1 1 auto', marginBottom: 0, minHeight: 40 }} onClick={() => setShowIndex(v => !v)}>
+          {showIndex ? 'Hide trap list' : 'Browse traps'}
+        </button>
+        {trap?.objectiveId && (
+          <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)', alignSelf: 'center' }}>{trap.objectiveId}</span>
+        )}
+      </div>
+
+      {showIndex && (
+        <div style={{ ...styles.card, marginBottom: 12, maxHeight: 'min(40dvh, 320px)', overflowY: 'auto' }}>
+          {traps.map((t, i) => (
+            <button
+              key={t.id || `${t.objectiveId}-${i}`}
+              type="button"
+              onClick={() => jumpToTrap(i)}
+              style={{
+                display: 'block',
+                width: '100%',
+                textAlign: 'left',
+                background: i === idx ? COLORS.skyDim : 'none',
+                border: 'none',
+                borderBottom: `1px solid ${COLORS.border}`,
+                padding: '10px 4px',
+                cursor: 'pointer',
+                fontFamily: 'inherit',
+                color: COLORS.silver,
+              }}
+            >
+              <span style={{ ...styles.pill(i === idx ? 'sky' : 'silver'), fontSize: 'var(--ccna-type-micro)', marginRight: 6 }}>{i + 1}</span>
+              <span style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.4 }}>{t.trap || t.title}</span>
+            </button>
+          ))}
+        </div>
+      )}
+
+      <div style={{ ...styles.card, marginTop: 4 }}>
         <div style={{ ...styles.pill('amber'), fontSize: 'var(--ccna-type-micro)', marginBottom: 8 }}>TRAP {idx + 1} / {traps.length}</div>
         <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 12 }}>{trap.trap || trap.title}</div>
         {!revealed
@@ -146,9 +279,20 @@ export default function ExamTrapStudyMode({ styles, onBack, prefill, onPrefillCo
             </div>
           )}
       </div>
-      <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
-        <button type="button" style={styles.secondaryBtn} disabled={idx === 0} onClick={() => { setIdx(i => i - 1); setRevealed(false) }}>Previous</button>
-        <button type="button" style={styles.secondaryBtn} disabled={idx >= traps.length - 1} onClick={() => { setIdx(i => i + 1); setRevealed(false) }}>Next</button>
+
+      {atEnd && (
+        <div style={{ ...styles.card, marginTop: 12, background: COLORS.mintDim, border: `1px solid ${COLORS.mintBorder}` }}>
+          <div style={{ fontWeight: 700, color: COLORS.mint, marginBottom: 6 }}>Domain batch complete</div>
+          <div style={{ ...styles.small, marginBottom: 10 }}>
+            You reviewed all {traps.length} traps in {domainMeta.short}. Switch domain or head back home.
+          </div>
+          <button type="button" style={styles.primaryBtn} onClick={onBack}>Done</button>
+        </div>
+      )}
+
+      <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+        <button type="button" style={{ ...styles.secondaryBtn, flex: 1, marginBottom: 0 }} disabled={idx === 0} onClick={() => { setIdx(i => i - 1); setRevealed(false) }}>Previous</button>
+        <button type="button" style={{ ...styles.secondaryBtn, flex: 1, marginBottom: 0 }} disabled={idx >= traps.length - 1} onClick={() => { setIdx(i => i + 1); setRevealed(false) }}>Next</button>
       </div>
     </div>
   )
