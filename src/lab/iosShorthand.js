@@ -1,4 +1,6 @@
-import { normalizeCmd } from './cliEngine.js'
+function normalizeCmd(s) {
+  return String(s || '').trim().toLowerCase().replace(/\s+/g, ' ')
+}
 
 /**
  * Canonicalize Cisco IOS CLI for matching — interface shorthand (Gi0/1),
@@ -9,6 +11,7 @@ export function normalizeIosCli(cmd) {
   if (!s) return s
 
   s = s.replace(/^int /, 'interface ')
+  s = s.replace(/\sint\s/g, ' interface ')
   s = normalizeInterfaceTokens(s)
   s = canonicalizeIosPhrases(s)
   s = s.replace(/^sh /, 'show ')
@@ -39,6 +42,7 @@ function normalizeInterfaceTokens(s) {
 function canonicalizeIosPhrases(s) {
   if (/^(configure terminal|config t|configure t|conf terminal)$/.test(s)) return 'conf t'
   if (/^(no shutdown|no shut)$/.test(s)) return 'no shutdown'
+  if (/^show run$/.test(s)) return 'show running-config'
   return s
 }
 

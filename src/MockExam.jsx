@@ -32,6 +32,7 @@ import { computeCkuWeakness } from './weaknessUtils.js'
 import { applyAnswerReviewToQuestion, inferTrapForChoice } from './answerReviewLogic.js'
 import DeferredExamTips from './components/DeferredExamTips.jsx'
 import MockExamDebriefActions from './features/mockExam/MockExamDebriefActions.jsx'
+import StudyModeHeader from './components/StudyModeHeader.jsx'
 import Spinner from './components/Spinner.jsx'
 import ErrorBox from './components/ErrorBox.jsx'
 import { useNavHint } from './components/NavHintProvider.jsx'
@@ -271,8 +272,7 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
     const domainPoolSize = bankReady ? countDomainStudyPool(selectedDomains, getMcForObjective) : 0
     return (
       <div>
-        <button style={styles.backBtn} onClick={onExit}>‹ Back</button>
-        <h1 style={styles.h1}>Mock Exam</h1>
+        <StudyModeHeader title="Mock Exam" onBack={onExit} />
         <div style={styles.tabBar}>
           <button
             type="button"
@@ -402,8 +402,7 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
     const wrongCount = report.total - report.correct - skippedCount
     return (
       <div className="ccna-mock-results">
-        <button style={styles.backBtn} onClick={onExit}>‹ Back to Home</button>
-        <h1 style={styles.h1}>{isStudyMode ? 'Study Results' : 'Exam Results'}</h1>
+        <StudyModeHeader title={isStudyMode ? 'Study Results' : 'Exam Results'} onBack={onExit} backLabel="Back to Home" />
         <div className="ccna-mock-results__score" style={styles.card}>
           <div style={{ fontSize: 'var(--ccna-type-display)', fontWeight: 700, color: pct >= 70 ? COLORS.mint : COLORS.rose }}>{pct}%</div>
           <div style={styles.small}>{report.correct} / {report.total} correct</div>
@@ -526,9 +525,8 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
     const unanswered = selected == null
     return (
       <div className="ccna-review-flow ccna-mock-review">
-        <button style={styles.backBtn} onClick={() => setPhase('done')}>‹ Results</button>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8 }}>
-          <h1 style={{ ...styles.h1, margin: 0 }}>Answer review</h1>
+        <StudyModeHeader title="Answer review" onBack={() => setPhase('done')} backLabel="Results" />
+        <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'baseline', marginBottom: 8 }}>
           <span style={styles.small}>{current + 1} / {questions.length}</span>
         </div>
         {q.objectiveId && <div style={{ ...styles.small, marginBottom: 8 }}>Objective {q.objectiveId}</div>}

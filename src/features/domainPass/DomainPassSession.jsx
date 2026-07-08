@@ -8,6 +8,7 @@ import McChoices from '../../components/McChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
 import { summarizeWrongTraps } from '../../missed/missedTrapGroups.js'
 import MockExamDebriefActions from '../mockExam/MockExamDebriefActions.jsx'
+import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import Spinner from '../../components/Spinner.jsx'
 import ErrorBox from '../../components/ErrorBox.jsx'
 import {
@@ -176,7 +177,7 @@ export default function DomainPassSession({
   if (!domain && phase !== 'loading') {
     return (
       <div>
-        <button type="button" style={styles.backBtn} onClick={onExit}>‹ Back</button>
+        <StudyModeHeader title="Domain Pass" onBack={onExit} />
         <ErrorBox message="Unknown domain." onRetry={onExit} />
       </div>
     )
@@ -197,8 +198,7 @@ export default function DomainPassSession({
 
     return (
       <div>
-        <button type="button" style={styles.backBtn} onClick={onExit}>‹ Domain Pass</button>
-        <h1 style={styles.h1}>{domain.name} — Results</h1>
+        <StudyModeHeader title={`${domain.name} — Results`} onBack={onExit} backLabel="Domain Pass" />
         <div style={styles.card}>
           <div style={{ fontSize: 'var(--ccna-type-display)', fontWeight: 700, color: passed ? COLORS.mint : COLORS.rose }}>
             {pct}%
@@ -244,10 +244,7 @@ export default function DomainPassSession({
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10, flexWrap: 'wrap', gap: 8 }}>
-        <button type="button" style={{ ...styles.backBtn, marginBottom: 0, padding: '8px 0' }} onClick={onExit}>‹ Exit</button>
-        <div style={styles.small}>{domain.name}</div>
-      </div>
+      <StudyModeHeader title={domain.name} onBack={onExit} backLabel="Exit" />
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
         <div style={styles.small}>Question {current + 1} / {questionTotal}</div>
         {timerEnabled && (

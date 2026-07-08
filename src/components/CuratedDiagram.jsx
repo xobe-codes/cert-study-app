@@ -455,8 +455,8 @@ function DiagramExpandModal({ diagram, onClose, isMobile = false }) {
         alignItems: isMobile ? 'stretch' : 'center',
         justifyContent: 'center',
         padding: isMobile ? 0 : '16px',
-        paddingTop: isMobile ? 0 : 'max(16px, env(safe-area-inset-top))',
-        paddingBottom: isMobile ? 0 : 'max(16px, env(safe-area-inset-bottom))',
+        paddingTop: isMobile ? 0 : 'max(16px, var(--ccna-safe-top))',
+        paddingBottom: isMobile ? 0 : 'max(16px, var(--ccna-safe-bottom))',
       }}
       onClick={onClose}
     >
@@ -481,7 +481,7 @@ function DiagramExpandModal({ diagram, onClose, isMobile = false }) {
           className="curated-diagram-modal-header"
           style={{
             display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12,
-            padding: isMobile ? 'max(12px, env(safe-area-inset-top)) 16px 10px' : '0 0 10px',
+            padding: isMobile ? 'max(12px, var(--ccna-safe-top)) 16px 10px' : '0 0 10px',
             flexShrink: 0,
           }}
         >
@@ -511,7 +511,7 @@ function DiagramExpandModal({ diagram, onClose, isMobile = false }) {
           <div style={{ width: '100%', minHeight: isMobile ? 280 : 220, maxHeight: isMobile ? 'none' : 'min(70vh, 480px)' }}>
             <DiagramSvg diagram={diagram} detail="full" expanded isMobile={isMobile} />
           </div>
-          <div style={{ padding: isMobile ? '12px 4px max(16px, env(safe-area-inset-bottom))' : '12px 0 0' }}>
+          <div style={{ padding: isMobile ? '12px 4px max(16px, var(--ccna-safe-bottom))' : '12px 0 0' }}>
             <DiagramLegend linkStatuses={linkStatuses} />
             <DiagramAnnotations annotations={diagram.annotations} />
           </div>

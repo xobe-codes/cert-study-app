@@ -1,4 +1,6 @@
 /** Inject simulated notch / home-indicator insets for safe-area e2e. */
+import { expect } from '@playwright/test'
+
 export async function simulateSafeArea(page, insets = { top: 47, right: 44, bottom: 34, left: 44 }) {
   await page.addStyleTag({
     content: `
@@ -10,6 +12,14 @@ export async function simulateSafeArea(page, insets = { top: 47, right: 44, bott
       }
     `,
   })
+}
+
+/** Assert a back control sits below the simulated notch (safe-area top). */
+export async function assertBackClearsNotch(page, locator, insets = { top: 47 }) {
+  await expect(locator).toBeVisible()
+  const box = await locator.boundingBox()
+  expect(box).toBeTruthy()
+  expect(box.y).toBeGreaterThanOrEqual(insets.top - 2)
 }
 
 /** Assert no horizontal overflow on the document shell. */

@@ -829,6 +829,7 @@ aabb.cc00.0101    192.168.10.50   AP-Floor1         CORP_WIFI`,
 1        CORP_WIFI   Enabled   VLAN10`,
 }
 
-export { cliNavTarget, cliExitTarget, cliRequiredMode, commandVariants, commandMatches, cliHostnameForObjective, deviceHostname, processCliLine } from './cliProcess.js'
+export { cliNavTarget, cliExitTarget, cliRequiredMode, commandVariants, commandMatches, commandMatchesAbbrev, cliHostnameForObjective, deviceHostname, processCliLine } from './cliProcess.js'
 export { normalizeIosCli, resolveShowOutput, interfaceAnswerVariants } from './iosShorthand.js'
+export { resolveIosAbbreviation, getTabCompletion, resolveIosAbbreviationForGrading } from './iosAbbrev.js'
 export { gradeCliAnswerList, answersMatchShorthand, cliStringsEquivalent } from './cliGrading.js'

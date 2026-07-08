@@ -8,6 +8,7 @@ import { EXAM_SOURCES } from '../../tabs/studyConstants.js'
 import { QuizRichText } from '../../components/QuizQuestionChrome.jsx'
 import Spinner from '../../components/Spinner.jsx'
 import ErrorBox from '../../components/ErrorBox.jsx'
+import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import { isTtsSupported, speak, stopSpeaking } from '../../lib/browserTts.js'
 
 export default function TutorChat({ progress, missed, onBack }) {
@@ -102,8 +103,8 @@ export default function TutorChat({ progress, missed, onBack }) {
 
   return (
     <div className="tutor-shell">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0, gap: 8, flexWrap: 'wrap' }}>
-        <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
+      <StudyModeHeader title="AI Tutor Chat" onBack={onBack} />
+      <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', flexShrink: 0, gap: 8, flexWrap: 'wrap', marginBottom: 10 }}>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
           {isTtsSupported() && (
             <button
@@ -120,7 +121,6 @@ export default function TutorChat({ progress, missed, onBack }) {
           )}
         </div>
       </div>
-      <h1 style={styles.h1}>AI Tutor Chat</h1>
       <div ref={scrollRef} className="tutor-messages internal-scroll" style={{ marginBottom: 10 }}>
         {messages.length === 0 && (
           <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}` }}>

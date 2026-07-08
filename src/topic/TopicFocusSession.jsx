@@ -14,6 +14,7 @@ import McChoices from '../components/McChoices.jsx'
 import AnswerReview from '../components/AnswerReview.jsx'
 import { applyAnswerReviewToQuestion } from '../answerReviewLogic.js'
 import { QuestionMeta, QuizRichText, OrderingQuestion, CliAnswerInput } from '../components/QuizQuestionChrome.jsx'
+import StudyModeHeader from '../components/StudyModeHeader.jsx'
 import { useMasteryProgress } from '../features/progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from '../features/progress/masteryEngagement.js'
 
@@ -134,7 +135,7 @@ export default function TopicFocusSession({ config, onBack, onMissed, onDone }) 
   if (phase === 'loading') {
     return (
       <div>
-        <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
+        <StudyModeHeader title="Topic Focus" onBack={onBack} />
         <Spinner label="Building your custom quiz…" />
       </div>
     )
@@ -143,9 +144,7 @@ export default function TopicFocusSession({ config, onBack, onMissed, onDone }) 
   if (phase === 'empty') {
     return (
       <div>
-        <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
-        <h1 style={styles.h1}>Topic Focus</h1>
-        <p style={styles.small}>No practice questions matched this selection. Try adding whole objectives or broader concepts.</p>
+        <StudyModeHeader title="Topic Focus" onBack={onBack} subtitle="No practice questions matched this selection. Try adding whole objectives or broader concepts." />
         <button type="button" style={{ ...styles.primaryBtn, marginTop: 12 }} onClick={onBack}>Adjust selection</button>
       </div>
     )
@@ -154,7 +153,7 @@ export default function TopicFocusSession({ config, onBack, onMissed, onDone }) 
   if (phase === 'done') {
     return (
       <div>
-        <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
+        <StudyModeHeader title={label || 'Topic Focus'} onBack={onBack} subtitle="Session complete" />
         <div style={styles.card}>
           <h2 style={styles.h2}>{label || 'Topic Focus'} complete</h2>
           <p style={{ fontSize: 'var(--ccna-type-2xl)', fontWeight: 700, color: COLORS.mint, margin: '4px 0' }}>
@@ -169,12 +168,10 @@ export default function TopicFocusSession({ config, onBack, onMissed, onDone }) 
 
   return (
     <div className="topic-focus-session">
-      <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4, gap: 8 }}>
-        <h1 style={{ ...styles.h1, margin: 0, flex: 1, minWidth: 0 }}>{label || 'Topic Focus'}</h1>
+      <StudyModeHeader title={label || 'Topic Focus'} onBack={onBack} subtitle={summaryParts.join(' · ')} />
+      <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'baseline', marginBottom: 4, gap: 8 }}>
         <span style={styles.small}>{total - queue.length} / {total}</span>
       </div>
-      <div style={{ ...styles.small, marginBottom: 8 }}>{summaryParts.join(' · ')}</div>
       {obj && <div style={{ ...styles.small, marginBottom: 8 }}>{obj.id} {obj.title}</div>}
       <div style={styles.card}>
         <QuestionMeta q={current} />

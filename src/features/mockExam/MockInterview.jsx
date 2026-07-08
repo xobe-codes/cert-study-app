@@ -8,6 +8,7 @@ import { loadMockInterviewChat, saveMockInterviewChat, clearMockInterviewChat } 
 import { QuizRichText } from '../../components/QuizQuestionChrome.jsx'
 import Spinner from '../../components/Spinner.jsx'
 import ErrorBox from '../../components/ErrorBox.jsx'
+import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import { PREMIUM_FEATURES } from '../../premium/premiumFeatures.js'
 
 export default function MockInterview({
@@ -96,8 +97,12 @@ export default function MockInterview({
 
   return (
     <div className="tutor-shell">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0, gap: 8, flexWrap: 'wrap' }}>
-        <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
+      <StudyModeHeader
+        title="Exam day interview"
+        onBack={onBack}
+        subtitle="Verbal warm-up from your weak objectives. Tap a prompt for coaching points; supporters can practice live follow-up with an AI examiner."
+      />
+      <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', flexShrink: 0, gap: 8, flexWrap: 'wrap', marginBottom: 12 }}>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
           {!premiumUnlocked && (
             <span style={{ ...styles.pill('amber'), fontSize: 'var(--ccna-type-micro)' }}>Curated prompts — AI chat with supporter access</span>
@@ -116,10 +121,6 @@ export default function MockInterview({
           )}
         </div>
       </div>
-      <h1 style={styles.h1}>Exam day interview</h1>
-      <p style={{ ...styles.small, color: COLORS.silverMid, marginTop: -8, marginBottom: 12, lineHeight: 1.5 }}>
-        Verbal warm-up from your weak objectives. Tap a prompt for coaching points; supporters can practice live follow-up with an AI examiner.
-      </p>
 
       <div ref={scrollRef} className="tutor-messages internal-scroll" style={{ marginBottom: 10 }}>
         {cardsLoading ? (

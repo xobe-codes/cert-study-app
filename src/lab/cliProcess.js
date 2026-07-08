@@ -1,5 +1,6 @@
 import { normalizeCmd, CLI_SHOW_OUTPUT, CLI_MODE_PROMPT, CLI_MODE_HINT } from './cliEngine.js'
 import { normalizeIosCli, resolveShowOutput } from './iosShorthand.js'
+import { resolveIosAbbreviation } from './iosAbbrev.js'
 
 export function cliNavTarget(norm) {
   if (/^(enable|en)$/.test(norm)) return { to: 'priv', from: ['user', 'priv'] }
@@ -56,6 +57,13 @@ export function commandMatches(inputNorm, expectedCmd) {
   return commandVariants(expectedCmd).some(v => input === v || input.includes(v))
 }
 
+/** Shorthand-aware match — expands unique-prefix tokens before compare. */
+export function commandMatchesAbbrev(inputNorm, expectedCmd, mode = 'config') {
+  const abbrev = resolveIosAbbreviation(inputNorm, mode)
+  const resolved = abbrev.error ? inputNorm : abbrev.resolved
+  return commandMatches(resolved, expectedCmd)
+}
+
 export function cliHostnameForObjective(objectiveId) {
   const switchObjs = ['2.1', '2.2', '2.3', '2.4', '5.6']
   return switchObjs.includes(objectiveId) ? 'Switch' : 'Router'
@@ -86,8 +94,28 @@ export function processCliLine({
   const newlyCompleted = []
   let newMode = mode
 
-  const norm = normalizeCmd(raw)
-  lines.push({ text: `${host}${CLI_MODE_PROMPT[mode]} ${raw}`, kind: 'cmd' })
+  const normRaw = normalizeCmd(raw)
+  const skipAbbrev = normRaw === 'hint' || normRaw === '?' || normRaw === 'exit' || normRaw === 'end'
+  let norm
+  if (skipAbbrev) {
+    norm = normalizeIosCli(normRaw)
+    lines.push({ text: `${host}${CLI_MODE_PROMPT[mode]} ${raw}`, kind: 'cmd' })
+  } else {
+    const abbrev = resolveIosAbbreviation(raw, mode)
+    if (abbrev.error === 'ambiguous') {
+      lines.push({ text: `${host}${CLI_MODE_PROMPT[mode]} ${raw}`, kind: 'cmd' })
+      lines.push({
+        text: `% Ambiguous command: "${abbrev.token}" (${abbrev.candidates.join(', ')})`,
+        kind: 'warn',
+      })
+      counters.syntaxErrors += 1
+      return { lines, newMode, newlyCompleted, counters }
+    }
+
+    const resolvedRaw = abbrev.resolved || raw
+    norm = normalizeIosCli(normalizeCmd(resolvedRaw))
+    lines.push({ text: `${host}${CLI_MODE_PROMPT[mode]} ${raw}`, kind: 'cmd' })
+  }
 
   if (norm === 'hint') {
     const nextIdx = completed.findIndex(c => !c)
@@ -119,7 +147,7 @@ export function processCliLine({
       for (let i = 0; i < objectives.length; i++) {
         if (completed[i]) continue
         const answers = objectives[i].answer || objectives[i].answers || []
-        if (answers.some(a => commandVariants(a).some(v => normalizeIosCli(norm) === v))) { showMatchIdx = i; break }
+        if (answers.some(a => commandMatchesAbbrev(normalizeIosCli(norm), a, mode))) { showMatchIdx = i; break }
       }
       if (showMatchIdx >= 0) {
         newlyCompleted.push(showMatchIdx)
@@ -139,7 +167,7 @@ export function processCliLine({
   for (let i = 0; i < objectives.length; i++) {
     if (completed[i]) continue
     const answers = objectives[i].answer || objectives[i].answers || []
-    if (answers.some(a => commandMatches(norm, a))) { matchIdx = i; break }
+    if (answers.some(a => commandMatchesAbbrev(norm, a, mode))) { matchIdx = i; break }
   }
 
   const nav = cliNavTarget(norm)

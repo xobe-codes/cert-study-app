@@ -7,6 +7,7 @@ import { loadAllPlacementRecords } from './domainPlacementStorage.js'
 import { placementReadyBand } from './domainPlacementConfig.js'
 import { baselineBlueprintIsStale } from './placementBlueprintCoverage.js'
 import { auditPlacementBlueprintCoverage } from './placementBlueprintCoverage.js'
+import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import { PLACEMENT_BASELINE_REFRESH_EVENT } from '../../storageKeys.js'
 import {
   homeCard,
@@ -52,8 +53,7 @@ export default function DomainPlacementIntro({ onExit, onStart }) {
 
   return (
     <div className="ccna-placement-intro">
-      <button type="button" style={styles.backBtn} onClick={onExit}>‹ Back</button>
-      <h1 style={styles.h1}>Domain baseline</h1>
+      <StudyModeHeader title="Domain baseline" onBack={onExit} />
 
       <div style={homeCard({ border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim })}>
         <div style={homeSectionLabel(COLORS.sky)}>FULL DOMAIN MAP</div>

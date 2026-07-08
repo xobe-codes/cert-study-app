@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { COLORS, styles } from '../ui/appTheme.js'
 import { CLI_MODE_PROMPT } from '../lab/cliEngine.js'
+import { getTabCompletion } from '../lab/iosAbbrev.js'
 
 const LINE_COLOR = { cmd: '#d9d9d9', ok: '#d4f7d4', warn: '#e0a0a0', out: '#baf0fa', info: '#8a8fa8' }
 
@@ -69,7 +70,15 @@ export default function CiscoTerminal({
             value={input}
             onFocus={handleInputFocus}
             onChange={e => onInputChange(e.target.value)}
-            onKeyDown={e => { if (e.key === 'Enter') onSubmit?.() }}
+            onKeyDown={e => {
+              if (e.key === 'Tab') {
+                e.preventDefault()
+                const next = getTabCompletion(input, mode)
+                if (next != null) onInputChange?.(next)
+                return
+              }
+              if (e.key === 'Enter') onSubmit?.()
+            }}
             placeholder={placeholder}
             autoCapitalize="none"
             autoCorrect="off"

@@ -14,6 +14,7 @@ import { loadPlacementRecord, savePlacementAttempt } from './domainPlacementStor
 import { buildDomainBaselineSummary } from './domainBaselineProfile.js'
 import { getSprintObjectiveIdsForDomain } from './domainBaselineStudyPlan.js'
 import DomainPlacementDebrief from './DomainPlacementDebrief.jsx'
+import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import { appendMissedEntry } from '../domainPass/domainPassStorage.js'
 import { useMasteryProgress } from '../progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
@@ -157,7 +158,7 @@ export default function DomainPlacementSession({
   if (phase === 'done' && report) {
     return (
       <div className="ccna-placement-flow ccna-review-flow">
-        <button type="button" style={styles.backBtn} onClick={onExit}>‹ Back</button>
+        <StudyModeHeader title={domain.name} onBack={onExit} subtitle="Placement results" />
         <DomainPlacementDebrief
           domainId={domainId}
           domainName={domain.name}
@@ -185,8 +186,8 @@ export default function DomainPlacementSession({
 
   return (
     <div className="ccna-placement-flow ccna-review-flow">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8, flexWrap: 'wrap', gap: 8 }}>
-        <button type="button" style={{ ...styles.backBtn, marginBottom: 0, padding: '8px 0' }} onClick={onExit}>‹ Exit</button>
+      <StudyModeHeader title={domain.name} onBack={onExit} backLabel="Exit" />
+      <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginBottom: 8 }}>
         <span style={styles.small}>{answered} / {questions.length} · Placement</span>
       </div>
       <div

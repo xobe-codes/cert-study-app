@@ -174,7 +174,7 @@ export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, 
   return (
     <div className={prog.complete ? 'lab-view lab-view--complete' : 'lab-view'}>
       <div className="lab-sticky-header">
-        <button type="button" className="lab-sticky-back" style={styles.backBtn} onClick={onBack}>{backLabel}</button>
+        <button type="button" className="lab-sticky-back study-mode-back-btn" style={styles.backBtn} onClick={onBack}>{backLabel}</button>
         <div className="lab-sticky-title">{lab.title}</div>
         {prog.complete && (
           <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-micro)', flexShrink: 0 }}>✓ DONE</span>

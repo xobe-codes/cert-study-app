@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { gradeQuestion, isMcQuestion, randomizeQuestionOrder } from './questionUtils.js'
 import { applyAnswerReviewToQuestion } from './answerReviewLogic.js'
 import { getShelvedPool, getShelvedStats, getPromoteHint } from './data/shelvedStudy.js'
+import StudyModeHeader from './components/StudyModeHeader.jsx'
 
 /**
  * Extra Study — shelved / work-in-progress questions (not counted in main quiz bank).
@@ -33,8 +34,7 @@ export default function ExtraStudyMode({
   if (!pool.length) {
     return (
       <div>
-        <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
-        <h1 style={styles.h1}>Extra Study</h1>
+        <StudyModeHeader title="Extra Study" onBack={onBack} />
         <div style={{ ...styles.card, marginTop: 12 }}>
           <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 8, color: COLORS.mint }}>All clear — 0 shelved questions</div>
           <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.55 }}>
@@ -48,11 +48,11 @@ export default function ExtraStudyMode({
 
   return (
     <div>
-      <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <h1 style={styles.h1}>Extra Study</h1>
-      <div style={{ ...styles.small, marginBottom: 10 }}>
-        Work-in-progress bank — {stats.total} shelved ({stats.exhibitDependent} exhibit · {stats.outOfScope} out-of-scope). Not used in scored quizzes.
-      </div>
+      <StudyModeHeader
+        title="Extra Study"
+        onBack={onBack}
+        subtitle={`Work-in-progress bank — ${stats.total} shelved (${stats.exhibitDependent} exhibit · ${stats.outOfScope} out-of-scope). Not used in scored quizzes.`}
+      />
 
       <div style={{ display: 'flex', gap: 6, marginBottom: 12, flexWrap: 'wrap' }}>
         {[['all', 'All'], ['exhibit', 'Exhibit'], ['out-of-scope', 'Out-of-scope']].map(([key, label]) => (

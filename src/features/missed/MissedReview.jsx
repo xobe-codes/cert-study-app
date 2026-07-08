@@ -4,6 +4,7 @@ import { COLORS, styles } from '../../ui/appTheme.js'
 import { groupMissedByTrap, getMissedTrapInfo, isActionableMissedTrap } from '../../missed/missedTrapGroups.js'
 import OverflowMarquee from '../../components/OverflowMarquee.jsx'
 import StemReplayCTA from '../stemReplay/StemReplayCTA.jsx'
+import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 
 function normalizeQuestionText(q) {
   return (q || '').trim().toLowerCase().replace(/\s+/g, ' ')
@@ -23,18 +24,22 @@ export default function MissedReview({ missed, onBack, onRemove, onOpenExamTraps
   if (missed.length === 0) {
     return (
       <div>
-        <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
-        <h1 style={styles.h1}>Missed Questions</h1>
-        <p style={styles.small}>No missed questions saved. Nice work — they'll show up here whenever you answer a quiz question incorrectly.</p>
+        <StudyModeHeader
+          title="Missed Questions"
+          onBack={onBack}
+          subtitle="No missed questions saved. Nice work — they'll show up here whenever you answer a quiz question incorrectly."
+        />
       </div>
     )
   }
 
   return (
     <div className="ccna-review-flow">
-      <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <h1 style={styles.h1}>Missed Questions</h1>
-      <p style={{ ...styles.small, marginBottom: 14 }}>{missed.length} question{missed.length === 1 ? '' : 's'} saved for review.</p>
+      <StudyModeHeader
+        title="Missed Questions"
+        onBack={onBack}
+        subtitle={`${missed.length} question${missed.length === 1 ? '' : 's'} saved for review.`}
+      />
       {trapGroups.length > 1 && (
         <div style={{ ...styles.card, marginBottom: 14, padding: 12 }}>
           <div style={{ ...styles.small, fontWeight: 700, marginBottom: 8 }}>Trap patterns ({trapGroups.length})</div>

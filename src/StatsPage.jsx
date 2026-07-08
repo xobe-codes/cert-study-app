@@ -3,6 +3,7 @@ import { COLORS, accentColors, styles } from './ui/appTheme.js'
 import { STORAGE_KEYS } from './storageKeys.js'
 import StatsComboChart from './components/StatsComboChart.jsx'
 import ProgressRing from './components/ProgressRing.jsx'
+import StudyModeHeader from './components/StudyModeHeader.jsx'
 import Spinner from './components/Spinner.jsx'
 import { STATS_RANGES, buildComboStatsSeries } from './stats/statsSeries.js'
 
@@ -79,7 +80,7 @@ export default function StatsPage({ progress, streak, onBack, onOpenMetrics }) {
   if (loading) {
     return (
       <div>
-        <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
+        <StudyModeHeader title="Stats" onBack={onBack} />
         <Spinner label="Loading your stats..." />
       </div>
     )
@@ -93,13 +94,9 @@ export default function StatsPage({ progress, streak, onBack, onOpenMetrics }) {
 
   return (
     <div className="stats-page">
-      <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
+      <StudyModeHeader title="Stats" onBack={onBack} subtitle="Trends over time — bars are daily questions, line is exam readiness." />
 
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 10, marginBottom: 12 }}>
-        <div>
-          <h1 style={{ ...styles.h1, margin: 0 }}>Stats</h1>
-          <p style={{ ...styles.small, margin: '4px 0 0' }}>Trends over time — bars are daily questions, line is exam readiness.</p>
-        </div>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 12 }}>
         <button
           type="button"
           onClick={onOpenMetrics}

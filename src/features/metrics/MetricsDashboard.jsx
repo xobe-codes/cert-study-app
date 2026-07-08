@@ -10,6 +10,7 @@ import Spinner from '../../components/Spinner.jsx'
 import ProgressBar from '../../components/ProgressBar.jsx'
 import ProgressRing from '../../components/ProgressRing.jsx'
 import StudyNextStrip from '../../home/StudyNextStrip.jsx'
+import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import {
   buildLearnerSummary,
   generateLocalSuggestions,
@@ -165,7 +166,7 @@ export default function MetricsDashboard({ progress, missed, dueCount = 0, onBac
   if (!data) {
     return (
       <div>
-        <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
+        <StudyModeHeader title="Learner Metrics" onBack={onBack} />
         <Spinner label="Crunching your metrics..." />
       </div>
     )
@@ -241,10 +242,9 @@ export default function MetricsDashboard({ progress, missed, dueCount = 0, onBac
 
   return (
     <div>
-      <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 10, marginBottom: 6 }}>
-        <h1 style={{ ...styles.h1, margin: 0 }}>Learner Metrics</h1>
-        {onOpenStats && (
+      <StudyModeHeader title="Learner Metrics" onBack={onBack} />
+      {onOpenStats && (
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 6 }}>
           <button
             type="button"
             onClick={onOpenStats}
@@ -257,8 +257,8 @@ export default function MetricsDashboard({ progress, missed, dueCount = 0, onBac
           >
             Stats →
           </button>
-        )}
-      </div>
+        </div>
+      )}
       <div style={{ ...styles.small, marginBottom: 10 }}>Everything below is {STATIC_COPY.metrics}.</div>
 
       {studyNext && (

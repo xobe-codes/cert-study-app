@@ -1,6 +1,7 @@
 import React from 'react'
 import { COLORS, styles } from '../ui/appTheme.js'
 import { PREMIUM_COMING_SOON_LABEL } from '../premium/premiumFeatures.js'
+import StudyModeHeader from './StudyModeHeader.jsx'
 
 export function PremiumSettingsCard({ premiumUnlocked = false, onTogglePremium, onDonatePreview }) {
   return (
@@ -52,8 +53,7 @@ export function PremiumSettingsCard({ premiumUnlocked = false, onTogglePremium, 
 export function PremiumBlockedShell({ title = 'AI Tutor', onBack, children }) {
   return (
     <div className="tutor-shell">
-      <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <h1 style={styles.h1}>{title}</h1>
+      <StudyModeHeader title={title} onBack={onBack} />
       <div style={{ ...styles.card, borderColor: COLORS.border, background: COLORS.surface }}>
         <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.silver, marginBottom: 8 }}>
           {PREMIUM_COMING_SOON_LABEL}

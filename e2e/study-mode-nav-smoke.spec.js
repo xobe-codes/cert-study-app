@@ -26,13 +26,14 @@ test.describe('Study mode navigation', () => {
       await page.waitForLoadState('networkidle')
       await page.getByRole('button', { name: mode.label }).first().click()
       await expect(page.getByRole('heading', { name: mode.heading }).first()).toBeVisible({ timeout: 25_000 })
+      const studyBack = page.locator('.study-mode-back-btn').first()
       const bottomBack = page.getByRole('navigation', { name: /main navigation/i }).getByRole('button', { name: 'Back', exact: true })
-      if (await bottomBack.isVisible().catch(() => false)) {
+      if (await studyBack.isVisible().catch(() => false)) {
+        await studyBack.click()
+      } else if (await bottomBack.isVisible().catch(() => false)) {
         await bottomBack.click()
-      } else if (await page.locator('.study-mode-back-btn').isVisible().catch(() => false)) {
-        await page.locator('.study-mode-back-btn').click()
       } else {
-        await page.getByRole('button', { name: /^‹ Back$/ }).first().click()
+        await page.getByRole('button', { name: /^Back$/ }).first().click()
       }
       await expect(page.getByRole('heading', { name: /CCNA 200-301/i })).toBeVisible({ timeout: 15_000 })
     })

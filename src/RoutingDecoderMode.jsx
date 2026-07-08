@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { answersMatchShorthand } from './lab/cliEngine.js'
 import { generateRoutingProblem } from './routingDrill.js'
 import { STATIC_COPY } from './ui/staticContentCopy.js'
+import StudyModeHeader from './components/StudyModeHeader.jsx'
 
 export default function RoutingDecoderMode({ styles, COLORS, onBack }) {
   const [problem, setProblem] = useState(() => generateRoutingProblem())
@@ -18,9 +19,7 @@ export default function RoutingDecoderMode({ styles, COLORS, onBack }) {
 
   return (
     <div>
-      <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <h1 style={styles.h1}>Routing Table Decoder</h1>
-      <div style={styles.small}>Read the route line — {STATIC_COPY.routingDrill}.</div>
+      <StudyModeHeader title="Routing Table Decoder" onBack={onBack} subtitle={`Read the route line — ${STATIC_COPY.routingDrill}.`} />
       <div style={{ ...styles.card, marginTop: 12, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 'var(--ccna-type-sm)' }}>
         {problem.line}
       </div>

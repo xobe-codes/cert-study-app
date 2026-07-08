@@ -12,6 +12,7 @@ import {
   countPassedDomains,
 } from './domainPassStorage.js'
 import DomainPassCompleteCard from './DomainPassCompleteCard.jsx'
+import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import {
   homeCard,
   homeSectionLabel,
@@ -58,8 +59,7 @@ export default function DomainPassHub({ onExit, onStartDomain, onStartMockExam, 
 
   return (
     <div>
-      <button type="button" style={styles.backBtn} onClick={onExit}>‹ Back</button>
-      <h1 style={styles.h1}>Domain Pass</h1>
+      <StudyModeHeader title="Domain Pass" onBack={onExit} />
 
       <div style={homeCard({ border: `1px solid ${COLORS.purpleBorder}`, background: COLORS.purpleDim })}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8, flexWrap: 'wrap', gap: 8 }}>
