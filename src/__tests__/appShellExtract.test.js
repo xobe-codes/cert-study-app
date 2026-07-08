@@ -13,4 +13,24 @@ describe('app shell extract', () => {
     expect(src).toContain('AppChromeOverlays')
     expect(src.length).toBeGreaterThan(500)
   })
+
+  it('appShell.js stays under 900 lines after chrome CSS extract', () => {
+    const lines = readFileSync(resolve(process.cwd(), 'src/ui/appShell.js'), 'utf8').split('\n').length
+    expect(lines).toBeLessThanOrEqual(900)
+    const chrome = readFileSync(resolve(process.cwd(), 'src/ui/appShellChromeCss.js'), 'utf8')
+    expect(chrome).toContain('buildAppShellChromeCss')
+    expect(chrome).toContain('app-bottom-nav')
+  })
+
+  it('studyQuizTabs modules stay under 900 lines', () => {
+    for (const rel of [
+      'src/tabs/ExplainTab.jsx',
+      'src/tabs/QuizTab.jsx',
+      'src/tabs/studyQuizShared.jsx',
+      'src/tabs/studyQuizTabs.jsx',
+    ]) {
+      const lines = readFileSync(resolve(process.cwd(), rel), 'utf8').split('\n').length
+      expect(lines, rel).toBeLessThanOrEqual(900)
+    }
+  })
 })

@@ -14,7 +14,6 @@ import {
 const ROOT = resolve(import.meta.dirname, '..')
 const appSource = readFileSync(resolve(ROOT, 'App.jsx'), 'utf8')
 const loadedShellSource = readFileSync(resolve(ROOT, 'features/shell/AppLoadedShell.jsx'), 'utf8')
-const tabsSource = readFileSync(resolve(ROOT, 'tabs/studyQuizTabs.jsx'), 'utf8')
 
 describe('App.jsx import regression', () => {
   for (const { symbol, from } of APP_IMPORTS) {
@@ -59,9 +58,10 @@ describe('App.jsx import regression', () => {
 })
 
 describe('studyQuizTabs.jsx import regression', () => {
-  for (const { symbol, from } of STUDY_QUIZ_TAB_IMPORTS) {
+  for (const { symbol, from, file } of STUDY_QUIZ_TAB_IMPORTS) {
     it(`imports ${symbol} from ${from}`, () => {
-      expect(hasNamedImport(tabsSource, symbol, from)).toBe(true)
+      const source = readFileSync(resolve(ROOT, file), 'utf8')
+      expect(hasNamedImport(source, symbol, from)).toBe(true)
     })
   }
 

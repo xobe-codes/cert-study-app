@@ -35,6 +35,7 @@ import { TIER_B_TRAP_WAVE16_PATCHES } from './tierBTrapWave16Patches.js'
 import { TIER_B_TRAP_WAVE17_PATCHES } from './tierBTrapWave17Patches.js'
 import { TIER_B_TRAP_WAVE18_PATCHES } from './tierBTrapWave18Patches.js'
 import { TIER_B_TRAP_WAVE19_PATCHES } from './tierBTrapWave19Patches.js'
+import { TIER_B_TRAP_WAVE20_PATCHES } from './tierBTrapWave20Patches.js'
 
 const ENGINEER_VIEW_WAVE_SUPPLEMENTS = [
   FACTORY_ENGINEER_VIEW_WAVE3_SUPPLEMENTS,
@@ -573,12 +574,13 @@ export function applyContentEnrichment(base, objectiveId) {
   const trapWave17 = TIER_B_TRAP_WAVE17_PATCHES[objectiveId]
   const trapWave18 = TIER_B_TRAP_WAVE18_PATCHES[objectiveId]
   const trapWave19 = TIER_B_TRAP_WAVE19_PATCHES[objectiveId]
+  const trapWave20 = TIER_B_TRAP_WAVE20_PATCHES[objectiveId]
   const wlanWave5 = WLAN_ENRICHMENT_WAVE5_PATCHES[objectiveId]
   const readingW1 = READING_COMMANDS_WAVE1_PATCHES[objectiveId]
   const readingW2 = READING_COMMANDS_WAVE2_PATCHES[objectiveId]
   const wave10 = CONTENT_DEPTH_WAVE10_PATCHES[objectiveId]
   const wave11 = CONTENT_DEPTH_WAVE11_PATCHES[objectiveId]
-  if (!factory && !patch && !wave3 && !wave4 && !wave5 && !wave6 && !wave7 && !wave8 && !wave9 && !trapWave4 && !trapWave5 && !trapWave6 && !trapWave7 && !trapWave8 && !trapWave9 && !trapWave10 && !trapWave11 && !trapWave12 && !trapWave13 && !trapWave14 && !trapWave15 && !trapWave16 && !trapWave17 && !trapWave18 && !trapWave19 && !wlanWave5 && !readingW1 && !readingW2 && !wave10 && !wave11) return base
+  if (!factory && !patch && !wave3 && !wave4 && !wave5 && !wave6 && !wave7 && !wave8 && !wave9 && !trapWave4 && !trapWave5 && !trapWave6 && !trapWave7 && !trapWave8 && !trapWave9 && !trapWave10 && !trapWave11 && !trapWave12 && !trapWave13 && !trapWave14 && !trapWave15 && !trapWave16 && !trapWave17 && !trapWave18 && !trapWave19 && !trapWave20 && !wlanWave5 && !readingW1 && !readingW2 && !wave10 && !wave11) return base
   const mergeList = (a, b) => (b?.length ? [...(a || []), ...b] : a)
   let examTraps = base.examTraps
   let flashcards = base.flashcards
@@ -601,6 +603,7 @@ export function applyContentEnrichment(base, objectiveId) {
   if (trapWave17?.examTraps) examTraps = mergeList(examTraps, trapWave17.examTraps)
   if (trapWave18?.examTraps) examTraps = mergeList(examTraps, trapWave18.examTraps)
   if (trapWave19?.examTraps) examTraps = mergeList(examTraps, trapWave19.examTraps)
+  if (trapWave20?.examTraps) examTraps = mergeList(examTraps, trapWave20.examTraps)
   if (wlanWave5?.examTraps) examTraps = mergeList(examTraps, wlanWave5.examTraps)
   if (factory?.flashcards) flashcards = mergeList(flashcards, factory.flashcards)
   if (patch?.flashcards) flashcards = mergeList(flashcards, patch.flashcards)

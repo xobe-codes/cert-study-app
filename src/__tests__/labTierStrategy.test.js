@@ -24,6 +24,10 @@ describe('labTierStrategy', () => {
       'LAB-D49-49',
       'LAB-WPA2-PSK-59',
       'LAB-IPV4-SUBNETTING',
+      'LAB-STATIC-FLOATING',
+      'LAB-SSH-ACCESS',
+      'LAB-D22-22',
+      'LAB-LLDP',
     ]
     for (const id of mustHaveAlt) {
       const alt = getInterpretAlternate(id)

@@ -36,6 +36,7 @@ import { HIGH_TRAFFIC_GOLD } from './goldAnswerReviewsHighTraffic.js'
 import { WLAN_58_GOLD } from './goldAnswerReviewsWlan58.js'
 import { WLAN_AUTOMATION_POLISH_GOLD } from './goldAnswerReviewsWlanAutomationPolish.js'
 import { SECURITY_IPV6_POLISH_GOLD } from './goldAnswerReviewsSecurityIpv6Polish.js'
+import { WAVE15_SKILL_DESIGN_GOLD } from './goldAnswerReviewsWave15.js'
 import { PLACEMENT_TRAP_GOLD } from './goldAnswerReviewsPlacementTraps.js'
 import { PLACEMENT_TRAP_GOLD_BATCH2 } from './goldAnswerReviewsPlacementTrapsBatch2.js'
 import { PLACEMENT_TRAP_GOLD_BATCH3 } from './goldAnswerReviewsPlacementTrapsBatch3.js'
@@ -149,6 +150,7 @@ export const GOLD_ANSWER_REVIEWS = {
   ...CURATED61_GOLD,
   ...WLAN_AUTOMATION_POLISH_GOLD,
   ...SECURITY_IPV6_POLISH_GOLD,
+  ...WAVE15_SKILL_DESIGN_GOLD,
   ...PLACEMENT_TRAP_GOLD,
   ...PLACEMENT_TRAP_GOLD_BATCH2,
   ...PLACEMENT_TRAP_GOLD_BATCH3,

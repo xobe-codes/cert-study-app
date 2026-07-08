@@ -22,14 +22,15 @@ export const APP_LOADED_SHELL_IMPORTS = [
   { symbol: 'PracticeRoutes', from: '../practice/PracticeRoutes.jsx' },
 ]
 
+/** Imports that formerly lived in the monolithic studyQuizTabs.jsx (now QuizTab / shared). */
 export const STUDY_QUIZ_TAB_IMPORTS = [
-  { symbol: 'MAX_QUIZ_SESSION_SIZE', from: '../quizSessionConfig.js' },
-  { symbol: 'loadQuizSessionSize', from: '../quizSessionConfig.js' },
-  { symbol: 'saveQuizSessionSize', from: '../quizSessionConfig.js' },
-  { symbol: 'preloadCleanBank', from: '../data/cleanQuestionAdapter.js' },
-  { symbol: 'masteryBreakdown', from: '../lesson/masteryCriteria.js' },
-  { symbol: 'computeMastery', from: '../netUtils.js' },
-  { symbol: 'parseRichTextSegments', from: '../lesson/richTextParse.js' },
+  { symbol: 'MAX_QUIZ_SESSION_SIZE', from: '../quizSessionConfig.js', file: 'tabs/QuizTab.jsx' },
+  { symbol: 'loadQuizSessionSize', from: '../quizSessionConfig.js', file: 'tabs/QuizTab.jsx' },
+  { symbol: 'saveQuizSessionSize', from: '../quizSessionConfig.js', file: 'tabs/QuizTab.jsx' },
+  { symbol: 'preloadCleanBank', from: '../data/cleanQuestionAdapter.js', file: 'tabs/QuizTab.jsx' },
+  { symbol: 'masteryBreakdown', from: '../lesson/masteryCriteria.js', file: 'tabs/QuizTab.jsx' },
+  { symbol: 'computeMastery', from: '../netUtils.js', file: 'tabs/QuizTab.jsx' },
+  { symbol: 'parseRichTextSegments', from: '../lesson/richTextParse.js', file: 'tabs/studyQuizShared.jsx' },
 ]
 
 export const APP_SRS_IMPORTS = [
