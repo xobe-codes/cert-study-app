@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { buildLabModules } from '../data/labModules.js'
+import React, { useState, useEffect, useMemo } from 'react'
+import { DOMAINS } from '../data/ccnaDomains.js'
+import { buildLabModules, filterLabModules, labDomainDoneCount } from '../data/labModules.js'
 import { getInterpretAlternate } from '../data/labTierStrategy.js'
 import { COLORS, styles } from '../ui/appTheme.js'
 import { STATIC_COPY } from '../ui/staticContentCopy.js'
@@ -8,11 +9,29 @@ import { LabTierBadge } from './LabTierBadge.jsx'
 
 const LAB_DIFF_ACCENT = { beginner: 'mint', intermediate: 'sky', advanced: 'amber' }
 
+function domainChipLabel(domain, domainNumber) {
+  const short = {
+    fundamentals: 'Fundamentals',
+    access: 'Access',
+    connectivity: 'Connectivity',
+    services: 'Services',
+    security: 'Security',
+    automation: 'Automation',
+  }
+  return `D${domainNumber} ${short[domain.id] || domain.name}`
+}
+
 export default function LabsHub({ onBack, onOpenLab }) {
   const [done, setDone] = useState([])
+  const [domainFilter, setDomainFilter] = useState('all')
   useEffect(() => { loadLabDone().then(setDone) }, [])
 
-  const modules = buildLabModules()
+  const modules = useMemo(() => buildLabModules(), [])
+  const visibleModules = useMemo(
+    () => filterLabModules(modules, domainFilter),
+    [modules, domainFilter],
+  )
+  const allProgress = useMemo(() => labDomainDoneCount(modules, done, 'all'), [modules, done])
 
   const labCard = (lab) => {
     const interpretAlt = getInterpretAlternate(lab.id)
@@ -62,18 +81,83 @@ export default function LabsHub({ onBack, onOpenLab }) {
           <li><strong>Verify</strong> — confirm with <code>show</code> commands in the terminal</li>
         </ol>
         <p style={{ ...styles.small, margin: '8px 0 0' }}>{STATIC_COPY.lab}</p>
-        <p style={{ ...styles.small, margin: '8px 0 0', color: COLORS.silverMid }}>Modules run top to bottom — foundation first, capstone last. Within each, labs go beginner → advanced.</p>
+        <p style={{ ...styles.small, margin: '8px 0 0', color: COLORS.silverMid }}>
+          Labs are grouped by CCNA exam domain — filter below or browse all {allProgress.total} labs in curriculum order.
+          {allProgress.done > 0 && ` You have completed ${allProgress.done}.`}
+        </p>
       </div>
 
-      {modules.length === 0 && <p style={styles.small}>No labs available yet.</p>}
-      {modules.map((mod) => (
-        <section key={mod.id} style={{ marginBottom: 20 }} aria-label={`Module ${mod.order}: ${mod.title}`}>
+      <div
+        className="ccna-h-scroll"
+        role="tablist"
+        aria-label="Filter labs by exam domain"
+        style={{ display: 'flex', gap: 6, overflowX: 'auto', marginBottom: 14, paddingBottom: 4, flexWrap: 'wrap' }}
+      >
+        {(() => {
+          const { done: d, total } = labDomainDoneCount(modules, done, 'all')
+          return (
+            <button
+              type="button"
+              role="tab"
+              aria-selected={domainFilter === 'all'}
+              onClick={() => setDomainFilter('all')}
+              style={{ ...styles.pill(domainFilter === 'all' ? 'sky' : 'silver'), border: 'none', cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap', flexShrink: 0 }}
+            >
+              All · {d}/{total}
+            </button>
+          )
+        })()}
+        {modules.filter(m => m.domainId && m.domainId !== 'capstone').map((mod) => {
+          const domain = DOMAINS.find(d => d.id === mod.domainId)
+          if (!domain) return null
+          const { done: d, total } = labDomainDoneCount(modules, done, mod.domainId)
+          const active = domainFilter === mod.domainId
+          return (
+            <button
+              key={mod.domainId}
+              type="button"
+              role="tab"
+              aria-selected={active}
+              onClick={() => setDomainFilter(mod.domainId)}
+              style={{ ...styles.pill(active ? domain.accent : 'silver'), border: 'none', cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap', flexShrink: 0, fontSize: 'var(--ccna-type-xs)' }}
+            >
+              {domainChipLabel(domain, mod.domainNumber)} · {d}/{total}
+            </button>
+          )
+        })}
+        {modules.some(m => m.domainId === 'capstone') && (() => {
+          const { done: d, total } = labDomainDoneCount(modules, done, 'capstone')
+          const active = domainFilter === 'capstone'
+          return (
+            <button
+              type="button"
+              role="tab"
+              aria-selected={active}
+              onClick={() => setDomainFilter('capstone')}
+              style={{ ...styles.pill(active ? 'amber' : 'silver'), border: 'none', cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap', flexShrink: 0, fontSize: 'var(--ccna-type-xs)' }}
+            >
+              Capstone · {d}/{total}
+            </button>
+          )
+        })()}
+      </div>
+
+      {visibleModules.length === 0 && <p style={styles.small}>No labs in this domain yet.</p>}
+      {visibleModules.map((mod) => (
+        <section key={mod.id} style={{ marginBottom: 20 }} aria-label={mod.domainId === 'capstone' ? mod.title : `Domain ${mod.domainNumber}: ${mod.title}`}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
-            <span style={{ ...styles.pill(mod.accent), fontSize: 'var(--ccna-type-micro)', fontWeight: 700 }}>
-              MODULE {mod.order} · {mod.level.toUpperCase()}
-            </span>
+            {mod.domainNumber != null ? (
+              <span style={{ ...styles.pill(mod.accent), fontSize: 'var(--ccna-type-micro)', fontWeight: 700 }}>
+                DOMAIN {mod.domainNumber} · {mod.examWeight}% EXAM
+              </span>
+            ) : (
+              <span style={{ ...styles.pill(mod.accent), fontSize: 'var(--ccna-type-micro)', fontWeight: 700 }}>
+                CAPSTONE
+              </span>
+            )}
             <span style={{ fontSize: 'var(--ccna-type-lg)', fontWeight: 700, color: COLORS.silver }}>{mod.title}</span>
             <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>{mod.labs.length} labs</span>
+            <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>{mod.level}</span>
           </div>
           {mod.blurb && (
             <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.45, marginBottom: 8 }}>{mod.blurb}</div>

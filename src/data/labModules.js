@@ -76,6 +76,7 @@ export function buildLabModules(labs = allLabs()) {
 
   return LAB_MODULE_DEFS.map((def, index) => {
     const domain = def.domainId ? DOMAINS.find(d => d.id === def.domainId) : null
+    const domainIndex = def.domainId ? DOMAINS.findIndex(d => d.id === def.domainId) : -1
     const moduleLabs = (def.labType === 'troubleshooting'
       ? [...troubleshooting]
       : guided.filter(l => canonicalLabDomain(l.domainId) === def.domainId)
@@ -84,6 +85,9 @@ export function buildLabModules(labs = allLabs()) {
     return {
       id: def.id,
       order: index + 1,
+      domainId: def.domainId || (def.labType === 'troubleshooting' ? 'capstone' : null),
+      domainNumber: domainIndex >= 0 ? domainIndex + 1 : null,
+      examWeight: domain?.weight ?? null,
       title: def.title || domain?.name || def.domainId,
       level: def.level,
       accent: def.accent || domain?.accent || 'silver',
@@ -91,4 +95,20 @@ export function buildLabModules(labs = allLabs()) {
       labs: moduleLabs,
     }
   }).filter(module => module.labs.length > 0)
+}
+
+/** Filter hub modules by CCNA domain id, `capstone`, or `all`. */
+export function filterLabModules(modules, domainFilter = 'all') {
+  if (!domainFilter || domainFilter === 'all') return modules
+  if (domainFilter === 'capstone') return modules.filter(m => m.domainId === 'capstone')
+  return modules.filter(m => m.domainId === domainFilter)
+}
+
+/** Done/total counts for a domain filter chip. */
+export function labDomainDoneCount(modules, doneIds, domainFilter) {
+  const scoped = filterLabModules(modules, domainFilter)
+  const total = scoped.reduce((n, m) => n + m.labs.length, 0)
+  const doneSet = new Set(doneIds || [])
+  const done = scoped.reduce((n, m) => n + m.labs.filter(l => doneSet.has(l.id)).length, 0)
+  return { done, total }
 }

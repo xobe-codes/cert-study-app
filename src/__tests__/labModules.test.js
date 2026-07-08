@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
-import { buildLabModules, difficultyRank, LAB_MODULE_DEFS, canonicalLabDomain } from '../data/labModules.js'
+import { buildLabModules, difficultyRank, LAB_MODULE_DEFS, canonicalLabDomain, filterLabModules, labDomainDoneCount } from '../data/labModules.js'
 import { allLabs } from '../data/ccnaLabs.js'
+import { DOMAINS } from '../data/ccnaDomains.js'
 
 describe('lab curriculum modules', () => {
   const modules = buildLabModules()
@@ -53,5 +54,36 @@ describe('lab curriculum modules', () => {
       const inModule = modules.some(m => m.id !== 'm7-troubleshooting' && m.labs.includes(lab))
       expect(inModule, `${lab.id} (${lab.domainId}) should belong to a domain module`).toBe(true)
     }
+  })
+
+  it('tags each domain module with domainId and exam weight', () => {
+    const domainMods = modules.filter(m => m.domainId !== 'capstone')
+    expect(domainMods.length).toBe(6)
+    for (const mod of domainMods) {
+      expect(mod.domainNumber).toBeGreaterThanOrEqual(1)
+      expect(mod.domainNumber).toBeLessThanOrEqual(6)
+      expect(mod.examWeight).toBeGreaterThan(0)
+      expect(DOMAINS.some(d => d.id === mod.domainId)).toBe(true)
+    }
+    const capstone = modules.find(m => m.domainId === 'capstone')
+    expect(capstone?.domainId).toBe('capstone')
+    expect(capstone?.domainNumber).toBeNull()
+  })
+
+  it('filterLabModules isolates a single domain', () => {
+    const services = filterLabModules(modules, 'services')
+    expect(services).toHaveLength(1)
+    expect(services[0].domainId).toBe('services')
+    expect(services[0].labs.every(l => canonicalLabDomain(l.domainId) === 'services' || l.labType === 'troubleshooting')).toBe(true)
+    expect(filterLabModules(modules, 'all')).toEqual(modules)
+    expect(filterLabModules(modules, 'capstone').every(m => m.domainId === 'capstone')).toBe(true)
+  })
+
+  it('labDomainDoneCount tracks completion per filter', () => {
+    const first = modules[0].labs[0]?.id
+    if (!first) return
+    const counts = labDomainDoneCount(modules, [first], 'all')
+    expect(counts.done).toBe(1)
+    expect(counts.total).toBe(labs.length)
   })
 })
