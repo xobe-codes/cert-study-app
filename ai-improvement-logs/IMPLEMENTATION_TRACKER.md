@@ -1,7 +1,7 @@
 # Implementation Tracker — 99+ North Star
 
 **Single source of truth** for current work, queue, scores, and shipped history.
-**Updated:** 2026-07-08 · **Overall:** **99+** (maintainability + traps closed this pass)
+**Updated:** 2026-07-08 · **Overall:** ~99/100 → target **99+** (all areas ≥95)
 
 ---
 
@@ -22,9 +22,9 @@
 | Metric | Value |
 |--------|------:|
 | Objectives | 53 · Tier A **53** · B 0 · C 0 |
-| Labs | 82 (lab-lite + interpret; 0 advanced typing tier) |
-| Traps / obj | **avg 11** (wave 20) |
-| App.jsx | ≤200 · `studyQuizTabs` / `appShell` ≤900 |
+| Labs | 82 (57 interpret · 25 config) |
+| Trap / flashcard / cmd gaps | **0 / 0 / 0** |
+| App.jsx | ~196 lines |
 
 ---
 
@@ -33,15 +33,15 @@
 | Area | Now | 99+ bar | Signal / gap-closer |
 |------|----:|--------:|---------------------|
 | Coverage breadth | 99 | 97 | Tier-A ratio (53/53) |
-| Coverage depth | 99 | 97 | avg 25 Q · ≥11 traps/obj |
-| Learning flow | 99 | 97 | SRS + stem-replay + reading TTS |
+| Coverage depth | 99 | 97 | avg 25 Q · 11 traps/obj |
+| Learning flow | 99 | 97 | SRS + stem-replay loops; question volume |
 | Engineer perspective | 99 | 97 | engineer view 53/53 |
 | CLI verification | 99 | 96 | ≥2 verify cmds 53/53 |
-| Exam traps | 99 | 97 | avg **11** traps |
-| Labs / CLI | 99 | 97 | domain filter + interpret alternates |
-| Maintainability | 99 | 96 | App ≤200 · shell/tabs ≤900 |
-| Mobile / a11y | 99 | 96 | device + a11y e2e |
-| Tests / CI | 99 | 96 | unit + verify:ship e2e |
+| Exam traps | 100 | 97 | avg 11 traps · floor 0 |
+| Labs / CLI | 99 | 97 | lab/obj + 57 interpret + 10 TS |
+| Maintainability | 97 | 96 | App 196L · ObjScreen 170L · 0 files >900L |
+| Mobile / a11y | 99 | 96 | 6 mobile e2e · a11y ✓ |
+| Tests / CI | 99 | 96 | 117 unit files · 27 e2e |
 
 ---
 
@@ -51,19 +51,18 @@
 
 | id | priority | area | work |
 |----|----------|------|------|
-| _empty_ | — | — | Run `npm run audit:scan-and-refresh` for new findings |
+| _empty_ | — | — | Run `npm run audit:scan-and-refresh` or pick backlog row below |
 
 ---
 
-## Backlog (cleared this pass)
+## Backlog (when queue empty)
 
-| id | area | status |
-|----|------|--------|
-| `split_study_quiz_tabs` | maintainability | **done** |
-| `app_shell_chrome_extract` | maintainability | **done** |
-| `gold_reviews_wave15` | content | **done** |
-| `config_lab_lite_wave` | labs | **done** |
-| `trap_depth_wave15` | exam_traps | **done** (wave20 → avg 11) |
+| id | area | work |
+|----|------|------|
+| `split_study_quiz_tabs` | maintainability | Split `studyQuizTabs.jsx` (5L) + appShell core (873L) under 900 |
+| `gold_reviews_wave15` | content | Expand gold answer reviews for high-miss stems |
+| `config_lab_lite_wave` | labs | Lab-lite alternates for remaining config labs |
+| `trap_depth_wave15` | exam_traps | Raise avg traps/objective beyond 11 |
 
 Full shipped history: `COMPLETED_CHANGES.md`
 
@@ -72,3 +71,4 @@ Full shipped history: `COMPLETED_CHANGES.md`
 ## Do not touch
 
 `.env*` · `src/ui/appTheme.js` · hash routing in `App.jsx` · live AI on load. See `DO_NOT_TOUCH.md`.
+
