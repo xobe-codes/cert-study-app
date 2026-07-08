@@ -1,4 +1,4 @@
-import { isMcQuestion, isOrderingQuestion } from './questionUtils.js'
+import { isMcQuestion, isOrderingQuestion, isCliQuestion } from './questionUtils.js'
 
 /** Human-readable issues when question type does not match answer shape. */
 export function auditQuestionShape(q) {
@@ -7,9 +7,18 @@ export function auditQuestionShape(q) {
   if (!stem) issues.push('empty-stem')
 
   const ordering = isOrderingQuestion(q)
+  const cli = isCliQuestion(q)
   const hasOrderItems = Array.isArray(q?.orderItems) && q.orderItems.length >= 3
   const hasChoices = Array.isArray(q?.choices) && q.choices.length > 0
   const mc = isMcQuestion(q)
+
+  if (q?.type === 'cli') {
+    if (!cli) issues.push('cli-missing-answers')
+    if (hasChoices) issues.push('cli-has-choices')
+    if (hasOrderItems) issues.push('cli-has-orderItems')
+  } else if (cli) {
+    if (q?.type !== 'cli') issues.push('cli-answers-without-cli-type')
+  }
 
   if (q?.type === 'ordering') {
     if (!hasOrderItems) issues.push('ordering-missing-orderItems')
@@ -24,7 +33,7 @@ export function auditQuestionShape(q) {
     const blankChoices = q.choices.filter(c => !String(c ?? '').trim()).length
     if (blankChoices) issues.push(`mc-blank-choice-text:${blankChoices}`)
     if (q.type === 'true-false' && q.choices.length !== 2) issues.push('true-false-not-two-choices')
-  } else if (!ordering) {
+  } else if (!ordering && !cli) {
     if (!hasChoices && !hasOrderItems) issues.push('unplayable-no-answers')
     else if (hasChoices && !mc) issues.push('choices-not-valid-mc')
   }

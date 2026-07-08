@@ -1,5 +1,5 @@
 import { COMMAND_DRILLS } from '../lab/commandDrills.js'
-import { commandMatches } from '../lab/cliEngine.js'
+import { gradeCliAnswerList } from '../lab/cliGrading.js'
 import { MODE_LABEL } from './commandWorkflows.js'
 
 const MODE_OPTIONS = Object.keys(MODE_LABEL)
@@ -150,7 +150,7 @@ export function gradeSyntaxQuestion(question, rawAnswer) {
   }
 
   const accepted = question.answers || [question.displayAnswer]
-  return accepted.some(exp => commandMatches(answer, exp))
+  return gradeCliAnswerList(answer, accepted)
 }
 
 export function syntaxSessionSummary(results) {

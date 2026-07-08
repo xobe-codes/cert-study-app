@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import {
-  isOrderingQuestion, isMcQuestion, gradeQuestion,
+  isOrderingQuestion, isMcQuestion, isCliQuestion, gradeQuestion,
   shuffleArrayCopy,
 } from '../../questionUtils.js'
 import { ALL_OBJECTIVES } from '../../data/ccnaDomains.js'
@@ -11,7 +11,7 @@ import { useNavHint } from '../../components/NavHintProvider.jsx'
 import { NAV_HINT_KEYS } from '../../ui/navHintConfig.js'
 import McChoices from '../../components/McChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
-import { QuizRichText, QuestionMeta, OrderingQuestion } from '../../components/QuizQuestionChrome.jsx'
+import { QuizRichText, QuestionMeta, OrderingQuestion, CliAnswerInput } from '../../components/QuizQuestionChrome.jsx'
 import Spinner from '../../components/Spinner.jsx'
 
 const quizFeedbackA11y = { role: 'status', 'aria-live': 'polite', 'aria-atomic': true }
@@ -26,6 +26,7 @@ export default function Onboarding({ onComplete, onSkip }) {
   const [revealed, setRevealed] = useState(false)
   const [loadError, setLoadError] = useState(null)
   const [orderDraft, setOrderDraft] = useState([])
+  const [cliAnswer, setCliAnswer] = useState('')
   const [results, setResults] = useState({})
   const [total, setTotal] = useState(0)
   const [answered, setAnswered] = useState(0)
@@ -36,6 +37,7 @@ export default function Onboarding({ onComplete, onSkip }) {
     } else {
       setOrderDraft([])
     }
+    setCliAnswer('')
   }, [current])
 
   useEffect(() => {
@@ -100,9 +102,16 @@ export default function Onboarding({ onComplete, onSkip }) {
     recordResult(correct)
   }
 
+  function submitCli() {
+    if (revealed || !isCliQuestion(current)) return
+    const correct = gradeQuestion(current, cliAnswer)
+    setRevealed(true)
+    recordResult(correct)
+  }
+
   function next() {
     if (queue.length === 0) { setPhase('done'); return }
-    setCurrent(queue[0]); setQueue(q => q.slice(1)); setSelected(null); setRevealed(false)
+    setCurrent(queue[0]); setQueue(q => q.slice(1)); setSelected(null); setRevealed(false); setCliAnswer('')
   }
 
   if (phase === 'intro') {
@@ -152,7 +161,8 @@ export default function Onboarding({ onComplete, onSkip }) {
       )
     }
     const ordering = isOrderingQuestion(current)
-    const isCorrect = revealed && (ordering ? gradeQuestion(current, orderDraft) : gradeQuestion(current, selected))
+    const cli = isCliQuestion(current)
+    const isCorrect = revealed && (ordering ? gradeQuestion(current, orderDraft) : cli ? gradeQuestion(current, cliAnswer) : gradeQuestion(current, selected))
     const obj = ALL_OBJECTIVES.find(o => o.id === current.objectiveId)
     return (
       <div className="onboarding-shell onboarding-shell--quiz">
@@ -166,6 +176,8 @@ export default function Onboarding({ onComplete, onSkip }) {
           <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><QuizRichText text={current.question} /></div>
           {ordering ? (
             <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? current.orderItems : null} />
+          ) : cli ? (
+            <CliAnswerInput value={cliAnswer} onChange={setCliAnswer} onSubmit={submitCli} revealed={revealed} question={current} />
           ) : (
             <McChoices q={current} selected={selected} revealed={revealed} onSelect={answer} />
           )}
@@ -177,6 +189,7 @@ export default function Onboarding({ onComplete, onSkip }) {
           )}
         </div>
         {ordering && !revealed && <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitOrder}>Check order</button>}
+        {cli && !revealed && <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitCli} disabled={!cliAnswer.trim()}>Check command</button>}
         {revealed && <button style={styles.primaryBtn} onClick={next}>{queue.length === 0 ? 'See results' : 'Next'}</button>}
       </div>
     )

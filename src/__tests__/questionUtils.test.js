@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import {
   isOrderingQuestion,
   isMcQuestion,
+  isCliQuestion,
   gradeQuestion,
   correctAnswerLabel,
   inferSkill,
@@ -29,6 +30,14 @@ const mcQ = {
   explanation: 'Areas must match.',
 }
 
+const cliQ = {
+  type: 'cli',
+  skill: 'implement',
+  question: 'Show the IP routing table',
+  answers: ['show ip route', 'sh ip route'],
+  explanation: 'show ip route displays the RIB.',
+}
+
 describe('isOrderingQuestion', () => {
   it('returns true for valid ordering questions', () => {
     expect(isOrderingQuestion(orderingQ)).toBe(true)
@@ -41,6 +50,18 @@ describe('isOrderingQuestion', () => {
   })
   it('returns false for MC questions', () => {
     expect(isOrderingQuestion(mcQ)).toBe(false)
+  })
+})
+
+describe('isCliQuestion', () => {
+  it('returns true for valid cli questions', () => {
+    expect(isCliQuestion(cliQ)).toBe(true)
+  })
+  it('returns false when answers missing', () => {
+    expect(isCliQuestion({ type: 'cli', answers: [] })).toBe(false)
+  })
+  it('returns false for MC questions', () => {
+    expect(isCliQuestion(mcQ)).toBe(false)
   })
 })
 
@@ -77,6 +98,15 @@ describe('gradeQuestion', () => {
   })
   it('fails ordering when length mismatches', () => {
     expect(gradeQuestion(orderingQ, orderingQ.orderItems.slice(0, 2))).toBe(false)
+  })
+
+  it('grades cli with shorthand', () => {
+    expect(gradeQuestion(cliQ, 'sh ip route')).toBe(true)
+    expect(gradeQuestion(cliQ, 'show version')).toBe(false)
+  })
+
+  it('labels cli primary answer', () => {
+    expect(correctAnswerLabel(cliQ)).toBe('show ip route')
   })
 })
 
@@ -129,6 +159,12 @@ describe('normalizeQuestionForBank', () => {
     expect(n.choices).toEqual(mcQ.choices)
     expect(n.correctIndex).toBe(0)
     expect(n.id).toBe('custom-id')
+  })
+  it('preserves answers for cli questions', () => {
+    const n = normalizeQuestionForBank(cliQ, '4.1', 2)
+    expect(n.answers).toEqual(cliQ.answers)
+    expect(n.skill).toBe('implement')
+    expect(n.id).toBe('4.1-skill-2')
   })
 })
 

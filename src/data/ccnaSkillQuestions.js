@@ -3,6 +3,7 @@
  * Merged into getCuratedQuestions() for zero-API quiz banks.
  */
 import { SKILL_QUESTIONS_EXTENDED } from './ccnaSkillQuestionsExtended.js'
+import { CLI_SKILL_QUESTIONS } from './cliSkillQuestions.js'
 import { applyAnswerReviewToQuestion } from '../answerReviewLogic.js'
 
 function mergeSkillMaps(base, ext) {
@@ -310,7 +311,10 @@ const SKILL_QUESTIONS_CORE = {
   ],
 }
 
-export const SKILL_QUESTIONS = mergeSkillMaps(SKILL_QUESTIONS_CORE, SKILL_QUESTIONS_EXTENDED)
+export const SKILL_QUESTIONS = mergeSkillMaps(
+  mergeSkillMaps(SKILL_QUESTIONS_CORE, SKILL_QUESTIONS_EXTENDED),
+  CLI_SKILL_QUESTIONS,
+)
 
 export function getSkillQuestions(objectiveId) {
   return (SKILL_QUESTIONS[objectiveId] || []).map(q =>

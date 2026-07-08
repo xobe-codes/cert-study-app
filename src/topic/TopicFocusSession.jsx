@@ -4,7 +4,7 @@ import { COLORS, styles } from '../ui/appTheme.js'
 import { useNavHint } from '../components/NavHintProvider.jsx'
 import { NAV_HINT_KEYS } from '../ui/navHintConfig.js'
 import {
-  gradeQuestion, isMcQuestion, isOrderingQuestion, buildMissedEntry,
+  gradeQuestion, isMcQuestion, isCliQuestion, isOrderingQuestion, buildMissedEntry,
   shuffleArrayCopy, randomizeQuestionOrder,
 } from '../questionUtils.js'
 import { loadQuizBank, recordQuizResult } from '../quiz/quizBankStorage.js'
@@ -12,7 +12,7 @@ import { buildTopicFocusQueue } from './topicFocusQuiz.js'
 import Spinner from '../components/Spinner.jsx'
 import McChoices from '../components/McChoices.jsx'
 import AnswerReview from '../components/AnswerReview.jsx'
-import { QuestionMeta, QuizRichText, OrderingQuestion } from '../components/QuizQuestionChrome.jsx'
+import { QuestionMeta, QuizRichText, OrderingQuestion, CliAnswerInput } from '../components/QuizQuestionChrome.jsx'
 
 const SESSION_CAP = 30
 
@@ -27,6 +27,7 @@ export default function TopicFocusSession({ config, onBack, onMissed, onDone }) 
   const [selected, setSelected] = useState(null)
   const [revealed, setRevealed] = useState(false)
   const [orderDraft, setOrderDraft] = useState([])
+  const [cliAnswer, setCliAnswer] = useState('')
   const [stats, setStats] = useState({ correct: 0, total: 0 })
   const [total, setTotal] = useState(0)
 
@@ -36,6 +37,7 @@ export default function TopicFocusSession({ config, onBack, onMissed, onDone }) 
     } else {
       setOrderDraft([])
     }
+    setCliAnswer('')
   }, [current])
 
   useEffect(() => {
@@ -92,6 +94,15 @@ export default function TopicFocusSession({ config, onBack, onMissed, onDone }) 
     if (!correct) onMissed?.(buildMissedEntry(current.objectiveId, current, { orderAnswer: orderDraft }))
   }
 
+  function submitCli() {
+    if (revealed || !isCliQuestion(current)) return
+    const correct = gradeQuestion(current, cliAnswer)
+    setRevealed(true)
+    setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
+    recordQuizResult(current.objectiveId, current.id, { correct })
+    if (!correct) onMissed?.(buildMissedEntry(current.objectiveId, current, { cliAnswer }))
+  }
+
   function next() {
     if (queue.length === 0) {
       setPhase('done')
@@ -102,10 +113,12 @@ export default function TopicFocusSession({ config, onBack, onMissed, onDone }) 
     setQueue(q => q.slice(1))
     setSelected(null)
     setRevealed(false)
+    setCliAnswer('')
   }
 
   const ordering = current && isOrderingQuestion(current)
-  const isCorrect = revealed && (ordering ? gradeQuestion(current, orderDraft) : gradeQuestion(current, selected))
+  const cli = current && isCliQuestion(current)
+  const isCorrect = revealed && (ordering ? gradeQuestion(current, orderDraft) : cli ? gradeQuestion(current, cliAnswer) : gradeQuestion(current, selected))
   const obj = current ? ALL_OBJECTIVES.find(o => o.id === current.objectiveId) : null
   const summaryParts = []
   if (objectiveIds.length) summaryParts.push(`${objectiveIds.length} objective${objectiveIds.length === 1 ? '' : 's'}`)
@@ -163,6 +176,8 @@ export default function TopicFocusSession({ config, onBack, onMissed, onDone }) 
         </div>
         {ordering ? (
           <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? current.orderItems : null} />
+        ) : cli ? (
+          <CliAnswerInput value={cliAnswer} onChange={setCliAnswer} onSubmit={submitCli} revealed={revealed} question={current} />
         ) : (
           <McChoices q={current} selected={selected} revealed={revealed} onSelect={answer} />
         )}
@@ -177,6 +192,9 @@ export default function TopicFocusSession({ config, onBack, onMissed, onDone }) 
       </div>
       {ordering && !revealed && (
         <button type="button" style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitOrder}>Check order</button>
+      )}
+      {cli && !revealed && (
+        <button type="button" style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitCli} disabled={!cliAnswer.trim()}>Check command</button>
       )}
       {revealed && (
         <button type="button" style={styles.primaryBtn} onClick={next}>{queue.length === 0 ? 'Finish' : 'Next'}</button>

@@ -11,6 +11,7 @@ export function normalizeIosCli(cmd) {
   s = s.replace(/^int /, 'interface ')
   s = normalizeInterfaceTokens(s)
   s = canonicalizeIosPhrases(s)
+  s = s.replace(/^sh /, 'show ')
   return s
 }
 
@@ -83,14 +84,4 @@ export function interfaceAnswerVariants(answer) {
     }
   }
   return [...variants]
-}
-
-export function answersMatchShorthand(input, expected, extraAccept = []) {
-  const got = normalizeIosCli(input)
-  if (!got) return false
-  const accepted = new Set([
-    ...interfaceAnswerVariants(expected),
-    ...extraAccept.flatMap(a => interfaceAnswerVariants(a)),
-  ].map(a => normalizeIosCli(a)))
-  return accepted.has(got) || [...accepted].some(a => a && got.includes(a))
 }

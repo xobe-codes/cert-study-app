@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { allSkillQuestions, getSkillQuestions } from '../data/ccnaSkillQuestions.js'
-import { isOrderingQuestion, isMcQuestion, inferSkill } from '../questionUtils.js'
+import { isOrderingQuestion, isMcQuestion, isCliQuestion, inferSkill } from '../questionUtils.js'
 
 const MIN_SKILL_QUESTIONS = 55
 const MIN_OBJECTIVES_COVERED = 45
@@ -12,6 +12,8 @@ function validateQuestion(q) {
   expect(['design', 'implement', 'troubleshoot']).toContain(q.skill || inferSkill(q))
   if (isOrderingQuestion(q)) {
     expect(q.orderItems.length).toBeGreaterThanOrEqual(3)
+  } else if (isCliQuestion(q)) {
+    expect((q.answers || [q.answer]).length).toBeGreaterThan(0)
   } else if (isMcQuestion(q)) {
     expect(q.choices.length).toBeGreaterThanOrEqual(2)
     expect(q.correctIndex).toBeGreaterThanOrEqual(0)
@@ -45,8 +47,9 @@ describe('skill question bank', () => {
     expect(skills.has('troubleshoot')).toBe(true)
   })
 
-  it('includes ordering and troubleshooting types', () => {
+  it('includes ordering, cli, and troubleshooting types', () => {
     expect(all.some(isOrderingQuestion)).toBe(true)
+    expect(all.some(isCliQuestion)).toBe(true)
     expect(all.some(q => q.type === 'troubleshooting')).toBe(true)
   })
 

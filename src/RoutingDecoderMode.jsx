@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { answersMatchShorthand } from './lab/iosShorthand.js'
+import { answersMatchShorthand } from './lab/cliEngine.js'
 import { generateRoutingProblem } from './routingDrill.js'
 import { STATIC_COPY } from './ui/staticContentCopy.js'
 

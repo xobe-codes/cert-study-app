@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import {
-  isOrderingQuestion, isMcQuestion, gradeQuestion,
+  isOrderingQuestion, isMcQuestion, isCliQuestion, gradeQuestion, buildMissedEntry,
   shuffleArrayCopy, randomizeQuestionOrder,
 } from '../../questionUtils.js'
 import { ALL_OBJECTIVES } from '../../data/ccnaDomains.js'
@@ -13,7 +13,7 @@ import { NAV_HINT_KEYS } from '../../ui/navHintConfig.js'
 import { haptic } from '../../ui/feedbackHelpers.jsx'
 import McChoices from '../../components/McChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
-import { QuizRichText, QuestionMeta, OrderingQuestion } from '../../components/QuizQuestionChrome.jsx'
+import { QuizRichText, QuestionMeta, OrderingQuestion, CliAnswerInput } from '../../components/QuizQuestionChrome.jsx'
 import Spinner from '../../components/Spinner.jsx'
 
 const quizFeedbackA11y = { role: 'status', 'aria-live': 'polite', 'aria-atomic': true }
@@ -27,6 +27,7 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection 
   const [selected, setSelected] = useState(null)
   const [revealed, setRevealed] = useState(false)
   const [orderDraft, setOrderDraft] = useState([])
+  const [cliAnswer, setCliAnswer] = useState('')
   const [stats, setStats] = useState({ correct: 0, total: 0 })
   const [total, setTotal] = useState(0)
 
@@ -36,6 +37,7 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection 
     } else {
       setOrderDraft([])
     }
+    setCliAnswer('')
   }, [current])
 
   useEffect(() => {
@@ -78,12 +80,24 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection 
     recordQuizResult(current.objectiveId, current.id, { correct })
     logEvent('user_reviewed_concept', { objectiveId: current.objectiveId, questionId: current.id, correct })
     if (!correct) {
-      onMissed({ objectiveId: current.objectiveId, questionId: current.id, question: current.question, orderItems: current.orderItems, orderAnswer: orderDraft, explanation: current.explanation, concept: current.concept, type: current.type, skill: current.skill, addedAt: Date.now() })
+      onMissed(buildMissedEntry(current.objectiveId, current, { orderAnswer: orderDraft }))
+    }
+  }
+  function submitCli() {
+    if (revealed || !isCliQuestion(current)) return
+    const correct = gradeQuestion(current, cliAnswer)
+    setRevealed(true)
+    haptic(correct ? 15 : [10, 40, 10])
+    setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
+    recordQuizResult(current.objectiveId, current.id, { correct })
+    logEvent('user_reviewed_concept', { objectiveId: current.objectiveId, questionId: current.id, correct })
+    if (!correct) {
+      onMissed(buildMissedEntry(current.objectiveId, current, { cliAnswer }))
     }
   }
   function next() {
     if (queue.length === 0) { setPhase('done'); onDone?.(); return }
-    setCurrent(queue[0]); setQueue(q => q.slice(1)); setSelected(null); setRevealed(false)
+    setCurrent(queue[0]); setQueue(q => q.slice(1)); setSelected(null); setRevealed(false); setCliAnswer('')
   }
 
   if (phase === 'loading') return <div><button style={styles.backBtn} onClick={onBack}>‹ Back</button><Spinner label="Gathering your reviews..." /></div>
@@ -111,7 +125,8 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection 
   }
 
   const ordering = isOrderingQuestion(current)
-  const isCorrect = revealed && (ordering ? gradeQuestion(current, orderDraft) : gradeQuestion(current, selected))
+  const cli = isCliQuestion(current)
+  const isCorrect = revealed && (ordering ? gradeQuestion(current, orderDraft) : cli ? gradeQuestion(current, cliAnswer) : gradeQuestion(current, selected))
   const obj = ALL_OBJECTIVES.find(o => o.id === current.objectiveId)
   return (
     <div className="ccna-review-flow">
@@ -127,6 +142,8 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection 
         <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><QuizRichText text={current.question} /></div>
         {ordering ? (
           <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? current.orderItems : null} />
+        ) : cli ? (
+          <CliAnswerInput value={cliAnswer} onChange={setCliAnswer} onSubmit={submitCli} revealed={revealed} question={current} />
         ) : (
           <McChoices q={current} selected={selected} revealed={revealed} onSelect={answer} />
         )}
@@ -146,6 +163,7 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection 
         )}
       </div>
       {ordering && !revealed && <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitOrder}>Check order</button>}
+      {cli && !revealed && <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitCli} disabled={!cliAnswer.trim()}>Check command</button>}
       {revealed && <button style={styles.primaryBtn} onClick={next}>{queue.length === 0 ? 'Finish' : 'Next'}</button>}
     </div>
   )

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { COLORS, styles } from '../ui/appTheme.js'
 import { TYPE_LABEL, SKILL_LABEL, inferSkill } from '../questionUtils.js'
+import { cliStringsEquivalent } from '../lab/cliGrading.js'
 import { parseRichTextSegments } from '../lesson/richTextParse.js'
 
 export function QuizRichText({ text }) {
@@ -27,7 +28,7 @@ export function QuestionMeta({ q }) {
   return (
     <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
       {q.difficulty && <span style={{ ...styles.pill(dAccent), fontSize: 'var(--ccna-type-micro)' }}>{q.difficulty.toUpperCase()}</span>}
-      {q.type && <span style={{ ...styles.pill(q.type === 'troubleshooting' || q.type === 'ordering' ? 'sky' : 'silver'), fontSize: 'var(--ccna-type-micro)' }}>{TYPE_LABEL[q.type] || q.type}</span>}
+      {q.type && <span style={{ ...styles.pill(q.type === 'troubleshooting' || q.type === 'ordering' || q.type === 'cli' ? 'sky' : 'silver'), fontSize: 'var(--ccna-type-micro)' }}>{TYPE_LABEL[q.type] || q.type}</span>}
       {skill && <span style={{ ...styles.pill(skillAccent), fontSize: 'var(--ccna-type-micro)' }}>{SKILL_LABEL[skill] || skill}</span>}
       {q.concept && <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, alignSelf: 'center' }}>{q.concept}</span>}
     </div>
@@ -73,7 +74,7 @@ export function OrderingQuestion({ items, onChange, revealed, correctOrder }) {
         let color = COLORS.silver
         let borderWidth = 1
         if (revealed && correctOrder) {
-          const ok = item === correctOrder[idx]
+          const ok = cliStringsEquivalent(item, correctOrder[idx])
           if (ok) { bg = COLORS.mintDim; border = COLORS.mintBorder; color = COLORS.mint }
           else { bg = COLORS.roseDim; border = COLORS.rose; color = COLORS.rose; borderWidth = 2 }
         }
@@ -107,6 +108,34 @@ export function OrderingQuestion({ items, onChange, revealed, correctOrder }) {
       })}
       {revealed && correctOrder && (
         <div style={{ ...styles.small, marginTop: 4 }}>Correct order: {correctOrder.map((s, i) => `${i + 1}. ${s}`).join(' → ')}</div>
+      )}
+    </div>
+  )
+}
+
+export function CliAnswerInput({ value, onChange, onSubmit, revealed, question, disabled }) {
+  return (
+    <div>
+      <input
+        type="text"
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        onKeyDown={e => { if (e.key === 'Enter' && !revealed && onSubmit) onSubmit() }}
+        placeholder="Type IOS command…"
+        disabled={disabled || revealed}
+        autoComplete="off"
+        spellCheck={false}
+        aria-label="IOS command answer"
+        style={{
+          ...styles.input,
+          width: '100%',
+          boxSizing: 'border-box',
+          fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+          marginBottom: 8,
+        }}
+      />
+      {question?.hint && !revealed && (
+        <div style={{ ...styles.small, marginBottom: 8, color: COLORS.silverMid }}>Hint: {question.hint}</div>
       )}
     </div>
   )

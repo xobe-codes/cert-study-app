@@ -1,10 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import {
-  normalizeIosCli,
-  resolveShowOutput,
-  answersMatchShorthand,
-  interfaceAnswerVariants,
-} from '../lab/iosShorthand.js'
+import { interfaceAnswerVariants, normalizeIosCli, resolveShowOutput } from '../lab/iosShorthand.js'
 
 describe('iosShorthand', () => {
   describe('normalizeIosCli', () => {
@@ -19,7 +14,12 @@ describe('iosShorthand', () => {
       expect(normalizeIosCli('Fa0/5')).toBe('fa0/5')
     })
 
-    it('keeps conf t and no shutdown phrases', () => {
+    it('canonicalizes show/sh shorthand', () => {
+      expect(normalizeIosCli('sh ip route')).toBe('show ip route')
+      expect(normalizeIosCli('show ip route')).toBe('show ip route')
+    })
+
+    it('canonicalizes configure and shutdown shorthand', () => {
       expect(normalizeIosCli('configure terminal')).toBe('conf t')
       expect(normalizeIosCli('no shut')).toBe('no shutdown')
     })
@@ -39,23 +39,6 @@ describe('iosShorthand', () => {
 
     it('finds output with shorthand key', () => {
       expect(resolveShowOutput('show ip interface gi0/0', showOutput)).toBe('Gi0/0 status')
-    })
-  })
-
-  describe('answersMatchShorthand', () => {
-    it('accepts Gi0/1 for GigabitEthernet0/1', () => {
-      expect(answersMatchShorthand('Gi0/1', 'GigabitEthernet0/1')).toBe(true)
-      expect(answersMatchShorthand('gi0/1', 'GigabitEthernet0/1')).toBe(true)
-      expect(answersMatchShorthand('GigabitEthernet0/1', 'GigabitEthernet0/1')).toBe(true)
-    })
-
-    it('rejects unrelated interface answers', () => {
-      expect(answersMatchShorthand('Gi0/2', 'GigabitEthernet0/1')).toBe(false)
-      expect(answersMatchShorthand('', 'GigabitEthernet0/1')).toBe(false)
-    })
-
-    it('honors extra accept list', () => {
-      expect(answersMatchShorthand('g0/1', 'GigabitEthernet0/1', ['g0/1'])).toBe(true)
     })
   })
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback, useRef, useId } from 
 import { getCurated, hasCuratedReading, hasCuratedQuestions, getCuratedQuestions } from '../data/ccnaCurated.js'
 import { labsForObjective } from '../data/ccnaLabs.js'
 import {
-  TYPE_LABEL, SKILL_LABEL, isOrderingQuestion, isMcQuestion, gradeQuestion, correctAnswerLabel,
+  TYPE_LABEL, SKILL_LABEL, isOrderingQuestion, isMcQuestion, isCliQuestion, gradeQuestion, correctAnswerLabel,
   shuffleArrayCopy, randomizeQuestionOrder, computeBankMix, normalizeQuestionForBank, inferSkill, buildMissedEntry,
 } from '../questionUtils.js'
 import { getLessonReference, hasLessonReference } from '../lesson/knowledgeReference.js'
@@ -31,6 +31,8 @@ import McChoices from '../components/McChoices.jsx'
 import AnswerReview from '../components/AnswerReview.jsx'
 import ErrorBox from '../components/ErrorBox.jsx'
 import Spinner from '../components/Spinner.jsx'
+import { CliAnswerInput } from '../components/QuizQuestionChrome.jsx'
+import { cliStringsEquivalent } from '../lab/cliGrading.js'
 import SvgConfetti from '../components/SvgConfetti.jsx'
 import DeferredExamTips from '../components/DeferredExamTips.jsx'
 import { COLORS, accentColors, styles } from '../ui/appTheme.js'
@@ -280,6 +282,7 @@ function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked = fals
   const [selected, setSelected] = useState(null)
   const [revealed, setRevealed] = useState(false)
   const [orderDraft, setOrderDraft] = useState([])
+  const [cliAnswer, setCliAnswer] = useState('')
   const [results, setResults] = useState([]) // { concept, correct }
   const showNavHint = useNavHint()
   const resultHintFired = useRef(false)
@@ -291,6 +294,7 @@ function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked = fals
   useEffect(() => {
     if (q && isOrderingQuestion(q)) setOrderDraft(shuffleArrayCopy(q.orderItems))
     else setOrderDraft([])
+    setCliAnswer('')
   }, [q])
 
   useEffect(() => {
@@ -366,9 +370,17 @@ function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked = fals
     setRevealed(true)
     setResults(r => [...r, { concept: q.concept, correct }])
   }
+  function submitCli() {
+    if (revealed || !isCliQuestion(questions[idx])) return
+    const q = questions[idx]
+    const correct = gradeQuestion(q, cliAnswer)
+    haptic(correct ? 15 : [10, 40, 10])
+    setRevealed(true)
+    setResults(r => [...r, { concept: q.concept, correct }])
+  }
   function next() {
     if (idx + 1 >= questions.length) { setPhase('result'); return }
-    setIdx(i => i + 1); setSelected(null); setRevealed(false)
+    setIdx(i => i + 1); setSelected(null); setRevealed(false); setCliAnswer('')
   }
 
   if (phase === 'intro') {
@@ -423,7 +435,8 @@ function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked = fals
 
   // active
   const ordering = isOrderingQuestion(q)
-  const isCorrect = revealed && (ordering ? gradeQuestion(q, orderDraft) : gradeQuestion(q, selected))
+  const cli = isCliQuestion(q)
+  const isCorrect = revealed && (ordering ? gradeQuestion(q, orderDraft) : cli ? gradeQuestion(q, cliAnswer) : gradeQuestion(q, selected))
   return (
     <div>
       <div style={{ ...styles.small, marginBottom: 8 }}>Pre-assessment · {idx + 1} of {questions.length}</div>
@@ -432,6 +445,8 @@ function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked = fals
         <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={q.question} /></div>
         {ordering ? (
           <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? q.orderItems : null} />
+        ) : cli ? (
+          <CliAnswerInput value={cliAnswer} onChange={setCliAnswer} onSubmit={submitCli} revealed={revealed} question={q} />
         ) : (
           <McChoices q={q} selected={selected} revealed={revealed} onSelect={answer} />
         )}
@@ -443,6 +458,7 @@ function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked = fals
         )}
       </div>
       {ordering && !revealed && <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitOrder}>Check order</button>}
+      {cli && !revealed && <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitCli} disabled={!cliAnswer.trim()}>Check command</button>}
       {revealed && <button style={styles.primaryBtn} onClick={next}>{idx + 1 >= questions.length ? 'See result' : 'Next'}</button>}
     </div>
   )
@@ -1187,7 +1203,7 @@ function OrderingQuestion({ items, onChange, revealed, correctOrder }) {
         let color = COLORS.silver
         let borderWidth = 1
         if (revealed && correctOrder) {
-          const ok = item === correctOrder[idx]
+          const ok = cliStringsEquivalent(item, correctOrder[idx])
           if (ok) { bg = COLORS.mintDim; border = COLORS.mintBorder; color = COLORS.mint }
           else { bg = COLORS.roseDim; border = COLORS.rose; color = COLORS.rose; borderWidth = 2 }
         }
@@ -1240,7 +1256,7 @@ function QuestionMeta({ q }) {
   return (
     <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
       {q.difficulty && <span style={{ ...styles.pill(dAccent), fontSize: 'var(--ccna-type-micro)' }}>{q.difficulty.toUpperCase()}</span>}
-      {q.type && <span style={{ ...styles.pill(q.type === 'troubleshooting' || q.type === 'ordering' ? 'sky' : 'silver'), fontSize: 'var(--ccna-type-micro)' }}>{TYPE_LABEL[q.type] || q.type}</span>}
+      {q.type && <span style={{ ...styles.pill(q.type === 'troubleshooting' || q.type === 'ordering' || q.type === 'cli' ? 'sky' : 'silver'), fontSize: 'var(--ccna-type-micro)' }}>{TYPE_LABEL[q.type] || q.type}</span>}
       {skill && <span style={{ ...styles.pill(skillAccent), fontSize: 'var(--ccna-type-micro)' }}>{SKILL_LABEL[skill] || skill}</span>}
       {q.concept && <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, alignSelf: 'center' }}>{q.concept}</span>}
     </div>
@@ -1413,6 +1429,7 @@ export function QuizTab({
   const [bankSize, setBankSize] = useState(0)
   const [bankQuestions, setBankQuestions] = useState([])
   const [orderDraft, setOrderDraft] = useState([])
+  const [cliAnswer, setCliAnswer] = useState('')
   const [sessionSize, setSessionSize] = useState(DEFAULT_QUIZ_SESSION_SIZE)
   const curatedPoolSize = useMemo(() => getCuratedQuestions(objective.id).length, [objective.id])
 
@@ -1479,6 +1496,7 @@ export function QuizTab({
     } else {
       setOrderDraft([])
     }
+    setCliAnswer('')
   }, [current])
 
   // forceNew=true always generates a fresh set via the API and adds it to the
@@ -1652,6 +1670,31 @@ export function QuizTab({
     }
   }
 
+  function submitCli() {
+    if (revealed || !isCliQuestion(current)) return
+    setRevealed(true)
+    const correct = gradeQuestion(current, cliAnswer)
+    haptic(correct ? 15 : [10, 40, 10])
+    if (correct) bumpSessionStudy('correct')
+    else bumpSessionStudy('incorrect')
+    setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1, missedCount: s.missedCount + (correct ? 0 : 1) }))
+    const newStreak = correct ? streak + 1 : 0
+    setStreak(newStreak)
+    if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
+    logEvent('user_answered_question', { objectiveId: objective.id, questionId: current.id, correct })
+    if (!correct) {
+      collectDeferredTip(current, null)
+      onMissed(buildMissedEntry(objective.id, current, { cliAnswer }))
+      const qKey = current.id || current.question
+      if (missedOnce.current.has(qKey)) {
+        setQueue(q => [q[0], current, ...q.slice(1)].filter(Boolean))
+      } else {
+        missedOnce.current.add(qKey)
+        setQueue(q => [...q, current])
+      }
+    }
+  }
+
   function rate(value) {
     setRating(value)
     sessionRatings.current.push(value)
@@ -1659,7 +1702,8 @@ export function QuizTab({
     logEvent('user_rated_question_difficulty', { objectiveId: objective.id, questionId: current.id, rating: value })
     if (value === 'easy' && revealed) {
       const ordering = isOrderingQuestion(current)
-      const wasWrong = ordering ? !gradeQuestion(current, orderDraft) : (selected != null && !gradeQuestion(current, selected))
+      const cli = isCliQuestion(current)
+      const wasWrong = ordering ? !gradeQuestion(current, orderDraft) : cli ? !gradeQuestion(current, cliAnswer) : (selected != null && !gradeQuestion(current, selected))
       if (wasWrong) setOverconfidentCallout(true)
     }
   }
@@ -1675,6 +1719,7 @@ export function QuizTab({
     setSelected(null)
     setRevealed(false)
     setRating(null)
+    setCliAnswer('')
     setOverconfidentCallout(false)
   }
 
@@ -1813,7 +1858,8 @@ export function QuizTab({
 
   // active
   const ordering = isOrderingQuestion(current)
-  const isCorrect = revealed && (ordering ? gradeQuestion(current, orderDraft) : gradeQuestion(current, selected))
+  const cli = isCliQuestion(current)
+  const isCorrect = revealed && (ordering ? gradeQuestion(current, orderDraft) : cli ? gradeQuestion(current, cliAnswer) : gradeQuestion(current, selected))
   return (
     <div className="ccna-practice-active ccna-review-flow">
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
@@ -1831,6 +1877,8 @@ export function QuizTab({
             revealed={revealed}
             correctOrder={revealed ? current.orderItems : null}
           />
+        ) : cli ? (
+          <CliAnswerInput value={cliAnswer} onChange={setCliAnswer} onSubmit={submitCli} revealed={revealed} question={current} />
         ) : (
           <McChoices q={current} selected={selected} revealed={revealed} onSelect={selectAnswer} />
         )}
@@ -1858,6 +1906,9 @@ export function QuizTab({
       </div>
       {ordering && !revealed && (
         <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitOrder}>Check order</button>
+      )}
+      {cli && !revealed && (
+        <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitCli} disabled={!cliAnswer.trim()}>Check command</button>
       )}
       {revealed && (
         <div className="ccna-confidence-strip" style={{ marginBottom: 10 }}>
