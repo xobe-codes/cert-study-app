@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { answersMatchShorthand } from './lab/iosShorthand.js'
 import { generateRoutingProblem } from './routingDrill.js'
 import { STATIC_COPY } from './ui/staticContentCopy.js'
 
@@ -6,8 +7,8 @@ export default function RoutingDecoderMode({ styles, COLORS, onBack }) {
   const [problem, setProblem] = useState(() => generateRoutingProblem())
   const [answer, setAnswer] = useState('')
   const [checked, setChecked] = useState(false)
-  const accepted = [problem.answer, ...(problem.accept || [])].map(a => a.toLowerCase())
-  const correct = accepted.includes((answer || '').trim().toLowerCase())
+  const accepted = [problem.answer, ...(problem.accept || [])]
+  const correct = answersMatchShorthand(answer, problem.answer, problem.accept || [])
 
   function next() {
     setProblem(generateRoutingProblem())

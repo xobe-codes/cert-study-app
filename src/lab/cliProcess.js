@@ -1,4 +1,5 @@
 import { normalizeCmd, CLI_SHOW_OUTPUT, CLI_MODE_PROMPT, CLI_MODE_HINT } from './cliEngine.js'
+import { normalizeIosCli, resolveShowOutput } from './iosShorthand.js'
 
 export function cliNavTarget(norm) {
   if (/^(enable|en)$/.test(norm)) return { to: 'priv', from: ['user', 'priv'] }
@@ -42,17 +43,17 @@ export function cliRequiredMode(norm) {
 
 /** Accept common IOS abbreviations for lab expected commands. */
 export function commandVariants(cmd) {
-  const base = normalizeCmd(cmd)
+  const base = normalizeIosCli(cmd)
   const variants = new Set([base])
   variants.add(base.replace(/^interface /, 'int '))
-  variants.add(base.replace(/^configure terminal$/, 'conf t'))
-  variants.add(base.replace(/^no shutdown$/, 'no shut'))
-  variants.add(base.replace(/^no shut$/, 'no shutdown'))
-  return [...variants]
+  if (base === 'no shutdown') variants.add('no shut')
+  if (base === 'conf t') variants.add('configure terminal')
+  return [...variants].map(normalizeIosCli)
 }
 
 export function commandMatches(inputNorm, expectedCmd) {
-  return commandVariants(expectedCmd).some(v => inputNorm === v || inputNorm.includes(v))
+  const input = normalizeIosCli(inputNorm)
+  return commandVariants(expectedCmd).some(v => input === v || input.includes(v))
 }
 
 export function cliHostnameForObjective(objectiveId) {
@@ -118,14 +119,15 @@ export function processCliLine({
       for (let i = 0; i < objectives.length; i++) {
         if (completed[i]) continue
         const answers = objectives[i].answer || objectives[i].answers || []
-        if (answers.some(a => commandVariants(a).some(v => norm === v))) { showMatchIdx = i; break }
+        if (answers.some(a => commandVariants(a).some(v => normalizeIosCli(norm) === v))) { showMatchIdx = i; break }
       }
       if (showMatchIdx >= 0) {
         newlyCompleted.push(showMatchIdx)
         lines.push({ text: `% OK — ${objectives[showMatchIdx].label || objectives[showMatchIdx].answer[0]}`, kind: 'ok' })
       }
-      if (showOutput[norm]) {
-        showOutput[norm].split('\n').forEach(row => lines.push({ text: row, kind: 'out' }))
+      const output = resolveShowOutput(norm, showOutput)
+      if (output) {
+        output.split('\n').forEach(row => lines.push({ text: row, kind: 'out' }))
       } else {
         lines.push({ text: '% Output not simulated for this show command in this lab.', kind: 'info' })
       }
@@ -149,8 +151,9 @@ export function processCliLine({
       newlyCompleted.push(matchIdx)
       lines.push({ text: `% OK — ${objectives[matchIdx].label || 'command accepted'}`, kind: 'ok' })
       // For show commands, also display the simulated output so the learner can read and interpret it
-      if (/^show /.test(norm) && showOutput[norm]) {
-        showOutput[norm].split('\n').forEach(row => lines.push({ text: row, kind: 'out' }))
+      const showOut = resolveShowOutput(norm, showOutput)
+      if (/^show /.test(norm) && showOut) {
+        showOut.split('\n').forEach(row => lines.push({ text: row, kind: 'out' }))
       }
     } else {
       counters.wrongModeErrors += 1

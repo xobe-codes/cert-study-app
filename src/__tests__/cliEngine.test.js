@@ -52,6 +52,11 @@ describe('cliEngine', () => {
       expect(commandMatches('int gi0/0', 'interface gi0/0')).toBe(true)
     })
 
+    it('Gi shorthand matches GigabitEthernet expected command', () => {
+      expect(commandMatches('interface gi0/1', 'interface GigabitEthernet0/1')).toBe(true)
+      expect(commandMatches('int g0/1', 'interface gi0/1')).toBe(true)
+    })
+
     it('conf t matches configure terminal', () => {
       expect(commandMatches('conf t', 'configure terminal')).toBe(true)
     })
@@ -69,10 +74,10 @@ describe('cliEngine', () => {
       expect(commandMatches('show ip route ospf', 'show ip route')).toBe(true)
     })
 
-    it('commandVariants produces the base plus abbreviations', () => {
+    it('commandVariants produces canonical forms (int/interface unified via normalizeIosCli)', () => {
       const v = commandVariants('interface gi0/1')
       expect(v).toContain('interface gi0/1')
-      expect(v).toContain('int gi0/1')
+      expect(commandMatches('int gi0/1', 'interface gi0/1')).toBe(true)
     })
   })
 
@@ -407,6 +412,24 @@ describe('cliEngine', () => {
     const prog = labProgress('LAB-31-ROUTE-INTERPRET', entered)
     expect(prog.complete).toBe(true)
     expect(prog.done.length).toBe(6)
+  })
+
+  it('labProgress accepts interface shorthand vs full GigabitEthernet', () => {
+    const entered = ['show running-config interface GigabitEthernet0/1']
+    const prog = labProgress('LAB-DHCP-RELAY', entered)
+    expect(prog.done.some(d => d.command === 'show running-config interface gi0/1')).toBe(true)
+  })
+
+  it('processCliLine matches interface gi0/1 objective when user types GigabitEthernet', () => {
+    const r = processCliLine({
+      raw: 'interface GigabitEthernet0/1',
+      mode: 'config',
+      host: 'SW1',
+      objectives: [{ answer: ['interface gi0/1', 'switchport mode trunk'] }],
+      completed: [false, false],
+    })
+    expect(r.newlyCompleted).toContain(0)
+    expect(r.newMode).toBe('config-if')
   })
 
   it('lab_32_forwarding show ip route 192.168.2.0 returns OSPF lookup', () => {

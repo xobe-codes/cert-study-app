@@ -22,6 +22,7 @@ import { EXTENDED_LAB_BUNDLES } from './ccnaLabsExtended.js'
 import { PHASE_LAB_BUNDLES } from './ccnaLabsPhases.js'
 import { applyConfigLabLite } from './configLabLiteWave.js'
 import { CLI_ROUTE_31_SHOW_OUTPUT, CLI_VLAN_TRUNK_21_SHOW_OUTPUT, CLI_OSPF_SINGLE_34_SHOW_OUTPUT, CLI_NAT_41_SHOW_OUTPUT } from '../lab/cliEngine.js'
+import { normalizeIosCli } from '../lab/iosShorthand.js'
 
 /* -------------------------------------------------------------------------
    LAB: Dynamic ARP Inspection with DHCP Snooping
@@ -1308,7 +1309,7 @@ export function labsByDomain() {
 // Normalise a CLI line for deterministic matching (lowercase, collapse spaces,
 // drop the leading device/mode prompt if present).
 export function normalizeCliLine(line) {
-  return String(line || '').toLowerCase().replace(/^[^#>]*[#>]/, '').replace(/\s+/g, ' ').trim()
+  return normalizeIosCli(String(line || '').toLowerCase().replace(/^[^#>]*[#>]/, '').replace(/\s+/g, ' ').trim())
 }
 // Given the set of normalised commands a learner has entered, return which
 // required commands are satisfied (substring match, order-independent).
@@ -1316,7 +1317,7 @@ export function labProgress(labId, enteredNormalized) {
   const v = LABS[labId]?.validator
   if (!v) return { done: [], total: 0, complete: false }
   const entered = new Set(enteredNormalized)
-  const has = (cmd) => [...entered].some(e => e.includes(normalizeCliLine(cmd)))
+  const has = (cmd) => [...entered].some(e => normalizeIosCli(e).includes(normalizeIosCli(cmd)))
   const done = v.requiredCommands.filter(rc => has(rc.command))
   return { done, total: v.requiredCommands.length, complete: done.length === v.requiredCommands.length }
 }

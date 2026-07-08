@@ -830,3 +830,4 @@ aabb.cc00.0101    192.168.10.50   AP-Floor1         CORP_WIFI`,
 }
 
 export { cliNavTarget, cliExitTarget, cliRequiredMode, commandVariants, commandMatches, cliHostnameForObjective, deviceHostname, processCliLine } from './cliProcess.js'
+export { normalizeIosCli, resolveShowOutput, answersMatchShorthand, interfaceAnswerVariants } from './iosShorthand.js'

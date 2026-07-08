@@ -7,6 +7,7 @@ import {
   COMMAND_PRESETS, CATEGORY_LABEL, MODE_LABEL, DEVICE_LABEL,
 } from './commandWorkflows.js'
 import CommandDetailPanel from './CommandDetailPanel.jsx'
+import CommandSyntaxCoach from './CommandSyntaxCoach.jsx'
 import StudyModeHeader from '../components/StudyModeHeader.jsx'
 
 const CATEGORY_FILTERS = [
@@ -80,7 +81,7 @@ export default function CommandHubStudio({ onBack, onSelectObjective }) {
       <StudyModeHeader
         title="Command Hub"
         onBack={onBack}
-        subtitle="CCNA IOS reference — search commands, read what they do, see sample output, and follow config workflows."
+        subtitle="CCNA IOS reference — search commands, syntax mnemonics, practice drills, and config workflows."
       />
 
       <div className="command-hub-presets ccna-h-scroll" style={{ display: 'flex', gap: 6, overflowX: 'auto', marginBottom: 12, paddingBottom: 4 }}>
@@ -132,6 +133,7 @@ export default function CommandHubStudio({ onBack, onSelectObjective }) {
       <div style={{ display: 'flex', gap: 6, marginBottom: 12, flexWrap: 'wrap' }}>
         {[
           { id: 'commands', label: `Commands (${index.commands.length})` },
+          { id: 'syntax', label: 'Syntax coach' },
           { id: 'workflows', label: `Workflows (${index.workflows.length})` },
         ].map(t => (
           <button key={t.id} type="button" onClick={() => { setTab(t.id); setDetailCommand(null) }}
@@ -179,6 +181,10 @@ export default function CommandHubStudio({ onBack, onSelectObjective }) {
           <div style={{ ...styles.card, marginBottom: 12, fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid }}>
             No commands for “{q}”. Try show ip route, vlan, router ospf, or sh ip int brief.
           </div>
+        )}
+
+        {tab === 'syntax' && (
+          <CommandSyntaxCoach index={index} />
         )}
 
         {tab === 'commands' && commandList.map(cmd => {
