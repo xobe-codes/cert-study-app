@@ -31,22 +31,22 @@
             "choiceIndex": 0,
             "explanation": "Forwarding to another DNS server is recursion/referral — reverse lookup specifically means IP-to-name resolution.",
             "misconceptionTested": "Defining reverse lookup as server referral",
-            "whatItDoes": "A reverse lookup is when the request needs to be reversed to another DNS server. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, A reverse lookup is the resolution of an IP address to FQDN. matches the tested behavior — A reverse lookup is when the request needs to be reversed to another DNS server. applies a different mechanism."
+            "whatItDoes": "A reverse lookup is when the request needs to be reversed to another DNS server. names a DHCP DORA message step that may not be the phase described in the stem.",
+            "whyWrongHere": "For \"statement\", A reverse lookup is the resolution of an IP address to FQDN. satisfies what this question tests — A reverse lookup is when the request needs to be reversed to another DNS server. does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Answering without recursion describes an authoritative response — reverse lookup is about query direction (IP → name).",
             "misconceptionTested": "Equating reverse with non-recursive answer",
-            "whatItDoes": "A reverse lookup is when the DNS queried can answer the request without asking another DNS server. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, A reverse lookup is the resolution of an IP address to FQDN. matches the tested behavior — A reverse lookup is when the DNS queried can answer the request without asking another DNS server. applies a different mechanism."
+            "whatItDoes": "A reverse lookup is when the DNS queried can answer the request without asking another DNS server. names a DHCP DORA message step that may not be the phase described in the stem.",
+            "whyWrongHere": "For \"statement\", A reverse lookup is the resolution of an IP address to FQDN. satisfies what this question tests — A reverse lookup is when the DNS queried can answer the request without asking another DNS server. does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "FQDN-to-IP is forward DNS (A/AAAA records) — reverse uses PTR in in-addr.arpa zones.",
             "misconceptionTested": "Swapping forward and reverse DNS definitions",
             "whatItDoes": "A reverse lookup is the resolution of an FQDN to an IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given statement, A reverse lookup is the resolution of an IP address to FQDN. matches the tested behavior — A reverse lookup is the resolution of an FQDN to an IP address. applies a different mechanism."
+            "whyWrongHere": "For \"statement\", A reverse lookup is the resolution of an IP address to FQDN. satisfies what this question tests — A reverse lookup is the resolution of an FQDN to an IP address. does not."
           }
         ],
         "examTip": "Reverse DNS = IP → FQDN (PTR); forward = name → IP."
@@ -82,22 +82,22 @@
             "choiceIndex": 0,
             "explanation": "A records map hostname to IPv4 address (forward DNS) — IP-to-FQDN reverse lookup uses PTR in in-addr.arpa zones.",
             "misconceptionTested": "Using A record for reverse IP-to-name lookup",
-            "whatItDoes": "The A record describes a mechanism that could sound plausible for dns.",
-            "whyWrongHere": "Given dns, The PTR record matches the tested behavior — The A record applies a different mechanism."
+            "whatItDoes": "The A record points to a related idea, but not the specific behavior or value required for dns.",
+            "whyWrongHere": "For \"dns\", The PTR record satisfies what this question tests — The A record does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "CNAME is an alias pointing one name to another hostname — it does not perform IP-to-FQDN reverse resolution.",
             "misconceptionTested": "Selecting CNAME for reverse DNS",
-            "whatItDoes": "The CName record describes a mechanism that could sound plausible for dns.",
-            "whyWrongHere": "Given dns, The PTR record matches the tested behavior — The CName record applies a different mechanism."
+            "whatItDoes": "The CName record points to a related idea, but not the specific behavior or value required for dns.",
+            "whyWrongHere": "For \"dns\", The PTR record satisfies what this question tests — The CName record does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "AAAA records map hostname to IPv6 — reverse IPv4-to-FQDN uses PTR, not AAAA.",
             "misconceptionTested": "Confusing AAAA with IPv4 reverse PTR",
-            "whatItDoes": "The AAAA record describes a mechanism that could sound plausible for dns.",
-            "whyWrongHere": "Given dns, The PTR record matches the tested behavior — The AAAA record applies a different mechanism."
+            "whatItDoes": "The AAAA record points to a related idea, but not the specific behavior or value required for dns.",
+            "whyWrongHere": "For \"dns\", The PTR record satisfies what this question tests — The AAAA record does not."
           }
         ],
         "examTip": "IP → name = PTR (reverse); name → IP = A (forward)."
@@ -128,35 +128,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"The DNS domain name\"."
+          "explanation": "IOS appends the configured DNS domain name to unqualified hostnames before querying — ip domain-name."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The DNS zone describes a mechanism that could sound plausible for appended. Given appended, The DNS domain name matches the tested behavior — The DNS zone applies a different mechanism.",
-            "whatItDoes": "The DNS zone describes a mechanism that could sound plausible for appended.",
-            "whyWrongHere": "Given appended, The DNS domain name matches the tested behavior — The DNS zone applies a different mechanism.",
-            "misconceptionTested": "Applying \"The DNS zone\" without matching dns",
-            "needsExplanationReview": true
+            "explanation": "A DNS zone is the authoritative dataset — the router appends the domain suffix, not the zone object.",
+            "misconceptionTested": "DNS zone as appended suffix",
+            "whatItDoes": "The DNS zone points to a related idea, but not the specific behavior or value required for appended.",
+            "whyWrongHere": "For \"appended\", The DNS domain name satisfies what this question tests — The DNS zone does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The host header describes a mechanism that could sound plausible for appended. Given appended, The DNS domain name matches the tested behavior — The host header applies a different mechanism.",
-            "whatItDoes": "The host header describes a mechanism that could sound plausible for appended.",
-            "whyWrongHere": "Given appended, The DNS domain name matches the tested behavior — The host header applies a different mechanism.",
-            "misconceptionTested": "Applying \"The host header\" without matching dns",
-            "needsExplanationReview": true
+            "explanation": "HTTP host headers are unrelated — DNS resolution appends the domain name.",
+            "misconceptionTested": "HTTP host header as DNS suffix",
+            "whatItDoes": "The host header points to a related idea, but not the specific behavior or value required for appended.",
+            "whyWrongHere": "For \"appended\", The DNS domain name satisfies what this question tests — The host header does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The hostname PTR record describes a mechanism that could sound plausible for appended. Given appended, The DNS domain name matches the tested behavior — The hostname PTR record applies a different mechanism.",
-            "whatItDoes": "The hostname PTR record describes a mechanism that could sound plausible for appended.",
-            "whyWrongHere": "Given appended, The DNS domain name matches the tested behavior — The hostname PTR record applies a different mechanism.",
-            "misconceptionTested": "Applying \"The hostname PTR record\" without matching dns",
-            "needsExplanationReview": true
+            "explanation": "PTR records map IP→name — hostname queries append the domain name for forward lookup.",
+            "misconceptionTested": "PTR record as DNS suffix",
+            "whatItDoes": "The hostname PTR record points to a related idea, but not the specific behavior or value required for appended.",
+            "whyWrongHere": "For \"appended\", The DNS domain name satisfies what this question tests — The hostname PTR record does not."
           }
         ],
-        "examTip": "Forward = name→IP; reverse = IP→name (PTR)."
+        "examTip": "Unqualified name router1 + domain example.com → query router1.example.com."
       }
     },
     {
@@ -183,35 +180,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Static hostname entries\"."
+          "explanation": "Static hostname entries (ip host) avoid DNS spoofing/dependency — most secure for device name resolution on routers."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "DNS describes a mechanism that could sound plausible for resolution. Given resolution, Static hostname entries matches the tested behavior — DNS applies a different mechanism.",
-            "whatItDoes": "DNS describes a mechanism that could sound plausible for resolution.",
-            "whyWrongHere": "Given resolution, Static hostname entries matches the tested behavior — DNS applies a different mechanism.",
-            "misconceptionTested": "Applying \"DNS\" without matching dns",
-            "needsExplanationReview": true
+            "explanation": "DNS relies on external servers — less secure than locally defined static mappings for critical peers.",
+            "misconceptionTested": "DNS as most secure device name resolution",
+            "whatItDoes": "DNS points to a related idea, but not the specific behavior or value required for resolution.",
+            "whyWrongHere": "For \"resolution\", Static hostname entries satisfies what this question tests — DNS does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "PTR records describes a mechanism that could sound plausible for resolution. Given resolution, Static hostname entries matches the tested behavior — PTR records applies a different mechanism.",
-            "whatItDoes": "PTR records describes a mechanism that could sound plausible for resolution.",
-            "whyWrongHere": "Given resolution, Static hostname entries matches the tested behavior — PTR records applies a different mechanism.",
-            "misconceptionTested": "Applying \"PTR records\" without matching dns",
-            "needsExplanationReview": true
+            "explanation": "PTR records are reverse DNS — they do not replace secure static hostname tables on devices.",
+            "misconceptionTested": "PTR as primary secure resolution",
+            "whatItDoes": "PTR records points to a related idea, but not the specific behavior or value required for resolution.",
+            "whyWrongHere": "For \"resolution\", Static hostname entries satisfies what this question tests — PTR records does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "LLMNR describes a mechanism that could sound plausible for resolution. Given resolution, Static hostname entries matches the tested behavior — LLMNR applies a different mechanism.",
-            "whatItDoes": "LLMNR describes a mechanism that could sound plausible for resolution.",
-            "whyWrongHere": "Given resolution, Static hostname entries matches the tested behavior — LLMNR applies a different mechanism.",
-            "misconceptionTested": "Applying \"LLMNR\" without matching dns",
-            "needsExplanationReview": true
+            "explanation": "LLMNR is a broadcast/multicast fallback — not the most secure enterprise method.",
+            "misconceptionTested": "LLMNR as most secure resolution",
+            "whatItDoes": "LLMNR points to a related idea, but not the specific behavior or value required for resolution.",
+            "whyWrongHere": "For \"resolution\", Static hostname entries satisfies what this question tests — LLMNR does not."
           }
         ],
-        "examTip": "Forward = name→IP; reverse = IP→name (PTR)."
+        "examTip": "Device peer names you must trust → ip host static table; lab DNS is fine for general lookup."
       }
     },
     {
@@ -245,22 +239,22 @@
             "choiceIndex": 1,
             "explanation": "CNAME creates an alias to another DNS name — it does not directly store the IPv4 address.",
             "misconceptionTested": "Using CNAME to store IPv4 address",
-            "whatItDoes": "The CName record describes a mechanism that could sound plausible for hostname.",
-            "whyWrongHere": "Given hostname, The A record matches the tested behavior — The CName record applies a different mechanism."
+            "whatItDoes": "The CName record points to a related idea, but not the specific behavior or value required for hostname.",
+            "whyWrongHere": "For \"hostname\", The A record satisfies what this question tests — The CName record does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "PTR records map IP to hostname (reverse DNS) — forward hostname-to-IPv4 uses A records.",
             "misconceptionTested": "Selecting PTR for forward IPv4 lookup",
-            "whatItDoes": "The PTR record describes a mechanism that could sound plausible for hostname.",
-            "whyWrongHere": "Given hostname, The A record matches the tested behavior — The PTR record applies a different mechanism."
+            "whatItDoes": "The PTR record points to a related idea, but not the specific behavior or value required for hostname.",
+            "whyWrongHere": "For \"hostname\", The A record satisfies what this question tests — The PTR record does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "AAAA records store IPv6 addresses — IPv4 hostname resolution uses A records.",
             "misconceptionTested": "Choosing AAAA for IPv4 hostname mapping",
-            "whatItDoes": "The AAAA record describes a mechanism that could sound plausible for hostname.",
-            "whyWrongHere": "Given hostname, The A record matches the tested behavior — The AAAA record applies a different mechanism."
+            "whatItDoes": "The AAAA record points to a related idea, but not the specific behavior or value required for hostname.",
+            "whyWrongHere": "For \"hostname\", The A record satisfies what this question tests — The AAAA record does not."
           }
         ],
         "examTip": "Hostname → IPv4 = A record; IPv6 = AAAA; reverse = PTR."
@@ -290,35 +284,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"TTL\"."
+          "explanation": "TTL (Time To Live) on DNS records limits how long resolvers cache an entry before re-querying."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "An A record describes a mechanism that could sound plausible for available. Given available, TTL matches the tested behavior — An A record applies a different mechanism.",
-            "whatItDoes": "An A record describes a mechanism that could sound plausible for available.",
-            "whyWrongHere": "Given available, TTL matches the tested behavior — An A record applies a different mechanism.",
-            "misconceptionTested": "Applying \"An A record\" without matching dns",
-            "needsExplanationReview": true
+            "explanation": "An A record maps name→IPv4 — TTL controls cache duration, not the record type.",
+            "misconceptionTested": "A record as cache timer",
+            "whatItDoes": "An A record points to a related idea, but not the specific behavior or value required for available.",
+            "whyWrongHere": "For \"available\", TTL satisfies what this question tests — An A record does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SOA describes a mechanism that could sound plausible for available. Given available, TTL matches the tested behavior — SOA applies a different mechanism.",
-            "whatItDoes": "SOA describes a mechanism that could sound plausible for available.",
-            "whyWrongHere": "Given available, TTL matches the tested behavior — SOA applies a different mechanism.",
-            "misconceptionTested": "Applying \"SOA\" without matching dns",
-            "needsExplanationReview": true
+            "explanation": "SOA starts a zone and holds zone timers — per-record cache expiry is the record's TTL.",
+            "misconceptionTested": "SOA as per-entry cache limit",
+            "whatItDoes": "SOA points to a related idea, but not the specific behavior or value required for available.",
+            "whyWrongHere": "For \"available\", TTL satisfies what this question tests — SOA does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Default of 5 minutes describes a mechanism that could sound plausible for available. Given available, TTL matches the tested behavior — Default of 5 minutes applies a different mechanism.",
-            "whatItDoes": "Default of 5 minutes describes a mechanism that could sound plausible for available.",
-            "whyWrongHere": "Given available, TTL matches the tested behavior — Default of 5 minutes applies a different mechanism.",
-            "misconceptionTested": "Applying \"Default of 5 minutes\" without matching dns",
-            "needsExplanationReview": true
+            "explanation": "There is no universal 5-minute default — each record's TTL field sets cache lifetime.",
+            "misconceptionTested": "Fixed 5-minute DNS cache default",
+            "whatItDoes": "Default of 5 minutes points to a related idea, but not the specific behavior or value required for available.",
+            "whyWrongHere": "For \"available\", TTL satisfies what this question tests — Default of 5 minutes does not."
           }
         ],
-        "examTip": "Forward = name→IP; reverse = IP→name (PTR)."
+        "examTip": "DNS cache aging → check the record's TTL value (seconds until refresh)."
       }
     },
     {
@@ -347,35 +338,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Acknowledgment\"."
+          "explanation": "After receiving an Offer, the client sends DHCPACK-bound DHCP Request, then ACK confirms the lease (DORA: Discover, Offer, Request, Acknowledgment)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "DHCP DORA order matters — identify which message the stem describes before picking a step.",
-            "whatItDoes": "Discover describes a mechanism that could sound plausible for dns.",
-            "whyWrongHere": "Given dns, Acknowledgment matches the tested behavior — Discover applies a different mechanism.",
-            "misconceptionTested": "Misordering or mislabeling DHCP messages",
-            "needsExplanationReview": true
+            "explanation": "Discover starts the process — confirmation of the offered address is the final ACK.",
+            "misconceptionTested": "Discover as lease confirmation",
+            "whatItDoes": "Discover names a DHCP DORA message step that may not be the phase described in the stem.",
+            "whyWrongHere": "DHCP message order (dns): Acknowledgment is the step this stem describes — Discover is another DORA phase."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Offer describes a mechanism that could sound plausible for dns. Given dns, Acknowledgment matches the tested behavior — Offer applies a different mechanism.",
-            "whatItDoes": "Offer describes a mechanism that could sound plausible for dns.",
-            "whyWrongHere": "Given dns, Acknowledgment matches the tested behavior — Offer applies a different mechanism.",
-            "misconceptionTested": "Applying \"Offer\" without matching dns",
-            "needsExplanationReview": true
+            "explanation": "Offer is sent by the server — the client's confirm step is ACK after Request.",
+            "misconceptionTested": "Offer as client confirmation message",
+            "whatItDoes": "Offer names a DHCP DORA message step that may not be the phase described in the stem.",
+            "whyWrongHere": "DHCP message order (dns): Acknowledgment is the step this stem describes — Offer is another DORA phase."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Request describes a mechanism that could sound plausible for dns. Given dns, Acknowledgment matches the tested behavior — Request applies a different mechanism.",
-            "whatItDoes": "Request describes a mechanism that could sound plausible for dns.",
-            "whyWrongHere": "Given dns, Acknowledgment matches the tested behavior — Request applies a different mechanism.",
-            "misconceptionTested": "Applying \"Request\" without matching dns",
-            "needsExplanationReview": true
+            "explanation": "Request asks for the offered IP — the server replies with ACK to confirm the lease.",
+            "misconceptionTested": "Request as final confirmation",
+            "whatItDoes": "Request names a DHCP DORA message step that may not be the phase described in the stem.",
+            "whyWrongHere": "DHCP message order (dns): Acknowledgment is the step this stem describes — Request is another DORA phase."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "DORA order: Discover → Offer → Request → Ack — ACK is server confirmation to client."
       }
     },
     {
@@ -401,35 +389,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Layer 3 broadcast\"."
+          "explanation": "Initial DHCPDISCOVER is a Layer 3 broadcast (255.255.255.255) because the client has no IP yet."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Layer 3 multicast describes a mechanism that could sound plausible for communication. Given communication, Layer 3 broadcast matches the tested behavior — Layer 3 multicast applies a different mechanism.",
-            "whatItDoes": "Layer 3 multicast describes a mechanism that could sound plausible for communication.",
-            "whyWrongHere": "Given communication, Layer 3 broadcast matches the tested behavior — Layer 3 multicast applies a different mechanism.",
-            "misconceptionTested": "Applying \"Layer 3 multicast\" without matching dns",
-            "needsExplanationReview": true
+            "explanation": "DHCP discover is not multicast — without an address the client must broadcast.",
+            "misconceptionTested": "Multicast for initial DHCP discover",
+            "whatItDoes": "Layer 3 multicast gives a broadcast or multicast MAC pattern that may not be the all-ones form tested here.",
+            "whyWrongHere": "Ethernet addressing (communication): Layer 3 broadcast is the broadcast/multicast form this stem expects — Layer 3 multicast uses the wrong MAC pattern."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Layer 3 802.1Q describes a mechanism that could sound plausible for communication. Given communication, Layer 3 broadcast matches the tested behavior — Layer 3 802.1Q applies a different mechanism.",
-            "whatItDoes": "Layer 3 802.1Q describes a mechanism that could sound plausible for communication.",
-            "whyWrongHere": "Given communication, Layer 3 broadcast matches the tested behavior — Layer 3 802.1Q applies a different mechanism.",
-            "misconceptionTested": "Applying \"Layer 3 802.1Q\" without matching dns",
-            "needsExplanationReview": true
+            "explanation": "802.1Q is VLAN tagging — DHCP discover uses UDP broadcast at Layer 3.",
+            "misconceptionTested": "802.1Q as DHCP transport",
+            "whatItDoes": "Layer 3 802.1Q expects VLAN tags on a link that should behave as access-only in this stem.",
+            "whyWrongHere": "For \"communication\", Layer 3 broadcast satisfies what this question tests — Layer 3 802.1Q does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Layer 3 unicast describes a mechanism that could sound plausible for communication. Given communication, Layer 3 broadcast matches the tested behavior — Layer 3 unicast applies a different mechanism.",
-            "whatItDoes": "Layer 3 unicast describes a mechanism that could sound plausible for communication.",
-            "whyWrongHere": "Given communication, Layer 3 broadcast matches the tested behavior — Layer 3 unicast applies a different mechanism.",
-            "misconceptionTested": "Applying \"Layer 3 unicast\" without matching dns",
-            "needsExplanationReview": true
+            "explanation": "Unicast requires a known destination IP — pre-lease acquisition uses broadcast.",
+            "misconceptionTested": "Unicast for initial DHCP discover",
+            "whatItDoes": "Layer 3 unicast points to a related idea, but not the specific behavior or value required for communication.",
+            "whyWrongHere": "For \"communication\", Layer 3 broadcast satisfies what this question tests — Layer 3 unicast does not."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "No IP yet → DHCP broadcast discover; relay (ip helper-address) forwards to server."
       }
     },
     {
@@ -456,35 +441,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"One-half of the lease\"."
+          "explanation": "Clients begin renewal at 50% (T1) of lease time — unicast DHCPREQUEST to the leasing server."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "One-quarter of the lease describes a mechanism that could sound plausible for dns. Given dns, One-half of the lease matches the tested behavior — One-quarter of the lease applies a different mechanism.",
-            "whatItDoes": "One-quarter of the lease describes a mechanism that could sound plausible for dns.",
-            "whyWrongHere": "Given dns, One-half of the lease matches the tested behavior — One-quarter of the lease applies a different mechanism.",
-            "misconceptionTested": "Applying \"One-quarter of the lease\" without matching dns",
-            "needsExplanationReview": true
+            "explanation": "One-quarter is before the standard renewal point — T1 renewal starts at half the lease.",
+            "misconceptionTested": "25% as renewal timer",
+            "whatItDoes": "One-quarter of the lease points to a related idea, but not the specific behavior or value required for dns.",
+            "whyWrongHere": "For \"dns\", One-half of the lease satisfies what this question tests — One-quarter of the lease does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Seven-eighths of the lease describes a mechanism that could sound plausible for dns. Given dns, One-half of the lease matches the tested behavior — Seven-eighths of the lease applies a different mechanism.",
-            "whatItDoes": "Seven-eighths of the lease describes a mechanism that could sound plausible for dns.",
-            "whyWrongHere": "Given dns, One-half of the lease matches the tested behavior — Seven-eighths of the lease applies a different mechanism.",
-            "misconceptionTested": "Applying \"Seven-eighths of the lease\" without matching dns",
-            "needsExplanationReview": true
+            "explanation": "Seven-eighths (T2) is rebinding if the original server is unreachable — first renewal is at 50%.",
+            "misconceptionTested": "T2 rebinding as first renewal",
+            "whatItDoes": "Seven-eighths of the lease points to a related idea, but not the specific behavior or value required for dns.",
+            "whyWrongHere": "For \"dns\", One-half of the lease satisfies what this question tests — Seven-eighths of the lease does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "End of the lease describes a mechanism that could sound plausible for dns. Given dns, One-half of the lease matches the tested behavior — End of the lease applies a different mechanism.",
-            "whatItDoes": "End of the lease describes a mechanism that could sound plausible for dns.",
-            "whyWrongHere": "Given dns, One-half of the lease matches the tested behavior — End of the lease applies a different mechanism.",
-            "misconceptionTested": "Applying \"End of the lease\" without matching dns",
-            "needsExplanationReview": true
+            "explanation": "Waiting until lease expires causes an outage — renewal at 50% prevents lapse.",
+            "misconceptionTested": "End-of-lease as renewal point",
+            "whatItDoes": "End of the lease points to a related idea, but not the specific behavior or value required for dns.",
+            "whyWrongHere": "For \"dns\", One-half of the lease satisfies what this question tests — End of the lease does not."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "DHCP lease timers: T1 = 50% renew to server | T2 = 87.5% rebind | expiry = drop."
       }
     },
     {
@@ -519,21 +501,21 @@
             "explanation": "The server tracks lease database and offers addresses, but the client initiates renewal at 50%/87.5% timers — lifecycle action is client-side.",
             "misconceptionTested": "Assigning all lifecycle responsibility to the server",
             "whatItDoes": "The DHCP server is responsible for maintaining the life cycle of an IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — The DHCP server is responsible for maintaining the life cycle of an IP address. applies a different mechanism."
+            "whyWrongHere": "For \"statement\", The DHCP client is responsible for maintaining the life cycle of an IP address. satisfies what this question tests — The DHCP server is responsible for maintaining the life cycle of an IP address. does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "DHCP discover/request use broadcast; offer/ack are often unicast — it is not general multicast between client and server.",
             "misconceptionTested": "Claiming DHCP is multicast end-to-end",
-            "whatItDoes": "DHCP uses multicasting between the client and server. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — DHCP uses multicasting between the client and server. applies a different mechanism."
+            "whatItDoes": "DHCP uses multicasting between the client and server. gives a broadcast or multicast MAC pattern that may not be the all-ones form tested here.",
+            "whyWrongHere": "For \"statement\", The DHCP client is responsible for maintaining the life cycle of an IP address. satisfies what this question tests — DHCP uses multicasting between the client and server. does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Leases are offered by the server — \"negotiated\" overstates client/server haggling; the keyed distinction here is who maintains renewal lifecycle.",
             "misconceptionTested": "Focusing on negotiation wording instead of client renewal duty",
-            "whatItDoes": "The DHCP lease is negotiated between client and server. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, The DHCP client is responsible for maintaining the life cycle of an IP address. matches the tested behavior — The DHCP lease is negotiated between client and server. applies a different mechanism."
+            "whatItDoes": "The DHCP lease is negotiated between client and server. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", The DHCP client is responsible for maintaining the life cycle of an IP address. satisfies what this question tests — The DHCP lease is negotiated between client and server. does not."
           }
         ],
         "examTip": "DHCP DORA — client sends Discover/Request; client renews before lease expires."
@@ -563,35 +545,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"UDP\"."
+          "explanation": "DHCP uses UDP — client to server on 67, server to client on 68."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "ICMP describes a mechanism that could sound plausible for transport. Given transport, UDP matches the tested behavior — ICMP applies a different mechanism.",
-            "whatItDoes": "ICMP describes a mechanism that could sound plausible for transport.",
-            "whyWrongHere": "Given transport, UDP matches the tested behavior — ICMP applies a different mechanism.",
-            "misconceptionTested": "Applying \"ICMP\" without matching dns",
-            "needsExplanationReview": true
+            "explanation": "ICMP is for diagnostics (ping) — DHCP discovery/offer uses UDP.",
+            "misconceptionTested": "ICMP transport for DHCP",
+            "whatItDoes": "ICMP names a transport protocol or port behavior that may not match reliability or connection requirements.",
+            "whyWrongHere": "Transport protocol (transport): UDP matches reliability, ports, or connection behavior — ICMP picks the wrong L4 protocol or port role."
           },
           {
             "choiceIndex": 2,
-            "explanation": "TCP describes a mechanism that could sound plausible for transport. Given transport, UDP matches the tested behavior — TCP applies a different mechanism.",
-            "whatItDoes": "TCP describes a mechanism that could sound plausible for transport.",
-            "whyWrongHere": "Given transport, UDP matches the tested behavior — TCP applies a different mechanism.",
-            "misconceptionTested": "Applying \"TCP\" without matching dns",
-            "needsExplanationReview": true
+            "explanation": "DHCP is connectionless UDP, not TCP — no three-way handshake for lease exchange.",
+            "misconceptionTested": "TCP transport for DHCP",
+            "whatItDoes": "TCP names a transport protocol or port behavior that may not match reliability or connection requirements.",
+            "whyWrongHere": "Transport protocol (transport): UDP matches reliability, ports, or connection behavior — TCP picks the wrong L4 protocol or port role."
           },
           {
             "choiceIndex": 3,
-            "explanation": "RARP describes a mechanism that could sound plausible for transport. Given transport, UDP matches the tested behavior — RARP applies a different mechanism.",
-            "whatItDoes": "RARP describes a mechanism that could sound plausible for transport.",
-            "whyWrongHere": "Given transport, UDP matches the tested behavior — RARP applies a different mechanism.",
-            "misconceptionTested": "Applying \"RARP\" without matching dns",
-            "needsExplanationReview": true
+            "explanation": "RARP is obsolete for IP assignment — modern networks use DHCP over UDP.",
+            "misconceptionTested": "RARP as current DHCP transport",
+            "whatItDoes": "RARP points to a related idea, but not the specific behavior or value required for transport.",
+            "whyWrongHere": "For \"transport\", UDP satisfies what this question tests — RARP does not."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "DHCP = UDP/67 (server) + UDP/68 (client) | IPv6 DHCP uses UDP 546/547."
       }
     },
     {
@@ -618,35 +597,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"The IP address is removed from the DHCP pool.\"."
+          "explanation": "On duplicate IP detection, IOS removes the address from the DHCP pool — prevents serving a conflicting lease."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The IP address is still served to the client. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. This is a Layer 2 process (a router or switch detects a duplicate IP address for a DHCP process). The IP address is removed from the DHCP pool. uses Ethernet addresses — not IP headers.",
+            "explanation": "Serving a known duplicate would cause IP conflicts — IOS pulls the address from the pool.",
+            "misconceptionTested": "Serve duplicate IP anyway",
             "whatItDoes": "The IP address is still served to the client. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "This is a Layer 2 process (a router or switch detects a duplicate IP address for a DHCP process). The IP address is removed from the DHCP pool. uses Ethernet addresses — not IP headers.",
-            "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
-            "needsExplanationReview": true
+            "whyWrongHere": "This is a Layer 2 process (a router or switch detects a duplicate IP address for a DHCP process). The IP address is removed from the DHCP pool. uses Ethernet addresses — not IP headers."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The DHCP server will halt. describes a mechanism that could sound plausible for a router or switch detects a duplicate IP address for a DHCP process. Given a router or switch detects a duplicate IP address for a DHCP process, The IP address is removed from the DHCP pool. matches the tested behavior — The DHCP server will halt. applies a different mechanism.",
-            "whatItDoes": "The DHCP server will halt. describes a mechanism that could sound plausible for a router or switch detects a duplicate IP address for a DHCP process.",
-            "whyWrongHere": "Given a router or switch detects a duplicate IP address for a DHCP process, The IP address is removed from the DHCP pool. matches the tested behavior — The DHCP server will halt. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The DHCP server will halt.\" without matching dns",
-            "needsExplanationReview": true
+            "explanation": "The DHCP service keeps running — only the conflicting address is excluded.",
+            "misconceptionTested": "DHCP server halts on duplicate",
+            "whatItDoes": "The DHCP server will halt. points to a related idea, but not the specific behavior or value required for a router or switch detects a duplicate IP address for a DHCP process.",
+            "whyWrongHere": "For \"a router or switch detects a duplicate IP address for a DHCP process\", The IP address is removed from the DHCP pool. satisfies what this question tests — The DHCP server will halt. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The DHCP will serve the IP address in the future. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. This is a Layer 2 process (a router or switch detects a duplicate IP address for a DHCP process). The IP address is removed from the DHCP pool. uses Ethernet addresses — not IP headers.",
+            "explanation": "The address is removed immediately, not deferred for future use.",
+            "misconceptionTested": "Duplicate IP served later",
             "whatItDoes": "The DHCP will serve the IP address in the future. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "This is a Layer 2 process (a router or switch detects a duplicate IP address for a DHCP process). The IP address is removed from the DHCP pool. uses Ethernet addresses — not IP headers. Picking The DHCP will serve the IP address in the future. misses the exact behavior this stem tests.",
-            "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
-            "needsExplanationReview": true
+            "whyWrongHere": "This is a Layer 2 process (a router or switch detects a duplicate IP address for a DHCP process). The IP address is removed from the DHCP pool. uses Ethernet addresses — not IP headers. Picking The DHCP will serve the IP address in the future. misses the exact behavior this stem tests."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "DHCP duplicate: ip dhcp conflict logging + address removed from pool — check with show ip dhcp conflict."
       }
     }
   ]

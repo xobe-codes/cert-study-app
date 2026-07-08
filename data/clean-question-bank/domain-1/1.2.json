@@ -31,22 +31,22 @@
             "choiceIndex": 0,
             "explanation": "Core provides high-speed backbone between distribution blocks — not direct end-user attachment.",
             "misconceptionTested": "Connecting users at the core tier",
-            "whatItDoes": "Core describes a mechanism that could sound plausible for access tier.",
-            "whyWrongHere": "Given access tier, Access matches the tested behavior — Core applies a different mechanism."
+            "whatItDoes": "Core points to a related idea, but not the specific behavior or value required for access tier.",
+            "whyWrongHere": "For \"access tier\", Access satisfies what this question tests — Core does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "Distribution aggregates access switches and applies policy — users connect at access, not distribution.",
             "misconceptionTested": "Placing user ports in distribution tier",
-            "whatItDoes": "Distribution describes a mechanism that could sound plausible for access tier.",
-            "whyWrongHere": "Given access tier, Access matches the tested behavior — Distribution applies a different mechanism."
+            "whatItDoes": "Distribution points to a related idea, but not the specific behavior or value required for access tier.",
+            "whyWrongHere": "For \"access tier\", Access satisfies what this question tests — Distribution does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Spine is a data-center fabric term — campus three-tier uses access/distribution/core.",
             "misconceptionTested": "Mixing DC spine-leaf with campus access tier",
-            "whatItDoes": "Spine describes a mechanism that could sound plausible for access tier.",
-            "whyWrongHere": "Given access tier, Access matches the tested behavior — Spine applies a different mechanism."
+            "whatItDoes": "Spine points to a related idea, but not the specific behavior or value required for access tier.",
+            "whyWrongHere": "For \"access tier\", Access satisfies what this question tests — Spine does not."
           }
         ],
         "examTip": "Campus three-tier: Access = users. Distribution = policy/aggregation. Core = backbone."
@@ -79,22 +79,22 @@
             "choiceIndex": 0,
             "explanation": "SOHO Wi-Fi uses a single AP/router — not a multi-spine fabric design.",
             "misconceptionTested": "Applying DC fabric to home Wi-Fi",
-            "whatItDoes": "SOHO Wi‑Fi describes a mechanism that could sound plausible for spine-leaf.",
-            "whyWrongHere": "Given spine-leaf, Data center east-west traffic matches the tested behavior — SOHO Wi‑Fi applies a different mechanism."
+            "whatItDoes": "SOHO Wi‑Fi points to a related idea, but not the specific behavior or value required for spine-leaf.",
+            "whyWrongHere": "For \"spine-leaf\", Data center east-west traffic satisfies what this question tests — SOHO Wi‑Fi does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Dial-up WAN is legacy remote access — unrelated to spine-leaf DC switching.",
             "misconceptionTested": "Confusing WAN dial-up with DC architecture",
-            "whatItDoes": "Dial-up WAN describes a mechanism that could sound plausible for spine-leaf.",
-            "whyWrongHere": "Given spine-leaf, Data center east-west traffic matches the tested behavior — Dial-up WAN applies a different mechanism."
+            "whatItDoes": "Dial-up WAN points to a related idea, but not the specific behavior or value required for spine-leaf.",
+            "whyWrongHere": "For \"spine-leaf\", Data center east-west traffic satisfies what this question tests — Dial-up WAN does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Home gaming does not require spine-leaf — that architecture targets scalable DC east-west traffic.",
             "misconceptionTested": "Using DC design for consumer gaming",
-            "whatItDoes": "Home gaming describes a mechanism that could sound plausible for spine-leaf.",
-            "whyWrongHere": "Given spine-leaf, Data center east-west traffic matches the tested behavior — Home gaming applies a different mechanism."
+            "whatItDoes": "Home gaming points to a related idea, but not the specific behavior or value required for spine-leaf.",
+            "whyWrongHere": "For \"spine-leaf\", Data center east-west traffic satisfies what this question tests — Home gaming does not."
           }
         ],
         "examTip": "Spine-leaf = data center east-west scalability. Campus = access/distribution/core."
@@ -127,22 +127,22 @@
             "choiceIndex": 0,
             "explanation": "Full mesh connects every site to every other site — not all traffic through one HQ hub.",
             "misconceptionTested": "Confusing hub-spoke with full mesh",
-            "whatItDoes": "Full mesh describes a mechanism that could sound plausible for hub-spoke.",
-            "whyWrongHere": "Given hub-spoke, Hub-and-spoke matches the tested behavior — Full mesh applies a different mechanism."
+            "whatItDoes": "Full mesh points to a related idea, but not the specific behavior or value required for hub-spoke.",
+            "whyWrongHere": "For \"hub-spoke\", Hub-and-spoke satisfies what this question tests — Full mesh does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Spine-leaf is a data-center L2/L3 fabric — not the branch WAN pattern described.",
             "misconceptionTested": "Applying DC fabric to branch WAN",
-            "whatItDoes": "Spine-leaf describes a mechanism that could sound plausible for hub-spoke.",
-            "whyWrongHere": "Given hub-spoke, Hub-and-spoke matches the tested behavior — Spine-leaf applies a different mechanism."
+            "whatItDoes": "Spine-leaf points to a related idea, but not the specific behavior or value required for hub-spoke.",
+            "whyWrongHere": "For \"hub-spoke\", Hub-and-spoke satisfies what this question tests — Spine-leaf does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Point-to-point is one link between two sites — ten branches via HQ is hub-and-spoke.",
             "misconceptionTested": "Calling multi-branch HQ model point-to-point only",
-            "whatItDoes": "Point-to-point only describes a mechanism that could sound plausible for hub-spoke.",
-            "whyWrongHere": "Given hub-spoke, Hub-and-spoke matches the tested behavior — Point-to-point only applies a different mechanism."
+            "whatItDoes": "Point-to-point only points to a related idea, but not the specific behavior or value required for hub-spoke.",
+            "whyWrongHere": "For \"hub-spoke\", Hub-and-spoke satisfies what this question tests — Point-to-point only does not."
           }
         ],
         "examTip": "All branches → HQ = hub-and-spoke. Every site ↔ every site = full mesh."
@@ -175,22 +175,22 @@
             "choiceIndex": 0,
             "explanation": "Full mesh maximizes redundancy — the trade-off is cost/complexity, not lack of redundancy.",
             "misconceptionTested": "Believing mesh removes redundancy",
-            "whatItDoes": "No redundancy describes a mechanism that could sound plausible for full mesh.",
-            "whyWrongHere": "Given full mesh, High cost/complexity for many links matches the tested behavior — No redundancy applies a different mechanism."
+            "whatItDoes": "No redundancy points to a related idea, but not the specific behavior or value required for full mesh.",
+            "whyWrongHere": "For \"full mesh\", High cost/complexity for many links satisfies what this question tests — No redundancy does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Mesh works over various transports — it is not limited to fiber only.",
             "misconceptionTested": "Restricting mesh to one media type",
-            "whatItDoes": "Only works with fiber describes a mechanism that could sound plausible for full mesh.",
-            "whyWrongHere": "Given full mesh, High cost/complexity for many links matches the tested behavior — Only works with fiber applies a different mechanism."
+            "whatItDoes": "Only works with fiber points to a related idea, but not the specific behavior or value required for full mesh.",
+            "whyWrongHere": "For \"full mesh\", High cost/complexity for many links satisfies what this question tests — Only works with fiber does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Routing still runs over mesh links — mesh describes topology, not elimination of routing.",
             "misconceptionTested": "Thinking mesh removes routing protocols",
-            "whatItDoes": "Eliminates routing describes a mechanism that could sound plausible for full mesh.",
-            "whyWrongHere": "Given full mesh, High cost/complexity for many links matches the tested behavior — Eliminates routing applies a different mechanism."
+            "whatItDoes": "Eliminates routing points to a related idea, but not the specific behavior or value required for full mesh.",
+            "whyWrongHere": "For \"full mesh\", High cost/complexity for many links satisfies what this question tests — Eliminates routing does not."
           }
         ],
         "examTip": "Full mesh = max redundancy, max cost. Hub-spoke = cheaper, single point at hub."
@@ -223,22 +223,22 @@
             "choiceIndex": 0,
             "explanation": "One tier would be a flat network — collapsed core still has access and a combined core/distribution layer.",
             "misconceptionTested": "Calling collapsed core a single-tier design",
-            "whatItDoes": "One describes a mechanism that could sound plausible for two-tier.",
-            "whyWrongHere": "Given two-tier, Two matches the tested behavior — One applies a different mechanism."
+            "whatItDoes": "One points to a related idea, but not the specific behavior or value required for two-tier.",
+            "whyWrongHere": "For \"two-tier\", Two satisfies what this question tests — One does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Four tiers exceed standard collapsed-core models — collapsed means fewer tiers than classic three-tier.",
             "misconceptionTested": "Adding extra tiers to collapsed design",
-            "whatItDoes": "Four describes a mechanism that could sound plausible for two-tier.",
-            "whyWrongHere": "Given two-tier, Two matches the tested behavior — Four applies a different mechanism."
+            "whatItDoes": "Four points to a related idea, but not the specific behavior or value required for two-tier.",
+            "whyWrongHere": "For \"two-tier\", Two satisfies what this question tests — Four does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Five tiers is not a standard campus model — collapsed core reduces to two functional tiers.",
             "misconceptionTested": "Inventing non-standard tier count",
-            "whatItDoes": "Five describes a mechanism that could sound plausible for two-tier.",
-            "whyWrongHere": "Given two-tier, Two matches the tested behavior — Five applies a different mechanism."
+            "whatItDoes": "Five points to a related idea, but not the specific behavior or value required for two-tier.",
+            "whyWrongHere": "For \"two-tier\", Two satisfies what this question tests — Five does not."
           }
         ],
         "examTip": "Collapsed core = 2 tiers (access + collapsed core/distribution). Classic = 3 tiers."
@@ -264,32 +264,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Small office/home office networks are simple, often one integrated gateway."
+          "explanation": "A single wireless router providing NAT, DHCP, and Wi‑Fi is classic SOHO (small office/home office)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Core datacenter describes a mechanism that could sound plausible for wireless. Given wireless, SOHO matches the tested behavior — Core datacenter applies a different mechanism.",
-            "whatItDoes": "Core datacenter describes a mechanism that could sound plausible for wireless.",
-            "whyWrongHere": "Given wireless, SOHO matches the tested behavior — Core datacenter applies a different mechanism.",
-            "misconceptionTested": "Applying \"Core datacenter\" without matching soho"
+            "explanation": "Core datacenter uses redundant spine-leaf, not a single consumer router.",
+            "misconceptionTested": "SOHO as core datacenter",
+            "whatItDoes": "Core datacenter points to a related idea, but not the specific behavior or value required for wireless.",
+            "whyWrongHere": "For \"wireless\", SOHO satisfies what this question tests — Core datacenter does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Full mesh WAN describes a mechanism that could sound plausible for wireless. Given wireless, SOHO matches the tested behavior — Full mesh WAN applies a different mechanism.",
-            "whatItDoes": "Full mesh WAN describes a mechanism that could sound plausible for wireless.",
-            "whyWrongHere": "Given wireless, SOHO matches the tested behavior — Full mesh WAN applies a different mechanism.",
-            "misconceptionTested": "Applying \"Full mesh WAN\" without matching soho"
+            "explanation": "Full mesh WAN connects every site to every other site — not a home router.",
+            "misconceptionTested": "SOHO as full mesh WAN",
+            "whatItDoes": "Full mesh WAN points to a related idea, but not the specific behavior or value required for wireless.",
+            "whyWrongHere": "For \"wireless\", SOHO satisfies what this question tests — Full mesh WAN does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Spine fabric describes a mechanism that could sound plausible for wireless. Given wireless, SOHO matches the tested behavior — Spine fabric applies a different mechanism.",
-            "whatItDoes": "Spine fabric describes a mechanism that could sound plausible for wireless.",
-            "whyWrongHere": "Given wireless, SOHO matches the tested behavior — Spine fabric applies a different mechanism.",
-            "misconceptionTested": "Applying \"Spine fabric\" without matching soho"
+            "explanation": "Spine-leaf fabric is datacenter switching — SOHO is one integrated gateway.",
+            "misconceptionTested": "SOHO as spine fabric",
+            "whatItDoes": "Spine fabric points to a related idea, but not the specific behavior or value required for wireless.",
+            "whyWrongHere": "For \"wireless\", SOHO satisfies what this question tests — Spine fabric does not."
           }
         ],
-        "examTip": "On the exam: Cloud means no local network — Hybrid designs keep on-prem LAN/WAN while using cloud for apps or compute"
+        "examTip": "SOHO = all-in-one gateway (NAT + DHCP + Wi‑Fi) | Enterprise = layered, redundant design."
       }
     },
     {
@@ -312,32 +312,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "IaaS provides VMs/infrastructure; the customer manages OS and above."
+          "explanation": "IaaS — customer manages the OS and apps; provider supplies compute, storage, and network hardware."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SaaS describes a mechanism that could sound plausible for cloud model. Given cloud model, IaaS matches the tested behavior — SaaS applies a different mechanism.",
-            "whatItDoes": "SaaS describes a mechanism that could sound plausible for cloud model.",
-            "whyWrongHere": "Given cloud model, IaaS matches the tested behavior — SaaS applies a different mechanism.",
-            "misconceptionTested": "Applying \"SaaS\" without matching cloud model"
+            "explanation": "SaaS — provider manages everything including the application (e.g., Office 365).",
+            "misconceptionTested": "SaaS customer manages OS",
+            "whatItDoes": "SaaS points to a related idea, but not the specific behavior or value required for cloud model.",
+            "whyWrongHere": "For \"cloud model\", IaaS satisfies what this question tests — SaaS does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "PaaS describes a mechanism that could sound plausible for cloud model. Given cloud model, IaaS matches the tested behavior — PaaS applies a different mechanism.",
-            "whatItDoes": "PaaS describes a mechanism that could sound plausible for cloud model.",
-            "whyWrongHere": "Given cloud model, IaaS matches the tested behavior — PaaS applies a different mechanism.",
-            "misconceptionTested": "Applying \"PaaS\" without matching cloud model"
+            "explanation": "PaaS — provider manages OS/runtime; customer deploys code only.",
+            "misconceptionTested": "PaaS customer manages OS",
+            "whatItDoes": "PaaS points to a related idea, but not the specific behavior or value required for cloud model.",
+            "whyWrongHere": "For \"cloud model\", IaaS satisfies what this question tests — PaaS does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "On-prem only describes a mechanism that could sound plausible for cloud model. Given cloud model, IaaS matches the tested behavior — On-prem only applies a different mechanism.",
-            "whatItDoes": "On-prem only describes a mechanism that could sound plausible for cloud model.",
-            "whyWrongHere": "Given cloud model, IaaS matches the tested behavior — On-prem only applies a different mechanism.",
-            "misconceptionTested": "Applying \"On-prem only\" without matching cloud model"
+            "explanation": "On-prem means customer owns all hardware — not a cloud model.",
+            "misconceptionTested": "On-prem as cloud model",
+            "whatItDoes": "On-prem only points to a related idea, but not the specific behavior or value required for cloud model.",
+            "whyWrongHere": "For \"cloud model\", IaaS satisfies what this question tests — On-prem only does not."
           }
         ],
-        "examTip": "On the exam: Cloud means no local network — Hybrid designs keep on-prem LAN/WAN while using cloud for apps or compute"
+        "examTip": "Cloud stack: IaaS (you manage OS) → PaaS (you manage code) → SaaS (you use app)."
       }
     },
     {
@@ -358,18 +358,18 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "True — full mesh between leaves and spines is the defining property."
+          "explanation": "True — in spine-leaf, every leaf connects to every spine for equal-cost paths."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "This statement is False, but the tested fact is: True — full mesh between leaves and spines is the defining property.",
+            "explanation": "False is wrong — full mesh between leaf and spine is the defining spine-leaf trait.",
+            "misconceptionTested": "Spine-leaf partial connectivity",
             "whatItDoes": "False states the opposite of the tested fact about spine connectivity.",
-            "whyWrongHere": "Given spine connectivity, True matches the tested behavior — False applies a different mechanism.",
-            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
+            "whyWrongHere": "For \"spine connectivity\", True satisfies what this question tests — False does not."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "Spine-leaf: leaves = access/aggregation | spines = core — every leaf ↔ every spine."
       }
     }
   ]

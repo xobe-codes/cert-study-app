@@ -31,22 +31,22 @@
             "choiceIndex": 0,
             "explanation": "Channels 1, 2, 3 overlap — only 1, 6, 11 avoid overlap in typical US planning.",
             "misconceptionTested": "Using adjacent overlapping channels",
-            "whatItDoes": "1, 2, 3 describes a mechanism that could sound plausible for 2.4 channels.",
-            "whyWrongHere": "Given 2.4 channels, 1, 6, 11 matches the tested behavior — 1, 2, 3 applies a different mechanism."
+            "whatItDoes": "1, 2, 3 points to a related idea, but not the specific behavior or value required for 2.4 channels.",
+            "whyWrongHere": "For \"2.4 channels\", 1, 6, 11 satisfies what this question tests — 1, 2, 3 does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "6, 7, 8 overlap each other — not the standard non-overlapping set.",
             "misconceptionTested": "Picking overlapping mid-band channels",
-            "whatItDoes": "6, 7, 8 describes a mechanism that could sound plausible for 2.4 channels.",
-            "whyWrongHere": "Given 2.4 channels, 1, 6, 11 matches the tested behavior — 6, 7, 8 applies a different mechanism."
+            "whatItDoes": "6, 7, 8 points to a related idea, but not the specific behavior or value required for 2.4 channels.",
+            "whyWrongHere": "For \"2.4 channels\", 1, 6, 11 satisfies what this question tests — 6, 7, 8 does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Channel 13 is region-dependent — exam default non-overlapping set is 1, 6, 11.",
             "misconceptionTested": "Region-specific channels on generic exam question",
-            "whatItDoes": "11, 12, 13 only in all regions describes a mechanism that could sound plausible for 2.4 channels.",
-            "whyWrongHere": "Given 2.4 channels, 1, 6, 11 matches the tested behavior — 11, 12, 13 only in all regions applies a different mechanism."
+            "whatItDoes": "11, 12, 13 only in all regions points to a related idea, but not the specific behavior or value required for 2.4 channels.",
+            "whyWrongHere": "For \"2.4 channels\", 1, 6, 11 satisfies what this question tests — 11, 12, 13 only in all regions does not."
           }
         ],
         "examTip": "2.4 GHz non-overlapping (exam default): 1, 6, 11."
@@ -72,32 +72,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "5 GHz has more spectrum and speed; 2.4 GHz penetrates farther."
+          "explanation": "5 GHz offers more non-overlapping channels and higher throughput but shorter range than 2.4 GHz."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Longer range than 2.4 with fewer channels reflects a common trap: Using adjacent 2.4 GHz channels (e.g. 3 and 4). They overlap — stick to 1, 6, 11 for non-overlapping 20 MHz cells.",
-            "whatItDoes": "Longer range than 2.4 with fewer channels describes a mechanism that could sound plausible for 5ghz advantage.",
-            "whyWrongHere": "Given 5ghz advantage, More channels and higher throughput but shorter range matches the tested behavior — Longer range than 2.4 with fewer channels applies a different mechanism.",
-            "misconceptionTested": "Using adjacent 2.4 GHz channels (e.g. 3 and 4)"
+            "explanation": "5 GHz has shorter range than 2.4 GHz — higher frequency attenuates faster through walls.",
+            "misconceptionTested": "5 GHz longer range than 2.4",
+            "whatItDoes": "Longer range than 2.4 with fewer channels points to a related idea, but not the specific behavior or value required for 5ghz advantage.",
+            "whyWrongHere": "For \"5ghz advantage\", More channels and higher throughput but shorter range satisfies what this question tests — Longer range than 2.4 with fewer channels does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "No encryption support describes a mechanism that could sound plausible for 5ghz advantage. Given 5ghz advantage, More channels and higher throughput but shorter range matches the tested behavior — No encryption support applies a different mechanism.",
-            "whatItDoes": "No encryption support describes a mechanism that could sound plausible for 5ghz advantage.",
-            "whyWrongHere": "Given 5ghz advantage, More channels and higher throughput but shorter range matches the tested behavior — No encryption support applies a different mechanism.",
-            "misconceptionTested": "Applying \"No encryption support\" without matching 5ghz advantage"
+            "explanation": "5 GHz supports WPA2/WPA3 — encryption is not limited to 2.4 GHz.",
+            "misconceptionTested": "5 GHz lacks encryption",
+            "whatItDoes": "No encryption support points to a related idea, but not the specific behavior or value required for 5ghz advantage.",
+            "whyWrongHere": "For \"5ghz advantage\", More channels and higher throughput but shorter range satisfies what this question tests — No encryption support does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Only WEP describes a mechanism that could sound plausible for 5ghz advantage. Given 5ghz advantage, More channels and higher throughput but shorter range matches the tested behavior — Only WEP applies a different mechanism.",
-            "whatItDoes": "Only WEP describes a mechanism that could sound plausible for 5ghz advantage.",
-            "whyWrongHere": "Given 5ghz advantage, More channels and higher throughput but shorter range matches the tested behavior — Only WEP applies a different mechanism.",
-            "misconceptionTested": "Applying \"Only WEP\" without matching 5ghz advantage"
+            "explanation": "WEP is deprecated on both bands — not a 5 GHz limitation.",
+            "misconceptionTested": "5 GHz only supports WEP",
+            "whatItDoes": "Only WEP selects a weak or deprecated WLAN security option.",
+            "whyWrongHere": "For \"5ghz advantage\", More channels and higher throughput but shorter range satisfies what this question tests — Only WEP does not."
           }
         ],
-        "examTip": "On the exam: Using adjacent 2.4 GHz channels (e.g. 3 and 4) — They overlap — stick to 1, 6, 11 for non-overlapping 20 MHz cells"
+        "examTip": "2.4 GHz = range + penetration | 5 GHz = speed + channels — use both in dual-band APs."
       }
     },
     {
@@ -127,22 +127,22 @@
             "choiceIndex": 0,
             "explanation": "WEP is deprecated and broken — WPA3 moves forward with SAE, not WEP compatibility.",
             "misconceptionTested": "Believing WPA3 restores WEP compatibility",
-            "whatItDoes": "WEP compatibility describes a mechanism that could sound plausible for WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
-            "whyWrongHere": "Given WPA3 uses SAE for more robust authentication vs WPA2-PSK, SAE key exchange (stronger handshake) matches the tested behavior — WEP compatibility applies a different mechanism."
+            "whatItDoes": "WEP compatibility implies many-inside-to-few-outside PAT/overload translation.",
+            "whyWrongHere": "WLAN security (WPA3 uses SAE for more robust authentication vs WPA2-PSK): SAE key exchange (stronger handshake) meets the security requirement — WEP compatibility is deprecated or too weak for the scenario."
           },
           {
             "choiceIndex": 2,
             "explanation": "Open networks have no encryption — WPA3 strengthens authenticated networks; it does not promote open SSIDs.",
             "misconceptionTested": "Associating WPA3 with open unsecured networks",
-            "whatItDoes": "Open unsecured networks describes a mechanism that could sound plausible for WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
-            "whyWrongHere": "Given WPA3 uses SAE for more robust authentication vs WPA2-PSK, SAE key exchange (stronger handshake) matches the tested behavior — Open unsecured networks applies a different mechanism."
+            "whatItDoes": "Open unsecured networks points to a related idea, but not the specific behavior or value required for WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
+            "whyWrongHere": "For \"WPA3 uses SAE for more robust authentication vs WPA2-PSK\", SAE key exchange (stronger handshake) satisfies what this question tests — Open unsecured networks does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "WPA3 still uses AES encryption — it improves the key exchange (SAE), not by removing AES.",
             "misconceptionTested": "Thinking WPA3 removes AES encryption",
-            "whatItDoes": "Removing AES describes a mechanism that could sound plausible for WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
-            "whyWrongHere": "Given WPA3 uses SAE for more robust authentication vs WPA2-PSK, SAE key exchange (stronger handshake) matches the tested behavior — Removing AES applies a different mechanism."
+            "whatItDoes": "Removing AES points to a related idea, but not the specific behavior or value required for WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
+            "whyWrongHere": "For \"WPA3 uses SAE for more robust authentication vs WPA2-PSK\", SAE key exchange (stronger handshake) satisfies what this question tests — Removing AES does not."
           }
         ],
         "examTip": "WPA3 headline upgrade: SAE handshake replaces WPA2-PSK four-way exchange."
@@ -166,18 +166,18 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "False — WEP is cryptographically broken."
+          "explanation": "False — WEP is cryptographically broken and never acceptable in modern enterprise WLANs."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "This statement is True, but the tested fact is: False — WEP is cryptographically broken.",
+            "explanation": "True is wrong — WEP is deprecated; enterprise uses WPA2-Enterprise or WPA3.",
+            "misconceptionTested": "WEP acceptable in enterprise",
             "whatItDoes": "True states the opposite of the tested fact about False — WEP is cryptographically broken.",
-            "whyWrongHere": "Given False — WEP is cryptographically broken, False matches the tested behavior — True applies a different mechanism.",
-            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
+            "whyWrongHere": "For \"False — WEP is cryptographically broken\", False satisfies what this question tests — True does not."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "WLAN security ladder: WEP (broken) → WPA2-PSK/Enterprise → WPA3 — never deploy WEP."
       }
     },
     {
@@ -207,22 +207,22 @@
             "choiceIndex": 0,
             "explanation": "Wi-Fi 3 maps to 802.11g-era branding — 802.11ax is Wi-Fi 6.",
             "misconceptionTested": "Mislabeling 802.11ax as Wi-Fi 3",
-            "whatItDoes": "Wi‑Fi 3 describes a mechanism that could sound plausible for 802.11ax.",
-            "whyWrongHere": "Given 802.11ax, Wi‑Fi 6 matches the tested behavior — Wi‑Fi 3 applies a different mechanism."
+            "whatItDoes": "Wi‑Fi 3 points to a related idea, but not the specific behavior or value required for 802.11ax.",
+            "whyWrongHere": "For \"802.11ax\", Wi‑Fi 6 satisfies what this question tests — Wi‑Fi 3 does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "Wi-Fi 4 is 802.11n — 802.11ax is two generations newer (Wi-Fi 6).",
             "misconceptionTested": "Mapping 802.11ax to Wi-Fi 4 (802.11n)",
-            "whatItDoes": "Wi‑Fi 4 describes a mechanism that could sound plausible for 802.11ax.",
-            "whyWrongHere": "Given 802.11ax, Wi‑Fi 6 matches the tested behavior — Wi‑Fi 4 applies a different mechanism."
+            "whatItDoes": "Wi‑Fi 4 points to a related idea, but not the specific behavior or value required for 802.11ax.",
+            "whyWrongHere": "For \"802.11ax\", Wi‑Fi 6 satisfies what this question tests — Wi‑Fi 4 does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Wi-Fi 5 is 802.11ac — 802.11ax is Wi-Fi 6 with OFDMA and target wake time improvements.",
             "misconceptionTested": "Confusing 802.11ac Wi-Fi 5 with 802.11ax",
-            "whatItDoes": "Wi‑Fi 5 describes a mechanism that could sound plausible for 802.11ax.",
-            "whyWrongHere": "Given 802.11ax, Wi‑Fi 6 matches the tested behavior — Wi‑Fi 5 applies a different mechanism."
+            "whatItDoes": "Wi‑Fi 5 points to a related idea, but not the specific behavior or value required for 802.11ax.",
+            "whyWrongHere": "For \"802.11ax\", Wi‑Fi 6 satisfies what this question tests — Wi‑Fi 5 does not."
           }
         ],
         "examTip": "802.11 naming: n=Wi-Fi 4, ac=Wi-Fi 5, ax=Wi-Fi 6."
@@ -248,32 +248,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "SSID identifies the WLAN broadcast by the AP."
+          "explanation": "The SSID is the wireless network name clients see when scanning for networks."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The encryption key describes a mechanism that could sound plausible for SSID identifies the WLAN broadcast by the AP. Given SSID identifies the WLAN broadcast by the AP, The wireless network name matches the tested behavior — The encryption key applies a different mechanism.",
-            "whatItDoes": "The encryption key describes a mechanism that could sound plausible for SSID identifies the WLAN broadcast by the AP.",
-            "whyWrongHere": "Given SSID identifies the WLAN broadcast by the AP, The wireless network name matches the tested behavior — The encryption key applies a different mechanism.",
-            "misconceptionTested": "Applying \"The encryption key\" without matching ssid"
+            "explanation": "The PSK/passphrase is the encryption key — SSID is the broadcast network name.",
+            "misconceptionTested": "SSID equals encryption key",
+            "whatItDoes": "The encryption key points to a related idea, but not the specific behavior or value required for SSID identifies the WLAN broadcast by the AP.",
+            "whyWrongHere": "For \"SSID identifies the WLAN broadcast by the AP\", The wireless network name satisfies what this question tests — The encryption key does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The MAC of the AP describes a mechanism that could sound plausible for SSID identifies the WLAN broadcast by the AP. Given SSID identifies the WLAN broadcast by the AP, The wireless network name matches the tested behavior — The MAC of the AP applies a different mechanism.",
-            "whatItDoes": "The MAC of the AP describes a mechanism that could sound plausible for SSID identifies the WLAN broadcast by the AP.",
-            "whyWrongHere": "Given SSID identifies the WLAN broadcast by the AP, The wireless network name matches the tested behavior — The MAC of the AP applies a different mechanism.",
-            "misconceptionTested": "Applying \"The MAC of the AP\" without matching ssid"
+            "explanation": "The BSSID is the AP's radio MAC — SSID is a human-readable name.",
+            "misconceptionTested": "SSID is AP MAC",
+            "whatItDoes": "The MAC of the AP points to a related idea, but not the specific behavior or value required for SSID identifies the WLAN broadcast by the AP.",
+            "whyWrongHere": "For \"SSID identifies the WLAN broadcast by the AP\", The wireless network name satisfies what this question tests — The MAC of the AP does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The VLAN ID only describes a mechanism that could sound plausible for SSID identifies the WLAN broadcast by the AP. Given SSID identifies the WLAN broadcast by the AP, The wireless network name matches the tested behavior — The VLAN ID only applies a different mechanism.",
-            "whatItDoes": "The VLAN ID only describes a mechanism that could sound plausible for SSID identifies the WLAN broadcast by the AP.",
-            "whyWrongHere": "Given SSID identifies the WLAN broadcast by the AP, The wireless network name matches the tested behavior — The VLAN ID only applies a different mechanism.",
-            "misconceptionTested": "Applying \"The VLAN ID only\" without matching ssid"
+            "explanation": "SSID can map to a VLAN but is not the VLAN ID itself — it's the WLAN identifier.",
+            "misconceptionTested": "SSID equals VLAN ID",
+            "whatItDoes": "The VLAN ID only points to a related idea, but not the specific behavior or value required for SSID identifies the WLAN broadcast by the AP.",
+            "whyWrongHere": "For \"SSID identifies the WLAN broadcast by the AP\", The wireless network name satisfies what this question tests — The VLAN ID only does not."
           }
         ],
-        "examTip": "This stem tests ssid — exam distractors swap similar terms; anchor on: SSID identifies the WLAN broadcast by the AP."
+        "examTip": "SSID = network name | BSSID = AP MAC | PSK = pre-shared key."
       }
     },
     {
@@ -296,32 +296,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Wider channels carry more data but reduce the number of non-overlapping channels."
+          "explanation": "Wider channels (40 MHz vs 20 MHz) allow higher throughput but consume more spectrum and reduce available channels."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Reduces throughput describes a mechanism that could sound plausible for channel width. Given channel width, Increases potential throughput but uses more spectrum matches the tested behavior — Reduces throughput applies a different mechanism.",
-            "whatItDoes": "Reduces throughput describes a mechanism that could sound plausible for channel width.",
-            "whyWrongHere": "Given channel width, Increases potential throughput but uses more spectrum matches the tested behavior — Reduces throughput applies a different mechanism.",
-            "misconceptionTested": "Applying \"Reduces throughput\" without matching channel width"
+            "explanation": "Wider channels increase potential throughput — they don't reduce it.",
+            "misconceptionTested": "Wider channel reduces throughput",
+            "whatItDoes": "Reduces throughput points to a related idea, but not the specific behavior or value required for channel width.",
+            "whyWrongHere": "For \"channel width\", Increases potential throughput but uses more spectrum satisfies what this question tests — Reduces throughput does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Eliminates interference describes a mechanism that could sound plausible for channel width. Given channel width, Increases potential throughput but uses more spectrum matches the tested behavior — Eliminates interference applies a different mechanism.",
-            "whatItDoes": "Eliminates interference describes a mechanism that could sound plausible for channel width.",
-            "whyWrongHere": "Given channel width, Increases potential throughput but uses more spectrum matches the tested behavior — Eliminates interference applies a different mechanism.",
-            "misconceptionTested": "Applying \"Eliminates interference\" without matching channel width"
+            "explanation": "Wider channels can increase interference overlap — they don't eliminate interference.",
+            "misconceptionTested": "Wide channels eliminate interference",
+            "whatItDoes": "Eliminates interference points to a related idea, but not the specific behavior or value required for channel width.",
+            "whyWrongHere": "For \"channel width\", Increases potential throughput but uses more spectrum satisfies what this question tests — Eliminates interference does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Disables 5 GHz describes a mechanism that could sound plausible for channel width. Given channel width, Increases potential throughput but uses more spectrum matches the tested behavior — Disables 5 GHz applies a different mechanism.",
-            "whatItDoes": "Disables 5 GHz describes a mechanism that could sound plausible for channel width.",
-            "whyWrongHere": "Given channel width, Increases potential throughput but uses more spectrum matches the tested behavior — Disables 5 GHz applies a different mechanism.",
-            "misconceptionTested": "Applying \"Disables 5 GHz\" without matching channel width"
+            "explanation": "Channel width is independent of band — 5 GHz still supports 40/80 MHz widths.",
+            "misconceptionTested": "40 MHz disables 5 GHz",
+            "whatItDoes": "Disables 5 GHz picks a wireless band or channel plan that may not fit range, overlap, or standard requirements.",
+            "whyWrongHere": "For \"channel width\", Increases potential throughput but uses more spectrum satisfies what this question tests — Disables 5 GHz does not."
           }
         ],
-        "examTip": "On the exam: More AP power always fixes coverage — Higher power increases interference and sticky clients; proper placement and channel plan matter"
+        "examTip": "Channel width trade-off: 20 MHz = more channels, less overlap | 40/80 MHz = more speed, fewer channels."
       }
     },
     {
@@ -344,32 +344,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "RSSI measures how strongly the client hears the AP (and vice versa)."
+          "explanation": "RSSI (Received Signal Strength Indicator) measures received signal strength at the client or AP."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Routing table size relies on a router routing table rather than switch MAC/CAM forwarding. Given RSSI measures how strongly the client hears the AP (and vice versa), Received signal strength matches the tested behavior — Routing table size applies a different mechanism.",
+            "explanation": "Routing table size is unrelated — RSSI is a wireless signal metric.",
+            "misconceptionTested": "RSSI as routing metric",
             "whatItDoes": "Routing table size relies on a router routing table rather than switch MAC/CAM forwarding.",
-            "whyWrongHere": "Given RSSI measures how strongly the client hears the AP (and vice versa), Received signal strength matches the tested behavior — Routing table size applies a different mechanism.",
-            "misconceptionTested": "Applying \"Routing table size\" without matching rssi"
+            "whyWrongHere": "For \"RSSI measures how strongly the client hears the AP (and vice versa)\", Received signal strength satisfies what this question tests — Routing table size does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "DNS latency describes a mechanism that could sound plausible for RSSI measures how strongly the client hears the AP (and vice versa). Given RSSI measures how strongly the client hears the AP (and vice versa), Received signal strength matches the tested behavior — DNS latency applies a different mechanism.",
-            "whatItDoes": "DNS latency describes a mechanism that could sound plausible for RSSI measures how strongly the client hears the AP (and vice versa).",
-            "whyWrongHere": "Given RSSI measures how strongly the client hears the AP (and vice versa), Received signal strength matches the tested behavior — DNS latency applies a different mechanism.",
-            "misconceptionTested": "Applying \"DNS latency\" without matching rssi"
+            "explanation": "DNS latency measures name resolution — RSSI is RF signal level.",
+            "misconceptionTested": "RSSI as DNS latency",
+            "whatItDoes": "DNS latency points to a related idea, but not the specific behavior or value required for RSSI measures how strongly the client hears the AP (and vice versa).",
+            "whyWrongHere": "For \"RSSI measures how strongly the client hears the AP (and vice versa)\", Received signal strength satisfies what this question tests — DNS latency does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "NAT port count describes a mechanism that could sound plausible for RSSI measures how strongly the client hears the AP (and vice versa). Given RSSI measures how strongly the client hears the AP (and vice versa), Received signal strength matches the tested behavior — NAT port count applies a different mechanism.",
-            "whatItDoes": "NAT port count describes a mechanism that could sound plausible for RSSI measures how strongly the client hears the AP (and vice versa).",
-            "whyWrongHere": "Given RSSI measures how strongly the client hears the AP (and vice versa), Received signal strength matches the tested behavior — NAT port count applies a different mechanism.",
-            "misconceptionTested": "Applying \"NAT port count\" without matching rssi"
+            "explanation": "NAT port count tracks translations — RSSI is dBm signal strength.",
+            "misconceptionTested": "RSSI as NAT metric",
+            "whatItDoes": "NAT port count points to a related idea, but not the specific behavior or value required for RSSI measures how strongly the client hears the AP (and vice versa).",
+            "whyWrongHere": "For \"RSSI measures how strongly the client hears the AP (and vice versa)\", Received signal strength satisfies what this question tests — NAT port count does not."
           }
         ],
-        "examTip": "On the exam: More AP power always fixes coverage — Higher power increases interference and sticky clients; proper placement and channel plan matter"
+        "examTip": "RSSI in dBm: closer to 0 = stronger | -70 dBm usable | -80 dBm weak."
       }
     }
   ]

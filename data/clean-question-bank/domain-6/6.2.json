@@ -24,35 +24,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Increased security\"."
+          "explanation": "Centralized controller policy can enforce consistent security/QoS — a cited benefit of controller-based networking."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Decreased problems describes a mechanism that could sound plausible for controller based networking. Given controller based networking, Increased security matches the tested behavior — Decreased problems applies a different mechanism.",
-            "whatItDoes": "Decreased problems describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, Increased security matches the tested behavior — Decreased problems applies a different mechanism.",
-            "misconceptionTested": "Applying \"Decreased problems\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "Controllers do not magically remove all problems — they centralize control, not eliminate faults.",
+            "misconceptionTested": "Zero problems claim",
+            "whatItDoes": "Decreased problems points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", Increased security satisfies what this question tests — Decreased problems does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Increased throughput describes a mechanism that could sound plausible for controller based networking. Given controller based networking, Increased security matches the tested behavior — Increased throughput applies a different mechanism.",
-            "whatItDoes": "Increased throughput describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, Increased security matches the tested behavior — Increased throughput applies a different mechanism.",
-            "misconceptionTested": "Applying \"Increased throughput\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "Throughput depends on hardware paths — SDN benefit is policy/automation, not automatic bandwidth.",
+            "misconceptionTested": "SDN equals faster links",
+            "whatItDoes": "Increased throughput points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", Increased security satisfies what this question tests — Increased throughput does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Increased complexity describes a mechanism that could sound plausible for controller based networking. Given controller based networking, Increased security matches the tested behavior — Increased complexity applies a different mechanism.",
-            "whatItDoes": "Increased complexity describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, Increased security matches the tested behavior — Increased complexity applies a different mechanism.",
-            "misconceptionTested": "Applying \"Increased complexity\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "SDN adds a control layer — can reduce touch complexity, not increase it as a benefit.",
+            "misconceptionTested": "Complexity as benefit",
+            "whatItDoes": "Increased complexity points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", Increased security satisfies what this question tests — Increased complexity does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "Controller benefits: centralized policy, automation, consistent config — data plane still forwards locally."
       }
     },
     {
@@ -79,35 +76,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Controller-based networking has a logically centralized control plane.\"."
+          "explanation": "Controller-based networking centralizes the control plane — devices execute policies from the controller."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Controller-based networking is always in the form of hardware appliances. describes a mechanism that could sound plausible for controller based networking. Given controller based networking, Controller-based networking has a logically centralized control plane. matches the tested behavior — Controller-based networking is always in the form of hardware appliances. applies a different mechanism.",
-            "whatItDoes": "Controller-based networking is always in the form of hardware appliances. describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, Controller-based networking has a logically centralized control plane. matches the tested behavior — Controller-based networking is always in the form of hardware appliances. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Controller-based networking is alway\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "Controllers can be virtual or physical — not always hardware appliances.",
+            "misconceptionTested": "Hardware-only controllers",
+            "whatItDoes": "Controller-based networking is always in the form of hardware appliances. points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", Controller-based networking has a logically centralized control plane. satisfies what this question tests — Controller-based networking is always in the form of hardware appliances. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Controller-based networking has a logically centralized data plane. describes a mechanism that could sound plausible for controller based networking. Given controller based networking, Controller-based networking has a logically centralized control plane. matches the tested behavior — Controller-based networking has a logically centralized data plane. applies a different mechanism.",
-            "whatItDoes": "Controller-based networking has a logically centralized data plane. describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, Controller-based networking has a logically centralized control plane. matches the tested behavior — Controller-based networking has a logically centralized data plane. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Controller-based networking has a lo\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "Data plane stays distributed on switches — not centralized at controller.",
+            "misconceptionTested": "Centralized data plane",
+            "whatItDoes": "Controller-based networking has a logically centralized data plane. points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", Controller-based networking has a logically centralized control plane. satisfies what this question tests — Controller-based networking has a logically centralized data plane. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Controller-based networking uses ASICs to centrally switch frames. describes a mechanism that could sound plausible for controller based networking. Given controller based networking, Controller-based networking has a logically centralized control plane. matches the tested behavior — Controller-based networking uses ASICs to centrally switch frames. applies a different mechanism.",
-            "whatItDoes": "Controller-based networking uses ASICs to centrally switch frames. describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, Controller-based networking has a logically centralized control plane. matches the tested behavior — Controller-based networking uses ASICs to centrally switch frames. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Controller-based networking uses ASI\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "ASICs switch locally — control plane logic is centralized.",
+            "misconceptionTested": "ASIC central switching",
+            "whatItDoes": "Controller-based networking uses ASICs to centrally switch frames. points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", Controller-based networking has a logically centralized control plane. satisfies what this question tests — Controller-based networking uses ASICs to centrally switch frames. does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -134,35 +128,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"SD-WAN\"."
+          "explanation": "SD-WAN overlays multiple sites into one managed fabric — controller-based WAN with centralized policy."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SDN describes a mechanism that could sound plausible for controller based networking. Given controller based networking, SD-WAN matches the tested behavior — SDN applies a different mechanism.",
-            "whatItDoes": "SDN describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, SD-WAN matches the tested behavior — SDN applies a different mechanism.",
-            "misconceptionTested": "Applying \"SDN\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "SDN is the broad separation of control/data planes — multi-site WAN unification is SD-WAN.",
+            "misconceptionTested": "Generic SDN for multi-site WAN",
+            "whatItDoes": "SDN points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", SD-WAN satisfies what this question tests — SDN does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SD-LAN describes a mechanism that could sound plausible for controller based networking. Given controller based networking, SD-WAN matches the tested behavior — SD-LAN applies a different mechanism.",
-            "whatItDoes": "SD-LAN describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, SD-WAN matches the tested behavior — SD-LAN applies a different mechanism.",
-            "misconceptionTested": "Applying \"SD-LAN\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "SD-LAN is not the CCNA term — campus LAN SDN differs from SD-WAN.",
+            "misconceptionTested": "SD-LAN as multi-site term",
+            "whatItDoes": "SD-LAN points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", SD-WAN satisfies what this question tests — SD-LAN does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "VPN describes a mechanism that could sound plausible for controller based networking. Given controller based networking, SD-WAN matches the tested behavior — VPN applies a different mechanism.",
-            "whatItDoes": "VPN describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, SD-WAN matches the tested behavior — VPN applies a different mechanism.",
-            "misconceptionTested": "Applying \"VPN\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "VPN encrypts tunnels — SD-WAN is the controller-orchestrated multi-site WAN model.",
+            "misconceptionTested": "VPN as SD-WAN equivalent",
+            "whatItDoes": "VPN points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", SD-WAN satisfies what this question tests — VPN does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "Multi-site single policy fabric over WAN → SD-WAN (vManage); DC fabric → ACI."
       }
     },
     {
@@ -188,35 +179,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Maturity\"."
+          "explanation": "Maturity — SDN/controller platforms are newer with evolving features compared to decades of traditional CLI ops."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Scalability describes a mechanism that could sound plausible for controller based networking. Given controller based networking, Maturity matches the tested behavior — Scalability applies a different mechanism.",
-            "whatItDoes": "Scalability describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, Maturity matches the tested behavior — Scalability applies a different mechanism.",
-            "misconceptionTested": "Applying \"Scalability\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "SDN often improves scalability via automation — not a disadvantage.",
+            "misconceptionTested": "Scalability as SDN disadvantage",
+            "whatItDoes": "Scalability points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", Maturity satisfies what this question tests — Scalability does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Security describes a mechanism that could sound plausible for controller based networking. Given controller based networking, Maturity matches the tested behavior — Security applies a different mechanism.",
-            "whatItDoes": "Security describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, Maturity matches the tested behavior — Security applies a different mechanism.",
-            "misconceptionTested": "Applying \"Security\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "Centralized policy can improve security consistency.",
+            "misconceptionTested": "Security as disadvantage",
+            "whatItDoes": "Security points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", Maturity satisfies what this question tests — Security does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Centralized provisioning describes a mechanism that could sound plausible for controller based networking. Given controller based networking, Maturity matches the tested behavior — Centralized provisioning applies a different mechanism.",
-            "whatItDoes": "Centralized provisioning describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, Maturity matches the tested behavior — Centralized provisioning applies a different mechanism.",
-            "misconceptionTested": "Applying \"Centralized provisioning\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "Centralized provisioning is a benefit, not a disadvantage.",
+            "misconceptionTested": "Centralized provisioning as disadvantage",
+            "whatItDoes": "Centralized provisioning points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", Maturity satisfies what this question tests — Centralized provisioning does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -241,35 +229,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"QoS\"."
+          "explanation": "SDN controllers program QoS policies on switches — marking/queuing rules are control-plane policy pushed to devices."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "CPU utilization describes a mechanism that could sound plausible for controller based networking. Given controller based networking, QoS matches the tested behavior — CPU utilization applies a different mechanism.",
-            "whatItDoes": "CPU utilization describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, QoS matches the tested behavior — CPU utilization applies a different mechanism.",
-            "misconceptionTested": "Applying \"CPU utilization\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "CPU utilization is monitoring — not a typical SDN policy object.",
+            "misconceptionTested": "CPU as SDN QoS control",
+            "whatItDoes": "CPU utilization points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", QoS satisfies what this question tests — CPU utilization does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Memory utilization describes a mechanism that could sound plausible for controller based networking. Given controller based networking, QoS matches the tested behavior — Memory utilization applies a different mechanism.",
-            "whatItDoes": "Memory utilization describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, QoS matches the tested behavior — Memory utilization applies a different mechanism.",
-            "misconceptionTested": "Applying \"Memory utilization\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "Memory utilization is device health — not QoS policy.",
+            "misconceptionTested": "Memory as SDN policy",
+            "whatItDoes": "Memory utilization points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", QoS satisfies what this question tests — Memory utilization does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Forwarding of traffic describes a mechanism that could sound plausible for controller based networking. Given controller based networking, QoS matches the tested behavior — Forwarding of traffic applies a different mechanism.",
-            "whatItDoes": "Forwarding of traffic describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, QoS matches the tested behavior — Forwarding of traffic applies a different mechanism.",
-            "misconceptionTested": "Applying \"Forwarding of traffic\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "Forwarding tables are programmed — but QoS is the keyed control element in this stem.",
+            "misconceptionTested": "Forwarding only not QoS",
+            "whatItDoes": "Forwarding of traffic points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", QoS satisfies what this question tests — Forwarding of traffic does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -295,35 +280,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"All SDN switches are stateless with respect to configuration.\"."
+          "explanation": "SDN switches are stateless for control/config — forwarding rules come from the controller."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "All data is centrally switched at the SDN controller. describes a mechanism that could sound plausible for controller based networking. Given controller based networking, All SDN switches are stateless with respect to configuration. matches the tested behavior — All data is centrally switched at the SDN controller. applies a different mechanism.",
-            "whatItDoes": "All data is centrally switched at the SDN controller. describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, All SDN switches are stateless with respect to configuration. matches the tested behavior — All data is centrally switched at the SDN controller. applies a different mechanism.",
-            "misconceptionTested": "Applying \"All data is centrally switched at th\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "Data isn't switched at the controller — local ASICs forward.",
+            "misconceptionTested": "Central controller switching all data",
+            "whatItDoes": "All data is centrally switched at the SDN controller. points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", All SDN switches are stateless with respect to configuration. satisfies what this question tests — All data is centrally switched at the SDN controller. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "All SDN switches are stateful with respect to configuration. describes a mechanism that could sound plausible for controller based networking. Given controller based networking, All SDN switches are stateless with respect to configuration. matches the tested behavior — All SDN switches are stateful with respect to configuration. applies a different mechanism.",
-            "whatItDoes": "All SDN switches are stateful with respect to configuration. describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, All SDN switches are stateless with respect to configuration. matches the tested behavior — All SDN switches are stateful with respect to configuration. applies a different mechanism.",
-            "misconceptionTested": "Applying \"All SDN switches are stateful with r\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "Switches retain some state for forwarding — config brain is centralized.",
+            "misconceptionTested": "Stateful config on every switch",
+            "whatItDoes": "All SDN switches are stateful with respect to configuration. points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", All SDN switches are stateless with respect to configuration. satisfies what this question tests — All SDN switches are stateful with respect to configuration. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "All data flowing through the switch is stateless. describes a mechanism that could sound plausible for controller based networking. Given controller based networking, All SDN switches are stateless with respect to configuration. matches the tested behavior — All data flowing through the switch is stateless. applies a different mechanism.",
-            "whatItDoes": "All data flowing through the switch is stateless. describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, All SDN switches are stateless with respect to configuration. matches the tested behavior — All data flowing through the switch is stateless. applies a different mechanism.",
-            "misconceptionTested": "Applying \"All data flowing through the switch \" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "Flows have state — 'stateless' refers to control dependency.",
+            "misconceptionTested": "All traffic stateless",
+            "whatItDoes": "All data flowing through the switch is stateless. points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", All SDN switches are stateless with respect to configuration. satisfies what this question tests — All data flowing through the switch is stateless. does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -349,35 +331,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"SNMP\"."
+          "explanation": "SNMP is the classic protocol for centralized monitoring of routers and switches."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Syslog describes a mechanism that could sound plausible for controller based networking. Given controller based networking, SNMP matches the tested behavior — Syslog applies a different mechanism.",
-            "whatItDoes": "Syslog describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, SNMP matches the tested behavior — Syslog applies a different mechanism.",
-            "misconceptionTested": "Applying \"Syslog\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "Syslog collects messages — SNMP polls metrics/MIBs.",
+            "misconceptionTested": "Syslog as SNMP replacement",
+            "whatItDoes": "Syslog assigns a syslog severity or facility level that may reverse the lower-number-is-more-severe rule.",
+            "whyWrongHere": "For \"controller based networking\", SNMP satisfies what this question tests — Syslog does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SDN describes a mechanism that could sound plausible for controller based networking. Given controller based networking, SNMP matches the tested behavior — SDN applies a different mechanism.",
-            "whatItDoes": "SDN describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, SNMP matches the tested behavior — SDN applies a different mechanism.",
-            "misconceptionTested": "Applying \"SDN\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "SDN is architecture — SNMP is the monitoring protocol.",
+            "misconceptionTested": "SDN as monitoring protocol",
+            "whatItDoes": "SDN points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", SNMP satisfies what this question tests — SDN does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "CDP describes a mechanism that could sound plausible for controller based networking. Given controller based networking, SNMP matches the tested behavior — CDP applies a different mechanism.",
-            "whatItDoes": "CDP describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, SNMP matches the tested behavior — CDP applies a different mechanism.",
-            "misconceptionTested": "Applying \"CDP\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "CDP is Layer 2 discovery — not centralized NMS monitoring.",
+            "misconceptionTested": "CDP for NMS polling",
+            "whatItDoes": "CDP points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", SNMP satisfies what this question tests — CDP does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -404,35 +383,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"NMS\"."
+          "explanation": "The NMS (Network Management System) aggregates SNMP polls, traps, and metrics."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Trap describes a mechanism that could sound plausible for controller based networking. Given controller based networking, NMS matches the tested behavior — Trap applies a different mechanism.",
-            "whatItDoes": "Trap describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, NMS matches the tested behavior — Trap applies a different mechanism.",
-            "misconceptionTested": "Applying \"Trap\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "Traps are events — NMS collects them.",
+            "misconceptionTested": "Trap as aggregator",
+            "whatItDoes": "Trap mixes SNMP version, trap/inform, or community/security features.",
+            "whyWrongHere": "SNMP (controller based networking): NMS matches version, trap/inform, or security — Trap mixes SNMPv2/v3 features or trap types."
           },
           {
             "choiceIndex": 1,
-            "explanation": "SNMP agent describes a mechanism that could sound plausible for controller based networking. Given controller based networking, NMS matches the tested behavior — SNMP agent applies a different mechanism.",
-            "whatItDoes": "SNMP agent describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, NMS matches the tested behavior — SNMP agent applies a different mechanism.",
-            "misconceptionTested": "Applying \"SNMP agent\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "SNMP agent runs on the device — NMS is central.",
+            "misconceptionTested": "Agent as NMS",
+            "whatItDoes": "SNMP agent points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", NMS satisfies what this question tests — SNMP agent does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Syslog server describes a mechanism that could sound plausible for controller based networking. Given controller based networking, NMS matches the tested behavior — Syslog server applies a different mechanism.",
-            "whatItDoes": "Syslog server describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, NMS matches the tested behavior — Syslog server applies a different mechanism.",
-            "misconceptionTested": "Applying \"Syslog server\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "Syslog server handles logs — NMS handles SNMP.",
+            "misconceptionTested": "Syslog server as SNMP aggregator",
+            "whatItDoes": "Syslog server assigns a syslog severity or facility level that may reverse the lower-number-is-more-severe rule.",
+            "whyWrongHere": "For \"controller based networking\", NMS satisfies what this question tests — Syslog server does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -459,35 +435,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"SNMP\"."
+          "explanation": "Cisco Prime Infrastructure uses SNMP (and other methods) for device configuration/monitoring."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "CAPWAP describes a mechanism that could sound plausible for controller based networking. Given controller based networking, SNMP matches the tested behavior — CAPWAP applies a different mechanism.",
-            "whatItDoes": "CAPWAP describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, SNMP matches the tested behavior — CAPWAP applies a different mechanism.",
-            "misconceptionTested": "Applying \"CAPWAP\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "CAPWAP is AP↔WLC — not Prime's core transport.",
+            "misconceptionTested": "CAPWAP for Prime config",
+            "whatItDoes": "CAPWAP assumes a centralized WLC/CAPWAP architecture rather than standalone AP operation.",
+            "whyWrongHere": "For \"controller based networking\", SNMP satisfies what this question tests — CAPWAP does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "LWAPP describes a mechanism that could sound plausible for controller based networking. Given controller based networking, SNMP matches the tested behavior — LWAPP applies a different mechanism.",
-            "whatItDoes": "LWAPP describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, SNMP matches the tested behavior — LWAPP applies a different mechanism.",
-            "misconceptionTested": "Applying \"LWAPP\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "LWAPP is legacy CAPWAP predecessor for wireless.",
+            "misconceptionTested": "LWAPP for Prime",
+            "whatItDoes": "LWAPP points to a related idea, but not the specific behavior or value required for controller based networking.",
+            "whyWrongHere": "For \"controller based networking\", SNMP satisfies what this question tests — LWAPP does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "RESTCONF describes a mechanism that could sound plausible for controller based networking. Given controller based networking, SNMP matches the tested behavior — RESTCONF applies a different mechanism.",
-            "whatItDoes": "RESTCONF describes a mechanism that could sound plausible for controller based networking.",
-            "whyWrongHere": "Given controller based networking, SNMP matches the tested behavior — RESTCONF applies a different mechanism.",
-            "misconceptionTested": "Applying \"RESTCONF\" without matching controller based networking",
-            "needsExplanationReview": true
+            "explanation": "RESTCONF is modern API — Prime traditionally leveraged SNMP.",
+            "misconceptionTested": "RESTCONF as Prime primary",
+            "whatItDoes": "RESTCONF names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "Automation tooling (controller based networking): SNMP matches the API or tool named in the stem — RESTCONF swaps REST, NETCONF, or orchestration roles."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     }
   ]

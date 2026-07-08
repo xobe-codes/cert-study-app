@@ -22,32 +22,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "In show ip route, O = OSPF-learned route. C = connected, S = static, D = EIGRP."
+          "explanation": "Routing table code O = OSPF (dynamic). C connected, S static, D EIGRP."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Connected routes show C (and L for local) — O is specifically OSPF, not directly connected subnets.",
-            "misconceptionTested": "Confusing O with connected code",
-            "whatItDoes": "Connected route describes a mechanism that could sound plausible for route source codes.",
-            "whyWrongHere": "Given route source codes, OSPF-learned route matches the tested behavior — Connected route applies a different mechanism."
+            "explanation": "Connected routes use code C, not O.",
+            "misconceptionTested": "O means connected",
+            "whatItDoes": "Connected route points to a related idea, but not the specific behavior or value required for route source codes.",
+            "whyWrongHere": "For \"route source codes\", OSPF-learned route satisfies what this question tests — Connected route does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Static routes use S — O indicates the route was learned via OSPF adjacency.",
-            "misconceptionTested": "Mixing static (S) with OSPF (O)",
-            "whatItDoes": "Static route describes a mechanism that could sound plausible for route source codes.",
-            "whyWrongHere": "Given route source codes, OSPF-learned route matches the tested behavior — Static route applies a different mechanism."
+            "explanation": "Static routes show S — O is OSPF.",
+            "misconceptionTested": "O means static",
+            "whatItDoes": "Static route configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+            "whyWrongHere": "For \"route source codes\", OSPF-learned route satisfies what this question tests — Static route does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "EIGRP routes display D (dual) — O is reserved for OSPF in Cisco routing tables.",
-            "misconceptionTested": "Assigning EIGRP code to OSPF letter",
-            "whatItDoes": "EIGRP-learned route describes a mechanism that could sound plausible for route source codes.",
-            "whyWrongHere": "Given route source codes, OSPF-learned route matches the tested behavior — EIGRP-learned route applies a different mechanism."
+            "explanation": "EIGRP uses D (dual) — O is exclusively OSPF in IOS tables.",
+            "misconceptionTested": "O means EIGRP",
+            "whatItDoes": "EIGRP-learned route applies another routing protocol's behavior instead of OSPF-specific rules.",
+            "whyWrongHere": "This stem tests OSPF (route source codes) — OSPF-learned route is protocol-specific; EIGRP-learned route applies another IGP's behavior."
           }
         ],
-        "examTip": "Route codes: C connected, S static, O OSPF, D EIGRP."
+        "examTip": "Codes: C connected · S static · O OSPF · D EIGRP."
       }
     },
     {
@@ -77,22 +77,22 @@
             "choiceIndex": 0,
             "explanation": "The metric is the second number (20) — 110 is AD, not the OSPF cost.",
             "misconceptionTested": "Swapping AD and metric in bracket notation",
-            "whatItDoes": "The metric describes a mechanism that could sound plausible for AD/metric brackets.",
-            "whyWrongHere": "Given AD/metric brackets, The administrative distance matches the tested behavior — The metric applies a different mechanism."
+            "whatItDoes": "The metric points to a related idea, but not the specific behavior or value required for AD/metric brackets.",
+            "whyWrongHere": "For \"AD/metric brackets\", The administrative distance satisfies what this question tests — The metric does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "OSPF cost is the metric (20 here) — 110 is the well-known AD value for OSPF routes.",
             "misconceptionTested": "Identifying cost where AD belongs in [AD/metric]",
-            "whatItDoes": "The OSPF cost describes a mechanism that could sound plausible for AD/metric brackets.",
-            "whyWrongHere": "Given AD/metric brackets, The administrative distance matches the tested behavior — The OSPF cost applies a different mechanism."
+            "whatItDoes": "The OSPF cost points to a related idea, but not the specific behavior or value required for AD/metric brackets.",
+            "whyWrongHere": "For \"AD/metric brackets\", The administrative distance satisfies what this question tests — The OSPF cost does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Hop count is RIP's metric — OSPF uses cost based on bandwidth; 110 is AD in the bracket format.",
             "misconceptionTested": "Applying RIP hop-count thinking to OSPF route display",
-            "whatItDoes": "The hop count describes a mechanism that could sound plausible for AD/metric brackets.",
-            "whyWrongHere": "Given AD/metric brackets, The administrative distance matches the tested behavior — The hop count applies a different mechanism."
+            "whatItDoes": "The hop count points to a related idea, but not the specific behavior or value required for AD/metric brackets.",
+            "whyWrongHere": "For \"AD/metric brackets\", The administrative distance satisfies what this question tests — The hop count does not."
           }
         ],
         "examTip": "Route table [110/20] → 110 = AD, 20 = metric. Always read left first."
@@ -118,32 +118,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "A connected (C) route to the subnet and a local (L) /32 for the router own interface IP are both auto-installed at AD 0."
+          "explanation": "Adding 192.168.1.1/24 installs C 192.168.1.0/24 (connected subnet) and L 192.168.1.1/32 (local host route)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "S 192.168.1.0/24 and C 192.168.1.1/32 uses the wrong value. The tested fact calls for 32 — not 192.",
-            "whatItDoes": "S 192.168.1.0/24 and C 192.168.1.1/32 describes a mechanism that could sound plausible for connected and local routes.",
-            "whyWrongHere": "Given connected and local routes, C 192.168.1.0/24 and L 192.168.1.1/32 matches the tested behavior — S 192.168.1.0/24 and C 192.168.1.1/32 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 192 instead of the correct 32"
+            "explanation": "S is static — connected/local are automatic when the interface is up.",
+            "misconceptionTested": "Static codes for connected install",
+            "whatItDoes": "S 192.168.1.0/24 and C 192.168.1.1/32 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"connected and local routes\", C 192.168.1.0/24 and L 192.168.1.1/32 satisfies what this question tests — S 192.168.1.0/24 and C 192.168.1.1/32 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "O 192.168.1.0/24 and C 192.168.1.1/24 uses the wrong value. The tested fact calls for 32 — not 192.",
-            "whatItDoes": "O 192.168.1.0/24 and C 192.168.1.1/24 describes a mechanism that could sound plausible for connected and local routes.",
-            "whyWrongHere": "Given connected and local routes, C 192.168.1.0/24 and L 192.168.1.1/32 matches the tested behavior — O 192.168.1.0/24 and C 192.168.1.1/24 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 192 instead of the correct 32"
+            "explanation": "O is OSPF — these routes are connected/local, not learned.",
+            "misconceptionTested": "OSPF code on interface bring-up",
+            "whatItDoes": "O 192.168.1.0/24 and C 192.168.1.1/24 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"connected and local routes\", C 192.168.1.0/24 and L 192.168.1.1/32 satisfies what this question tests — O 192.168.1.0/24 and C 192.168.1.1/24 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "C 192.168.1.0/24 only uses the wrong value. The tested fact calls for 32 — not 192.",
-            "whatItDoes": "C 192.168.1.0/24 only describes a mechanism that could sound plausible for connected and local routes.",
-            "whyWrongHere": "Given connected and local routes, C 192.168.1.0/24 and L 192.168.1.1/32 matches the tested behavior — C 192.168.1.0/24 only applies a different mechanism.",
-            "misconceptionTested": "Memorizing 192 instead of the correct 32"
+            "explanation": "Both C and L routes are installed — L is the /32 host route.",
+            "misconceptionTested": "Connected only without local",
+            "whatItDoes": "C 192.168.1.0/24 only states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"connected and local routes\", C 192.168.1.0/24 and L 192.168.1.1/32 satisfies what this question tests — C 192.168.1.0/24 only does not."
           }
         ],
-        "examTip": "On the exam: The L route is NOT a host route to a PC — L is the router own interface IP as a /32 — so the router processes packets addressed to itself"
+        "examTip": "Interface up → C (subnet) + L (/32 local)."
       }
     },
     {
@@ -166,32 +166,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The L /32 lets the router recognize and process packets addressed directly to its own interface IP (e.g. for SSH or ping to the router itself)."
+          "explanation": "The L /32 route ensures packets destined to the router's own interface IP are delivered locally."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "It routes traffic to hosts on the subnet reflects a common trap: The L route forwards traffic to end hosts. L routes exist only for the router own interface IPs — not for PCs or servers.",
-            "whatItDoes": "It routes traffic to hosts on the subnet describes a mechanism that could sound plausible for L route purpose.",
-            "whyWrongHere": "Given L route purpose, It allows the router to process packets destined for its own interface IP matches the tested behavior — It routes traffic to hosts on the subnet applies a different mechanism.",
-            "misconceptionTested": "The L route forwards traffic to end hosts"
+            "explanation": "Subnet hosts use the C connected route — L is for the router's own IP.",
+            "misconceptionTested": "L route for subnet hosts",
+            "whatItDoes": "It routes traffic to hosts on the subnet points to a related idea, but not the specific behavior or value required for L route purpose.",
+            "whyWrongHere": "For \"L route purpose\", It allows the router to process packets destined for its own interface IP satisfies what this question tests — It routes traffic to hosts on the subnet does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "It is a backup for the connected route reflects a common trap: The L route is NOT a host route to a PC. L is the router own interface IP as a /32 — so the router processes packets addressed to itself.",
-            "whatItDoes": "It is a backup for the connected route describes a mechanism that could sound plausible for L route purpose.",
-            "whyWrongHere": "Given L route purpose, It allows the router to process packets destined for its own interface IP matches the tested behavior — It is a backup for the connected route applies a different mechanism.",
-            "misconceptionTested": "The L route is NOT a host route to a PC"
+            "explanation": "L is not a backup — it serves a distinct purpose for local delivery.",
+            "misconceptionTested": "L as backup connected",
+            "whatItDoes": "It is a backup for the connected route points to a related idea, but not the specific behavior or value required for L route purpose.",
+            "whyWrongHere": "For \"L route purpose\", It allows the router to process packets destined for its own interface IP satisfies what this question tests — It is a backup for the connected route does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "It marks the default gateway sends the decision to a router/default gateway rather than handling it at Layer 2. Given L route purpose, It allows the router to process packets destined for its own interface IP matches the tested behavior — It marks the default gateway applies a different mechanism.",
+            "explanation": "Default gateway is a separate concept — L handles traffic to this router's address.",
+            "misconceptionTested": "L marks default gateway",
             "whatItDoes": "It marks the default gateway sends the decision to a router/default gateway rather than handling it at Layer 2.",
-            "whyWrongHere": "Given L route purpose, It allows the router to process packets destined for its own interface IP matches the tested behavior — It marks the default gateway applies a different mechanism.",
-            "misconceptionTested": "Applying default-gateway logic to a Layer 2 switch decision"
+            "whyWrongHere": "For \"L route purpose\", It allows the router to process packets destined for its own interface IP satisfies what this question tests — It marks the default gateway does not."
           }
         ],
-        "examTip": "On the exam: The L route is NOT a host route to a PC — L is the router own interface IP as a /32 — so the router processes packets addressed to itself"
+        "examTip": "L /32 = traffic to this router's interface IP."
       }
     },
     {
@@ -214,32 +214,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "D = EIGRP (Diffusing Update Algorithm). O = OSPF, R = RIP, B = BGP."
+          "explanation": "EIGRP routes show source code D in the routing table."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "E describes a mechanism that could sound plausible for EIGRP code. Given EIGRP code, D matches the tested behavior — E applies a different mechanism.",
-            "whatItDoes": "E describes a mechanism that could sound plausible for EIGRP code.",
-            "whyWrongHere": "Given EIGRP code, D matches the tested behavior — E applies a different mechanism.",
-            "misconceptionTested": "Applying \"E\" without matching EIGRP code"
+            "explanation": "E is EGP (legacy) — not EIGRP on modern IOS tables.",
+            "misconceptionTested": "E as EIGRP",
+            "whatItDoes": "E points to a related idea, but not the specific behavior or value required for EIGRP code.",
+            "whyWrongHere": "For \"EIGRP code\", D satisfies what this question tests — E does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "O describes a mechanism that could sound plausible for EIGRP code. Given EIGRP code, D matches the tested behavior — O applies a different mechanism.",
-            "whatItDoes": "O describes a mechanism that could sound plausible for EIGRP code.",
-            "whyWrongHere": "Given EIGRP code, D matches the tested behavior — O applies a different mechanism.",
-            "misconceptionTested": "Applying \"O\" without matching EIGRP code"
+            "explanation": "O is OSPF — EIGRP uses D.",
+            "misconceptionTested": "O as EIGRP",
+            "whatItDoes": "O points to a related idea, but not the specific behavior or value required for EIGRP code.",
+            "whyWrongHere": "For \"EIGRP code\", D satisfies what this question tests — O does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "R describes a mechanism that could sound plausible for EIGRP code. Given EIGRP code, D matches the tested behavior — R applies a different mechanism.",
-            "whatItDoes": "R describes a mechanism that could sound plausible for EIGRP code.",
-            "whyWrongHere": "Given EIGRP code, D matches the tested behavior — R applies a different mechanism.",
-            "misconceptionTested": "Applying \"R\" without matching EIGRP code"
+            "explanation": "R is RIP — EIGRP is D.",
+            "misconceptionTested": "R as EIGRP",
+            "whatItDoes": "R points to a related idea, but not the specific behavior or value required for EIGRP code.",
+            "whyWrongHere": "For \"EIGRP code\", D satisfies what this question tests — R does not."
           }
         ],
-        "examTip": "This stem tests EIGRP code — exam distractors swap similar terms; anchor on: D = EIGRP (Diffusing Update Algorithm)."
+        "examTip": "Memorize: O=OSPF, D=EIGRP, R=RIP."
       }
     },
     {
@@ -269,22 +269,22 @@
             "choiceIndex": 0,
             "explanation": "The asterisk marks a preferred gateway of last resort in some displays — it does not keep a dead interface's connected route alive.",
             "misconceptionTested": "Expecting special marking to preserve dead connected routes",
-            "whatItDoes": "Marked with *, indicating preferred describes a mechanism that could sound plausible for connected route removal.",
-            "whyWrongHere": "Given connected route removal, Removed from the routing table matches the tested behavior — Marked with *, indicating preferred applies a different mechanism."
+            "whatItDoes": "Marked with *, indicating preferred points to a related idea, but not the specific behavior or value required for connected route removal.",
+            "whyWrongHere": "For \"connected route removal\", Removed from the routing table satisfies what this question tests — Marked with *, indicating preferred does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "Connected routes are not aged like dynamic routes — they are removed immediately when the interface fails.",
             "misconceptionTested": "Expecting timer-based aging for connected routes",
-            "whatItDoes": "Stays with an age timer describes a mechanism that could sound plausible for connected route removal.",
-            "whyWrongHere": "Given connected route removal, Removed from the routing table matches the tested behavior — Stays with an age timer applies a different mechanism."
+            "whatItDoes": "Stays with an age timer states a MAC aging timer or timeout value that may not match the default or configured setting.",
+            "whyWrongHere": "For \"connected route removal\", Removed from the routing table satisfies what this question tests — Stays with an age timer does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "A failed interface does not auto-convert its subnet into a static route — the connected entry is simply withdrawn.",
             "misconceptionTested": "Assuming automatic static conversion on link down",
-            "whatItDoes": "Converts to a static route describes a mechanism that could sound plausible for connected route removal.",
-            "whyWrongHere": "Given connected route removal, Removed from the routing table matches the tested behavior — Converts to a static route applies a different mechanism."
+            "whatItDoes": "Converts to a static route configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+            "whyWrongHere": "For \"connected route removal\", Removed from the routing table satisfies what this question tests — Converts to a static route does not."
           }
         ],
         "examTip": "Interface down → connected/local routes vanish immediately from the RIB."
@@ -310,32 +310,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Static routes have AD 1 by default — one higher than connected (0) but lower than any dynamic protocol."
+          "explanation": "A static route has default administrative distance 1 — more trusted than dynamic protocols."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "0 uses the wrong value. The tested fact calls for 1 — not 0.",
-            "whatItDoes": "0 describes a mechanism that could sound plausible for static AD.",
-            "whyWrongHere": "Given static AD, 1 matches the tested behavior — 0 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 0 instead of the correct 1"
+            "explanation": "AD 0 is reserved for connected routes — static is 1.",
+            "misconceptionTested": "Static AD is 0",
+            "whatItDoes": "0 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in static AD.",
+            "whyWrongHere": "For \"static AD\", 1 satisfies what this question tests — 0 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "90 uses the wrong value. The tested fact calls for 1 — not 90.",
-            "whatItDoes": "90 describes a mechanism that could sound plausible for static AD.",
-            "whyWrongHere": "Given static AD, 1 matches the tested behavior — 90 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 90 instead of the correct 1"
+            "explanation": "90 is EIGRP administrative distance — static is 1.",
+            "misconceptionTested": "Static AD is 90",
+            "whatItDoes": "90 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in static AD.",
+            "whyWrongHere": "For \"static AD\", 1 satisfies what this question tests — 90 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "110 uses the wrong value. The tested fact calls for 1 — not 110.",
-            "whatItDoes": "110 describes a mechanism that could sound plausible for static AD.",
-            "whyWrongHere": "Given static AD, 1 matches the tested behavior — 110 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 110 instead of the correct 1"
+            "explanation": "110 is OSPF — static routes default to AD 1.",
+            "misconceptionTested": "Static AD is 110",
+            "whatItDoes": "110 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in static AD.",
+            "whyWrongHere": "For \"static AD\", 1 satisfies what this question tests — 110 does not."
           }
         ],
-        "examTip": "AD picks the route source for the same prefix; longest match still wins first."
+        "examTip": "AD recall: connected 0 | static 1 | EIGRP 90 | OSPF 110 | RIP 120."
       }
     },
     {
@@ -359,32 +359,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "D = EIGRP. [90/307200] = [AD/metric]. 307200 is the EIGRP composite metric (bandwidth + delay). AD is 90."
+          "explanation": "307200 is the EIGRP composite metric — [AD/metric] format in the routing table."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Administrative distance describes a mechanism that could sound plausible for show ip route interpretation. Given show ip route interpretation, EIGRP composite metric matches the tested behavior — Administrative distance applies a different mechanism.",
-            "whatItDoes": "Administrative distance describes a mechanism that could sound plausible for show ip route interpretation.",
-            "whyWrongHere": "Given show ip route interpretation, EIGRP composite metric matches the tested behavior — Administrative distance applies a different mechanism.",
-            "misconceptionTested": "Applying \"Administrative distance\" without matching show ip route interpretation"
+            "explanation": "90 (in brackets) is the administrative distance — 307200 is the metric.",
+            "misconceptionTested": "Metric value is AD",
+            "whatItDoes": "Administrative distance points to a related idea, but not the specific behavior or value required for show ip route interpretation.",
+            "whyWrongHere": "For \"show ip route interpretation\", EIGRP composite metric satisfies what this question tests — Administrative distance does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "OSPF cost describes a mechanism that could sound plausible for show ip route interpretation. Given show ip route interpretation, EIGRP composite metric matches the tested behavior — OSPF cost applies a different mechanism.",
-            "whatItDoes": "OSPF cost describes a mechanism that could sound plausible for show ip route interpretation.",
-            "whyWrongHere": "Given show ip route interpretation, EIGRP composite metric matches the tested behavior — OSPF cost applies a different mechanism.",
-            "misconceptionTested": "Applying \"OSPF cost\" without matching show ip route interpretation"
+            "explanation": "OSPF cost appears on O routes — this is an D (EIGRP) entry.",
+            "misconceptionTested": "EIGRP metric as OSPF cost",
+            "whatItDoes": "OSPF cost points to a related idea, but not the specific behavior or value required for show ip route interpretation.",
+            "whyWrongHere": "For \"show ip route interpretation\", EIGRP composite metric satisfies what this question tests — OSPF cost does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Hop count describes a mechanism that could sound plausible for show ip route interpretation. Given show ip route interpretation, EIGRP composite metric matches the tested behavior — Hop count applies a different mechanism.",
-            "whatItDoes": "Hop count describes a mechanism that could sound plausible for show ip route interpretation.",
-            "whyWrongHere": "Given show ip route interpretation, EIGRP composite metric matches the tested behavior — Hop count applies a different mechanism.",
-            "misconceptionTested": "Applying \"Hop count\" without matching show ip route interpretation"
+            "explanation": "Hop count is RIP's metric — EIGRP uses a composite (bandwidth + delay).",
+            "misconceptionTested": "EIGRP metric as hop count",
+            "whatItDoes": "Hop count points to a related idea, but not the specific behavior or value required for show ip route interpretation.",
+            "whyWrongHere": "For \"show ip route interpretation\", EIGRP composite metric satisfies what this question tests — Hop count does not."
           }
         ],
-        "examTip": "On the exam: In [AD/metric], AD comes FIRST — Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets"
+        "examTip": "Route format: D net [90/307200] — bracket = [AD/metric]."
       }
     },
     {
@@ -407,32 +407,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The gateway of last resort message means a default route (0.0.0.0/0) is installed, pointing to 203.0.113.1."
+          "explanation": "Gateway of last resort means a default route (0.0.0.0/0) is installed."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The router cannot reach any network describes a mechanism that could sound plausible for gateway of last resort. Given gateway of last resort, A default route is installed matches the tested behavior — The router cannot reach any network applies a different mechanism.",
-            "whatItDoes": "The router cannot reach any network describes a mechanism that could sound plausible for gateway of last resort.",
-            "whyWrongHere": "Given gateway of last resort, A default route is installed matches the tested behavior — The router cannot reach any network applies a different mechanism.",
-            "misconceptionTested": "Applying \"The router cannot reach any network\" without matching gateway of last resort"
+            "explanation": "A default route means the router can forward unknown destinations — not that it reaches nothing.",
+            "misconceptionTested": "Default route means unreachable",
+            "whatItDoes": "The router cannot reach any network points to a related idea, but not the specific behavior or value required for gateway of last resort.",
+            "whyWrongHere": "For \"gateway of last resort\", A default route is installed satisfies what this question tests — The router cannot reach any network does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The router is a DHCP server describes a mechanism that could sound plausible for gateway of last resort. Given gateway of last resort, A default route is installed matches the tested behavior — The router is a DHCP server applies a different mechanism.",
-            "whatItDoes": "The router is a DHCP server describes a mechanism that could sound plausible for gateway of last resort.",
-            "whyWrongHere": "Given gateway of last resort, A default route is installed matches the tested behavior — The router is a DHCP server applies a different mechanism.",
-            "misconceptionTested": "Applying \"The router is a DHCP server\" without matching gateway of last resort"
+            "explanation": "DHCP server role is unrelated to gateway of last resort.",
+            "misconceptionTested": "Default route means DHCP server",
+            "whatItDoes": "The router is a DHCP server points to a related idea, but not the specific behavior or value required for gateway of last resort.",
+            "whyWrongHere": "For \"gateway of last resort\", A default route is installed satisfies what this question tests — The router is a DHCP server does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "OSPF elected a DR describes a mechanism that could sound plausible for gateway of last resort. Given gateway of last resort, A default route is installed matches the tested behavior — OSPF elected a DR applies a different mechanism.",
-            "whatItDoes": "OSPF elected a DR describes a mechanism that could sound plausible for gateway of last resort.",
-            "whyWrongHere": "Given gateway of last resort, A default route is installed matches the tested behavior — OSPF elected a DR applies a different mechanism.",
-            "misconceptionTested": "Applying \"OSPF elected a DR\" without matching gateway of last resort"
+            "explanation": "OSPF DR election is neighbor-related — not default routing.",
+            "misconceptionTested": "Default route means OSPF DR",
+            "whatItDoes": "OSPF elected a DR states an OSPF DR/BDR election outcome or role that may not apply on this segment.",
+            "whyWrongHere": "For \"gateway of last resort\", A default route is installed satisfies what this question tests — OSPF elected a DR does not."
           }
         ],
-        "examTip": "On the exam: In [AD/metric], AD comes FIRST — Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets"
+        "examTip": "Default route: S* 0.0.0.0/0 or O*E2 0.0.0.0/0 — asterisk marks candidate default."
       }
     },
     {
@@ -455,32 +455,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "An asterisk marks the route as the best path for that prefix or indicates it as the candidate default route (for the gateway of last resort)."
+          "explanation": "The asterisk (*) marks the best match route or a candidate default route."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The route is unreachable describes a mechanism that could sound plausible for asterisk in routing table. Given asterisk in routing table, It is the best match or candidate default matches the tested behavior — The route is unreachable applies a different mechanism.",
-            "whatItDoes": "The route is unreachable describes a mechanism that could sound plausible for asterisk in routing table.",
-            "whyWrongHere": "Given asterisk in routing table, It is the best match or candidate default matches the tested behavior — The route is unreachable applies a different mechanism.",
-            "misconceptionTested": "Applying \"The route is unreachable\" without matching asterisk in routing table"
+            "explanation": "Unreachable routes don't appear as active entries — * means preferred/default candidate.",
+            "misconceptionTested": "Asterisk means unreachable",
+            "whatItDoes": "The route is unreachable points to a related idea, but not the specific behavior or value required for asterisk in routing table.",
+            "whyWrongHere": "For \"asterisk in routing table\", It is the best match or candidate default satisfies what this question tests — The route is unreachable does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The route is more than 24 hours old describes a mechanism that could sound plausible for asterisk in routing table. Given asterisk in routing table, It is the best match or candidate default matches the tested behavior — The route is more than 24 hours old applies a different mechanism.",
-            "whatItDoes": "The route is more than 24 hours old describes a mechanism that could sound plausible for asterisk in routing table.",
-            "whyWrongHere": "Given asterisk in routing table, It is the best match or candidate default matches the tested behavior — The route is more than 24 hours old applies a different mechanism.",
-            "misconceptionTested": "Applying \"The route is more than 24 hours old\" without matching asterisk in routing table"
+            "explanation": "Route age is shown in the time column — not by the asterisk.",
+            "misconceptionTested": "Asterisk means old route",
+            "whatItDoes": "The route is more than 24 hours old points to a related idea, but not the specific behavior or value required for asterisk in routing table.",
+            "whyWrongHere": "For \"asterisk in routing table\", It is the best match or candidate default satisfies what this question tests — The route is more than 24 hours old does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The route requires manual activation describes a mechanism that could sound plausible for asterisk in routing table. Given asterisk in routing table, It is the best match or candidate default matches the tested behavior — The route requires manual activation applies a different mechanism.",
-            "whatItDoes": "The route requires manual activation describes a mechanism that could sound plausible for asterisk in routing table.",
-            "whyWrongHere": "Given asterisk in routing table, It is the best match or candidate default matches the tested behavior — The route requires manual activation applies a different mechanism.",
-            "misconceptionTested": "Applying \"The route requires manual activation\" without matching asterisk in routing table"
+            "explanation": "All installed routes are active — * indicates default/best status.",
+            "misconceptionTested": "Asterisk means manual activation needed",
+            "whatItDoes": "The route requires manual activation points to a related idea, but not the specific behavior or value required for asterisk in routing table.",
+            "whyWrongHere": "For \"asterisk in routing table\", It is the best match or candidate default satisfies what this question tests — The route requires manual activation does not."
           }
         ],
-        "examTip": "On the exam: In [AD/metric], AD comes FIRST — Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets"
+        "examTip": "next to static default = gateway of last resort is using this route."
       }
     },
     {
@@ -516,22 +516,22 @@
             "choiceIndex": 0,
             "explanation": "Plain S is a static route — S* specifically indicates the default/static gateway of last resort entry.",
             "misconceptionTested": "Ignoring asterisk on static default route code",
-            "whatItDoes": "Static route describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Default route matches the tested behavior — Static route applies a different mechanism."
+            "whatItDoes": "Static route configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+            "whyWrongHere": "Static routing (routing table): Default route uses the right next-hop or exit interface — Static route misconfigures recursive or floating static behavior."
           },
           {
             "choiceIndex": 2,
             "explanation": "Dynamic routes use O, D, R, etc. — S is static; the * denotes default route candidacy.",
             "misconceptionTested": "Calling S* a dynamic route",
-            "whatItDoes": "Dynamic route describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Default route matches the tested behavior — Dynamic route applies a different mechanism."
+            "whatItDoes": "Dynamic route points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", Default route satisfies what this question tests — Dynamic route does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "OSPF routes show O — S* is static default, not OSPF.",
             "misconceptionTested": "Reading S* as OSPF",
-            "whatItDoes": "OSPF route describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Default route matches the tested behavior — OSPF route applies a different mechanism."
+            "whatItDoes": "OSPF route points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", Default route satisfies what this question tests — OSPF route does not."
           }
         ],
         "examTip": "S* in routing table = default route candidate (gateway of last resort)."
@@ -570,22 +570,22 @@
             "choiceIndex": 0,
             "explanation": "Administrative distance is the first number inside the brackets (110 for OSPF) — the post-slash value is metric.",
             "misconceptionTested": "Reading post-slash value as administrative distance",
-            "whatItDoes": "The 4 represents the administrative distance. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The 4 represents the metric. matches the tested behavior — The 4 represents the administrative distance. applies a different mechanism."
+            "whatItDoes": "The 4 represents the administrative distance. points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", The 4 represents the metric. satisfies what this question tests — The 4 represents the administrative distance. does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "The leading route code (O) identifies the protocol — the bracketed numbers are AD and metric, not protocol ID.",
             "misconceptionTested": "Interpreting bracket digits as protocol identifier",
-            "whatItDoes": "The 4 represents the protocol. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The 4 represents the metric. matches the tested behavior — The 4 represents the protocol. applies a different mechanism."
+            "whatItDoes": "The 4 represents the protocol. points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", The 4 represents the metric. satisfies what this question tests — The 4 represents the protocol. does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Route position in the table is not encoded in [AD/metric] — that tuple is trust and cost for the prefix.",
             "misconceptionTested": "Treating bracket values as table row index",
             "whatItDoes": "The 4 represents the position in the routing table. relies on a router routing table rather than switch MAC/CAM forwarding.",
-            "whyWrongHere": "Given routing table, The 4 represents the metric. matches the tested behavior — The 4 represents the position in the routing table. applies a different mechanism."
+            "whyWrongHere": "For \"routing table\", The 4 represents the metric. satisfies what this question tests — The 4 represents the position in the routing table. does not."
           }
         ],
         "examTip": "show ip route brackets: [AD / metric] — slash separates trust from protocol cost."
@@ -615,35 +615,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes\"."
+          "explanation": "show ip route <prefix> <mask> longer-prefixes filters to show all more-specific routes within that range."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router#show ip route 160.45.23.0 255.255.255.0 describes a mechanism that could sound plausible for routing table. Given routing table, Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes matches the tested behavior — Router#show ip route 160.45.23.0 255.255.255.0 applies a different mechanism.",
-            "whatItDoes": "Router#show ip route 160.45.23.0 255.255.255.0 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes matches the tested behavior — Router#show ip route 160.45.23.0 255.255.255.0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip route 160.45.23.0 255\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "show ip route <prefix> <mask> shows only the exact match — longer-prefixes shows the subset.",
+            "misconceptionTested": "Exact match shows subset routes",
+            "whatItDoes": "Router#show ip route 160.45.23.0 255.255.255.0 is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (routing table): Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes inspects the right table or state — Router#show ip route 160.45.23.0 255.255.255.0 shows unrelated information."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#show ip route bgp describes a mechanism that could sound plausible for routing table. Given routing table, Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes matches the tested behavior — Router#show ip route bgp applies a different mechanism.",
-            "whatItDoes": "Router#show ip route bgp describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes matches the tested behavior — Router#show ip route bgp applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip route bgp\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "show ip route bgp filters by protocol — not by prefix subset.",
+            "misconceptionTested": "BGP filter for prefix subset",
+            "whatItDoes": "Router#show ip route bgp applies another routing protocol's behavior instead of OSPF-specific rules.",
+            "whyWrongHere": "Verification command (routing table): Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes inspects the right table or state — Router#show ip route bgp shows unrelated information."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show ip route describes a mechanism that could sound plausible for routing table. Given routing table, Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes matches the tested behavior — Router#show ip route applies a different mechanism.",
-            "whatItDoes": "Router#show ip route describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes matches the tested behavior — Router#show ip route applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip route\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "show ip route shows everything — no subset filtering without longer-prefixes keyword.",
+            "misconceptionTested": "Full table for subset view",
+            "whatItDoes": "Router#show ip route is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (routing table): Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes inspects the right table or state — Router#show ip route shows unrelated information."
           }
         ],
-        "examTip": "Re-read the stem constraint for routing table before picking a familiar-sounding wrong term."
+        "examTip": "show ip route <net> <mask> longer-prefixes → all child routes within that summary — great for troubleshooting."
       }
     },
     {
@@ -672,35 +669,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"The exit interface Serial 0/0\"."
+          "explanation": "The routing table shows next hop via Serial 0/0 for that destination — traffic exits that interface."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The gateway 172.16.1.200 describes a mechanism that could sound plausible for routing table. Given routing table, The exit interface Serial 0/0 matches the tested behavior — The gateway 172.16.1.200 applies a different mechanism.",
-            "whatItDoes": "The gateway 172.16.1.200 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The exit interface Serial 0/0 matches the tested behavior — The gateway 172.16.1.200 applies a different mechanism.",
-            "misconceptionTested": "Applying \"The gateway 172.16.1.200\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "Gateway 172.16.1.200 is not the matched route's next-hop for 192.168.1.5 per the exhibit.",
+            "misconceptionTested": "Wrong next-hop from different route entry",
+            "whatItDoes": "The gateway 172.16.1.200 points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", The exit interface Serial 0/0 satisfies what this question tests — The gateway 172.16.1.200 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The gateway 172.16.1.100 describes a mechanism that could sound plausible for routing table. Given routing table, The exit interface Serial 0/0 matches the tested behavior — The gateway 172.16.1.100 applies a different mechanism.",
-            "whatItDoes": "The gateway 172.16.1.100 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The exit interface Serial 0/0 matches the tested behavior — The gateway 172.16.1.100 applies a different mechanism.",
-            "misconceptionTested": "Applying \"The gateway 172.16.1.100\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "172.16.1.100 does not match the route entry for the destination prefix.",
+            "misconceptionTested": "Misread next-hop address",
+            "whatItDoes": "The gateway 172.16.1.100 points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", The exit interface Serial 0/0 satisfies what this question tests — The gateway 172.16.1.100 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The exit interface Ethernet0 describes a mechanism that could sound plausible for routing table. Given routing table, The exit interface Serial 0/0 matches the tested behavior — The exit interface Ethernet0 applies a different mechanism.",
-            "whatItDoes": "The exit interface Ethernet0 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The exit interface Serial 0/0 matches the tested behavior — The exit interface Ethernet0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"The exit interface Ethernet0\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "Ethernet0 is not the exit interface for this route — Serial 0/0 is.",
+            "misconceptionTested": "Wrong exit interface",
+            "whatItDoes": "The exit interface Ethernet0 points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", The exit interface Serial 0/0 satisfies what this question tests — The exit interface Ethernet0 does not."
           }
         ],
-        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
+        "examTip": "Read show ip route line-by-line: match longest prefix → read next-hop or exit interface."
       }
     },
     {
@@ -727,35 +721,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"S 203.80.32.0/19 is directly connected, Serial 0/0/0\"."
+          "explanation": "203.80.53.22/19 → network is 203.80.32.0/19 (third octet: 32–63 block). Connected route shows that prefix."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "S 203.80.16.0/19 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for routing table. Given routing table, S 203.80.32.0/19 is directly connected, Serial 0/0/0 matches the tested behavior — S 203.80.16.0/19 is directly connected, Serial 0/0/0 applies a different mechanism.",
-            "whatItDoes": "S 203.80.16.0/19 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, S 203.80.32.0/19 is directly connected, Serial 0/0/0 matches the tested behavior — S 203.80.16.0/19 is directly connected, Serial 0/0/0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"S 203.80.16.0/19 is directly connect\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "203.80.16.0/19 is the prior /19 block (16–31) — .53 falls in 32–63.",
+            "misconceptionTested": "Wrong /19 boundary for .53",
+            "whatItDoes": "S 203.80.16.0/19 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (routing table): S 203.80.32.0/19 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 203.80.16.0/19 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 2,
-            "explanation": "S 203.80.48.0/19 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for routing table. Given routing table, S 203.80.32.0/19 is directly connected, Serial 0/0/0 matches the tested behavior — S 203.80.48.0/19 is directly connected, Serial 0/0/0 applies a different mechanism.",
-            "whatItDoes": "S 203.80.48.0/19 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, S 203.80.32.0/19 is directly connected, Serial 0/0/0 matches the tested behavior — S 203.80.48.0/19 is directly connected, Serial 0/0/0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"S 203.80.48.0/19 is directly connect\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "203.80.48.0/19 is the next /19 block (48–63) — .53 is in 32–63 which starts at .32.",
+            "misconceptionTested": "Misaligned /19 starting at .48",
+            "whatItDoes": "S 203.80.48.0/19 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (routing table): S 203.80.32.0/19 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 203.80.48.0/19 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 3,
-            "explanation": "S 203.80.53.22/19 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for routing table. Given routing table, S 203.80.32.0/19 is directly connected, Serial 0/0/0 matches the tested behavior — S 203.80.53.22/19 is directly connected, Serial 0/0/0 applies a different mechanism.",
-            "whatItDoes": "S 203.80.53.22/19 is directly connected, Serial 0/0/0 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, S 203.80.32.0/19 is directly connected, Serial 0/0/0 matches the tested behavior — S 203.80.53.22/19 is directly connected, Serial 0/0/0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"S 203.80.53.22/19 is directly connec\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "Host address with /19 is not a valid network route — IOS shows the network prefix .32.0/19.",
+            "misconceptionTested": "Host address as network route",
+            "whatItDoes": "S 203.80.53.22/19 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (routing table): S 203.80.32.0/19 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 203.80.53.22/19 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
           }
         ],
-        "examTip": "Re-read the stem constraint for routing table before picking a familiar-sounding wrong term."
+        "examTip": "/19 boundaries: 0, 32, 64, 96… | .53 is in 32–63 → network 203.80.32.0/19."
       }
     },
     {
@@ -783,35 +774,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"The 10.0.0.0/8 is a summarization of the routes in the table.\"."
+          "explanation": "10.0.0.0/8 is variably subnetted is IOS's parent route summary header — it groups child routes, not itself a route."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The 10.0.0.0/8 is a route in the routing table. relies on a router routing table rather than switch MAC/CAM forwarding. Given routing table, The 10.0.0.0/8 is a summarization of the routes in the table. matches the tested behavior — The 10.0.0.0/8 is a route in the routing table. applies a different mechanism.",
+            "explanation": "The line is a grouping header for subnets underneath — not an actual route in the RIB.",
+            "misconceptionTested": "Parent header as routable entry",
             "whatItDoes": "The 10.0.0.0/8 is a route in the routing table. relies on a router routing table rather than switch MAC/CAM forwarding.",
-            "whyWrongHere": "Given routing table, The 10.0.0.0/8 is a summarization of the routes in the table. matches the tested behavior — The 10.0.0.0/8 is a route in the routing table. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The 10.0.0.0/8 is a route in the rou\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"routing table\", The 10.0.0.0/8 is a summarization of the routes in the table. satisfies what this question tests — The 10.0.0.0/8 is a route in the routing table. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The 10.0.0.0/8 is the router’s network address. describes a mechanism that could sound plausible for routing table. Given routing table, The 10.0.0.0/8 is a summarization of the routes in the table. matches the tested behavior — The 10.0.0.0/8 is the router’s network address. applies a different mechanism.",
-            "whatItDoes": "The 10.0.0.0/8 is the router’s network address. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The 10.0.0.0/8 is a summarization of the routes in the table. matches the tested behavior — The 10.0.0.0/8 is the router’s network address. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The 10.0.0.0/8 is the router’s netwo\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "It's not the router's own address — it's a display summary for child prefixes.",
+            "misconceptionTested": "Summary header as router address",
+            "whatItDoes": "The 10.0.0.0/8 is the router’s network address. states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"routing table\", The 10.0.0.0/8 is a summarization of the routes in the table. satisfies what this question tests — The 10.0.0.0/8 is the router’s network address. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The 10.0.0.0/8 has been populated from another router. describes a mechanism that could sound plausible for routing table. Given routing table, The 10.0.0.0/8 is a summarization of the routes in the table. matches the tested behavior — The 10.0.0.0/8 has been populated from another router. applies a different mechanism.",
-            "whatItDoes": "The 10.0.0.0/8 has been populated from another router. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The 10.0.0.0/8 is a summarization of the routes in the table. matches the tested behavior — The 10.0.0.0/8 has been populated from another router. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The 10.0.0.0/8 has been populated fr\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "No single neighbor populated this — it's IOS grouping multiple subnets under the classful parent.",
+            "misconceptionTested": "Neighbor-learned parent route",
+            "whatItDoes": "The 10.0.0.0/8 has been populated from another router. states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"routing table\", The 10.0.0.0/8 is a summarization of the routes in the table. satisfies what this question tests — The 10.0.0.0/8 has been populated from another router. does not."
           }
         ],
-        "examTip": "Route table: C/L = AD 0; compare AD between sources, metric within one protocol."
+        "examTip": "\"variably subnetted, X subnets, Y masks\" = IOS display header grouping child routes — not a route itself."
       }
     },
     {
@@ -838,35 +826,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"The number represents the time the route has been in the routing table.\"."
+          "explanation": "The 00:05:00 timestamp shows how long the route has been in the routing table (5 minutes since last update)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The number represents the current time. describes a mechanism that could sound plausible for routing table. Given routing table, The number represents the time the route has been in the routing table. matches the tested behavior — The number represents the current time. applies a different mechanism.",
-            "whatItDoes": "The number represents the current time. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The number represents the time the route has been in the routing table. matches the tested behavior — The number represents the current time. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The number represents the current ti\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "It's not a clock time — it's an elapsed duration since the route was last refreshed.",
+            "misconceptionTested": "Timestamp as current time",
+            "whatItDoes": "The number represents the current time. points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", The number represents the time the route has been in the routing table. satisfies what this question tests — The number represents the current time. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The number represents the delay in microseconds of the connection. describes a mechanism that could sound plausible for routing table. Given routing table, The number represents the time the route has been in the routing table. matches the tested behavior — The number represents the delay in microseconds of the connection. applies a different mechanism.",
-            "whatItDoes": "The number represents the delay in microseconds of the connection. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The number represents the time the route has been in the routing table. matches the tested behavior — The number represents the delay in microseconds of the connection. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The number represents the delay in m\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "Delay is part of the metric inside the brackets — the time field is route age.",
+            "misconceptionTested": "Time field as connection delay",
+            "whatItDoes": "The number represents the delay in microseconds of the connection. points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", The number represents the time the route has been in the routing table. satisfies what this question tests — The number represents the delay in microseconds of the connection. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The number represents the time the interface has been up. describes a mechanism that could sound plausible for routing table. Given routing table, The number represents the time the route has been in the routing table. matches the tested behavior — The number represents the time the interface has been up. applies a different mechanism.",
-            "whatItDoes": "The number represents the time the interface has been up. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The number represents the time the route has been in the routing table. matches the tested behavior — The number represents the time the interface has been up. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The number represents the time the i\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "Interface uptime is shown in show interfaces — the route table time is route age.",
+            "misconceptionTested": "Route time as interface uptime",
+            "whatItDoes": "The number represents the time the interface has been up. points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", The number represents the time the route has been in the routing table. satisfies what this question tests — The number represents the time the interface has been up. does not."
           }
         ],
-        "examTip": "Route table: C/L = AD 0; compare AD between sources, metric within one protocol."
+        "examTip": "Route table time (hh:mm:ss) = how long since this route was refreshed/installed — resets on update."
       }
     },
     {
@@ -895,35 +880,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Interface Serial 0/0/1\"."
+          "explanation": "The static route to 192.168.4.0/24 points to next-hop 10.0.0.1 — if that resolves via Serial 0/0/1, traffic exits there."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Interface Serial 0/2/0 describes a mechanism that could sound plausible for routing table. Given routing table, Interface Serial 0/0/1 matches the tested behavior — Interface Serial 0/2/0 applies a different mechanism.",
-            "whatItDoes": "Interface Serial 0/2/0 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Interface Serial 0/0/1 matches the tested behavior — Interface Serial 0/2/0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Interface Serial 0/2/0\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "Serial 0/2/0 is not the exit interface for the route matching 192.168.4.85.",
+            "misconceptionTested": "Wrong serial interface for destination",
+            "whatItDoes": "Interface Serial 0/2/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (routing table): Interface Serial 0/0/1 matches prefix, shortening, or assignment rules — Interface Serial 0/2/0 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 1,
-            "explanation": "IP address 192.168.4.2 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given routing table, Interface Serial 0/0/1 matches the tested behavior — IP address 192.168.4.2 applies a different mechanism.",
+            "explanation": "192.168.4.2 is in the destination network, not the next hop or exit interface.",
+            "misconceptionTested": "Destination IP as next hop",
             "whatItDoes": "IP address 192.168.4.2 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given routing table, Interface Serial 0/0/1 matches the tested behavior — IP address 192.168.4.2 applies a different mechanism.",
-            "misconceptionTested": "Applying \"IP address 192.168.4.2\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"routing table\", Interface Serial 0/0/1 satisfies what this question tests — IP address 192.168.4.2 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "IP address 198.22.34.3 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given routing table, Interface Serial 0/0/1 matches the tested behavior — IP address 198.22.34.3 applies a different mechanism.",
+            "explanation": "198.22.34.3 does not appear in the routing table excerpt for this destination.",
+            "misconceptionTested": "Random IP as route exit",
             "whatItDoes": "IP address 198.22.34.3 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given routing table, Interface Serial 0/0/1 matches the tested behavior — IP address 198.22.34.3 applies a different mechanism.",
-            "misconceptionTested": "Applying \"IP address 198.22.34.3\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"routing table\", Interface Serial 0/0/1 satisfies what this question tests — IP address 198.22.34.3 does not."
           }
         ],
-        "examTip": "Route table: C/L = AD 0; compare AD between sources, metric within one protocol."
+        "examTip": "Static route → follow next-hop recursion to find actual exit interface in show ip route."
       }
     },
     {
@@ -957,22 +939,22 @@
             "choiceIndex": 1,
             "explanation": "AD 0 is reserved for directly connected networks — static routes default to 1.",
             "misconceptionTested": "Assigning connected AD to static routes",
-            "whatItDoes": "AD of 0 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, AD of 1 matches the tested behavior — AD of 0 applies a different mechanism."
+            "whatItDoes": "AD of 0 points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", AD of 1 satisfies what this question tests — AD of 0 does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "AD 2 is not the static default — Cisco static routes use AD 1 unless overridden.",
             "misconceptionTested": "Selecting AD 2 for static routes",
-            "whatItDoes": "AD of 2 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, AD of 1 matches the tested behavior — AD of 2 applies a different mechanism."
+            "whatItDoes": "AD of 2 points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", AD of 1 satisfies what this question tests — AD of 2 does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "AD 255 marks an unusable route — static defaults to 1, the most trusted non-connected source.",
             "misconceptionTested": "Believing static routes use AD 255",
-            "whatItDoes": "AD of 255 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, AD of 1 matches the tested behavior — AD of 255 applies a different mechanism."
+            "whatItDoes": "AD of 255 points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", AD of 1 satisfies what this question tests — AD of 255 does not."
           }
         ],
         "examTip": "Static route default AD = 1; connected = 0; EIGRP internal = 90; OSPF = 110; RIP = 120."
@@ -1008,22 +990,22 @@
             "choiceIndex": 0,
             "explanation": "AD 90 belongs to internal EIGRP — RIP is 120.",
             "misconceptionTested": "Confusing EIGRP AD with RIP",
-            "whatItDoes": "AD of 90 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, AD of 120 matches the tested behavior — AD of 90 applies a different mechanism."
+            "whatItDoes": "AD of 90 points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", AD of 120 satisfies what this question tests — AD of 90 does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "AD 100 is not RIP — it is not a standard Cisco AD for these common IGPs.",
             "misconceptionTested": "Selecting nonstandard AD 100 for RIP",
-            "whatItDoes": "AD of 100 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, AD of 120 matches the tested behavior — AD of 100 applies a different mechanism."
+            "whatItDoes": "AD of 100 points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", AD of 120 satisfies what this question tests — AD of 100 does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "AD 110 is OSPF — RIP sits lower in the trust order at 120.",
             "misconceptionTested": "Assigning OSPF AD to RIP",
-            "whatItDoes": "AD of 110 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, AD of 120 matches the tested behavior — AD of 110 applies a different mechanism."
+            "whatItDoes": "AD of 110 points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", AD of 120 satisfies what this question tests — AD of 110 does not."
           }
         ],
         "examTip": "Memorize the ladder: connected 0 → static 1 → EIGRP 90 → OSPF 110 → RIP 120."
@@ -1051,35 +1033,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"ADs define reliability of routing protocols.\"."
+          "explanation": "Administrative Distance rates the trustworthiness/reliability of a routing source — lower AD = more trusted."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "ADs define protocol standards. describes a mechanism that could sound plausible for routing table. Given routing table, ADs define reliability of routing protocols. matches the tested behavior — ADs define protocol standards. applies a different mechanism.",
-            "whatItDoes": "ADs define protocol standards. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, ADs define reliability of routing protocols. matches the tested behavior — ADs define protocol standards. applies a different mechanism.",
-            "misconceptionTested": "Applying \"ADs define protocol standards.\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "AD does not define protocol standards — it's a preference ranking between sources.",
+            "misconceptionTested": "AD as protocol standard definition",
+            "whatItDoes": "ADs define protocol standards. points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", ADs define reliability of routing protocols. satisfies what this question tests — ADs define protocol standards. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "ADs allow for the shortest distance between routes. describes a mechanism that could sound plausible for routing table. Given routing table, ADs define reliability of routing protocols. matches the tested behavior — ADs allow for the shortest distance between routes. applies a different mechanism.",
-            "whatItDoes": "ADs allow for the shortest distance between routes. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, ADs define reliability of routing protocols. matches the tested behavior — ADs allow for the shortest distance between routes. applies a different mechanism.",
-            "misconceptionTested": "Applying \"ADs allow for the shortest distance \" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "\"Shortest distance\" describes the metric — AD compares sources, not paths.",
+            "misconceptionTested": "AD as shortest path metric",
+            "whatItDoes": "ADs allow for the shortest distance between routes. points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", ADs define reliability of routing protocols. satisfies what this question tests — ADs allow for the shortest distance between routes. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "ADs are programmed by the administrator for path selection. describes a mechanism that could sound plausible for routing table. Given routing table, ADs define reliability of routing protocols. matches the tested behavior — ADs are programmed by the administrator for path selection. applies a different mechanism.",
-            "whatItDoes": "ADs are programmed by the administrator for path selection. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, ADs define reliability of routing protocols. matches the tested behavior — ADs are programmed by the administrator for path selection. applies a different mechanism.",
-            "misconceptionTested": "Applying \"ADs are programmed by the administra\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "Default ADs are fixed by IOS (not admin-programmed) — though they can be tuned.",
+            "misconceptionTested": "AD programmed by admin",
+            "whatItDoes": "ADs are programmed by the administrator for path selection. implies many-inside-to-few-outside PAT/overload translation.",
+            "whyWrongHere": "For \"routing table\", ADs define reliability of routing protocols. satisfies what this question tests — ADs are programmed by the administrator for path selection. does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for routing table before picking a familiar-sounding wrong term."
+        "examTip": "AD = trust rating (Connected 0, Static 1, EIGRP 90, OSPF 110, RIP 120) — lower wins between protocols."
       }
     },
     {
@@ -1111,22 +1090,22 @@
             "choiceIndex": 1,
             "explanation": "AD 1 is the default for static routes — connected interfaces are more trusted at 0.",
             "misconceptionTested": "Equating connected AD with static route AD",
-            "whatItDoes": "The AD is 1. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The AD is 0. matches the tested behavior — The AD is 1. applies a different mechanism."
+            "whatItDoes": "The AD is 1. points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", The AD is 0. satisfies what this question tests — The AD is 1. does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "AD 5 is not used for connected routes on Cisco IOS — connected is always 0.",
             "misconceptionTested": "Inventing AD 5 for connected networks",
-            "whatItDoes": "The AD is 5. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The AD is 0. matches the tested behavior — The AD is 5. applies a different mechanism."
+            "whatItDoes": "The AD is 5. points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", The AD is 0. satisfies what this question tests — The AD is 5. does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Connected networks absolutely have an AD — it is 0, the lowest (best) value.",
             "misconceptionTested": "Believing connected routes lack administrative distance",
-            "whatItDoes": "Directly connected networks do not have an AD. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The AD is 0. matches the tested behavior — Directly connected networks do not have an AD. applies a different mechanism."
+            "whatItDoes": "Directly connected networks do not have an AD. points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", The AD is 0. satisfies what this question tests — Directly connected networks do not have an AD. does not."
           }
         ],
         "examTip": "Connected = AD 0 — always wins over static or dynamic unless overridden by policy."
@@ -1162,22 +1141,22 @@
             "choiceIndex": 1,
             "explanation": "AD 100 is not internal EIGRP — EIGRP summary/external routes may differ, but internal is 90.",
             "misconceptionTested": "Selecting AD 100 for internal EIGRP",
-            "whatItDoes": "100 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, 90 matches the tested behavior — 100 applies a different mechanism."
+            "whatItDoes": "100 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in routing table.",
+            "whyWrongHere": "For \"routing table\", 90 satisfies what this question tests — 100 does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "AD 110 is OSPF — internal EIGRP is more trusted at 90.",
             "misconceptionTested": "Assigning OSPF AD to EIGRP",
-            "whatItDoes": "110 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, 90 matches the tested behavior — 110 applies a different mechanism."
+            "whatItDoes": "110 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in routing table.",
+            "whyWrongHere": "For \"routing table\", 90 satisfies what this question tests — 110 does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "AD 120 is RIP — EIGRP internal routes are preferred at 90.",
             "misconceptionTested": "Confusing RIP AD with EIGRP",
-            "whatItDoes": "120 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, 90 matches the tested behavior — 120 applies a different mechanism."
+            "whatItDoes": "120 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in routing table.",
+            "whyWrongHere": "For \"routing table\", 90 satisfies what this question tests — 120 does not."
           }
         ],
         "examTip": "EIGRP internal AD 90; external/summary EIGRP routes use 170 — know both."
@@ -1208,35 +1187,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"The AD is a rating of trust when multiple routes exist to the same destination.\"."
+          "explanation": "AD is a rating of trustworthiness — when multiple routing sources offer the same prefix, lowest AD wins."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The AD is a metric that routing protocols use to select the best route. reflects a common trap: Comparing metrics across routing protocols. Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc.",
-            "whatItDoes": "The AD is a metric that routing protocols use to select the best route. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The AD is a rating of trust when multiple routes exist to the same destination. matches the tested behavior — The AD is a metric that routing protocols use to select the best route. applies a different mechanism.",
-            "misconceptionTested": "Comparing metrics across routing protocols",
-            "needsExplanationReview": true
+            "explanation": "Metric is used within a protocol to select best path — AD selects between protocols.",
+            "misconceptionTested": "AD as intra-protocol metric",
+            "whatItDoes": "The AD is a metric that routing protocols use to select the best route. points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", The AD is a rating of trust when multiple routes exist to the same destination. satisfies what this question tests — The AD is a metric that routing protocols use to select the best route. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The AD is a value assigned by network administrators for route selection. reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
-            "whatItDoes": "The AD is a value assigned by network administrators for route selection. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The AD is a rating of trust when multiple routes exist to the same destination. matches the tested behavior — The AD is a value assigned by network administrators for route selection. applies a different mechanism.",
-            "misconceptionTested": "A lower metric can beat a more-specific route",
-            "needsExplanationReview": true
+            "explanation": "Default ADs are IOS-defined — admins can change them but they're not \"assigned by admins\" primarily.",
+            "misconceptionTested": "AD as admin-assigned value",
+            "whatItDoes": "The AD is a value assigned by network administrators for route selection. points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", The AD is a rating of trust when multiple routes exist to the same destination. satisfies what this question tests — The AD is a value assigned by network administrators for route selection. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The AD is a value associated with the cost to the destination. reflects a common trap: Assuming 1G and 10G have different OSPF cost by default. Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth.",
-            "whatItDoes": "The AD is a value associated with the cost to the destination. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The AD is a rating of trust when multiple routes exist to the same destination. matches the tested behavior — The AD is a value associated with the cost to the destination. applies a different mechanism.",
-            "misconceptionTested": "Assuming 1G and 10G have different OSPF cost by default",
-            "needsExplanationReview": true
+            "explanation": "\"Cost to destination\" describes the metric — AD is about source reliability.",
+            "misconceptionTested": "AD as cost metric",
+            "whatItDoes": "The AD is a value associated with the cost to the destination. points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", The AD is a rating of trust when multiple routes exist to the same destination. satisfies what this question tests — The AD is a value associated with the cost to the destination. does not."
           }
         ],
-        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
+        "examTip": "AD answers: \"which routing source do I trust more?\" | Metric answers: \"which path is best within that source?\""
       }
     },
     {
@@ -1263,35 +1239,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Bandwidth\"."
+          "explanation": "EIGRP composite metric uses bandwidth (and delay by default) — bandwidth must be set correctly for accurate path selection."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Delay describes a mechanism that could sound plausible for routing table. Given routing table, Bandwidth matches the tested behavior — Delay applies a different mechanism.",
-            "whatItDoes": "Delay describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Bandwidth matches the tested behavior — Delay applies a different mechanism.",
-            "misconceptionTested": "Applying \"Delay\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "Delay is also used by default — but the question asks what must be configured, and bandwidth is the primary.",
+            "misconceptionTested": "Delay as sole EIGRP metric input",
+            "whatItDoes": "Delay points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", Bandwidth satisfies what this question tests — Delay does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Reliability describes a mechanism that could sound plausible for routing table. Given routing table, Bandwidth matches the tested behavior — Reliability applies a different mechanism.",
-            "whatItDoes": "Reliability describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Bandwidth matches the tested behavior — Reliability applies a different mechanism.",
-            "misconceptionTested": "Applying \"Reliability\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "Reliability is in the formula but disabled by default (K5=0) — bandwidth/delay are default.",
+            "misconceptionTested": "Reliability as required EIGRP config",
+            "whatItDoes": "Reliability points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", Bandwidth satisfies what this question tests — Reliability does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Load describes a mechanism that could sound plausible for routing table. Given routing table, Bandwidth matches the tested behavior — Load applies a different mechanism.",
-            "whatItDoes": "Load describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Bandwidth matches the tested behavior — Load applies a different mechanism.",
-            "misconceptionTested": "Applying \"Load\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "Load is also disabled by default (K2=0) — bandwidth is the key required value.",
+            "misconceptionTested": "Load as required EIGRP config",
+            "whatItDoes": "Load points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", Bandwidth satisfies what this question tests — Load does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for routing table before picking a familiar-sounding wrong term."
+        "examTip": "EIGRP default metric: bandwidth + delay (K1=K3=1, K2=K4=K5=0) — set bandwidth accurately on serial links."
       }
     },
     {
@@ -1321,35 +1294,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"EIGRP\"."
+          "explanation": "AD 90 = EIGRP (internal). EIGRP routes appear with [90/metric] in show ip route."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "IGRP describes a mechanism that could sound plausible for routing table. Given routing table, EIGRP matches the tested behavior — IGRP applies a different mechanism.",
-            "whatItDoes": "IGRP describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — IGRP applies a different mechanism.",
-            "misconceptionTested": "Applying \"IGRP\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "IGRP AD was 100 — and IGRP is deprecated/removed from modern IOS.",
+            "misconceptionTested": "AD 90 for IGRP",
+            "whatItDoes": "IGRP points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", EIGRP satisfies what this question tests — IGRP does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "OSPF describes a mechanism that could sound plausible for routing table. Given routing table, EIGRP matches the tested behavior — OSPF applies a different mechanism.",
-            "whatItDoes": "OSPF describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — OSPF applies a different mechanism.",
-            "misconceptionTested": "Applying \"OSPF\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "OSPF AD is 110, not 90.",
+            "misconceptionTested": "AD 90 for OSPF",
+            "whatItDoes": "OSPF points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", EIGRP satisfies what this question tests — OSPF does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "RIP describes a mechanism that could sound plausible for routing table. Given routing table, EIGRP matches the tested behavior — RIP applies a different mechanism.",
-            "whatItDoes": "RIP describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — RIP applies a different mechanism.",
-            "misconceptionTested": "Applying \"RIP\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "RIP AD is 120 — much higher than 90.",
+            "misconceptionTested": "AD 90 for RIP",
+            "whatItDoes": "RIP applies another routing protocol's behavior instead of OSPF-specific rules.",
+            "whyWrongHere": "For \"routing table\", EIGRP satisfies what this question tests — RIP does not."
           }
         ],
-        "examTip": "AD picks the route source for the same prefix; longest match still wins first."
+        "examTip": "AD quick ref: Connected=0, Static=1, EIGRP=90, OSPF=110, IS-IS=115, RIP=120."
       }
     },
     {
@@ -1383,22 +1353,22 @@
             "choiceIndex": 0,
             "explanation": "Lower AD wins, not higher — highest AD would be least trusted and discarded first.",
             "misconceptionTested": "Choosing highest AD across protocols",
-            "whatItDoes": "The route is chosen with the highest AD. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The route is chosen with the lowest AD. matches the tested behavior — The route is chosen with the highest AD. applies a different mechanism."
+            "whatItDoes": "The route is chosen with the highest AD. points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", The route is chosen with the lowest AD. satisfies what this question tests — The route is chosen with the highest AD. does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "Lowest metric applies after AD selects the protocol — cross-protocol decisions use AD first.",
             "misconceptionTested": "Comparing metrics before administrative distance",
-            "whatItDoes": "The route chosen has the lowest metric. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The route is chosen with the lowest AD. matches the tested behavior — The route chosen has the lowest metric. applies a different mechanism."
+            "whatItDoes": "The route chosen has the lowest metric. points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", The route is chosen with the lowest AD. satisfies what this question tests — The route chosen has the lowest metric. does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Highest metric is worst within a protocol — cross-protocol selection is AD-driven, not highest metric.",
             "misconceptionTested": "Selecting highest metric across protocols",
-            "whatItDoes": "The route chosen has the highest metric. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The route is chosen with the lowest AD. matches the tested behavior — The route chosen has the highest metric. applies a different mechanism."
+            "whatItDoes": "The route chosen has the highest metric. points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", The route is chosen with the lowest AD. satisfies what this question tests — The route chosen has the highest metric. does not."
           }
         ],
         "examTip": "Cross-protocol tie: lowest AD wins; metric only compares routes from the same protocol."
@@ -1436,22 +1406,22 @@
             "choiceIndex": 0,
             "explanation": "RIPv1 is classful, limited to 15 hops, and ignores bandwidth — it cannot optimize across varied link speeds.",
             "misconceptionTested": "Choosing legacy classful RIP for heterogeneous bandwidth",
-            "whatItDoes": "RIPv1 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — RIPv1 applies a different mechanism."
+            "whatItDoes": "RIPv1 applies another routing protocol's behavior instead of OSPF-specific rules.",
+            "whyWrongHere": "For \"routing table\", EIGRP satisfies what this question tests — RIPv1 does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "RIPv2 adds VLSM but still uses hop count only — it does not factor bandwidth the way EIGRP's composite metric does.",
             "misconceptionTested": "Expecting RIPv2 to optimize for bandwidth differences",
-            "whatItDoes": "RIPv2 describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — RIPv2 applies a different mechanism."
+            "whatItDoes": "RIPv2 applies another routing protocol's behavior instead of OSPF-specific rules.",
+            "whyWrongHere": "For \"routing table\", EIGRP satisfies what this question tests — RIPv2 does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "BGP is an exterior path-vector protocol for inter-AS routing — not the IGP choice for internal varied-bandwidth optimization.",
             "misconceptionTested": "Selecting BGP for internal enterprise IGP scenario",
-            "whatItDoes": "BGP describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, EIGRP matches the tested behavior — BGP applies a different mechanism."
+            "whatItDoes": "BGP applies another routing protocol's behavior instead of OSPF-specific rules.",
+            "whyWrongHere": "For \"routing table\", EIGRP satisfies what this question tests — BGP does not."
           }
         ],
         "examTip": "Varied bandwidths inside one AS → EIGRP (composite metric). RIP = hop count only."
@@ -1482,35 +1452,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"108/bandwidth\"."
+          "explanation": "OSPF cost = 10⁸ / bandwidth (bps) — e.g. 100 Mbps → cost 1, 10 Mbps → cost 10."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Delay, bandwidth, reliability, load describes a mechanism that could sound plausible for routing table. Given routing table, 108/bandwidth matches the tested behavior — Delay, bandwidth, reliability, load applies a different mechanism.",
-            "whatItDoes": "Delay, bandwidth, reliability, load describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, 108/bandwidth matches the tested behavior — Delay, bandwidth, reliability, load applies a different mechanism.",
-            "misconceptionTested": "Applying \"Delay, bandwidth, reliability, load\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "Bandwidth + delay + reliability + load is the EIGRP composite metric — OSPF uses cost = 10⁸/bandwidth only.",
+            "misconceptionTested": "EIGRP metric formula applied to OSPF",
+            "whatItDoes": "Delay, bandwidth, reliability, load points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", 108/bandwidth satisfies what this question tests — Delay, bandwidth, reliability, load does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "K metrics reflects a common trap: Comparing metrics across routing protocols. Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc.",
-            "whatItDoes": "K metrics describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, 108/bandwidth matches the tested behavior — K metrics applies a different mechanism.",
-            "misconceptionTested": "Comparing metrics across routing protocols",
-            "needsExplanationReview": true
+            "explanation": "K-values tune EIGRP metric weights — OSPF has no K-metrics.",
+            "misconceptionTested": "K-metrics in OSPF",
+            "whatItDoes": "K metrics points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", 108/bandwidth satisfies what this question tests — K metrics does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Bandwidth describes a mechanism that could sound plausible for routing table. Given routing table, 108/bandwidth matches the tested behavior — Bandwidth applies a different mechanism.",
-            "whatItDoes": "Bandwidth describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, 108/bandwidth matches the tested behavior — Bandwidth applies a different mechanism.",
-            "misconceptionTested": "Applying \"Bandwidth\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "Raw bandwidth alone is not the metric — IOS converts it to cost via 10⁸/bandwidth.",
+            "misconceptionTested": "Bandwidth as direct OSPF metric",
+            "whatItDoes": "Bandwidth points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", 108/bandwidth satisfies what this question tests — Bandwidth does not."
           }
         ],
-        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
+        "examTip": "OSPF cost = 10⁸ ÷ interface bandwidth (bps) | 100M=1, 10M=10, 1.544M≈64."
       }
     },
     {
@@ -1536,35 +1503,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"AD of 110 and a 100 Mb/s link\"."
+          "explanation": "[110/1] = AD 110 (OSPF) and metric 1 — cost 1 means a 100 Mbps link (10⁸/10⁸)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "AD of 110 and a 10 Mb/s link describes a mechanism that could sound plausible for routing table. Given routing table, AD of 110 and a 100 Mb/s link matches the tested behavior — AD of 110 and a 10 Mb/s link applies a different mechanism.",
-            "whatItDoes": "AD of 110 and a 10 Mb/s link describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, AD of 110 and a 100 Mb/s link matches the tested behavior — AD of 110 and a 10 Mb/s link applies a different mechanism.",
-            "misconceptionTested": "Applying \"AD of 110 and a 10 Mb/s link\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "Metric 1 = 100 Mbps, not 10 Mbps — 10 Mbps would show metric 10.",
+            "misconceptionTested": "OSPF metric 1 as 10 Mbps link",
+            "whatItDoes": "AD of 110 and a 10 Mb/s link points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", AD of 110 and a 100 Mb/s link satisfies what this question tests — AD of 110 and a 10 Mb/s link does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "AD of 1 and a 110 Mb/s link describes a mechanism that could sound plausible for routing table. Given routing table, AD of 110 and a 100 Mb/s link matches the tested behavior — AD of 1 and a 110 Mb/s link applies a different mechanism.",
-            "whatItDoes": "AD of 1 and a 110 Mb/s link describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, AD of 110 and a 100 Mb/s link matches the tested behavior — AD of 1 and a 110 Mb/s link applies a different mechanism.",
-            "misconceptionTested": "Applying \"AD of 1 and a 110 Mb/s link\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "AD and metric are reversed — format is [AD/metric], so 110 is AD, 1 is metric.",
+            "misconceptionTested": "AD and metric swapped in bracket notation",
+            "whatItDoes": "AD of 1 and a 110 Mb/s link points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", AD of 110 and a 100 Mb/s link satisfies what this question tests — AD of 1 and a 110 Mb/s link does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "AD of 110 and a 1 Gb/s link describes a mechanism that could sound plausible for routing table. Given routing table, AD of 110 and a 100 Mb/s link matches the tested behavior — AD of 110 and a 1 Gb/s link applies a different mechanism.",
-            "whatItDoes": "AD of 110 and a 1 Gb/s link describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, AD of 110 and a 100 Mb/s link matches the tested behavior — AD of 110 and a 1 Gb/s link applies a different mechanism.",
-            "misconceptionTested": "Applying \"AD of 110 and a 1 Gb/s link\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "Metric 1 corresponds to 100 Mbps, not 1 Gbps — 1 Gbps would be cost 0 (treated as 1).",
+            "misconceptionTested": "OSPF metric 1 as 1 Gbps",
+            "whatItDoes": "AD of 110 and a 1 Gb/s link points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", AD of 110 and a 100 Mb/s link satisfies what this question tests — AD of 110 and a 1 Gb/s link does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for routing table before picking a familiar-sounding wrong term."
+        "examTip": "show ip route bracket = [AD/metric] | OSPF AD=110 | Cost 1 = 100M, 10 = 10M."
       }
     },
     {
@@ -1591,35 +1555,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Default route\"."
+          "explanation": "0.0.0.0/0 is the default route — matches any destination when no more-specific route exists."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Local route reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
-            "whatItDoes": "Local route describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Default route matches the tested behavior — Local route applies a different mechanism.",
-            "misconceptionTested": "Treating the default route as a normal match",
-            "needsExplanationReview": true
+            "explanation": "A local route is a /32 for an interface IP (L in table) — not 0.0.0.0/0.",
+            "misconceptionTested": "Default route as local route",
+            "whatItDoes": "Local route points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", Default route satisfies what this question tests — Local route does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Dynamic route reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
-            "whatItDoes": "Dynamic route describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Default route matches the tested behavior — Dynamic route applies a different mechanism.",
-            "misconceptionTested": "Treating the default route as a normal match",
-            "needsExplanationReview": true
+            "explanation": "Default routes can be static or dynamic — 0.0.0.0/0 is not exclusively dynamic.",
+            "misconceptionTested": "0.0.0.0/0 as dynamic-only route type",
+            "whatItDoes": "Dynamic route points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", Default route satisfies what this question tests — Dynamic route does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Loopback route reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
-            "whatItDoes": "Loopback route describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Default route matches the tested behavior — Loopback route applies a different mechanism.",
-            "misconceptionTested": "Treating the default route as a normal match",
-            "needsExplanationReview": true
+            "explanation": "Loopback is an interface type — 0.0.0.0/0 is a catch-all default prefix.",
+            "misconceptionTested": "Default route as loopback route",
+            "whatItDoes": "Loopback route points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", Default route satisfies what this question tests — Loopback route does not."
           }
         ],
-        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
+        "examTip": "Default route = 0.0.0.0/0 (IPv4) or ::/0 (IPv6) — gateway of last resort."
       }
     },
     {
@@ -1646,35 +1607,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"A host route is a specific route with a netmask of /32 for a specific host.\"."
+          "explanation": "A host route is a /32 entry for one specific host address — longest possible prefix match."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The host route is the route a packet will take if no other route matches in the routing table. relies on a router routing table rather than switch MAC/CAM forwarding. Given routing table, A host route is a specific route with a netmask of /32 for a specific host. matches the tested behavior — The host route is the route a packet will take if no other route matches in the routing table. applies a different mechanism.",
+            "explanation": "The default route (0.0.0.0/0) is the last-resort match — not a host route.",
+            "misconceptionTested": "Host route as default route",
             "whatItDoes": "The host route is the route a packet will take if no other route matches in the routing table. relies on a router routing table rather than switch MAC/CAM forwarding.",
-            "whyWrongHere": "Given routing table, A host route is a specific route with a netmask of /32 for a specific host. matches the tested behavior — The host route is the route a packet will take if no other route matches in the routing table. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The host route is the route a packet\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"routing table\", A host route is a specific route with a netmask of /32 for a specific host. satisfies what this question tests — The host route is the route a packet will take if no other route matches in the routing table. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The routing table creates host routers for the destination hosts it discovers. relies on a router routing table rather than switch MAC/CAM forwarding. Given routing table, A host route is a specific route with a netmask of /32 for a specific host. matches the tested behavior — The routing table creates host routers for the destination hosts it discovers. applies a different mechanism.",
+            "explanation": "Host routes are configured or learned — the table does not auto-discover every destination host.",
+            "misconceptionTested": "Routing table auto-creates host routes",
             "whatItDoes": "The routing table creates host routers for the destination hosts it discovers. relies on a router routing table rather than switch MAC/CAM forwarding.",
-            "whyWrongHere": "Given routing table, A host route is a specific route with a netmask of /32 for a specific host. matches the tested behavior — The routing table creates host routers for the destination hosts it discovers. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The routing table creates host route\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"routing table\", A host route is a specific route with a netmask of /32 for a specific host. satisfies what this question tests — The routing table creates host routers for the destination hosts it discovers. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The host route is populated from HSRP. describes a mechanism that could sound plausible for routing table. Given routing table, A host route is a specific route with a netmask of /32 for a specific host. matches the tested behavior — The host route is populated from HSRP. applies a different mechanism.",
-            "whatItDoes": "The host route is populated from HSRP. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, A host route is a specific route with a netmask of /32 for a specific host. matches the tested behavior — The host route is populated from HSRP. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The host route is populated from HSR\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "HSRP provides gateway redundancy — it does not populate host routes in the RIB.",
+            "misconceptionTested": "HSRP populates host routes",
+            "whatItDoes": "The host route is populated from HSRP. points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", A host route is a specific route with a netmask of /32 for a specific host. satisfies what this question tests — The host route is populated from HSRP. does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for routing table before picking a familiar-sounding wrong term."
+        "examTip": "Host route = /32 (one IP) | Often seen as L (local) or static 192.168.1.5/32."
       }
     },
     {
@@ -1702,35 +1660,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Routing protocol code\"."
+          "explanation": "The routing protocol code (C, S, O, D, R…) in the first column shows how the route was learned."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Prefix and network mask describes a mechanism that could sound plausible for routing table. Given routing table, Routing protocol code matches the tested behavior — Prefix and network mask applies a different mechanism.",
-            "whatItDoes": "Prefix and network mask describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Routing protocol code matches the tested behavior — Prefix and network mask applies a different mechanism.",
-            "misconceptionTested": "Applying \"Prefix and network mask\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "Prefix/mask identifies the destination network — not the learning source.",
+            "misconceptionTested": "Prefix as route source identifier",
+            "whatItDoes": "Prefix and network mask points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", Routing protocol code satisfies what this question tests — Prefix and network mask does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Metric reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
-            "whatItDoes": "Metric describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Routing protocol code matches the tested behavior — Metric applies a different mechanism.",
-            "misconceptionTested": "A lower metric can beat a more-specific route",
-            "needsExplanationReview": true
+            "explanation": "Metric ranks paths within one protocol — code letter shows the source/protocol.",
+            "misconceptionTested": "Metric as route source identifier",
+            "whatItDoes": "Metric points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", Routing protocol code satisfies what this question tests — Metric does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Next hop describes a mechanism that could sound plausible for routing table. Given routing table, Routing protocol code matches the tested behavior — Next hop applies a different mechanism.",
-            "whatItDoes": "Next hop describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Routing protocol code matches the tested behavior — Next hop applies a different mechanism.",
-            "misconceptionTested": "Applying \"Next hop\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "Next hop is where to forward — the code letter (C/S/O/D) shows origin.",
+            "misconceptionTested": "Next hop as route source identifier",
+            "whatItDoes": "Next hop points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", Routing protocol code satisfies what this question tests — Next hop does not."
           }
         ],
-        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
+        "examTip": "Route codes: C=connected, S=static, O=OSPF, D=EIGRP, R=RIP, L=local."
       }
     },
     {
@@ -1756,35 +1711,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"The subnet mask is used by the host to determine the destination network.\"."
+          "explanation": "A host ANDs its subnet mask with the destination IP to decide if the target is on-link or remote."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The subnet mask is used in routing to determine the destination network. describes a mechanism that could sound plausible for routing table. Given routing table, The subnet mask is used by the host to determine the destination network. matches the tested behavior — The subnet mask is used in routing to determine the destination network. applies a different mechanism.",
-            "whatItDoes": "The subnet mask is used in routing to determine the destination network. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The subnet mask is used by the host to determine the destination network. matches the tested behavior — The subnet mask is used in routing to determine the destination network. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The subnet mask is used in routing t\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "Routers use the routing table (longest match) — hosts use mask ANDing for local vs remote.",
+            "misconceptionTested": "Router uses subnet mask like a host",
+            "whatItDoes": "The subnet mask is used in routing to determine the destination network. points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", The subnet mask is used by the host to determine the destination network. satisfies what this question tests — The subnet mask is used in routing to determine the destination network. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The router uses its subnet mask when routing a packet. describes a mechanism that could sound plausible for routing table. Given routing table, The subnet mask is used by the host to determine the destination network. matches the tested behavior — The router uses its subnet mask when routing a packet. applies a different mechanism.",
-            "whatItDoes": "The router uses its subnet mask when routing a packet. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The subnet mask is used by the host to determine the destination network. matches the tested behavior — The router uses its subnet mask when routing a packet. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The router uses its subnet mask when\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "Routers route by longest prefix match in the RIB — they don't AND their own mask per packet.",
+            "misconceptionTested": "Router ANDs its mask when forwarding",
+            "whatItDoes": "The router uses its subnet mask when routing a packet. points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", The subnet mask is used by the host to determine the destination network. satisfies what this question tests — The router uses its subnet mask when routing a packet. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer. describes a mechanism that could sound plausible for routing table. Given routing table, The subnet mask is used by the host to determine the destination network. matches the tested behavior — The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer. applies a different mechanism.",
-            "whatItDoes": "The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer. describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, The subnet mask is used by the host to determine the destination network. matches the tested behavior — The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The destination computer checks the \" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "The destination host checks its own IP, not the packet's mask field — mask is not in the IP header.",
+            "misconceptionTested": "Destination checks packet subnet mask",
+            "whatItDoes": "The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer. points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", The subnet mask is used by the host to determine the destination network. satisfies what this question tests — The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer. does not."
           }
         ],
-        "examTip": "Find the interesting octet (not 0 or 255) and apply the block size there — not always the 4th octet."
+        "examTip": "Host local/remote test: (dest IP AND mask) == (my IP AND mask) → local; else use default gateway."
       }
     },
     {
@@ -1812,35 +1764,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Local route\"."
+          "explanation": "IOS 15 installs a local route (/32) for each configured interface IP — shown with L code."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "IP address route shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given routing table, Local route matches the tested behavior — IP address route applies a different mechanism.",
+            "explanation": "\"IP address route\" is not a Cisco term — IOS calls it a local route.",
+            "misconceptionTested": "Invented IP address route term",
             "whatItDoes": "IP address route shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given routing table, Local route matches the tested behavior — IP address route applies a different mechanism.",
-            "misconceptionTested": "Applying \"IP address route\" without matching routing table",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"routing table\", Local route satisfies what this question tests — IP address route does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Dynamic route describes a mechanism that could sound plausible for routing table. Given routing table, Local route matches the tested behavior — Dynamic route applies a different mechanism.",
-            "whatItDoes": "Dynamic route describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Local route matches the tested behavior — Dynamic route applies a different mechanism.",
-            "misconceptionTested": "Applying \"Dynamic route\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "Dynamic routes come from routing protocols — interface IPs create connected/local routes.",
+            "misconceptionTested": "Interface IP as dynamic route",
+            "whatItDoes": "Dynamic route points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", Local route satisfies what this question tests — Dynamic route does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Static route describes a mechanism that could sound plausible for routing table. Given routing table, Local route matches the tested behavior — Static route applies a different mechanism.",
-            "whatItDoes": "Static route describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Local route matches the tested behavior — Static route applies a different mechanism.",
-            "misconceptionTested": "Applying \"Static route\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "Static routes are manually configured — interface IPs auto-generate connected + local entries.",
+            "misconceptionTested": "Interface IP as static route",
+            "whatItDoes": "Static route configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+            "whyWrongHere": "For \"routing table\", Local route satisfies what this question tests — Static route does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for routing table before picking a familiar-sounding wrong term."
+        "examTip": "Interface IP → C (connected network) + L (local /32 host route) in show ip route."
       }
     },
     {
@@ -1868,35 +1817,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.\"."
+          "explanation": "For a remote destination, the host ARP-resolves the default gateway's MAC — IP stays the final destination."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The destination IP address is replaced with the default gateway when the destination is remote. reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "The destination IP is never replaced with the gateway — only the L2 MAC changes to the gateway.",
+            "misconceptionTested": "Destination IP replaced with gateway",
             "whatItDoes": "The destination IP address is replaced with the default gateway when the destination is remote. sends the decision to a router/default gateway rather than handling it at Layer 2.",
-            "whyWrongHere": "Given routing table, The host sends an ARP packet for the default gateway when the destination is remote. matches the tested behavior — The destination IP address is replaced with the default gateway when the destination is remote. applies a different mechanism.",
-            "misconceptionTested": "Treating the default route as a normal match",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"routing table\", The host sends an ARP packet for the default gateway when the destination is remote. satisfies what this question tests — The destination IP address is replaced with the default gateway when the destination is remote. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The host sends the default gateway packets that are deemed remote via a broadcast. reflects a common trap: A default route guarantees connectivity. It only forwards traffic that matches nothing more specific; if the next hop is wrong or down, traffic still fails.",
+            "explanation": "The host does not broadcast data packets to the gateway — it sends a unicast ARP request for the gateway MAC.",
+            "misconceptionTested": "Remote traffic sent via broadcast to gateway",
             "whatItDoes": "The host sends the default gateway packets that are deemed remote via a broadcast. describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "Given routing table, The host sends an ARP packet for the default gateway when the destination is remote. matches the tested behavior — The host sends the default gateway packets that are deemed remote via a broadcast. applies a different mechanism.",
-            "misconceptionTested": "A default route guarantees connectivity",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"routing table\", The host sends an ARP packet for the default gateway when the destination is remote. satisfies what this question tests — The host sends the default gateway packets that are deemed remote via a broadcast. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The host creates a dedicated connection with the default gateway for remote traffic. reflects a common trap: A default route guarantees connectivity. It only forwards traffic that matches nothing more specific; if the next hop is wrong or down, traffic still fails.",
+            "explanation": "IP is connectionless — no dedicated connection is created with the default gateway.",
+            "misconceptionTested": "Dedicated connection to default gateway",
             "whatItDoes": "The host creates a dedicated connection with the default gateway for remote traffic. sends the decision to a router/default gateway rather than handling it at Layer 2.",
-            "whyWrongHere": "Given routing table, The host sends an ARP packet for the default gateway when the destination is remote. matches the tested behavior — The host creates a dedicated connection with the default gateway for remote traffic. applies a different mechanism.",
-            "misconceptionTested": "A default route guarantees connectivity",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"routing table\", The host sends an ARP packet for the default gateway when the destination is remote. satisfies what this question tests — The host creates a dedicated connection with the default gateway for remote traffic. does not."
           }
         ],
-        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
+        "examTip": "Remote send: IP = final host | MAC = default gateway (after ARP) | Local send: MAC = destination host."
       }
     },
     {
@@ -1922,35 +1868,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Router#show ip route\"."
+          "explanation": "show ip route displays the IPv4 routing table — prefixes, next hops, AD/metric, and codes."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router#show route describes a mechanism that could sound plausible for routing table. Given routing table, Router#show ip route matches the tested behavior — Router#show route applies a different mechanism.",
-            "whatItDoes": "Router#show route describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Router#show ip route matches the tested behavior — Router#show route applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show route\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "show route is not valid IOS — use show ip route or show ipv6 route.",
+            "misconceptionTested": "Invented show route command",
+            "whatItDoes": "Router#show route points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", Router#show ip route satisfies what this question tests — Router#show route does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#show route table describes a mechanism that could sound plausible for routing table. Given routing table, Router#show ip route matches the tested behavior — Router#show route table applies a different mechanism.",
-            "whatItDoes": "Router#show route table describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Router#show ip route matches the tested behavior — Router#show route table applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show route table\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "show route table does not exist — correct command is show ip route.",
+            "misconceptionTested": "Invented show route table command",
+            "whatItDoes": "Router#show route table points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", Router#show ip route satisfies what this question tests — Router#show route table does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show routes describes a mechanism that could sound plausible for routing table. Given routing table, Router#show ip route matches the tested behavior — Router#show routes applies a different mechanism.",
-            "whatItDoes": "Router#show routes describes a mechanism that could sound plausible for routing table.",
-            "whyWrongHere": "Given routing table, Router#show ip route matches the tested behavior — Router#show routes applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show routes\" without matching routing table",
-            "needsExplanationReview": true
+            "explanation": "show routes is not valid — IOS uses show ip route.",
+            "misconceptionTested": "Plural show routes command",
+            "whatItDoes": "Router#show routes points to a related idea, but not the specific behavior or value required for routing table.",
+            "whyWrongHere": "For \"routing table\", Router#show ip route satisfies what this question tests — Router#show routes does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for routing table before picking a familiar-sounding wrong term."
+        "examTip": "IPv4 RIB: show ip route | IPv6 RIB: show ipv6 route | Summary: add summary."
       }
     }
   ]

@@ -31,22 +31,22 @@
             "choiceIndex": 1,
             "explanation": "NTP server is not an exec-mode command — configuration belongs under configure terminal.",
             "misconceptionTested": "NTP server in privileged exec instead of config mode",
-            "whatItDoes": "Router#ntp server 129.6.15.28 describes a mechanism that could sound plausible for synchronize.",
-            "whyWrongHere": "Given synchronize, Router(config)#ntp server 129.6.15.28 matches the tested behavior — Router#ntp server 129.6.15.28 applies a different mechanism."
+            "whatItDoes": "Router#ntp server 129.6.15.28 points to a related idea, but not the specific behavior or value required for synchronize.",
+            "whyWrongHere": "For \"synchronize\", Router(config)#ntp server 129.6.15.28 satisfies what this question tests — Router#ntp server 129.6.15.28 does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "ntp client is not the IOS command to point at an NTP server — use ntp server <ip>.",
             "misconceptionTested": "Inventing ntp client syntax",
-            "whatItDoes": "Router(config)#ntp client 129.6.15.28 describes a mechanism that could sound plausible for synchronize.",
-            "whyWrongHere": "Given synchronize, Router(config)#ntp server 129.6.15.28 matches the tested behavior — Router(config)#ntp client 129.6.15.28 applies a different mechanism."
+            "whatItDoes": "Router(config)#ntp client 129.6.15.28 points to a related idea, but not the specific behavior or value required for synchronize.",
+            "whyWrongHere": "For \"synchronize\", Router(config)#ntp server 129.6.15.28 satisfies what this question tests — Router(config)#ntp client 129.6.15.28 does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Exec-mode ntp client is invalid — NTP peers/servers are defined in configuration mode.",
             "misconceptionTested": "Exec-mode NTP configuration",
-            "whatItDoes": "Router#ntp client 129.6.15.28 describes a mechanism that could sound plausible for synchronize.",
-            "whyWrongHere": "Given synchronize, Router(config)#ntp server 129.6.15.28 matches the tested behavior — Router#ntp client 129.6.15.28 applies a different mechanism."
+            "whatItDoes": "Router#ntp client 129.6.15.28 points to a related idea, but not the specific behavior or value required for synchronize.",
+            "whyWrongHere": "For \"synchronize\", Router(config)#ntp server 129.6.15.28 satisfies what this question tests — Router#ntp client 129.6.15.28 does not."
           }
         ],
         "examTip": "NTP: ntp server <ip> in global config. Verify with show ntp associations."
@@ -82,22 +82,22 @@
             "choiceIndex": 0,
             "explanation": "ntp server points to an upstream NTP peer — it does not declare this device as the master clock.",
             "misconceptionTested": "Using ntp server to become time master",
-            "whatItDoes": "Router(config)#ntp server describes a mechanism that could sound plausible for configures.",
-            "whyWrongHere": "Given configures, Router(config)#ntp master matches the tested behavior — Router(config)#ntp server applies a different mechanism."
+            "whatItDoes": "Router(config)#ntp server points to a related idea, but not the specific behavior or value required for configures.",
+            "whyWrongHere": "For \"configures\", Router(config)#ntp master satisfies what this question tests — Router(config)#ntp server does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "ntp clock source is not standard syntax for designating the local device as master.",
             "misconceptionTested": "Inventing ntp clock source command",
-            "whatItDoes": "Router(config)#ntp clock source describes a mechanism that could sound plausible for configures.",
-            "whyWrongHere": "Given configures, Router(config)#ntp master matches the tested behavior — Router(config)#ntp clock source applies a different mechanism."
+            "whatItDoes": "Router(config)#ntp clock source points to a related idea, but not the specific behavior or value required for configures.",
+            "whyWrongHere": "For \"configures\", Router(config)#ntp master satisfies what this question tests — Router(config)#ntp clock source does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "ntp trusted marks peers as trusted for ACL purposes — it does not make the router the master clock.",
             "misconceptionTested": "Confusing ntp trusted with ntp master",
-            "whatItDoes": "Router(config)#ntp trusted describes a mechanism that could sound plausible for configures.",
-            "whyWrongHere": "Given configures, Router(config)#ntp master matches the tested behavior — Router(config)#ntp trusted applies a different mechanism."
+            "whatItDoes": "Router(config)#ntp trusted points to a related idea, but not the specific behavior or value required for configures.",
+            "whyWrongHere": "For \"configures\", Router(config)#ntp master satisfies what this question tests — Router(config)#ntp trusted does not."
           }
         ],
         "examTip": "Device is the time authority → ntp master (after setting clock or syncing once)."
@@ -126,35 +126,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Router#show clock detail\"."
+          "explanation": "show clock detail reveals whether time is NTP-synchronized or manually set — shows source and stratum."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router#show ntp describes a mechanism that could sound plausible for the router or switch is using NTP. Given the router or switch is using NTP, Router#show clock detail matches the tested behavior — Router#show ntp applies a different mechanism.",
-            "whatItDoes": "Router#show ntp describes a mechanism that could sound plausible for the router or switch is using NTP.",
-            "whyWrongHere": "Given the router or switch is using NTP, Router#show clock detail matches the tested behavior — Router#show ntp applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ntp\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "show ntp alone is incomplete — show clock detail confirms NTP sync status.",
+            "misconceptionTested": "Truncated show ntp command",
+            "whatItDoes": "Router#show ntp points to a related idea, but not the specific behavior or value required for the router or switch is using NTP.",
+            "whyWrongHere": "For \"the router or switch is using NTP\", Router#show clock detail satisfies what this question tests — Router#show ntp does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#show time describes a mechanism that could sound plausible for the router or switch is using NTP. Given the router or switch is using NTP, Router#show clock detail matches the tested behavior — Router#show time applies a different mechanism.",
-            "whatItDoes": "Router#show time describes a mechanism that could sound plausible for the router or switch is using NTP.",
-            "whyWrongHere": "Given the router or switch is using NTP, Router#show clock detail matches the tested behavior — Router#show time applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show time\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "show time is not a valid Cisco IOS command.",
+            "misconceptionTested": "Invented show time command",
+            "whatItDoes": "Router#show time points to a related idea, but not the specific behavior or value required for the router or switch is using NTP.",
+            "whyWrongHere": "For \"the router or switch is using NTP\", Router#show clock detail satisfies what this question tests — Router#show time does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show time source describes a mechanism that could sound plausible for the router or switch is using NTP. Given the router or switch is using NTP, Router#show clock detail matches the tested behavior — Router#show time source applies a different mechanism.",
-            "whatItDoes": "Router#show time source describes a mechanism that could sound plausible for the router or switch is using NTP.",
-            "whyWrongHere": "Given the router or switch is using NTP, Router#show clock detail matches the tested behavior — Router#show time source applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show time source\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "show time source does not exist — use show clock detail.",
+            "misconceptionTested": "Invented show time source command",
+            "whatItDoes": "Router#show time source points to a related idea, but not the specific behavior or value required for the router or switch is using NTP.",
+            "whyWrongHere": "For \"the router or switch is using NTP\", Router#show clock detail satisfies what this question tests — Router#show time source does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
+        "examTip": "NTP sync check: show clock detail (synced vs unsynced) | show ntp status for stratum."
       }
     },
     {
@@ -181,35 +178,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Router#show ntp associations detail\"."
+          "explanation": "show ntp associations detail shows configured NTP servers, reachability, stratum, and offset per peer."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#show clock detail describes a mechanism that could sound plausible for configured. Given configured, Router#show ntp associations detail matches the tested behavior — Router#show clock detail applies a different mechanism.",
-            "whatItDoes": "Router#show clock detail describes a mechanism that could sound plausible for configured.",
-            "whyWrongHere": "Given configured, Router#show ntp associations detail matches the tested behavior — Router#show clock detail applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show clock detail\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "show clock detail shows local clock sync status — not per-server association details.",
+            "misconceptionTested": "show clock detail for server associations",
+            "whatItDoes": "Router#show clock detail points to a related idea, but not the specific behavior or value required for configured.",
+            "whyWrongHere": "For \"configured\", Router#show ntp associations detail satisfies what this question tests — Router#show clock detail does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router#show ntp detail describes a mechanism that could sound plausible for configured. Given configured, Router#show ntp associations detail matches the tested behavior — Router#show ntp detail applies a different mechanism.",
-            "whatItDoes": "Router#show ntp detail describes a mechanism that could sound plausible for configured.",
-            "whyWrongHere": "Given configured, Router#show ntp associations detail matches the tested behavior — Router#show ntp detail applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ntp detail\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "show ntp detail is not the standard command — use show ntp associations detail.",
+            "misconceptionTested": "Invented show ntp detail command",
+            "whatItDoes": "Router#show ntp detail points to a related idea, but not the specific behavior or value required for configured.",
+            "whyWrongHere": "For \"configured\", Router#show ntp associations detail satisfies what this question tests — Router#show ntp detail does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show ntp skew describes a mechanism that could sound plausible for configured. Given configured, Router#show ntp associations detail matches the tested behavior — Router#show ntp skew applies a different mechanism.",
-            "whatItDoes": "Router#show ntp skew describes a mechanism that could sound plausible for configured.",
-            "whyWrongHere": "Given configured, Router#show ntp associations detail matches the tested behavior — Router#show ntp skew applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ntp skew\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "show ntp skew is not valid IOS — server details are in show ntp associations detail.",
+            "misconceptionTested": "Invented show ntp skew command",
+            "whatItDoes": "Router#show ntp skew points to a related idea, but not the specific behavior or value required for configured.",
+            "whyWrongHere": "For \"configured\", Router#show ntp associations detail satisfies what this question tests — Router#show ntp skew does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
+        "examTip": "NTP verify: show ntp associations (summary) | detail for per-server stratum/offset/reach."
       }
     },
     {
@@ -234,35 +228,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"UDP/123\"."
+          "explanation": "NTP uses UDP port 123 for time synchronization — not TCP and not SNMP (161) or TFTP (69)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "TCP/161 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/123 matches the tested behavior — TCP/161 applies a different mechanism.",
-            "whatItDoes": "TCP/161 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, UDP/123 matches the tested behavior — TCP/161 applies a different mechanism.",
-            "misconceptionTested": "Applying \"TCP/161\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "UDP/161 is SNMP — NTP is UDP/123.",
+            "misconceptionTested": "SNMP port for NTP",
+            "whatItDoes": "TCP/161 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "Transport protocol (protocol): UDP/123 matches reliability, ports, or connection behavior — TCP/161 picks the wrong L4 protocol or port role."
           },
           {
             "choiceIndex": 1,
-            "explanation": "TCP/123 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/123 matches the tested behavior — TCP/123 applies a different mechanism.",
-            "whatItDoes": "TCP/123 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, UDP/123 matches the tested behavior — TCP/123 applies a different mechanism.",
-            "misconceptionTested": "Applying \"TCP/123\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "NTP is UDP-based, not TCP — and port 123, not 161.",
+            "misconceptionTested": "TCP transport for NTP",
+            "whatItDoes": "TCP/123 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "Transport protocol (protocol): UDP/123 matches reliability, ports, or connection behavior — TCP/123 picks the wrong L4 protocol or port role."
           },
           {
             "choiceIndex": 2,
-            "explanation": "UDP/69 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/123 matches the tested behavior — UDP/69 applies a different mechanism.",
-            "whatItDoes": "UDP/69 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, UDP/123 matches the tested behavior — UDP/69 applies a different mechanism.",
-            "misconceptionTested": "Applying \"UDP/69\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "UDP/69 is TFTP — NTP uses UDP/123.",
+            "misconceptionTested": "TFTP port for NTP",
+            "whatItDoes": "UDP/69 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "Transport protocol (protocol): UDP/123 matches reliability, ports, or connection behavior — UDP/69 picks the wrong L4 protocol or port role."
           }
         ],
-        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
+        "examTip": "NTP = UDP/123 | SNMP = UDP/161 (agent) / UDP/162 (traps) | memorize the UDP service ports."
       }
     },
     {
@@ -287,35 +278,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Router#debug ntp packets\"."
+          "explanation": "debug ntp packets shows NTP packet exchange — confirms whether the device receives replies from the server."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#show ntp describes a mechanism that could sound plausible for the router or switch is getting an answer back from an NTP server. Given the router or switch is getting an answer back from an NTP server, Router#debug ntp packets matches the tested behavior — Router#show ntp applies a different mechanism.",
-            "whatItDoes": "Router#show ntp describes a mechanism that could sound plausible for the router or switch is getting an answer back from an NTP server.",
-            "whyWrongHere": "Given the router or switch is getting an answer back from an NTP server, Router#debug ntp packets matches the tested behavior — Router#show ntp applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ntp\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "show ntp alone is incomplete — use show ntp status or debug ntp packets for reachability.",
+            "misconceptionTested": "Truncated show ntp for server response",
+            "whatItDoes": "Router#show ntp points to a related idea, but not the specific behavior or value required for the router or switch is getting an answer back from an NTP server.",
+            "whyWrongHere": "For \"the router or switch is getting an answer back from an NTP server\", Router#debug ntp packets satisfies what this question tests — Router#show ntp does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router#show ip ntp describes a mechanism that could sound plausible for the router or switch is getting an answer back from an NTP server. Given the router or switch is getting an answer back from an NTP server, Router#debug ntp packets matches the tested behavior — Router#show ip ntp applies a different mechanism.",
-            "whatItDoes": "Router#show ip ntp describes a mechanism that could sound plausible for the router or switch is getting an answer back from an NTP server.",
-            "whyWrongHere": "Given the router or switch is getting an answer back from an NTP server, Router#debug ntp packets matches the tested behavior — Router#show ip ntp applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip ntp\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "show ip ntp is not valid IOS — use show ntp status or debug ntp packets.",
+            "misconceptionTested": "Invented show ip ntp command",
+            "whatItDoes": "Router#show ip ntp is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "For \"the router or switch is getting an answer back from an NTP server\", Router#debug ntp packets satisfies what this question tests — Router#show ip ntp does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#debug ntp messages describes a mechanism that could sound plausible for the router or switch is getting an answer back from an NTP server. Given the router or switch is getting an answer back from an NTP server, Router#debug ntp packets matches the tested behavior — Router#debug ntp messages applies a different mechanism.",
-            "whatItDoes": "Router#debug ntp messages describes a mechanism that could sound plausible for the router or switch is getting an answer back from an NTP server.",
-            "whyWrongHere": "Given the router or switch is getting an answer back from an NTP server, Router#debug ntp packets matches the tested behavior — Router#debug ntp messages applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#debug ntp messages\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "debug ntp messages logs event messages — debug ntp packets inspects actual NTP request/reply traffic.",
+            "misconceptionTested": "NTP messages debug for packet exchange",
+            "whatItDoes": "Router#debug ntp messages points to a related idea, but not the specific behavior or value required for the router or switch is getting an answer back from an NTP server.",
+            "whyWrongHere": "For \"the router or switch is getting an answer back from an NTP server\", Router#debug ntp packets satisfies what this question tests — Router#debug ntp messages does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
+        "examTip": "NTP troubleshoot: show ntp associations → show ntp status → debug ntp packets (disable debug when done)."
       }
     },
     {
@@ -341,35 +329,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Always configure the time source to a DNS address.\"."
+          "explanation": "Use a DNS hostname for the NTP server — if the server's IP changes, devices follow the name without reconfiguration."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Configure all devices to a public NTP server. describes a mechanism that could sound plausible for practice. Given practice, Always configure the time source to a DNS address. matches the tested behavior — Configure all devices to a public NTP server. applies a different mechanism.",
-            "whatItDoes": "Configure all devices to a public NTP server. describes a mechanism that could sound plausible for practice.",
-            "whyWrongHere": "Given practice, Always configure the time source to a DNS address. matches the tested behavior — Configure all devices to a public NTP server. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Configure all devices to a public NT\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "Pointing every device at one public server is fragile — use internal stratum sources or enterprise NTP hierarchy.",
+            "misconceptionTested": "All devices to one public NTP server",
+            "whatItDoes": "Configure all devices to a public NTP server. points to a related idea, but not the specific behavior or value required for practice.",
+            "whyWrongHere": "For \"practice\", Always configure the time source to a DNS address. satisfies what this question tests — Configure all devices to a public NTP server. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Configure all devices to different NTP servers for redundancy. describes a mechanism that could sound plausible for practice. Given practice, Always configure the time source to a DNS address. matches the tested behavior — Configure all devices to different NTP servers for redundancy. applies a different mechanism.",
-            "whatItDoes": "Configure all devices to different NTP servers for redundancy. describes a mechanism that could sound plausible for practice.",
-            "whyWrongHere": "Given practice, Always configure the time source to a DNS address. matches the tested behavior — Configure all devices to different NTP servers for redundancy. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Configure all devices to different N\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "Different NTP servers per device causes clock drift inconsistency — synchronize to a common stratum source.",
+            "misconceptionTested": "Per-device different NTP servers for redundancy",
+            "whatItDoes": "Configure all devices to different NTP servers for redundancy. points to a related idea, but not the specific behavior or value required for practice.",
+            "whyWrongHere": "For \"practice\", Always configure the time source to a DNS address. satisfies what this question tests — Configure all devices to different NTP servers for redundancy. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Configure all devices as master servers. describes a mechanism that could sound plausible for practice. Given practice, Always configure the time source to a DNS address. matches the tested behavior — Configure all devices as master servers. applies a different mechanism.",
-            "whatItDoes": "Configure all devices as master servers. describes a mechanism that could sound plausible for practice.",
-            "whyWrongHere": "Given practice, Always configure the time source to a DNS address. matches the tested behavior — Configure all devices as master servers. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Configure all devices as master serv\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "Only one authoritative source should be master — end devices should be NTP clients, not masters.",
+            "misconceptionTested": "Every device as NTP master",
+            "whatItDoes": "Configure all devices as master servers. points to a related idea, but not the specific behavior or value required for practice.",
+            "whyWrongHere": "For \"practice\", Always configure the time source to a DNS address. satisfies what this question tests — Configure all devices as master servers. does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
+        "examTip": "NTP best practice: DNS name for the server + hierarchical stratum (client → internal server → public stratum-1)."
       }
     },
     {
@@ -395,35 +380,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Router#show ntp status\"."
+          "explanation": "show ntp status displays clock offset, stratum, and time drift relative to the reference."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#show ntp describes a mechanism that could sound plausible for observed. Given observed, Router#show ntp status matches the tested behavior — Router#show ntp applies a different mechanism.",
-            "whatItDoes": "Router#show ntp describes a mechanism that could sound plausible for observed.",
-            "whyWrongHere": "Given observed, Router#show ntp status matches the tested behavior — Router#show ntp applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ntp\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "show ntp is incomplete — drift/offset details are in show ntp status.",
+            "misconceptionTested": "Truncated show ntp for drift",
+            "whatItDoes": "Router#show ntp points to a related idea, but not the specific behavior or value required for observed.",
+            "whyWrongHere": "For \"observed\", Router#show ntp status satisfies what this question tests — Router#show ntp does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router#show ip ntp status describes a mechanism that could sound plausible for observed. Given observed, Router#show ntp status matches the tested behavior — Router#show ip ntp status applies a different mechanism.",
-            "whatItDoes": "Router#show ip ntp status describes a mechanism that could sound plausible for observed.",
-            "whyWrongHere": "Given observed, Router#show ntp status matches the tested behavior — Router#show ip ntp status applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip ntp status\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "show ip ntp status is not valid IOS — use show ntp status.",
+            "misconceptionTested": "Invented show ip ntp status command",
+            "whatItDoes": "Router#show ip ntp status is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (observed): Router#show ntp status inspects the right table or state — Router#show ip ntp status shows unrelated information."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#debug ntp drift describes a mechanism that could sound plausible for observed. Given observed, Router#show ntp status matches the tested behavior — Router#debug ntp drift applies a different mechanism.",
-            "whatItDoes": "Router#debug ntp drift describes a mechanism that could sound plausible for observed.",
-            "whyWrongHere": "Given observed, Router#show ntp status matches the tested behavior — Router#debug ntp drift applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#debug ntp drift\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "debug ntp drift does not exist — use show ntp status for offset/drift.",
+            "misconceptionTested": "Invented debug ntp drift command",
+            "whatItDoes": "Router#debug ntp drift points to a related idea, but not the specific behavior or value required for observed.",
+            "whyWrongHere": "For \"observed\", Router#show ntp status satisfies what this question tests — Router#debug ntp drift does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
+        "examTip": "NTP drift/offset: show ntp status | Per-peer detail: show ntp associations detail."
       }
     },
     {
@@ -450,35 +432,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Router(config)#clock timezone pst -8 0\"."
+          "explanation": "clock timezone pst -8 0 sets Pacific Standard Time — offset -8 hours, no DST offset (second value 0)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#clock timezone pacific describes a mechanism that could sound plausible for standard. Given standard, Router(config)#clock timezone pst -8 0 matches the tested behavior — Router(config)#clock timezone pacific applies a different mechanism.",
-            "whatItDoes": "Router(config)#clock timezone pacific describes a mechanism that could sound plausible for standard.",
-            "whyWrongHere": "Given standard, Router(config)#clock timezone pst -8 0 matches the tested behavior — Router(config)#clock timezone pacific applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#clock timezone pacifi\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "Timezone requires numeric offset — clock timezone pst -8 0, not a name alone.",
+            "misconceptionTested": "Timezone name without offset",
+            "whatItDoes": "Router(config)#clock timezone pacific points to a related idea, but not the specific behavior or value required for standard.",
+            "whyWrongHere": "For \"standard\", Router(config)#clock timezone pst -8 0 satisfies what this question tests — Router(config)#clock timezone pacific does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#timezone pacific describes a mechanism that could sound plausible for standard. Given standard, Router(config)#clock timezone pst -8 0 matches the tested behavior — Router(config)#timezone pacific applies a different mechanism.",
-            "whatItDoes": "Router(config)#timezone pacific describes a mechanism that could sound plausible for standard.",
-            "whyWrongHere": "Given standard, Router(config)#clock timezone pst -8 0 matches the tested behavior — Router(config)#timezone pacific applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#timezone pacific\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "timezone is not a valid global config command — use clock timezone.",
+            "misconceptionTested": "Invented timezone command",
+            "whatItDoes": "Router(config)#timezone pacific points to a related idea, but not the specific behavior or value required for standard.",
+            "whyWrongHere": "For \"standard\", Router(config)#clock timezone pst -8 0 satisfies what this question tests — Router(config)#timezone pacific does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#timezone pst -8 describes a mechanism that could sound plausible for standard. Given standard, Router(config)#clock timezone pst -8 0 matches the tested behavior — Router(config)#timezone pst -8 applies a different mechanism.",
-            "whatItDoes": "Router(config)#timezone pst -8 describes a mechanism that could sound plausible for standard.",
-            "whyWrongHere": "Given standard, Router(config)#clock timezone pst -8 0 matches the tested behavior — Router(config)#timezone pst -8 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#timezone pst -8\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "timezone pst -8 is wrong syntax — IOS uses clock timezone <name> <offset-hours> <offset-minutes>.",
+            "misconceptionTested": "Timezone without clock keyword",
+            "whatItDoes": "Router(config)#timezone pst -8 points to a related idea, but not the specific behavior or value required for standard.",
+            "whyWrongHere": "For \"standard\", Router(config)#clock timezone pst -8 0 satisfies what this question tests — Router(config)#timezone pst -8 does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
+        "examTip": "Timezone: clock timezone EST -5 0 | PST = -8 0 | PDT adds DST offset in second field."
       }
     },
     {
@@ -504,35 +483,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Loopback interface\"."
+          "explanation": "A loopback interface stays up even if physical interfaces fail — NTP source binding remains reachable."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Tunnel interface describes a mechanism that could sound plausible for any interface fails, NTP will still be available. Given any interface fails, NTP will still be available, Loopback interface matches the tested behavior — Tunnel interface applies a different mechanism.",
-            "whatItDoes": "Tunnel interface describes a mechanism that could sound plausible for any interface fails, NTP will still be available.",
-            "whyWrongHere": "Given any interface fails, NTP will still be available, Loopback interface matches the tested behavior — Tunnel interface applies a different mechanism.",
-            "misconceptionTested": "Applying \"Tunnel interface\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "Tunnel interfaces depend on underlying transport — not the stable NTP source choice.",
+            "misconceptionTested": "Tunnel interface for NTP source",
+            "whatItDoes": "Tunnel interface points to a related idea, but not the specific behavior or value required for any interface fails, NTP will still be available.",
+            "whyWrongHere": "For \"any interface fails, NTP will still be available\", Loopback interface satisfies what this question tests — Tunnel interface does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "NTP interface describes a mechanism that could sound plausible for any interface fails, NTP will still be available. Given any interface fails, NTP will still be available, Loopback interface matches the tested behavior — NTP interface applies a different mechanism.",
-            "whatItDoes": "NTP interface describes a mechanism that could sound plausible for any interface fails, NTP will still be available.",
-            "whyWrongHere": "Given any interface fails, NTP will still be available, Loopback interface matches the tested behavior — NTP interface applies a different mechanism.",
-            "misconceptionTested": "Applying \"NTP interface\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "NTP interface is not a Cisco interface type — use loopback.",
+            "misconceptionTested": "Invented NTP interface type",
+            "whatItDoes": "NTP interface points to a related idea, but not the specific behavior or value required for any interface fails, NTP will still be available.",
+            "whyWrongHere": "For \"any interface fails, NTP will still be available\", Loopback interface satisfies what this question tests — NTP interface does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switched Virtual Interface (SVI) describes a mechanism that could sound plausible for any interface fails, NTP will still be available. Given any interface fails, NTP will still be available, Loopback interface matches the tested behavior — Switched Virtual Interface (SVI) applies a different mechanism.",
-            "whatItDoes": "Switched Virtual Interface (SVI) describes a mechanism that could sound plausible for any interface fails, NTP will still be available.",
-            "whyWrongHere": "Given any interface fails, NTP will still be available, Loopback interface matches the tested behavior — Switched Virtual Interface (SVI) applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switched Virtual Interface (SVI)\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "SVI ties NTP to a VLAN — if that VLAN's L3 path fails, NTP source may drop.",
+            "misconceptionTested": "SVI over loopback for NTP resilience",
+            "whatItDoes": "Switched Virtual Interface (SVI) describes an inter-VLAN routing approach (SVI or router-on-a-stick) that may not fit this topology.",
+            "whyWrongHere": "Inter-VLAN routing (any interface fails, NTP will still be available): Loopback interface provides L3 between VLANs — Switched Virtual Interface (SVI) leaves traffic unrouted or uses the wrong L3 interface."
           }
         ],
-        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
+        "examTip": "Stable NTP source: ntp source loopback0 — loopback is always up if the router is reachable."
       }
     },
     {
@@ -559,35 +535,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Switch(config)#ntp source loopback 0\"."
+          "explanation": "ntp source loopback 0 binds outbound NTP packets to Loopback0 — survives physical interface failures."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config)#ntp loopback 0 describes a mechanism that could sound plausible for configure. Given configure, Switch(config)#ntp source loopback 0 matches the tested behavior — Switch(config)#ntp loopback 0 applies a different mechanism.",
-            "whatItDoes": "Switch(config)#ntp loopback 0 describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Switch(config)#ntp source loopback 0 matches the tested behavior — Switch(config)#ntp loopback 0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#ntp loopback 0\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "ntp loopback 0 is not valid syntax — use ntp source loopback 0.",
+            "misconceptionTested": "ntp loopback without source keyword",
+            "whatItDoes": "Switch(config)#ntp loopback 0 points to a related idea, but not the specific behavior or value required for configure.",
+            "whyWrongHere": "For \"configure\", Switch(config)#ntp source loopback 0 satisfies what this question tests — Switch(config)#ntp loopback 0 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config)#ntp master loopback 0 describes a mechanism that could sound plausible for configure. Given configure, Switch(config)#ntp source loopback 0 matches the tested behavior — Switch(config)#ntp master loopback 0 applies a different mechanism.",
-            "whatItDoes": "Switch(config)#ntp master loopback 0 describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Switch(config)#ntp source loopback 0 matches the tested behavior — Switch(config)#ntp master loopback 0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#ntp master loopback 0\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "ntp master makes this device a time server — ntp source only sets the source interface.",
+            "misconceptionTested": "ntp master for source binding",
+            "whatItDoes": "Switch(config)#ntp master loopback 0 points to a related idea, but not the specific behavior or value required for configure.",
+            "whyWrongHere": "For \"configure\", Switch(config)#ntp source loopback 0 satisfies what this question tests — Switch(config)#ntp master loopback 0 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config)#ntp clock loopback 0 describes a mechanism that could sound plausible for configure. Given configure, Switch(config)#ntp source loopback 0 matches the tested behavior — Switch(config)#ntp clock loopback 0 applies a different mechanism.",
-            "whatItDoes": "Switch(config)#ntp clock loopback 0 describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Switch(config)#ntp source loopback 0 matches the tested behavior — Switch(config)#ntp clock loopback 0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#ntp clock loopback 0\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "ntp clock is not a valid command — source interface uses ntp source.",
+            "misconceptionTested": "Invented ntp clock command",
+            "whatItDoes": "Switch(config)#ntp clock loopback 0 points to a related idea, but not the specific behavior or value required for configure.",
+            "whyWrongHere": "For \"configure\", Switch(config)#ntp source loopback 0 satisfies what this question tests — Switch(config)#ntp clock loopback 0 does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
+        "examTip": "NTP source: ntp source Loopback0 in global config — pairs with a configured loopback IP."
       }
     },
     {
@@ -613,35 +586,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Router#clock set 2:24:00 1 august 2019\"."
+          "explanation": "clock set runs in privileged EXEC (Router#) — format: hours:minutes:seconds day month year."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#clock set 2:24:00 1 august 2019 describes a mechanism that could sound plausible for internal. Given internal, Router#clock set 2:24:00 1 august 2019 matches the tested behavior — Router(config)#clock set 2:24:00 1 august 2019 applies a different mechanism.",
-            "whatItDoes": "Router(config)#clock set 2:24:00 1 august 2019 describes a mechanism that could sound plausible for internal.",
-            "whyWrongHere": "Given internal, Router#clock set 2:24:00 1 august 2019 matches the tested behavior — Router(config)#clock set 2:24:00 1 august 2019 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#clock set 2:24:00 1 a\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "clock set is not a config-mode command — execute it from privileged EXEC (#).",
+            "misconceptionTested": "clock set in config mode",
+            "whatItDoes": "Router(config)#clock set 2:24:00 1 august 2019 points to a related idea, but not the specific behavior or value required for internal.",
+            "whyWrongHere": "For \"internal\", Router#clock set 2:24:00 1 august 2019 satisfies what this question tests — Router(config)#clock set 2:24:00 1 august 2019 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#clock set 2:24:00 august 1 2019 describes a mechanism that could sound plausible for internal. Given internal, Router#clock set 2:24:00 1 august 2019 matches the tested behavior — Router(config)#clock set 2:24:00 august 1 2019 applies a different mechanism.",
-            "whatItDoes": "Router(config)#clock set 2:24:00 august 1 2019 describes a mechanism that could sound plausible for internal.",
-            "whyWrongHere": "Given internal, Router#clock set 2:24:00 1 august 2019 matches the tested behavior — Router(config)#clock set 2:24:00 august 1 2019 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#clock set 2:24:00 aug\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "Month/day order is day month — 1 august 2019, not august 1 2019.",
+            "misconceptionTested": "Wrong clock set date field order",
+            "whatItDoes": "Router(config)#clock set 2:24:00 august 1 2019 points to a related idea, but not the specific behavior or value required for internal.",
+            "whyWrongHere": "For \"internal\", Router#clock set 2:24:00 1 august 2019 satisfies what this question tests — Router(config)#clock set 2:24:00 august 1 2019 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#clock 2:24:00 1 august 2019 describes a mechanism that could sound plausible for internal. Given internal, Router#clock set 2:24:00 1 august 2019 matches the tested behavior — Router#clock 2:24:00 1 august 2019 applies a different mechanism.",
-            "whatItDoes": "Router#clock 2:24:00 1 august 2019 describes a mechanism that could sound plausible for internal.",
-            "whyWrongHere": "Given internal, Router#clock set 2:24:00 1 august 2019 matches the tested behavior — Router#clock 2:24:00 1 august 2019 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#clock 2:24:00 1 august 2019\" without matching ntp",
-            "needsExplanationReview": true
+            "explanation": "Missing set keyword — correct syntax is clock set <time> <day> <month> <year>.",
+            "misconceptionTested": "clock without set keyword",
+            "whatItDoes": "Router#clock 2:24:00 1 august 2019 points to a related idea, but not the specific behavior or value required for internal.",
+            "whyWrongHere": "For \"internal\", Router#clock set 2:24:00 1 august 2019 satisfies what this question tests — Router#clock 2:24:00 1 august 2019 does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
+        "examTip": "Manual time: Router# clock set HH:MM:SS DD MONTH YYYY — required before SSH key generation if NTP is down."
       }
     }
   ]

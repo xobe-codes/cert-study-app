@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
-import {
-  isOrderingQuestion, isMcQuestion, isCliQuestion, gradeQuestion, buildMissedEntry,
+import { isOrderingQuestion, isMcQuestion, isCliQuestion, gradeQuestion, buildMissedEntry,
   shuffleArrayCopy, randomizeQuestionOrder,
 } from '../../questionUtils.js'
+import { applyAnswerReviewToQuestion } from '../../answerReviewLogic.js'
 import { ALL_OBJECTIVES } from '../../data/ccnaDomains.js'
 import { COLORS, styles } from '../../ui/appTheme.js'
 import { computeMastery } from '../../netUtils.js'
@@ -163,7 +163,12 @@ export default function FocusModeSession({ progress, onBack, onMissed, onDone })
         {revealed && (
           <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `2px solid ${isCorrect ? COLORS.mintBorder : COLORS.rose}` }} {...quizFeedbackA11y}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
-            <AnswerReview q={current} selected={selected} />
+            <AnswerReview
+              q={applyAnswerReviewToQuestion(current)}
+              selected={selected}
+              cliAnswer={cliAnswer}
+              orderAnswer={orderDraft}
+            />
           </div>
         )}
       </div>

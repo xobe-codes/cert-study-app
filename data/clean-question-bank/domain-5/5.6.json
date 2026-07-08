@@ -31,22 +31,22 @@
             "choiceIndex": 1,
             "explanation": "The DHCP server is typically a dedicated server or router — snooping runs on switches between clients and server, not requiring server on the switch.",
             "misconceptionTested": "DHCP server must run on the L2 switch",
-            "whatItDoes": "The DHCP server is running on the layer 2 switch. describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, The device is on a layer 2 switched port on the same VLAN. matches the tested behavior — The DHCP server is running on the layer 2 switch. applies a different mechanism."
+            "whatItDoes": "The DHCP server is running on the layer 2 switch. points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", The device is on a layer 2 switched port on the same VLAN. satisfies what this question tests — The DHCP server is running on the layer 2 switch. does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Routed ports do not see client DHCP broadcasts the same way — snooping needs L2 switch ports in the VLAN.",
             "misconceptionTested": "DHCP snooping on L3 routed port",
-            "whatItDoes": "The device is on a layer 3 routed port on the same VLAN. describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, The device is on a layer 2 switched port on the same VLAN. matches the tested behavior — The device is on a layer 3 routed port on the same VLAN. applies a different mechanism."
+            "whatItDoes": "The device is on a layer 3 routed port on the same VLAN. points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "This is a Layer 2 process (layer2 security). The device is on a layer 2 switched port on the same VLAN. uses Ethernet addresses — not IP headers."
           },
           {
             "choiceIndex": 3,
             "explanation": "No dedicated monitor IP is required — snooping uses trusted/untrusted port roles and binding table.",
             "misconceptionTested": "Special monitor IP as DHCP snooping prerequisite",
             "whatItDoes": "Configuration of a dedicated IP address for monitoring DHCP transactions. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given layer2 security, The device is on a layer 2 switched port on the same VLAN. matches the tested behavior — Configuration of a dedicated IP address for monitoring DHCP transactions. applies a different mechanism."
+            "whyWrongHere": "This is a Layer 2 process (layer2 security). The device is on a layer 2 switched port on the same VLAN. uses Ethernet addresses — not IP headers. Picking Configuration of a dedicated IP address for monitoring DHCP transactions. misses the exact behavior this stem tests."
           }
         ],
         "examTip": "DHCP snooping → L2 switch access ports in VLAN. Mark trusted uplinks to real server."
@@ -76,35 +76,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Double tagging\"."
+          "explanation": "Double tagging exploits native VLAN — attacker tags twice to hop VLANs on misconfigured trunks."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "VLAN traversal describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Double tagging matches the tested behavior — VLAN traversal applies a different mechanism.",
-            "whatItDoes": "VLAN traversal describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Double tagging matches the tested behavior — VLAN traversal applies a different mechanism.",
-            "misconceptionTested": "Applying \"VLAN traversal\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "VLAN traversal is vague — CCNA names double tagging on native VLAN.",
+            "misconceptionTested": "Generic traversal term",
+            "whatItDoes": "VLAN traversal points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Double tagging satisfies what this question tests — VLAN traversal does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Trunk popping describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Double tagging matches the tested behavior — Trunk popping applies a different mechanism.",
-            "whatItDoes": "Trunk popping describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Double tagging matches the tested behavior — Trunk popping applies a different mechanism.",
-            "misconceptionTested": "Applying \"Trunk popping\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Trunk popping is not the standard CCNA attack name — use double tagging.",
+            "misconceptionTested": "Invented attack name",
+            "whatItDoes": "Trunk popping expects VLAN tags on a link that should behave as access-only in this stem.",
+            "whyWrongHere": "For \"layer2 security\", Double tagging satisfies what this question tests — Trunk popping does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Denial of service describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Double tagging matches the tested behavior — Denial of service applies a different mechanism.",
-            "whatItDoes": "Denial of service describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Double tagging matches the tested behavior — Denial of service applies a different mechanism.",
-            "misconceptionTested": "Applying \"Denial of service\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "DoS is possible but the stem targets native VLAN VLAN-hopping — double tagging.",
+            "misconceptionTested": "DoS instead of VLAN hop",
+            "whatItDoes": "Denial of service points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Double tagging satisfies what this question tests — Denial of service does not."
           }
         ],
-        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
+        "examTip": "Native VLAN attack → double tagging. Mitigate: unique native VLAN, do not use VLAN 1."
       }
     },
     {
@@ -129,35 +126,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Switch(config-if)#ip dhcp snooping trust\"."
+          "explanation": "Mark an uplink as trusted with ip dhcp snooping trust under the interface — DHCP servers/offers are allowed on trusted ports."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config-if)#dhcp snooping trust describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#ip dhcp snooping trust matches the tested behavior — Switch(config-if)#dhcp snooping trust applies a different mechanism.",
-            "whatItDoes": "Switch(config-if)#dhcp snooping trust describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch(config-if)#ip dhcp snooping trust matches the tested behavior — Switch(config-if)#dhcp snooping trust applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#dhcp snooping trus\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Missing ip keyword — correct syntax is ip dhcp snooping trust.",
+            "misconceptionTested": "dhcp snooping trust without ip keyword",
+            "whatItDoes": "Switch(config-if)#dhcp snooping trust points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Switch(config-if)#ip dhcp snooping trust satisfies what this question tests — Switch(config-if)#dhcp snooping trust does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config)#ip dhcp snooping trust interface gi 2/3 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#ip dhcp snooping trust matches the tested behavior — Switch(config)#ip dhcp snooping trust interface gi 2/3 applies a different mechanism.",
-            "whatItDoes": "Switch(config)#ip dhcp snooping trust interface gi 2/3 describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch(config-if)#ip dhcp snooping trust matches the tested behavior — Switch(config)#ip dhcp snooping trust interface gi 2/3 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#ip dhcp snooping trus\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Trust is an interface-level command — not configured from global config with interface keyword appended.",
+            "misconceptionTested": "Global config trust syntax",
+            "whatItDoes": "Switch(config)#ip dhcp snooping trust interface gi 2/3 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"layer2 security\", Switch(config-if)#ip dhcp snooping trust satisfies what this question tests — Switch(config)#ip dhcp snooping trust interface gi 2/3 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config-if)#ip dhcp trust describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#ip dhcp snooping trust matches the tested behavior — Switch(config-if)#ip dhcp trust applies a different mechanism.",
-            "whatItDoes": "Switch(config-if)#ip dhcp trust describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch(config-if)#ip dhcp snooping trust matches the tested behavior — Switch(config-if)#ip dhcp trust applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#ip dhcp trust\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Omitting snooping — the command is ip dhcp snooping trust, not ip dhcp trust.",
+            "misconceptionTested": "ip dhcp trust without snooping",
+            "whatItDoes": "Switch(config-if)#ip dhcp trust points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Switch(config-if)#ip dhcp snooping trust satisfies what this question tests — Switch(config-if)#ip dhcp trust does not."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "DHCP snooping: untrusted access ports (clients) | trusted uplinks toward real DHCP servers."
       }
     },
     {
@@ -182,35 +176,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Switch#show port-security\"."
+          "explanation": "Start port security troubleshooting with show port-security — it reports violations, max MACs, and err-disabled ports."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Switch#show mac address-table describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show mac address-table applies a different mechanism.",
-            "whatItDoes": "Switch#show mac address-table describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show mac address-table applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show mac address-table\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "show mac address-table lists learned MACs but not violation counters or port-security policy state.",
+            "misconceptionTested": "MAC table as port-security diagnostic",
+            "whatItDoes": "Switch#show mac address-table is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (layer2 security): Switch#show port-security inspects the right table or state — Switch#show mac address-table shows unrelated information."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch#show interface describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show interface applies a different mechanism.",
-            "whatItDoes": "Switch#show interface describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show interface applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show interface\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "show interface gives link status — use show port-security for violation and sticky MAC details.",
+            "misconceptionTested": "Interface status only for port security",
+            "whatItDoes": "Switch#show interface points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Switch#show port-security satisfies what this question tests — Switch#show interface does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch#show security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show security applies a different mechanism.",
-            "whatItDoes": "Switch#show security describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show security applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show security\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "show security is not the IOS command for port security — the command is show port-security.",
+            "misconceptionTested": "Invented show security command",
+            "whatItDoes": "Switch#show security points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Switch#show port-security satisfies what this question tests — Switch#show security does not."
           }
         ],
-        "examTip": "L2 security features need correct trusted vs untrusted port roles — wrong trust breaks the feature."
+        "examTip": "Port security triage → show port-security then show port-security interface."
       }
     },
     {
@@ -236,35 +227,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Port security\"."
+          "explanation": "Port security limits/learns MAC addresses on an access port — blocking rogue WAPs plugged into the wall jack."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Dynamic VLANs describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Port security matches the tested behavior — Dynamic VLANs applies a different mechanism.",
-            "whatItDoes": "Dynamic VLANs describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Port security matches the tested behavior — Dynamic VLANs applies a different mechanism.",
-            "misconceptionTested": "Applying \"Dynamic VLANs\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Dynamic VLANs assign VLAN membership — they do not stop unauthorized devices on a fixed access port.",
+            "misconceptionTested": "Dynamic VLAN as rogue AP prevention",
+            "whatItDoes": "Dynamic VLANs points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Port security satisfies what this question tests — Dynamic VLANs does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "ACLs reflects a common trap: ACLs encrypt or deeply inspect traffic. ACLs filter by header fields (IP/protocol/port); they are not encryption or stateful firewalls.",
-            "whatItDoes": "ACLs describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Port security matches the tested behavior — ACLs applies a different mechanism.",
-            "misconceptionTested": "ACLs encrypt or deeply inspect traffic",
-            "needsExplanationReview": true
+            "explanation": "ACLs filter traffic — they do not prevent a new L2 device from connecting at the port.",
+            "misconceptionTested": "ACL as port device restriction",
+            "whatItDoes": "ACLs points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Port security satisfies what this question tests — ACLs does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "VLAN pruning describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Port security matches the tested behavior — VLAN pruning applies a different mechanism.",
-            "whatItDoes": "VLAN pruning describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Port security matches the tested behavior — VLAN pruning applies a different mechanism.",
-            "misconceptionTested": "Applying \"VLAN pruning\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "VLAN pruning limits trunk VLANs — it does not secure an access port against rogue gear.",
+            "misconceptionTested": "VLAN pruning as access-port security",
+            "whatItDoes": "VLAN pruning points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Port security satisfies what this question tests — VLAN pruning does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "Rogue device on access port → port security (MAC limit/sticky/learned)."
       }
     },
     {
@@ -289,35 +277,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Port security\"."
+          "explanation": "Port security restricts which source MAC addresses may use a switch port — stopping unauthorized WAPs."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Access control lists describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Port security matches the tested behavior — Access control lists applies a different mechanism.",
-            "whatItDoes": "Access control lists describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Port security matches the tested behavior — Access control lists applies a different mechanism.",
-            "misconceptionTested": "Applying \"Access control lists\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "ACLs operate at Layer 3/4 — port-level device restriction is port security.",
+            "misconceptionTested": "ACL as L2 device restriction",
+            "whatItDoes": "Access control lists points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Port security satisfies what this question tests — Access control lists does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Wired Equivalent Privacy describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Port security matches the tested behavior — Wired Equivalent Privacy applies a different mechanism.",
-            "whatItDoes": "Wired Equivalent Privacy describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Port security matches the tested behavior — Wired Equivalent Privacy applies a different mechanism.",
-            "misconceptionTested": "Applying \"Wired Equivalent Privacy\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "WEP is a wireless encryption standard — wired port restriction uses port security.",
+            "misconceptionTested": "WEP as wired port security",
+            "whatItDoes": "Wired Equivalent Privacy points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Port security satisfies what this question tests — Wired Equivalent Privacy does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Static MAC addresses describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Port security matches the tested behavior — Static MAC addresses applies a different mechanism.",
-            "whatItDoes": "Static MAC addresses describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Port security matches the tested behavior — Static MAC addresses applies a different mechanism.",
-            "misconceptionTested": "Applying \"Static MAC addresses\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Static MAC table entries alone are manual — port security automates restrict/learn/violation actions.",
+            "misconceptionTested": "Static CAM entry as port security feature",
+            "whatItDoes": "Static MAC addresses points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Port security satisfies what this question tests — Static MAC addresses does not."
           }
         ],
-        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
+        "examTip": "Port security = Layer 2, source MAC limit, violation modes (protect/restrict/shutdown)."
       }
     },
     {
@@ -342,35 +327,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Source MAC addresses\"."
+          "explanation": "Port security restricts source MAC addresses learned on an access port — unauthorized MACs trigger shutdown or restrict."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Destination MAC addresses treats the destination MAC as the address recorded during learning. The stem asks what gets learned (layer2 security). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
+            "explanation": "Switches filter on ingress source MAC, not destination MAC, for port security.",
+            "misconceptionTested": "Destination MAC for port security",
             "whatItDoes": "Destination MAC addresses treats the destination MAC as the address recorded during learning.",
-            "whyWrongHere": "The stem asks what gets learned (layer2 security). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
-            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
-            "needsExplanationReview": true
+            "whyWrongHere": "The stem asks what gets learned (layer2 security). Switches record the source MAC on ingress — destination MAC is for lookup, not learning."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Source IP addresses shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given layer2 security, Source MAC addresses matches the tested behavior — Source IP addresses applies a different mechanism.",
+            "explanation": "Port security is Layer 2 — it does not inspect source IP addresses.",
+            "misconceptionTested": "Source IP for port security",
             "whatItDoes": "Source IP addresses shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given layer2 security, Source MAC addresses matches the tested behavior — Source IP addresses applies a different mechanism.",
-            "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
-            "needsExplanationReview": true
+            "whyWrongHere": "This is a Layer 2 process (layer2 security). Source MAC addresses uses Ethernet addresses — not IP headers."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Destination IP addresses shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. The stem asks what gets learned (layer2 security). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
+            "explanation": "Destination IP is a routing/ACL concept — port security binds allowed source MACs.",
+            "misconceptionTested": "Destination IP for port security",
             "whatItDoes": "Destination IP addresses shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "The stem asks what gets learned (layer2 security). Switches record the source MAC on ingress — destination MAC is for lookup, not learning. Picking Destination IP addresses misses the exact behavior this stem tests.",
-            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
-            "needsExplanationReview": true
+            "whyWrongHere": "The stem asks what gets learned (layer2 security). Switches record the source MAC on ingress — destination MAC is for lookup, not learning. Picking Destination IP addresses misses the exact behavior this stem tests."
           }
         ],
-        "examTip": "L2 security features need correct trusted vs untrusted port roles — wrong trust breaks the feature."
+        "examTip": "Port security = limit source MACs on access ports (sticky/learned/secure)."
       }
     },
     {
@@ -395,35 +377,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Switch(config-if)#switchport port-security\"."
+          "explanation": "Enable port security on an access interface with switchport port-security in interface configuration mode."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#switchport port-security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security matches the tested behavior — Switch(config)#switchport port-security applies a different mechanism.",
-            "whatItDoes": "Switch(config)#switchport port-security describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security matches the tested behavior — Switch(config)#switchport port-security applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#switchport port-secur\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Port security is an interface feature — switchport port-security under global config is invalid.",
+            "misconceptionTested": "Global config for port security enable",
+            "whatItDoes": "Switch(config)#switchport port-security points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Switch(config-if)#switchport port-security satisfies what this question tests — Switch(config)#switchport port-security does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config)#port-security enable describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security matches the tested behavior — Switch(config)#port-security enable applies a different mechanism.",
-            "whatItDoes": "Switch(config)#port-security enable describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security matches the tested behavior — Switch(config)#port-security enable applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#port-security enable\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "port-security enable is not valid IOS syntax — use switchport port-security on the interface.",
+            "misconceptionTested": "Invented port-security enable command",
+            "whatItDoes": "Switch(config)#port-security enable points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Switch(config-if)#switchport port-security satisfies what this question tests — Switch(config)#port-security enable does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config-if)#port-security enable describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security matches the tested behavior — Switch(config-if)#port-security enable applies a different mechanism.",
-            "whatItDoes": "Switch(config-if)#port-security enable describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security matches the tested behavior — Switch(config-if)#port-security enable applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#port-security enab\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "The command namespace is switchport port-security, not standalone port-security enable.",
+            "misconceptionTested": "Wrong command prefix for port security",
+            "whatItDoes": "Switch(config-if)#port-security enable points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Switch(config-if)#switchport port-security satisfies what this question tests — Switch(config-if)#port-security enable does not."
           }
         ],
-        "examTip": "L2 security features need correct trusted vs untrusted port roles — wrong trust breaks the feature."
+        "examTip": "Port security checklist: access mode → switchport port-security → set max/violation."
       }
     },
     {
@@ -448,35 +427,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"1 MAC address\"."
+          "explanation": "Default switchport port-security allows 1 MAC address until you raise switchport port-security maximum."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "2 MAC addresses describes a mechanism that could sound plausible for layer2 security. Given layer2 security, 1 MAC address matches the tested behavior — 2 MAC addresses applies a different mechanism.",
-            "whatItDoes": "2 MAC addresses describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, 1 MAC address matches the tested behavior — 2 MAC addresses applies a different mechanism.",
-            "misconceptionTested": "Applying \"2 MAC addresses\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "2 MACs is not the default — Cisco defaults to 1 secure MAC per port.",
+            "misconceptionTested": "Two MACs as port-security default",
+            "whatItDoes": "2 MAC addresses points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", 1 MAC address satisfies what this question tests — 2 MAC addresses does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "0 MAC addresses describes a mechanism that could sound plausible for layer2 security. Given layer2 security, 1 MAC address matches the tested behavior — 0 MAC addresses applies a different mechanism.",
-            "whatItDoes": "0 MAC addresses describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, 1 MAC address matches the tested behavior — 0 MAC addresses applies a different mechanism.",
-            "misconceptionTested": "Applying \"0 MAC addresses\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "0 MACs would block all traffic — default is 1 learned/secure MAC.",
+            "misconceptionTested": "Zero MACs as default maximum",
+            "whatItDoes": "0 MAC addresses points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", 1 MAC address satisfies what this question tests — 0 MAC addresses does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "10 MAC addresses describes a mechanism that could sound plausible for layer2 security. Given layer2 security, 1 MAC address matches the tested behavior — 10 MAC addresses applies a different mechanism.",
-            "whatItDoes": "10 MAC addresses describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, 1 MAC address matches the tested behavior — 10 MAC addresses applies a different mechanism.",
-            "misconceptionTested": "Applying \"10 MAC addresses\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "10 MACs requires explicit config — default maximum is 1.",
+            "misconceptionTested": "Ten MACs as port-security default",
+            "whatItDoes": "10 MAC addresses points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", 1 MAC address satisfies what this question tests — 10 MAC addresses does not."
           }
         ],
-        "examTip": "L2 security features need correct trusted vs untrusted port roles — wrong trust breaks the feature."
+        "examTip": "Port-security defaults: max 1 MAC, violation shutdown, sticky off until configured."
       }
     },
     {
@@ -501,35 +477,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Layer 2\"."
+          "explanation": "Port security operates at Layer 2 — it inspects source MAC addresses on Ethernet frames."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Layer 0 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Layer 2 matches the tested behavior — Layer 0 applies a different mechanism.",
-            "whatItDoes": "Layer 0 describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Layer 2 matches the tested behavior — Layer 0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Layer 0\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Layer 0 is not an OSI layer used for port security — the feature is Layer 2.",
+            "misconceptionTested": "Layer 0 as port security layer",
+            "whatItDoes": "Layer 0 points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Layer 2 satisfies what this question tests — Layer 0 does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Layer 1 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Layer 2 matches the tested behavior — Layer 1 applies a different mechanism.",
-            "whatItDoes": "Layer 1 describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Layer 2 matches the tested behavior — Layer 1 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Layer 1\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Layer 1 is physical signaling — MAC learning/filtering is Layer 2.",
+            "misconceptionTested": "Layer 1 as port security layer",
+            "whatItDoes": "Layer 1 points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Layer 2 satisfies what this question tests — Layer 1 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Layer 3 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Layer 2 matches the tested behavior — Layer 3 applies a different mechanism.",
-            "whatItDoes": "Layer 3 describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Layer 2 matches the tested behavior — Layer 3 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Layer 3\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Layer 3 uses IP addresses — port security filters MAC addresses at L2.",
+            "misconceptionTested": "Layer 3 as port security layer",
+            "whatItDoes": "Layer 3 points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "This is a Layer 2 process (layer2 security). Layer 2 uses Ethernet addresses — not IP headers."
           }
         ],
-        "examTip": "L2 security features need correct trusted vs untrusted port roles — wrong trust breaks the feature."
+        "examTip": "Port security = L2 MAC control; ACLs = L3/L4 filtering."
       }
     },
     {
@@ -554,35 +527,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"To prevent unauthorized access by MAC address\"."
+          "explanation": "Port security limits MAC addresses allowed on a switch port — stops unauthorized devices from connecting."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "To allow or disallow VLANs describes a mechanism that could sound plausible for layer2 security. Given layer2 security, To prevent unauthorized access by MAC address matches the tested behavior — To allow or disallow VLANs applies a different mechanism.",
-            "whatItDoes": "To allow or disallow VLANs describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, To prevent unauthorized access by MAC address matches the tested behavior — To allow or disallow VLANs applies a different mechanism.",
-            "misconceptionTested": "Applying \"To allow or disallow VLANs\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "VLAN assignment is switchport access vlan — not port security.",
+            "misconceptionTested": "VLAN control via port security",
+            "whatItDoes": "To allow or disallow VLANs points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", To prevent unauthorized access by MAC address satisfies what this question tests — To allow or disallow VLANs does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "To allow or disallow IP addresses shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given layer2 security, To prevent unauthorized access by MAC address matches the tested behavior — To allow or disallow IP addresses applies a different mechanism.",
+            "explanation": "Port security is Layer 2 MAC control — not IP address filtering.",
+            "misconceptionTested": "IP filtering via port security",
             "whatItDoes": "To allow or disallow IP addresses shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given layer2 security, To prevent unauthorized access by MAC address matches the tested behavior — To allow or disallow IP addresses applies a different mechanism.",
-            "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
-            "needsExplanationReview": true
+            "whyWrongHere": "This is a Layer 2 process (layer2 security). To prevent unauthorized access by MAC address uses Ethernet addresses — not IP headers."
           },
           {
             "choiceIndex": 3,
-            "explanation": "To prevent unauthorized access by users describes a mechanism that could sound plausible for layer2 security. Given layer2 security, To prevent unauthorized access by MAC address matches the tested behavior — To prevent unauthorized access by users applies a different mechanism.",
-            "whatItDoes": "To prevent unauthorized access by users describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, To prevent unauthorized access by MAC address matches the tested behavior — To prevent unauthorized access by users applies a different mechanism.",
-            "misconceptionTested": "Applying \"To prevent unauthorized access by us\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Port security does not authenticate users — it restricts hardware MACs.",
+            "misconceptionTested": "User auth via port security",
+            "whatItDoes": "To prevent unauthorized access by users points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", To prevent unauthorized access by MAC address satisfies what this question tests — To prevent unauthorized access by users does not."
           }
         ],
-        "examTip": "L2 security features need correct trusted vs untrusted port roles — wrong trust breaks the feature."
+        "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
       }
     },
     {
@@ -607,35 +577,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Port security works best in static environments.\"."
+          "explanation": "Port security suits static environments where known devices stay on assigned access ports."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Port security works best in mobile environments. describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Port security works best in static environments. matches the tested behavior — Port security works best in mobile environments. applies a different mechanism.",
-            "whatItDoes": "Port security works best in mobile environments. describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Port security works best in static environments. matches the tested behavior — Port security works best in mobile environments. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Port security works best in mobile e\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Mobile/roaming users change MACs often — sticky helps but static MAC lists are high-maintenance.",
+            "misconceptionTested": "Port security ideal for mobile",
+            "whatItDoes": "Port security works best in mobile environments. points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Port security works best in static environments. satisfies what this question tests — Port security works best in mobile environments. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Port security requires a higher amount of memory. describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Port security works best in static environments. matches the tested behavior — Port security requires a higher amount of memory. applies a different mechanism.",
-            "whatItDoes": "Port security requires a higher amount of memory. describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Port security works best in static environments. matches the tested behavior — Port security requires a higher amount of memory. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Port security requires a higher amou\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Memory impact is modest — not the defining trade-off.",
+            "misconceptionTested": "High memory as main drawback",
+            "whatItDoes": "Port security requires a higher amount of memory. points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Port security works best in static environments. satisfies what this question tests — Port security requires a higher amount of memory. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Port security always results in admin intervention to reset the port. describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Port security works best in static environments. matches the tested behavior — Port security always results in admin intervention to reset the port. applies a different mechanism.",
-            "whatItDoes": "Port security always results in admin intervention to reset the port. describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Port security works best in static environments. matches the tested behavior — Port security always results in admin intervention to reset the port. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Port security always results in admi\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Violation shutdown can auto-recover with errdisable recovery — not always manual.",
+            "misconceptionTested": "Always requires manual reset",
+            "whatItDoes": "Port security always results in admin intervention to reset the port. points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Port security works best in static environments. satisfies what this question tests — Port security always results in admin intervention to reset the port. does not."
           }
         ],
-        "examTip": "L2 security features need correct trusted vs untrusted port roles — wrong trust breaks the feature."
+        "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
       }
     },
     {
@@ -660,35 +627,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"2 MAC addresses\"."
+          "explanation": "Allow 2 secure MACs — one for the IP phone, one for the PC behind the phone."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "1 MAC address describes a mechanism that could sound plausible for layer2 security. Given layer2 security, 2 MAC addresses matches the tested behavior — 1 MAC address applies a different mechanism.",
-            "whatItDoes": "1 MAC address describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, 2 MAC addresses matches the tested behavior — 1 MAC address applies a different mechanism.",
-            "misconceptionTested": "Applying \"1 MAC address\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Phone + PC = two distinct MAC addresses on the same access port.",
+            "misconceptionTested": "Single MAC for phone+PC",
+            "whatItDoes": "1 MAC address points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", 2 MAC addresses satisfies what this question tests — 1 MAC address does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "0 MAC addresses describes a mechanism that could sound plausible for layer2 security. Given layer2 security, 2 MAC addresses matches the tested behavior — 0 MAC addresses applies a different mechanism.",
-            "whatItDoes": "0 MAC addresses describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, 2 MAC addresses matches the tested behavior — 0 MAC addresses applies a different mechanism.",
-            "misconceptionTested": "Applying \"0 MAC addresses\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Zero MACs would block all traffic — port security needs at least one.",
+            "misconceptionTested": "Zero MAC allowance",
+            "whatItDoes": "0 MAC addresses points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", 2 MAC addresses satisfies what this question tests — 0 MAC addresses does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "10 MAC addresses describes a mechanism that could sound plausible for layer2 security. Given layer2 security, 2 MAC addresses matches the tested behavior — 10 MAC addresses applies a different mechanism.",
-            "whatItDoes": "10 MAC addresses describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, 2 MAC addresses matches the tested behavior — 10 MAC addresses applies a different mechanism.",
-            "misconceptionTested": "Applying \"10 MAC addresses\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Ten is excessive — typical voice+data needs 2.",
+            "misconceptionTested": "Default max of 10",
+            "whatItDoes": "10 MAC addresses points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", 2 MAC addresses satisfies what this question tests — 10 MAC addresses does not."
           }
         ],
-        "examTip": "Access = one VLAN; trunk tags frames. Native VLAN must match on both ends or you get silent mis-forwarding."
+        "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
       }
     },
     {
@@ -714,35 +678,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Err-disabled shutdown\"."
+          "explanation": "Default violation mode is shutdown — the port enters err-disabled when max secure MACs are exceeded."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Administrative shutdown describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Err-disabled shutdown matches the tested behavior — Administrative shutdown applies a different mechanism.",
-            "whatItDoes": "Administrative shutdown describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Err-disabled shutdown matches the tested behavior — Administrative shutdown applies a different mechanism.",
-            "misconceptionTested": "Applying \"Administrative shutdown\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Administrative shutdown is manual (shutdown) — violation shutdown is automatic err-disable.",
+            "misconceptionTested": "Admin shutdown as default violation action",
+            "whatItDoes": "Administrative shutdown points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Err-disabled shutdown satisfies what this question tests — Administrative shutdown does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Restricted access without logging describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Err-disabled shutdown matches the tested behavior — Restricted access without logging applies a different mechanism.",
-            "whatItDoes": "Restricted access without logging describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Err-disabled shutdown matches the tested behavior — Restricted access without logging applies a different mechanism.",
-            "misconceptionTested": "Applying \"Restricted access without logging\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Restrict drops traffic and logs — it is not the factory default; default is shutdown.",
+            "misconceptionTested": "Restrict as default violation mode",
+            "whatItDoes": "Restricted access without logging names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"layer2 security\", Err-disabled shutdown satisfies what this question tests — Restricted access without logging does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Restricted access with logging describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Err-disabled shutdown matches the tested behavior — Restricted access with logging applies a different mechanism.",
-            "whatItDoes": "Restricted access with logging describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Err-disabled shutdown matches the tested behavior — Restricted access with logging applies a different mechanism.",
-            "misconceptionTested": "Applying \"Restricted access with logging\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Restrict-with-logging describes restrict mode — default violation puts port in err-disabled.",
+            "misconceptionTested": "Restrict+logging as default action",
+            "whatItDoes": "Restricted access with logging names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"layer2 security\", Err-disabled shutdown satisfies what this question tests — Restricted access with logging does not."
           }
         ],
-        "examTip": "L2 security features need correct trusted vs untrusted port roles — wrong trust breaks the feature."
+        "examTip": "Default port-security violation = shutdown (err-disable); use errdisable recovery to auto-heal."
       }
     },
     {
@@ -767,35 +728,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security\"."
+          "explanation": "switchport mode access + switchport nonnegotiate + switchport port-security — dynamic trunk must become fixed access."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SwitchA(config-if)#no switchport dynamic SwitchA(config-if)#switchport port-security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security matches the tested behavior — SwitchA(config-if)#no switchport dynamic SwitchA(config-if)#switchport port-security applies a different mechanism.",
-            "whatItDoes": "SwitchA(config-if)#no switchport dynamic SwitchA(config-if)#switchport port-security describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security matches the tested behavior — SwitchA(config-if)#no switchport dynamic SwitchA(config-if)#switchport port-security applies a different mechanism.",
-            "misconceptionTested": "Applying \"SwitchA(config-if)#no switchport dyn\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "no switchport dynamic is not valid — use switchport mode access.",
+            "misconceptionTested": "no switchport dynamic command",
+            "whatItDoes": "SwitchA(config-if)#no switchport dynamic SwitchA(config-if)#switchport port-security points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security satisfies what this question tests — SwitchA(config-if)#no switchport dynamic SwitchA(config-if)#switchport port-security does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport port-security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security matches the tested behavior — SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport port-security applies a different mechanism.",
-            "whatItDoes": "SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport port-security describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security matches the tested behavior — SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport port-security applies a different mechanism.",
-            "misconceptionTested": "Applying \"SwitchA(config-if)#switchport mode a\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Access mode alone may still negotiate DTP — add nonnegotiate on trunk-capable ports.",
+            "misconceptionTested": "Access mode without nonnegotiate",
+            "whatItDoes": "SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport port-security points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security satisfies what this question tests — SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport port-security does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "SwitchA(config-if)#switchport mode access SwitchA(config-if)#no dynamicSwitchA(config- if)#switchport port-security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security matches the tested behavior — SwitchA(config-if)#switchport mode access SwitchA(config-if)#no dynamicSwitchA(config- if)#switchport port-security applies a different mechanism.",
-            "whatItDoes": "SwitchA(config-if)#switchport mode access SwitchA(config-if)#no dynamicSwitchA(config- if)#switchport port-security describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security matches the tested behavior — SwitchA(config-if)#switchport mode access SwitchA(config-if)#no dynamicSwitchA(config- if)#switchport port-security applies a different mechanism.",
-            "misconceptionTested": "Applying \"SwitchA(config-if)#switchport mode a\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "no dynamic is invalid syntax — mode access + nonnegotiate fixes dynamic port error.",
+            "misconceptionTested": "Invented no dynamic syntax",
+            "whatItDoes": "SwitchA(config-if)#switchport mode access SwitchA(config-if)#no dynamicSwitchA(config- if)#switchport port-security points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security satisfies what this question tests — SwitchA(config-if)#switchport mode access SwitchA(config-if)#no dynamicSwitchA(config- if)#switchport port-security does not."
           }
         ],
-        "examTip": "L2 security features need correct trusted vs untrusted port roles — wrong trust breaks the feature."
+        "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
       }
     },
     {
@@ -820,35 +778,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"SwitchA(config-if)#switchport port-security maximum 2\"."
+          "explanation": "switchport port-security maximum 2 sets the max secure MAC count to 2."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SwitchA(config-if)#switchport maximum 2 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport port-security maximum 2 matches the tested behavior — SwitchA(config-if)#switchport maximum 2 applies a different mechanism.",
-            "whatItDoes": "SwitchA(config-if)#switchport maximum 2 describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport port-security maximum 2 matches the tested behavior — SwitchA(config-if)#switchport maximum 2 applies a different mechanism.",
-            "misconceptionTested": "Applying \"SwitchA(config-if)#switchport maximu\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "switchport maximum omits port-security keyword.",
+            "misconceptionTested": "switchport maximum without port-security",
+            "whatItDoes": "SwitchA(config-if)#switchport maximum 2 points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport port-security maximum 2 satisfies what this question tests — SwitchA(config-if)#switchport maximum 2 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SwitchA(config-if)#port-security maximum 2 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport port-security maximum 2 matches the tested behavior — SwitchA(config-if)#port-security maximum 2 applies a different mechanism.",
-            "whatItDoes": "SwitchA(config-if)#port-security maximum 2 describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport port-security maximum 2 matches the tested behavior — SwitchA(config-if)#port-security maximum 2 applies a different mechanism.",
-            "misconceptionTested": "Applying \"SwitchA(config-if)#port-security max\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "port-security maximum missing switchport prefix.",
+            "misconceptionTested": "port-security without switchport",
+            "whatItDoes": "SwitchA(config-if)#port-security maximum 2 points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport port-security maximum 2 satisfies what this question tests — SwitchA(config-if)#port-security maximum 2 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "SwitchA(config-if)#switchport port-security limit 2 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport port-security maximum 2 matches the tested behavior — SwitchA(config-if)#switchport port-security limit 2 applies a different mechanism.",
-            "whatItDoes": "SwitchA(config-if)#switchport port-security limit 2 describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport port-security maximum 2 matches the tested behavior — SwitchA(config-if)#switchport port-security limit 2 applies a different mechanism.",
-            "misconceptionTested": "Applying \"SwitchA(config-if)#switchport port-s\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "limit is not valid — IOS uses maximum.",
+            "misconceptionTested": "limit instead of maximum",
+            "whatItDoes": "SwitchA(config-if)#switchport port-security limit 2 points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport port-security maximum 2 satisfies what this question tests — SwitchA(config-if)#switchport port-security limit 2 does not."
           }
         ],
-        "examTip": "L2 security features need correct trusted vs untrusted port roles — wrong trust breaks the feature."
+        "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
       }
     },
     {
@@ -873,35 +828,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Switch(config-if)#switchport port-security violation restrict\"."
+          "explanation": "violation restrict drops unauthorized traffic, logs the event, but keeps the port up (unlike shutdown)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config-if)#switchport port-security violation shutdown describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security violation restrict matches the tested behavior — Switch(config-if)#switchport port-security violation shutdown applies a different mechanism.",
-            "whatItDoes": "Switch(config-if)#switchport port-security violation shutdown describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security violation restrict matches the tested behavior — Switch(config-if)#switchport port-security violation shutdown applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#switchport port-se\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Shutdown err-disables the port — the stem wants logging without disabling the interface.",
+            "misconceptionTested": "Shutdown when restrict mode requested",
+            "whatItDoes": "Switch(config-if)#switchport port-security violation shutdown points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Switch(config-if)#switchport port-security violation restrict satisfies what this question tests — Switch(config-if)#switchport port-security violation shutdown does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config-if)#switchport port-security restrict describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security violation restrict matches the tested behavior — Switch(config-if)#switchport port-security restrict applies a different mechanism.",
-            "whatItDoes": "Switch(config-if)#switchport port-security restrict describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security violation restrict matches the tested behavior — Switch(config-if)#switchport port-security restrict applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#switchport port-se\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "switchport port-security restrict is invalid syntax — the keyword is violation restrict.",
+            "misconceptionTested": "Missing violation keyword in restrict command",
+            "whatItDoes": "Switch(config-if)#switchport port-security restrict names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"layer2 security\", Switch(config-if)#switchport port-security violation restrict satisfies what this question tests — Switch(config-if)#switchport port-security restrict does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config-if)#switchport port-security violation protect describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security violation restrict matches the tested behavior — Switch(config-if)#switchport port-security violation protect applies a different mechanism.",
-            "whatItDoes": "Switch(config-if)#switchport port-security violation protect describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security violation restrict matches the tested behavior — Switch(config-if)#switchport port-security violation protect applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#switchport port-se\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Protect silently drops traffic with no log — restrict adds logging while staying up.",
+            "misconceptionTested": "Protect mode when logging required",
+            "whatItDoes": "Switch(config-if)#switchport port-security violation protect points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Switch(config-if)#switchport port-security violation restrict satisfies what this question tests — Switch(config-if)#switchport port-security violation protect does not."
           }
         ],
-        "examTip": "L2 security features need correct trusted vs untrusted port roles — wrong trust breaks the feature."
+        "examTip": "Port-security violations: shutdown (err-disable) | restrict (drop+log) | protect (drop, no log)."
       }
     },
     {
@@ -926,35 +878,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Switch#show port-security interface gi 2/13\"."
+          "explanation": "show port-security interface gi 2/13 displays violation mode, max MACs, and status for that port."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#show running-configuration describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security interface gi 2/13 matches the tested behavior — Switch#show running-configuration applies a different mechanism.",
-            "whatItDoes": "Switch#show running-configuration describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch#show port-security interface gi 2/13 matches the tested behavior — Switch#show running-configuration applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show running-configuration\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Running-config shows config — not live violation count/status.",
+            "misconceptionTested": "Running-config for violation status",
+            "whatItDoes": "Switch#show running-configuration is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (layer2 security): Switch#show port-security interface gi 2/13 inspects the right table or state — Switch#show running-configuration shows unrelated information."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch#show port-security details interface gi 2/13 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security interface gi 2/13 matches the tested behavior — Switch#show port-security details interface gi 2/13 applies a different mechanism.",
-            "whatItDoes": "Switch#show port-security details interface gi 2/13 describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch#show port-security interface gi 2/13 matches the tested behavior — Switch#show port-security details interface gi 2/13 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show port-security details in\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "details is not standard IOS syntax on all platforms.",
+            "misconceptionTested": "Invented details keyword",
+            "whatItDoes": "Switch#show port-security details interface gi 2/13 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"layer2 security\", Switch#show port-security interface gi 2/13 satisfies what this question tests — Switch#show port-security details interface gi 2/13 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch#show port-security gi 2/13 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security interface gi 2/13 matches the tested behavior — Switch#show port-security gi 2/13 applies a different mechanism.",
-            "whatItDoes": "Switch#show port-security gi 2/13 describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch#show port-security interface gi 2/13 matches the tested behavior — Switch#show port-security gi 2/13 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show port-security gi 2/13\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "show port-security gi omits interface keyword.",
+            "misconceptionTested": "Missing interface keyword",
+            "whatItDoes": "Switch#show port-security gi 2/13 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"layer2 security\", Switch#show port-security interface gi 2/13 satisfies what this question tests — Switch#show port-security gi 2/13 does not."
           }
         ],
-        "examTip": "L2 security features need correct trusted vs untrusted port roles — wrong trust breaks the feature."
+        "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
       }
     },
     {
@@ -980,35 +929,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Switch(config-if)#switchport port-security violation shutdown\"."
+          "explanation": "violation shutdown err-disables the port — generates SNMP linkDown/syslog alerts when the port goes down."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config-if)#switchport port-security restrict describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security violation shutdown matches the tested behavior — Switch(config-if)#switchport port-security restrict applies a different mechanism.",
-            "whatItDoes": "Switch(config-if)#switchport port-security restrict describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security violation shutdown matches the tested behavior — Switch(config-if)#switchport port-security restrict applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#switchport port-se\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "restrict without proper syntax is invalid — use violation restrict for SNMP trap without shutdown.",
+            "misconceptionTested": "restrict keyword alone",
+            "whatItDoes": "Switch(config-if)#switchport port-security restrict names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"layer2 security\", Switch(config-if)#switchport port-security violation shutdown satisfies what this question tests — Switch(config-if)#switchport port-security restrict does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config-if)#switchport port-security violation protect describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security violation shutdown matches the tested behavior — Switch(config-if)#switchport port-security violation protect applies a different mechanism.",
-            "whatItDoes": "Switch(config-if)#switchport port-security violation protect describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security violation shutdown matches the tested behavior — Switch(config-if)#switchport port-security violation protect applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#switchport port-se\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "protect drops silently — no notification.",
+            "misconceptionTested": "protect mode for notification",
+            "whatItDoes": "Switch(config-if)#switchport port-security violation protect points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Switch(config-if)#switchport port-security violation shutdown satisfies what this question tests — Switch(config-if)#switchport port-security violation protect does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config-if)#switchport port-security violation restrict describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security violation shutdown matches the tested behavior — Switch(config-if)#switchport port-security violation restrict applies a different mechanism.",
-            "whatItDoes": "Switch(config-if)#switchport port-security violation restrict describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security violation shutdown matches the tested behavior — Switch(config-if)#switchport port-security violation restrict applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#switchport port-se\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "violation restrict logs but keeps port up — stem keyed on shutdown for trap via link state.",
+            "misconceptionTested": "restrict vs shutdown trap semantics",
+            "whatItDoes": "Switch(config-if)#switchport port-security violation restrict names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"layer2 security\", Switch(config-if)#switchport port-security violation shutdown satisfies what this question tests — Switch(config-if)#switchport port-security violation restrict does not."
           }
         ],
-        "examTip": "L2 security features need correct trusted vs untrusted port roles — wrong trust breaks the feature."
+        "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
       }
     },
     {
@@ -1033,35 +979,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Switch(config-if)#switchport port-security violation protect\"."
+          "explanation": "violation protect drops unauthorized frames without shutting down the port and without logging."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config-if)#switchport port-security violation shutdown describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security violation protect matches the tested behavior — Switch(config-if)#switchport port-security violation shutdown applies a different mechanism.",
-            "whatItDoes": "Switch(config-if)#switchport port-security violation shutdown describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security violation protect matches the tested behavior — Switch(config-if)#switchport port-security violation shutdown applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#switchport port-se\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Shutdown disables the port — opposite of 'without disabling'.",
+            "misconceptionTested": "shutdown when port must stay up",
+            "whatItDoes": "Switch(config-if)#switchport port-security violation shutdown points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Switch(config-if)#switchport port-security violation protect satisfies what this question tests — Switch(config-if)#switchport port-security violation shutdown does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config-if)#switchport port-security restrict describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security violation protect matches the tested behavior — Switch(config-if)#switchport port-security restrict applies a different mechanism.",
-            "whatItDoes": "Switch(config-if)#switchport port-security restrict describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security violation protect matches the tested behavior — Switch(config-if)#switchport port-security restrict applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#switchport port-se\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "restrict logs violations — stem wants no logging.",
+            "misconceptionTested": "restrict when no logging wanted",
+            "whatItDoes": "Switch(config-if)#switchport port-security restrict names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"layer2 security\", Switch(config-if)#switchport port-security violation protect satisfies what this question tests — Switch(config-if)#switchport port-security restrict does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config-if)#switchport port-security violation restrict describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config-if)#switchport port-security violation protect matches the tested behavior — Switch(config-if)#switchport port-security violation restrict applies a different mechanism.",
-            "whatItDoes": "Switch(config-if)#switchport port-security violation restrict describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch(config-if)#switchport port-security violation protect matches the tested behavior — Switch(config-if)#switchport port-security violation restrict applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-if)#switchport port-se\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "violation restrict still logs — protect silently drops.",
+            "misconceptionTested": "restrict logs violations",
+            "whatItDoes": "Switch(config-if)#switchport port-security violation restrict names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"layer2 security\", Switch(config-if)#switchport port-security violation protect satisfies what this question tests — Switch(config-if)#switchport port-security violation restrict does not."
           }
         ],
-        "examTip": "L2 security features need correct trusted vs untrusted port roles — wrong trust breaks the feature."
+        "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
       }
     },
     {
@@ -1086,35 +1029,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Switch#show port-security\"."
+          "explanation": "show port-security displays violation counts and secure port summary — includes logged violations."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#show violations describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show violations applies a different mechanism.",
-            "whatItDoes": "Switch#show violations describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show violations applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show violations\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "show violations is not valid IOS.",
+            "misconceptionTested": "Invented show violations",
+            "whatItDoes": "Switch#show violations points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Switch#show port-security satisfies what this question tests — Switch#show violations does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch#show port-security violations describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show port-security violations applies a different mechanism.",
-            "whatItDoes": "Switch#show port-security violations describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show port-security violations applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show port-security violations\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "show port-security violations is not standard syntax.",
+            "misconceptionTested": "Invented violations subcommand",
+            "whatItDoes": "Switch#show port-security violations points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Switch#show port-security satisfies what this question tests — Switch#show port-security violations does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch#show psec violations describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show psec violations applies a different mechanism.",
-            "whatItDoes": "Switch#show psec violations describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show psec violations applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show psec violations\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "show psec is abbreviated incorrectly.",
+            "misconceptionTested": "Abbreviated psec command",
+            "whatItDoes": "Switch#show psec violations points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Switch#show port-security satisfies what this question tests — Switch#show psec violations does not."
           }
         ],
-        "examTip": "L2 security features need correct trusted vs untrusted port roles — wrong trust breaks the feature."
+        "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
       }
     },
     {
@@ -1140,35 +1080,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Sticky port security\"."
+          "explanation": "Sticky learning saves MACs to running-config — least admin after PCs are already installed."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Static port security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Sticky port security matches the tested behavior — Static port security applies a different mechanism.",
-            "whatItDoes": "Static port security describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Sticky port security matches the tested behavior — Static port security applies a different mechanism.",
-            "misconceptionTested": "Applying \"Static port security\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Static requires manually typing each MAC — more admin.",
+            "misconceptionTested": "Static for least admin",
+            "whatItDoes": "Static port security points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Sticky port security satisfies what this question tests — Static port security does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Dynamic port security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Sticky port security matches the tested behavior — Dynamic port security applies a different mechanism.",
-            "whatItDoes": "Dynamic port security describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Sticky port security matches the tested behavior — Dynamic port security applies a different mechanism.",
-            "misconceptionTested": "Applying \"Dynamic port security\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Dynamic without sticky loses MACs on reload.",
+            "misconceptionTested": "Dynamic without sticky persistence",
+            "whatItDoes": "Dynamic port security points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Sticky port security satisfies what this question tests — Dynamic port security does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Time limit port security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Sticky port security matches the tested behavior — Time limit port security applies a different mechanism.",
-            "whatItDoes": "Time limit port security describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Sticky port security matches the tested behavior — Time limit port security applies a different mechanism.",
-            "misconceptionTested": "Applying \"Time limit port security\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Time limit is not a port-security mode.",
+            "misconceptionTested": "Time limit port security",
+            "whatItDoes": "Time limit port security points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Sticky port security satisfies what this question tests — Time limit port security does not."
           }
         ],
-        "examTip": "L2 security features need correct trusted vs untrusted port roles — wrong trust breaks the feature."
+        "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
       }
     },
     {
@@ -1195,35 +1132,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"The port has an access violation on it.\"."
+          "explanation": "Secure-shutdown with violation count 1 means a port-security violation triggered err-disable — not admin shutdown."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The port has been administratively shutdown. describes a mechanism that could sound plausible for layer2 security. Given layer2 security, The port has an access violation on it. matches the tested behavior — The port has been administratively shutdown. applies a different mechanism.",
-            "whatItDoes": "The port has been administratively shutdown. describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, The port has an access violation on it. matches the tested behavior — The port has been administratively shutdown. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The port has been administratively s\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Admin shutdown shows differently — Secure-shutdown indicates violation.",
+            "misconceptionTested": "Admin shutdown vs violation",
+            "whatItDoes": "The port has been administratively shutdown. points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", The port has an access violation on it. satisfies what this question tests — The port has been administratively shutdown. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The port has bad wiring. describes a mechanism that could sound plausible for layer2 security. Given layer2 security, The port has an access violation on it. matches the tested behavior — The port has bad wiring. applies a different mechanism.",
-            "whatItDoes": "The port has bad wiring. describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, The port has an access violation on it. matches the tested behavior — The port has bad wiring. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The port has bad wiring.\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Bad wiring causes physical issues — not Secure-shutdown state.",
+            "misconceptionTested": "Wiring fault for secure-shutdown",
+            "whatItDoes": "The port has bad wiring. points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", The port has an access violation on it. satisfies what this question tests — The port has bad wiring. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The port on the switch is configured as a trunk. describes a mechanism that could sound plausible for layer2 security. Given layer2 security, The port has an access violation on it. matches the tested behavior — The port on the switch is configured as a trunk. applies a different mechanism.",
-            "whatItDoes": "The port on the switch is configured as a trunk. describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, The port has an access violation on it. matches the tested behavior — The port on the switch is configured as a trunk. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The port on the switch is configured\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Trunk misconfig doesn't show Violation Mode: Shutdown with violation count.",
+            "misconceptionTested": "Trunk mode for violation shutdown",
+            "whatItDoes": "The port on the switch is configured as a trunk. expects VLAN tags on a link that should behave as access-only in this stem.",
+            "whyWrongHere": "This stem (layer2 security) targets access-port behavior — The port has an access violation on it. is correct; The port on the switch is configured as a trunk. applies trunk tagging where a single VLAN is expected."
           }
         ],
-        "examTip": "Port security / DHCP snooping: trusted vs untrusted port role is the setup trap."
+        "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
       }
     },
     {
@@ -1249,35 +1183,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"SwitchA(config-if)#switchport port-security mac-address sticky\"."
+          "explanation": "switchport port-security mac-address sticky learns the first MAC(s) and saves them to config."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "SwitchA(config-if)#switchport port-security mac-address dynamic describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport port-security mac-address sticky matches the tested behavior — SwitchA(config-if)#switchport port-security mac-address dynamic applies a different mechanism.",
-            "whatItDoes": "SwitchA(config-if)#switchport port-security mac-address dynamic describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport port-security mac-address sticky matches the tested behavior — SwitchA(config-if)#switchport port-security mac-address dynamic applies a different mechanism.",
-            "misconceptionTested": "Applying \"SwitchA(config-if)#switchport port-s\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "dynamic is not a valid mac-address keyword — use sticky or static.",
+            "misconceptionTested": "dynamic mac-address keyword",
+            "whatItDoes": "SwitchA(config-if)#switchport port-security mac-address dynamic points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport port-security mac-address sticky satisfies what this question tests — SwitchA(config-if)#switchport port-security mac-address dynamic does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SwitchA(config-if)#switchport port-security mac-address static describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport port-security mac-address sticky matches the tested behavior — SwitchA(config-if)#switchport port-security mac-address static applies a different mechanism.",
-            "whatItDoes": "SwitchA(config-if)#switchport port-security mac-address static describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport port-security mac-address sticky matches the tested behavior — SwitchA(config-if)#switchport port-security mac-address static applies a different mechanism.",
-            "misconceptionTested": "Applying \"SwitchA(config-if)#switchport port-s\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "static requires manual MAC entry — sticky learns the first.",
+            "misconceptionTested": "static for auto-learn first MAC",
+            "whatItDoes": "SwitchA(config-if)#switchport port-security mac-address static points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport port-security mac-address sticky satisfies what this question tests — SwitchA(config-if)#switchport port-security mac-address static does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "SwitchA(config-if)#switchport port-security mac-address learn describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport port-security mac-address sticky matches the tested behavior — SwitchA(config-if)#switchport port-security mac-address learn applies a different mechanism.",
-            "whatItDoes": "SwitchA(config-if)#switchport port-security mac-address learn describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport port-security mac-address sticky matches the tested behavior — SwitchA(config-if)#switchport port-security mac-address learn applies a different mechanism.",
-            "misconceptionTested": "Applying \"SwitchA(config-if)#switchport port-s\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "learn is not valid IOS syntax.",
+            "misconceptionTested": "learn keyword",
+            "whatItDoes": "SwitchA(config-if)#switchport port-security mac-address learn points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport port-security mac-address sticky satisfies what this question tests — SwitchA(config-if)#switchport port-security mac-address learn does not."
           }
         ],
-        "examTip": "L2 security features need correct trusted vs untrusted port roles — wrong trust breaks the feature."
+        "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
       }
     },
     {
@@ -1304,35 +1235,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown\"."
+          "explanation": "After fixing the violation, shutdown then no shutdown clears err-disabled state on the interface."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SwitchA(config-if)#no port-security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown matches the tested behavior — SwitchA(config-if)#no port-security applies a different mechanism.",
-            "whatItDoes": "SwitchA(config-if)#no port-security describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown matches the tested behavior — SwitchA(config-if)#no port-security applies a different mechanism.",
-            "misconceptionTested": "Applying \"SwitchA(config-if)#no port-security\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Removing port-security disables the feature — doesn't recover err-disable.",
+            "misconceptionTested": "no port-security for err-disable",
+            "whatItDoes": "SwitchA(config-if)#no port-security points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown satisfies what this question tests — SwitchA(config-if)#no port-security does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "SwitchA(config-if)#no shutdown describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown matches the tested behavior — SwitchA(config-if)#no shutdown applies a different mechanism.",
-            "whatItDoes": "SwitchA(config-if)#no shutdown describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown matches the tested behavior — SwitchA(config-if)#no shutdown applies a different mechanism.",
-            "misconceptionTested": "Applying \"SwitchA(config-if)#no shutdown\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "no shutdown alone may not clear err-disable from violation.",
+            "misconceptionTested": "no shutdown alone for violation",
+            "whatItDoes": "SwitchA(config-if)#no shutdown points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown satisfies what this question tests — SwitchA(config-if)#no shutdown does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SwitchA(config-if)#no switchport port-security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown matches the tested behavior — SwitchA(config-if)#no switchport port-security applies a different mechanism.",
-            "whatItDoes": "SwitchA(config-if)#no switchport port-security describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown matches the tested behavior — SwitchA(config-if)#no switchport port-security applies a different mechanism.",
-            "misconceptionTested": "Applying \"SwitchA(config-if)#no switchport por\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "no switchport port-security removes security — doesn't bounce err-disable.",
+            "misconceptionTested": "Remove port-security instead of bounce",
+            "whatItDoes": "SwitchA(config-if)#no switchport port-security points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown satisfies what this question tests — SwitchA(config-if)#no switchport port-security does not."
           }
         ],
-        "examTip": "Port security / DHCP snooping: trusted vs untrusted port role is the setup trap."
+        "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
       }
     },
     {
@@ -1358,35 +1286,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4\"."
+          "explanation": "switchport port-security mac-address 0334.56f3.e4e4 manually allows one specific MAC."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SwitchA(config-if)#switchport port-security mac-address sticky describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4 matches the tested behavior — SwitchA(config-if)#switchport port-security mac-address sticky applies a different mechanism.",
-            "whatItDoes": "SwitchA(config-if)#switchport port-security mac-address sticky describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4 matches the tested behavior — SwitchA(config-if)#switchport port-security mac-address sticky applies a different mechanism.",
-            "misconceptionTested": "Applying \"SwitchA(config-if)#switchport port-s\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "Sticky learns dynamically — stem asks for specific MAC you configure.",
+            "misconceptionTested": "Sticky for manual MAC",
+            "whatItDoes": "SwitchA(config-if)#switchport port-security mac-address sticky points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4 satisfies what this question tests — SwitchA(config-if)#switchport port-security mac-address sticky does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SwitchA(config-if)#switchport port-security mac-address static 0334.56f3.e4e4 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4 matches the tested behavior — SwitchA(config-if)#switchport port-security mac-address static 0334.56f3.e4e4 applies a different mechanism.",
-            "whatItDoes": "SwitchA(config-if)#switchport port-security mac-address static 0334.56f3.e4e4 describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4 matches the tested behavior — SwitchA(config-if)#switchport port-security mac-address static 0334.56f3.e4e4 applies a different mechanism.",
-            "misconceptionTested": "Applying \"SwitchA(config-if)#switchport port-s\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "static keyword before MAC is wrong order — MAC follows mac-address.",
+            "misconceptionTested": "static keyword before MAC",
+            "whatItDoes": "SwitchA(config-if)#switchport port-security mac-address static 0334.56f3.e4e4 points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4 satisfies what this question tests — SwitchA(config-if)#switchport port-security mac-address static 0334.56f3.e4e4 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "SwitchA(config-if)#switchport port-security static 0334.56f3.e4e4 describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4 matches the tested behavior — SwitchA(config-if)#switchport port-security static 0334.56f3.e4e4 applies a different mechanism.",
-            "whatItDoes": "SwitchA(config-if)#switchport port-security static 0334.56f3.e4e4 describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4 matches the tested behavior — SwitchA(config-if)#switchport port-security static 0334.56f3.e4e4 applies a different mechanism.",
-            "misconceptionTested": "Applying \"SwitchA(config-if)#switchport port-s\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "port-security static omits mac-address keyword.",
+            "misconceptionTested": "Wrong command structure",
+            "whatItDoes": "SwitchA(config-if)#switchport port-security static 0334.56f3.e4e4 points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4 satisfies what this question tests — SwitchA(config-if)#switchport port-security static 0334.56f3.e4e4 does not."
           }
         ],
-        "examTip": "L2 security features need correct trusted vs untrusted port roles — wrong trust breaks the feature."
+        "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
       }
     },
     {
@@ -1413,35 +1338,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Switch#show port-security\"."
+          "explanation": "show port-security produces the secure-port summary table with max/current MACs and violation counts."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#show port-security details describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show port-security details applies a different mechanism.",
-            "whatItDoes": "Switch#show port-security details describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show port-security details applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show port-security details\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "show port-security details is not standard table output.",
+            "misconceptionTested": "details subcommand for summary table",
+            "whatItDoes": "Switch#show port-security details points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Switch#show port-security satisfies what this question tests — Switch#show port-security details does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch#show mac address-table secure describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show mac address-table secure applies a different mechanism.",
-            "whatItDoes": "Switch#show mac address-table secure describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show mac address-table secure applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show mac address-table secure\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "show mac address-table secure shows CAM entries — not violation summary.",
+            "misconceptionTested": "MAC table for port-security summary",
+            "whatItDoes": "Switch#show mac address-table secure is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (layer2 security): Switch#show port-security inspects the right table or state — Switch#show mac address-table secure shows unrelated information."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch#show port-security address describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show port-security address applies a different mechanism.",
-            "whatItDoes": "Switch#show port-security address describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch#show port-security matches the tested behavior — Switch#show port-security address applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show port-security address\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "show port-security address is not valid IOS.",
+            "misconceptionTested": "Invented address subcommand",
+            "whatItDoes": "Switch#show port-security address points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Switch#show port-security satisfies what this question tests — Switch#show port-security address does not."
           }
         ],
-        "examTip": "Port security / DHCP snooping: trusted vs untrusted port role is the setup trap."
+        "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
       }
     },
     {
@@ -1467,35 +1389,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Switch(config)#errdisable recovery cause psecure_violation\"."
+          "explanation": "errdisable recovery cause psecure-violation (global) auto-recovers ports after sticky/shutdown violations."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#clear err-disable describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config)#errdisable recovery cause psecure_violation matches the tested behavior — Switch#clear err-disable applies a different mechanism.",
-            "whatItDoes": "Switch#clear err-disable describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch(config)#errdisable recovery cause psecure_violation matches the tested behavior — Switch#clear err-disable applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#clear err-disable\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "clear err-disable is not a global clear command.",
+            "misconceptionTested": "clear err-disable command",
+            "whatItDoes": "Switch#clear err-disable points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Switch(config)#errdisable recovery cause psecure_violation satisfies what this question tests — Switch#clear err-disable does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch#clear switchport port-security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config)#errdisable recovery cause psecure_violation matches the tested behavior — Switch#clear switchport port-security applies a different mechanism.",
-            "whatItDoes": "Switch#clear switchport port-security describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch(config)#errdisable recovery cause psecure_violation matches the tested behavior — Switch#clear switchport port-security applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#clear switchport port-securit\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "clear switchport port-security doesn't exist.",
+            "misconceptionTested": "clear switchport port-security",
+            "whatItDoes": "Switch#clear switchport port-security points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Switch(config)#errdisable recovery cause psecure_violation satisfies what this question tests — Switch#clear switchport port-security does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch#clear port-security violation describes a mechanism that could sound plausible for layer2 security. Given layer2 security, Switch(config)#errdisable recovery cause psecure_violation matches the tested behavior — Switch#clear port-security violation applies a different mechanism.",
-            "whatItDoes": "Switch#clear port-security violation describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, Switch(config)#errdisable recovery cause psecure_violation matches the tested behavior — Switch#clear port-security violation applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#clear port-security violation\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "clear port-security violation is invalid — use errdisable recovery.",
+            "misconceptionTested": "clear port-security violation",
+            "whatItDoes": "Switch#clear port-security violation points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", Switch(config)#errdisable recovery cause psecure_violation satisfies what this question tests — Switch#clear port-security violation does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for layer2 security before picking a familiar-sounding wrong term."
+        "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
       }
     },
     {
@@ -1521,35 +1440,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"SwitchA#show running-config\"."
+          "explanation": "show running-config displays sticky MAC addresses written into the interface configuration."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "SwitchA#show port-security describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA#show running-config matches the tested behavior — SwitchA#show port-security applies a different mechanism.",
-            "whatItDoes": "SwitchA#show port-security describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, SwitchA#show running-config matches the tested behavior — SwitchA#show port-security applies a different mechanism.",
-            "misconceptionTested": "Applying \"SwitchA#show port-security\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "show port-security shows counts — not the sticky MAC entries in config.",
+            "misconceptionTested": "Summary show for sticky MACs",
+            "whatItDoes": "SwitchA#show port-security points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", SwitchA#show running-config satisfies what this question tests — SwitchA#show port-security does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SwitchA#show port-security details describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA#show running-config matches the tested behavior — SwitchA#show port-security details applies a different mechanism.",
-            "whatItDoes": "SwitchA#show port-security details describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, SwitchA#show running-config matches the tested behavior — SwitchA#show port-security details applies a different mechanism.",
-            "misconceptionTested": "Applying \"SwitchA#show port-security details\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "show port-security details is non-standard.",
+            "misconceptionTested": "details for sticky entries",
+            "whatItDoes": "SwitchA#show port-security details points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", SwitchA#show running-config satisfies what this question tests — SwitchA#show port-security details does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "SwitchA#show port-security status describes a mechanism that could sound plausible for layer2 security. Given layer2 security, SwitchA#show running-config matches the tested behavior — SwitchA#show port-security status applies a different mechanism.",
-            "whatItDoes": "SwitchA#show port-security status describes a mechanism that could sound plausible for layer2 security.",
-            "whyWrongHere": "Given layer2 security, SwitchA#show running-config matches the tested behavior — SwitchA#show port-security status applies a different mechanism.",
-            "misconceptionTested": "Applying \"SwitchA#show port-security status\" without matching layer2 security",
-            "needsExplanationReview": true
+            "explanation": "show port-security status is not valid IOS.",
+            "misconceptionTested": "Invented status subcommand",
+            "whatItDoes": "SwitchA#show port-security status points to a related idea, but not the specific behavior or value required for layer2 security.",
+            "whyWrongHere": "For \"layer2 security\", SwitchA#show running-config satisfies what this question tests — SwitchA#show port-security status does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for layer2 security before picking a familiar-sounding wrong term."
+        "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
       }
     }
   ]

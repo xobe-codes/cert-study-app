@@ -31,22 +31,22 @@
             "choiceIndex": 0,
             "explanation": "10 m is far below the standard UTP limit — 100 m is the exam reference length.",
             "misconceptionTested": "Underestimating UTP segment length",
-            "whatItDoes": "10 m describes a mechanism that could sound plausible for utp distance.",
-            "whyWrongHere": "Given utp distance, 100 m matches the tested behavior — 10 m applies a different mechanism."
+            "whatItDoes": "10 m points to a related idea, but not the specific behavior or value required for utp distance.",
+            "whyWrongHere": "For \"utp distance\", 100 m satisfies what this question tests — 10 m does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "500 m applies to some fiber or legacy specs — not standard copper UTP at 100 m.",
             "misconceptionTested": "Using fiber distance for copper UTP",
-            "whatItDoes": "500 m describes a mechanism that could sound plausible for utp distance.",
-            "whyWrongHere": "Given utp distance, 100 m matches the tested behavior — 500 m applies a different mechanism."
+            "whatItDoes": "500 m points to a related idea, but not the specific behavior or value required for utp distance.",
+            "whyWrongHere": "For \"utp distance\", 100 m satisfies what this question tests — 500 m does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "1 km is fiber territory — copper UTP max is 100 m for exam purposes.",
             "misconceptionTested": "Confusing fiber reach with copper UTP",
-            "whatItDoes": "1 km describes a mechanism that could sound plausible for utp distance.",
-            "whyWrongHere": "Given utp distance, 100 m matches the tested behavior — 1 km applies a different mechanism."
+            "whatItDoes": "1 km points to a related idea, but not the specific behavior or value required for utp distance.",
+            "whyWrongHere": "For \"utp distance\", 100 m satisfies what this question tests — 1 km does not."
           }
         ],
         "examTip": "Copper UTP Ethernet segment = 100 m. Know this cold."
@@ -79,22 +79,22 @@
             "choiceIndex": 0,
             "explanation": "Crossover is for like-to-like (switch-switch, PC-PC) on legacy gear without auto-MDIX.",
             "misconceptionTested": "Using crossover for PC-to-switch",
-            "whatItDoes": "Crossover describes a mechanism that could sound plausible for straight-through.",
-            "whyWrongHere": "Given straight-through, Straight-through matches the tested behavior — Crossover applies a different mechanism."
+            "whatItDoes": "Crossover points to a related idea, but not the specific behavior or value required for straight-through.",
+            "whyWrongHere": "For \"straight-through\", Straight-through satisfies what this question tests — Crossover does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Console rollover is for out-of-band management — not LAN data between PC and switch.",
             "misconceptionTested": "Confusing console cable with Ethernet patch",
-            "whatItDoes": "Console rollover describes a mechanism that could sound plausible for straight-through.",
-            "whyWrongHere": "Given straight-through, Straight-through matches the tested behavior — Console rollover applies a different mechanism."
+            "whatItDoes": "Console rollover points to a related idea, but not the specific behavior or value required for straight-through.",
+            "whyWrongHere": "For \"straight-through\", Straight-through satisfies what this question tests — Console rollover does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Fiber SM is a different media — the question asks typical copper PC-to-switch cabling.",
             "misconceptionTested": "Answering fiber when copper patch is required",
-            "whatItDoes": "Fiber SM only describes a mechanism that could sound plausible for straight-through.",
-            "whyWrongHere": "Given straight-through, Straight-through matches the tested behavior — Fiber SM only applies a different mechanism."
+            "whatItDoes": "Fiber SM only points to a related idea, but not the specific behavior or value required for straight-through.",
+            "whyWrongHere": "For \"straight-through\", Straight-through satisfies what this question tests — Fiber SM only does not."
           }
         ],
         "examTip": "PC → switch = straight-through. Like → like (no auto-MDIX) = crossover."
@@ -120,32 +120,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Single-mode fiber (often yellow) supports long laser-based runs."
+          "explanation": "Single-mode (yellow jacket) uses a narrow core for long-distance WAN links (km range)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Multimode orange describes a mechanism that could sound plausible for sm vs mm. Given sm vs mm, Single-mode yellow matches the tested behavior — Multimode orange applies a different mechanism.",
-            "whatItDoes": "Multimode orange describes a mechanism that could sound plausible for sm vs mm.",
-            "whyWrongHere": "Given sm vs mm, Single-mode yellow matches the tested behavior — Multimode orange applies a different mechanism.",
-            "misconceptionTested": "Applying \"Multimode orange\" without matching sm vs mm"
+            "explanation": "Multimode (orange/aqua) is for shorter campus runs — not long-haul WAN.",
+            "misconceptionTested": "Multimode for long WAN",
+            "whatItDoes": "Multimode orange points to a related idea, but not the specific behavior or value required for sm vs mm.",
+            "whyWrongHere": "For \"sm vs mm\", Single-mode yellow satisfies what this question tests — Multimode orange does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Copper Cat5 describes a mechanism that could sound plausible for sm vs mm. Given sm vs mm, Single-mode yellow matches the tested behavior — Copper Cat5 applies a different mechanism.",
-            "whatItDoes": "Copper Cat5 describes a mechanism that could sound plausible for sm vs mm.",
-            "whyWrongHere": "Given sm vs mm, Single-mode yellow matches the tested behavior — Copper Cat5 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Copper Cat5\" without matching sm vs mm"
+            "explanation": "Cat5 copper is twisted-pair Ethernet — not fiber for long-distance WAN.",
+            "misconceptionTested": "Copper for long WAN fiber",
+            "whatItDoes": "Copper Cat5 points to a related idea, but not the specific behavior or value required for sm vs mm.",
+            "whyWrongHere": "For \"sm vs mm\", Single-mode yellow satisfies what this question tests — Copper Cat5 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Coax describes a mechanism that could sound plausible for sm vs mm. Given sm vs mm, Single-mode yellow matches the tested behavior — Coax applies a different mechanism.",
-            "whatItDoes": "Coax describes a mechanism that could sound plausible for sm vs mm.",
-            "whyWrongHere": "Given sm vs mm, Single-mode yellow matches the tested behavior — Coax applies a different mechanism.",
-            "misconceptionTested": "Applying \"Coax\" without matching sm vs mm"
+            "explanation": "Coax is legacy broadband/cable — WAN fiber uses single-mode.",
+            "misconceptionTested": "Coax for long WAN",
+            "whatItDoes": "Coax points to a related idea, but not the specific behavior or value required for sm vs mm.",
+            "whyWrongHere": "For \"sm vs mm\", Single-mode yellow satisfies what this question tests — Coax does not."
           }
         ],
-        "examTip": "On the exam: Using MM fiber for km-scale links — Long distance requires single-mode fiber and matching SM optics"
+        "examTip": "Fiber: multimode (orange, short) | single-mode (yellow, long) — match transceiver to cable."
       }
     },
     {
@@ -169,32 +169,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "LC is the dominant fiber connector on SFP/SFP+ transceivers."
+          "explanation": "LC (Lucent Connector) is the dominant SFP/SFP+ fiber connector — small form factor."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RJ-45 describes a mechanism that could sound plausible for connector. Given connector, LC matches the tested behavior — RJ-45 applies a different mechanism.",
-            "whatItDoes": "RJ-45 describes a mechanism that could sound plausible for connector.",
-            "whyWrongHere": "Given connector, LC matches the tested behavior — RJ-45 applies a different mechanism.",
-            "misconceptionTested": "Applying \"RJ-45\" without matching connector"
+            "explanation": "RJ-45 is copper Ethernet — SFP modules use fiber connectors like LC.",
+            "misconceptionTested": "RJ-45 on SFP",
+            "whatItDoes": "RJ-45 points to a related idea, but not the specific behavior or value required for connector.",
+            "whyWrongHere": "For \"connector\", LC satisfies what this question tests — RJ-45 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "DB-9 describes a mechanism that could sound plausible for connector. Given connector, LC matches the tested behavior — DB-9 applies a different mechanism.",
-            "whatItDoes": "DB-9 describes a mechanism that could sound plausible for connector.",
-            "whyWrongHere": "Given connector, LC matches the tested behavior — DB-9 applies a different mechanism.",
-            "misconceptionTested": "Applying \"DB-9\" without matching connector"
+            "explanation": "DB-9 is a serial/console connector — not SFP media.",
+            "misconceptionTested": "DB-9 on SFP",
+            "whatItDoes": "DB-9 points to a related idea, but not the specific behavior or value required for connector.",
+            "whyWrongHere": "For \"connector\", LC satisfies what this question tests — DB-9 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "USB-C describes a mechanism that could sound plausible for connector. Given connector, LC matches the tested behavior — USB-C applies a different mechanism.",
-            "whatItDoes": "USB-C describes a mechanism that could sound plausible for connector.",
-            "whyWrongHere": "Given connector, LC matches the tested behavior — USB-C applies a different mechanism.",
-            "misconceptionTested": "Applying \"USB-C\" without matching connector"
+            "explanation": "USB-C is not used on standard Cisco SFP modules.",
+            "misconceptionTested": "USB-C on SFP",
+            "whatItDoes": "USB-C points to a related idea, but not the specific behavior or value required for connector.",
+            "whyWrongHere": "For \"connector\", LC satisfies what this question tests — USB-C does not."
           }
         ],
-        "examTip": "On the exam: Using MM fiber for km-scale links — Long distance requires single-mode fiber and matching SM optics"
+        "examTip": "SFP connectors: LC (most common) | SC (older) — always verify module + cable pairing."
       }
     },
     {
@@ -224,22 +224,22 @@
             "choiceIndex": 0,
             "explanation": "100 Mbps is Cat5e territory — Cat6a targets much higher speeds.",
             "misconceptionTested": "Downgrading Cat6a to Fast Ethernet speed",
-            "whatItDoes": "100 Mbps describes a mechanism that could sound plausible for Cat6a is rated for 10 Gbps at 100 m.",
-            "whyWrongHere": "Given Cat6a is rated for 10 Gbps at 100 m, 10 Gbps matches the tested behavior — 100 Mbps applies a different mechanism."
+            "whatItDoes": "100 Mbps gives a numeric value (timer, prefix, or rate) that may not match the fact tested in Cat6a is rated for 10 Gbps at 100 m.",
+            "whyWrongHere": "For \"Cat6a is rated for 10 Gbps at 100 m\", 10 Gbps satisfies what this question tests — 100 Mbps does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "1 Gbps is common on Cat5e/Cat6 — Cat6a is the 10G copper standard at 100 m.",
             "misconceptionTested": "Stopping at 1 Gbps for Cat6a",
-            "whatItDoes": "1 Gbps describes a mechanism that could sound plausible for Cat6a is rated for 10 Gbps at 100 m.",
-            "whyWrongHere": "Given Cat6a is rated for 10 Gbps at 100 m, 10 Gbps matches the tested behavior — 1 Gbps applies a different mechanism."
+            "whatItDoes": "1 Gbps points to a related idea, but not the specific behavior or value required for Cat6a is rated for 10 Gbps at 100 m.",
+            "whyWrongHere": "For \"Cat6a is rated for 10 Gbps at 100 m\", 10 Gbps satisfies what this question tests — 1 Gbps does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "40 Gbps over copper UTP at 100 m is not the Cat6a exam pairing — 10 Gbps is.",
             "misconceptionTested": "Jumping to 40G on UTP for Cat6a",
-            "whatItDoes": "40 Gbps describes a mechanism that could sound plausible for Cat6a is rated for 10 Gbps at 100 m.",
-            "whyWrongHere": "Given Cat6a is rated for 10 Gbps at 100 m, 10 Gbps matches the tested behavior — 40 Gbps applies a different mechanism."
+            "whatItDoes": "40 Gbps points to a related idea, but not the specific behavior or value required for Cat6a is rated for 10 Gbps at 100 m.",
+            "whyWrongHere": "For \"Cat6a is rated for 10 Gbps at 100 m\", 10 Gbps satisfies what this question tests — 40 Gbps does not."
           }
         ],
         "examTip": "Cat6a @ 100 m → 10 Gbps. Cat5e → 1 Gbps."
@@ -272,22 +272,22 @@
             "choiceIndex": 0,
             "explanation": "Straight-through connects unlike devices (PC-switch) — two switches need crossover on legacy hardware.",
             "misconceptionTested": "Straight-through between two switches",
-            "whatItDoes": "Straight-through describes a mechanism that could sound plausible for crossover.",
-            "whyWrongHere": "Given crossover, Crossover matches the tested behavior — Straight-through applies a different mechanism."
+            "whatItDoes": "Straight-through points to a related idea, but not the specific behavior or value required for crossover.",
+            "whyWrongHere": "For \"crossover\", Crossover satisfies what this question tests — Straight-through does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Console cable is for management port — not inter-switch Ethernet trunk links.",
             "misconceptionTested": "Using console cable for switch interconnect",
-            "whatItDoes": "Console describes a mechanism that could sound plausible for crossover.",
-            "whyWrongHere": "Given crossover, Crossover matches the tested behavior — Console applies a different mechanism."
+            "whatItDoes": "Console points to a related idea, but not the specific behavior or value required for crossover.",
+            "whyWrongHere": "For \"crossover\", Crossover satisfies what this question tests — Console does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Serial DCE/DTE is WAN router links — not Ethernet switch-to-switch.",
             "misconceptionTested": "Confusing WAN serial with Ethernet crossover",
-            "whatItDoes": "Serial DCE describes a mechanism that could sound plausible for crossover.",
-            "whyWrongHere": "Given crossover, Crossover matches the tested behavior — Serial DCE applies a different mechanism."
+            "whatItDoes": "Serial DCE points to a related idea, but not the specific behavior or value required for crossover.",
+            "whyWrongHere": "For \"crossover\", Crossover satisfies what this question tests — Serial DCE does not."
           }
         ],
         "examTip": "Switch ↔ switch (no auto-MDIX) = crossover. Modern gear often auto-MDIX."
@@ -313,32 +313,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "SFPs let you choose copper or fiber media per port without changing the switch."
+          "explanation": "SFP modules provide hot-swappable, flexible media — swap fiber/copper without replacing the switch port."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Increase CPU speed describes a mechanism that could sound plausible for sfp purpose. Given sfp purpose, Flexible hot-swappable media on a port matches the tested behavior — Increase CPU speed applies a different mechanism.",
-            "whatItDoes": "Increase CPU speed describes a mechanism that could sound plausible for sfp purpose.",
-            "whyWrongHere": "Given sfp purpose, Flexible hot-swappable media on a port matches the tested behavior — Increase CPU speed applies a different mechanism.",
-            "misconceptionTested": "Applying \"Increase CPU speed\" without matching sfp purpose"
+            "explanation": "SFP affects port media — it doesn't change CPU speed.",
+            "misconceptionTested": "SFP increases CPU speed",
+            "whatItDoes": "Increase CPU speed points to a related idea, but not the specific behavior or value required for sfp purpose.",
+            "whyWrongHere": "For \"sfp purpose\", Flexible hot-swappable media on a port satisfies what this question tests — Increase CPU speed does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Replace STP is the wrong device role here. STP prevents Layer 2 loops — it does not provide inter-VLAN routing, MAC learning rules, or replace trunk configuration.",
-            "whatItDoes": "Replace STP describes a mechanism that could sound plausible for sfp purpose.",
-            "whyWrongHere": "Given sfp purpose, Flexible hot-swappable media on a port matches the tested behavior — Replace STP applies a different mechanism.",
-            "misconceptionTested": "Choosing STP when the question asks for forwarding, routing, or VLAN data plane behavior"
+            "explanation": "SFP is a physical layer module — it doesn't replace Spanning Tree.",
+            "misconceptionTested": "SFP replaces STP",
+            "whatItDoes": "Replace STP points to a related idea, but not the specific behavior or value required for sfp purpose.",
+            "whyWrongHere": "For \"sfp purpose\", Flexible hot-swappable media on a port satisfies what this question tests — Replace STP does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Encrypt traffic describes a mechanism that could sound plausible for sfp purpose. Given sfp purpose, Flexible hot-swappable media on a port matches the tested behavior — Encrypt traffic applies a different mechanism.",
-            "whatItDoes": "Encrypt traffic describes a mechanism that could sound plausible for sfp purpose.",
-            "whyWrongHere": "Given sfp purpose, Flexible hot-swappable media on a port matches the tested behavior — Encrypt traffic applies a different mechanism.",
-            "misconceptionTested": "Applying \"Encrypt traffic\" without matching sfp purpose"
+            "explanation": "SFP carries Layer 1/2 signals — encryption is a higher-layer function.",
+            "misconceptionTested": "SFP encrypts traffic",
+            "whatItDoes": "Encrypt traffic points to a related idea, but not the specific behavior or value required for sfp purpose.",
+            "whyWrongHere": "For \"sfp purpose\", Flexible hot-swappable media on a port satisfies what this question tests — Encrypt traffic does not."
           }
         ],
-        "examTip": "This stem tests sfp purpose — exam distractors swap similar terms; anchor on: SFPs let you choose copper or fiber media per port without changing the switch."
+        "examTip": "SFP/SFP+ = pluggable optics — change distance/speed by swapping the module, not the port."
       }
     },
     {
@@ -359,18 +359,18 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "True — MM is commonly orange (OM2) or aqua (OM3/OM4); SM is often yellow."
+          "explanation": "True — multimode fiber is commonly orange (OM1/OM2) or aqua (OM3/OM4) jacketed."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "This statement is False, but the tested fact is: True — MM is commonly orange (OM2) or aqua (OM3/OM4); SM is often yellow.",
+            "explanation": "False is wrong — color coding helps identify multimode vs single-mode (yellow).",
+            "misconceptionTested": "Multimode not color-coded",
             "whatItDoes": "False states the opposite of the tested fact about mm color.",
-            "whyWrongHere": "Given mm color, True matches the tested behavior — False applies a different mechanism.",
-            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
+            "whyWrongHere": "For \"mm color\", True satisfies what this question tests — False does not."
           }
         ],
-        "examTip": "On the exam: Using MM fiber for km-scale links — Long distance requires single-mode fiber and matching SM optics"
+        "examTip": "Fiber colors: orange/aqua = multimode | yellow = single-mode — verify before connecting."
       }
     }
   ]

@@ -31,22 +31,22 @@
             "choiceIndex": 0,
             "explanation": "Correct routing is Layer 3 — CRC is a Layer 2 frame integrity check on the wire.",
             "misconceptionTested": "Attributing CRC to routing success",
-            "whatItDoes": "Correct routing describes a mechanism that could sound plausible for crc meaning.",
-            "whyWrongHere": "Given crc meaning, Frame corruption on the wire matches the tested behavior — Correct routing applies a different mechanism."
+            "whatItDoes": "Correct routing points to a related idea, but not the specific behavior or value required for crc meaning.",
+            "whyWrongHere": "For \"crc meaning\", Frame corruption on the wire satisfies what this question tests — Correct routing does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "DNS failures affect name resolution — they do not increment interface CRC counters.",
             "misconceptionTested": "Blaming DNS for L2 CRC errors",
-            "whatItDoes": "DNS failure describes a mechanism that could sound plausible for crc meaning.",
-            "whyWrongHere": "Given crc meaning, Frame corruption on the wire matches the tested behavior — DNS failure applies a different mechanism."
+            "whatItDoes": "DNS failure points to a related idea, but not the specific behavior or value required for crc meaning.",
+            "whyWrongHere": "For \"crc meaning\", Frame corruption on the wire satisfies what this question tests — DNS failure does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Valid VLAN tagging is normal — CRC errors mean damaged or misaligned frames, not proper 802.1Q.",
             "misconceptionTested": "Equating VLAN tags with CRC failures",
-            "whatItDoes": "Valid VLAN tagging describes a mechanism that could sound plausible for crc meaning.",
-            "whyWrongHere": "Given crc meaning, Frame corruption on the wire matches the tested behavior — Valid VLAN tagging applies a different mechanism."
+            "whatItDoes": "Valid VLAN tagging points to a related idea, but not the specific behavior or value required for crc meaning.",
+            "whyWrongHere": "For \"crc meaning\", Frame corruption on the wire satisfies what this question tests — Valid VLAN tagging does not."
           }
         ],
         "examTip": "Rising CRC errors → check cable, duplex, and physical layer first."
@@ -79,22 +79,22 @@
             "choiceIndex": 0,
             "explanation": "show ip route lists Layer 3 paths — not interface error counters.",
             "misconceptionTested": "Using routing table for L2 error stats",
-            "whatItDoes": "show ip route describes a mechanism that could sound plausible for verify command.",
-            "whyWrongHere": "Given verify command, show interfaces counters errors matches the tested behavior — show ip route applies a different mechanism."
+            "whatItDoes": "show ip route is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (verify command): show interfaces counters errors inspects the right table or state — show ip route shows unrelated information."
           },
           {
             "choiceIndex": 2,
             "explanation": "show vlan brief lists VLAN membership — not CRC or collision counts.",
             "misconceptionTested": "Checking VLAN brief for physical errors",
-            "whatItDoes": "show vlan brief describes a mechanism that could sound plausible for verify command.",
-            "whyWrongHere": "Given verify command, show interfaces counters errors matches the tested behavior — show vlan brief applies a different mechanism."
+            "whatItDoes": "show vlan brief is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (verify command): show interfaces counters errors inspects the right table or state — show vlan brief shows unrelated information."
           },
           {
             "choiceIndex": 3,
             "explanation": "show version shows IOS and uptime — not per-interface error counters.",
             "misconceptionTested": "Using show version for CRC diagnostics",
-            "whatItDoes": "show version describes a mechanism that could sound plausible for verify command.",
-            "whyWrongHere": "Given verify command, show interfaces counters errors matches the tested behavior — show version applies a different mechanism."
+            "whatItDoes": "show version points to a related idea, but not the specific behavior or value required for verify command.",
+            "whyWrongHere": "For \"verify command\", show interfaces counters errors satisfies what this question tests — show version does not."
           }
         ],
         "examTip": "Physical/L2 errors → show interfaces or `show interfaces counters errors."
@@ -120,32 +120,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Duplex mismatch causes errors and poor throughput while link may stay up."
+          "explanation": "Duplex mismatch (switch forced full, PC half) causes late collisions, CRC errors, and slow performance."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "No connectivity at all describes a mechanism that could sound plausible for duplex mismatch. Given duplex mismatch, Slow performance with CRC and late collisions matches the tested behavior — No connectivity at all applies a different mechanism.",
-            "whatItDoes": "No connectivity at all describes a mechanism that could sound plausible for duplex mismatch.",
-            "whyWrongHere": "Given duplex mismatch, Slow performance with CRC and late collisions matches the tested behavior — No connectivity at all applies a different mechanism.",
-            "misconceptionTested": "Applying \"No connectivity at all\" without matching duplex mismatch"
+            "explanation": "Duplex mismatch usually still has link up — performance degrades rather than total loss.",
+            "misconceptionTested": "Duplex mismatch kills link entirely",
+            "whatItDoes": "No connectivity at all points to a related idea, but not the specific behavior or value required for duplex mismatch.",
+            "whyWrongHere": "For \"duplex mismatch\", Slow performance with CRC and late collisions satisfies what this question tests — No connectivity at all does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Double speed describes a mechanism that could sound plausible for duplex mismatch. Given duplex mismatch, Slow performance with CRC and late collisions matches the tested behavior — Double speed applies a different mechanism.",
-            "whatItDoes": "Double speed describes a mechanism that could sound plausible for duplex mismatch.",
-            "whyWrongHere": "Given duplex mismatch, Slow performance with CRC and late collisions matches the tested behavior — Double speed applies a different mechanism.",
-            "misconceptionTested": "Applying \"Double speed\" without matching duplex mismatch"
+            "explanation": "Mismatch halves effective throughput — it doesn't double speed.",
+            "misconceptionTested": "Duplex mismatch doubles speed",
+            "whatItDoes": "Double speed points to a related idea, but not the specific behavior or value required for duplex mismatch.",
+            "whyWrongHere": "For \"duplex mismatch\", Slow performance with CRC and late collisions satisfies what this question tests — Double speed does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "STP blocking is the wrong device role here. STP prevents Layer 2 loops — it does not provide inter-VLAN routing, MAC learning rules, or replace trunk configuration.",
-            "whatItDoes": "STP blocking describes a mechanism that could sound plausible for duplex mismatch.",
-            "whyWrongHere": "Given duplex mismatch, Slow performance with CRC and late collisions matches the tested behavior — STP blocking applies a different mechanism.",
-            "misconceptionTested": "Choosing STP when the question asks for forwarding, routing, or VLAN data plane behavior"
+            "explanation": "STP blocking is a spanning-tree state — unrelated to duplex negotiation.",
+            "misconceptionTested": "Duplex mismatch causes STP blocking",
+            "whatItDoes": "STP blocking points to a related idea, but not the specific behavior or value required for duplex mismatch.",
+            "whyWrongHere": "For \"duplex mismatch\", Slow performance with CRC and late collisions satisfies what this question tests — STP blocking does not."
           }
         ],
-        "examTip": "On the exam: Forcing full-duplex on one side only — Both ends must match — use auto-auto or identical manual settings"
+        "examTip": "Duplex mismatch symptom: CRC + late collisions on one link — fix: auto-auto or match both sides."
       }
     },
     {
@@ -168,32 +168,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Full-duplex switched ports should not collide — suspect mismatch or bad media."
+          "explanation": "On full-duplex access ports, collisions indicate duplex mismatch or misconfiguration — collisions should be near zero."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Normal operation reflects a common trap: Collisions are normal on all Ethernet links. Full-duplex switched links should have near-zero collisions.",
-            "whatItDoes": "Normal operation describes a mechanism that could sound plausible for collisions.",
-            "whyWrongHere": "Given collisions, Duplex mismatch or misconfiguration matches the tested behavior — Normal operation applies a different mechanism.",
-            "misconceptionTested": "Collisions are normal on all Ethernet links"
+            "explanation": "Full-duplex eliminates collision domain issues — sustained collisions are abnormal.",
+            "misconceptionTested": "Collisions normal on full-duplex",
+            "whatItDoes": "Normal operation points to a related idea, but not the specific behavior or value required for collisions.",
+            "whyWrongHere": "For \"collisions\", Duplex mismatch or misconfiguration satisfies what this question tests — Normal operation does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "OSPF adjacency describes a mechanism that could sound plausible for collisions. Given collisions, Duplex mismatch or misconfiguration matches the tested behavior — OSPF adjacency applies a different mechanism.",
-            "whatItDoes": "OSPF adjacency describes a mechanism that could sound plausible for collisions.",
-            "whyWrongHere": "Given collisions, Duplex mismatch or misconfiguration matches the tested behavior — OSPF adjacency applies a different mechanism.",
-            "misconceptionTested": "Applying \"OSPF adjacency\" without matching collisions"
+            "explanation": "OSPF adjacency is Layer 3 — collisions are Layer 1/2 physical.",
+            "misconceptionTested": "OSPF causes collisions",
+            "whatItDoes": "OSPF adjacency points to a related idea, but not the specific behavior or value required for collisions.",
+            "whyWrongHere": "For \"collisions\", Duplex mismatch or misconfiguration satisfies what this question tests — OSPF adjacency does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "DHCP renewal describes a mechanism that could sound plausible for collisions. Given collisions, Duplex mismatch or misconfiguration matches the tested behavior — DHCP renewal applies a different mechanism.",
-            "whatItDoes": "DHCP renewal describes a mechanism that could sound plausible for collisions.",
-            "whyWrongHere": "Given collisions, Duplex mismatch or misconfiguration matches the tested behavior — DHCP renewal applies a different mechanism.",
-            "misconceptionTested": "Applying \"DHCP renewal\" without matching collisions"
+            "explanation": "DHCP renewal is Layer 3 addressing — not a collision cause.",
+            "misconceptionTested": "DHCP renewal causes collisions",
+            "whatItDoes": "DHCP renewal points to a related idea, but not the specific behavior or value required for collisions.",
+            "whyWrongHere": "For \"collisions\", Duplex mismatch or misconfiguration satisfies what this question tests — DHCP renewal does not."
           }
         ],
-        "examTip": "On the exam: Collisions are normal on all Ethernet links — Full-duplex switched links should have near-zero collisions"
+        "examTip": "Full-duplex = no collisions expected — if counters climb, check speed/duplex on both ends."
       }
     },
     {
@@ -217,32 +217,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Physical layer and speed/duplex alignment are the first checks for CRCs."
+          "explanation": "First step for CRC errors: check/replace cable and verify speed/duplex match on both ends."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Reload the router describes a mechanism that could sound plausible for fix order. Given fix order, Check/replace cable and verify speed/duplex matches the tested behavior — Reload the router applies a different mechanism.",
-            "whatItDoes": "Reload the router describes a mechanism that could sound plausible for fix order.",
-            "whyWrongHere": "Given fix order, Check/replace cable and verify speed/duplex matches the tested behavior — Reload the router applies a different mechanism.",
-            "misconceptionTested": "Applying \"Reload the router\" without matching fix order"
+            "explanation": "Reload is a last resort — physical layer issues need cable/duplex checks first.",
+            "misconceptionTested": "Reload first for CRC errors",
+            "whatItDoes": "Reload the router points to a related idea, but not the specific behavior or value required for fix order.",
+            "whyWrongHere": "For \"fix order\", Check/replace cable and verify speed/duplex satisfies what this question tests — Reload the router does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Change VLAN describes a mechanism that could sound plausible for fix order. Given fix order, Check/replace cable and verify speed/duplex matches the tested behavior — Change VLAN applies a different mechanism.",
-            "whatItDoes": "Change VLAN describes a mechanism that could sound plausible for fix order.",
-            "whyWrongHere": "Given fix order, Check/replace cable and verify speed/duplex matches the tested behavior — Change VLAN applies a different mechanism.",
-            "misconceptionTested": "Applying \"Change VLAN\" without matching fix order"
+            "explanation": "VLAN misconfig causes connectivity issues — CRC errors point to physical layer.",
+            "misconceptionTested": "Change VLAN for CRC errors",
+            "whatItDoes": "Change VLAN points to a related idea, but not the specific behavior or value required for fix order.",
+            "whyWrongHere": "For \"fix order\", Check/replace cable and verify speed/duplex satisfies what this question tests — Change VLAN does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Enable OSPF describes a mechanism that could sound plausible for fix order. Given fix order, Check/replace cable and verify speed/duplex matches the tested behavior — Enable OSPF applies a different mechanism.",
-            "whatItDoes": "Enable OSPF describes a mechanism that could sound plausible for fix order.",
-            "whyWrongHere": "Given fix order, Check/replace cable and verify speed/duplex matches the tested behavior — Enable OSPF applies a different mechanism.",
-            "misconceptionTested": "Applying \"Enable OSPF\" without matching fix order"
+            "explanation": "OSPF is routing — CRC is a Layer 1/2 integrity error.",
+            "misconceptionTested": "Enable OSPF for CRC errors",
+            "whatItDoes": "Enable OSPF points to a related idea, but not the specific behavior or value required for fix order.",
+            "whyWrongHere": "For \"fix order\", Check/replace cable and verify speed/duplex satisfies what this question tests — Enable OSPF does not."
           }
         ],
-        "examTip": "On the exam: CRC errors always mean replace the switch — Most CRC issues are cable, SFP, or duplex — not the switch ASIC"
+        "examTip": "CRC troubleshooting order: cable → duplex → SFP/optics → replace hardware."
       }
     },
     {
@@ -265,32 +265,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Runts are frames smaller than the minimum valid Ethernet size."
+          "explanation": "Runt frames are undersized — below the 64-byte minimum Ethernet frame size."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Oversized frames describes a mechanism that could sound plausible for Runts are frames smaller than the minimum valid Ethernet size. Given Runts are frames smaller than the minimum valid Ethernet size, Undersized frames below minimum Ethernet size matches the tested behavior — Oversized frames applies a different mechanism.",
-            "whatItDoes": "Oversized frames describes a mechanism that could sound plausible for Runts are frames smaller than the minimum valid Ethernet size.",
-            "whyWrongHere": "Given Runts are frames smaller than the minimum valid Ethernet size, Undersized frames below minimum Ethernet size matches the tested behavior — Oversized frames applies a different mechanism.",
-            "misconceptionTested": "Applying \"Oversized frames\" without matching runts"
+            "explanation": "Oversized frames are giants — runts are too small.",
+            "misconceptionTested": "Runts are oversized",
+            "whatItDoes": "Oversized frames points to a related idea, but not the specific behavior or value required for Runts are frames smaller than the minimum valid Ethernet size.",
+            "whyWrongHere": "For \"Runts are frames smaller than the minimum valid Ethernet size\", Undersized frames below minimum Ethernet size satisfies what this question tests — Oversized frames does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Broadcast frames only describes flooding the frame to multiple ports in the VLAN. Given Runts are frames smaller than the minimum valid Ethernet size, Undersized frames below minimum Ethernet size matches the tested behavior — Broadcast frames only applies a different mechanism.",
+            "explanation": "Runts are a size issue — not limited to broadcast frames.",
+            "misconceptionTested": "Runts are broadcast only",
             "whatItDoes": "Broadcast frames only describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "Given Runts are frames smaller than the minimum valid Ethernet size, Undersized frames below minimum Ethernet size matches the tested behavior — Broadcast frames only applies a different mechanism.",
-            "misconceptionTested": "Applying \"Broadcast frames only\" without matching runts"
+            "whyWrongHere": "For \"Runts are frames smaller than the minimum valid Ethernet size\", Undersized frames below minimum Ethernet size satisfies what this question tests — Broadcast frames only does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Encrypted frames describes a mechanism that could sound plausible for Runts are frames smaller than the minimum valid Ethernet size. Given Runts are frames smaller than the minimum valid Ethernet size, Undersized frames below minimum Ethernet size matches the tested behavior — Encrypted frames applies a different mechanism.",
-            "whatItDoes": "Encrypted frames describes a mechanism that could sound plausible for Runts are frames smaller than the minimum valid Ethernet size.",
-            "whyWrongHere": "Given Runts are frames smaller than the minimum valid Ethernet size, Undersized frames below minimum Ethernet size matches the tested behavior — Encrypted frames applies a different mechanism.",
-            "misconceptionTested": "Applying \"Encrypted frames\" without matching runts"
+            "explanation": "Encryption doesn't change frame size classification — runts are below minimum length.",
+            "misconceptionTested": "Runts are encrypted frames",
+            "whatItDoes": "Encrypted frames points to a related idea, but not the specific behavior or value required for Runts are frames smaller than the minimum valid Ethernet size.",
+            "whyWrongHere": "For \"Runts are frames smaller than the minimum valid Ethernet size\", Undersized frames below minimum Ethernet size satisfies what this question tests — Encrypted frames does not."
           }
         ],
-        "examTip": "On the exam: Assuming up/up means healthy link — Always check error counters — CRCs can climb while status stays up"
+        "examTip": "Ethernet size: runt (<64 B) | normal (64–1518 B) | giant (>MTU) — often cable/duplex related."
       }
     },
     {
@@ -311,18 +311,18 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "True — link status does not guarantee error-free transmission."
+          "explanation": "True — an interface can show up/up while still accumulating CRC errors from a bad cable or EMI."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "This statement is False, but the tested fact is: True — link status does not guarantee error-free transmission.",
+            "explanation": "False is wrong — link status and error counters are independent metrics.",
+            "misconceptionTested": "up/up means no CRC errors",
             "whatItDoes": "False states the opposite of the tested fact about link up errors.",
-            "whyWrongHere": "Given link up errors, True matches the tested behavior — False applies a different mechanism.",
-            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
+            "whyWrongHere": "For \"link up errors\", True satisfies what this question tests — False does not."
           }
         ],
-        "examTip": "On the exam: Assuming up/up means healthy link — Always check error counters — CRCs can climb while status stays up"
+        "examTip": "Always check show interfaces error counters — up/up doesn't mean clean."
       }
     },
     {
@@ -345,32 +345,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "EMI corrupts electrical signals on UTP — reroute cable or use shielded/fiber media."
+          "explanation": "Cable parallel to power lines causes EMI (electromagnetic interference) on copper, producing CRC errors."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Wrong IP subnet describes a mechanism that could sound plausible for parallel. Given parallel, Electromagnetic interference on copper matches the tested behavior — Wrong IP subnet applies a different mechanism.",
-            "whatItDoes": "Wrong IP subnet describes a mechanism that could sound plausible for parallel.",
-            "whyWrongHere": "Given parallel, Electromagnetic interference on copper matches the tested behavior — Wrong IP subnet applies a different mechanism.",
-            "misconceptionTested": "Applying \"Wrong IP subnet\" without matching emi"
+            "explanation": "Wrong subnet causes IP reachability failure — not physical CRC errors.",
+            "misconceptionTested": "Subnet mismatch causes CRC",
+            "whatItDoes": "Wrong IP subnet points to a related idea, but not the specific behavior or value required for parallel.",
+            "whyWrongHere": "For \"parallel\", Electromagnetic interference on copper satisfies what this question tests — Wrong IP subnet does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Missing default route describes a mechanism that could sound plausible for parallel. Given parallel, Electromagnetic interference on copper matches the tested behavior — Missing default route applies a different mechanism.",
-            "whatItDoes": "Missing default route describes a mechanism that could sound plausible for parallel.",
-            "whyWrongHere": "Given parallel, Electromagnetic interference on copper matches the tested behavior — Missing default route applies a different mechanism.",
-            "misconceptionTested": "Applying \"Missing default route\" without matching emi"
+            "explanation": "Missing default route is Layer 3 — CRC is Layer 1/2 physical.",
+            "misconceptionTested": "Default route missing causes CRC",
+            "whatItDoes": "Missing default route points to a related idea, but not the specific behavior or value required for parallel.",
+            "whyWrongHere": "For \"parallel\", Electromagnetic interference on copper satisfies what this question tests — Missing default route does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "WPA3 misconfig describes a mechanism that could sound plausible for parallel. Given parallel, Electromagnetic interference on copper matches the tested behavior — WPA3 misconfig applies a different mechanism.",
-            "whatItDoes": "WPA3 misconfig describes a mechanism that could sound plausible for parallel.",
-            "whyWrongHere": "Given parallel, Electromagnetic interference on copper matches the tested behavior — WPA3 misconfig applies a different mechanism.",
-            "misconceptionTested": "Applying \"WPA3 misconfig\" without matching emi"
+            "explanation": "WPA3 is wireless security — CRC on copper is cabling/EMI.",
+            "misconceptionTested": "WPA3 misconfig causes CRC",
+            "whatItDoes": "WPA3 misconfig points to a related idea, but not the specific behavior or value required for parallel.",
+            "whyWrongHere": "For \"parallel\", Electromagnetic interference on copper satisfies what this question tests — WPA3 misconfig does not."
           }
         ],
-        "examTip": "On the exam: CRC errors always mean replace the switch — Most CRC issues are cable, SFP, or duplex — not the switch ASIC"
+        "examTip": "Copper best practice: run away from power lines and fluorescent ballasts — use shielded cable if unavoidable."
       }
     }
   ]

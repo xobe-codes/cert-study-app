@@ -24,32 +24,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "/26 = 64 addresses − 2 (network + broadcast) = 62 usable hosts."
+          "explanation": "/26 leaves 6 host bits → 2⁶ − 2 = 62 usable hosts (subtract network + broadcast)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "64 is total addresses in the block — subtract network and broadcast for usable hosts.",
-            "misconceptionTested": "Forgetting to subtract network and broadcast",
-            "whatItDoes": "64 describes a mechanism that could sound plausible for hosts per subnet.",
-            "whyWrongHere": "Given hosts per subnet, 62 matches the tested behavior — 64 applies a different mechanism."
+            "explanation": "64 is 2⁶ total addresses — you must subtract network and broadcast → 62 usable.",
+            "misconceptionTested": "Forgetting to subtract network/broadcast",
+            "whatItDoes": "64 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in hosts per subnet.",
+            "whyWrongHere": "For \"hosts per subnet\", 62 satisfies what this question tests — 64 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "30 usable hosts is a /27 (/32−2=30) — /26 gives 62.",
-            "misconceptionTested": "Confusing /27 host count with /26",
-            "whatItDoes": "30 describes a mechanism that could sound plausible for hosts per subnet.",
-            "whyWrongHere": "Given hosts per subnet, 62 matches the tested behavior — 30 applies a different mechanism."
+            "explanation": "30 fits a /27, not /26 — recount host bits after the prefix.",
+            "misconceptionTested": "Wrong prefix → host count",
+            "whatItDoes": "30 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in hosts per subnet.",
+            "whyWrongHere": "For \"hosts per subnet\", 62 satisfies what this question tests — 30 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "126 usable is a /25 — /26 is half that size.",
-            "misconceptionTested": "Using /25 math for a /26 prefix",
-            "whatItDoes": "126 describes a mechanism that could sound plausible for hosts per subnet.",
-            "whyWrongHere": "Given hosts per subnet, 62 matches the tested behavior — 126 applies a different mechanism."
+            "explanation": "126 is a /25 host count — /26 is always 62 usable.",
+            "misconceptionTested": "Off-by-prefix host math",
+            "whatItDoes": "126 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in hosts per subnet.",
+            "whyWrongHere": "For \"hosts per subnet\", 62 satisfies what this question tests — 126 does not."
           }
         ],
-        "examTip": "Usable hosts = 2^(32−prefix) − 2. /26 → 62 usable."
+        "examTip": "Usable hosts = 2^(32−prefix) − 2. /26 → 62."
       }
     },
     {
@@ -72,32 +72,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Block size = 256 − 224 = 32."
+          "explanation": "A /27 leaves 5 host bits (32−27). Block size = 2^5 = 32 addresses per subnet."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "16 uses the wrong value. The tested fact calls for 256 — not 16.",
-            "whatItDoes": "16 describes a mechanism that could sound plausible for block size.",
-            "whyWrongHere": "Given block size, 32 matches the tested behavior — 16 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 16 instead of the correct 256"
+            "explanation": "16 is the block size for /28 (4 host bits), not /27.",
+            "misconceptionTested": "Confusing /27 block size with /28",
+            "whatItDoes": "16 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in block size.",
+            "whyWrongHere": "For \"block size\", 32 satisfies what this question tests — 16 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "64 uses the wrong value. The tested fact calls for 256 — not 64.",
-            "whatItDoes": "64 describes a mechanism that could sound plausible for block size.",
-            "whyWrongHere": "Given block size, 32 matches the tested behavior — 64 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 64 instead of the correct 256"
+            "explanation": "64 is the block size for /26 (6 host bits), not /27.",
+            "misconceptionTested": "Using /26 block size for a /27 mask",
+            "whatItDoes": "64 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in block size.",
+            "whyWrongHere": "For \"block size\", 32 satisfies what this question tests — 64 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "8 uses the wrong value. The tested fact calls for 256 — not 8.",
-            "whatItDoes": "8 describes a mechanism that could sound plausible for block size.",
-            "whyWrongHere": "Given block size, 32 matches the tested behavior — 8 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 8 instead of the correct 256"
+            "explanation": "8 is the block size for /29 (3 host bits), not /27.",
+            "misconceptionTested": "Undersizing /27 block to 8",
+            "whatItDoes": "8 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in block size.",
+            "whyWrongHere": "For \"block size\", 32 satisfies what this question tests — 8 does not."
           }
         ],
-        "examTip": "On the exam: Using the wrong octet for block size — Apply block size to the octet where the mask is neither 255 nor 0 (the interesting octet)"
+        "examTip": "/27 → 5 host bits → block size 32 (memorize 128/64/32/16/8 for /25–/29)."
       }
     },
     {
@@ -121,32 +121,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Block 64 → first subnet is .0–.63, so broadcast = .63."
+          "explanation": "192.168.10.0/26 spans 64 addresses (.0–.63). Broadcast is the last address: 192.168.10.63."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "192.168.10.255 uses the wrong value. The tested fact calls for 64 — not 192.",
-            "whatItDoes": "192.168.10.255 describes a mechanism that could sound plausible for broadcast address.",
-            "whyWrongHere": "Given broadcast address, 192.168.10.63 matches the tested behavior — 192.168.10.255 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 192 instead of the correct 64"
+            "explanation": ".255 is the broadcast of a /24, not a /26 within 192.168.10.0.",
+            "misconceptionTested": "Applying /24 broadcast to a /26",
+            "whatItDoes": "192.168.10.255 points to a related idea, but not the specific behavior or value required for broadcast address.",
+            "whyWrongHere": "For \"broadcast address\", 192.168.10.63 satisfies what this question tests — 192.168.10.255 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "192.168.10.127 uses the wrong value. The tested fact calls for 64 — not 192.",
-            "whatItDoes": "192.168.10.127 describes a mechanism that could sound plausible for broadcast address.",
-            "whyWrongHere": "Given broadcast address, 192.168.10.63 matches the tested behavior — 192.168.10.127 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 192 instead of the correct 64"
+            "explanation": ".127 is the broadcast of 192.168.10.64/26, not 192.168.10.0/26.",
+            "misconceptionTested": "Off-by-one subnet boundary",
+            "whatItDoes": "192.168.10.127 points to a related idea, but not the specific behavior or value required for broadcast address.",
+            "whyWrongHere": "For \"broadcast address\", 192.168.10.63 satisfies what this question tests — 192.168.10.127 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "192.168.10.64 uses the wrong value. The tested fact calls for 64 — not 192.",
-            "whatItDoes": "192.168.10.64 describes a mechanism that could sound plausible for broadcast address.",
-            "whyWrongHere": "Given broadcast address, 192.168.10.63 matches the tested behavior — 192.168.10.64 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 192 instead of the correct 64"
+            "explanation": ".64 is the network address of the next /26, not the broadcast of .0/26.",
+            "misconceptionTested": "Confusing next network with broadcast",
+            "whatItDoes": "192.168.10.64 points to a related idea, but not the specific behavior or value required for broadcast address.",
+            "whyWrongHere": "For \"broadcast address\", 192.168.10.63 satisfies what this question tests — 192.168.10.64 does not."
           }
         ],
-        "examTip": "On the exam: Using the wrong octet for block size — Apply block size to the octet where the mask is neither 255 nor 0 (the interesting octet)"
+        "examTip": "/26 block = 64 → broadcast = network + block size − 1."
       }
     },
     {
@@ -169,32 +169,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Block 64 → boundaries .0/.64/.128/.192; 100 falls in .64–.127, so the subnet is 172.16.0.64."
+          "explanation": "172.16.0.100 falls in the 172.16.0.64–172.16.0.127 /26 range — subnet ID 172.16.0.64."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "172.16.0.0 uses the wrong value. The tested fact calls for 64 — not 172.",
-            "whatItDoes": "172.16.0.0 describes a mechanism that could sound plausible for find the subnet.",
-            "whyWrongHere": "Given find the subnet, 172.16.0.64 matches the tested behavior — 172.16.0.0 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 172 instead of the correct 64"
+            "explanation": "172.16.0.0/26 covers .0–.63; .100 is above that range.",
+            "misconceptionTested": "Assigning host to wrong /26 block",
+            "whatItDoes": "172.16.0.0 points to a related idea, but not the specific behavior or value required for find the subnet.",
+            "whyWrongHere": "For \"find the subnet\", 172.16.0.64 satisfies what this question tests — 172.16.0.0 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "172.16.0.96 uses the wrong value. The tested fact calls for 64 — not 172.",
-            "whatItDoes": "172.16.0.96 describes a mechanism that could sound plausible for find the subnet.",
-            "whyWrongHere": "Given find the subnet, 172.16.0.64 matches the tested behavior — 172.16.0.96 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 172 instead of the correct 64"
+            "explanation": "172.16.0.96/26 starts at .96; .100 is in the .64 block.",
+            "misconceptionTested": "Starting subnet at wrong multiple of 64",
+            "whatItDoes": "172.16.0.96 points to a related idea, but not the specific behavior or value required for find the subnet.",
+            "whyWrongHere": "For \"find the subnet\", 172.16.0.64 satisfies what this question tests — 172.16.0.96 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "172.16.0.128 uses the wrong value. The tested fact calls for 64 — not 172.",
-            "whatItDoes": "172.16.0.128 describes a mechanism that could sound plausible for find the subnet.",
-            "whyWrongHere": "Given find the subnet, 172.16.0.64 matches the tested behavior — 172.16.0.128 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 172 instead of the correct 64"
+            "explanation": "172.16.0.128/26 begins at .128; .100 is below that.",
+            "misconceptionTested": "Overshooting to next /26 network",
+            "whatItDoes": "172.16.0.128 points to a related idea, but not the specific behavior or value required for find the subnet.",
+            "whyWrongHere": "For \"find the subnet\", 172.16.0.64 satisfies what this question tests — 172.16.0.128 does not."
           }
         ],
-        "examTip": "On the exam: Using the wrong octet for block size — Apply block size to the octet where the mask is neither 255 nor 0 (the interesting octet)"
+        "examTip": "Find subnet: divide host octet by block size (64 for /26) and floor to the boundary."
       }
     },
     {
@@ -217,32 +217,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "/27 → 2^5 − 2 = 30 usable hosts exactly."
+          "explanation": "/27 gives 2^5−2 = 30 usable hosts — the smallest standard mask that fits 30 hosts without wasting a full /26 (62 usable)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "/26 uses the wrong value. The tested fact calls for 27 — not 26.",
-            "whatItDoes": "/26 describes a mechanism that could sound plausible for mask for host count.",
-            "whyWrongHere": "Given mask for host count, /27 matches the tested behavior — /26 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 26 instead of the correct 27"
+            "explanation": "/26 provides 62 usable hosts — works but wastes more addresses than /27 for only 30 hosts.",
+            "misconceptionTested": "Oversizing mask when smaller subnet fits",
+            "whatItDoes": "/26 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (mask for host count): /27 matches prefix, shortening, or assignment rules — /26 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 2,
-            "explanation": "/28 uses the wrong value. The tested fact calls for 27 — not 28.",
-            "whatItDoes": "/28 describes a mechanism that could sound plausible for mask for host count.",
-            "whyWrongHere": "Given mask for host count, /27 matches the tested behavior — /28 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 28 instead of the correct 27"
+            "explanation": "/28 only allows 14 usable hosts — not enough for 30.",
+            "misconceptionTested": "Undersizing host capacity",
+            "whatItDoes": "/28 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (mask for host count): /27 matches prefix, shortening, or assignment rules — /28 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 3,
-            "explanation": "/29 uses the wrong value. The tested fact calls for 27 — not 29.",
-            "whatItDoes": "/29 describes a mechanism that could sound plausible for mask for host count.",
-            "whyWrongHere": "Given mask for host count, /27 matches the tested behavior — /29 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 29 instead of the correct 27"
+            "explanation": "/29 allows only 6 usable hosts — far too small for 30.",
+            "misconceptionTested": "Choosing point-to-point mask for LAN",
+            "whatItDoes": "/29 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (mask for host count): /27 matches prefix, shortening, or assignment rules — /29 breaks IPv6 syntax or prefix length."
           }
         ],
-        "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
+        "examTip": "Need N hosts → smallest prefix where 2^hostbits−2 ≥ N; /27 = 30 usable."
       }
     },
     {
@@ -265,32 +265,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "/30 → 2^2 − 2 = 2 usable hosts — perfect for a router-to-router link."
+          "explanation": "/30 has 2 host bits → 2^2 = 4 total, minus network and broadcast = 2 usable hosts (typical WAN link)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "1 uses the wrong value. The tested fact calls for 30 — not 1.",
-            "whatItDoes": "1 describes a mechanism that could sound plausible for point-to-point.",
-            "whyWrongHere": "Given point-to-point, 2 matches the tested behavior — 1 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 1 instead of the correct 30"
+            "explanation": "1 usable host would be /31 in some designs — /30 provides two assignable addresses.",
+            "misconceptionTested": "Undercounting /30 usable hosts",
+            "whatItDoes": "1 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in point-to-point.",
+            "whyWrongHere": "For \"point-to-point\", 2 satisfies what this question tests — 1 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "4 uses the wrong value. The tested fact calls for 30 — not 4.",
-            "whatItDoes": "4 describes a mechanism that could sound plausible for point-to-point.",
-            "whyWrongHere": "Given point-to-point, 2 matches the tested behavior — 4 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 4 instead of the correct 30"
+            "explanation": "4 is the total addresses in the subnet, not usable hosts.",
+            "misconceptionTested": "Counting total addresses instead of usable",
+            "whatItDoes": "4 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in point-to-point.",
+            "whyWrongHere": "For \"point-to-point\", 2 satisfies what this question tests — 4 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "0 uses the wrong value. The tested fact calls for 30 — not 0.",
-            "whatItDoes": "0 describes a mechanism that could sound plausible for point-to-point.",
-            "whyWrongHere": "Given point-to-point, 2 matches the tested behavior — 0 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 0 instead of the correct 30"
+            "explanation": "/30 always has hosts; /31 is the special case with 0 usable in classic counting.",
+            "misconceptionTested": "Believing /30 has no usable hosts",
+            "whatItDoes": "0 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in point-to-point.",
+            "whyWrongHere": "For \"point-to-point\", 2 satisfies what this question tests — 0 does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
+        "examTip": "/30 WAN link: 2 usable hosts (.1 and .2 in a .0/30)."
       }
     },
     {
@@ -313,32 +313,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Number of subnets = 2^(borrowed bits) = 2^3 = 8."
+          "explanation": "Borrowing 3 bits from host portion creates 2^3 = 8 subnets (classic formula when all borrowed bits used)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "6 uses the wrong value. The tested fact calls for 2 — not 6.",
-            "whatItDoes": "6 describes a mechanism that could sound plausible for number of subnets.",
-            "whyWrongHere": "Given number of subnets, 8 matches the tested behavior — 6 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 6 instead of the correct 2"
+            "explanation": "6 subnets would require subtracting reserved subnets in legacy classful math — CCNA uses 2^borrowed.",
+            "misconceptionTested": "Subtracting 2 from subnet count incorrectly",
+            "whatItDoes": "6 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in number of subnets.",
+            "whyWrongHere": "For \"number of subnets\", 8 satisfies what this question tests — 6 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "16 uses the wrong value. The tested fact calls for 2 — not 16.",
-            "whatItDoes": "16 describes a mechanism that could sound plausible for number of subnets.",
-            "whyWrongHere": "Given number of subnets, 8 matches the tested behavior — 16 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 16 instead of the correct 2"
+            "explanation": "16 subnets needs 4 borrowed bits (2^4), not 3.",
+            "misconceptionTested": "Doubling borrowed bits",
+            "whatItDoes": "16 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in number of subnets.",
+            "whyWrongHere": "For \"number of subnets\", 8 satisfies what this question tests — 16 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "3 uses the wrong value. The tested fact calls for 2 — not 3.",
-            "whatItDoes": "3 describes a mechanism that could sound plausible for number of subnets.",
-            "whyWrongHere": "Given number of subnets, 8 matches the tested behavior — 3 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 3 instead of the correct 2"
+            "explanation": "3 is the number of bits borrowed, not the subnet count.",
+            "misconceptionTested": "Confusing borrowed bits with subnet count",
+            "whatItDoes": "3 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in number of subnets.",
+            "whyWrongHere": "For \"number of subnets\", 8 satisfies what this question tests — 3 does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
+        "examTip": "Subnets created = 2^(borrowed bits) unless question states otherwise."
       }
     },
     {
@@ -361,32 +361,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "240 = 11110000 → 4 bits in the last octet; 24 + 4 = /28."
+          "explanation": "255.255.255.240 = 11111111.11111111.11111111.11110000 → 28 network bits = /28."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "/26 uses the wrong value. The tested fact calls for 240 — not 26.",
-            "whatItDoes": "/26 describes a mechanism that could sound plausible for CIDR conversion.",
-            "whyWrongHere": "Given CIDR conversion, /28 matches the tested behavior — /26 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 26 instead of the correct 240"
+            "explanation": "/26 mask ends in .192 (11100000), not .240.",
+            "misconceptionTested": "Misreading last octet 240",
+            "whatItDoes": "/26 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (CIDR conversion): /28 matches prefix, shortening, or assignment rules — /26 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 1,
-            "explanation": "/27 uses the wrong value. The tested fact calls for 240 — not 27.",
-            "whatItDoes": "/27 describes a mechanism that could sound plausible for CIDR conversion.",
-            "whyWrongHere": "Given CIDR conversion, /28 matches the tested behavior — /27 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 27 instead of the correct 240"
+            "explanation": "/27 mask ends in .224 (11100000), not .240 (11110000).",
+            "misconceptionTested": "Confusing /27 with /28",
+            "whatItDoes": "/27 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (CIDR conversion): /28 matches prefix, shortening, or assignment rules — /27 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 3,
-            "explanation": "/29 uses the wrong value. The tested fact calls for 240 — not 29.",
-            "whatItDoes": "/29 describes a mechanism that could sound plausible for CIDR conversion.",
-            "whyWrongHere": "Given CIDR conversion, /28 matches the tested behavior — /29 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 29 instead of the correct 240"
+            "explanation": "/29 mask ends in .248 (11111000), not .240.",
+            "misconceptionTested": "Confusing /28 with /29",
+            "whatItDoes": "/29 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (CIDR conversion): /28 matches prefix, shortening, or assignment rules — /29 breaks IPv6 syntax or prefix length."
           }
         ],
-        "examTip": "On the exam: A bigger prefix (/27) means a bigger network — A larger prefix number means MORE network bits and FEWER hosts — a smaller subnet"
+        "examTip": "Last octet .240 = 11110000 → /28 (four network bits in last octet)."
       }
     },
     {
@@ -410,32 +410,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "Block 8 → network .0, broadcast .7, usable .1–.6."
+          "explanation": "10.0.0.0/29 has 8 addresses (.0–.7). Usable hosts: 10.0.0.1 – 10.0.0.6 (exclude network .0 and broadcast .7)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "10.0.0.1 – 10.0.0.7 uses the wrong value. The tested fact calls for 8 — not 10.",
-            "whatItDoes": "10.0.0.1 – 10.0.0.7 describes a mechanism that could sound plausible for usable range.",
-            "whyWrongHere": "Given usable range, 10.0.0.1 – 10.0.0.6 matches the tested behavior — 10.0.0.1 – 10.0.0.7 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 10 instead of the correct 8"
+            "explanation": ".7 is the broadcast address — not assignable to a host.",
+            "misconceptionTested": "Including broadcast in host range",
+            "whatItDoes": "10.0.0.1 – 10.0.0.7 points to a related idea, but not the specific behavior or value required for usable range.",
+            "whyWrongHere": "For \"usable range\", 10.0.0.1 – 10.0.0.6 satisfies what this question tests — 10.0.0.1 – 10.0.0.7 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "10.0.0.0 – 10.0.0.7 uses the wrong value. The tested fact calls for 8 — not 10.",
-            "whatItDoes": "10.0.0.0 – 10.0.0.7 describes a mechanism that could sound plausible for usable range.",
-            "whyWrongHere": "Given usable range, 10.0.0.1 – 10.0.0.6 matches the tested behavior — 10.0.0.0 – 10.0.0.7 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 10 instead of the correct 8"
+            "explanation": ".0 is the network address — hosts start at .1.",
+            "misconceptionTested": "Including network address as host",
+            "whatItDoes": "10.0.0.0 – 10.0.0.7 points to a related idea, but not the specific behavior or value required for usable range.",
+            "whyWrongHere": "For \"usable range\", 10.0.0.1 – 10.0.0.6 satisfies what this question tests — 10.0.0.0 – 10.0.0.7 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "10.0.0.1 – 10.0.0.14 uses the wrong value. The tested fact calls for 8 — not 10.",
-            "whatItDoes": "10.0.0.1 – 10.0.0.14 describes a mechanism that could sound plausible for usable range.",
-            "whyWrongHere": "Given usable range, 10.0.0.1 – 10.0.0.6 matches the tested behavior — 10.0.0.1 – 10.0.0.14 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 10 instead of the correct 8"
+            "explanation": ".14 would be in 10.0.0.8/29, not 10.0.0.0/29.",
+            "misconceptionTested": "Spanning into next /29 block",
+            "whatItDoes": "10.0.0.1 – 10.0.0.14 points to a related idea, but not the specific behavior or value required for usable range.",
+            "whyWrongHere": "For \"usable range\", 10.0.0.1 – 10.0.0.6 satisfies what this question tests — 10.0.0.1 – 10.0.0.14 does not."
           }
         ],
-        "examTip": "On the exam: Using the wrong octet for block size — Apply block size to the octet where the mask is neither 255 nor 0 (the interesting octet)"
+        "examTip": "/29 usable range: first host = network+1, last host = broadcast−1."
       }
     },
     {
@@ -458,32 +458,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "32 − 26 = 6 host bits."
+          "explanation": "/26 means 26 network bits in a classful view of a /24 — 6 host bits remain in the last octet (32−26=6)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "26 uses the wrong value. The tested fact calls for 32 — not 26.",
-            "whatItDoes": "26 describes a mechanism that could sound plausible for network/host bits.",
-            "whyWrongHere": "Given network/host bits, 6 matches the tested behavior — 26 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 26 instead of the correct 32"
+            "explanation": "26 is the prefix length (network bits total), not host bits.",
+            "misconceptionTested": "Using CIDR number as host bits",
+            "whatItDoes": "26 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in network/host bits.",
+            "whyWrongHere": "For \"network/host bits\", 6 satisfies what this question tests — 26 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "8 uses the wrong value. The tested fact calls for 32 — not 8.",
-            "whatItDoes": "8 describes a mechanism that could sound plausible for network/host bits.",
-            "whyWrongHere": "Given network/host bits, 6 matches the tested behavior — 8 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 8 instead of the correct 32"
+            "explanation": "8 host bits would be a /24, not /26.",
+            "misconceptionTested": "Confusing /24 host bits with /26",
+            "whatItDoes": "8 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in network/host bits.",
+            "whyWrongHere": "For \"network/host bits\", 6 satisfies what this question tests — 8 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "4 uses the wrong value. The tested fact calls for 32 — not 4.",
-            "whatItDoes": "4 describes a mechanism that could sound plausible for network/host bits.",
-            "whyWrongHere": "Given network/host bits, 6 matches the tested behavior — 4 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 4 instead of the correct 32"
+            "explanation": "4 host bits corresponds to /28, not /26.",
+            "misconceptionTested": "Undershooting host bits for /26",
+            "whatItDoes": "4 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in network/host bits.",
+            "whyWrongHere": "For \"network/host bits\", 6 satisfies what this question tests — 4 does not."
           }
         ],
-        "examTip": "On the exam: A bigger prefix (/27) means a bigger network — A larger prefix number means MORE network bits and FEWER hosts — a smaller subnet"
+        "examTip": "Host bits in last octet = 32 − prefix (for /24-based subnets): /26 → 6 host bits."
       }
     },
     {
@@ -504,18 +504,18 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "False — both are reserved, which is why hosts = 2^h − 2."
+          "explanation": "Network and broadcast addresses are reserved — they cannot be assigned to end hosts."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "This statement is True, but the tested fact is: False — both are reserved, which is why hosts = 2^h − 2.",
+            "explanation": "Assigning network/broadcast to hosts breaks subnet semantics and causes conflicts.",
+            "misconceptionTested": "Believing all addresses in range are usable",
             "whatItDoes": "True states the opposite of the tested fact about reserved addresses.",
-            "whyWrongHere": "Given reserved addresses, False matches the tested behavior — True applies a different mechanism.",
-            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
+            "whyWrongHere": "For \"reserved addresses\", False satisfies what this question tests — True does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
+        "examTip": "Usable hosts = total − 2 (network + broadcast) except special /31 cases."
       }
     },
     {
@@ -538,32 +538,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "/24 → 2^8 − 2 = 254 usable, the smallest mask that holds 200 hosts (/25 gives only 126)."
+          "explanation": "200 hosts need 2^8−2 = 254 usable minimum → /24 (8 host bits). /25 only gives 126 usable."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "/25 uses the wrong value. The tested fact calls for 24 — not 25.",
-            "whatItDoes": "/25 describes a mechanism that could sound plausible for mask selection.",
-            "whyWrongHere": "Given mask selection, /24 matches the tested behavior — /25 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 25 instead of the correct 24"
+            "explanation": "/25 provides only 126 usable hosts — insufficient for 200.",
+            "misconceptionTested": "Undersizing for 200 hosts",
+            "whatItDoes": "/25 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"mask selection\", /24 satisfies what this question tests — /25 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "/23 uses the wrong value. The tested fact calls for 24 — not 23.",
-            "whatItDoes": "/23 describes a mechanism that could sound plausible for mask selection.",
-            "whyWrongHere": "Given mask selection, /24 matches the tested behavior — /23 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 23 instead of the correct 24"
+            "explanation": "/23 is larger than needed (510 usable) — question asks smallest standard mask that fits.",
+            "misconceptionTested": "Oversizing when /24 suffices",
+            "whatItDoes": "/23 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"mask selection\", /24 satisfies what this question tests — /23 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "/26 uses the wrong value. The tested fact calls for 24 — not 26.",
-            "whatItDoes": "/26 describes a mechanism that could sound plausible for mask selection.",
-            "whyWrongHere": "Given mask selection, /24 matches the tested behavior — /26 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 26 instead of the correct 24"
+            "explanation": "/26 allows only 62 usable hosts.",
+            "misconceptionTested": "Severely undersizing mask",
+            "whatItDoes": "/26 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"mask selection\", /24 satisfies what this question tests — /26 does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
+        "examTip": "200 hosts → need ≥202 addresses → /24 is smallest common mask that fits."
       }
     }
   ]

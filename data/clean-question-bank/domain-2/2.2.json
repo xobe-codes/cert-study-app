@@ -31,22 +31,22 @@
             "choiceIndex": 0,
             "explanation": "Access ports carry a single VLAN untagged — trunks carry many VLANs with tags.",
             "misconceptionTested": "Describing access-port behavior on a trunk question",
-            "whatItDoes": "Carries one VLAN only describes a mechanism that could sound plausible for trunk purpose.",
-            "whyWrongHere": "Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Carries one VLAN only applies a different mechanism."
+            "whatItDoes": "Carries one VLAN only points to a related idea, but not the specific behavior or value required for trunk purpose.",
+            "whyWrongHere": "For \"trunk purpose\", Carries multiple VLANs between switches satisfies what this question tests — Carries one VLAN only does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "PC-to-switch links are access ports — trunks connect switches (or switch to router-on-a-stick).",
             "misconceptionTested": "Using end-host access link for trunk definition",
-            "whatItDoes": "Connects a PC to a switch describes a mechanism that could sound plausible for trunk purpose.",
-            "whyWrongHere": "Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Connects a PC to a switch applies a different mechanism."
+            "whatItDoes": "Connects a PC to a switch points to a related idea, but not the specific behavior or value required for trunk purpose.",
+            "whyWrongHere": "For \"trunk purpose\", Carries multiple VLANs between switches satisfies what this question tests — Connects a PC to a switch does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Routing between VLANs needs a Layer 3 device — trunks extend Layer 2 VLANs across links, not route them.",
             "misconceptionTested": "Expecting trunk to route between VLANs",
-            "whatItDoes": "Routes between VLANs describes a mechanism that could sound plausible for trunk purpose.",
-            "whyWrongHere": "Given trunk purpose, Carries multiple VLANs between switches matches the tested behavior — Routes between VLANs applies a different mechanism."
+            "whatItDoes": "Routes between VLANs points to a related idea, but not the specific behavior or value required for trunk purpose.",
+            "whyWrongHere": "For \"trunk purpose\", Carries multiple VLANs between switches satisfies what this question tests — Routes between VLANs does not."
           }
         ],
         "examTip": "Trunk = 802.1Q tags on inter-switch links; native VLAN must match both ends."
@@ -72,32 +72,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The 802.1Q tag is 4 bytes and contains the 12-bit VLAN ID."
+          "explanation": "The 802.1Q tag is 4 bytes inserted into the Ethernet frame."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "2 bytes uses the wrong value. The tested fact calls for 802 — not 2.",
-            "whatItDoes": "2 bytes describes a mechanism that could sound plausible for tag size.",
-            "whyWrongHere": "Given tag size, 4 bytes matches the tested behavior — 2 bytes applies a different mechanism.",
-            "misconceptionTested": "Memorizing 2 instead of the correct 802"
+            "explanation": "2 bytes is too small — 802.1Q adds 4 bytes (TPID + PCP/DEI + VLAN ID).",
+            "misconceptionTested": "802.1Q tag is 2 bytes",
+            "whatItDoes": "2 bytes points to a related idea, but not the specific behavior or value required for tag size.",
+            "whyWrongHere": "For \"tag size\", 4 bytes satisfies what this question tests — 2 bytes does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "8 bytes uses the wrong value. The tested fact calls for 802 — not 8.",
-            "whatItDoes": "8 bytes describes a mechanism that could sound plausible for tag size.",
-            "whyWrongHere": "Given tag size, 4 bytes matches the tested behavior — 8 bytes applies a different mechanism.",
-            "misconceptionTested": "Memorizing 8 instead of the correct 802"
+            "explanation": "8 bytes describes something else — 802.1Q is exactly 4 bytes.",
+            "misconceptionTested": "802.1Q tag is 8 bytes",
+            "whatItDoes": "8 bytes points to a related idea, but not the specific behavior or value required for tag size.",
+            "whyWrongHere": "For \"tag size\", 4 bytes satisfies what this question tests — 8 bytes does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "12 bytes uses the wrong value. The tested fact calls for 802 — not 12.",
-            "whatItDoes": "12 bytes describes a mechanism that could sound plausible for tag size.",
-            "whyWrongHere": "Given tag size, 4 bytes matches the tested behavior — 12 bytes applies a different mechanism.",
-            "misconceptionTested": "Memorizing 12 instead of the correct 802"
+            "explanation": "12 bytes is not the 802.1Q tag size — it's 4 bytes.",
+            "misconceptionTested": "802.1Q tag is 12 bytes",
+            "whatItDoes": "12 bytes points to a related idea, but not the specific behavior or value required for tag size.",
+            "whyWrongHere": "For \"tag size\", 4 bytes satisfies what this question tests — 12 bytes does not."
           }
         ],
-        "examTip": "On the exam: A trunk is faster than an access port — A trunk simply carries multiple VLANs; speed depends on the physical link"
+        "examTip": "802.1Q frame: DA + SA + 4-byte tag + Type/Len + Data + FCS — native VLAN frames are untagged."
       }
     },
     {
@@ -127,22 +127,22 @@
             "choiceIndex": 0,
             "explanation": "Double-tagging (Q-in-Q) is a provider technique — standard native VLAN traffic is sent with no 802.1Q tag.",
             "misconceptionTested": "Applying Q-in-Q to standard native VLAN behavior",
-            "whatItDoes": "Double-tagged describes a mechanism that could sound plausible for native vlan.",
-            "whyWrongHere": "Given native vlan, Untagged matches the tested behavior — Double-tagged applies a different mechanism."
+            "whatItDoes": "Double-tagged expects VLAN tags on a link that should behave as access-only in this stem.",
+            "whyWrongHere": "This stem (native vlan) targets access-port behavior — Untagged is correct; Double-tagged applies trunk tagging where a single VLAN is expected."
           },
           {
             "choiceIndex": 1,
             "explanation": "Tagged frames carry an 802.1Q header — only non-native VLANs are tagged on a trunk.",
             "misconceptionTested": "Tagging native VLAN traffic like all other VLANs",
-            "whatItDoes": "Tagged describes a mechanism that could sound plausible for native vlan.",
-            "whyWrongHere": "Given native vlan, Untagged matches the tested behavior — Tagged applies a different mechanism."
+            "whatItDoes": "Tagged expects VLAN tags on a link that should behave as access-only in this stem.",
+            "whyWrongHere": "This stem (native vlan) targets access-port behavior — Untagged is correct; Tagged applies trunk tagging where a single VLAN is expected."
           },
           {
             "choiceIndex": 3,
             "explanation": "Native VLAN traffic is forwarded normally — it is not dropped for lacking a tag.",
             "misconceptionTested": "Assuming untagged native VLAN frames are discarded",
             "whatItDoes": "Dropped implies the device should discard the frame instead of forwarding or flooding it.",
-            "whyWrongHere": "Given native vlan, Untagged matches the tested behavior — Dropped applies a different mechanism."
+            "whyWrongHere": "For \"native vlan\", Untagged satisfies what this question tests — Dropped does not."
           }
         ],
         "examTip": "Trunk rule: native VLAN = untagged; all others tagged. Match native VLAN both ends."
@@ -176,21 +176,21 @@
             "explanation": "Trunk speed is negotiated separately — native VLAN mismatch affects which VLAN receives untagged frames, not link speed.",
             "misconceptionTested": "Confusing VLAN mismatch with speed/duplex issues",
             "whatItDoes": "Trunk speed drops implies the device should discard the frame instead of forwarding or flooding it.",
-            "whyWrongHere": "Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — Trunk speed drops applies a different mechanism."
+            "whyWrongHere": "For \"native mismatch\", Traffic from those VLANs can leak/merge satisfies what this question tests — Trunk speed drops does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Tagged VLANs still work on a mismatched native VLAN trunk — the problem is untagged traffic landing in the wrong VLAN, not a total trunk shutdown.",
             "misconceptionTested": "Expecting all VLANs to fail when only native is mismatched",
-            "whatItDoes": "All VLANs stop describes a mechanism that could sound plausible for native mismatch.",
-            "whyWrongHere": "Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — All VLANs stop applies a different mechanism."
+            "whatItDoes": "All VLANs stop points to a related idea, but not the specific behavior or value required for native mismatch.",
+            "whyWrongHere": "For \"native mismatch\", Traffic from those VLANs can leak/merge satisfies what this question tests — All VLANs stop does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "CDP logs %CDP-4-NATIVE_VLAN_MISMATCH because the misconfiguration has real forwarding impact — it is not cosmetic.",
             "misconceptionTested": "Treating native VLAN mismatch as harmless warning",
-            "whatItDoes": "Nothing — it is cosmetic describes a mechanism that could sound plausible for native mismatch.",
-            "whyWrongHere": "Given native mismatch, Traffic from those VLANs can leak/merge matches the tested behavior — Nothing — it is cosmetic applies a different mechanism."
+            "whatItDoes": "Nothing — it is cosmetic points to a related idea, but not the specific behavior or value required for native mismatch.",
+            "whyWrongHere": "For \"native mismatch\", Traffic from those VLANs can leak/merge satisfies what this question tests — Nothing — it is cosmetic does not."
           }
         ],
         "examTip": "Native VLAN mismatch → untagged traffic bleeds into wrong VLAN. Fix both ends."
@@ -223,22 +223,22 @@
             "choiceIndex": 0,
             "explanation": "switchport mode access keeps the port in access mode — it will not carry multiple VLANs as a trunk.",
             "misconceptionTested": "Selecting access mode when trunk is required",
-            "whatItDoes": "switchport mode access describes a mechanism that could sound plausible for config trunk.",
-            "whyWrongHere": "Given config trunk, switchport mode trunk matches the tested behavior — switchport mode access applies a different mechanism."
+            "whatItDoes": "switchport mode access points to a related idea, but not the specific behavior or value required for config trunk.",
+            "whyWrongHere": "For \"config trunk\", switchport mode trunk satisfies what this question tests — switchport mode access does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "switchport trunk allowed vlan filters which VLANs cross the trunk — it does not change the port to trunk mode by itself.",
             "misconceptionTested": "Believing allowed-VLAN command sets trunk mode",
-            "whatItDoes": "switchport trunk allowed vlan describes a mechanism that could sound plausible for config trunk.",
-            "whyWrongHere": "Given config trunk, switchport mode trunk matches the tested behavior — switchport trunk allowed vlan applies a different mechanism."
+            "whatItDoes": "switchport trunk allowed vlan expects VLAN tags on a link that should behave as access-only in this stem.",
+            "whyWrongHere": "For \"config trunk\", switchport mode trunk satisfies what this question tests — switchport trunk allowed vlan does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "switchport nonegotiate disables DTP but does not force trunk — you still need switchport mode trunk (or dynamic desirable/auto).",
             "misconceptionTested": "Equating nonegotiate with forcing trunk mode",
-            "whatItDoes": "switchport nonegotiate describes a mechanism that could sound plausible for config trunk.",
-            "whyWrongHere": "Given config trunk, switchport mode trunk matches the tested behavior — switchport nonegotiate applies a different mechanism."
+            "whatItDoes": "switchport nonegotiate points to a related idea, but not the specific behavior or value required for config trunk.",
+            "whyWrongHere": "For \"config trunk\", switchport mode trunk satisfies what this question tests — switchport nonegotiate does not."
           }
         ],
         "examTip": "Force trunk → switchport mode trunk (then tune allowed/native VLANs)."
@@ -271,22 +271,22 @@
             "choiceIndex": 0,
             "explanation": "no dtp is not standard IOS trunk syntax — DTP is disabled per interface with switchport nonegotiate.",
             "misconceptionTested": "Inventing global no dtp command",
-            "whatItDoes": "no dtp describes a mechanism that could sound plausible for DTP security.",
-            "whyWrongHere": "Given DTP security, switchport nonegotiate matches the tested behavior — no dtp applies a different mechanism."
+            "whatItDoes": "no dtp points to a related idea, but not the specific behavior or value required for DTP security.",
+            "whyWrongHere": "For \"DTP security\", switchport nonegotiate satisfies what this question tests — no dtp does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "switchport mode dynamic participates in DTP negotiation — it does not disable auto-negotiation.",
             "misconceptionTested": "Using dynamic mode to stop DTP",
-            "whatItDoes": "switchport mode dynamic describes a mechanism that could sound plausible for DTP security.",
-            "whyWrongHere": "Given DTP security, switchport nonegotiate matches the tested behavior — switchport mode dynamic applies a different mechanism."
+            "whatItDoes": "switchport mode dynamic points to a related idea, but not the specific behavior or value required for DTP security.",
+            "whyWrongHere": "For \"DTP security\", switchport nonegotiate satisfies what this question tests — switchport mode dynamic does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "no switchport trunk is not the command to disable DTP — use switchport nonegotiate on the interface.",
             "misconceptionTested": "Negating switchport trunk instead of nonegotiate",
-            "whatItDoes": "no switchport trunk describes a mechanism that could sound plausible for DTP security.",
-            "whyWrongHere": "Given DTP security, switchport nonegotiate matches the tested behavior — no switchport trunk applies a different mechanism."
+            "whatItDoes": "no switchport trunk expects VLAN tags on a link that should behave as access-only in this stem.",
+            "whyWrongHere": "For \"DTP security\", switchport nonegotiate satisfies what this question tests — no switchport trunk does not."
           }
         ],
         "examTip": "Disable DTP on a trunk → switchport nonegotiate after setting the mode."
@@ -319,22 +319,22 @@
             "choiceIndex": 0,
             "explanation": "show vlan brief lists VLAN IDs and port assignments — it does not show trunk encapsulation, native VLAN, or allowed lists.",
             "misconceptionTested": "Using VLAN brief for trunk operational detail",
-            "whatItDoes": "show vlan brief describes a mechanism that could sound plausible for verify trunk.",
-            "whyWrongHere": "Given verify trunk, show interfaces trunk matches the tested behavior — show vlan brief applies a different mechanism."
+            "whatItDoes": "show vlan brief is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (verify trunk): show interfaces trunk inspects the right table or state — show vlan brief shows unrelated information."
           },
           {
             "choiceIndex": 2,
             "explanation": "show ip interface brief summarizes Layer 3 status — trunk mode and allowed VLANs are Layer 2 trunk parameters.",
             "misconceptionTested": "Checking IP brief for trunk VLAN details",
-            "whatItDoes": "show ip interface brief describes a mechanism that could sound plausible for verify trunk.",
-            "whyWrongHere": "Given verify trunk, show interfaces trunk matches the tested behavior — show ip interface brief applies a different mechanism."
+            "whatItDoes": "show ip interface brief is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (verify trunk): show interfaces trunk inspects the right table or state — show ip interface brief shows unrelated information."
           },
           {
             "choiceIndex": 3,
             "explanation": "show cdp neighbors discovers adjacent devices — it does not report 802.1Q trunk configuration.",
             "misconceptionTested": "Using CDP neighbors for trunk verification",
-            "whatItDoes": "show cdp neighbors describes a mechanism that could sound plausible for verify trunk.",
-            "whyWrongHere": "Given verify trunk, show interfaces trunk matches the tested behavior — show cdp neighbors applies a different mechanism."
+            "whatItDoes": "show cdp neighbors is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (verify trunk): show interfaces trunk inspects the right table or state — show cdp neighbors shows unrelated information."
           }
         ],
         "examTip": "Verify trunk/native/allowed → show interfaces trunk."
@@ -360,32 +360,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "switchport trunk allowed vlan 10,20 prunes the trunk."
+          "explanation": "switchport trunk allowed vlan 10,20 restricts the trunk to only VLANs 10 and 20."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "switchport access vlan 10,20 reflects a common trap: A trunk is faster than an access port. A trunk simply carries multiple VLANs; speed depends on the physical link.",
-            "whatItDoes": "switchport access vlan 10,20 describes a mechanism that could sound plausible for allowed vlans.",
-            "whyWrongHere": "Given allowed vlans, switchport trunk allowed vlan 10,20 matches the tested behavior — switchport access vlan 10,20 applies a different mechanism.",
-            "misconceptionTested": "A trunk is faster than an access port"
+            "explanation": "switchport access vlan sets an access port — not trunk allowed list.",
+            "misconceptionTested": "access vlan on trunk limit",
+            "whatItDoes": "switchport access vlan 10,20 points to a related idea, but not the specific behavior or value required for allowed vlans.",
+            "whyWrongHere": "For \"allowed vlans\", switchport trunk allowed vlan 10,20 satisfies what this question tests — switchport access vlan 10,20 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "vlan 10,20 uses the wrong value. The tested fact calls for 20 — not 10.",
-            "whatItDoes": "vlan 10,20 describes a mechanism that could sound plausible for allowed vlans.",
-            "whyWrongHere": "Given allowed vlans, switchport trunk allowed vlan 10,20 matches the tested behavior — vlan 10,20 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 10 instead of the correct 20"
+            "explanation": "vlan 10,20 creates VLANs — doesn't filter a trunk allowed list.",
+            "misconceptionTested": "vlan command limits trunk",
+            "whatItDoes": "vlan 10,20 points to a related idea, but not the specific behavior or value required for allowed vlans.",
+            "whyWrongHere": "For \"allowed vlans\", switchport trunk allowed vlan 10,20 satisfies what this question tests — vlan 10,20 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "switchport trunk native vlan 10 reflects a common trap: A trunk is faster than an access port. A trunk simply carries multiple VLANs; speed depends on the physical link.",
-            "whatItDoes": "switchport trunk native vlan 10 describes a mechanism that could sound plausible for allowed vlans.",
-            "whyWrongHere": "Given allowed vlans, switchport trunk allowed vlan 10,20 matches the tested behavior — switchport trunk native vlan 10 applies a different mechanism.",
-            "misconceptionTested": "A trunk is faster than an access port"
+            "explanation": "switchport trunk native vlan 10 sets the untagged VLAN — not the allowed list.",
+            "misconceptionTested": "native vlan limits allowed VLANs",
+            "whatItDoes": "switchport trunk native vlan 10 expects VLAN tags on a link that should behave as access-only in this stem.",
+            "whyWrongHere": "Trunk vs access (allowed vlans): switchport trunk allowed vlan 10,20 carries VLAN tags on inter-switch links — switchport trunk native vlan 10 describes access-port behavior."
           }
         ],
-        "examTip": "On the exam: A trunk is faster than an access port — A trunk simply carries multiple VLANs; speed depends on the physical link"
+        "examTip": "Trunk pruning: switchport trunk allowed vlan add 30 — verify with show interfaces trunk."
       }
     }
   ]

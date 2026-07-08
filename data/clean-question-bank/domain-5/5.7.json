@@ -26,35 +26,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"802.1X\"."
+          "explanation": "802.1X provides port-based network access control — authenticate before granting network access."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "802.1Q describes a mechanism that could sound plausible for technology. Given technology, 802.1X matches the tested behavior — 802.1Q applies a different mechanism.",
-            "whatItDoes": "802.1Q describes a mechanism that could sound plausible for technology.",
-            "whyWrongHere": "Given technology, 802.1X matches the tested behavior — 802.1Q applies a different mechanism.",
-            "misconceptionTested": "Applying \"802.1Q\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "802.1Q is VLAN tagging — not authentication.",
+            "misconceptionTested": "802.1Q as NAC",
+            "whatItDoes": "802.1Q expects VLAN tags on a link that should behave as access-only in this stem.",
+            "whyWrongHere": "This stem (technology) targets access-port behavior — 802.1X is correct; 802.1Q applies trunk tagging where a single VLAN is expected."
           },
           {
             "choiceIndex": 1,
-            "explanation": "ACLs reflects a common trap: ACLs encrypt or deeply inspect traffic. ACLs filter by header fields (IP/protocol/port); they are not encryption or stateful firewalls.",
-            "whatItDoes": "ACLs describes a mechanism that could sound plausible for technology.",
-            "whyWrongHere": "Given technology, 802.1X matches the tested behavior — ACLs applies a different mechanism.",
-            "misconceptionTested": "ACLs encrypt or deeply inspect traffic",
-            "needsExplanationReview": true
+            "explanation": "ACLs filter traffic — they don't authenticate users at connect time.",
+            "misconceptionTested": "ACL as port authentication",
+            "whatItDoes": "ACLs points to a related idea, but not the specific behavior or value required for technology.",
+            "whyWrongHere": "For \"technology\", 802.1X satisfies what this question tests — ACLs does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Firewall is the wrong device role here. Firewalls filter/policy traffic — they are not the default answer for basic L2 forwarding or VLAN trunk setup unless the stem is security-focused.",
-            "whatItDoes": "Firewall describes a mechanism that could sound plausible for technology.",
-            "whyWrongHere": "Given technology, 802.1X matches the tested behavior — Firewall applies a different mechanism.",
-            "misconceptionTested": "Defaulting to firewall when the stem tests switching or routing mechanics",
-            "needsExplanationReview": true
+            "explanation": "Firewall is a separate security boundary — 802.1X is switch/port NAC.",
+            "misconceptionTested": "Firewall as 802.1X",
+            "whatItDoes": "Firewall points to a related idea, but not the specific behavior or value required for technology.",
+            "whyWrongHere": "For \"technology\", 802.1X satisfies what this question tests — Firewall does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
       }
     },
     {
@@ -83,35 +80,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Supplicant\"."
+          "explanation": "The supplicant is the end device (PC/phone) that presents credentials."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Authenticator describes a mechanism that could sound plausible for identify. Given identify, Supplicant matches the tested behavior — Authenticator applies a different mechanism.",
-            "whatItDoes": "Authenticator describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Supplicant matches the tested behavior — Authenticator applies a different mechanism.",
-            "misconceptionTested": "Applying \"Authenticator\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "Authenticator is the switch controlling port access.",
+            "misconceptionTested": "Authenticator as credential sender",
+            "whatItDoes": "Authenticator points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Supplicant satisfies what this question tests — Authenticator does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "AAA server describes a mechanism that could sound plausible for identify. Given identify, Supplicant matches the tested behavior — AAA server applies a different mechanism.",
-            "whatItDoes": "AAA server describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Supplicant matches the tested behavior — AAA server applies a different mechanism.",
-            "misconceptionTested": "Applying \"AAA server\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "AAA/RADIUS validates credentials — supplicant sends them.",
+            "misconceptionTested": "AAA server as supplicant",
+            "whatItDoes": "AAA server points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Supplicant satisfies what this question tests — AAA server does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "RADIUS server describes a mechanism that could sound plausible for identify. Given identify, Supplicant matches the tested behavior — RADIUS server applies a different mechanism.",
-            "whatItDoes": "RADIUS server describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Supplicant matches the tested behavior — RADIUS server applies a different mechanism.",
-            "misconceptionTested": "Applying \"RADIUS server\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "RADIUS is the auth protocol/server role — not the credential sender.",
+            "misconceptionTested": "RADIUS as supplicant",
+            "whatItDoes": "RADIUS server points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Supplicant satisfies what this question tests — RADIUS server does not."
           }
         ],
-        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
+        "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
       }
     },
     {
@@ -140,35 +134,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Authenticator\"."
+          "explanation": "The authenticator is the switch (or WLC) that controls port access until auth succeeds."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Supplicant describes a mechanism that could sound plausible for identify. Given identify, Authenticator matches the tested behavior — Supplicant applies a different mechanism.",
-            "whatItDoes": "Supplicant describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Authenticator matches the tested behavior — Supplicant applies a different mechanism.",
-            "misconceptionTested": "Applying \"Supplicant\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "Supplicant is the client device — switch is authenticator.",
+            "misconceptionTested": "Supplicant as switch role",
+            "whatItDoes": "Supplicant points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Authenticator satisfies what this question tests — Supplicant does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "AAA server describes a mechanism that could sound plausible for identify. Given identify, Authenticator matches the tested behavior — AAA server applies a different mechanism.",
-            "whatItDoes": "AAA server describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Authenticator matches the tested behavior — AAA server applies a different mechanism.",
-            "misconceptionTested": "Applying \"AAA server\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "AAA server validates — doesn't control the L2 port directly.",
+            "misconceptionTested": "AAA as authenticator",
+            "whatItDoes": "AAA server points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Authenticator satisfies what this question tests — AAA server does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "RADIUS server describes a mechanism that could sound plausible for identify. Given identify, Authenticator matches the tested behavior — RADIUS server applies a different mechanism.",
-            "whatItDoes": "RADIUS server describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Authenticator matches the tested behavior — RADIUS server applies a different mechanism.",
-            "misconceptionTested": "Applying \"RADIUS server\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "RADIUS is a protocol — authenticator is the network device.",
+            "misconceptionTested": "RADIUS server as authenticator",
+            "whatItDoes": "RADIUS server points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Authenticator satisfies what this question tests — RADIUS server does not."
           }
         ],
-        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
+        "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
       }
     },
     {
@@ -197,35 +188,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"802.1X EAP\"."
+          "explanation": "Supplicant ↔ authenticator use EAP over LAN (802.1X/EAPoL) — not raw TCP/UDP."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "UDP describes a mechanism that could sound plausible for protocol. Given protocol, 802.1X EAP matches the tested behavior — UDP applies a different mechanism.",
-            "whatItDoes": "UDP describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, 802.1X EAP matches the tested behavior — UDP applies a different mechanism.",
-            "misconceptionTested": "Applying \"UDP\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "EAP frames are encapsulated at L2 — not standalone UDP/TCP.",
+            "misconceptionTested": "UDP between supplicant and switch",
+            "whatItDoes": "UDP names a transport protocol or port behavior that may not match reliability or connection requirements.",
+            "whyWrongHere": "For \"protocol\", 802.1X EAP satisfies what this question tests — UDP does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "TCP describes a mechanism that could sound plausible for protocol. Given protocol, 802.1X EAP matches the tested behavior — TCP applies a different mechanism.",
-            "whatItDoes": "TCP describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, 802.1X EAP matches the tested behavior — TCP applies a different mechanism.",
-            "misconceptionTested": "Applying \"TCP\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "802.1X doesn't use TCP between supplicant and switch.",
+            "misconceptionTested": "TCP for 802.1X",
+            "whatItDoes": "TCP names a transport protocol or port behavior that may not match reliability or connection requirements.",
+            "whyWrongHere": "For \"protocol\", 802.1X EAP satisfies what this question tests — TCP does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "IP describes a mechanism that could sound plausible for protocol. Given protocol, 802.1X EAP matches the tested behavior — IP applies a different mechanism.",
-            "whatItDoes": "IP describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, 802.1X EAP matches the tested behavior — IP applies a different mechanism.",
-            "misconceptionTested": "Applying \"IP\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "IP is L3 — 802.1X auth happens at Layer 2 before IP.",
+            "misconceptionTested": "IP protocol for 802.1X",
+            "whatItDoes": "IP points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", 802.1X EAP satisfies what this question tests — IP does not."
           }
         ],
-        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
+        "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
       }
     },
     {
@@ -257,35 +245,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"EAP\"."
+          "explanation": "EAP carries authentication between supplicant↔authenticator and authenticator↔AAA server."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "802.1X authentication headers describes a mechanism that could sound plausible for protocol. Given protocol, EAP matches the tested behavior — 802.1X authentication headers applies a different mechanism.",
-            "whatItDoes": "802.1X authentication headers describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, EAP matches the tested behavior — 802.1X authentication headers applies a different mechanism.",
-            "misconceptionTested": "Applying \"802.1X authentication headers\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "802.1X headers are not a separate protocol — EAP is the payload.",
+            "misconceptionTested": "802.1X headers as protocol name",
+            "whatItDoes": "802.1X authentication headers points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", EAP satisfies what this question tests — 802.1X authentication headers does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "IPsec describes a mechanism that could sound plausible for protocol. Given protocol, EAP matches the tested behavior — IPsec applies a different mechanism.",
-            "whatItDoes": "IPsec describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, EAP matches the tested behavior — IPsec applies a different mechanism.",
-            "misconceptionTested": "Applying \"IPsec\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "IPsec encrypts tunnels — not 802.1X port auth.",
+            "misconceptionTested": "IPsec for 802.1X",
+            "whatItDoes": "IPsec points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", EAP satisfies what this question tests — IPsec does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "RADIUS describes a mechanism that could sound plausible for protocol. Given protocol, EAP matches the tested behavior — RADIUS applies a different mechanism.",
-            "whatItDoes": "RADIUS describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, EAP matches the tested behavior — RADIUS applies a different mechanism.",
-            "misconceptionTested": "Applying \"RADIUS\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "RADIUS encapsulates EAP to the server — EAP is the common method.",
+            "misconceptionTested": "RADIUS replaces EAP entirely",
+            "whatItDoes": "RADIUS points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", EAP satisfies what this question tests — RADIUS does not."
           }
         ],
-        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
+        "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
       }
     },
     {
@@ -312,35 +297,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"The device requesting access\"."
+          "explanation": "The supplicant is the device requesting network access (workstation, phone, etc.)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The server that is providing authentication describes a mechanism that could sound plausible for supplicant. Given supplicant, The device requesting access matches the tested behavior — The server that is providing authentication applies a different mechanism.",
-            "whatItDoes": "The server that is providing authentication describes a mechanism that could sound plausible for supplicant.",
-            "whyWrongHere": "Given supplicant, The device requesting access matches the tested behavior — The server that is providing authentication applies a different mechanism.",
-            "misconceptionTested": "Applying \"The server that is providing authent\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "Auth server validates — doesn't request access.",
+            "misconceptionTested": "Auth server as supplicant",
+            "whatItDoes": "The server that is providing authentication points to a related idea, but not the specific behavior or value required for supplicant.",
+            "whyWrongHere": "For \"supplicant\", The device requesting access satisfies what this question tests — The server that is providing authentication does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The device that is controlling access via 802.1X describes a mechanism that could sound plausible for supplicant. Given supplicant, The device requesting access matches the tested behavior — The device that is controlling access via 802.1X applies a different mechanism.",
-            "whatItDoes": "The device that is controlling access via 802.1X describes a mechanism that could sound plausible for supplicant.",
-            "whyWrongHere": "Given supplicant, The device requesting access matches the tested behavior — The device that is controlling access via 802.1X applies a different mechanism.",
-            "misconceptionTested": "Applying \"The device that is controlling acces\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "Authenticator controls the port — client is supplicant.",
+            "misconceptionTested": "Authenticator as requesting device",
+            "whatItDoes": "The device that is controlling access via 802.1X points to a related idea, but not the specific behavior or value required for supplicant.",
+            "whyWrongHere": "For \"supplicant\", The device requesting access satisfies what this question tests — The device that is controlling access via 802.1X does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The device connecting the layer 3 network describes a mechanism that could sound plausible for supplicant. Given supplicant, The device requesting access matches the tested behavior — The device connecting the layer 3 network applies a different mechanism.",
-            "whatItDoes": "The device connecting the layer 3 network describes a mechanism that could sound plausible for supplicant.",
-            "whyWrongHere": "Given supplicant, The device requesting access matches the tested behavior — The device connecting the layer 3 network applies a different mechanism.",
-            "misconceptionTested": "Applying \"The device connecting the layer 3 ne\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "L3 gateway device is not the 802.1X supplicant role.",
+            "misconceptionTested": "L3 device as supplicant",
+            "whatItDoes": "The device connecting the layer 3 network points to a related idea, but not the specific behavior or value required for supplicant.",
+            "whyWrongHere": "For \"supplicant\", The device requesting access satisfies what this question tests — The device connecting the layer 3 network does not."
           }
         ],
-        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
+        "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
       }
     },
     {
@@ -366,35 +348,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"AAA server\"."
+          "explanation": "A AAA server (RADIUS/TACACS+) centralizes authentication for network devices and users."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Active Directory server describes a mechanism that could sound plausible for centralize. Given centralize, AAA server matches the tested behavior — Active Directory server applies a different mechanism.",
-            "whatItDoes": "Active Directory server describes a mechanism that could sound plausible for centralize.",
-            "whyWrongHere": "Given centralize, AAA server matches the tested behavior — Active Directory server applies a different mechanism.",
-            "misconceptionTested": "Applying \"Active Directory server\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "Active Directory may back identities — but AAA server is the network auth service.",
+            "misconceptionTested": "AD as AAA for all devices",
+            "whatItDoes": "Active Directory server points to a related idea, but not the specific behavior or value required for centralize.",
+            "whyWrongHere": "For \"centralize\", AAA server satisfies what this question tests — Active Directory server does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "802.1X server describes a mechanism that could sound plausible for centralize. Given centralize, AAA server matches the tested behavior — 802.1X server applies a different mechanism.",
-            "whatItDoes": "802.1X server describes a mechanism that could sound plausible for centralize.",
-            "whyWrongHere": "Given centralize, AAA server matches the tested behavior — 802.1X server applies a different mechanism.",
-            "misconceptionTested": "Applying \"802.1X server\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "802.1X is a protocol/framework — not a server product.",
+            "misconceptionTested": "802.1X as server type",
+            "whatItDoes": "802.1X server points to a related idea, but not the specific behavior or value required for centralize.",
+            "whyWrongHere": "For \"centralize\", AAA server satisfies what this question tests — 802.1X server does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Terminal server describes a mechanism that could sound plausible for centralize. Given centralize, AAA server matches the tested behavior — Terminal server applies a different mechanism.",
-            "whatItDoes": "Terminal server describes a mechanism that could sound plausible for centralize.",
-            "whyWrongHere": "Given centralize, AAA server matches the tested behavior — Terminal server applies a different mechanism.",
-            "misconceptionTested": "Applying \"Terminal server\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "Terminal server provides console access — not centralized AAA.",
+            "misconceptionTested": "Terminal server for AAA",
+            "whatItDoes": "Terminal server points to a related idea, but not the specific behavior or value required for centralize.",
+            "whyWrongHere": "For \"centralize\", AAA server satisfies what this question tests — Terminal server does not."
           }
         ],
-        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
+        "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
       }
     },
     {
@@ -420,35 +399,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"UDP/1645\"."
+          "explanation": "RADIUS authentication uses UDP port 1645 (legacy) / 1812 (IANA) — exam often cites UDP/1645."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "UDP/1845 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/1645 matches the tested behavior — UDP/1845 applies a different mechanism.",
-            "whatItDoes": "UDP/1845 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, UDP/1645 matches the tested behavior — UDP/1845 applies a different mechanism.",
-            "misconceptionTested": "Applying \"UDP/1845\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "1845 is not the RADIUS auth port.",
+            "misconceptionTested": "Wrong UDP port 1845",
+            "whatItDoes": "UDP/1845 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "Transport protocol (protocol): UDP/1645 matches reliability, ports, or connection behavior — UDP/1845 picks the wrong L4 protocol or port role."
           },
           {
             "choiceIndex": 2,
-            "explanation": "TCP/1645 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/1645 matches the tested behavior — TCP/1645 applies a different mechanism.",
-            "whatItDoes": "TCP/1645 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, UDP/1645 matches the tested behavior — TCP/1645 applies a different mechanism.",
-            "misconceptionTested": "Applying \"TCP/1645\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "RADIUS uses UDP, not TCP, for authentication.",
+            "misconceptionTested": "TCP for RADIUS auth",
+            "whatItDoes": "TCP/1645 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "Transport protocol (protocol): UDP/1645 matches reliability, ports, or connection behavior — TCP/1645 picks the wrong L4 protocol or port role."
           },
           {
             "choiceIndex": 3,
-            "explanation": "UDP/1911 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/1645 matches the tested behavior — UDP/1911 applies a different mechanism.",
-            "whatItDoes": "UDP/1911 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, UDP/1645 matches the tested behavior — UDP/1911 applies a different mechanism.",
-            "misconceptionTested": "Applying \"UDP/1911\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "1911 is unrelated to RADIUS.",
+            "misconceptionTested": "Wrong port 1911",
+            "whatItDoes": "UDP/1911 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "Transport protocol (protocol): UDP/1645 matches reliability, ports, or connection behavior — UDP/1911 picks the wrong L4 protocol or port role."
           }
         ],
-        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
+        "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
       }
     },
     {
@@ -477,35 +453,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"TACACS+\"."
+          "explanation": "TACACS+ secures device administration (Telnet/SSH/console) via AAA."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "802.1X describes a mechanism that could sound plausible for authentication. Given authentication, TACACS+ matches the tested behavior — 802.1X applies a different mechanism.",
-            "whatItDoes": "802.1X describes a mechanism that could sound plausible for authentication.",
-            "whyWrongHere": "Given authentication, TACACS+ matches the tested behavior — 802.1X applies a different mechanism.",
-            "misconceptionTested": "Applying \"802.1X\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "802.1X is port-based NAC — not Telnet AAA protocol.",
+            "misconceptionTested": "802.1X for Telnet AAA",
+            "whatItDoes": "802.1X points to a related idea, but not the specific behavior or value required for authentication.",
+            "whyWrongHere": "For \"authentication\", TACACS+ satisfies what this question tests — 802.1X does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "AD describes a mechanism that could sound plausible for authentication. Given authentication, TACACS+ matches the tested behavior — AD applies a different mechanism.",
-            "whatItDoes": "AD describes a mechanism that could sound plausible for authentication.",
-            "whyWrongHere": "Given authentication, TACACS+ matches the tested behavior — AD applies a different mechanism.",
-            "misconceptionTested": "Applying \"AD\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "AD integrates with AAA — TACACS+ is the Cisco admin auth protocol.",
+            "misconceptionTested": "AD as Telnet auth protocol",
+            "whatItDoes": "AD points to a related idea, but not the specific behavior or value required for authentication.",
+            "whyWrongHere": "For \"authentication\", TACACS+ satisfies what this question tests — AD does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "EAP describes a mechanism that could sound plausible for authentication. Given authentication, TACACS+ matches the tested behavior — EAP applies a different mechanism.",
-            "whatItDoes": "EAP describes a mechanism that could sound plausible for authentication.",
-            "whyWrongHere": "Given authentication, TACACS+ matches the tested behavior — EAP applies a different mechanism.",
-            "misconceptionTested": "Applying \"EAP\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "EAP is used inside 802.1X — not directly for Telnet login.",
+            "misconceptionTested": "EAP for Telnet",
+            "whatItDoes": "EAP points to a related idea, but not the specific behavior or value required for authentication.",
+            "whyWrongHere": "For \"authentication\", TACACS+ satisfies what this question tests — EAP does not."
           }
         ],
-        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
+        "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
       }
     },
     {
@@ -531,35 +504,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Router(config)#aaa authentication login default group tacacs+ local\"."
+          "explanation": "aaa authentication login default group tacacs+ local — TACACS+ first, local database fallback."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#authentication login group tacacs+ local describes a mechanism that could sound plausible for configure. Given configure, Router(config)#aaa authentication login default group tacacs+ local matches the tested behavior — Router(config)#authentication login group tacacs+ local applies a different mechanism.",
-            "whatItDoes": "Router(config)#authentication login group tacacs+ local describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Router(config)#aaa authentication login default group tacacs+ local matches the tested behavior — Router(config)#authentication login group tacacs+ local applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#authentication login \" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "Missing aaa authentication login default structure.",
+            "misconceptionTested": "Missing aaa authentication structure",
+            "whatItDoes": "Router(config)#authentication login group tacacs+ local points to a related idea, but not the specific behavior or value required for configure.",
+            "whyWrongHere": "For \"configure\", Router(config)#aaa authentication login default group tacacs+ local satisfies what this question tests — Router(config)#authentication login group tacacs+ local does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#aaa-authentication login default tacacs+ local describes a mechanism that could sound plausible for configure. Given configure, Router(config)#aaa authentication login default group tacacs+ local matches the tested behavior — Router(config)#aaa-authentication login default tacacs+ local applies a different mechanism.",
-            "whatItDoes": "Router(config)#aaa-authentication login default tacacs+ local describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Router(config)#aaa authentication login default group tacacs+ local matches the tested behavior — Router(config)#aaa-authentication login default tacacs+ local applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#aaa-authentication lo\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "aaa-authentication is invalid — hyphen breaks the command.",
+            "misconceptionTested": "Hyphenated aaa-authentication",
+            "whatItDoes": "Router(config)#aaa-authentication login default tacacs+ local points to a related idea, but not the specific behavior or value required for configure.",
+            "whyWrongHere": "For \"configure\", Router(config)#aaa authentication login default group tacacs+ local satisfies what this question tests — Router(config)#aaa-authentication login default tacacs+ local does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#aaa authentication login tacacs+ local describes a mechanism that could sound plausible for configure. Given configure, Router(config)#aaa authentication login default group tacacs+ local matches the tested behavior — Router(config)#aaa authentication login tacacs+ local applies a different mechanism.",
-            "whatItDoes": "Router(config)#aaa authentication login tacacs+ local describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Router(config)#aaa authentication login default group tacacs+ local matches the tested behavior — Router(config)#aaa authentication login tacacs+ local applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#aaa authentication lo\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "Must include default keyword and group tacacs+.",
+            "misconceptionTested": "Missing default keyword",
+            "whatItDoes": "Router(config)#aaa authentication login tacacs+ local points to a related idea, but not the specific behavior or value required for configure.",
+            "whyWrongHere": "For \"configure\", Router(config)#aaa authentication login default group tacacs+ local satisfies what this question tests — Router(config)#aaa authentication login tacacs+ local does not."
           }
         ],
-        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
+        "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
       }
     },
     {
@@ -586,35 +556,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"The router will lock you out.\"."
+          "explanation": "With aaa authentication login default local but no local user, login fails — you're locked out of VTY."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The enable secret will work. describes a mechanism that could sound plausible for you log out. Given you log out, The router will lock you out. matches the tested behavior — The enable secret will work. applies a different mechanism.",
-            "whatItDoes": "The enable secret will work. describes a mechanism that could sound plausible for you log out.",
-            "whyWrongHere": "Given you log out, The router will lock you out. matches the tested behavior — The enable secret will work. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The enable secret will work.\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "Enable secret doesn't replace login authentication on VTY lines.",
+            "misconceptionTested": "Enable secret as VTY login",
+            "whatItDoes": "The enable secret will work. points to a related idea, but not the specific behavior or value required for you log out.",
+            "whyWrongHere": "For \"you log out\", The router will lock you out. satisfies what this question tests — The enable secret will work. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The console will still be available. describes a mechanism that could sound plausible for you log out. Given you log out, The router will lock you out. matches the tested behavior — The console will still be available. applies a different mechanism.",
-            "whatItDoes": "The console will still be available. describes a mechanism that could sound plausible for you log out.",
-            "whyWrongHere": "Given you log out, The router will lock you out. matches the tested behavior — The console will still be available. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The console will still be available.\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "Console may still work — but configured login default local blocks without username.",
+            "misconceptionTested": "Console unaffected so no lockout",
+            "whatItDoes": "The console will still be available. points to a related idea, but not the specific behavior or value required for you log out.",
+            "whyWrongHere": "For \"you log out\", The router will lock you out. satisfies what this question tests — The console will still be available. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Nothing, since a username and password have not been set. describes a mechanism that could sound plausible for you log out. Given you log out, The router will lock you out. matches the tested behavior — Nothing, since a username and password have not been set. applies a different mechanism.",
-            "whatItDoes": "Nothing, since a username and password have not been set. describes a mechanism that could sound plausible for you log out.",
-            "whyWrongHere": "Given you log out, The router will lock you out. matches the tested behavior — Nothing, since a username and password have not been set. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Nothing, since a username and passwo\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "Without a local user, authentication fails — not 'nothing happens'.",
+            "misconceptionTested": "No effect without username",
+            "whatItDoes": "Nothing, since a username and password have not been set. points to a related idea, but not the specific behavior or value required for you log out.",
+            "whyWrongHere": "For \"you log out\", The router will lock you out. satisfies what this question tests — Nothing, since a username and password have not been set. does not."
           }
         ],
-        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
+        "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
       }
     },
     {
@@ -639,35 +606,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Passive\"."
+          "explanation": "Discovering an incident while reviewing logs is passive detection — no active probe."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Active describes a mechanism that could sound plausible for routinely. Given routinely, Passive matches the tested behavior — Active applies a different mechanism.",
-            "whatItDoes": "Active describes a mechanism that could sound plausible for routinely.",
-            "whyWrongHere": "Given routinely, Passive matches the tested behavior — Active applies a different mechanism.",
-            "misconceptionTested": "Applying \"Active\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "Active detection uses tools that probe/generate traffic or alerts in real time.",
+            "misconceptionTested": "Active detection via log review",
+            "whatItDoes": "Active points to a related idea, but not the specific behavior or value required for routinely.",
+            "whyWrongHere": "For \"routinely\", Passive satisfies what this question tests — Active does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Proactive describes a mechanism that could sound plausible for routinely. Given routinely, Passive matches the tested behavior — Proactive applies a different mechanism.",
-            "whatItDoes": "Proactive describes a mechanism that could sound plausible for routinely.",
-            "whyWrongHere": "Given routinely, Passive matches the tested behavior — Proactive applies a different mechanism.",
-            "misconceptionTested": "Applying \"Proactive\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "Proactive implies prevention before incident — this is after-the-fact log review.",
+            "misconceptionTested": "Proactive for log discovery",
+            "whatItDoes": "Proactive points to a related idea, but not the specific behavior or value required for routinely.",
+            "whyWrongHere": "For \"routinely\", Passive satisfies what this question tests — Proactive does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Auditing describes a mechanism that could sound plausible for routinely. Given routinely, Passive matches the tested behavior — Auditing applies a different mechanism.",
-            "whatItDoes": "Auditing describes a mechanism that could sound plausible for routinely.",
-            "whyWrongHere": "Given routinely, Passive matches the tested behavior — Auditing applies a different mechanism.",
-            "misconceptionTested": "Applying \"Auditing\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "Auditing is periodic review — passive monitoring of existing logs fits better.",
+            "misconceptionTested": "Auditing vs passive confusion",
+            "whatItDoes": "Auditing points to a related idea, but not the specific behavior or value required for routinely.",
+            "whyWrongHere": "For \"routinely\", Passive satisfies what this question tests — Auditing does not."
           }
         ],
-        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
+        "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
       }
     },
     {
@@ -693,35 +657,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Authentication\"."
+          "explanation": "RADIUS is an authentication (AAA) server — validates user/device credentials."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "DNS describes a mechanism that could sound plausible for aaa. Given aaa, Authentication matches the tested behavior — DNS applies a different mechanism.",
-            "whatItDoes": "DNS describes a mechanism that could sound plausible for aaa.",
-            "whyWrongHere": "Given aaa, Authentication matches the tested behavior — DNS applies a different mechanism.",
-            "misconceptionTested": "Applying \"DNS\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "DNS resolves names — not user authentication.",
+            "misconceptionTested": "RADIUS as DNS",
+            "whatItDoes": "DNS points to a related idea, but not the specific behavior or value required for aaa.",
+            "whyWrongHere": "For \"aaa\", Authentication satisfies what this question tests — DNS does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Email describes a mechanism that could sound plausible for aaa. Given aaa, Authentication matches the tested behavior — Email applies a different mechanism.",
-            "whatItDoes": "Email describes a mechanism that could sound plausible for aaa.",
-            "whyWrongHere": "Given aaa, Authentication matches the tested behavior — Email applies a different mechanism.",
-            "misconceptionTested": "Applying \"Email\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "Email server delivers mail.",
+            "misconceptionTested": "RADIUS as email",
+            "whatItDoes": "Email points to a related idea, but not the specific behavior or value required for aaa.",
+            "whyWrongHere": "For \"aaa\", Authentication satisfies what this question tests — Email does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Proxy describes a mechanism that could sound plausible for aaa. Given aaa, Authentication matches the tested behavior — Proxy applies a different mechanism.",
-            "whatItDoes": "Proxy describes a mechanism that could sound plausible for aaa.",
-            "whyWrongHere": "Given aaa, Authentication matches the tested behavior — Proxy applies a different mechanism.",
-            "misconceptionTested": "Applying \"Proxy\" without matching aaa",
-            "needsExplanationReview": true
+            "explanation": "Proxy forwards traffic — RADIUS authenticates.",
+            "misconceptionTested": "RADIUS as proxy",
+            "whatItDoes": "Proxy points to a related idea, but not the specific behavior or value required for aaa.",
+            "whyWrongHere": "For \"aaa\", Authentication satisfies what this question tests — Proxy does not."
           }
         ],
-        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
+        "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
       }
     }
   ]

@@ -25,35 +25,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Switch#copy tftp: running-config\"."
+          "explanation": "copy tftp: running-config restores a saved config from TFTP directly into running-config."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#archive tftp: running-config describes a mechanism that could sound plausible for configuration. Given configuration, Switch#copy tftp: running-config matches the tested behavior — Switch#archive tftp: running-config applies a different mechanism.",
-            "whatItDoes": "Switch#archive tftp: running-config describes a mechanism that could sound plausible for configuration.",
-            "whyWrongHere": "Given configuration, Switch#copy tftp: running-config matches the tested behavior — Switch#archive tftp: running-config applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#archive tftp: running-config\" without matching tftp",
-            "needsExplanationReview": true
+            "explanation": "archive tftp: manages configuration archives — standard restore uses copy tftp: running-config.",
+            "misconceptionTested": "archive tftp for config restore",
+            "whatItDoes": "Switch#archive tftp: running-config points to a related idea, but not the specific behavior or value required for configuration.",
+            "whyWrongHere": "For \"configuration\", Switch#copy tftp: running-config satisfies what this question tests — Switch#archive tftp: running-config does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch#restore tftp://192.168.1.2 running-config describes a mechanism that could sound plausible for configuration. Given configuration, Switch#copy tftp: running-config matches the tested behavior — Switch#restore tftp://192.168.1.2 running-config applies a different mechanism.",
-            "whatItDoes": "Switch#restore tftp://192.168.1.2 running-config describes a mechanism that could sound plausible for configuration.",
-            "whyWrongHere": "Given configuration, Switch#copy tftp: running-config matches the tested behavior — Switch#restore tftp://192.168.1.2 running-config applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#restore tftp://192.168.1.2 ru\" without matching tftp",
-            "needsExplanationReview": true
+            "explanation": "restore tftp://... is not valid IOS — use interactive copy tftp: running-config.",
+            "misconceptionTested": "restore tftp URL command",
+            "whatItDoes": "Switch#restore tftp://192.168.1.2 running-config names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"configuration\", Switch#copy tftp: running-config satisfies what this question tests — Switch#restore tftp://192.168.1.2 running-config does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch#copy server: running-config describes a mechanism that could sound plausible for configuration. Given configuration, Switch#copy tftp: running-config matches the tested behavior — Switch#copy server: running-config applies a different mechanism.",
-            "whatItDoes": "Switch#copy server: running-config describes a mechanism that could sound plausible for configuration.",
-            "whyWrongHere": "Given configuration, Switch#copy tftp: running-config matches the tested behavior — Switch#copy server: running-config applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#copy server: running-config\" without matching tftp",
-            "needsExplanationReview": true
+            "explanation": "copy server: is not the TFTP syntax — source is tftp: (or ftp:, scp:).",
+            "misconceptionTested": "copy server keyword for TFTP",
+            "whatItDoes": "Switch#copy server: running-config points to a related idea, but not the specific behavior or value required for configuration.",
+            "whyWrongHere": "For \"configuration\", Switch#copy tftp: running-config satisfies what this question tests — Switch#copy server: running-config does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Config restore: copy tftp: running-config (immediate) | copy tftp: startup-config (+ reload for boot)."
       }
     },
     {
@@ -79,35 +76,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Switch#copy tftp flash\"."
+          "explanation": "copy tftp flash (privileged EXEC) downloads the IOS image from TFTP into flash — the standard upgrade starting command."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Switch#copy tftp ios describes a mechanism that could sound plausible for tftp. Given tftp, Switch#copy tftp flash matches the tested behavior — Switch#copy tftp ios applies a different mechanism.",
-            "whatItDoes": "Switch#copy tftp ios describes a mechanism that could sound plausible for tftp.",
-            "whyWrongHere": "Given tftp, Switch#copy tftp flash matches the tested behavior — Switch#copy tftp ios applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#copy tftp ios\" without matching tftp",
-            "needsExplanationReview": true
+            "explanation": "copy tftp ios is invalid — the destination keyword is flash, not ios.",
+            "misconceptionTested": "Invented ios destination for TFTP copy",
+            "whatItDoes": "Switch#copy tftp ios points to a related idea, but not the specific behavior or value required for tftp.",
+            "whyWrongHere": "For \"tftp\", Switch#copy tftp flash satisfies what this question tests — Switch#copy tftp ios does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch#copy tftp nvram describes a mechanism that could sound plausible for tftp. Given tftp, Switch#copy tftp flash matches the tested behavior — Switch#copy tftp nvram applies a different mechanism.",
-            "whatItDoes": "Switch#copy tftp nvram describes a mechanism that could sound plausible for tftp.",
-            "whyWrongHere": "Given tftp, Switch#copy tftp flash matches the tested behavior — Switch#copy tftp nvram applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#copy tftp nvram\" without matching tftp",
-            "needsExplanationReview": true
+            "explanation": "copy tftp nvram targets startup-config storage — IOS images go to flash.",
+            "misconceptionTested": "NVRAM as IOS image target",
+            "whatItDoes": "Switch#copy tftp nvram points to a related idea, but not the specific behavior or value required for tftp.",
+            "whyWrongHere": "For \"tftp\", Switch#copy tftp flash satisfies what this question tests — Switch#copy tftp nvram does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch#upgrade tftp flash describes a mechanism that could sound plausible for tftp. Given tftp, Switch#copy tftp flash matches the tested behavior — Switch#upgrade tftp flash applies a different mechanism.",
-            "whatItDoes": "Switch#upgrade tftp flash describes a mechanism that could sound plausible for tftp.",
-            "whyWrongHere": "Given tftp, Switch#copy tftp flash matches the tested behavior — Switch#upgrade tftp flash applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#upgrade tftp flash\" without matching tftp",
-            "needsExplanationReview": true
+            "explanation": "upgrade tftp flash is not valid IOS syntax — use copy tftp flash.",
+            "misconceptionTested": "Invented upgrade command",
+            "whatItDoes": "Switch#upgrade tftp flash points to a related idea, but not the specific behavior or value required for tftp.",
+            "whyWrongHere": "For \"tftp\", Switch#copy tftp flash satisfies what this question tests — Switch#upgrade tftp flash does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for tftp before picking a familiar-sounding wrong term."
+        "examTip": "IOS upgrade: copy tftp flash → verify with show flash: → set boot system → reload."
       }
     },
     {
@@ -134,35 +128,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2\"."
+          "explanation": "boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin — image filename before the TFTP URL in global config."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#boot tftp://192.168.1.2 describes a mechanism that could sound plausible for universalk9. Given universalk9, Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 matches the tested behavior — Router#boot tftp://192.168.1.2 applies a different mechanism.",
-            "whatItDoes": "Router#boot tftp://192.168.1.2 describes a mechanism that could sound plausible for universalk9.",
-            "whyWrongHere": "Given universalk9, Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 matches the tested behavior — Router#boot tftp://192.168.1.2 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#boot tftp://192.168.1.2\" without matching tftp",
-            "needsExplanationReview": true
+            "explanation": "boot tftp:// is privileged EXEC syntax — boot commands belong in global config.",
+            "misconceptionTested": "Exec-mode boot for TFTP image",
+            "whatItDoes": "Router#boot tftp://192.168.1.2 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"universalk9\", Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 satisfies what this question tests — Router#boot tftp://192.168.1.2 does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin describes a mechanism that could sound plausible for universalk9. Given universalk9, Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 matches the tested behavior — Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin applies a different mechanism.",
-            "whatItDoes": "Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin describes a mechanism that could sound plausible for universalk9.",
-            "whyWrongHere": "Given universalk9, Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 matches the tested behavior — Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#boot tftp://192.168.1\" without matching tftp",
-            "needsExplanationReview": true
+            "explanation": "Missing system keyword — IOS uses boot system tftp://<server> <filename>.",
+            "misconceptionTested": "boot without system keyword",
+            "whatItDoes": "Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"universalk9\", Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 satisfies what this question tests — Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin describes a mechanism that could sound plausible for universalk9. Given universalk9, Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 matches the tested behavior — Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin applies a different mechanism.",
-            "whatItDoes": "Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin describes a mechanism that could sound plausible for universalk9.",
-            "whyWrongHere": "Given universalk9, Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 matches the tested behavior — Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#boot system tftp://19\" without matching tftp",
-            "needsExplanationReview": true
+            "explanation": "URL before filename reverses IOS argument order — filename then location on the boot system line.",
+            "misconceptionTested": "Reversed boot system argument order",
+            "whatItDoes": "Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"universalk9\", Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 satisfies what this question tests — Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for tftp before picking a familiar-sounding wrong term."
+        "examTip": "Boot from TFTP: boot system tftp://<ip> <image.bin> in global config + copy tftp flash first."
       }
     },
     {
@@ -189,35 +180,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"The router will boot into the ROMMON, and from there you will need to TFTP download the IOS.\"."
+          "explanation": "A blank flash card leaves no valid IOS — the router boots to ROMMON and you TFTP-download the image."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The new flash memory will have a mini-IOS installed. You will need to upgrade it from the mini-IOS. describes a mechanism that could sound plausible for upgrading. Given upgrading, The router will boot into the ROMMON, and from there you will need to TFTP download the IOS. matches the tested behavior — The new flash memory will have a mini-IOS installed. You will need to upgrade it from the mini-IOS. applies a different mechanism.",
-            "whatItDoes": "The new flash memory will have a mini-IOS installed. You will need to upgrade it from the mini-IOS. describes a mechanism that could sound plausible for upgrading.",
-            "whyWrongHere": "Given upgrading, The router will boot into the ROMMON, and from there you will need to TFTP download the IOS. matches the tested behavior — The new flash memory will have a mini-IOS installed. You will need to upgrade it from the mini-IOS. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The new flash memory will have a min\" without matching tftp",
-            "needsExplanationReview": true
+            "explanation": "New flash is empty, not pre-loaded with mini-IOS — you must recover via ROMMON/TFTP.",
+            "misconceptionTested": "Mini-IOS always on new flash",
+            "whatItDoes": "The new flash memory will have a mini-IOS installed. You will need to upgrade it from the mini-IOS. points to a related idea, but not the specific behavior or value required for upgrading.",
+            "whyWrongHere": "For \"upgrading\", The router will boot into the ROMMON, and from there you will need to TFTP download the IOS. satisfies what this question tests — The new flash memory will have a mini-IOS installed. You will need to upgrade it from the mini-IOS. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Nothing needs to be done because the IOS is not storage on the flash memory card. describes a mechanism that could sound plausible for upgrading. Given upgrading, The router will boot into the ROMMON, and from there you will need to TFTP download the IOS. matches the tested behavior — Nothing needs to be done because the IOS is not storage on the flash memory card. applies a different mechanism.",
-            "whatItDoes": "Nothing needs to be done because the IOS is not storage on the flash memory card. describes a mechanism that could sound plausible for upgrading.",
-            "whyWrongHere": "Given upgrading, The router will boot into the ROMMON, and from there you will need to TFTP download the IOS. matches the tested behavior — Nothing needs to be done because the IOS is not storage on the flash memory card. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Nothing needs to be done because the\" without matching tftp",
-            "needsExplanationReview": true
+            "explanation": "IOS is stored on flash — without an image the device cannot boot normally.",
+            "misconceptionTested": "IOS not on flash card",
+            "whatItDoes": "Nothing needs to be done because the IOS is not storage on the flash memory card. points to a related idea, but not the specific behavior or value required for upgrading.",
+            "whyWrongHere": "For \"upgrading\", The router will boot into the ROMMON, and from there you will need to TFTP download the IOS. satisfies what this question tests — Nothing needs to be done because the IOS is not storage on the flash memory card. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Format the flash card with the FAT operating system and copy the IOS image to the card. describes a mechanism that could sound plausible for upgrading. Given upgrading, The router will boot into the ROMMON, and from there you will need to TFTP download the IOS. matches the tested behavior — Format the flash card with the FAT operating system and copy the IOS image to the card. applies a different mechanism.",
-            "whatItDoes": "Format the flash card with the FAT operating system and copy the IOS image to the card. describes a mechanism that could sound plausible for upgrading.",
-            "whyWrongHere": "Given upgrading, The router will boot into the ROMMON, and from there you will need to TFTP download the IOS. matches the tested behavior — Format the flash card with the FAT operating system and copy the IOS image to the card. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Format the flash card with the FAT o\" without matching tftp",
-            "needsExplanationReview": true
+            "explanation": "Formatting alone does not place an IOS image — you still need to copy the image to flash.",
+            "misconceptionTested": "Format-only restores IOS",
+            "whatItDoes": "Format the flash card with the FAT operating system and copy the IOS image to the card. points to a related idea, but not the specific behavior or value required for upgrading.",
+            "whyWrongHere": "For \"upgrading\", The router will boot into the ROMMON, and from there you will need to TFTP download the IOS. satisfies what this question tests — Format the flash card with the FAT operating system and copy the IOS image to the card. does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Dead flash / blank card → ROMMON → set IP/TFTP vars → tftpdnld or copy tftp flash."
       }
     },
     {
@@ -243,35 +231,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS\"."
+          "explanation": "FTP credentials use two global commands: ip ftp username USER and ip ftp password USERPASS."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#ip ftp username USER password USERPASS describes a mechanism that could sound plausible for required. Given required, Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS matches the tested behavior — Router(config)#ip ftp username USER password USERPASS applies a different mechanism.",
-            "whatItDoes": "Router(config)#ip ftp username USER password USERPASS describes a mechanism that could sound plausible for required.",
-            "whyWrongHere": "Given required, Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS matches the tested behavior — Router(config)#ip ftp username USER password USERPASS applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#ip ftp username USER \" without matching tftp",
-            "needsExplanationReview": true
+            "explanation": "password cannot appear on the same line as ip ftp username — split into two commands.",
+            "misconceptionTested": "Combined username+password on one line",
+            "whatItDoes": "Router(config)#ip ftp username USER password USERPASS points to a related idea, but not the specific behavior or value required for required.",
+            "whyWrongHere": "For \"required\", Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS satisfies what this question tests — Router(config)#ip ftp username USER password USERPASS does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#ftp USER password USERPASS describes a mechanism that could sound plausible for required. Given required, Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS matches the tested behavior — Router(config)#ftp USER password USERPASS applies a different mechanism.",
-            "whatItDoes": "Router(config)#ftp USER password USERPASS describes a mechanism that could sound plausible for required.",
-            "whyWrongHere": "Given required, Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS matches the tested behavior — Router(config)#ftp USER password USERPASS applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#ftp USER password USE\" without matching tftp",
-            "needsExplanationReview": true
+            "explanation": "ftp USER password is not valid IOS global syntax.",
+            "misconceptionTested": "Invented ftp global command",
+            "whatItDoes": "Router(config)#ftp USER password USERPASS points to a related idea, but not the specific behavior or value required for required.",
+            "whyWrongHere": "For \"required\", Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS satisfies what this question tests — Router(config)#ftp USER password USERPASS does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#username USER password USERPASS describes a mechanism that could sound plausible for required. Given required, Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS matches the tested behavior — Router(config)#username USER password USERPASS applies a different mechanism.",
-            "whatItDoes": "Router(config)#username USER password USERPASS describes a mechanism that could sound plausible for required.",
-            "whyWrongHere": "Given required, Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS matches the tested behavior — Router(config)#username USER password USERPASS applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#username USER passwor\" without matching tftp",
-            "needsExplanationReview": true
+            "explanation": "username creates local login accounts — FTP copy uses ip ftp username/password.",
+            "misconceptionTested": "Local username for FTP client",
+            "whatItDoes": "Router(config)#username USER password USERPASS points to a related idea, but not the specific behavior or value required for required.",
+            "whyWrongHere": "For \"required\", Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS satisfies what this question tests — Router(config)#username USER password USERPASS does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for tftp before picking a familiar-sounding wrong term."
+        "examTip": "FTP backup: ip ftp username + ip ftp password → copy running-config ftp:."
       }
     }
   ]

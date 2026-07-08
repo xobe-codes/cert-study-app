@@ -24,32 +24,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "IPv6 addresses are 128 bits — four times longer than 32-bit IPv4."
+          "explanation": "IPv6 addresses are 128 bits (8 hextets × 16 bits) — four times longer than 32-bit IPv4."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "32 bits is IPv4 address length — IPv6 is 128 bits.",
-            "misconceptionTested": "Using IPv4 bit length for IPv6",
-            "whatItDoes": "32 describes a mechanism that could sound plausible for address length.",
-            "whyWrongHere": "Given address length, 128 matches the tested behavior — 32 applies a different mechanism."
+            "explanation": "32 bits is IPv4 length — IPv6 is 128 bits.",
+            "misconceptionTested": "IPv4 length on IPv6 stem",
+            "whatItDoes": "32 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in address length.",
+            "whyWrongHere": "For \"address length\", 128 satisfies what this question tests — 32 does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "64 bits is a common prefix or interface ID slice — full IPv6 address is 128 bits.",
-            "misconceptionTested": "Confusing /64 prefix with full address size",
-            "whatItDoes": "64 describes a mechanism that could sound plausible for address length.",
-            "whyWrongHere": "Given address length, 128 matches the tested behavior — 64 applies a different mechanism."
+            "explanation": "64 bits is often a host/interface portion (EUI-64) — full address is 128 bits.",
+            "misconceptionTested": "Interface ID length as full address",
+            "whatItDoes": "64 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in address length.",
+            "whyWrongHere": "For \"address length\", 128 satisfies what this question tests — 64 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "256 bits is not a standard IP address size on CCNA — IPv6 is 128 bits.",
-            "misconceptionTested": "Inventing non-standard address length",
-            "whatItDoes": "256 describes a mechanism that could sound plausible for address length.",
-            "whyWrongHere": "Given address length, 128 matches the tested behavior — 256 applies a different mechanism."
+            "explanation": "256 bits is not used for IPv6 addresses on CCNA.",
+            "misconceptionTested": "Doubling 128 incorrectly",
+            "whatItDoes": "256 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in address length.",
+            "whyWrongHere": "For \"address length\", 128 satisfies what this question tests — 256 does not."
           }
         ],
-        "examTip": "IPv4 = 32 bits. IPv6 = 128 bits."
+        "examTip": "IPv6 = 128-bit addresses. IPv4 = 32-bit."
       }
     },
     {
@@ -72,32 +72,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "Drop leading zeros and replace the single zero run with :: once → 2001:db8::1."
+          "explanation": "Compress consecutive zero hextets once: 2001:db8::1 (leading zeros in db8 also dropped)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "2001:db8:::1 uses the wrong value. The tested fact calls for 8 — not 2001.",
-            "whatItDoes": "2001:db8:::1 describes a mechanism that could sound plausible for shortening.",
-            "whyWrongHere": "Given shortening, 2001:db8::1 matches the tested behavior — 2001:db8:::1 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 2001 instead of the correct 8"
+            "explanation": "Only one :: is allowed per address — ::: is invalid.",
+            "misconceptionTested": "Triple colon compression",
+            "whatItDoes": "2001:db8:::1 points to a related idea, but not the specific behavior or value required for shortening.",
+            "whyWrongHere": "For \"shortening\", 2001:db8::1 satisfies what this question tests — 2001:db8:::1 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "2001:db8::0:1:: uses the wrong value. The tested fact calls for 8 — not 2001.",
-            "whatItDoes": "2001:db8::0:1:: describes a mechanism that could sound plausible for shortening.",
-            "whyWrongHere": "Given shortening, 2001:db8::1 matches the tested behavior — 2001:db8::0:1:: applies a different mechanism.",
-            "misconceptionTested": "Memorizing 2001 instead of the correct 8"
+            "explanation": ":: may appear only once — cannot split zeros in two places.",
+            "misconceptionTested": "Multiple :: segments",
+            "whatItDoes": "2001:db8::0:1:: points to a related idea, but not the specific behavior or value required for shortening.",
+            "whyWrongHere": "For \"shortening\", 2001:db8::1 satisfies what this question tests — 2001:db8::0:1:: does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "2001::db8::1 uses the wrong value. The tested fact calls for 8 — not 2001.",
-            "whatItDoes": "2001::db8::1 describes a mechanism that could sound plausible for shortening.",
-            "whyWrongHere": "Given shortening, 2001:db8::1 matches the tested behavior — 2001::db8::1 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 2001 instead of the correct 8"
+            "explanation": "Compress the longest zero run in the middle — not 2001::db8::1 with two :: groups.",
+            "misconceptionTested": "Double :: in shortened form",
+            "whatItDoes": "2001::db8::1 points to a related idea, but not the specific behavior or value required for shortening.",
+            "whyWrongHere": "For \"shortening\", 2001:db8::1 satisfies what this question tests — 2001::db8::1 does not."
           }
         ],
-        "examTip": "On the exam: Using :: twice — Only one :: per address is allowed"
+        "examTip": "IPv6 shorten: drop leading zeros; one :: per address."
       }
     },
     {
@@ -118,18 +118,18 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "False — :: may appear only once, otherwise the number of zero groups is ambiguous."
+          "explanation": "False — :: can represent contiguous zeros only once in a single IPv6 address."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "This statement is True, but the tested fact is: False — :: may appear only once, otherwise the number of zero groups is ambiguous.",
+            "explanation": "Using :: twice makes the address ambiguous/invalid.",
+            "misconceptionTested": "Allowing multiple :: compressions",
             "whatItDoes": "True states the opposite of the tested fact about double colon rule.",
-            "whyWrongHere": "Given double colon rule, False matches the tested behavior — True applies a different mechanism.",
-            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
+            "whyWrongHere": "For \"double colon rule\", False satisfies what this question tests — True does not."
           }
         ],
-        "examTip": "On the exam: Using :: twice — Only one :: per address is allowed"
+        "examTip": "One :: max per IPv6 address."
       }
     },
     {
@@ -152,32 +152,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "/64 is standard for LANs and is required for SLAAC/EUI-64."
+          "explanation": "IPv6 LANs typically use a /64 prefix — 64-bit interface ID (SLAAC/EUI-64)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "/24 uses the wrong value. The tested fact calls for 64 — not 24.",
-            "whatItDoes": "/24 describes a mechanism that could sound plausible for LAN prefix.",
-            "whyWrongHere": "Given LAN prefix, /64 matches the tested behavior — /24 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 24 instead of the correct 64"
+            "explanation": "/24 is IPv4 thinking — IPv6 subnets are usually /64 on LANs.",
+            "misconceptionTested": "IPv4 /24 on IPv6 LAN",
+            "whatItDoes": "/24 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (LAN prefix): /64 matches prefix, shortening, or assignment rules — /24 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 1,
-            "explanation": "/48 uses the wrong value. The tested fact calls for 64 — not 48.",
-            "whatItDoes": "/48 describes a mechanism that could sound plausible for LAN prefix.",
-            "whyWrongHere": "Given LAN prefix, /64 matches the tested behavior — /48 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 48 instead of the correct 64"
+            "explanation": "/48 is often a site allocation — LAN subnets are carved as /64.",
+            "misconceptionTested": "Site prefix as LAN length",
+            "whatItDoes": "/48 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (LAN prefix): /64 matches prefix, shortening, or assignment rules — /48 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 3,
-            "explanation": "/128 uses the wrong value. The tested fact calls for 64 — not 128.",
-            "whatItDoes": "/128 describes a mechanism that could sound plausible for LAN prefix.",
-            "whyWrongHere": "Given LAN prefix, /64 matches the tested behavior — /128 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 128 instead of the correct 64"
+            "explanation": "/128 is a single host address — not a typical LAN prefix.",
+            "misconceptionTested": "Host mask for LAN",
+            "whatItDoes": "/128 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (LAN prefix): /64 matches prefix, shortening, or assignment rules — /128 breaks IPv6 syntax or prefix length."
           }
         ],
-        "examTip": "On the exam: IPv6 needs NAT like IPv4 — IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary"
+        "examTip": "IPv6 LAN default = /64."
       }
     },
     {
@@ -200,32 +200,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "FFFE is inserted in the middle, and the 7th bit of the first byte is flipped."
+          "explanation": "Modified EUI-64 inserts FFFE in the middle of the 48-bit MAC to build a 64-bit interface ID."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "FF00 uses the wrong value. The tested fact calls for 7 — not 00.",
-            "whatItDoes": "FF00 describes a mechanism that could sound plausible for modified.",
-            "whyWrongHere": "Given modified, FFFE matches the tested behavior — FF00 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 00 instead of the correct 7"
+            "explanation": "FF00 is not the EUI-64 insertion pattern — use FFFE.",
+            "misconceptionTested": "Wrong EUI-64 insert",
+            "whatItDoes": "FF00 points to a related idea, but not the specific behavior or value required for modified.",
+            "whyWrongHere": "For \"modified\", FFFE satisfies what this question tests — FF00 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "FFFF describes a mechanism that could sound plausible for modified. Given modified, FFFE matches the tested behavior — FFFF applies a different mechanism.",
-            "whatItDoes": "FFFF describes a mechanism that could sound plausible for modified.",
-            "whyWrongHere": "Given modified, FFFE matches the tested behavior — FFFF applies a different mechanism.",
-            "misconceptionTested": "Applying \"FFFF\" without matching EUI-64"
+            "explanation": "FFFF is not inserted — FFFE is the standard 16-bit pad.",
+            "misconceptionTested": "FFFF pad in EUI-64",
+            "whatItDoes": "FFFF points to a related idea, but not the specific behavior or value required for modified.",
+            "whyWrongHere": "For \"modified\", FFFE satisfies what this question tests — FFFF does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "FE80 uses the wrong value. The tested fact calls for 7 — not 80.",
-            "whatItDoes": "FE80 describes a mechanism that could sound plausible for modified.",
-            "whyWrongHere": "Given modified, FFFE matches the tested behavior — FE80 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 80 instead of the correct 7"
+            "explanation": "FE80 is link-local prefix space — not the MAC-to-EUI-64 insert.",
+            "misconceptionTested": "FE80 as EUI-64 insert",
+            "whatItDoes": "FE80 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"modified\", FFFE satisfies what this question tests — FE80 does not."
           }
         ],
-        "examTip": "Link-local fe80::/10 is automatic; global unicast needs SLAAC, DHCPv6, or static config."
+        "examTip": "EUI-64: split MAC, insert FFFE, flip U/L bit."
       }
     },
     {
@@ -248,32 +248,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID."
+          "explanation": "SLAAC (Stateless Address Autoconfiguration) builds an address from RA prefix + interface ID."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "DHCPv6 describes a mechanism that could sound plausible for advertisement. Given advertisement, SLAAC matches the tested behavior — DHCPv6 applies a different mechanism.",
-            "whatItDoes": "DHCPv6 describes a mechanism that could sound plausible for advertisement.",
-            "whyWrongHere": "Given advertisement, SLAAC matches the tested behavior — DHCPv6 applies a different mechanism.",
-            "misconceptionTested": "Applying \"DHCPv6\" without matching SLAAC"
+            "explanation": "DHCPv6 is stateful/stateless server assignment — not RA-only autoconfig from prefix.",
+            "misconceptionTested": "SLAAC vs DHCPv6",
+            "whatItDoes": "DHCPv6 points to a related idea, but not the specific behavior or value required for advertisement.",
+            "whyWrongHere": "For \"advertisement\", SLAAC satisfies what this question tests — DHCPv6 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Static describes a mechanism that could sound plausible for advertisement. Given advertisement, SLAAC matches the tested behavior — Static applies a different mechanism.",
-            "whatItDoes": "Static describes a mechanism that could sound plausible for advertisement.",
-            "whyWrongHere": "Given advertisement, SLAAC matches the tested behavior — Static applies a different mechanism.",
-            "misconceptionTested": "Applying \"Static\" without matching SLAAC"
+            "explanation": "Static is manually configured — not derived from RA alone.",
+            "misconceptionTested": "Static as SLAAC",
+            "whatItDoes": "Static points to a related idea, but not the specific behavior or value required for advertisement.",
+            "whyWrongHere": "For \"advertisement\", SLAAC satisfies what this question tests — Static does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "NAT66 describes a mechanism that could sound plausible for advertisement. Given advertisement, SLAAC matches the tested behavior — NAT66 applies a different mechanism.",
-            "whatItDoes": "NAT66 describes a mechanism that could sound plausible for advertisement.",
-            "whyWrongHere": "Given advertisement, SLAAC matches the tested behavior — NAT66 applies a different mechanism.",
-            "misconceptionTested": "Applying \"NAT66\" without matching SLAAC"
+            "explanation": "NAT66 translates between IPv6 networks — unrelated to address autoconfig.",
+            "misconceptionTested": "NAT66 as autoconfig",
+            "whatItDoes": "NAT66 points to a related idea, but not the specific behavior or value required for advertisement.",
+            "whyWrongHere": "For \"advertisement\", SLAAC satisfies what this question tests — NAT66 does not."
           }
         ],
-        "examTip": "On the exam: Expecting SLAAC on a non-/64 prefix — SLAAC requires a /64 prefix"
+        "examTip": "RA prefix + self-built host ID = SLAAC."
       }
     },
     {
@@ -296,32 +296,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "ipv6 unicast-routing must be enabled globally."
+          "explanation": "Globally enable IPv6 routing with ipv6 unicast-routing."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "ipv6 routing reflects a common trap: IPv6 needs NAT like IPv4. IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary.",
-            "whatItDoes": "ipv6 routing describes a mechanism that could sound plausible for enable routing.",
-            "whyWrongHere": "Given enable routing, ipv6 unicast-routing matches the tested behavior — ipv6 routing applies a different mechanism.",
-            "misconceptionTested": "IPv6 needs NAT like IPv4"
+            "explanation": "ipv6 routing is not the standard global IOS command.",
+            "misconceptionTested": "Wrong global IPv6 command",
+            "whatItDoes": "ipv6 routing states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (enable routing): ipv6 unicast-routing matches prefix, shortening, or assignment rules — ipv6 routing breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 2,
-            "explanation": "ip routing v6 describes a mechanism that could sound plausible for enable routing. Given enable routing, ipv6 unicast-routing matches the tested behavior — ip routing v6 applies a different mechanism.",
-            "whatItDoes": "ip routing v6 describes a mechanism that could sound plausible for enable routing.",
-            "whyWrongHere": "Given enable routing, ipv6 unicast-routing matches the tested behavior — ip routing v6 applies a different mechanism.",
-            "misconceptionTested": "Applying \"ip routing v6\" without matching enable routing"
+            "explanation": "ip routing v6 is invalid syntax.",
+            "misconceptionTested": "Invented ip routing v6",
+            "whatItDoes": "ip routing v6 points to a related idea, but not the specific behavior or value required for enable routing.",
+            "whyWrongHere": "For \"enable routing\", ipv6 unicast-routing satisfies what this question tests — ip routing v6 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "enable ipv6 reflects a common trap: IPv6 needs NAT like IPv4. IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary.",
-            "whatItDoes": "enable ipv6 describes a mechanism that could sound plausible for enable routing.",
-            "whyWrongHere": "Given enable routing, ipv6 unicast-routing matches the tested behavior — enable ipv6 applies a different mechanism.",
-            "misconceptionTested": "IPv6 needs NAT like IPv4"
+            "explanation": "enable ipv6 is not the router global config command.",
+            "misconceptionTested": "enable ipv6 typo",
+            "whatItDoes": "enable ipv6 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (enable routing): ipv6 unicast-routing matches prefix, shortening, or assignment rules — enable ipv6 breaks IPv6 syntax or prefix length."
           }
         ],
-        "examTip": "On the exam: IPv6 needs NAT like IPv4 — IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary"
+        "examTip": "Router IPv6 forwarding → ipv6 unicast-routing."
       }
     },
     {
@@ -344,32 +344,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Only leading zeros within a hextet may be dropped: 00a0 → a0."
+          "explanation": "Shorten hextets by removing leading zeros — 00a0 becomes a0."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Trailing zeros reflects a common trap: Dropping trailing zeros in a hextet. Only leading zeros may be dropped (00a0 → a0, not a).",
-            "whatItDoes": "Trailing zeros describes a mechanism that could sound plausible for zero compression.",
-            "whyWrongHere": "Given zero compression, Leading zeros → a0 matches the tested behavior — Trailing zeros applies a different mechanism.",
-            "misconceptionTested": "Dropping trailing zeros in a hextet"
+            "explanation": "Trailing zeros inside a hextet are significant — only leading zeros drop.",
+            "misconceptionTested": "Stripping trailing zeros in hextet",
+            "whatItDoes": "Trailing zeros points to a related idea, but not the specific behavior or value required for zero compression.",
+            "whyWrongHere": "For \"zero compression\", Leading zeros → a0 satisfies what this question tests — Trailing zeros does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "All zeros reflects a common trap: Dropping trailing zeros in a hextet. Only leading zeros may be dropped (00a0 → a0, not a).",
-            "whatItDoes": "All zeros describes a mechanism that could sound plausible for zero compression.",
-            "whyWrongHere": "Given zero compression, Leading zeros → a0 matches the tested behavior — All zeros applies a different mechanism.",
-            "misconceptionTested": "Dropping trailing zeros in a hextet"
+            "explanation": "Cannot remove all zeros in a non-zero hextet — a0 keeps the value.",
+            "misconceptionTested": "Deleting required digits",
+            "whatItDoes": "All zeros points to a related idea, but not the specific behavior or value required for zero compression.",
+            "whyWrongHere": "For \"zero compression\", Leading zeros → a0 satisfies what this question tests — All zeros does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "None describes a mechanism that could sound plausible for zero compression. Given zero compression, Leading zeros → a0 matches the tested behavior — None applies a different mechanism.",
-            "whatItDoes": "None describes a mechanism that could sound plausible for zero compression.",
-            "whyWrongHere": "Given zero compression, Leading zeros → a0 matches the tested behavior — None applies a different mechanism.",
-            "misconceptionTested": "Applying \"None\" without matching zero compression"
+            "explanation": "IPv6 shortening rules allow leading zero compression.",
+            "misconceptionTested": "No shortening allowed",
+            "whatItDoes": "None points to a related idea, but not the specific behavior or value required for zero compression.",
+            "whyWrongHere": "For \"zero compression\", Leading zeros → a0 satisfies what this question tests — None does not."
           }
         ],
-        "examTip": "On the exam: Using :: twice — Only one :: per address is allowed"
+        "examTip": "Per-hextet: drop leading zeros only."
       }
     },
     {
@@ -392,32 +392,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "show ipv6 interface brief lists IPv6 addresses (link-local + global) and status."
+          "explanation": "show ipv6 interface brief lists IPv6 addresses and interface status."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "show ip interface brief reflects a common trap: An interface has only one IPv6 address. Interfaces normally have at least a link-local (FE80::) and a global address.",
-            "whatItDoes": "show ip interface brief describes a mechanism that could sound plausible for addresses.",
-            "whyWrongHere": "Given addresses, show ipv6 interface brief matches the tested behavior — show ip interface brief applies a different mechanism.",
-            "misconceptionTested": "An interface has only one IPv6 address"
+            "explanation": "show ip interface brief is IPv4 — use the ipv6 variant.",
+            "misconceptionTested": "IPv4 show for IPv6 addresses",
+            "whatItDoes": "show ip interface brief is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (addresses): show ipv6 interface brief inspects the right table or state — show ip interface brief shows unrelated information."
           },
           {
             "choiceIndex": 2,
-            "explanation": "show ipv6 route reflects a common trap: IPv6 needs NAT like IPv4. IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary.",
-            "whatItDoes": "show ipv6 route describes a mechanism that could sound plausible for addresses.",
-            "whyWrongHere": "Given addresses, show ipv6 interface brief matches the tested behavior — show ipv6 route applies a different mechanism.",
-            "misconceptionTested": "IPv6 needs NAT like IPv4"
+            "explanation": "show ipv6 route shows the routing table, not interface address summary.",
+            "misconceptionTested": "Route table instead of interfaces",
+            "whatItDoes": "show ipv6 route is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (addresses): show ipv6 interface brief inspects the right table or state — show ipv6 route shows unrelated information."
           },
           {
             "choiceIndex": 3,
-            "explanation": "show running-config describes a mechanism that could sound plausible for addresses. Given addresses, show ipv6 interface brief matches the tested behavior — show running-config applies a different mechanism.",
-            "whatItDoes": "show running-config describes a mechanism that could sound plausible for addresses.",
-            "whyWrongHere": "Given addresses, show ipv6 interface brief matches the tested behavior — show running-config applies a different mechanism.",
-            "misconceptionTested": "Applying \"show running-config\" without matching verify"
+            "explanation": "Running config shows config lines — brief summary is faster for addresses/status.",
+            "misconceptionTested": "run-config as brief status",
+            "whatItDoes": "show running-config is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (addresses): show ipv6 interface brief inspects the right table or state — show running-config shows unrelated information."
           }
         ],
-        "examTip": "On the exam: IPv6 needs NAT like IPv4 — IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary"
+        "examTip": "IPv6 IF summary → show ipv6 interface brief."
       }
     },
     {
@@ -440,32 +440,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "128 − 64 = 64 bits for the interface ID."
+          "explanation": "/64 leaves 64 bits for the interface ID (128 − 64 = 64)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "32 uses the wrong value. The tested fact calls for 128 — not 32.",
-            "whatItDoes": "32 describes a mechanism that could sound plausible for interface ID size.",
-            "whyWrongHere": "Given interface ID size, 64 matches the tested behavior — 32 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 32 instead of the correct 128"
+            "explanation": "32-bit interface IDs are not used in standard /64 LAN design.",
+            "misconceptionTested": "32-bit interface ID",
+            "whatItDoes": "32 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in interface ID size.",
+            "whyWrongHere": "For \"interface ID size\", 64 satisfies what this question tests — 32 does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "48 uses the wrong value. The tested fact calls for 128 — not 48.",
-            "whatItDoes": "48 describes a mechanism that could sound plausible for interface ID size.",
-            "whyWrongHere": "Given interface ID size, 64 matches the tested behavior — 48 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 48 instead of the correct 128"
+            "explanation": "48 bits would imply a /80 prefix — LANs use /64.",
+            "misconceptionTested": "48-bit interface ID on /64",
+            "whatItDoes": "48 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in interface ID size.",
+            "whyWrongHere": "For \"interface ID size\", 64 satisfies what this question tests — 48 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "128 uses the wrong value. The tested fact calls for 64 — not 128.",
-            "whatItDoes": "128 describes a mechanism that could sound plausible for interface ID size.",
-            "whyWrongHere": "Given interface ID size, 64 matches the tested behavior — 128 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 128 instead of the correct 64"
+            "explanation": "128 bits would be the entire address — /64 splits network vs host evenly.",
+            "misconceptionTested": "Full 128 as interface ID",
+            "whatItDoes": "128 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in interface ID size.",
+            "whyWrongHere": "For \"interface ID size\", 64 satisfies what this question tests — 128 does not."
           }
         ],
-        "examTip": "On the exam: IPv6 needs NAT like IPv4 — IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary"
+        "examTip": "/64 → 64-bit network + 64-bit interface ID."
       }
     }
   ]

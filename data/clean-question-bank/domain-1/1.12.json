@@ -31,22 +31,22 @@
             "choiceIndex": 0,
             "explanation": "Workstation runs on top of Windows — Type 2 (hosted) hypervisor, not bare-metal Type 1.",
             "misconceptionTested": "Classifying hosted hypervisor as Type 1",
-            "whatItDoes": "VMware Workstation on Windows describes a mechanism that could sound plausible for ESXi runs directly on hardware without a host OS underneath.",
-            "whyWrongHere": "Given ESXi runs directly on hardware without a host OS underneath, VMware ESXi matches the tested behavior — VMware Workstation on Windows applies a different mechanism."
+            "whatItDoes": "VMware Workstation on Windows points to a related idea, but not the specific behavior or value required for ESXi runs directly on hardware without a host OS underneath.",
+            "whyWrongHere": "For \"ESXi runs directly on hardware without a host OS underneath\", VMware ESXi satisfies what this question tests — VMware Workstation on Windows does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Docker Desktop is container tooling on a host OS — not a bare-metal hypervisor.",
             "misconceptionTested": "Equating containers with Type 1 hypervisor",
-            "whatItDoes": "Docker Desktop only describes a mechanism that could sound plausible for ESXi runs directly on hardware without a host OS underneath.",
-            "whyWrongHere": "Given ESXi runs directly on hardware without a host OS underneath, VMware ESXi matches the tested behavior — Docker Desktop only applies a different mechanism."
+            "whatItDoes": "Docker Desktop only points to a related idea, but not the specific behavior or value required for ESXi runs directly on hardware without a host OS underneath.",
+            "whyWrongHere": "For \"ESXi runs directly on hardware without a host OS underneath\", VMware ESXi satisfies what this question tests — Docker Desktop only does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "A physical router forwards packets — it is not a hypervisor.",
             "misconceptionTested": "Confusing network hardware with virtualization",
-            "whatItDoes": "A physical router describes a mechanism that could sound plausible for ESXi runs directly on hardware without a host OS underneath.",
-            "whyWrongHere": "Given ESXi runs directly on hardware without a host OS underneath, VMware ESXi matches the tested behavior — A physical router applies a different mechanism."
+            "whatItDoes": "A physical router points to a related idea, but not the specific behavior or value required for ESXi runs directly on hardware without a host OS underneath.",
+            "whyWrongHere": "For \"ESXi runs directly on hardware without a host OS underneath\", VMware ESXi satisfies what this question tests — A physical router does not."
           }
         ],
         "examTip": "Type 1 = bare metal (ESXi, Hyper-V on hardware). Type 2 = runs on OS (Workstation)."
@@ -79,22 +79,22 @@
             "choiceIndex": 0,
             "explanation": "Bare-metal-only describes Type 1 hypervisors (ESXi, Hyper-V on server) — Type 2 runs on a host operating system.",
             "misconceptionTested": "Labeling Type 2 as bare-metal hypervisor",
-            "whatItDoes": "Directly on bare metal only describes a mechanism that could sound plausible for Type 2 is hosted — e.",
-            "whyWrongHere": "Given Type 2 is hosted — e, On top of a host operating system matches the tested behavior — Directly on bare metal only applies a different mechanism."
+            "whatItDoes": "Directly on bare metal only points to a related idea, but not the specific behavior or value required for Type 2 is hosted — e.",
+            "whyWrongHere": "For \"Type 2 is hosted — e\", On top of a host operating system satisfies what this question tests — Directly on bare metal only does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Containers are not hypervisors — Type 2 hypervisors run VMs as guest OS instances above the host OS.",
             "misconceptionTested": "Placing Type 2 hypervisor inside a container only",
-            "whatItDoes": "Inside a container only describes a mechanism that could sound plausible for Type 2 is hosted — e.",
-            "whyWrongHere": "Given Type 2 is hosted — e, On top of a host operating system matches the tested behavior — Inside a container only applies a different mechanism."
+            "whatItDoes": "Inside a container only points to a related idea, but not the specific behavior or value required for Type 2 is hosted — e.",
+            "whyWrongHere": "For \"Type 2 is hosted — e\", On top of a host operating system satisfies what this question tests — Inside a container only does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Type 2 hypervisors exist to run VMs — they require a host OS and create virtual machines on top of it.",
             "misconceptionTested": "Believing Type 2 hypervisors run without VMs",
-            "whatItDoes": "Without any VMs describes a mechanism that could sound plausible for Type 2 is hosted — e.",
-            "whyWrongHere": "Given Type 2 is hosted — e, On top of a host operating system matches the tested behavior — Without any VMs applies a different mechanism."
+            "whatItDoes": "Without any VMs points to a related idea, but not the specific behavior or value required for Type 2 is hosted — e.",
+            "whyWrongHere": "For \"Type 2 is hosted — e\", On top of a host operating system satisfies what this question tests — Without any VMs does not."
           }
         ],
         "examTip": "Type 1 = bare metal; Type 2 = hosted on a desktop/server OS."
@@ -120,32 +120,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Containers isolate processes but share one kernel — lighter than full VMs."
+          "explanation": "Containers share the host OS kernel — VMs each run a full guest OS."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Include a full guest OS each reflects a common trap: Saying containers include a full guest OS. Containers share the host kernel — only apps/libs are packaged.",
-            "whatItDoes": "Include a full guest OS each describes a mechanism that could sound plausible for containers.",
-            "whyWrongHere": "Given containers, Share the host OS kernel matches the tested behavior — Include a full guest OS each applies a different mechanism.",
-            "misconceptionTested": "Saying containers include a full guest OS"
+            "explanation": "Full guest OS per instance describes VMs, not lightweight containers.",
+            "misconceptionTested": "Containers include full guest OS",
+            "whatItDoes": "Include a full guest OS each points to a related idea, but not the specific behavior or value required for containers.",
+            "whyWrongHere": "For \"containers\", Share the host OS kernel satisfies what this question tests — Include a full guest OS each does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Cannot run on Linux describes a mechanism that could sound plausible for containers. Given containers, Share the host OS kernel matches the tested behavior — Cannot run on Linux applies a different mechanism.",
-            "whatItDoes": "Cannot run on Linux describes a mechanism that could sound plausible for containers.",
-            "whyWrongHere": "Given containers, Share the host OS kernel matches the tested behavior — Cannot run on Linux applies a different mechanism.",
-            "misconceptionTested": "Applying \"Cannot run on Linux\" without matching containers"
+            "explanation": "Containers run extensively on Linux (Docker, containerd) — they don't require VMs.",
+            "misconceptionTested": "Containers cannot run on Linux",
+            "whatItDoes": "Cannot run on Linux points to a related idea, but not the specific behavior or value required for containers.",
+            "whyWrongHere": "For \"containers\", Share the host OS kernel satisfies what this question tests — Cannot run on Linux does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Replace physical switches describes a mechanism that could sound plausible for containers. Given containers, Share the host OS kernel matches the tested behavior — Replace physical switches applies a different mechanism.",
-            "whatItDoes": "Replace physical switches describes a mechanism that could sound plausible for containers.",
-            "whyWrongHere": "Given containers, Share the host OS kernel matches the tested behavior — Replace physical switches applies a different mechanism.",
-            "misconceptionTested": "Applying \"Replace physical switches\" without matching containers"
+            "explanation": "Containers virtualize workloads — they don't replace physical switches.",
+            "misconceptionTested": "Containers replace switches",
+            "whatItDoes": "Replace physical switches points to a related idea, but not the specific behavior or value required for containers.",
+            "whyWrongHere": "For \"containers\", Share the host OS kernel satisfies what this question tests — Replace physical switches does not."
           }
         ],
-        "examTip": "On the exam: Saying containers include a full guest OS — Containers share the host kernel — only apps/libs are packaged"
+        "examTip": "VM = hypervisor + guest OS | Container = shared kernel + isolated processes."
       }
     },
     {
@@ -175,22 +175,22 @@
             "choiceIndex": 0,
             "explanation": "Wireless encryption (WPA/WPA2/WPA3) secures 802.11 frames — VRF segments Layer 3 routing instances.",
             "misconceptionTested": "Equating VRF with WLAN encryption",
-            "whatItDoes": "Wireless encryption describes a mechanism that could sound plausible for VRF creates separate routing/forwarding instances on one device.",
-            "whyWrongHere": "Given VRF creates separate routing/forwarding instances on one device, Multiple isolated routing tables matches the tested behavior — Wireless encryption applies a different mechanism."
+            "whatItDoes": "Wireless encryption points to a related idea, but not the specific behavior or value required for VRF creates separate routing/forwarding instances on one device.",
+            "whyWrongHere": "For \"VRF creates separate routing/forwarding instances on one device\", Multiple isolated routing tables satisfies what this question tests — Wireless encryption does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Fiber transceivers are physical Layer 1 optics — VRF is a control/data-plane virtualization feature.",
             "misconceptionTested": "Assigning transceiver support to VRF",
-            "whatItDoes": "Fiber transceiver support describes a mechanism that could sound plausible for VRF creates separate routing/forwarding instances on one device.",
-            "whyWrongHere": "Given VRF creates separate routing/forwarding instances on one device, Multiple isolated routing tables matches the tested behavior — Fiber transceiver support applies a different mechanism."
+            "whatItDoes": "Fiber transceiver support points to a related idea, but not the specific behavior or value required for VRF creates separate routing/forwarding instances on one device.",
+            "whyWrongHere": "For \"VRF creates separate routing/forwarding instances on one device\", Multiple isolated routing tables satisfies what this question tests — Fiber transceiver support does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "DHCP redundancy uses multiple servers or failover mechanisms — VRF isolates routing tables, not DHCP HA by itself.",
             "misconceptionTested": "Expecting VRF to provide DHCP server redundancy",
-            "whatItDoes": "DHCP server redundancy describes a mechanism that could sound plausible for VRF creates separate routing/forwarding instances on one device.",
-            "whyWrongHere": "Given VRF creates separate routing/forwarding instances on one device, Multiple isolated routing tables matches the tested behavior — DHCP server redundancy applies a different mechanism."
+            "whatItDoes": "DHCP server redundancy points to a related idea, but not the specific behavior or value required for VRF creates separate routing/forwarding instances on one device.",
+            "whyWrongHere": "For \"VRF creates separate routing/forwarding instances on one device\", Multiple isolated routing tables satisfies what this question tests — DHCP server redundancy does not."
           }
         ],
         "examTip": "VRF = separate routing tables on one router — like virtual routers sharing hardware."
@@ -216,32 +216,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "NFV virtualizes functions like firewall and router as software."
+          "explanation": "NFV runs network functions (firewall, router, load balancer) as software on commodity hardware instead of dedicated appliances."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Replacing DNS with VLANs describes a mechanism that could sound plausible for NFV virtualizes functions like firewall and router as software. Given NFV virtualizes functions like firewall and router as software, Running network services as software on general hardware matches the tested behavior — Replacing DNS with VLANs applies a different mechanism.",
-            "whatItDoes": "Replacing DNS with VLANs describes a mechanism that could sound plausible for NFV virtualizes functions like firewall and router as software.",
-            "whyWrongHere": "Given NFV virtualizes functions like firewall and router as software, Running network services as software on general hardware matches the tested behavior — Replacing DNS with VLANs applies a different mechanism.",
-            "misconceptionTested": "Applying \"Replacing DNS with VLANs\" without matching nfv"
+            "explanation": "NFV virtualizes network services — it doesn't replace DNS with VLANs.",
+            "misconceptionTested": "NFV replaces DNS with VLANs",
+            "whatItDoes": "Replacing DNS with VLANs points to a related idea, but not the specific behavior or value required for NFV virtualizes functions like firewall and router as software.",
+            "whyWrongHere": "For \"NFV virtualizes functions like firewall and router as software\", Running network services as software on general hardware satisfies what this question tests — Replacing DNS with VLANs does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Eliminating all routers describes a mechanism that could sound plausible for NFV virtualizes functions like firewall and router as software. Given NFV virtualizes functions like firewall and router as software, Running network services as software on general hardware matches the tested behavior — Eliminating all routers applies a different mechanism.",
-            "whatItDoes": "Eliminating all routers describes a mechanism that could sound plausible for NFV virtualizes functions like firewall and router as software.",
-            "whyWrongHere": "Given NFV virtualizes functions like firewall and router as software, Running network services as software on general hardware matches the tested behavior — Eliminating all routers applies a different mechanism.",
-            "misconceptionTested": "Applying \"Eliminating all routers\" without matching nfv"
+            "explanation": "NFV complements physical routing — it doesn't eliminate all routers.",
+            "misconceptionTested": "NFV eliminates all routers",
+            "whatItDoes": "Eliminating all routers points to a related idea, but not the specific behavior or value required for NFV virtualizes functions like firewall and router as software.",
+            "whyWrongHere": "For \"NFV virtualizes functions like firewall and router as software\", Running network services as software on general hardware satisfies what this question tests — Eliminating all routers does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Using only WEP describes a mechanism that could sound plausible for NFV virtualizes functions like firewall and router as software. Given NFV virtualizes functions like firewall and router as software, Running network services as software on general hardware matches the tested behavior — Using only WEP applies a different mechanism.",
-            "whatItDoes": "Using only WEP describes a mechanism that could sound plausible for NFV virtualizes functions like firewall and router as software.",
-            "whyWrongHere": "Given NFV virtualizes functions like firewall and router as software, Running network services as software on general hardware matches the tested behavior — Using only WEP applies a different mechanism.",
-            "misconceptionTested": "Applying \"Using only WEP\" without matching nfv"
+            "explanation": "WEP is WLAN security — unrelated to Network Function Virtualization.",
+            "misconceptionTested": "NFV uses WEP",
+            "whatItDoes": "Using only WEP selects a weak or deprecated WLAN security option.",
+            "whyWrongHere": "For \"NFV virtualizes functions like firewall and router as software\", Running network services as software on general hardware satisfies what this question tests — Using only WEP does not."
           }
         ],
-        "examTip": "On the exam: NFV and VMs are the same thing — NFV is a use case — virtualized network functions; VMs are one way to host them (containers another)"
+        "examTip": "NFV = virtual firewall/router/LB on x86 | SDN = centralized control plane — often deployed together."
       }
     },
     {
@@ -264,32 +264,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "VMs are full guests with virtual hardware including vNICs."
+          "explanation": "Each VM includes its own guest OS and virtual NICs — fully isolated from other VMs."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Only a container image describes a mechanism that could sound plausible for vm components. Given vm components, Its own guest OS and virtual NICs matches the tested behavior — Only a container image applies a different mechanism.",
-            "whatItDoes": "Only a container image describes a mechanism that could sound plausible for vm components.",
-            "whyWrongHere": "Given vm components, Its own guest OS and virtual NICs matches the tested behavior — Only a container image applies a different mechanism.",
-            "misconceptionTested": "Applying \"Only a container image\" without matching vm components"
+            "explanation": "A container image is lightweight — VMs bundle a full operating system.",
+            "misconceptionTested": "VM is only a container image",
+            "whatItDoes": "Only a container image points to a related idea, but not the specific behavior or value required for vm components.",
+            "whyWrongHere": "For \"vm components\", Its own guest OS and virtual NICs satisfies what this question tests — Only a container image does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Shared kernel with all other VMs describes a mechanism that could sound plausible for vm components. Given vm components, Its own guest OS and virtual NICs matches the tested behavior — Shared kernel with all other VMs applies a different mechanism.",
-            "whatItDoes": "Shared kernel with all other VMs describes a mechanism that could sound plausible for vm components.",
-            "whyWrongHere": "Given vm components, Its own guest OS and virtual NICs matches the tested behavior — Shared kernel with all other VMs applies a different mechanism.",
-            "misconceptionTested": "Applying \"Shared kernel with all other VMs\" without matching vm components"
+            "explanation": "Shared kernel describes containers — each VM has its own kernel (guest OS).",
+            "misconceptionTested": "VMs share kernel",
+            "whatItDoes": "Shared kernel with all other VMs points to a related idea, but not the specific behavior or value required for vm components.",
+            "whyWrongHere": "For \"vm components\", Its own guest OS and virtual NICs satisfies what this question tests — Shared kernel with all other VMs does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "No network interface describes a mechanism that could sound plausible for vm components. Given vm components, Its own guest OS and virtual NICs matches the tested behavior — No network interface applies a different mechanism.",
-            "whatItDoes": "No network interface describes a mechanism that could sound plausible for vm components.",
-            "whyWrongHere": "Given vm components, Its own guest OS and virtual NICs matches the tested behavior — No network interface applies a different mechanism.",
-            "misconceptionTested": "Applying \"No network interface\" without matching vm components"
+            "explanation": "VMs always have at least one vNIC for network connectivity.",
+            "misconceptionTested": "VM has no network interface",
+            "whatItDoes": "No network interface points to a related idea, but not the specific behavior or value required for vm components.",
+            "whyWrongHere": "For \"vm components\", Its own guest OS and virtual NICs satisfies what this question tests — No network interface does not."
           }
         ],
-        "examTip": "On the exam: Virtualization eliminates physical networks — VMs/containers still need virtual and physical switching/routing underneath"
+        "examTip": "Type 1 hypervisor (ESXi) vs Type 2 (Workstation) — both host VMs with guest OS + vNIC."
       }
     },
     {
@@ -310,18 +310,18 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "False — VLAN = L2 broadcast domain; VRF = L3 routing table isolation."
+          "explanation": "False — VRF isolates routing tables (Layer 3); VLAN isolates broadcast domains (Layer 2)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "This statement is True, but the tested fact is: False — VLAN = L2 broadcast domain; VRF = L3 routing table isolation.",
+            "explanation": "True is wrong — VRF and VLAN solve different layers of isolation.",
+            "misconceptionTested": "VRF and VLAN same isolation type",
             "whatItDoes": "True states the opposite of the tested fact about vrf vs vlan.",
-            "whyWrongHere": "Given vrf vs vlan, False matches the tested behavior — True applies a different mechanism.",
-            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
+            "whyWrongHere": "For \"vrf vs vlan\", False satisfies what this question tests — True does not."
           }
         ],
-        "examTip": "On the exam: Equating VRF with VLAN — VRF isolates L3 routing; VLAN isolates L2 broadcast domains"
+        "examTip": "VLAN = L2 broadcast domain | VRF = L3 routing instance — complementary, not interchangeable."
       }
     },
     {
@@ -344,32 +344,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Docker packages apps into containers sharing the host kernel."
+          "explanation": "Docker is the leading platform for container packaging and deployment."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Type 1 hypervisors describes a mechanism that could sound plausible for Docker packages apps into containers sharing the host kernel. Given Docker packages apps into containers sharing the host kernel, Container packaging and deployment matches the tested behavior — Type 1 hypervisors applies a different mechanism.",
-            "whatItDoes": "Type 1 hypervisors describes a mechanism that could sound plausible for Docker packages apps into containers sharing the host kernel.",
-            "whyWrongHere": "Given Docker packages apps into containers sharing the host kernel, Container packaging and deployment matches the tested behavior — Type 1 hypervisors applies a different mechanism.",
-            "misconceptionTested": "Applying \"Type 1 hypervisors\" without matching docker"
+            "explanation": "Type 1 hypervisors (ESXi, Hyper-V) run VMs — Docker runs containers.",
+            "misconceptionTested": "Docker is a Type 1 hypervisor",
+            "whatItDoes": "Type 1 hypervisors points to a related idea, but not the specific behavior or value required for Docker packages apps into containers sharing the host kernel.",
+            "whyWrongHere": "For \"Docker packages apps into containers sharing the host kernel\", Container packaging and deployment satisfies what this question tests — Type 1 hypervisors does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "WPA3 describes a mechanism that could sound plausible for Docker packages apps into containers sharing the host kernel. Given Docker packages apps into containers sharing the host kernel, Container packaging and deployment matches the tested behavior — WPA3 applies a different mechanism.",
-            "whatItDoes": "WPA3 describes a mechanism that could sound plausible for Docker packages apps into containers sharing the host kernel.",
-            "whyWrongHere": "Given Docker packages apps into containers sharing the host kernel, Container packaging and deployment matches the tested behavior — WPA3 applies a different mechanism.",
-            "misconceptionTested": "Applying \"WPA3\" without matching docker"
+            "explanation": "WPA3 is wireless security — Docker is container orchestration.",
+            "misconceptionTested": "Docker related to WPA3",
+            "whatItDoes": "WPA3 points to a related idea, but not the specific behavior or value required for Docker packages apps into containers sharing the host kernel.",
+            "whyWrongHere": "For \"Docker packages apps into containers sharing the host kernel\", Container packaging and deployment satisfies what this question tests — WPA3 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Spanning Tree is the wrong device role here. STP prevents Layer 2 loops — it does not provide inter-VLAN routing, MAC learning rules, or replace trunk configuration.",
-            "whatItDoes": "Spanning Tree describes a mechanism that could sound plausible for Docker packages apps into containers sharing the host kernel.",
-            "whyWrongHere": "Given Docker packages apps into containers sharing the host kernel, Container packaging and deployment matches the tested behavior — Spanning Tree applies a different mechanism.",
-            "misconceptionTested": "Choosing STP when the question asks for forwarding, routing, or VLAN data plane behavior"
+            "explanation": "Spanning Tree prevents L2 loops — Docker is application containerization.",
+            "misconceptionTested": "Docker related to STP",
+            "whatItDoes": "Spanning Tree points to a related idea, but not the specific behavior or value required for Docker packages apps into containers sharing the host kernel.",
+            "whyWrongHere": "For \"Docker packages apps into containers sharing the host kernel\", Container packaging and deployment satisfies what this question tests — Spanning Tree does not."
           }
         ],
-        "examTip": "On the exam: Saying containers include a full guest OS — Containers share the host kernel — only apps/libs are packaged"
+        "examTip": "Docker/Kubernetes = containers | VMware/Hyper-V = VMs — different virtualization models."
       }
     }
   ]

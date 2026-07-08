@@ -26,32 +26,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Cloud-based management moves the management plane (dashboard, configuration database, analytics) to a vendor-hosted cloud service reached over the internet, versus a locally hosted controller or per-device CLI/SNMP management on-prem."
+          "explanation": "Cloud-managed gear phones home to a vendor-hosted dashboard over the internet — config and telemetry centralize off-box."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "On-premises devices cannot be managed remotely at all describes a mechanism that could sound plausible for cloud vs local management. Given cloud vs local management, Cloud-managed devices send configuration and telemetry to a vendor-hosted dashboard accessed over the internet, instead of a locally hosted controller matches the tested behavior — On-premises devices cannot be managed remotely at all applies a different mechanism.",
-            "whatItDoes": "On-premises devices cannot be managed remotely at all describes a mechanism that could sound plausible for cloud vs local management.",
-            "whyWrongHere": "Given cloud vs local management, Cloud-managed devices send configuration and telemetry to a vendor-hosted dashboard accessed over the internet, instead of a locally hosted controller matches the tested behavior — On-premises devices cannot be managed remotely at all applies a different mechanism.",
-            "misconceptionTested": "Applying \"On-premises devices cannot be manage\" without matching cloud vs local management"
+            "explanation": "On-prem devices can be managed remotely via SNMP/SSH — the difference is where the controller lives.",
+            "misconceptionTested": "On-prem as no remote management",
+            "whatItDoes": "On-premises devices cannot be managed remotely at all points to a related idea, but not the specific behavior or value required for cloud vs local management.",
+            "whyWrongHere": "For \"cloud vs local management\", Cloud-managed devices send configuration and telemetry to a vendor-hosted dashboard accessed over the internet, instead of a locally hosted controller satisfies what this question tests — On-premises devices cannot be managed remotely at all does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Cloud-managed networks do not support VLANs describes a mechanism that could sound plausible for cloud vs local management. Given cloud vs local management, Cloud-managed devices send configuration and telemetry to a vendor-hosted dashboard accessed over the internet, instead of a locally hosted controller matches the tested behavior — Cloud-managed networks do not support VLANs applies a different mechanism.",
-            "whatItDoes": "Cloud-managed networks do not support VLANs describes a mechanism that could sound plausible for cloud vs local management.",
-            "whyWrongHere": "Given cloud vs local management, Cloud-managed devices send configuration and telemetry to a vendor-hosted dashboard accessed over the internet, instead of a locally hosted controller matches the tested behavior — Cloud-managed networks do not support VLANs applies a different mechanism.",
-            "misconceptionTested": "Applying \"Cloud-managed networks do not suppor\" without matching cloud vs local management"
+            "explanation": "Cloud platforms support VLANs — architecture differs in controller placement, not L2 features.",
+            "misconceptionTested": "Cloud-managed without VLANs",
+            "whatItDoes": "Cloud-managed networks do not support VLANs points to a related idea, but not the specific behavior or value required for cloud vs local management.",
+            "whyWrongHere": "For \"cloud vs local management\", Cloud-managed devices send configuration and telemetry to a vendor-hosted dashboard accessed over the internet, instead of a locally hosted controller satisfies what this question tests — Cloud-managed networks do not support VLANs does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "On-premises networks cannot use SNMP describes a mechanism that could sound plausible for cloud vs local management. Given cloud vs local management, Cloud-managed devices send configuration and telemetry to a vendor-hosted dashboard accessed over the internet, instead of a locally hosted controller matches the tested behavior — On-premises networks cannot use SNMP applies a different mechanism.",
-            "whatItDoes": "On-premises networks cannot use SNMP describes a mechanism that could sound plausible for cloud vs local management.",
-            "whyWrongHere": "Given cloud vs local management, Cloud-managed devices send configuration and telemetry to a vendor-hosted dashboard accessed over the internet, instead of a locally hosted controller matches the tested behavior — On-premises networks cannot use SNMP applies a different mechanism.",
-            "misconceptionTested": "Applying \"On-premises networks cannot use SNMP\" without matching cloud vs local management"
+            "explanation": "On-prem networks commonly use SNMP — cloud adds a hosted orchestration layer.",
+            "misconceptionTested": "On-prem cannot use SNMP",
+            "whatItDoes": "On-premises networks cannot use SNMP points to a related idea, but not the specific behavior or value required for cloud vs local management.",
+            "whyWrongHere": "For \"cloud vs local management\", Cloud-managed devices send configuration and telemetry to a vendor-hosted dashboard accessed over the internet, instead of a locally hosted controller satisfies what this question tests — On-premises networks cannot use SNMP does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "Cloud-managed = devices → vendor cloud dashboard; on-prem = local NMS/controller."
       }
     },
     {
@@ -82,22 +82,22 @@
             "choiceIndex": 0,
             "explanation": "Console at each of 50 branches does not scale — cloud dashboard provides centralized monitor/configure without traveling to every site.",
             "misconceptionTested": "Choosing per-site console for multi-branch management",
-            "whatItDoes": "Local CLI management via console cable at each site describes a mechanism that could sound plausible for cloud management use case.",
-            "whyWrongHere": "Given cloud management use case, A cloud-based management platform (e.g., Meraki dashboard) matches the tested behavior — Local CLI management via console cable at each site applies a different mechanism."
+            "whatItDoes": "Local CLI management via console cable at each site points to a related idea, but not the specific behavior or value required for cloud management use case.",
+            "whyWrongHere": "For \"cloud management use case\", A cloud-based management platform (e.g., Meraki dashboard) satisfies what this question tests — Local CLI management via console cable at each site does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "SNMPv1 polling is read-heavy and lacks unified push config — cloud platforms provide dashboard config plus monitoring across all branches.",
             "misconceptionTested": "Expecting SNMPv1 alone to replace cloud dashboard",
-            "whatItDoes": "SNMPv1 polling from a central NMS describes a mechanism that could sound plausible for cloud management use case.",
-            "whyWrongHere": "Given cloud management use case, A cloud-based management platform (e.g., Meraki dashboard) matches the tested behavior — SNMPv1 polling from a central NMS applies a different mechanism."
+            "whatItDoes": "SNMPv1 polling from a central NMS points to a related idea, but not the specific behavior or value required for cloud management use case.",
+            "whyWrongHere": "For \"cloud management use case\", A cloud-based management platform (e.g., Meraki dashboard) satisfies what this question tests — SNMPv1 polling from a central NMS does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Telnet to each device is insecure and unscalable — cloud management avoids per-site VPN and manual CLI on 50 branches.",
             "misconceptionTested": "Using Telnet per device for 50-site management",
-            "whatItDoes": "Telnet to each device's management IP describes a mechanism that could sound plausible for cloud management use case.",
-            "whyWrongHere": "Given cloud management use case, A cloud-based management platform (e.g., Meraki dashboard) matches the tested behavior — Telnet to each device's management IP applies a different mechanism."
+            "whatItDoes": "Telnet to each device's management IP uses cleartext Telnet for remote device management.",
+            "whyWrongHere": "Device management (cloud management use case): A cloud-based management platform (e.g., Meraki dashboard) protects credentials in transit — Telnet to each device's management IP uses cleartext remote access."
           }
         ],
         "examTip": "Fleet-wide template push → cloud controller (DNA Center class)."
@@ -132,22 +132,22 @@
             "choiceIndex": 0,
             "explanation": "Clients typically stay connected — local forwarding continues; only cloud management/control is interrupted.",
             "misconceptionTested": "Assuming total wireless outage when cloud link drops",
-            "whatItDoes": "All wireless clients are immediately disconnected describes a mechanism that could sound plausible for cloud management data vs control plane.",
-            "whyWrongHere": "Given cloud management data vs control plane, The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the tested behavior — All wireless clients are immediately disconnected applies a different mechanism."
+            "whatItDoes": "All wireless clients are immediately disconnected points to a related idea, but not the specific behavior or value required for cloud management data vs control plane.",
+            "whyWrongHere": "For \"cloud management data vs control plane\", The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored satisfies what this question tests — All wireless clients are immediately disconnected does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "APs do not factory-reset on WAN loss — they run last-known config and resume cloud sync when connectivity returns.",
             "misconceptionTested": "Expecting automatic factory reset on management outage",
-            "whatItDoes": "The APs factory-reset themselves automatically describes a mechanism that could sound plausible for cloud management data vs control plane.",
-            "whyWrongHere": "Given cloud management data vs control plane, The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the tested behavior — The APs factory-reset themselves automatically applies a different mechanism."
+            "whatItDoes": "The APs factory-reset themselves automatically points to a related idea, but not the specific behavior or value required for cloud management data vs control plane.",
+            "whyWrongHere": "For \"cloud management data vs control plane\", The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored satisfies what this question tests — The APs factory-reset themselves automatically does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Wired switch forwarding is independent — the scenario describes cloud AP management loss, not wired data-plane failure.",
             "misconceptionTested": "Extending AP management outage to wired switching",
-            "whatItDoes": "Wired switches in the same branch also stop forwarding traffic describes a mechanism that could sound plausible for cloud management data vs control plane.",
-            "whyWrongHere": "Given cloud management data vs control plane, The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the tested behavior — Wired switches in the same branch also stop forwarding traffic applies a different mechanism."
+            "whatItDoes": "Wired switches in the same branch also stop forwarding traffic points to a related idea, but not the specific behavior or value required for cloud management data vs control plane.",
+            "whyWrongHere": "For \"cloud management data vs control plane\", The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored satisfies what this question tests — Wired switches in the same branch also stop forwarding traffic does not."
           }
         ],
         "examTip": "Cloud WAN down → local forwarding continues; management/analytics pause."
@@ -174,32 +174,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "A hallmark benefit of cloud management is zero-touch provisioning: a device shipped to a remote site can connect to the internet, phone home to the cloud controller, and automatically receive its configuration — no on-site CLI work needed."
+          "explanation": "Zero-touch provisioning (ZTP) lets new devices auto-pull config from the cloud on first boot — no console visit required."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Lower latency for all management operations regardless of internet connectivity describes a mechanism that could sound plausible for zero-touch provisioning. Given zero-touch provisioning, Zero-touch provisioning — new devices can be shipped to a site and automatically pull their configuration from the cloud on first boot matches the tested behavior — Lower latency for all management operations regardless of internet connectivity applies a different mechanism.",
-            "whatItDoes": "Lower latency for all management operations regardless of internet connectivity describes a mechanism that could sound plausible for zero-touch provisioning.",
-            "whyWrongHere": "Given zero-touch provisioning, Zero-touch provisioning — new devices can be shipped to a site and automatically pull their configuration from the cloud on first boot matches the tested behavior — Lower latency for all management operations regardless of internet connectivity applies a different mechanism.",
-            "misconceptionTested": "Applying \"Lower latency for all management ope\" without matching zero-touch provisioning"
+            "explanation": "Cloud management depends on internet reachability — it does not guarantee lower latency than local CLI.",
+            "misconceptionTested": "Cloud as always lower latency",
+            "whatItDoes": "Lower latency for all management operations regardless of internet connectivity points to a related idea, but not the specific behavior or value required for zero-touch provisioning.",
+            "whyWrongHere": "For \"zero-touch provisioning\", Zero-touch provisioning — new devices can be shipped to a site and automatically pull their configuration from the cloud on first boot satisfies what this question tests — Lower latency for all management operations regardless of internet connectivity does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "No internet connection is ever required describes a mechanism that could sound plausible for zero-touch provisioning. Given zero-touch provisioning, Zero-touch provisioning — new devices can be shipped to a site and automatically pull their configuration from the cloud on first boot matches the tested behavior — No internet connection is ever required applies a different mechanism.",
-            "whatItDoes": "No internet connection is ever required describes a mechanism that could sound plausible for zero-touch provisioning.",
-            "whyWrongHere": "Given zero-touch provisioning, Zero-touch provisioning — new devices can be shipped to a site and automatically pull their configuration from the cloud on first boot matches the tested behavior — No internet connection is ever required applies a different mechanism.",
-            "misconceptionTested": "Applying \"No internet connection is ever requi\" without matching zero-touch provisioning"
+            "explanation": "Cloud management requires internet for dashboard control — not zero connectivity.",
+            "misconceptionTested": "Cloud with no internet ever",
+            "whatItDoes": "No internet connection is ever required points to a related idea, but not the specific behavior or value required for zero-touch provisioning.",
+            "whyWrongHere": "For \"zero-touch provisioning\", Zero-touch provisioning — new devices can be shipped to a site and automatically pull their configuration from the cloud on first boot satisfies what this question tests — No internet connection is ever required does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Configuration changes never require any internet access describes a mechanism that could sound plausible for zero-touch provisioning. Given zero-touch provisioning, Zero-touch provisioning — new devices can be shipped to a site and automatically pull their configuration from the cloud on first boot matches the tested behavior — Configuration changes never require any internet access applies a different mechanism.",
-            "whatItDoes": "Configuration changes never require any internet access describes a mechanism that could sound plausible for zero-touch provisioning.",
-            "whyWrongHere": "Given zero-touch provisioning, Zero-touch provisioning — new devices can be shipped to a site and automatically pull their configuration from the cloud on first boot matches the tested behavior — Configuration changes never require any internet access applies a different mechanism.",
-            "misconceptionTested": "Applying \"Configuration changes never require \" without matching zero-touch provisioning"
+            "explanation": "Pushing policy from the cloud needs connectivity — ZTP is the benefit, not offline-only operation.",
+            "misconceptionTested": "Cloud config without internet",
+            "whatItDoes": "Configuration changes never require any internet access points to a related idea, but not the specific behavior or value required for zero-touch provisioning.",
+            "whyWrongHere": "For \"zero-touch provisioning\", Zero-touch provisioning — new devices can be shipped to a site and automatically pull their configuration from the cloud on first boot satisfies what this question tests — Configuration changes never require any internet access does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "Meraki/cloud win: ZTP, centralized monitoring, fleet firmware — trade-off = cloud dependency."
       }
     },
     {
@@ -223,32 +223,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Cisco DNA Center is an on-premises (or private cloud) network controller/management platform, while Meraki's dashboard is hosted entirely in Cisco's cloud — illustrating the local-controller vs. cloud-managed distinction."
+          "explanation": "DNA Center is typically on-premises/private cloud; Meraki is a vendor-hosted cloud dashboard."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "DNA Center is cloud-only; Meraki is on-premises-only describes a mechanism that could sound plausible for DNA Center vs Meraki. Given DNA Center vs Meraki, DNA Center is typically deployed on-premises (or as a private cloud) as a local controller, while Meraki is a vendor-hosted cloud dashboard matches the tested behavior — DNA Center is cloud-only; Meraki is on-premises-only applies a different mechanism.",
-            "whatItDoes": "DNA Center is cloud-only; Meraki is on-premises-only describes a mechanism that could sound plausible for DNA Center vs Meraki.",
-            "whyWrongHere": "Given DNA Center vs Meraki, DNA Center is typically deployed on-premises (or as a private cloud) as a local controller, while Meraki is a vendor-hosted cloud dashboard matches the tested behavior — DNA Center is cloud-only; Meraki is on-premises-only applies a different mechanism.",
-            "misconceptionTested": "Applying \"DNA Center is cloud-only; Meraki is \" without matching DNA Center vs Meraki"
+            "explanation": "The roles are reversed — DNA Center is on-prem; Meraki is cloud-hosted.",
+            "misconceptionTested": "DNA cloud-only and Meraki on-prem",
+            "whatItDoes": "DNA Center is cloud-only; Meraki is on-premises-only points to a related idea, but not the specific behavior or value required for DNA Center vs Meraki.",
+            "whyWrongHere": "For \"DNA Center vs Meraki\", DNA Center is typically deployed on-premises (or as a private cloud) as a local controller, while Meraki is a vendor-hosted cloud dashboard satisfies what this question tests — DNA Center is cloud-only; Meraki is on-premises-only does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Both are exclusively command-line tools with no GUI describes a mechanism that could sound plausible for DNA Center vs Meraki. CAM learning stores one mapping per arrival (DNA Center vs Meraki): DNA Center is typically deployed on-premises (or as a private cloud) as a local controller, while Meraki is a vendor-hosted cloud dashboard — not both addresses as table entries.",
-            "whatItDoes": "Both are exclusively command-line tools with no GUI describes a mechanism that could sound plausible for DNA Center vs Meraki.",
-            "whyWrongHere": "CAM learning stores one mapping per arrival (DNA Center vs Meraki): DNA Center is typically deployed on-premises (or as a private cloud) as a local controller, while Meraki is a vendor-hosted cloud dashboard — not both addresses as table entries.",
-            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
+            "explanation": "Both offer GUI dashboards — they differ in deployment model, not CLI-only.",
+            "misconceptionTested": "Both as CLI-only tools",
+            "whatItDoes": "Both are exclusively command-line tools with no GUI points to a related idea, but not the specific behavior or value required for DNA Center vs Meraki.",
+            "whyWrongHere": "CAM learning stores one mapping per arrival (DNA Center vs Meraki): DNA Center is typically deployed on-premises (or as a private cloud) as a local controller, while Meraki is a vendor-hosted cloud dashboard — not both addresses as table entries."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Both require the same physical hardware appliance describes a mechanism that could sound plausible for DNA Center vs Meraki. CAM learning stores one mapping per arrival (DNA Center vs Meraki): DNA Center is typically deployed on-premises (or as a private cloud) as a local controller, while Meraki is a vendor-hosted cloud dashboard — not both addresses as table entries.",
-            "whatItDoes": "Both require the same physical hardware appliance describes a mechanism that could sound plausible for DNA Center vs Meraki.",
-            "whyWrongHere": "CAM learning stores one mapping per arrival (DNA Center vs Meraki): DNA Center is typically deployed on-premises (or as a private cloud) as a local controller, while Meraki is a vendor-hosted cloud dashboard — not both addresses as table entries. Picking Both require the same physical hardware appliance misses the exact behavior this stem tests.",
-            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
+            "explanation": "DNA Center uses a dedicated appliance/cluster; Meraki is cloud SaaS — not identical hardware.",
+            "misconceptionTested": "Same hardware for DNA and Meraki",
+            "whatItDoes": "Both require the same physical hardware appliance points to a related idea, but not the specific behavior or value required for DNA Center vs Meraki.",
+            "whyWrongHere": "CAM learning stores one mapping per arrival (DNA Center vs Meraki): DNA Center is typically deployed on-premises (or as a private cloud) as a local controller, while Meraki is a vendor-hosted cloud dashboard — not both addresses as table entries. Picking Both require the same physical hardware appliance misses the exact behavior this stem tests."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "Cisco mgmt map: DNA Center = campus on-prem | Meraki = cloud SaaS | vManage = SD-WAN."
       }
     },
     {
@@ -272,32 +272,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Some organizations (e.g., due to regulatory or data-sovereignty requirements) prefer on-premises management because configuration and telemetry data never leaves their own infrastructure or transits a third-party cloud."
+          "explanation": "Local management keeps config and management traffic inside the org network — no third-party cloud transit."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Local management is always faster to configure describes a mechanism that could sound plausible for on-prem management security rationale. Given on-prem management security rationale, Management traffic and configuration data stay entirely within the organization's own network rather than transiting a third-party cloud provider matches the tested behavior — Local management is always faster to configure applies a different mechanism.",
-            "whatItDoes": "Local management is always faster to configure describes a mechanism that could sound plausible for on-prem management security rationale.",
-            "whyWrongHere": "Given on-prem management security rationale, Management traffic and configuration data stay entirely within the organization's own network rather than transiting a third-party cloud provider matches the tested behavior — Local management is always faster to configure applies a different mechanism.",
-            "misconceptionTested": "Applying \"Local management is always faster to\" without matching on-prem management security rationale"
+            "explanation": "Local isn't always faster — the driver is data sovereignty and compliance, not speed.",
+            "misconceptionTested": "Local always faster",
+            "whatItDoes": "Local management is always faster to configure points to a related idea, but not the specific behavior or value required for on-prem management security rationale.",
+            "whyWrongHere": "For \"on-prem management security rationale\", Management traffic and configuration data stay entirely within the organization's own network rather than transiting a third-party cloud provider satisfies what this question tests — Local management is always faster to configure does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Local management doesn't require any administrator training describes a mechanism that could sound plausible for on-prem management security rationale. Given on-prem management security rationale, Management traffic and configuration data stay entirely within the organization's own network rather than transiting a third-party cloud provider matches the tested behavior — Local management doesn't require any administrator training applies a different mechanism.",
-            "whatItDoes": "Local management doesn't require any administrator training describes a mechanism that could sound plausible for on-prem management security rationale.",
-            "whyWrongHere": "Given on-prem management security rationale, Management traffic and configuration data stay entirely within the organization's own network rather than transiting a third-party cloud provider matches the tested behavior — Local management doesn't require any administrator training applies a different mechanism.",
-            "misconceptionTested": "Applying \"Local management doesn't require any\" without matching on-prem management security rationale"
+            "explanation": "Both models require trained administrators — local doesn't eliminate training.",
+            "misconceptionTested": "Local needs no training",
+            "whatItDoes": "Local management doesn't require any administrator training points to a related idea, but not the specific behavior or value required for on-prem management security rationale.",
+            "whyWrongHere": "For \"on-prem management security rationale\", Management traffic and configuration data stay entirely within the organization's own network rather than transiting a third-party cloud provider satisfies what this question tests — Local management doesn't require any administrator training does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Local management automatically encrypts all user data describes a mechanism that could sound plausible for on-prem management security rationale. Given on-prem management security rationale, Management traffic and configuration data stay entirely within the organization's own network rather than transiting a third-party cloud provider matches the tested behavior — Local management automatically encrypts all user data applies a different mechanism.",
-            "whatItDoes": "Local management automatically encrypts all user data describes a mechanism that could sound plausible for on-prem management security rationale.",
-            "whyWrongHere": "Given on-prem management security rationale, Management traffic and configuration data stay entirely within the organization's own network rather than transiting a third-party cloud provider matches the tested behavior — Local management automatically encrypts all user data applies a different mechanism.",
-            "misconceptionTested": "Applying \"Local management automatically encry\" without matching on-prem management security rationale"
+            "explanation": "Local management doesn't automatically encrypt user data — that's a separate security control.",
+            "misconceptionTested": "Local auto-encrypts user data",
+            "whatItDoes": "Local management automatically encrypts all user data points to a related idea, but not the specific behavior or value required for on-prem management security rationale.",
+            "whyWrongHere": "For \"on-prem management security rationale\", Management traffic and configuration data stay entirely within the organization's own network rather than transiting a third-party cloud provider satisfies what this question tests — Local management automatically encrypts all user data does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "Local vs cloud: compliance/sovereignty favors on-prem | scale/automation favors cloud."
       }
     },
     {
@@ -320,32 +320,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "Traditional on-premises management typically means administrators connect to each device (or a locally hosted controller) individually via CLI, SNMP, or a local management application — less centralized than cloud dashboards."
+          "explanation": "Traditional local management uses per-device CLI, SNMP, or on-site controllers — often site-by-site access."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "All configuration is pushed automatically from a vendor's global cloud describes a mechanism that could sound plausible for local management characteristics. Given local management characteristics, Devices are managed individually via CLI, SNMP, or a locally-hosted controller, often requiring per-site or per-device access matches the tested behavior — All configuration is pushed automatically from a vendor's global cloud applies a different mechanism.",
-            "whatItDoes": "All configuration is pushed automatically from a vendor's global cloud describes a mechanism that could sound plausible for local management characteristics.",
-            "whyWrongHere": "Given local management characteristics, Devices are managed individually via CLI, SNMP, or a locally-hosted controller, often requiring per-site or per-device access matches the tested behavior — All configuration is pushed automatically from a vendor's global cloud applies a different mechanism.",
-            "misconceptionTested": "Applying \"All configuration is pushed automati\" without matching local management characteristics"
+            "explanation": "Vendor global cloud push describes cloud-managed — not traditional local.",
+            "misconceptionTested": "Cloud push as local management",
+            "whatItDoes": "All configuration is pushed automatically from a vendor's global cloud points to a related idea, but not the specific behavior or value required for local management characteristics.",
+            "whyWrongHere": "For \"local management characteristics\", Devices are managed individually via CLI, SNMP, or a locally-hosted controller, often requiring per-site or per-device access satisfies what this question tests — All configuration is pushed automatically from a vendor's global cloud does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Firmware updates are applied automatically across all sites with no administrator involvement describes a mechanism that could sound plausible for local management characteristics. Given local management characteristics, Devices are managed individually via CLI, SNMP, or a locally-hosted controller, often requiring per-site or per-device access matches the tested behavior — Firmware updates are applied automatically across all sites with no administrator involvement applies a different mechanism.",
-            "whatItDoes": "Firmware updates are applied automatically across all sites with no administrator involvement describes a mechanism that could sound plausible for local management characteristics.",
-            "whyWrongHere": "Given local management characteristics, Devices are managed individually via CLI, SNMP, or a locally-hosted controller, often requiring per-site or per-device access matches the tested behavior — Firmware updates are applied automatically across all sites with no administrator involvement applies a different mechanism.",
-            "misconceptionTested": "Applying \"Firmware updates are applied automat\" without matching local management characteristics"
+            "explanation": "Automatic fleet firmware from vendor cloud is cloud-managed lifecycle.",
+            "misconceptionTested": "Auto firmware as local management",
+            "whatItDoes": "Firmware updates are applied automatically across all sites with no administrator involvement points to a related idea, but not the specific behavior or value required for local management characteristics.",
+            "whyWrongHere": "For \"local management characteristics\", Devices are managed individually via CLI, SNMP, or a locally-hosted controller, often requiring per-site or per-device access satisfies what this question tests — Firmware updates are applied automatically across all sites with no administrator involvement does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Management is impossible without a dedicated WAN link to each branch describes a mechanism that could sound plausible for local management characteristics. Given local management characteristics, Devices are managed individually via CLI, SNMP, or a locally-hosted controller, often requiring per-site or per-device access matches the tested behavior — Management is impossible without a dedicated WAN link to each branch applies a different mechanism.",
-            "whatItDoes": "Management is impossible without a dedicated WAN link to each branch describes a mechanism that could sound plausible for local management characteristics.",
-            "whyWrongHere": "Given local management characteristics, Devices are managed individually via CLI, SNMP, or a locally-hosted controller, often requiring per-site or per-device access matches the tested behavior — Management is impossible without a dedicated WAN link to each branch applies a different mechanism.",
-            "misconceptionTested": "Applying \"Management is impossible without a d\" without matching local management characteristics"
+            "explanation": "Local management doesn't require WAN to every branch — on-site access works.",
+            "misconceptionTested": "WAN required for local management",
+            "whatItDoes": "Management is impossible without a dedicated WAN link to each branch points to a related idea, but not the specific behavior or value required for local management characteristics.",
+            "whyWrongHere": "For \"local management characteristics\", Devices are managed individually via CLI, SNMP, or a locally-hosted controller, often requiring per-site or per-device access satisfies what this question tests — Management is impossible without a dedicated WAN link to each branch does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "Local = CLI per box or on-prem NMS | Cloud = Meraki/DNA Center SaaS dashboard."
       }
     },
     {
@@ -369,32 +369,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Centralized firmware/lifecycle management — pushing updates to many devices across many sites from one cloud console — is a defining capability of cloud-managed architectures, reducing manual per-device maintenance."
+          "explanation": "Scheduled cloud-pushed firmware across the fleet = centralized automated lifecycle management."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Local CLI scripting describes a mechanism that could sound plausible for centralized lifecycle management. Given centralized lifecycle management, Centralized, automated lifecycle management across the fleet from a single cloud platform matches the tested behavior — Local CLI scripting applies a different mechanism.",
-            "whatItDoes": "Local CLI scripting describes a mechanism that could sound plausible for centralized lifecycle management.",
-            "whyWrongHere": "Given centralized lifecycle management, Centralized, automated lifecycle management across the fleet from a single cloud platform matches the tested behavior — Local CLI scripting applies a different mechanism.",
-            "misconceptionTested": "Applying \"Local CLI scripting\" without matching centralized lifecycle management"
+            "explanation": "CLI scripting is manual/local — not automated cloud fleet updates.",
+            "misconceptionTested": "CLI scripting as cloud lifecycle",
+            "whatItDoes": "Local CLI scripting applies another routing protocol's behavior instead of OSPF-specific rules.",
+            "whyWrongHere": "For \"centralized lifecycle management\", Centralized, automated lifecycle management across the fleet from a single cloud platform satisfies what this question tests — Local CLI scripting does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Manual per-device firmware upload via TFTP describes a mechanism that could sound plausible for centralized lifecycle management. Given centralized lifecycle management, Centralized, automated lifecycle management across the fleet from a single cloud platform matches the tested behavior — Manual per-device firmware upload via TFTP applies a different mechanism.",
-            "whatItDoes": "Manual per-device firmware upload via TFTP describes a mechanism that could sound plausible for centralized lifecycle management.",
-            "whyWrongHere": "Given centralized lifecycle management, Centralized, automated lifecycle management across the fleet from a single cloud platform matches the tested behavior — Manual per-device firmware upload via TFTP applies a different mechanism.",
-            "misconceptionTested": "Applying \"Manual per-device firmware upload vi\" without matching centralized lifecycle management"
+            "explanation": "Per-device TFTP is manual — cloud platforms push centrally scheduled updates.",
+            "misconceptionTested": "Manual TFTP as cloud lifecycle",
+            "whatItDoes": "Manual per-device firmware upload via TFTP points to a related idea, but not the specific behavior or value required for centralized lifecycle management.",
+            "whyWrongHere": "For \"centralized lifecycle management\", Centralized, automated lifecycle management across the fleet from a single cloud platform satisfies what this question tests — Manual per-device firmware upload via TFTP does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "VLAN trunking configuration describes a mechanism that could sound plausible for centralized lifecycle management. Given centralized lifecycle management, Centralized, automated lifecycle management across the fleet from a single cloud platform matches the tested behavior — VLAN trunking configuration applies a different mechanism.",
-            "whatItDoes": "VLAN trunking configuration describes a mechanism that could sound plausible for centralized lifecycle management.",
-            "whyWrongHere": "Given centralized lifecycle management, Centralized, automated lifecycle management across the fleet from a single cloud platform matches the tested behavior — VLAN trunking configuration applies a different mechanism.",
-            "misconceptionTested": "Applying \"VLAN trunking configuration\" without matching centralized lifecycle management"
+            "explanation": "VLAN trunking is Layer 2 config — not firmware lifecycle management.",
+            "misconceptionTested": "VLAN trunking as lifecycle",
+            "whatItDoes": "VLAN trunking configuration expects VLAN tags on a link that should behave as access-only in this stem.",
+            "whyWrongHere": "For \"centralized lifecycle management\", Centralized, automated lifecycle management across the fleet from a single cloud platform satisfies what this question tests — VLAN trunking configuration does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "Cloud management wins: firmware orchestration, template config, multi-site visibility."
       }
     },
     {
@@ -418,32 +418,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "\"Single pane of glass\" describes a unified management interface — typically a cloud dashboard or controller — that gives administrators visibility and control over devices across the whole organization from one place."
+          "explanation": "Single pane of glass = one dashboard/UI for visibility and control across all devices and sites."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "All devices share one physical management cable describes a mechanism that could sound plausible for single pane of glass. Given single pane of glass, A single user interface or dashboard provides visibility and control over the entire network's devices and sites matches the tested behavior — All devices share one physical management cable applies a different mechanism.",
-            "whatItDoes": "All devices share one physical management cable describes a mechanism that could sound plausible for single pane of glass.",
-            "whyWrongHere": "Given single pane of glass, A single user interface or dashboard provides visibility and control over the entire network's devices and sites matches the tested behavior — All devices share one physical management cable applies a different mechanism.",
-            "misconceptionTested": "Applying \"All devices share one physical manag\" without matching single pane of glass"
+            "explanation": "It's a software concept — not a physical shared management cable.",
+            "misconceptionTested": "Physical cable single pane",
+            "whatItDoes": "All devices share one physical management cable points to a related idea, but not the specific behavior or value required for single pane of glass.",
+            "whyWrongHere": "For \"single pane of glass\", A single user interface or dashboard provides visibility and control over the entire network's devices and sites satisfies what this question tests — All devices share one physical management cable does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Only one administrator account exists for the whole network describes a mechanism that could sound plausible for single pane of glass. Given single pane of glass, A single user interface or dashboard provides visibility and control over the entire network's devices and sites matches the tested behavior — Only one administrator account exists for the whole network applies a different mechanism.",
-            "whatItDoes": "Only one administrator account exists for the whole network describes a mechanism that could sound plausible for single pane of glass.",
-            "whyWrongHere": "Given single pane of glass, A single user interface or dashboard provides visibility and control over the entire network's devices and sites matches the tested behavior — Only one administrator account exists for the whole network applies a different mechanism.",
-            "misconceptionTested": "Applying \"Only one administrator account exist\" without matching single pane of glass"
+            "explanation": "Multiple admin accounts can exist — single pane refers to the unified UI, not user count.",
+            "misconceptionTested": "Single admin account",
+            "whatItDoes": "Only one administrator account exists for the whole network points to a related idea, but not the specific behavior or value required for single pane of glass.",
+            "whyWrongHere": "For \"single pane of glass\", A single user interface or dashboard provides visibility and control over the entire network's devices and sites satisfies what this question tests — Only one administrator account exists for the whole network does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "All devices are physically located in the same rack describes a mechanism that could sound plausible for single pane of glass. Given single pane of glass, A single user interface or dashboard provides visibility and control over the entire network's devices and sites matches the tested behavior — All devices are physically located in the same rack applies a different mechanism.",
-            "whatItDoes": "All devices are physically located in the same rack describes a mechanism that could sound plausible for single pane of glass.",
-            "whyWrongHere": "Given single pane of glass, A single user interface or dashboard provides visibility and control over the entire network's devices and sites matches the tested behavior — All devices are physically located in the same rack applies a different mechanism.",
-            "misconceptionTested": "Applying \"All devices are physically located i\" without matching single pane of glass"
+            "explanation": "Devices can be geographically distributed — one dashboard still unifies them.",
+            "misconceptionTested": "Same rack required",
+            "whatItDoes": "All devices are physically located in the same rack points to a related idea, but not the specific behavior or value required for single pane of glass.",
+            "whyWrongHere": "For \"single pane of glass\", A single user interface or dashboard provides visibility and control over the entire network's devices and sites satisfies what this question tests — All devices are physically located in the same rack does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "Single pane of glass = unified NMS/dashboard (Meraki, DNAC, Prime) — one view, many sites."
       }
     },
     {
@@ -474,22 +474,22 @@
             "choiceIndex": 0,
             "explanation": "500 retail stores needing uniform AP rollout fits cloud management — not the best case for traditional local-only management.",
             "misconceptionTested": "Choosing cloud-fit retail chain for local-only mgmt",
-            "whatItDoes": "A multinational retail chain with 500 small stores needing rapid, uniform rollout of new APs describes a mechanism that could sound plausible for choosing management model.",
-            "whyWrongHere": "Given choosing management model, A single highly-regulated data center where all management traffic must remain on an isolated, air-gapped internal network with no internet access matches the tested behavior — A multinational retail chain with 500 small stores needing rapid, uniform rollout of new APs applies a different mechanism."
+            "whatItDoes": "A multinational retail chain with 500 small stores needing rapid, uniform rollout of new APs points to a related idea, but not the specific behavior or value required for choosing management model.",
+            "whyWrongHere": "For \"choosing management model\", A single highly-regulated data center where all management traffic must remain on an isolated, air-gapped internal network with no internet access satisfies what this question tests — A multinational retail chain with 500 small stores needing rapid, uniform rollout of new APs does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Minimal on-site IT favors cloud — startups adding branches typically use cloud dashboard, not traditional local-only CLI.",
             "misconceptionTested": "Picking startup branch expansion for local management",
-            "whatItDoes": "A startup that wants to add new branch offices with minimal on-site IT staff describes a mechanism that could sound plausible for choosing management model.",
-            "whyWrongHere": "Given choosing management model, A single highly-regulated data center where all management traffic must remain on an isolated, air-gapped internal network with no internet access matches the tested behavior — A startup that wants to add new branch offices with minimal on-site IT staff applies a different mechanism."
+            "whatItDoes": "A startup that wants to add new branch offices with minimal on-site IT staff points to a related idea, but not the specific behavior or value required for choosing management model.",
+            "whyWrongHere": "For \"choosing management model\", A single highly-regulated data center where all management traffic must remain on an isolated, air-gapped internal network with no internet access satisfies what this question tests — A startup that wants to add new branch offices with minimal on-site IT staff does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "30-campus school district visibility is a cloud management use case — centralized dashboard beats box-by-box local CLI.",
             "misconceptionTested": "Choosing school district central visibility for local-only",
-            "whatItDoes": "A school district wanting centralized visibility across 30 campuses describes a mechanism that could sound plausible for choosing management model.",
-            "whyWrongHere": "Given choosing management model, A single highly-regulated data center where all management traffic must remain on an isolated, air-gapped internal network with no internet access matches the tested behavior — A school district wanting centralized visibility across 30 campuses applies a different mechanism."
+            "whatItDoes": "A school district wanting centralized visibility across 30 campuses points to a related idea, but not the specific behavior or value required for choosing management model.",
+            "whyWrongHere": "For \"choosing management model\", A single highly-regulated data center where all management traffic must remain on an isolated, air-gapped internal network with no internet access satisfies what this question tests — A school district wanting centralized visibility across 30 campuses does not."
           }
         ],
         "examTip": "Cloud dashboard unreachable → fall back to local CLI/console."

@@ -12,6 +12,7 @@ import { buildTopicFocusQueue } from './topicFocusQuiz.js'
 import Spinner from '../components/Spinner.jsx'
 import McChoices from '../components/McChoices.jsx'
 import AnswerReview from '../components/AnswerReview.jsx'
+import { applyAnswerReviewToQuestion } from '../answerReviewLogic.js'
 import { QuestionMeta, QuizRichText, OrderingQuestion, CliAnswerInput } from '../components/QuizQuestionChrome.jsx'
 
 const SESSION_CAP = 30
@@ -186,7 +187,12 @@ export default function TopicFocusSession({ config, onBack, onMissed, onDone }) 
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>
               {isCorrect ? 'Correct' : 'Incorrect'}
             </div>
-            <AnswerReview q={current} selected={selected} />
+            <AnswerReview
+              q={applyAnswerReviewToQuestion(current)}
+              selected={selected}
+              cliAnswer={cliAnswer}
+              orderAnswer={orderDraft}
+            />
           </div>
         )}
       </div>

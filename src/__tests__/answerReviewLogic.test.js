@@ -5,8 +5,13 @@ import {
   isGenericWrongExplanation,
   generateAnswerReview,
   resolveIncorrectItem,
+  truncateChoiceLabel,
+  formatYourWrongHeader,
+  formatOtherWrongHeader,
+  choiceLetterForIndex,
 } from '../answerReviewLogic.js'
 import { isFallbackExplanation, scoreAnswerReview } from '../answerReview/answerReviewQuality.js'
+import { buildStemAnchoredIncorrect } from '../answerReview/stemAnchoredDistractor.js'
 import { goldAnswerReviewFor, GOLD_ANSWER_REVIEWS } from '../answerReview/goldAnswerReviews.js'
 import { ASAP_SCENARIO_GOLD } from '../answerReview/goldAnswerReviewsAsap.js'
 import { BATCH2_GOLD } from '../answerReview/goldAnswerReviewsBatch2.js'
@@ -53,7 +58,37 @@ const FLOOD_Q = {
   ckuIds: ['CKU-FRAME-FLOODING'],
 }
 
+const GENERIC_SADE_RE = /applies a different mechanism|could sound plausible|describes a different mechanism than this question tests/i
+
 describe('answerReviewLogic', () => {
+  it('SADE output never uses generic mechanism fallback phrases', () => {
+    for (const q of [MAC_Q, FLOOD_Q]) {
+      const ar = generateAnswerReview(q)
+      for (const item of ar.incorrect) {
+        const sade = buildStemAnchoredIncorrect({ q, choiceIndex: item.choiceIndex })
+        for (const text of [sade.whatItDoes, sade.whyWrongHere, sade.explanation, item.whatItDoes, item.whyWrongHere]) {
+          if (text) expect(text).not.toMatch(GENERIC_SADE_RE)
+        }
+      }
+    }
+  })
+
+  it('resolveIncorrectItem refreshes SADE fields when stored explanation is high quality', () => {
+    const stored = {
+      choiceIndex: 1,
+      explanation: 'Ethernet switching is not echo/reply at Layer 2. The switch floods unknown destinations.',
+      misconceptionTested: 'Confusing switch behavior with ping/reply thinking',
+      whatItDoes: 'Sends it back to the source describes a mechanism that could sound plausible for flooding.',
+      whyWrongHere: 'Given flooding, Floods it out all ports in the VLAN except the source port matches the tested behavior — Sends it back to the source applies a different mechanism.',
+    }
+    const resolved = resolveIncorrectItem(FLOOD_Q, stored)
+    expect(isFallbackExplanation(resolved.explanation)).toBe(false)
+    expect(resolved.whatItDoes).toMatch(/echo|sender|back/i)
+    expect(resolved.whyWrongHere).toMatch(/Floods it out all ports/i)
+    expect(resolved.whatItDoes).not.toMatch(GENERIC_SADE_RE)
+    expect(resolved.whyWrongHere).not.toMatch(GENERIC_SADE_RE)
+  })
+
   it('detects fallback template explanations', () => {
     expect(isGenericWrongExplanation('"X" is incorrect because the scenario requires: foo')).toBe(true)
     expect(isGenericWrongExplanation('**Drops it** describes a different mechanism than this question tests.')).toBe(true)
@@ -430,5 +465,31 @@ describe('answerReviewLogic', () => {
       })
       expect(scoreAnswerReview({ ...q, answerReview: ar }).min).toBeGreaterThanOrEqual(3)
     }
+  })
+
+  describe('AnswerReview header helpers', () => {
+    it('truncates long choice labels at ~80 chars', () => {
+      const long = 'A'.repeat(100)
+      expect(truncateChoiceLabel(long)).toHaveLength(80)
+      expect(truncateChoiceLabel(long).endsWith('…')).toBe(true)
+      expect(truncateChoiceLabel('short')).toBe('short')
+    })
+
+    it('formats your-wrong and other-wrong headers with letter and choice text', () => {
+      expect(choiceLetterForIndex(1)).toBe('B')
+      expect(formatYourWrongHeader('B', 'Source MAC of the frame')).toBe(
+        'YOUR ANSWER: B — Source MAC of the frame',
+      )
+      expect(formatOtherWrongHeader('C', 'Both source and destination')).toBe(
+        'WHY C IS WRONG — Both source and destination',
+      )
+    })
+
+    it('resolveIncorrectItem rebuilds low-quality flat explanations', () => {
+      const flat = { choiceIndex: 0, explanation: '"X" is incorrect because the scenario requires: foo' }
+      const resolved = resolveIncorrectItem(MAC_Q, flat)
+      expect(resolved.whatItDoes).toBeTruthy()
+      expect(resolved.whyWrongHere).toBeTruthy()
+    })
   })
 })

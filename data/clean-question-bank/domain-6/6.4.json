@@ -33,22 +33,22 @@
             "choiceIndex": 0,
             "explanation": "OpenFlow is a southbound protocol spec — not a replacement management platform for APIC-EM.",
             "misconceptionTested": "OpenFlow as APIC-EM successor product",
-            "whatItDoes": "OpenFlow describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Cisco DNA Center matches the tested behavior — OpenFlow applies a different mechanism."
+            "whatItDoes": "OpenFlow points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Cisco DNA Center satisfies what this question tests — OpenFlow does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "Prime Infrastructure is legacy NMS — DNA Center is the modern APIC-EM replacement for intent-based campus automation.",
             "misconceptionTested": "Prime as APIC-EM replacement",
-            "whatItDoes": "Cisco Prime Infrastructure describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Cisco DNA Center matches the tested behavior — Cisco Prime Infrastructure applies a different mechanism."
+            "whatItDoes": "Cisco Prime Infrastructure points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Cisco DNA Center satisfies what this question tests — Cisco Prime Infrastructure does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "SD-WAN (vManage) targets WAN edge — not the campus controller role APIC-EM held.",
             "misconceptionTested": "SD-WAN controller as APIC-EM replacement",
-            "whatItDoes": "Cisco SD-WAN describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Cisco DNA Center matches the tested behavior — Cisco SD-WAN applies a different mechanism."
+            "whatItDoes": "Cisco SD-WAN points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Cisco DNA Center satisfies what this question tests — Cisco SD-WAN does not."
           }
         ],
         "examTip": "APIC-EM successor → Cisco DNA Center for campus automation and assurance."
@@ -80,35 +80,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"OpenFlow\"."
+          "explanation": "OpenFlow programs forwarding in SDN data planes — DNA Center discovery uses SSH/HTTPS/NETCONF, not OpenFlow for inventory."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SSH describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, OpenFlow matches the tested behavior — SSH applies a different mechanism.",
-            "whatItDoes": "SSH describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, OpenFlow matches the tested behavior — SSH applies a different mechanism.",
-            "misconceptionTested": "Applying \"SSH\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "SSH is commonly used by DNA Center to discover and manage devices.",
+            "misconceptionTested": "SSH excluded from DNA discovery",
+            "whatItDoes": "SSH points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", OpenFlow satisfies what this question tests — SSH does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "HTTPS describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, OpenFlow matches the tested behavior — HTTPS applies a different mechanism.",
-            "whatItDoes": "HTTPS describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, OpenFlow matches the tested behavior — HTTPS applies a different mechanism.",
-            "misconceptionTested": "Applying \"HTTPS\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "HTTPS is used for REST API access to devices and controllers during discovery.",
+            "misconceptionTested": "HTTPS excluded from DNA discovery",
+            "whatItDoes": "HTTPS points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", OpenFlow satisfies what this question tests — HTTPS does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "NETCONF describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, OpenFlow matches the tested behavior — NETCONF applies a different mechanism.",
-            "whatItDoes": "NETCONF describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, OpenFlow matches the tested behavior — NETCONF applies a different mechanism.",
-            "misconceptionTested": "Applying \"NETCONF\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "NETCONF is a modern management API DNA Center can leverage — OpenFlow is the odd one out.",
+            "misconceptionTested": "NETCONF excluded from DNA discovery",
+            "whatItDoes": "NETCONF names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"cisco dna center\", OpenFlow satisfies what this question tests — NETCONF does not."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "DNA discovery = SSH/HTTPS/NETCONF/SNMP; OpenFlow = southbound forwarding API, not inventory crawl."
       }
     },
     {
@@ -134,32 +131,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "DNA Center Assurance dashboard shows network health, client experience, and proactive issue detection across the fabric."
+          "explanation": "DNA Center Assurance correlates client/onboarding/health events — wired and wireless — for troubleshooting."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Design is for topology and site hierarchy planning — health monitoring lives in Assurance.",
-            "misconceptionTested": "Using Design section for operational health view",
-            "whatItDoes": "Design describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Assurance matches the tested behavior — Design applies a different mechanism."
+            "explanation": "Design is planning — Assurance is ongoing health/telemetry, not initial site survey.",
+            "misconceptionTested": "Confusing design with assurance",
+            "whatItDoes": "Design points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Assurance satisfies what this question tests — Design does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Policy configures group-based access and segmentation — Assurance reports health and performance.",
-            "misconceptionTested": "Confusing policy configuration with health dashboard",
-            "whatItDoes": "Policy describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Assurance matches the tested behavior — Policy applies a different mechanism."
+            "explanation": "Provision deploys policy — Assurance monitors outcomes after deploy.",
+            "misconceptionTested": "Provision vs assurance",
+            "whatItDoes": "Policy points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Assurance satisfies what this question tests — Policy does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Platform covers system settings and integrations — not the primary network health overview.",
-            "misconceptionTested": "Selecting platform admin for network health monitoring",
-            "whatItDoes": "Platform describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Assurance matches the tested behavior — Platform applies a different mechanism."
+            "explanation": "Licensing portal is commercial — not the Assurance analytics pane.",
+            "misconceptionTested": "License UI as assurance",
+            "whatItDoes": "Platform points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Assurance satisfies what this question tests — Platform does not."
           }
         ],
-        "examTip": "DNA Center: Assurance = health/clients/issues. Design = topology. Policy = segmentation."
+        "examTip": "DNA Assurance = health analytics post-deploy (clients, onboarding, QoE)."
       }
     },
     {
@@ -185,35 +182,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Plug and Play\"."
+          "explanation": "Plug and Play (PnP) templates push day-zero config — DNS, NTP, AAA via profiles."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "IP-based access control describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Plug and Play matches the tested behavior — IP-based access control applies a different mechanism.",
-            "whatItDoes": "IP-based access control describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Plug and Play matches the tested behavior — IP-based access control applies a different mechanism.",
-            "misconceptionTested": "Applying \"IP-based access control\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "IP-based access control is policy — not templated baseline config.",
+            "misconceptionTested": "IP-based AC for DNS/NTP templates",
+            "whatItDoes": "IP-based access control points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Plug and Play satisfies what this question tests — IP-based access control does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Group-based access control describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Plug and Play matches the tested behavior — Group-based access control applies a different mechanism.",
-            "whatItDoes": "Group-based access control describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Plug and Play matches the tested behavior — Group-based access control applies a different mechanism.",
-            "misconceptionTested": "Applying \"Group-based access control\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "Group-based access is policy segmentation.",
+            "misconceptionTested": "Group-based AC for baseline",
+            "whatItDoes": "Group-based access control points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Plug and Play satisfies what this question tests — Group-based access control does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Assurance describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Plug and Play matches the tested behavior — Assurance applies a different mechanism.",
-            "whatItDoes": "Assurance describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Plug and Play matches the tested behavior — Assurance applies a different mechanism.",
-            "misconceptionTested": "Applying \"Assurance\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "Assurance monitors health — PnP provisions devices.",
+            "misconceptionTested": "Assurance for templating",
+            "whatItDoes": "Assurance points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Plug and Play satisfies what this question tests — Assurance does not."
           }
         ],
-        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -240,35 +234,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Provision\"."
+          "explanation": "Provision section includes topology/site connectivity views for how devices interconnect."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Assurance describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Provision matches the tested behavior — Assurance applies a different mechanism.",
-            "whatItDoes": "Assurance describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Provision matches the tested behavior — Assurance applies a different mechanism.",
-            "misconceptionTested": "Applying \"Assurance\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "Assurance shows health/telemetry — topology discovery is Provision/Design.",
+            "misconceptionTested": "Assurance for topology map",
+            "whatItDoes": "Assurance points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Provision satisfies what this question tests — Assurance does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Platform describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Provision matches the tested behavior — Platform applies a different mechanism.",
-            "whatItDoes": "Platform describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Provision matches the tested behavior — Platform applies a different mechanism.",
-            "misconceptionTested": "Applying \"Platform\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "Platform hosts APIs — not physical topology maps.",
+            "misconceptionTested": "Platform for site map",
+            "whatItDoes": "Platform points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Provision satisfies what this question tests — Platform does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Policy describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Provision matches the tested behavior — Policy applies a different mechanism.",
-            "whatItDoes": "Policy describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Provision matches the tested behavior — Policy applies a different mechanism.",
-            "misconceptionTested": "Applying \"Policy\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "Policy defines access — not L2/L3 site maps.",
+            "misconceptionTested": "Policy for connectivity map",
+            "whatItDoes": "Policy points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Provision satisfies what this question tests — Policy does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -302,22 +293,22 @@
             "choiceIndex": 0,
             "explanation": "IP-based access control is a security feature — not a bulk configuration tool for OSPF areas.",
             "misconceptionTested": "Using access control feature for routing configuration",
-            "whatItDoes": "IP-based access control describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, DNA Command Runner matches the tested behavior — IP-based access control applies a different mechanism."
+            "whatItDoes": "IP-based access control points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", DNA Command Runner satisfies what this question tests — IP-based access control does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "Python/API scripting is powerful but Command Runner is the built-in DNA Center method for quick multi-device CLI pushes.",
             "misconceptionTested": "Defaulting to Python when Command Runner is the exam shortcut",
-            "whatItDoes": "Python describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, DNA Command Runner matches the tested behavior — Python applies a different mechanism."
+            "whatItDoes": "Python names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"cisco dna center\", DNA Command Runner satisfies what this question tests — Python does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Inventory lists devices — it does not execute configuration. Command Runner applies templates at scale.",
             "misconceptionTested": "Expecting Inventory to push config without Command Runner",
-            "whatItDoes": "Inventory describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, DNA Command Runner matches the tested behavior — Inventory applies a different mechanism."
+            "whatItDoes": "Inventory points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", DNA Command Runner satisfies what this question tests — Inventory does not."
           }
         ],
         "examTip": "Bulk CLI on many routers in DNA Center → Command Runner templates."
@@ -348,35 +339,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Provision\"."
+          "explanation": "Provision manages device inventory — routers, switches, APs, WLCs onboarding."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Policy describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Provision matches the tested behavior — Policy applies a different mechanism.",
-            "whatItDoes": "Policy describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Provision matches the tested behavior — Policy applies a different mechanism.",
-            "misconceptionTested": "Applying \"Policy\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "Policy defines access contracts — inventory is Provision.",
+            "misconceptionTested": "Policy for inventory",
+            "whatItDoes": "Policy points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Provision satisfies what this question tests — Policy does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Design describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Provision matches the tested behavior — Design applies a different mechanism.",
-            "whatItDoes": "Design describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Provision matches the tested behavior — Design applies a different mechanism.",
-            "misconceptionTested": "Applying \"Design\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "Design is hierarchical planning — live inventory is Provision.",
+            "misconceptionTested": "Design for live inventory",
+            "whatItDoes": "Design points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Provision satisfies what this question tests — Design does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Assurance describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Provision matches the tested behavior — Assurance applies a different mechanism.",
-            "whatItDoes": "Assurance describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Provision matches the tested behavior — Assurance applies a different mechanism.",
-            "misconceptionTested": "Applying \"Assurance\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "Assurance monitors — doesn't own inventory onboarding.",
+            "misconceptionTested": "Assurance for device inventory",
+            "whatItDoes": "Assurance points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Provision satisfies what this question tests — Assurance does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -405,35 +393,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Platform\"."
+          "explanation": "Platform section documents APIs for automation (including Python scripts to DNA Center)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Design describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Platform matches the tested behavior — Design applies a different mechanism.",
-            "whatItDoes": "Design describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Platform matches the tested behavior — Design applies a different mechanism.",
-            "misconceptionTested": "Applying \"Design\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "Design is site/network hierarchy — not API docs.",
+            "misconceptionTested": "Design for API docs",
+            "whatItDoes": "Design points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Platform satisfies what this question tests — Design does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Policy describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Platform matches the tested behavior — Policy applies a different mechanism.",
-            "whatItDoes": "Policy describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Platform matches the tested behavior — Policy applies a different mechanism.",
-            "misconceptionTested": "Applying \"Policy\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "Policy is SGT/access — not developer APIs.",
+            "misconceptionTested": "Policy for REST APIs",
+            "whatItDoes": "Policy points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Platform satisfies what this question tests — Policy does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Provision describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Platform matches the tested behavior — Provision applies a different mechanism.",
-            "whatItDoes": "Provision describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Platform matches the tested behavior — Provision applies a different mechanism.",
-            "misconceptionTested": "Applying \"Provision\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "Provision onboards devices — Platform exposes API catalog.",
+            "misconceptionTested": "Provision for API reference",
+            "whatItDoes": "Provision points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Platform satisfies what this question tests — Provision does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -461,35 +446,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"SD-Access\"."
+          "explanation": "SD-Access automates underlay + overlay fabric (LISP/VXLAN control)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Easy-QOS describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, SD-Access matches the tested behavior — Easy-QOS applies a different mechanism.",
-            "whatItDoes": "Easy-QOS describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, SD-Access matches the tested behavior — Easy-QOS applies a different mechanism.",
-            "misconceptionTested": "Applying \"Easy-QOS\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "Easy-QoS is QoS policy — not fabric automation.",
+            "misconceptionTested": "Easy-QoS for fabric",
+            "whatItDoes": "Easy-QOS points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", SD-Access satisfies what this question tests — Easy-QOS does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "System 360 describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, SD-Access matches the tested behavior — System 360 applies a different mechanism.",
-            "whatItDoes": "System 360 describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, SD-Access matches the tested behavior — System 360 applies a different mechanism.",
-            "misconceptionTested": "Applying \"System 360\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "System 360 is analytics — not fabric build.",
+            "misconceptionTested": "System 360 for fabric",
+            "whatItDoes": "System 360 points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", SD-Access satisfies what this question tests — System 360 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Cisco ISE describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, SD-Access matches the tested behavior — Cisco ISE applies a different mechanism.",
-            "whatItDoes": "Cisco ISE describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, SD-Access matches the tested behavior — Cisco ISE applies a different mechanism.",
-            "misconceptionTested": "Applying \"Cisco ISE\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "ISE is policy/identity — SD-Access builds the fabric.",
+            "misconceptionTested": "ISE as fabric automation",
+            "whatItDoes": "Cisco ISE points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", SD-Access satisfies what this question tests — Cisco ISE does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -514,35 +496,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Device configuration backup\"."
+          "explanation": "Prime Infrastructure offers configuration backup/archive beyond DNA Center's focus areas."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Client coverage heat maps describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Device configuration backup matches the tested behavior — Client coverage heat maps applies a different mechanism.",
-            "whatItDoes": "Client coverage heat maps describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Device configuration backup matches the tested behavior — Client coverage heat maps applies a different mechanism.",
-            "misconceptionTested": "Applying \"Client coverage heat maps\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "DNA Center Assurance also has maps — heat maps aren't Prime-exclusive in all releases.",
+            "misconceptionTested": "Heat maps Prime-only",
+            "whatItDoes": "Client coverage heat maps points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Device configuration backup satisfies what this question tests — Client coverage heat maps does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Client triangulation support describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Device configuration backup matches the tested behavior — Client triangulation support applies a different mechanism.",
-            "whatItDoes": "Client triangulation support describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Device configuration backup matches the tested behavior — Client triangulation support applies a different mechanism.",
-            "misconceptionTested": "Applying \"Client triangulation support\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "Triangulation is wireless analytics — not the keyed differentiator.",
+            "misconceptionTested": "Triangulation Prime-only",
+            "whatItDoes": "Client triangulation support points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Device configuration backup satisfies what this question tests — Client triangulation support does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Application health describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Device configuration backup matches the tested behavior — Application health applies a different mechanism.",
-            "whatItDoes": "Application health describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Device configuration backup matches the tested behavior — Application health applies a different mechanism.",
-            "misconceptionTested": "Applying \"Application health\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "Application health is DNA Assurance — config backup is Prime strength.",
+            "misconceptionTested": "Application health Prime-only",
+            "whatItDoes": "Application health points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Device configuration backup satisfies what this question tests — Application health does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -569,35 +548,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Both A and B\"."
+          "explanation": "DNA Center discovery requires SSH and SNMP — both for CLI and MIB polling."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SSH describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Both A and B matches the tested behavior — SSH applies a different mechanism.",
-            "whatItDoes": "SSH describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Both A and B matches the tested behavior — SSH applies a different mechanism.",
-            "misconceptionTested": "Applying \"SSH\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "SSH alone misses SNMP metrics/inventory details.",
+            "misconceptionTested": "SSH only for discovery",
+            "whatItDoes": "SSH points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Both A and B satisfies what this question tests — SSH does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "SNMP describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Both A and B matches the tested behavior — SNMP applies a different mechanism.",
-            "whatItDoes": "SNMP describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Both A and B matches the tested behavior — SNMP applies a different mechanism.",
-            "misconceptionTested": "Applying \"SNMP\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "SNMP alone misses CLI reachability for many tasks.",
+            "misconceptionTested": "SNMP only for discovery",
+            "whatItDoes": "SNMP points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Both A and B satisfies what this question tests — SNMP does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Logging describes a mechanism that could sound plausible for cisco dna center. Given cisco dna center, Both A and B matches the tested behavior — Logging applies a different mechanism.",
-            "whatItDoes": "Logging describes a mechanism that could sound plausible for cisco dna center.",
-            "whyWrongHere": "Given cisco dna center, Both A and B matches the tested behavior — Logging applies a different mechanism.",
-            "misconceptionTested": "Applying \"Logging\" without matching cisco dna center",
-            "needsExplanationReview": true
+            "explanation": "Logging alone doesn't discover devices — need SSH + SNMP.",
+            "misconceptionTested": "Logging for discovery",
+            "whatItDoes": "Logging points to a related idea, but not the specific behavior or value required for cisco dna center.",
+            "whyWrongHere": "For \"cisco dna center\", Both A and B satisfies what this question tests — Logging does not."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     }
   ]

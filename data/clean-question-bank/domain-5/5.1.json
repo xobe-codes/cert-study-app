@@ -29,22 +29,22 @@
             "choiceIndex": 0,
             "explanation": "Availability ensures systems stay up — redundancy and failover address availability, not encryption.",
             "misconceptionTested": "Mapping encryption to availability",
-            "whatItDoes": "Availability describes a mechanism that could sound plausible for CIA triad confidentiality.",
-            "whyWrongHere": "Given CIA triad confidentiality, Confidentiality matches the tested behavior — Availability applies a different mechanism."
+            "whatItDoes": "Availability points to a related idea, but not the specific behavior or value required for CIA triad confidentiality.",
+            "whyWrongHere": "For \"CIA triad confidentiality\", Confidentiality satisfies what this question tests — Availability does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "Integrity detects tampering — hashing and digital signatures address integrity; encryption hides content.",
             "misconceptionTested": "Confusing confidentiality with integrity",
-            "whatItDoes": "Integrity describes a mechanism that could sound plausible for CIA triad confidentiality.",
-            "whyWrongHere": "Given CIA triad confidentiality, Confidentiality matches the tested behavior — Integrity applies a different mechanism."
+            "whatItDoes": "Integrity points to a related idea, but not the specific behavior or value required for CIA triad confidentiality.",
+            "whyWrongHere": "For \"CIA triad confidentiality\", Confidentiality satisfies what this question tests — Integrity does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Authentication proves identity — encryption does not by itself verify who sent the data.",
             "misconceptionTested": "Equating encryption with authentication",
-            "whatItDoes": "Authentication describes a mechanism that could sound plausible for CIA triad confidentiality.",
-            "whyWrongHere": "Given CIA triad confidentiality, Confidentiality matches the tested behavior — Authentication applies a different mechanism."
+            "whatItDoes": "Authentication points to a related idea, but not the specific behavior or value required for CIA triad confidentiality.",
+            "whyWrongHere": "For \"CIA triad confidentiality\", Confidentiality satisfies what this question tests — Authentication does not."
           }
         ],
         "examTip": "CIA: Confidentiality = encryption; Integrity = hash; Availability = redundancy."
@@ -70,32 +70,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Integrity ensures data has not been altered without detection. Hashing creates a fingerprint — if the hash changes, the data was modified."
+          "explanation": "Hashing detects whether file contents changed — protecting integrity (unauthorized modification)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Confidentiality reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
-            "whatItDoes": "Confidentiality describes a mechanism that could sound plausible for CIA triad integrity.",
-            "whyWrongHere": "Given CIA triad integrity, Integrity matches the tested behavior — Confidentiality applies a different mechanism.",
-            "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
+            "explanation": "Confidentiality is about secrecy — hashing does not encrypt or hide data.",
+            "misconceptionTested": "Confusing hash with encryption",
+            "whatItDoes": "Confidentiality points to a related idea, but not the specific behavior or value required for CIA triad integrity.",
+            "whyWrongHere": "For \"CIA triad integrity\", Integrity satisfies what this question tests — Confidentiality does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Availability reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
-            "whatItDoes": "Availability describes a mechanism that could sound plausible for CIA triad integrity.",
-            "whyWrongHere": "Given CIA triad integrity, Integrity matches the tested behavior — Availability applies a different mechanism.",
-            "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
+            "explanation": "Availability is uptime/access — hashing does not ensure service is reachable.",
+            "misconceptionTested": "Mapping integrity control to availability",
+            "whatItDoes": "Availability points to a related idea, but not the specific behavior or value required for CIA triad integrity.",
+            "whyWrongHere": "For \"CIA triad integrity\", Integrity satisfies what this question tests — Availability does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Non-repudiation describes a mechanism that could sound plausible for CIA triad integrity. Given CIA triad integrity, Integrity matches the tested behavior — Non-repudiation applies a different mechanism.",
-            "whatItDoes": "Non-repudiation describes a mechanism that could sound plausible for CIA triad integrity.",
-            "whyWrongHere": "Given CIA triad integrity, Integrity matches the tested behavior — Non-repudiation applies a different mechanism.",
-            "misconceptionTested": "Applying \"Non-repudiation\" without matching CIA triad integrity"
+            "explanation": "Non-repudiation often uses digital signatures, not hashes alone.",
+            "misconceptionTested": "Equating hash with non-repudiation",
+            "whatItDoes": "Non-repudiation points to a related idea, but not the specific behavior or value required for CIA triad integrity.",
+            "whyWrongHere": "For \"CIA triad integrity\", Integrity satisfies what this question tests — Non-repudiation does not."
           }
         ],
-        "examTip": "On the exam: Integrity = detecting CHANGES (hashing). NOT keeping data private — That is confidentiality. Integrity uses hashing to detect unauthorized modification"
+        "examTip": "Detect tampering → integrity; hide data → confidentiality."
       }
     },
     {
@@ -118,32 +118,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "A vulnerability is a weakness (unpatched software). A threat is a potential danger. An exploit is the actual attack."
+          "explanation": "A vulnerability is a weakness (unpatched flaw) that can be exploited — the server has the flaw before any attack occurs."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Threat describes a mechanism that could sound plausible for vulnerability definition. Given vulnerability definition, Vulnerability matches the tested behavior — Threat applies a different mechanism.",
-            "whatItDoes": "Threat describes a mechanism that could sound plausible for vulnerability definition.",
-            "whyWrongHere": "Given vulnerability definition, Vulnerability matches the tested behavior — Threat applies a different mechanism.",
-            "misconceptionTested": "Applying \"Threat\" without matching vulnerability definition"
+            "explanation": "A threat is a potential danger or attacker capability — not the flaw in the server itself.",
+            "misconceptionTested": "Confusing threat with vulnerability",
+            "whatItDoes": "Threat points to a related idea, but not the specific behavior or value required for vulnerability definition.",
+            "whyWrongHere": "For \"vulnerability definition\", Vulnerability satisfies what this question tests — Threat does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Exploit describes a mechanism that could sound plausible for vulnerability definition. Given vulnerability definition, Vulnerability matches the tested behavior — Exploit applies a different mechanism.",
-            "whatItDoes": "Exploit describes a mechanism that could sound plausible for vulnerability definition.",
-            "whyWrongHere": "Given vulnerability definition, Vulnerability matches the tested behavior — Exploit applies a different mechanism.",
-            "misconceptionTested": "Applying \"Exploit\" without matching vulnerability definition"
+            "explanation": "An exploit is the attack technique or code that takes advantage of a vulnerability.",
+            "misconceptionTested": "Labeling the flaw as the exploit",
+            "whatItDoes": "Exploit points to a related idea, but not the specific behavior or value required for vulnerability definition.",
+            "whyWrongHere": "For \"vulnerability definition\", Vulnerability satisfies what this question tests — Exploit does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Risk describes a mechanism that could sound plausible for vulnerability definition. Given vulnerability definition, Vulnerability matches the tested behavior — Risk applies a different mechanism.",
-            "whatItDoes": "Risk describes a mechanism that could sound plausible for vulnerability definition.",
-            "whyWrongHere": "Given vulnerability definition, Vulnerability matches the tested behavior — Risk applies a different mechanism.",
-            "misconceptionTested": "Applying \"Risk\" without matching vulnerability definition"
+            "explanation": "Risk combines likelihood and impact — vulnerability is the underlying weakness.",
+            "misconceptionTested": "Equating risk with vulnerability",
+            "whatItDoes": "Risk points to a related idea, but not the specific behavior or value required for vulnerability definition.",
+            "whyWrongHere": "For \"vulnerability definition\", Vulnerability satisfies what this question tests — Risk does not."
           }
         ],
-        "examTip": "On the exam: A vulnerability alone equals a breach — A threat and exploit are also required — vulnerability is only the weakness"
+        "examTip": "Flaw in the system = vulnerability; attack method = exploit."
       }
     },
     {
@@ -166,32 +166,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "Ransomware encrypts files and demands a ransom. A virus attaches to files; a worm self-propagates; a Trojan disguises itself as legitimate software."
+          "explanation": "Ransomware encrypts victim files and demands payment for the decryption key."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Virus describes a mechanism that could sound plausible for ransomware. Given ransomware, Ransomware matches the tested behavior — Virus applies a different mechanism.",
-            "whatItDoes": "Virus describes a mechanism that could sound plausible for ransomware.",
-            "whyWrongHere": "Given ransomware, Ransomware matches the tested behavior — Virus applies a different mechanism.",
-            "misconceptionTested": "Applying \"Virus\" without matching ransomware"
+            "explanation": "Viruses attach to files and spread when executed — they do not typically demand ransom for decryption.",
+            "misconceptionTested": "Labeling virus as ransomware",
+            "whatItDoes": "Virus points to a related idea, but not the specific behavior or value required for ransomware.",
+            "whyWrongHere": "For \"ransomware\", Ransomware satisfies what this question tests — Virus does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Worm describes a mechanism that could sound plausible for ransomware. Given ransomware, Ransomware matches the tested behavior — Worm applies a different mechanism.",
-            "whatItDoes": "Worm describes a mechanism that could sound plausible for ransomware.",
-            "whyWrongHere": "Given ransomware, Ransomware matches the tested behavior — Worm applies a different mechanism.",
-            "misconceptionTested": "Applying \"Worm\" without matching ransomware"
+            "explanation": "Worms self-replicate across networks — encryption-for-ransom is ransomware's hallmark.",
+            "misconceptionTested": "Confusing worm with ransomware",
+            "whatItDoes": "Worm points to a related idea, but not the specific behavior or value required for ransomware.",
+            "whyWrongHere": "For \"ransomware\", Ransomware satisfies what this question tests — Worm does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Trojan describes a mechanism that could sound plausible for ransomware. Given ransomware, Ransomware matches the tested behavior — Trojan applies a different mechanism.",
-            "whatItDoes": "Trojan describes a mechanism that could sound plausible for ransomware.",
-            "whyWrongHere": "Given ransomware, Ransomware matches the tested behavior — Trojan applies a different mechanism.",
-            "misconceptionTested": "Applying \"Trojan\" without matching ransomware"
+            "explanation": "Trojans disguise as legitimate software — ransom encryption is a separate ransomware behavior.",
+            "misconceptionTested": "Trojan vs ransomware",
+            "whatItDoes": "Trojan points to a related idea, but not the specific behavior or value required for ransomware.",
+            "whyWrongHere": "For \"ransomware\", Ransomware satisfies what this question tests — Trojan does not."
           }
         ],
-        "examTip": "On the exam: A DDoS attack violates AVAILABILITY, not confidentiality or integrity — Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services"
+        "examTip": "Encrypt files + demand payment = ransomware."
       }
     },
     {
@@ -214,32 +214,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Phishing is social engineering via deceptive email to trick users into revealing credentials or clicking malicious links."
+          "explanation": "Fraudulent email tricking users into revealing credentials is phishing — a social-engineering attack."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "A worm attack reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
-            "whatItDoes": "A worm attack describes a mechanism that could sound plausible for phishing.",
-            "whyWrongHere": "Given phishing, Phishing matches the tested behavior — A worm attack applies a different mechanism.",
-            "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
+            "explanation": "Worms self-replicate across networks — phishing targets humans via deceptive messages.",
+            "misconceptionTested": "Classifying email fraud as worm",
+            "whatItDoes": "A worm attack points to a related idea, but not the specific behavior or value required for phishing.",
+            "whyWrongHere": "For \"phishing\", Phishing satisfies what this question tests — A worm attack does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "A DoS attack reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
-            "whatItDoes": "A DoS attack describes a mechanism that could sound plausible for phishing.",
-            "whyWrongHere": "Given phishing, Phishing matches the tested behavior — A DoS attack applies a different mechanism.",
-            "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
+            "explanation": "DoS floods a service to deny availability — phishing steals credentials via deception.",
+            "misconceptionTested": "Confusing phishing with DoS",
+            "whatItDoes": "A DoS attack points to a related idea, but not the specific behavior or value required for phishing.",
+            "whyWrongHere": "For \"phishing\", Phishing satisfies what this question tests — A DoS attack does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "IP spoofing describes a mechanism that could sound plausible for phishing. Given phishing, Phishing matches the tested behavior — IP spoofing applies a different mechanism.",
-            "whatItDoes": "IP spoofing describes a mechanism that could sound plausible for phishing.",
-            "whyWrongHere": "Given phishing, Phishing matches the tested behavior — IP spoofing applies a different mechanism.",
-            "misconceptionTested": "Applying \"IP spoofing\" without matching phishing"
+            "explanation": "IP spoofing falsifies source addresses — phishing uses fake sender identity in email content.",
+            "misconceptionTested": "Mixing spoofing with phishing",
+            "whatItDoes": "IP spoofing points to a related idea, but not the specific behavior or value required for phishing.",
+            "whyWrongHere": "For \"phishing\", Phishing satisfies what this question tests — IP spoofing does not."
           }
         ],
-        "examTip": "On the exam: A DDoS attack violates AVAILABILITY, not confidentiality or integrity — Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services"
+        "examTip": "Fake IT email + credential harvest = phishing."
       }
     },
     {
@@ -263,32 +263,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "A DDoS attack violates availability — legitimate users cannot access services because resources are exhausted."
+          "explanation": "Flooding a site until it cannot serve users violates availability — the A in CIA."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Confidentiality reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
-            "whatItDoes": "Confidentiality describes a mechanism that could sound plausible for DDoS and availability.",
-            "whyWrongHere": "Given DDoS and availability, Availability matches the tested behavior — Confidentiality applies a different mechanism.",
-            "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
+            "explanation": "Confidentiality is unauthorized disclosure — DoS does not primarily expose data.",
+            "misconceptionTested": "Mapping DoS to confidentiality",
+            "whatItDoes": "Confidentiality points to a related idea, but not the specific behavior or value required for DDoS and availability.",
+            "whyWrongHere": "For \"DDoS and availability\", Availability satisfies what this question tests — Confidentiality does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Integrity reflects a common trap: Integrity = detecting CHANGES (hashing). NOT keeping data private. That is confidentiality. Integrity uses hashing to detect unauthorized modification.",
-            "whatItDoes": "Integrity describes a mechanism that could sound plausible for DDoS and availability.",
-            "whyWrongHere": "Given DDoS and availability, Availability matches the tested behavior — Integrity applies a different mechanism.",
-            "misconceptionTested": "Integrity = detecting CHANGES (hashing). NOT keeping data private"
+            "explanation": "Integrity is unauthorized modification — DoS blocks access rather than altering data.",
+            "misconceptionTested": "Mapping DoS to integrity",
+            "whatItDoes": "Integrity points to a related idea, but not the specific behavior or value required for DDoS and availability.",
+            "whyWrongHere": "For \"DDoS and availability\", Availability satisfies what this question tests — Integrity does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Authentication describes a mechanism that could sound plausible for DDoS and availability. Given DDoS and availability, Availability matches the tested behavior — Authentication applies a different mechanism.",
-            "whatItDoes": "Authentication describes a mechanism that could sound plausible for DDoS and availability.",
-            "whyWrongHere": "Given DDoS and availability, Availability matches the tested behavior — Authentication applies a different mechanism.",
-            "misconceptionTested": "Applying \"Authentication\" without matching DDoS and availability"
+            "explanation": "Authentication verifies identity — availability is about reachable services.",
+            "misconceptionTested": "Confusing authentication with availability",
+            "whatItDoes": "Authentication points to a related idea, but not the specific behavior or value required for DDoS and availability.",
+            "whyWrongHere": "For \"DDoS and availability\", Availability satisfies what this question tests — Authentication does not."
           }
         ],
-        "examTip": "On the exam: Integrity = detecting CHANGES (hashing). NOT keeping data private — That is confidentiality. Integrity uses hashing to detect unauthorized modification"
+        "examTip": "Service down / flooded = availability violation."
       }
     },
     {
@@ -311,32 +311,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Defense in depth uses multiple overlapping controls so that if one layer fails, others still protect. No single control is sufficient."
+          "explanation": "Layering firewalls, training, AV, and segmentation is defense in depth — multiple independent controls."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Multi-factor authentication describes a mechanism that could sound plausible for defense in depth. Given defense in depth, Defense in depth matches the tested behavior — Multi-factor authentication applies a different mechanism.",
-            "whatItDoes": "Multi-factor authentication describes a mechanism that could sound plausible for defense in depth.",
-            "whyWrongHere": "Given defense in depth, Defense in depth matches the tested behavior — Multi-factor authentication applies a different mechanism.",
-            "misconceptionTested": "Applying \"Multi-factor authentication\" without matching defense in depth"
+            "explanation": "MFA verifies identity with multiple factors — not the same as layered security controls.",
+            "misconceptionTested": "Confusing defense in depth with MFA",
+            "whatItDoes": "Multi-factor authentication points to a related idea, but not the specific behavior or value required for defense in depth.",
+            "whyWrongHere": "For \"defense in depth\", Defense in depth satisfies what this question tests — Multi-factor authentication does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Zero-trust networking describes a mechanism that could sound plausible for defense in depth. Given defense in depth, Defense in depth matches the tested behavior — Zero-trust networking applies a different mechanism.",
-            "whatItDoes": "Zero-trust networking describes a mechanism that could sound plausible for defense in depth.",
-            "whyWrongHere": "Given defense in depth, Defense in depth matches the tested behavior — Zero-trust networking applies a different mechanism.",
-            "misconceptionTested": "Applying \"Zero-trust networking\" without matching defense in depth"
+            "explanation": "Zero trust is a model of continuous verification — related but not the definition of layered controls.",
+            "misconceptionTested": "Equating with zero trust",
+            "whatItDoes": "Zero-trust networking points to a related idea, but not the specific behavior or value required for defense in depth.",
+            "whyWrongHere": "For \"defense in depth\", Defense in depth satisfies what this question tests — Zero-trust networking does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "AAA framework describes a mechanism that could sound plausible for defense in depth. Given defense in depth, Defense in depth matches the tested behavior — AAA framework applies a different mechanism.",
-            "whatItDoes": "AAA framework describes a mechanism that could sound plausible for defense in depth.",
-            "whyWrongHere": "Given defense in depth, Defense in depth matches the tested behavior — AAA framework applies a different mechanism.",
-            "misconceptionTested": "Applying \"AAA framework\" without matching defense in depth"
+            "explanation": "AAA is authentication, authorization, accounting — not multi-layer defense strategy.",
+            "misconceptionTested": "AAA vs defense in depth",
+            "whatItDoes": "AAA framework points to a related idea, but not the specific behavior or value required for defense in depth.",
+            "whyWrongHere": "For \"defense in depth\", Defense in depth satisfies what this question tests — AAA framework does not."
           }
         ],
-        "examTip": "This stem tests defense in depth — exam distractors swap similar terms; anchor on: Defense in depth uses multiple overlapping controls so that if one layer fails, others still protect."
+        "examTip": "Multiple security layers → defense in depth."
       }
     },
     {
@@ -359,32 +359,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "A man-in-the-middle (MITM) attack positions the attacker between two communicating parties to eavesdrop or alter traffic. TLS encryption mitigates this."
+          "explanation": "Intercepting and reading or altering traffic between two parties without their knowledge is a man-in-the-middle (MITM) attack."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "A DoS attack reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
-            "whatItDoes": "A DoS attack describes a mechanism that could sound plausible for attacker.",
-            "whyWrongHere": "Given attacker, A man-in-the-middle attack matches the tested behavior — A DoS attack applies a different mechanism.",
-            "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
+            "explanation": "DoS denies service — MITM sits between endpoints to eavesdrop or modify.",
+            "misconceptionTested": "Confusing MITM with DoS",
+            "whatItDoes": "A DoS attack points to a related idea, but not the specific behavior or value required for attacker.",
+            "whyWrongHere": "For \"attacker\", A man-in-the-middle attack satisfies what this question tests — A DoS attack does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "IP spoofing describes a mechanism that could sound plausible for attacker. Given attacker, A man-in-the-middle attack matches the tested behavior — IP spoofing applies a different mechanism.",
-            "whatItDoes": "IP spoofing describes a mechanism that could sound plausible for attacker.",
-            "whyWrongHere": "Given attacker, A man-in-the-middle attack matches the tested behavior — IP spoofing applies a different mechanism.",
-            "misconceptionTested": "Applying \"IP spoofing\" without matching MITM"
+            "explanation": "IP spoofing forges source IP — MITM actively relays or alters a session between hosts.",
+            "misconceptionTested": "Equating spoofing with MITM",
+            "whatItDoes": "IP spoofing points to a related idea, but not the specific behavior or value required for attacker.",
+            "whyWrongHere": "For \"attacker\", A man-in-the-middle attack satisfies what this question tests — IP spoofing does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "A replay attack reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
-            "whatItDoes": "A replay attack describes a mechanism that could sound plausible for attacker.",
-            "whyWrongHere": "Given attacker, A man-in-the-middle attack matches the tested behavior — A replay attack applies a different mechanism.",
-            "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
+            "explanation": "Replay resends captured packets — MITM is live interception on the path.",
+            "misconceptionTested": "Confusing replay with MITM",
+            "whatItDoes": "A replay attack points to a related idea, but not the specific behavior or value required for attacker.",
+            "whyWrongHere": "For \"attacker\", A man-in-the-middle attack satisfies what this question tests — A replay attack does not."
           }
         ],
-        "examTip": "On the exam: A DDoS attack violates AVAILABILITY, not confidentiality or integrity — Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services"
+        "examTip": "Hidden intermediary reading/changing traffic = MITM."
       }
     },
     {
@@ -407,32 +407,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "A worm self-propagates without a host file — it spreads by exploiting vulnerabilities. A virus requires attaching to a file."
+          "explanation": "Worms self-propagate across networks without attaching to a host file — unlike viruses."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Virus describes a mechanism that could sound plausible for worm vs virus. Given worm vs virus, Worm matches the tested behavior — Virus applies a different mechanism.",
-            "whatItDoes": "Virus describes a mechanism that could sound plausible for worm vs virus.",
-            "whyWrongHere": "Given worm vs virus, Worm matches the tested behavior — Virus applies a different mechanism.",
-            "misconceptionTested": "Applying \"Virus\" without matching worm vs virus"
+            "explanation": "Viruses need a host file or user action to spread — worms spread autonomously.",
+            "misconceptionTested": "Calling self-replicating network malware a virus",
+            "whatItDoes": "Virus points to a related idea, but not the specific behavior or value required for worm vs virus.",
+            "whyWrongHere": "For \"worm vs virus\", Worm satisfies what this question tests — Virus does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Spyware describes a mechanism that could sound plausible for worm vs virus. Given worm vs virus, Worm matches the tested behavior — Spyware applies a different mechanism.",
-            "whatItDoes": "Spyware describes a mechanism that could sound plausible for worm vs virus.",
-            "whyWrongHere": "Given worm vs virus, Worm matches the tested behavior — Spyware applies a different mechanism.",
-            "misconceptionTested": "Applying \"Spyware\" without matching worm vs virus"
+            "explanation": "Spyware covertly monitors activity — it does not necessarily self-replicate network-wide.",
+            "misconceptionTested": "Labeling worm as spyware",
+            "whatItDoes": "Spyware points to a related idea, but not the specific behavior or value required for worm vs virus.",
+            "whyWrongHere": "For \"worm vs virus\", Worm satisfies what this question tests — Spyware does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Adware describes a mechanism that could sound plausible for worm vs virus. Given worm vs virus, Worm matches the tested behavior — Adware applies a different mechanism.",
-            "whatItDoes": "Adware describes a mechanism that could sound plausible for worm vs virus.",
-            "whyWrongHere": "Given worm vs virus, Worm matches the tested behavior — Adware applies a different mechanism.",
-            "misconceptionTested": "Applying \"Adware\" without matching worm vs virus"
+            "explanation": "Adware displays ads — not the hallmark of autonomous network replication.",
+            "misconceptionTested": "Confusing adware with worm",
+            "whatItDoes": "Adware points to a related idea, but not the specific behavior or value required for worm vs virus.",
+            "whyWrongHere": "For \"worm vs virus\", Worm satisfies what this question tests — Adware does not."
           }
         ],
-        "examTip": "On the exam: A DDoS attack violates AVAILABILITY, not confidentiality or integrity — Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services"
+        "examTip": "Self-replicates without host file = worm."
       }
     },
     {
@@ -456,32 +456,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Social engineering exploits human trust. User security awareness training is the primary defense — teaching people to recognize and report suspicious emails and requests."
+          "explanation": "Phishing and social engineering target human judgment — security awareness training is the most effective mitigation."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Firewalls describes a mechanism that could sound plausible for social engineering mitigation. Given social engineering mitigation, User security awareness training matches the tested behavior — Firewalls applies a different mechanism.",
-            "whatItDoes": "Firewalls describes a mechanism that could sound plausible for social engineering mitigation.",
-            "whyWrongHere": "Given social engineering mitigation, User security awareness training matches the tested behavior — Firewalls applies a different mechanism.",
-            "misconceptionTested": "Applying \"Firewalls\" without matching social engineering mitigation"
+            "explanation": "Firewalls cannot stop a user from clicking a malicious link in email.",
+            "misconceptionTested": "Expecting firewalls to stop phishing clicks",
+            "whatItDoes": "Firewalls points to a related idea, but not the specific behavior or value required for social engineering mitigation.",
+            "whyWrongHere": "For \"social engineering mitigation\", User security awareness training satisfies what this question tests — Firewalls does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Antivirus software describes a mechanism that could sound plausible for social engineering mitigation. Given social engineering mitigation, User security awareness training matches the tested behavior — Antivirus software applies a different mechanism.",
-            "whatItDoes": "Antivirus software describes a mechanism that could sound plausible for social engineering mitigation.",
-            "whyWrongHere": "Given social engineering mitigation, User security awareness training matches the tested behavior — Antivirus software applies a different mechanism.",
-            "misconceptionTested": "Applying \"Antivirus software\" without matching social engineering mitigation"
+            "explanation": "Antivirus may miss credential-harvest sites — training addresses the human vector.",
+            "misconceptionTested": "Relying on AV for social engineering",
+            "whatItDoes": "Antivirus software points to a related idea, but not the specific behavior or value required for social engineering mitigation.",
+            "whyWrongHere": "For \"social engineering mitigation\", User security awareness training satisfies what this question tests — Antivirus software does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Encryption describes a mechanism that could sound plausible for social engineering mitigation. Given social engineering mitigation, User security awareness training matches the tested behavior — Encryption applies a different mechanism.",
-            "whatItDoes": "Encryption describes a mechanism that could sound plausible for social engineering mitigation.",
-            "whyWrongHere": "Given social engineering mitigation, User security awareness training matches the tested behavior — Encryption applies a different mechanism.",
-            "misconceptionTested": "Applying \"Encryption\" without matching social engineering mitigation"
+            "explanation": "Encryption protects data in transit — it does not teach users to spot fraudulent email.",
+            "misconceptionTested": "Encryption as phishing primary defense",
+            "whatItDoes": "Encryption points to a related idea, but not the specific behavior or value required for social engineering mitigation.",
+            "whyWrongHere": "For \"social engineering mitigation\", User security awareness training satisfies what this question tests — Encryption does not."
           }
         ],
-        "examTip": "On the exam: A DDoS attack violates AVAILABILITY, not confidentiality or integrity — Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services"
+        "examTip": "Social engineering → train users first."
       }
     },
     {
@@ -508,32 +508,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The perimeter is the network edge outside the corporate firewall — the untrusted external boundary facing the Internet."
+          "explanation": "The perimeter is the outer security boundary — where external traffic meets the corporate network."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "DMZ is a screened subnet between internal and external networks — perimeter describes the broader outside edge.",
-            "misconceptionTested": "Equating DMZ subnet with entire outside perimeter",
-            "whatItDoes": "DMZ describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Perimeter matches the tested behavior — DMZ applies a different mechanism."
+            "explanation": "DMZ is a zone inside the perimeter for semi-trusted servers — not the outside edge itself.",
+            "misconceptionTested": "DMZ = outside firewall",
+            "whatItDoes": "DMZ points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", Perimeter satisfies what this question tests — DMZ does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Internal networks sit behind the firewall — perimeter is outside the protected corporate boundary.",
-            "misconceptionTested": "Labeling internal network as outside perimeter",
-            "whatItDoes": "Internal describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Perimeter matches the tested behavior — Internal applies a different mechanism."
+            "explanation": "Internal is trusted LAN inside the firewall.",
+            "misconceptionTested": "Internal as outside",
+            "whatItDoes": "Internal points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", Perimeter satisfies what this question tests — Internal does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Trusted network refers to protected inside zones — perimeter is the untrusted outside of the firewall.",
-            "misconceptionTested": "Confusing trusted zone with external perimeter",
-            "whatItDoes": "Trusted describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Perimeter matches the tested behavior — Trusted applies a different mechanism."
+            "explanation": "Trusted describes high-trust segments — the stem asks for the outside boundary.",
+            "misconceptionTested": "Trusted zone for Internet edge",
+            "whatItDoes": "Trusted points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", Perimeter satisfies what this question tests — Trusted does not."
           }
         ],
-        "examTip": "Perimeter = untrusted outside edge; DMZ = semi-trusted zone between inside and outside."
+        "examTip": "Outside firewall → perimeter. Public servers → DMZ inside it."
       }
     },
     {
@@ -560,32 +560,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "A DMZ (demilitarized zone) hosts Internet-facing servers yet sits behind firewall policy — accessible but segmented from the internal LAN."
+          "explanation": "DMZ hosts public services (web/DNS) behind a firewall — more exposed than internal, more protected than open Internet."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Perimeter describes the external boundary broadly — DMZ is the specific screened subnet for public-facing services.",
-            "misconceptionTested": "Using perimeter label for DMZ screened subnet",
-            "whatItDoes": "Perimeter describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, DMZ matches the tested behavior — Perimeter applies a different mechanism."
+            "explanation": "Perimeter is the boundary concept — the named zone for semi-trusted servers is DMZ.",
+            "misconceptionTested": "Perimeter label vs DMZ zone",
+            "whatItDoes": "Perimeter points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", DMZ satisfies what this question tests — Perimeter does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Internal networks are not Internet-accessible by design — DMZ is deliberately reachable from outside with controls.",
-            "misconceptionTested": "Calling protected internal LAN a DMZ",
-            "whatItDoes": "Internal describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, DMZ matches the tested behavior — Internal applies a different mechanism."
+            "explanation": "Internal is trusted LAN — DMZ is intentionally reachable from outside.",
+            "misconceptionTested": "Internal zone for public servers",
+            "whatItDoes": "Internal points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", DMZ satisfies what this question tests — Internal does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Trusted network is the protected inside — DMZ is less trusted than internal but more exposed than the core LAN.",
-            "misconceptionTested": "Equating trusted internal with DMZ",
-            "whatItDoes": "Trusted describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, DMZ matches the tested behavior — Trusted applies a different mechanism."
+            "explanation": "Trusted describes high-trust segments — DMZ is lower trust than internal.",
+            "misconceptionTested": "Trusted for Internet-facing subnet",
+            "whatItDoes": "Trusted points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", DMZ satisfies what this question tests — Trusted does not."
           }
         ],
-        "examTip": "DMZ = Internet-reachable but firewall-screened servers (web, mail, DNS)."
+        "examTip": "Public servers behind firewall → DMZ (semi-trusted)."
       }
     },
     {
@@ -619,22 +619,22 @@
             "choiceIndex": 0,
             "explanation": "Honeypots decoy attackers for analysis — they do not inline-prevent intrusions across the production network.",
             "misconceptionTested": "Confusing honeypot decoy with inline prevention",
-            "whatItDoes": "Honey pots describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — Honey pots applies a different mechanism."
+            "whatItDoes": "Honey pots points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", IPS satisfies what this question tests — Honey pots does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "IDS detects and alerts but does not block inline — IPS adds active prevention on the traffic path.",
             "misconceptionTested": "Selecting detect-only IDS when prevention is required",
-            "whatItDoes": "IDS describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — IDS applies a different mechanism."
+            "whatItDoes": "IDS points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", IPS satisfies what this question tests — IDS does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "HIDS monitors a single host — the question asks about network-level intrusion prevention.",
             "misconceptionTested": "Choosing host-based detection for network prevention question",
-            "whatItDoes": "HIDS describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — HIDS applies a different mechanism."
+            "whatItDoes": "HIDS points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", IPS satisfies what this question tests — HIDS does not."
           }
         ],
         "examTip": "IDS = detect/alert. IPS = detect + block inline."
@@ -670,22 +670,22 @@
             "choiceIndex": 1,
             "explanation": "The Internet is untrusted external space — trusted network is inside the security perimeter.",
             "misconceptionTested": "Calling the Internet a trusted network",
-            "whatItDoes": "The Internet describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Internal network matches the tested behavior — The Internet applies a different mechanism."
+            "whatItDoes": "The Internet points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", Internal network satisfies what this question tests — The Internet does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "DMZ is semi-trusted for public services — trusted network is the private internal zone with stricter access.",
             "misconceptionTested": "Labeling DMZ as fully trusted internal",
-            "whatItDoes": "The DMZ describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Internal network matches the tested behavior — The DMZ applies a different mechanism."
+            "whatItDoes": "The DMZ points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", Internal network satisfies what this question tests — The DMZ does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "SSL encrypts sessions — trust zone naming is about network segmentation, not transport encryption alone.",
             "misconceptionTested": "Defining trusted network by SSL presence",
-            "whatItDoes": "A network with SSL describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Internal network matches the tested behavior — A network with SSL applies a different mechanism."
+            "whatItDoes": "A network with SSL points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", Internal network satisfies what this question tests — A network with SSL does not."
           }
         ],
         "examTip": "Firewall zones: trusted = internal LAN; DMZ = semi-trusted; outside = Internet."
@@ -722,22 +722,22 @@
             "choiceIndex": 0,
             "explanation": "Single-source DoS can overwhelm a service — DDoS specifically involves multiple distributed attack sources.",
             "misconceptionTested": "Selecting single-source DoS for distributed attack stem",
-            "whatItDoes": "Denial of service describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Distributed denial of service matches the tested behavior — Denial of service applies a different mechanism."
+            "whatItDoes": "Denial of service points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", Distributed denial of service satisfies what this question tests — Denial of service does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "IP spoofing falsifies source addresses — it may aid attacks but does not by itself describe multi-source traffic floods.",
             "misconceptionTested": "Equating spoofing with distributed flood attack",
             "whatItDoes": "IP address spoofing shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given security concepts, Distributed denial of service matches the tested behavior — IP address spoofing applies a different mechanism."
+            "whyWrongHere": "For \"security concepts\", Distributed denial of service satisfies what this question tests — IP address spoofing does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Session hijacking takes over an established session — DDoS is volumetric flooding from many hosts.",
             "misconceptionTested": "Confusing session hijack with DDoS flood",
-            "whatItDoes": "Session hijacking describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Distributed denial of service matches the tested behavior — Session hijacking applies a different mechanism."
+            "whatItDoes": "Session hijacking points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", Distributed denial of service satisfies what this question tests — Session hijacking does not."
           }
         ],
         "examTip": "DDoS = many sources; DoS = one source — both aim to exhaust availability."
@@ -774,22 +774,22 @@
             "choiceIndex": 0,
             "explanation": "Honeypots lure attackers into decoy systems — they do not broadly detect intrusions across production traffic like an IDS.",
             "misconceptionTested": "Expecting honeypots to serve as network IDS",
-            "whatItDoes": "Honey pots describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IDS matches the tested behavior — Honey pots applies a different mechanism."
+            "whatItDoes": "Honey pots points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", IDS satisfies what this question tests — Honey pots does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "IPS detects and can block inline — the stem asks for detection; IDS is the classic detect-and-alert role.",
             "misconceptionTested": "Choosing IPS when only detection is asked",
-            "whatItDoes": "IPS describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IDS matches the tested behavior — IPS applies a different mechanism."
+            "whatItDoes": "IPS points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", IDS satisfies what this question tests — IPS does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "HIDS is host-based IDS on endpoints — the question targets network intrusion detection (IDS generically).",
             "misconceptionTested": "Narrowing to host IDS when network IDS fits",
-            "whatItDoes": "HIDS describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IDS matches the tested behavior — HIDS applies a different mechanism."
+            "whatItDoes": "HIDS points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", IDS satisfies what this question tests — HIDS does not."
           }
         ],
         "examTip": "IDS = detect + alert; IPS = detect + inline prevent."
@@ -825,22 +825,22 @@
             "choiceIndex": 0,
             "explanation": "HIDS on endpoints does not stop perimeter ping sweeps — block ICMP at the edge to hide live hosts from sweep tools.",
             "misconceptionTested": "Relying on host IDS to stop ping sweeps",
-            "whatItDoes": "Deploying host intrusion detection systems describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Deploying host intrusion detection systems applies a different mechanism."
+            "whatItDoes": "Deploying host intrusion detection systems points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", Blocking ICMP echo requests and echo replies at the perimeter satisfies what this question tests — Deploying host intrusion detection systems does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "Network IDS may detect sweeps after they occur — preventing echo replies at the firewall stops the scan technique.",
             "misconceptionTested": "Expecting NIDS alone to prevent ping sweeps",
-            "whatItDoes": "Deploying network intrusion detection systems describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Deploying network intrusion detection systems applies a different mechanism."
+            "whatItDoes": "Deploying network intrusion detection systems points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", Blocking ICMP echo requests and echo replies at the perimeter satisfies what this question tests — Deploying network intrusion detection systems does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "RFC 1918 blocking filters private ranges — ping sweeps use ICMP echo to discover responsive hosts, not RFC 1918 rules.",
             "misconceptionTested": "Blocking RFC 1918 as ping sweep countermeasure",
-            "whatItDoes": "Blocking RFC 1918 addresses at the perimeter describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Blocking ICMP echo requests and echo replies at the perimeter matches the tested behavior — Blocking RFC 1918 addresses at the perimeter applies a different mechanism."
+            "whatItDoes": "Blocking RFC 1918 addresses at the perimeter points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", Blocking ICMP echo requests and echo replies at the perimeter satisfies what this question tests — Blocking RFC 1918 addresses at the perimeter does not."
           }
         ],
         "examTip": "Stop ping sweeps at the edge → deny ICMP echo (type 8/0) on the perimeter."
@@ -878,22 +878,22 @@
             "choiceIndex": 0,
             "explanation": "Honeypots divert attackers to decoys — they do not inline-mitigate volumetric DoS against production services.",
             "misconceptionTested": "Using honeypots for DoS mitigation",
-            "whatItDoes": "Honey pots describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — Honey pots applies a different mechanism."
+            "whatItDoes": "Honey pots points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", IPS satisfies what this question tests — Honey pots does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "IDS detects and alerts but typically does not block — IPS provides inline prevention against DoS traffic.",
             "misconceptionTested": "Expecting IDS to mitigate DoS inline",
-            "whatItDoes": "IDS describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — IDS applies a different mechanism."
+            "whatItDoes": "IDS points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", IPS satisfies what this question tests — IDS does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "HIDS protects individual hosts — network IPS at the perimeter is positioned to drop flood traffic before it hits servers.",
             "misconceptionTested": "Choosing host IDS for network DoS mitigation",
-            "whatItDoes": "HIDS describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IPS matches the tested behavior — HIDS applies a different mechanism."
+            "whatItDoes": "HIDS points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", IPS satisfies what this question tests — HIDS does not."
           }
         ],
         "examTip": "Mitigate floods inline → IPS (or dedicated anti-DDoS) at the perimeter."
@@ -930,22 +930,22 @@
             "choiceIndex": 0,
             "explanation": "DoS floods exhaust resources — spoofing falsifies identity rather than primarily overwhelming bandwidth.",
             "misconceptionTested": "Selecting DoS for identity impersonation attack",
-            "whatItDoes": "Denial of service describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IP address spoofing matches the tested behavior — Denial of service applies a different mechanism."
+            "whatItDoes": "Denial of service points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", IP address spoofing satisfies what this question tests — Denial of service does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "DDoS uses many sources to flood a target — spoofing is about false source identity, not distributed volume alone.",
             "misconceptionTested": "Confusing DDoS flood with address spoofing",
-            "whatItDoes": "Distributed denial of service describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IP address spoofing matches the tested behavior — Distributed denial of service applies a different mechanism."
+            "whatItDoes": "Distributed denial of service points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", IP address spoofing satisfies what this question tests — Distributed denial of service does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Session hijacking steals an established TCP session — spoofing forges source IPs in new packets.",
             "misconceptionTested": "Equating session hijack with IP spoofing",
-            "whatItDoes": "Session hijacking describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, IP address spoofing matches the tested behavior — Session hijacking applies a different mechanism."
+            "whatItDoes": "Session hijacking points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", IP address spoofing satisfies what this question tests — Session hijacking does not."
           }
         ],
         "examTip": "Spoofing = fake source identity; hijacking = take over an existing session."
@@ -975,35 +975,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"SSL\"."
+          "explanation": "SSL/TLS provides integrity checking (and encryption) so data in transit cannot be tampered with undetected."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Access control lists (ACLs) reflects a common trap: ACLs encrypt or deeply inspect traffic. ACLs filter by header fields (IP/protocol/port); they are not encryption or stateful firewalls.",
-            "whatItDoes": "Access control lists (ACLs) describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, SSL matches the tested behavior — Access control lists (ACLs) applies a different mechanism.",
-            "misconceptionTested": "ACLs encrypt or deeply inspect traffic",
-            "needsExplanationReview": true
+            "explanation": "ACLs filter traffic — they do not cryptographically prove integrity of payload contents in transit.",
+            "misconceptionTested": "ACLs as tamper prevention",
+            "whatItDoes": "Access control lists (ACLs) points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", SSL satisfies what this question tests — Access control lists (ACLs) does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Spoofing mitigation describes a mechanism that could sound plausible for security concepts. Given security concepts, SSL matches the tested behavior — Spoofing mitigation applies a different mechanism.",
-            "whatItDoes": "Spoofing mitigation describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, SSL matches the tested behavior — Spoofing mitigation applies a different mechanism.",
-            "misconceptionTested": "Applying \"Spoofing mitigation\" without matching security concepts",
-            "needsExplanationReview": true
+            "explanation": "Spoofing mitigation addresses identity forgery — SSL specifically protects against tampering via hashes/MACs.",
+            "misconceptionTested": "Spoofing mitigation as integrity control",
+            "whatItDoes": "Spoofing mitigation points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", SSL satisfies what this question tests — Spoofing mitigation does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Encryption of the data describes a mechanism that could sound plausible for security concepts. Given security concepts, SSL matches the tested behavior — Encryption of the data applies a different mechanism.",
-            "whatItDoes": "Encryption of the data describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, SSL matches the tested behavior — Encryption of the data applies a different mechanism.",
-            "misconceptionTested": "Applying \"Encryption of the data\" without matching security concepts",
-            "needsExplanationReview": true
+            "explanation": "Encryption alone is broad — this stem's keyed answer is SSL as the protocol combining encryption + integrity.",
+            "misconceptionTested": "Generic encryption label over SSL",
+            "whatItDoes": "Encryption of the data points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", SSL satisfies what this question tests — Encryption of the data does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "Tamper-proof web traffic → SSL/TLS (integrity + confidentiality)."
       }
     },
     {
@@ -1030,35 +1027,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Man in the middle attack\"."
+          "explanation": "A rogue AP relaying traffic between victims and the real network is a man-in-the-middle (MitM) attack — the attacker sits in the path."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Smurf attack describes a mechanism that could sound plausible for security concepts. Given security concepts, Man in the middle attack matches the tested behavior — Smurf attack applies a different mechanism.",
-            "whatItDoes": "Smurf attack describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Man in the middle attack matches the tested behavior — Smurf attack applies a different mechanism.",
-            "misconceptionTested": "Applying \"Smurf attack\" without matching security concepts",
-            "needsExplanationReview": true
+            "explanation": "Smurf attacks amplify ICMP to victims — not rogue AP traffic relay.",
+            "misconceptionTested": "Smurf as rogue AP attack",
+            "whatItDoes": "Smurf attack points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", Man in the middle attack satisfies what this question tests — Smurf attack does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Compromised key attack describes a mechanism that could sound plausible for security concepts. Given security concepts, Man in the middle attack matches the tested behavior — Compromised key attack applies a different mechanism.",
-            "whatItDoes": "Compromised key attack describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Man in the middle attack matches the tested behavior — Compromised key attack applies a different mechanism.",
-            "misconceptionTested": "Applying \"Compromised key attack\" without matching security concepts",
-            "needsExplanationReview": true
+            "explanation": "Compromised key attacks target encryption keys — this stem describes traffic interception/relay.",
+            "misconceptionTested": "Compromised key for rogue AP relay",
+            "whatItDoes": "Compromised key attack points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", Man in the middle attack satisfies what this question tests — Compromised key attack does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Sniffer attack describes a mechanism that could sound plausible for security concepts. Given security concepts, Man in the middle attack matches the tested behavior — Sniffer attack applies a different mechanism.",
-            "whatItDoes": "Sniffer attack describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, Man in the middle attack matches the tested behavior — Sniffer attack applies a different mechanism.",
-            "misconceptionTested": "Applying \"Sniffer attack\" without matching security concepts",
-            "needsExplanationReview": true
+            "explanation": "Sniffing is passive capture — relaying to the corporate SSID is active MitM.",
+            "misconceptionTested": "Passive sniffing as relay attack",
+            "whatItDoes": "Sniffer attack points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", Man in the middle attack satisfies what this question tests — Sniffer attack does not."
           }
         ],
-        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
+        "examTip": "Rogue AP relaying clients → MitM; passive capture alone → sniffing."
       }
     },
     {
@@ -1093,22 +1087,22 @@
             "choiceIndex": 1,
             "explanation": "IDS detects suspicious activity — it does not filter spoofed source IPs at the perimeter like an ACL can.",
             "misconceptionTested": "Using IDS where ingress ACL filtering is needed",
-            "whatItDoes": "Intrusion detection systems describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, ACLs matches the tested behavior — Intrusion detection systems applies a different mechanism."
+            "whatItDoes": "Intrusion detection systems points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", ACLs satisfies what this question tests — Intrusion detection systems does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "SSL/TLS encrypts application traffic — it does not validate or block spoofed IP source addresses at the edge.",
             "misconceptionTested": "Expecting SSL to prevent IP spoofing",
-            "whatItDoes": "SSL describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, ACLs matches the tested behavior — SSL applies a different mechanism."
+            "whatItDoes": "SSL points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", ACLs satisfies what this question tests — SSL does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "HIDS protects individual hosts — spoofing at the perimeter requires ingress filtering on the border router/firewall.",
             "misconceptionTested": "Relying on host IDS for perimeter anti-spoofing",
-            "whatItDoes": "Host intrusion detection systems describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, ACLs matches the tested behavior — Host intrusion detection systems applies a different mechanism."
+            "whatItDoes": "Host intrusion detection systems points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", ACLs satisfies what this question tests — Host intrusion detection systems does not."
           }
         ],
         "examTip": "Block spoofed internal sources at the edge with ingress ACLs (deny impossible source IPs)."
@@ -1137,35 +1131,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"All of the above\"."
+          "explanation": "DHCP, DNS, and wireless are all classic man-in-the-middle vectors — rogue servers or APs intercept or redirect traffic."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "DHCP describes a mechanism that could sound plausible for security concepts. Given security concepts, All of the above matches the tested behavior — DHCP applies a different mechanism.",
-            "whatItDoes": "DHCP describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, All of the above matches the tested behavior — DHCP applies a different mechanism.",
-            "misconceptionTested": "Applying \"DHCP\" without matching security concepts",
-            "needsExplanationReview": true
+            "explanation": "DHCP alone is one MITM path (rogue server) — but DNS and wireless are equally valid.",
+            "misconceptionTested": "DHCP as sole MITM vector",
+            "whatItDoes": "DHCP points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", All of the above satisfies what this question tests — DHCP does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "DNS describes a mechanism that could sound plausible for security concepts. Given security concepts, All of the above matches the tested behavior — DNS applies a different mechanism.",
-            "whatItDoes": "DNS describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, All of the above matches the tested behavior — DNS applies a different mechanism.",
-            "misconceptionTested": "Applying \"DNS\" without matching security concepts",
-            "needsExplanationReview": true
+            "explanation": "DNS poisoning/spoofing is a MITM vector — wireless and DHCP attacks count too.",
+            "misconceptionTested": "DNS as sole MITM vector",
+            "whatItDoes": "DNS points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", All of the above satisfies what this question tests — DNS does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Wireless describes a mechanism that could sound plausible for security concepts. Given security concepts, All of the above matches the tested behavior — Wireless applies a different mechanism.",
-            "whatItDoes": "Wireless describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, All of the above matches the tested behavior — Wireless applies a different mechanism.",
-            "misconceptionTested": "Applying \"Wireless\" without matching security concepts",
-            "needsExplanationReview": true
+            "explanation": "Evil-twin and rogue AP attacks are MITM — DHCP and DNS hijacks also qualify.",
+            "misconceptionTested": "Wireless as sole MITM vector",
+            "whatItDoes": "Wireless points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", All of the above satisfies what this question tests — Wireless does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
+        "examTip": "MITM vectors: rogue DHCP/DNS, ARP spoofing, evil-twin WLAN — think \"who can sit between client and real server?\""
       }
     },
     {
@@ -1190,35 +1181,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"The native VLAN is the default on all switch ports.\"."
+          "explanation": "The native VLAN is the default on trunk ports — attackers target VLAN 1 if left unchanged; move it to an unused VLAN."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The native VLAN contains frames from all VLANs. describes a mechanism that could sound plausible for security concepts. Given security concepts, The native VLAN is the default on all switch ports. matches the tested behavior — The native VLAN contains frames from all VLANs. applies a different mechanism.",
-            "whatItDoes": "The native VLAN contains frames from all VLANs. describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, The native VLAN is the default on all switch ports. matches the tested behavior — The native VLAN contains frames from all VLANs. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The native VLAN contains frames from\" without matching security concepts",
-            "needsExplanationReview": true
+            "explanation": "Untagged frames carry one VLAN ID (native) — they do not contain frames from all VLANs.",
+            "misconceptionTested": "Native VLAN carries all VLAN traffic",
+            "whatItDoes": "The native VLAN contains frames from all VLANs. points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", The native VLAN is the default on all switch ports. satisfies what this question tests — The native VLAN contains frames from all VLANs. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The native VLAN is configured on all switches for logging. describes a mechanism that could sound plausible for security concepts. Given security concepts, The native VLAN is the default on all switch ports. matches the tested behavior — The native VLAN is configured on all switches for logging. applies a different mechanism.",
-            "whatItDoes": "The native VLAN is configured on all switches for logging. describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, The native VLAN is the default on all switch ports. matches the tested behavior — The native VLAN is configured on all switches for logging. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The native VLAN is configured on all\" without matching security concepts",
-            "needsExplanationReview": true
+            "explanation": "Native VLAN is not a logging feature — it's the default untagged VLAN on trunks.",
+            "misconceptionTested": "Native VLAN for switch logging",
+            "whatItDoes": "The native VLAN is configured on all switches for logging. points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", The native VLAN is the default on all switch ports. satisfies what this question tests — The native VLAN is configured on all switches for logging. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The native VLAN provides no encryption. describes a mechanism that could sound plausible for security concepts. Given security concepts, The native VLAN is the default on all switch ports. matches the tested behavior — The native VLAN provides no encryption. applies a different mechanism.",
-            "whatItDoes": "The native VLAN provides no encryption. describes a mechanism that could sound plausible for security concepts.",
-            "whyWrongHere": "Given security concepts, The native VLAN is the default on all switch ports. matches the tested behavior — The native VLAN provides no encryption. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The native VLAN provides no encrypti\" without matching security concepts",
-            "needsExplanationReview": true
+            "explanation": "Native VLAN traffic is unencrypted on the wire — but the exam reason is it's the default on all ports.",
+            "misconceptionTested": "Native VLAN encryption as primary risk",
+            "whatItDoes": "The native VLAN provides no encryption. points to a related idea, but not the specific behavior or value required for security concepts.",
+            "whyWrongHere": "For \"security concepts\", The native VLAN is the default on all switch ports. satisfies what this question tests — The native VLAN provides no encryption. does not."
           }
         ],
-        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
+        "examTip": "Change native VLAN: switchport trunk native vlan <unused-id> on both ends — never leave VLAN 1 as native on trunks."
       }
     }
   ]

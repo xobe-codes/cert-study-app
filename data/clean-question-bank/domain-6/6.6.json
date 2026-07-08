@@ -25,35 +25,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Configuration management\"."
+          "explanation": "Ansible, Chef, and Puppet are configuration management tools — declarative/automated device config at scale."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Network management station describes a mechanism that could sound plausible for configuration management. Given configuration management, Configuration management matches the tested behavior — Network management station applies a different mechanism.",
-            "whatItDoes": "Network management station describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Configuration management matches the tested behavior — Network management station applies a different mechanism.",
-            "misconceptionTested": "Applying \"Network management station\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "An NMS monitors/polls — config management tools push desired state to devices.",
+            "misconceptionTested": "NMS role for Ansible/Chef/Puppet",
+            "whatItDoes": "Network management station points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Configuration management satisfies what this question tests — Network management station does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Software-defined networking describes a mechanism that could sound plausible for configuration management. Given configuration management, Configuration management matches the tested behavior — Software-defined networking applies a different mechanism.",
-            "whatItDoes": "Software-defined networking describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Configuration management matches the tested behavior — Software-defined networking applies a different mechanism.",
-            "misconceptionTested": "Applying \"Software-defined networking\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "SDN separates control/data planes — these tools automate configuration, not SDN architecture.",
+            "misconceptionTested": "SDN as config management function",
+            "whatItDoes": "Software-defined networking points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Configuration management satisfies what this question tests — Software-defined networking does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Centralized logging describes a mechanism that could sound plausible for configuration management. Given configuration management, Configuration management matches the tested behavior — Centralized logging applies a different mechanism.",
-            "whatItDoes": "Centralized logging describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Configuration management matches the tested behavior — Centralized logging applies a different mechanism.",
-            "misconceptionTested": "Applying \"Centralized logging\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Centralized logging is syslog/SIEM — Ansible/Chef/Puppet manage configuration state.",
+            "misconceptionTested": "Logging as config management",
+            "whatItDoes": "Centralized logging points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Configuration management satisfies what this question tests — Centralized logging does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Config management trio: Ansible (agentless) | Chef/Puppet (agent-based) — all enforce desired config."
       }
     },
     {
@@ -81,35 +78,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Ansible\"."
+          "explanation": "Ansible playbooks and inventory files are written in human-readable YAML."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Cisco DNA Center describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Cisco DNA Center applies a different mechanism.",
-            "whatItDoes": "Cisco DNA Center describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Cisco DNA Center applies a different mechanism.",
-            "misconceptionTested": "Applying \"Cisco DNA Center\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "DNA Center is a controller platform — it is not the YAML-based config-mgmt tool in the stem.",
+            "misconceptionTested": "DNA Center as YAML config tool",
+            "whatItDoes": "Cisco DNA Center points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Ansible satisfies what this question tests — Cisco DNA Center does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Chef describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Chef applies a different mechanism.",
-            "whatItDoes": "Chef describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Chef applies a different mechanism.",
-            "misconceptionTested": "Applying \"Chef\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Chef recipes use Ruby — YAML playbooks are Ansible's format.",
+            "misconceptionTested": "Chef as YAML-based tool",
+            "whatItDoes": "Chef points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Ansible satisfies what this question tests — Chef does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Puppet describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Puppet applies a different mechanism.",
-            "whatItDoes": "Puppet describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Puppet applies a different mechanism.",
-            "misconceptionTested": "Applying \"Puppet\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Puppet manifests use a Puppet DSL — Ansible stores config in YAML.",
+            "misconceptionTested": "Puppet as YAML config store",
+            "whatItDoes": "Puppet points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Ansible satisfies what this question tests — Puppet does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
+        "examTip": "Config formats: Ansible = YAML | Chef = Ruby recipes | Puppet = manifest DSL."
       }
     },
     {
@@ -136,35 +130,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Inventory\"."
+          "explanation": "The inventory file lists managed hosts, groups, and connection variables — Ansible needs it to know where to connect."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Playbook describes a mechanism that could sound plausible for configuration management. Given configuration management, Inventory matches the tested behavior — Playbook applies a different mechanism.",
-            "whatItDoes": "Playbook describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Inventory matches the tested behavior — Playbook applies a different mechanism.",
-            "misconceptionTested": "Applying \"Playbook\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "A playbook defines tasks to run — connection targets come from the inventory.",
+            "misconceptionTested": "Playbook as connection definition",
+            "whatItDoes": "Playbook points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Inventory satisfies what this question tests — Playbook does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Settings describes a mechanism that could sound plausible for configuration management. Given configuration management, Inventory matches the tested behavior — Settings applies a different mechanism.",
-            "whatItDoes": "Settings describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Inventory matches the tested behavior — Settings applies a different mechanism.",
-            "misconceptionTested": "Applying \"Settings\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Settings (ansible.cfg) tune defaults — host connection info lives in inventory.",
+            "misconceptionTested": "Settings file as host connection list",
+            "whatItDoes": "Settings points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Inventory satisfies what this question tests — Settings does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Modules describes a mechanism that could sound plausible for configuration management. Given configuration management, Inventory matches the tested behavior — Modules applies a different mechanism.",
-            "whatItDoes": "Modules describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Inventory matches the tested behavior — Modules applies a different mechanism.",
-            "misconceptionTested": "Applying \"Modules\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Modules perform actions — the inventory supplies the host list and connection params.",
+            "misconceptionTested": "Modules as connection inventory",
+            "whatItDoes": "Modules points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Inventory satisfies what this question tests — Modules does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Ansible flow: inventory (hosts) → playbook (tasks) → modules (actions)."
       }
     },
     {
@@ -191,35 +182,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Ansible\"."
+          "explanation": "Ansible is agentless — pushes playbooks over SSH/WinRM without a persistent agent on Linux targets."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Puppet describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Puppet applies a different mechanism.",
-            "whatItDoes": "Puppet describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Puppet applies a different mechanism.",
-            "misconceptionTested": "Applying \"Puppet\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Puppet requires a Puppet agent on managed nodes — not agentless.",
+            "misconceptionTested": "Puppet as agentless tool",
+            "whatItDoes": "Puppet points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Ansible satisfies what this question tests — Puppet does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Chef describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Chef applies a different mechanism.",
-            "whatItDoes": "Chef describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Chef applies a different mechanism.",
-            "misconceptionTested": "Applying \"Chef\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Chef uses a Chef client agent on each node — Ansible does not.",
+            "misconceptionTested": "Chef as agentless tool",
+            "whatItDoes": "Chef points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Ansible satisfies what this question tests — Chef does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Cisco DNA Center describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Cisco DNA Center applies a different mechanism.",
-            "whatItDoes": "Cisco DNA Center describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Cisco DNA Center applies a different mechanism.",
-            "misconceptionTested": "Applying \"Cisco DNA Center\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "DNA Center is a management platform — the agentless config tool here is Ansible.",
+            "misconceptionTested": "DNA Center as agentless config answer",
+            "whatItDoes": "Cisco DNA Center points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Ansible satisfies what this question tests — Cisco DNA Center does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
+        "examTip": "Agentless → Ansible. Agent-based → Chef/Puppet clients on nodes."
       }
     },
     {
@@ -245,35 +233,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Manifest\"."
+          "explanation": "A Puppet manifest (.pp) declares the desired configuration for managed hosts."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Agent describes a mechanism that could sound plausible for configuration management. Given configuration management, Manifest matches the tested behavior — Agent applies a different mechanism.",
-            "whatItDoes": "Agent describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Manifest matches the tested behavior — Agent applies a different mechanism.",
-            "misconceptionTested": "Applying \"Agent\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "The agent enforces policy — the manifest holds the configuration declarations.",
+            "misconceptionTested": "Puppet agent as config container",
+            "whatItDoes": "Agent points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Manifest satisfies what this question tests — Agent does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Class describes a mechanism that could sound plausible for configuration management. Given configuration management, Manifest matches the tested behavior — Class applies a different mechanism.",
-            "whatItDoes": "Class describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Manifest matches the tested behavior — Class applies a different mechanism.",
-            "misconceptionTested": "Applying \"Class\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "A class groups resources inside a manifest — the top-level config file type is manifest.",
+            "misconceptionTested": "Class as primary Puppet config file",
+            "whatItDoes": "Class points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Manifest satisfies what this question tests — Class does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Module describes a mechanism that could sound plausible for configuration management. Given configuration management, Manifest matches the tested behavior — Module applies a different mechanism.",
-            "whatItDoes": "Module describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Manifest matches the tested behavior — Module applies a different mechanism.",
-            "misconceptionTested": "Applying \"Module\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "A module bundles manifests/templates — individual host config is declared in manifests.",
+            "misconceptionTested": "Module as manifest equivalent",
+            "whatItDoes": "Module points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Manifest satisfies what this question tests — Module does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
+        "examTip": "Puppet: manifest = desired state | module = reusable bundle | agent = enforcer."
       }
     },
     {
@@ -301,35 +286,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Recipe\"."
+          "explanation": "A Chef recipe is the instruction set that configures a node — recipes live inside cookbooks."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Cookbook describes a mechanism that could sound plausible for configuration management. Given configuration management, Recipe matches the tested behavior — Cookbook applies a different mechanism.",
-            "whatItDoes": "Cookbook describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Recipe matches the tested behavior — Cookbook applies a different mechanism.",
-            "misconceptionTested": "Applying \"Cookbook\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "A cookbook contains recipes — the step-by-step instructions themselves are recipes.",
+            "misconceptionTested": "Cookbook as instruction set vs container",
+            "whatItDoes": "Cookbook points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Recipe satisfies what this question tests — Cookbook does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Crock Pot describes a mechanism that could sound plausible for configuration management. Given configuration management, Recipe matches the tested behavior — Crock Pot applies a different mechanism.",
-            "whatItDoes": "Crock Pot describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Recipe matches the tested behavior — Crock Pot applies a different mechanism.",
-            "misconceptionTested": "Applying \"Crock Pot\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Crock Pot is a distractor — Chef uses recipes for node configuration steps.",
+            "misconceptionTested": "Crock Pot as Chef component",
+            "whatItDoes": "Crock Pot points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Recipe satisfies what this question tests — Crock Pot does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Chef Node describes a mechanism that could sound plausible for configuration management. Given configuration management, Recipe matches the tested behavior — Chef Node applies a different mechanism.",
-            "whatItDoes": "Chef Node describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Recipe matches the tested behavior — Chef Node applies a different mechanism.",
-            "misconceptionTested": "Applying \"Chef Node\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "A Chef node is the managed device — configuration instructions are recipes.",
+            "misconceptionTested": "Chef node as instruction container",
+            "whatItDoes": "Chef Node points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Recipe satisfies what this question tests — Chef Node does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
+        "examTip": "Chef hierarchy: cookbook → recipes → applied by chef-client on nodes."
       }
     },
     {
@@ -355,35 +337,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Ohai\"."
+          "explanation": "Ohai collects node attributes (OS, network, hardware) and reports them to Chef Server for policy decisions."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Chef-Client describes a mechanism that could sound plausible for configuration management. Given configuration management, Ohai matches the tested behavior — Chef-Client applies a different mechanism.",
-            "whatItDoes": "Chef-Client describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Ohai matches the tested behavior — Chef-Client applies a different mechanism.",
-            "misconceptionTested": "Applying \"Chef-Client\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Chef-Client applies recipes — Ohai is the component that gathers and reports system facts.",
+            "misconceptionTested": "Chef-Client as fact collector",
+            "whatItDoes": "Chef-Client points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Ohai satisfies what this question tests — Chef-Client does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Chef Workstation describes a mechanism that could sound plausible for configuration management. Given configuration management, Ohai matches the tested behavior — Chef Workstation applies a different mechanism.",
-            "whatItDoes": "Chef Workstation describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Ohai matches the tested behavior — Chef Workstation applies a different mechanism.",
-            "misconceptionTested": "Applying \"Chef Workstation\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Chef Workstation is the admin/dev machine — Ohai runs on the node to collect state.",
+            "misconceptionTested": "Workstation as system state reporter",
+            "whatItDoes": "Chef Workstation points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Ohai satisfies what this question tests — Chef Workstation does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Knife describes a mechanism that could sound plausible for configuration management. Given configuration management, Ohai matches the tested behavior — Knife applies a different mechanism.",
-            "whatItDoes": "Knife describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Ohai matches the tested behavior — Knife applies a different mechanism.",
-            "misconceptionTested": "Applying \"Knife\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Knife is the CLI admin tool — Ohai performs automatic system discovery.",
+            "misconceptionTested": "Knife as state collection component",
+            "whatItDoes": "Knife points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Ohai satisfies what this question tests — Knife does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
+        "examTip": "Chef fact chain: Ohai (collect) → Chef Server (store) → recipes use node data."
       }
     },
     {
@@ -408,35 +387,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"ANSIBLE_CONFIG\"."
+          "explanation": "Ansible locates ansible.cfg via the ANSIBLE_CONFIG environment variable (or cwd / default paths)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "ANSIBLE_SETTINGS describes a mechanism that could sound plausible for configuration management. Given configuration management, ANSIBLE_CONFIG matches the tested behavior — ANSIBLE_SETTINGS applies a different mechanism.",
-            "whatItDoes": "ANSIBLE_SETTINGS describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, ANSIBLE_CONFIG matches the tested behavior — ANSIBLE_SETTINGS applies a different mechanism.",
-            "misconceptionTested": "Applying \"ANSIBLE_SETTINGS\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "ANSIBLE_SETTINGS is not the documented variable — use ANSIBLE_CONFIG.",
+            "misconceptionTested": "ANSIBLE_SETTINGS as config path variable",
+            "whatItDoes": "ANSIBLE_SETTINGS names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"configuration management\", ANSIBLE_CONFIG satisfies what this question tests — ANSIBLE_SETTINGS does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "ansible_connection describes a mechanism that could sound plausible for configuration management. Given configuration management, ANSIBLE_CONFIG matches the tested behavior — ansible_connection applies a different mechanism.",
-            "whatItDoes": "ansible_connection describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, ANSIBLE_CONFIG matches the tested behavior — ansible_connection applies a different mechanism.",
-            "misconceptionTested": "Applying \"ansible_connection\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "ansible_connection is an inventory/host variable for transport — not the settings file locator.",
+            "misconceptionTested": "Connection variable as ansible.cfg locator",
+            "whatItDoes": "ansible_connection names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"configuration management\", ANSIBLE_CONFIG satisfies what this question tests — ansible_connection does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "/etc/ansible/hosts describes a mechanism that could sound plausible for configuration management. Given configuration management, ANSIBLE_CONFIG matches the tested behavior — /etc/ansible/hosts applies a different mechanism.",
-            "whatItDoes": "/etc/ansible/hosts describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, ANSIBLE_CONFIG matches the tested behavior — /etc/ansible/hosts applies a different mechanism.",
-            "misconceptionTested": "Applying \"/etc/ansible/hosts\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "/etc/ansible/hosts is the default inventory path — settings file discovery uses ANSIBLE_CONFIG.",
+            "misconceptionTested": "Inventory path as settings file variable",
+            "whatItDoes": "/etc/ansible/hosts names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"configuration management\", ANSIBLE_CONFIG satisfies what this question tests — /etc/ansible/hosts does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Ansible config search: ANSIBLE_CONFIG env → ./ansible.cfg → ~/.ansible.cfg → /etc/ansible/ansible.cfg."
       }
     },
     {
@@ -461,35 +437,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"ansible-doc\"."
+          "explanation": "ansible-doc <module> prints module documentation, parameters, and examples — the built-in module help tool."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "man describes a mechanism that could sound plausible for configuration management. Given configuration management, ansible-doc matches the tested behavior — man applies a different mechanism.",
-            "whatItDoes": "man describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, ansible-doc matches the tested behavior — man applies a different mechanism.",
-            "misconceptionTested": "Applying \"man\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "man pages may exist on Linux but Ansible's native module reference is ansible-doc.",
+            "misconceptionTested": "man as Ansible module documentation",
+            "whatItDoes": "man points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", ansible-doc satisfies what this question tests — man does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "cat describes a mechanism that could sound plausible for configuration management. Given configuration management, ansible-doc matches the tested behavior — cat applies a different mechanism.",
-            "whatItDoes": "cat describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, ansible-doc matches the tested behavior — cat applies a different mechanism.",
-            "misconceptionTested": "Applying \"cat\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "cat displays file contents — it does not summarize Ansible module docs.",
+            "misconceptionTested": "cat as module documentation command",
+            "whatItDoes": "cat points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", ansible-doc satisfies what this question tests — cat does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "ad-hoc describes a mechanism that could sound plausible for configuration management. Given configuration management, ansible-doc matches the tested behavior — ad-hoc applies a different mechanism.",
-            "whatItDoes": "ad-hoc describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, ansible-doc matches the tested behavior — ad-hoc applies a different mechanism.",
-            "misconceptionTested": "Applying \"ad-hoc\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Ad-hoc runs one-off tasks — ansible-doc is the command to read module help.",
+            "misconceptionTested": "Ad-hoc command as module documentation",
+            "whatItDoes": "ad-hoc points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", ansible-doc satisfies what this question tests — ad-hoc does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Before using a module: ansible-doc -l (list) | ansible-doc <name> (details)."
       }
     },
     {
@@ -515,35 +488,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Ad-hoc interface\"."
+          "explanation": "Ansible ad-hoc commands run a single module against hosts without writing a playbook — quick tests and one-offs."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Knife interface describes a mechanism that could sound plausible for configuration management. Given configuration management, Ad-hoc interface matches the tested behavior — Knife interface applies a different mechanism.",
-            "whatItDoes": "Knife interface describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Ad-hoc interface matches the tested behavior — Knife interface applies a different mechanism.",
-            "misconceptionTested": "Applying \"Knife interface\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Knife is Chef's CLI — Ansible's no-playbook option is the ad-hoc interface.",
+            "misconceptionTested": "Knife as Ansible quick-test tool",
+            "whatItDoes": "Knife interface points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Ad-hoc interface satisfies what this question tests — Knife interface does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "ansible_playbook command describes a mechanism that could sound plausible for configuration management. Given configuration management, Ad-hoc interface matches the tested behavior — ansible_playbook command applies a different mechanism.",
-            "whatItDoes": "ansible_playbook command describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Ad-hoc interface matches the tested behavior — ansible_playbook command applies a different mechanism.",
-            "misconceptionTested": "Applying \"ansible_playbook command\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "ansible-playbook requires a playbook file — ad-hoc (ansible host -m module) skips that.",
+            "misconceptionTested": "Playbook command for no-playbook testing",
+            "whatItDoes": "ansible_playbook command names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"configuration management\", Ad-hoc interface satisfies what this question tests — ansible_playbook command does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Ansible Tower describes a mechanism that could sound plausible for configuration management. Given configuration management, Ad-hoc interface matches the tested behavior — Ansible Tower applies a different mechanism.",
-            "whatItDoes": "Ansible Tower describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Ad-hoc interface matches the tested behavior — Ansible Tower applies a different mechanism.",
-            "misconceptionTested": "Applying \"Ansible Tower\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Ansible Tower/AWX is the GUI/controller — ad-hoc testing uses the ansible CLI directly.",
+            "misconceptionTested": "Tower as ad-hoc command interface",
+            "whatItDoes": "Ansible Tower names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"configuration management\", Ad-hoc interface satisfies what this question tests — Ansible Tower does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Ad-hoc pattern: ansible <host> -m <module> -a '<args>' — no playbook required."
       }
     },
     {
@@ -568,35 +538,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Facts\"."
+          "explanation": "Puppet facts are auto-collected variables about the node (hostname, OS, IP) used in manifests."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Resource describes a mechanism that could sound plausible for configuration management. Given configuration management, Facts matches the tested behavior — Resource applies a different mechanism.",
-            "whatItDoes": "Resource describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Facts matches the tested behavior — Resource applies a different mechanism.",
-            "misconceptionTested": "Applying \"Resource\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "A resource declares a managed object (file, service) — auto node info is stored in facts.",
+            "misconceptionTested": "Resource as Puppet node variables",
+            "whatItDoes": "Resource points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Facts satisfies what this question tests — Resource does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Class describes a mechanism that could sound plausible for configuration management. Given configuration management, Facts matches the tested behavior — Class applies a different mechanism.",
-            "whatItDoes": "Class describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Facts matches the tested behavior — Class applies a different mechanism.",
-            "misconceptionTested": "Applying \"Class\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "A class groups resources — facts are the discovered node attributes.",
+            "misconceptionTested": "Class as Puppet fact store",
+            "whatItDoes": "Class points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Facts satisfies what this question tests — Class does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Module describes a mechanism that could sound plausible for configuration management. Given configuration management, Facts matches the tested behavior — Module applies a different mechanism.",
-            "whatItDoes": "Module describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Facts matches the tested behavior — Module applies a different mechanism.",
-            "misconceptionTested": "Applying \"Module\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "A module bundles manifests/templates — facts are per-node variables from the agent.",
+            "misconceptionTested": "Module as Puppet fact name",
+            "whatItDoes": "Module points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Facts satisfies what this question tests — Module does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
+        "examTip": "Puppet: facts = discovered node data | manifests = desired state declarations."
       }
     },
     {
@@ -623,35 +590,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Bookshelf\"."
+          "explanation": "Chef Server stores uploaded cookbooks on the Bookshelf — the internal cookbook repository service."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Chef Workstation describes a mechanism that could sound plausible for configuration management. Given configuration management, Bookshelf matches the tested behavior — Chef Workstation applies a different mechanism.",
-            "whatItDoes": "Chef Workstation describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Bookshelf matches the tested behavior — Chef Workstation applies a different mechanism.",
-            "misconceptionTested": "Applying \"Chef Workstation\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Chef Workstation is where you author cookbooks — upload targets the Server Bookshelf.",
+            "misconceptionTested": "Workstation as cookbook storage on server",
+            "whatItDoes": "Chef Workstation points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Bookshelf satisfies what this question tests — Chef Workstation does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Chef Node describes a mechanism that could sound plausible for configuration management. Given configuration management, Bookshelf matches the tested behavior — Chef Node applies a different mechanism.",
-            "whatItDoes": "Chef Node describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Bookshelf matches the tested behavior — Chef Node applies a different mechanism.",
-            "misconceptionTested": "Applying \"Chef Node\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "A Chef Node is a managed device — cookbooks live on the Server Bookshelf, not the node.",
+            "misconceptionTested": "Node as cookbook upload destination",
+            "whatItDoes": "Chef Node points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Bookshelf satisfies what this question tests — Chef Node does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Chef-Client describes a mechanism that could sound plausible for configuration management. Given configuration management, Bookshelf matches the tested behavior — Chef-Client applies a different mechanism.",
-            "whatItDoes": "Chef-Client describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Bookshelf matches the tested behavior — Chef-Client applies a different mechanism.",
-            "misconceptionTested": "Applying \"Chef-Client\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Chef-Client downloads and applies cookbooks — the Server Bookshelf stores them centrally.",
+            "misconceptionTested": "Client as cookbook repository",
+            "whatItDoes": "Chef-Client points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Bookshelf satisfies what this question tests — Chef-Client does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
+        "examTip": "Chef upload flow: Workstation knife cookbook upload → Server Bookshelf → Client pulls recipes."
       }
     },
     {
@@ -677,35 +641,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Ansible Tower\"."
+          "explanation": "Ansible Tower (now Ansible Automation Platform) adds central management, RBAC, and job scheduling — Red Hat supported."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Chef describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible Tower matches the tested behavior — Chef applies a different mechanism.",
-            "whatItDoes": "Chef describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Ansible Tower matches the tested behavior — Chef applies a different mechanism.",
-            "misconceptionTested": "Applying \"Chef\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Chef is config management — central RBAC GUI for Ansible is Tower/AWX.",
+            "misconceptionTested": "Chef as Red Hat RBAC controller",
+            "whatItDoes": "Chef points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Ansible Tower satisfies what this question tests — Chef does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Puppet describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible Tower matches the tested behavior — Puppet applies a different mechanism.",
-            "whatItDoes": "Puppet describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Ansible Tower matches the tested behavior — Puppet applies a different mechanism.",
-            "misconceptionTested": "Applying \"Puppet\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Puppet has its own console — the Red Hat Ansible controller with RBAC is Tower.",
+            "misconceptionTested": "Puppet as Ansible Tower equivalent",
+            "whatItDoes": "Puppet points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Ansible Tower satisfies what this question tests — Puppet does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Ansible describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible Tower matches the tested behavior — Ansible applies a different mechanism.",
-            "whatItDoes": "Ansible describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Ansible Tower matches the tested behavior — Ansible applies a different mechanism.",
-            "misconceptionTested": "Applying \"Ansible\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Plain Ansible is CLI/agentless — Tower adds the web UI, RBAC, and audit layer.",
+            "misconceptionTested": "Core Ansible as RBAC management platform",
+            "whatItDoes": "Ansible names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"configuration management\", Ansible Tower satisfies what this question tests — Ansible does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
+        "examTip": "Ansible stack: ansible (engine) + Tower/AWX (GUI, RBAC, scheduling)."
       }
     },
     {
@@ -732,35 +693,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Ansible\"."
+          "explanation": "Ansible is agentless and ships with many Cisco network modules — easy device config."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Puppet describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Puppet applies a different mechanism.",
-            "whatItDoes": "Puppet describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Puppet applies a different mechanism.",
-            "misconceptionTested": "Applying \"Puppet\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Puppet/Chef need agents — Ansible uses SSH/NETCONF.",
+            "misconceptionTested": "Puppet as easiest Cisco CM",
+            "whatItDoes": "Puppet points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Ansible satisfies what this question tests — Puppet does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Chef describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Chef applies a different mechanism.",
-            "whatItDoes": "Chef describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Chef applies a different mechanism.",
-            "misconceptionTested": "Applying \"Chef\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Python is a language — Ansible is the CM tool.",
+            "misconceptionTested": "Python as CM utility",
+            "whatItDoes": "Chef points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Ansible satisfies what this question tests — Chef does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Python describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Python applies a different mechanism.",
-            "whatItDoes": "Python describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Python applies a different mechanism.",
-            "misconceptionTested": "Applying \"Python\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Chef is viable but Ansible is the CCNA answer for Cisco ease.",
+            "misconceptionTested": "Chef as easiest setup",
+            "whatItDoes": "Python names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"configuration management\", Ansible satisfies what this question tests — Python does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -786,35 +744,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"CLI utility for the management of Chef\"."
+          "explanation": "Knife is Chef's CLI tool for managing cookbooks, nodes, and server interaction."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Storage of the Bookshelf describes a mechanism that could sound plausible for configuration management. Given configuration management, CLI utility for the management of Chef matches the tested behavior — Storage of the Bookshelf applies a different mechanism.",
-            "whatItDoes": "Storage of the Bookshelf describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, CLI utility for the management of Chef matches the tested behavior — Storage of the Bookshelf applies a different mechanism.",
-            "misconceptionTested": "Applying \"Storage of the Bookshelf\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Bookshelf stores cookbooks — Knife is the CLI.",
+            "misconceptionTested": "Knife as bookshelf storage",
+            "whatItDoes": "Storage of the Bookshelf points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", CLI utility for the management of Chef satisfies what this question tests — Storage of the Bookshelf does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Storage of the configuration of Chef describes a mechanism that could sound plausible for configuration management. Given configuration management, CLI utility for the management of Chef matches the tested behavior — Storage of the configuration of Chef applies a different mechanism.",
-            "whatItDoes": "Storage of the configuration of Chef describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, CLI utility for the management of Chef matches the tested behavior — Storage of the configuration of Chef applies a different mechanism.",
-            "misconceptionTested": "Applying \"Storage of the configuration of Chef\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Chef server stores config — Knife is the client CLI.",
+            "misconceptionTested": "Knife as server config store",
+            "whatItDoes": "Storage of the configuration of Chef points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", CLI utility for the management of Chef satisfies what this question tests — Storage of the configuration of Chef does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Client-side agent describes a mechanism that could sound plausible for configuration management. Given configuration management, CLI utility for the management of Chef matches the tested behavior — Client-side agent applies a different mechanism.",
-            "whatItDoes": "Client-side agent describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, CLI utility for the management of Chef matches the tested behavior — Client-side agent applies a different mechanism.",
-            "misconceptionTested": "Applying \"Client-side agent\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Chef agent is chef-client on nodes — Knife is admin CLI.",
+            "misconceptionTested": "Knife as node agent",
+            "whatItDoes": "Client-side agent points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", CLI utility for the management of Chef satisfies what this question tests — Client-side agent does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -840,35 +795,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"IaC solutions prevent drift with Idempotence.\"."
+          "explanation": "Infrastructure as Code tools enforce desired state with idempotence — reruns correct drift."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "IaaS helps maintain configuration over the life cycle of the host. describes a mechanism that could sound plausible for configuration management. Given configuration management, IaC solutions prevent drift with Idempotence. matches the tested behavior — IaaS helps maintain configuration over the life cycle of the host. applies a different mechanism.",
-            "whatItDoes": "IaaS helps maintain configuration over the life cycle of the host. describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, IaC solutions prevent drift with Idempotence. matches the tested behavior — IaaS helps maintain configuration over the life cycle of the host. applies a different mechanism.",
-            "misconceptionTested": "Applying \"IaaS helps maintain configuration ov\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "IaaS is cloud hosting — not config drift prevention.",
+            "misconceptionTested": "IaaS for config drift",
+            "whatItDoes": "IaaS helps maintain configuration over the life cycle of the host. points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", IaC solutions prevent drift with Idempotence. satisfies what this question tests — IaaS helps maintain configuration over the life cycle of the host. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Configuration management prevents drift with NTP. describes a mechanism that could sound plausible for configuration management. Given configuration management, IaC solutions prevent drift with Idempotence. matches the tested behavior — Configuration management prevents drift with NTP. applies a different mechanism.",
-            "whatItDoes": "Configuration management prevents drift with NTP. describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, IaC solutions prevent drift with Idempotence. matches the tested behavior — Configuration management prevents drift with NTP. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Configuration management prevents dr\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "NTP syncs time — doesn't prevent config drift.",
+            "misconceptionTested": "NTP prevents drift",
+            "whatItDoes": "Configuration management prevents drift with NTP. points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", IaC solutions prevent drift with Idempotence. satisfies what this question tests — Configuration management prevents drift with NTP. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Configuration management software requires per-host licensing. describes a mechanism that could sound plausible for configuration management. Given configuration management, IaC solutions prevent drift with Idempotence. matches the tested behavior — Configuration management software requires per-host licensing. applies a different mechanism.",
-            "whatItDoes": "Configuration management software requires per-host licensing. describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, IaC solutions prevent drift with Idempotence. matches the tested behavior — Configuration management software requires per-host licensing. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Configuration management software re\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Licensing varies — idempotence is the IaC principle.",
+            "misconceptionTested": "Per-host licensing required",
+            "whatItDoes": "Configuration management software requires per-host licensing. points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", IaC solutions prevent drift with Idempotence. satisfies what this question tests — Configuration management software requires per-host licensing. does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -895,35 +847,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Ansible\"."
+          "explanation": "Ansible is agentless (SSH only) — fastest lab setup vs Chef/Puppet agents."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Chef describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Chef applies a different mechanism.",
-            "whatItDoes": "Chef describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Chef applies a different mechanism.",
-            "misconceptionTested": "Applying \"Chef\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Chef/Puppet need server + agents — heavier setup.",
+            "misconceptionTested": "Chef easiest setup",
+            "whatItDoes": "Chef points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Ansible satisfies what this question tests — Chef does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Puppet describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Puppet applies a different mechanism.",
-            "whatItDoes": "Puppet describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Puppet applies a different mechanism.",
-            "misconceptionTested": "Applying \"Puppet\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "Puppet requires agent install.",
+            "misconceptionTested": "Puppet easiest setup",
+            "whatItDoes": "Puppet points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Ansible satisfies what this question tests — Puppet does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Cisco DNA Center describes a mechanism that could sound plausible for configuration management. Given configuration management, Ansible matches the tested behavior — Cisco DNA Center applies a different mechanism.",
-            "whatItDoes": "Cisco DNA Center describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, Ansible matches the tested behavior — Cisco DNA Center applies a different mechanism.",
-            "misconceptionTested": "Applying \"Cisco DNA Center\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "DNA Center is powerful — not the lightest CM lab setup.",
+            "misconceptionTested": "DNA Center as lightest CM",
+            "whatItDoes": "Cisco DNA Center points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", Ansible satisfies what this question tests — Cisco DNA Center does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -951,35 +900,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"JSON\"."
+          "explanation": "Custom Ansible modules are written in Python — extends Ansible's task library."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "YAML describes a mechanism that could sound plausible for configuration management. Given configuration management, JSON matches the tested behavior — YAML applies a different mechanism.",
-            "whatItDoes": "YAML describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, JSON matches the tested behavior — YAML applies a different mechanism.",
-            "misconceptionTested": "Applying \"YAML\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "YAML writes playbooks — modules are Python.",
+            "misconceptionTested": "YAML for custom modules",
+            "whatItDoes": "YAML names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"configuration management\", JSON satisfies what this question tests — YAML does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "CSV describes a mechanism that could sound plausible for configuration management. Given configuration management, JSON matches the tested behavior — CSV applies a different mechanism.",
-            "whatItDoes": "CSV describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, JSON matches the tested behavior — CSV applies a different mechanism.",
-            "misconceptionTested": "Applying \"CSV\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "CSV isn't module format.",
+            "misconceptionTested": "CSV module format",
+            "whatItDoes": "CSV points to a related idea, but not the specific behavior or value required for configuration management.",
+            "whyWrongHere": "For \"configuration management\", JSON satisfies what this question tests — CSV does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "XML describes a mechanism that could sound plausible for configuration management. Given configuration management, JSON matches the tested behavior — XML applies a different mechanism.",
-            "whatItDoes": "XML describes a mechanism that could sound plausible for configuration management.",
-            "whyWrongHere": "Given configuration management, JSON matches the tested behavior — XML applies a different mechanism.",
-            "misconceptionTested": "Applying \"XML\" without matching configuration management",
-            "needsExplanationReview": true
+            "explanation": "XML isn't the Ansible custom module language.",
+            "misconceptionTested": "XML for Ansible modules",
+            "whatItDoes": "XML names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"configuration management\", JSON satisfies what this question tests — XML does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -1004,35 +950,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Mapping\"."
+          "explanation": "YAML mappings (indented key: value pairs) define key-value structures."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Definition describes a mechanism that could sound plausible for json. Given json, Mapping matches the tested behavior — Definition applies a different mechanism.",
-            "whatItDoes": "Definition describes a mechanism that could sound plausible for json.",
-            "whyWrongHere": "Given json, Mapping matches the tested behavior — Definition applies a different mechanism.",
-            "misconceptionTested": "Applying \"Definition\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "Definition isn't a YAML element type.",
+            "misconceptionTested": "Definition element",
+            "whatItDoes": "Definition points to a related idea, but not the specific behavior or value required for json.",
+            "whyWrongHere": "For \"json\", Mapping satisfies what this question tests — Definition does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Lists describes a mechanism that could sound plausible for json. Given json, Mapping matches the tested behavior — Lists applies a different mechanism.",
-            "whatItDoes": "Lists describes a mechanism that could sound plausible for json.",
-            "whyWrongHere": "Given json, Mapping matches the tested behavior — Lists applies a different mechanism.",
-            "misconceptionTested": "Applying \"Lists\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "Lists use dashes — mappings are key-value.",
+            "misconceptionTested": "Lists for key-value",
+            "whatItDoes": "Lists points to a related idea, but not the specific behavior or value required for json.",
+            "whyWrongHere": "For \"json\", Mapping satisfies what this question tests — Lists does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Keys describes a mechanism that could sound plausible for json. Given json, Mapping matches the tested behavior — Keys applies a different mechanism.",
-            "whatItDoes": "Keys describes a mechanism that could sound plausible for json.",
-            "whyWrongHere": "Given json, Mapping matches the tested behavior — Keys applies a different mechanism.",
-            "misconceptionTested": "Applying \"Keys\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "Keys are part of mappings — mapping is the element name.",
+            "misconceptionTested": "Keys element type",
+            "whatItDoes": "Keys points to a related idea, but not the specific behavior or value required for json.",
+            "whyWrongHere": "For \"json\", Mapping satisfies what this question tests — Keys does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -1057,35 +1000,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"The file begins with three dashes.\"."
+          "explanation": "YAML files often begin with --- (three dashes) marking document start."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The file begins with a hashbang preprocessor. describes a mechanism that could sound plausible for identify. Given identify, The file begins with three dashes. matches the tested behavior — The file begins with a hashbang preprocessor. applies a different mechanism.",
-            "whatItDoes": "The file begins with a hashbang preprocessor. describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, The file begins with three dashes. matches the tested behavior — The file begins with a hashbang preprocessor. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The file begins with a hashbang prep\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "Hashbang #! denotes scripts — YAML uses ---.",
+            "misconceptionTested": "Hashbang for YAML",
+            "whatItDoes": "The file begins with a hashbang preprocessor. points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", The file begins with three dashes. satisfies what this question tests — The file begins with a hashbang preprocessor. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The contents are contained between curly brackets. describes a mechanism that could sound plausible for identify. Given identify, The file begins with three dashes. matches the tested behavior — The contents are contained between curly brackets. applies a different mechanism.",
-            "whatItDoes": "The contents are contained between curly brackets. describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, The file begins with three dashes. matches the tested behavior — The contents are contained between curly brackets. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The contents are contained between c\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "Curly brackets indicate JSON.",
+            "misconceptionTested": "Curly brackets for YAML",
+            "whatItDoes": "The contents are contained between curly brackets. points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", The file begins with three dashes. satisfies what this question tests — The contents are contained between curly brackets. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The contents are contained between square brackets. describes a mechanism that could sound plausible for identify. Given identify, The file begins with three dashes. matches the tested behavior — The contents are contained between square brackets. applies a different mechanism.",
-            "whatItDoes": "The contents are contained between square brackets. describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, The file begins with three dashes. matches the tested behavior — The contents are contained between square brackets. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The contents are contained between s\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "Square brackets are JSON arrays.",
+            "misconceptionTested": "Square brackets for YAML",
+            "whatItDoes": "The contents are contained between square brackets. points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", The file begins with three dashes. satisfies what this question tests — The contents are contained between square brackets. does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -1110,35 +1050,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"XML\"."
+          "explanation": "XML uses tagged elements like HTML — hierarchical markup syntax."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "YAML describes a mechanism that could sound plausible for structured. Given structured, XML matches the tested behavior — YAML applies a different mechanism.",
-            "whatItDoes": "YAML describes a mechanism that could sound plausible for structured.",
-            "whyWrongHere": "Given structured, XML matches the tested behavior — YAML applies a different mechanism.",
-            "misconceptionTested": "Applying \"YAML\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "YAML is indentation-based — not HTML-like.",
+            "misconceptionTested": "YAML resembles HTML",
+            "whatItDoes": "YAML names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"structured\", XML satisfies what this question tests — YAML does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "JSON describes a mechanism that could sound plausible for structured. Given structured, XML matches the tested behavior — JSON applies a different mechanism.",
-            "whatItDoes": "JSON describes a mechanism that could sound plausible for structured.",
-            "whyWrongHere": "Given structured, XML matches the tested behavior — JSON applies a different mechanism.",
-            "misconceptionTested": "Applying \"JSON\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "JSON uses braces — not angle-bracket tags.",
+            "misconceptionTested": "JSON resembles HTML",
+            "whatItDoes": "JSON names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"structured\", XML satisfies what this question tests — JSON does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "CSV describes a mechanism that could sound plausible for structured. Given structured, XML matches the tested behavior — CSV applies a different mechanism.",
-            "whatItDoes": "CSV describes a mechanism that could sound plausible for structured.",
-            "whyWrongHere": "Given structured, XML matches the tested behavior — CSV applies a different mechanism.",
-            "misconceptionTested": "Applying \"CSV\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "CSV is flat columns — no nested tags.",
+            "misconceptionTested": "CSV resembles HTML",
+            "whatItDoes": "CSV points to a related idea, but not the specific behavior or value required for structured.",
+            "whyWrongHere": "For \"structured\", XML satisfies what this question tests — CSV does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -1163,35 +1100,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"YAML\"."
+          "explanation": "YAML structure relies on indentation/whitespace — significant spaces define nesting."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "JSON describes a mechanism that could sound plausible for structured. Given structured, YAML matches the tested behavior — JSON applies a different mechanism.",
-            "whatItDoes": "JSON describes a mechanism that could sound plausible for structured.",
-            "whyWrongHere": "Given structured, YAML matches the tested behavior — JSON applies a different mechanism.",
-            "misconceptionTested": "Applying \"JSON\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "JSON uses braces/brackets — not whitespace significance.",
+            "misconceptionTested": "JSON whitespace structure",
+            "whatItDoes": "JSON names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"structured\", YAML satisfies what this question tests — JSON does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "XML describes a mechanism that could sound plausible for structured. Given structured, YAML matches the tested behavior — XML applies a different mechanism.",
-            "whatItDoes": "XML describes a mechanism that could sound plausible for structured.",
-            "whyWrongHere": "Given structured, YAML matches the tested behavior — XML applies a different mechanism.",
-            "misconceptionTested": "Applying \"XML\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "XML uses tags — not whitespace hierarchy.",
+            "misconceptionTested": "XML whitespace structure",
+            "whatItDoes": "XML names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "For \"structured\", YAML satisfies what this question tests — XML does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "CSV describes a mechanism that could sound plausible for structured. Given structured, YAML matches the tested behavior — CSV applies a different mechanism.",
-            "whatItDoes": "CSV describes a mechanism that could sound plausible for structured.",
-            "whyWrongHere": "Given structured, YAML matches the tested behavior — CSV applies a different mechanism.",
-            "misconceptionTested": "Applying \"CSV\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "CSV is delimiter-separated — not whitespace-nested.",
+            "misconceptionTested": "CSV whitespace nesting",
+            "whatItDoes": "CSV points to a related idea, but not the specific behavior or value required for structured.",
+            "whyWrongHere": "For \"structured\", YAML satisfies what this question tests — CSV does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -1216,35 +1150,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"A curly bracket\"."
+          "explanation": "JSON documents are objects wrapped in { } curly braces at the top level."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Three dashes describes a mechanism that could sound plausible for identify. Given identify, A curly bracket matches the tested behavior — Three dashes applies a different mechanism.",
-            "whatItDoes": "Three dashes describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, A curly bracket matches the tested behavior — Three dashes applies a different mechanism.",
-            "misconceptionTested": "Applying \"Three dashes\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "Three dashes are YAML.",
+            "misconceptionTested": "YAML dashes for JSON",
+            "whatItDoes": "Three dashes points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", A curly bracket satisfies what this question tests — Three dashes does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "A square bracket describes a mechanism that could sound plausible for identify. Given identify, A curly bracket matches the tested behavior — A square bracket applies a different mechanism.",
-            "whatItDoes": "A square bracket describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, A curly bracket matches the tested behavior — A square bracket applies a different mechanism.",
-            "misconceptionTested": "Applying \"A square bracket\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "Square brackets start JSON arrays — objects use {.",
+            "misconceptionTested": "Array bracket as JSON root",
+            "whatItDoes": "A square bracket points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", A curly bracket satisfies what this question tests — A square bracket does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "A double quote describes a mechanism that could sound plausible for identify. Given identify, A curly bracket matches the tested behavior — A double quote applies a different mechanism.",
-            "whatItDoes": "A double quote describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, A curly bracket matches the tested behavior — A double quote applies a different mechanism.",
-            "misconceptionTested": "Applying \"A double quote\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "Quotes appear inside values — file identity is { structure.",
+            "misconceptionTested": "Quote as JSON identifier",
+            "whatItDoes": "A double quote points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", A curly bracket satisfies what this question tests — A double quote does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -1269,35 +1200,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"There are several key-value pairs for the key you need.\"."
+          "explanation": "Square brackets [ in JSON denote an array — multiple values for that key."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The value that follows the square bracket is the value you are looking for. describes a mechanism that could sound plausible for concluded. Given concluded, There are several key-value pairs for the key you need. matches the tested behavior — The value that follows the square bracket is the value you are looking for. applies a different mechanism.",
-            "whatItDoes": "The value that follows the square bracket is the value you are looking for. describes a mechanism that could sound plausible for concluded.",
-            "whyWrongHere": "Given concluded, There are several key-value pairs for the key you need. matches the tested behavior — The value that follows the square bracket is the value you are looking for. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The value that follows the square br\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "Value follows after : for objects — [ means array of values.",
+            "misconceptionTested": "Bracket introduces single value",
+            "whatItDoes": "The value that follows the square bracket is the value you are looking for. points to a related idea, but not the specific behavior or value required for concluded.",
+            "whyWrongHere": "For \"concluded\", There are several key-value pairs for the key you need. satisfies what this question tests — The value that follows the square bracket is the value you are looking for. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The value is after the matching square bracket. describes a mechanism that could sound plausible for concluded. Given concluded, There are several key-value pairs for the key you need. matches the tested behavior — The value is after the matching square bracket. applies a different mechanism.",
-            "whatItDoes": "The value is after the matching square bracket. describes a mechanism that could sound plausible for concluded.",
-            "whyWrongHere": "Given concluded, There are several key-value pairs for the key you need. matches the tested behavior — The value is after the matching square bracket. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The value is after the matching squa\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "Arrays use [ ] pairs — multiple entries under one key.",
+            "misconceptionTested": "Bracket closes value",
+            "whatItDoes": "The value is after the matching square bracket. points to a related idea, but not the specific behavior or value required for concluded.",
+            "whyWrongHere": "For \"concluded\", There are several key-value pairs for the key you need. satisfies what this question tests — The value is after the matching square bracket. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The value is unknown. describes a mechanism that could sound plausible for concluded. Given concluded, There are several key-value pairs for the key you need. matches the tested behavior — The value is unknown. applies a different mechanism.",
-            "whatItDoes": "The value is unknown. describes a mechanism that could sound plausible for concluded.",
-            "whyWrongHere": "Given concluded, There are several key-value pairs for the key you need. matches the tested behavior — The value is unknown. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The value is unknown.\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "Bracket doesn't mean unknown — it means array.",
+            "misconceptionTested": "Unknown value from bracket",
+            "whatItDoes": "The value is unknown. points to a related idea, but not the specific behavior or value required for concluded.",
+            "whyWrongHere": "For \"concluded\", There are several key-value pairs for the key you need. satisfies what this question tests — The value is unknown. does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -1325,35 +1253,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"There is a missing curly bracket.\"."
+          "explanation": "The nested address object is missing a closing } before the final comma/brace."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The interface of Fa0/1 is capitalized. describes a mechanism that could sound plausible for interface. Given interface, There is a missing curly bracket. matches the tested behavior — The interface of Fa0/1 is capitalized. applies a different mechanism.",
-            "whatItDoes": "The interface of Fa0/1 is capitalized. describes a mechanism that could sound plausible for interface.",
-            "whyWrongHere": "Given interface, There is a missing curly bracket. matches the tested behavior — The interface of Fa0/1 is capitalized. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The interface of Fa0/1 is capitalize\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "Interface capitalization is fine in JSON strings.",
+            "misconceptionTested": "Fa0/1 capitalization invalid",
+            "whatItDoes": "The interface of Fa0/1 is capitalized. states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (interface): There is a missing curly bracket. matches prefix, shortening, or assignment rules — The interface of Fa0/1 is capitalized. breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The address should have a square bracket. describes a mechanism that could sound plausible for interface. Given interface, There is a missing curly bracket. matches the tested behavior — The address should have a square bracket. applies a different mechanism.",
-            "whatItDoes": "The address should have a square bracket. describes a mechanism that could sound plausible for interface.",
-            "whyWrongHere": "Given interface, There is a missing curly bracket. matches the tested behavior — The address should have a square bracket. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The address should have a square bra\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "Address is correctly an object {} — not needing [].",
+            "misconceptionTested": "address needs array",
+            "whatItDoes": "The address should have a square bracket. points to a related idea, but not the specific behavior or value required for interface.",
+            "whyWrongHere": "For \"interface\", There is a missing curly bracket. satisfies what this question tests — The address should have a square bracket. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Nothing is wrong. describes a mechanism that could sound plausible for interface. Given interface, There is a missing curly bracket. matches the tested behavior — Nothing is wrong. applies a different mechanism.",
-            "whatItDoes": "Nothing is wrong. describes a mechanism that could sound plausible for interface.",
-            "whyWrongHere": "Given interface, There is a missing curly bracket. matches the tested behavior — Nothing is wrong. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Nothing is wrong.\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "Underscores in keys are valid — brace mismatch is the bug.",
+            "misconceptionTested": "Nothing wrong in JSON",
+            "whatItDoes": "Nothing is wrong. points to a related idea, but not the specific behavior or value required for interface.",
+            "whyWrongHere": "For \"interface\", There is a missing curly bracket. satisfies what this question tests — Nothing is wrong. does not."
           }
         ],
-        "examTip": "Local L2 works but remote fails? Check the host default gateway before blaming routing protocols."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -1378,35 +1303,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Hierarchical structure allows for programmability.\"."
+          "explanation": "JSON's nested objects/arrays enable hierarchical data — better for programmatic APIs than flat CSV."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Values can be used that contain spaces. describes a mechanism that could sound plausible for advantage. Given advantage, Hierarchical structure allows for programmability. matches the tested behavior — Values can be used that contain spaces. applies a different mechanism.",
-            "whatItDoes": "Values can be used that contain spaces. describes a mechanism that could sound plausible for advantage.",
-            "whyWrongHere": "Given advantage, Hierarchical structure allows for programmability. matches the tested behavior — Values can be used that contain spaces. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Values can be used that contain spac\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "CSV can quote spaces — not the main JSON advantage.",
+            "misconceptionTested": "JSON spaces in values vs CSV",
+            "whatItDoes": "Values can be used that contain spaces. points to a related idea, but not the specific behavior or value required for advantage.",
+            "whyWrongHere": "For \"advantage\", Hierarchical structure allows for programmability. satisfies what this question tests — Values can be used that contain spaces. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "There are multiple values for a particular key. describes a mechanism that could sound plausible for advantage. Given advantage, Hierarchical structure allows for programmability. matches the tested behavior — There are multiple values for a particular key. applies a different mechanism.",
-            "whatItDoes": "There are multiple values for a particular key. describes a mechanism that could sound plausible for advantage.",
-            "whyWrongHere": "Given advantage, Hierarchical structure allows for programmability. matches the tested behavior — There are multiple values for a particular key. applies a different mechanism.",
-            "misconceptionTested": "Applying \"There are multiple values for a part\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "CSV doesn't natively do nested keys — JSON hierarchy wins.",
+            "misconceptionTested": "Multiple values per CSV key",
+            "whatItDoes": "There are multiple values for a particular key. points to a related idea, but not the specific behavior or value required for advantage.",
+            "whyWrongHere": "For \"advantage\", Hierarchical structure allows for programmability. satisfies what this question tests — There are multiple values for a particular key. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The files can be read line by line for every value. describes a mechanism that could sound plausible for advantage. Given advantage, Hierarchical structure allows for programmability. matches the tested behavior — The files can be read line by line for every value. applies a different mechanism.",
-            "whatItDoes": "The files can be read line by line for every value. describes a mechanism that could sound plausible for advantage.",
-            "whyWrongHere": "Given advantage, Hierarchical structure allows for programmability. matches the tested behavior — The files can be read line by line for every value. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The files can be read line by line f\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "Line-by-line reading isn't JSON's primary advantage.",
+            "misconceptionTested": "Line-by-line as JSON advantage",
+            "whatItDoes": "The files can be read line by line for every value. points to a related idea, but not the specific behavior or value required for advantage.",
+            "whyWrongHere": "For \"advantage\", Hierarchical structure allows for programmability. satisfies what this question tests — The files can be read line by line for every value. does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -1434,35 +1356,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"JSON\"."
+          "explanation": "Cisco DNA Center REST APIs return data in JSON format."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Automation questions hinge on the tool/API named in the stem — do not swap REST, Ansible, or controller roles.",
-            "whatItDoes": "XML describes a mechanism that could sound plausible for information.",
-            "whyWrongHere": "Given information, JSON matches the tested behavior — XML applies a different mechanism.",
-            "misconceptionTested": "Swapping automation tools or API styles",
-            "needsExplanationReview": true
+            "explanation": "XML is legacy on some systems — DNA Center APIs are JSON.",
+            "misconceptionTested": "XML DNA Center default",
+            "whatItDoes": "XML names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "Automation tooling (information): JSON matches the API or tool named in the stem — XML swaps REST, NETCONF, or orchestration roles."
           },
           {
             "choiceIndex": 2,
-            "explanation": "CSV describes a mechanism that could sound plausible for information. Given information, JSON matches the tested behavior — CSV applies a different mechanism.",
-            "whatItDoes": "CSV describes a mechanism that could sound plausible for information.",
-            "whyWrongHere": "Given information, JSON matches the tested behavior — CSV applies a different mechanism.",
-            "misconceptionTested": "Applying \"CSV\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "CSV isn't API response format.",
+            "misconceptionTested": "CSV API response",
+            "whatItDoes": "CSV points to a related idea, but not the specific behavior or value required for information.",
+            "whyWrongHere": "For \"information\", JSON satisfies what this question tests — CSV does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "YAML describes a mechanism that could sound plausible for information. Given information, JSON matches the tested behavior — YAML applies a different mechanism.",
-            "whatItDoes": "YAML describes a mechanism that could sound plausible for information.",
-            "whyWrongHere": "Given information, JSON matches the tested behavior — YAML applies a different mechanism.",
-            "misconceptionTested": "Applying \"YAML\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "YAML may configure Ansible — API responses are JSON.",
+            "misconceptionTested": "YAML API response",
+            "whatItDoes": "YAML names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "Automation tooling (information): JSON matches the API or tool named in the stem — YAML swaps REST, NETCONF, or orchestration roles."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -1489,35 +1408,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"The interface data is incorrect because it is missing a set of square brackets around the second route.\"."
+          "explanation": "Inside the routes array, objects must be separate — need ] or },{ between route entries; missing comma/bracket structure."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The interface data is incorrect because it is missing a comma after the routes. describes a mechanism that could sound plausible for ipaddress. Given ipaddress, The interface data is incorrect because it is missing a set of square brackets around the second route. matches the tested behavior — The interface data is incorrect because it is missing a comma after the routes. applies a different mechanism.",
-            "whatItDoes": "The interface data is incorrect because it is missing a comma after the routes. describes a mechanism that could sound plausible for ipaddress.",
-            "whyWrongHere": "Given ipaddress, The interface data is incorrect because it is missing a set of square brackets around the second route. matches the tested behavior — The interface data is incorrect because it is missing a comma after the routes. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The interface data is incorrect beca\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "Comma after routes array isn't the core issue — objects inside array are malformed.",
+            "misconceptionTested": "Comma after routes key only",
+            "whatItDoes": "The interface data is incorrect because it is missing a comma after the routes. points to a related idea, but not the specific behavior or value required for ipaddress.",
+            "whyWrongHere": "For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route. satisfies what this question tests — The interface data is incorrect because it is missing a comma after the routes. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The interface data is incorrect because it contains an illegal underscore character. describes a mechanism that could sound plausible for ipaddress. Given ipaddress, The interface data is incorrect because it is missing a set of square brackets around the second route. matches the tested behavior — The interface data is incorrect because it contains an illegal underscore character. applies a different mechanism.",
-            "whatItDoes": "The interface data is incorrect because it contains an illegal underscore character. describes a mechanism that could sound plausible for ipaddress.",
-            "whyWrongHere": "Given ipaddress, The interface data is incorrect because it is missing a set of square brackets around the second route. matches the tested behavior — The interface data is incorrect because it contains an illegal underscore character. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The interface data is incorrect beca\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "Underscores in keys are valid JSON.",
+            "misconceptionTested": "Underscore invalid in JSON",
+            "whatItDoes": "The interface data is incorrect because it contains an illegal underscore character. points to a related idea, but not the specific behavior or value required for ipaddress.",
+            "whyWrongHere": "For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route. satisfies what this question tests — The interface data is incorrect because it contains an illegal underscore character. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Nothing is wrong with the exhibit. describes a mechanism that could sound plausible for ipaddress. Given ipaddress, The interface data is incorrect because it is missing a set of square brackets around the second route. matches the tested behavior — Nothing is wrong with the exhibit. applies a different mechanism.",
-            "whatItDoes": "Nothing is wrong with the exhibit. describes a mechanism that could sound plausible for ipaddress.",
-            "whyWrongHere": "Given ipaddress, The interface data is incorrect because it is missing a set of square brackets around the second route. matches the tested behavior — Nothing is wrong with the exhibit. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Nothing is wrong with the exhibit.\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "JSON is invalid — missing delimiter between array objects.",
+            "misconceptionTested": "Valid JSON exhibit",
+            "whatItDoes": "Nothing is wrong with the exhibit. points to a related idea, but not the specific behavior or value required for ipaddress.",
+            "whyWrongHere": "For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route. satisfies what this question tests — Nothing is wrong with the exhibit. does not."
           }
         ],
-        "examTip": "Find the interesting octet (not 0 or 255) and apply the block size there — not always the 4th octet."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -1544,35 +1460,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Nothing is wrong with the exhibit.\"."
+          "explanation": "Nested arrays for IP addresses are valid JSON — no syntax error in the exhibit."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The interface data is incorrect because it is missing a comma after defaultgw. describes a mechanism that could sound plausible for ipaddress. Given ipaddress, Nothing is wrong with the exhibit. matches the tested behavior — The interface data is incorrect because it is missing a comma after defaultgw. applies a different mechanism.",
-            "whatItDoes": "The interface data is incorrect because it is missing a comma after defaultgw. describes a mechanism that could sound plausible for ipaddress.",
-            "whyWrongHere": "Given ipaddress, Nothing is wrong with the exhibit. matches the tested behavior — The interface data is incorrect because it is missing a comma after defaultgw. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The interface data is incorrect beca\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "Trailing commas aren't present after defaultgw — structure is valid.",
+            "misconceptionTested": "Missing comma after defaultgw",
+            "whatItDoes": "The interface data is incorrect because it is missing a comma after defaultgw. points to a related idea, but not the specific behavior or value required for ipaddress.",
+            "whyWrongHere": "For \"ipaddress\", Nothing is wrong with the exhibit. satisfies what this question tests — The interface data is incorrect because it is missing a comma after defaultgw. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The interface data is incorrect because it is missing a subnet mask for the second IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given ipaddress, Nothing is wrong with the exhibit. matches the tested behavior — The interface data is incorrect because it is missing a subnet mask for the second IP address. applies a different mechanism.",
+            "explanation": "Second IP doesn't require separate subnet mask key — valid nesting.",
+            "misconceptionTested": "Missing subnet for second IP",
             "whatItDoes": "The interface data is incorrect because it is missing a subnet mask for the second IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given ipaddress, Nothing is wrong with the exhibit. matches the tested behavior — The interface data is incorrect because it is missing a subnet mask for the second IP address. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The interface data is incorrect beca\" without matching json",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"ipaddress\", Nothing is wrong with the exhibit. satisfies what this question tests — The interface data is incorrect because it is missing a subnet mask for the second IP address. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The interface data is incorrect because it contains an illegal underscore character. describes a mechanism that could sound plausible for ipaddress. Given ipaddress, Nothing is wrong with the exhibit. matches the tested behavior — The interface data is incorrect because it contains an illegal underscore character. applies a different mechanism.",
-            "whatItDoes": "The interface data is incorrect because it contains an illegal underscore character. describes a mechanism that could sound plausible for ipaddress.",
-            "whyWrongHere": "Given ipaddress, Nothing is wrong with the exhibit. matches the tested behavior — The interface data is incorrect because it contains an illegal underscore character. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The interface data is incorrect beca\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "Underscores in subnet_mask are legal JSON keys.",
+            "misconceptionTested": "Underscore illegal",
+            "whatItDoes": "The interface data is incorrect because it contains an illegal underscore character. points to a related idea, but not the specific behavior or value required for ipaddress.",
+            "whyWrongHere": "For \"ipaddress\", Nothing is wrong with the exhibit. satisfies what this question tests — The interface data is incorrect because it contains an illegal underscore character. does not."
           }
         ],
-        "examTip": "Find the interesting octet (not 0 or 255) and apply the block size there — not always the 4th octet."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -1599,35 +1512,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses.\"."
+          "explanation": "The ipaddress array is missing a closing ] before subnet_mask begins."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The interface data is incorrect because it is missing a comma after defaultgw. describes a mechanism that could sound plausible for interface. Given interface, The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses. matches the tested behavior — The interface data is incorrect because it is missing a comma after defaultgw. applies a different mechanism.",
-            "whatItDoes": "The interface data is incorrect because it is missing a comma after defaultgw. describes a mechanism that could sound plausible for interface.",
-            "whyWrongHere": "Given interface, The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses. matches the tested behavior — The interface data is incorrect because it is missing a comma after defaultgw. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The interface data is incorrect beca\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "defaultgw comma isn't the first syntax break — unclosed array is.",
+            "misconceptionTested": "Comma after defaultgw primary issue",
+            "whatItDoes": "The interface data is incorrect because it is missing a comma after defaultgw. points to a related idea, but not the specific behavior or value required for interface.",
+            "whyWrongHere": "For \"interface\", The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses. satisfies what this question tests — The interface data is incorrect because it is missing a comma after defaultgw. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The interface data is incorrect because it contains an illegal underscore character. describes a mechanism that could sound plausible for interface. Given interface, The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses. matches the tested behavior — The interface data is incorrect because it contains an illegal underscore character. applies a different mechanism.",
-            "whatItDoes": "The interface data is incorrect because it contains an illegal underscore character. describes a mechanism that could sound plausible for interface.",
-            "whyWrongHere": "Given interface, The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses. matches the tested behavior — The interface data is incorrect because it contains an illegal underscore character. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The interface data is incorrect beca\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "Underscores are valid in JSON keys.",
+            "misconceptionTested": "Underscore invalid",
+            "whatItDoes": "The interface data is incorrect because it contains an illegal underscore character. points to a related idea, but not the specific behavior or value required for interface.",
+            "whyWrongHere": "For \"interface\", The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses. satisfies what this question tests — The interface data is incorrect because it contains an illegal underscore character. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Nothing is wrong with the exhibit. describes a mechanism that could sound plausible for interface. Given interface, The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses. matches the tested behavior — Nothing is wrong with the exhibit. applies a different mechanism.",
-            "whatItDoes": "Nothing is wrong with the exhibit. describes a mechanism that could sound plausible for interface.",
-            "whyWrongHere": "Given interface, The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses. matches the tested behavior — Nothing is wrong with the exhibit. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Nothing is wrong with the exhibit.\" without matching json",
-            "needsExplanationReview": true
+            "explanation": "JSON is malformed — bracket not closed.",
+            "misconceptionTested": "Valid JSON exhibit",
+            "whatItDoes": "Nothing is wrong with the exhibit. points to a related idea, but not the specific behavior or value required for interface.",
+            "whyWrongHere": "For \"interface\", The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses. satisfies what this question tests — Nothing is wrong with the exhibit. does not."
           }
         ],
-        "examTip": "Find the interesting octet (not 0 or 255) and apply the block size there — not always the 4th octet."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     }
   ]

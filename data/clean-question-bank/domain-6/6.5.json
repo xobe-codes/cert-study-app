@@ -26,35 +26,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"API reference\"."
+          "explanation": "Device API reference documents objects, methods, and parameters your script can call."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "User interface layout describes a mechanism that could sound plausible for rest api. Given rest api, API reference matches the tested behavior — User interface layout applies a different mechanism.",
-            "whatItDoes": "User interface layout describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, API reference matches the tested behavior — User interface layout applies a different mechanism.",
-            "misconceptionTested": "Applying \"User interface layout\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "GUI layout does not define programmatic control — read the API docs.",
+            "misconceptionTested": "UI layout for automation",
+            "whatItDoes": "User interface layout points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", API reference satisfies what this question tests — User interface layout does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Source code of the device describes a mechanism that could sound plausible for rest api. Given rest api, API reference matches the tested behavior — Source code of the device applies a different mechanism.",
-            "whatItDoes": "Source code of the device describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, API reference matches the tested behavior — Source code of the device applies a different mechanism.",
-            "misconceptionTested": "Applying \"Source code of the device\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "You rarely need full source code — vendor API/YANG/REST references are authoritative.",
+            "misconceptionTested": "Source code over API docs",
+            "whatItDoes": "Source code of the device points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", API reference satisfies what this question tests — Source code of the device does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Data storage of the device describes a mechanism that could sound plausible for rest api. Given rest api, API reference matches the tested behavior — Data storage of the device applies a different mechanism.",
-            "whatItDoes": "Data storage of the device describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, API reference matches the tested behavior — Data storage of the device applies a different mechanism.",
-            "misconceptionTested": "Applying \"Data storage of the device\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "Storage internals are irrelevant — automation targets published APIs.",
+            "misconceptionTested": "Device storage research",
+            "whatItDoes": "Data storage of the device points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", API reference satisfies what this question tests — Data storage of the device does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automate via RESTCONF/NETCONF/API — start with the vendor API reference."
       }
     },
     {
@@ -83,35 +80,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"SNMP\"."
+          "explanation": "SNMP exposes a structured management interface (MIB/OIDs) similar to an API for polling device data programmatically."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "CLI describes a mechanism that could sound plausible for rest api. Given rest api, SNMP matches the tested behavior — CLI applies a different mechanism.",
-            "whatItDoes": "CLI describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, SNMP matches the tested behavior — CLI applies a different mechanism.",
-            "misconceptionTested": "Applying \"CLI\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "CLI is human-oriented — SNMP is the structured machine-readable retrieval interface.",
+            "misconceptionTested": "CLI as API-like retrieval interface",
+            "whatItDoes": "CLI points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", SNMP satisfies what this question tests — CLI does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Syslog describes a mechanism that could sound plausible for rest api. Given rest api, SNMP matches the tested behavior — Syslog applies a different mechanism.",
-            "whatItDoes": "Syslog describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, SNMP matches the tested behavior — Syslog applies a different mechanism.",
-            "misconceptionTested": "Applying \"Syslog\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "Syslog pushes log messages — it does not provide structured GET-style data retrieval like SNMP.",
+            "misconceptionTested": "Syslog as API-like data retrieval",
+            "whatItDoes": "Syslog assigns a syslog severity or facility level that may reverse the lower-number-is-more-severe rule.",
+            "whyWrongHere": "For \"rest api\", SNMP satisfies what this question tests — Syslog does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "SSH describes a mechanism that could sound plausible for rest api. Given rest api, SNMP matches the tested behavior — SSH applies a different mechanism.",
-            "whatItDoes": "SSH describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, SNMP matches the tested behavior — SSH applies a different mechanism.",
-            "misconceptionTested": "Applying \"SSH\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "SSH secures remote shell access — SNMP is the classic poll/read API-like management protocol.",
+            "misconceptionTested": "SSH as structured retrieval API",
+            "whatItDoes": "SSH points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", SNMP satisfies what this question tests — SSH does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Legacy API-like mgmt: SNMP GET/WALK; modern: REST/RESTCONF/NETCONF."
       }
     },
     {
@@ -139,35 +133,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"NETCONF\"."
+          "explanation": "NETCONF (often with YANG models) is the modern model-driven replacement for SNMP-style polling for config/state."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Syslog describes a mechanism that could sound plausible for rest api. Given rest api, NETCONF matches the tested behavior — Syslog applies a different mechanism.",
-            "whatItDoes": "Syslog describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, NETCONF matches the tested behavior — Syslog applies a different mechanism.",
-            "misconceptionTested": "Applying \"Syslog\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "Syslog exports events — it does not replace SNMP for structured device management APIs.",
+            "misconceptionTested": "Syslog as SNMP replacement",
+            "whatItDoes": "Syslog assigns a syslog severity or facility level that may reverse the lower-number-is-more-severe rule.",
+            "whyWrongHere": "For \"rest api\", NETCONF satisfies what this question tests — Syslog does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "REST describes a mechanism that could sound plausible for rest api. Given rest api, NETCONF matches the tested behavior — REST applies a different mechanism.",
-            "whatItDoes": "REST describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, NETCONF matches the tested behavior — REST applies a different mechanism.",
-            "misconceptionTested": "Applying \"REST\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "REST is an architectural style — NETCONF is the named SNMP successor in automation discussions.",
+            "misconceptionTested": "REST label without NETCONF",
+            "whatItDoes": "REST names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "Automation tooling (rest api): NETCONF matches the API or tool named in the stem — REST swaps REST, NETCONF, or orchestration roles."
           },
           {
             "choiceIndex": 3,
-            "explanation": "SSH describes a mechanism that could sound plausible for rest api. Given rest api, NETCONF matches the tested behavior — SSH applies a different mechanism.",
-            "whatItDoes": "SSH describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, NETCONF matches the tested behavior — SSH applies a different mechanism.",
-            "misconceptionTested": "Applying \"SSH\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "SSH provides secure CLI — not a structured management protocol like NETCONF.",
+            "misconceptionTested": "SSH as management protocol",
+            "whatItDoes": "SSH points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", NETCONF satisfies what this question tests — SSH does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "SNMP successor on exams → NETCONF (+ YANG). RESTCONF combines REST + NETCONF ideas."
       }
     },
     {
@@ -196,35 +187,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"NETCONF\"."
+          "explanation": "NETCONF uses YANG data models to define configuration and operational state in a structured tree."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "REST describes a mechanism that could sound plausible for rest api. Given rest api, NETCONF matches the tested behavior — REST applies a different mechanism.",
-            "whatItDoes": "REST describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, NETCONF matches the tested behavior — REST applies a different mechanism.",
-            "misconceptionTested": "Applying \"REST\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "REST may carry JSON/XML but YANG is the standard data model paired with NETCONF/RESTCONF.",
+            "misconceptionTested": "REST as YANG-carrying protocol",
+            "whatItDoes": "REST names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "Automation tooling (rest api): NETCONF matches the API or tool named in the stem — REST swaps REST, NETCONF, or orchestration roles."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SNMP describes a mechanism that could sound plausible for rest api. Given rest api, NETCONF matches the tested behavior — SNMP applies a different mechanism.",
-            "whatItDoes": "SNMP describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, NETCONF matches the tested behavior — SNMP applies a different mechanism.",
-            "misconceptionTested": "Applying \"SNMP\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "SNMP uses MIB/OIDs, not YANG — YANG pairs with NETCONF.",
+            "misconceptionTested": "SNMP as YANG protocol",
+            "whatItDoes": "SNMP points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", NETCONF satisfies what this question tests — SNMP does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "YAML describes a mechanism that could sound plausible for rest api. Given rest api, NETCONF matches the tested behavior — YAML applies a different mechanism.",
-            "whatItDoes": "YAML describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, NETCONF matches the tested behavior — YAML applies a different mechanism.",
-            "misconceptionTested": "Applying \"YAML\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "YAML is a file format for playbooks — YANG is the modeled schema for NETCONF.",
+            "misconceptionTested": "YAML as YANG data model protocol",
+            "whatItDoes": "YAML names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "Automation tooling (rest api): NETCONF matches the API or tool named in the stem — YAML swaps REST, NETCONF, or orchestration roles."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "YANG = data model language; transported by NETCONF (XML) or RESTCONF (HTTP/JSON)."
       }
     },
     {
@@ -253,35 +241,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"RESTCONF\"."
+          "explanation": "RESTCONF uses HTTPS with REST verbs to configure and read YANG-modeled data on network devices."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "NETCONF describes a mechanism that could sound plausible for rest api. Given rest api, RESTCONF matches the tested behavior — NETCONF applies a different mechanism.",
-            "whatItDoes": "NETCONF describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, RESTCONF matches the tested behavior — NETCONF applies a different mechanism.",
-            "misconceptionTested": "Applying \"NETCONF\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "NETCONF typically runs over SSH (XML RPC) — HTTPS REST is RESTCONF.",
+            "misconceptionTested": "NETCONF as HTTPS REST protocol",
+            "whatItDoes": "NETCONF names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "Automation tooling (rest api): RESTCONF matches the API or tool named in the stem — NETCONF swaps REST, NETCONF, or orchestration roles."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SNMP describes a mechanism that could sound plausible for rest api. Given rest api, RESTCONF matches the tested behavior — SNMP applies a different mechanism.",
-            "whatItDoes": "SNMP describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, RESTCONF matches the tested behavior — SNMP applies a different mechanism.",
-            "misconceptionTested": "Applying \"SNMP\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "SNMP uses UDP 161/162 — programmatic HTTPS config is RESTCONF.",
+            "misconceptionTested": "SNMP as HTTPS config protocol",
+            "whatItDoes": "SNMP points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", RESTCONF satisfies what this question tests — SNMP does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Syslog describes a mechanism that could sound plausible for rest api. Given rest api, RESTCONF matches the tested behavior — Syslog applies a different mechanism.",
-            "whatItDoes": "Syslog describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, RESTCONF matches the tested behavior — Syslog applies a different mechanism.",
-            "misconceptionTested": "Applying \"Syslog\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "Syslog is UDP 514 logging — not an HTTPS configuration API.",
+            "misconceptionTested": "Syslog as HTTPS config protocol",
+            "whatItDoes": "Syslog assigns a syslog severity or facility level that may reverse the lower-number-is-more-severe rule.",
+            "whyWrongHere": "For \"rest api\", RESTCONF satisfies what this question tests — Syslog does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "HTTPS + YANG + REST verbs → RESTCONF; SSH + XML RPC → NETCONF."
       }
     },
     {
@@ -309,35 +294,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"HTTP\"."
+          "explanation": "REST APIs operate over HTTP/HTTPS — resources are addressed with URLs and manipulated with HTTP verbs."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SNMP describes a mechanism that could sound plausible for rest api. Given rest api, HTTP matches the tested behavior — SNMP applies a different mechanism.",
-            "whatItDoes": "SNMP describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, HTTP matches the tested behavior — SNMP applies a different mechanism.",
-            "misconceptionTested": "Applying \"SNMP\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "SNMP is UDP-based polling — REST rides on HTTP.",
+            "misconceptionTested": "SNMP as REST transport",
+            "whatItDoes": "SNMP points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", HTTP satisfies what this question tests — SNMP does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SNTP describes a mechanism that could sound plausible for rest api. Given rest api, HTTP matches the tested behavior — SNTP applies a different mechanism.",
-            "whatItDoes": "SNTP describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, HTTP matches the tested behavior — SNTP applies a different mechanism.",
-            "misconceptionTested": "Applying \"SNTP\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "SNTP is time sync — REST uses HTTP as its application protocol.",
+            "misconceptionTested": "SNTP as REST protocol",
+            "whatItDoes": "SNTP points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", HTTP satisfies what this question tests — SNTP does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "SOAP describes a mechanism that could sound plausible for rest api. Given rest api, HTTP matches the tested behavior — SOAP applies a different mechanism.",
-            "whatItDoes": "SOAP describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, HTTP matches the tested behavior — SOAP applies a different mechanism.",
-            "misconceptionTested": "Applying \"SOAP\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "SOAP is a different web-service style — CCNA REST APIs use HTTP, not SOAP envelopes.",
+            "misconceptionTested": "SOAP as default REST protocol",
+            "whatItDoes": "SOAP points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", HTTP satisfies what this question tests — SOAP does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "REST on CCNA = HTTP/HTTPS + verbs (GET/POST/PUT/PATCH/DELETE) + status codes."
       }
     },
     {
@@ -367,35 +349,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Send a POST to the API for an authentication token.\"."
+          "explanation": "DNA Center REST auth: POST credentials to the token endpoint → receive X-Auth-Token for later calls."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Pass the username and password in every request. describes a mechanism that could sound plausible for rest api. Given rest api, Send a POST to the API for an authentication token. matches the tested behavior — Pass the username and password in every request. applies a different mechanism.",
-            "whatItDoes": "Pass the username and password in every request. describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Send a POST to the API for an authentication token. matches the tested behavior — Pass the username and password in every request. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Pass the username and password in ev\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "Sending username/password on every request is not the DNA Center pattern — authenticate once, then reuse the token.",
+            "misconceptionTested": "Credentials in every REST request",
+            "whatItDoes": "Pass the username and password in every request. names a DHCP DORA message step that may not be the phase described in the stem.",
+            "whyWrongHere": "For \"rest api\", Send a POST to the API for an authentication token. satisfies what this question tests — Pass the username and password in every request. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Send a GET to the API for an auth token. describes a mechanism that could sound plausible for rest api. Given rest api, Send a POST to the API for an authentication token. matches the tested behavior — Send a GET to the API for an auth token. applies a different mechanism.",
-            "whatItDoes": "Send a GET to the API for an auth token. describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Send a POST to the API for an authentication token. matches the tested behavior — Send a GET to the API for an auth token. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Send a GET to the API for an auth to\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "Token issuance is a POST (create session), not a GET — GET retrieves data, it does not mint tokens.",
+            "misconceptionTested": "GET for authentication token",
+            "whatItDoes": "Send a GET to the API for an auth token. points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", Send a POST to the API for an authentication token. satisfies what this question tests — Send a GET to the API for an auth token. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Create a public private key pair for the Cisco DNA Center appliance. describes a mechanism that could sound plausible for rest api. Given rest api, Send a POST to the API for an authentication token. matches the tested behavior — Create a public private key pair for the Cisco DNA Center appliance. applies a different mechanism.",
-            "whatItDoes": "Create a public private key pair for the Cisco DNA Center appliance. describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Send a POST to the API for an authentication token. matches the tested behavior — Create a public private key pair for the Cisco DNA Center appliance. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Create a public private key pair for\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "DNA Center API auth uses username/password → token — not a custom public/private key pair workflow on CCNA.",
+            "misconceptionTested": "Key pair auth for DNA Center API",
+            "whatItDoes": "Create a public private key pair for the Cisco DNA Center appliance. points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", Send a POST to the API for an authentication token. satisfies what this question tests — Create a public private key pair for the Cisco DNA Center appliance. does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "DNA Center flow: POST /auth/token → X-Auth-Token header on subsequent REST calls."
       }
     },
     {
@@ -421,35 +400,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Data actions\"."
+          "explanation": "CRUD (Create, Read, Update, Delete) maps HTTP verbs to data actions on REST resources."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Memory cleanup describes a mechanism that could sound plausible for rest api. Given rest api, Data actions matches the tested behavior — Memory cleanup applies a different mechanism.",
-            "whatItDoes": "Memory cleanup describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Data actions matches the tested behavior — Memory cleanup applies a different mechanism.",
-            "misconceptionTested": "Applying \"Memory cleanup\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "CRUD is not about memory cleanup — it describes standard create/read/update/delete operations.",
+            "misconceptionTested": "CRUD as memory management",
+            "whatItDoes": "Memory cleanup points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", Data actions satisfies what this question tests — Memory cleanup does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Replacement for REST-based APIs describes a mechanism that could sound plausible for rest api. Given rest api, Data actions matches the tested behavior — Replacement for REST-based APIs applies a different mechanism.",
-            "whatItDoes": "Replacement for REST-based APIs describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Data actions matches the tested behavior — Replacement for REST-based APIs applies a different mechanism.",
-            "misconceptionTested": "Applying \"Replacement for REST-based APIs\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "CRUD is the action model REST implements — it does not replace REST APIs.",
+            "misconceptionTested": "CRUD as REST replacement",
+            "whatItDoes": "Replacement for REST-based APIs names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "Automation tooling (rest api): Data actions matches the API or tool named in the stem — Replacement for REST-based APIs swaps REST, NETCONF, or orchestration roles."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Data encoding describes a mechanism that could sound plausible for rest api. Given rest api, Data actions matches the tested behavior — Data encoding applies a different mechanism.",
-            "whatItDoes": "Data encoding describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Data actions matches the tested behavior — Data encoding applies a different mechanism.",
-            "misconceptionTested": "Applying \"Data encoding\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "Base64/JSON are encodings — CRUD defines what you do with data (verbs/actions).",
+            "misconceptionTested": "CRUD as data encoding scheme",
+            "whatItDoes": "Data encoding points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", Data actions satisfies what this question tests — Data encoding does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "CRUD ↔ HTTP: POST=Create | GET=Read | PUT/PATCH=Update | DELETE=Delete."
       }
     },
     {
@@ -477,35 +453,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Basic\"."
+          "explanation": "DNA Center token requests use HTTP Basic authentication — credentials in the Authorization: Basic header."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "AD integrated describes a mechanism that could sound plausible for rest api. Given rest api, Basic matches the tested behavior — AD integrated applies a different mechanism.",
-            "whatItDoes": "AD integrated describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Basic matches the tested behavior — AD integrated applies a different mechanism.",
-            "misconceptionTested": "Applying \"AD integrated\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "AD integrated is an enterprise login option — the REST token exchange itself uses Basic auth.",
+            "misconceptionTested": "AD integrated as REST token auth type",
+            "whatItDoes": "AD integrated points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", Basic satisfies what this question tests — AD integrated does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SSL describes a mechanism that could sound plausible for rest api. Given rest api, Basic matches the tested behavior — SSL applies a different mechanism.",
-            "whatItDoes": "SSL describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Basic matches the tested behavior — SSL applies a different mechanism.",
-            "misconceptionTested": "Applying \"SSL\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "SSL/TLS encrypts transport — the authentication scheme for the token POST is Basic.",
+            "misconceptionTested": "SSL as authentication type for token",
+            "whatItDoes": "SSL points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", Basic satisfies what this question tests — SSL does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Pass-through describes a mechanism that could sound plausible for rest api. Given rest api, Basic matches the tested behavior — Pass-through applies a different mechanism.",
-            "whatItDoes": "Pass-through describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Basic matches the tested behavior — Pass-through applies a different mechanism.",
-            "misconceptionTested": "Applying \"Pass-through\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "Pass-through is not the REST auth mechanism — DNA Center expects Basic credentials for token POST.",
+            "misconceptionTested": "Pass-through auth for DNA token",
+            "whatItDoes": "Pass-through points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", Basic satisfies what this question tests — Pass-through does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "Basic auth = Authorization: Basic <base64(user:pass)> on the token POST."
       }
     },
     {
@@ -532,35 +505,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Place it in the header of the request as an X-Auth-Token element.\"."
+          "explanation": "Reuse the token by placing it in the HTTP header as X-Auth-Token: <token> on each API request."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Add it as a variable named X-Auth-Token in the script. describes a mechanism that could sound plausible for rest api. Given rest api, Place it in the header of the request as an X-Auth-Token element. matches the tested behavior — Add it as a variable named X-Auth-Token in the script. applies a different mechanism.",
-            "whatItDoes": "Add it as a variable named X-Auth-Token in the script. describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Place it in the header of the request as an X-Auth-Token element. matches the tested behavior — Add it as a variable named X-Auth-Token in the script. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Add it as a variable named X-Auth-To\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "A script variable alone does not authenticate — the token must be sent in the request header.",
+            "misconceptionTested": "Script variable without HTTP header",
+            "whatItDoes": "Add it as a variable named X-Auth-Token in the script. applies another routing protocol's behavior instead of OSPF-specific rules.",
+            "whyWrongHere": "For \"rest api\", Place it in the header of the request as an X-Auth-Token element. satisfies what this question tests — Add it as a variable named X-Auth-Token in the script. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Pass the token in the URI of subsequent requests. describes a mechanism that could sound plausible for rest api. Given rest api, Place it in the header of the request as an X-Auth-Token element. matches the tested behavior — Pass the token in the URI of subsequent requests. applies a different mechanism.",
-            "whatItDoes": "Pass the token in the URI of subsequent requests. describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Place it in the header of the request as an X-Auth-Token element. matches the tested behavior — Pass the token in the URI of subsequent requests. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Pass the token in the URI of subsequ\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "Tokens belong in headers, not the URI — putting secrets in URLs is insecure and not the DNA Center pattern.",
+            "misconceptionTested": "Token passed in URI query string",
+            "whatItDoes": "Pass the token in the URI of subsequent requests. names a DHCP DORA message step that may not be the phase described in the stem.",
+            "whyWrongHere": "For \"rest api\", Place it in the header of the request as an X-Auth-Token element. satisfies what this question tests — Pass the token in the URI of subsequent requests. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Perform a POST for the authentication token within 10 seconds of the subsequent request. describes a mechanism that could sound plausible for rest api. Given rest api, Place it in the header of the request as an X-Auth-Token element. matches the tested behavior — Perform a POST for the authentication token within 10 seconds of the subsequent request. applies a different mechanism.",
-            "whatItDoes": "Perform a POST for the authentication token within 10 seconds of the subsequent request. describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Place it in the header of the request as an X-Auth-Token element. matches the tested behavior — Perform a POST for the authentication token within 10 seconds of the subsequent request. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Perform a POST for the authenticatio\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "There is no 10-second re-POST rule — reuse the issued token in headers until it expires.",
+            "misconceptionTested": "Re-authenticate within 10 seconds per request",
+            "whatItDoes": "Perform a POST for the authentication token within 10 seconds of the subsequent request. names a DHCP DORA message step that may not be the phase described in the stem.",
+            "whyWrongHere": "For \"rest api\", Place it in the header of the request as an X-Auth-Token element. satisfies what this question tests — Perform a POST for the authentication token within 10 seconds of the subsequent request. does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "After auth POST → every call carries X-Auth-Token in the HTTP header."
       }
     },
     {
@@ -591,35 +561,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Base64\"."
+          "explanation": "HTTP Basic auth encodes username:password with Base64 before placing it in the Authorization header."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SSL describes a mechanism that could sound plausible for rest api. Given rest api, Base64 matches the tested behavior — SSL applies a different mechanism.",
-            "whatItDoes": "SSL describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Base64 matches the tested behavior — SSL applies a different mechanism.",
-            "misconceptionTested": "Applying \"SSL\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "SSL/TLS protects the channel — Base64 is the encoding inside the Basic auth header.",
+            "misconceptionTested": "SSL as credential encoding method",
+            "whatItDoes": "SSL points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", Base64 satisfies what this question tests — SSL does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "AAA describes a mechanism that could sound plausible for rest api. Given rest api, Base64 matches the tested behavior — AAA applies a different mechanism.",
-            "whatItDoes": "AAA describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Base64 matches the tested behavior — AAA applies a different mechanism.",
-            "misconceptionTested": "Applying \"AAA\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "AAA is the broader auth framework — Basic auth specifically uses Base64-encoded credentials.",
+            "misconceptionTested": "AAA as encoding for Basic auth",
+            "whatItDoes": "AAA points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", Base64 satisfies what this question tests — AAA does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Basic describes a mechanism that could sound plausible for rest api. Given rest api, Base64 matches the tested behavior — Basic applies a different mechanism.",
-            "whatItDoes": "Basic describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Base64 matches the tested behavior — Basic applies a different mechanism.",
-            "misconceptionTested": "Applying \"Basic\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "Basic names the auth scheme — the encoding applied to credentials is Base64.",
+            "misconceptionTested": "Basic scheme name as encoding method",
+            "whatItDoes": "Basic points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", Base64 satisfies what this question tests — Basic does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "Basic auth stack: scheme = Basic | payload encoding = Base64(user:pass)."
       }
     },
     {
@@ -648,35 +615,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"RESTCONF\"."
+          "explanation": "RESTCONF is the HTTPS REST API that configures devices using YANG data models."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "OpenFlow describes a mechanism that could sound plausible for rest api. Given rest api, RESTCONF matches the tested behavior — OpenFlow applies a different mechanism.",
-            "whatItDoes": "OpenFlow describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, RESTCONF matches the tested behavior — OpenFlow applies a different mechanism.",
-            "misconceptionTested": "Applying \"OpenFlow\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "OpenFlow programs forwarding in SDN — structured YANG config uses RESTCONF (or NETCONF).",
+            "misconceptionTested": "OpenFlow for YANG device config",
+            "whatItDoes": "OpenFlow points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", RESTCONF satisfies what this question tests — OpenFlow does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SNMP describes a mechanism that could sound plausible for rest api. Given rest api, RESTCONF matches the tested behavior — SNMP applies a different mechanism.",
-            "whatItDoes": "SNMP describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, RESTCONF matches the tested behavior — SNMP applies a different mechanism.",
-            "misconceptionTested": "Applying \"SNMP\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "SNMP uses MIB/OIDs — YANG-modeled config on modern IOS uses RESTCONF/NETCONF.",
+            "misconceptionTested": "SNMP for YANG data model config",
+            "whatItDoes": "SNMP points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", RESTCONF satisfies what this question tests — SNMP does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Automation questions hinge on the tool/API named in the stem — do not swap REST, Ansible, or controller roles.",
-            "whatItDoes": "REST-based API describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, RESTCONF matches the tested behavior — REST-based API applies a different mechanism.",
-            "misconceptionTested": "Swapping automation tools or API styles",
-            "needsExplanationReview": true
+            "explanation": "Generic REST API is too vague — the YANG-specific southbound API on CCNA is RESTCONF.",
+            "misconceptionTested": "Generic REST instead of RESTCONF for YANG",
+            "whatItDoes": "REST-based API names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "Automation tooling (rest api): RESTCONF matches the API or tool named in the stem — REST-based API swaps REST, NETCONF, or orchestration roles."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "YANG config path: RESTCONF (HTTPS/JSON) or NETCONF (SSH/XML) — not SNMP/OpenFlow."
       }
     },
     {
@@ -705,35 +669,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"application/yang-data+json\"."
+          "explanation": "RESTCONF uses IETF content types like application/yang-data+json — not generic application/json alone."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "application/json describes a mechanism that could sound plausible for rest api. Given rest api, application/yang-data+json matches the tested behavior — application/json applies a different mechanism.",
-            "whatItDoes": "application/json describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, application/yang-data+json matches the tested behavior — application/json applies a different mechanism.",
-            "misconceptionTested": "Applying \"application/json\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "application/json is generic — RESTCONF expects application/yang-data+json (or +xml).",
+            "misconceptionTested": "Generic JSON content type for RESTCONF",
+            "whatItDoes": "application/json names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "Automation tooling (rest api): application/yang-data+json matches the API or tool named in the stem — application/json swaps REST, NETCONF, or orchestration roles."
           },
           {
             "choiceIndex": 2,
-            "explanation": "data/json describes a mechanism that could sound plausible for rest api. Given rest api, application/yang-data+json matches the tested behavior — data/json applies a different mechanism.",
-            "whatItDoes": "data/json describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, application/yang-data+json matches the tested behavior — data/json applies a different mechanism.",
-            "misconceptionTested": "Applying \"data/json\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "data/json is not a valid RESTCONF media type — use application/yang-data+json.",
+            "misconceptionTested": "Invented data/json content type",
+            "whatItDoes": "data/json names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "Automation tooling (rest api): application/yang-data+json matches the API or tool named in the stem — data/json swaps REST, NETCONF, or orchestration roles."
           },
           {
             "choiceIndex": 3,
-            "explanation": "data/yaml describes a mechanism that could sound plausible for rest api. Given rest api, application/yang-data+json matches the tested behavior — data/yaml applies a different mechanism.",
-            "whatItDoes": "data/yaml describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, application/yang-data+json matches the tested behavior — data/yaml applies a different mechanism.",
-            "misconceptionTested": "Applying \"data/yaml\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "RESTCONF payloads are JSON or XML — data/yaml is not a RESTCONF content type.",
+            "misconceptionTested": "YAML content type for RESTCONF requests",
+            "whatItDoes": "data/yaml names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "Automation tooling (rest api): application/yang-data+json matches the API or tool named in the stem — data/yaml swaps REST, NETCONF, or orchestration roles."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "RESTCONF Accept/Content-Type: application/yang-data+json | application/yang-data+xml."
       }
     },
     {
@@ -762,35 +723,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Restart the REST-based service.\"."
+          "explanation": "HTTP 500 Internal Server Error — server-side failure; restart the REST service on the controller."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Format your response correctly. describes a mechanism that could sound plausible for rest api. Given rest api, Restart the REST-based service. matches the tested behavior — Format your response correctly. applies a different mechanism.",
-            "whatItDoes": "Format your response correctly. describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Restart the REST-based service. matches the tested behavior — Format your response correctly. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Format your response correctly.\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "500 is server error — client formatting won't fix internal failure.",
+            "misconceptionTested": "Client format for 500",
+            "whatItDoes": "Format your response correctly. points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", Restart the REST-based service. satisfies what this question tests — Format your response correctly. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Authenticate to the device first. describes a mechanism that could sound plausible for rest api. Given rest api, Restart the REST-based service. matches the tested behavior — Authenticate to the device first. applies a different mechanism.",
-            "whatItDoes": "Authenticate to the device first. describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Restart the REST-based service. matches the tested behavior — Authenticate to the device first. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Authenticate to the device first.\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "401/403 need auth — 500 means server broke processing request.",
+            "misconceptionTested": "Auth for 500",
+            "whatItDoes": "Authenticate to the device first. points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", Restart the REST-based service. satisfies what this question tests — Authenticate to the device first. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Nothing; this code means OK. describes a mechanism that could sound plausible for rest api. Given rest api, Restart the REST-based service. matches the tested behavior — Nothing; this code means OK. applies a different mechanism.",
-            "whatItDoes": "Nothing; this code means OK. describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Restart the REST-based service. matches the tested behavior — Nothing; this code means OK. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Nothing; this code means OK.\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "500 is not OK — 200 means success.",
+            "misconceptionTested": "500 means OK",
+            "whatItDoes": "Nothing; this code means OK. points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", Restart the REST-based service. satisfies what this question tests — Nothing; this code means OK. does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -819,35 +777,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Southbound interface\"."
+          "explanation": "RESTCONF/NETCONF southbound configures network devices — DNA Center SBI to switches/routers."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Northbound interface describes a mechanism that could sound plausible for rest api. Given rest api, Southbound interface matches the tested behavior — Northbound interface applies a different mechanism.",
-            "whatItDoes": "Northbound interface describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Southbound interface matches the tested behavior — Northbound interface applies a different mechanism.",
-            "misconceptionTested": "Applying \"Northbound interface\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "Northbound is apps→controller — RESTCONF to devices is southbound.",
+            "misconceptionTested": "NBI for device RESTCONF",
+            "whatItDoes": "Northbound interface points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", Southbound interface satisfies what this question tests — Northbound interface does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Eastbound interface describes a mechanism that could sound plausible for rest api. Given rest api, Southbound interface matches the tested behavior — Eastbound interface applies a different mechanism.",
-            "whatItDoes": "Eastbound interface describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Southbound interface matches the tested behavior — Eastbound interface applies a different mechanism.",
-            "misconceptionTested": "Applying \"Eastbound interface\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "East/west aren't standard DNA Center interface names.",
+            "misconceptionTested": "Eastbound for RESTCONF",
+            "whatItDoes": "Eastbound interface points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", Southbound interface satisfies what this question tests — Eastbound interface does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Westbound interface describes a mechanism that could sound plausible for rest api. Given rest api, Southbound interface matches the tested behavior — Westbound interface applies a different mechanism.",
-            "whatItDoes": "Westbound interface describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Southbound interface matches the tested behavior — Westbound interface applies a different mechanism.",
-            "misconceptionTested": "Applying \"Westbound interface\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "Northbound uses REST APIs to the controller, not to devices.",
+            "misconceptionTested": "Westbound for RESTCONF",
+            "whatItDoes": "Westbound interface points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", Southbound interface satisfies what this question tests — Westbound interface does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -873,35 +828,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"HTTP header\"."
+          "explanation": "HTTP status codes return in the response header (e.g., HTTP/1.1 200 OK)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "HTTP body describes a mechanism that could sound plausible for rest api. Given rest api, HTTP header matches the tested behavior — HTTP body applies a different mechanism.",
-            "whatItDoes": "HTTP body describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, HTTP header matches the tested behavior — HTTP body applies a different mechanism.",
-            "misconceptionTested": "Applying \"HTTP body\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "Body carries payload — status line/code is in the header.",
+            "misconceptionTested": "Status in HTTP body",
+            "whatItDoes": "HTTP body points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", HTTP header satisfies what this question tests — HTTP body does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Script variable describes a mechanism that could sound plausible for rest api. Given rest api, HTTP header matches the tested behavior — Script variable applies a different mechanism.",
-            "whatItDoes": "Script variable describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, HTTP header matches the tested behavior — Script variable applies a different mechanism.",
-            "misconceptionTested": "Applying \"Script variable\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "Scripts parse headers — status isn't a script variable by default.",
+            "misconceptionTested": "Status as script variable",
+            "whatItDoes": "Script variable applies another routing protocol's behavior instead of OSPF-specific rules.",
+            "whyWrongHere": "For \"rest api\", HTTP header satisfies what this question tests — Script variable does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Script data object describes a mechanism that could sound plausible for rest api. Given rest api, HTTP header matches the tested behavior — Script data object applies a different mechanism.",
-            "whatItDoes": "Script data object describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, HTTP header matches the tested behavior — Script data object applies a different mechanism.",
-            "misconceptionTested": "Applying \"Script data object\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "Status isn't a JSON data object — it's HTTP metadata.",
+            "misconceptionTested": "Status as JSON object",
+            "whatItDoes": "Script data object applies another routing protocol's behavior instead of OSPF-specific rules.",
+            "whyWrongHere": "For \"rest api\", HTTP header satisfies what this question tests — Script data object does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -929,35 +881,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"POST\"."
+          "explanation": "201 Created confirms successful POST — resource was created."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "GET describes a mechanism that could sound plausible for rest api. Given rest api, POST matches the tested behavior — GET applies a different mechanism.",
-            "whatItDoes": "GET describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, POST matches the tested behavior — GET applies a different mechanism.",
-            "misconceptionTested": "Applying \"GET\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "GET returns 200 with data — not 201.",
+            "misconceptionTested": "GET returns 201",
+            "whatItDoes": "GET points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", POST satisfies what this question tests — GET does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "PATCH describes a mechanism that could sound plausible for rest api. Given rest api, POST matches the tested behavior — PATCH applies a different mechanism.",
-            "whatItDoes": "PATCH describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, POST matches the tested behavior — PATCH applies a different mechanism.",
-            "misconceptionTested": "Applying \"PATCH\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "PATCH updates — typically 200/204.",
+            "misconceptionTested": "PATCH returns 201",
+            "whatItDoes": "PATCH implies many-inside-to-few-outside PAT/overload translation.",
+            "whyWrongHere": "For \"rest api\", POST satisfies what this question tests — PATCH does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "DELETE describes a mechanism that could sound plausible for rest api. Given rest api, POST matches the tested behavior — DELETE applies a different mechanism.",
-            "whatItDoes": "DELETE describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, POST matches the tested behavior — DELETE applies a different mechanism.",
-            "misconceptionTested": "Applying \"DELETE\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "DELETE returns 200/204 — not 201.",
+            "misconceptionTested": "DELETE returns 201",
+            "whatItDoes": "DELETE points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", POST satisfies what this question tests — DELETE does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -983,35 +932,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Question mark\"."
+          "explanation": "URI query strings start with ? — parameters follow as ?key=value&key2=value2."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Backslash describes a mechanism that could sound plausible for rest api. Given rest api, Question mark matches the tested behavior — Backslash applies a different mechanism.",
-            "whatItDoes": "Backslash describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Question mark matches the tested behavior — Backslash applies a different mechanism.",
-            "misconceptionTested": "Applying \"Backslash\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "Backslash is path separator on Windows — not URI queries.",
+            "misconceptionTested": "Backslash starts query string",
+            "whatItDoes": "Backslash points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", Question mark satisfies what this question tests — Backslash does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Forward slash describes a mechanism that could sound plausible for rest api. Given rest api, Question mark matches the tested behavior — Forward slash applies a different mechanism.",
-            "whatItDoes": "Forward slash describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Question mark matches the tested behavior — Forward slash applies a different mechanism.",
-            "misconceptionTested": "Applying \"Forward slash\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "Forward slash separates path segments — ? starts query.",
+            "misconceptionTested": "Forward slash starts query",
+            "whatItDoes": "Forward slash points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", Question mark satisfies what this question tests — Forward slash does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Ampersand describes a mechanism that could sound plausible for rest api. Given rest api, Question mark matches the tested behavior — Ampersand applies a different mechanism.",
-            "whatItDoes": "Ampersand describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, Question mark matches the tested behavior — Ampersand applies a different mechanism.",
-            "misconceptionTested": "Applying \"Ampersand\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "& separates parameters — ? starts the query string.",
+            "misconceptionTested": "Ampersand starts query",
+            "whatItDoes": "Ampersand points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", Question mark satisfies what this question tests — Ampersand does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -1037,35 +983,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"POST\"."
+          "explanation": "POST creates a new resource on the server."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "GET describes a mechanism that could sound plausible for rest api. Given rest api, POST matches the tested behavior — GET applies a different mechanism.",
-            "whatItDoes": "GET describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, POST matches the tested behavior — GET applies a different mechanism.",
-            "misconceptionTested": "Applying \"GET\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "GET reads — doesn't create.",
+            "misconceptionTested": "GET for create",
+            "whatItDoes": "GET points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", POST satisfies what this question tests — GET does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "UPDATE describes a mechanism that could sound plausible for rest api. Given rest api, POST matches the tested behavior — UPDATE applies a different mechanism.",
-            "whatItDoes": "UPDATE describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, POST matches the tested behavior — UPDATE applies a different mechanism.",
-            "misconceptionTested": "Applying \"UPDATE\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "UPDATE is not an HTTP verb — use PUT/PATCH.",
+            "misconceptionTested": "UPDATE as HTTP verb",
+            "whatItDoes": "UPDATE points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", POST satisfies what this question tests — UPDATE does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "PUT describes a mechanism that could sound plausible for rest api. Given rest api, POST matches the tested behavior — PUT applies a different mechanism.",
-            "whatItDoes": "PUT describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, POST matches the tested behavior — PUT applies a different mechanism.",
-            "misconceptionTested": "Applying \"PUT\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "PUT can create/update — stem asks insert/create → POST.",
+            "misconceptionTested": "PUT as create verb in stem",
+            "whatItDoes": "PUT points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", POST satisfies what this question tests — PUT does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -1092,35 +1035,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"The command has timed out.\"."
+          "explanation": "504 Gateway Timeout — upstream/server didn't respond in time — request timed out."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The command is missing parameters. describes a mechanism that could sound plausible for rest api. Given rest api, The command has timed out. matches the tested behavior — The command is missing parameters. applies a different mechanism.",
-            "whatItDoes": "The command is missing parameters. describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, The command has timed out. matches the tested behavior — The command is missing parameters. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The command is missing parameters.\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "400-level suggests client/param issues — 504 is timeout.",
+            "misconceptionTested": "Missing params for 504",
+            "whatItDoes": "The command is missing parameters. points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", The command has timed out. satisfies what this question tests — The command is missing parameters. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Automation questions hinge on the tool/API named in the stem — do not swap REST, Ansible, or controller roles.",
-            "whatItDoes": "The command is restricted. describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, The command has timed out. matches the tested behavior — The command is restricted. applies a different mechanism.",
-            "misconceptionTested": "Swapping automation tools or API styles",
-            "needsExplanationReview": true
+            "explanation": "403 is forbidden — not timeout.",
+            "misconceptionTested": "403 for timeout",
+            "whatItDoes": "The command is restricted. names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+            "whyWrongHere": "Automation tooling (rest api): The command has timed out. matches the API or tool named in the stem — The command is restricted. swaps REST, NETCONF, or orchestration roles."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The service is down. describes a mechanism that could sound plausible for rest api. Given rest api, The command has timed out. matches the tested behavior — The service is down. applies a different mechanism.",
-            "whatItDoes": "The service is down. describes a mechanism that could sound plausible for rest api.",
-            "whyWrongHere": "Given rest api, The command has timed out. matches the tested behavior — The service is down. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The service is down.\" without matching rest api",
-            "needsExplanationReview": true
+            "explanation": "503 is service unavailable — 504 specifically means gateway timeout.",
+            "misconceptionTested": "503 vs 504 confusion",
+            "whatItDoes": "The service is down. points to a related idea, but not the specific behavior or value required for rest api.",
+            "whyWrongHere": "For \"rest api\", The command has timed out. satisfies what this question tests — The service is down. does not."
           }
         ],
-        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     }
   ]

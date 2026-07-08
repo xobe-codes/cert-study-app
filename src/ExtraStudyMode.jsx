@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { gradeQuestion, isMcQuestion, randomizeQuestionOrder } from './questionUtils.js'
+import { applyAnswerReviewToQuestion } from './answerReviewLogic.js'
 import { getShelvedPool, getShelvedStats, getPromoteHint } from './data/shelvedStudy.js'
 
 /**
@@ -88,7 +89,7 @@ export default function ExtraStudyMode({
               <div style={{ fontWeight: 700, color: gradeQuestion(q, selected) ? COLORS.mint : COLORS.rose, marginBottom: 6, fontSize: 'var(--ccna-type-sm)' }}>
                 {gradeQuestion(q, selected) ? 'Correct' : 'Incorrect'}
               </div>
-              <AnswerReview q={q} selected={selected} />
+              <AnswerReview q={applyAnswerReviewToQuestion(q)} selected={selected} />
               <div style={{ marginTop: 10, padding: 10, borderRadius: 8, background: accentColors('amber').dim, border: `1px solid ${accentColors('amber').border}` }}>
                 <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: accentColors('amber').text, marginBottom: 4 }}>HOW TO PROMOTE TO MAIN BANK</div>
                 <div style={{ fontSize: 'var(--ccna-type-xs)', lineHeight: 1.45, color: COLORS.silver }}>{getPromoteHint(q)}</div>

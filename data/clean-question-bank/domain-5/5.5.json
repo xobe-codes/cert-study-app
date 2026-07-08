@@ -22,32 +22,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "ACLs are evaluated top-down — the first matching line wins and processing stops."
+          "explanation": "ACLs evaluate top-down — first match wins; implicit deny any at the end."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "ACLs are not read bottom-up — order matters because an early permit or deny can block a later line from ever being reached.",
-            "misconceptionTested": "Reversing ACL evaluation order",
-            "whatItDoes": "Bottom-up describes a mechanism that could sound plausible for processing order.",
-            "whyWrongHere": "Given processing order, Top-down, first match wins matches the tested behavior — Bottom-up applies a different mechanism."
+            "explanation": "ACLs are not bottom-up — order matters; put specific permits before broad denies.",
+            "misconceptionTested": "Bottom-up ACL processing",
+            "whatItDoes": "Bottom-up points to a related idea, but not the specific behavior or value required for processing order.",
+            "whyWrongHere": "For \"processing order\", Top-down, first match wins satisfies what this question tests — Bottom-up does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Cisco ACLs do not auto-sort by specificity — you must place more specific entries above general ones manually.",
-            "misconceptionTested": "Expecting automatic most-specific-first sorting",
-            "whatItDoes": "Most-specific first automatically describes a mechanism that could sound plausible for processing order.",
-            "whyWrongHere": "Given processing order, Top-down, first match wins matches the tested behavior — Most-specific first automatically applies a different mechanism."
+            "explanation": "IOS does not auto-sort by specificity — you must order lines correctly.",
+            "misconceptionTested": "Auto most-specific-first",
+            "whatItDoes": "Most-specific first automatically points to a related idea, but not the specific behavior or value required for processing order.",
+            "whyWrongHere": "For \"processing order\", Top-down, first match wins satisfies what this question tests — Most-specific first automatically does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "ACL evaluation is deterministic top-down — not random or round-robin.",
-            "misconceptionTested": "Guessing non-deterministic ACL behavior",
-            "whatItDoes": "Randomly describes a mechanism that could sound plausible for processing order.",
-            "whyWrongHere": "Given processing order, Top-down, first match wins matches the tested behavior — Randomly applies a different mechanism."
+            "explanation": "Evaluation is deterministic top-down — never random.",
+            "misconceptionTested": "Random ACL match",
+            "whatItDoes": "Randomly points to a related idea, but not the specific behavior or value required for processing order.",
+            "whyWrongHere": "For \"processing order\", Top-down, first match wins satisfies what this question tests — Randomly does not."
           }
         ],
-        "examTip": "ACL: first match wins, implicit deny at end — order your lines deliberately."
+        "examTip": "ACL order trap → first match wins. Place explicit permits before catch-all deny."
       }
     },
     {
@@ -68,18 +68,18 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "True — anything not explicitly permitted is denied."
+          "explanation": "Every Cisco ACL has an implicit deny any at the end — unmatched traffic is dropped."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "This statement is False, but the tested fact is: True — anything not explicitly permitted is denied.",
+            "explanation": "Without the implicit deny, unmatched traffic would be permitted — IOS denies by default at ACL end.",
+            "misconceptionTested": "Believing ACLs permit by default",
             "whatItDoes": "False states the opposite of the tested fact about implicit deny.",
-            "whyWrongHere": "Given implicit deny, True matches the tested behavior — False applies a different mechanism.",
-            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
+            "whyWrongHere": "For \"implicit deny\", True satisfies what this question tests — False does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "No match at bottom of ACL → implicit deny all."
       }
     },
     {
@@ -109,22 +109,22 @@
             "choiceIndex": 0,
             "explanation": "Near the source is correct for extended ACLs (match source and destination) — standard ACLs belong near the destination.",
             "misconceptionTested": "Applying extended ACL placement rule to standard ACL",
-            "whatItDoes": "Close to the source describes a mechanism that could sound plausible for standard placement.",
-            "whyWrongHere": "Given standard placement, Close to the destination matches the tested behavior — Close to the source applies a different mechanism."
+            "whatItDoes": "Close to the source points to a related idea, but not the specific behavior or value required for standard placement.",
+            "whyWrongHere": "For \"standard placement\", Close to the destination satisfies what this question tests — Close to the source does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "ACLs are applied on specific interfaces where traffic enters or exits — not blindly on every interface.",
             "misconceptionTested": "Over-applying ACLs network-wide",
-            "whatItDoes": "On every interface describes a mechanism that could sound plausible for standard placement.",
-            "whyWrongHere": "Given standard placement, Close to the destination matches the tested behavior — On every interface applies a different mechanism."
+            "whatItDoes": "On every interface points to a related idea, but not the specific behavior or value required for standard placement.",
+            "whyWrongHere": "For \"standard placement\", Close to the destination satisfies what this question tests — On every interface does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Trunks carry multiple VLANs — ACL placement follows source/destination logic, not “trunks only”.",
             "misconceptionTested": "Restricting ACL placement to trunk interfaces",
-            "whatItDoes": "Only on trunks describes a mechanism that could sound plausible for standard placement.",
-            "whyWrongHere": "Given standard placement, Close to the destination matches the tested behavior — Only on trunks applies a different mechanism."
+            "whatItDoes": "Only on trunks expects VLAN tags on a link that should behave as access-only in this stem.",
+            "whyWrongHere": "For \"standard placement\", Close to the destination satisfies what this question tests — Only on trunks does not."
           }
         ],
         "examTip": "Extended ACL → near source. Standard ACL → near destination."
@@ -150,32 +150,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "Extended ACLs are specific, so place near the source to drop traffic early."
+          "explanation": "Place extended ACLs close to the source — filter unwanted traffic before it crosses the network."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Close to the destination reflects a common trap: Placing extended ACLs near the destination. Place extended ACLs near the source to drop traffic early.",
-            "whatItDoes": "Close to the destination describes a mechanism that could sound plausible for extended placement.",
-            "whyWrongHere": "The stem asks what gets learned (extended placement). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
-            "misconceptionTested": "Placing extended ACLs near the destination"
+            "explanation": "Close to destination is the rule for standard ACLs (source-only matching).",
+            "misconceptionTested": "Extended ACL at destination",
+            "whatItDoes": "Close to the destination points to a related idea, but not the specific behavior or value required for extended placement.",
+            "whyWrongHere": "The stem asks what gets learned (extended placement). Switches record the source MAC on ingress — destination MAC is for lookup, not learning."
           },
           {
             "choiceIndex": 2,
-            "explanation": "On the root bridge is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
-            "whatItDoes": "On the root bridge describes a mechanism that could sound plausible for extended placement.",
-            "whyWrongHere": "Given extended placement, Close to the source matches the tested behavior — On the root bridge applies a different mechanism.",
-            "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
+            "explanation": "Root bridge is STP terminology — unrelated to ACL placement.",
+            "misconceptionTested": "Inventing root bridge ACL rule",
+            "whatItDoes": "On the root bridge points to a related idea, but not the specific behavior or value required for extended placement.",
+            "whyWrongHere": "For \"extended placement\", Close to the source satisfies what this question tests — On the root bridge does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "On the DHCP server describes a mechanism that could sound plausible for extended placement. Given extended placement, Close to the source matches the tested behavior — On the DHCP server applies a different mechanism.",
-            "whatItDoes": "On the DHCP server describes a mechanism that could sound plausible for extended placement.",
-            "whyWrongHere": "Given extended placement, Close to the source matches the tested behavior — On the DHCP server applies a different mechanism.",
-            "misconceptionTested": "Applying \"On the DHCP server\" without matching extended placement"
+            "explanation": "DHCP server placement does not determine extended ACL filter location.",
+            "misconceptionTested": "ACL placement on DHCP server",
+            "whatItDoes": "On the DHCP server points to a related idea, but not the specific behavior or value required for extended placement.",
+            "whyWrongHere": "For \"extended placement\", Close to the source satisfies what this question tests — On the DHCP server does not."
           }
         ],
-        "examTip": "On the exam: Placing extended ACLs near the destination — Place extended ACLs near the source to drop traffic early"
+        "examTip": "Extended ACL → near source; standard ACL → near destination."
       }
     },
     {
@@ -198,32 +198,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Wildcard = inverse subnet mask; /24 → 0.0.0.255."
+          "explanation": "For 192.168.1.0/24, wildcard 0.0.0.255 matches the entire /24 (care bits on last octet only)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "255.255.255.0 uses the wrong value. The tested fact calls for 24 — not 255.",
-            "whatItDoes": "255.255.255.0 describes a mechanism that could sound plausible for wildcard mask.",
-            "whyWrongHere": "Given wildcard mask, 0.0.0.255 matches the tested behavior — 255.255.255.0 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 255 instead of the correct 24"
+            "explanation": "255.255.255.0 is a subnet mask, not the wildcard for a /24 host match.",
+            "misconceptionTested": "Using subnet mask as wildcard",
+            "whatItDoes": "255.255.255.0 points to a related idea, but not the specific behavior or value required for wildcard mask.",
+            "whyWrongHere": "For \"wildcard mask\", 0.0.0.255 satisfies what this question tests — 255.255.255.0 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "0.0.0.0 uses the wrong value. The tested fact calls for 24 — not 0.",
-            "whatItDoes": "0.0.0.0 describes a mechanism that could sound plausible for wildcard mask.",
-            "whyWrongHere": "Given wildcard mask, 0.0.0.255 matches the tested behavior — 0.0.0.0 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 0 instead of the correct 24"
+            "explanation": "0.0.0.0 matches one host only — not the full /24.",
+            "misconceptionTested": "Host wildcard for entire network",
+            "whatItDoes": "0.0.0.0 points to a related idea, but not the specific behavior or value required for wildcard mask.",
+            "whyWrongHere": "For \"wildcard mask\", 0.0.0.255 satisfies what this question tests — 0.0.0.0 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "255.255.255.255 uses the wrong value. The tested fact calls for 24 — not 255.",
-            "whatItDoes": "255.255.255.255 describes a mechanism that could sound plausible for wildcard mask.",
-            "whyWrongHere": "Given wildcard mask, 0.0.0.255 matches the tested behavior — 255.255.255.255 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 255 instead of the correct 24"
+            "explanation": "255.255.255.255 matches any address — too broad for exactly one /24.",
+            "misconceptionTested": "Any-any wildcard for specific /24",
+            "whatItDoes": "255.255.255.255 points to a related idea, but not the specific behavior or value required for wildcard mask.",
+            "whyWrongHere": "For \"wildcard mask\", 0.0.0.255 satisfies what this question tests — 255.255.255.255 does not."
           }
         ],
-        "examTip": "On the exam: Using a subnet mask in an ACL — ACLs use WILDCARD masks (inverse): /24 → 0.0.0.255"
+        "examTip": "/24 ACL wildcard = 0.0.0.255 (invert the mask)."
       }
     },
     {
@@ -246,32 +246,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "Standard ACLs are 1–99 (and 1300–1999)."
+          "explanation": "Standard ACL numbers are 1–99 (and extended 100–199) on CCNA — standard matches source IP only."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "100–199 uses the wrong value. The tested fact calls for 1 — not 100.",
-            "whatItDoes": "100–199 describes a mechanism that could sound plausible for standard range.",
-            "whyWrongHere": "Given standard range, 1–99 matches the tested behavior — 100–199 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 100 instead of the correct 1"
+            "explanation": "100–199 is the classic range for extended ACLs.",
+            "misconceptionTested": "Extended range labeled standard",
+            "whatItDoes": "100–199 points to a related idea, but not the specific behavior or value required for standard range.",
+            "whyWrongHere": "For \"standard range\", 1–99 satisfies what this question tests — 100–199 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "200–299 uses the wrong value. The tested fact calls for 1 — not 200.",
-            "whatItDoes": "200–299 describes a mechanism that could sound plausible for standard range.",
-            "whyWrongHere": "Given standard range, 1–99 matches the tested behavior — 200–299 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 200 instead of the correct 1"
+            "explanation": "200–299 is not the primary CCNA standard ACL range.",
+            "misconceptionTested": "Invented ACL number range",
+            "whatItDoes": "200–299 points to a related idea, but not the specific behavior or value required for standard range.",
+            "whyWrongHere": "For \"standard range\", 1–99 satisfies what this question tests — 200–299 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "1300–2699 only uses the wrong value. The tested fact calls for 1 — not 1300.",
-            "whatItDoes": "1300–2699 only describes a mechanism that could sound plausible for standard range.",
-            "whyWrongHere": "Given standard range, 1–99 matches the tested behavior — 1300–2699 only applies a different mechanism.",
-            "misconceptionTested": "Memorizing 1300 instead of the correct 1"
+            "explanation": "1300–2699 are expanded ACL numbers — standard is 1–99.",
+            "misconceptionTested": "Expanded range as only standard",
+            "whatItDoes": "1300–2699 only points to a related idea, but not the specific behavior or value required for standard range.",
+            "whyWrongHere": "For \"standard range\", 1–99 satisfies what this question tests — 1300–2699 only does not."
           }
         ],
-        "examTip": "First match wins + implicit deny. Standard = source only near destination; extended near source."
+        "examTip": "Standard ACL = 1–99; extended = 100–199."
       }
     },
     {
@@ -294,32 +294,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Extended ACLs match source+destination IP, protocol, and ports."
+          "explanation": "Extended ACLs match source/destination IP, protocol, and port — standard ACLs match source IP only."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Source IP describes a mechanism that could sound plausible for extended match. Given extended match, Destination IP, protocol, and port matches the tested behavior — Source IP applies a different mechanism.",
-            "whatItDoes": "Source IP describes a mechanism that could sound plausible for extended match.",
-            "whyWrongHere": "Given extended match, Destination IP, protocol, and port matches the tested behavior — Source IP applies a different mechanism.",
-            "misconceptionTested": "Applying \"Source IP\" without matching extended match"
+            "explanation": "Standard ACLs can match source IP — extended adds destination, protocol, and ports.",
+            "misconceptionTested": "Thinking only extended matches source",
+            "whatItDoes": "Source IP points to a related idea, but not the specific behavior or value required for extended match.",
+            "whyWrongHere": "For \"extended match\", Destination IP, protocol, and port satisfies what this question tests — Source IP does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Interface name describes a mechanism that could sound plausible for extended match. Given extended match, Destination IP, protocol, and port matches the tested behavior — Interface name applies a different mechanism.",
-            "whatItDoes": "Interface name describes a mechanism that could sound plausible for extended match.",
-            "whyWrongHere": "Given extended match, Destination IP, protocol, and port matches the tested behavior — Interface name applies a different mechanism.",
-            "misconceptionTested": "Applying \"Interface name\" without matching extended match"
+            "explanation": "ACLs filter traffic — they are not applied by interface name in the ACE itself.",
+            "misconceptionTested": "Interface name in ACE",
+            "whatItDoes": "Interface name points to a related idea, but not the specific behavior or value required for extended match.",
+            "whyWrongHere": "For \"extended match\", Destination IP, protocol, and port satisfies what this question tests — Interface name does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "VLAN ID describes a mechanism that could sound plausible for extended match. Given extended match, Destination IP, protocol, and port matches the tested behavior — VLAN ID applies a different mechanism.",
-            "whatItDoes": "VLAN ID describes a mechanism that could sound plausible for extended match.",
-            "whyWrongHere": "Given extended match, Destination IP, protocol, and port matches the tested behavior — VLAN ID applies a different mechanism.",
-            "misconceptionTested": "Applying \"VLAN ID\" without matching extended match"
+            "explanation": "VLAN filtering uses different mechanisms — extended ACLs match L3/L4 fields.",
+            "misconceptionTested": "VLAN ID in standard vs extended",
+            "whatItDoes": "VLAN ID points to a related idea, but not the specific behavior or value required for extended match.",
+            "whyWrongHere": "For \"extended match\", Destination IP, protocol, and port satisfies what this question tests — VLAN ID does not."
           }
         ],
-        "examTip": "On the exam: Placing extended ACLs near the destination — Place extended ACLs near the source to drop traffic early"
+        "examTip": "Need port/protocol filter → extended ACL."
       }
     },
     {
@@ -342,32 +342,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "ip access-group 100 in applies the ACL to the interface."
+          "explanation": "Apply with ip access-group 100 in (or out) under interface configuration."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "access-list 100 in describes a mechanism that could sound plausible for apply acl. Given apply acl, ip access-group 100 in matches the tested behavior — access-list 100 in applies a different mechanism.",
-            "whatItDoes": "access-list 100 in describes a mechanism that could sound plausible for apply acl.",
-            "whyWrongHere": "Given apply acl, ip access-group 100 in matches the tested behavior — access-list 100 in applies a different mechanism.",
-            "misconceptionTested": "Applying \"access-list 100 in\" without matching apply acl"
+            "explanation": "access-list 100 in is not valid interface syntax — use ip access-group.",
+            "misconceptionTested": "Wrong apply command",
+            "whatItDoes": "access-list 100 in applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (apply acl): ip access-group 100 in uses the right ACL type and position — access-list 100 in mismatches standard vs extended rules."
           },
           {
             "choiceIndex": 2,
-            "explanation": "ip access-list 100 inbound describes a mechanism that could sound plausible for apply acl. Given apply acl, ip access-group 100 in matches the tested behavior — ip access-list 100 inbound applies a different mechanism.",
-            "whatItDoes": "ip access-list 100 inbound describes a mechanism that could sound plausible for apply acl.",
-            "whyWrongHere": "Given apply acl, ip access-group 100 in matches the tested behavior — ip access-list 100 inbound applies a different mechanism.",
-            "misconceptionTested": "Applying \"ip access-list 100 inbound\" without matching apply acl"
+            "explanation": "ip access-list defines/edits the ACL — ip access-group applies it.",
+            "misconceptionTested": "Defining instead of applying ACL",
+            "whatItDoes": "ip access-list 100 inbound applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (apply acl): ip access-group 100 in uses the right ACL type and position — ip access-list 100 inbound mismatches standard vs extended rules."
           },
           {
             "choiceIndex": 3,
-            "explanation": "apply acl 100 in describes a mechanism that could sound plausible for apply acl. Given apply acl, ip access-group 100 in matches the tested behavior — apply acl 100 in applies a different mechanism.",
-            "whatItDoes": "apply acl 100 in describes a mechanism that could sound plausible for apply acl.",
-            "whyWrongHere": "Given apply acl, ip access-group 100 in matches the tested behavior — apply acl 100 in applies a different mechanism.",
-            "misconceptionTested": "Applying \"apply acl 100 in\" without matching apply acl"
+            "explanation": "apply acl is not Cisco IOS syntax.",
+            "misconceptionTested": "Invented apply syntax",
+            "whatItDoes": "apply acl 100 in points to a related idea, but not the specific behavior or value required for apply acl.",
+            "whyWrongHere": "For \"apply acl\", ip access-group 100 in satisfies what this question tests — apply acl 100 in does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "Apply ACL on interface → ip access-group <num> in|out."
       }
     },
     {
@@ -390,32 +390,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Top-down first-match means the earlier broad permit matches before the specific deny."
+          "explanation": "ACLs use first match wins — a broad permit above a specific deny never reaches the deny line."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "ACLs ignore deny rules reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
-            "whatItDoes": "ACLs ignore deny rules describes a mechanism that could sound plausible for order matters.",
-            "whyWrongHere": "Given order matters, First match wins — the permit matches first matches the tested behavior — ACLs ignore deny rules applies a different mechanism.",
-            "misconceptionTested": "Forgetting the implicit deny"
+            "explanation": "Deny rules work — order determines which ACE matches first.",
+            "misconceptionTested": "ACLs ignore deny",
+            "whatItDoes": "ACLs ignore deny rules points to a related idea, but not the specific behavior or value required for order matters.",
+            "whyWrongHere": "For \"order matters\", First match wins — the permit matches first satisfies what this question tests — ACLs ignore deny rules does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Deny rules need a wildcard reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
-            "whatItDoes": "Deny rules need a wildcard describes a mechanism that could sound plausible for order matters.",
-            "whyWrongHere": "Given order matters, First match wins — the permit matches first matches the tested behavior — Deny rules need a wildcard applies a different mechanism.",
-            "misconceptionTested": "Forgetting the implicit deny"
+            "explanation": "Wildcard masks define match scope — order still governs which ACE hits.",
+            "misconceptionTested": "Wildcard fixes order problem",
+            "whatItDoes": "Deny rules need a wildcard points to a related idea, but not the specific behavior or value required for order matters.",
+            "whyWrongHere": "For \"order matters\", First match wins — the permit matches first satisfies what this question tests — Deny rules need a wildcard does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The ACL is not applied describes a mechanism that could sound plausible for order matters. Given order matters, First match wins — the permit matches first matches the tested behavior — The ACL is not applied applies a different mechanism.",
-            "whatItDoes": "The ACL is not applied describes a mechanism that could sound plausible for order matters.",
-            "whyWrongHere": "Given order matters, First match wins — the permit matches first matches the tested behavior — The ACL is not applied applies a different mechanism.",
-            "misconceptionTested": "Applying \"The ACL is not applied\" without matching order matters"
+            "explanation": "An unapplied ACL filters nothing — here the permit matches before deny due to order.",
+            "misconceptionTested": "Unapplied ACL as reason deny fails",
+            "whatItDoes": "The ACL is not applied points to a related idea, but not the specific behavior or value required for order matters.",
+            "whyWrongHere": "For \"order matters\", First match wins — the permit matches first satisfies what this question tests — The ACL is not applied does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "Put specific denies before broad permits — first match wins."
       }
     },
     {
@@ -447,22 +447,22 @@
             "choiceIndex": 1,
             "explanation": "100 is not in the standard ACL range — standard stops at 99 in the classic numbering scheme.",
             "misconceptionTested": "Including 100 in standard ACL range",
-            "whatItDoes": "1 to 100 describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, 1 to 99 matches the tested behavior — 1 to 100 applies a different mechanism."
+            "whatItDoes": "1 to 100 points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", 1 to 99 satisfies what this question tests — 1 to 100 does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "100–199 is the extended ACL numbered range — not standard.",
             "misconceptionTested": "Confusing extended range with standard",
-            "whatItDoes": "100 to 199 describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, 1 to 99 matches the tested behavior — 100 to 199 applies a different mechanism."
+            "whatItDoes": "100 to 199 points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", 1 to 99 satisfies what this question tests — 100 to 199 does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "200 is outside both classic standard and extended ranges — standard is 1–99.",
             "misconceptionTested": "Off-by-range ACL numbering",
-            "whatItDoes": "100 to 200 describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, 1 to 99 matches the tested behavior — 100 to 200 applies a different mechanism."
+            "whatItDoes": "100 to 200 points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", 1 to 99 satisfies what this question tests — 100 to 200 does not."
           }
         ],
         "examTip": "Standard ACL 1–99. Extended ACL 100–199. Match range to ACL type."
@@ -490,35 +490,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Conditions can be based upon only the source address.\"."
+          "explanation": "Standard ACLs (1–99, 1300–1999) match source IP only — no destination or L4 ports."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Conditions can be based upon only the destination address. describes a mechanism that could sound plausible for statement. The stem asks what gets learned (statement). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
-            "whatItDoes": "Conditions can be based upon only the destination address. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "The stem asks what gets learned (statement). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
-            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
-            "needsExplanationReview": true
+            "explanation": "Standard ACLs cannot match destination — that's extended ACL territory.",
+            "misconceptionTested": "Standard ACL destination matching",
+            "whatItDoes": "Conditions can be based upon only the destination address. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "The stem asks what gets learned (statement). Switches record the source MAC on ingress — destination MAC is for lookup, not learning."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Conditions can be based upon only the source address and source port. describes a mechanism that could sound plausible for statement. Given statement, Conditions can be based upon only the source address. matches the tested behavior — Conditions can be based upon only the source address and source port. applies a different mechanism.",
-            "whatItDoes": "Conditions can be based upon only the source address and source port. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Conditions can be based upon only the source address. matches the tested behavior — Conditions can be based upon only the source address and source port. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Conditions can be based upon only th\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Standard ACLs match source IP only — no source port (extended ACL feature).",
+            "misconceptionTested": "Standard ACL source port matching",
+            "whatItDoes": "Conditions can be based upon only the source address and source port. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", Conditions can be based upon only the source address. satisfies what this question tests — Conditions can be based upon only the source address and source port. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Conditions can be based upon the source or destination address and source or destination port. describes a mechanism that could sound plausible for statement. CAM learning stores one mapping per arrival (statement): Conditions can be based upon only the source address. — not both addresses as table entries.",
-            "whatItDoes": "Conditions can be based upon the source or destination address and source or destination port. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "CAM learning stores one mapping per arrival (statement): Conditions can be based upon only the source address. — not both addresses as table entries.",
-            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table",
-            "needsExplanationReview": true
+            "explanation": "Matching ports and destination requires an extended ACL (100–199, 2000–2699).",
+            "misconceptionTested": "Standard ACL L4 and destination",
+            "whatItDoes": "Conditions can be based upon the source or destination address and source or destination port. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "CAM learning stores one mapping per arrival (statement): Conditions can be based upon only the source address. — not both addresses as table entries."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "Standard = source only | Extended = src/dst IP + protocol + ports — place standard ACLs close to destination."
       }
     },
     {
@@ -543,35 +540,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"100 to 199\"."
+          "explanation": "Extended ACLs use numbered range 100–199 — they match source/destination, protocol, and ports."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "1 to 99 describes a mechanism that could sound plausible for identify. Given identify, 100 to 199 matches the tested behavior — 1 to 99 applies a different mechanism.",
-            "whatItDoes": "1 to 99 describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, 100 to 199 matches the tested behavior — 1 to 99 applies a different mechanism.",
-            "misconceptionTested": "Applying \"1 to 99\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "1–99 is the standard ACL range (source IP only) — extended lists start at 100.",
+            "misconceptionTested": "Standard range for extended ACL",
+            "whatItDoes": "1 to 99 points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", 100 to 199 satisfies what this question tests — 1 to 99 does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "1 to 100 describes a mechanism that could sound plausible for identify. Given identify, 100 to 199 matches the tested behavior — 1 to 100 applies a different mechanism.",
-            "whatItDoes": "1 to 100 describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, 100 to 199 matches the tested behavior — 1 to 100 applies a different mechanism.",
-            "misconceptionTested": "Applying \"1 to 100\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "ACL ranges are not 1–100 — extended ACLs are 100–199.",
+            "misconceptionTested": "Off-by-one extended ACL range",
+            "whatItDoes": "1 to 100 points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", 100 to 199 satisfies what this question tests — 1 to 100 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "100 to 200 describes a mechanism that could sound plausible for identify. Given identify, 100 to 199 matches the tested behavior — 100 to 200 applies a different mechanism.",
-            "whatItDoes": "100 to 200 describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, 100 to 199 matches the tested behavior — 100 to 200 applies a different mechanism.",
-            "misconceptionTested": "Applying \"100 to 200\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "100–200 is wrong — the extended numbered range ends at 199.",
+            "misconceptionTested": "Extended range ending at 200",
+            "whatItDoes": "100 to 200 points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", 100 to 199 satisfies what this question tests — 100 to 200 does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "Numbered ACLs: 1–99/1300–1999 standard; 100–199/2000–2699 extended."
       }
     },
     {
@@ -596,35 +590,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"deny any any\"."
+          "explanation": "Every ACL ends with an implicit deny any any — unmatched traffic is dropped (not permitted)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "permit any any describes a mechanism that could sound plausible for identify. Given identify, deny any any matches the tested behavior — permit any any applies a different mechanism.",
-            "whatItDoes": "permit any any describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, deny any any matches the tested behavior — permit any any applies a different mechanism.",
-            "misconceptionTested": "Applying \"permit any any\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "permit any any is not implicit — only deny any any is hidden at the end.",
+            "misconceptionTested": "Implicit permit any any",
+            "whatItDoes": "permit any any points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "ACL syntax (identify): deny any any matches the required match fields — permit any any uses the wrong wildcard or match scope."
           },
           {
             "choiceIndex": 2,
-            "explanation": "log all describes a mechanism that could sound plausible for identify. Given identify, deny any any matches the tested behavior — log all applies a different mechanism.",
-            "whatItDoes": "log all describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, deny any any matches the tested behavior — log all applies a different mechanism.",
-            "misconceptionTested": "Applying \"log all\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Logging is optional per ACE — not an automatic ACL footer.",
+            "misconceptionTested": "Implicit log all",
+            "whatItDoes": "log all points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", deny any any satisfies what this question tests — log all does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "End of ACL marker describes a mechanism that could sound plausible for identify. Given identify, deny any any matches the tested behavior — End of ACL marker applies a different mechanism.",
-            "whatItDoes": "End of ACL marker describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, deny any any matches the tested behavior — End of ACL marker applies a different mechanism.",
-            "misconceptionTested": "Applying \"End of ACL marker\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "No marker exists — IOS silently applies implicit deny.",
+            "misconceptionTested": "Visible end-of-ACL marker",
+            "whatItDoes": "End of ACL marker points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", deny any any satisfies what this question tests — End of ACL marker does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "Always add explicit permit for needed traffic — implicit deny drops everything else."
       }
     },
     {
@@ -649,35 +640,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Packets are compared sequentially against each line in an access list until a match is made.\"."
+          "explanation": "ACL evaluation is top-down, first match wins — processing stops at the first matching ACE."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Packets are compared sequentially against each line in an access list, and the last matching condition is the action taken. describes a mechanism that could sound plausible for statement. Given statement, Packets are compared sequentially against each line in an access list until a match is made. matches the tested behavior — Packets are compared sequentially against each line in an access list, and the last matching condition is the action taken. applies a different mechanism.",
-            "whatItDoes": "Packets are compared sequentially against each line in an access list, and the last matching condition is the action taken. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Packets are compared sequentially against each line in an access list until a match is made. matches the tested behavior — Packets are compared sequentially against each line in an access list, and the last matching condition is the action taken. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Packets are compared sequentially ag\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "The first match decides — not the last matching line.",
+            "misconceptionTested": "Last match wins",
+            "whatItDoes": "Packets are compared sequentially against each line in an access list, and the last matching condition is the action taken. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", Packets are compared sequentially against each line in an access list until a match is made. satisfies what this question tests — Packets are compared sequentially against each line in an access list, and the last matching condition is the action taken. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Packets are compared, and if no matching rule exists, they are allowed. reflects a common trap: Rule order doesn’t matter. Order is critical — the first matching rule wins and the rest are skipped.",
-            "whatItDoes": "Packets are compared, and if no matching rule exists, they are allowed. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Packets are compared sequentially against each line in an access list until a match is made. matches the tested behavior — Packets are compared, and if no matching rule exists, they are allowed. applies a different mechanism.",
-            "misconceptionTested": "Rule order doesn’t matter",
-            "needsExplanationReview": true
+            "explanation": "Unmatched packets hit implicit deny — they are not allowed by default.",
+            "misconceptionTested": "Default permit when no match",
+            "whatItDoes": "Packets are compared, and if no matching rule exists, they are allowed. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", Packets are compared sequentially against each line in an access list until a match is made. satisfies what this question tests — Packets are compared, and if no matching rule exists, they are allowed. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "At the end of the ACL, there is an implicit allow. reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
-            "whatItDoes": "At the end of the ACL, there is an implicit allow. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Packets are compared sequentially against each line in an access list until a match is made. matches the tested behavior — At the end of the ACL, there is an implicit allow. applies a different mechanism.",
-            "misconceptionTested": "Forgetting the implicit deny",
-            "needsExplanationReview": true
+            "explanation": "There is an implicit deny, not an implicit allow.",
+            "misconceptionTested": "Implicit allow at ACL end",
+            "whatItDoes": "At the end of the ACL, there is an implicit allow. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", Packets are compared sequentially against each line in an access list until a match is made. satisfies what this question tests — At the end of the ACL, there is an implicit allow. does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "Order matters: place specific permits before broad denies — first hit sticks."
       }
     },
     {
@@ -702,35 +690,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Less processing overhead\"."
+          "explanation": "Standard ACLs match fewer fields → less CPU processing per packet than extended ACLs."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "More secure describes a mechanism that could sound plausible for identify. Given identify, Less processing overhead matches the tested behavior — More secure applies a different mechanism.",
-            "whatItDoes": "More secure describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Less processing overhead matches the tested behavior — More secure applies a different mechanism.",
-            "misconceptionTested": "Applying \"More secure\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Extended ACLs are more granular/secure for filtering — standard trades specificity for speed.",
+            "misconceptionTested": "Standard ACL more secure",
+            "whatItDoes": "More secure points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Less processing overhead satisfies what this question tests — More secure does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "More specific rules reflects a common trap: Misordering rules. First match wins — put specific rules before broad ones.",
-            "whatItDoes": "More specific rules describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Less processing overhead matches the tested behavior — More specific rules applies a different mechanism.",
-            "misconceptionTested": "Misordering rules",
-            "needsExplanationReview": true
+            "explanation": "Specific rules (ports, protocols) need extended ACLs — not standard.",
+            "misconceptionTested": "Standard ACL for granular rules",
+            "whatItDoes": "More specific rules points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Less processing overhead satisfies what this question tests — More specific rules does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Blocking of applications describes a mechanism that could sound plausible for identify. Given identify, Less processing overhead matches the tested behavior — Blocking of applications applies a different mechanism.",
-            "whatItDoes": "Blocking of applications describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Less processing overhead matches the tested behavior — Blocking of applications applies a different mechanism.",
-            "misconceptionTested": "Applying \"Blocking of applications\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Blocking applications requires extended ACLs with port/protocol matches.",
+            "misconceptionTested": "Standard ACL blocks applications",
+            "whatItDoes": "Blocking of applications points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Less processing overhead satisfies what this question tests — Blocking of applications does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "Standard ACL = fast, coarse (source IP) | Extended = slower, precise — place standard near destination."
       }
     },
     {
@@ -755,35 +740,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"1300 to 1999\"."
+          "explanation": "Expanded standard ACL range is 1300–1999 — classic range is 1–99."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "1000 to 1999 describes a mechanism that could sound plausible for identify. Given identify, 1300 to 1999 matches the tested behavior — 1000 to 1999 applies a different mechanism.",
-            "whatItDoes": "1000 to 1999 describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, 1300 to 1999 matches the tested behavior — 1000 to 1999 applies a different mechanism.",
-            "misconceptionTested": "Applying \"1000 to 1999\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "1000–1999 is not the standard/expanded split — expanded standard is 1300–1999.",
+            "misconceptionTested": "1000-1999 as expanded standard",
+            "whatItDoes": "1000 to 1999 points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", 1300 to 1999 satisfies what this question tests — 1000 to 1999 does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "1100 to 1299 describes a mechanism that could sound plausible for identify. Given identify, 1300 to 1999 matches the tested behavior — 1100 to 1299 applies a different mechanism.",
-            "whatItDoes": "1100 to 1299 describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, 1300 to 1999 matches the tested behavior — 1100 to 1299 applies a different mechanism.",
-            "misconceptionTested": "Applying \"1100 to 1299\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "1100–1299 is not a valid Cisco ACL range.",
+            "misconceptionTested": "1100-1299 ACL range",
+            "whatItDoes": "1100 to 1299 points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", 1300 to 1999 satisfies what this question tests — 1100 to 1299 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "2000 to 2699 describes a mechanism that could sound plausible for identify. Given identify, 1300 to 1999 matches the tested behavior — 2000 to 2699 applies a different mechanism.",
-            "whatItDoes": "2000 to 2699 describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, 1300 to 1999 matches the tested behavior — 2000 to 2699 applies a different mechanism.",
-            "misconceptionTested": "Applying \"2000 to 2699\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "2000–2699 is the expanded extended ACL range — not standard.",
+            "misconceptionTested": "2000-2699 as standard ACL",
+            "whatItDoes": "2000 to 2699 points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", 1300 to 1999 satisfies what this question tests — 2000 to 2699 does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL numbers: 1–99 / 1300–1999 standard | 100–199 / 2000–2699 extended."
       }
     },
     {
@@ -809,35 +791,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"0.15.255.255\"."
+          "explanation": "/12 on 172.16.0.0 → wildcard 0.15.255.255 (0=must match, 1=don't care)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "255.240.0.0 describes a mechanism that could sound plausible for wildcard. Given wildcard, 0.15.255.255 matches the tested behavior — 255.240.0.0 applies a different mechanism.",
-            "whatItDoes": "255.240.0.0 describes a mechanism that could sound plausible for wildcard.",
-            "whyWrongHere": "Given wildcard, 0.15.255.255 matches the tested behavior — 255.240.0.0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"255.240.0.0\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "255.240.0.0 is a subnet mask — ACL fields need wildcard, not mask.",
+            "misconceptionTested": "Subnet mask in wildcard field",
+            "whatItDoes": "255.240.0.0 points to a related idea, but not the specific behavior or value required for wildcard.",
+            "whyWrongHere": "For \"wildcard\", 0.15.255.255 satisfies what this question tests — 255.240.0.0 does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "0.0.240.255 describes a mechanism that could sound plausible for wildcard. Given wildcard, 0.15.255.255 matches the tested behavior — 0.0.240.255 applies a different mechanism.",
-            "whatItDoes": "0.0.240.255 describes a mechanism that could sound plausible for wildcard.",
-            "whyWrongHere": "Given wildcard, 0.15.255.255 matches the tested behavior — 0.0.240.255 applies a different mechanism.",
-            "misconceptionTested": "Applying \"0.0.240.255\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "0.0.240.255 does not align to a /12 boundary — recalc from prefix length.",
+            "misconceptionTested": "Wrong /12 wildcard",
+            "whatItDoes": "0.0.240.255 points to a related idea, but not the specific behavior or value required for wildcard.",
+            "whyWrongHere": "For \"wildcard\", 0.15.255.255 satisfies what this question tests — 0.0.240.255 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "255.3.0.0 describes a mechanism that could sound plausible for wildcard. Given wildcard, 0.15.255.255 matches the tested behavior — 255.3.0.0 applies a different mechanism.",
-            "whatItDoes": "255.3.0.0 describes a mechanism that could sound plausible for wildcard.",
-            "whyWrongHere": "Given wildcard, 0.15.255.255 matches the tested behavior — 255.3.0.0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"255.3.0.0\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "255.3.0.0 is not the inverse of /12 — use 0.15.255.255.",
+            "misconceptionTested": "Random wildcard guess",
+            "whatItDoes": "255.3.0.0 points to a related idea, but not the specific behavior or value required for wildcard.",
+            "whyWrongHere": "For \"wildcard\", 0.15.255.255 satisfies what this question tests — 255.3.0.0 does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "Wildcard = inverse of mask. /12 → 0.15.255.255 for 172.16.0.0/12."
       }
     },
     {
@@ -862,35 +841,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Router(config)#ip access-list 20 192.168.1.0 0.0.0.255\"."
+          "explanation": "ip access-list 20 192.168.1.0 0.0.0.255 begins a standard ACL (1–99) blocking source 192.168.1.0/24 with wildcard 0.0.0.255."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#ip access-list 100 192.168.1.0 0.0.0.255 describes a mechanism that could sound plausible for configure. Given configure, Router(config)#ip access-list 20 192.168.1.0 0.0.0.255 matches the tested behavior — Router(config)#ip access-list 100 192.168.1.0 0.0.0.255 applies a different mechanism.",
-            "whatItDoes": "Router(config)#ip access-list 100 192.168.1.0 0.0.0.255 describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Router(config)#ip access-list 20 192.168.1.0 0.0.0.255 matches the tested behavior — Router(config)#ip access-list 100 192.168.1.0 0.0.0.255 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#ip access-list 100 19\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "ip access-list 100 starts an extended ACL — source-only filter needs standard range 1–99.",
+            "misconceptionTested": "Extended range for standard filter",
+            "whatItDoes": "Router(config)#ip access-list 100 192.168.1.0 0.0.0.255 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (configure): Router(config)#ip access-list 20 192.168.1.0 0.0.0.255 uses the right ACL type and position — Router(config)#ip access-list 100 192.168.1.0 0.0.0.255 mismatches standard vs extended rules."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#ip access-list 1 192.168.1.0/24 describes a mechanism that could sound plausible for configure. Given configure, Router(config)#ip access-list 20 192.168.1.0 0.0.0.255 matches the tested behavior — Router(config)#ip access-list 1 192.168.1.0/24 applies a different mechanism.",
-            "whatItDoes": "Router(config)#ip access-list 1 192.168.1.0/24 describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Router(config)#ip access-list 20 192.168.1.0 0.0.0.255 matches the tested behavior — Router(config)#ip access-list 1 192.168.1.0/24 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#ip access-list 1 192.\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "CIDR /24 is not valid in IOS ACL lines — use address + wildcard mask.",
+            "misconceptionTested": "CIDR notation in ACL",
+            "whatItDoes": "Router(config)#ip access-list 1 192.168.1.0/24 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (configure): Router(config)#ip access-list 20 192.168.1.0 0.0.0.255 uses the right ACL type and position — Router(config)#ip access-list 1 192.168.1.0/24 mismatches standard vs extended rules."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#ip access-list 2 192.168.1.0 255.255.255.0 describes a mechanism that could sound plausible for configure. Given configure, Router(config)#ip access-list 20 192.168.1.0 0.0.0.255 matches the tested behavior — Router(config)#ip access-list 2 192.168.1.0 255.255.255.0 applies a different mechanism.",
-            "whatItDoes": "Router(config)#ip access-list 2 192.168.1.0 255.255.255.0 describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Router(config)#ip access-list 20 192.168.1.0 0.0.0.255 matches the tested behavior — Router(config)#ip access-list 2 192.168.1.0 255.255.255.0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#ip access-list 2 192.\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Wildcard 255.255.255.0 is inverted — /24 uses 0.0.0.255.",
+            "misconceptionTested": "Subnet mask as wildcard",
+            "whatItDoes": "Router(config)#ip access-list 2 192.168.1.0 255.255.255.0 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (configure): Router(config)#ip access-list 20 192.168.1.0 0.0.0.255 uses the right ACL type and position — Router(config)#ip access-list 2 192.168.1.0 255.255.255.0 mismatches standard vs extended rules."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
       }
     },
     {
@@ -916,35 +892,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Defining all addresses\"."
+          "explanation": "0.0.0.0 with wildcard 255.255.255.255 matches any address — the 'any' keyword equivalent."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Defining the broadcast address describes flooding the frame to multiple ports in the VLAN. Given you configure a rule with the address of 0, Defining all addresses matches the tested behavior — Defining the broadcast address applies a different mechanism.",
+            "explanation": "Broadcast is a specific address, not 0.0.0.0/255.255.255.255 match-all.",
+            "misconceptionTested": "Wildcard pair as broadcast definition",
             "whatItDoes": "Defining the broadcast address describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "Given you configure a rule with the address of 0, Defining all addresses matches the tested behavior — Defining the broadcast address applies a different mechanism.",
-            "misconceptionTested": "Applying \"Defining the broadcast address\" without matching acl",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"you configure a rule with the address of 0\", Defining all addresses satisfies what this question tests — Defining the broadcast address does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Defining no addresses describes a mechanism that could sound plausible for you configure a rule with the address of 0. Given you configure a rule with the address of 0, Defining all addresses matches the tested behavior — Defining no addresses applies a different mechanism.",
-            "whatItDoes": "Defining no addresses describes a mechanism that could sound plausible for you configure a rule with the address of 0.",
-            "whyWrongHere": "Given you configure a rule with the address of 0, Defining all addresses matches the tested behavior — Defining no addresses applies a different mechanism.",
-            "misconceptionTested": "Applying \"Defining no addresses\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "0.0.0.0 255.255.255.255 matches every host — it does not match nothing.",
+            "misconceptionTested": "Match-none wildcard pair",
+            "whatItDoes": "Defining no addresses points to a related idea, but not the specific behavior or value required for you configure a rule with the address of 0.",
+            "whyWrongHere": "For \"you configure a rule with the address of 0\", Defining all addresses satisfies what this question tests — Defining no addresses does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Defining the network address describes a mechanism that could sound plausible for you configure a rule with the address of 0. Given you configure a rule with the address of 0, Defining all addresses matches the tested behavior — Defining the network address applies a different mechanism.",
-            "whatItDoes": "Defining the network address describes a mechanism that could sound plausible for you configure a rule with the address of 0.",
-            "whyWrongHere": "Given you configure a rule with the address of 0, Defining all addresses matches the tested behavior — Defining the network address applies a different mechanism.",
-            "misconceptionTested": "Applying \"Defining the network address\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Network address uses host bits 0 with subnet wildcard — not all-ones wildcard.",
+            "misconceptionTested": "Network address wildcard confusion",
+            "whatItDoes": "Defining the network address points to a related idea, but not the specific behavior or value required for you configure a rule with the address of 0.",
+            "whyWrongHere": "For \"you configure a rule with the address of 0\", Defining all addresses satisfies what this question tests — Defining the network address does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
       }
     },
     {
@@ -969,35 +942,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"All of the above.\"."
+          "explanation": "IOS ACL interface limits: one direction, one protocol per application, one ACL per direction — all listed are true."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "An ACL can be applied in only one direction. describes a mechanism that could sound plausible for statement. Given statement, All of the above. matches the tested behavior — An ACL can be applied in only one direction. applies a different mechanism.",
-            "whatItDoes": "An ACL can be applied in only one direction. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, All of the above. matches the tested behavior — An ACL can be applied in only one direction. applies a different mechanism.",
-            "misconceptionTested": "Applying \"An ACL can be applied in only one di\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "You can apply in and out on the same interface — but only one ACL per direction.",
+            "misconceptionTested": "Single direction only misunderstood",
+            "whatItDoes": "An ACL can be applied in only one direction. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", All of the above. satisfies what this question tests — An ACL can be applied in only one direction. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "An ACL can be applied only to a single protocol. describes a mechanism that could sound plausible for statement. Given statement, All of the above. matches the tested behavior — An ACL can be applied only to a single protocol. applies a different mechanism.",
-            "whatItDoes": "An ACL can be applied only to a single protocol. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, All of the above. matches the tested behavior — An ACL can be applied only to a single protocol. applies a different mechanism.",
-            "misconceptionTested": "Applying \"An ACL can be applied only to a sing\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "ACLs can filter ip, tcp, etc. — but each application binds one ACL per direction/protocol context.",
+            "misconceptionTested": "Single protocol limit missed",
+            "whatItDoes": "An ACL can be applied only to a single protocol. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", All of the above. satisfies what this question tests — An ACL can be applied only to a single protocol. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "An ACL can be applied only to a single port. describes a mechanism that could sound plausible for statement. Given statement, All of the above. matches the tested behavior — An ACL can be applied only to a single port. applies a different mechanism.",
-            "whatItDoes": "An ACL can be applied only to a single port. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, All of the above. matches the tested behavior — An ACL can be applied only to a single port. applies a different mechanism.",
-            "misconceptionTested": "Applying \"An ACL can be applied only to a sing\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Multiple ACLs cannot stack on the same interface/direction — all restrictions apply.",
+            "misconceptionTested": "Single ACL per port missed",
+            "whatItDoes": "An ACL can be applied only to a single port. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", All of the above. satisfies what this question tests — An ACL can be applied only to a single port. does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
       }
     },
     {
@@ -1022,35 +992,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Extended\"."
+          "explanation": "Extended ACLs filter by protocol and port — required to block or permit a specific application like HTTP or SSH."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Standard describes a mechanism that could sound plausible for application. Given application, Extended matches the tested behavior — Standard applies a different mechanism.",
-            "whatItDoes": "Standard describes a mechanism that could sound plausible for application.",
-            "whyWrongHere": "Given application, Extended matches the tested behavior — Standard applies a different mechanism.",
-            "misconceptionTested": "Applying \"Standard\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Standard ACLs match source IP only — they cannot filter by TCP/UDP port or application.",
+            "misconceptionTested": "Standard ACL for port/application filter",
+            "whatItDoes": "Standard points to a related idea, but not the specific behavior or value required for application.",
+            "whyWrongHere": "For \"application\", Extended satisfies what this question tests — Standard does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Dynamic describes a mechanism that could sound plausible for application. Given application, Extended matches the tested behavior — Dynamic applies a different mechanism.",
-            "whatItDoes": "Dynamic describes a mechanism that could sound plausible for application.",
-            "whyWrongHere": "Given application, Extended matches the tested behavior — Dynamic applies a different mechanism.",
-            "misconceptionTested": "Applying \"Dynamic\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Dynamic ACLs use reflexive/temporary permits after auth — the stem asks for application filtering, which is extended.",
+            "misconceptionTested": "Dynamic ACL for static app filter",
+            "whatItDoes": "Dynamic points to a related idea, but not the specific behavior or value required for application.",
+            "whyWrongHere": "For \"application\", Extended satisfies what this question tests — Dynamic does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Expanded describes a mechanism that could sound plausible for application. Given application, Extended matches the tested behavior — Expanded applies a different mechanism.",
-            "whatItDoes": "Expanded describes a mechanism that could sound plausible for application.",
-            "whyWrongHere": "Given application, Extended matches the tested behavior — Expanded applies a different mechanism.",
-            "misconceptionTested": "Applying \"Expanded\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Expanded is not an IOS ACL type — use extended ACLs for protocol/port matching.",
+            "misconceptionTested": "Expanded as ACL type for applications",
+            "whatItDoes": "Expanded points to a related idea, but not the specific behavior or value required for application.",
+            "whyWrongHere": "For \"application\", Extended satisfies what this question tests — Expanded does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "Filter by port/protocol → extended ACL; source IP only → standard."
       }
     },
     {
@@ -1075,35 +1042,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"2000 to 2699\"."
+          "explanation": "Expanded extended ACLs use numbered range 2000–2699 (legacy expanded syntax)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "1000 to 1999 describes a mechanism that could sound plausible for identify. Given identify, 2000 to 2699 matches the tested behavior — 1000 to 1999 applies a different mechanism.",
-            "whatItDoes": "1000 to 1999 describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, 2000 to 2699 matches the tested behavior — 1000 to 1999 applies a different mechanism.",
-            "misconceptionTested": "Applying \"1000 to 1999\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "1000–1999 is not the extended expanded range.",
+            "misconceptionTested": "Wrong thousand-range for extended expanded",
+            "whatItDoes": "1000 to 1999 points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", 2000 to 2699 satisfies what this question tests — 1000 to 1999 does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "1100 to 1299 describes a mechanism that could sound plausible for identify. Given identify, 2000 to 2699 matches the tested behavior — 1100 to 1299 applies a different mechanism.",
-            "whatItDoes": "1100 to 1299 describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, 2000 to 2699 matches the tested behavior — 1100 to 1299 applies a different mechanism.",
-            "misconceptionTested": "Applying \"1100 to 1299\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "1100–1299 is not a valid IOS ACL range.",
+            "misconceptionTested": "Invented ACL range",
+            "whatItDoes": "1100 to 1299 points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", 2000 to 2699 satisfies what this question tests — 1100 to 1299 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "1300 to 1999 describes a mechanism that could sound plausible for identify. Given identify, 2000 to 2699 matches the tested behavior — 1300 to 1999 applies a different mechanism.",
-            "whatItDoes": "1300 to 1999 describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, 2000 to 2699 matches the tested behavior — 1300 to 1999 applies a different mechanism.",
-            "misconceptionTested": "Applying \"1300 to 1999\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "1300–1999 is the standard expanded range, not extended.",
+            "misconceptionTested": "Standard expanded range for extended",
+            "whatItDoes": "1300 to 1999 points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", 2000 to 2699 satisfies what this question tests — 1300 to 1999 does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
       }
     },
     {
@@ -1129,35 +1093,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"0.0.0.127\"."
+          "explanation": "192.168.1.0/25 = 128 hosts — wildcard 0.0.0.127 (invert subnet mask 255.255.255.128)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "255.255.255.128 describes a mechanism that could sound plausible for wildcard. Given wildcard, 0.0.0.127 matches the tested behavior — 255.255.255.128 applies a different mechanism.",
-            "whatItDoes": "255.255.255.128 describes a mechanism that could sound plausible for wildcard.",
-            "whyWrongHere": "Given wildcard, 0.0.0.127 matches the tested behavior — 255.255.255.128 applies a different mechanism.",
-            "misconceptionTested": "Applying \"255.255.255.128\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "255.255.255.128 is the subnet mask, not the ACL wildcard.",
+            "misconceptionTested": "Subnet mask used as wildcard",
+            "whatItDoes": "255.255.255.128 points to a related idea, but not the specific behavior or value required for wildcard.",
+            "whyWrongHere": "For \"wildcard\", 0.0.0.127 satisfies what this question tests — 255.255.255.128 does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "0.0.0.128 describes a mechanism that could sound plausible for wildcard. Given wildcard, 0.0.0.127 matches the tested behavior — 0.0.0.128 applies a different mechanism.",
-            "whatItDoes": "0.0.0.128 describes a mechanism that could sound plausible for wildcard.",
-            "whyWrongHere": "Given wildcard, 0.0.0.127 matches the tested behavior — 0.0.0.128 applies a different mechanism.",
-            "misconceptionTested": "Applying \"0.0.0.128\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "0.0.0.128 is invalid — wildcard bit 128 in last octet is wrong.",
+            "misconceptionTested": "Invalid wildcard 0.0.0.128",
+            "whatItDoes": "0.0.0.128 points to a related idea, but not the specific behavior or value required for wildcard.",
+            "whyWrongHere": "For \"wildcard\", 0.0.0.127 satisfies what this question tests — 0.0.0.128 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "0.0.0.63 describes a mechanism that could sound plausible for wildcard. Given wildcard, 0.0.0.127 matches the tested behavior — 0.0.0.63 applies a different mechanism.",
-            "whatItDoes": "0.0.0.63 describes a mechanism that could sound plausible for wildcard.",
-            "whyWrongHere": "Given wildcard, 0.0.0.127 matches the tested behavior — 0.0.0.63 applies a different mechanism.",
-            "misconceptionTested": "Applying \"0.0.0.63\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "0.0.0.63 matches /26 (64 hosts), not /25.",
+            "misconceptionTested": "/26 wildcard for /25 network",
+            "whatItDoes": "0.0.0.63 points to a related idea, but not the specific behavior or value required for wildcard.",
+            "whyWrongHere": "For \"wildcard\", 0.0.0.127 satisfies what this question tests — 0.0.0.63 does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
       }
     },
     {
@@ -1182,35 +1143,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Named\"."
+          "explanation": "Named ACLs let you delete individual lines (no <seq>) without removing the whole list."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Standard describes a mechanism that could sound plausible for removing. Given removing, Named matches the tested behavior — Standard applies a different mechanism.",
-            "whatItDoes": "Standard describes a mechanism that could sound plausible for removing.",
-            "whyWrongHere": "Given removing, Named matches the tested behavior — Standard applies a different mechanism.",
-            "misconceptionTested": "Applying \"Standard\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Numbered ACLs require no access-list <num> to wipe entirely — cannot remove one line easily.",
+            "misconceptionTested": "Standard ACL line delete",
+            "whatItDoes": "Standard points to a related idea, but not the specific behavior or value required for removing.",
+            "whyWrongHere": "For \"removing\", Named satisfies what this question tests — Standard does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Dynamic describes a mechanism that could sound plausible for removing. Given removing, Named matches the tested behavior — Dynamic applies a different mechanism.",
-            "whatItDoes": "Dynamic describes a mechanism that could sound plausible for removing.",
-            "whyWrongHere": "Given removing, Named matches the tested behavior — Dynamic applies a different mechanism.",
-            "misconceptionTested": "Applying \"Dynamic\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Dynamic ACLs are reflexive — not about per-line editing.",
+            "misconceptionTested": "Dynamic ACL for line edit",
+            "whatItDoes": "Dynamic points to a related idea, but not the specific behavior or value required for removing.",
+            "whyWrongHere": "For \"removing\", Named satisfies what this question tests — Dynamic does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Extended describes a mechanism that could sound plausible for removing. Given removing, Named matches the tested behavior — Extended applies a different mechanism.",
-            "whatItDoes": "Extended describes a mechanism that could sound plausible for removing.",
-            "whyWrongHere": "Given removing, Named matches the tested behavior — Extended applies a different mechanism.",
-            "misconceptionTested": "Applying \"Extended\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Extended describes match criteria — named ACLs add line-level editability.",
+            "misconceptionTested": "Extended type for line delete",
+            "whatItDoes": "Extended points to a related idea, but not the specific behavior or value required for removing.",
+            "whyWrongHere": "For \"removing\", Named satisfies what this question tests — Extended does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
       }
     },
     {
@@ -1235,35 +1193,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Dynamic\"."
+          "explanation": "Dynamic (lock-and-key) ACLs open temporary permits after user authentication on the router."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Standard describes a mechanism that could sound plausible for someone has successfully logged into the router. Given someone has successfully logged into the router, Dynamic matches the tested behavior — Standard applies a different mechanism.",
-            "whatItDoes": "Standard describes a mechanism that could sound plausible for someone has successfully logged into the router.",
-            "whyWrongHere": "Given someone has successfully logged into the router, Dynamic matches the tested behavior — Standard applies a different mechanism.",
-            "misconceptionTested": "Applying \"Standard\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Standard ACLs are static source filters — no login-triggered openings.",
+            "misconceptionTested": "Standard ACL for auth-triggered open",
+            "whatItDoes": "Standard points to a related idea, but not the specific behavior or value required for someone has successfully logged into the router.",
+            "whyWrongHere": "For \"someone has successfully logged into the router\", Dynamic satisfies what this question tests — Standard does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Extended describes a mechanism that could sound plausible for someone has successfully logged into the router. Given someone has successfully logged into the router, Dynamic matches the tested behavior — Extended applies a different mechanism.",
-            "whatItDoes": "Extended describes a mechanism that could sound plausible for someone has successfully logged into the router.",
-            "whyWrongHere": "Given someone has successfully logged into the router, Dynamic matches the tested behavior — Extended applies a different mechanism.",
-            "misconceptionTested": "Applying \"Extended\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Extended ACLs filter traffic but don't authenticate users to open ports.",
+            "misconceptionTested": "Extended ACL for login open",
+            "whatItDoes": "Extended points to a related idea, but not the specific behavior or value required for someone has successfully logged into the router.",
+            "whyWrongHere": "For \"someone has successfully logged into the router\", Dynamic satisfies what this question tests — Extended does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Named describes a mechanism that could sound plausible for someone has successfully logged into the router. Given someone has successfully logged into the router, Dynamic matches the tested behavior — Named applies a different mechanism.",
-            "whatItDoes": "Named describes a mechanism that could sound plausible for someone has successfully logged into the router.",
-            "whyWrongHere": "Given someone has successfully logged into the router, Dynamic matches the tested behavior — Named applies a different mechanism.",
-            "misconceptionTested": "Applying \"Named\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Named is a format — dynamic/reflexive behavior requires lock-and-key.",
+            "misconceptionTested": "Named ACL as dynamic",
+            "whatItDoes": "Named points to a related idea, but not the specific behavior or value required for someone has successfully logged into the router.",
+            "whyWrongHere": "For \"someone has successfully logged into the router\", Dynamic satisfies what this question tests — Named does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
       }
     },
     {
@@ -1288,35 +1243,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255\"."
+          "explanation": "access-list 20 deny 172.16.0.0 0.255.255.255 — standard ACL (1–99) matching a source network."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#access-list 180 permit udp any 172.16.0.0 0.255.255.255 eq 161 describes a mechanism that could sound plausible for statement. Given statement, Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255 matches the tested behavior — Router(config)#access-list 180 permit udp any 172.16.0.0 0.255.255.255 eq 161 applies a different mechanism.",
-            "whatItDoes": "Router(config)#access-list 180 permit udp any 172.16.0.0 0.255.255.255 eq 161 describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255 matches the tested behavior — Router(config)#access-list 180 permit udp any 172.16.0.0 0.255.255.255 eq 161 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#access-list 180 permi\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "180 is extended range with udp — standard ACLs cannot match ports.",
+            "misconceptionTested": "Extended ACL numbered as standard",
+            "whatItDoes": "Router(config)#access-list 180 permit udp any 172.16.0.0 0.255.255.255 eq 161 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255 uses the right ACL type and position — Router(config)#access-list 180 permit udp any 172.16.0.0 0.255.255.255 eq 161 mismatches standard vs extended rules."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#access-list 130 permit permit ip any any describes a mechanism that could sound plausible for statement. Given statement, Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255 matches the tested behavior — Router(config)#access-list 130 permit permit ip any any applies a different mechanism.",
-            "whatItDoes": "Router(config)#access-list 130 permit permit ip any any describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255 matches the tested behavior — Router(config)#access-list 130 permit permit ip any any applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#access-list 130 permi\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Double permit is invalid syntax.",
+            "misconceptionTested": "Duplicate permit keyword",
+            "whatItDoes": "Router(config)#access-list 130 permit permit ip any any applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255 uses the right ACL type and position — Router(config)#access-list 130 permit permit ip any any mismatches standard vs extended rules."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#access-list 150 deny any 172.16.0.0 0.255.255.255 reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
-            "whatItDoes": "Router(config)#access-list 150 deny any 172.16.0.0 0.255.255.255 describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255 matches the tested behavior — Router(config)#access-list 150 deny any 172.16.0.0 0.255.255.255 applies a different mechanism.",
-            "misconceptionTested": "Forgetting the implicit deny",
-            "needsExplanationReview": true
+            "explanation": "deny any 172.16.0.0 reverses source/destination — standard ACLs match source only.",
+            "misconceptionTested": "Standard ACL with any as source",
+            "whatItDoes": "Router(config)#access-list 150 deny any 172.16.0.0 0.255.255.255 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255 uses the right ACL type and position — Router(config)#access-list 150 deny any 172.16.0.0 0.255.255.255 mismatches standard vs extended rules."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
       }
     },
     {
@@ -1341,35 +1293,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Router(config)#access-list 5 permit host 192.168.1.5\"."
+          "explanation": "access-list 5 permit host 192.168.1.5 is shorthand for 192.168.1.5 0.0.0.0."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#access-list 5 permit 192.168.1.5 describes a mechanism that could sound plausible for statement. Given statement, Router(config)#access-list 5 permit host 192.168.1.5 matches the tested behavior — Router(config)#access-list 5 permit 192.168.1.5 applies a different mechanism.",
-            "whatItDoes": "Router(config)#access-list 5 permit 192.168.1.5 describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Router(config)#access-list 5 permit host 192.168.1.5 matches the tested behavior — Router(config)#access-list 5 permit 192.168.1.5 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#access-list 5 permit \" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Host line still needs permit keyword — permit 192.168.1.5 alone is incomplete.",
+            "misconceptionTested": "Host permit without permit keyword",
+            "whatItDoes": "Router(config)#access-list 5 permit 192.168.1.5 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 5 permit host 192.168.1.5 uses the right ACL type and position — Router(config)#access-list 5 permit 192.168.1.5 mismatches standard vs extended rules."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#access-list 5 permit 192.168.1.5/24 describes a mechanism that could sound plausible for statement. Given statement, Router(config)#access-list 5 permit host 192.168.1.5 matches the tested behavior — Router(config)#access-list 5 permit 192.168.1.5/24 applies a different mechanism.",
-            "whatItDoes": "Router(config)#access-list 5 permit 192.168.1.5/24 describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Router(config)#access-list 5 permit host 192.168.1.5 matches the tested behavior — Router(config)#access-list 5 permit 192.168.1.5/24 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#access-list 5 permit \" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "CIDR /24 is invalid in numbered ACL syntax.",
+            "misconceptionTested": "CIDR in standard ACL",
+            "whatItDoes": "Router(config)#access-list 5 permit 192.168.1.5/24 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 5 permit host 192.168.1.5 uses the right ACL type and position — Router(config)#access-list 5 permit 192.168.1.5/24 mismatches standard vs extended rules."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#access-list 5 permit 192.168.1.0 0.0.0.255 describes a mechanism that could sound plausible for statement. Given statement, Router(config)#access-list 5 permit host 192.168.1.5 matches the tested behavior — Router(config)#access-list 5 permit 192.168.1.0 0.0.0.255 applies a different mechanism.",
-            "whatItDoes": "Router(config)#access-list 5 permit 192.168.1.0 0.0.0.255 describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Router(config)#access-list 5 permit host 192.168.1.5 matches the tested behavior — Router(config)#access-list 5 permit 192.168.1.0 0.0.0.255 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#access-list 5 permit \" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "192.168.1.0 0.0.0.255 matches the whole subnet, not one host.",
+            "misconceptionTested": "Subnet instead of host keyword",
+            "whatItDoes": "Router(config)#access-list 5 permit 192.168.1.0 0.0.0.255 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 5 permit host 192.168.1.5 uses the right ACL type and position — Router(config)#access-list 5 permit 192.168.1.0 0.0.0.255 mismatches standard vs extended rules."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
       }
     },
     {
@@ -1396,35 +1345,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any\"."
+          "explanation": "Deny tcp/80 to the HR server, then permit ip any any — extended ACLs need ip protocol for the permit-any."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
-            "whatItDoes": "Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any describes a mechanism that could sound plausible for internet.",
-            "whyWrongHere": "Given internet, Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any matches the tested behavior — Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any applies a different mechanism.",
-            "misconceptionTested": "Forgetting the implicit deny",
-            "needsExplanationReview": true
+            "explanation": "permit any any is incomplete — use permit ip any any in extended ACLs.",
+            "misconceptionTested": "permit any any without ip keyword",
+            "whatItDoes": "Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (internet): Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any uses the right ACL type and position — Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any mismatches standard vs extended rules."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#access-list 101 deny host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
-            "whatItDoes": "Router(config)#access-list 101 deny host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any describes a mechanism that could sound plausible for internet.",
-            "whyWrongHere": "Given internet, Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any matches the tested behavior — Router(config)#access-list 101 deny host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any applies a different mechanism.",
-            "misconceptionTested": "Forgetting the implicit deny",
-            "needsExplanationReview": true
+            "explanation": "Missing tcp on deny — port 80 filter requires tcp keyword.",
+            "misconceptionTested": "Missing tcp on deny line",
+            "whatItDoes": "Router(config)#access-list 101 deny host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (internet): Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any uses the right ACL type and position — Router(config)#access-list 101 deny host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any mismatches standard vs extended rules."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any eq 80 reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
-            "whatItDoes": "Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any eq 80 describes a mechanism that could sound plausible for internet.",
-            "whyWrongHere": "Given internet, Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any matches the tested behavior — Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any eq 80 applies a different mechanism.",
-            "misconceptionTested": "Forgetting the implicit deny",
-            "needsExplanationReview": true
+            "explanation": "eq 80 on the permit line wrongly limits the catch-all permit to HTTP only.",
+            "misconceptionTested": "Port filter on permit any",
+            "whatItDoes": "Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any eq 80 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (internet): Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any uses the right ACL type and position — Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any eq 80 mismatches standard vs extended rules."
           }
         ],
-        "examTip": "ACL: first match wins, implicit deny at end; wildcard 0 = must match."
+        "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
       }
     },
     {
@@ -1449,35 +1395,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Standard\"."
+          "explanation": "Standard ACLs match source IP address only — no destination, protocol, or port."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Extended describes a mechanism that could sound plausible for describing. Given describing, Standard matches the tested behavior — Extended applies a different mechanism.",
-            "whatItDoes": "Extended describes a mechanism that could sound plausible for describing.",
-            "whyWrongHere": "Given describing, Standard matches the tested behavior — Extended applies a different mechanism.",
-            "misconceptionTested": "Applying \"Extended\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Extended ACLs match source, destination, protocol, and ports.",
+            "misconceptionTested": "Extended as source-only",
+            "whatItDoes": "Extended points to a related idea, but not the specific behavior or value required for describing.",
+            "whyWrongHere": "For \"describing\", Standard satisfies what this question tests — Extended does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Named describes a mechanism that could sound plausible for describing. Given describing, Standard matches the tested behavior — Named applies a different mechanism.",
-            "whatItDoes": "Named describes a mechanism that could sound plausible for describing.",
-            "whyWrongHere": "Given describing, Standard matches the tested behavior — Named applies a different mechanism.",
-            "misconceptionTested": "Applying \"Named\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Named is a configuration style — can be standard or extended.",
+            "misconceptionTested": "Named as source-only type",
+            "whatItDoes": "Named points to a related idea, but not the specific behavior or value required for describing.",
+            "whyWrongHere": "For \"describing\", Standard satisfies what this question tests — Named does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Dynamic describes a mechanism that could sound plausible for describing. Given describing, Standard matches the tested behavior — Dynamic applies a different mechanism.",
-            "whatItDoes": "Dynamic describes a mechanism that could sound plausible for describing.",
-            "whyWrongHere": "Given describing, Standard matches the tested behavior — Dynamic applies a different mechanism.",
-            "misconceptionTested": "Applying \"Dynamic\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Dynamic ACLs add temporal permits — still not 'source only' in the standard sense.",
+            "misconceptionTested": "Dynamic as source-only",
+            "whatItDoes": "Dynamic points to a related idea, but not the specific behavior or value required for describing.",
+            "whyWrongHere": "For \"describing\", Standard satisfies what this question tests — Dynamic does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
       }
     },
     {
@@ -1503,35 +1446,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Router(config)#access-list 199 deny tcp any host 192.168.1.5 eq 22\"."
+          "explanation": "access-list 199 deny tcp any host 192.168.1.5 eq 22 — extended ACL, TCP port 22 (SSH), traffic to the server."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#access-list 90 deny ip host 192.168.1.5 eq 22 reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
-            "whatItDoes": "Router(config)#access-list 90 deny ip host 192.168.1.5 eq 22 describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Router(config)#access-list 199 deny tcp any host 192.168.1.5 eq 22 matches the tested behavior — Router(config)#access-list 90 deny ip host 192.168.1.5 eq 22 applies a different mechanism.",
-            "misconceptionTested": "Forgetting the implicit deny",
-            "needsExplanationReview": true
+            "explanation": "deny ip ... eq 22 — eq requires tcp/udp, not ip.",
+            "misconceptionTested": "ip protocol with port operator",
+            "whatItDoes": "Router(config)#access-list 90 deny ip host 192.168.1.5 eq 22 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 199 deny tcp any host 192.168.1.5 eq 22 uses the right ACL type and position — Router(config)#access-list 90 deny ip host 192.168.1.5 eq 22 mismatches standard vs extended rules."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#access-list 90 deny tcp any host 192.168.1.5 eq 22 reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
-            "whatItDoes": "Router(config)#access-list 90 deny tcp any host 192.168.1.5 eq 22 describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Router(config)#access-list 199 deny tcp any host 192.168.1.5 eq 22 matches the tested behavior — Router(config)#access-list 90 deny tcp any host 192.168.1.5 eq 22 applies a different mechanism.",
-            "misconceptionTested": "Forgetting the implicit deny",
-            "needsExplanationReview": true
+            "explanation": "Standard ACL 90 cannot match eq 22 — need extended 100–199.",
+            "misconceptionTested": "Standard ACL with port",
+            "whatItDoes": "Router(config)#access-list 90 deny tcp any host 192.168.1.5 eq 22 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 199 deny tcp any host 192.168.1.5 eq 22 uses the right ACL type and position — Router(config)#access-list 90 deny tcp any host 192.168.1.5 eq 22 mismatches standard vs extended rules."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#access-list 199 deny tcp host 192.168.1.5 any eq 23 reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
-            "whatItDoes": "Router(config)#access-list 199 deny tcp host 192.168.1.5 any eq 23 describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Router(config)#access-list 199 deny tcp any host 192.168.1.5 eq 22 matches the tested behavior — Router(config)#access-list 199 deny tcp host 192.168.1.5 any eq 23 applies a different mechanism.",
-            "misconceptionTested": "Forgetting the implicit deny",
-            "needsExplanationReview": true
+            "explanation": "eq 23 is Telnet — SSH is port 22.",
+            "misconceptionTested": "Telnet port for SSH block",
+            "whatItDoes": "Router(config)#access-list 199 deny tcp host 192.168.1.5 any eq 23 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 199 deny tcp any host 192.168.1.5 eq 22 uses the right ACL type and position — Router(config)#access-list 199 deny tcp host 192.168.1.5 any eq 23 mismatches standard vs extended rules."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
       }
     },
     {
@@ -1558,35 +1498,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Extended\"."
+          "explanation": "Blocking by protocol and port (TCP/80) requires an extended ACL."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Standard describes a mechanism that could sound plausible for requirement. Given requirement, Extended matches the tested behavior — Standard applies a different mechanism.",
-            "whatItDoes": "Standard describes a mechanism that could sound plausible for requirement.",
-            "whyWrongHere": "Given requirement, Extended matches the tested behavior — Standard applies a different mechanism.",
-            "misconceptionTested": "Applying \"Standard\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Standard ACLs cannot match TCP port 80.",
+            "misconceptionTested": "Standard ACL for L4 filter",
+            "whatItDoes": "Standard points to a related idea, but not the specific behavior or value required for requirement.",
+            "whyWrongHere": "For \"requirement\", Extended satisfies what this question tests — Standard does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Dynamic describes a mechanism that could sound plausible for requirement. Given requirement, Extended matches the tested behavior — Dynamic applies a different mechanism.",
-            "whatItDoes": "Dynamic describes a mechanism that could sound plausible for requirement.",
-            "whyWrongHere": "Given requirement, Extended matches the tested behavior — Dynamic applies a different mechanism.",
-            "misconceptionTested": "Applying \"Dynamic\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Dynamic ACLs authenticate users — not static app filtering.",
+            "misconceptionTested": "Dynamic for static web block",
+            "whatItDoes": "Dynamic points to a related idea, but not the specific behavior or value required for requirement.",
+            "whyWrongHere": "For \"requirement\", Extended satisfies what this question tests — Dynamic does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Expanded describes a mechanism that could sound plausible for requirement. Given requirement, Extended matches the tested behavior — Expanded applies a different mechanism.",
-            "whatItDoes": "Expanded describes a mechanism that could sound plausible for requirement.",
-            "whyWrongHere": "Given requirement, Extended matches the tested behavior — Expanded applies a different mechanism.",
-            "misconceptionTested": "Applying \"Expanded\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Expanded is not an IOS ACL category.",
+            "misconceptionTested": "Expanded ACL type",
+            "whatItDoes": "Expanded points to a related idea, but not the specific behavior or value required for requirement.",
+            "whyWrongHere": "For \"requirement\", Extended satisfies what this question tests — Expanded does not."
           }
         ],
-        "examTip": "ACL: first match wins, implicit deny at end; wildcard 0 = must match."
+        "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
       }
     },
     {
@@ -1611,35 +1548,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any\"."
+          "explanation": "access-list 143 permit tcp host 192.168.8.3 eq 80 any — valid extended syntax (100–199) with tcp/www."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#access-list 99 deny tcp host 192.168.2.7 eq 443 reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
-            "whatItDoes": "Router(config)#access-list 99 deny tcp host 192.168.2.7 eq 443 describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any matches the tested behavior — Router(config)#access-list 99 deny tcp host 192.168.2.7 eq 443 applies a different mechanism.",
-            "misconceptionTested": "Forgetting the implicit deny",
-            "needsExplanationReview": true
+            "explanation": "ACL 99 is standard — cannot use eq 443.",
+            "misconceptionTested": "Standard ACL with port",
+            "whatItDoes": "Router(config)#access-list 99 deny tcp host 192.168.2.7 eq 443 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any uses the right ACL type and position — Router(config)#access-list 99 deny tcp host 192.168.2.7 eq 443 mismatches standard vs extended rules."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#access-list 189 deny any host 192.168.1.5 eq 22 reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
-            "whatItDoes": "Router(config)#access-list 189 deny any host 192.168.1.5 eq 22 describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any matches the tested behavior — Router(config)#access-list 189 deny any host 192.168.1.5 eq 22 applies a different mechanism.",
-            "misconceptionTested": "Forgetting the implicit deny",
-            "needsExplanationReview": true
+            "explanation": "deny any host ... eq 22 has any in wrong position for standard/extended grammar.",
+            "misconceptionTested": "Malformed deny any host",
+            "whatItDoes": "Router(config)#access-list 189 deny any host 192.168.1.5 eq 22 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any uses the right ACL type and position — Router(config)#access-list 189 deny any host 192.168.1.5 eq 22 mismatches standard vs extended rules."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#access-list 153 permit any host 192.168.4.5 eq 22 describes a mechanism that could sound plausible for statement. Given statement, Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any matches the tested behavior — Router(config)#access-list 153 permit any host 192.168.4.5 eq 22 applies a different mechanism.",
-            "whatItDoes": "Router(config)#access-list 153 permit any host 192.168.4.5 eq 22 describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any matches the tested behavior — Router(config)#access-list 153 permit any host 192.168.4.5 eq 22 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#access-list 153 permi\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "permit any host ... eq 22 misorders keywords — destination host should follow protocol.",
+            "misconceptionTested": "Malformed permit any host",
+            "whatItDoes": "Router(config)#access-list 153 permit any host 192.168.4.5 eq 22 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any uses the right ACL type and position — Router(config)#access-list 153 permit any host 192.168.4.5 eq 22 mismatches standard vs extended rules."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
       }
     },
     {
@@ -1664,35 +1598,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Router(config-if)#ip access-group 198 in\"."
+          "explanation": "Apply an ACL to filter inbound traffic with ip access-group 198 in under the interface."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#ip access-list 198 in fast 0/1 describes a mechanism that could sound plausible for interface. Given interface, Router(config-if)#ip access-group 198 in matches the tested behavior — Router(config)#ip access-list 198 in fast 0/1 applies a different mechanism.",
-            "whatItDoes": "Router(config)#ip access-list 198 in fast 0/1 describes a mechanism that could sound plausible for interface.",
-            "whyWrongHere": "Given interface, Router(config-if)#ip access-group 198 in matches the tested behavior — Router(config)#ip access-list 198 in fast 0/1 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#ip access-list 198 in\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "ip access-list 198 in is invalid global syntax — ACLs attach with ip access-group on the interface.",
+            "misconceptionTested": "Global ip access-list for interface filter",
+            "whatItDoes": "Router(config)#ip access-list 198 in fast 0/1 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (interface): Router(config-if)#ip access-group 198 in uses the right ACL type and position — Router(config)#ip access-list 198 in fast 0/1 mismatches standard vs extended rules."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config-if)#ip access-list 198 in describes a mechanism that could sound plausible for interface. Given interface, Router(config-if)#ip access-group 198 in matches the tested behavior — Router(config-if)#ip access-list 198 in applies a different mechanism.",
-            "whatItDoes": "Router(config-if)#ip access-list 198 in describes a mechanism that could sound plausible for interface.",
-            "whyWrongHere": "Given interface, Router(config-if)#ip access-group 198 in matches the tested behavior — Router(config-if)#ip access-list 198 in applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config-if)#ip access-list 198\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "ip access-list 198 in creates/edits the ACL — it does not apply it to the interface.",
+            "misconceptionTested": "ACL definition command as apply command",
+            "whatItDoes": "Router(config-if)#ip access-list 198 in applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (interface): Router(config-if)#ip access-group 198 in uses the right ACL type and position — Router(config-if)#ip access-list 198 in mismatches standard vs extended rules."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config-if)#ip access-class 198 in describes a mechanism that could sound plausible for interface. Given interface, Router(config-if)#ip access-group 198 in matches the tested behavior — Router(config-if)#ip access-class 198 in applies a different mechanism.",
-            "whatItDoes": "Router(config-if)#ip access-class 198 in describes a mechanism that could sound plausible for interface.",
-            "whyWrongHere": "Given interface, Router(config-if)#ip access-group 198 in matches the tested behavior — Router(config-if)#ip access-class 198 in applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config-if)#ip access-class 19\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "ip access-class restricts VTY/management logins — not data-plane filtering on a routed interface.",
+            "misconceptionTested": "access-class for interface data filtering",
+            "whatItDoes": "Router(config-if)#ip access-class 198 in points to a related idea, but not the specific behavior or value required for interface.",
+            "whyWrongHere": "For \"interface\", Router(config-if)#ip access-group 198 in satisfies what this question tests — Router(config-if)#ip access-class 198 in does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "Filter traffic on an interface → ip access-group <num> in|out under config-if."
       }
     },
     {
@@ -1719,35 +1650,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out\"."
+          "explanation": "Apply ACL 2 outbound on Gi0/2 (HR-facing) — filters traffic leaving toward HR after routing decision."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in describes a mechanism that could sound plausible for topology. Given topology, Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out matches the tested behavior — Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in applies a different mechanism.",
-            "whatItDoes": "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in describes a mechanism that could sound plausible for topology.",
-            "whyWrongHere": "Given topology, Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out matches the tested behavior — Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#interface gi 0/0 Rout\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Inbound on Gi0/0 filters users entering the router — wrong placement for HR-bound traffic.",
+            "misconceptionTested": "ACL inbound on user interface",
+            "whatItDoes": "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"topology\", Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out satisfies what this question tests — Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out describes a mechanism that could sound plausible for topology. Given topology, Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out matches the tested behavior — Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out applies a different mechanism.",
-            "whatItDoes": "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out describes a mechanism that could sound plausible for topology.",
-            "whyWrongHere": "Given topology, Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out matches the tested behavior — Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#interface gi 0/0 Rout\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Outbound on Gi0/0 sends filtered traffic back to users — doesn't block toward HR.",
+            "misconceptionTested": "ACL outbound on user interface",
+            "whatItDoes": "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"topology\", Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out satisfies what this question tests — Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 in describes a mechanism that could sound plausible for topology. Given topology, Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out matches the tested behavior — Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 in applies a different mechanism.",
-            "whatItDoes": "Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 in describes a mechanism that could sound plausible for topology.",
-            "whyWrongHere": "Given topology, Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out matches the tested behavior — Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 in applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#interface gi 0/2 Rout\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Inbound on Gi0/2 filters HR replies — stem blocks host→HR on outbound HR interface.",
+            "misconceptionTested": "ACL inbound on HR interface",
+            "whatItDoes": "Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 in states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"topology\", Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out satisfies what this question tests — Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 in does not."
           }
         ],
-        "examTip": "ACL: first match wins, implicit deny at end; wildcard 0 = must match."
+        "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
       }
     },
     {
@@ -1774,35 +1702,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Switch#show ip access-list\"."
+          "explanation": "show ip access-list displays all IP ACLs with sequence numbers — including the named list shown."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#show access-list named_list describes a mechanism that could sound plausible for named_list. Given named_list, Switch#show ip access-list matches the tested behavior — Switch#show access-list named_list applies a different mechanism.",
-            "whatItDoes": "Switch#show access-list named_list describes a mechanism that could sound plausible for named_list.",
-            "whyWrongHere": "Given named_list, Switch#show ip access-list matches the tested behavior — Switch#show access-list named_list applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show access-list named_list\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "show access-list may omit IP-specific detail on some platforms — show ip access-list is the IP-focused command.",
+            "misconceptionTested": "Non-IP show access-list variant",
+            "whatItDoes": "Switch#show access-list named_list points to a related idea, but not the specific behavior or value required for named_list.",
+            "whyWrongHere": "For \"named_list\", Switch#show ip access-list satisfies what this question tests — Switch#show access-list named_list does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch#show ip access-list named_list describes a mechanism that could sound plausible for named_list. Given named_list, Switch#show ip access-list matches the tested behavior — Switch#show ip access-list named_list applies a different mechanism.",
-            "whatItDoes": "Switch#show ip access-list named_list describes a mechanism that could sound plausible for named_list.",
-            "whyWrongHere": "Given named_list, Switch#show ip access-list matches the tested behavior — Switch#show ip access-list named_list applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show ip access-list named_lis\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "show ip access-list named_list works for one list — the keyed answer shows all lists with line numbers.",
+            "misconceptionTested": "Named-only show when all lists keyed",
+            "whatItDoes": "Switch#show ip access-list named_list is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (named_list): Switch#show ip access-list inspects the right table or state — Switch#show ip access-list named_list shows unrelated information."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch#show running-configuration describes a mechanism that could sound plausible for named_list. Given named_list, Switch#show ip access-list matches the tested behavior — Switch#show running-configuration applies a different mechanism.",
-            "whatItDoes": "Switch#show running-configuration describes a mechanism that could sound plausible for named_list.",
-            "whyWrongHere": "Given named_list, Switch#show ip access-list matches the tested behavior — Switch#show running-configuration applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show running-configuration\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "show running-config may not show sequence numbers inline.",
+            "misconceptionTested": "Running-config for seq numbers",
+            "whatItDoes": "Switch#show running-configuration is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (named_list): Switch#show ip access-list inspects the right table or state — Switch#show running-configuration shows unrelated information."
           }
         ],
-        "examTip": "ACL: first match wins, implicit deny at end; wildcard 0 = must match."
+        "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
       }
     },
     {
@@ -1827,35 +1752,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Extended\"."
+          "explanation": "Place extended ACLs close to the source — filter unwanted traffic before it crosses the network."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Standard describes a mechanism that could sound plausible for acl. Given acl, Extended matches the tested behavior — Standard applies a different mechanism.",
-            "whatItDoes": "Standard describes a mechanism that could sound plausible for acl.",
-            "whyWrongHere": "Given acl, Extended matches the tested behavior — Standard applies a different mechanism.",
-            "misconceptionTested": "Applying \"Standard\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Standard ACLs go close to destination — extended near source.",
+            "misconceptionTested": "Standard ACL at source",
+            "whatItDoes": "Standard points to a related idea, but not the specific behavior or value required for acl.",
+            "whyWrongHere": "For \"acl\", Extended satisfies what this question tests — Standard does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Dynamic describes a mechanism that could sound plausible for acl. Given acl, Extended matches the tested behavior — Dynamic applies a different mechanism.",
-            "whatItDoes": "Dynamic describes a mechanism that could sound plausible for acl.",
-            "whyWrongHere": "Given acl, Extended matches the tested behavior — Dynamic applies a different mechanism.",
-            "misconceptionTested": "Applying \"Dynamic\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Dynamic ACLs are placed per auth design — not the general placement rule.",
+            "misconceptionTested": "Dynamic ACL placement rule",
+            "whatItDoes": "Dynamic points to a related idea, but not the specific behavior or value required for acl.",
+            "whyWrongHere": "For \"acl\", Extended satisfies what this question tests — Dynamic does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Expanded describes a mechanism that could sound plausible for acl. Given acl, Extended matches the tested behavior — Expanded applies a different mechanism.",
-            "whatItDoes": "Expanded describes a mechanism that could sound plausible for acl.",
-            "whyWrongHere": "Given acl, Extended matches the tested behavior — Expanded applies a different mechanism.",
-            "misconceptionTested": "Applying \"Expanded\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Expanded is not an ACL placement category.",
+            "misconceptionTested": "Expanded ACL placement",
+            "whatItDoes": "Expanded points to a related idea, but not the specific behavior or value required for acl.",
+            "whyWrongHere": "For \"acl\", Extended satisfies what this question tests — Expanded does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
       }
     },
     {
@@ -1880,35 +1802,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Router(config)#ip access-list extended named_list\"."
+          "explanation": "ip access-list extended named_list enters named extended ACL configuration mode."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#access-list 101 allow host 192.168.1.5 any describes a mechanism that could sound plausible for extended. Given extended, Router(config)#ip access-list extended named_list matches the tested behavior — Router(config)#access-list 101 allow host 192.168.1.5 any applies a different mechanism.",
-            "whatItDoes": "Router(config)#access-list 101 allow host 192.168.1.5 any describes a mechanism that could sound plausible for extended.",
-            "whyWrongHere": "Given extended, Router(config)#ip access-list extended named_list matches the tested behavior — Router(config)#access-list 101 allow host 192.168.1.5 any applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#access-list 101 allow\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "allow is not IOS — use permit/deny.",
+            "misconceptionTested": "allow keyword in ACL",
+            "whatItDoes": "Router(config)#access-list 101 allow host 192.168.1.5 any applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (extended): Router(config)#ip access-list extended named_list uses the right ACL type and position — Router(config)#access-list 101 allow host 192.168.1.5 any mismatches standard vs extended rules."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#ip access-list named_list describes a mechanism that could sound plausible for extended. Given extended, Router(config)#ip access-list extended named_list matches the tested behavior — Router(config)#ip access-list named_list applies a different mechanism.",
-            "whatItDoes": "Router(config)#ip access-list named_list describes a mechanism that could sound plausible for extended.",
-            "whyWrongHere": "Given extended, Router(config)#ip access-list extended named_list matches the tested behavior — Router(config)#ip access-list named_list applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#ip access-list named_\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "ip access-list named_list omits standard|extended type keyword.",
+            "misconceptionTested": "Missing extended keyword",
+            "whatItDoes": "Router(config)#ip access-list named_list points to a related idea, but not the specific behavior or value required for extended.",
+            "whyWrongHere": "For \"extended\", Router(config)#ip access-list extended named_list satisfies what this question tests — Router(config)#ip access-list named_list does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#ip access-list 101 named_list describes a mechanism that could sound plausible for extended. Given extended, Router(config)#ip access-list extended named_list matches the tested behavior — Router(config)#ip access-list 101 named_list applies a different mechanism.",
-            "whatItDoes": "Router(config)#ip access-list 101 named_list describes a mechanism that could sound plausible for extended.",
-            "whyWrongHere": "Given extended, Router(config)#ip access-list extended named_list matches the tested behavior — Router(config)#ip access-list 101 named_list applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#ip access-list 101 na\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Cannot combine number 101 with a name on one line.",
+            "misconceptionTested": "Number and name combined",
+            "whatItDoes": "Router(config)#ip access-list 101 named_list applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (extended): Router(config)#ip access-list extended named_list uses the right ACL type and position — Router(config)#ip access-list 101 named_list mismatches standard vs extended rules."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
       }
     },
     {
@@ -1933,35 +1852,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Standard\"."
+          "explanation": "Place standard ACLs close to the destination — they only match source, so filter near where impact matters."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Extended describes a mechanism that could sound plausible for destination. Given destination, Standard matches the tested behavior — Extended applies a different mechanism.",
-            "whatItDoes": "Extended describes a mechanism that could sound plausible for destination.",
-            "whyWrongHere": "Given destination, Standard matches the tested behavior — Extended applies a different mechanism.",
-            "misconceptionTested": "Applying \"Extended\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Extended ACLs belong near source — standard near destination.",
+            "misconceptionTested": "Extended ACL at destination",
+            "whatItDoes": "Extended points to a related idea, but not the specific behavior or value required for destination.",
+            "whyWrongHere": "For \"destination\", Standard satisfies what this question tests — Extended does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Dynamic describes a mechanism that could sound plausible for destination. Given destination, Standard matches the tested behavior — Dynamic applies a different mechanism.",
-            "whatItDoes": "Dynamic describes a mechanism that could sound plausible for destination.",
-            "whyWrongHere": "Given destination, Standard matches the tested behavior — Dynamic applies a different mechanism.",
-            "misconceptionTested": "Applying \"Dynamic\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Dynamic ACLs follow auth/session design.",
+            "misconceptionTested": "Dynamic ACL placement default",
+            "whatItDoes": "Dynamic points to a related idea, but not the specific behavior or value required for destination.",
+            "whyWrongHere": "For \"destination\", Standard satisfies what this question tests — Dynamic does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Expanded describes a mechanism that could sound plausible for destination. Given destination, Standard matches the tested behavior — Expanded applies a different mechanism.",
-            "whatItDoes": "Expanded describes a mechanism that could sound plausible for destination.",
-            "whyWrongHere": "Given destination, Standard matches the tested behavior — Expanded applies a different mechanism.",
-            "misconceptionTested": "Applying \"Expanded\" without matching acl",
-            "needsExplanationReview": true
+            "explanation": "Expanded is not a placement type.",
+            "misconceptionTested": "Expanded ACL at destination",
+            "whatItDoes": "Expanded points to a related idea, but not the specific behavior or value required for destination.",
+            "whyWrongHere": "For \"destination\", Standard satisfies what this question tests — Expanded does not."
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
       }
     }
   ]

@@ -18,6 +18,33 @@ import { sanitizeAnswerText } from './lib/voiceProse.js'
 
 export { examTipFor, isGenericExamTip } from './answerReview/examTipLogic.js'
 
+const CHOICE_HEADER_TRUNCATE = 80
+
+/** Trim choice text for AnswerReview block titles (~80 chars). */
+export function truncateChoiceLabel(text, maxLen = CHOICE_HEADER_TRUNCATE) {
+  const s = String(text ?? '').replace(/\s+/g, ' ').trim()
+  if (!s) return ''
+  if (s.length <= maxLen) return s
+  return `${s.slice(0, maxLen - 1)}…`
+}
+
+export function choiceLetterForIndex(index) {
+  if (index == null || index < 0) return ''
+  return String.fromCharCode(65 + index)
+}
+
+/** Post-reveal title when the learner picked this wrong MC option. */
+export function formatYourWrongHeader(letter, choiceText) {
+  const label = truncateChoiceLabel(choiceText)
+  return label ? `YOUR ANSWER: ${letter} — ${label}` : `YOUR ANSWER: ${letter}`
+}
+
+/** Post-reveal title for other distractors (collapsed accordion). */
+export function formatOtherWrongHeader(letter, choiceText) {
+  const label = truncateChoiceLabel(choiceText)
+  return label ? `WHY ${letter} IS WRONG — ${label}` : `WHY ${letter} IS WRONG`
+}
+
 function ctx(q) {
   const question = (q.question || '').toLowerCase()
   const concept = (q.concept || '').toLowerCase()
@@ -29,6 +56,18 @@ function ctx(q) {
 
 function wrongChoice(q, choiceIndex) {
   return q.choices?.[choiceIndex] || ''
+}
+
+function hasExplicitSadeFields(item) {
+  return Boolean(item?.whatItDoes?.trim() && item?.whyWrongHere?.trim())
+}
+
+function mergeSadeFields(q, choiceIndex, item = {}, { respectExplicitBoth = false } = {}) {
+  const sade = buildStemAnchoredIncorrect({ q, choiceIndex })
+  if (respectExplicitBoth && hasExplicitSadeFields(item)) {
+    return { whatItDoes: item.whatItDoes, whyWrongHere: item.whyWrongHere }
+  }
+  return { whatItDoes: sade.whatItDoes, whyWrongHere: sade.whyWrongHere }
 }
 
 function ensureDistinctExplanations(q, incorrect) {
@@ -133,11 +172,12 @@ export function buildWrongChoiceItem(q, choiceIndex) {
   const sade = buildStemAnchoredIncorrect({ q, choiceIndex })
   const resolved = resolveWrongChoice(q, choiceIndex)
   const useResolved = resolved?.explanation && !isFallbackExplanation(resolved.explanation)
+  const { whatItDoes, whyWrongHere } = mergeSadeFields(q, choiceIndex)
   return {
     choiceIndex,
     explanation: useResolved ? resolved.explanation : sade.explanation,
-    whatItDoes: sade.whatItDoes,
-    whyWrongHere: sade.whyWrongHere,
+    whatItDoes,
+    whyWrongHere,
     misconceptionTested: (useResolved ? resolved.trap : sade.misconceptionTested)
       || inferTrapForChoice(q, choiceIndex),
   }
@@ -160,15 +200,33 @@ export function generateAnswerReview(q) {
   const gold = goldAnswerReviewFor(q.id)
   if (gold) {
     const examTip = gold.examTip && !isGenericExamTip(gold.examTip) ? gold.examTip : examTipFor(q)
-    const incorrect = (gold.incorrect || []).map(item => {
-      const sade = buildStemAnchoredIncorrect({ q, choiceIndex: item.choiceIndex })
-      return {
-        ...item,
-        whatItDoes: item.whatItDoes || sade.whatItDoes,
-        whyWrongHere: item.whyWrongHere || sade.whyWrongHere,
-      }
-    })
-    return { ...gold, examTip, incorrect: ensureDistinctExplanations(q, incorrect) }
+    const goldByChoice = new Map((gold.incorrect || []).map(item => [item.choiceIndex, item]))
+    const goldCorrect = gold.correct?.choiceIndex === q.correctIndex ? gold.correct : null
+    const correctExpl = goldCorrect?.explanation
+      || (gold.correct?.explanation && gold.correct?.choiceIndex !== q.correctIndex
+        ? gold.correct.explanation
+        : null)
+      || (q.explanation || '').trim()
+      || `The correct answer is "${q.choices[q.correctIndex]}".`
+
+    const incorrect = q.choices
+      .map((_, choiceIndex) => {
+        if (choiceIndex === q.correctIndex) return null
+        const fromGold = goldByChoice.get(choiceIndex)
+        if (fromGold) {
+          const { whatItDoes, whyWrongHere } = mergeSadeFields(q, choiceIndex, fromGold, { respectExplicitBoth: true })
+          return { ...fromGold, whatItDoes, whyWrongHere }
+        }
+        return buildWrongChoiceItem(q, choiceIndex)
+      })
+      .filter(Boolean)
+
+    return {
+      ...gold,
+      correct: { choiceIndex: q.correctIndex, explanation: correctExpl },
+      examTip,
+      incorrect: ensureDistinctExplanations(q, incorrect),
+    }
   }
 
   const correctExpl = (q.explanation || '').trim()
@@ -203,13 +261,14 @@ export function generateAnswerReview(q) {
 export function resolveIncorrectItem(q, item) {
   const stored = item?.explanation
   const storedTrap = item?.misconceptionTested
+  const { whatItDoes, whyWrongHere } = mergeSadeFields(q, item.choiceIndex, item)
   const lowQuality = !stored || isFallbackExplanation(stored)
   if (!lowQuality) {
     return {
       choiceIndex: item.choiceIndex,
       explanation: stored,
-      whatItDoes: item.whatItDoes,
-      whyWrongHere: item.whyWrongHere,
+      whatItDoes,
+      whyWrongHere,
       misconceptionTested: isGenericTrap(storedTrap)
         ? inferTrapForChoice(q, item.choiceIndex)
         : storedTrap,

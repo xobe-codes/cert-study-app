@@ -25,35 +25,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"GRE provides packet-in-packet encapsulation.\"."
+          "explanation": "GRE wraps an inner IP packet inside an outer IP header — classic packet-in-packet tunnel encapsulation."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "GRE uses IPsec security. describes a mechanism that could sound plausible for statement. Given statement, GRE provides packet-in-packet encapsulation. matches the tested behavior — GRE uses IPsec security. applies a different mechanism.",
-            "whatItDoes": "GRE uses IPsec security. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, GRE provides packet-in-packet encapsulation. matches the tested behavior — GRE uses IPsec security. applies a different mechanism.",
-            "misconceptionTested": "Applying \"GRE uses IPsec security.\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "GRE alone does not provide IPsec — often GRE over IPsec combines tunnel + encryption.",
+            "misconceptionTested": "GRE includes IPsec by default",
+            "whatItDoes": "GRE uses IPsec security. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", GRE provides packet-in-packet encapsulation. satisfies what this question tests — GRE uses IPsec security. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "GRE uses a protocol of 57. describes a mechanism that could sound plausible for statement. Given statement, GRE provides packet-in-packet encapsulation. matches the tested behavior — GRE uses a protocol of 57. applies a different mechanism.",
-            "whatItDoes": "GRE uses a protocol of 57. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, GRE provides packet-in-packet encapsulation. matches the tested behavior — GRE uses a protocol of 57. applies a different mechanism.",
-            "misconceptionTested": "Applying \"GRE uses a protocol of 57.\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "GRE uses IP protocol 47, not 57 (SKIP).",
+            "misconceptionTested": "GRE protocol number 57",
+            "whatItDoes": "GRE uses a protocol of 57. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", GRE provides packet-in-packet encapsulation. satisfies what this question tests — GRE uses a protocol of 57. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "GRE provides per-packet authentication. describes a mechanism that could sound plausible for statement. Given statement, GRE provides packet-in-packet encapsulation. matches the tested behavior — GRE provides per-packet authentication. applies a different mechanism.",
-            "whatItDoes": "GRE provides per-packet authentication. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, GRE provides packet-in-packet encapsulation. matches the tested behavior — GRE provides per-packet authentication. applies a different mechanism.",
-            "misconceptionTested": "Applying \"GRE provides per-packet authenticati\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Per-packet authentication is an IPsec feature — plain GRE has no built-in auth.",
+            "misconceptionTested": "GRE per-packet authentication",
+            "whatItDoes": "GRE provides per-packet authentication. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", GRE provides packet-in-packet encapsulation. satisfies what this question tests — GRE provides per-packet authentication. does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
+        "examTip": "GRE = proto 47, adds 24-byte header, no encryption | IPsec adds confidentiality/integrity."
       }
     },
     {
@@ -79,35 +76,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"GRE\"."
+          "explanation": "Per this exam objective, GRE is the Cisco-proprietary tunnel choice — (IETF GRE is widely used on Cisco routers)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "PPP describes a mechanism that could sound plausible for protocol. Given protocol, GRE matches the tested behavior — PPP applies a different mechanism.",
-            "whatItDoes": "PPP describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, GRE matches the tested behavior — PPP applies a different mechanism.",
-            "misconceptionTested": "Applying \"PPP\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "PPP is a standard WAN framing protocol — not the listed Cisco proprietary tunnel.",
+            "misconceptionTested": "PPP as Cisco proprietary tunnel",
+            "whatItDoes": "PPP points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", GRE satisfies what this question tests — PPP does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "IPsec describes a mechanism that could sound plausible for protocol. Given protocol, GRE matches the tested behavior — IPsec applies a different mechanism.",
-            "whatItDoes": "IPsec describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, GRE matches the tested behavior — IPsec applies a different mechanism.",
-            "misconceptionTested": "Applying \"IPsec\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "IPsec is an open standard for secure VPN — not Cisco-only.",
+            "misconceptionTested": "IPsec as Cisco proprietary",
+            "whatItDoes": "IPsec points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", GRE satisfies what this question tests — IPsec does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "SSL describes a mechanism that could sound plausible for protocol. Given protocol, GRE matches the tested behavior — SSL applies a different mechanism.",
-            "whatItDoes": "SSL describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, GRE matches the tested behavior — SSL applies a different mechanism.",
-            "misconceptionTested": "Applying \"SSL\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "SSL/TLS VPN is standards-based — exam key selects GRE here.",
+            "misconceptionTested": "SSL as Cisco proprietary tunnel",
+            "whatItDoes": "SSL points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", GRE satisfies what this question tests — SSL does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
+        "examTip": "Tunnel types: GRE (overlay) | IPsec (secure) | DMVPN (dynamic hub-spoke GRE+IPsec)."
       }
     },
     {
@@ -132,35 +126,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Protocol 47\"."
+          "explanation": "GRE encapsulation uses IP protocol number 47 in the outer IP header."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Protocol 4 describes a mechanism that could sound plausible for protocol. Given protocol, Protocol 47 matches the tested behavior — Protocol 4 applies a different mechanism.",
-            "whatItDoes": "Protocol 4 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, Protocol 47 matches the tested behavior — Protocol 4 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Protocol 4\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Protocol 4 is IP-in-IP — GRE uses protocol 47.",
+            "misconceptionTested": "IP-in-IP protocol for GRE",
+            "whatItDoes": "Protocol 4 points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", Protocol 47 satisfies what this question tests — Protocol 4 does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Protocol 43 describes a mechanism that could sound plausible for protocol. Given protocol, Protocol 47 matches the tested behavior — Protocol 43 applies a different mechanism.",
-            "whatItDoes": "Protocol 43 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, Protocol 47 matches the tested behavior — Protocol 43 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Protocol 43\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Protocol 43 is IPv6 routing header — GRE tunneling is 47.",
+            "misconceptionTested": "IPv6 routing header protocol for GRE",
+            "whatItDoes": "Protocol 43 points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", Protocol 47 satisfies what this question tests — Protocol 43 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Protocol 57 describes a mechanism that could sound plausible for protocol. Given protocol, Protocol 47 matches the tested behavior — Protocol 57 applies a different mechanism.",
-            "whatItDoes": "Protocol 57 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, Protocol 47 matches the tested behavior — Protocol 57 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Protocol 57\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Protocol 57 is SKIP — GRE's well-known number is 47.",
+            "misconceptionTested": "Protocol 57 as GRE",
+            "whatItDoes": "Protocol 57 points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", Protocol 47 satisfies what this question tests — Protocol 57 does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
+        "examTip": "GRE = IP proto 47; ESP = 50; AH = 51 — don't swap tunnel vs IPsec numbers."
       }
     },
     {
@@ -194,22 +185,22 @@
             "choiceIndex": 0,
             "explanation": "The comment explicitly states no route to the remote endpoint — GRE requires reachable tunnel destination in the routing table.",
             "misconceptionTested": "Ignoring missing underlay route to tunnel endpoint",
-            "whatItDoes": "Nothing is wrong with the configuration. describes a mechanism that could sound plausible for interface.",
-            "whyWrongHere": "Given interface, The network is unrouteable. matches the tested behavior — Nothing is wrong with the configuration. applies a different mechanism."
+            "whatItDoes": "Nothing is wrong with the configuration. points to a related idea, but not the specific behavior or value required for interface.",
+            "whyWrongHere": "For \"interface\", The network is unrouteable. satisfies what this question tests — Nothing is wrong with the configuration. does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "The destination IP may be correct — the failure is that no routing entry reaches that network, making the tunnel unroutable.",
             "misconceptionTested": "Blaming wrong destination when underlay routing is missing",
-            "whatItDoes": "The destination on Router A of the tunnel is incorrect. describes a mechanism that could sound plausible for interface.",
-            "whyWrongHere": "Given interface, The network is unrouteable. matches the tested behavior — The destination on Router A of the tunnel is incorrect. applies a different mechanism."
+            "whatItDoes": "The destination on Router A of the tunnel is incorrect. points to a related idea, but not the specific behavior or value required for interface.",
+            "whyWrongHere": "For \"interface\", The network is unrouteable. satisfies what this question tests — The destination on Router A of the tunnel is incorrect. does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Serial interfaces on different subnets is normal for a point-to-point WAN — the issue is no route to 203.0.113.0/peer endpoint.",
             "misconceptionTested": "Flagging P2P addressing when underlay route is absent",
-            "whatItDoes": "The serial interfaces are on different networks. describes a mechanism that could sound plausible for interface.",
-            "whyWrongHere": "Given interface, The network is unrouteable. matches the tested behavior — The serial interfaces are on different networks. applies a different mechanism."
+            "whatItDoes": "The serial interfaces are on different networks. points to a related idea, but not the specific behavior or value required for interface.",
+            "whyWrongHere": "For \"interface\", The network is unrouteable. satisfies what this question tests — The serial interfaces are on different networks. does not."
           }
         ],
         "examTip": "GRE tunnel up requires reachable tunnel destination in routing table (underlay first)."
@@ -239,35 +230,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2\"."
+          "explanation": "Route remote LAN 192.168.3.0/24 via the tunnel endpoint IP 192.168.2.2 (peer side of the /30 tunnel subnet) on Router A."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#ip route 192.168.3.0 255.255.255.0 tunnel 0 describes a mechanism that could sound plausible for topology. Given topology, Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the tested behavior — Router(config)#ip route 192.168.3.0 255.255.255.0 tunnel 0 applies a different mechanism.",
-            "whatItDoes": "Router(config)#ip route 192.168.3.0 255.255.255.0 tunnel 0 describes a mechanism that could sound plausible for topology.",
-            "whyWrongHere": "Given topology, Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the tested behavior — Router(config)#ip route 192.168.3.0 255.255.255.0 tunnel 0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#ip route 192.168.3.0 \" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "tunnel 0 as next-hop works on some designs — this item expects the peer tunnel IP 192.168.2.2 as next hop.",
+            "misconceptionTested": "Interface tunnel as only static route form",
+            "whatItDoes": "Router(config)#ip route 192.168.3.0 255.255.255.0 tunnel 0 configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+            "whyWrongHere": "For \"topology\", Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 satisfies what this question tests — Router(config)#ip route 192.168.3.0 255.255.255.0 tunnel 0 does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#ip route 192.168.2.0 255.255.255.0 tunnel 0 describes a mechanism that could sound plausible for topology. Given topology, Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the tested behavior — Router(config)#ip route 192.168.2.0 255.255.255.0 tunnel 0 applies a different mechanism.",
-            "whatItDoes": "Router(config)#ip route 192.168.2.0 255.255.255.0 tunnel 0 describes a mechanism that could sound plausible for topology.",
-            "whyWrongHere": "Given topology, Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the tested behavior — Router(config)#ip route 192.168.2.0 255.255.255.0 tunnel 0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#ip route 192.168.2.0 \" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "192.168.2.0/24 is the local LAN — route the remote 192.168.3.0/24 network.",
+            "misconceptionTested": "Route to local LAN via tunnel",
+            "whatItDoes": "Router(config)#ip route 192.168.2.0 255.255.255.0 tunnel 0 configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+            "whyWrongHere": "For \"topology\", Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 satisfies what this question tests — Router(config)#ip route 192.168.2.0 255.255.255.0 tunnel 0 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#ip route 192.168.3.0 255.255.255.0 serial 0/0/1 describes a mechanism that could sound plausible for topology. Given topology, Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the tested behavior — Router(config)#ip route 192.168.3.0 255.255.255.0 serial 0/0/1 applies a different mechanism.",
-            "whatItDoes": "Router(config)#ip route 192.168.3.0 255.255.255.0 serial 0/0/1 describes a mechanism that could sound plausible for topology.",
-            "whyWrongHere": "Given topology, Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the tested behavior — Router(config)#ip route 192.168.3.0 255.255.255.0 serial 0/0/1 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#ip route 192.168.3.0 \" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Routing via serial sends traffic unencapsulated — remote LAN needs a tunnel next hop.",
+            "misconceptionTested": "Serial next hop for GRE remote LAN",
+            "whatItDoes": "Router(config)#ip route 192.168.3.0 255.255.255.0 serial 0/0/1 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"topology\", Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 satisfies what this question tests — Router(config)#ip route 192.168.3.0 255.255.255.0 serial 0/0/1 does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
+        "examTip": "GRE static route: ip route <remote-LAN> <mask> <tunnel0|peer-tunnel-IP> — tunnel interface must be up/up."
       }
     },
     {
@@ -292,35 +280,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"MTU 1476\"."
+          "explanation": "Default GRE tunnel MTU is 1476 bytes — 1500 minus the 24-byte GRE header (and outer IP overhead)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "MTU 1492 describes a mechanism that could sound plausible for identify. Given identify, MTU 1476 matches the tested behavior — MTU 1492 applies a different mechanism.",
-            "whatItDoes": "MTU 1492 describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, MTU 1476 matches the tested behavior — MTU 1492 applies a different mechanism.",
-            "misconceptionTested": "Applying \"MTU 1492\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "1492 is common on PPPoE links — GRE default is 1476.",
+            "misconceptionTested": "PPPoE MTU for GRE",
+            "whatItDoes": "MTU 1492 points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", MTU 1476 satisfies what this question tests — MTU 1492 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "MTU 1500 describes a mechanism that could sound plausible for identify. Given identify, MTU 1476 matches the tested behavior — MTU 1500 applies a different mechanism.",
-            "whatItDoes": "MTU 1500 describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, MTU 1476 matches the tested behavior — MTU 1500 applies a different mechanism.",
-            "misconceptionTested": "Applying \"MTU 1500\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "1500 is standard Ethernet — GRE subtracts encapsulation overhead → 1476.",
+            "misconceptionTested": "Ethernet MTU unchanged in GRE",
+            "whatItDoes": "MTU 1500 points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", MTU 1476 satisfies what this question tests — MTU 1500 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "MTU 1528 describes a mechanism that could sound plausible for identify. Given identify, MTU 1476 matches the tested behavior — MTU 1528 applies a different mechanism.",
-            "whatItDoes": "MTU 1528 describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, MTU 1476 matches the tested behavior — MTU 1528 applies a different mechanism.",
-            "misconceptionTested": "Applying \"MTU 1528\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "1528 is not the GRE default — expect 1476 unless manually ip mtu adjusted.",
+            "misconceptionTested": "Inflated GRE default MTU",
+            "whatItDoes": "MTU 1528 points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", MTU 1476 satisfies what this question tests — MTU 1528 does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
+        "examTip": "GRE MTU: default 1476 | fragmentation issues? Lower ip mtu on tunnel or enable TCP MSS adjust."
       }
     },
     {
@@ -345,35 +330,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Router#show interface tunnel 0\"."
+          "explanation": "show interface tunnel 0 displays tunnel source, destination, encapsulation, and line protocol status."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#show ip tunnel 0 describes a mechanism that could sound plausible for destination. Given destination, Router#show interface tunnel 0 matches the tested behavior — Router#show ip tunnel 0 applies a different mechanism.",
-            "whatItDoes": "Router#show ip tunnel 0 describes a mechanism that could sound plausible for destination.",
-            "whyWrongHere": "Given destination, Router#show interface tunnel 0 matches the tested behavior — Router#show ip tunnel 0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip tunnel 0\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "show ip tunnel 0 is not standard IOS — use show interface tunnel 0.",
+            "misconceptionTested": "show ip tunnel command",
+            "whatItDoes": "Router#show ip tunnel 0 is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (destination): Router#show interface tunnel 0 inspects the right table or state — Router#show ip tunnel 0 shows unrelated information."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#show ip gre describes a mechanism that could sound plausible for destination. Given destination, Router#show interface tunnel 0 matches the tested behavior — Router#show ip gre applies a different mechanism.",
-            "whatItDoes": "Router#show ip gre describes a mechanism that could sound plausible for destination.",
-            "whyWrongHere": "Given destination, Router#show interface tunnel 0 matches the tested behavior — Router#show ip gre applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip gre\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "show ip gre does not exist — tunnel details are under show interface tunnel.",
+            "misconceptionTested": "show ip gre command",
+            "whatItDoes": "Router#show ip gre is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (destination): Router#show interface tunnel 0 inspects the right table or state — Router#show ip gre shows unrelated information."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show ip route describes a mechanism that could sound plausible for destination. Given destination, Router#show interface tunnel 0 matches the tested behavior — Router#show ip route applies a different mechanism.",
-            "whatItDoes": "Router#show ip route describes a mechanism that could sound plausible for destination.",
-            "whyWrongHere": "Given destination, Router#show interface tunnel 0 matches the tested behavior — Router#show ip route applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip route\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "show ip route shows routing — not tunnel source/destination binding.",
+            "misconceptionTested": "Routing table for tunnel endpoints",
+            "whatItDoes": "Router#show ip route is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (destination): Router#show interface tunnel 0 inspects the right table or state — Router#show ip route shows unrelated information."
           }
         ],
-        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
+        "examTip": "GRE verify: show interface tunnel 0 (src/dst) + show ip route (static/tracked route to remote LAN)."
       }
     },
     {
@@ -400,35 +382,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"One hop\"."
+          "explanation": "Traceroute across a single GRE hop shows one hop — the tunnel is one logical L3 path to the remote subnet."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Two hops describes a mechanism that could sound plausible for you do a traceroute on Router A to a destination of 192. Given you do a traceroute on Router A to a destination of 192, One hop matches the tested behavior — Two hops applies a different mechanism.",
-            "whatItDoes": "Two hops describes a mechanism that could sound plausible for you do a traceroute on Router A to a destination of 192.",
-            "whyWrongHere": "Given you do a traceroute on Router A to a destination of 192, One hop matches the tested behavior — Two hops applies a different mechanism.",
-            "misconceptionTested": "Applying \"Two hops\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Two hops would imply an intermediate router in the underlay — GRE presents as one tunnel hop.",
+            "misconceptionTested": "GRE counts underlay plus overlay hops",
+            "whatItDoes": "Two hops points to a related idea, but not the specific behavior or value required for you do a traceroute on Router A to a destination of 192.",
+            "whyWrongHere": "For \"you do a traceroute on Router A to a destination of 192\", One hop satisfies what this question tests — Two hops does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Four hops describes a mechanism that could sound plausible for you do a traceroute on Router A to a destination of 192. Given you do a traceroute on Router A to a destination of 192, One hop matches the tested behavior — Four hops applies a different mechanism.",
-            "whatItDoes": "Four hops describes a mechanism that could sound plausible for you do a traceroute on Router A to a destination of 192.",
-            "whyWrongHere": "Given you do a traceroute on Router A to a destination of 192, One hop matches the tested behavior — Four hops applies a different mechanism.",
-            "misconceptionTested": "Applying \"Four hops\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Four hops overshoots — end-to-end across one GRE tunnel is typically one displayed hop.",
+            "misconceptionTested": "Multiple hops for single GRE tunnel",
+            "whatItDoes": "Four hops points to a related idea, but not the specific behavior or value required for you do a traceroute on Router A to a destination of 192.",
+            "whyWrongHere": "For \"you do a traceroute on Router A to a destination of 192\", One hop satisfies what this question tests — Four hops does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Zero hops describes a mechanism that could sound plausible for you do a traceroute on Router A to a destination of 192. Given you do a traceroute on Router A to a destination of 192, One hop matches the tested behavior — Zero hops applies a different mechanism.",
-            "whatItDoes": "Zero hops describes a mechanism that could sound plausible for you do a traceroute on Router A to a destination of 192.",
-            "whyWrongHere": "Given you do a traceroute on Router A to a destination of 192, One hop matches the tested behavior — Zero hops applies a different mechanism.",
-            "misconceptionTested": "Applying \"Zero hops\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Traceroute always shows at least one hop — zero is invalid.",
+            "misconceptionTested": "Zero hops on traceroute",
+            "whatItDoes": "Zero hops points to a related idea, but not the specific behavior or value required for you do a traceroute on Router A to a destination of 192.",
+            "whyWrongHere": "For \"you do a traceroute on Router A to a destination of 192\", One hop satisfies what this question tests — Zero hops does not."
           }
         ],
-        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
+        "examTip": "GRE traceroute shows tunnel endpoint as one hop — underlay hops may be hidden inside the tunnel."
       }
     },
     {
@@ -455,35 +434,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"The routes are wrong.\"."
+          "explanation": "Tunnel up/up but no route to 192.168.3.0/24 — add ip route pointing remote LAN out Tunnel0 (or peer IP)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The tunnel numbers do not match. describes a mechanism that could sound plausible for vpn. Given vpn, The routes are wrong. matches the tested behavior — The tunnel numbers do not match. applies a different mechanism.",
-            "whatItDoes": "The tunnel numbers do not match. describes a mechanism that could sound plausible for vpn.",
-            "whyWrongHere": "Given vpn, The routes are wrong. matches the tested behavior — The tunnel numbers do not match. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The tunnel numbers do not match.\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Tunnel number is local — mismatch doesn't break reachability if source/destination match.",
+            "misconceptionTested": "Tunnel number mismatch",
+            "whatItDoes": "The tunnel numbers do not match. points to a related idea, but not the specific behavior or value required for vpn.",
+            "whyWrongHere": "For \"vpn\", The routes are wrong. satisfies what this question tests — The tunnel numbers do not match. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The destination on Router A of the tunnel is incorrect. describes a mechanism that could sound plausible for vpn. Given vpn, The routes are wrong. matches the tested behavior — The destination on Router A of the tunnel is incorrect. applies a different mechanism.",
-            "whatItDoes": "The destination on Router A of the tunnel is incorrect. describes a mechanism that could sound plausible for vpn.",
-            "whyWrongHere": "Given vpn, The routes are wrong. matches the tested behavior — The destination on Router A of the tunnel is incorrect. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The destination on Router A of the t\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Wrong tunnel destination usually leaves tunnel down/down — here it's up/up so routing is the gap.",
+            "misconceptionTested": "Tunnel destination when interface up",
+            "whatItDoes": "The destination on Router A of the tunnel is incorrect. points to a related idea, but not the specific behavior or value required for vpn.",
+            "whyWrongHere": "For \"vpn\", The routes are wrong. satisfies what this question tests — The destination on Router A of the tunnel is incorrect. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The serial interfaces do not match. describes a mechanism that could sound plausible for vpn. Given vpn, The routes are wrong. matches the tested behavior — The serial interfaces do not match. applies a different mechanism.",
-            "whatItDoes": "The serial interfaces do not match. describes a mechanism that could sound plausible for vpn.",
-            "whyWrongHere": "Given vpn, The routes are wrong. matches the tested behavior — The serial interfaces do not match. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The serial interfaces do not match.\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Serial IP mismatch would break underlay — symptom here is missing static/route to remote LAN.",
+            "misconceptionTested": "Serial IP mismatch when tunnel up",
+            "whatItDoes": "The serial interfaces do not match. points to a related idea, but not the specific behavior or value required for vpn.",
+            "whyWrongHere": "For \"vpn\", The routes are wrong. satisfies what this question tests — The serial interfaces do not match. does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
+        "examTip": "GRE checklist: tunnel source/dest → tunnel IP addressing → route to remote LAN via tunnel."
       }
     },
     {
@@ -509,35 +485,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"NHRP\"."
+          "explanation": "NHRP (Next Hop Resolution Protocol) registers spokes and resolves NBMA next hops for DMVPN tunnels."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "HSRP describes a mechanism that could sound plausible for protocol. Given protocol, NHRP matches the tested behavior — HSRP applies a different mechanism.",
-            "whatItDoes": "HSRP describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, NHRP matches the tested behavior — HSRP applies a different mechanism.",
-            "misconceptionTested": "Applying \"HSRP\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "HSRP is first-hop redundancy — DMVPN hub-spoke resolution uses NHRP.",
+            "misconceptionTested": "HSRP for DMVPN resolution",
+            "whatItDoes": "HSRP points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", NHRP satisfies what this question tests — HSRP does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "ARP describes a mechanism that could sound plausible for protocol. Given protocol, NHRP matches the tested behavior — ARP applies a different mechanism.",
-            "whatItDoes": "ARP describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, NHRP matches the tested behavior — ARP applies a different mechanism.",
-            "misconceptionTested": "Applying \"ARP\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "ARP resolves Layer 2 MACs on broadcast segments — NHRP maps tunnel endpoints over NBMA.",
+            "misconceptionTested": "ARP for DMVPN next-hop resolution",
+            "whatItDoes": "ARP points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", NHRP satisfies what this question tests — ARP does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "GRE describes a mechanism that could sound plausible for protocol. Given protocol, NHRP matches the tested behavior — GRE applies a different mechanism.",
-            "whatItDoes": "GRE describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, NHRP matches the tested behavior — GRE applies a different mechanism.",
-            "misconceptionTested": "Applying \"GRE\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "GRE encapsulates packets — NHRP resolves and registers DMVPN tunnel endpoints.",
+            "misconceptionTested": "GRE as DMVPN resolution protocol",
+            "whatItDoes": "GRE points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", NHRP satisfies what this question tests — GRE does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
+        "examTip": "DMVPN stack → mGRE + IPsec + NHRP; NHRP = hub/spoke registration and resolution."
       }
     },
     {
@@ -564,35 +537,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"There is a protocol mismatch.\"."
+          "explanation": "PPP on one router and HDLC on the other is a Layer 2 encapsulation mismatch — link won't pass frames."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The interface is administratively shut down. describes a mechanism that could sound plausible for encapsulation. Given encapsulation, There is a protocol mismatch. matches the tested behavior — The interface is administratively shut down. applies a different mechanism.",
-            "whatItDoes": "The interface is administratively shut down. describes a mechanism that could sound plausible for encapsulation.",
-            "whyWrongHere": "Given encapsulation, There is a protocol mismatch. matches the tested behavior — The interface is administratively shut down. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The interface is administratively sh\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Admin down would show down/down — ping failure with up/up points to encapsulation.",
+            "misconceptionTested": "Shut interface as default guess",
+            "whatItDoes": "The interface is administratively shut down. points to a related idea, but not the specific behavior or value required for encapsulation.",
+            "whyWrongHere": "For \"encapsulation\", There is a protocol mismatch. satisfies what this question tests — The interface is administratively shut down. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "There is a wiring problem. describes a mechanism that could sound plausible for encapsulation. Given encapsulation, There is a protocol mismatch. matches the tested behavior — There is a wiring problem. applies a different mechanism.",
-            "whatItDoes": "There is a wiring problem. describes a mechanism that could sound plausible for encapsulation.",
-            "whyWrongHere": "Given encapsulation, There is a protocol mismatch. matches the tested behavior — There is a wiring problem. applies a different mechanism.",
-            "misconceptionTested": "Applying \"There is a wiring problem.\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Cable faults are possible — PPP vs HDLC is the explicit misconfiguration in the scenario.",
+            "misconceptionTested": "Wiring before protocol mismatch",
+            "whatItDoes": "There is a wiring problem. points to a related idea, but not the specific behavior or value required for encapsulation.",
+            "whyWrongHere": "For \"encapsulation\", There is a protocol mismatch. satisfies what this question tests — There is a wiring problem. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "There is an IP address mismatch. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given encapsulation, There is a protocol mismatch. matches the tested behavior — There is an IP address mismatch. applies a different mechanism.",
+            "explanation": "IP mismatch causes ping failures at L3 — encapsulation mismatch prevents L2 communication first.",
+            "misconceptionTested": "IP mismatch over encapsulation",
             "whatItDoes": "There is an IP address mismatch. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given encapsulation, There is a protocol mismatch. matches the tested behavior — There is an IP address mismatch. applies a different mechanism.",
-            "misconceptionTested": "Applying \"There is an IP address mismatch.\" without matching vpn",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"encapsulation\", There is a protocol mismatch. satisfies what this question tests — There is an IP address mismatch. does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
+        "examTip": "WAN encapsulation: Cisco default HDLC | multi-vendor PPP — both ends must match."
       }
     },
     {
@@ -617,35 +587,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Hub-and-spoke\"."
+          "explanation": "DMVPN uses a hub-and-spoke model — spokes tunnel to hub; spokes can build dynamic spoke-to-spoke tunnels."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Point-to-point describes a mechanism that could sound plausible for topology. Given topology, Hub-and-spoke matches the tested behavior — Point-to-point applies a different mechanism.",
-            "whatItDoes": "Point-to-point describes a mechanism that could sound plausible for topology.",
-            "whyWrongHere": "Given topology, Hub-and-spoke matches the tested behavior — Point-to-point applies a different mechanism.",
-            "misconceptionTested": "Applying \"Point-to-point\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Point-to-point is one tunnel per link — DMVPN scales many spokes to a hub.",
+            "misconceptionTested": "DMVPN as point-to-point",
+            "whatItDoes": "Point-to-point points to a related idea, but not the specific behavior or value required for topology.",
+            "whyWrongHere": "For \"topology\", Hub-and-spoke satisfies what this question tests — Point-to-point does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Full-mesh describes a mechanism that could sound plausible for topology. Given topology, Hub-and-spoke matches the tested behavior — Full-mesh applies a different mechanism.",
-            "whatItDoes": "Full-mesh describes a mechanism that could sound plausible for topology.",
-            "whyWrongHere": "Given topology, Hub-and-spoke matches the tested behavior — Full-mesh applies a different mechanism.",
-            "misconceptionTested": "Applying \"Full-mesh\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Full mesh needs n(n-1)/2 tunnels — DMVPN is hub-spoke with optional dynamic meshes.",
+            "misconceptionTested": "DMVPN as static full mesh",
+            "whatItDoes": "Full-mesh points to a related idea, but not the specific behavior or value required for topology.",
+            "whyWrongHere": "For \"topology\", Hub-and-spoke satisfies what this question tests — Full-mesh does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Dual-homed describes a mechanism that could sound plausible for topology. Given topology, Hub-and-spoke matches the tested behavior — Dual-homed applies a different mechanism.",
-            "whatItDoes": "Dual-homed describes a mechanism that could sound plausible for topology.",
-            "whyWrongHere": "Given topology, Hub-and-spoke matches the tested behavior — Dual-homed applies a different mechanism.",
-            "misconceptionTested": "Applying \"Dual-homed\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Dual-homed describes redundant ISP/path design — not DMVPN's logical topology.",
+            "misconceptionTested": "Dual-homed as DMVPN topology",
+            "whatItDoes": "Dual-homed points to a related idea, but not the specific behavior or value required for topology.",
+            "whyWrongHere": "For \"topology\", Hub-and-spoke satisfies what this question tests — Dual-homed does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
+        "examTip": "DMVPN = mGRE + NHRP + IPsec on a hub-and-spoke — dynamic spoke-to-spoke when needed."
       }
     },
     {
@@ -670,35 +637,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Data integrity\"."
+          "explanation": "Data integrity (AH/ESP hashing) proves the packet was not altered in transit — tamper detection."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Authentication describes a mechanism that could sound plausible for verification. Given verification, Data integrity matches the tested behavior — Authentication applies a different mechanism.",
-            "whatItDoes": "Authentication describes a mechanism that could sound plausible for verification.",
-            "whyWrongHere": "Given verification, Data integrity matches the tested behavior — Authentication applies a different mechanism.",
-            "misconceptionTested": "Applying \"Authentication\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Authentication verifies identity of peers — integrity verifies payload unchanged.",
+            "misconceptionTested": "Authentication as tamper detection",
+            "whatItDoes": "Authentication points to a related idea, but not the specific behavior or value required for verification.",
+            "whyWrongHere": "For \"verification\", Data integrity satisfies what this question tests — Authentication does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Anti-replay describes a mechanism that could sound plausible for verification. Given verification, Data integrity matches the tested behavior — Anti-replay applies a different mechanism.",
-            "whatItDoes": "Anti-replay describes a mechanism that could sound plausible for verification.",
-            "whyWrongHere": "Given verification, Data integrity matches the tested behavior — Anti-replay applies a different mechanism.",
-            "misconceptionTested": "Applying \"Anti-replay\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Anti-replay stops duplicate captured packets — separate from integrity hashing.",
+            "misconceptionTested": "Anti-replay as integrity",
+            "whatItDoes": "Anti-replay points to a related idea, but not the specific behavior or value required for verification.",
+            "whyWrongHere": "For \"verification\", Data integrity satisfies what this question tests — Anti-replay does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Confidentiality describes a mechanism that could sound plausible for verification. Given verification, Data integrity matches the tested behavior — Confidentiality applies a different mechanism.",
-            "whatItDoes": "Confidentiality describes a mechanism that could sound plausible for verification.",
-            "whyWrongHere": "Given verification, Data integrity matches the tested behavior — Confidentiality applies a different mechanism.",
-            "misconceptionTested": "Applying \"Confidentiality\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Confidentiality is encryption — integrity is hash-based tamper check.",
+            "misconceptionTested": "Confidentiality as tamper detection",
+            "whatItDoes": "Confidentiality points to a related idea, but not the specific behavior or value required for verification.",
+            "whyWrongHere": "For \"verification\", Data integrity satisfies what this question tests — Confidentiality does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
+        "examTip": "IPsec triad: confidentiality (encrypt) | integrity (hash) | authentication (peer identity) + anti-replay."
       }
     },
     {
@@ -723,35 +687,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Cisco FTD\"."
+          "explanation": "Cisco FTD (Firepower Threat Defense) terminates site-to-site and remote-access IPsec/SSL VPNs."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Catalyst switches describes a mechanism that could sound plausible for technology. Given technology, Cisco FTD matches the tested behavior — Catalyst switches applies a different mechanism.",
-            "whatItDoes": "Catalyst switches describes a mechanism that could sound plausible for technology.",
-            "whyWrongHere": "Given technology, Cisco FTD matches the tested behavior — Catalyst switches applies a different mechanism.",
-            "misconceptionTested": "Applying \"Catalyst switches\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Catalyst switches are primarily LAN L2/L3 — VPN termination is on routers/firewalls.",
+            "misconceptionTested": "Catalyst for VPN tunnels",
+            "whatItDoes": "Catalyst switches points to a related idea, but not the specific behavior or value required for technology.",
+            "whyWrongHere": "For \"technology\", Cisco FTD satisfies what this question tests — Catalyst switches does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Cisco routers describes a mechanism that could sound plausible for technology. Given technology, Cisco FTD matches the tested behavior — Cisco routers applies a different mechanism.",
-            "whatItDoes": "Cisco routers describes a mechanism that could sound plausible for technology.",
-            "whyWrongHere": "Given technology, Cisco FTD matches the tested behavior — Cisco routers applies a different mechanism.",
-            "misconceptionTested": "Applying \"Cisco routers\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Routers can run VPNs — but FTD is the dedicated security/VPN appliance in this answer.",
+            "misconceptionTested": "Router as only VPN option",
+            "whatItDoes": "Cisco routers points to a related idea, but not the specific behavior or value required for technology.",
+            "whyWrongHere": "For \"technology\", Cisco FTD satisfies what this question tests — Cisco routers does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Policy-based routing describes a mechanism that could sound plausible for technology. Given technology, Cisco FTD matches the tested behavior — Policy-based routing applies a different mechanism.",
-            "whatItDoes": "Policy-based routing describes a mechanism that could sound plausible for technology.",
-            "whyWrongHere": "Given technology, Cisco FTD matches the tested behavior — Policy-based routing applies a different mechanism.",
-            "misconceptionTested": "Applying \"Policy-based routing\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "PBR forwards by policy — it does not create IPsec VPN tunnels.",
+            "misconceptionTested": "PBR for VPN creation",
+            "whatItDoes": "Policy-based routing points to a related idea, but not the specific behavior or value required for technology.",
+            "whyWrongHere": "For \"technology\", Cisco FTD satisfies what this question tests — Policy-based routing does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
+        "examTip": "VPN endpoints: ISR routers (IPsec) | ASA/FTD (IPsec + AnyConnect SSL) | DMVPN hubs."
       }
     },
     {
@@ -776,35 +737,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Client SSL/VPN\"."
+          "explanation": "Client SSL VPN (remote-access) lets roaming workers securely reach internal apps over the internet."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "GRE tunnels describes a mechanism that could sound plausible for information. Given information, Client SSL/VPN matches the tested behavior — GRE tunnels applies a different mechanism.",
-            "whatItDoes": "GRE tunnels describes a mechanism that could sound plausible for information.",
-            "whyWrongHere": "Given information, Client SSL/VPN matches the tested behavior — GRE tunnels applies a different mechanism.",
-            "misconceptionTested": "Applying \"GRE tunnels\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "GRE connects sites — not ideal for individual remote workers needing endpoint VPN clients.",
+            "misconceptionTested": "GRE for remote workers",
+            "whatItDoes": "GRE tunnels points to a related idea, but not the specific behavior or value required for information.",
+            "whyWrongHere": "For \"information\", Client SSL/VPN satisfies what this question tests — GRE tunnels does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Wireless WAN describes a mechanism that could sound plausible for information. Given information, Client SSL/VPN matches the tested behavior — Wireless WAN applies a different mechanism.",
-            "whatItDoes": "Wireless WAN describes a mechanism that could sound plausible for information.",
-            "whyWrongHere": "Given information, Client SSL/VPN matches the tested behavior — Wireless WAN applies a different mechanism.",
-            "misconceptionTested": "Applying \"Wireless WAN\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Wireless WAN is access technology — not the application-layer secure tunnel required.",
+            "misconceptionTested": "Wireless WAN as remote worker VPN",
+            "whatItDoes": "Wireless WAN points to a related idea, but not the specific behavior or value required for information.",
+            "whyWrongHere": "For \"information\", Client SSL/VPN satisfies what this question tests — Wireless WAN does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Site-to-site VPN describes a mechanism that could sound plausible for information. Given information, Client SSL/VPN matches the tested behavior — Site-to-site VPN applies a different mechanism.",
-            "whatItDoes": "Site-to-site VPN describes a mechanism that could sound plausible for information.",
-            "whyWrongHere": "Given information, Client SSL/VPN matches the tested behavior — Site-to-site VPN applies a different mechanism.",
-            "misconceptionTested": "Applying \"Site-to-site VPN\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Site-to-site VPN links fixed offices — remote users need client VPN/SSL VPN.",
+            "misconceptionTested": "Site-to-site for individual teleworkers",
+            "whatItDoes": "Site-to-site VPN points to a related idea, but not the specific behavior or value required for information.",
+            "whyWrongHere": "For \"information\", Client SSL/VPN satisfies what this question tests — Site-to-site VPN does not."
           }
         ],
-        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
+        "examTip": "Remote user = client VPN/SSL | Branch office = site-to-site IPsec | Datacenter overlay = GRE/DMVPN."
       }
     },
     {
@@ -831,35 +789,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"ESP\"."
+          "explanation": "ESP (Encapsulating Security Payload) encrypts IPsec data packets — AH provides integrity without encryption."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "AH describes a mechanism that could sound plausible for protocol. Given protocol, ESP matches the tested behavior — AH applies a different mechanism.",
-            "whatItDoes": "AH describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, ESP matches the tested behavior — AH applies a different mechanism.",
-            "misconceptionTested": "Applying \"AH\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "AH authenticates headers but does not encrypt payload — encryption is ESP.",
+            "misconceptionTested": "AH as IPsec encryption protocol",
+            "whatItDoes": "AH points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", ESP satisfies what this question tests — AH does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "IKE describes a mechanism that could sound plausible for protocol. Given protocol, ESP matches the tested behavior — IKE applies a different mechanism.",
-            "whatItDoes": "IKE describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, ESP matches the tested behavior — IKE applies a different mechanism.",
-            "misconceptionTested": "Applying \"IKE\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "IKE negotiates IPsec SAs — it does not encrypt user data packets (ESP does).",
+            "misconceptionTested": "IKE as data encryption protocol",
+            "whatItDoes": "IKE points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", ESP satisfies what this question tests — IKE does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "ISAKMP describes a mechanism that could sound plausible for protocol. Given protocol, ESP matches the tested behavior — ISAKMP applies a different mechanism.",
-            "whatItDoes": "ISAKMP describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, ESP matches the tested behavior — ISAKMP applies a different mechanism.",
-            "misconceptionTested": "Applying \"ISAKMP\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "ISAKMP is the key-exchange framework — packet encryption uses ESP.",
+            "misconceptionTested": "ISAKMP as encryption protocol",
+            "whatItDoes": "ISAKMP points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", ESP satisfies what this question tests — ISAKMP does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
+        "examTip": "IPsec encryption → ESP; integrity-only → AH; key negotiation → IKE/ISAKMP."
       }
     },
     {
@@ -885,35 +840,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Scalability\"."
+          "explanation": "Site-to-site IPsec scales to many branch connections with centralized policies — grows without per-user tunnels."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Lower bandwidth requirements describes a mechanism that could sound plausible for identify. Given identify, Scalability matches the tested behavior — Lower bandwidth requirements applies a different mechanism.",
-            "whatItDoes": "Lower bandwidth requirements describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Scalability matches the tested behavior — Lower bandwidth requirements applies a different mechanism.",
-            "misconceptionTested": "Applying \"Lower bandwidth requirements\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Encryption adds overhead — IPsec does not lower bandwidth requirements.",
+            "misconceptionTested": "IPsec reduces bandwidth",
+            "whatItDoes": "Lower bandwidth requirements points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Scalability satisfies what this question tests — Lower bandwidth requirements does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Lower latency describes a mechanism that could sound plausible for identify. Given identify, Scalability matches the tested behavior — Lower latency applies a different mechanism.",
-            "whatItDoes": "Lower latency describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Scalability matches the tested behavior — Lower latency applies a different mechanism.",
-            "misconceptionTested": "Applying \"Lower latency\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "IPsec adds encap/crypto latency — scalability is the listed benefit, not lower latency.",
+            "misconceptionTested": "IPsec lowers latency",
+            "whatItDoes": "Lower latency points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Scalability satisfies what this question tests — Lower latency does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Support for multicast describes a mechanism that could sound plausible for identify. Given identify, Scalability matches the tested behavior — Support for multicast applies a different mechanism.",
-            "whatItDoes": "Support for multicast describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Scalability matches the tested behavior — Support for multicast applies a different mechanism.",
-            "misconceptionTested": "Applying \"Support for multicast\" without matching vpn",
-            "needsExplanationReview": true
+            "explanation": "Multicast over IPsec needs GRE/mGRE helpers — not a native site-to-site IPsec highlight.",
+            "misconceptionTested": "Multicast as IPsec site-to-site benefit",
+            "whatItDoes": "Support for multicast gives a broadcast or multicast MAC pattern that may not be the all-ones form tested here.",
+            "whyWrongHere": "For \"identify\", Scalability satisfies what this question tests — Support for multicast does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
+        "examTip": "Site-to-site VPN: connects fixed sites | scales with hub models/DMVPN | pairs with routing (OSPF/EIGRP over tunnel)."
       }
     }
   ]

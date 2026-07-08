@@ -24,35 +24,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Access control lists\"."
+          "explanation": "Routers classify traffic for QoS using ACLs (and class-maps) to match packets before marking or queuing."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Layer 2 ASICs describes a mechanism that could sound plausible for classify. Given classify, Access control lists matches the tested behavior — Layer 2 ASICs applies a different mechanism.",
-            "whatItDoes": "Layer 2 ASICs describes a mechanism that could sound plausible for classify.",
-            "whyWrongHere": "Given classify, Access control lists matches the tested behavior — Layer 2 ASICs applies a different mechanism.",
-            "misconceptionTested": "Applying \"Layer 2 ASICs\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "ASICs forward at wire speed — QoS classification is policy-based via ACLs/class-maps, not generic L2 ASIC tables.",
+            "misconceptionTested": "ASIC classification for QoS policy",
+            "whatItDoes": "Layer 2 ASICs points to a related idea, but not the specific behavior or value required for classify.",
+            "whyWrongHere": "For \"classify\", Access control lists satisfies what this question tests — Layer 2 ASICs does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Route tables describes a mechanism that could sound plausible for classify. Given classify, Access control lists matches the tested behavior — Route tables applies a different mechanism.",
-            "whatItDoes": "Route tables describes a mechanism that could sound plausible for classify.",
-            "whyWrongHere": "Given classify, Access control lists matches the tested behavior — Route tables applies a different mechanism.",
-            "misconceptionTested": "Applying \"Route tables\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "Route tables pick next hops — they do not classify flows into QoS classes.",
+            "misconceptionTested": "Routing table as QoS classifier",
+            "whatItDoes": "Route tables points to a related idea, but not the specific behavior or value required for classify.",
+            "whyWrongHere": "For \"classify\", Access control lists satisfies what this question tests — Route tables does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Frame filters describes a mechanism that could sound plausible for classify. Given classify, Access control lists matches the tested behavior — Frame filters applies a different mechanism.",
-            "whatItDoes": "Frame filters describes a mechanism that could sound plausible for classify.",
-            "whyWrongHere": "Given classify, Access control lists matches the tested behavior — Frame filters applies a different mechanism.",
-            "misconceptionTested": "Applying \"Frame filters\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "Frame filters are not the CCNA answer — IOS QoS classification starts with ACL matches.",
+            "misconceptionTested": "Generic frame filter for QoS",
+            "whatItDoes": "Frame filters points to a related idea, but not the specific behavior or value required for classify.",
+            "whyWrongHere": "For \"classify\", Access control lists satisfies what this question tests — Frame filters does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for qos before picking a familiar-sounding wrong term."
+        "examTip": "QoS classification on routers → ACL/class-map match, then mark (DSCP/CoS) and queue."
       }
     },
     {
@@ -86,22 +83,22 @@
             "choiceIndex": 0,
             "explanation": "Bandwidth is capacity (bits per second) — not the time variation between consecutive packets.",
             "misconceptionTested": "Confusing bandwidth with delay variation",
-            "whatItDoes": "Bandwidth describes a mechanism that could sound plausible for measurement.",
-            "whyWrongHere": "Given measurement, Jitter matches the tested behavior — Bandwidth applies a different mechanism."
+            "whatItDoes": "Bandwidth points to a related idea, but not the specific behavior or value required for measurement.",
+            "whyWrongHere": "For \"measurement\", Jitter satisfies what this question tests — Bandwidth does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "Delay is one-way latency — jitter is the change in delay between packets.",
             "misconceptionTested": "Equating constant delay with jitter",
-            "whatItDoes": "Delay describes a mechanism that could sound plausible for measurement.",
-            "whyWrongHere": "Given measurement, Jitter matches the tested behavior — Delay applies a different mechanism."
+            "whatItDoes": "Delay points to a related idea, but not the specific behavior or value required for measurement.",
+            "whyWrongHere": "For \"measurement\", Jitter satisfies what this question tests — Delay does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Packet loss is dropped packets — jitter specifically tracks delay inconsistency.",
             "misconceptionTested": "Selecting loss for delay variation metric",
-            "whatItDoes": "Loss describes a mechanism that could sound plausible for measurement.",
-            "whyWrongHere": "Given measurement, Jitter matches the tested behavior — Loss applies a different mechanism."
+            "whatItDoes": "Loss points to a related idea, but not the specific behavior or value required for measurement.",
+            "whyWrongHere": "For \"measurement\", Jitter satisfies what this question tests — Loss does not."
           }
         ],
         "examTip": "Voice/video QoS watch jitter — variation in packet arrival timing."
@@ -136,22 +133,22 @@
             "choiceIndex": 0,
             "explanation": "Layer 3 marking uses IP DSCP/ToS — CoS is the 802.1Q priority field at Layer 2.",
             "misconceptionTested": "Placing CoS at Layer 3 with DSCP",
-            "whatItDoes": "The Class of Service field is a layer 3 field. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, The Class of Service field is only present in 802.1Q frames. matches the tested behavior — The Class of Service field is a layer 3 field. applies a different mechanism."
+            "whatItDoes": "The Class of Service field is a layer 3 field. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "This is a Layer 2 process (statement). The Class of Service field is only present in 802.1Q frames. uses Ethernet addresses — not IP headers."
           },
           {
             "choiceIndex": 2,
             "explanation": "CoS does not survive end-to-end across an IP cloud unchanged — it is a LAN 802.1Q field remapped at trust boundaries.",
             "misconceptionTested": "Believing CoS persists end-to-end over WAN",
-            "whatItDoes": "The Class of Service field is present from end to end of a transmission. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, The Class of Service field is only present in 802.1Q frames. matches the tested behavior — The Class of Service field is present from end to end of a transmission. applies a different mechanism."
+            "whatItDoes": "The Class of Service field is present from end to end of a transmission. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", The Class of Service field is only present in 802.1Q frames. satisfies what this question tests — The Class of Service field is present from end to end of a transmission. does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "CoS is 3 bits (0–7) — DSCP is 6 bits in the IP header.",
             "misconceptionTested": "Confusing 6-bit DSCP with 3-bit CoS",
-            "whatItDoes": "The Class of Service field is 6 bits. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, The Class of Service field is only present in 802.1Q frames. matches the tested behavior — The Class of Service field is 6 bits. applies a different mechanism."
+            "whatItDoes": "The Class of Service field is 6 bits. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", The Class of Service field is only present in 802.1Q frames. satisfies what this question tests — The Class of Service field is 6 bits. does not."
           }
         ],
         "examTip": "CoS = 3-bit 802.1Q tag; DSCP = 6-bit IP marking."
@@ -182,35 +179,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Loss\"."
+          "explanation": "Packet loss measures frames dropped when queues overflow due to congestion — distinct from delay or jitter."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Bandwidth describes a mechanism that could sound plausible for identify. Given identify, Loss matches the tested behavior — Bandwidth applies a different mechanism.",
-            "whatItDoes": "Bandwidth describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Loss matches the tested behavior — Bandwidth applies a different mechanism.",
-            "misconceptionTested": "Applying \"Bandwidth\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "Bandwidth is capacity (bps) — loss counts discarded packets under congestion.",
+            "misconceptionTested": "Bandwidth as queue discard metric",
+            "whatItDoes": "Bandwidth points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Loss satisfies what this question tests — Bandwidth does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Delay describes a mechanism that could sound plausible for identify. Given identify, Loss matches the tested behavior — Delay applies a different mechanism.",
-            "whatItDoes": "Delay describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Loss matches the tested behavior — Delay applies a different mechanism.",
-            "misconceptionTested": "Applying \"Delay\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "Delay is one-way latency — loss is packets dropped from full queues.",
+            "misconceptionTested": "Delay as packet discard",
+            "whatItDoes": "Delay points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Loss satisfies what this question tests — Delay does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Jitter describes a mechanism that could sound plausible for identify. Given identify, Loss matches the tested behavior — Jitter applies a different mechanism.",
-            "whatItDoes": "Jitter describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Loss matches the tested behavior — Jitter applies a different mechanism.",
-            "misconceptionTested": "Applying \"Jitter\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "Jitter is variation in delay — not the count of packets discarded.",
+            "misconceptionTested": "Jitter as queue drop metric",
+            "whatItDoes": "Jitter points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Loss satisfies what this question tests — Jitter does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for qos before picking a familiar-sounding wrong term."
+        "examTip": "QoS metrics: loss = drops; jitter = delay variation; delay = latency."
       }
     },
     {
@@ -236,35 +230,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"DSCP EF 46\"."
+          "explanation": "EF (46) is Expedited Forwarding — the highest-priority DSCP class for real-time traffic like VoIP."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "DSCP AF 43 describes a mechanism that could sound plausible for priority. Given priority, DSCP EF 46 matches the tested behavior — DSCP AF 43 applies a different mechanism.",
-            "whatItDoes": "DSCP AF 43 describes a mechanism that could sound plausible for priority.",
-            "whyWrongHere": "Given priority, DSCP EF 46 matches the tested behavior — DSCP AF 43 applies a different mechanism.",
-            "misconceptionTested": "Applying \"DSCP AF 43\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "AF43 is Assured Forwarding class 4, drop probability 3 — lower priority than EF.",
+            "misconceptionTested": "High AF class beats EF",
+            "whatItDoes": "DSCP AF 43 points to a related idea, but not the specific behavior or value required for priority.",
+            "whyWrongHere": "For \"priority\", DSCP EF 46 satisfies what this question tests — DSCP AF 43 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "DSCP AF 11 describes a mechanism that could sound plausible for priority. Given priority, DSCP EF 46 matches the tested behavior — DSCP AF 11 applies a different mechanism.",
-            "whatItDoes": "DSCP AF 11 describes a mechanism that could sound plausible for priority.",
-            "whyWrongHere": "Given priority, DSCP EF 46 matches the tested behavior — DSCP AF 11 applies a different mechanism.",
-            "misconceptionTested": "Applying \"DSCP AF 11\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "AF11 is low Assured Forwarding — far below EF (46) in priority.",
+            "misconceptionTested": "Low AF as highest priority",
+            "whatItDoes": "DSCP AF 11 points to a related idea, but not the specific behavior or value required for priority.",
+            "whyWrongHere": "For \"priority\", DSCP EF 46 satisfies what this question tests — DSCP AF 11 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "DSCP AF 00 describes a mechanism that could sound plausible for priority. Given priority, DSCP EF 46 matches the tested behavior — DSCP AF 00 applies a different mechanism.",
-            "whatItDoes": "DSCP AF 00 describes a mechanism that could sound plausible for priority.",
-            "whyWrongHere": "Given priority, DSCP EF 46 matches the tested behavior — DSCP AF 00 applies a different mechanism.",
-            "misconceptionTested": "Applying \"DSCP AF 00\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "AF00 (CS0) is best-effort default marking — EF is the premium queue class.",
+            "misconceptionTested": "Best-effort DSCP as highest priority",
+            "whatItDoes": "DSCP AF 00 points to a related idea, but not the specific behavior or value required for priority.",
+            "whyWrongHere": "For \"priority\", DSCP EF 46 satisfies what this question tests — DSCP AF 00 does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for qos before picking a familiar-sounding wrong term."
+        "examTip": "Voice/real-time marking → EF (46); bulk data → AF classes; default → 0/BE."
       }
     },
     {
@@ -289,35 +280,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"150 ms\"."
+          "explanation": "VoIP one-way delay should stay ≤150 ms on CCNA — beyond that, conversation quality degrades noticeably."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "10 ms describes a mechanism that could sound plausible for identify. Given identify, 150 ms matches the tested behavior — 10 ms applies a different mechanism.",
-            "whatItDoes": "10 ms describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, 150 ms matches the tested behavior — 10 ms applies a different mechanism.",
-            "misconceptionTested": "Applying \"10 ms\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "10 ms is ideal lab latency — CCNA cites 150 ms as the practical maximum for VoIP.",
+            "misconceptionTested": "10 ms as VoIP delay ceiling",
+            "whatItDoes": "10 ms gives a numeric value (timer, prefix, or rate) that may not match the fact tested in identify.",
+            "whyWrongHere": "For \"identify\", 150 ms satisfies what this question tests — 10 ms does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "90 ms describes a mechanism that could sound plausible for identify. Given identify, 150 ms matches the tested behavior — 90 ms applies a different mechanism.",
-            "whatItDoes": "90 ms describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, 150 ms matches the tested behavior — 90 ms applies a different mechanism.",
-            "misconceptionTested": "Applying \"90 ms\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "90 ms is good but not the exam's stated maximum — CCNA answer is 150 ms.",
+            "misconceptionTested": "90 ms as CCNA VoIP max",
+            "whatItDoes": "90 ms gives a numeric value (timer, prefix, or rate) that may not match the fact tested in identify.",
+            "whyWrongHere": "For \"identify\", 150 ms satisfies what this question tests — 90 ms does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "300 ms describes a mechanism that could sound plausible for identify. Given identify, 150 ms matches the tested behavior — 300 ms applies a different mechanism.",
-            "whatItDoes": "300 ms describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, 150 ms matches the tested behavior — 300 ms applies a different mechanism.",
-            "misconceptionTested": "Applying \"300 ms\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "300 ms is too high for acceptable VoIP — the recommended max is 150 ms.",
+            "misconceptionTested": "300 ms as acceptable VoIP delay",
+            "whatItDoes": "300 ms gives a numeric value (timer, prefix, or rate) that may not match the fact tested in identify.",
+            "whyWrongHere": "For \"identify\", 150 ms satisfies what this question tests — 300 ms does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for qos before picking a familiar-sounding wrong term."
+        "examTip": "VoIP delay budget → 150 ms one-way max (also watch jitter and loss)."
       }
     },
     {
@@ -345,35 +333,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"LLQ\"."
+          "explanation": "LLQ (Low Latency Queuing) gives a strict-priority queue that always drains before other CBWFQ classes."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "CBWFQ describes a mechanism that could sound plausible for priority. Given priority, LLQ matches the tested behavior — CBWFQ applies a different mechanism.",
-            "whatItDoes": "CBWFQ describes a mechanism that could sound plausible for priority.",
-            "whyWrongHere": "Given priority, LLQ matches the tested behavior — CBWFQ applies a different mechanism.",
-            "misconceptionTested": "Applying \"CBWFQ\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "CBWFQ provides weighted fair queues — LLQ adds a strict priority queue on top.",
+            "misconceptionTested": "CBWFQ as strict priority scheduler",
+            "whatItDoes": "CBWFQ points to a related idea, but not the specific behavior or value required for priority.",
+            "whyWrongHere": "For \"priority\", LLQ satisfies what this question tests — CBWFQ does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "FIFO describes a mechanism that could sound plausible for priority. Given priority, LLQ matches the tested behavior — FIFO applies a different mechanism.",
-            "whatItDoes": "FIFO describes a mechanism that could sound plausible for priority.",
-            "whyWrongHere": "Given priority, LLQ matches the tested behavior — FIFO applies a different mechanism.",
-            "misconceptionTested": "Applying \"FIFO\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "FIFO has no priority classes — LLQ explicitly prioritizes delay-sensitive traffic.",
+            "misconceptionTested": "FIFO as priority queuing",
+            "whatItDoes": "FIFO points to a related idea, but not the specific behavior or value required for priority.",
+            "whyWrongHere": "For \"priority\", LLQ satisfies what this question tests — FIFO does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "CIR describes a mechanism that could sound plausible for priority. Given priority, LLQ matches the tested behavior — CIR applies a different mechanism.",
-            "whatItDoes": "CIR describes a mechanism that could sound plausible for priority.",
-            "whyWrongHere": "Given priority, LLQ matches the tested behavior — CIR applies a different mechanism.",
-            "misconceptionTested": "Applying \"CIR\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "CIR is a contracted rate metric — not a queuing scheduler with priority.",
+            "misconceptionTested": "CIR as QoS queue type",
+            "whatItDoes": "CIR points to a related idea, but not the specific behavior or value required for priority.",
+            "whyWrongHere": "For \"priority\", LLQ satisfies what this question tests — CIR does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for qos before picking a familiar-sounding wrong term."
+        "examTip": "Strict priority for VoIP → LLQ; weighted sharing among classes → CBWFQ."
       }
     },
     {
@@ -402,35 +387,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Policing\"."
+          "explanation": "Policing drops excess traffic at the rate limit — prevents one class from monopolizing queue capacity (starvation)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "LLQ describes a mechanism that could sound plausible for starvation. Given starvation, Policing matches the tested behavior — LLQ applies a different mechanism.",
-            "whatItDoes": "LLQ describes a mechanism that could sound plausible for starvation.",
-            "whyWrongHere": "Given starvation, Policing matches the tested behavior — LLQ applies a different mechanism.",
-            "misconceptionTested": "Applying \"LLQ\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "LLQ provides strict priority queuing — it helps voice but doesn't police excess to prevent starvation alone.",
+            "misconceptionTested": "LLQ as queue starvation prevention via policing",
+            "whatItDoes": "LLQ points to a related idea, but not the specific behavior or value required for starvation.",
+            "whyWrongHere": "For \"starvation\", Policing satisfies what this question tests — LLQ does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "CBWFQ describes a mechanism that could sound plausible for starvation. Given starvation, Policing matches the tested behavior — CBWFQ applies a different mechanism.",
-            "whatItDoes": "CBWFQ describes a mechanism that could sound plausible for starvation.",
-            "whyWrongHere": "Given starvation, Policing matches the tested behavior — CBWFQ applies a different mechanism.",
-            "misconceptionTested": "Applying \"CBWFQ\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "CBWFQ fair-queues by class — policing enforces hard rate caps that prevent hogging.",
+            "misconceptionTested": "CBWFQ as policing for starvation",
+            "whatItDoes": "CBWFQ points to a related idea, but not the specific behavior or value required for starvation.",
+            "whyWrongHere": "For \"starvation\", Policing satisfies what this question tests — CBWFQ does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "FIFO describes a mechanism that could sound plausible for starvation. Given starvation, Policing matches the tested behavior — FIFO applies a different mechanism.",
-            "whatItDoes": "FIFO describes a mechanism that could sound plausible for starvation.",
-            "whyWrongHere": "Given starvation, Policing matches the tested behavior — FIFO applies a different mechanism.",
-            "misconceptionTested": "Applying \"FIFO\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "FIFO has no fairness mechanism — it worsens starvation risk, not combats it.",
+            "misconceptionTested": "FIFO prevents queue starvation",
+            "whatItDoes": "FIFO points to a related idea, but not the specific behavior or value required for starvation.",
+            "whyWrongHere": "For \"starvation\", Policing satisfies what this question tests — FIFO does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for qos before picking a familiar-sounding wrong term."
+        "examTip": "Queue starvation fix: policing/shaping rate limits + LLQ for latency-sensitive traffic."
       }
     },
     {
@@ -458,35 +440,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Shaping holds packets in the queue over the configured bit rate to cause delay.\"."
+          "explanation": "Shaping buffers excess packets above the CIR — introduces delay to smooth output to the contracted rate."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Shaping drops packets over the configured bit rate to cause loss. implies the device should discard the frame instead of forwarding or flooding it. Given statement, Shaping holds packets in the queue over the configured bit rate to cause delay. matches the tested behavior — Shaping drops packets over the configured bit rate to cause loss. applies a different mechanism.",
+            "explanation": "Dropping excess traffic is policing — shaping queues packets instead.",
+            "misconceptionTested": "Shaping drops excess packets",
             "whatItDoes": "Shaping drops packets over the configured bit rate to cause loss. implies the device should discard the frame instead of forwarding or flooding it.",
-            "whyWrongHere": "Given statement, Shaping holds packets in the queue over the configured bit rate to cause delay. matches the tested behavior — Shaping drops packets over the configured bit rate to cause loss. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Shaping drops packets over the confi\" without matching qos",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"statement\", Shaping holds packets in the queue over the configured bit rate to cause delay. satisfies what this question tests — Shaping drops packets over the configured bit rate to cause loss. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Shaping holds packets in the queue over the configured bit rate to cause jitter. describes a mechanism that could sound plausible for statement. Given statement, Shaping holds packets in the queue over the configured bit rate to cause delay. matches the tested behavior — Shaping holds packets in the queue over the configured bit rate to cause jitter. applies a different mechanism.",
-            "whatItDoes": "Shaping holds packets in the queue over the configured bit rate to cause jitter. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Shaping holds packets in the queue over the configured bit rate to cause delay. matches the tested behavior — Shaping holds packets in the queue over the configured bit rate to cause jitter. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Shaping holds packets in the queue o\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "Shaping causes consistent delay, not jitter (delay variation) — jitter is variable arrival timing.",
+            "misconceptionTested": "Shaping causes jitter",
+            "whatItDoes": "Shaping holds packets in the queue over the configured bit rate to cause jitter. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", Shaping holds packets in the queue over the configured bit rate to cause delay. satisfies what this question tests — Shaping holds packets in the queue over the configured bit rate to cause jitter. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Shaping slows packets in the queue over the configured bit rate to adhere to the speed. describes a mechanism that could sound plausible for statement. Given statement, Shaping holds packets in the queue over the configured bit rate to cause delay. matches the tested behavior — Shaping slows packets in the queue over the configured bit rate to adhere to the speed. applies a different mechanism.",
-            "whatItDoes": "Shaping slows packets in the queue over the configured bit rate to adhere to the speed. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Shaping holds packets in the queue over the configured bit rate to cause delay. matches the tested behavior — Shaping slows packets in the queue over the configured bit rate to adhere to the speed. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Shaping slows packets in the queue o\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "Shaping delays packets in a queue — it does not actively slow individual packets mid-flight.",
+            "misconceptionTested": "Shaping slows packets in queue",
+            "whatItDoes": "Shaping slows packets in the queue over the configured bit rate to adhere to the speed. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", Shaping holds packets in the queue over the configured bit rate to cause delay. satisfies what this question tests — Shaping slows packets in the queue over the configured bit rate to adhere to the speed. does not."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Shaping = buffer + delay to meet rate | Policing = drop excess immediately."
       }
     },
     {
@@ -513,35 +492,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"CBWFQ\"."
+          "explanation": "CBWFQ (Class-Based Weighted Fair Queuing) uses a round-robin scheduler across configured traffic classes."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "LLQ describes a mechanism that could sound plausible for scheduler. Given scheduler, CBWFQ matches the tested behavior — LLQ applies a different mechanism.",
-            "whatItDoes": "LLQ describes a mechanism that could sound plausible for scheduler.",
-            "whyWrongHere": "Given scheduler, CBWFQ matches the tested behavior — LLQ applies a different mechanism.",
-            "misconceptionTested": "Applying \"LLQ\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "LLQ adds a strict priority queue — not round-robin across all classes.",
+            "misconceptionTested": "LLQ as round-robin scheduler",
+            "whatItDoes": "LLQ points to a related idea, but not the specific behavior or value required for scheduler.",
+            "whyWrongHere": "For \"scheduler\", CBWFQ satisfies what this question tests — LLQ does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "FIFO describes a mechanism that could sound plausible for scheduler. Given scheduler, CBWFQ matches the tested behavior — FIFO applies a different mechanism.",
-            "whatItDoes": "FIFO describes a mechanism that could sound plausible for scheduler.",
-            "whyWrongHere": "Given scheduler, CBWFQ matches the tested behavior — FIFO applies a different mechanism.",
-            "misconceptionTested": "Applying \"FIFO\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "FIFO is first-in-first-out — no weighted round-robin between classes.",
+            "misconceptionTested": "FIFO as round-robin queuing",
+            "whatItDoes": "FIFO points to a related idea, but not the specific behavior or value required for scheduler.",
+            "whyWrongHere": "For \"scheduler\", CBWFQ satisfies what this question tests — FIFO does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "PQ describes a mechanism that could sound plausible for scheduler. Given scheduler, CBWFQ matches the tested behavior — PQ applies a different mechanism.",
-            "whatItDoes": "PQ describes a mechanism that could sound plausible for scheduler.",
-            "whyWrongHere": "Given scheduler, CBWFQ matches the tested behavior — PQ applies a different mechanism.",
-            "misconceptionTested": "Applying \"PQ\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "PQ (Priority Queuing) serves high queues first — can starve lower queues, not round-robin.",
+            "misconceptionTested": "Priority queuing as round-robin",
+            "whatItDoes": "PQ points to a related idea, but not the specific behavior or value required for scheduler.",
+            "whyWrongHere": "For \"scheduler\", CBWFQ satisfies what this question tests — PQ does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for qos before picking a familiar-sounding wrong term."
+        "examTip": "Queuing: FIFO (single queue) | CBWFQ (weighted round-robin) | LLQ (CBWFQ + strict priority)."
       }
     },
     {
@@ -569,35 +545,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Policing drops packets over the configured bit rate to cause loss.\"."
+          "explanation": "Policing drops packets exceeding the configured rate — enforces a hard traffic ceiling with loss."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Policing holds packets in the queue over the configured bit rate to cause delay. describes a mechanism that could sound plausible for statement. Given statement, Policing drops packets over the configured bit rate to cause loss. matches the tested behavior — Policing holds packets in the queue over the configured bit rate to cause delay. applies a different mechanism.",
-            "whatItDoes": "Policing holds packets in the queue over the configured bit rate to cause delay. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Policing drops packets over the configured bit rate to cause loss. matches the tested behavior — Policing holds packets in the queue over the configured bit rate to cause delay. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Policing holds packets in the queue \" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "Holding packets to cause delay is shaping — policing drops instead of buffering.",
+            "misconceptionTested": "Policing buffers for delay",
+            "whatItDoes": "Policing holds packets in the queue over the configured bit rate to cause delay. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", Policing drops packets over the configured bit rate to cause loss. satisfies what this question tests — Policing holds packets in the queue over the configured bit rate to cause delay. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Policing holds packets in the queue over the configured bit rate to cause jitter. describes a mechanism that could sound plausible for statement. Given statement, Policing drops packets over the configured bit rate to cause loss. matches the tested behavior — Policing holds packets in the queue over the configured bit rate to cause jitter. applies a different mechanism.",
-            "whatItDoes": "Policing holds packets in the queue over the configured bit rate to cause jitter. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Policing drops packets over the configured bit rate to cause loss. matches the tested behavior — Policing holds packets in the queue over the configured bit rate to cause jitter. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Policing holds packets in the queue \" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "Policing causes loss, not jitter — dropped packets don't arrive late, they don't arrive.",
+            "misconceptionTested": "Policing causes jitter",
+            "whatItDoes": "Policing holds packets in the queue over the configured bit rate to cause jitter. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", Policing drops packets over the configured bit rate to cause loss. satisfies what this question tests — Policing holds packets in the queue over the configured bit rate to cause jitter. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Policing slows packets in the queue over the configured bit rate to adhere to the bit rate. describes a mechanism that could sound plausible for statement. Given statement, Policing drops packets over the configured bit rate to cause loss. matches the tested behavior — Policing slows packets in the queue over the configured bit rate to adhere to the bit rate. applies a different mechanism.",
-            "whatItDoes": "Policing slows packets in the queue over the configured bit rate to adhere to the bit rate. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Policing drops packets over the configured bit rate to cause loss. matches the tested behavior — Policing slows packets in the queue over the configured bit rate to adhere to the bit rate. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Policing slows packets in the queue \" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "Slowing packets in-queue is shaping — policing discards over-limit traffic.",
+            "misconceptionTested": "Policing slows packets like shaping",
+            "whatItDoes": "Policing slows packets in the queue over the configured bit rate to adhere to the bit rate. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", Policing drops packets over the configured bit rate to cause loss. satisfies what this question tests — Policing slows packets in the queue over the configured bit rate to adhere to the bit rate. does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for qos before picking a familiar-sounding wrong term."
+        "examTip": "Policing = drop at token bucket limit | Shaping = queue/delay to average the rate."
       }
     },
     {
@@ -623,35 +596,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"To maintain a contracted CIR\"."
+          "explanation": "Policing enforces a Committed Information Rate (CIR) — traffic above CIR is dropped or remarked."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "To help police LAN applications describes a mechanism that could sound plausible for policing. Given policing, To maintain a contracted CIR matches the tested behavior — To help police LAN applications applies a different mechanism.",
-            "whatItDoes": "To help police LAN applications describes a mechanism that could sound plausible for policing.",
-            "whyWrongHere": "Given policing, To maintain a contracted CIR matches the tested behavior — To help police LAN applications applies a different mechanism.",
-            "misconceptionTested": "Applying \"To help police LAN applications\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "LAN policing is possible but the primary exam use is enforcing WAN provider CIR contracts.",
+            "misconceptionTested": "Policing only for LAN apps",
+            "whatItDoes": "To help police LAN applications points to a related idea, but not the specific behavior or value required for policing.",
+            "whyWrongHere": "For \"policing\", To maintain a contracted CIR satisfies what this question tests — To help police LAN applications does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "To help police WAN applications describes a mechanism that could sound plausible for policing. Given policing, To maintain a contracted CIR matches the tested behavior — To help police WAN applications applies a different mechanism.",
-            "whatItDoes": "To help police WAN applications describes a mechanism that could sound plausible for policing.",
-            "whyWrongHere": "Given policing, To maintain a contracted CIR matches the tested behavior — To help police WAN applications applies a different mechanism.",
-            "misconceptionTested": "Applying \"To help police WAN applications\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "Policing limits sustained rate (CIR), not specifically \"WAN apps\" — it's rate enforcement anywhere.",
+            "misconceptionTested": "Policing only for WAN apps",
+            "whatItDoes": "To help police WAN applications points to a related idea, but not the specific behavior or value required for policing.",
+            "whyWrongHere": "For \"policing\", To maintain a contracted CIR satisfies what this question tests — To help police WAN applications does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "To maintain a contracted burst rate describes a mechanism that could sound plausible for policing. Given policing, To maintain a contracted CIR matches the tested behavior — To maintain a contracted burst rate applies a different mechanism.",
-            "whatItDoes": "To maintain a contracted burst rate describes a mechanism that could sound plausible for policing.",
-            "whyWrongHere": "Given policing, To maintain a contracted CIR matches the tested behavior — To maintain a contracted burst rate applies a different mechanism.",
-            "misconceptionTested": "Applying \"To maintain a contracted burst rate\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "Burst is handled by BC/BE token buckets — policing maintains CIR, not burst rate alone.",
+            "misconceptionTested": "Policing for burst rate only",
+            "whatItDoes": "To maintain a contracted burst rate points to a related idea, but not the specific behavior or value required for policing.",
+            "whyWrongHere": "For \"policing\", To maintain a contracted CIR satisfies what this question tests — To maintain a contracted burst rate does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for qos before picking a familiar-sounding wrong term."
+        "examTip": "Policing terms: CIR = sustained rate | BC = normal burst | BE = excess burst."
       }
     },
     {
@@ -680,35 +650,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped.\"."
+          "explanation": "WRED randomly drops TCP packets when queue depth exceeds the minimum threshold — signals congestion before tail drop."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "When the queue depth is full, a percentage of TCP packets are dropped. implies the device should discard the frame instead of forwarding or flooding it. Given congestion, When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped. matches the tested behavior — When the queue depth is full, a percentage of TCP packets are dropped. applies a different mechanism.",
+            "explanation": "Drops occur when the queue is filling (above min threshold), not when full.",
+            "misconceptionTested": "WRED drops only when queue full",
             "whatItDoes": "When the queue depth is full, a percentage of TCP packets are dropped. implies the device should discard the frame instead of forwarding or flooding it.",
-            "whyWrongHere": "Given congestion, When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped. matches the tested behavior — When the queue depth is full, a percentage of TCP packets are dropped. applies a different mechanism.",
-            "misconceptionTested": "Applying \"When the queue depth is full, a perc\" without matching qos",
-            "needsExplanationReview": true
+            "whyWrongHere": "Transport protocol (congestion): When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped. matches reliability, ports, or connection behavior — When the queue depth is full, a percentage of TCP packets are dropped. picks the wrong L4 protocol or port role."
           },
           {
             "choiceIndex": 1,
-            "explanation": "When the queue depth is empty, a percentage of TCP packets are dropped. implies the device should discard the frame instead of forwarding or flooding it. Given congestion, When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped. matches the tested behavior — When the queue depth is empty, a percentage of TCP packets are dropped. applies a different mechanism.",
+            "explanation": "An empty queue needs no congestion avoidance — WRED acts as depth rises.",
+            "misconceptionTested": "WRED drops on empty queue",
             "whatItDoes": "When the queue depth is empty, a percentage of TCP packets are dropped. implies the device should discard the frame instead of forwarding or flooding it.",
-            "whyWrongHere": "Given congestion, When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped. matches the tested behavior — When the queue depth is empty, a percentage of TCP packets are dropped. applies a different mechanism.",
-            "misconceptionTested": "Applying \"When the queue depth is empty, a per\" without matching qos",
-            "needsExplanationReview": true
+            "whyWrongHere": "Transport protocol (congestion): When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped. matches reliability, ports, or connection behavior — When the queue depth is empty, a percentage of TCP packets are dropped. picks the wrong L4 protocol or port role."
           },
           {
             "choiceIndex": 2,
-            "explanation": "When the queue depth is below the minimum threshold, a percentage of TCP packets are dropped. implies the device should discard the frame instead of forwarding or flooding it. Given congestion, When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped. matches the tested behavior — When the queue depth is below the minimum threshold, a percentage of TCP packets are dropped. applies a different mechanism.",
+            "explanation": "Below the minimum threshold, no drops occur — drops start above min threshold.",
+            "misconceptionTested": "WRED drops below minimum threshold",
             "whatItDoes": "When the queue depth is below the minimum threshold, a percentage of TCP packets are dropped. implies the device should discard the frame instead of forwarding or flooding it.",
-            "whyWrongHere": "Given congestion, When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped. matches the tested behavior — When the queue depth is below the minimum threshold, a percentage of TCP packets are dropped. applies a different mechanism.",
-            "misconceptionTested": "Applying \"When the queue depth is below the mi\" without matching qos",
-            "needsExplanationReview": true
+            "whyWrongHere": "Transport protocol (congestion): When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped. matches reliability, ports, or connection behavior — When the queue depth is below the minimum threshold, a percentage of TCP packets are dropped. picks the wrong L4 protocol or port role."
           }
         ],
-        "examTip": "Re-read the stem constraint for qos before picking a familiar-sounding wrong term."
+        "examTip": "WRED thresholds: below min = no drop | min–max = increasing drop probability | max = tail drop."
       }
     },
     {
@@ -736,35 +703,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"AF41 marked traffic has a better queue than AF31 marked traffic.\"."
+          "explanation": "In Assured Forwarding, a higher class number (AF4x vs AF3x) gets better drop precedence — AF41 outranks AF31."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "AF31 marked traffic has a better queue than AF41 marked traffic. describes a mechanism that could sound plausible for statement. Given statement, AF41 marked traffic has a better queue than AF31 marked traffic. matches the tested behavior — AF31 marked traffic has a better queue than AF41 marked traffic. applies a different mechanism.",
-            "whatItDoes": "AF31 marked traffic has a better queue than AF41 marked traffic. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, AF41 marked traffic has a better queue than AF31 marked traffic. matches the tested behavior — AF31 marked traffic has a better queue than AF41 marked traffic. applies a different mechanism.",
-            "misconceptionTested": "Applying \"AF31 marked traffic has a better que\" without matching qos",
-            "needsExplanationReview": true
+            "explanation": "AF3x is lower priority than AF4x — the first digit (class) determines queue preference.",
+            "misconceptionTested": "AF31 better queue than AF41",
+            "whatItDoes": "AF31 marked traffic has a better queue than AF41 marked traffic. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", AF41 marked traffic has a better queue than AF31 marked traffic. satisfies what this question tests — AF31 marked traffic has a better queue than AF41 marked traffic. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Both AF31 and AF41 marked traffic has an equal queue. describes a mechanism that could sound plausible for statement. CAM learning stores one mapping per arrival (statement): AF41 marked traffic has a better queue than AF31 marked traffic. — not both addresses as table entries.",
-            "whatItDoes": "Both AF31 and AF41 marked traffic has an equal queue. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "CAM learning stores one mapping per arrival (statement): AF41 marked traffic has a better queue than AF31 marked traffic. — not both addresses as table entries.",
-            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table",
-            "needsExplanationReview": true
+            "explanation": "AF3x and AF4x are different classes — AF4x receives preferential treatment.",
+            "misconceptionTested": "AF31 and AF41 equal priority",
+            "whatItDoes": "Both AF31 and AF41 marked traffic has an equal queue. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "CAM learning stores one mapping per arrival (statement): AF41 marked traffic has a better queue than AF31 marked traffic. — not both addresses as table entries."
           },
           {
             "choiceIndex": 3,
-            "explanation": "During high congestion, AF41 queues will be dropped and AF31 queues won’t. implies the device should discard the frame instead of forwarding or flooding it. Given statement, AF41 marked traffic has a better queue than AF31 marked traffic. matches the tested behavior — During high congestion, AF41 queues will be dropped and AF31 queues won’t. applies a different mechanism.",
+            "explanation": "Under congestion, lower-class (AF3x) traffic is dropped first — AF4x is protected more.",
+            "misconceptionTested": "AF41 dropped before AF31",
             "whatItDoes": "During high congestion, AF41 queues will be dropped and AF31 queues won’t. implies the device should discard the frame instead of forwarding or flooding it.",
-            "whyWrongHere": "Given statement, AF41 marked traffic has a better queue than AF31 marked traffic. matches the tested behavior — During high congestion, AF41 queues will be dropped and AF31 queues won’t. applies a different mechanism.",
-            "misconceptionTested": "Applying \"During high congestion, AF41 queues \" without matching qos",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"statement\", AF41 marked traffic has a better queue than AF31 marked traffic. satisfies what this question tests — During high congestion, AF41 queues will be dropped and AF31 queues won’t. does not."
           }
         ],
-        "examTip": "On the exam: Every inside host needs its own public IP — PAT lets thousands of hosts share one public IP via ports"
+        "examTip": "AF format: AFxy — x = class (higher = better queue) | y = drop precedence (lower = less likely drop)."
       }
     }
   ]

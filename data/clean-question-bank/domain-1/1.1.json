@@ -31,22 +31,22 @@
             "choiceIndex": 0,
             "explanation": "Layer 1 handles bits on the wire — routers do not primarily operate at the physical layer.",
             "misconceptionTested": "Confusing physical signaling with routing",
-            "whatItDoes": "Layer 1 describes a mechanism that could sound plausible for router layer.",
-            "whyWrongHere": "Given router layer, Layer 3 matches the tested behavior — Layer 1 applies a different mechanism."
+            "whatItDoes": "Layer 1 points to a related idea, but not the specific behavior or value required for router layer.",
+            "whyWrongHere": "For \"router layer\", Layer 3 satisfies what this question tests — Layer 1 does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "Layer 2 switches use MAC tables — routers break broadcast domains and route by IP at Layer 3.",
             "misconceptionTested": "Assigning switch behavior to a router",
-            "whatItDoes": "Layer 2 describes a mechanism that could sound plausible for router layer.",
-            "whyWrongHere": "Given router layer, Layer 3 matches the tested behavior — Layer 2 applies a different mechanism."
+            "whatItDoes": "Layer 2 points to a related idea, but not the specific behavior or value required for router layer.",
+            "whyWrongHere": "For \"router layer\", Layer 3 satisfies what this question tests — Layer 2 does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Layer 7 is application services (HTTP, DNS apps) — routers forward packets using Layer 3 addresses, not app data.",
             "misconceptionTested": "Equating routing with application-layer services",
-            "whatItDoes": "Layer 7 describes a mechanism that could sound plausible for router layer.",
-            "whyWrongHere": "Given router layer, Layer 3 matches the tested behavior — Layer 7 applies a different mechanism."
+            "whatItDoes": "Layer 7 points to a related idea, but not the specific behavior or value required for router layer.",
+            "whyWrongHere": "For \"router layer\", Layer 3 satisfies what this question tests — Layer 7 does not."
           }
         ],
         "examTip": "Router = Layer 3. Switch = Layer 2. Firewall can span L3–L7."
@@ -86,15 +86,15 @@
             "choiceIndex": 2,
             "explanation": "DNS resolves names — it is not used for Ethernet frame forwarding decisions.",
             "misconceptionTested": "Dragging name resolution into L2 forwarding",
-            "whatItDoes": "DNS cache describes a mechanism that could sound plausible for switch function.",
-            "whyWrongHere": "Given switch function, MAC address table matches the tested behavior — DNS cache applies a different mechanism."
+            "whatItDoes": "DNS cache points to a related idea, but not the specific behavior or value required for switch function.",
+            "whyWrongHere": "For \"switch function\", MAC address table satisfies what this question tests — DNS cache does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "ACLs filter traffic — they do not replace the MAC table for basic frame switching.",
             "misconceptionTested": "Confusing security policy with switching mechanism",
-            "whatItDoes": "ACL list describes a mechanism that could sound plausible for switch function.",
-            "whyWrongHere": "Given switch function, MAC address table matches the tested behavior — ACL list applies a different mechanism."
+            "whatItDoes": "ACL list points to a related idea, but not the specific behavior or value required for switch function.",
+            "whyWrongHere": "For \"switch function\", MAC address table satisfies what this question tests — ACL list does not."
           }
         ],
         "examTip": "Switch forwards with MAC table. Router forwards with routing table."
@@ -127,22 +127,22 @@
             "choiceIndex": 0,
             "explanation": "Port mirroring copies frames to a monitor port for analysis — it does not route traffic between VLAN 10 and VLAN 20.",
             "misconceptionTested": "Confusing traffic capture with inter-VLAN routing",
-            "whatItDoes": "Port mirroring describes a mechanism that could sound plausible for l3 switch.",
-            "whyWrongHere": "Given l3 switch, SVI on a Layer 3 switch matches the tested behavior — Port mirroring applies a different mechanism."
+            "whatItDoes": "Port mirroring points to a related idea, but not the specific behavior or value required for l3 switch.",
+            "whyWrongHere": "For \"l3 switch\", SVI on a Layer 3 switch satisfies what this question tests — Port mirroring does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Spanning Tree prevents Layer 2 loops — it does not provide inter-VLAN routing or replace an SVI on a Layer 3 switch.",
             "misconceptionTested": "Expecting STP to route between VLANs",
-            "whatItDoes": "Spanning Tree describes a mechanism that could sound plausible for l3 switch.",
-            "whyWrongHere": "Given l3 switch, SVI on a Layer 3 switch matches the tested behavior — Spanning Tree applies a different mechanism."
+            "whatItDoes": "Spanning Tree points to a related idea, but not the specific behavior or value required for l3 switch.",
+            "whyWrongHere": "For \"l3 switch\", SVI on a Layer 3 switch satisfies what this question tests — Spanning Tree does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "EtherChannel bundles links for bandwidth and redundancy — it is not the feature that routes between VLANs on one campus switch.",
             "misconceptionTested": "Using link aggregation where L3 SVI routing is required",
-            "whatItDoes": "EtherChannel describes a mechanism that could sound plausible for l3 switch.",
-            "whyWrongHere": "Given l3 switch, SVI on a Layer 3 switch matches the tested behavior — EtherChannel applies a different mechanism."
+            "whatItDoes": "EtherChannel points to a related idea, but not the specific behavior or value required for l3 switch.",
+            "whyWrongHere": "For \"l3 switch\", SVI on a Layer 3 switch satisfies what this question tests — EtherChannel does not."
           }
         ],
         "examTip": "Inter-VLAN on one switch without external router → SVI on an L3 switch."
@@ -175,22 +175,22 @@
             "choiceIndex": 0,
             "explanation": "Packet filters and NGFWs handle more than UDP — the differentiator is stateful/app-aware inspection, not protocol choice.",
             "misconceptionTested": "Reducing firewall scope to one protocol",
-            "whatItDoes": "It only blocks UDP describes a mechanism that could sound plausible for firewall.",
-            "whyWrongHere": "Given firewall, Stateful and application-aware inspection matches the tested behavior — It only blocks UDP applies a different mechanism."
+            "whatItDoes": "It only blocks UDP names a transport protocol or port behavior that may not match reliability or connection requirements.",
+            "whyWrongHere": "Transport protocol (firewall): Stateful and application-aware inspection matches reliability, ports, or connection behavior — It only blocks UDP picks the wrong L4 protocol or port role."
           },
           {
             "choiceIndex": 2,
             "explanation": "Firewalls enforce policy — they do not replace switches in a campus design.",
             "misconceptionTested": "Confusing security appliance with switching role",
-            "whatItDoes": "It replaces switches describes a mechanism that could sound plausible for firewall.",
-            "whyWrongHere": "Given firewall, Stateful and application-aware inspection matches the tested behavior — It replaces switches applies a different mechanism."
+            "whatItDoes": "It replaces switches points to a related idea, but not the specific behavior or value required for firewall.",
+            "whyWrongHere": "For \"firewall\", Stateful and application-aware inspection satisfies what this question tests — It replaces switches does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "NGFWs operate well above Layer 1 — they inspect flows and applications across multiple layers.",
             "misconceptionTested": "Placing advanced firewall at physical layer only",
-            "whatItDoes": "It operates only at Layer 1 describes a mechanism that could sound plausible for firewall.",
-            "whyWrongHere": "Given firewall, Stateful and application-aware inspection matches the tested behavior — It operates only at Layer 1 applies a different mechanism."
+            "whatItDoes": "It operates only at Layer 1 points to a related idea, but not the specific behavior or value required for firewall.",
+            "whyWrongHere": "For \"firewall\", Stateful and application-aware inspection satisfies what this question tests — It operates only at Layer 1 does not."
           }
         ],
         "examTip": "Basic ACL = static permit/deny. NGFW = stateful + application-aware."
@@ -223,22 +223,22 @@
             "choiceIndex": 0,
             "explanation": "DNS resolves names — AP join uses CAPWAP/LWAPP discovery to find the WLC, not DNS registration.",
             "misconceptionTested": "Using DNS as AP join mechanism",
-            "whatItDoes": "DNS server describes a mechanism that could sound plausible for lightweight ap.",
-            "whyWrongHere": "Given lightweight ap, Wireless LAN controller (WLC) matches the tested behavior — DNS server applies a different mechanism."
+            "whatItDoes": "DNS server points to a related idea, but not the specific behavior or value required for lightweight ap.",
+            "whyWrongHere": "For \"lightweight ap\", Wireless LAN controller (WLC) satisfies what this question tests — DNS server does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "APs may traverse routers to reach a WLC, but the WLC — not the core router alone — owns AP management.",
             "misconceptionTested": "Assigning AP control to core router only",
-            "whatItDoes": "Core router only describes a mechanism that could sound plausible for lightweight ap.",
-            "whyWrongHere": "Given lightweight ap, Wireless LAN controller (WLC) matches the tested behavior — Core router only applies a different mechanism."
+            "whatItDoes": "Core router only points to a related idea, but not the specific behavior or value required for lightweight ap.",
+            "whyWrongHere": "For \"lightweight ap\", Wireless LAN controller (WLC) satisfies what this question tests — Core router only does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "DHCP relay helps clients get IPs — AP join is a separate WLC discovery/registration process.",
             "misconceptionTested": "Confusing client DHCP relay with AP join",
-            "whatItDoes": "DHCP relay describes a mechanism that could sound plausible for lightweight ap.",
-            "whyWrongHere": "Given lightweight ap, Wireless LAN controller (WLC) matches the tested behavior — DHCP relay applies a different mechanism."
+            "whatItDoes": "DHCP relay forwards DHCP broadcasts toward a remote server rather than acting as the DHCP server itself.",
+            "whyWrongHere": "For \"lightweight ap\", Wireless LAN controller (WLC) satisfies what this question tests — DHCP relay does not."
           }
         ],
         "examTip": "Lightweight AP → discovers and joins WLC for centralized wireless control."
@@ -271,22 +271,22 @@
             "choiceIndex": 0,
             "explanation": "A web server is infrastructure/service — endpoints are typically user/client devices at the network edge.",
             "misconceptionTested": "Labeling servers as endpoints in CCNA context",
-            "whatItDoes": "Web server describes a mechanism that could sound plausible for endpoint vs server.",
-            "whyWrongHere": "Given endpoint vs server, Employee laptop matches the tested behavior — Web server applies a different mechanism."
+            "whatItDoes": "Web server points to a related idea, but not the specific behavior or value required for endpoint vs server.",
+            "whyWrongHere": "For \"endpoint vs server\", Employee laptop satisfies what this question tests — Web server does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "DNS is a network service — not an end-user endpoint device.",
             "misconceptionTested": "Treating a service as an endpoint",
-            "whatItDoes": "DNS server describes a mechanism that could sound plausible for endpoint vs server.",
-            "whyWrongHere": "Given endpoint vs server, Employee laptop matches the tested behavior — DNS server applies a different mechanism."
+            "whatItDoes": "DNS server points to a related idea, but not the specific behavior or value required for endpoint vs server.",
+            "whyWrongHere": "For \"endpoint vs server\", Employee laptop satisfies what this question tests — DNS server does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Core routers are infrastructure — endpoints are client devices like PCs, phones, and laptops.",
             "misconceptionTested": "Calling network infrastructure an endpoint",
-            "whatItDoes": "Core router describes a mechanism that could sound plausible for endpoint vs server.",
-            "whyWrongHere": "Given endpoint vs server, Employee laptop matches the tested behavior — Core router applies a different mechanism."
+            "whatItDoes": "Core router points to a related idea, but not the specific behavior or value required for endpoint vs server.",
+            "whyWrongHere": "For \"endpoint vs server\", Employee laptop satisfies what this question tests — Core router does not."
           }
         ],
         "examTip": "Endpoint = user/client device (laptop, phone). Not core routers or services."
@@ -319,22 +319,22 @@
             "choiceIndex": 0,
             "explanation": "The access switch forwards within the VLAN but does not route to remote subnets — the PC must ARP for its default gateway first.",
             "misconceptionTested": "Expecting the access switch to route inter-subnet traffic",
-            "whatItDoes": "The access switch only describes a mechanism that could sound plausible for default gateway.",
-            "whyWrongHere": "Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The access switch only applies a different mechanism."
+            "whatItDoes": "The access switch only points to a related idea, but not the specific behavior or value required for default gateway.",
+            "whyWrongHere": "For \"default gateway\", The default gateway (router or L3 switch SVI) satisfies what this question tests — The access switch only does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "The WLC manages wireless APs — it is not the first hop for a wired PC sending traffic to a remote subnet.",
             "misconceptionTested": "Dragging wireless controller into wired routing path",
-            "whatItDoes": "The WLC describes a mechanism that could sound plausible for default gateway.",
-            "whyWrongHere": "Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The WLC applies a different mechanism."
+            "whatItDoes": "The WLC assumes a centralized WLC/CAPWAP architecture rather than standalone AP operation.",
+            "whyWrongHere": "For \"default gateway\", The default gateway (router or L3 switch SVI) satisfies what this question tests — The WLC does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "DNS resolves names to IPs — it is not in the Layer 3 forwarding path for packets already addressed to a remote subnet.",
             "misconceptionTested": "Confusing name resolution with default-gateway forwarding",
-            "whatItDoes": "The DNS server describes a mechanism that could sound plausible for default gateway.",
-            "whyWrongHere": "Given default gateway, The default gateway (router or L3 switch SVI) matches the tested behavior — The DNS server applies a different mechanism."
+            "whatItDoes": "The DNS server points to a related idea, but not the specific behavior or value required for default gateway.",
+            "whyWrongHere": "For \"default gateway\", The default gateway (router or L3 switch SVI) satisfies what this question tests — The DNS server does not."
           }
         ],
         "examTip": "Same subnet → direct ARP. Remote subnet → default gateway first."
@@ -366,7 +366,7 @@
             "explanation": "False is wrong here — lightweight APs depend on a WLC; they do not run full standalone policy independently.",
             "misconceptionTested": "Believing lightweight APs are fully autonomous",
             "whatItDoes": "False states the opposite of the tested fact about controller role.",
-            "whyWrongHere": "Given controller role, True matches the tested behavior — False applies a different mechanism."
+            "whyWrongHere": "For \"controller role\", True satisfies what this question tests — False does not."
           }
         ],
         "examTip": "Lightweight AP + WLC = centralized wireless control. Autonomous AP = local config."

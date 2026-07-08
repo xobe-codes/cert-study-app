@@ -23,6 +23,19 @@ export function isFallbackExplanation(text) {
   return FALLBACK_EXPLANATION_RE.some(re => re.test(text))
 }
 
+const MECHANISM_LANGUAGE_PHRASES = [
+  'applies a different mechanism',
+  'could sound plausible',
+]
+
+/** Banned template / mechanism filler in distractor debrief fields. */
+export function isBannedMechanismLanguage(text) {
+  if (!text || typeof text !== 'string') return false
+  if (FALLBACK_EXPLANATION_RE.some(re => re.test(text))) return true
+  const lower = text.toLowerCase()
+  return MECHANISM_LANGUAGE_PHRASES.some(phrase => lower.includes(phrase))
+}
+
 export function isGenericWrongExplanation(text) {
   return isFallbackExplanation(text)
 }

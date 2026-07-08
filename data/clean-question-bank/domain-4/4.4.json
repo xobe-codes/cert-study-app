@@ -32,22 +32,22 @@
             "choiceIndex": 0,
             "explanation": "SNMPv1 has no encryption or strong authentication — community strings are sent in clear text.",
             "misconceptionTested": "Expecting SNMPv1 to provide encryption",
-            "whatItDoes": "SNMP version 1 describes a mechanism that could sound plausible for authentication.",
-            "whyWrongHere": "Given authentication, SNMP version 3 matches the tested behavior — SNMP version 1 applies a different mechanism."
+            "whatItDoes": "SNMP version 1 points to a related idea, but not the specific behavior or value required for authentication.",
+            "whyWrongHere": "For \"authentication\", SNMP version 3 satisfies what this question tests — SNMP version 1 does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "SNMPv2e is not a standard version — v2c improved operations but still uses communities without encryption.",
             "misconceptionTested": "Selecting nonstandard v2e for security",
-            "whatItDoes": "SNMP version 2e describes a mechanism that could sound plausible for authentication.",
-            "whyWrongHere": "Given authentication, SNMP version 3 matches the tested behavior — SNMP version 2e applies a different mechanism."
+            "whatItDoes": "SNMP version 2e points to a related idea, but not the specific behavior or value required for authentication.",
+            "whyWrongHere": "For \"authentication\", SNMP version 3 satisfies what this question tests — SNMP version 2e does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "SNMPv2c adds 64-bit counters but still uses community strings — only v3 offers authPriv security.",
             "misconceptionTested": "Believing v2c community strings are encrypted",
-            "whatItDoes": "SNMP version 2c describes a mechanism that could sound plausible for authentication.",
-            "whyWrongHere": "Given authentication, SNMP version 3 matches the tested behavior — SNMP version 2c applies a different mechanism."
+            "whatItDoes": "SNMP version 2c points to a related idea, but not the specific behavior or value required for authentication.",
+            "whyWrongHere": "For \"authentication\", SNMP version 3 satisfies what this question tests — SNMP version 2c does not."
           }
         ],
         "examTip": "SNMP with auth + encryption → SNMPv3 (not v1/v2c communities)."
@@ -78,35 +78,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Management information base\"."
+          "explanation": "The MIB (Management Information Base) is SNMP's structured database of managed objects."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Object identifiers (OIDs) describes a mechanism that could sound plausible for identify. Given identify, Management information base matches the tested behavior — Object identifiers (OIDs) applies a different mechanism.",
-            "whatItDoes": "Object identifiers (OIDs) describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Management information base matches the tested behavior — Object identifiers (OIDs) applies a different mechanism.",
-            "misconceptionTested": "Applying \"Object identifiers (OIDs)\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "OIDs identify individual variables inside the MIB — the database itself is the MIB.",
+            "misconceptionTested": "OID as the SNMP database",
+            "whatItDoes": "Object identifiers (OIDs) points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Management information base satisfies what this question tests — Object identifiers (OIDs) does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SNMP agent describes a mechanism that could sound plausible for identify. Given identify, Management information base matches the tested behavior — SNMP agent applies a different mechanism.",
-            "whatItDoes": "SNMP agent describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Management information base matches the tested behavior — SNMP agent applies a different mechanism.",
-            "misconceptionTested": "Applying \"SNMP agent\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "The SNMP agent runs on the device — it reads values from the MIB.",
+            "misconceptionTested": "SNMP agent as variable database",
+            "whatItDoes": "SNMP agent points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Management information base satisfies what this question tests — SNMP agent does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "SNMP community string describes a mechanism that could sound plausible for identify. Given identify, Management information base matches the tested behavior — SNMP community string applies a different mechanism.",
-            "whatItDoes": "SNMP community string describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Management information base matches the tested behavior — SNMP community string applies a different mechanism.",
-            "misconceptionTested": "Applying \"SNMP community string\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "A community string is an access credential — not the variable database.",
+            "misconceptionTested": "Community string as MIB",
+            "whatItDoes": "SNMP community string mixes SNMP version, trap/inform, or community/security features.",
+            "whyWrongHere": "SNMP (identify): Management information base matches version, trap/inform, or security — SNMP community string mixes SNMPv2/v3 features or trap types."
           }
         ],
-        "examTip": "Re-read the stem constraint for snmp before picking a familiar-sounding wrong term."
+        "examTip": "SNMP stack: MIB (database) → OID (address) → agent (responder) → NMS (poller)."
       }
     },
     {
@@ -133,35 +130,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Network management station\"."
+          "explanation": "SNMP agents send traps/informs to the network management station (NMS) — the central monitoring server."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Syslog describes a mechanism that could sound plausible for identify. Given identify, Network management station matches the tested behavior — Syslog applies a different mechanism.",
-            "whatItDoes": "Syslog describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Network management station matches the tested behavior — Syslog applies a different mechanism.",
-            "misconceptionTested": "Applying \"Syslog\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "Syslog carries log messages — SNMP alerts go to the NMS, not syslog by default.",
+            "misconceptionTested": "Syslog as SNMP trap destination",
+            "whatItDoes": "Syslog assigns a syslog severity or facility level that may reverse the lower-number-is-more-severe rule.",
+            "whyWrongHere": "For \"identify\", Network management station satisfies what this question tests — Syslog does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Object identifier describes a mechanism that could sound plausible for identify. Given identify, Network management station matches the tested behavior — Object identifier applies a different mechanism.",
-            "whatItDoes": "Object identifier describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Network management station matches the tested behavior — Object identifier applies a different mechanism.",
-            "misconceptionTested": "Applying \"Object identifier\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "An OID names a variable — the destination for SNMP messages is the NMS.",
+            "misconceptionTested": "OID as SNMP message destination",
+            "whatItDoes": "Object identifier points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Network management station satisfies what this question tests — Object identifier does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Management information base describes a mechanism that could sound plausible for identify. Given identify, Network management station matches the tested behavior — Management information base applies a different mechanism.",
-            "whatItDoes": "Management information base describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Network management station matches the tested behavior — Management information base applies a different mechanism.",
-            "misconceptionTested": "Applying \"Management information base\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "The MIB is local data on the agent — notifications are sent out to the NMS.",
+            "misconceptionTested": "MIB as external trap receiver",
+            "whatItDoes": "Management information base mixes SNMP version, trap/inform, or community/security features.",
+            "whyWrongHere": "SNMP (identify): Network management station matches version, trap/inform, or security — Management information base mixes SNMPv2/v3 features or trap types."
           }
         ],
-        "examTip": "Re-read the stem constraint for snmp before picking a familiar-sounding wrong term."
+        "examTip": "SNMP roles: agent on device → NMS (manager) receives polls and traps."
       }
     },
     {
@@ -194,22 +188,22 @@
             "choiceIndex": 0,
             "explanation": "Get-request is polled by the NMS — traps are agent-initiated without a prior poll when link state changes.",
             "misconceptionTested": "Using Get-request for unsolicited interface-down alert",
-            "whatItDoes": "Get-request message describes a mechanism that could sound plausible for an interface goes down.",
-            "whyWrongHere": "Given an interface goes down, Trap message matches the tested behavior — Get-request message applies a different mechanism."
+            "whatItDoes": "Get-request message names a DHCP DORA message step that may not be the phase described in the stem.",
+            "whyWrongHere": "For \"an interface goes down\", Trap message satisfies what this question tests — Get-request message does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "Get-response replies to a Get-request — interface-down notification is an autonomous trap, not a poll response.",
             "misconceptionTested": "Selecting Get-response for agent-initiated alert",
-            "whatItDoes": "Get-response message describes a mechanism that could sound plausible for an interface goes down.",
-            "whyWrongHere": "Given an interface goes down, Trap message matches the tested behavior — Get-response message applies a different mechanism."
+            "whatItDoes": "Get-response message points to a related idea, but not the specific behavior or value required for an interface goes down.",
+            "whyWrongHere": "For \"an interface goes down\", Trap message satisfies what this question tests — Get-response message does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Set-request writes a value from the NMS — link-down events generate traps, not Set operations.",
             "misconceptionTested": "Expecting Set-request for link-down notification",
-            "whatItDoes": "Set-request message describes a mechanism that could sound plausible for an interface goes down.",
-            "whyWrongHere": "Given an interface goes down, Trap message matches the tested behavior — Set-request message applies a different mechanism."
+            "whatItDoes": "Set-request message names a DHCP DORA message step that may not be the phase described in the stem.",
+            "whyWrongHere": "For \"an interface goes down\", Trap message satisfies what this question tests — Set-request message does not."
           }
         ],
         "examTip": "Agent pushes event to NMS without poll → SNMP trap (or inform with ack)."
@@ -240,35 +234,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Object identifiers (OIDs)\"."
+          "explanation": "OIDs form the hierarchical tree of variables that compose the MIB — dot-notation branches."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The SNMP community string describes a mechanism that could sound plausible for hierarchical. Given hierarchical, Object identifiers (OIDs) matches the tested behavior — The SNMP community string applies a different mechanism.",
-            "whatItDoes": "The SNMP community string describes a mechanism that could sound plausible for hierarchical.",
-            "whyWrongHere": "Given hierarchical, Object identifiers (OIDs) matches the tested behavior — The SNMP community string applies a different mechanism.",
-            "misconceptionTested": "Applying \"The SNMP community string\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "The community string is authentication (v2c) — not the MIB hierarchy.",
+            "misconceptionTested": "Community string as MIB structure",
+            "whatItDoes": "The SNMP community string mixes SNMP version, trap/inform, or community/security features.",
+            "whyWrongHere": "SNMP (hierarchical): Object identifiers (OIDs) matches version, trap/inform, or security — The SNMP community string mixes SNMPv2/v3 features or trap types."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The SNMP agent describes a mechanism that could sound plausible for hierarchical. Given hierarchical, Object identifiers (OIDs) matches the tested behavior — The SNMP agent applies a different mechanism.",
-            "whatItDoes": "The SNMP agent describes a mechanism that could sound plausible for hierarchical.",
-            "whyWrongHere": "Given hierarchical, Object identifiers (OIDs) matches the tested behavior — The SNMP agent applies a different mechanism.",
-            "misconceptionTested": "Applying \"The SNMP agent\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "The SNMP agent serves data — the hierarchical variable set is OIDs in the MIB.",
+            "misconceptionTested": "SNMP agent as MIB hierarchy",
+            "whatItDoes": "The SNMP agent points to a related idea, but not the specific behavior or value required for hierarchical.",
+            "whyWrongHere": "For \"hierarchical\", Object identifiers (OIDs) satisfies what this question tests — The SNMP agent does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "SNMP messages describes a mechanism that could sound plausible for hierarchical. Given hierarchical, Object identifiers (OIDs) matches the tested behavior — SNMP messages applies a different mechanism.",
-            "whatItDoes": "SNMP messages describes a mechanism that could sound plausible for hierarchical.",
-            "whyWrongHere": "Given hierarchical, Object identifiers (OIDs) matches the tested behavior — SNMP messages applies a different mechanism.",
-            "misconceptionTested": "Applying \"SNMP messages\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "SNMP messages carry requests — structure is defined by OID branches.",
+            "misconceptionTested": "SNMP messages as MIB hierarchy",
+            "whatItDoes": "SNMP messages points to a related idea, but not the specific behavior or value required for hierarchical.",
+            "whyWrongHere": "For \"hierarchical\", Object identifiers (OIDs) satisfies what this question tests — SNMP messages does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for snmp before picking a familiar-sounding wrong term."
+        "examTip": "MIB = tree of OIDs (e.g., 1.3.6.1.2.1... = mib-2 standard branch)."
       }
     },
     {
@@ -296,35 +287,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Inform messages always use acknowledgments.\"."
+          "explanation": "Inform messages require an acknowledgment from the NMS — traps are unacknowledged fire-and-forget."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Trap messages are always encrypted. describes a mechanism that could sound plausible for identify. Given identify, Inform messages always use acknowledgments. matches the tested behavior — Trap messages are always encrypted. applies a different mechanism.",
-            "whatItDoes": "Trap messages are always encrypted. describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Inform messages always use acknowledgments. matches the tested behavior — Trap messages are always encrypted. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Trap messages are always encrypted.\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "SNMPv2c traps are not encrypted — security comes from ACLs and community strings.",
+            "misconceptionTested": "SNMP traps always encrypted",
+            "whatItDoes": "Trap messages are always encrypted. mixes SNMP version, trap/inform, or community/security features.",
+            "whyWrongHere": "SNMP (identify): Inform messages always use acknowledgments. matches version, trap/inform, or security — Trap messages are always encrypted. mixes SNMPv2/v3 features or trap types."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Inform messages do not use acknowledgments. describes a mechanism that could sound plausible for identify. Given identify, Inform messages always use acknowledgments. matches the tested behavior — Inform messages do not use acknowledgments. applies a different mechanism.",
-            "whatItDoes": "Inform messages do not use acknowledgments. describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Inform messages always use acknowledgments. matches the tested behavior — Inform messages do not use acknowledgments. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Inform messages do not use acknowled\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "Informs use acknowledgments — that's the key difference from traps.",
+            "misconceptionTested": "Inform messages lack acknowledgments",
+            "whatItDoes": "Inform messages do not use acknowledgments. mixes SNMP version, trap/inform, or community/security features.",
+            "whyWrongHere": "SNMP (identify): Inform messages always use acknowledgments. matches version, trap/inform, or security — Inform messages do not use acknowledgments. mixes SNMPv2/v3 features or trap types."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Trap messages always use acknowledgments. describes a mechanism that could sound plausible for identify. Given identify, Inform messages always use acknowledgments. matches the tested behavior — Trap messages always use acknowledgments. applies a different mechanism.",
-            "whatItDoes": "Trap messages always use acknowledgments. describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Inform messages always use acknowledgments. matches the tested behavior — Trap messages always use acknowledgments. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Trap messages always use acknowledgm\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "Traps do not require acknowledgment — only informs do.",
+            "misconceptionTested": "Traps always acknowledged",
+            "whatItDoes": "Trap messages always use acknowledgments. mixes SNMP version, trap/inform, or community/security features.",
+            "whyWrongHere": "SNMP (identify): Inform messages always use acknowledgments. matches version, trap/inform, or security — Trap messages always use acknowledgments. mixes SNMPv2/v3 features or trap types."
           }
         ],
-        "examTip": "Re-read the stem constraint for snmp before picking a familiar-sounding wrong term."
+        "examTip": "Trap = no ACK (UDP/162) | Inform = ACK required — more reliable but more overhead."
       }
     },
     {
@@ -350,35 +338,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Community strings\"."
+          "explanation": "SNMPv2c uses community strings (like v1) — no encryption or per-user auth (that's SNMPv3)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Encryption describes a mechanism that could sound plausible for security. Given security, Community strings matches the tested behavior — Encryption applies a different mechanism.",
-            "whatItDoes": "Encryption describes a mechanism that could sound plausible for security.",
-            "whyWrongHere": "Given security, Community strings matches the tested behavior — Encryption applies a different mechanism.",
-            "misconceptionTested": "Applying \"Encryption\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "Encryption is an SNMPv3 feature — v2c sends community strings in cleartext.",
+            "misconceptionTested": "SNMPv2c encryption",
+            "whatItDoes": "Encryption points to a related idea, but not the specific behavior or value required for security.",
+            "whyWrongHere": "For \"security\", Community strings satisfies what this question tests — Encryption does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "User authentication describes a mechanism that could sound plausible for security. Given security, Community strings matches the tested behavior — User authentication applies a different mechanism.",
-            "whatItDoes": "User authentication describes a mechanism that could sound plausible for security.",
-            "whyWrongHere": "Given security, Community strings matches the tested behavior — User authentication applies a different mechanism.",
-            "misconceptionTested": "Applying \"User authentication\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "User authentication (auth/priv) is SNMPv3 — v2c uses community strings.",
+            "misconceptionTested": "SNMPv2c user authentication",
+            "whatItDoes": "User authentication points to a related idea, but not the specific behavior or value required for security.",
+            "whyWrongHere": "For \"security\", Community strings satisfies what this question tests — User authentication does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Message integrity describes a mechanism that could sound plausible for security. Given security, Community strings matches the tested behavior — Message integrity applies a different mechanism.",
-            "whatItDoes": "Message integrity describes a mechanism that could sound plausible for security.",
-            "whyWrongHere": "Given security, Community strings matches the tested behavior — Message integrity applies a different mechanism.",
-            "misconceptionTested": "Applying \"Message integrity\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "Message integrity with hashing is SNMPv3 — v2c relies on community strings + ACLs.",
+            "misconceptionTested": "SNMPv2c message integrity",
+            "whatItDoes": "Message integrity points to a related idea, but not the specific behavior or value required for security.",
+            "whyWrongHere": "For \"security\", Community strings satisfies what this question tests — Message integrity does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for snmp before picking a familiar-sounding wrong term."
+        "examTip": "SNMP versions: v1/v2c = community string | v3 = user + auth + priv (encryption)."
       }
     },
     {
@@ -403,35 +388,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Access control lists\"."
+          "explanation": "Apply an ACL to restrict which hosts can query SNMP — limits who reaches the agent on UDP/161."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Encrypted communities describes a mechanism that could sound plausible for conjunction. Given conjunction, Access control lists matches the tested behavior — Encrypted communities applies a different mechanism.",
-            "whatItDoes": "Encrypted communities describes a mechanism that could sound plausible for conjunction.",
-            "whyWrongHere": "Given conjunction, Access control lists matches the tested behavior — Encrypted communities applies a different mechanism.",
-            "misconceptionTested": "Applying \"Encrypted communities\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "SNMPv2c communities are not encrypted — ACLs filter source IPs, not encrypt strings.",
+            "misconceptionTested": "Encrypted SNMP communities",
+            "whatItDoes": "Encrypted communities points to a related idea, but not the specific behavior or value required for conjunction.",
+            "whyWrongHere": "For \"conjunction\", Access control lists satisfies what this question tests — Encrypted communities does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SNMP callback security describes a mechanism that could sound plausible for conjunction. Given conjunction, Access control lists matches the tested behavior — SNMP callback security applies a different mechanism.",
-            "whatItDoes": "SNMP callback security describes a mechanism that could sound plausible for conjunction.",
-            "whyWrongHere": "Given conjunction, Access control lists matches the tested behavior — SNMP callback security applies a different mechanism.",
-            "misconceptionTested": "Applying \"SNMP callback security\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "SNMP callback security is not a standard Cisco hardening method — use ACLs and SNMPv3.",
+            "misconceptionTested": "SNMP callback security",
+            "whatItDoes": "SNMP callback security points to a related idea, but not the specific behavior or value required for conjunction.",
+            "whyWrongHere": "For \"conjunction\", Access control lists satisfies what this question tests — SNMP callback security does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "SHA-256 describes a mechanism that could sound plausible for conjunction. Given conjunction, Access control lists matches the tested behavior — SHA-256 applies a different mechanism.",
-            "whatItDoes": "SHA-256 describes a mechanism that could sound plausible for conjunction.",
-            "whyWrongHere": "Given conjunction, Access control lists matches the tested behavior — SHA-256 applies a different mechanism.",
-            "misconceptionTested": "Applying \"SHA-256\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "SHA-256 is used in SNMPv3 auth — v2c agent hardening uses ACLs on the community.",
+            "misconceptionTested": "SHA-256 with SNMPv2c agent",
+            "whatItDoes": "SHA-256 points to a related idea, but not the specific behavior or value required for conjunction.",
+            "whyWrongHere": "For \"conjunction\", Access control lists satisfies what this question tests — SHA-256 does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for snmp before picking a familiar-sounding wrong term."
+        "examTip": "SNMP harden: ACL on community + snmp-server community with RO/RW + prefer SNMPv3."
       }
     },
     {
@@ -457,35 +439,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps\"."
+          "explanation": "snmp-server host <ip> version 2c <community> plus snmp-server enable traps sends v2c traps on failure."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#snmp-server 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps describes a mechanism that could sound plausible for configure. Given configure, Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps matches the tested behavior — Switch(config)#snmp-server 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps applies a different mechanism.",
-            "whatItDoes": "Switch(config)#snmp-server 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps matches the tested behavior — Switch(config)#snmp-server 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#snmp-server 192.168.1\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "Missing host keyword — traps need snmp-server host <ip> version 2c <community>.",
+            "misconceptionTested": "snmp-server without host keyword",
+            "whatItDoes": "Switch(config)#snmp-server 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps mixes SNMP version, trap/inform, or community/security features.",
+            "whyWrongHere": "SNMP (configure): Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps matches version, trap/inform, or security — Switch(config)#snmp-server 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps mixes SNMPv2/v3 features or trap types."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config)#snmp-server host 192.168.1.5 version 2c Switch(config)#snmp-server enable traps describes a mechanism that could sound plausible for configure. Given configure, Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps matches the tested behavior — Switch(config)#snmp-server host 192.168.1.5 version 2c Switch(config)#snmp-server enable traps applies a different mechanism.",
-            "whatItDoes": "Switch(config)#snmp-server host 192.168.1.5 version 2c Switch(config)#snmp-server enable traps describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps matches the tested behavior — Switch(config)#snmp-server host 192.168.1.5 version 2c Switch(config)#snmp-server enable traps applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#snmp-server host 192.\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "A community string is required on the host line — version 2c <community>.",
+            "misconceptionTested": "SNMP host without community string",
+            "whatItDoes": "Switch(config)#snmp-server host 192.168.1.5 version 2c Switch(config)#snmp-server enable traps mixes SNMP version, trap/inform, or community/security features.",
+            "whyWrongHere": "SNMP (configure): Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps matches version, trap/inform, or security — Switch(config)#snmp-server host 192.168.1.5 version 2c Switch(config)#snmp-server enable traps mixes SNMPv2/v3 features or trap types."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config)#snmp contact trap 192.168.1.5 version 2c describes a mechanism that could sound plausible for configure. Given configure, Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps matches the tested behavior — Switch(config)#snmp contact trap 192.168.1.5 version 2c applies a different mechanism.",
-            "whatItDoes": "Switch(config)#snmp contact trap 192.168.1.5 version 2c describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps matches the tested behavior — Switch(config)#snmp contact trap 192.168.1.5 version 2c applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#snmp contact trap 192\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "snmp contact trap is not valid IOS — use snmp-server host + enable traps.",
+            "misconceptionTested": "Invented snmp contact trap command",
+            "whatItDoes": "Switch(config)#snmp contact trap 192.168.1.5 version 2c mixes SNMP version, trap/inform, or community/security features.",
+            "whyWrongHere": "SNMP (configure): Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps matches version, trap/inform, or security — Switch(config)#snmp contact trap 192.168.1.5 version 2c mixes SNMPv2/v3 features or trap types."
           }
         ],
-        "examTip": "Re-read the stem constraint for snmp before picking a familiar-sounding wrong term."
+        "examTip": "SNMP traps: snmp-server enable traps + snmp-server host <NMS-ip> version 2c <string>."
       }
     },
     {
@@ -512,35 +491,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"UDP/162\"."
+          "explanation": "SNMP traps/informs are sent to the NMS on UDP port 162 — agents listen on UDP/161."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "UDP/161 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/162 matches the tested behavior — UDP/161 applies a different mechanism.",
-            "whatItDoes": "UDP/161 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, UDP/162 matches the tested behavior — UDP/161 applies a different mechanism.",
-            "misconceptionTested": "Applying \"UDP/161\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "UDP/161 is the agent (query) port — traps/informs use UDP/162.",
+            "misconceptionTested": "Trap port 161",
+            "whatItDoes": "UDP/161 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "Transport protocol (protocol): UDP/162 matches reliability, ports, or connection behavior — UDP/161 picks the wrong L4 protocol or port role."
           },
           {
             "choiceIndex": 1,
-            "explanation": "TCP/162 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/162 matches the tested behavior — TCP/162 applies a different mechanism.",
-            "whatItDoes": "TCP/162 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, UDP/162 matches the tested behavior — TCP/162 applies a different mechanism.",
-            "misconceptionTested": "Applying \"TCP/162\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "SNMP traps use UDP, not TCP — port 162.",
+            "misconceptionTested": "TCP transport for SNMP traps",
+            "whatItDoes": "TCP/162 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "Transport protocol (protocol): UDP/162 matches reliability, ports, or connection behavior — TCP/162 picks the wrong L4 protocol or port role."
           },
           {
             "choiceIndex": 3,
-            "explanation": "UDP/514 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/162 matches the tested behavior — UDP/514 applies a different mechanism.",
-            "whatItDoes": "UDP/514 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, UDP/162 matches the tested behavior — UDP/514 applies a different mechanism.",
-            "misconceptionTested": "Applying \"UDP/514\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "UDP/514 is syslog — SNMP traps/informs use UDP/162.",
+            "misconceptionTested": "Syslog port for SNMP traps",
+            "whatItDoes": "UDP/514 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "Transport protocol (protocol): UDP/162 matches reliability, ports, or connection behavior — UDP/514 picks the wrong L4 protocol or port role."
           }
         ],
-        "examTip": "Re-read the stem constraint for snmp before picking a familiar-sounding wrong term."
+        "examTip": "SNMP ports: 161 = agent (GET) | 162 = traps/informs to NMS."
       }
     },
     {
@@ -567,35 +543,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Switch#show snmp host\"."
+          "explanation": "show snmp host lists configured trap/inform destinations — NMS IP, version, and community."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#show snmp describes a mechanism that could sound plausible for management. Given management, Switch#show snmp host matches the tested behavior — Switch#show snmp applies a different mechanism.",
-            "whatItDoes": "Switch#show snmp describes a mechanism that could sound plausible for management.",
-            "whyWrongHere": "Given management, Switch#show snmp host matches the tested behavior — Switch#show snmp applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show snmp\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "show snmp is a summary — trap destinations are in show snmp host.",
+            "misconceptionTested": "show snmp for trap destinations",
+            "whatItDoes": "Switch#show snmp points to a related idea, but not the specific behavior or value required for management.",
+            "whyWrongHere": "For \"management\", Switch#show snmp host satisfies what this question tests — Switch#show snmp does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch#show snmp community describes a mechanism that could sound plausible for management. Given management, Switch#show snmp host matches the tested behavior — Switch#show snmp community applies a different mechanism.",
-            "whatItDoes": "Switch#show snmp community describes a mechanism that could sound plausible for management.",
-            "whyWrongHere": "Given management, Switch#show snmp host matches the tested behavior — Switch#show snmp community applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show snmp community\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "show snmp community shows RO/RW strings — not trap host targets.",
+            "misconceptionTested": "Community show for trap hosts",
+            "whatItDoes": "Switch#show snmp community mixes SNMP version, trap/inform, or community/security features.",
+            "whyWrongHere": "SNMP (management): Switch#show snmp host matches version, trap/inform, or security — Switch#show snmp community mixes SNMPv2/v3 features or trap types."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch#show snmp notifications describes a mechanism that could sound plausible for management. Given management, Switch#show snmp host matches the tested behavior — Switch#show snmp notifications applies a different mechanism.",
-            "whatItDoes": "Switch#show snmp notifications describes a mechanism that could sound plausible for management.",
-            "whyWrongHere": "Given management, Switch#show snmp host matches the tested behavior — Switch#show snmp notifications applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show snmp notifications\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "show snmp notifications is not valid IOS — use show snmp host.",
+            "misconceptionTested": "Invented show snmp notifications command",
+            "whatItDoes": "Switch#show snmp notifications points to a related idea, but not the specific behavior or value required for management.",
+            "whyWrongHere": "For \"management\", Switch#show snmp host satisfies what this question tests — Switch#show snmp notifications does not."
           }
         ],
-        "examTip": "Re-read the stem constraint for snmp before picking a familiar-sounding wrong term."
+        "examTip": "SNMP verify: show snmp (general) | show snmp host (trap targets) | show snmp user (v3)."
       }
     },
     {
@@ -623,35 +596,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Configuring a view\"."
+          "explanation": "SNMPv3 OID restriction starts with a view — defines which MIB subtrees the group may access."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Configuring a group describes a mechanism that could sound plausible for you configure SNMPv3 for a restricted OID, what is the first step. Given you configure SNMPv3 for a restricted OID, what is the first step, Configuring a view matches the tested behavior — Configuring a group applies a different mechanism.",
-            "whatItDoes": "Configuring a group describes a mechanism that could sound plausible for you configure SNMPv3 for a restricted OID, what is the first step.",
-            "whyWrongHere": "Given you configure SNMPv3 for a restricted OID, what is the first step, Configuring a view matches the tested behavior — Configuring a group applies a different mechanism.",
-            "misconceptionTested": "Applying \"Configuring a group\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "The group binds a view to security level — create the view first.",
+            "misconceptionTested": "SNMPv3 group before view",
+            "whatItDoes": "Configuring a group points to a related idea, but not the specific behavior or value required for you configure SNMPv3 for a restricted OID, what is the first step.",
+            "whyWrongHere": "For \"you configure SNMPv3 for a restricted OID, what is the first step\", Configuring a view satisfies what this question tests — Configuring a group does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Configuring a user describes a mechanism that could sound plausible for you configure SNMPv3 for a restricted OID, what is the first step. Given you configure SNMPv3 for a restricted OID, what is the first step, Configuring a view matches the tested behavior — Configuring a user applies a different mechanism.",
-            "whatItDoes": "Configuring a user describes a mechanism that could sound plausible for you configure SNMPv3 for a restricted OID, what is the first step.",
-            "whyWrongHere": "Given you configure SNMPv3 for a restricted OID, what is the first step, Configuring a view matches the tested behavior — Configuring a user applies a different mechanism.",
-            "misconceptionTested": "Applying \"Configuring a user\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "The user is created after view and group — view defines allowed OIDs.",
+            "misconceptionTested": "SNMPv3 user before view",
+            "whatItDoes": "Configuring a user points to a related idea, but not the specific behavior or value required for you configure SNMPv3 for a restricted OID, what is the first step.",
+            "whyWrongHere": "For \"you configure SNMPv3 for a restricted OID, what is the first step\", Configuring a view satisfies what this question tests — Configuring a user does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Configuring a community describes a mechanism that could sound plausible for you configure SNMPv3 for a restricted OID, what is the first step. Given you configure SNMPv3 for a restricted OID, what is the first step, Configuring a view matches the tested behavior — Configuring a community applies a different mechanism.",
-            "whatItDoes": "Configuring a community describes a mechanism that could sound plausible for you configure SNMPv3 for a restricted OID, what is the first step.",
-            "whyWrongHere": "Given you configure SNMPv3 for a restricted OID, what is the first step, Configuring a view matches the tested behavior — Configuring a community applies a different mechanism.",
-            "misconceptionTested": "Applying \"Configuring a community\" without matching snmp",
-            "needsExplanationReview": true
+            "explanation": "Community strings are SNMPv1/v2c — v3 uses view → group → user.",
+            "misconceptionTested": "SNMPv3 community configuration",
+            "whatItDoes": "Configuring a community mixes SNMP version, trap/inform, or community/security features.",
+            "whyWrongHere": "SNMP (you configure SNMPv3 for a restricted OID, what is the first step): Configuring a view matches version, trap/inform, or security — Configuring a community mixes SNMPv2/v3 features or trap types."
           }
         ],
-        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "SNMPv3 order: view (OID filter) → group (links view + security) → user (credentials)."
       }
     }
   ]

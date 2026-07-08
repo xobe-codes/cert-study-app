@@ -7,6 +7,7 @@ import {
 import { parseRichTextSegments } from '../lesson/richTextParse.js'
 import McChoices from '../components/McChoices.jsx'
 import AnswerReview from '../components/AnswerReview.jsx'
+import { applyAnswerReviewToQuestion } from '../answerReviewLogic.js'
 import ErrorBox from '../components/ErrorBox.jsx'
 import { CliAnswerInput } from '../components/QuizQuestionChrome.jsx'
 import { cliStringsEquivalent } from '../lab/cliGrading.js'
@@ -319,7 +320,12 @@ export function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked
         {revealed && (
           <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `2px solid ${isCorrect ? COLORS.mintBorder : COLORS.rose}` }}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
-            <AnswerReview q={q} selected={selected} />
+            <AnswerReview
+              q={applyAnswerReviewToQuestion(q)}
+              selected={selected}
+              cliAnswer={cliAnswer}
+              orderAnswer={orderDraft}
+            />
           </div>
         )}
       </div>

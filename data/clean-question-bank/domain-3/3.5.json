@@ -33,22 +33,22 @@
             "choiceIndex": 0,
             "explanation": "Proxy ARP answers ARP on behalf of remote subnets — it is not a first-hop redundancy protocol with virtual IP/MAC.",
             "misconceptionTested": "Substituting Proxy ARP for FHRP",
-            "whatItDoes": "Proxy ARP describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, VRRP matches the tested behavior — Proxy ARP applies a different mechanism."
+            "whatItDoes": "Proxy ARP points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", VRRP satisfies what this question tests — Proxy ARP does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "GLBP is Cisco proprietary load-sharing FHRP — the stem asks for the openly standardized protocol (VRRP).",
             "misconceptionTested": "Picking Cisco GLBP when IEEE standard is required",
-            "whatItDoes": "GLBP describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, VRRP matches the tested behavior — GLBP applies a different mechanism."
+            "whatItDoes": "GLBP points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", VRRP satisfies what this question tests — GLBP does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "HSRP is widely deployed but Cisco-proprietary — VRRP is the multi-vendor IEEE-aligned FHRP.",
             "misconceptionTested": "Selecting HSRP instead of open standard VRRP",
-            "whatItDoes": "HSRP describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, VRRP matches the tested behavior — HSRP applies a different mechanism."
+            "whatItDoes": "HSRP points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", VRRP satisfies what this question tests — HSRP does not."
           }
         ],
         "examTip": "Open standard FHRP → VRRP. Cisco-only → HSRP or GLBP."
@@ -77,35 +77,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"07.ac\"."
+          "explanation": "In HSRP v1, the well-known virtual MAC uses vendor 0000.0c and the HSRP ID field 07.ac — the middle bytes of 0000.0c07.ac0a."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "0000.0c describes a mechanism that could sound plausible for protocol. Given protocol, 07.ac matches the tested behavior — 0000.0c applies a different mechanism.",
-            "whatItDoes": "0000.0c describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, 07.ac matches the tested behavior — 0000.0c applies a different mechanism.",
-            "misconceptionTested": "Applying \"0000.0c\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "0000.0c is the Cisco HSRP OUI prefix — not the HSRP ID nibble pair the stem asks for.",
+            "misconceptionTested": "OUI prefix as HSRP ID",
+            "whatItDoes": "0000.0c points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", 07.ac satisfies what this question tests — 0000.0c does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "oc07 describes a mechanism that could sound plausible for protocol. Given protocol, 07.ac matches the tested behavior — oc07 applies a different mechanism.",
-            "whatItDoes": "oc07 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, 07.ac matches the tested behavior — oc07 applies a different mechanism.",
-            "misconceptionTested": "Applying \"oc07\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "oc07 is not a valid hex grouping from this MAC — the HSRP ID is 07.ac.",
+            "misconceptionTested": "Mis-parsing MAC octets",
+            "whatItDoes": "oc07 points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", 07.ac satisfies what this question tests — oc07 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "0a describes a mechanism that could sound plausible for protocol. Given protocol, 07.ac matches the tested behavior — 0a applies a different mechanism.",
-            "whatItDoes": "0a describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, 07.ac matches the tested behavior — 0a applies a different mechanism.",
-            "misconceptionTested": "Applying \"0a\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "0a is the group number suffix (last byte), not the well-known HSRP ID field 07.ac.",
+            "misconceptionTested": "Group number suffix as HSRP ID",
+            "whatItDoes": "0a points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", 07.ac satisfies what this question tests — 0a does not."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "HSRP v1 virtual MAC pattern → 0000.0c07.acXX (XX = group in hex)."
       }
     },
     {
@@ -132,35 +129,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"GLBP\"."
+          "explanation": "GLBP is Cisco proprietary and supports active/active load balancing across multiple gateways — the load-balancing FHRP on CCNA."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Proxy ARP describes a mechanism that could sound plausible for protocol. Given protocol, GLBP matches the tested behavior — Proxy ARP applies a different mechanism.",
-            "whatItDoes": "Proxy ARP describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, GLBP matches the tested behavior — Proxy ARP applies a different mechanism.",
-            "misconceptionTested": "Applying \"Proxy ARP\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Proxy ARP resolves MACs for remote subnets — it is not a first-hop redundancy load-balancing protocol.",
+            "misconceptionTested": "Proxy ARP as FHRP load balancer",
+            "whatItDoes": "Proxy ARP points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", GLBP satisfies what this question tests — Proxy ARP does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "VRRP describes a mechanism that could sound plausible for protocol. Given protocol, GLBP matches the tested behavior — VRRP applies a different mechanism.",
-            "whatItDoes": "VRRP describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, GLBP matches the tested behavior — VRRP applies a different mechanism.",
-            "misconceptionTested": "Applying \"VRRP\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "VRRP is an open standard FHRP — it is not Cisco proprietary and does not load-balance per packet like GLBP.",
+            "misconceptionTested": "VRRP as Cisco load-balancing FHRP",
+            "whatItDoes": "VRRP points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", GLBP satisfies what this question tests — VRRP does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "HSRP describes a mechanism that could sound plausible for protocol. Given protocol, GLBP matches the tested behavior — HSRP applies a different mechanism.",
-            "whatItDoes": "HSRP describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, GLBP matches the tested behavior — HSRP applies a different mechanism.",
-            "misconceptionTested": "Applying \"HSRP\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "HSRP is Cisco proprietary but provides one active router — not per-flow load balancing like GLBP.",
+            "misconceptionTested": "HSRP as load-balancing FHRP",
+            "whatItDoes": "HSRP points to a related idea, but not the specific behavior or value required for protocol.",
+            "whyWrongHere": "For \"protocol\", GLBP satisfies what this question tests — HSRP does not."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "Cisco load-balancing FHRP = GLBP; HSRP = one active; VRRP = open standard."
       }
     },
     {
@@ -186,35 +180,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"01\"."
+          "explanation": "In HSRP v1 virtual MAC 0000.0c07.ac01, the last byte 01 is the group number in hex (group 1)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "0000.0c describes a mechanism that could sound plausible for fhrp. Given fhrp, 01 matches the tested behavior — 0000.0c applies a different mechanism.",
-            "whatItDoes": "0000.0c describes a mechanism that could sound plausible for fhrp.",
-            "whyWrongHere": "Given fhrp, 01 matches the tested behavior — 0000.0c applies a different mechanism.",
-            "misconceptionTested": "Applying \"0000.0c\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "0000.0c is the Cisco HSRP OUI — not the group number field at the end of the MAC.",
+            "misconceptionTested": "OUI prefix as HSRP group number",
+            "whatItDoes": "0000.0c points to a related idea, but not the specific behavior or value required for fhrp.",
+            "whyWrongHere": "For \"fhrp\", 01 satisfies what this question tests — 0000.0c does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "0c07 describes a mechanism that could sound plausible for fhrp. Given fhrp, 01 matches the tested behavior — 0c07 applies a different mechanism.",
-            "whatItDoes": "0c07 describes a mechanism that could sound plausible for fhrp.",
-            "whyWrongHere": "Given fhrp, 01 matches the tested behavior — 0c07 applies a different mechanism.",
-            "misconceptionTested": "Applying \"0c07\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "0c07 spans OUI and HSRP ID bytes — the group is the final octet 01.",
+            "misconceptionTested": "Mid-MAC bytes as group number",
+            "whatItDoes": "0c07 points to a related idea, but not the specific behavior or value required for fhrp.",
+            "whyWrongHere": "For \"fhrp\", 01 satisfies what this question tests — 0c07 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "07.ac describes a mechanism that could sound plausible for fhrp. Given fhrp, 01 matches the tested behavior — 07.ac applies a different mechanism.",
-            "whatItDoes": "07.ac describes a mechanism that could sound plausible for fhrp.",
-            "whyWrongHere": "Given fhrp, 01 matches the tested behavior — 07.ac applies a different mechanism.",
-            "misconceptionTested": "Applying \"07.ac\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "07.ac is the well-known HSRP ID field — group number is the trailing byte 01.",
+            "misconceptionTested": "HSRP ID field as group number",
+            "whatItDoes": "07.ac points to a related idea, but not the specific behavior or value required for fhrp.",
+            "whyWrongHere": "For \"fhrp\", 01 satisfies what this question tests — 07.ac does not."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "HSRP v1 MAC 0000.0c07.acXX — XX (last byte) = group number in hex."
       }
     },
     {
@@ -241,35 +232,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"100\"."
+          "explanation": "The default HSRP priority is 100 — higher values win; preempt promotes a higher-priority router when it returns."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "110 describes a mechanism that could sound plausible for priority. Given priority, 100 matches the tested behavior — 110 applies a different mechanism.",
-            "whatItDoes": "110 describes a mechanism that could sound plausible for priority.",
-            "whyWrongHere": "Given priority, 100 matches the tested behavior — 110 applies a different mechanism.",
-            "misconceptionTested": "Applying \"110\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "110 is above default but is not the factory default — HSRP ships at 100 unless changed.",
+            "misconceptionTested": "110 as default HSRP priority",
+            "whatItDoes": "110 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in priority.",
+            "whyWrongHere": "For \"priority\", 100 satisfies what this question tests — 110 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "200 describes a mechanism that could sound plausible for priority. Given priority, 100 matches the tested behavior — 200 applies a different mechanism.",
-            "whatItDoes": "200 describes a mechanism that could sound plausible for priority.",
-            "whyWrongHere": "Given priority, 100 matches the tested behavior — 200 applies a different mechanism.",
-            "misconceptionTested": "Applying \"200\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "200 is a valid configured priority but not the default — default is 100.",
+            "misconceptionTested": "200 as default HSRP priority",
+            "whatItDoes": "200 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in priority.",
+            "whyWrongHere": "For \"priority\", 100 satisfies what this question tests — 200 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "10 describes a mechanism that could sound plausible for priority. Given priority, 100 matches the tested behavior — 10 applies a different mechanism.",
-            "whatItDoes": "10 describes a mechanism that could sound plausible for priority.",
-            "whyWrongHere": "Given priority, 100 matches the tested behavior — 10 applies a different mechanism.",
-            "misconceptionTested": "Applying \"10\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "10 is far below default — the default HSRP priority is 100, not 10.",
+            "misconceptionTested": "10 as default HSRP priority",
+            "whatItDoes": "10 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in priority.",
+            "whyWrongHere": "For \"priority\", 100 satisfies what this question tests — 10 does not."
           }
         ],
-        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
+        "examTip": "HSRP default priority = 100; higher number = more preferred active."
       }
     },
     {
@@ -294,35 +282,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"256\"."
+          "explanation": "HSRPv1 supports up to 256 groups (group numbers 0–255) — the maximum keyed answer for v1 group count."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "8 describes a mechanism that could sound plausible for fhrp. Given fhrp, 256 matches the tested behavior — 8 applies a different mechanism.",
-            "whatItDoes": "8 describes a mechanism that could sound plausible for fhrp.",
-            "whyWrongHere": "Given fhrp, 256 matches the tested behavior — 8 applies a different mechanism.",
-            "misconceptionTested": "Applying \"8\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "8 is the EtherChannel member limit — HSRPv1 group capacity is 256.",
+            "misconceptionTested": "EtherChannel limit as HSRP group max",
+            "whatItDoes": "8 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in fhrp.",
+            "whyWrongHere": "For \"fhrp\", 256 satisfies what this question tests — 8 does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "16 describes a mechanism that could sound plausible for fhrp. Given fhrp, 256 matches the tested behavior — 16 applies a different mechanism.",
-            "whatItDoes": "16 describes a mechanism that could sound plausible for fhrp.",
-            "whyWrongHere": "Given fhrp, 256 matches the tested behavior — 16 applies a different mechanism.",
-            "misconceptionTested": "Applying \"16\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "16 is far below the HSRPv1 ceiling — Cisco allows 256 v1 groups.",
+            "misconceptionTested": "Small integer as HSRPv1 group max",
+            "whatItDoes": "16 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in fhrp.",
+            "whyWrongHere": "For \"fhrp\", 256 satisfies what this question tests — 16 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "255 describes a mechanism that could sound plausible for fhrp. Given fhrp, 256 matches the tested behavior — 255 applies a different mechanism.",
-            "whatItDoes": "255 describes a mechanism that could sound plausible for fhrp.",
-            "whyWrongHere": "Given fhrp, 256 matches the tested behavior — 255 applies a different mechanism.",
-            "misconceptionTested": "Applying \"255\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "255 is one short — HSRPv1 group numbers span 0–255 (256 total groups).",
+            "misconceptionTested": "255 vs 256 off-by-one for HSRPv1",
+            "whatItDoes": "255 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in fhrp.",
+            "whyWrongHere": "For \"fhrp\", 256 satisfies what this question tests — 255 does not."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "HSRPv1 max groups = 256 (0–255); HSRPv2 raises the ceiling to 4096."
       }
     },
     {
@@ -347,35 +332,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"UDP/1985\"."
+          "explanation": "HSRP hello/standby communication uses UDP port 1985 — multicast between group members."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "UDP/1935 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/1985 matches the tested behavior — UDP/1935 applies a different mechanism.",
-            "whatItDoes": "UDP/1935 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, UDP/1985 matches the tested behavior — UDP/1935 applies a different mechanism.",
-            "misconceptionTested": "Applying \"UDP/1935\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "UDP 1935 is RTMP streaming — HSRP uses UDP 1985.",
+            "misconceptionTested": "RTMP port for HSRP",
+            "whatItDoes": "UDP/1935 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "Transport protocol (protocol): UDP/1985 matches reliability, ports, or connection behavior — UDP/1935 picks the wrong L4 protocol or port role."
           },
           {
             "choiceIndex": 2,
-            "explanation": "UDP/1895 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/1985 matches the tested behavior — UDP/1895 applies a different mechanism.",
-            "whatItDoes": "UDP/1895 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, UDP/1985 matches the tested behavior — UDP/1895 applies a different mechanism.",
-            "misconceptionTested": "Applying \"UDP/1895\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "UDP 1895 is not HSRP — the well-known HSRP port is 1985.",
+            "misconceptionTested": "Wrong UDP port near 1985",
+            "whatItDoes": "UDP/1895 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "Transport protocol (protocol): UDP/1985 matches reliability, ports, or connection behavior — UDP/1895 picks the wrong L4 protocol or port role."
           },
           {
             "choiceIndex": 3,
-            "explanation": "UCP/3222 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/1985 matches the tested behavior — UCP/3222 applies a different mechanism.",
-            "whatItDoes": "UCP/3222 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, UDP/1985 matches the tested behavior — UCP/3222 applies a different mechanism.",
-            "misconceptionTested": "Applying \"UCP/3222\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "UCP/3222 is not valid HSRP transport — HSRP runs UDP/1985.",
+            "misconceptionTested": "Invented UCP port for HSRP",
+            "whatItDoes": "UCP/3222 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"protocol\", UDP/1985 satisfies what this question tests — UCP/3222 does not."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "HSRP control messages → UDP 1985 (memorize with VRRP 112)."
       }
     },
     {
@@ -401,35 +383,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Only one router in an HSRP group can be active.\"."
+          "explanation": "HSRP elects one active router per group — the standby takes over only if the active fails or priority/preemption dictates."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "All routers in an HSRP group are active. describes a mechanism that could sound plausible for statement. Given statement, Only one router in an HSRP group can be active. matches the tested behavior — All routers in an HSRP group are active. applies a different mechanism.",
-            "whatItDoes": "All routers in an HSRP group are active. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Only one router in an HSRP group can be active. matches the tested behavior — All routers in an HSRP group are active. applies a different mechanism.",
-            "misconceptionTested": "Applying \"All routers in an HSRP group are act\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Only one router is active at a time — all routers being active describes GLBP load-sharing, not HSRP.",
+            "misconceptionTested": "All HSRP routers active simultaneously",
+            "whatItDoes": "All routers in an HSRP group are active. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", Only one router in an HSRP group can be active. satisfies what this question tests — All routers in an HSRP group are active. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The virtual router sends hello packets to the HSRP group. describes a mechanism that could sound plausible for statement. Given statement, Only one router in an HSRP group can be active. matches the tested behavior — The virtual router sends hello packets to the HSRP group. applies a different mechanism.",
-            "whatItDoes": "The virtual router sends hello packets to the HSRP group. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Only one router in an HSRP group can be active. matches the tested behavior — The virtual router sends hello packets to the HSRP group. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The virtual router sends hello packe\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Hello packets are sent by HSRP group members (active/standby), not by the abstract virtual router entity.",
+            "misconceptionTested": "Virtual router as hello sender",
+            "whatItDoes": "The virtual router sends hello packets to the HSRP group. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", Only one router in an HSRP group can be active. satisfies what this question tests — The virtual router sends hello packets to the HSRP group. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "HSRP allows for per-packet load balancing. describes a mechanism that could sound plausible for statement. Given statement, Only one router in an HSRP group can be active. matches the tested behavior — HSRP allows for per-packet load balancing. applies a different mechanism.",
-            "whatItDoes": "HSRP allows for per-packet load balancing. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, Only one router in an HSRP group can be active. matches the tested behavior — HSRP allows for per-packet load balancing. applies a different mechanism.",
-            "misconceptionTested": "Applying \"HSRP allows for per-packet load bala\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "HSRP provides one active gateway — per-packet load balancing is GLBP, not HSRP.",
+            "misconceptionTested": "HSRP as load-balancing FHRP",
+            "whatItDoes": "HSRP allows for per-packet load balancing. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", Only one router in an HSRP group can be active. satisfies what this question tests — HSRP allows for per-packet load balancing. does not."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "HSRP = one active + standby; GLBP = load balancing across AVFs."
       }
     },
     {
@@ -454,35 +433,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Multicast\"."
+          "explanation": "HSRP members exchange hellos via IP multicast (224.0.0.102 for v2) — not broadcast or per-neighbor unicast."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Unicast describes a mechanism that could sound plausible for communication. Given communication, Multicast matches the tested behavior — Unicast applies a different mechanism.",
-            "whatItDoes": "Unicast describes a mechanism that could sound plausible for communication.",
-            "whyWrongHere": "Given communication, Multicast matches the tested behavior — Unicast applies a different mechanism.",
-            "misconceptionTested": "Applying \"Unicast\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Unicast is used for some FHRP traffic to hosts, but member-to-member HSRP control uses multicast.",
+            "misconceptionTested": "Unicast for HSRP member hellos",
+            "whatItDoes": "Unicast points to a related idea, but not the specific behavior or value required for communication.",
+            "whyWrongHere": "For \"communication\", Multicast satisfies what this question tests — Unicast does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Broadcast describes flooding the frame to multiple ports in the VLAN. Given communication, Multicast matches the tested behavior — Broadcast applies a different mechanism.",
+            "explanation": "HSRPv1 used limited broadcast on some platforms — the keyed answer for member communication is multicast (v2 standard).",
+            "misconceptionTested": "Broadcast as HSRP member protocol",
             "whatItDoes": "Broadcast describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "Given communication, Multicast matches the tested behavior — Broadcast applies a different mechanism.",
-            "misconceptionTested": "Applying \"Broadcast\" without matching fhrp",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"communication\", Multicast satisfies what this question tests — Broadcast does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Layer 2 flooding describes flooding the frame to multiple ports in the VLAN. Given communication, Multicast matches the tested behavior — Layer 2 flooding applies a different mechanism.",
+            "explanation": "Layer 2 flooding is not how HSRP negotiates — routers send multicast hellos at Layer 3.",
+            "misconceptionTested": "L2 flooding as HSRP transport",
             "whatItDoes": "Layer 2 flooding describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "Given communication, Multicast matches the tested behavior — Layer 2 flooding applies a different mechanism.",
-            "misconceptionTested": "Applying \"Layer 2 flooding\" without matching fhrp",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"communication\", Multicast satisfies what this question tests — Layer 2 flooding does not."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "HSRP hellos → multicast 224.0.0.102 (v2); memorize with GLBP 3222/UDP."
       }
     },
     {
@@ -509,35 +485,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Virtual router\"."
+          "explanation": "Hosts target the virtual router (VIP/virtual MAC) — the active router answers on behalf of that logical gateway."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Active router describes a mechanism that could sound plausible for default gateway. Given default gateway, Virtual router matches the tested behavior — Active router applies a different mechanism.",
-            "whatItDoes": "Active router describes a mechanism that could sound plausible for default gateway.",
-            "whyWrongHere": "Given default gateway, Virtual router matches the tested behavior — Active router applies a different mechanism.",
-            "misconceptionTested": "Applying \"Active router\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "The active router forwards traffic but hosts are configured with the virtual router address, not the physical router IP.",
+            "misconceptionTested": "Active router IP as default gateway",
+            "whatItDoes": "Active router points to a related idea, but not the specific behavior or value required for default gateway.",
+            "whyWrongHere": "For \"default gateway\", Virtual router satisfies what this question tests — Active router does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Standby router describes a mechanism that could sound plausible for default gateway. Given default gateway, Virtual router matches the tested behavior — Standby router applies a different mechanism.",
-            "whatItDoes": "Standby router describes a mechanism that could sound plausible for default gateway.",
-            "whyWrongHere": "Given default gateway, Virtual router matches the tested behavior — Standby router applies a different mechanism.",
-            "misconceptionTested": "Applying \"Standby router\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "The standby is backup — clients never use the standby's physical address as the default gateway.",
+            "misconceptionTested": "Standby router as gateway target",
+            "whatItDoes": "Standby router points to a related idea, but not the specific behavior or value required for default gateway.",
+            "whyWrongHere": "For \"default gateway\", Virtual router satisfies what this question tests — Standby router does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Monitor router describes a mechanism that could sound plausible for default gateway. Given default gateway, Virtual router matches the tested behavior — Monitor router applies a different mechanism.",
-            "whatItDoes": "Monitor router describes a mechanism that could sound plausible for default gateway.",
-            "whyWrongHere": "Given default gateway, Virtual router matches the tested behavior — Monitor router applies a different mechanism.",
-            "misconceptionTested": "Applying \"Monitor router\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Monitor router is not an HSRP role — the abstraction clients use is the virtual router.",
+            "misconceptionTested": "Invented monitor router role",
+            "whatItDoes": "Monitor router points to a related idea, but not the specific behavior or value required for default gateway.",
+            "whyWrongHere": "For \"default gateway\", Virtual router satisfies what this question tests — Monitor router does not."
           }
         ],
-        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
+        "examTip": "FHRP clients point at the virtual IP/MAC — active router services it; standby waits."
       }
     },
     {
@@ -563,35 +536,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Hold timer\"."
+          "explanation": "The standby promotes when hold timer expires — meaning hellos from the active were missed for the hold interval."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Hello timer describes a mechanism that could sound plausible for fhrp. Given fhrp, Hold timer matches the tested behavior — Hello timer applies a different mechanism.",
-            "whatItDoes": "Hello timer describes a mechanism that could sound plausible for fhrp.",
-            "whyWrongHere": "Given fhrp, Hold timer matches the tested behavior — Hello timer applies a different mechanism.",
-            "misconceptionTested": "Applying \"Hello timer\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Hello timer governs how often hellos are sent — hold timer expiry triggers failover.",
+            "misconceptionTested": "Hello timer as failover trigger",
+            "whatItDoes": "Hello timer states a MAC aging timer or timeout value that may not match the default or configured setting.",
+            "whyWrongHere": "MAC aging (fhrp): Hold timer is the default or configured timer — Hello timer states the wrong timeout value or behavior."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Standby timer describes a mechanism that could sound plausible for fhrp. Given fhrp, Hold timer matches the tested behavior — Standby timer applies a different mechanism.",
-            "whatItDoes": "Standby timer describes a mechanism that could sound plausible for fhrp.",
-            "whyWrongHere": "Given fhrp, Hold timer matches the tested behavior — Standby timer applies a different mechanism.",
-            "misconceptionTested": "Applying \"Standby timer\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "There is no separate standby timer — HSRP uses hello and hold timers.",
+            "misconceptionTested": "Invented standby timer name",
+            "whatItDoes": "Standby timer states a MAC aging timer or timeout value that may not match the default or configured setting.",
+            "whyWrongHere": "MAC aging (fhrp): Hold timer is the default or configured timer — Standby timer states the wrong timeout value or behavior."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Virtual timer describes a mechanism that could sound plausible for fhrp. Given fhrp, Hold timer matches the tested behavior — Virtual timer applies a different mechanism.",
-            "whatItDoes": "Virtual timer describes a mechanism that could sound plausible for fhrp.",
-            "whyWrongHere": "Given fhrp, Hold timer matches the tested behavior — Virtual timer applies a different mechanism.",
-            "misconceptionTested": "Applying \"Virtual timer\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Virtual timer is not an HSRP timer — failover follows hold timer expiration.",
+            "misconceptionTested": "Virtual timer as HSRP failover trigger",
+            "whatItDoes": "Virtual timer states a MAC aging timer or timeout value that may not match the default or configured setting.",
+            "whyWrongHere": "MAC aging (fhrp): Hold timer is the default or configured timer — Virtual timer states the wrong timeout value or behavior."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "HSRP timers: hello sends, hold expires → standby becomes active."
       }
     },
     {
@@ -617,35 +587,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"UDP/3222\"."
+          "explanation": "GLBP control traffic uses UDP port 3222 — distinct from HSRP's UDP 1985."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "UDP/1935 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/3222 matches the tested behavior — UDP/1935 applies a different mechanism.",
-            "whatItDoes": "UDP/1935 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, UDP/3222 matches the tested behavior — UDP/1935 applies a different mechanism.",
-            "misconceptionTested": "Applying \"UDP/1935\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "UDP 1935 is RTMP — GLBP uses UDP 3222.",
+            "misconceptionTested": "RTMP port for GLBP",
+            "whatItDoes": "UDP/1935 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "Transport protocol (protocol): UDP/3222 matches reliability, ports, or connection behavior — UDP/1935 picks the wrong L4 protocol or port role."
           },
           {
             "choiceIndex": 1,
-            "explanation": "UDP/1985 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/3222 matches the tested behavior — UDP/1985 applies a different mechanism.",
-            "whatItDoes": "UDP/1985 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, UDP/3222 matches the tested behavior — UDP/1985 applies a different mechanism.",
-            "misconceptionTested": "Applying \"UDP/1985\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "UDP 1985 is HSRP — GLBP control is 3222.",
+            "misconceptionTested": "HSRP port for GLBP",
+            "whatItDoes": "UDP/1985 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "Transport protocol (protocol): UDP/3222 matches reliability, ports, or connection behavior — UDP/1985 picks the wrong L4 protocol or port role."
           },
           {
             "choiceIndex": 2,
-            "explanation": "UDP/1895 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/3222 matches the tested behavior — UDP/1895 applies a different mechanism.",
-            "whatItDoes": "UDP/1895 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, UDP/3222 matches the tested behavior — UDP/1895 applies a different mechanism.",
-            "misconceptionTested": "Applying \"UDP/1895\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "UDP 1895 is not GLBP — memorize 3222 for GLBP hellos.",
+            "misconceptionTested": "Wrong UDP port near GLBP",
+            "whatItDoes": "UDP/1895 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "Transport protocol (protocol): UDP/3222 matches reliability, ports, or connection behavior — UDP/1895 picks the wrong L4 protocol or port role."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP ports: HSRP 1985 | GLBP 3222 | VRRP 112."
       }
     },
     {
@@ -672,35 +639,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"HSRPv2 uses milliseconds.\"."
+          "explanation": "HSRPv2 hello/hold timers are configured in milliseconds — v1 used whole seconds."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "HSRPv2 does not use hello packets. describes a mechanism that could sound plausible for difference. Given difference, HSRPv2 uses milliseconds. matches the tested behavior — HSRPv2 does not use hello packets. applies a different mechanism.",
-            "whatItDoes": "HSRPv2 does not use hello packets. describes a mechanism that could sound plausible for difference.",
-            "whyWrongHere": "Given difference, HSRPv2 uses milliseconds. matches the tested behavior — HSRPv2 does not use hello packets. applies a different mechanism.",
-            "misconceptionTested": "Applying \"HSRPv2 does not use hello packets.\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Both HSRPv1 and v2 use hello packets — v2 did not remove them.",
+            "misconceptionTested": "HSRPv2 without hellos",
+            "whatItDoes": "HSRPv2 does not use hello packets. points to a related idea, but not the specific behavior or value required for difference.",
+            "whyWrongHere": "For \"difference\", HSRPv2 uses milliseconds. satisfies what this question tests — HSRPv2 does not use hello packets. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "HSRPv1 uses broadcasts, and HSRPv2 uses multicasts. describes flooding the frame to multiple ports in the VLAN. Given difference, HSRPv2 uses milliseconds. matches the tested behavior — HSRPv1 uses broadcasts, and HSRPv2 uses multicasts. applies a different mechanism.",
+            "explanation": "Multicast vs broadcast differences exist but the keyed v1/v2 distinction here is millisecond timers in v2.",
+            "misconceptionTested": "Broadcast/multicast as primary v1/v2 difference",
             "whatItDoes": "HSRPv1 uses broadcasts, and HSRPv2 uses multicasts. describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "Given difference, HSRPv2 uses milliseconds. matches the tested behavior — HSRPv1 uses broadcasts, and HSRPv2 uses multicasts. applies a different mechanism.",
-            "misconceptionTested": "Applying \"HSRPv1 uses broadcasts, and HSRPv2 u\" without matching fhrp",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"difference\", HSRPv2 uses milliseconds. satisfies what this question tests — HSRPv1 uses broadcasts, and HSRPv2 uses multicasts. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "HSRPv1 supports IPv6. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
-            "whatItDoes": "HSRPv1 supports IPv6. describes a mechanism that could sound plausible for difference.",
-            "whyWrongHere": "Given difference, HSRPv2 uses milliseconds. matches the tested behavior — HSRPv1 supports IPv6. applies a different mechanism.",
-            "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
-            "needsExplanationReview": true
+            "explanation": "IPv6 support is an HSRPv2 feature — the keyed difference is millisecond timer granularity.",
+            "misconceptionTested": "IPv6 as the keyed v1/v2 difference",
+            "whatItDoes": "HSRPv1 supports IPv6. states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"difference\", HSRPv2 uses milliseconds. satisfies what this question tests — HSRPv1 supports IPv6. does not."
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "HSRPv2 upgrades: 4096 groups, multicast, millisecond timers, IPv6."
       }
     },
     {
@@ -727,35 +691,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"The active virtual gateway will respond with a MAC address of an active virtual forwarder.\"."
+          "explanation": "The active virtual gateway (AVG) answers ARP for the VIP with a virtual forwarder (AVF) MAC — GLBP load-balances by handing out different forwarder MACs."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The active router is responsible for responding to clients with the virtual router’s MAC address. describes a mechanism that could sound plausible for statement. Given statement, The active virtual gateway will respond with a MAC address of an active virtual forwarder. matches the tested behavior — The active router is responsible for responding to clients with the virtual router’s MAC address. applies a different mechanism.",
-            "whatItDoes": "The active router is responsible for responding to clients with the virtual router’s MAC address. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, The active virtual gateway will respond with a MAC address of an active virtual forwarder. matches the tested behavior — The active router is responsible for responding to clients with the virtual router’s MAC address. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The active router is responsible for\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Active router is HSRP terminology — GLBP uses AVG/AVF roles, not active/standby.",
+            "misconceptionTested": "HSRP active router role applied to GLBP",
+            "whatItDoes": "The active router is responsible for responding to clients with the virtual router’s MAC address. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", The active virtual gateway will respond with a MAC address of an active virtual forwarder. satisfies what this question tests — The active router is responsible for responding to clients with the virtual router’s MAC address. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The active virtual gateway will respond with a MAC address of the active router. describes a mechanism that could sound plausible for statement. Given statement, The active virtual gateway will respond with a MAC address of an active virtual forwarder. matches the tested behavior — The active virtual gateway will respond with a MAC address of the active router. applies a different mechanism.",
-            "whatItDoes": "The active virtual gateway will respond with a MAC address of the active router. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, The active virtual gateway will respond with a MAC address of an active virtual forwarder. matches the tested behavior — The active virtual gateway will respond with a MAC address of the active router. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The active virtual gateway will resp\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "The AVG does not return the physical router MAC — it returns an AVF virtual MAC for load sharing.",
+            "misconceptionTested": "Physical router MAC as GLBP ARP response",
+            "whatItDoes": "The active virtual gateway will respond with a MAC address of the active router. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", The active virtual gateway will respond with a MAC address of an active virtual forwarder. satisfies what this question tests — The active virtual gateway will respond with a MAC address of the active router. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The virtual router is responsible for responding to tracking requests. describes a mechanism that could sound plausible for statement. Given statement, The active virtual gateway will respond with a MAC address of an active virtual forwarder. matches the tested behavior — The virtual router is responsible for responding to tracking requests. applies a different mechanism.",
-            "whatItDoes": "The virtual router is responsible for responding to tracking requests. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, The active virtual gateway will respond with a MAC address of an active virtual forwarder. matches the tested behavior — The virtual router is responsible for responding to tracking requests. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The virtual router is responsible fo\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Tracking requests adjust priority — ARP responses come from the AVG with AVF MACs.",
+            "misconceptionTested": "Virtual router tracking as GLBP ARP handler",
+            "whatItDoes": "The virtual router is responsible for responding to tracking requests. names a DHCP DORA message step that may not be the phase described in the stem.",
+            "whyWrongHere": "For \"statement\", The active virtual gateway will respond with a MAC address of an active virtual forwarder. satisfies what this question tests — The virtual router is responsible for responding to tracking requests. does not."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "GLBP roles: AVG (VIP/ARP) + AVF (forwards) — not HSRP active/standby."
       }
     },
     {
@@ -783,35 +744,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"The router with the highest priority and highest IP address\"."
+          "explanation": "The AVG is the router with the highest priority; ties break to the highest IP address on the interface."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The router with the lowest priority describes a mechanism that could sound plausible for fhrp. Given fhrp, The router with the highest priority and highest IP address matches the tested behavior — The router with the lowest priority applies a different mechanism.",
-            "whatItDoes": "The router with the lowest priority describes a mechanism that could sound plausible for fhrp.",
-            "whyWrongHere": "Given fhrp, The router with the highest priority and highest IP address matches the tested behavior — The router with the lowest priority applies a different mechanism.",
-            "misconceptionTested": "Applying \"The router with the lowest priority\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Lowest priority loses the AVG election — GLBP picks the highest priority.",
+            "misconceptionTested": "Lowest priority wins GLBP AVG",
+            "whatItDoes": "The router with the lowest priority points to a related idea, but not the specific behavior or value required for fhrp.",
+            "whyWrongHere": "For \"fhrp\", The router with the highest priority and highest IP address satisfies what this question tests — The router with the lowest priority does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The router with the highest priority describes a mechanism that could sound plausible for fhrp. Given fhrp, The router with the highest priority and highest IP address matches the tested behavior — The router with the highest priority applies a different mechanism.",
-            "whatItDoes": "The router with the highest priority describes a mechanism that could sound plausible for fhrp.",
-            "whyWrongHere": "Given fhrp, The router with the highest priority and highest IP address matches the tested behavior — The router with the highest priority applies a different mechanism.",
-            "misconceptionTested": "Applying \"The router with the highest priority\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Highest priority alone is incomplete — Cisco breaks ties with the highest IP address.",
+            "misconceptionTested": "Priority-only AVG election without IP tie-break",
+            "whatItDoes": "The router with the highest priority points to a related idea, but not the specific behavior or value required for fhrp.",
+            "whyWrongHere": "For \"fhrp\", The router with the highest priority and highest IP address satisfies what this question tests — The router with the highest priority does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The router with the lowest priority and lowest IP address shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given fhrp, The router with the highest priority and highest IP address matches the tested behavior — The router with the lowest priority and lowest IP address applies a different mechanism.",
+            "explanation": "Lowest priority and lowest IP is the opposite of GLBP AVG election rules.",
+            "misconceptionTested": "Lowest priority and IP as AVG winner",
             "whatItDoes": "The router with the lowest priority and lowest IP address shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given fhrp, The router with the highest priority and highest IP address matches the tested behavior — The router with the lowest priority and lowest IP address applies a different mechanism.",
-            "misconceptionTested": "Applying \"The router with the lowest priority \" without matching fhrp",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"fhrp\", The router with the highest priority and highest IP address satisfies what this question tests — The router with the lowest priority and lowest IP address does not."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "GLBP AVG election: highest priority → tie = highest IP."
       }
     },
     {
@@ -837,35 +795,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"4\"."
+          "explanation": "GLBP supports up to 4 active virtual forwarders (AVFs) per group for load balancing."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "2 describes a mechanism that could sound plausible for forwarders. Given forwarders, 4 matches the tested behavior — 2 applies a different mechanism.",
-            "whatItDoes": "2 describes a mechanism that could sound plausible for forwarders.",
-            "whyWrongHere": "Given forwarders, 4 matches the tested behavior — 2 applies a different mechanism.",
-            "misconceptionTested": "Applying \"2\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "2 AVFs is below the GLBP maximum — Cisco allows 4 forwarders per group.",
+            "misconceptionTested": "Two AVFs as GLBP maximum",
+            "whatItDoes": "2 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in forwarders.",
+            "whyWrongHere": "For \"forwarders\", 4 satisfies what this question tests — 2 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "16 describes a mechanism that could sound plausible for forwarders. Given forwarders, 4 matches the tested behavior — 16 applies a different mechanism.",
-            "whatItDoes": "16 describes a mechanism that could sound plausible for forwarders.",
-            "whyWrongHere": "Given forwarders, 4 matches the tested behavior — 16 applies a different mechanism.",
-            "misconceptionTested": "Applying \"16\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "16 exceeds the standard GLBP AVF limit — the keyed maximum is 4.",
+            "misconceptionTested": "Sixteen AVFs as GLBP group max",
+            "whatItDoes": "16 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in forwarders.",
+            "whyWrongHere": "For \"forwarders\", 4 satisfies what this question tests — 16 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "1,024 describes a mechanism that could sound plausible for forwarders. Given forwarders, 4 matches the tested behavior — 1,024 applies a different mechanism.",
-            "whatItDoes": "1,024 describes a mechanism that could sound plausible for forwarders.",
-            "whyWrongHere": "Given forwarders, 4 matches the tested behavior — 1,024 applies a different mechanism.",
-            "misconceptionTested": "Applying \"1,024\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "1,024 is far above the GLBP AVF ceiling — memorize 4 AVFs per group.",
+            "misconceptionTested": "1024 AVFs as GLBP limit",
+            "whatItDoes": "1,024 points to a related idea, but not the specific behavior or value required for forwarders.",
+            "whyWrongHere": "For \"forwarders\", 4 satisfies what this question tests — 1,024 does not."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "GLBP load share: up to 4 AVFs + 1 AVG per group."
       }
     },
     {
@@ -891,35 +846,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Router(config-if)#standby 1 priority 150\"."
+          "explanation": "Raise HSRP priority above peers with standby <group> priority <value> under the interface — e.g., 150 beats default 100."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router(config-if)#standby 1 priority 70 describes a mechanism that could sound plausible for fhrp. Given fhrp, Router(config-if)#standby 1 priority 150 matches the tested behavior — Router(config-if)#standby 1 priority 70 applies a different mechanism.",
-            "whatItDoes": "Router(config-if)#standby 1 priority 70 describes a mechanism that could sound plausible for fhrp.",
-            "whyWrongHere": "Given fhrp, Router(config-if)#standby 1 priority 150 matches the tested behavior — Router(config-if)#standby 1 priority 70 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config-if)#standby 1 priority\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Priority 70 is below the default 100 — it would not win active router election.",
+            "misconceptionTested": "Sub-default priority to become active",
+            "whatItDoes": "Router(config-if)#standby 1 priority 70 points to a related idea, but not the specific behavior or value required for fhrp.",
+            "whyWrongHere": "For \"fhrp\", Router(config-if)#standby 1 priority 150 satisfies what this question tests — Router(config-if)#standby 1 priority 70 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config-if)#hsrp 1 priority 150 describes a mechanism that could sound plausible for fhrp. Given fhrp, Router(config-if)#standby 1 priority 150 matches the tested behavior — Router(config-if)#hsrp 1 priority 150 applies a different mechanism.",
-            "whatItDoes": "Router(config-if)#hsrp 1 priority 150 describes a mechanism that could sound plausible for fhrp.",
-            "whyWrongHere": "Given fhrp, Router(config-if)#standby 1 priority 150 matches the tested behavior — Router(config-if)#hsrp 1 priority 150 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config-if)#hsrp 1 priority 15\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "hsrp is not valid IOS syntax — HSRP uses the standby interface command.",
+            "misconceptionTested": "hsrp keyword instead of standby",
+            "whatItDoes": "Router(config-if)#hsrp 1 priority 150 points to a related idea, but not the specific behavior or value required for fhrp.",
+            "whyWrongHere": "For \"fhrp\", Router(config-if)#standby 1 priority 150 satisfies what this question tests — Router(config-if)#hsrp 1 priority 150 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config-if)#hsrp 1 priority 90 describes a mechanism that could sound plausible for fhrp. Given fhrp, Router(config-if)#standby 1 priority 150 matches the tested behavior — Router(config-if)#hsrp 1 priority 90 applies a different mechanism.",
-            "whatItDoes": "Router(config-if)#hsrp 1 priority 90 describes a mechanism that could sound plausible for fhrp.",
-            "whyWrongHere": "Given fhrp, Router(config-if)#standby 1 priority 150 matches the tested behavior — Router(config-if)#hsrp 1 priority 90 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config-if)#hsrp 1 priority 90\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Both wrong syntax (hsrp) and low priority (90) — use standby 1 priority 150.",
+            "misconceptionTested": "hsrp command with insufficient priority",
+            "whatItDoes": "Router(config-if)#hsrp 1 priority 90 points to a related idea, but not the specific behavior or value required for fhrp.",
+            "whyWrongHere": "For \"fhrp\", Router(config-if)#standby 1 priority 150 satisfies what this question tests — Router(config-if)#hsrp 1 priority 90 does not."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "HSRP priority: default 100, higher wins — syntax is standby <n> priority <n>."
       }
     },
     {
@@ -944,35 +896,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"4,096\"."
+          "explanation": "HSRPv2 supports up to 4,096 groups — a major increase over HSRPv1's 256."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "255 describes a mechanism that could sound plausible for fhrp. Given fhrp, 4,096 matches the tested behavior — 255 applies a different mechanism.",
-            "whatItDoes": "255 describes a mechanism that could sound plausible for fhrp.",
-            "whyWrongHere": "Given fhrp, 4,096 matches the tested behavior — 255 applies a different mechanism.",
-            "misconceptionTested": "Applying \"255\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "255 is the HSRPv1 group-number ceiling — HSRPv2 raises the limit to 4,096.",
+            "misconceptionTested": "HSRPv1 max groups as HSRPv2 answer",
+            "whatItDoes": "255 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in fhrp.",
+            "whyWrongHere": "For \"fhrp\", 4,096 satisfies what this question tests — 255 does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "256 describes a mechanism that could sound plausible for fhrp. Given fhrp, 4,096 matches the tested behavior — 256 applies a different mechanism.",
-            "whatItDoes": "256 describes a mechanism that could sound plausible for fhrp.",
-            "whyWrongHere": "Given fhrp, 4,096 matches the tested behavior — 256 applies a different mechanism.",
-            "misconceptionTested": "Applying \"256\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "256 is the HSRPv1 maximum — HSRPv2 allows 4,096 groups.",
+            "misconceptionTested": "256 as HSRPv2 group max",
+            "whatItDoes": "256 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in fhrp.",
+            "whyWrongHere": "For \"fhrp\", 4,096 satisfies what this question tests — 256 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "1,024 describes a mechanism that could sound plausible for fhrp. Given fhrp, 4,096 matches the tested behavior — 1,024 applies a different mechanism.",
-            "whatItDoes": "1,024 describes a mechanism that could sound plausible for fhrp.",
-            "whyWrongHere": "Given fhrp, 4,096 matches the tested behavior — 1,024 applies a different mechanism.",
-            "misconceptionTested": "Applying \"1,024\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "1,024 is still below the HSRPv2 maximum — the keyed answer is 4,096.",
+            "misconceptionTested": "1024 as HSRPv2 group max",
+            "whatItDoes": "1,024 points to a related idea, but not the specific behavior or value required for fhrp.",
+            "whyWrongHere": "For \"fhrp\", 4,096 satisfies what this question tests — 1,024 does not."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "HSRP group limits: v1 = 256 (0–255) | v2 = 4096."
       }
     },
     {
@@ -1000,35 +949,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"HSRPv2\"."
+          "explanation": "MAC 0000.0c9f.fXXX uses the HSRPv2 OUI 0000.0c9f.f — v1 used 0000.0c07.acXX."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "HSRPv1 describes a mechanism that could sound plausible for default gateway. Given default gateway, HSRPv2 matches the tested behavior — HSRPv1 applies a different mechanism.",
-            "whatItDoes": "HSRPv1 describes a mechanism that could sound plausible for default gateway.",
-            "whyWrongHere": "Given default gateway, HSRPv2 matches the tested behavior — HSRPv1 applies a different mechanism.",
-            "misconceptionTested": "Applying \"HSRPv1\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "HSRPv1 virtual MAC starts 0000.0c07.ac — 0000.0c9f.f indicates HSRPv2.",
+            "misconceptionTested": "HSRPv1 MAC OUI for 0000.0c9f.f address",
+            "whatItDoes": "HSRPv1 points to a related idea, but not the specific behavior or value required for default gateway.",
+            "whyWrongHere": "For \"default gateway\", HSRPv2 satisfies what this question tests — HSRPv1 does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "GLBP describes a mechanism that could sound plausible for default gateway. Given default gateway, HSRPv2 matches the tested behavior — GLBP applies a different mechanism.",
-            "whatItDoes": "GLBP describes a mechanism that could sound plausible for default gateway.",
-            "whyWrongHere": "Given default gateway, HSRPv2 matches the tested behavior — GLBP applies a different mechanism.",
-            "misconceptionTested": "Applying \"GLBP\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "GLBP uses 0007.b400 OUI — 0000.0c9f.f is the HSRPv2 virtual MAC prefix.",
+            "misconceptionTested": "GLBP MAC OUI for HSRPv2 address",
+            "whatItDoes": "GLBP points to a related idea, but not the specific behavior or value required for default gateway.",
+            "whyWrongHere": "For \"default gateway\", HSRPv2 satisfies what this question tests — GLBP does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "VRRP describes a mechanism that could sound plausible for default gateway. Given default gateway, HSRPv2 matches the tested behavior — VRRP applies a different mechanism.",
-            "whatItDoes": "VRRP describes a mechanism that could sound plausible for default gateway.",
-            "whyWrongHere": "Given default gateway, HSRPv2 matches the tested behavior — VRRP applies a different mechanism.",
-            "misconceptionTested": "Applying \"VRRP\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "VRRP virtual MAC is 0000.5e00.01XX — 0000.0c9f.f is Cisco HSRPv2.",
+            "misconceptionTested": "VRRP MAC for HSRPv2 OUI",
+            "whatItDoes": "VRRP points to a related idea, but not the specific behavior or value required for default gateway.",
+            "whyWrongHere": "For \"default gateway\", HSRPv2 satisfies what this question tests — VRRP does not."
           }
         ],
-        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
+        "examTip": "FHRP MAC prefixes: HSRPv1 0000.0c07.ac | HSRPv2 0000.0c9f.f | GLBP 0007.b400 | VRRP 0000.5e00.01."
       }
     },
     {
@@ -1055,35 +1001,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"When a standby router comes online, it allows for a re-election of the active router.\"."
+          "explanation": "Preemption lets a higher-priority router take over active role when it comes online — without it, the incumbent stays active."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "It allows the protocol to effectively load-balance per packet. describes a mechanism that could sound plausible for definition. Given definition, When a standby router comes online, it allows for a re-election of the active router. matches the tested behavior — It allows the protocol to effectively load-balance per packet. applies a different mechanism.",
-            "whatItDoes": "It allows the protocol to effectively load-balance per packet. describes a mechanism that could sound plausible for definition.",
-            "whyWrongHere": "Given definition, When a standby router comes online, it allows for a re-election of the active router. matches the tested behavior — It allows the protocol to effectively load-balance per packet. applies a different mechanism.",
-            "misconceptionTested": "Applying \"It allows the protocol to effectivel\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Per-packet load balancing is GLBP — preemption governs active-router re-election.",
+            "misconceptionTested": "Preemption as load-balancing feature",
+            "whatItDoes": "It allows the protocol to effectively load-balance per packet. points to a related idea, but not the specific behavior or value required for definition.",
+            "whyWrongHere": "For \"definition\", When a standby router comes online, it allows for a re-election of the active router. satisfies what this question tests — It allows the protocol to effectively load-balance per packet. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "It watches an upstream interface and fails over when the interface goes down. describes a mechanism that could sound plausible for definition. Given definition, When a standby router comes online, it allows for a re-election of the active router. matches the tested behavior — It watches an upstream interface and fails over when the interface goes down. applies a different mechanism.",
-            "whatItDoes": "It watches an upstream interface and fails over when the interface goes down. describes a mechanism that could sound plausible for definition.",
-            "whyWrongHere": "Given definition, When a standby router comes online, it allows for a re-election of the active router. matches the tested behavior — It watches an upstream interface and fails over when the interface goes down. applies a different mechanism.",
-            "misconceptionTested": "Applying \"It watches an upstream interface and\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Watching upstream interfaces is HSRP tracking — preemption is about priority-based takeover.",
+            "misconceptionTested": "Interface tracking as preemption definition",
+            "whatItDoes": "It watches an upstream interface and fails over when the interface goes down. points to a related idea, but not the specific behavior or value required for definition.",
+            "whyWrongHere": "For \"definition\", When a standby router comes online, it allows for a re-election of the active router. satisfies what this question tests — It watches an upstream interface and fails over when the interface goes down. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "It ignores the priorities of the routers and elects an active router by highest IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given definition, When a standby router comes online, it allows for a re-election of the active router. matches the tested behavior — It ignores the priorities of the routers and elects an active router by highest IP address. applies a different mechanism.",
+            "explanation": "HSRP elects by priority first, IP as tiebreaker — preemption respects priority, it does not ignore it.",
+            "misconceptionTested": "Preemption ignores priority for IP-only election",
             "whatItDoes": "It ignores the priorities of the routers and elects an active router by highest IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given definition, When a standby router comes online, it allows for a re-election of the active router. matches the tested behavior — It ignores the priorities of the routers and elects an active router by highest IP address. applies a different mechanism.",
-            "misconceptionTested": "Applying \"It ignores the priorities of the rou\" without matching fhrp",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"definition\", When a standby router comes online, it allows for a re-election of the active router. satisfies what this question tests — It ignores the priorities of the routers and elects an active router by highest IP address. does not."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "Enable preemption: standby <n> preempt — higher priority router can reclaim active role."
       }
     },
     {
@@ -1109,35 +1052,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Configure an HSRP group per VLAN and alternate the priority above 100.\"."
+          "explanation": "Spread active load by using one HSRP group per VLAN and alternating priorities above 100 so different routers are active per VLAN."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Configure version 2 for all HSRP groups. describes a mechanism that could sound plausible for configuring. Given configuring, Configure an HSRP group per VLAN and alternate the priority above 100. matches the tested behavior — Configure version 2 for all HSRP groups. applies a different mechanism.",
-            "whatItDoes": "Configure version 2 for all HSRP groups. describes a mechanism that could sound plausible for configuring.",
-            "whyWrongHere": "Given configuring, Configure an HSRP group per VLAN and alternate the priority above 100. matches the tested behavior — Configure version 2 for all HSRP groups. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Configure version 2 for all HSRP gro\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "HSRPv2 adds features but does not load-balance — use multiple groups with staggered priorities.",
+            "misconceptionTested": "HSRPv2 alone as load-balancing method",
+            "whatItDoes": "Configure version 2 for all HSRP groups. points to a related idea, but not the specific behavior or value required for configuring.",
+            "whyWrongHere": "For \"configuring\", Configure an HSRP group per VLAN and alternate the priority above 100. satisfies what this question tests — Configure version 2 for all HSRP groups. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Configure PPPoE on the router interfaces. describes a mechanism that could sound plausible for configuring. Given configuring, Configure an HSRP group per VLAN and alternate the priority above 100. matches the tested behavior — Configure PPPoE on the router interfaces. applies a different mechanism.",
-            "whatItDoes": "Configure PPPoE on the router interfaces. describes a mechanism that could sound plausible for configuring.",
-            "whyWrongHere": "Given configuring, Configure an HSRP group per VLAN and alternate the priority above 100. matches the tested behavior — Configure PPPoE on the router interfaces. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Configure PPPoE on the router interf\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "PPPoE is WAN dial/encapsulation — it does not distribute HSRP active roles.",
+            "misconceptionTested": "PPPoE as HSRP load distribution",
+            "whatItDoes": "Configure PPPoE on the router interfaces. points to a related idea, but not the specific behavior or value required for configuring.",
+            "whyWrongHere": "For \"configuring\", Configure an HSRP group per VLAN and alternate the priority above 100. satisfies what this question tests — Configure PPPoE on the router interfaces. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Configure all routers in the HSRP as active routers. describes a mechanism that could sound plausible for configuring. Given configuring, Configure an HSRP group per VLAN and alternate the priority above 100. matches the tested behavior — Configure all routers in the HSRP as active routers. applies a different mechanism.",
-            "whatItDoes": "Configure all routers in the HSRP as active routers. describes a mechanism that could sound plausible for configuring.",
-            "whyWrongHere": "Given configuring, Configure an HSRP group per VLAN and alternate the priority above 100. matches the tested behavior — Configure all routers in the HSRP as active routers. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Configure all routers in the HSRP as\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Only one router is active per HSRP group — you cannot make all routers active in the same group.",
+            "misconceptionTested": "All routers active in one HSRP group",
+            "whatItDoes": "Configure all routers in the HSRP as active routers. points to a related idea, but not the specific behavior or value required for configuring.",
+            "whyWrongHere": "For \"configuring\", Configure an HSRP group per VLAN and alternate the priority above 100. satisfies what this question tests — Configure all routers in the HSRP as active routers. does not."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "HSRP load spread trick: per-VLAN groups + alternating priorities; true LB → GLBP."
       }
     },
     {
@@ -1162,35 +1102,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"RouterA#show standby\"."
+          "explanation": "show standby displays HSRP group state, active/standby roles, timers, and virtual IP on the router."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RouterA#show hsrp describes a mechanism that could sound plausible for fhrp. Given fhrp, RouterA#show standby matches the tested behavior — RouterA#show hsrp applies a different mechanism.",
-            "whatItDoes": "RouterA#show hsrp describes a mechanism that could sound plausible for fhrp.",
-            "whyWrongHere": "Given fhrp, RouterA#show standby matches the tested behavior — RouterA#show hsrp applies a different mechanism.",
-            "misconceptionTested": "Applying \"RouterA#show hsrp\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "show hsrp is not valid IOS — the verification command is show standby.",
+            "misconceptionTested": "show hsrp as valid verify command",
+            "whatItDoes": "RouterA#show hsrp points to a related idea, but not the specific behavior or value required for fhrp.",
+            "whyWrongHere": "For \"fhrp\", RouterA#show standby satisfies what this question tests — RouterA#show hsrp does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "RouterA#show ip standby describes a mechanism that could sound plausible for fhrp. Given fhrp, RouterA#show standby matches the tested behavior — RouterA#show ip standby applies a different mechanism.",
-            "whatItDoes": "RouterA#show ip standby describes a mechanism that could sound plausible for fhrp.",
-            "whyWrongHere": "Given fhrp, RouterA#show standby matches the tested behavior — RouterA#show ip standby applies a different mechanism.",
-            "misconceptionTested": "Applying \"RouterA#show ip standby\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "show ip standby is not standard syntax — use show standby for HSRP state.",
+            "misconceptionTested": "show ip standby as HSRP verify command",
+            "whatItDoes": "RouterA#show ip standby is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (fhrp): RouterA#show standby inspects the right table or state — RouterA#show ip standby shows unrelated information."
           },
           {
             "choiceIndex": 3,
-            "explanation": "RouterA#show ip hsrp describes a mechanism that could sound plausible for fhrp. Given fhrp, RouterA#show standby matches the tested behavior — RouterA#show ip hsrp applies a different mechanism.",
-            "whatItDoes": "RouterA#show ip hsrp describes a mechanism that could sound plausible for fhrp.",
-            "whyWrongHere": "Given fhrp, RouterA#show standby matches the tested behavior — RouterA#show ip hsrp applies a different mechanism.",
-            "misconceptionTested": "Applying \"RouterA#show ip hsrp\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "show ip hsrp is not a Cisco command — HSRP status is show standby.",
+            "misconceptionTested": "show ip hsrp as verify command",
+            "whatItDoes": "RouterA#show ip hsrp is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (fhrp): RouterA#show standby inspects the right table or state — RouterA#show ip hsrp shows unrelated information."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "HSRP verify: show standby [brief | interface] — not show hsrp."
       }
     },
     {
@@ -1219,35 +1156,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"The HSRP group is not set for preemption.\"."
+          "explanation": "Without standby <n> preempt, a higher-priority router will not displace the current active router — priority alone is not enough."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The default priority is 150. reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
-            "whatItDoes": "The default priority is 150. describes a mechanism that could sound plausible for priority.",
-            "whyWrongHere": "Given priority, The HSRP group is not set for preemption. matches the tested behavior — The default priority is 150. applies a different mechanism.",
-            "misconceptionTested": "Treating the default route as a normal match",
-            "needsExplanationReview": true
+            "explanation": "HSRP default priority is 100, not 150 — Router A at 150 should win only if preemption is enabled.",
+            "misconceptionTested": "Default priority 150 instead of 100",
+            "whatItDoes": "The default priority is 150. points to a related idea, but not the specific behavior or value required for priority.",
+            "whyWrongHere": "For \"priority\", The HSRP group is not set for preemption. satisfies what this question tests — The default priority is 150. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The hold timer is set too high and needs to timeout. describes a mechanism that could sound plausible for priority. Given priority, The HSRP group is not set for preemption. matches the tested behavior — The hold timer is set too high and needs to timeout. applies a different mechanism.",
-            "whatItDoes": "The hold timer is set too high and needs to timeout. describes a mechanism that could sound plausible for priority.",
-            "whyWrongHere": "Given priority, The HSRP group is not set for preemption. matches the tested behavior — The hold timer is set too high and needs to timeout. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The hold timer is set too high and n\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Hold timer expiry causes failover when hellos are missed — it does not block a higher-priority router from taking over.",
+            "misconceptionTested": "Hold timer blocking priority-based takeover",
+            "whatItDoes": "The hold timer is set too high and needs to timeout. states a MAC aging timer or timeout value that may not match the default or configured setting.",
+            "whyWrongHere": "For \"priority\", The HSRP group is not set for preemption. satisfies what this question tests — The hold timer is set too high and needs to timeout. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router A’s IP address is too low. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given priority, The HSRP group is not set for preemption. matches the tested behavior — Router A’s IP address is too low. applies a different mechanism.",
+            "explanation": "IP address is a tiebreaker when priorities match — Router A already has higher priority; preemption is the missing piece.",
+            "misconceptionTested": "IP tiebreaker as reason priority 150 fails",
             "whatItDoes": "Router A’s IP address is too low. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given priority, The HSRP group is not set for preemption. matches the tested behavior — Router A’s IP address is too low. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router A’s IP address is too low.\" without matching fhrp",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"priority\", The HSRP group is not set for preemption. satisfies what this question tests — Router A’s IP address is too low. does not."
           }
         ],
-        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
+        "examTip": "Higher priority + no preempt = incumbent stays active — enable standby <n> preempt."
       }
     },
     {
@@ -1273,35 +1207,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Router(config-if)#standby 1 preempt\"."
+          "explanation": "HSRP preemption is enabled under the interface with standby <group> preempt — not preemption and not hsrp."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#standby 1 preemption describes a mechanism that could sound plausible for preemption. Given preemption, Router(config-if)#standby 1 preempt matches the tested behavior — Router(config)#standby 1 preemption applies a different mechanism.",
-            "whatItDoes": "Router(config)#standby 1 preemption describes a mechanism that could sound plausible for preemption.",
-            "whyWrongHere": "Given preemption, Router(config-if)#standby 1 preempt matches the tested behavior — Router(config)#standby 1 preemption applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#standby 1 preemption\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "HSRP is configured under the interface, not global config — and the keyword is preempt, not preemption.",
+            "misconceptionTested": "Global config standby preemption",
+            "whatItDoes": "Router(config)#standby 1 preemption points to a related idea, but not the specific behavior or value required for preemption.",
+            "whyWrongHere": "For \"preemption\", Router(config-if)#standby 1 preempt satisfies what this question tests — Router(config)#standby 1 preemption does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config-if)#standby 1 preemption describes a mechanism that could sound plausible for preemption. Given preemption, Router(config-if)#standby 1 preempt matches the tested behavior — Router(config-if)#standby 1 preemption applies a different mechanism.",
-            "whatItDoes": "Router(config-if)#standby 1 preemption describes a mechanism that could sound plausible for preemption.",
-            "whyWrongHere": "Given preemption, Router(config-if)#standby 1 preempt matches the tested behavior — Router(config-if)#standby 1 preemption applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config-if)#standby 1 preempti\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Right context (interface) but wrong keyword — Cisco uses preempt, not preemption.",
+            "misconceptionTested": "preemption instead of preempt keyword",
+            "whatItDoes": "Router(config-if)#standby 1 preemption points to a related idea, but not the specific behavior or value required for preemption.",
+            "whyWrongHere": "For \"preemption\", Router(config-if)#standby 1 preempt satisfies what this question tests — Router(config-if)#standby 1 preemption does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config-if)#hsrp 1 preempt describes a mechanism that could sound plausible for preemption. Given preemption, Router(config-if)#standby 1 preempt matches the tested behavior — Router(config-if)#hsrp 1 preempt applies a different mechanism.",
-            "whatItDoes": "Router(config-if)#hsrp 1 preempt describes a mechanism that could sound plausible for preemption.",
-            "whyWrongHere": "Given preemption, Router(config-if)#standby 1 preempt matches the tested behavior — Router(config-if)#hsrp 1 preempt applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config-if)#hsrp 1 preempt\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "hsrp is not valid IOS syntax — HSRP uses the standby command family.",
+            "misconceptionTested": "hsrp keyword instead of standby preempt",
+            "whatItDoes": "Router(config-if)#hsrp 1 preempt points to a related idea, but not the specific behavior or value required for preemption.",
+            "whyWrongHere": "For \"preemption\", Router(config-if)#standby 1 preempt satisfies what this question tests — Router(config-if)#hsrp 1 preempt does not."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "HSRP preempt syntax: standby <n> preempt under config-if."
       }
     },
     {
@@ -1327,35 +1258,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Router(config-if)#vrrp 1 ip 10.1.2.3\"."
+          "explanation": "VRRP virtual IP is set under the interface with vrrp <group> ip <address> — e.g., vrrp 1 ip 10.1.2.3."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#vrrp 1 10.1.2.3 gi 0/0 describes a mechanism that could sound plausible for configure. Given configure, Router(config-if)#vrrp 1 ip 10.1.2.3 matches the tested behavior — Router(config)#vrrp 1 10.1.2.3 gi 0/0 applies a different mechanism.",
-            "whatItDoes": "Router(config)#vrrp 1 10.1.2.3 gi 0/0 describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Router(config-if)#vrrp 1 ip 10.1.2.3 matches the tested behavior — Router(config)#vrrp 1 10.1.2.3 gi 0/0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#vrrp 1 10.1.2.3 gi 0/\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "VRRP is configured per interface, not from global config with interface appended on one line.",
+            "misconceptionTested": "Global vrrp with interface argument",
+            "whatItDoes": "Router(config)#vrrp 1 10.1.2.3 gi 0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (configure): Router(config-if)#vrrp 1 ip 10.1.2.3 matches prefix, shortening, or assignment rules — Router(config)#vrrp 1 10.1.2.3 gi 0/0 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config-if)#vrrp 1 10.1.2.3 describes a mechanism that could sound plausible for configure. Given configure, Router(config-if)#vrrp 1 ip 10.1.2.3 matches the tested behavior — Router(config-if)#vrrp 1 10.1.2.3 applies a different mechanism.",
-            "whatItDoes": "Router(config-if)#vrrp 1 10.1.2.3 describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Router(config-if)#vrrp 1 ip 10.1.2.3 matches the tested behavior — Router(config-if)#vrrp 1 10.1.2.3 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config-if)#vrrp 1 10.1.2.3\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Missing the ip keyword — correct form is vrrp 1 ip 10.1.2.3, not vrrp 1 10.1.2.3.",
+            "misconceptionTested": "VRRP VIP without ip keyword",
+            "whatItDoes": "Router(config-if)#vrrp 1 10.1.2.3 points to a related idea, but not the specific behavior or value required for configure.",
+            "whyWrongHere": "For \"configure\", Router(config-if)#vrrp 1 ip 10.1.2.3 satisfies what this question tests — Router(config-if)#vrrp 1 10.1.2.3 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config-if)#standby 1 10.1.2.3 Router(config-if)#standby 1 vrrp describes a mechanism that could sound plausible for configure. Given configure, Router(config-if)#vrrp 1 ip 10.1.2.3 matches the tested behavior — Router(config-if)#standby 1 10.1.2.3 Router(config-if)#standby 1 vrrp applies a different mechanism.",
-            "whatItDoes": "Router(config-if)#standby 1 10.1.2.3 Router(config-if)#standby 1 vrrp describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Router(config-if)#vrrp 1 ip 10.1.2.3 matches the tested behavior — Router(config-if)#standby 1 10.1.2.3 Router(config-if)#standby 1 vrrp applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config-if)#standby 1 10.1.2.3\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "standby is HSRP syntax — VRRP uses vrrp <group> ip <vip>.",
+            "misconceptionTested": "HSRP standby syntax for VRRP",
+            "whatItDoes": "Router(config-if)#standby 1 10.1.2.3 Router(config-if)#standby 1 vrrp points to a related idea, but not the specific behavior or value required for configure.",
+            "whyWrongHere": "For \"configure\", Router(config-if)#vrrp 1 ip 10.1.2.3 satisfies what this question tests — Router(config-if)#standby 1 10.1.2.3 Router(config-if)#standby 1 vrrp does not."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP syntax split: HSRP = standby | VRRP = vrrp <n> ip <vip> | GLBP = glbp <n> ip <vip>."
       }
     },
     {
@@ -1382,35 +1310,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1\"."
+          "explanation": "HSRP interface tracking uses standby <group> track <interface> — link-down lowers priority so the peer can become active."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1 describes a mechanism that could sound plausible for topology. Given topology, RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1 matches the tested behavior — RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1 applies a different mechanism.",
-            "whatItDoes": "RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1 describes a mechanism that could sound plausible for topology.",
-            "whyWrongHere": "Given topology, RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1 matches the tested behavior — RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1 applies a different mechanism.",
-            "misconceptionTested": "Applying \"RouterA(config-if)#standby 1 interfa\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Wrong keyword order — tracking is standby 1 track serial 0/0/1, not interface tracking serial.",
+            "misconceptionTested": "standby interface tracking word order",
+            "whatItDoes": "RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"topology\", RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1 satisfies what this question tests — RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1 does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1 describes a mechanism that could sound plausible for topology. Given topology, RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1 matches the tested behavior — RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1 applies a different mechanism.",
-            "whatItDoes": "RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1 describes a mechanism that could sound plausible for topology.",
-            "whyWrongHere": "Given topology, RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1 matches the tested behavior — RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1 applies a different mechanism.",
-            "misconceptionTested": "Applying \"RouterA(config-if)#standby 1 trackin\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "tracking alone is incomplete — Cisco syntax is standby <n> track <interface>.",
+            "misconceptionTested": "standby tracking without track keyword",
+            "whatItDoes": "RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"topology\", RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1 satisfies what this question tests — RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "RouterA(config-if)#interface serial 0/0/1 RouterA(config-if)#standby 1 interface tracking RouterA(config-if)#interface serial 0/0/1 RouterB(config-if)#standby 1 interface tracking describes a mechanism that could sound plausible for topology. Given topology, RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1 matches the tested behavior — RouterA(config-if)#interface serial 0/0/1 RouterA(config-if)#standby 1 interface tracking RouterA(config-if)#interface serial 0/0/1 RouterB(config-if)#standby 1 interface tracking applies a different mechanism.",
-            "whatItDoes": "RouterA(config-if)#interface serial 0/0/1 RouterA(config-if)#standby 1 interface tracking RouterA(config-if)#interface serial 0/0/1 RouterB(config-if)#standby 1 interface tracking describes a mechanism that could sound plausible for topology.",
-            "whyWrongHere": "Given topology, RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1 matches the tested behavior — RouterA(config-if)#interface serial 0/0/1 RouterA(config-if)#standby 1 interface tracking RouterA(config-if)#interface serial 0/0/1 RouterB(config-if)#standby 1 interface tracking applies a different mechanism.",
-            "misconceptionTested": "Applying \"RouterA(config-if)#interface serial \" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Tracking is configured on the HSRP interface, not by entering the tracked interface and using interface tracking without the interface name.",
+            "misconceptionTested": "Tracking configured on tracked interface",
+            "whatItDoes": "RouterA(config-if)#interface serial 0/0/1 RouterA(config-if)#standby 1 interface tracking RouterA(config-if)#interface serial 0/0/1 RouterB(config-if)#standby 1 interface tracking states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"topology\", RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1 satisfies what this question tests — RouterA(config-if)#interface serial 0/0/1 RouterA(config-if)#standby 1 interface tracking RouterA(config-if)#interface serial 0/0/1 RouterB(config-if)#standby 1 interface tracking does not."
           }
         ],
-        "examTip": "HSRP: hosts use virtual IP/MAC; know Active vs Standby and preempt/priority."
+        "examTip": "HSRP track: standby <n> track <if> [priority decrement] — reacts to upstream ISP link loss."
       }
     },
     {
@@ -1435,35 +1360,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Router#debug standby\"."
+          "explanation": "Real-time HSRP diagnostics use debug standby — it streams hello/state events as they occur."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#show ip hsrp describes a mechanism that could sound plausible for diagnostics. Given diagnostics, Router#debug standby matches the tested behavior — Router#show ip hsrp applies a different mechanism.",
-            "whatItDoes": "Router#show ip hsrp describes a mechanism that could sound plausible for diagnostics.",
-            "whyWrongHere": "Given diagnostics, Router#debug standby matches the tested behavior — Router#show ip hsrp applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip hsrp\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "show ip hsrp is not valid IOS — verification is show standby; real-time is debug standby.",
+            "misconceptionTested": "show ip hsrp as HSRP command",
+            "whatItDoes": "Router#show ip hsrp is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "For \"diagnostics\", Router#debug standby satisfies what this question tests — Router#show ip hsrp does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router#debug ip hsrp describes a mechanism that could sound plausible for diagnostics. Given diagnostics, Router#debug standby matches the tested behavior — Router#debug ip hsrp applies a different mechanism.",
-            "whatItDoes": "Router#debug ip hsrp describes a mechanism that could sound plausible for diagnostics.",
-            "whyWrongHere": "Given diagnostics, Router#debug standby matches the tested behavior — Router#debug ip hsrp applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#debug ip hsrp\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "debug ip hsrp is not standard syntax — Cisco uses debug standby for HSRP diagnostics.",
+            "misconceptionTested": "debug ip hsrp instead of debug standby",
+            "whatItDoes": "Router#debug ip hsrp points to a related idea, but not the specific behavior or value required for diagnostics.",
+            "whyWrongHere": "For \"diagnostics\", Router#debug standby satisfies what this question tests — Router#debug ip hsrp does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#debug ip standby describes a mechanism that could sound plausible for diagnostics. Given diagnostics, Router#debug standby matches the tested behavior — Router#debug ip standby applies a different mechanism.",
-            "whatItDoes": "Router#debug ip standby describes a mechanism that could sound plausible for diagnostics.",
-            "whyWrongHere": "Given diagnostics, Router#debug standby matches the tested behavior — Router#debug ip standby applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#debug ip standby\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "debug ip standby reverses the keywords — the working command is debug standby.",
+            "misconceptionTested": "debug ip standby word order",
+            "whatItDoes": "Router#debug ip standby points to a related idea, but not the specific behavior or value required for diagnostics.",
+            "whyWrongHere": "For \"diagnostics\", Router#debug standby satisfies what this question tests — Router#debug ip standby does not."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "HSRP troubleshoot: show standby (snapshot) | debug standby (live events)."
       }
     },
     {
@@ -1490,35 +1412,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"GLBP allows for per-host load balancing.\"."
+          "explanation": "GLBP load-balances by giving different hosts different AVF virtual MACs — per-host distribution, not one active gateway."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "The active virtual gateway will respond with a MAC address of the active router. describes a mechanism that could sound plausible for statement. Given statement, GLBP allows for per-host load balancing. matches the tested behavior — The active virtual gateway will respond with a MAC address of the active router. applies a different mechanism.",
-            "whatItDoes": "The active virtual gateway will respond with a MAC address of the active router. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, GLBP allows for per-host load balancing. matches the tested behavior — The active virtual gateway will respond with a MAC address of the active router. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The active virtual gateway will resp\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "The AVG answers ARP with an AVF virtual MAC, not the physical active router's MAC.",
+            "misconceptionTested": "AVG returns physical router MAC",
+            "whatItDoes": "The active virtual gateway will respond with a MAC address of the active router. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", GLBP allows for per-host load balancing. satisfies what this question tests — The active virtual gateway will respond with a MAC address of the active router. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "GLBP allows for per-subnet load balancing. describes a mechanism that could sound plausible for statement. Given statement, GLBP allows for per-host load balancing. matches the tested behavior — GLBP allows for per-subnet load balancing. applies a different mechanism.",
-            "whatItDoes": "GLBP allows for per-subnet load balancing. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, GLBP allows for per-host load balancing. matches the tested behavior — GLBP allows for per-subnet load balancing. applies a different mechanism.",
-            "misconceptionTested": "Applying \"GLBP allows for per-subnet load bala\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "GLBP balances per host (different ARP replies) — not a single subnet-wide active/standby model.",
+            "misconceptionTested": "Per-subnet instead of per-host GLBP LB",
+            "whatItDoes": "GLBP allows for per-subnet load balancing. points to a related idea, but not the specific behavior or value required for statement.",
+            "whyWrongHere": "For \"statement\", GLBP allows for per-host load balancing. satisfies what this question tests — GLBP allows for per-subnet load balancing. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The virtual router is responsible for responding to tracking requests. describes a mechanism that could sound plausible for statement. Given statement, GLBP allows for per-host load balancing. matches the tested behavior — The virtual router is responsible for responding to tracking requests. applies a different mechanism.",
-            "whatItDoes": "The virtual router is responsible for responding to tracking requests. describes a mechanism that could sound plausible for statement.",
-            "whyWrongHere": "Given statement, GLBP allows for per-host load balancing. matches the tested behavior — The virtual router is responsible for responding to tracking requests. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The virtual router is responsible fo\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Tracking adjusts priority/forwarder selection — ARP responses come from the AVG with AVF MACs.",
+            "misconceptionTested": "Virtual router handles tracking requests",
+            "whatItDoes": "The virtual router is responsible for responding to tracking requests. names a DHCP DORA message step that may not be the phase described in the stem.",
+            "whyWrongHere": "For \"statement\", GLBP allows for per-host load balancing. satisfies what this question tests — The virtual router is responsible for responding to tracking requests. does not."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "GLBP = per-host LB via AVG/AVF; HSRP = one active per group."
       }
     },
     {
@@ -1544,35 +1463,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"RouterA(config-if)#standby 1 timers msec 200 msec 700\"."
+          "explanation": "HSRPv2 millisecond timers use standby <n> timers msec <hello> msec <hold> — hello 200, hold 700."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "RouterA(config-if)#standby 1 timers 200 msec 700 msec describes a mechanism that could sound plausible for milliseconds. Given milliseconds, RouterA(config-if)#standby 1 timers msec 200 msec 700 matches the tested behavior — RouterA(config-if)#standby 1 timers 200 msec 700 msec applies a different mechanism.",
-            "whatItDoes": "RouterA(config-if)#standby 1 timers 200 msec 700 msec describes a mechanism that could sound plausible for milliseconds.",
-            "whyWrongHere": "Given milliseconds, RouterA(config-if)#standby 1 timers msec 200 msec 700 matches the tested behavior — RouterA(config-if)#standby 1 timers 200 msec 700 msec applies a different mechanism.",
-            "misconceptionTested": "Applying \"RouterA(config-if)#standby 1 timers \" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Both values need the msec keyword in v2 — timers msec 200 msec 700, not mixed sec/msec.",
+            "misconceptionTested": "Mixed sec and msec timer syntax",
+            "whatItDoes": "RouterA(config-if)#standby 1 timers 200 msec 700 msec states a MAC aging timer or timeout value that may not match the default or configured setting.",
+            "whyWrongHere": "MAC aging (milliseconds): RouterA(config-if)#standby 1 timers msec 200 msec 700 is the default or configured timer — RouterA(config-if)#standby 1 timers 200 msec 700 msec states the wrong timeout value or behavior."
           },
           {
             "choiceIndex": 2,
-            "explanation": "RouterA(config-if)#standby 1 timers 700 msec 200 msec describes a mechanism that could sound plausible for milliseconds. Given milliseconds, RouterA(config-if)#standby 1 timers msec 200 msec 700 matches the tested behavior — RouterA(config-if)#standby 1 timers 700 msec 200 msec applies a different mechanism.",
-            "whatItDoes": "RouterA(config-if)#standby 1 timers 700 msec 200 msec describes a mechanism that could sound plausible for milliseconds.",
-            "whyWrongHere": "Given milliseconds, RouterA(config-if)#standby 1 timers msec 200 msec 700 matches the tested behavior — RouterA(config-if)#standby 1 timers 700 msec 200 msec applies a different mechanism.",
-            "misconceptionTested": "Applying \"RouterA(config-if)#standby 1 timers \" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Hello and hold are swapped — hold must be longer than hello (700 > 200).",
+            "misconceptionTested": "Hello/hold timer values reversed",
+            "whatItDoes": "RouterA(config-if)#standby 1 timers 700 msec 200 msec states a MAC aging timer or timeout value that may not match the default or configured setting.",
+            "whyWrongHere": "MAC aging (milliseconds): RouterA(config-if)#standby 1 timers msec 200 msec 700 is the default or configured timer — RouterA(config-if)#standby 1 timers 700 msec 200 msec states the wrong timeout value or behavior."
           },
           {
             "choiceIndex": 3,
-            "explanation": "RouterA(config-if)#standby 1 timers msec 700 msec 200 describes a mechanism that could sound plausible for milliseconds. Given milliseconds, RouterA(config-if)#standby 1 timers msec 200 msec 700 matches the tested behavior — RouterA(config-if)#standby 1 timers msec 700 msec 200 applies a different mechanism.",
-            "whatItDoes": "RouterA(config-if)#standby 1 timers msec 700 msec 200 describes a mechanism that could sound plausible for milliseconds.",
-            "whyWrongHere": "Given milliseconds, RouterA(config-if)#standby 1 timers msec 200 msec 700 matches the tested behavior — RouterA(config-if)#standby 1 timers msec 700 msec 200 applies a different mechanism.",
-            "misconceptionTested": "Applying \"RouterA(config-if)#standby 1 timers \" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Values are reversed (700 hello, 200 hold) — hold must exceed hello interval.",
+            "misconceptionTested": "Hold shorter than hello in timer command",
+            "whatItDoes": "RouterA(config-if)#standby 1 timers msec 700 msec 200 states a MAC aging timer or timeout value that may not match the default or configured setting.",
+            "whyWrongHere": "MAC aging (milliseconds): RouterA(config-if)#standby 1 timers msec 200 msec 700 is the default or configured timer — RouterA(config-if)#standby 1 timers msec 700 msec 200 states the wrong timeout value or behavior."
           }
         ],
-        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "HSRPv2 timers: standby <n> timers msec <hello> msec <hold> — hold > hello."
       }
     },
     {
@@ -1599,35 +1515,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Router C will become the active router.\"."
+          "explanation": "Router C (priority 140) wins active election — HSRP picks the highest priority; default is 100 for Router D."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router A will become the active router. describes a mechanism that could sound plausible for configured. Given configured, Router C will become the active router. matches the tested behavior — Router A will become the active router. applies a different mechanism.",
-            "whatItDoes": "Router A will become the active router. describes a mechanism that could sound plausible for configured.",
-            "whyWrongHere": "Given configured, Router C will become the active router. matches the tested behavior — Router A will become the active router. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router A will become the active rout\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Router A at 80 is below default 100 — it cannot become active over peers at 100+.",
+            "misconceptionTested": "Lowest priority wins HSRP election",
+            "whatItDoes": "Router A will become the active router. points to a related idea, but not the specific behavior or value required for configured.",
+            "whyWrongHere": "For \"configured\", Router C will become the active router. satisfies what this question tests — Router A will become the active router. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router B will become the active router. describes a mechanism that could sound plausible for configured. Given configured, Router C will become the active router. matches the tested behavior — Router B will become the active router. applies a different mechanism.",
-            "whatItDoes": "Router B will become the active router. describes a mechanism that could sound plausible for configured.",
-            "whyWrongHere": "Given configured, Router C will become the active router. matches the tested behavior — Router B will become the active router. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router B will become the active rout\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Router B at 100 ties the default — Router C at 140 still has higher priority.",
+            "misconceptionTested": "Default priority beats explicit higher priority",
+            "whatItDoes": "Router B will become the active router. points to a related idea, but not the specific behavior or value required for configured.",
+            "whyWrongHere": "For \"configured\", Router C will become the active router. satisfies what this question tests — Router B will become the active router. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router D will become the active router. describes a mechanism that could sound plausible for configured. Given configured, Router C will become the active router. matches the tested behavior — Router D will become the active router. applies a different mechanism.",
-            "whatItDoes": "Router D will become the active router. describes a mechanism that could sound plausible for configured.",
-            "whyWrongHere": "Given configured, Router C will become the active router. matches the tested behavior — Router D will become the active router. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router D will become the active rout\" without matching fhrp",
-            "needsExplanationReview": true
+            "explanation": "Router D stays at default 100 — Router C's 140 is the highest configured priority.",
+            "misconceptionTested": "Default priority router wins over 140",
+            "whatItDoes": "Router D will become the active router. points to a related idea, but not the specific behavior or value required for configured.",
+            "whyWrongHere": "For \"configured\", Router C will become the active router. satisfies what this question tests — Router D will become the active router. does not."
           }
         ],
-        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
+        "examTip": "HSRP active = highest priority → tie = highest IP on the interface."
       }
     }
   ]

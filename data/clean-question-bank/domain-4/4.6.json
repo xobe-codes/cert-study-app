@@ -33,22 +33,22 @@
             "choiceIndex": 1,
             "explanation": "show ip dhcp lease is for routers acting as DHCP servers — a client router uses show dhcp lease.",
             "misconceptionTested": "Using server-side show command on a DHCP client",
-            "whatItDoes": "Router#show ip dhcp lease describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip dhcp lease applies a different mechanism."
+            "whatItDoes": "Router#show ip dhcp lease is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (dhcp client): Router#show dhcp lease inspects the right table or state — Router#show ip dhcp lease shows unrelated information."
           },
           {
             "choiceIndex": 2,
             "explanation": "show ip lease is not the standard IOS client verification command — show dhcp lease is.",
             "misconceptionTested": "Inventing show command syntax",
-            "whatItDoes": "Router#show ip lease describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip lease applies a different mechanism."
+            "whatItDoes": "Router#show ip lease is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (dhcp client): Router#show dhcp lease inspects the right table or state — Router#show ip lease shows unrelated information."
           },
           {
             "choiceIndex": 3,
             "explanation": "show ip interface confirms interface status/IP but does not detail the DHCP server and lease timers like show dhcp lease.",
             "misconceptionTested": "Substituting interface status for DHCP lease details",
-            "whatItDoes": "Router#show ip interface describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Router#show dhcp lease matches the tested behavior — Router#show ip interface applies a different mechanism."
+            "whatItDoes": "Router#show ip interface is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (dhcp client): Router#show dhcp lease inspects the right table or state — Router#show ip interface shows unrelated information."
           }
         ],
         "examTip": "Client router lease check → show dhcp lease. Server pool → show ip dhcp binding."
@@ -86,22 +86,22 @@
             "choiceIndex": 0,
             "explanation": "During DORA the client often has no IP yet — Offer is frequently broadcast at Layer 3, not unicast to client IP.",
             "misconceptionTested": "Expecting unicast L3 Offer before client has address",
-            "whatItDoes": "The layer 3 destination is a unicast to the DHCP client. describes a mechanism that could sound plausible for dhcp client.",
+            "whatItDoes": "The layer 3 destination is a unicast to the DHCP client. points to a related idea, but not the specific behavior or value required for dhcp client.",
             "whyWrongHere": "The stem asks what gets learned (dhcp client). Switches record the source MAC on ingress — destination MAC is for lookup, not learning."
           },
           {
             "choiceIndex": 1,
             "explanation": "Layer 2 destination is often broadcast (ff:ff:ff:ff:ff:ff) because the client may not have bound the offered IP yet.",
             "misconceptionTested": "Assuming Offer is always unicast to client MAC",
-            "whatItDoes": "The layer 2 destination is the MAC address of the DHCP client. describes a mechanism that could sound plausible for dhcp client.",
+            "whatItDoes": "The layer 2 destination is the MAC address of the DHCP client. points to a related idea, but not the specific behavior or value required for dhcp client.",
             "whyWrongHere": "The stem asks what gets learned (dhcp client). Switches record the source MAC on ingress — destination MAC is for lookup, not learning. Picking The layer 2 destination is the MAC address of the DHCP client. misses the exact behavior this stem tests."
           },
           {
             "choiceIndex": 3,
             "explanation": "The Layer 3 source is the server address — link-local is not the standard Offer source on IPv4 DHCP.",
             "misconceptionTested": "Claiming Offer L3 source is client link-local",
-            "whatItDoes": "The layer 3 source is a link-local address of the client. describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, The layer 2 source is the MAC address of the server. matches the tested behavior — The layer 3 source is a link-local address of the client. applies a different mechanism."
+            "whatItDoes": "The layer 3 source is a link-local address of the client. states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "This is a Layer 2 process (dhcp client). The layer 2 source is the MAC address of the server. uses Ethernet addresses — not IP headers."
           }
         ],
         "examTip": "DHCP Offer → server MAC as L2 source; L2 dest often broadcast pre-ACK."
@@ -137,22 +137,22 @@
             "choiceIndex": 0,
             "explanation": "ip dhcp server in global config is not the relay command — helper-address goes on the interface where clients sit.",
             "misconceptionTested": "Global dhcp server instead of interface helper-address",
-            "whatItDoes": "Router(config)#ip dhcp server 10.10.1.101 describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Router(config-if)#ip helper-address 10.10.1.101 matches the tested behavior — Router(config)#ip dhcp server 10.10.1.101 applies a different mechanism."
+            "whatItDoes": "Router(config)#ip dhcp server 10.10.1.101 points to a related idea, but not the specific behavior or value required for dhcp client.",
+            "whyWrongHere": "For \"dhcp client\", Router(config-if)#ip helper-address 10.10.1.101 satisfies what this question tests — Router(config)#ip dhcp server 10.10.1.101 does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "ip dhcp server under interface is wrong syntax — relay uses ip helper-address.",
             "misconceptionTested": "Wrong interface DHCP command for relay",
-            "whatItDoes": "Router(config-if)#ip dhcp server 10.10.1.101 describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Router(config-if)#ip helper-address 10.10.1.101 matches the tested behavior — Router(config-if)#ip dhcp server 10.10.1.101 applies a different mechanism."
+            "whatItDoes": "Router(config-if)#ip dhcp server 10.10.1.101 points to a related idea, but not the specific behavior or value required for dhcp client.",
+            "whyWrongHere": "For \"dhcp client\", Router(config-if)#ip helper-address 10.10.1.101 satisfies what this question tests — Router(config-if)#ip dhcp server 10.10.1.101 does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "ip relay-agent is not valid Cisco IOS syntax for DHCP relay — the command is ip helper-address.",
             "misconceptionTested": "Inventing relay-agent command name",
-            "whatItDoes": "Router(config-if)#ip relay-agent 10.10.1.101 describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Router(config-if)#ip helper-address 10.10.1.101 matches the tested behavior — Router(config-if)#ip relay-agent 10.10.1.101 applies a different mechanism."
+            "whatItDoes": "Router(config-if)#ip relay-agent 10.10.1.101 forwards DHCP broadcasts toward a remote server rather than acting as the DHCP server itself.",
+            "whyWrongHere": "DHCP roles (dhcp client): Router(config-if)#ip helper-address 10.10.1.101 matches who acts in this scenario — Router(config-if)#ip relay-agent 10.10.1.101 confuses relay/helper with server or client duties."
           }
         ],
         "examTip": "DHCP relay → ip helper-address <server> on the client VLAN interface."
@@ -182,35 +182,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"GIADDR\"."
+          "explanation": "GIADDR (Gateway IP Address) in the DHCP request tells the server which subnet/scope the client is on via the relay agent."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "CIADDR describes a mechanism that could sound plausible for dhcp client. Given dhcp client, GIADDR matches the tested behavior — CIADDR applies a different mechanism.",
-            "whatItDoes": "CIADDR describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, GIADDR matches the tested behavior — CIADDR applies a different mechanism.",
-            "misconceptionTested": "Applying \"CIADDR\" without matching dhcp client",
-            "needsExplanationReview": true
+            "explanation": "CIADDR is the client's current IP (renew/rebind) — empty in initial DISCOVER.",
+            "misconceptionTested": "CIADDR for scope selection",
+            "whatItDoes": "CIADDR points to a related idea, but not the specific behavior or value required for dhcp client.",
+            "whyWrongHere": "For \"dhcp client\", GIADDR satisfies what this question tests — CIADDR does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SIADDR describes a mechanism that could sound plausible for dhcp client. Given dhcp client, GIADDR matches the tested behavior — SIADDR applies a different mechanism.",
-            "whatItDoes": "SIADDR describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, GIADDR matches the tested behavior — SIADDR applies a different mechanism.",
-            "misconceptionTested": "Applying \"SIADDR\" without matching dhcp client",
-            "needsExplanationReview": true
+            "explanation": "SIADDR is the next-server IP (e.g. boot file server) — not the relay subnet hint.",
+            "misconceptionTested": "SIADDR for DHCP scope",
+            "whatItDoes": "SIADDR points to a related idea, but not the specific behavior or value required for dhcp client.",
+            "whyWrongHere": "For \"dhcp client\", GIADDR satisfies what this question tests — SIADDR does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "CHADDR describes a mechanism that could sound plausible for dhcp client. Given dhcp client, GIADDR matches the tested behavior — CHADDR applies a different mechanism.",
-            "whatItDoes": "CHADDR describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, GIADDR matches the tested behavior — CHADDR applies a different mechanism.",
-            "misconceptionTested": "Applying \"CHADDR\" without matching dhcp client",
-            "needsExplanationReview": true
+            "explanation": "CHADDR is the client's hardware (MAC) address — not the subnet identifier.",
+            "misconceptionTested": "CHADDR for scope selection",
+            "whatItDoes": "CHADDR points to a related idea, but not the specific behavior or value required for dhcp client.",
+            "whyWrongHere": "For \"dhcp client\", GIADDR satisfies what this question tests — CHADDR does not."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "DHCP fields: CHADDR=MAC | GIADDR=relay interface IP (scope hint) | CIADDR=client IP on renew."
       }
     },
     {
@@ -238,35 +235,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"A DHCP relay agent on Router A interface Gi0/0\"."
+          "explanation": "Configure ip helper-address <dhcp-server> on Router A Gi0/0 — the router facing the client subnet relays broadcasts to the remote server."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "A second DHCP server on the Host A network describes a mechanism that could sound plausible for dhcp client. Given dhcp client, A DHCP relay agent on Router A interface Gi0/0 matches the tested behavior — A second DHCP server on the Host A network applies a different mechanism.",
-            "whatItDoes": "A second DHCP server on the Host A network describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, A DHCP relay agent on Router A interface Gi0/0 matches the tested behavior — A second DHCP server on the Host A network applies a different mechanism.",
-            "misconceptionTested": "Applying \"A second DHCP server on the Host A n\" without matching dhcp client",
-            "needsExplanationReview": true
+            "explanation": "A second local DHCP server is unnecessary — ip helper-address forwards to the existing server.",
+            "misconceptionTested": "Second DHCP server instead of relay",
+            "whatItDoes": "A second DHCP server on the Host A network points to a related idea, but not the specific behavior or value required for dhcp client.",
+            "whyWrongHere": "For \"dhcp client\", A DHCP relay agent on Router A interface Gi0/0 satisfies what this question tests — A second DHCP server on the Host A network does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "A DHCP relay agent on Router B interface Gi0/0 describes a mechanism that could sound plausible for dhcp client. Given dhcp client, A DHCP relay agent on Router A interface Gi0/0 matches the tested behavior — A DHCP relay agent on Router B interface Gi0/0 applies a different mechanism.",
-            "whatItDoes": "A DHCP relay agent on Router B interface Gi0/0 describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, A DHCP relay agent on Router A interface Gi0/0 matches the tested behavior — A DHCP relay agent on Router B interface Gi0/0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"A DHCP relay agent on Router B inter\" without matching dhcp client",
-            "needsExplanationReview": true
+            "explanation": "The relay goes on Router A (client-facing router), not an unrelated Router B.",
+            "misconceptionTested": "Relay on wrong router",
+            "whatItDoes": "A DHCP relay agent on Router B interface Gi0/0 forwards DHCP broadcasts toward a remote server rather than acting as the DHCP server itself.",
+            "whyWrongHere": "DHCP roles (dhcp client): A DHCP relay agent on Router A interface Gi0/0 matches who acts in this scenario — A DHCP relay agent on Router B interface Gi0/0 confuses relay/helper with server or client duties."
           },
           {
             "choiceIndex": 2,
-            "explanation": "A DHCP relay agent on Switch A describes a mechanism that could sound plausible for dhcp client. Given dhcp client, A DHCP relay agent on Router A interface Gi0/0 matches the tested behavior — A DHCP relay agent on Switch A applies a different mechanism.",
-            "whatItDoes": "A DHCP relay agent on Switch A describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, A DHCP relay agent on Router A interface Gi0/0 matches the tested behavior — A DHCP relay agent on Switch A applies a different mechanism.",
-            "misconceptionTested": "Applying \"A DHCP relay agent on Switch A\" without matching dhcp client",
-            "needsExplanationReview": true
+            "explanation": "DHCP relay is a router L3 function — switches don't run ip helper-address.",
+            "misconceptionTested": "DHCP relay on switch",
+            "whatItDoes": "A DHCP relay agent on Switch A forwards DHCP broadcasts toward a remote server rather than acting as the DHCP server itself.",
+            "whyWrongHere": "DHCP roles (dhcp client): A DHCP relay agent on Router A interface Gi0/0 matches who acts in this scenario — A DHCP relay agent on Switch A confuses relay/helper with server or client duties."
           }
         ],
-        "examTip": "DHCP relay = ip helper-address on the client VLAN interface toward the server."
+        "examTip": "DHCP relay: ip helper-address <ip> on the client-facing router interface — forwards UDP/67 broadcasts."
       }
     },
     {
@@ -292,35 +286,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Router#debug ip dhcp server packet\"."
+          "explanation": "debug ip dhcp server packet shows DHCP server packet flow — use on the server or relay for relay-agent diagnosis."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#debug dhcp describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Router#debug ip dhcp server packet matches the tested behavior — Router#debug dhcp applies a different mechanism.",
-            "whatItDoes": "Router#debug dhcp describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Router#debug ip dhcp server packet matches the tested behavior — Router#debug dhcp applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#debug dhcp\" without matching dhcp client",
-            "needsExplanationReview": true
+            "explanation": "debug dhcp is too broad/nonstandard — IOS uses debug ip dhcp variants.",
+            "misconceptionTested": "Generic debug dhcp command",
+            "whatItDoes": "Router#debug dhcp points to a related idea, but not the specific behavior or value required for dhcp client.",
+            "whyWrongHere": "For \"dhcp client\", Router#debug ip dhcp server packet satisfies what this question tests — Router#debug dhcp does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router#show ip dhcp detail describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Router#debug ip dhcp server packet matches the tested behavior — Router#show ip dhcp detail applies a different mechanism.",
-            "whatItDoes": "Router#show ip dhcp detail describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Router#debug ip dhcp server packet matches the tested behavior — Router#show ip dhcp detail applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip dhcp detail\" without matching dhcp client",
-            "needsExplanationReview": true
+            "explanation": "show ip dhcp detail is not the standard debug — use debug ip dhcp server packet.",
+            "misconceptionTested": "Show command for DHCP relay debug",
+            "whatItDoes": "Router#show ip dhcp detail is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "For \"dhcp client\", Router#debug ip dhcp server packet satisfies what this question tests — Router#show ip dhcp detail does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#debug ip dhcp describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Router#debug ip dhcp server packet matches the tested behavior — Router#debug ip dhcp applies a different mechanism.",
-            "whatItDoes": "Router#debug ip dhcp describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Router#debug ip dhcp server packet matches the tested behavior — Router#debug ip dhcp applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#debug ip dhcp\" without matching dhcp client",
-            "needsExplanationReview": true
+            "explanation": "debug ip dhcp alone is less specific — debug ip dhcp server packet targets relay/server packets.",
+            "misconceptionTested": "Generic debug ip dhcp for relay packets",
+            "whatItDoes": "Router#debug ip dhcp points to a related idea, but not the specific behavior or value required for dhcp client.",
+            "whyWrongHere": "For \"dhcp client\", Router#debug ip dhcp server packet satisfies what this question tests — Router#debug ip dhcp does not."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "DHCP debug: debug ip dhcp server events | debug ip dhcp server packet — always undebug all after."
       }
     },
     {
@@ -347,35 +338,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Configuration of clients with IPv6 options\"."
+          "explanation": "With SLAAC, hosts self-assign addresses — DHCPv6 delivers options (DNS, domain name) without assigning the address."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Stateful configuration of clients for IPv6 addressing describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Configuration of clients with IPv6 options matches the tested behavior — Stateful configuration of clients for IPv6 addressing applies a different mechanism.",
-            "whatItDoes": "Stateful configuration of clients for IPv6 addressing describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Configuration of clients with IPv6 options matches the tested behavior — Stateful configuration of clients for IPv6 addressing applies a different mechanism.",
-            "misconceptionTested": "Applying \"Stateful configuration of clients fo\" without matching dhcp client",
-            "needsExplanationReview": true
+            "explanation": "Stateful DHCPv6 assigns addresses — SLAAC networks use DHCPv6 for stateless options.",
+            "misconceptionTested": "Stateful DHCPv6 with SLAAC",
+            "whatItDoes": "Stateful configuration of clients for IPv6 addressing states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (dhcp client): Configuration of clients with IPv6 options matches prefix, shortening, or assignment rules — Stateful configuration of clients for IPv6 addressing breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Configuration of clients with the IPv6 network IDs describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Configuration of clients with IPv6 options matches the tested behavior — Configuration of clients with the IPv6 network IDs applies a different mechanism.",
-            "whatItDoes": "Configuration of clients with the IPv6 network IDs describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Configuration of clients with IPv6 options matches the tested behavior — Configuration of clients with the IPv6 network IDs applies a different mechanism.",
-            "misconceptionTested": "Applying \"Configuration of clients with the IP\" without matching dhcp client",
-            "needsExplanationReview": true
+            "explanation": "SLAAC derives the address from the prefix + EUI-64 — DHCPv6 options don't supply the network ID for addressing.",
+            "misconceptionTested": "DHCPv6 supplies network ID in SLAAC",
+            "whatItDoes": "Configuration of clients with the IPv6 network IDs states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (dhcp client): Configuration of clients with IPv6 options matches prefix, shortening, or assignment rules — Configuration of clients with the IPv6 network IDs breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Stateless configuration of clients for IPv6 addressing describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Configuration of clients with IPv6 options matches the tested behavior — Stateless configuration of clients for IPv6 addressing applies a different mechanism.",
-            "whatItDoes": "Stateless configuration of clients for IPv6 addressing describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Configuration of clients with IPv6 options matches the tested behavior — Stateless configuration of clients for IPv6 addressing applies a different mechanism.",
-            "misconceptionTested": "Applying \"Stateless configuration of clients f\" without matching dhcp client",
-            "needsExplanationReview": true
+            "explanation": "Stateless DHCPv6 in SLAAC means no address lease — only options are provided.",
+            "misconceptionTested": "Stateless addressing via DHCPv6 in SLAAC",
+            "whatItDoes": "Stateless configuration of clients for IPv6 addressing states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (dhcp client): Configuration of clients with IPv6 options matches prefix, shortening, or assignment rules — Stateless configuration of clients for IPv6 addressing breaks IPv6 syntax or prefix length."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "SLAAC + DHCPv6 = stateless (options only) | Stateful DHCPv6 assigns full addresses."
       }
     },
     {
@@ -402,35 +390,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"They lose their IP address after their entire lease has expired.\"."
+          "explanation": "Clients keep the leased IP until the full lease expires — even if the server is down, until T1/T2 timers fail."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "They lose their IP address immediately. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given dhcp client, They lose their IP address after their entire lease has expired. matches the tested behavior — They lose their IP address immediately. applies a different mechanism.",
+            "explanation": "Addresses are not revoked immediately when the server fails — the lease timer still runs.",
+            "misconceptionTested": "Immediate IP loss on server down",
             "whatItDoes": "They lose their IP address immediately. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given dhcp client, They lose their IP address after their entire lease has expired. matches the tested behavior — They lose their IP address immediately. applies a different mechanism.",
-            "misconceptionTested": "Applying \"They lose their IP address immediate\" without matching dhcp client",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"dhcp client\", They lose their IP address after their entire lease has expired. satisfies what this question tests — They lose their IP address immediately. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "They lose their IP address after one-half of their lease has expired. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given dhcp client, They lose their IP address after their entire lease has expired. matches the tested behavior — They lose their IP address after one-half of their lease has expired. applies a different mechanism.",
+            "explanation": "Half-lease (T1) triggers renewal, not immediate loss — client keeps using the IP.",
+            "misconceptionTested": "IP lost at half lease on server down",
             "whatItDoes": "They lose their IP address after one-half of their lease has expired. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given dhcp client, They lose their IP address after their entire lease has expired. matches the tested behavior — They lose their IP address after one-half of their lease has expired. applies a different mechanism.",
-            "misconceptionTested": "Applying \"They lose their IP address after one\" without matching dhcp client",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"dhcp client\", They lose their IP address after their entire lease has expired. satisfies what this question tests — They lose their IP address after one-half of their lease has expired. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "They lose their IP address after seven-eighths of their lease has expired. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given dhcp client, They lose their IP address after their entire lease has expired. matches the tested behavior — They lose their IP address after seven-eighths of their lease has expired. applies a different mechanism.",
+            "explanation": "Seven-eighths (T2) starts rebind, not relinquish — loss happens at full lease expiry.",
+            "misconceptionTested": "IP lost at seven-eighths lease",
             "whatItDoes": "They lose their IP address after seven-eighths of their lease has expired. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given dhcp client, They lose their IP address after their entire lease has expired. matches the tested behavior — They lose their IP address after seven-eighths of their lease has expired. applies a different mechanism.",
-            "misconceptionTested": "Applying \"They lose their IP address after sev\" without matching dhcp client",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"dhcp client\", They lose their IP address after their entire lease has expired. satisfies what this question tests — They lose their IP address after seven-eighths of their lease has expired. does not."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "DHCP lease timers: T1 = 50% renew | T2 = 87.5% rebind | 100% = lease expires."
       }
     },
     {
@@ -457,35 +442,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Stateful DHCPv6 supplies the network ID and host ID.\"."
+          "explanation": "Stateful DHCPv6 assigns both network prefix and host interface ID — full address management like DHCPv4."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Stateful DHCPv6 supplies the network ID, host ID, and default router. describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Stateful DHCPv6 supplies the network ID and host ID. matches the tested behavior — Stateful DHCPv6 supplies the network ID, host ID, and default router. applies a different mechanism.",
-            "whatItDoes": "Stateful DHCPv6 supplies the network ID, host ID, and default router. describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Stateful DHCPv6 supplies the network ID and host ID. matches the tested behavior — Stateful DHCPv6 supplies the network ID, host ID, and default router. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Stateful DHCPv6 supplies the network\" without matching dhcp client",
-            "needsExplanationReview": true
+            "explanation": "Default router info typically comes from RA (SLAAC) — stateful DHCPv6 focuses on address assignment.",
+            "misconceptionTested": "Stateful DHCPv6 supplies default router",
+            "whatItDoes": "Stateful DHCPv6 supplies the network ID, host ID, and default router. points to a related idea, but not the specific behavior or value required for dhcp client.",
+            "whyWrongHere": "For \"dhcp client\", Stateful DHCPv6 supplies the network ID and host ID. satisfies what this question tests — Stateful DHCPv6 supplies the network ID, host ID, and default router. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Stateful DHCPv6 communicates via broadcasts. describes flooding the frame to multiple ports in the VLAN. Given dhcp client, Stateful DHCPv6 supplies the network ID and host ID. matches the tested behavior — Stateful DHCPv6 communicates via broadcasts. applies a different mechanism.",
+            "explanation": "DHCPv6 uses multicast (FF02::1:2), not IPv4-style broadcasts.",
+            "misconceptionTested": "DHCPv6 uses broadcasts",
             "whatItDoes": "Stateful DHCPv6 communicates via broadcasts. describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "Given dhcp client, Stateful DHCPv6 supplies the network ID and host ID. matches the tested behavior — Stateful DHCPv6 communicates via broadcasts. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Stateful DHCPv6 communicates via bro\" without matching dhcp client",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"dhcp client\", Stateful DHCPv6 supplies the network ID and host ID. satisfies what this question tests — Stateful DHCPv6 communicates via broadcasts. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Stateful DHCPv6 works in conjunction with SLAAC. describes a mechanism that could sound plausible for dhcp client. Given dhcp client, Stateful DHCPv6 supplies the network ID and host ID. matches the tested behavior — Stateful DHCPv6 works in conjunction with SLAAC. applies a different mechanism.",
-            "whatItDoes": "Stateful DHCPv6 works in conjunction with SLAAC. describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, Stateful DHCPv6 supplies the network ID and host ID. matches the tested behavior — Stateful DHCPv6 works in conjunction with SLAAC. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Stateful DHCPv6 works in conjunction\" without matching dhcp client",
-            "needsExplanationReview": true
+            "explanation": "SLAAC uses RA for addresses — stateful DHCPv6 replaces SLAAC addressing, not works alongside it for the same host.",
+            "misconceptionTested": "Stateful DHCPv6 works with SLAAC addressing",
+            "whatItDoes": "Stateful DHCPv6 works in conjunction with SLAAC. states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "For \"dhcp client\", Stateful DHCPv6 supplies the network ID and host ID. satisfies what this question tests — Stateful DHCPv6 works in conjunction with SLAAC. does not."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "Stateful DHCPv6: ipv6 dhcp pool + address dhcp on client — full address lease like DHCPv4."
       }
     },
     {
@@ -512,35 +494,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"RouterA(config-if)#ipv6 address dhcp\"."
+          "explanation": "On the interface: ipv6 address dhcp — obtains a stateful DHCPv6 address from the server."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RouterA(config)#ipv6 address dhcp gi 0/0 describes a mechanism that could sound plausible for dhcp client. Given dhcp client, RouterA(config-if)#ipv6 address dhcp matches the tested behavior — RouterA(config)#ipv6 address dhcp gi 0/0 applies a different mechanism.",
-            "whatItDoes": "RouterA(config)#ipv6 address dhcp gi 0/0 describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, RouterA(config-if)#ipv6 address dhcp matches the tested behavior — RouterA(config)#ipv6 address dhcp gi 0/0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"RouterA(config)#ipv6 address dhcp gi\" without matching dhcp client",
-            "needsExplanationReview": true
+            "explanation": "ipv6 address dhcp is an interface command, not global config with gi 0/0.",
+            "misconceptionTested": "Global config ipv6 address dhcp",
+            "whatItDoes": "RouterA(config)#ipv6 address dhcp gi 0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (dhcp client): RouterA(config-if)#ipv6 address dhcp matches prefix, shortening, or assignment rules — RouterA(config)#ipv6 address dhcp gi 0/0 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 1,
-            "explanation": "RouterA(config-if)#ipv6 address dhcpv6 describes a mechanism that could sound plausible for dhcp client. Given dhcp client, RouterA(config-if)#ipv6 address dhcp matches the tested behavior — RouterA(config-if)#ipv6 address dhcpv6 applies a different mechanism.",
-            "whatItDoes": "RouterA(config-if)#ipv6 address dhcpv6 describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, RouterA(config-if)#ipv6 address dhcp matches the tested behavior — RouterA(config-if)#ipv6 address dhcpv6 applies a different mechanism.",
-            "misconceptionTested": "Applying \"RouterA(config-if)#ipv6 address dhcp\" without matching dhcp client",
-            "needsExplanationReview": true
+            "explanation": "Correct keyword is dhcp, not dhcpv6 — enter under config-if.",
+            "misconceptionTested": "dhcpv6 keyword on interface",
+            "whatItDoes": "RouterA(config-if)#ipv6 address dhcpv6 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (dhcp client): RouterA(config-if)#ipv6 address dhcp matches prefix, shortening, or assignment rules — RouterA(config-if)#ipv6 address dhcpv6 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 3,
-            "explanation": "RouterA(config)#ipv6 address stateless describes a mechanism that could sound plausible for dhcp client. Given dhcp client, RouterA(config-if)#ipv6 address dhcp matches the tested behavior — RouterA(config)#ipv6 address stateless applies a different mechanism.",
-            "whatItDoes": "RouterA(config)#ipv6 address stateless describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, RouterA(config-if)#ipv6 address dhcp matches the tested behavior — RouterA(config)#ipv6 address stateless applies a different mechanism.",
-            "misconceptionTested": "Applying \"RouterA(config)#ipv6 address statele\" without matching dhcp client",
-            "needsExplanationReview": true
+            "explanation": "ipv6 address stateless is not the stateful command — use ipv6 address dhcp.",
+            "misconceptionTested": "stateless keyword for stateful DHCPv6",
+            "whatItDoes": "RouterA(config)#ipv6 address stateless states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (dhcp client): RouterA(config-if)#ipv6 address dhcp matches prefix, shortening, or assignment rules — RouterA(config)#ipv6 address stateless breaks IPv6 syntax or prefix length."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "IPv6 addressing modes: autoconfig (SLAAC) | dhcp (stateful) | dhcp rapid-commit (faster stateful)."
       }
     },
     {
@@ -568,35 +547,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"The server will offer the IP address to another node, which will cause a duplicate address.\"."
+          "explanation": "Deleting a lease lets the server offer that IP to another client — the original holder may still use it until lease expiry → duplicate IP risk."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The server will contact the client to immediately relinquish the IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given dhcp client, The server will offer the IP address to another node, which will cause a duplicate address. matches the tested behavior — The server will contact the client to immediately relinquish the IP address. applies a different mechanism.",
+            "explanation": "The server does not force the old client to release immediately — the client may still use the address.",
+            "misconceptionTested": "Server forces immediate client release",
             "whatItDoes": "The server will contact the client to immediately relinquish the IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given dhcp client, The server will offer the IP address to another node, which will cause a duplicate address. matches the tested behavior — The server will contact the client to immediately relinquish the IP address. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The server will contact the client t\" without matching dhcp client",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"dhcp client\", The server will offer the IP address to another node, which will cause a duplicate address. satisfies what this question tests — The server will contact the client to immediately relinquish the IP address. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The client will immediately renew its lease for the current IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given dhcp client, The server will offer the IP address to another node, which will cause a duplicate address. matches the tested behavior — The client will immediately renew its lease for the current IP address. applies a different mechanism.",
+            "explanation": "The original client does not auto-renew a deleted lease — it keeps using the IP until T1/T2/expiry.",
+            "misconceptionTested": "Client immediately renews deleted lease",
             "whatItDoes": "The client will immediately renew its lease for the current IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given dhcp client, The server will offer the IP address to another node, which will cause a duplicate address. matches the tested behavior — The client will immediately renew its lease for the current IP address. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The client will immediately renew it\" without matching dhcp client",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"dhcp client\", The server will offer the IP address to another node, which will cause a duplicate address. satisfies what this question tests — The client will immediately renew its lease for the current IP address. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "DHCP DORA order matters — identify which message the stem describes before picking a step.",
+            "explanation": "The original client does not politely relinquish when another gets the same IP — conflict results.",
+            "misconceptionTested": "Graceful relinquish on re-offer",
             "whatItDoes": "The server will offer the IP address to another node, at which time the original client will relinquish the IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given dhcp client, The server will offer the IP address to another node, which will cause a duplicate address. matches the tested behavior — The server will offer the IP address to another node, at which time the original client will relinquish the IP address. applies a different mechanism.",
-            "misconceptionTested": "Misordering or mislabeling DHCP messages",
-            "needsExplanationReview": true
+            "whyWrongHere": "DHCP message order (dhcp client): The server will offer the IP address to another node, which will cause a duplicate address. is the step this stem describes — The server will offer the IP address to another node, at which time the original client will relinquish the IP address. is another DORA phase."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "Never delete active leases casually — wait for natural expiry or confirm the client released the address."
       }
     },
     {
@@ -623,35 +599,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"The DHCP client will perform a DHCP rebinding.\"."
+          "explanation": "At 7/8 (87.5%) of the lease, the client enters REBIND — broadcasts to any available DHCP server."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Nothing. The DHCP client will retain the lease. describes a mechanism that could sound plausible for dhcp client. Given dhcp client, The DHCP client will perform a DHCP rebinding. matches the tested behavior — Nothing. The DHCP client will retain the lease. applies a different mechanism.",
-            "whatItDoes": "Nothing. The DHCP client will retain the lease. describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, The DHCP client will perform a DHCP rebinding. matches the tested behavior — Nothing. The DHCP client will retain the lease. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Nothing. The DHCP client will retain\" without matching dhcp client",
-            "needsExplanationReview": true
+            "explanation": "At 7/8 the client actively rebinds — it does not passively retain without trying other servers.",
+            "misconceptionTested": "No action at seven-eighths lease",
+            "whatItDoes": "Nothing. The DHCP client will retain the lease. points to a related idea, but not the specific behavior or value required for dhcp client.",
+            "whyWrongHere": "For \"dhcp client\", The DHCP client will perform a DHCP rebinding. satisfies what this question tests — Nothing. The DHCP client will retain the lease. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The DHCP client will renew its lease. describes a mechanism that could sound plausible for dhcp client. Given dhcp client, The DHCP client will perform a DHCP rebinding. matches the tested behavior — The DHCP client will renew its lease. applies a different mechanism.",
-            "whatItDoes": "The DHCP client will renew its lease. describes a mechanism that could sound plausible for dhcp client.",
-            "whyWrongHere": "Given dhcp client, The DHCP client will perform a DHCP rebinding. matches the tested behavior — The DHCP client will renew its lease. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The DHCP client will renew its lease\" without matching dhcp client",
-            "needsExplanationReview": true
+            "explanation": "Renewal (T1) happens at 50% of lease — 7/8 is rebind, not renew.",
+            "misconceptionTested": "Renew at seven-eighths lease",
+            "whatItDoes": "The DHCP client will renew its lease. points to a related idea, but not the specific behavior or value required for dhcp client.",
+            "whyWrongHere": "For \"dhcp client\", The DHCP client will perform a DHCP rebinding. satisfies what this question tests — The DHCP client will renew its lease. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The DHCP client will relinquish the use of the IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning. Given dhcp client, The DHCP client will perform a DHCP rebinding. matches the tested behavior — The DHCP client will relinquish the use of the IP address. applies a different mechanism.",
+            "explanation": "The client rebinds at 7/8 — it only relinquishes if the lease fully expires without success.",
+            "misconceptionTested": "Relinquish IP at seven-eighths lease",
             "whatItDoes": "The DHCP client will relinquish the use of the IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "Given dhcp client, The DHCP client will perform a DHCP rebinding. matches the tested behavior — The DHCP client will relinquish the use of the IP address. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The DHCP client will relinquish the \" without matching dhcp client",
-            "needsExplanationReview": true
+            "whyWrongHere": "For \"dhcp client\", The DHCP client will perform a DHCP rebinding. satisfies what this question tests — The DHCP client will relinquish the use of the IP address. does not."
           }
         ],
-        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
+        "examTip": "Lease timeline: 50% = RENEW (to original server) | 87.5% = REBIND (any server) | 100% = expire."
       }
     }
   ]

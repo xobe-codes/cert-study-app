@@ -26,7 +26,7 @@ test.describe('AnswerReview mobile debrief (390×844)', () => {
       const count = await radios.count()
       for (let c = 0; c < count; c++) {
         await radios.nth(c).click()
-        const wrongHeading = page.getByText(/WHY [A-F] IS WRONG/)
+        const wrongHeading = page.getByText(/YOUR ANSWER: [A-F]|WHY [A-F] IS WRONG/)
         if (await wrongHeading.count()) {
           found = true
           break

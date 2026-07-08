@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
 import { parseRichTextSegments } from '../lesson/richTextParse.js'
-import { resolveIncorrectItem } from '../answerReviewLogic.js'
+import {
+  resolveIncorrectItem, buildWrongChoiceItem,
+  choiceLetterForIndex, formatYourWrongHeader, formatOtherWrongHeader,
+} from '../answerReviewLogic.js'
 import { isMcQuestion, isCliQuestion, isOrderingQuestion, correctAnswerLabel, gradeQuestion } from '../questionUtils.js'
+import { cliStringsEquivalent } from '../lab/cliGrading.js'
 import { goldCliReviewFor } from '../answerReview/goldAnswerReviewsCliSkill.js'
 import QuestionFlagPanel from './QuestionFlagPanel.jsx'
 import StemReplayCTA from '../features/stemReplay/StemReplayCTA.jsx'
@@ -10,6 +14,18 @@ import { useCompactMobile } from '../hooks/useCompactMobile.js'
 import { COLORS, accentColors } from '../ui/appTheme.js'
 
 const CHOICE_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F']
+
+function orderingMismatches(correctOrder, given, orderAccept = []) {
+  if (!Array.isArray(correctOrder) || !Array.isArray(given)) return []
+  return correctOrder.reduce((acc, expected, i) => {
+    const got = given[i]
+    const alts = orderAccept[i]
+    if (!cliStringsEquivalent(got, expected, alts)) {
+      acc.push({ step: i + 1, expected, got: got ?? '—' })
+    }
+    return acc
+  }, [])
+}
 
 function RichText({ text }) {
   if (text == null) return null
@@ -46,8 +62,18 @@ function ReviewBlock({ icon, title, accent, children, collapsible, defaultOpen =
 }
 
 function WrongChoiceReview({ q, item }) {
-  const resolved = resolveIncorrectItem(q, item)
-  const hasStructured = resolved.whatItDoes && resolved.whyWrongHere
+  let resolved = resolveIncorrectItem(q, item)
+  if (!resolved.whatItDoes || !resolved.whyWrongHere) {
+    const rebuilt = buildWrongChoiceItem(q, item.choiceIndex)
+    resolved = {
+      ...resolved,
+      explanation: resolved.explanation || rebuilt.explanation,
+      whatItDoes: resolved.whatItDoes || rebuilt.whatItDoes,
+      whyWrongHere: resolved.whyWrongHere || rebuilt.whyWrongHere,
+      misconceptionTested: resolved.misconceptionTested || rebuilt.misconceptionTested,
+    }
+  }
+  const hasStructured = Boolean(resolved.whatItDoes && resolved.whyWrongHere)
   return (
     <>
       {hasStructured ? (
@@ -61,9 +87,12 @@ function WrongChoiceReview({ q, item }) {
             <RichText text={resolved.whyWrongHere} />
           </div>
         </>
-      ) : (
-        <RichText text={resolved.explanation} />
-      )}
+      ) : resolved.explanation ? (
+        <div>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, marginBottom: 4 }}>Why this is wrong</div>
+          <RichText text={resolved.explanation} />
+        </div>
+      ) : null}
       {resolved.misconceptionTested && (
         <div style={{ marginTop: 8, fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>
           Trap tested: {resolved.misconceptionTested}
@@ -112,16 +141,33 @@ export default function AnswerReview({ q, selected, cliAnswer, orderAnswer, hide
     const correctOrder = q.orderItems || []
     const given = orderAnswer || []
     const ok = gradeQuestion(q, given)
+    const mismatches = ok ? [] : orderingMismatches(correctOrder, given, q.orderAccept)
     return (
       <div className={`ccna-answer-review${compactMobile ? ' ccna-answer-review--compact' : ''}`} style={{ marginTop: compactMobile ? 6 : 8, minWidth: 0 }}>
         <QuestionUnderReviewBanner questionId={q?.id} />
         <ReviewBlock icon="✅" title="CORRECT ORDER" accent="mint">
           <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}>{correctAnswerLabel(q)}</div>
-          <div style={{ marginTop: 8 }}><RichText text={q.explanation} /></div>
+          {q.explanation && <div style={{ marginTop: 8 }}><RichText text={q.explanation} /></div>}
         </ReviewBlock>
         {!ok && given.length > 0 && (
           <ReviewBlock icon="✗" title="YOUR ORDER" accent="rose">
             <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}>{given.map((s, i) => `${i + 1}. ${s}`).join(' → ')}</div>
+            {mismatches.length > 0 && (
+              <div style={{ marginTop: 8 }}>
+                <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, marginBottom: 4 }}>Where your order breaks down</div>
+                {mismatches.map(m => (
+                  <div key={m.step} style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.45, marginBottom: 4, color: COLORS.rose }}>
+                    Step {m.step}: should be <strong style={{ color: COLORS.silver }}>{m.expected}</strong> — you had {m.got}
+                  </div>
+                ))}
+              </div>
+            )}
+            {q.explanation && mismatches.length > 0 && (
+              <div style={{ marginTop: 8, paddingTop: 8, borderTop: `1px solid ${COLORS.roseBorder}` }}>
+                <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, marginBottom: 4 }}>Why sequence matters</div>
+                <RichText text={q.explanation} />
+              </div>
+            )}
           </ReviewBlock>
         )}
         {showQuestionFlag && objectiveId && <QuestionFlagPanel questionId={q.id} objectiveId={objectiveId} />}
@@ -152,16 +198,20 @@ export default function AnswerReview({ q, selected, cliAnswer, orderAnswer, hide
       <ReviewBlock icon="✅" title={`CORRECT ANSWER: ${CHOICE_LETTERS[correctIdx] || correctIdx}`} accent="mint" collapsible={selectedWrongIdx != null || compactMobile} defaultOpen={selectedWrongIdx == null && !compactMobile}>
         <RichText text={ar?.correct?.explanation || q.explanation} />
       </ReviewBlock>
-      {yourWrong.map(item => (
-        <ReviewBlock
-          key={item.choiceIndex}
-          icon="❌"
-          title={`WHY ${CHOICE_LETTERS[item.choiceIndex]} IS WRONG`}
-          accent="rose"
-        >
-          <WrongChoiceReview q={q} item={item} />
-        </ReviewBlock>
-      ))}
+      {yourWrong.map(item => {
+        const letter = choiceLetterForIndex(item.choiceIndex) || CHOICE_LETTERS[item.choiceIndex] || item.choiceIndex
+        const choiceText = q.choices?.[item.choiceIndex] || ''
+        return (
+          <ReviewBlock
+            key={item.choiceIndex}
+            icon="❌"
+            title={formatYourWrongHeader(letter, choiceText)}
+            accent="rose"
+          >
+            <WrongChoiceReview q={q} item={item} />
+          </ReviewBlock>
+        )
+      })}
       {otherWrong.length > 0 && (
         <ReviewBlock
           icon="📋"
@@ -170,18 +220,22 @@ export default function AnswerReview({ q, selected, cliAnswer, orderAnswer, hide
           collapsible
           defaultOpen={false}
         >
-          {otherWrong.map(item => (
-            <ReviewBlock
-              key={item.choiceIndex}
-              icon="❌"
-              title={`WHY ${CHOICE_LETTERS[item.choiceIndex]} IS WRONG`}
-              accent="rose"
-              collapsible
-              defaultOpen={false}
-            >
-              <WrongChoiceReview q={q} item={item} />
-            </ReviewBlock>
-          ))}
+          {otherWrong.map(item => {
+            const letter = choiceLetterForIndex(item.choiceIndex) || CHOICE_LETTERS[item.choiceIndex] || item.choiceIndex
+            const choiceText = q.choices?.[item.choiceIndex] || ''
+            return (
+              <ReviewBlock
+                key={item.choiceIndex}
+                icon="❌"
+                title={formatOtherWrongHeader(letter, choiceText)}
+                accent="rose"
+                collapsible
+                defaultOpen={false}
+              >
+                <WrongChoiceReview q={q} item={item} />
+              </ReviewBlock>
+            )
+          })}
         </ReviewBlock>
       )}
       {(!hideExamTip && ar?.examTip) && <ReviewBlock icon="💡" title="EXAM TIP" accent="amber" collapsible defaultOpen={false}><RichText text={ar.examTip} /></ReviewBlock>}

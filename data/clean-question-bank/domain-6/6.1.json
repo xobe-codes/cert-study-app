@@ -24,32 +24,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Automation (templates, IaC, scripts) produces repeatable, reproducible configs — same input yields the same outcome every time."
+          "explanation": "Automation gives a repeatable, reproducible outcome — same intent across many devices reduces drift."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Automation reduces manual typos — it does not increase misconfiguration when templates are validated.",
-            "misconceptionTested": "Assuming automation adds randomness/errors",
-            "whatItDoes": "To increase the possibility for misconfiguration describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, To create an outcome that can be reproduced matches the tested behavior — To increase the possibility for misconfiguration applies a different mechanism."
+            "explanation": "Done well, automation reduces misconfiguration — the trap is choosing the negative outcome.",
+            "misconceptionTested": "Automation increases errors",
+            "whatItDoes": "To increase the possibility for misconfiguration points to a related idea, but not the specific behavior or value required for automation.",
+            "whyWrongHere": "For \"automation\", To create an outcome that can be reproduced satisfies what this question tests — To increase the possibility for misconfiguration does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Reproducibility is the primary exam answer — “decrease problems” is vague; templates explicitly enable identical redeployments.",
-            "misconceptionTested": "Picking vague benefit over reproducibility",
-            "whatItDoes": "To decrease problems from the new configuration describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, To create an outcome that can be reproduced matches the tested behavior — To decrease problems from the new configuration applies a different mechanism."
+            "explanation": "Vague benefit — CCNA wants reproducible deployments, not just “fewer problems”.",
+            "misconceptionTested": "Generic “fewer problems”",
+            "whatItDoes": "To decrease problems from the new configuration points to a related idea, but not the specific behavior or value required for automation.",
+            "whyWrongHere": "For \"automation\", To create an outcome that can be reproduced satisfies what this question tests — To decrease problems from the new configuration does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Less manual work is a side benefit — Cisco stems emphasize consistent, reproducible outcomes across many routers.",
-            "misconceptionTested": "Choosing laziness over operational repeatability",
-            "whatItDoes": "To allow you to do less work describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, To create an outcome that can be reproduced matches the tested behavior — To allow you to do less work applies a different mechanism."
+            "explanation": "Less work can be true but is not the exam’s primary reason — reproducibility is.",
+            "misconceptionTested": "Laziness over reproducibility",
+            "whatItDoes": "To allow you to do less work points to a related idea, but not the specific behavior or value required for automation.",
+            "whyWrongHere": "For \"automation\", To create an outcome that can be reproduced satisfies what this question tests — To allow you to do less work does not."
           }
         ],
-        "examTip": "Network automation → repeatable, reproducible configs at scale."
+        "examTip": "Network automation → consistent, reproducible configs (IaC, templates, APIs)."
       }
     },
     {
@@ -82,21 +82,21 @@
             "choiceIndex": 0,
             "explanation": "Manual copy/paste across 20 devices is error-prone and does not scale — automation is the network engineer approach.",
             "misconceptionTested": "Treating repetitive CLI as a manual-only task",
-            "whatItDoes": "Copy and paste scripts built in Notepad++ into each router. describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Create a Python script to configure each router. matches the tested behavior — Copy and paste scripts built in Notepad++ into each router. applies a different mechanism."
+            "whatItDoes": "Copy and paste scripts built in Notepad++ into each router. applies another routing protocol's behavior instead of OSPF-specific rules.",
+            "whyWrongHere": "For \"automation\", Create a Python script to configure each router. satisfies what this question tests — Copy and paste scripts built in Notepad++ into each router. does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "Spreadsheets do not execute or validate IOS — they are worse than purpose-built automation for device config.",
             "misconceptionTested": "Using office tools instead of network automation",
-            "whatItDoes": "Copy and paste scripts built in Excel into each router. describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Create a Python script to configure each router. matches the tested behavior — Copy and paste scripts built in Excel into each router. applies a different mechanism."
+            "whatItDoes": "Copy and paste scripts built in Excel into each router. applies another routing protocol's behavior instead of OSPF-specific rules.",
+            "whyWrongHere": "For \"automation\", Create a Python script to configure each router. satisfies what this question tests — Copy and paste scripts built in Excel into each router. does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Two people checking manual work still scales linearly with device count — scripts reduce time and human error.",
             "misconceptionTested": "Doubling manual labor instead of automating",
-            "whatItDoes": "Work with a partner so that both of you can double-check each other’s work and cut the time in half. describes a mechanism that could sound plausible for automation.",
+            "whatItDoes": "Work with a partner so that both of you can double-check each other’s work and cut the time in half. points to a related idea, but not the specific behavior or value required for automation.",
             "whyWrongHere": "CAM learning stores one mapping per arrival (automation): Create a Python script to configure each router. — not both addresses as table entries."
           }
         ],
@@ -132,22 +132,22 @@
             "choiceIndex": 0,
             "explanation": "Automation often increases change frequency safely — the goal is not fewer changes but fewer mistakes per change.",
             "misconceptionTested": "Equating automation with minimizing change count",
-            "whatItDoes": "Reduce the number of changes to be made describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Reduce the human error factor matches the tested behavior — Reduce the number of changes to be made applies a different mechanism."
+            "whatItDoes": "Reduce the number of changes to be made points to a related idea, but not the specific behavior or value required for automation.",
+            "whyWrongHere": "For \"automation\", Reduce the human error factor satisfies what this question tests — Reduce the number of changes to be made does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "Complexity may shift to tooling — the top motivator cited is error reduction, not abstract complication reduction.",
             "misconceptionTested": "Choosing complication reduction over human error",
-            "whatItDoes": "Reduce the complications that arise from changes describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Reduce the human error factor matches the tested behavior — Reduce the complications that arise from changes applies a different mechanism."
+            "whatItDoes": "Reduce the complications that arise from changes points to a related idea, but not the specific behavior or value required for automation.",
+            "whyWrongHere": "For \"automation\", Reduce the human error factor satisfies what this question tests — Reduce the complications that arise from changes does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Planning still matters — automation saves execution time and errors, not necessarily upfront design time.",
             "misconceptionTested": "Planning time as primary automation driver",
-            "whatItDoes": "Reduce the planning time for the changes describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Reduce the human error factor matches the tested behavior — Reduce the planning time for the changes applies a different mechanism."
+            "whatItDoes": "Reduce the planning time for the changes points to a related idea, but not the specific behavior or value required for automation.",
+            "whyWrongHere": "For \"automation\", Reduce the human error factor satisfies what this question tests — Reduce the planning time for the changes does not."
           }
         ],
         "examTip": "Network automation #1 driver → reduce human error on repetitive, scalable changes."
@@ -177,35 +177,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"DevOps\"."
+          "explanation": "DevOps blends development and operations practices — the framework CCNA ties to network automation and CI/CD for infrastructure."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "NetOps describes a mechanism that could sound plausible for automation. Given automation, DevOps matches the tested behavior — NetOps applies a different mechanism.",
-            "whatItDoes": "NetOps describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, DevOps matches the tested behavior — NetOps applies a different mechanism.",
-            "misconceptionTested": "Applying \"NetOps\" without matching automation",
-            "needsExplanationReview": true
+            "explanation": "NetOps focuses on network operations tooling — the exam's automation culture term is DevOps.",
+            "misconceptionTested": "NetOps as automation framework name",
+            "whatItDoes": "NetOps points to a related idea, but not the specific behavior or value required for automation.",
+            "whyWrongHere": "For \"automation\", DevOps satisfies what this question tests — NetOps does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SysOps describes a mechanism that could sound plausible for automation. Given automation, DevOps matches the tested behavior — SysOps applies a different mechanism.",
-            "whatItDoes": "SysOps describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, DevOps matches the tested behavior — SysOps applies a different mechanism.",
-            "misconceptionTested": "Applying \"SysOps\" without matching automation",
-            "needsExplanationReview": true
+            "explanation": "SysOps is general systems administration — network automation aligns with DevOps practices.",
+            "misconceptionTested": "SysOps as network automation framework",
+            "whatItDoes": "SysOps points to a related idea, but not the specific behavior or value required for automation.",
+            "whyWrongHere": "For \"automation\", DevOps satisfies what this question tests — SysOps does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "SecOps describes a mechanism that could sound plausible for automation. Given automation, DevOps matches the tested behavior — SecOps applies a different mechanism.",
-            "whatItDoes": "SecOps describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, DevOps matches the tested behavior — SecOps applies a different mechanism.",
-            "misconceptionTested": "Applying \"SecOps\" without matching automation",
-            "needsExplanationReview": true
+            "explanation": "SecOps is security operations — automation methodology in CCNA context is DevOps.",
+            "misconceptionTested": "SecOps as automation framework",
+            "whatItDoes": "SecOps points to a related idea, but not the specific behavior or value required for automation.",
+            "whyWrongHere": "For \"automation\", DevOps satisfies what this question tests — SecOps does not."
           }
         ],
-        "examTip": "Separate management plane (API/controller) from data plane (forwarding)."
+        "examTip": "Network automation culture → DevOps (Agile + automation); not NetOps/SecOps on CCNA stems."
       }
     },
     {
@@ -231,35 +228,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Lean and Agile\"."
+          "explanation": "Lean and Agile emphasize iterative delivery — the methodology developers use alongside automation for network changes."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Waterfall describes a mechanism that could sound plausible for automation. Given automation, Lean and Agile matches the tested behavior — Waterfall applies a different mechanism.",
-            "whatItDoes": "Waterfall describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Lean and Agile matches the tested behavior — Waterfall applies a different mechanism.",
-            "misconceptionTested": "Applying \"Waterfall\" without matching automation",
-            "needsExplanationReview": true
+            "explanation": "Waterfall is sequential with long release cycles — automation teams favor Agile iteration.",
+            "misconceptionTested": "Waterfall for network automation",
+            "whatItDoes": "Waterfall points to a related idea, but not the specific behavior or value required for automation.",
+            "whyWrongHere": "For \"automation\", Lean and Agile satisfies what this question tests — Waterfall does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Kanban describes a mechanism that could sound plausible for automation. Given automation, Lean and Agile matches the tested behavior — Kanban applies a different mechanism.",
-            "whatItDoes": "Kanban describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Lean and Agile matches the tested behavior — Kanban applies a different mechanism.",
-            "misconceptionTested": "Applying \"Kanban\" without matching automation",
-            "needsExplanationReview": true
+            "explanation": "Kanban is a workflow board method — CCNA pairs automation with Lean and Agile broadly.",
+            "misconceptionTested": "Kanban as primary automation methodology",
+            "whatItDoes": "Kanban points to a related idea, but not the specific behavior or value required for automation.",
+            "whyWrongHere": "For \"automation\", Lean and Agile satisfies what this question tests — Kanban does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Scrum describes a mechanism that could sound plausible for automation. Given automation, Lean and Agile matches the tested behavior — Scrum applies a different mechanism.",
-            "whatItDoes": "Scrum describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Lean and Agile matches the tested behavior — Scrum applies a different mechanism.",
-            "misconceptionTested": "Applying \"Scrum\" without matching automation",
-            "needsExplanationReview": true
+            "explanation": "Scrum is one Agile framework — the keyed answer is the broader Lean and Agile pairing.",
+            "misconceptionTested": "Scrum alone as automation methodology",
+            "whatItDoes": "Scrum points to a related idea, but not the specific behavior or value required for automation.",
+            "whyWrongHere": "For \"automation\", Lean and Agile satisfies what this question tests — Scrum does not."
           }
         ],
-        "examTip": "Separate management plane (API/controller) from data plane (forwarding)."
+        "examTip": "Automation + rapid iteration → Lean/Agile; Waterfall = opposite of automation-friendly cadence."
       }
     },
     {
@@ -291,22 +285,22 @@
             "choiceIndex": 0,
             "explanation": "Testing belongs before production release — post-release focus shifts to monitoring live behavior.",
             "misconceptionTested": "Running test phase after go-live",
-            "whatItDoes": "Testing describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Monitoring matches the tested behavior — Testing applies a different mechanism."
+            "whatItDoes": "Testing points to a related idea, but not the specific behavior or value required for automation.",
+            "whyWrongHere": "For \"automation\", Monitoring satisfies what this question tests — Testing does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "Building is complete once deployed — the lifecycle step after release is operations/monitoring.",
             "misconceptionTested": "Confusing build phase with post-deploy ops",
-            "whatItDoes": "Building describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Monitoring matches the tested behavior — Building applies a different mechanism."
+            "whatItDoes": "Building points to a related idea, but not the specific behavior or value required for automation.",
+            "whyWrongHere": "For \"automation\", Monitoring satisfies what this question tests — Building does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Planning happens upfront — after release you observe whether the change met intent in production.",
             "misconceptionTested": "Re-planning instead of monitoring outcomes",
-            "whatItDoes": "Planning describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Monitoring matches the tested behavior — Planning applies a different mechanism."
+            "whatItDoes": "Planning points to a related idea, but not the specific behavior or value required for automation.",
+            "whyWrongHere": "For \"automation\", Monitoring satisfies what this question tests — Planning does not."
           }
         ],
         "examTip": "Automation lifecycle: plan → build → test → deploy → monitor."

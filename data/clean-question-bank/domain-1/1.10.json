@@ -31,22 +31,22 @@
             "choiceIndex": 0,
             "explanation": "netstat shows connections and listening ports — not full IP configuration.",
             "misconceptionTested": "Using netstat for IP config dump",
-            "whatItDoes": "netstat describes a mechanism that could sound plausible for ipconfig.",
-            "whyWrongHere": "Given ipconfig, ipconfig /all matches the tested behavior — netstat applies a different mechanism."
+            "whatItDoes": "netstat points to a related idea, but not the specific behavior or value required for ipconfig.",
+            "whyWrongHere": "For \"ipconfig\", ipconfig /all satisfies what this question tests — netstat does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "arp -a shows MAC/IP bindings — not mask, gateway, or DNS.",
             "misconceptionTested": "Checking ARP table for DHCP parameters",
-            "whatItDoes": "arp -a describes a mechanism that could sound plausible for ipconfig.",
-            "whyWrongHere": "Given ipconfig, ipconfig /all matches the tested behavior — arp -a applies a different mechanism."
+            "whatItDoes": "arp -a points to a related idea, but not the specific behavior or value required for ipconfig.",
+            "whyWrongHere": "For \"ipconfig\", ipconfig /all satisfies what this question tests — arp -a does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "route print shows routing table — combine with ipconfig for full host troubleshooting.",
             "misconceptionTested": "Relying on route print alone for IP config",
-            "whatItDoes": "route print only describes a mechanism that could sound plausible for ipconfig.",
-            "whyWrongHere": "Given ipconfig, ipconfig /all matches the tested behavior — route print only applies a different mechanism."
+            "whatItDoes": "route print only points to a related idea, but not the specific behavior or value required for ipconfig.",
+            "whyWrongHere": "For \"ipconfig\", ipconfig /all satisfies what this question tests — route print only does not."
           }
         ],
         "examTip": "Windows host IP check → ipconfig /all. Linux → ip addr."
@@ -79,22 +79,22 @@
             "choiceIndex": 0,
             "explanation": "DNS is not used for ping by IP address — same-subnet success proves Layer 2/3 local forwarding works; the break is at the gateway for remote targets.",
             "misconceptionTested": "Blaming DNS when pinging IP addresses directly",
-            "whatItDoes": "DNS server describes a mechanism that could sound plausible for gateway symptom.",
-            "whyWrongHere": "Given gateway symptom, Default gateway matches the tested behavior — DNS server applies a different mechanism."
+            "whatItDoes": "DNS server points to a related idea, but not the specific behavior or value required for gateway symptom.",
+            "whyWrongHere": "For \"gateway symptom\", Default gateway satisfies what this question tests — DNS server does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Wrong VLAN would typically break same-subnet communication too — here local /24 works, pointing to gateway or upstream routing.",
             "misconceptionTested": "Suspecting VLAN when only off-subnet fails",
-            "whatItDoes": "Wrong VLAN on switch describes a mechanism that could sound plausible for gateway symptom.",
-            "whyWrongHere": "Given gateway symptom, Default gateway matches the tested behavior — Wrong VLAN on switch applies a different mechanism."
+            "whatItDoes": "Wrong VLAN on switch points to a related idea, but not the specific behavior or value required for gateway symptom.",
+            "whyWrongHere": "For \"gateway symptom\", Default gateway satisfies what this question tests — Wrong VLAN on switch does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "WPA3 is a wireless security protocol — it does not explain why same-subnet ICMP succeeds but Internet ping fails.",
             "misconceptionTested": "Dragging wireless security into IP routing troubleshooting",
-            "whatItDoes": "WPA3 describes a mechanism that could sound plausible for gateway symptom.",
-            "whyWrongHere": "Given gateway symptom, Default gateway matches the tested behavior — WPA3 applies a different mechanism."
+            "whatItDoes": "WPA3 points to a related idea, but not the specific behavior or value required for gateway symptom.",
+            "whyWrongHere": "For \"gateway symptom\", Default gateway satisfies what this question tests — WPA3 does not."
           }
         ],
         "examTip": "Local works, remote fails → check default gateway before DNS or VLAN."
@@ -127,22 +127,22 @@
             "choiceIndex": 0,
             "explanation": "Cable CRC would affect IP ping too — here 203.0.113.1 succeeds, isolating DNS.",
             "misconceptionTested": "Blaming physical errors when IP ping works",
-            "whatItDoes": "Cable CRC errors describes a mechanism that could sound plausible for dns symptom.",
-            "whyWrongHere": "Given dns symptom, DNS resolution failure matches the tested behavior — Cable CRC errors applies a different mechanism."
+            "whatItDoes": "Cable CRC errors points to a related idea, but not the specific behavior or value required for dns symptom.",
+            "whyWrongHere": "For \"dns symptom\", DNS resolution failure satisfies what this question tests — Cable CRC errors does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Missing mask would break same-subnet logic — successful IP ping to Internet target points to DNS.",
             "misconceptionTested": "Suspecting mask when IP reachability works",
-            "whatItDoes": "Missing subnet mask describes a mechanism that could sound plausible for dns symptom.",
-            "whyWrongHere": "Given dns symptom, DNS resolution failure matches the tested behavior — Missing subnet mask applies a different mechanism."
+            "whatItDoes": "Missing subnet mask points to a related idea, but not the specific behavior or value required for dns symptom.",
+            "whyWrongHere": "For \"dns symptom\", DNS resolution failure satisfies what this question tests — Missing subnet mask does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "STP loops cause broadcast storms — they do not selectively break DNS while IP ping succeeds.",
             "misconceptionTested": "Dragging STP into selective DNS failure",
-            "whatItDoes": "STP loop describes a mechanism that could sound plausible for dns symptom.",
-            "whyWrongHere": "Given dns symptom, DNS resolution failure matches the tested behavior — STP loop applies a different mechanism."
+            "whatItDoes": "STP loop points to a related idea, but not the specific behavior or value required for dns symptom.",
+            "whyWrongHere": "For \"dns symptom\", DNS resolution failure satisfies what this question tests — STP loop does not."
           }
         ],
         "examTip": "Ping IP works, ping name fails → DNS first."
@@ -182,15 +182,15 @@
             "choiceIndex": 2,
             "explanation": "DHCP lease time comes from ipconfig /all or show ip dhcp binding — not from traceroute.",
             "misconceptionTested": "Using traceroute for DHCP lease information",
-            "whatItDoes": "DHCP lease time only describes a mechanism that could sound plausible for Traceroute reveals each router hop toward the destination.",
-            "whyWrongHere": "Given Traceroute reveals each router hop toward the destination, Hop-by-hop path to a destination matches the tested behavior — DHCP lease time only applies a different mechanism."
+            "whatItDoes": "DHCP lease time only points to a related idea, but not the specific behavior or value required for Traceroute reveals each router hop toward the destination.",
+            "whyWrongHere": "For \"Traceroute reveals each router hop toward the destination\", Hop-by-hop path to a destination satisfies what this question tests — DHCP lease time only does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Wi-Fi channel is a wireless RF setting — traceroute traces the routed IP path, not RF parameters.",
             "misconceptionTested": "Linking traceroute output to Wi-Fi channel selection",
-            "whatItDoes": "Wi‑Fi channel describes a mechanism that could sound plausible for Traceroute reveals each router hop toward the destination.",
-            "whyWrongHere": "Given Traceroute reveals each router hop toward the destination, Hop-by-hop path to a destination matches the tested behavior — Wi‑Fi channel applies a different mechanism."
+            "whatItDoes": "Wi‑Fi channel points to a related idea, but not the specific behavior or value required for Traceroute reveals each router hop toward the destination.",
+            "whyWrongHere": "For \"Traceroute reveals each router hop toward the destination\", Hop-by-hop path to a destination satisfies what this question tests — Wi‑Fi channel does not."
           }
         ],
         "examTip": "tracert/traceroute → hop-by-hop Layer 3 path and latency per router."
@@ -224,22 +224,22 @@
             "choiceIndex": 0,
             "explanation": "OSPF neighbors are irrelevant on an end host — APIPA means the PC never received a DHCP offer.",
             "misconceptionTested": "Checking routing protocol tables on a host DHCP failure",
-            "whatItDoes": "OSPF neighbor table describes a mechanism that could sound plausible for apipa client.",
-            "whyWrongHere": "Given apipa client, DHCP server/reachability matches the tested behavior — OSPF neighbor table applies a different mechanism."
+            "whatItDoes": "OSPF neighbor table points to a related idea, but not the specific behavior or value required for apipa client.",
+            "whyWrongHere": "For \"apipa client\", DHCP server/reachability satisfies what this question tests — OSPF neighbor table does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Fiber type affects physical link — APIPA appears when Layer 2 works but DHCP does not respond.",
             "misconceptionTested": "Suspecting physical media when DHCP is the root cause",
-            "whatItDoes": "Fiber SM/MM type describes a mechanism that could sound plausible for apipa client.",
-            "whyWrongHere": "Given apipa client, DHCP server/reachability matches the tested behavior — Fiber SM/MM type applies a different mechanism."
+            "whatItDoes": "Fiber SM/MM type points to a related idea, but not the specific behavior or value required for apipa client.",
+            "whyWrongHere": "For \"apipa client\", DHCP server/reachability satisfies what this question tests — Fiber SM/MM type does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "VTP manages VLAN propagation between switches — a host with APIPA needs DHCP service, not VTP domain checks first.",
             "misconceptionTested": "Checking VTP before DHCP on an APIPA address",
-            "whatItDoes": "VTP domain describes a mechanism that could sound plausible for apipa client.",
-            "whyWrongHere": "Given apipa client, DHCP server/reachability matches the tested behavior — VTP domain applies a different mechanism."
+            "whatItDoes": "VTP domain points to a related idea, but not the specific behavior or value required for apipa client.",
+            "whyWrongHere": "For \"apipa client\", DHCP server/reachability satisfies what this question tests — VTP domain does not."
           }
         ],
         "examTip": "169.254.x.x = no DHCP — verify server, relay, and VLAN before anything else."
@@ -272,22 +272,22 @@
             "choiceIndex": 0,
             "explanation": "Starting with a hostname tests DNS immediately — you cannot isolate whether failure is gateway, routing, or DNS.",
             "misconceptionTested": "Testing DNS before confirming gateway and routing",
-            "whatItDoes": "Hostname → random IP describes a mechanism that could sound plausible for ping order.",
-            "whyWrongHere": "Given ping order, Gateway → remote IP → hostname matches the tested behavior — Hostname → random IP applies a different mechanism."
+            "whatItDoes": "Hostname → random IP points to a related idea, but not the specific behavior or value required for ping order.",
+            "whyWrongHere": "For \"ping order\", Gateway → remote IP → hostname satisfies what this question tests — Hostname → random IP does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Broadcast and multicast pings are not a standard Internet troubleshooting sequence — use gateway → public IP → FQDN.",
             "misconceptionTested": "Using non-standard ICMP targets for layered isolation",
             "whatItDoes": "Broadcast → multicast describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "Given ping order, Gateway → remote IP → hostname matches the tested behavior — Broadcast → multicast applies a different mechanism."
+            "whyWrongHere": "For \"ping order\", Gateway → remote IP → hostname satisfies what this question tests — Broadcast → multicast does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Loopback-only tests local stack — it never validates default gateway or upstream connectivity.",
             "misconceptionTested": "Stopping at loopback when Internet path is the goal",
-            "whatItDoes": "Loopback only describes a mechanism that could sound plausible for ping order.",
-            "whyWrongHere": "Given ping order, Gateway → remote IP → hostname matches the tested behavior — Loopback only applies a different mechanism."
+            "whatItDoes": "Loopback only points to a related idea, but not the specific behavior or value required for ping order.",
+            "whyWrongHere": "For \"ping order\", Gateway → remote IP → hostname satisfies what this question tests — Loopback only does not."
           }
         ],
         "examTip": "Layered ping: gateway → public IP → hostname to isolate L3 vs DNS."
@@ -313,32 +313,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "ip route displays routes and the default gateway."
+          "explanation": "ip route (or route -n) displays the Linux routing table including the default gateway."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "show vlan brief describes a mechanism that could sound plausible for linux verify. Given linux verify, ip route matches the tested behavior — show vlan brief applies a different mechanism.",
-            "whatItDoes": "show vlan brief describes a mechanism that could sound plausible for linux verify.",
-            "whyWrongHere": "Given linux verify, ip route matches the tested behavior — show vlan brief applies a different mechanism.",
-            "misconceptionTested": "Applying \"show vlan brief\" without matching linux verify"
+            "explanation": "show vlan brief is Cisco IOS — not a Linux command.",
+            "misconceptionTested": "IOS show command on Linux",
+            "whatItDoes": "show vlan brief is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (linux verify): ip route inspects the right table or state — show vlan brief shows unrelated information."
           },
           {
             "choiceIndex": 2,
-            "explanation": "ifconfig only describes a mechanism that could sound plausible for linux verify. Given linux verify, ip route matches the tested behavior — ifconfig only applies a different mechanism.",
-            "whatItDoes": "ifconfig only describes a mechanism that could sound plausible for linux verify.",
-            "whyWrongHere": "Given linux verify, ip route matches the tested behavior — ifconfig only applies a different mechanism.",
-            "misconceptionTested": "Applying \"ifconfig only\" without matching linux verify"
+            "explanation": "ifconfig shows interface addresses — not the full routing table with gateway.",
+            "misconceptionTested": "ifconfig for routing table",
+            "whatItDoes": "ifconfig only points to a related idea, but not the specific behavior or value required for linux verify.",
+            "whyWrongHere": "For \"linux verify\", ip route satisfies what this question tests — ifconfig only does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "debug ip routing describes a mechanism that could sound plausible for linux verify. Given linux verify, ip route matches the tested behavior — debug ip routing applies a different mechanism.",
-            "whatItDoes": "debug ip routing describes a mechanism that could sound plausible for linux verify.",
-            "whyWrongHere": "Given linux verify, ip route matches the tested behavior — debug ip routing applies a different mechanism.",
-            "misconceptionTested": "Applying \"debug ip routing\" without matching linux verify"
+            "explanation": "debug ip routing is IOS troubleshooting — Linux uses ip route.",
+            "misconceptionTested": "IOS debug on Linux",
+            "whatItDoes": "debug ip routing points to a related idea, but not the specific behavior or value required for linux verify.",
+            "whyWrongHere": "For \"linux verify\", ip route satisfies what this question tests — debug ip routing does not."
           }
         ],
-        "examTip": "On the exam: Ignoring 169.254.x.x in ipconfig — APIPA means DHCP failed — not a valid corporate address"
+        "examTip": "Linux routing: ip route | route -n — default gateway appears as default via <gw>."
       }
     },
     {
@@ -368,22 +368,22 @@
             "choiceIndex": 1,
             "explanation": "Correct DNS does not produce ARP warnings — duplicate IPs trigger gratuitous ARP and flaky Layer 2 resolution.",
             "misconceptionTested": "Blaming DNS for ARP-layer conflict symptoms",
-            "whatItDoes": "Correct DNS describes a mechanism that could sound plausible for duplicate ip.",
-            "whyWrongHere": "Given duplicate ip, Duplicate IP address matches the tested behavior — Correct DNS applies a different mechanism."
+            "whatItDoes": "Correct DNS points to a related idea, but not the specific behavior or value required for duplicate ip.",
+            "whyWrongHere": "For \"duplicate ip\", Duplicate IP address satisfies what this question tests — Correct DNS does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Full-duplex on both ends is normal — it does not cause ARP conflict messages or intermittent loss.",
             "misconceptionTested": "Suspecting duplex mismatch when ARP points to duplicate IP",
-            "whatItDoes": "Full-duplex on both ends describes a mechanism that could sound plausible for duplicate ip.",
+            "whatItDoes": "Full-duplex on both ends points to a related idea, but not the specific behavior or value required for duplicate ip.",
             "whyWrongHere": "CAM learning stores one mapping per arrival (duplicate ip): Duplicate IP address — not both addresses as table entries."
           },
           {
             "choiceIndex": 3,
             "explanation": "A valid DHCP lease assigns one unique address — duplicate IP usually means static overlap or rogue DHCP, not a healthy lease.",
             "misconceptionTested": "Assuming DHCP success when ARP warnings indicate conflict",
-            "whatItDoes": "Valid DHCP lease describes a mechanism that could sound plausible for duplicate ip.",
-            "whyWrongHere": "Given duplicate ip, Duplicate IP address matches the tested behavior — Valid DHCP lease applies a different mechanism."
+            "whatItDoes": "Valid DHCP lease points to a related idea, but not the specific behavior or value required for duplicate ip.",
+            "whyWrongHere": "For \"duplicate ip\", Duplicate IP address satisfies what this question tests — Valid DHCP lease does not."
           }
         ],
         "examTip": "ARP warnings + flaky connectivity → suspect duplicate IP on the segment."

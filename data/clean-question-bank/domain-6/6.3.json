@@ -32,22 +32,22 @@
             "choiceIndex": 0,
             "explanation": "Three-tier (access-distribution-core) is classic hierarchical — modern controller fabrics favor spine-leaf for scale and ECMP.",
             "misconceptionTested": "Applying legacy three-tier to SDN fabric",
-            "whatItDoes": "Three tier describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Spine/Leaf matches the tested behavior — Three tier applies a different mechanism."
+            "whatItDoes": "Three tier points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Spine/Leaf satisfies what this question tests — Three tier does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Collapsed core merges distribution/core — spine-leaf is the distinct SDN fabric pattern tested here.",
             "misconceptionTested": "Confusing collapsed core with spine-leaf",
-            "whatItDoes": "Collapsed core describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Spine/Leaf matches the tested behavior — Collapsed core applies a different mechanism."
+            "whatItDoes": "Collapsed core points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Spine/Leaf satisfies what this question tests — Collapsed core does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "SAN fabric is storage networking (FC/FCoE) — not the IP Ethernet architecture for controller-based LANs.",
             "misconceptionTested": "Dragging storage fabric into SDN campus question",
-            "whatItDoes": "SAN fabric describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Spine/Leaf matches the tested behavior — SAN fabric applies a different mechanism."
+            "whatItDoes": "SAN fabric points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Spine/Leaf satisfies what this question tests — SAN fabric does not."
           }
         ],
         "examTip": "Controller/SDN fabric → spine-leaf. Legacy campus → three-tier."
@@ -82,22 +82,22 @@
             "choiceIndex": 0,
             "explanation": "Leaf switches do not interconnect to other leafs — that breaks the spine-leaf model and defeats ECMP fabric design.",
             "misconceptionTested": "Leaf-to-leaf mesh in spine-leaf",
-            "whatItDoes": "The Leaf switches connect to other Leaf switches. describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, The Leaf switches never connect to other Leaf switches, only Spine switches. matches the tested behavior — The Leaf switches connect to other Leaf switches. applies a different mechanism."
+            "whatItDoes": "The Leaf switches connect to other Leaf switches. points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", The Leaf switches never connect to other Leaf switches, only Spine switches. satisfies what this question tests — The Leaf switches connect to other Leaf switches. does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "Production fabrics use multiple spines for redundancy and bisection bandwidth — not a single spine only.",
             "misconceptionTested": "Single spine as spine-leaf rule",
-            "whatItDoes": "There is only one Spine switch per network. describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, The Leaf switches never connect to other Leaf switches, only Spine switches. matches the tested behavior — There is only one Spine switch per network. applies a different mechanism."
+            "whatItDoes": "There is only one Spine switch per network. points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", The Leaf switches never connect to other Leaf switches, only Spine switches. satisfies what this question tests — There is only one Spine switch per network. does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Spines aggregate leafs — hosts attach at the leaf tier, not the spine.",
             "misconceptionTested": "Hosts connecting directly to spine switches",
-            "whatItDoes": "Spine switches provide access to hosts. describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, The Leaf switches never connect to other Leaf switches, only Spine switches. matches the tested behavior — Spine switches provide access to hosts. applies a different mechanism."
+            "whatItDoes": "Spine switches provide access to hosts. points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", The Leaf switches never connect to other Leaf switches, only Spine switches. satisfies what this question tests — Spine switches provide access to hosts. does not."
           }
         ],
         "examTip": "Spine-leaf: hosts on leaf, leafs connect only to spines, never leaf-to-leaf."
@@ -125,35 +125,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Leaf to Spine to Leaf\"."
+          "explanation": "In spine-leaf, every leaf connects to spines — east-west traffic flows leaf → spine → leaf, never leaf-to-leaf direct."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Leaf to Leaf to Spine reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
-            "whatItDoes": "Leaf to Leaf to Spine describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Leaf to Spine to Leaf matches the tested behavior — Leaf to Leaf to Spine applies a different mechanism.",
-            "misconceptionTested": "Calling spine-leaf a WAN topology",
-            "needsExplanationReview": true
+            "explanation": "Leaf switches do not transit through another leaf — traffic goes up to spine first.",
+            "misconceptionTested": "Leaf-to-leaf before spine",
+            "whatItDoes": "Leaf to Leaf to Spine points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Leaf to Spine to Leaf satisfies what this question tests — Leaf to Leaf to Spine does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Spine to Leaf to Spine reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
-            "whatItDoes": "Spine to Leaf to Spine describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Leaf to Spine to Leaf matches the tested behavior — Spine to Leaf to Spine applies a different mechanism.",
-            "misconceptionTested": "Calling spine-leaf a WAN topology",
-            "needsExplanationReview": true
+            "explanation": "Spine switches interconnect leaves — they are not the endpoint path spine → leaf → spine for host traffic.",
+            "misconceptionTested": "Spine as traffic endpoint",
+            "whatItDoes": "Spine to Leaf to Spine points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Leaf to Spine to Leaf satisfies what this question tests — Spine to Leaf to Spine does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Leaf to Leaf reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
-            "whatItDoes": "Leaf to Leaf describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Leaf to Spine to Leaf matches the tested behavior — Leaf to Leaf applies a different mechanism.",
-            "misconceptionTested": "Calling spine-leaf a WAN topology",
-            "needsExplanationReview": true
+            "explanation": "Direct leaf-to-leaf links violate spine-leaf design — all paths traverse the spine.",
+            "misconceptionTested": "Direct leaf-to-leaf forwarding",
+            "whatItDoes": "Leaf to Leaf points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Leaf to Spine to Leaf satisfies what this question tests — Leaf to Leaf does not."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "Spine-leaf east-west path → leaf–spine–leaf (full mesh between tiers)."
       }
     },
     {
@@ -181,35 +178,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Cisco ACI\"."
+          "explanation": "Cisco ACI is the data-center SDN fabric (APIC + spine-leaf) — distinct from campus APIC-EM or SD-WAN."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Cisco APIC-EM describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Cisco ACI matches the tested behavior — Cisco APIC-EM applies a different mechanism.",
-            "whatItDoes": "Cisco APIC-EM describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Cisco ACI matches the tested behavior — Cisco APIC-EM applies a different mechanism.",
-            "misconceptionTested": "Applying \"Cisco APIC-EM\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "APIC-EM targets enterprise campus/branch SDN — data center SDN is ACI.",
+            "misconceptionTested": "APIC-EM as data center SDN",
+            "whatItDoes": "Cisco APIC-EM points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Cisco ACI satisfies what this question tests — Cisco APIC-EM does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "OpenDaylight describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Cisco ACI matches the tested behavior — OpenDaylight applies a different mechanism.",
-            "whatItDoes": "OpenDaylight describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Cisco ACI matches the tested behavior — OpenDaylight applies a different mechanism.",
-            "misconceptionTested": "Applying \"OpenDaylight\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "OpenDaylight is open-source controller code — Cisco DC SDN product is ACI.",
+            "misconceptionTested": "OpenDaylight as Cisco DC solution",
+            "whatItDoes": "OpenDaylight points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Cisco ACI satisfies what this question tests — OpenDaylight does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Cisco SD-WAN describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Cisco ACI matches the tested behavior — Cisco SD-WAN applies a different mechanism.",
-            "whatItDoes": "Cisco SD-WAN describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Cisco ACI matches the tested behavior — Cisco SD-WAN applies a different mechanism.",
-            "misconceptionTested": "Applying \"Cisco SD-WAN\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Cisco SD-WAN (vManage) overlays WAN edges — data center fabric is ACI.",
+            "misconceptionTested": "SD-WAN as data center SDN",
+            "whatItDoes": "Cisco SD-WAN points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Cisco ACI satisfies what this question tests — Cisco SD-WAN does not."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "SDN map: ACI = DC | APIC-EM/DNA = campus | vManage = SD-WAN."
       }
     },
     {
@@ -237,32 +231,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Cisco SD-WAN (Viptela) connects branch offices to applications over optimized WAN paths — built for ROBO direct app access."
+          "explanation": "Southbound APIs (NETCONF/RESTCONF) push configuration from controller to devices — that is how SDN programs the network."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "APIC-EM is legacy SDN management for enterprise LAN — not the branch WAN overlay for remote workers reaching apps.",
-            "misconceptionTested": "Using campus SDN controller for WAN branch use case",
-            "whatItDoes": "Cisco APIC-EM describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Cisco SD-WAN matches the tested behavior — Cisco APIC-EM applies a different mechanism."
+            "explanation": "Northbound APIs face applications/orchestration — they do not program ASICs directly.",
+            "misconceptionTested": "Swapping northbound and southbound",
+            "whatItDoes": "Cisco APIC-EM points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Cisco SD-WAN satisfies what this question tests — Cisco APIC-EM does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Prime Infrastructure is traditional network management — not the SD-WAN overlay product for branch connectivity.",
-            "misconceptionTested": "Selecting NMS instead of SD-WAN solution",
-            "whatItDoes": "Cisco Prime Infrastructure describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Cisco SD-WAN matches the tested behavior — Cisco Prime Infrastructure applies a different mechanism."
+            "explanation": "SNMP is legacy monitoring — SDN southbound is model-driven config (YANG/NETCONF), not SNMP SETs.",
+            "misconceptionTested": "Using SNMP as SDN southbound",
+            "whatItDoes": "Cisco Prime Infrastructure points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Cisco SD-WAN satisfies what this question tests — Cisco Prime Infrastructure does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "OpenDaylight is an open SDN controller platform — Cisco SD-WAN is the branded branch/WAN answer on CCNA stems.",
-            "misconceptionTested": "Picking generic open controller for Cisco ROBO scenario",
-            "whatItDoes": "OpenDaylight describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Cisco SD-WAN matches the tested behavior — OpenDaylight applies a different mechanism."
+            "explanation": "CDP discovers neighbors — unrelated to controller-to-device configuration.",
+            "misconceptionTested": "Discovery protocol as SDN API",
+            "whatItDoes": "OpenDaylight points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Cisco SD-WAN satisfies what this question tests — OpenDaylight does not."
           }
         ],
-        "examTip": "Branch offices need direct app access → Cisco SD-WAN, not campus APIC-EM."
+        "examTip": "Northbound = apps → controller. Southbound = controller → devices (NETCONF/RESTCONF/OpenFlow)."
       }
     },
     {
@@ -288,35 +282,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Campus\"."
+          "explanation": "The three-tier campus model includes access, distribution, and core — distribution aggregates access blocks."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Spine/Leaf reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
-            "whatItDoes": "Spine/Leaf describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Campus matches the tested behavior — Spine/Leaf applies a different mechanism.",
-            "misconceptionTested": "Calling spine-leaf a WAN topology",
-            "needsExplanationReview": true
+            "explanation": "Spine/leaf is a two-tier CLOS fabric — no separate distribution layer.",
+            "misconceptionTested": "Spine/leaf as distribution-layer model",
+            "whatItDoes": "Spine/Leaf points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Campus satisfies what this question tests — Spine/Leaf does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "CLOS describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Campus matches the tested behavior — CLOS applies a different mechanism.",
-            "whatItDoes": "CLOS describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Campus matches the tested behavior — CLOS applies a different mechanism.",
-            "misconceptionTested": "Applying \"CLOS\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "CLOS describes spine/leaf topology — campus three-tier has the distribution layer.",
+            "misconceptionTested": "CLOS as campus distribution model",
+            "whatItDoes": "CLOS points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Campus satisfies what this question tests — CLOS does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "SDN describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Campus matches the tested behavior — SDN applies a different mechanism.",
-            "whatItDoes": "SDN describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Campus matches the tested behavior — SDN applies a different mechanism.",
-            "misconceptionTested": "Applying \"SDN\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "SDN is a control paradigm — the layered model with distribution is campus three-tier.",
+            "misconceptionTested": "SDN as distribution-layer architecture",
+            "whatItDoes": "SDN points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Campus satisfies what this question tests — SDN does not."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "Campus tiers: access → distribution → core; DC modern: spine/leaf (no distribution)."
       }
     },
     {
@@ -345,35 +336,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"The SDN controller replaces the control plane of the SDN.\"."
+          "explanation": "The SDN controller replaces the distributed control plane — devices forward (data plane) per controller policy."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The SDN controller configures the management plane of network devices. describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, The SDN controller replaces the control plane of the SDN. matches the tested behavior — The SDN controller configures the management plane of network devices. applies a different mechanism.",
-            "whatItDoes": "The SDN controller configures the management plane of network devices. describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, The SDN controller replaces the control plane of the SDN. matches the tested behavior — The SDN controller configures the management plane of network devices. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The SDN controller configures the ma\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Management plane (CLI, SNMP) may remain — the controller centralizes the control plane, not mgmt only.",
+            "misconceptionTested": "Controller as management-plane only",
+            "whatItDoes": "The SDN controller configures the management plane of network devices. points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", The SDN controller replaces the control plane of the SDN. satisfies what this question tests — The SDN controller configures the management plane of network devices. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The SDN controller monitors data plane traffic. describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, The SDN controller replaces the control plane of the SDN. matches the tested behavior — The SDN controller monitors data plane traffic. applies a different mechanism.",
-            "whatItDoes": "The SDN controller monitors data plane traffic. describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, The SDN controller replaces the control plane of the SDN. matches the tested behavior — The SDN controller monitors data plane traffic. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The SDN controller monitors data pla\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Monitoring data-plane traffic is analytics — the controller owns control-plane decisions.",
+            "misconceptionTested": "Controller as data-plane monitor only",
+            "whatItDoes": "The SDN controller monitors data plane traffic. points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", The SDN controller replaces the control plane of the SDN. satisfies what this question tests — The SDN controller monitors data plane traffic. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The SDN controller complements the control plane of the SDN device. describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, The SDN controller replaces the control plane of the SDN. matches the tested behavior — The SDN controller complements the control plane of the SDN device. applies a different mechanism.",
-            "whatItDoes": "The SDN controller complements the control plane of the SDN device. describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, The SDN controller replaces the control plane of the SDN. matches the tested behavior — The SDN controller complements the control plane of the SDN device. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The SDN controller complements the c\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "The controller centralizes/replaces control functions — it does not merely complement local routing.",
+            "misconceptionTested": "Controller complements instead of replaces control plane",
+            "whatItDoes": "The SDN controller complements the control plane of the SDN device. points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", The SDN controller replaces the control plane of the SDN. satisfies what this question tests — The SDN controller complements the control plane of the SDN device. does not."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "SDN split: data plane on switch | control plane on controller | mgmt often still local."
       }
     },
     {
@@ -402,35 +390,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"APIC-EM\"."
+          "explanation": "Cisco APIC-EM is the SDN controller platform for enterprise campus/branch automation and policy."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "OpenSDN describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, APIC-EM matches the tested behavior — OpenSDN applies a different mechanism.",
-            "whatItDoes": "OpenSDN describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, APIC-EM matches the tested behavior — OpenSDN applies a different mechanism.",
-            "misconceptionTested": "Applying \"OpenSDN\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "OpenSDN is not Cisco's enterprise controller product — Cisco offers APIC-EM (and DNA Center).",
+            "misconceptionTested": "OpenSDN as Cisco enterprise controller",
+            "whatItDoes": "OpenSDN points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", APIC-EM satisfies what this question tests — OpenSDN does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "OpenStack describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, APIC-EM matches the tested behavior — OpenStack applies a different mechanism.",
-            "whatItDoes": "OpenStack describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, APIC-EM matches the tested behavior — OpenStack applies a different mechanism.",
-            "misconceptionTested": "Applying \"OpenStack\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "OpenStack is cloud orchestration — not Cisco's SDN controller for enterprise connectivity.",
+            "misconceptionTested": "OpenStack as Cisco SDN controller",
+            "whatItDoes": "OpenStack points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", APIC-EM satisfies what this question tests — OpenStack does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "OpenDaylight describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, APIC-EM matches the tested behavior — OpenDaylight applies a different mechanism.",
-            "whatItDoes": "OpenDaylight describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, APIC-EM matches the tested behavior — OpenDaylight applies a different mechanism.",
-            "misconceptionTested": "Applying \"OpenDaylight\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "OpenDaylight is an open-source controller framework — Cisco enterprise SDN is APIC-EM.",
+            "misconceptionTested": "OpenDaylight as Cisco proprietary controller",
+            "whatItDoes": "OpenDaylight points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", APIC-EM satisfies what this question tests — OpenDaylight does not."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "Cisco enterprise SDN controller → APIC-EM; SD-WAN = vManage; ACI = APIC (data center)."
       }
     },
     {
@@ -457,35 +442,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Control plane\"."
+          "explanation": "STP runs on the control plane — computes loop-free topology."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Data plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Control plane matches the tested behavior — Data plane applies a different mechanism.",
-            "whatItDoes": "Data plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Data plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Data plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Data plane forwards frames — STP doesn't forward user traffic.",
+            "misconceptionTested": "STP on data plane",
+            "whatItDoes": "Data plane points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Control plane satisfies what this question tests — Data plane does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Management plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Control plane matches the tested behavior — Management plane applies a different mechanism.",
-            "whatItDoes": "Management plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Management plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Management plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Management plane is SNMP/syslog — STP is control.",
+            "misconceptionTested": "STP on management plane",
+            "whatItDoes": "Management plane points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Control plane satisfies what this question tests — Management plane does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Control plane matches the tested behavior — Switch plane applies a different mechanism.",
-            "whatItDoes": "Switch plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Switch plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Switch plane is not a standard model term.",
+            "misconceptionTested": "Invented switch plane",
+            "whatItDoes": "Switch plane points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Control plane satisfies what this question tests — Switch plane does not."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -512,35 +494,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Management plane\"."
+          "explanation": "Syslog delivers operational messages — management plane (OOB monitoring/alerting)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Data plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Management plane matches the tested behavior — Data plane applies a different mechanism.",
-            "whatItDoes": "Data plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Management plane matches the tested behavior — Data plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Data plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Data plane carries user packets — syslog is control/management traffic.",
+            "misconceptionTested": "Syslog as data plane",
+            "whatItDoes": "Data plane points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Management plane satisfies what this question tests — Data plane does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Control plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Management plane matches the tested behavior — Control plane applies a different mechanism.",
-            "whatItDoes": "Control plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Management plane matches the tested behavior — Control plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Control plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Control plane is routing protocols — syslog is management.",
+            "misconceptionTested": "Syslog as control plane",
+            "whatItDoes": "Control plane points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Management plane satisfies what this question tests — Control plane does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Management plane matches the tested behavior — Switch plane applies a different mechanism.",
-            "whatItDoes": "Switch plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Management plane matches the tested behavior — Switch plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Switch plane is not standard terminology.",
+            "misconceptionTested": "Invented switch plane",
+            "whatItDoes": "Switch plane points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Management plane satisfies what this question tests — Switch plane does not."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -567,35 +546,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Data plane\"."
+          "explanation": "Routing/forwarding of packets through a router is data plane (FIB/CEF forwarding)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Control plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Data plane matches the tested behavior — Control plane applies a different mechanism.",
-            "whatItDoes": "Control plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Data plane matches the tested behavior — Control plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Control plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Control plane builds routes — forwarding is data plane.",
+            "misconceptionTested": "Control plane forwards packets",
+            "whatItDoes": "Control plane points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Data plane satisfies what this question tests — Control plane does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Management plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Data plane matches the tested behavior — Management plane applies a different mechanism.",
-            "whatItDoes": "Management plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Data plane matches the tested behavior — Management plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Management plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Management plane is SNMP/syslog.",
+            "misconceptionTested": "Management plane forwarding",
+            "whatItDoes": "Management plane points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Data plane satisfies what this question tests — Management plane does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Data plane matches the tested behavior — Switch plane applies a different mechanism.",
-            "whatItDoes": "Switch plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Data plane matches the tested behavior — Switch plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Routing plane is not the standard three-plane model.",
+            "misconceptionTested": "Routing plane term",
+            "whatItDoes": "Switch plane points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Data plane satisfies what this question tests — Switch plane does not."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -622,35 +598,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Control plane\"."
+          "explanation": "Routing protocols (OSPF, EIGRP, BGP) operate on the control plane."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Data plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Control plane matches the tested behavior — Data plane applies a different mechanism.",
-            "whatItDoes": "Data plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Data plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Data plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Data plane forwards — protocols compute routes in control plane.",
+            "misconceptionTested": "Routing protocols on data plane",
+            "whatItDoes": "Data plane points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Control plane satisfies what this question tests — Data plane does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Management plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Control plane matches the tested behavior — Management plane applies a different mechanism.",
-            "whatItDoes": "Management plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Management plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Management plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Management plane is monitoring — not OSPF.",
+            "misconceptionTested": "OSPF on management plane",
+            "whatItDoes": "Management plane points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Control plane satisfies what this question tests — Management plane does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Routing plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Control plane matches the tested behavior — Routing plane applies a different mechanism.",
-            "whatItDoes": "Routing plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Routing plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Routing plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Routing plane is non-standard — use control plane.",
+            "misconceptionTested": "Routing plane terminology",
+            "whatItDoes": "Routing plane points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Control plane satisfies what this question tests — Routing plane does not."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -678,35 +651,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Management plane\"."
+          "explanation": "CDP is a management/discovery protocol — neighbor visibility for operators."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Data plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Management plane matches the tested behavior — Data plane applies a different mechanism.",
-            "whatItDoes": "Data plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Management plane matches the tested behavior — Data plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Data plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "CDP doesn't forward user data — not data plane.",
+            "misconceptionTested": "CDP as data plane",
+            "whatItDoes": "Data plane points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Management plane satisfies what this question tests — Data plane does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Control plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Management plane matches the tested behavior — Control plane applies a different mechanism.",
-            "whatItDoes": "Control plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Management plane matches the tested behavior — Control plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Control plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "CDP doesn't compute routes — not control plane.",
+            "misconceptionTested": "CDP as control plane",
+            "whatItDoes": "Control plane points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Management plane satisfies what this question tests — Control plane does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Network plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Management plane matches the tested behavior — Network plane applies a different mechanism.",
-            "whatItDoes": "Network plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Management plane matches the tested behavior — Network plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Network plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Network plane is not standard — CDP is management.",
+            "misconceptionTested": "Network plane for CDP",
+            "whatItDoes": "Network plane points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Management plane satisfies what this question tests — Network plane does not."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -735,35 +705,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"The southbound interface (SBI)\"."
+          "explanation": "The southbound interface (SBI) talks down to switches/routers — OpenFlow, NETCONF, etc."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The northbound interface (NBI) describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, The southbound interface (SBI) matches the tested behavior — The northbound interface (NBI) applies a different mechanism.",
-            "whatItDoes": "The northbound interface (NBI) describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, The southbound interface (SBI) matches the tested behavior — The northbound interface (NBI) applies a different mechanism.",
-            "misconceptionTested": "Applying \"The northbound interface (NBI)\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "NBI faces applications above the controller — device control uses SBI downward.",
+            "misconceptionTested": "NBI for direct device communication",
+            "whatItDoes": "The northbound interface (NBI) points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", The southbound interface (SBI) satisfies what this question tests — The northbound interface (NBI) does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The core of the controller describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, The southbound interface (SBI) matches the tested behavior — The core of the controller applies a different mechanism.",
-            "whatItDoes": "The core of the controller describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, The southbound interface (SBI) matches the tested behavior — The core of the controller applies a different mechanism.",
-            "misconceptionTested": "Applying \"The core of the controller\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "The controller core orchestrates policy — programmatic device reach is the SBI.",
+            "misconceptionTested": "Controller core as device API",
+            "whatItDoes": "The core of the controller points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", The southbound interface (SBI) satisfies what this question tests — The core of the controller does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Applications hosted on the controller describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, The southbound interface (SBI) matches the tested behavior — Applications hosted on the controller applies a different mechanism.",
-            "whatItDoes": "Applications hosted on the controller describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, The southbound interface (SBI) matches the tested behavior — Applications hosted on the controller applies a different mechanism.",
-            "misconceptionTested": "Applying \"Applications hosted on the controlle\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Apps on the controller use NBI — they do not directly push forwarding rules to devices.",
+            "misconceptionTested": "Hosted apps as southbound path",
+            "whatItDoes": "Applications hosted on the controller points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", The southbound interface (SBI) satisfies what this question tests — Applications hosted on the controller does not."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "SDN directions: NBI = apps ↑ | SBI = devices ↓."
       }
     },
     {
@@ -789,35 +756,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"An API is a programming interface or standard allowing one program to communicate with another program.\"."
+          "explanation": "An API is a defined interface letting one program communicate with another."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "An API is a program that allows for data transfer. describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, An API is a programming interface or standard allowing one program to communicate with another program. matches the tested behavior — An API is a program that allows for data transfer. applies a different mechanism.",
-            "whatItDoes": "An API is a program that allows for data transfer. describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, An API is a programming interface or standard allowing one program to communicate with another program. matches the tested behavior — An API is a program that allows for data transfer. applies a different mechanism.",
-            "misconceptionTested": "Applying \"An API is a program that allows for \" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "APIs are interfaces — not standalone transfer programs.",
+            "misconceptionTested": "API as transfer program",
+            "whatItDoes": "An API is a program that allows for data transfer. points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", An API is a programming interface or standard allowing one program to communicate with another program. satisfies what this question tests — An API is a program that allows for data transfer. does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "An API is a programming language for network programmability. describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, An API is a programming interface or standard allowing one program to communicate with another program. matches the tested behavior — An API is a programming language for network programmability. applies a different mechanism.",
-            "whatItDoes": "An API is a programming language for network programmability. describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, An API is a programming interface or standard allowing one program to communicate with another program. matches the tested behavior — An API is a programming language for network programmability. applies a different mechanism.",
-            "misconceptionTested": "Applying \"An API is a programming language for\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "APIs aren't programming languages — they expose capabilities.",
+            "misconceptionTested": "API as programming language",
+            "whatItDoes": "An API is a programming language for network programmability. points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", An API is a programming interface or standard allowing one program to communicate with another program. satisfies what this question tests — An API is a programming language for network programmability. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "An API allows for programs to be virtualized. describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, An API is a programming interface or standard allowing one program to communicate with another program. matches the tested behavior — An API allows for programs to be virtualized. applies a different mechanism.",
-            "whatItDoes": "An API allows for programs to be virtualized. describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, An API is a programming interface or standard allowing one program to communicate with another program. matches the tested behavior — An API allows for programs to be virtualized. applies a different mechanism.",
-            "misconceptionTested": "Applying \"An API allows for programs to be vir\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "APIs don't virtualize programs — they standardize communication.",
+            "misconceptionTested": "API as virtualization",
+            "whatItDoes": "An API allows for programs to be virtualized. points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", An API is a programming interface or standard allowing one program to communicate with another program. satisfies what this question tests — An API allows for programs to be virtualized. does not."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -847,35 +811,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"The northbound interface (NBI)\"."
+          "explanation": "Applications talk to the SDN controller via the northbound interface (NBI) — REST/HTTP APIs."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The southbound interface (SBI) describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, The northbound interface (NBI) matches the tested behavior — The southbound interface (SBI) applies a different mechanism.",
-            "whatItDoes": "The southbound interface (SBI) describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, The northbound interface (NBI) matches the tested behavior — The southbound interface (SBI) applies a different mechanism.",
-            "misconceptionTested": "Applying \"The southbound interface (SBI)\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Southbound is controller→devices (OpenFlow, NETCONF).",
+            "misconceptionTested": "SBI for application traffic",
+            "whatItDoes": "The southbound interface (SBI) points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", The northbound interface (NBI) satisfies what this question tests — The southbound interface (SBI) does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The core of the controller describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, The northbound interface (NBI) matches the tested behavior — The core of the controller applies a different mechanism.",
-            "whatItDoes": "The core of the controller describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, The northbound interface (NBI) matches the tested behavior — The core of the controller applies a different mechanism.",
-            "misconceptionTested": "Applying \"The core of the controller\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Controller core is internal — apps use NBI.",
+            "misconceptionTested": "Controller core as app API",
+            "whatItDoes": "The core of the controller points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", The northbound interface (NBI) satisfies what this question tests — The core of the controller does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Simple Network Management Protocol (SNMP) describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, The northbound interface (NBI) matches the tested behavior — Simple Network Management Protocol (SNMP) applies a different mechanism.",
-            "whatItDoes": "Simple Network Management Protocol (SNMP) describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, The northbound interface (NBI) matches the tested behavior — Simple Network Management Protocol (SNMP) applies a different mechanism.",
-            "misconceptionTested": "Applying \"Simple Network Management Protocol (\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "SNMP is legacy monitoring — app automation uses NBI APIs.",
+            "misconceptionTested": "SNMP as SDN app API",
+            "whatItDoes": "Simple Network Management Protocol (SNMP) points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", The northbound interface (NBI) satisfies what this question tests — Simple Network Management Protocol (SNMP) does not."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -903,35 +864,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Data plane\"."
+          "explanation": "Moving packets to destinations is data plane forwarding."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Control plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Data plane matches the tested behavior — Control plane applies a different mechanism.",
-            "whatItDoes": "Control plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Data plane matches the tested behavior — Control plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Control plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Control plane decides routes — data plane forwards.",
+            "misconceptionTested": "Control plane packet forwarding",
+            "whatItDoes": "Control plane points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Data plane satisfies what this question tests — Control plane does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Management plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Data plane matches the tested behavior — Management plane applies a different mechanism.",
-            "whatItDoes": "Management plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Data plane matches the tested behavior — Management plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Management plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Management plane monitors — doesn't route packets.",
+            "misconceptionTested": "Management plane routing",
+            "whatItDoes": "Management plane points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Data plane satisfies what this question tests — Management plane does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Routing plane describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Data plane matches the tested behavior — Routing plane applies a different mechanism.",
-            "whatItDoes": "Routing plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Data plane matches the tested behavior — Routing plane applies a different mechanism.",
-            "misconceptionTested": "Applying \"Routing plane\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Routing plane is non-standard.",
+            "misconceptionTested": "Routing plane term",
+            "whatItDoes": "Routing plane points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Data plane satisfies what this question tests — Routing plane does not."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -956,35 +914,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"3 hops\"."
+          "explanation": "Leaf-spine fabric paths are typically ≤3 hops (host→leaf→spine→leaf→host)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "1 hop describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, 3 hops matches the tested behavior — 1 hop applies a different mechanism.",
-            "whatItDoes": "1 hop describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, 3 hops matches the tested behavior — 1 hop applies a different mechanism.",
-            "misconceptionTested": "Applying \"1 hop\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "One hop can't reach remote leaves through spine.",
+            "misconceptionTested": "Single hop fabric",
+            "whatItDoes": "1 hop points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", 3 hops satisfies what this question tests — 1 hop does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "4 hops describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, 3 hops matches the tested behavior — 4 hops applies a different mechanism.",
-            "whatItDoes": "4 hops describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, 3 hops matches the tested behavior — 4 hops applies a different mechanism.",
-            "misconceptionTested": "Applying \"4 hops\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Four hops exceed typical Clos fabric design.",
+            "misconceptionTested": "Four hops as fabric max",
+            "whatItDoes": "4 hops points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", 3 hops satisfies what this question tests — 4 hops does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "5 hops describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, 3 hops matches the tested behavior — 5 hops applies a different mechanism.",
-            "whatItDoes": "5 hops describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, 3 hops matches the tested behavior — 5 hops applies a different mechanism.",
-            "misconceptionTested": "Applying \"5 hops\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Five hops exceed typical Clos fabric design.",
+            "misconceptionTested": "Five hops as fabric max",
+            "whatItDoes": "5 hops points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", 3 hops satisfies what this question tests — 5 hops does not."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -1012,35 +967,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Underlay\"."
+          "explanation": "MTU is configured on the underlay physical/tunnel transport — not overlay logical networks."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Overlay describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Underlay matches the tested behavior — Overlay applies a different mechanism.",
-            "whatItDoes": "Overlay describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Underlay matches the tested behavior — Overlay applies a different mechanism.",
-            "misconceptionTested": "Applying \"Overlay\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Overlay carries tenant semantics — underlay sets MTU.",
+            "misconceptionTested": "Overlay MTU setting",
+            "whatItDoes": "Overlay points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Underlay satisfies what this question tests — Overlay does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Tunnel describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, Underlay matches the tested behavior — Tunnel applies a different mechanism.",
-            "whatItDoes": "Tunnel describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Underlay matches the tested behavior — Tunnel applies a different mechanism.",
-            "misconceptionTested": "Applying \"Tunnel\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "Tunnel endpoints sit in underlay — MTU is underlay concern.",
+            "misconceptionTested": "Tunnel as MTU layer only",
+            "whatItDoes": "Tunnel points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Underlay satisfies what this question tests — Tunnel does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Leaf reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
-            "whatItDoes": "Leaf describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Underlay matches the tested behavior — Leaf applies a different mechanism.",
-            "misconceptionTested": "Calling spine-leaf a WAN topology",
-            "needsExplanationReview": true
+            "explanation": "Leaf switching doesn't define WAN MTU — underlay does.",
+            "misconceptionTested": "Leaf as MTU config point",
+            "whatItDoes": "Leaf points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Underlay satisfies what this question tests — Leaf does not."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -1075,22 +1027,22 @@
             "choiceIndex": 0,
             "explanation": "Management plane covers device administration (SSH, SNMP) — ACL configuration defines traffic policy, which is control plane.",
             "misconceptionTested": "Equating ACL policy with device management plane",
-            "whatItDoes": "Management plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Management plane applies a different mechanism."
+            "whatItDoes": "Management plane points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Control plane satisfies what this question tests — Management plane does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "\"Configuration plane\" is not a standard Cisco three-plane term — ACLs belong to control plane policy.",
             "misconceptionTested": "Inventing non-standard plane name for ACL config",
-            "whatItDoes": "Configuration plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Configuration plane applies a different mechanism."
+            "whatItDoes": "Configuration plane points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Control plane satisfies what this question tests — Configuration plane does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Data plane forwards packets — you configure ACL rules (control plane) that the data plane then enforces.",
             "misconceptionTested": "Confusing policy configuration with packet forwarding plane",
-            "whatItDoes": "Data plane describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, Control plane matches the tested behavior — Data plane applies a different mechanism."
+            "whatItDoes": "Data plane points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", Control plane satisfies what this question tests — Data plane does not."
           }
         ],
         "examTip": "Three planes: data = forward, control = routing/ACL policy, management = admin access."
@@ -1122,35 +1074,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"DMVPN\"."
+          "explanation": "DMVPN builds a dynamic VPN overlay over IP transport connecting remote sites."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "VXLAN describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, DMVPN matches the tested behavior — VXLAN applies a different mechanism.",
-            "whatItDoes": "VXLAN describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, DMVPN matches the tested behavior — VXLAN applies a different mechanism.",
-            "misconceptionTested": "Applying \"VXLAN\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "VXLAN is DC L2 overlay — DMVPN is WAN hub-spoke/mesh overlay.",
+            "misconceptionTested": "VXLAN for WAN offices",
+            "whatItDoes": "VXLAN points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", DMVPN satisfies what this question tests — VXLAN does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "VLAN describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, DMVPN matches the tested behavior — VLAN applies a different mechanism.",
-            "whatItDoes": "VLAN describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, DMVPN matches the tested behavior — VLAN applies a different mechanism.",
-            "misconceptionTested": "Applying \"VLAN\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "VLAN is L2 segmentation — not WAN overlay VPN.",
+            "misconceptionTested": "VLAN as WAN overlay",
+            "whatItDoes": "VLAN points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", DMVPN satisfies what this question tests — VLAN does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "ECMP describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, DMVPN matches the tested behavior — ECMP applies a different mechanism.",
-            "whatItDoes": "ECMP describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, DMVPN matches the tested behavior — ECMP applies a different mechanism.",
-            "misconceptionTested": "Applying \"ECMP\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "ECMP is load-sharing — not overlay VPN technology.",
+            "misconceptionTested": "ECMP as overlay VPN",
+            "whatItDoes": "ECMP points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", DMVPN satisfies what this question tests — ECMP does not."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -1178,35 +1127,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"VXLAN\"."
+          "explanation": "VXLAN tunnels Layer 2 frames over a Layer 3 underlay (VNI overlay)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "ECMP describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, VXLAN matches the tested behavior — ECMP applies a different mechanism.",
-            "whatItDoes": "ECMP describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, VXLAN matches the tested behavior — ECMP applies a different mechanism.",
-            "misconceptionTested": "Applying \"ECMP\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "ECMP is forwarding — not L2-over-L3 tunneling.",
+            "misconceptionTested": "ECMP for L2 tunnel",
+            "whatItDoes": "ECMP points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", VXLAN satisfies what this question tests — ECMP does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "DMVPN describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, VXLAN matches the tested behavior — DMVPN applies a different mechanism.",
-            "whatItDoes": "DMVPN describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, VXLAN matches the tested behavior — DMVPN applies a different mechanism.",
-            "misconceptionTested": "Applying \"DMVPN\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "DMVPN is primarily L3 VPN — VXLAN is L2 extension.",
+            "misconceptionTested": "DMVPN as L2 overlay",
+            "whatItDoes": "DMVPN points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", VXLAN satisfies what this question tests — DMVPN does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "EIGRP describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, VXLAN matches the tested behavior — EIGRP applies a different mechanism.",
-            "whatItDoes": "EIGRP describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, VXLAN matches the tested behavior — EIGRP applies a different mechanism.",
-            "misconceptionTested": "Applying \"EIGRP\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "EIGRP is routing — not L2 tunnel encapsulation.",
+            "misconceptionTested": "EIGRP as L2 tunnel",
+            "whatItDoes": "EIGRP applies another routing protocol's behavior instead of OSPF-specific rules.",
+            "whyWrongHere": "For \"sdn architecture\", VXLAN satisfies what this question tests — EIGRP does not."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -1233,35 +1179,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"SNMP\"."
+          "explanation": "SNMP operates on the management plane for monitoring and configuration."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "CDP describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, SNMP matches the tested behavior — CDP applies a different mechanism.",
-            "whatItDoes": "CDP describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, SNMP matches the tested behavior — CDP applies a different mechanism.",
-            "misconceptionTested": "Applying \"CDP\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "CDP is discovery — SNMP is the classic management poll/trap protocol.",
+            "misconceptionTested": "CDP as management monitoring",
+            "whatItDoes": "CDP points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", SNMP satisfies what this question tests — CDP does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "ICMP describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, SNMP matches the tested behavior — ICMP applies a different mechanism.",
-            "whatItDoes": "ICMP describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, SNMP matches the tested behavior — ICMP applies a different mechanism.",
-            "misconceptionTested": "Applying \"ICMP\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "ICMP is diagnostic — not primary management plane ops.",
+            "misconceptionTested": "ICMP as management plane",
+            "whatItDoes": "ICMP names a transport protocol or port behavior that may not match reliability or connection requirements.",
+            "whyWrongHere": "For \"sdn architecture\", SNMP satisfies what this question tests — ICMP does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "VTP describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, SNMP matches the tested behavior — VTP applies a different mechanism.",
-            "whatItDoes": "VTP describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, SNMP matches the tested behavior — VTP applies a different mechanism.",
-            "misconceptionTested": "Applying \"VTP\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "VTP is L2 control — not management plane monitoring.",
+            "misconceptionTested": "VTP as management",
+            "whatItDoes": "VTP points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", SNMP satisfies what this question tests — VTP does not."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     },
     {
@@ -1288,35 +1231,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"ECMP\"."
+          "explanation": "ECMP provides multiple equal-cost next hops — common in leaf-spine SDN fabrics."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "OSPF describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, ECMP matches the tested behavior — OSPF applies a different mechanism.",
-            "whatItDoes": "OSPF describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, ECMP matches the tested behavior — OSPF applies a different mechanism.",
-            "misconceptionTested": "Applying \"OSPF\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "OSPF is a routing protocol — ECMP is the forwarding mechanism.",
+            "misconceptionTested": "OSPF as next-hop forwarding",
+            "whatItDoes": "OSPF points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", ECMP satisfies what this question tests — OSPF does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "MPLS describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, ECMP matches the tested behavior — MPLS applies a different mechanism.",
-            "whatItDoes": "MPLS describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, ECMP matches the tested behavior — MPLS applies a different mechanism.",
-            "misconceptionTested": "Applying \"MPLS\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "MPLS is transport — leaf-spine uses IP ECMP.",
+            "misconceptionTested": "MPLS as SDN fabric forwarding",
+            "whatItDoes": "MPLS points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", ECMP satisfies what this question tests — MPLS does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "CLOS describes a mechanism that could sound plausible for sdn architecture. Given sdn architecture, ECMP matches the tested behavior — CLOS applies a different mechanism.",
-            "whatItDoes": "CLOS describes a mechanism that could sound plausible for sdn architecture.",
-            "whyWrongHere": "Given sdn architecture, ECMP matches the tested behavior — CLOS applies a different mechanism.",
-            "misconceptionTested": "Applying \"CLOS\" without matching sdn architecture",
-            "needsExplanationReview": true
+            "explanation": "CLOS is topology name — ECMP is the forwarding feature.",
+            "misconceptionTested": "CLOS as protocol",
+            "whatItDoes": "CLOS points to a related idea, but not the specific behavior or value required for sdn architecture.",
+            "whyWrongHere": "For \"sdn architecture\", ECMP satisfies what this question tests — CLOS does not."
           }
         ],
-        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
+        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
       }
     }
   ]

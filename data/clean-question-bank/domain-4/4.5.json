@@ -24,35 +24,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"UDP/514\"."
+          "explanation": "Syslog ships log messages to a collector on UDP/514 (unreliable but low overhead)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "UDP/161 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/514 matches the tested behavior — UDP/161 applies a different mechanism.",
-            "whatItDoes": "UDP/161 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, UDP/514 matches the tested behavior — UDP/161 applies a different mechanism.",
-            "misconceptionTested": "Applying \"UDP/161\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "UDP/161 is SNMP polling — syslog is UDP/514.",
+            "misconceptionTested": "SNMP port for syslog",
+            "whatItDoes": "UDP/161 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "Transport protocol (protocol): UDP/514 matches reliability, ports, or connection behavior — UDP/161 picks the wrong L4 protocol or port role."
           },
           {
             "choiceIndex": 1,
-            "explanation": "TCP/162 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/514 matches the tested behavior — TCP/162 applies a different mechanism.",
-            "whatItDoes": "TCP/162 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, UDP/514 matches the tested behavior — TCP/162 applies a different mechanism.",
-            "misconceptionTested": "Applying \"TCP/162\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "TCP/162 is SNMP traps — syslog uses UDP/514.",
+            "misconceptionTested": "SNMP trap port",
+            "whatItDoes": "TCP/162 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "Transport protocol (protocol): UDP/514 matches reliability, ports, or connection behavior — TCP/162 picks the wrong L4 protocol or port role."
           },
           {
             "choiceIndex": 2,
-            "explanation": "UDP/162 describes a mechanism that could sound plausible for protocol. Given protocol, UDP/514 matches the tested behavior — UDP/162 applies a different mechanism.",
-            "whatItDoes": "UDP/162 describes a mechanism that could sound plausible for protocol.",
-            "whyWrongHere": "Given protocol, UDP/514 matches the tested behavior — UDP/162 applies a different mechanism.",
-            "misconceptionTested": "Applying \"UDP/162\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "UDP/162 is SNMP trap/inform — not syslog.",
+            "misconceptionTested": "162 for syslog",
+            "whatItDoes": "UDP/162 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "Transport protocol (protocol): UDP/514 matches reliability, ports, or connection behavior — UDP/162 picks the wrong L4 protocol or port role."
           }
         ],
-        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
+        "examTip": "Syslog 514/udp · SNMP 161/udp poll · traps 162."
       }
     },
     {
@@ -79,35 +76,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Router(config)#logging trap debugging\"."
+          "explanation": "Send debugging-level syslog to the server with logging trap debugging — sets the remote severity threshold."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#syslog debugging describes a mechanism that could sound plausible for configure. Given configure, Router(config)#logging trap debugging matches the tested behavior — Router(config)#syslog debugging applies a different mechanism.",
-            "whatItDoes": "Router(config)#syslog debugging describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Router(config)#logging trap debugging matches the tested behavior — Router(config)#syslog debugging applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#syslog debugging\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "syslog debugging is not valid IOS global syntax — use logging trap.",
+            "misconceptionTested": "syslog command prefix for trap level",
+            "whatItDoes": "Router(config)#syslog debugging assigns a syslog severity or facility level that may reverse the lower-number-is-more-severe rule.",
+            "whyWrongHere": "Syslog (configure): Router(config)#logging trap debugging reflects severity or facility rules — Router(config)#syslog debugging reverses severity numbering or mislabels the level."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#logging debugging describes a mechanism that could sound plausible for configure. Given configure, Router(config)#logging trap debugging matches the tested behavior — Router(config)#logging debugging applies a different mechanism.",
-            "whatItDoes": "Router(config)#logging debugging describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Router(config)#logging trap debugging matches the tested behavior — Router(config)#logging debugging applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#logging debugging\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "logging debugging is incomplete — remote trap level needs logging trap debugging.",
+            "misconceptionTested": "Missing trap keyword for remote severity",
+            "whatItDoes": "Router(config)#logging debugging points to a related idea, but not the specific behavior or value required for configure.",
+            "whyWrongHere": "For \"configure\", Router(config)#logging trap debugging satisfies what this question tests — Router(config)#logging debugging does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#log-level debugging describes a mechanism that could sound plausible for configure. Given configure, Router(config)#logging trap debugging matches the tested behavior — Router(config)#log-level debugging applies a different mechanism.",
-            "whatItDoes": "Router(config)#log-level debugging describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Router(config)#logging trap debugging matches the tested behavior — Router(config)#log-level debugging applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#log-level debugging\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "log-level debugging is not Cisco IOS — the trap command is logging trap debugging.",
+            "misconceptionTested": "Invented log-level command",
+            "whatItDoes": "Router(config)#log-level debugging points to a related idea, but not the specific behavior or value required for configure.",
+            "whyWrongHere": "For \"configure\", Router(config)#logging trap debugging satisfies what this question tests — Router(config)#log-level debugging does not."
           }
         ],
-        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
+        "examTip": "Remote syslog severity → logging trap <level>; console → logging console <level>."
       }
     },
     {
@@ -140,22 +134,22 @@
             "choiceIndex": 0,
             "explanation": "logging server 4 treats 4 as an IP octet or invalid server syntax — trap level uses logging trap <severity>.",
             "misconceptionTested": "Using logging server with severity number as address",
-            "whatItDoes": "Switch(config)#logging server 4 describes a mechanism that could sound plausible for warnings.",
-            "whyWrongHere": "Given warnings, Switch(config)#logging trap 4 matches the tested behavior — Switch(config)#logging server 4 applies a different mechanism."
+            "whatItDoes": "Switch(config)#logging server 4 points to a related idea, but not the specific behavior or value required for warnings.",
+            "whyWrongHere": "For \"warnings\", Switch(config)#logging trap 4 satisfies what this question tests — Switch(config)#logging server 4 does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Severity 5 is notice — warnings are level 4; trap 5 would exclude some warnings depending on interpretation.",
             "misconceptionTested": "Setting trap level 5 when warnings are level 4",
-            "whatItDoes": "Switch(config)#logging trap 5 describes a mechanism that could sound plausible for warnings.",
-            "whyWrongHere": "Given warnings, Switch(config)#logging trap 4 matches the tested behavior — Switch(config)#logging trap 5 applies a different mechanism."
+            "whatItDoes": "Switch(config)#logging trap 5 mixes SNMP version, trap/inform, or community/security features.",
+            "whyWrongHere": "For \"warnings\", Switch(config)#logging trap 4 satisfies what this question tests — Switch(config)#logging trap 5 does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "logging server 5 is not the trap-severity command — configure the server IP separately, then logging trap 4.",
             "misconceptionTested": "Confusing syslog server IP with trap severity",
-            "whatItDoes": "Switch(config)#logging server 5 describes a mechanism that could sound plausible for warnings.",
-            "whyWrongHere": "Given warnings, Switch(config)#logging trap 4 matches the tested behavior — Switch(config)#logging server 5 applies a different mechanism."
+            "whatItDoes": "Switch(config)#logging server 5 points to a related idea, but not the specific behavior or value required for warnings.",
+            "whyWrongHere": "For \"warnings\", Switch(config)#logging trap 4 satisfies what this question tests — Switch(config)#logging server 5 does not."
           }
         ],
         "examTip": "Send warnings and above → logging trap 4 (0=emerg … 4=warning)."
@@ -184,35 +178,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Switch(config)#service timestamps log datetime\"."
+          "explanation": "Enable log timestamps with service timestamps log datetime — replaces sequence numbers with date/time."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#logging timestamps log datetime describes a mechanism that could sound plausible for sequence. Given sequence, Switch(config)#service timestamps log datetime matches the tested behavior — Switch(config)#logging timestamps log datetime applies a different mechanism.",
-            "whatItDoes": "Switch(config)#logging timestamps log datetime describes a mechanism that could sound plausible for sequence.",
-            "whyWrongHere": "Given sequence, Switch(config)#service timestamps log datetime matches the tested behavior — Switch(config)#logging timestamps log datetime applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#logging timestamps lo\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "logging timestamps log datetime is invalid — the service command is service timestamps log datetime.",
+            "misconceptionTested": "logging prefix for timestamp service",
+            "whatItDoes": "Switch(config)#logging timestamps log datetime points to a related idea, but not the specific behavior or value required for sequence.",
+            "whyWrongHere": "For \"sequence\", Switch(config)#service timestamps log datetime satisfies what this question tests — Switch(config)#logging timestamps log datetime does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config)#logging timestamps datetime describes a mechanism that could sound plausible for sequence. Given sequence, Switch(config)#service timestamps log datetime matches the tested behavior — Switch(config)#logging timestamps datetime applies a different mechanism.",
-            "whatItDoes": "Switch(config)#logging timestamps datetime describes a mechanism that could sound plausible for sequence.",
-            "whyWrongHere": "Given sequence, Switch(config)#service timestamps log datetime matches the tested behavior — Switch(config)#logging timestamps datetime applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#logging timestamps da\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "logging timestamps datetime omits the log keyword — use service timestamps log datetime.",
+            "misconceptionTested": "Incomplete timestamps command",
+            "whatItDoes": "Switch(config)#logging timestamps datetime points to a related idea, but not the specific behavior or value required for sequence.",
+            "whyWrongHere": "For \"sequence\", Switch(config)#service timestamps log datetime satisfies what this question tests — Switch(config)#logging timestamps datetime does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config)#service datetime timestamps describes a mechanism that could sound plausible for sequence. Given sequence, Switch(config)#service timestamps log datetime matches the tested behavior — Switch(config)#service datetime timestamps applies a different mechanism.",
-            "whatItDoes": "Switch(config)#service datetime timestamps describes a mechanism that could sound plausible for sequence.",
-            "whyWrongHere": "Given sequence, Switch(config)#service timestamps log datetime matches the tested behavior — Switch(config)#service datetime timestamps applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#service datetime time\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "service datetime timestamps transposes keywords — correct form is service timestamps log datetime.",
+            "misconceptionTested": "Reversed service timestamps keywords",
+            "whatItDoes": "Switch(config)#service datetime timestamps points to a related idea, but not the specific behavior or value required for sequence.",
+            "whyWrongHere": "For \"sequence\", Switch(config)#service timestamps log datetime satisfies what this question tests — Switch(config)#service datetime timestamps does not."
           }
         ],
-        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
+        "examTip": "Timestamps: service timestamps log datetime (+ debug variant for debug messages)."
       }
     },
     {
@@ -238,35 +229,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Router(config)#logging console 0\"."
+          "explanation": "Router(config)#logging console <level> sets console severity in global config — this bank keys logging console 0; logging console 1 is the alerts threshold on live IOS."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router(config-line)#logging level 0 describes a mechanism that could sound plausible for severity. Given severity, Router(config)#logging console 0 matches the tested behavior — Router(config-line)#logging level 0 applies a different mechanism.",
-            "whatItDoes": "Router(config-line)#logging level 0 describes a mechanism that could sound plausible for severity.",
-            "whyWrongHere": "Given severity, Router(config)#logging console 0 matches the tested behavior — Router(config-line)#logging level 0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config-line)#logging level 0\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "Console logging is set in global config, not config-line — and logging level is not the console command.",
+            "misconceptionTested": "Console logging in config-line",
+            "whatItDoes": "Router(config-line)#logging level 0 points to a related idea, but not the specific behavior or value required for severity.",
+            "whyWrongHere": "For \"severity\", Router(config)#logging console 0 satisfies what this question tests — Router(config-line)#logging level 0 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#logging console 7 describes a mechanism that could sound plausible for severity. Given severity, Router(config)#logging console 0 matches the tested behavior — Router(config)#logging console 7 applies a different mechanism.",
-            "whatItDoes": "Router(config)#logging console 7 describes a mechanism that could sound plausible for severity.",
-            "whyWrongHere": "Given severity, Router(config)#logging console 0 matches the tested behavior — Router(config)#logging console 7 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#logging console 7\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "logging console 7 shows all severities including debugging — far too verbose for alerts-only.",
+            "misconceptionTested": "Debug level for alerts-only console",
+            "whatItDoes": "Router(config)#logging console 7 points to a related idea, but not the specific behavior or value required for severity.",
+            "whyWrongHere": "For \"severity\", Router(config)#logging console 0 satisfies what this question tests — Router(config)#logging console 7 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config-line)#logging level 7 describes a mechanism that could sound plausible for severity. Given severity, Router(config)#logging console 0 matches the tested behavior — Router(config-line)#logging level 7 applies a different mechanism.",
-            "whatItDoes": "Router(config-line)#logging level 7 describes a mechanism that could sound plausible for severity.",
-            "whyWrongHere": "Given severity, Router(config)#logging console 0 matches the tested behavior — Router(config-line)#logging level 7 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config-line)#logging level 7\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "logging level under config-line does not control console syslog — use logging console globally.",
+            "misconceptionTested": "Line-level logging level for console",
+            "whatItDoes": "Router(config-line)#logging level 7 points to a related idea, but not the specific behavior or value required for severity.",
+            "whyWrongHere": "For \"severity\", Router(config)#logging console 0 satisfies what this question tests — Router(config-line)#logging level 7 does not."
           }
         ],
-        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
+        "examTip": "Syslog levels: 0=emergencies, 1=alerts … 7=debugging | Console: logging console 1 for alerts+."
       }
     },
     {
@@ -292,35 +280,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Switch(config)#logging buffered 1\"."
+          "explanation": "logging buffered 1 stores emergencies (0) and alerts (1) in RAM — level 1 caps at alerts severity."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config)#logging 1 describes a mechanism that could sound plausible for configure. Given configure, Switch(config)#logging buffered 1 matches the tested behavior — Switch(config)#logging 1 applies a different mechanism.",
-            "whatItDoes": "Switch(config)#logging 1 describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Switch(config)#logging buffered 1 matches the tested behavior — Switch(config)#logging 1 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#logging 1\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "logging 1 is incomplete — buffered logs need logging buffered 1.",
+            "misconceptionTested": "logging without buffered keyword",
+            "whatItDoes": "Switch(config)#logging 1 points to a related idea, but not the specific behavior or value required for configure.",
+            "whyWrongHere": "For \"configure\", Switch(config)#logging buffered 1 satisfies what this question tests — Switch(config)#logging 1 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config)#logging buffered 2 describes a mechanism that could sound plausible for configure. Given configure, Switch(config)#logging buffered 1 matches the tested behavior — Switch(config)#logging buffered 2 applies a different mechanism.",
-            "whatItDoes": "Switch(config)#logging buffered 2 describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Switch(config)#logging buffered 1 matches the tested behavior — Switch(config)#logging buffered 2 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#logging buffered 2\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "Level 2 includes critical and below — too broad if you only want emergencies + alerts.",
+            "misconceptionTested": "Buffered level 2 for emergencies and alerts only",
+            "whatItDoes": "Switch(config)#logging buffered 2 points to a related idea, but not the specific behavior or value required for configure.",
+            "whyWrongHere": "For \"configure\", Switch(config)#logging buffered 1 satisfies what this question tests — Switch(config)#logging buffered 2 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch(config)#logging 2 describes a mechanism that could sound plausible for configure. Given configure, Switch(config)#logging buffered 1 matches the tested behavior — Switch(config)#logging 2 applies a different mechanism.",
-            "whatItDoes": "Switch(config)#logging 2 describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Switch(config)#logging buffered 1 matches the tested behavior — Switch(config)#logging 2 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#logging 2\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "logging 2 is not the buffered-RAM command — use logging buffered <level>.",
+            "misconceptionTested": "logging 2 without buffered",
+            "whatItDoes": "Switch(config)#logging 2 points to a related idea, but not the specific behavior or value required for configure.",
+            "whyWrongHere": "For \"configure\", Switch(config)#logging buffered 1 satisfies what this question tests — Switch(config)#logging 2 does not."
           }
         ],
-        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
+        "examTip": "Buffered logs: logging buffered 6 (common) | show logging to read RAM buffer."
       }
     },
     {
@@ -345,35 +330,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Switch#show history\"."
+          "explanation": "show history displays previously entered EXEC commands for the current session."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch#show commands describes a mechanism that could sound plausible for commands. Given commands, Switch#show history matches the tested behavior — Switch#show commands applies a different mechanism.",
-            "whatItDoes": "Switch#show commands describes a mechanism that could sound plausible for commands.",
-            "whyWrongHere": "Given commands, Switch#show history matches the tested behavior — Switch#show commands applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show commands\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "show commands is not valid IOS — command history is show history.",
+            "misconceptionTested": "Invented show commands command",
+            "whatItDoes": "Switch#show commands points to a related idea, but not the specific behavior or value required for commands.",
+            "whyWrongHere": "For \"commands\", Switch#show history satisfies what this question tests — Switch#show commands does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch#show log describes a mechanism that could sound plausible for commands. Given commands, Switch#show history matches the tested behavior — Switch#show log applies a different mechanism.",
-            "whatItDoes": "Switch#show log describes a mechanism that could sound plausible for commands.",
-            "whyWrongHere": "Given commands, Switch#show history matches the tested behavior — Switch#show log applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show log\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "show log displays syslog messages, not CLI command history.",
+            "misconceptionTested": "Syslog log for CLI history",
+            "whatItDoes": "Switch#show log points to a related idea, but not the specific behavior or value required for commands.",
+            "whyWrongHere": "For \"commands\", Switch#show history satisfies what this question tests — Switch#show log does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switch#show buffer describes a mechanism that could sound plausible for commands. Given commands, Switch#show history matches the tested behavior — Switch#show buffer applies a different mechanism.",
-            "whatItDoes": "Switch#show buffer describes a mechanism that could sound plausible for commands.",
-            "whyWrongHere": "Given commands, Switch#show history matches the tested behavior — Switch#show buffer applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch#show buffer\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "show buffer is not the CLI history command — use show history.",
+            "misconceptionTested": "show buffer for command history",
+            "whatItDoes": "Switch#show buffer points to a related idea, but not the specific behavior or value required for commands.",
+            "whyWrongHere": "For \"commands\", Switch#show history satisfies what this question tests — Switch#show buffer does not."
           }
         ],
-        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
+        "examTip": "CLI history: show history | Larger history: terminal history size <n> under line config."
       }
     },
     {
@@ -402,35 +384,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Notifications (5)\"."
+          "explanation": "logging trap informational (level 6) sends traps for severities 0–5 to the NMS — the least severe trapped is notifications (5)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Informational (6) describes a mechanism that could sound plausible for configuration. Given configuration, Notifications (5) matches the tested behavior — Informational (6) applies a different mechanism.",
-            "whatItDoes": "Informational (6) describes a mechanism that could sound plausible for configuration.",
-            "whyWrongHere": "Given configuration, Notifications (5) matches the tested behavior — Informational (6) applies a different mechanism.",
-            "misconceptionTested": "Applying \"Informational (6)\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "Informational (6) is the configured ceiling — traps sent are more severe (lower numbers), down to notifications (5).",
+            "misconceptionTested": "Trap level equals highest severity sent",
+            "whatItDoes": "Informational (6) mixes SNMP version, trap/inform, or community/security features.",
+            "whyWrongHere": "For \"configuration\", Notifications (5) satisfies what this question tests — Informational (6) does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Warnings (4) describes a mechanism that could sound plausible for configuration. Given configuration, Notifications (5) matches the tested behavior — Warnings (4) applies a different mechanism.",
-            "whatItDoes": "Warnings (4) describes a mechanism that could sound plausible for configuration.",
-            "whyWrongHere": "Given configuration, Notifications (5) matches the tested behavior — Warnings (4) applies a different mechanism.",
-            "misconceptionTested": "Applying \"Warnings (4)\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "Warnings (4) and below are trapped, but the highest (least severe) trapped level is notifications (5).",
+            "misconceptionTested": "Warnings as trap ceiling",
+            "whatItDoes": "Warnings (4) points to a related idea, but not the specific behavior or value required for configuration.",
+            "whyWrongHere": "For \"configuration\", Notifications (5) satisfies what this question tests — Warnings (4) does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Debugging (7) describes a mechanism that could sound plausible for configuration. Given configuration, Notifications (5) matches the tested behavior — Debugging (7) applies a different mechanism.",
-            "whatItDoes": "Debugging (7) describes a mechanism that could sound plausible for configuration.",
-            "whyWrongHere": "Given configuration, Notifications (5) matches the tested behavior — Debugging (7) applies a different mechanism.",
-            "misconceptionTested": "Applying \"Debugging (7)\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "Debugging (7) is more verbose than informational — it would not be the trapped level here.",
+            "misconceptionTested": "Debugging as trap result for informational config",
+            "whatItDoes": "Debugging (7) points to a related idea, but not the specific behavior or value required for configuration.",
+            "whyWrongHere": "For \"configuration\", Notifications (5) satisfies what this question tests — Debugging (7) does not."
           }
         ],
-        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
+        "examTip": "logging trap <level> sends traps for that level and all more-severe (lower numbers) — read the ceiling carefully."
       }
     },
     {
@@ -455,35 +434,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Router#show processes\"."
+          "explanation": "show processes cpu (or show processes cpu history) reports current and historical CPU utilization."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#show cpu describes a mechanism that could sound plausible for utilization. Given utilization, Router#show processes matches the tested behavior — Router#show cpu applies a different mechanism.",
-            "whatItDoes": "Router#show cpu describes a mechanism that could sound plausible for utilization.",
-            "whyWrongHere": "Given utilization, Router#show processes matches the tested behavior — Router#show cpu applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show cpu\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "show cpu is not standard IOS — CPU stats are under show processes.",
+            "misconceptionTested": "Invented show cpu command",
+            "whatItDoes": "Router#show cpu points to a related idea, but not the specific behavior or value required for utilization.",
+            "whyWrongHere": "For \"utilization\", Router#show processes satisfies what this question tests — Router#show cpu does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router#show cpu-stats describes a mechanism that could sound plausible for utilization. Given utilization, Router#show processes matches the tested behavior — Router#show cpu-stats applies a different mechanism.",
-            "whatItDoes": "Router#show cpu-stats describes a mechanism that could sound plausible for utilization.",
-            "whyWrongHere": "Given utilization, Router#show processes matches the tested behavior — Router#show cpu-stats applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show cpu-stats\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "show cpu-stats is not valid — use show processes cpu.",
+            "misconceptionTested": "Invented show cpu-stats command",
+            "whatItDoes": "Router#show cpu-stats points to a related idea, but not the specific behavior or value required for utilization.",
+            "whyWrongHere": "For \"utilization\", Router#show processes satisfies what this question tests — Router#show cpu-stats does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show environment cpu describes a mechanism that could sound plausible for utilization. Given utilization, Router#show processes matches the tested behavior — Router#show environment cpu applies a different mechanism.",
-            "whatItDoes": "Router#show environment cpu describes a mechanism that could sound plausible for utilization.",
-            "whyWrongHere": "Given utilization, Router#show processes matches the tested behavior — Router#show environment cpu applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show environment cpu\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "show environment reports hardware sensors — CPU load is show processes cpu.",
+            "misconceptionTested": "Environment show for CPU utilization",
+            "whatItDoes": "Router#show environment cpu points to a related idea, but not the specific behavior or value required for utilization.",
+            "whyWrongHere": "For \"utilization\", Router#show processes satisfies what this question tests — Router#show environment cpu does not."
           }
         ],
-        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
+        "examTip": "CPU check: show processes cpu | 5-sec / 1-min / 5-min averages | show memory for RAM."
       }
     },
     {
@@ -510,35 +486,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Router(config)#logging buffered\"."
+          "explanation": "logging buffered stores syslog messages in the router's RAM (internal log buffer)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#logging internal describes a mechanism that could sound plausible for internal. Given internal, Router(config)#logging buffered matches the tested behavior — Router(config)#logging internal applies a different mechanism.",
-            "whatItDoes": "Router(config)#logging internal describes a mechanism that could sound plausible for internal.",
-            "whyWrongHere": "Given internal, Router(config)#logging buffered matches the tested behavior — Router(config)#logging internal applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#logging internal\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "logging internal is not valid IOS — RAM logging uses logging buffered.",
+            "misconceptionTested": "Invented logging internal command",
+            "whatItDoes": "Router(config)#logging internal points to a related idea, but not the specific behavior or value required for internal.",
+            "whyWrongHere": "For \"internal\", Router(config)#logging buffered satisfies what this question tests — Router(config)#logging internal does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#logging ram describes a mechanism that could sound plausible for internal. Given internal, Router(config)#logging buffered matches the tested behavior — Router(config)#logging ram applies a different mechanism.",
-            "whatItDoes": "Router(config)#logging ram describes a mechanism that could sound plausible for internal.",
-            "whyWrongHere": "Given internal, Router(config)#logging buffered matches the tested behavior — Router(config)#logging ram applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#logging ram\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "logging ram is not the Cisco command — use logging buffered.",
+            "misconceptionTested": "logging ram keyword",
+            "whatItDoes": "Router(config)#logging ram points to a related idea, but not the specific behavior or value required for internal.",
+            "whyWrongHere": "For \"internal\", Router(config)#logging buffered satisfies what this question tests — Router(config)#logging ram does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#logging console describes a mechanism that could sound plausible for internal. Given internal, Router(config)#logging buffered matches the tested behavior — Router(config)#logging console applies a different mechanism.",
-            "whatItDoes": "Router(config)#logging console describes a mechanism that could sound plausible for internal.",
-            "whyWrongHere": "Given internal, Router(config)#logging buffered matches the tested behavior — Router(config)#logging console applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#logging console\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "logging console sends to the terminal session — logging buffered stores in RAM.",
+            "misconceptionTested": "Console logging for RAM buffer",
+            "whatItDoes": "Router(config)#logging console points to a related idea, but not the specific behavior or value required for internal.",
+            "whyWrongHere": "For \"internal\", Router(config)#logging buffered satisfies what this question tests — Router(config)#logging console does not."
           }
         ],
-        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
+        "examTip": "Log destinations: console (terminal) | buffered (RAM) | host (remote syslog server)."
       }
     },
     {
@@ -565,35 +538,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Console\"."
+          "explanation": "By default, Cisco devices send syslog to the console — other destinations require explicit config."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Broadcasts to a syslog server describes flooding the frame to multiple ports in the VLAN. Given identify, Console matches the tested behavior — Broadcasts to a syslog server applies a different mechanism.",
+            "explanation": "Remote syslog requires logging host — it is not the default destination.",
+            "misconceptionTested": "Syslog server as default destination",
             "whatItDoes": "Broadcasts to a syslog server describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "Given identify, Console matches the tested behavior — Broadcasts to a syslog server applies a different mechanism.",
-            "misconceptionTested": "Applying \"Broadcasts to a syslog server\" without matching syslog",
-            "needsExplanationReview": true
+            "whyWrongHere": "Syslog (identify): Console reflects severity or facility rules — Broadcasts to a syslog server reverses severity numbering or mislabels the level."
           },
           {
             "choiceIndex": 2,
-            "explanation": "TTY describes a mechanism that could sound plausible for identify. Given identify, Console matches the tested behavior — TTY applies a different mechanism.",
-            "whatItDoes": "TTY describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Console matches the tested behavior — TTY applies a different mechanism.",
-            "misconceptionTested": "Applying \"TTY\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "TTY lines are not the default syslog sink — console is.",
+            "misconceptionTested": "TTY as default syslog destination",
+            "whatItDoes": "TTY points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Console satisfies what this question tests — TTY does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "NVRAM describes a mechanism that could sound plausible for identify. Given identify, Console matches the tested behavior — NVRAM applies a different mechanism.",
-            "whatItDoes": "NVRAM describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Console matches the tested behavior — NVRAM applies a different mechanism.",
-            "misconceptionTested": "Applying \"NVRAM\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "NVRAM stores config, not live syslog — default logging goes to console.",
+            "misconceptionTested": "NVRAM as default syslog destination",
+            "whatItDoes": "NVRAM points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Console satisfies what this question tests — NVRAM does not."
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "Default syslog → console | Add logging buffered and logging host <ip> for RAM and remote."
       }
     },
     {
@@ -620,35 +590,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Debugging (7)\"."
+          "explanation": "Default console logging severity is debugging (7) — all message levels appear until you lower the threshold."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Notification (5) describes a mechanism that could sound plausible for identify. Given identify, Debugging (7) matches the tested behavior — Notification (5) applies a different mechanism.",
-            "whatItDoes": "Notification (5) describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Debugging (7) matches the tested behavior — Notification (5) applies a different mechanism.",
-            "misconceptionTested": "Applying \"Notification (5)\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "Notification (5) is not the default — factory default allows through debugging (7).",
+            "misconceptionTested": "Notification as default syslog level",
+            "whatItDoes": "Notification (5) points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Debugging (7) satisfies what this question tests — Notification (5) does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Informational (6) describes a mechanism that could sound plausible for identify. Given identify, Debugging (7) matches the tested behavior — Informational (6) applies a different mechanism.",
-            "whatItDoes": "Informational (6) describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Debugging (7) matches the tested behavior — Informational (6) applies a different mechanism.",
-            "misconceptionTested": "Applying \"Informational (6)\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "Informational (6) is not the default console threshold — default is debugging (7).",
+            "misconceptionTested": "Informational as default syslog level",
+            "whatItDoes": "Informational (6) mixes SNMP version, trap/inform, or community/security features.",
+            "whyWrongHere": "For \"identify\", Debugging (7) satisfies what this question tests — Informational (6) does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Warning (4) describes a mechanism that could sound plausible for identify. Given identify, Debugging (7) matches the tested behavior — Warning (4) applies a different mechanism.",
-            "whatItDoes": "Warning (4) describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Debugging (7) matches the tested behavior — Warning (4) applies a different mechanism.",
-            "misconceptionTested": "Applying \"Warning (4)\" without matching syslog",
-            "needsExplanationReview": true
+            "explanation": "Warning (4) is more restrictive than the default — IOS defaults to debugging (7).",
+            "misconceptionTested": "Warning as default syslog level",
+            "whatItDoes": "Warning (4) points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Debugging (7) satisfies what this question tests — Warning (4) does not."
           }
         ],
-        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
+        "examTip": "Default logging console = level 7 (debugging) — tighten with logging console 6 or lower in production."
       }
     }
   ]

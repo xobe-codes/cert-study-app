@@ -22,32 +22,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "NAT translates inside local (private) addresses to inside global (public) addresses so internal hosts reach the Internet."
+          "explanation": "NAT translates private ↔ public addresses so internal hosts reach the Internet with routable addresses."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Encryption protects confidentiality — NAT performs address translation, not cipher operations.",
-            "misconceptionTested": "Equating NAT with encryption",
-            "whatItDoes": "Encrypts traffic describes a mechanism that could sound plausible for nat purpose.",
-            "whyWrongHere": "Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Encrypts traffic applies a different mechanism."
+            "explanation": "Encryption is IPsec/VPN — NAT only changes addresses/port mappings.",
+            "misconceptionTested": "NAT encrypts traffic",
+            "whatItDoes": "Encrypts traffic points to a related idea, but not the specific behavior or value required for nat purpose.",
+            "whyWrongHere": "For \"nat purpose\", Maps private IPs to public IPs satisfies what this question tests — Encrypts traffic does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Inter-VLAN routing uses a router or L3 switch — NAT maps addresses between private and public realms.",
-            "misconceptionTested": "Using routing/VLAN logic for NAT purpose",
-            "whatItDoes": "Routes between VLANs describes a mechanism that could sound plausible for nat purpose.",
-            "whyWrongHere": "Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Routes between VLANs applies a different mechanism."
+            "explanation": "Inter-VLAN routing uses a router/L3 switch — NAT is address translation at the edge.",
+            "misconceptionTested": "NAT routes VLANs",
+            "whatItDoes": "Routes between VLANs points to a related idea, but not the specific behavior or value required for nat purpose.",
+            "whyWrongHere": "For \"nat purpose\", Maps private IPs to public IPs satisfies what this question tests — Routes between VLANs does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "DHCP assigns addresses dynamically — NAT rewrites source/destination IPs on packets crossing a boundary.",
-            "misconceptionTested": "Confusing address assignment with address translation",
-            "whatItDoes": "Assigns DHCP addresses describes a mechanism that could sound plausible for nat purpose.",
-            "whyWrongHere": "Given nat purpose, Maps private IPs to public IPs matches the tested behavior — Assigns DHCP addresses applies a different mechanism."
+            "explanation": "DHCP assigns addresses — NAT rewrites them on the way out.",
+            "misconceptionTested": "NAT vs DHCP",
+            "whatItDoes": "Assigns DHCP addresses points to a related idea, but not the specific behavior or value required for nat purpose.",
+            "whyWrongHere": "For \"nat purpose\", Maps private IPs to public IPs satisfies what this question tests — Assigns DHCP addresses does not."
           }
         ],
-        "examTip": "NAT fails silently without inside/outside — label interfaces before reading address types."
+        "examTip": "Private inside → NAT → public outside. PAT overloads one public IP."
       }
     },
     {
@@ -77,22 +77,22 @@
             "choiceIndex": 0,
             "explanation": "Static NAT is 1:1 permanent mapping — many home devices sharing one public IP needs port-based overload.",
             "misconceptionTested": "Using 1:1 static NAT for many-to-one scenario",
-            "whatItDoes": "Static NAT describes a mechanism that could sound plausible for PAT/overload maps many inside hosts to one public IP using ports.",
-            "whyWrongHere": "Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — Static NAT applies a different mechanism."
+            "whatItDoes": "Static NAT points to a related idea, but not the specific behavior or value required for PAT/overload maps many inside hosts to one public IP using ports.",
+            "whyWrongHere": "For \"PAT/overload maps many inside hosts to one public IP using ports\", PAT (overload) satisfies what this question tests — Static NAT does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "Dynamic NAT pools one public IP per session but still exhausts the pool with many simultaneous hosts — PAT scales with ports.",
             "misconceptionTested": "Choosing dynamic pool when overload/PAT is required",
-            "whatItDoes": "Dynamic NAT describes a mechanism that could sound plausible for PAT/overload maps many inside hosts to one public IP using ports.",
-            "whyWrongHere": "Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — Dynamic NAT applies a different mechanism."
+            "whatItDoes": "Dynamic NAT points to a related idea, but not the specific behavior or value required for PAT/overload maps many inside hosts to one public IP using ports.",
+            "whyWrongHere": "For \"PAT/overload maps many inside hosts to one public IP using ports\", PAT (overload) satisfies what this question tests — Dynamic NAT does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Without NAT, private RFC1918 addresses cannot reach the public Internet from a typical home ISP setup.",
             "misconceptionTested": "Denying NAT in a classic SOHO sharing scenario",
-            "whatItDoes": "No NAT describes a mechanism that could sound plausible for PAT/overload maps many inside hosts to one public IP using ports.",
-            "whyWrongHere": "Given PAT/overload maps many inside hosts to one public IP using ports, PAT (overload) matches the tested behavior — No NAT applies a different mechanism."
+            "whatItDoes": "No NAT points to a related idea, but not the specific behavior or value required for PAT/overload maps many inside hosts to one public IP using ports.",
+            "whyWrongHere": "For \"PAT/overload maps many inside hosts to one public IP using ports\", PAT (overload) satisfies what this question tests — No NAT does not."
           }
         ],
         "examTip": "Many inside → one public IP = PAT/overload, not static 1:1."
@@ -125,22 +125,22 @@
             "choiceIndex": 1,
             "explanation": "ip nat pool defines addresses for dynamic NAT — static 1:1 server publishing uses inside source static.",
             "misconceptionTested": "Using dynamic pool command for static server mapping",
-            "whatItDoes": "ip nat pool describes a mechanism that could sound plausible for static nat.",
-            "whyWrongHere": "Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat pool applies a different mechanism."
+            "whatItDoes": "ip nat pool points to a related idea, but not the specific behavior or value required for static nat.",
+            "whyWrongHere": "For \"static nat\", ip nat inside source static 192.168.1.10 203.0.113.10 satisfies what this question tests — ip nat pool does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "That overload line enables PAT for an ACL — static server publishing needs explicit local/global pair.",
             "misconceptionTested": "Applying PAT overload syntax to 1:1 static requirement",
-            "whatItDoes": "ip nat inside source list 1 interface g0/0 overload describes a mechanism that could sound plausible for static nat.",
-            "whyWrongHere": "Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat inside source list 1 interface g0/0 overload applies a different mechanism."
+            "whatItDoes": "ip nat inside source list 1 interface g0/0 overload implies many-inside-to-few-outside PAT/overload translation.",
+            "whyWrongHere": "NAT type (static nat): ip nat inside source static 192.168.1.10 203.0.113.10 fits the stem — ip nat inside source list 1 interface g0/0 overload describes PAT/overload when the question tests a different translation style."
           },
           {
             "choiceIndex": 3,
             "explanation": "ip nat outside only labels interface direction — it does not create the static translation entry.",
             "misconceptionTested": "Stopping at interface NAT label without translation rule",
-            "whatItDoes": "ip nat outside describes a mechanism that could sound plausible for static nat.",
-            "whyWrongHere": "Given static nat, ip nat inside source static 192.168.1.10 203.0.113.10 matches the tested behavior — ip nat outside applies a different mechanism."
+            "whatItDoes": "ip nat outside points to a related idea, but not the specific behavior or value required for static nat.",
+            "whyWrongHere": "For \"static nat\", ip nat inside source static 192.168.1.10 203.0.113.10 satisfies what this question tests — ip nat outside does not."
           }
         ],
         "examTip": "Permanent server NAT → ip nat inside source static <local> <global>."
@@ -173,22 +173,22 @@
             "choiceIndex": 0,
             "explanation": "A default route helps reach the Internet but does not enable NAT — inside/outside interface designation is mandatory.",
             "misconceptionTested": "Adding default route when NAT direction tags are missing",
-            "whatItDoes": "A default route describes a mechanism that could sound plausible for interface tags.",
-            "whyWrongHere": "Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — A default route applies a different mechanism."
+            "whatItDoes": "A default route points to a related idea, but not the specific behavior or value required for interface tags.",
+            "whyWrongHere": "For \"interface tags\", The ip nat inside / ip nat outside interface tags satisfies what this question tests — A default route does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Loopbacks are not required for basic NAT — the missing inside/outside labels prevent any translation.",
             "misconceptionTested": "Creating loopback instead of labeling NAT interfaces",
-            "whatItDoes": "A loopback describes a mechanism that could sound plausible for interface tags.",
-            "whyWrongHere": "Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — A loopback applies a different mechanism."
+            "whatItDoes": "A loopback points to a related idea, but not the specific behavior or value required for interface tags.",
+            "whyWrongHere": "For \"interface tags\", The ip nat inside / ip nat outside interface tags satisfies what this question tests — A loopback does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "DNS resolves names — NAT operates on IP headers and needs inside/outside interface roles defined first.",
             "misconceptionTested": "Checking DNS when NAT interface roles are unset",
-            "whatItDoes": "DNS describes a mechanism that could sound plausible for interface tags.",
-            "whyWrongHere": "Given interface tags, The ip nat inside / ip nat outside interface tags matches the tested behavior — DNS applies a different mechanism."
+            "whatItDoes": "DNS points to a related idea, but not the specific behavior or value required for interface tags.",
+            "whyWrongHere": "For \"interface tags\", The ip nat inside / ip nat outside interface tags satisfies what this question tests — DNS does not."
           }
         ],
         "examTip": "NAT broken? First check ip nat inside / ip nat outside on the right interfaces."
@@ -221,22 +221,22 @@
             "choiceIndex": 1,
             "explanation": "Static NAT maps one inside to one outside — PAT needs overload on an interface or pool.",
             "misconceptionTested": "Using static syntax for many-to-one PAT",
-            "whatItDoes": "ip nat inside source static describes a mechanism that could sound plausible for overload command.",
-            "whyWrongHere": "Given overload command, ip nat inside source list 1 interface g0/0 overload matches the tested behavior — ip nat inside source static applies a different mechanism."
+            "whatItDoes": "ip nat inside source static points to a related idea, but not the specific behavior or value required for overload command.",
+            "whyWrongHere": "For \"overload command\", ip nat inside source list 1 interface g0/0 overload satisfies what this question tests — ip nat inside source static does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "A NAT pool supports dynamic NAT — PAT overload typically uses the outside interface keyword with overload.",
             "misconceptionTested": "Expecting pool alone to provide PAT",
-            "whatItDoes": "ip nat pool MYPOOL describes a mechanism that could sound plausible for overload command.",
-            "whyWrongHere": "Given overload command, ip nat inside source list 1 interface g0/0 overload matches the tested behavior — ip nat pool MYPOOL applies a different mechanism."
+            "whatItDoes": "ip nat pool MYPOOL points to a related idea, but not the specific behavior or value required for overload command.",
+            "whyWrongHere": "For \"overload command\", ip nat inside source list 1 interface g0/0 overload satisfies what this question tests — ip nat pool MYPOOL does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Outside source NAT reverses direction — inside hosts sharing one public IP use inside source with overload.",
             "misconceptionTested": "Configuring outside source for inside PAT",
-            "whatItDoes": "ip nat outside source list 1 describes a mechanism that could sound plausible for overload command.",
-            "whyWrongHere": "Given overload command, ip nat inside source list 1 interface g0/0 overload matches the tested behavior — ip nat outside source list 1 applies a different mechanism."
+            "whatItDoes": "ip nat outside source list 1 points to a related idea, but not the specific behavior or value required for overload command.",
+            "whyWrongHere": "For \"overload command\", ip nat inside source list 1 interface g0/0 overload satisfies what this question tests — ip nat outside source list 1 does not."
           }
         ],
         "examTip": "PAT to outside interface → ip nat inside source list <acl> interface <if> overload."
@@ -269,22 +269,22 @@
             "choiceIndex": 0,
             "explanation": "Inside global is the translated public address as seen externally — not the private address inside the LAN.",
             "misconceptionTested": "Swapping inside local with inside global",
-            "whatItDoes": "Inside global describes a mechanism that could sound plausible for terminology.",
-            "whyWrongHere": "Given terminology, Inside local matches the tested behavior — Inside global applies a different mechanism."
+            "whatItDoes": "Inside global assigns a specific NAT address role (inside/outside, local/global) that may not match the stem.",
+            "whyWrongHere": "For \"terminology\", Inside local satisfies what this question tests — Inside global does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "Outside global is the remote public address — inside local refers to the internal host private IP.",
             "misconceptionTested": "Labeling remote public as inside local",
-            "whatItDoes": "Outside global describes a mechanism that could sound plausible for terminology.",
-            "whyWrongHere": "Given terminology, Inside local matches the tested behavior — Outside global applies a different mechanism."
+            "whatItDoes": "Outside global assigns a specific NAT address role (inside/outside, local/global) that may not match the stem.",
+            "whyWrongHere": "For \"terminology\", Inside local satisfies what this question tests — Outside global does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "Outside local is how the internal network sees an outside address — not the host private IP.",
             "misconceptionTested": "Confusing outside local with host private address",
-            "whatItDoes": "Outside local describes a mechanism that could sound plausible for terminology.",
-            "whyWrongHere": "Given terminology, Inside local matches the tested behavior — Outside local applies a different mechanism."
+            "whatItDoes": "Outside local assigns a specific NAT address role (inside/outside, local/global) that may not match the stem.",
+            "whyWrongHere": "For \"terminology\", Inside local satisfies what this question tests — Outside local does not."
           }
         ],
         "examTip": "NAT naming: inside local = private IP before translation on the LAN."
@@ -317,22 +317,22 @@
             "choiceIndex": 0,
             "explanation": "show ip route lists routing table entries — NAT translations live in the NAT table, not the RIB.",
             "misconceptionTested": "Using routing table for NAT translation verification",
-            "whatItDoes": "show ip route describes a mechanism that could sound plausible for show ip nat translations lists the current mappings.",
-            "whyWrongHere": "Given show ip nat translations lists the current mappings, show ip nat translations matches the tested behavior — show ip route applies a different mechanism."
+            "whatItDoes": "show ip route is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (show ip nat translations lists the current mappings): show ip nat translations inspects the right table or state — show ip route shows unrelated information."
           },
           {
             "choiceIndex": 2,
             "explanation": "Running-config shows configured NAT policies — active live translations require show ip nat translations.",
             "misconceptionTested": "Checking running-config for active translation state",
-            "whatItDoes": "show running-config describes a mechanism that could sound plausible for show ip nat translations lists the current mappings.",
-            "whyWrongHere": "Given show ip nat translations lists the current mappings, show ip nat translations matches the tested behavior — show running-config applies a different mechanism."
+            "whatItDoes": "show running-config is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (show ip nat translations lists the current mappings): show ip nat translations inspects the right table or state — show running-config shows unrelated information."
           },
           {
             "choiceIndex": 3,
             "explanation": "show ip nat inside is not standard verification syntax — use show ip nat translations for the translation table.",
             "misconceptionTested": "Inventing show ip nat inside command",
-            "whatItDoes": "show ip nat inside describes a mechanism that could sound plausible for show ip nat translations lists the current mappings.",
-            "whyWrongHere": "Given show ip nat translations lists the current mappings, show ip nat translations matches the tested behavior — show ip nat inside applies a different mechanism."
+            "whatItDoes": "show ip nat inside is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (show ip nat translations lists the current mappings): show ip nat translations inspects the right table or state — show ip nat inside shows unrelated information."
           }
         ],
         "examTip": "Active NAT entries → show ip nat translations."
@@ -356,19 +356,18 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "True — PAT tracks translations by inside global IP + port."
+          "explanation": "PAT (overload) multiplexes many inside hosts on one public IP using unique source port numbers."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "This statement is False, but the tested fact is: True — PAT tracks translations by inside global IP + port.",
+            "explanation": "Without port translation, multiple hosts cannot share one public IP simultaneously — that is PAT's role.",
+            "misconceptionTested": "Denying port role in PAT",
             "whatItDoes": "False states the opposite of the tested fact about pat ports.",
-            "whyWrongHere": "Given pat ports, True matches the tested behavior — False applies a different mechanism.",
-            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
+            "whyWrongHere": "For \"pat ports\", True satisfies what this question tests — False does not."
           }
         ],
-        "examTip": "On the exam: Every inside host needs its own public IP — PAT lets thousands of hosts share one public IP via ports",
-        "memoryHook": "PAT = many tenants, one door — ports are the apartment numbers."
+        "examTip": "PAT = one public IP + many hosts distinguished by ports."
       }
     },
     {
@@ -398,22 +397,22 @@
             "choiceIndex": 0,
             "explanation": "CIDR is efficient address allocation notation — it does not translate private addresses for Internet access.",
             "misconceptionTested": "Equating CIDR with address translation",
-            "whatItDoes": "CIDR describes a mechanism that could sound plausible for addresses.",
-            "whyWrongHere": "Given addresses, NAT matches the tested behavior — CIDR applies a different mechanism."
+            "whatItDoes": "CIDR points to a related idea, but not the specific behavior or value required for addresses.",
+            "whyWrongHere": "For \"addresses\", NAT satisfies what this question tests — CIDR does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "Classful addressing is obsolete — RFC 1918 private space still needs NAT (or proxy) to reach public Internet.",
             "misconceptionTested": "Expecting classful rules to enable Internet from private space",
-            "whatItDoes": "Classful addressing describes a mechanism that could sound plausible for addresses.",
-            "whyWrongHere": "Given addresses, NAT matches the tested behavior — Classful addressing applies a different mechanism."
+            "whatItDoes": "Classful addressing points to a related idea, but not the specific behavior or value required for addresses.",
+            "whyWrongHere": "For \"addresses\", NAT satisfies what this question tests — Classful addressing does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "VPN encrypts/tunnels traffic — the question asks how RFC 1918 hosts reach the Internet, which is NAT/PAT.",
             "misconceptionTested": "Choosing VPN when NAT is the standard exam answer",
-            "whatItDoes": "VPN describes a mechanism that could sound plausible for addresses.",
-            "whyWrongHere": "Given addresses, NAT matches the tested behavior — VPN applies a different mechanism."
+            "whatItDoes": "VPN points to a related idea, but not the specific behavior or value required for addresses.",
+            "whyWrongHere": "For \"addresses\", NAT satisfies what this question tests — VPN does not."
           }
         ],
         "examTip": "Private RFC 1918 → Internet = NAT/PAT. Label inside/outside first."
@@ -441,35 +440,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"192.168.1.2 Host A\"."
+          "explanation": "Inside local is the private address as the host sees it — typically the LAN host (192.168.1.2 Host A)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local. Given inside local, 192.168.1.2 Host A matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
-            "whatItDoes": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 192.168.1.2 Host A matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"192.168.1.1 Router A Gi0/0\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "192.168.1.1 is the inside router interface, not the host's inside local address.",
+            "misconceptionTested": "Confusing router inside interface with host",
+            "whatItDoes": "192.168.1.1 Router A Gi0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (inside local): 192.168.1.2 Host A matches prefix, shortening, or assignment rules — 192.168.1.1 Router A Gi0/0 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 2,
-            "explanation": "179.43.44.1 Router A S0/0 describes a mechanism that could sound plausible for inside local. Given inside local, 192.168.1.2 Host A matches the tested behavior — 179.43.44.1 Router A S0/0 applies a different mechanism.",
-            "whatItDoes": "179.43.44.1 Router A S0/0 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 192.168.1.2 Host A matches the tested behavior — 179.43.44.1 Router A S0/0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"179.43.44.1 Router A S0/0\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "179.43.44.1 is a public/outside-side address on the WAN, not inside local.",
+            "misconceptionTested": "Labeling WAN address as inside local",
+            "whatItDoes": "179.43.44.1 Router A S0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (inside local): 192.168.1.2 Host A matches prefix, shortening, or assignment rules — 179.43.44.1 Router A S0/0 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 3,
-            "explanation": "198.23.53.3 web server describes a mechanism that could sound plausible for inside local. Given inside local, 192.168.1.2 Host A matches the tested behavior — 198.23.53.3 web server applies a different mechanism.",
-            "whatItDoes": "198.23.53.3 web server describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 192.168.1.2 Host A matches the tested behavior — 198.23.53.3 web server applies a different mechanism.",
-            "misconceptionTested": "Applying \"198.23.53.3 web server\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "198.23.53.3 is an outside global server, not the inside local host.",
+            "misconceptionTested": "Mixing outside global with inside local",
+            "whatItDoes": "198.23.53.3 web server points to a related idea, but not the specific behavior or value required for inside local.",
+            "whyWrongHere": "For \"inside local\", 192.168.1.2 Host A satisfies what this question tests — 198.23.53.3 web server does not."
           }
         ],
-        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
+        "examTip": "Inside local = private host address before NAT."
       }
     },
     {
@@ -494,35 +490,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"179.43.44.1 Router A S0/0\"."
+          "explanation": "Inside global is the public address representing the inside host after translation — Router A S0/0 (179.43.44.1) in the exhibit."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "192.168.1.2 Host A describes a mechanism that could sound plausible for inside local. Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 192.168.1.2 Host A applies a different mechanism.",
-            "whatItDoes": "192.168.1.2 Host A describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 192.168.1.2 Host A applies a different mechanism.",
-            "misconceptionTested": "Applying \"192.168.1.2 Host A\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "192.168.1.2 is inside local, not the global representation.",
+            "misconceptionTested": "Using private address as inside global",
+            "whatItDoes": "192.168.1.2 Host A points to a related idea, but not the specific behavior or value required for inside local.",
+            "whyWrongHere": "For \"inside local\", 179.43.44.1 Router A S0/0 satisfies what this question tests — 192.168.1.2 Host A does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local. Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
-            "whatItDoes": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"192.168.1.1 Router A Gi0/0\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "Gi0/0 is the inside interface IP, not necessarily the translated global address.",
+            "misconceptionTested": "Confusing inside interface with inside global",
+            "whatItDoes": "192.168.1.1 Router A Gi0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (inside local): 179.43.44.1 Router A S0/0 matches prefix, shortening, or assignment rules — 192.168.1.1 Router A Gi0/0 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 3,
-            "explanation": "198.23.53.3 web server describes a mechanism that could sound plausible for inside local. Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 198.23.53.3 web server applies a different mechanism.",
-            "whatItDoes": "198.23.53.3 web server describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 198.23.53.3 web server applies a different mechanism.",
-            "misconceptionTested": "Applying \"198.23.53.3 web server\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "198.23.53.3 is an outside destination, not inside global.",
+            "misconceptionTested": "Selecting outside server as inside global",
+            "whatItDoes": "198.23.53.3 web server points to a related idea, but not the specific behavior or value required for inside local.",
+            "whyWrongHere": "For \"inside local\", 179.43.44.1 Router A S0/0 satisfies what this question tests — 198.23.53.3 web server does not."
           }
         ],
-        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
+        "examTip": "Inside global = public address seen by the outside world for an inside host."
       }
     },
     {
@@ -547,35 +540,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"198.23.53.3 web server\"."
+          "explanation": "Outside global is the public address of the remote host as seen on the Internet — the web server 198.23.53.3."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "192.168.1.2 Host A describes a mechanism that could sound plausible for inside local. Given inside local, 198.23.53.3 web server matches the tested behavior — 192.168.1.2 Host A applies a different mechanism.",
-            "whatItDoes": "192.168.1.2 Host A describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 198.23.53.3 web server matches the tested behavior — 192.168.1.2 Host A applies a different mechanism.",
-            "misconceptionTested": "Applying \"192.168.1.2 Host A\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "Host A is inside local, not an outside global address.",
+            "misconceptionTested": "Inside host labeled as outside global",
+            "whatItDoes": "192.168.1.2 Host A points to a related idea, but not the specific behavior or value required for inside local.",
+            "whyWrongHere": "For \"inside local\", 198.23.53.3 web server satisfies what this question tests — 192.168.1.2 Host A does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local. Given inside local, 198.23.53.3 web server matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
-            "whatItDoes": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 198.23.53.3 web server matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"192.168.1.1 Router A Gi0/0\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "Router inside interface is not the outside global destination.",
+            "misconceptionTested": "Router LAN IP as outside global",
+            "whatItDoes": "192.168.1.1 Router A Gi0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (inside local): 198.23.53.3 web server matches prefix, shortening, or assignment rules — 192.168.1.1 Router A Gi0/0 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 2,
-            "explanation": "179.43.44.1 Router A S0/0 describes a mechanism that could sound plausible for inside local. Given inside local, 198.23.53.3 web server matches the tested behavior — 179.43.44.1 Router A S0/0 applies a different mechanism.",
-            "whatItDoes": "179.43.44.1 Router A S0/0 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 198.23.53.3 web server matches the tested behavior — 179.43.44.1 Router A S0/0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"179.43.44.1 Router A S0/0\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "179.43.44.1 is the NAT router's public side — inside global for outbound, not the remote server.",
+            "misconceptionTested": "NAT router WAN IP as destination outside global",
+            "whatItDoes": "179.43.44.1 Router A S0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (inside local): 198.23.53.3 web server matches prefix, shortening, or assignment rules — 179.43.44.1 Router A S0/0 breaks IPv6 syntax or prefix length."
           }
         ],
-        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
+        "examTip": "Outside global = real public address of the remote host on the Internet."
       }
     },
     {
@@ -598,35 +588,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Router#show ip nat translations\"."
+          "explanation": "show ip nat translations displays active NAT entries (inside/outside local/global mappings)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router#show nat translations describes a mechanism that could sound plausible for translations. Given translations, Router#show ip nat translations matches the tested behavior — Router#show nat translations applies a different mechanism.",
-            "whatItDoes": "Router#show nat translations describes a mechanism that could sound plausible for translations.",
-            "whyWrongHere": "Given translations, Router#show ip nat translations matches the tested behavior — Router#show nat translations applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show nat translations\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "IOS syntax requires show ip nat translations — not show nat translations.",
+            "misconceptionTested": "Omitting ip keyword in show command",
+            "whatItDoes": "Router#show nat translations points to a related idea, but not the specific behavior or value required for translations.",
+            "whyWrongHere": "For \"translations\", Router#show ip nat translations satisfies what this question tests — Router#show nat translations does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#debug ip nat translations describes a mechanism that could sound plausible for translations. Given translations, Router#show ip nat translations matches the tested behavior — Router#debug ip nat translations applies a different mechanism.",
-            "whatItDoes": "Router#debug ip nat translations describes a mechanism that could sound plausible for translations.",
-            "whyWrongHere": "Given translations, Router#show ip nat translations matches the tested behavior — Router#debug ip nat translations applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#debug ip nat translations\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "debug ip nat is realtime debug, not the standard show command for the table.",
+            "misconceptionTested": "Using debug instead of show",
+            "whatItDoes": "Router#debug ip nat translations points to a related idea, but not the specific behavior or value required for translations.",
+            "whyWrongHere": "For \"translations\", Router#show ip nat translations satisfies what this question tests — Router#debug ip nat translations does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show translations nat describes a mechanism that could sound plausible for translations. Given translations, Router#show ip nat translations matches the tested behavior — Router#show translations nat applies a different mechanism.",
-            "whatItDoes": "Router#show translations nat describes a mechanism that could sound plausible for translations.",
-            "whyWrongHere": "Given translations, Router#show ip nat translations matches the tested behavior — Router#show translations nat applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show translations nat\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "show translations nat is invalid IOS syntax.",
+            "misconceptionTested": "Inventing show command word order",
+            "whatItDoes": "Router#show translations nat points to a related idea, but not the specific behavior or value required for translations.",
+            "whyWrongHere": "For \"translations\", Router#show ip nat translations satisfies what this question tests — Router#show translations nat does not."
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "View NAT table → show ip nat translations."
       }
     },
     {
@@ -649,35 +636,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Router#show ip nat statistics\"."
+          "explanation": "show ip nat statistics summarizes active translations, hits/misses, and NAT resource usage."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#show ip nat translations describes a mechanism that could sound plausible for overview. Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat translations applies a different mechanism.",
-            "whatItDoes": "Router#show ip nat translations describes a mechanism that could sound plausible for overview.",
-            "whyWrongHere": "Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat translations applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip nat translations\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "Translations command lists entries, not the overview counters/statistics.",
+            "misconceptionTested": "Using translations for summary stats",
+            "whatItDoes": "Router#show ip nat translations is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (overview): Router#show ip nat statistics inspects the right table or state — Router#show ip nat translations shows unrelated information."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router#show ip nat summary describes a mechanism that could sound plausible for overview. Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat summary applies a different mechanism.",
-            "whatItDoes": "Router#show ip nat summary describes a mechanism that could sound plausible for overview.",
-            "whyWrongHere": "Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat summary applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip nat summary\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "There is no standard show ip nat summary on IOS — use statistics.",
+            "misconceptionTested": "Inventing summary command",
+            "whatItDoes": "Router#show ip nat summary is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (overview): Router#show ip nat statistics inspects the right table or state — Router#show ip nat summary shows unrelated information."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#show ip nat status describes a mechanism that could sound plausible for overview. Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat status applies a different mechanism.",
-            "whatItDoes": "Router#show ip nat status describes a mechanism that could sound plausible for overview.",
-            "whyWrongHere": "Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat status applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip nat status\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "show ip nat status is not the standard statistics overview command.",
+            "misconceptionTested": "Confusing status with statistics",
+            "whatItDoes": "Router#show ip nat status is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (overview): Router#show ip nat statistics inspects the right table or state — Router#show ip nat status shows unrelated information."
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT counters/overview → show ip nat statistics."
       }
     },
     {
@@ -702,35 +686,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1\"."
+          "explanation": "Static NAT: ip nat inside source static <inside-local> <inside-global> maps one private host to one public IP."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "RouterA(config)#nat source static 192.168.1.3 179.43.44.1 reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
-            "whatItDoes": "RouterA(config)#nat source static 192.168.1.3 179.43.44.1 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the tested behavior — RouterA(config)#nat source static 192.168.1.3 179.43.44.1 applies a different mechanism.",
-            "misconceptionTested": "Expecting static NAT to serve many hosts",
-            "needsExplanationReview": true
+            "explanation": "Missing ip nat keyword — IOS requires ip nat inside source static.",
+            "misconceptionTested": "Omitting ip nat prefix",
+            "whatItDoes": "RouterA(config)#nat source static 192.168.1.3 179.43.44.1 points to a related idea, but not the specific behavior or value required for inside local.",
+            "whyWrongHere": "For \"inside local\", RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 satisfies what this question tests — RouterA(config)#nat source static 192.168.1.3 179.43.44.1 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
-            "whatItDoes": "RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the tested behavior — RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 applies a different mechanism.",
-            "misconceptionTested": "Expecting static NAT to serve many hosts",
-            "needsExplanationReview": true
+            "explanation": "ip nat static is not valid syntax — use inside source static.",
+            "misconceptionTested": "Wrong static NAT syntax",
+            "whatItDoes": "RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 points to a related idea, but not the specific behavior or value required for inside local.",
+            "whyWrongHere": "For \"inside local\", RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 satisfies what this question tests — RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
-            "whatItDoes": "RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the tested behavior — RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 applies a different mechanism.",
-            "misconceptionTested": "Expecting static NAT to serve many hosts",
-            "needsExplanationReview": true
+            "explanation": "Order is inside source static, not source static alone without inside.",
+            "misconceptionTested": "Reversed inside/source keywords",
+            "whatItDoes": "RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 points to a related idea, but not the specific behavior or value required for inside local.",
+            "whyWrongHere": "For \"inside local\", RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 satisfies what this question tests — RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 does not."
           }
         ],
-        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
+        "examTip": "Static NAT: ip nat inside source static <local> <global>."
       }
     },
     {
@@ -755,35 +736,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\"."
+          "explanation": "Pool for 179.43.44.0/28: ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 — /28 netmask matches the owned block."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 describes a mechanism that could sound plausible for inside local. Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.0/28 applies a different mechanism.",
-            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.0/28 applies a different mechanism.",
-            "misconceptionTested": "Applying \"RouterA(config)#ip nat pool EntPool \" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "Pool syntax uses start/end addresses and netmask — not CIDR slash in pool command.",
+            "misconceptionTested": "Using CIDR in ip nat pool",
+            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches prefix, shortening, or assignment rules — RouterA(config)#ip nat pool EntPool 179.43.44.0/28 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 1,
-            "explanation": "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 describes a mechanism that could sound plausible for inside local. Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 applies a different mechanism.",
-            "whatItDoes": "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 applies a different mechanism.",
-            "misconceptionTested": "Applying \"RouterA(config)#ip pool EntPool 179.\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "/28 netmask is 255.255.255.240, not 255.255.255.0.",
+            "misconceptionTested": "Wrong netmask for /28 block",
+            "whatItDoes": "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 points to a related idea, but not the specific behavior or value required for inside local.",
+            "whyWrongHere": "For \"inside local\", RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 satisfies what this question tests — RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 describes a mechanism that could sound plausible for inside local. Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 applies a different mechanism.",
-            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 applies a different mechanism.",
-            "misconceptionTested": "Applying \"RouterA(config)#ip nat pool EntPool \" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 points to a related idea, but not the specific behavior or value required for inside local. For \"inside local\", RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 satisfies what this question tests — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 does not.",
+            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 points to a related idea, but not the specific behavior or value required for inside local.",
+            "whyWrongHere": "For \"inside local\", RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 satisfies what this question tests — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 does not.",
+            "misconceptionTested": "Applying \"RouterA(config)#ip nat pool EntPool \" without matching nat"
           }
         ],
-        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
+        "examTip": "Dynamic pool: ip nat pool <name> <start> <end> netmask <mask>."
       }
     },
     {
@@ -813,22 +791,22 @@
             "choiceIndex": 0,
             "explanation": "Dynamic NAT ACLs identify inside local sources eligible for translation — they do not permit inbound access from outside global addresses.",
             "misconceptionTested": "Reversing inside/outside direction for NAT ACL",
-            "whatItDoes": "The access list allows incoming access from outside global addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list.",
-            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows incoming access from outside global addresses. applies a different mechanism."
+            "whatItDoes": "The access list allows incoming access from outside global addresses. assigns a specific NAT address role (inside/outside, local/global) that may not match the stem.",
+            "whyWrongHere": "NAT address roles (configuring dynamic NAT, why must you configure an access list) are fixed — The access list allows outgoing access from inside local addresses. matches the stem's inside/outside and local/global pairing; The access list allows incoming access from outside global addresses. swaps roles."
           },
           {
             "choiceIndex": 2,
             "explanation": "Outside local addresses are on the outside segment as seen locally — the NAT ACL matches inside local sources going out, not outside local.",
             "misconceptionTested": "Confusing outside local with inside local in NAT ACL",
-            "whatItDoes": "The access list allows outgoing access from outside local addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list.",
-            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from outside local addresses. applies a different mechanism."
+            "whatItDoes": "The access list allows outgoing access from outside local addresses. assigns a specific NAT address role (inside/outside, local/global) that may not match the stem.",
+            "whyWrongHere": "NAT address roles (configuring dynamic NAT, why must you configure an access list) are fixed — The access list allows outgoing access from inside local addresses. matches the stem's inside/outside and local/global pairing; The access list allows outgoing access from outside local addresses. swaps roles."
           },
           {
             "choiceIndex": 3,
             "explanation": "Inside global is the translated address — the ACL specifies which inside local hosts may use NAT, not inside global as the matched source.",
             "misconceptionTested": "Matching inside global instead of inside local in ACL",
-            "whatItDoes": "The access list allows outgoing access from inside global addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list.",
-            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from inside global addresses. applies a different mechanism."
+            "whatItDoes": "The access list allows outgoing access from inside global addresses. assigns a specific NAT address role (inside/outside, local/global) that may not match the stem.",
+            "whyWrongHere": "NAT address roles (configuring dynamic NAT, why must you configure an access list) are fixed — The access list allows outgoing access from inside local addresses. matches the stem's inside/outside and local/global pairing; The access list allows outgoing access from inside global addresses. swaps roles."
           }
         ],
         "examTip": "NAT ACL must match inside local addresses permitted to translate."
@@ -854,35 +832,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Router#clear ip nat translation *\"."
+          "explanation": "clear ip nat translation * removes all dynamic (and static if specified) entries from the translation table."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#no ip nat translation describes a mechanism that could sound plausible for translations. Given translations, Router#clear ip nat translation * matches the tested behavior — Router#no ip nat translation applies a different mechanism.",
-            "whatItDoes": "Router#no ip nat translation describes a mechanism that could sound plausible for translations.",
-            "whyWrongHere": "Given translations, Router#clear ip nat translation * matches the tested behavior — Router#no ip nat translation applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#no ip nat translation\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "no ip nat translation is not the clear command syntax.",
+            "misconceptionTested": "Using no instead of clear",
+            "whatItDoes": "Router#no ip nat translation points to a related idea, but not the specific behavior or value required for translations.",
+            "whyWrongHere": "For \"translations\", Router#clear ip nat translation * satisfies what this question tests — Router#no ip nat translation does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router#clear ip nat translation describes a mechanism that could sound plausible for translations. Given translations, Router#clear ip nat translation * matches the tested behavior — Router#clear ip nat translation applies a different mechanism.",
-            "whatItDoes": "Router#clear ip nat translation describes a mechanism that could sound plausible for translations.",
-            "whyWrongHere": "Given translations, Router#clear ip nat translation * matches the tested behavior — Router#clear ip nat translation applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#clear ip nat translation\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "Clear requires translation and usually * for all entries.",
+            "misconceptionTested": "Incomplete clear syntax",
+            "whatItDoes": "Router#clear ip nat translation points to a related idea, but not the specific behavior or value required for translations.",
+            "whyWrongHere": "For \"translations\", Router#clear ip nat translation * satisfies what this question tests — Router#clear ip nat translation does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#clear ip nat describes a mechanism that could sound plausible for translations. Given translations, Router#clear ip nat translation * matches the tested behavior — Router#clear ip nat applies a different mechanism.",
-            "whatItDoes": "Router#clear ip nat describes a mechanism that could sound plausible for translations.",
-            "whyWrongHere": "Given translations, Router#clear ip nat translation * matches the tested behavior — Router#clear ip nat applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#clear ip nat\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "clear ip nat without translation/* is incomplete.",
+            "misconceptionTested": "Truncated clear command",
+            "whatItDoes": "Router#clear ip nat points to a related idea, but not the specific behavior or value required for translations.",
+            "whyWrongHere": "For \"translations\", Router#clear ip nat translation * satisfies what this question tests — Router#clear ip nat does not."
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "Flush NAT table → clear ip nat translation *."
       }
     },
     {
@@ -905,35 +880,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Router#debug ip nat\"."
+          "explanation": "debug ip nat shows real-time NAT translation events (use sparingly in production)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#show ip translations describes a mechanism that could sound plausible for translations. Given translations, Router#debug ip nat matches the tested behavior — Router#show ip translations applies a different mechanism.",
-            "whatItDoes": "Router#show ip translations describes a mechanism that could sound plausible for translations.",
-            "whyWrongHere": "Given translations, Router#debug ip nat matches the tested behavior — Router#show ip translations applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip translations\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "show ip translations is invalid — use show ip nat translations or debug.",
+            "misconceptionTested": "Invalid show command",
+            "whatItDoes": "Router#show ip translations is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "For \"translations\", Router#debug ip nat satisfies what this question tests — Router#show ip translations does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#debug ip translations describes a mechanism that could sound plausible for translations. Given translations, Router#debug ip nat matches the tested behavior — Router#debug ip translations applies a different mechanism.",
-            "whatItDoes": "Router#debug ip translations describes a mechanism that could sound plausible for translations.",
-            "whyWrongHere": "Given translations, Router#debug ip nat matches the tested behavior — Router#debug ip translations applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#debug ip translations\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "debug ip translations is not standard IOS NAT debug syntax.",
+            "misconceptionTested": "Wrong debug keyword",
+            "whatItDoes": "Router#debug ip translations points to a related idea, but not the specific behavior or value required for translations.",
+            "whyWrongHere": "For \"translations\", Router#debug ip nat satisfies what this question tests — Router#debug ip translations does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show ip nat describes a mechanism that could sound plausible for translations. Given translations, Router#debug ip nat matches the tested behavior — Router#show ip nat applies a different mechanism.",
-            "whatItDoes": "Router#show ip nat describes a mechanism that could sound plausible for translations.",
-            "whyWrongHere": "Given translations, Router#debug ip nat matches the tested behavior — Router#show ip nat applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip nat\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "show ip nat alone is incomplete for realtime events — debug is required.",
+            "misconceptionTested": "Expecting show for realtime debug",
+            "whatItDoes": "Router#show ip nat is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "For \"translations\", Router#debug ip nat satisfies what this question tests — Router#show ip nat does not."
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "Realtime NAT events → debug ip nat (remember undebug all)."
       }
     },
     {
@@ -959,35 +931,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload\"."
+          "explanation": "PAT requires ACL + pool (often single IP) + overload keyword: ip nat inside source list 1 pool EntPool overload."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool reflects a common trap: Every inside host needs its own public IP. PAT lets thousands of hosts share one public IP via ports.",
-            "whatItDoes": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload matches the tested behavior — RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool applies a different mechanism.",
-            "misconceptionTested": "Every inside host needs its own public IP",
-            "needsExplanationReview": true
+            "explanation": "Missing overload — without it, dynamic NAT assigns one pool address per host, not port multiplexing.",
+            "misconceptionTested": "Forgetting overload for PAT",
+            "whatItDoes": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (inside local): RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload uses the right ACL type and position — RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool mismatches standard vs extended rules."
           },
           {
             "choiceIndex": 1,
-            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool describes a mechanism that could sound plausible for inside local. Given inside local, RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool applies a different mechanism.",
-            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool applies a different mechanism.",
-            "misconceptionTested": "Applying \"RouterA(config)#ip nat pool EntPool \" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "Syntax must be ip nat inside source list — not ip nat source pool alone.",
+            "misconceptionTested": "Wrong PAT command structure",
+            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool points to a related idea, but not the specific behavior or value required for inside local.",
+            "whyWrongHere": "For \"inside local\", RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload satisfies what this question tests — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool reflects a common trap: Every inside host needs its own public IP. PAT lets thousands of hosts share one public IP via ports.",
-            "whatItDoes": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload matches the tested behavior — RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool applies a different mechanism.",
-            "misconceptionTested": "Every inside host needs its own public IP",
-            "needsExplanationReview": true
+            "explanation": "No overload keyword means dynamic NAT, not PAT on a single public IP.",
+            "misconceptionTested": "Pool without overload on one IP",
+            "whatItDoes": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (inside local): RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload uses the right ACL type and position — RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool mismatches standard vs extended rules."
           }
         ],
-        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
+        "examTip": "PAT on one public IP → add overload to inside source list pool."
       }
     },
     {
@@ -1019,22 +988,22 @@
             "choiceIndex": 0,
             "explanation": "CIDR is an addressing/aggregation scheme — it does not translate private addresses for Internet egress.",
             "misconceptionTested": "Expecting CIDR to provide private-to-public translation",
-            "whatItDoes": "CIDR describes a mechanism that could sound plausible for addresses.",
-            "whyWrongHere": "Given addresses, NAT matches the tested behavior — CIDR applies a different mechanism."
+            "whatItDoes": "CIDR points to a related idea, but not the specific behavior or value required for addresses.",
+            "whyWrongHere": "For \"addresses\", NAT satisfies what this question tests — CIDR does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "Classful addressing is a legacy model — RFC 1918 hosts still need NAT (or similar) to reach the public Internet.",
             "misconceptionTested": "Believing classful rules alone enable Internet use of RFC 1918",
-            "whatItDoes": "Classful addressing describes a mechanism that could sound plausible for addresses.",
-            "whyWrongHere": "Given addresses, NAT matches the tested behavior — Classful addressing applies a different mechanism."
+            "whatItDoes": "Classful addressing points to a related idea, but not the specific behavior or value required for addresses.",
+            "whyWrongHere": "For \"addresses\", NAT satisfies what this question tests — Classful addressing does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "VPNs tunnel traffic between sites — they do not by themselves translate RFC 1918 hosts to public Internet addresses.",
             "misconceptionTested": "Substituting VPN for address translation to the Internet",
-            "whatItDoes": "VPN describes a mechanism that could sound plausible for addresses.",
-            "whyWrongHere": "Given addresses, NAT matches the tested behavior — VPN applies a different mechanism."
+            "whatItDoes": "VPN points to a related idea, but not the specific behavior or value required for addresses.",
+            "whyWrongHere": "For \"addresses\", NAT satisfies what this question tests — VPN does not."
           }
         ],
         "examTip": "RFC 1918 → Internet egress needs NAT (or carrier-grade NAT) to a public address."
@@ -1072,22 +1041,22 @@
             "choiceIndex": 1,
             "explanation": "192.168.1.1 is the inside router interface — inside local refers to the end host address before translation.",
             "misconceptionTested": "Labeling inside router interface as inside local host",
-            "whatItDoes": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 192.168.1.2 Host A matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism."
+            "whatItDoes": "192.168.1.1 Router A Gi0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (inside local): 192.168.1.2 Host A matches prefix, shortening, or assignment rules — 192.168.1.1 Router A Gi0/0 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 2,
             "explanation": "179.43.44.1 is the inside global address on the WAN interface — inside local stays private (192.168.1.x).",
             "misconceptionTested": "Confusing inside global WAN address with inside local",
-            "whatItDoes": "179.43.44.1 Router A S0/0 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 192.168.1.2 Host A matches the tested behavior — 179.43.44.1 Router A S0/0 applies a different mechanism."
+            "whatItDoes": "179.43.44.1 Router A S0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (inside local): 192.168.1.2 Host A matches prefix, shortening, or assignment rules — 179.43.44.1 Router A S0/0 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 3,
             "explanation": "198.23.53.3 is an outside global Internet server — inside local addresses live on the private LAN.",
             "misconceptionTested": "Selecting outside global address for inside local question",
-            "whatItDoes": "198.23.53.3 web server describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 192.168.1.2 Host A matches the tested behavior — 198.23.53.3 web server applies a different mechanism."
+            "whatItDoes": "198.23.53.3 web server points to a related idea, but not the specific behavior or value required for inside local.",
+            "whyWrongHere": "For \"inside local\", 192.168.1.2 Host A satisfies what this question tests — 198.23.53.3 web server does not."
           }
         ],
         "examTip": "NAT quadrants: inside local = private host IP before translation."
@@ -1125,22 +1094,22 @@
             "choiceIndex": 0,
             "explanation": "192.168.1.2 is Host A's inside local address — inside global is the routable address seen outside the NAT domain.",
             "misconceptionTested": "Equating inside local host with inside global",
-            "whatItDoes": "192.168.1.2 Host A describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 192.168.1.2 Host A applies a different mechanism."
+            "whatItDoes": "192.168.1.2 Host A points to a related idea, but not the specific behavior or value required for inside local.",
+            "whyWrongHere": "For \"inside local\", 179.43.44.1 Router A S0/0 satisfies what this question tests — 192.168.1.2 Host A does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "192.168.1.1 is the inside LAN gateway — inside global is the translated/public representation, not the private gateway.",
             "misconceptionTested": "Choosing inside LAN gateway as inside global",
-            "whatItDoes": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism."
+            "whatItDoes": "192.168.1.1 Router A Gi0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (inside local): 179.43.44.1 Router A S0/0 matches prefix, shortening, or assignment rules — 192.168.1.1 Router A Gi0/0 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 3,
             "explanation": "198.23.53.3 is an outside global destination on the Internet — inside global belongs to the enterprise NAT side.",
             "misconceptionTested": "Selecting outside global server for inside global slot",
-            "whatItDoes": "198.23.53.3 web server describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 179.43.44.1 Router A S0/0 matches the tested behavior — 198.23.53.3 web server applies a different mechanism."
+            "whatItDoes": "198.23.53.3 web server points to a related idea, but not the specific behavior or value required for inside local.",
+            "whyWrongHere": "For \"inside local\", 179.43.44.1 Router A S0/0 satisfies what this question tests — 198.23.53.3 web server does not."
           }
         ],
         "examTip": "Inside global = public address outsiders see for an inside host."
@@ -1178,22 +1147,22 @@
             "choiceIndex": 0,
             "explanation": "192.168.1.2 is an inside local host — outside global addresses belong to destinations outside the NAT domain.",
             "misconceptionTested": "Labeling inside local host as outside global",
-            "whatItDoes": "192.168.1.2 Host A describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 198.23.53.3 web server matches the tested behavior — 192.168.1.2 Host A applies a different mechanism."
+            "whatItDoes": "192.168.1.2 Host A points to a related idea, but not the specific behavior or value required for inside local.",
+            "whyWrongHere": "For \"inside local\", 198.23.53.3 web server satisfies what this question tests — 192.168.1.2 Host A does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "192.168.1.1 is the inside router LAN interface — it is not the outside global web server address.",
             "misconceptionTested": "Confusing inside gateway with outside global destination",
-            "whatItDoes": "192.168.1.1 Router A Gi0/0 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 198.23.53.3 web server matches the tested behavior — 192.168.1.1 Router A Gi0/0 applies a different mechanism."
+            "whatItDoes": "192.168.1.1 Router A Gi0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (inside local): 198.23.53.3 web server matches prefix, shortening, or assignment rules — 192.168.1.1 Router A Gi0/0 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 2,
             "explanation": "179.43.44.1 is the enterprise inside global on the WAN — outside global is the remote Internet server IP.",
             "misconceptionTested": "Mixing inside global WAN with outside global destination",
-            "whatItDoes": "179.43.44.1 Router A S0/0 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, 198.23.53.3 web server matches the tested behavior — 179.43.44.1 Router A S0/0 applies a different mechanism."
+            "whatItDoes": "179.43.44.1 Router A S0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (inside local): 198.23.53.3 web server matches prefix, shortening, or assignment rules — 179.43.44.1 Router A S0/0 breaks IPv6 syntax or prefix length."
           }
         ],
         "examTip": "Outside global = remote host's public IP as your network sees it."
@@ -1230,22 +1199,22 @@
             "choiceIndex": 1,
             "explanation": "show nat translations omits the required ip keyword — Cisco IOS uses show ip nat translations.",
             "misconceptionTested": "Dropping ip keyword from show nat command",
-            "whatItDoes": "Router#show nat translations describes a mechanism that could sound plausible for translations.",
-            "whyWrongHere": "Given translations, Router#show ip nat translations matches the tested behavior — Router#show nat translations applies a different mechanism."
+            "whatItDoes": "Router#show nat translations points to a related idea, but not the specific behavior or value required for translations.",
+            "whyWrongHere": "For \"translations\", Router#show ip nat translations satisfies what this question tests — Router#show nat translations does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "debug ip nat translations floods real-time events — use show ip nat translations for the current translation table.",
             "misconceptionTested": "Using debug instead of show for translation table",
-            "whatItDoes": "Router#debug ip nat translations describes a mechanism that could sound plausible for translations.",
-            "whyWrongHere": "Given translations, Router#show ip nat translations matches the tested behavior — Router#debug ip nat translations applies a different mechanism."
+            "whatItDoes": "Router#debug ip nat translations points to a related idea, but not the specific behavior or value required for translations.",
+            "whyWrongHere": "For \"translations\", Router#show ip nat translations satisfies what this question tests — Router#debug ip nat translations does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "show translations nat reverses the IOS syntax — the valid command is show ip nat translations.",
             "misconceptionTested": "Reordering show ip nat keywords",
-            "whatItDoes": "Router#show translations nat describes a mechanism that could sound plausible for translations.",
-            "whyWrongHere": "Given translations, Router#show ip nat translations matches the tested behavior — Router#show translations nat applies a different mechanism."
+            "whatItDoes": "Router#show translations nat points to a related idea, but not the specific behavior or value required for translations.",
+            "whyWrongHere": "For \"translations\", Router#show ip nat translations satisfies what this question tests — Router#show translations nat does not."
           }
         ],
         "examTip": "Active NAT mappings → show ip nat translations (not debug)."
@@ -1283,22 +1252,22 @@
             "choiceIndex": 0,
             "explanation": "show ip nat translations lists each active translation — statistics gives aggregate counters and summary data.",
             "misconceptionTested": "Using translations table for overview statistics",
-            "whatItDoes": "Router#show ip nat translations describes a mechanism that could sound plausible for overview.",
-            "whyWrongHere": "Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat translations applies a different mechanism."
+            "whatItDoes": "Router#show ip nat translations is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (overview): Router#show ip nat statistics inspects the right table or state — Router#show ip nat translations shows unrelated information."
           },
           {
             "choiceIndex": 1,
             "explanation": "show ip nat summary is not standard IOS syntax — overview statistics use show ip nat statistics.",
             "misconceptionTested": "Inventing show ip nat summary command",
-            "whatItDoes": "Router#show ip nat summary describes a mechanism that could sound plausible for overview.",
-            "whyWrongHere": "Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat summary applies a different mechanism."
+            "whatItDoes": "Router#show ip nat summary is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (overview): Router#show ip nat statistics inspects the right table or state — Router#show ip nat summary shows unrelated information."
           },
           {
             "choiceIndex": 2,
             "explanation": "show ip nat status is not the overview command — use show ip nat statistics for hit counts and totals.",
             "misconceptionTested": "Selecting nonexistent show ip nat status",
-            "whatItDoes": "Router#show ip nat status describes a mechanism that could sound plausible for overview.",
-            "whyWrongHere": "Given overview, Router#show ip nat statistics matches the tested behavior — Router#show ip nat status applies a different mechanism."
+            "whatItDoes": "Router#show ip nat status is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "Verification command (overview): Router#show ip nat statistics inspects the right table or state — Router#show ip nat status shows unrelated information."
           }
         ],
         "examTip": "NAT overview/counters → show ip nat statistics; per-entry table → show ip nat translations."
@@ -1335,22 +1304,22 @@
             "choiceIndex": 1,
             "explanation": "Valid static NAT requires the ip nat prefix and inside keyword — nat source static alone is incomplete IOS syntax.",
             "misconceptionTested": "Omitting ip nat inside keywords from static NAT",
-            "whatItDoes": "RouterA(config)#nat source static 192.168.1.3 179.43.44.1 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the tested behavior — RouterA(config)#nat source static 192.168.1.3 179.43.44.1 applies a different mechanism."
+            "whatItDoes": "RouterA(config)#nat source static 192.168.1.3 179.43.44.1 points to a related idea, but not the specific behavior or value required for inside local.",
+            "whyWrongHere": "For \"inside local\", RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 satisfies what this question tests — RouterA(config)#nat source static 192.168.1.3 179.43.44.1 does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "ip nat static is not the full command form — Cisco uses ip nat inside source static <local> <global>.",
             "misconceptionTested": "Using shortened ip nat static syntax",
-            "whatItDoes": "RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the tested behavior — RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 applies a different mechanism."
+            "whatItDoes": "RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 points to a related idea, but not the specific behavior or value required for inside local.",
+            "whyWrongHere": "For \"inside local\", RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 satisfies what this question tests — RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 does not."
           },
           {
             "choiceIndex": 3,
             "explanation": "ip nat source static drops the required inside keyword — static mappings need ip nat inside source static.",
             "misconceptionTested": "Missing inside keyword in static NAT command",
-            "whatItDoes": "RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the tested behavior — RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 applies a different mechanism."
+            "whatItDoes": "RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 points to a related idea, but not the specific behavior or value required for inside local.",
+            "whyWrongHere": "For \"inside local\", RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 satisfies what this question tests — RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 does not."
           }
         ],
         "examTip": "Static NAT: ip nat inside source static <private> <public>."
@@ -1390,22 +1359,22 @@
             "choiceIndex": 0,
             "explanation": "NAT pool syntax uses host address ranges, not CIDR slash notation — ip nat pool Name start end netmask.",
             "misconceptionTested": "Using CIDR notation inside ip nat pool command",
-            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.0/28 applies a different mechanism."
+            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+            "whyWrongHere": "IPv6 addressing (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches prefix, shortening, or assignment rules — RouterA(config)#ip nat pool EntPool 179.43.44.0/28 breaks IPv6 syntax or prefix length."
           },
           {
             "choiceIndex": 1,
             "explanation": "ip pool is not NAT pool syntax — dynamic pools are defined with ip nat pool <name> <start> <end> netmask.",
             "misconceptionTested": "Using ip pool instead of ip nat pool",
-            "whatItDoes": "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 applies a different mechanism."
+            "whatItDoes": "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 points to a related idea, but not the specific behavior or value required for inside local.",
+            "whyWrongHere": "For \"inside local\", RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 satisfies what this question tests — RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "179.43.44.1 is the router WAN interface — usable pool hosts start at .2; the keyed pool uses .2–.15 with netmask.",
             "misconceptionTested": "Including interface address as pool start",
-            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 applies a different mechanism."
+            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 points to a related idea, but not the specific behavior or value required for inside local.",
+            "whyWrongHere": "For \"inside local\", RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 satisfies what this question tests — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 does not."
           }
         ],
         "examTip": "Dynamic NAT pool: ip nat pool <name> <first> <last> netmask <mask>."
@@ -1444,22 +1413,22 @@
             "choiceIndex": 0,
             "explanation": "The ACL for dynamic NAT matches inside sources going out — it does not permit inbound connections from outside global addresses.",
             "misconceptionTested": "Reversing NAT ACL direction (inbound vs outbound)",
-            "whatItDoes": "The access list allows incoming access from outside global addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list.",
-            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows incoming access from outside global addresses. applies a different mechanism."
+            "whatItDoes": "The access list allows incoming access from outside global addresses. assigns a specific NAT address role (inside/outside, local/global) that may not match the stem.",
+            "whyWrongHere": "NAT address roles (configuring dynamic NAT, why must you configure an access list) are fixed — The access list allows outgoing access from inside local addresses. matches the stem's inside/outside and local/global pairing; The access list allows incoming access from outside global addresses. swaps roles."
           },
           {
             "choiceIndex": 2,
             "explanation": "Outside local addresses are how outsiders appear inside — dynamic NAT ACLs match inside local sources, not outside local.",
             "misconceptionTested": "Confusing outside local with inside local in NAT ACL",
-            "whatItDoes": "The access list allows outgoing access from outside local addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list.",
-            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from outside local addresses. applies a different mechanism."
+            "whatItDoes": "The access list allows outgoing access from outside local addresses. assigns a specific NAT address role (inside/outside, local/global) that may not match the stem.",
+            "whyWrongHere": "NAT address roles (configuring dynamic NAT, why must you configure an access list) are fixed — The access list allows outgoing access from inside local addresses. matches the stem's inside/outside and local/global pairing; The access list allows outgoing access from outside local addresses. swaps roles."
           },
           {
             "choiceIndex": 3,
             "explanation": "Inside global is the translated public face — the ACL selects inside local hosts before translation occurs.",
             "misconceptionTested": "Matching inside global instead of inside local pre-translation",
-            "whatItDoes": "The access list allows outgoing access from inside global addresses. describes a mechanism that could sound plausible for configuring dynamic NAT, why must you configure an access list.",
-            "whyWrongHere": "Given configuring dynamic NAT, why must you configure an access list, The access list allows outgoing access from inside local addresses. matches the tested behavior — The access list allows outgoing access from inside global addresses. applies a different mechanism."
+            "whatItDoes": "The access list allows outgoing access from inside global addresses. assigns a specific NAT address role (inside/outside, local/global) that may not match the stem.",
+            "whyWrongHere": "NAT address roles (configuring dynamic NAT, why must you configure an access list) are fixed — The access list allows outgoing access from inside local addresses. matches the stem's inside/outside and local/global pairing; The access list allows outgoing access from inside global addresses. swaps roles."
           }
         ],
         "examTip": "Dynamic NAT ACL → match inside local sources allowed to translate outbound."
@@ -1488,35 +1457,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Router#clear ip nat translation *\"."
+          "explanation": "Clear every dynamic NAT entry with clear ip nat translation * — the asterisk wipes the full translation table."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#no ip nat translation describes a mechanism that could sound plausible for translations. Given translations, Router#clear ip nat translation * matches the tested behavior — Router#no ip nat translation applies a different mechanism.",
-            "whatItDoes": "Router#no ip nat translation describes a mechanism that could sound plausible for translations.",
-            "whyWrongHere": "Given translations, Router#clear ip nat translation * matches the tested behavior — Router#no ip nat translation applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#no ip nat translation\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "no ip nat translation is not valid exec syntax — use clear ip nat translation *.",
+            "misconceptionTested": "no ip nat translation as clear command",
+            "whatItDoes": "Router#no ip nat translation points to a related idea, but not the specific behavior or value required for translations.",
+            "whyWrongHere": "For \"translations\", Router#clear ip nat translation * satisfies what this question tests — Router#no ip nat translation does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Router#clear ip nat translation describes a mechanism that could sound plausible for translations. Given translations, Router#clear ip nat translation * matches the tested behavior — Router#clear ip nat translation applies a different mechanism.",
-            "whatItDoes": "Router#clear ip nat translation describes a mechanism that could sound plausible for translations.",
-            "whyWrongHere": "Given translations, Router#clear ip nat translation * matches the tested behavior — Router#clear ip nat translation applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#clear ip nat translation\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "clear ip nat translation without * is incomplete — add * to clear all entries.",
+            "misconceptionTested": "Clear without asterisk for all translations",
+            "whatItDoes": "Router#clear ip nat translation points to a related idea, but not the specific behavior or value required for translations.",
+            "whyWrongHere": "For \"translations\", Router#clear ip nat translation * satisfies what this question tests — Router#clear ip nat translation does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#clear ip nat describes a mechanism that could sound plausible for translations. Given translations, Router#clear ip nat translation * matches the tested behavior — Router#clear ip nat applies a different mechanism.",
-            "whatItDoes": "Router#clear ip nat describes a mechanism that could sound plausible for translations.",
-            "whyWrongHere": "Given translations, Router#clear ip nat translation * matches the tested behavior — Router#clear ip nat applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#clear ip nat\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "clear ip nat is truncated — the full command is clear ip nat translation *.",
+            "misconceptionTested": "Abbreviated clear ip nat command",
+            "whatItDoes": "Router#clear ip nat points to a related idea, but not the specific behavior or value required for translations.",
+            "whyWrongHere": "For \"translations\", Router#clear ip nat translation * satisfies what this question tests — Router#clear ip nat does not."
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "Flush NAT table: clear ip nat translation * — use * for all dynamic entries."
       }
     },
     {
@@ -1542,35 +1508,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Router#debug ip nat\"."
+          "explanation": "debug ip nat shows NAT translations in real time as packets are translated — show commands are snapshots."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router#show ip translations describes a mechanism that could sound plausible for translations. Given translations, Router#debug ip nat matches the tested behavior — Router#show ip translations applies a different mechanism.",
-            "whatItDoes": "Router#show ip translations describes a mechanism that could sound plausible for translations.",
-            "whyWrongHere": "Given translations, Router#debug ip nat matches the tested behavior — Router#show ip translations applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip translations\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "show ip translations is not standard IOS — even valid show ip nat translations is not real-time.",
+            "misconceptionTested": "show ip translations for live NAT",
+            "whatItDoes": "Router#show ip translations is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "For \"translations\", Router#debug ip nat satisfies what this question tests — Router#show ip translations does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router#debug ip translations describes a mechanism that could sound plausible for translations. Given translations, Router#debug ip nat matches the tested behavior — Router#debug ip translations applies a different mechanism.",
-            "whatItDoes": "Router#debug ip translations describes a mechanism that could sound plausible for translations.",
-            "whyWrongHere": "Given translations, Router#debug ip nat matches the tested behavior — Router#debug ip translations applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#debug ip translations\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "debug ip translations is not the Cisco NAT debug command — use debug ip nat.",
+            "misconceptionTested": "debug ip translations instead of debug ip nat",
+            "whatItDoes": "Router#debug ip translations points to a related idea, but not the specific behavior or value required for translations.",
+            "whyWrongHere": "For \"translations\", Router#debug ip nat satisfies what this question tests — Router#debug ip translations does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#show ip nat describes a mechanism that could sound plausible for translations. Given translations, Router#debug ip nat matches the tested behavior — Router#show ip nat applies a different mechanism.",
-            "whatItDoes": "Router#show ip nat describes a mechanism that could sound plausible for translations.",
-            "whyWrongHere": "Given translations, Router#debug ip nat matches the tested behavior — Router#show ip nat applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#show ip nat\" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "show ip nat (or show ip nat translations) is a snapshot — real-time events need debug ip nat.",
+            "misconceptionTested": "Show command for real-time NAT events",
+            "whatItDoes": "Router#show ip nat is a verification command that inspects a different table or feature than the stem asks about.",
+            "whyWrongHere": "For \"translations\", Router#debug ip nat satisfies what this question tests — Router#show ip nat does not."
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT verify: show ip nat translations (table) | debug ip nat (live translation events)."
       }
     },
     {
@@ -1600,35 +1563,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload\"."
+          "explanation": "PAT/overload maps many inside hosts to one outside address — ACL + pool + overload keyword on ip nat inside source list."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool reflects a common trap: Every inside host needs its own public IP. PAT lets thousands of hosts share one public IP via ports.",
-            "whatItDoes": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload matches the tested behavior — RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool applies a different mechanism.",
-            "misconceptionTested": "Every inside host needs its own public IP",
-            "needsExplanationReview": true
+            "explanation": "Missing overload — without it, dynamic NAT uses one pool address per host, not many-to-one PAT.",
+            "misconceptionTested": "Dynamic NAT pool without overload as PAT",
+            "whatItDoes": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (inside local): RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload uses the right ACL type and position — RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool mismatches standard vs extended rules."
           },
           {
             "choiceIndex": 1,
-            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool describes a mechanism that could sound plausible for inside local. Given inside local, RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool applies a different mechanism.",
-            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload matches the tested behavior — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool applies a different mechanism.",
-            "misconceptionTested": "Applying \"RouterA(config)#ip nat pool EntPool \" without matching nat",
-            "needsExplanationReview": true
+            "explanation": "Wrong syntax (ip nat source pool) and missing ACL — PAT needs ip nat inside source list <acl> pool <name> overload.",
+            "misconceptionTested": "ip nat source pool without inside keyword",
+            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool points to a related idea, but not the specific behavior or value required for inside local.",
+            "whyWrongHere": "For \"inside local\", RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload satisfies what this question tests — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool reflects a common trap: Every inside host needs its own public IP. PAT lets thousands of hosts share one public IP via ports.",
-            "whatItDoes": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool describes a mechanism that could sound plausible for inside local.",
-            "whyWrongHere": "Given inside local, RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload matches the tested behavior — RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool applies a different mechanism.",
-            "misconceptionTested": "Every inside host needs its own public IP",
-            "needsExplanationReview": true
+            "explanation": "ACL and pool are correct but overload is missing — PAT requires the overload keyword.",
+            "misconceptionTested": "NAT pool config without overload for PAT",
+            "whatItDoes": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+            "whyWrongHere": "ACL placement/match (inside local): RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload uses the right ACL type and position — RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool mismatches standard vs extended rules."
           }
         ],
-        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
+        "examTip": "PAT recipe: ACL permit inside net → ip nat inside source list <n> pool <name> overload."
       }
     }
   ]

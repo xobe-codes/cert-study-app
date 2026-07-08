@@ -24,35 +24,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Setting the hostname and domain name\"."
+          "explanation": "SSH RSA key generation requires ip domain-name (with hostname set) — the FQDN labels the key pair."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Setting the time and date describes a mechanism that could sound plausible for identify. Given identify, Setting the hostname and domain name matches the tested behavior — Setting the time and date applies a different mechanism.",
-            "whatItDoes": "Setting the time and date describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Setting the hostname and domain name matches the tested behavior — Setting the time and date applies a different mechanism.",
-            "misconceptionTested": "Applying \"Setting the time and date\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "Accurate clock/NTP helps certificate validation but hostname + domain-name are required before crypto key generate rsa.",
+            "misconceptionTested": "Time/date as only SSH key prerequisite",
+            "whatItDoes": "Setting the time and date points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Setting the hostname and domain name satisfies what this question tests — Setting the time and date does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Setting the key strength describes a mechanism that could sound plausible for identify. Given identify, Setting the hostname and domain name matches the tested behavior — Setting the key strength applies a different mechanism.",
-            "whatItDoes": "Setting the key strength describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Setting the hostname and domain name matches the tested behavior — Setting the key strength applies a different mechanism.",
-            "misconceptionTested": "Applying \"Setting the key strength\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "Key modulus size is specified during generation — not a separate prerequisite step.",
+            "misconceptionTested": "Key strength as separate prerequisite",
+            "whatItDoes": "Setting the key strength points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Setting the hostname and domain name satisfies what this question tests — Setting the key strength does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Setting the key repository describes a mechanism that could sound plausible for identify. Given identify, Setting the hostname and domain name matches the tested behavior — Setting the key repository applies a different mechanism.",
-            "whatItDoes": "Setting the key repository describes a mechanism that could sound plausible for identify.",
-            "whyWrongHere": "Given identify, Setting the hostname and domain name matches the tested behavior — Setting the key repository applies a different mechanism.",
-            "misconceptionTested": "Applying \"Setting the key repository\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "No key repository config exists — set hostname and ip domain-name first.",
+            "misconceptionTested": "Key repository prerequisite",
+            "whatItDoes": "Setting the key repository points to a related idea, but not the specific behavior or value required for identify.",
+            "whyWrongHere": "For \"identify\", Setting the hostname and domain name satisfies what this question tests — Setting the key repository does not."
           }
         ],
-        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
+        "examTip": "SSH key prep: hostname R1 → ip domain-name lab.local → crypto key generate rsa."
       }
     },
     {
@@ -77,35 +74,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Router(config)#ip ssh version 2\"."
+          "explanation": "ip ssh version 2 in global config forces SSHv2 — more secure than SSHv1."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router(config-line)#version 2 describes a mechanism that could sound plausible for ssh. Given ssh, Router(config)#ip ssh version 2 matches the tested behavior — Router(config-line)#version 2 applies a different mechanism.",
-            "whatItDoes": "Router(config-line)#version 2 describes a mechanism that could sound plausible for ssh.",
-            "whyWrongHere": "Given ssh, Router(config)#ip ssh version 2 matches the tested behavior — Router(config-line)#version 2 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config-line)#version 2\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "SSH version is global config, not config-line — use ip ssh version 2.",
+            "misconceptionTested": "SSH version under line config",
+            "whatItDoes": "Router(config-line)#version 2 points to a related idea, but not the specific behavior or value required for ssh.",
+            "whyWrongHere": "For \"ssh\", Router(config)#ip ssh version 2 satisfies what this question tests — Router(config-line)#version 2 does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config-ssh)#version 2 describes a mechanism that could sound plausible for ssh. Given ssh, Router(config)#ip ssh version 2 matches the tested behavior — Router(config-ssh)#version 2 applies a different mechanism.",
-            "whatItDoes": "Router(config-ssh)#version 2 describes a mechanism that could sound plausible for ssh.",
-            "whyWrongHere": "Given ssh, Router(config)#ip ssh version 2 matches the tested behavior — Router(config-ssh)#version 2 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config-ssh)#version 2\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "config-ssh is not a valid config mode — ip ssh version 2 is global.",
+            "misconceptionTested": "config-ssh mode for SSH version",
+            "whatItDoes": "Router(config-ssh)#version 2 points to a related idea, but not the specific behavior or value required for ssh.",
+            "whyWrongHere": "For \"ssh\", Router(config)#ip ssh version 2 satisfies what this question tests — Router(config-ssh)#version 2 does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#ssh version 2 describes a mechanism that could sound plausible for ssh. Given ssh, Router(config)#ip ssh version 2 matches the tested behavior — Router(config)#ssh version 2 applies a different mechanism.",
-            "whatItDoes": "Router(config)#ssh version 2 describes a mechanism that could sound plausible for ssh.",
-            "whyWrongHere": "Given ssh, Router(config)#ip ssh version 2 matches the tested behavior — Router(config)#ssh version 2 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#ssh version 2\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "Correct syntax is ip ssh version 2, not ssh version 2.",
+            "misconceptionTested": "ssh version without ip prefix",
+            "whatItDoes": "Router(config)#ssh version 2 points to a related idea, but not the specific behavior or value required for ssh.",
+            "whyWrongHere": "For \"ssh\", Router(config)#ip ssh version 2 satisfies what this question tests — Router(config)#ssh version 2 does not."
           }
         ],
-        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
+        "examTip": "SSH harden: ip ssh version 2 + transport input ssh on vty lines + disable Telnet."
       }
     },
     {
@@ -139,22 +133,22 @@
             "choiceIndex": 0,
             "explanation": "login ssh telnet is not valid global config — transport protocols are set under line vty.",
             "misconceptionTested": "Configuring transport at global config",
-            "whatItDoes": "Switch(config)#login ssh telnet describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Switch(config-line)#transport ssh telnet matches the tested behavior — Switch(config)#login ssh telnet applies a different mechanism."
+            "whatItDoes": "Switch(config)#login ssh telnet uses cleartext Telnet for remote device management.",
+            "whyWrongHere": "Device management (configure): Switch(config-line)#transport ssh telnet protects credentials in transit — Switch(config)#login ssh telnet uses cleartext remote access."
           },
           {
             "choiceIndex": 1,
             "explanation": "login controls authentication method — allowed protocols are set with transport input on the line.",
             "misconceptionTested": "Using login instead of transport input",
-            "whatItDoes": "Switch(config-line)#login ssh telnet describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Switch(config-line)#transport ssh telnet matches the tested behavior — Switch(config-line)#login ssh telnet applies a different mechanism."
+            "whatItDoes": "Switch(config-line)#login ssh telnet uses cleartext Telnet for remote device management.",
+            "whyWrongHere": "Device management (configure): Switch(config-line)#transport ssh telnet protects credentials in transit — Switch(config-line)#login ssh telnet uses cleartext remote access."
           },
           {
             "choiceIndex": 3,
             "explanation": "transport input must be under config-line — global config#transport is wrong context.",
             "misconceptionTested": "Setting transport input at wrong config level",
-            "whatItDoes": "Switch(config)#transport ssh telnet describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Switch(config-line)#transport ssh telnet matches the tested behavior — Switch(config)#transport ssh telnet applies a different mechanism."
+            "whatItDoes": "Switch(config)#transport ssh telnet uses cleartext Telnet for remote device management.",
+            "whyWrongHere": "Device management (configure): Switch(config-line)#transport ssh telnet protects credentials in transit — Switch(config)#transport ssh telnet uses cleartext remote access."
           }
         ],
         "examTip": "VTY: transport input ssh telnet under line vty (after ip domain-name + crypto key)."
@@ -183,35 +177,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"SSH is encrypted.\"."
+          "explanation": "Replace Telnet with SSH because SSH encrypts the entire management session — credentials and commands are protected."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Telnet sends credentials in cleartext — SSH is required for secure device management.",
-            "whatItDoes": "Telnet has weak encryption. describes a mechanism that could sound plausible for replaced.",
-            "whyWrongHere": "Given replaced, SSH is encrypted. matches the tested behavior — Telnet has weak encryption. applies a different mechanism.",
-            "misconceptionTested": "Picking Telnet when secure management is required",
-            "needsExplanationReview": true
+            "explanation": "Telnet has no encryption (not weak encryption) — all traffic is cleartext.",
+            "misconceptionTested": "Telnet has weak encryption",
+            "whatItDoes": "Telnet has weak encryption. uses cleartext Telnet for remote device management.",
+            "whyWrongHere": "Device management (replaced): SSH is encrypted. protects credentials in transit — Telnet has weak encryption. uses cleartext remote access."
           },
           {
             "choiceIndex": 1,
-            "explanation": "SSH allows for file copy. describes a mechanism that could sound plausible for replaced. Given replaced, SSH is encrypted. matches the tested behavior — SSH allows for file copy. applies a different mechanism.",
-            "whatItDoes": "SSH allows for file copy. describes a mechanism that could sound plausible for replaced.",
-            "whyWrongHere": "Given replaced, SSH is encrypted. matches the tested behavior — SSH allows for file copy. applies a different mechanism.",
-            "misconceptionTested": "Applying \"SSH allows for file copy.\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "File copy uses SCP/FTP/TFTP — not the primary reason to replace Telnet with SSH.",
+            "misconceptionTested": "SSH for file copy over Telnet replacement",
+            "whatItDoes": "SSH allows for file copy. points to a related idea, but not the specific behavior or value required for replaced.",
+            "whyWrongHere": "For \"replaced\", SSH is encrypted. satisfies what this question tests — SSH allows for file copy. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SSH makes it easier to create ACLs for access. describes a mechanism that could sound plausible for replaced. Given replaced, SSH is encrypted. matches the tested behavior — SSH makes it easier to create ACLs for access. applies a different mechanism.",
-            "whatItDoes": "SSH makes it easier to create ACLs for access. describes a mechanism that could sound plausible for replaced.",
-            "whyWrongHere": "Given replaced, SSH is encrypted. matches the tested behavior — SSH makes it easier to create ACLs for access. applies a different mechanism.",
-            "misconceptionTested": "Applying \"SSH makes it easier to create ACLs f\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "ACLs control who connects — SSH adds encryption regardless of ACL rules.",
+            "misconceptionTested": "SSH eases ACL creation as main benefit",
+            "whatItDoes": "SSH makes it easier to create ACLs for access. points to a related idea, but not the specific behavior or value required for replaced.",
+            "whyWrongHere": "For \"replaced\", SSH is encrypted. satisfies what this question tests — SSH makes it easier to create ACLs for access. does not."
           }
         ],
-        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
+        "examTip": "Telnet = cleartext TCP/23 | SSH = encrypted TCP/22 — always prefer SSH on vty lines."
       }
     },
     {
@@ -238,35 +229,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"The key strength needs to be 768 bits or higher.\"."
+          "explanation": "SSHv2 requires RSA keys of at least 768 bits (1024+ recommended) — shorter keys block v2 enablement."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The time and date need to be corrected. describes a mechanism that could sound plausible for encryption. Given encryption, The key strength needs to be 768 bits or higher. matches the tested behavior — The time and date need to be corrected. applies a different mechanism.",
-            "whatItDoes": "The time and date need to be corrected. describes a mechanism that could sound plausible for encryption.",
-            "whyWrongHere": "Given encryption, The key strength needs to be 768 bits or higher. matches the tested behavior — The time and date need to be corrected. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The time and date need to be correct\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "Clock/NTP affects logs and certs — it does not block ip ssh version 2 like key size does.",
+            "misconceptionTested": "Time sync blocks SSHv2",
+            "whatItDoes": "The time and date need to be corrected. points to a related idea, but not the specific behavior or value required for encryption.",
+            "whyWrongHere": "For \"encryption\", The key strength needs to be 768 bits or higher. satisfies what this question tests — The time and date need to be corrected. does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The DNS server is not configured. describes a mechanism that could sound plausible for encryption. Given encryption, The key strength needs to be 768 bits or higher. matches the tested behavior — The DNS server is not configured. applies a different mechanism.",
-            "whatItDoes": "The DNS server is not configured. describes a mechanism that could sound plausible for encryption.",
-            "whyWrongHere": "Given encryption, The key strength needs to be 768 bits or higher. matches the tested behavior — The DNS server is not configured. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The DNS server is not configured.\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "DNS is not required for SSHv2 — insufficient RSA modulus prevents v2.",
+            "misconceptionTested": "DNS required for SSHv2",
+            "whatItDoes": "The DNS server is not configured. points to a related idea, but not the specific behavior or value required for encryption.",
+            "whyWrongHere": "For \"encryption\", The key strength needs to be 768 bits or higher. satisfies what this question tests — The DNS server is not configured. does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "There is no host record for the switch or router. describes a mechanism that could sound plausible for encryption. Given encryption, The key strength needs to be 768 bits or higher. matches the tested behavior — There is no host record for the switch or router. applies a different mechanism.",
-            "whatItDoes": "There is no host record for the switch or router. describes a mechanism that could sound plausible for encryption.",
-            "whyWrongHere": "Given encryption, The key strength needs to be 768 bits or higher. matches the tested behavior — There is no host record for the switch or router. applies a different mechanism.",
-            "misconceptionTested": "Applying \"There is no host record for the swit\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "No DNS host record is needed on the device — key modulus ≥ 768 is the v2 requirement.",
+            "misconceptionTested": "DNS host record for SSHv2",
+            "whatItDoes": "There is no host record for the switch or router. points to a related idea, but not the specific behavior or value required for encryption.",
+            "whyWrongHere": "For \"encryption\", The key strength needs to be 768 bits or higher. satisfies what this question tests — There is no host record for the switch or router. does not."
           }
         ],
-        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
+        "examTip": "SSHv2 key: crypto key generate rsa modulus 1024 (or 2048) — v2 fails with tiny keys."
       }
     },
     {
@@ -292,35 +280,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"Router(config)#username user1 password Password20!\"."
+          "explanation": "username <name> password <secret> creates a local user database entry for login authentication."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Router(config)#account user1 Router(config-acct)#password Password20! describes a mechanism that could sound plausible for configure. Given configure, Router(config)#username user1 password Password20! matches the tested behavior — Router(config)#account user1 Router(config-acct)#password Password20! applies a different mechanism.",
-            "whatItDoes": "Router(config)#account user1 Router(config-acct)#password Password20! describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Router(config)#username user1 password Password20! matches the tested behavior — Router(config)#account user1 Router(config-acct)#password Password20! applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#account user1 Router(\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "account is not valid IOS — local users use username in global config.",
+            "misconceptionTested": "account submode for local user",
+            "whatItDoes": "Router(config)#account user1 Router(config-acct)#password Password20! points to a related idea, but not the specific behavior or value required for configure.",
+            "whyWrongHere": "For \"configure\", Router(config)#username user1 password Password20! satisfies what this question tests — Router(config)#account user1 Router(config-acct)#password Password20! does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#user user1 Password20! describes a mechanism that could sound plausible for configure. Given configure, Router(config)#username user1 password Password20! matches the tested behavior — Router(config)#user user1 Password20! applies a different mechanism.",
-            "whatItDoes": "Router(config)#user user1 Password20! describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Router(config)#username user1 password Password20! matches the tested behavior — Router(config)#user user1 Password20! applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#user user1 Password20\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "user alone is incomplete — correct syntax is username <name> password <pwd>.",
+            "misconceptionTested": "user without username keyword",
+            "whatItDoes": "Router(config)#user user1 Password20! points to a related idea, but not the specific behavior or value required for configure.",
+            "whyWrongHere": "For \"configure\", Router(config)#username user1 password Password20! satisfies what this question tests — Router(config)#user user1 Password20! does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router(config)#user-account user1 password Password20! describes a mechanism that could sound plausible for configure. Given configure, Router(config)#username user1 password Password20! matches the tested behavior — Router(config)#user-account user1 password Password20! applies a different mechanism.",
-            "whatItDoes": "Router(config)#user-account user1 password Password20! describes a mechanism that could sound plausible for configure.",
-            "whyWrongHere": "Given configure, Router(config)#username user1 password Password20! matches the tested behavior — Router(config)#user-account user1 password Password20! applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#user-account user1 pa\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "user-account is not valid Cisco syntax — use username.",
+            "misconceptionTested": "user-account command",
+            "whatItDoes": "Router(config)#user-account user1 password Password20! points to a related idea, but not the specific behavior or value required for configure.",
+            "whyWrongHere": "For \"configure\", Router(config)#username user1 password Password20! satisfies what this question tests — Router(config)#user-account user1 password Password20! does not."
           }
         ],
-        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
+        "examTip": "Local auth: username bob secret <pwd> (preferred over plaintext password) + login local on vty."
       }
     },
     {
@@ -346,35 +331,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Router(config)#crypto key generate rsa\"."
+          "explanation": "crypto key generate rsa in global config creates the RSA key pair used by SSH."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Router(config)#generate crypto key rsa describes a mechanism that could sound plausible for generate. Given generate, Router(config)#crypto key generate rsa matches the tested behavior — Router(config)#generate crypto key rsa applies a different mechanism.",
-            "whatItDoes": "Router(config)#generate crypto key rsa describes a mechanism that could sound plausible for generate.",
-            "whyWrongHere": "Given generate, Router(config)#crypto key generate rsa matches the tested behavior — Router(config)#generate crypto key rsa applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#generate crypto key r\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "Keyword order is crypto key generate rsa, not generate crypto key rsa.",
+            "misconceptionTested": "Wrong crypto key command word order",
+            "whatItDoes": "Router(config)#generate crypto key rsa points to a related idea, but not the specific behavior or value required for generate.",
+            "whyWrongHere": "For \"generate\", Router(config)#crypto key generate rsa satisfies what this question tests — Router(config)#generate crypto key rsa does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Router(config)#crypto generate key rsa describes a mechanism that could sound plausible for generate. Given generate, Router(config)#crypto key generate rsa matches the tested behavior — Router(config)#crypto generate key rsa applies a different mechanism.",
-            "whatItDoes": "Router(config)#crypto generate key rsa describes a mechanism that could sound plausible for generate.",
-            "whyWrongHere": "Given generate, Router(config)#crypto key generate rsa matches the tested behavior — Router(config)#crypto generate key rsa applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router(config)#crypto generate key r\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "crypto generate key rsa reverses the middle keywords — use crypto key generate rsa.",
+            "misconceptionTested": "crypto generate key word order",
+            "whatItDoes": "Router(config)#crypto generate key rsa points to a related idea, but not the specific behavior or value required for generate.",
+            "whyWrongHere": "For \"generate\", Router(config)#crypto key generate rsa satisfies what this question tests — Router(config)#crypto generate key rsa does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Router#crypto key generate rsa describes a mechanism that could sound plausible for generate. Given generate, Router(config)#crypto key generate rsa matches the tested behavior — Router#crypto key generate rsa applies a different mechanism.",
-            "whatItDoes": "Router#crypto key generate rsa describes a mechanism that could sound plausible for generate.",
-            "whyWrongHere": "Given generate, Router(config)#crypto key generate rsa matches the tested behavior — Router#crypto key generate rsa applies a different mechanism.",
-            "misconceptionTested": "Applying \"Router#crypto key generate rsa\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "Key generation is global config (Router(config)#), not privileged EXEC alone.",
+            "misconceptionTested": "RSA key generation in exec mode",
+            "whatItDoes": "Router#crypto key generate rsa points to a related idea, but not the specific behavior or value required for generate.",
+            "whyWrongHere": "For \"generate\", Router(config)#crypto key generate rsa satisfies what this question tests — Router#crypto key generate rsa does not."
           }
         ],
-        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
+        "examTip": "SSH keys: crypto key generate rsa → confirm with show ip ssh."
       }
     },
     {
@@ -403,35 +385,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Switch(config-line)#login local\"."
+          "explanation": "login local under line vty tells SSH/Telnet to authenticate against the local username database."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switch(config)#new aaa model describes a mechanism that could sound plausible for managing the switch. Given managing the switch, Switch(config-line)#login local matches the tested behavior — Switch(config)#new aaa model applies a different mechanism.",
-            "whatItDoes": "Switch(config)#new aaa model describes a mechanism that could sound plausible for managing the switch.",
-            "whyWrongHere": "Given managing the switch, Switch(config-line)#login local matches the tested behavior — Switch(config)#new aaa model applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#new aaa model\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "aaa new-model enables AAA framework — local-only auth uses login local on the line.",
+            "misconceptionTested": "aaa new-model for simple local login",
+            "whatItDoes": "Switch(config)#new aaa model points to a related idea, but not the specific behavior or value required for managing the switch.",
+            "whyWrongHere": "For \"managing the switch\", Switch(config-line)#login local satisfies what this question tests — Switch(config)#new aaa model does not."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switch(config)#local authentication describes a mechanism that could sound plausible for managing the switch. Given managing the switch, Switch(config-line)#login local matches the tested behavior — Switch(config)#local authentication applies a different mechanism.",
-            "whatItDoes": "Switch(config)#local authentication describes a mechanism that could sound plausible for managing the switch.",
-            "whyWrongHere": "Given managing the switch, Switch(config-line)#login local matches the tested behavior — Switch(config)#local authentication applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config)#local authentication\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "local authentication is not a global command — use login local under line vty.",
+            "misconceptionTested": "local authentication global command",
+            "whatItDoes": "Switch(config)#local authentication points to a related idea, but not the specific behavior or value required for managing the switch.",
+            "whyWrongHere": "For \"managing the switch\", Switch(config-line)#login local satisfies what this question tests — Switch(config)#local authentication does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switch(config-line)#local authentication describes a mechanism that could sound plausible for managing the switch. Given managing the switch, Switch(config-line)#login local matches the tested behavior — Switch(config-line)#local authentication applies a different mechanism.",
-            "whatItDoes": "Switch(config-line)#local authentication describes a mechanism that could sound plausible for managing the switch.",
-            "whyWrongHere": "Given managing the switch, Switch(config-line)#login local matches the tested behavior — Switch(config-line)#local authentication applies a different mechanism.",
-            "misconceptionTested": "Applying \"Switch(config-line)#local authentica\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "local authentication is not valid under config-line — the command is login local.",
+            "misconceptionTested": "local authentication on line",
+            "whatItDoes": "Switch(config-line)#local authentication points to a related idea, but not the specific behavior or value required for managing the switch.",
+            "whyWrongHere": "For \"managing the switch\", Switch(config-line)#login local satisfies what this question tests — Switch(config-line)#local authentication does not."
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "VTY auth chain: create username → line vty 0 4 → login local → transport input ssh."
       }
     },
     {
@@ -457,35 +436,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Login banner\"."
+          "explanation": "The login banner (banner login) displays first when a user connects — before authentication prompts."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "MOTD banner describes a mechanism that could sound plausible for a user connects to a Cisco device via SSH. Given a user connects to a Cisco device via SSH, Login banner matches the tested behavior — MOTD banner applies a different mechanism.",
-            "whatItDoes": "MOTD banner describes a mechanism that could sound plausible for a user connects to a Cisco device via SSH.",
-            "whyWrongHere": "Given a user connects to a Cisco device via SSH, Login banner matches the tested behavior — MOTD banner applies a different mechanism.",
-            "misconceptionTested": "Applying \"MOTD banner\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "MOTD banner shows at more connection types but login banner precedes it for SSH login sequence per Cisco order.",
+            "misconceptionTested": "MOTD always first on SSH",
+            "whatItDoes": "MOTD banner points to a related idea, but not the specific behavior or value required for a user connects to a Cisco device via SSH.",
+            "whyWrongHere": "For \"a user connects to a Cisco device via SSH\", Login banner satisfies what this question tests — MOTD banner does not."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Exec banner describes a mechanism that could sound plausible for a user connects to a Cisco device via SSH. Given a user connects to a Cisco device via SSH, Login banner matches the tested behavior — Exec banner applies a different mechanism.",
-            "whatItDoes": "Exec banner describes a mechanism that could sound plausible for a user connects to a Cisco device via SSH.",
-            "whyWrongHere": "Given a user connects to a Cisco device via SSH, Login banner matches the tested behavior — Exec banner applies a different mechanism.",
-            "misconceptionTested": "Applying \"Exec banner\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "Exec banner displays after successful login — not on initial connection.",
+            "misconceptionTested": "Exec banner on connect",
+            "whatItDoes": "Exec banner points to a related idea, but not the specific behavior or value required for a user connects to a Cisco device via SSH.",
+            "whyWrongHere": "For \"a user connects to a Cisco device via SSH\", Login banner satisfies what this question tests — Exec banner does not."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Incoming banner describes a mechanism that could sound plausible for a user connects to a Cisco device via SSH. Given a user connects to a Cisco device via SSH, Login banner matches the tested behavior — Incoming banner applies a different mechanism.",
-            "whatItDoes": "Incoming banner describes a mechanism that could sound plausible for a user connects to a Cisco device via SSH.",
-            "whyWrongHere": "Given a user connects to a Cisco device via SSH, Login banner matches the tested behavior — Incoming banner applies a different mechanism.",
-            "misconceptionTested": "Applying \"Incoming banner\" without matching ssh",
-            "needsExplanationReview": true
+            "explanation": "Incoming banner is for reverse-Telnet lines — standard SSH uses login banner first.",
+            "misconceptionTested": "Incoming banner for SSH",
+            "whatItDoes": "Incoming banner points to a related idea, but not the specific behavior or value required for a user connects to a Cisco device via SSH.",
+            "whyWrongHere": "For \"a user connects to a Cisco device via SSH\", Login banner satisfies what this question tests — Incoming banner does not."
           }
         ],
-        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
+        "examTip": "Banner order on connect: login → credentials → MOTD (if set) → exec (after auth)."
       }
     }
   ]
