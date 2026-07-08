@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { isMcQuestion } from '../questionUtils.js'
 import { getRevealedChoiceLayout } from '../mcChoicesLogic.js'
+import { useMcChoiceShuffle } from '../hooks/useMcChoiceShuffle.js'
 import { COLORS, styles } from '../ui/appTheme.js'
 
 function choiceStyle(idx, { revealed, selected, correctIndex }) {
@@ -35,8 +36,8 @@ function choiceStyle(idx, { revealed, selected, correctIndex }) {
   return { bg, border, color, borderWidth, fontWeight }
 }
 
-function ChoiceButton({ idx, choice, q, selected, revealed, onSelect, dimmed = false }) {
-  const { bg, border, color, borderWidth, fontWeight } = choiceStyle(idx, { revealed, selected, correctIndex: q.correctIndex })
+function ChoiceButton({ idx, choice, correctIndex, selected, revealed, onSelect, dimmed = false }) {
+  const { bg, border, color, borderWidth, fontWeight } = choiceStyle(idx, { revealed, selected, correctIndex })
   return (
     <button
       type="button"
@@ -54,23 +55,37 @@ function ChoiceButton({ idx, choice, q, selected, revealed, onSelect, dimmed = f
         opacity: dimmed ? 0.88 : 1,
       }}
     >
-      <span aria-hidden="true" style={{ fontWeight: 700, marginRight: 8, color: revealed && idx === selected && idx !== q.correctIndex ? COLORS.rose : COLORS.silverMid }}>
-        {revealed && idx === selected && idx !== q.correctIndex ? '✗ ' : ''}{String.fromCharCode(65 + idx)}.
+      <span aria-hidden="true" style={{ fontWeight: 700, marginRight: 8, color: revealed && idx === selected && idx !== correctIndex ? COLORS.rose : COLORS.silverMid }}>
+        {revealed && idx === selected && idx !== correctIndex ? '✗ ' : ''}{String.fromCharCode(65 + idx)}.
       </span>
       <span style={{ overflowWrap: 'anywhere', wordBreak: 'break-word' }}>{choice}</span>
     </button>
   )
 }
 
-export default function McChoices({ q, selected, revealed, onSelect, accordionOnReveal = true }) {
+/**
+ * MC choice list — shuffles display order per question; parent uses canonical choiceIndex.
+ * @param {boolean} shuffleChoices — mix A/B/C/D each time a question loads (default true)
+ */
+export default function McChoices({
+  q,
+  selected,
+  revealed,
+  onSelect,
+  accordionOnReveal = true,
+  shuffleChoices = true,
+}) {
   const groupRef = useRef(null)
   const [othersOpen, setOthersOpen] = useState(false)
+  const { displayQ, toCanonicalIndex, toDisplayIndex, enabled: shuffled } = useMcChoiceShuffle(q, { enabled: shuffleChoices })
   const isMc = isMcQuestion(q)
-  const choiceCount = q?.choices?.length || 0
+  const choiceCount = displayQ?.choices?.length || 0
+  const displaySelected = selected == null ? null : toDisplayIndex(selected)
+  const displayCorrect = displayQ?.correctIndex ?? q?.correctIndex
 
   useEffect(() => {
     if (!revealed) setOthersOpen(false)
-  }, [revealed, q?.question])
+  }, [revealed, q?.id, q?.question])
 
   useEffect(() => {
     const root = groupRef.current
@@ -80,28 +95,30 @@ export default function McChoices({ q, selected, revealed, onSelect, accordionOn
       const digit = parseInt(e.key, 10)
       if (digit >= 1 && digit <= choiceCount) {
         e.preventDefault()
-        onSelect(digit - 1)
+        onSelect(toCanonicalIndex(digit - 1))
         return
       }
       if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
         e.preventDefault()
-        onSelect(selected == null ? 0 : (selected + 1) % choiceCount)
+        const nextDisplay = displaySelected == null ? 0 : (displaySelected + 1) % choiceCount
+        onSelect(toCanonicalIndex(nextDisplay))
       } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
         e.preventDefault()
-        onSelect(selected == null ? choiceCount - 1 : (selected - 1 + choiceCount) % choiceCount)
+        const nextDisplay = displaySelected == null ? choiceCount - 1 : (displaySelected - 1 + choiceCount) % choiceCount
+        onSelect(toCanonicalIndex(nextDisplay))
       }
     }
 
     root.addEventListener('keydown', onGroupKeyDown)
     return () => root.removeEventListener('keydown', onGroupKeyDown)
-  }, [isMc, revealed, selected, choiceCount, onSelect])
+  }, [isMc, revealed, displaySelected, choiceCount, onSelect, toCanonicalIndex])
 
   if (!isMc) return null
 
   const useAccordion = revealed && accordionOnReveal && choiceCount > 2
   const { primaryIndices, collapsedIndices } = useAccordion
-    ? getRevealedChoiceLayout(choiceCount, q.correctIndex, selected)
-    : { primaryIndices: q.choices.map((_, i) => i), collapsedIndices: [] }
+    ? getRevealedChoiceLayout(choiceCount, displayCorrect, displaySelected)
+    : { primaryIndices: displayQ.choices.map((_, i) => i), collapsedIndices: [] }
 
   return (
     <div
@@ -111,11 +128,20 @@ export default function McChoices({ q, selected, revealed, onSelect, accordionOn
       tabIndex={revealed ? -1 : 0}
       className="mc-choices"
       style={{ outline: 'none' }}
+      data-choice-shuffle={shuffled ? 'on' : 'off'}
     >
       {useAccordion ? (
         <>
           {primaryIndices.map(idx => (
-            <ChoiceButton key={idx} idx={idx} choice={q.choices[idx]} q={q} selected={selected} revealed={revealed} onSelect={onSelect} />
+            <ChoiceButton
+              key={idx}
+              idx={idx}
+              choice={displayQ.choices[idx]}
+              correctIndex={displayCorrect}
+              selected={displaySelected}
+              revealed={revealed}
+              onSelect={displayIdx => onSelect(toCanonicalIndex(displayIdx))}
+            />
           ))}
           {collapsedIndices.length > 0 && (
             <div className="mc-choices-accordion">
@@ -135,18 +161,37 @@ export default function McChoices({ q, selected, revealed, onSelect, accordionOn
                 <span aria-hidden="true">{othersOpen ? '−' : '+'}</span>
               </button>
               {othersOpen && collapsedIndices.map(idx => (
-                <ChoiceButton key={idx} idx={idx} choice={q.choices[idx]} q={q} selected={selected} revealed={revealed} onSelect={onSelect} dimmed />
+                <ChoiceButton
+                  key={idx}
+                  idx={idx}
+                  choice={displayQ.choices[idx]}
+                  correctIndex={displayCorrect}
+                  selected={displaySelected}
+                  revealed={revealed}
+                  onSelect={displayIdx => onSelect(toCanonicalIndex(displayIdx))}
+                  dimmed
+                />
               ))}
             </div>
           )}
         </>
       ) : (
-        q.choices.map((choice, idx) => (
-          <ChoiceButton key={idx} idx={idx} choice={choice} q={q} selected={selected} revealed={revealed} onSelect={onSelect} />
+        displayQ.choices.map((choice, idx) => (
+          <ChoiceButton
+            key={idx}
+            idx={idx}
+            choice={choice}
+            correctIndex={displayCorrect}
+            selected={displaySelected}
+            revealed={revealed}
+            onSelect={displayIdx => onSelect(toCanonicalIndex(displayIdx))}
+          />
         ))
       )}
       {!revealed && (
-        <div className="mc-choices-tip" style={{ ...styles.small, marginTop: 4 }}>Tip: press 1–{Math.min(choiceCount, 4)} or arrow keys to select</div>
+        <div className="mc-choices-tip" style={{ ...styles.small, marginTop: 4 }}>
+          Tip: press 1–{Math.min(choiceCount, 9)} or arrow keys to select{shuffled ? ' · choices shuffled' : ''}
+        </div>
       )}
     </div>
   )

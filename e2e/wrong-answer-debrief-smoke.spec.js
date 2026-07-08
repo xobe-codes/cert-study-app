@@ -22,12 +22,13 @@ test.describe('Wrong-answer debrief smoke', () => {
 
       const radios = page.getByRole('radio')
       const count = await radios.count()
-      for (let c = 0; c < count; c++) {
+      for (let c = 0; c < count && !debriefFound; c++) {
         await radios.nth(c).click()
         if (await page.getByText(DEBRIEF_HEADING).count()) {
           debriefFound = true
           break
         }
+        if (await page.getByText(/Correct|Incorrect/i).count()) break
       }
 
       if (!debriefFound) {
