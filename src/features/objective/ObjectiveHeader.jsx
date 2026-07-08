@@ -4,6 +4,7 @@ import CuratedStaticBadge from '../../components/CuratedStaticBadge.jsx'
 import MasteryChecklist from '../../components/MasteryChecklist.jsx'
 import ObjectiveOverflowMenu from '../../components/ObjectiveOverflowMenu.jsx'
 import { MAIN_TABS } from './objectiveTabUtils.js'
+import { hasMasteryActivity } from '../../features/progress/masteryEngagement.js'
 
 export default function ObjectiveHeader({
   objective,
@@ -147,7 +148,7 @@ export function ObjectiveBodyIntro({
         <MasteryChecklist progressEntry={progressEntry} compact />
       )}
 
-      {(progressEntry?.quizScores || []).length > 0 && (
+      {(hasMasteryActivity(progressEntry)) && (
         <ProgressBar
           value={computeMastery(progressEntry).score}
           max={1}

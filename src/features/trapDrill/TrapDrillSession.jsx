@@ -10,8 +10,11 @@ import {
 } from './trapDrillQuestions.js'
 import { trapDomainMeta } from '../../study/trapDomainConstants.js'
 import TrapDrillHub from './TrapDrillHub.jsx'
+import { useMasteryProgress } from '../progress/MasteryProgressContext.jsx'
+import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
 
 export default function TrapDrillSession({ prefill, onBack }) {
+  const { recordEngagement } = useMasteryProgress()
   const resolved = useMemo(() => resolveTrapDrillCku(prefill || {}), [prefill])
   const [scope, setScope] = useState(() => {
     if (resolved || prefill?.ckuId || prefill?.trapLabel) return { kind: 'cku', ...prefill }
@@ -68,6 +71,13 @@ export default function TrapDrillSession({ prefill, onBack }) {
     setSelected(choiceIdx)
     setRevealed(true)
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
+    if (current.objectiveId) {
+      recordEngagement?.(current.objectiveId, {
+        kind: ENGAGEMENT_KINDS.TRAP_DRILL,
+        correct: correct ? 1 : 0,
+        total: 1,
+      })
+    }
   }
 
   function next() {

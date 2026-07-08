@@ -6,8 +6,11 @@ import { normalizeCmd, processCliLine, cliHostnameForObjective } from './cliEngi
 import { COMMAND_DRILLS } from './commandDrills.js'
 import { recordCliLabResult } from './cliStatsStorage.js'
 import { logEvent } from '../eventLog.js'
+import { useMasteryProgress } from '../features/progress/MasteryProgressContext.jsx'
+import { ENGAGEMENT_KINDS } from '../features/progress/masteryEngagement.js'
 
 export default function CLIDrillTab({ objective }) {
+  const { recordEngagement } = useMasteryProgress()
   const drills = COMMAND_DRILLS[objective.id] || []
   const host = cliHostnameForObjective(objective.id)
 
@@ -75,6 +78,11 @@ export default function CLIDrillTab({ objective }) {
           ...counters.current,
         })
         logEvent('user_completed_cli_lab', { objectiveId: objective.id, score })
+        recordEngagement?.(objective.id, {
+          kind: ENGAGEMENT_KINDS.CLI_DRILL,
+          correct: completedCount,
+          total: drills.length,
+        })
       }
     } else if (result.counters.syntaxErrors) {
       logEvent('user_entered_cli_command', { objectiveId: objective.id, ok: false, reason: 'syntax' })

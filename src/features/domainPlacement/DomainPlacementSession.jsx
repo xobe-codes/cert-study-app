@@ -15,6 +15,8 @@ import { buildDomainBaselineSummary } from './domainBaselineProfile.js'
 import { getSprintObjectiveIdsForDomain } from './domainBaselineStudyPlan.js'
 import DomainPlacementDebrief from './DomainPlacementDebrief.jsx'
 import { appendMissedEntry } from '../domainPass/domainPassStorage.js'
+import { useMasteryProgress } from '../progress/MasteryProgressContext.jsx'
+import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
 
 /**
  * Fixed-blueprint domain placement — instant feedback, delta debrief, one CTA.
@@ -27,6 +29,7 @@ export default function DomainPlacementSession({
   onOpenTrapDrill,
   onOpenLab,
 }) {
+  const { recordEngagement } = useMasteryProgress()
   const domain = useMemo(() => DOMAINS.find(d => d.id === domainId), [domainId])
   const [phase, setPhase] = useState('loading')
   const [error, setError] = useState(null)
@@ -101,8 +104,14 @@ export default function DomainPlacementSession({
     setResponses(r => ({ ...r, [current]: idx }))
     setRevealed(r => ({ ...r, [current]: true }))
     const q = questions[current]
-    if (q && !gradeQuestion(q, idx)) {
-      appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndex: idx }))
+    if (q?.objectiveId) {
+      const correct = gradeQuestion(q, idx)
+      recordEngagement?.(q.objectiveId, {
+        kind: ENGAGEMENT_KINDS.DOMAIN_PLACEMENT,
+        correct: correct ? 1 : 0,
+        total: 1,
+      })
+      if (!correct) appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndex: idx }))
     }
   }
 

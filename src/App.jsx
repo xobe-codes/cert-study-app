@@ -122,6 +122,7 @@ export default function App() {
           exitLab={nav.exitLab}
           objectiveBackLabel={nav.objectiveBackLabel}
           updateProgress={progressApi.updateProgress}
+          recordEngagement={progressApi.recordEngagement}
           handleMissed={progressApi.handleMissed}
           openLab={nav.openLab}
           computeMastery={computeMastery}

@@ -7,6 +7,7 @@ import AppShellStyles from './AppShellStyles.jsx'
 import BottomNav from '../../components/BottomNav.jsx'
 import StudyModeRoutes from '../study/StudyModeRoutes.jsx'
 import AppChromeOverlays from './AppChromeOverlays.jsx'
+import { MasteryProgressProvider } from '../progress/MasteryProgressContext.jsx'
 import CoreStudyRoutes from './CoreStudyRoutes.jsx'
 import OfflineBanner from './OfflineBanner.jsx'
 import PracticeRoutes from '../practice/PracticeRoutes.jsx'
@@ -62,6 +63,7 @@ export default function AppLoadedShell({
   exitLab,
   objectiveBackLabel,
   updateProgress,
+  recordEngagement,
   handleMissed,
   openLab,
   computeMastery,
@@ -146,6 +148,7 @@ export default function AppLoadedShell({
         </div>
       )}
       <RouteShell scroll={routeScrolls} ref={mainRef} innerClassName="ccna-route-in" key={view} pullRefresh={pullRefresh}>
+        <MasteryProgressProvider updateProgress={updateProgress} recordEngagement={recordEngagement}>
         <CoreStudyRoutes
           view={view}
           onFinishOnboarding={finishOnboarding}
@@ -251,6 +254,7 @@ export default function AppLoadedShell({
           premiumUnlocked={premiumUnlocked}
           onPremiumBlocked={handlePremiumBlocked}
         />
+        </MasteryProgressProvider>
       </RouteShell>
       {showBottomNav && (
         <div className="app-chrome-bottom app-chrome-bottom--dock site-column">

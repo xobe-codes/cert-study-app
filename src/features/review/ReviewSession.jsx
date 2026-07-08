@@ -15,10 +15,13 @@ import McChoices from '../../components/McChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
 import { QuizRichText, QuestionMeta, OrderingQuestion, CliAnswerInput } from '../../components/QuizQuestionChrome.jsx'
 import Spinner from '../../components/Spinner.jsx'
+import { useMasteryProgress } from '../progress/MasteryProgressContext.jsx'
+import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
 
 const quizFeedbackA11y = { role: 'status', 'aria-live': 'polite', 'aria-atomic': true }
 
 export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
+  const { recordEngagement } = useMasteryProgress()
   const showNavHint = useNavHint()
   const doneHintFired = useRef(false)
   const [phase, setPhase] = useState('loading')
@@ -66,6 +69,7 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection 
     haptic(correct ? 15 : [10, 40, 10])
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
     recordQuizResult(current.objectiveId, current.id, { correct })
+    recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.REVIEW, correct: correct ? 1 : 0, total: 1 })
     logEvent('user_reviewed_concept', { objectiveId: current.objectiveId, questionId: current.id, correct })
     if (!correct) {
       onMissed({ objectiveId: current.objectiveId, questionId: current.id, question: current.question, choices: current.choices, correctIndex: current.correctIndex, selectedIndex: idx, explanation: current.explanation, concept: current.concept, type: current.type, skill: current.skill, addedAt: Date.now() })
@@ -78,6 +82,7 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection 
     haptic(correct ? 15 : [10, 40, 10])
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
     recordQuizResult(current.objectiveId, current.id, { correct })
+    recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.REVIEW, correct: correct ? 1 : 0, total: 1 })
     logEvent('user_reviewed_concept', { objectiveId: current.objectiveId, questionId: current.id, correct })
     if (!correct) {
       onMissed(buildMissedEntry(current.objectiveId, current, { orderAnswer: orderDraft }))
@@ -90,6 +95,7 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection 
     haptic(correct ? 15 : [10, 40, 10])
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
     recordQuizResult(current.objectiveId, current.id, { correct })
+    recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.REVIEW, correct: correct ? 1 : 0, total: 1 })
     logEvent('user_reviewed_concept', { objectiveId: current.objectiveId, questionId: current.id, correct })
     if (!correct) {
       onMissed(buildMissedEntry(current.objectiveId, current, { cliAnswer }))

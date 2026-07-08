@@ -6,6 +6,8 @@ import { NAV_HINT_KEYS } from '../ui/navHintConfig.js'
 import CiscoTerminal from '../components/CiscoTerminal.jsx'
 import { deviceHostname, normalizeCmd, processCliLine, CLI_SHOW_OUTPUT } from './cliEngine.js'
 import { markLabDone } from './labStorage.js'
+import { useMasteryProgress } from '../features/progress/MasteryProgressContext.jsx'
+import { ENGAGEMENT_KINDS } from '../features/progress/masteryEngagement.js'
 import LabLearnPanel from './LabLearnPanel.jsx'
 import { LabTierBadge, LabConfigBanner } from './LabTierBadge.jsx'
 import { isConfigLab } from '../data/labTierStrategy.js'
@@ -27,6 +29,7 @@ function LabSection({ icon, title, accent, items }) {
 }
 
 export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, haptic, exitLabel }) {
+  const { recordEngagement } = useMasteryProgress()
   const { lab, topology, validator, diagram, packetFlows } = bundle
   const showNavHint = useNavHint()
 
@@ -62,12 +65,19 @@ export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, 
     if (prog.complete && !justCompleted.current) {
       justCompleted.current = true
       markLabDone(lab.id)
+      if (lab.objectiveId) {
+        recordEngagement?.(lab.objectiveId, {
+          kind: ENGAGEMENT_KINDS.LAB,
+          correct: prog.done.length,
+          total: Math.max(prog.total, 1),
+        })
+      }
       onDone?.()
       celebrate?.()
       haptic?.([12, 40, 12])
       showNavHint(NAV_HINT_KEYS.LAB_DONE)
     }
-  }, [prog.complete, lab.id, onDone, celebrate, haptic, showNavHint])
+  }, [prog.complete, prog.done.length, prog.total, lab.id, lab.objectiveId, onDone, celebrate, haptic, showNavHint, recordEngagement])
 
   const taskComplete = useCallback((t) => {
     const flags = taskCmdDone[t.id] || []

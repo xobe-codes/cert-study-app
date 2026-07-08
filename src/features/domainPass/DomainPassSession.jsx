@@ -24,6 +24,8 @@ import {
   appendMissedEntry,
   getDomainRecord,
 } from './domainPassStorage.js'
+import { useMasteryProgress } from '../progress/MasteryProgressContext.jsx'
+import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
 
 function shuffleArray(arr) {
   const a = [...arr]
@@ -52,6 +54,7 @@ export default function DomainPassSession({
   examMode = false,
   missed = [],
 }) {
+  const { recordEngagement } = useMasteryProgress()
   const domain = useMemo(() => DOMAINS.find(d => d.id === domainId), [domainId])
   const [phase, setPhase] = useState('loading')
   const [error, setError] = useState(null)
@@ -127,8 +130,14 @@ export default function DomainPassSession({
     setResponses(r => ({ ...r, [current]: idx }))
     setStudyRevealed(r => ({ ...r, [current]: true }))
     const q = questions[current]
-    if (q && !gradeQuestion(q, idx)) {
-      appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndex: idx }))
+    if (q?.objectiveId) {
+      const correct = gradeQuestion(q, idx)
+      recordEngagement?.(q.objectiveId, {
+        kind: ENGAGEMENT_KINDS.DOMAIN_PASS,
+        correct: correct ? 1 : 0,
+        total: 1,
+      })
+      if (!correct) appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndex: idx }))
     }
   }
 

@@ -1,5 +1,6 @@
 import { DOMAINS, ALL_OBJECTIVES } from '../data/ccnaDomains.js'
 import { STORAGE_KEYS } from '../storageKeys.js'
+import { computeMastery, masteryScoreSessions } from '../netUtils.js'
 
 const REVIEW_SESSION_CAP = 20
 
@@ -7,25 +8,6 @@ async function loadQuizBank() {
   return (await window.storage.getItem(STORAGE_KEYS.quizBank)) || {}
 }
 
-const RATING_CONFIDENCE = { easy: 1, medium: 0.6, hard: 0.3, practice: 0.1 }
-// Returns { score: 0..1, mastered: boolean } from a progress entry.
-function computeMastery(entry) {
-  if (!entry) return { score: 0, mastered: false }
-  const scores = entry.quizScores || []
-  if (scores.length === 0) return { score: 0, mastered: false }
-  // accuracy: weight recent sessions more (last 3)
-  const recent = scores.slice(-3)
-  const acc = recent.reduce((s, r) => s + (r.score / Math.max(r.total, 1)), 0) / recent.length
-  // confidence: average of stored confidence ratings, default neutral 0.6
-  const ratings = entry.confidenceRatings || []
-  const conf = ratings.length
-    ? ratings.reduce((s, r) => s + (RATING_CONFIDENCE[r] ?? 0.6), 0) / ratings.length
-    : 0.6
-  const score = acc * 0.7 + conf * 0.3
-  // mastered requires strong accuracy, decent confidence, and at least one full session
-  const mastered = acc >= 0.8 && conf >= 0.5 && recent.some(r => r.total >= 3)
-  return { score, mastered }
-}
 // Per-domain mastery average, weighted by official exam domain percentages.
 function computeDomainStats(progress) {
   return DOMAINS.map(d => {
@@ -95,7 +77,7 @@ export async function buildLearnerSummary(progress, missed = []) {
       status,
       mastery: score,
       hardCount,
-      attempts: (p?.quizScores || []).length,
+      attempts: masteryScoreSessions(p).length,
       daysSince: daysSinceTs(p?.lastSeen),
     }
   })

@@ -43,12 +43,29 @@ function mergeProgressEntry(a, b) {
   const byDate = {}
   ;[...(a.quizScores || []), ...(b.quizScores || [])].forEach(s => { byDate[s.date] = s })
   const quizScores = Object.values(byDate).sort((x, y) => x.date - y.date)
+  const engByKey = {}
+  ;[...(a.engagementScores || []), ...(b.engagementScores || [])].forEach(s => {
+    engByKey[`${s.date}::${s.kind}::${s.score}`] = s
+  })
+  const engagementScores = Object.values(engByKey).sort((x, y) => x.date - y.date).slice(-40)
   const confidenceRatings = ((a.confidenceRatings || []).length >= (b.confidenceRatings || []).length ? a.confidenceRatings : b.confidenceRatings) || []
-  const { score, mastered } = computeMastery({ quizScores, confidenceRatings })
-  return {
-    status: mastered ? 'mastered' : (quizScores.length ? 'in_progress' : (a.status || b.status || 'unseen')),
-    quizScores, confidenceRatings, masteryScore: score,
+  const merged = {
+    ...a,
+    ...b,
+    quizScores,
+    engagementScores,
+    confidenceRatings,
+    studySectionsViewed: a.studySectionsViewed || b.studySectionsViewed,
+    labCompleted: a.labCompleted || b.labCompleted,
+    cliDrillCompleted: a.cliDrillCompleted || b.cliDrillCompleted,
+    examTrapsViewed: Math.max(a.examTrapsViewed || 0, b.examTrapsViewed || 0),
     lastSeen: Math.max(a.lastSeen || 0, b.lastSeen || 0),
+  }
+  const { score, mastered } = computeMastery(merged)
+  return {
+    ...merged,
+    status: mastered ? 'mastered' : (quizScores.length || engagementScores.length ? 'in_progress' : (a.status || b.status || 'unseen')),
+    masteryScore: score,
   }
 }
 

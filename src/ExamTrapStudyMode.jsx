@@ -11,6 +11,8 @@ import {
 import { STATIC_COPY } from './ui/staticContentCopy.js'
 import { COLORS } from './ui/appTheme.js'
 import { TRAP_DOMAIN_NUMBERS, trapDomainMeta } from './study/trapDomainConstants.js'
+import { useMasteryProgress } from './features/progress/MasteryProgressContext.jsx'
+import { ENGAGEMENT_KINDS } from './features/progress/masteryEngagement.js'
 
 const DOMAINS = [
   { id: '1', getTraps: getAllDomain1ExamTraps },
@@ -118,6 +120,7 @@ function ObjectiveFilter({ objectiveId, objectives, onChange, styles }) {
 }
 
 export default function ExamTrapStudyMode({ styles, onBack, prefill, onPrefillConsumed }) {
+  const { recordEngagement } = useMasteryProgress()
   const trapCounts = useMemo(() => {
     const counts = {}
     for (const d of DOMAINS) counts[d.id] = d.getTraps().length
@@ -272,7 +275,12 @@ export default function ExamTrapStudyMode({ styles, onBack, prefill, onPrefillCo
         <div style={{ ...styles.pill('amber'), fontSize: 'var(--ccna-type-micro)', marginBottom: 8 }}>TRAP {idx + 1} / {traps.length}</div>
         <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 12 }}>{trap.trap || trap.title}</div>
         {!revealed
-          ? <button type="button" style={styles.primaryBtn} onClick={() => setRevealed(true)}>Reveal how to avoid it</button>
+          ? <button type="button" style={styles.primaryBtn} onClick={() => {
+            setRevealed(true)
+            if (trap?.objectiveId) {
+              recordEngagement?.(trap.objectiveId, { kind: ENGAGEMENT_KINDS.EXAM_TRAP, correct: 1, total: 1 })
+            }
+          }}>Reveal how to avoid it</button>
           : (
             <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}>
               {trap.avoid || trap.correction || trap.explanation || 'Review the related objective reading and quiz explanations.'}

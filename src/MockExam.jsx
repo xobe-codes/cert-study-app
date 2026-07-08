@@ -23,6 +23,8 @@ import { COLORS, styles, accentColors } from './ui/appTheme.js'
 import { STATIC_COPY } from './ui/staticContentCopy.js'
 import { STORAGE_KEYS } from './storageKeys.js'
 import { buildMockHistoryEntry } from './features/mockExam/mockHistoryEntry.js'
+import { useMasteryProgress } from './features/progress/MasteryProgressContext.jsx'
+import { aggregateSessionByObjective, ENGAGEMENT_KINDS } from './features/progress/masteryEngagement.js'
 import McChoices from './components/McChoices.jsx'
 import AnswerReview from './components/AnswerReview.jsx'
 import { summarizeWrongTraps } from './missed/missedTrapGroups.js'
@@ -52,7 +54,9 @@ function formatSeconds(total) {
 
 export default function MockExam({ onExit, examMode = false, missed = [], initialDomainId = null, onOpenLab, onOpenTrapDrill, onSelectObjective, onOpenMockInterview }) {
   const showNavHint = useNavHint()
+  const { recordEngagement } = useMasteryProgress()
   const doneHintFired = useRef(false)
+  const examEngagementSaved = useRef(false)
   const [phase, setPhase] = useState('intro') // intro | loading | active | done | review | error
   const [introTab, setIntroTab] = useState('full') // full | domain
   const [selectedDomainIds, setSelectedDomainIds] = useState([])
@@ -169,8 +173,34 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
     setResponses(r => ({ ...r, [current]: idx }))
     if (isStudyMode) {
       setStudyRevealed(r => ({ ...r, [current]: true }))
+      const q = questions[current]
+      if (q?.objectiveId) {
+        const correct = gradeQuestion(q, idx)
+        recordEngagement?.(q.objectiveId, {
+          kind: ENGAGEMENT_KINDS.MOCK,
+          correct: correct ? 1 : 0,
+          total: 1,
+        })
+      }
     }
   }
+
+  useEffect(() => {
+    if (phase !== 'done' || isStudyMode || questions.length === 0) return
+    if (examEngagementSaved.current) return
+    examEngagementSaved.current = true
+    aggregateSessionByObjective(
+      questions,
+      questions.map((_, idx) => responses[idx]),
+      ENGAGEMENT_KINDS.MOCK,
+      (q, resp) => resp === q.correctIndex,
+    ).forEach(({ objectiveId, activity }) => recordEngagement?.(objectiveId, activity))
+  }, [phase, isStudyMode, questions, responses, recordEngagement])
+
+  useEffect(() => {
+    if (phase !== 'intro' && phase !== 'loading') return
+    examEngagementSaved.current = false
+  }, [phase])
 
   useEffect(() => {
     if (phase !== 'done') {

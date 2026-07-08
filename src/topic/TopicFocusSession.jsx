@@ -14,10 +14,13 @@ import McChoices from '../components/McChoices.jsx'
 import AnswerReview from '../components/AnswerReview.jsx'
 import { applyAnswerReviewToQuestion } from '../answerReviewLogic.js'
 import { QuestionMeta, QuizRichText, OrderingQuestion, CliAnswerInput } from '../components/QuizQuestionChrome.jsx'
+import { useMasteryProgress } from '../features/progress/MasteryProgressContext.jsx'
+import { ENGAGEMENT_KINDS } from '../features/progress/masteryEngagement.js'
 
 const SESSION_CAP = 30
 
 export default function TopicFocusSession({ config, onBack, onMissed, onDone }) {
+  const { recordEngagement } = useMasteryProgress()
   const { objectiveIds = [], conceptIds = [], label } = config || {}
   const showNavHint = useNavHint()
   const doneHintFired = useRef(false)
@@ -83,6 +86,7 @@ export default function TopicFocusSession({ config, onBack, onMissed, onDone }) 
     setRevealed(true)
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
     recordQuizResult(current.objectiveId, current.id, { correct })
+    recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.TOPIC_FOCUS, correct: correct ? 1 : 0, total: 1 })
     if (!correct) onMissed?.(buildMissedEntry(current.objectiveId, current, { selectedIndex: idx }))
   }
 
@@ -92,6 +96,7 @@ export default function TopicFocusSession({ config, onBack, onMissed, onDone }) 
     setRevealed(true)
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
     recordQuizResult(current.objectiveId, current.id, { correct })
+    recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.TOPIC_FOCUS, correct: correct ? 1 : 0, total: 1 })
     if (!correct) onMissed?.(buildMissedEntry(current.objectiveId, current, { orderAnswer: orderDraft }))
   }
 
@@ -101,6 +106,7 @@ export default function TopicFocusSession({ config, onBack, onMissed, onDone }) 
     setRevealed(true)
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
     recordQuizResult(current.objectiveId, current.id, { correct })
+    recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.TOPIC_FOCUS, correct: correct ? 1 : 0, total: 1 })
     if (!correct) onMissed?.(buildMissedEntry(current.objectiveId, current, { cliAnswer }))
   }
 

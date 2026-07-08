@@ -1,11 +1,13 @@
 import React from 'react'
 import { COLORS } from '../ui/appTheme.js'
 import { getMasteryChecklist } from '../lesson/masteryCriteria.js'
+import { getEngagementSources } from '../features/progress/masteryEngagement.js'
 
 export default function MasteryChecklist({ progressEntry, compact = false }) {
   const rows = getMasteryChecklist(progressEntry)
   const steps = rows.filter(r => r.id !== 'mastered')
   const done = steps.filter(r => r.met).length
+  const sources = getEngagementSources(progressEntry)
   return (
     <div className="ccna-mastery-checklist" style={{
       padding: compact ? '8px 10px' : '10px 12px',
@@ -18,6 +20,11 @@ export default function MasteryChecklist({ progressEntry, compact = false }) {
       <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, marginBottom: 6 }}>
         Mastery checklist · {done}/{steps.length}
       </div>
+      {sources.length > 0 && (
+        <div style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverDim, marginBottom: 6, lineHeight: 1.4 }}>
+          Activity: {sources.join(' · ')}
+        </div>
+      )}
       <ul style={{ margin: 0, paddingLeft: 16, fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.55 }}>
         {rows.filter(r => r.id !== 'mastered').map(r => (
           <li key={r.id} style={{ color: r.met ? COLORS.mint : COLORS.silverMid }}>

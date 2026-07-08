@@ -143,9 +143,16 @@ export function generateVLSMProblem() {
 // Mastery computation (weights recent quiz sessions 70% + confidence 30%).
 export const RATING_CONFIDENCE = { easy: 1, medium: 0.6, hard: 0.3, practice: 0.1 }
 
+/** Objective quiz + app-wide engagement sessions merged for mastery. */
+export function masteryScoreSessions(entry) {
+  const quiz = (entry?.quizScores || []).map(s => ({ ...s, kind: 'quiz' }))
+  const engagement = (entry?.engagementScores || []).map(s => ({ ...s, kind: s.kind || 'engagement' }))
+  return [...quiz, ...engagement].sort((a, b) => (a.date || 0) - (b.date || 0))
+}
+
 export function computeMastery(entry) {
   if (!entry) return { score: 0, mastered: false }
-  const scores = entry.quizScores || []
+  const scores = masteryScoreSessions(entry)
   if (scores.length === 0) return { score: 0, mastered: false }
   const recent = scores.slice(-3)
   const acc = recent.reduce((s, r) => s + (r.score / Math.max(r.total, 1)), 0) / recent.length

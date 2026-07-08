@@ -15,10 +15,13 @@ import McChoices from '../../components/McChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
 import { QuizRichText, QuestionMeta, OrderingQuestion, CliAnswerInput } from '../../components/QuizQuestionChrome.jsx'
 import Spinner from '../../components/Spinner.jsx'
+import { useMasteryProgress } from '../progress/MasteryProgressContext.jsx'
+import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
 
 const quizFeedbackA11y = { role: 'status', 'aria-live': 'polite', 'aria-atomic': true }
 
 export default function FocusModeSession({ progress, onBack, onMissed, onDone }) {
+  const { recordEngagement } = useMasteryProgress()
   const showNavHint = useNavHint()
   const doneHintFired = useRef(false)
   const [phase, setPhase] = useState('loading')
@@ -91,6 +94,7 @@ export default function FocusModeSession({ progress, onBack, onMissed, onDone })
     haptic(correct ? 15 : [10, 40, 10])
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
     recordQuizResult(current.objectiveId, current.id, { correct })
+    recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.FOCUS, correct: correct ? 1 : 0, total: 1 })
     if (!correct) onMissed(buildMissedEntry(current.objectiveId, current, { selectedIndex: idx }))
   }
   function submitOrder() {
@@ -100,6 +104,7 @@ export default function FocusModeSession({ progress, onBack, onMissed, onDone })
     haptic(correct ? 15 : [10, 40, 10])
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
     recordQuizResult(current.objectiveId, current.id, { correct })
+    recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.FOCUS, correct: correct ? 1 : 0, total: 1 })
     if (!correct) onMissed(buildMissedEntry(current.objectiveId, current, { orderAnswer: orderDraft }))
   }
   function submitCli() {
@@ -109,6 +114,7 @@ export default function FocusModeSession({ progress, onBack, onMissed, onDone })
     haptic(correct ? 15 : [10, 40, 10])
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
     recordQuizResult(current.objectiveId, current.id, { correct })
+    recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.FOCUS, correct: correct ? 1 : 0, total: 1 })
     if (!correct) onMissed(buildMissedEntry(current.objectiveId, current, { cliAnswer }))
   }
   function next() {
