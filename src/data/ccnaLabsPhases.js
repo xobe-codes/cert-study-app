@@ -1102,8 +1102,8 @@ const LAB_D11_19 = mkInterpretGuided({
   ],
   success: ['GUA in 2000::/3 identified', 'Link-local FE80 never routed off-link', 'Multicast replaces broadcast'],
   mistakes: ['Expecting IPv6 broadcast address', 'Routing link-local addresses off the local segment'],
-  topoNodes: [{ id: 'r1', label: 'R1 Gi0/0', type: 'router', x: 50, y: 45 }],
-  topoLinks: [],
+  topoNodes: [{ id: 'lan', label: 'LAN hosts', type: 'subnet', x: 22, y: 55 }, { id: 'r1', label: 'R1 Gi0/0', type: 'router', x: 55, y: 45 }],
+  topoLinks: [{ id: 'l1', source: 'lan', target: 'r1', label: 'Gi0/0', status: 'forwarding' }],
   diagNodes: [{ id: 'gua', label: 'GUA 2000::/3', type: 'subnet', x: 25, y: 55 }, { id: 'll', label: 'FE80::/10', type: 'process', x: 50, y: 55, status: 'highlighted' }, { id: 'mc', label: 'FF00::/8', type: 'process', x: 75, y: 55 }],
   diagLinks: [{ id: 'd1', source: 'gua', target: 'll', status: 'forwarding' }],
   flowSteps: [{ id: 's1', order: 1, title: 'Types', action: 'Every interface has link-local; GUA for routed traffic; multicast for groups', successState: 'noted' }],
@@ -1467,8 +1467,17 @@ const LAB_D52_52 = mkInterpretGuided({
   mistakes: ['Assuming technology alone satisfies security program', 'Skipping physical security in layered defense'],
   topoNodes: [{ id: 'train', label: 'User training', type: 'pc', x: 25, y: 55 }, { id: 'phys', label: 'Badge access', type: 'process', x: 50, y: 55 }, { id: 'ir', label: 'Incident response', type: 'server', x: 75, y: 55 }],
   topoLinks: [{ id: 'l1', source: 'train', target: 'phys', status: 'forwarding' }],
-  diagNodes: [{ id: 'prog', label: 'Security program', type: 'process', x: 50, y: 45, status: 'highlighted' }],
-  diagLinks: [],
+  diagNodes: [
+    { id: 'prog', label: 'Security program', type: 'process', x: 50, y: 30, status: 'highlighted' },
+    { id: 'train', label: 'User training', type: 'pc', x: 25, y: 60 },
+    { id: 'phys', label: 'Physical access', type: 'process', x: 50, y: 60 },
+    { id: 'ir', label: 'Incident response', type: 'server', x: 75, y: 60 },
+  ],
+  diagLinks: [
+    { id: 'd1', source: 'prog', target: 'train', status: 'forwarded' },
+    { id: 'd2', source: 'train', target: 'phys', status: 'forwarded' },
+    { id: 'd3', source: 'phys', target: 'ir', status: 'forwarded' },
+  ],
   flowSteps: [{ id: 's1', order: 1, title: 'Program', action: 'People, process, and technology together form defense in depth', successState: 'noted' }],
 })
 

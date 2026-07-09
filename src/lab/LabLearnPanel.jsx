@@ -1,4 +1,5 @@
 import React from 'react'
+import { LAB_FLOW_STEP_MAX } from './labLearnSpec.js'
 import { COLORS, accentColors, styles } from '../ui/appTheme.js'
 import CuratedDiagram from '../components/CuratedDiagram.jsx'
 
@@ -14,7 +15,7 @@ function LabInfoBlock({ icon, title, accent, children }) {
 
 export default function LabLearnPanel({ lab, topology, diagram, packetFlows, onStart }) {
   const flow = packetFlows?.[0]
-  const flowSteps = flow?.steps?.slice(0, 4) || []
+  const flowSteps = flow?.steps?.slice(0, LAB_FLOW_STEP_MAX) || []
 
   return (
     <div>

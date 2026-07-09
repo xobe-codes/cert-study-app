@@ -3,6 +3,7 @@ import { DOMAINS } from '../data/ccnaDomains.js'
 import { STORAGE_KEYS } from '../storageKeys.js'
 import { buildLabModules, filterLabModules, labDomainDoneCount } from '../data/labModules.js'
 import { getInterpretAlternate } from '../data/labTierStrategy.js'
+import { LAB_HOW_IT_WORKS, labTierLabel } from './labLearnSpec.js'
 import { COLORS, styles } from '../ui/appTheme.js'
 import { STATIC_COPY } from '../ui/staticContentCopy.js'
 import { loadLabDone } from './labStorage.js'
@@ -80,7 +81,7 @@ export default function LabsHub({ onBack, onOpenLab, initialDomainFilter = null 
         <span style={{ ...styles.pill(LAB_DIFF_ACCENT[lab.difficulty] || 'sky'), fontSize: 'var(--ccna-type-micro)' }}>{lab.difficulty.toUpperCase()}</span>
         <LabTierBadge lab={lab} />
         {lab.labType === 'troubleshooting' && <span style={{ ...styles.pill('amber'), fontSize: 'var(--ccna-type-micro)' }}>TROUBLESHOOT</span>}
-        <span style={{ ...styles.pill(lab.interpretOnly ? 'mint' : 'sky'), fontSize: 'var(--ccna-type-micro)' }}>{lab.interpretOnly ? 'SHOW ONLY' : 'LEARN → DO'}</span>
+        <span style={{ ...styles.pill(lab.interpretOnly ? 'mint' : 'sky'), fontSize: 'var(--ccna-type-micro)' }}>{labTierLabel(lab)}</span>
         <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>{lab.tasks?.length || 0} tasks</span>
         <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>~{lab.estimatedTimeMinutes} MIN</span>
         <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>{lab.objectiveId}</span>
@@ -92,15 +93,16 @@ export default function LabsHub({ onBack, onOpenLab, initialDomainFilter = null 
     <div>
       <StudyModeHeader title="Hands-on Labs" onBack={onBack} />
       <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, marginBottom: 14 }}>
-        <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.sky, marginBottom: 6 }}>HOW LABS WORK</div>
+        <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.sky, marginBottom: 6 }}>{LAB_HOW_IT_WORKS.title}</div>
         <ol style={{ margin: 0, paddingLeft: 18, fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.5 }}>
-          <li><strong>Learn</strong> — read scenario, goals, topology, and traps</li>
-          <li><strong>Practice</strong> — <strong>Interpret</strong> labs use <code>show</code> only; <strong>Config</strong> labs type IOS commands (<code>enable</code>, <code>conf t</code>, …)</li>
-          <li><strong>Verify</strong> — confirm with <code>show</code> commands in the terminal</li>
+          {LAB_HOW_IT_WORKS.steps.map(step => (
+            <li key={step.key}><strong>{step.label}</strong> — {step.text}</li>
+          ))}
         </ol>
         <p style={{ ...styles.small, margin: '8px 0 0' }}>{STATIC_COPY.lab}</p>
         <p style={{ ...styles.small, margin: '8px 0 0', color: COLORS.silverMid }}>
-          Labs are grouped by CCNA exam domain — filter below or browse all {allProgress.total} labs in curriculum order.
+          {LAB_HOW_IT_WORKS.hubNote}
+          {' '}Browse all {allProgress.total} labs in curriculum order.
           {allProgress.done > 0 && ` You have completed ${allProgress.done}.`}
         </p>
       </div>

@@ -10,6 +10,6 @@ test.describe('Lab entry smoke', () => {
 
     await page.goto('/#/labs')
     await expect(page.getByRole('heading', { name: /Hands-on Labs/i })).toBeVisible({ timeout: 20_000 })
-    await expect(page.getByRole('button', { name: /LEARN → DO/i }).first()).toBeVisible({ timeout: 20_000 })
+    await expect(page.getByRole('button', { name: /SHOW ONLY/i }).first()).toBeVisible({ timeout: 20_000 })
   })
 })

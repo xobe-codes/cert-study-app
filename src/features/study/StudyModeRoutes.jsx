@@ -21,6 +21,7 @@ const LAB_EXIT_LABELS = {
   mock: '‹ Back to mock exam',
   domainpass: '‹ Back to domain pass',
   domainplacement: '‹ Back to placement',
+  commandhub: '‹ Back to Command Hub',
 }
 
 const LabsHub = lazy(() => import('../../lab/LabsHub.jsx'))
@@ -97,6 +98,7 @@ export default function StudyModeRoutes({
             else if (labReturn === 'mock') onNavigate('mock')
             else if (labReturn === 'domainpass') onNavigate('domainpass')
             else if (labReturn === 'domainplacement') onNavigate('domainplacement')
+            else if (labReturn === 'commandhub') onNavigate('commandhub')
             else onNavigate('labs')
           })}
           exitLabel={LAB_EXIT_LABELS[labReturn] || LAB_EXIT_LABELS.labs}
@@ -140,6 +142,7 @@ export default function StudyModeRoutes({
             const obj = ALL_OBJECTIVES.find(o => o.id === objectiveId)
             if (obj) onSelectObjective(obj)
           }}
+          onOpenLab={(id) => onOpenLab(id, 'commandhub')}
         />
       </LazyRoute>
     )

@@ -12,7 +12,7 @@
  * first and works upward.
  */
 import { DOMAINS } from './ccnaDomains.js'
-import { allLabs } from './ccnaLabs.js'
+import { allLabs, getLab } from './ccnaLabs.js'
 
 const DIFFICULTY_RANK = { beginner: 0, intermediate: 1, advanced: 2 }
 
@@ -65,12 +65,17 @@ export function compareLabs(a, b) {
   return String(a.objectiveId).localeCompare(String(b.objectiveId), undefined, { numeric: true })
 }
 
+/** Resolved lab metadata from getLab() — correct interpretOnly after config-lab-lite. */
+export function resolvedLabs() {
+  return allLabs().map(l => getLab(l.id)?.lab).filter(Boolean)
+}
+
 /**
  * Build the ordered lab modules with their sorted labs. Troubleshooting labs
  * are always routed to the capstone (regardless of domain). Empty modules are
  * dropped. Pass an explicit lab list for testing.
  */
-export function buildLabModules(labs = allLabs()) {
+export function buildLabModules(labs = resolvedLabs()) {
   const troubleshooting = labs.filter(l => l.labType === 'troubleshooting')
   const guided = labs.filter(l => l.labType !== 'troubleshooting')
 
@@ -105,7 +110,7 @@ export function filterLabModules(modules, domainFilter = 'all') {
 }
 
 /** Labs for one CCNA domain (guided only, sorted). */
-export function labsForDomain(domainId, labs = allLabs()) {
+export function labsForDomain(domainId, labs = resolvedLabs()) {
   const canon = canonicalLabDomain(domainId)
   return labs
     .filter(l => l.labType !== 'troubleshooting' && canonicalLabDomain(l.domainId) === canon)

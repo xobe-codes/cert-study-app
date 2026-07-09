@@ -51,7 +51,7 @@ describe('lab curriculum modules', () => {
   it('gives non-troubleshooting labs a real domain module', () => {
     const guided = labs.filter(l => l.labType !== 'troubleshooting')
     for (const lab of guided) {
-      const inModule = modules.some(m => m.id !== 'm7-troubleshooting' && m.labs.includes(lab))
+      const inModule = modules.some(m => m.id !== 'm7-troubleshooting' && m.labs.some(l => l.id === lab.id))
       expect(inModule, `${lab.id} (${lab.domainId}) should belong to a domain module`).toBe(true)
     }
   })

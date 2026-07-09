@@ -37,6 +37,7 @@ import {
 } from './tabRuntimeDeps.js'
 import { EXAM_SOURCES } from './studyConstants.js'
 import { RichText, Bullets, PreAssessment } from './studyQuizShared.jsx'
+import ObjectiveLabCTA from './ObjectiveLabCTA.jsx'
 
 function VisualBadge({ children, accent }) {
   const c = accent || COLORS.purpleGlow
@@ -316,8 +317,6 @@ function CuratedReading({ data, progressEntry, onTierChange, onOpenReference, on
   const resolvedTier = useMemo(() => getReadingTier(progressEntry), [progressEntry])
   const [tier, setTier] = useState(resolvedTier)
   const hint = useMemo(() => readingTierHint(progressEntry, tier), [progressEntry, tier])
-  const objectiveLabs = useMemo(() => labsForObjective(data.objectiveId), [data.objectiveId])
-  const firstLabId = objectiveLabs[0]?.id
 
   useEffect(() => {
     setTier(getReadingTier(progressEntry))
@@ -396,15 +395,8 @@ function CuratedReading({ data, progressEntry, onTierChange, onOpenReference, on
       {r.related?.length > 0 && <ExplainBlock icon="🔗" title="RELATED CONCEPTS" accent="sky" collapsible defaultOpen={false} speechText={bulletsToSpeech(r.related)}><Bullets items={r.related} /></ExplainBlock>}
       {data.engineerView && <EngineerViewSection data={data.engineerView} defaultOpen={openRealWorld} />}
       <QuestionHealthAdminSection objectiveId={data.objectiveId} />
-      {firstLabId && (
-        <div className="objective-lab-cta" style={{ flexDirection: 'column', alignItems: 'stretch', marginTop: 12 }}>
-          <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, marginBottom: 10, lineHeight: 1.45 }}>
-            Hands-on CLI for this topic — verify commands in the lab before exam day.
-          </div>
-          <button type="button" style={styles.primaryBtn} onClick={() => onOpenLab?.(firstLabId)}>
-            Open lab for this topic
-          </button>
-        </div>
+      {labsForObjective(data.objectiveId).length > 0 && (
+        <ObjectiveLabCTA objectiveId={data.objectiveId} onOpenLab={onOpenLab} />
       )}
       {showDiagram && data.diagram && <CuratedDiagram diagram={data.diagram} />}
       <CuratedSources data={data} />

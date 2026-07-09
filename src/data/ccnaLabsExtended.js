@@ -1733,7 +1733,12 @@ const VALIDATOR_HSRP_VERIFY_35 = { labId: 'LAB-HSRP-VERIFY-35', requiredCommands
 ] }
 const HSRP_VERIFY_35 = { lab: LAB_HSRP_VERIFY_35, topology: TOPO_HSRP_VERIFY_35, validator: VALIDATOR_HSRP_VERIFY_35,
   diagram: DIAGRAM_HSRP,
-  packetFlows: HSRP.packetFlows,
+  packetFlows: mkFlows('FLOW-HSRP-VERIFY-35', 'Verify HSRP roles and virtual IP', 'DIAG-HSRP', ['CKU-HSRP'], [
+    { id: 's1', order: 1, title: 'Brief roles', action: 'show standby brief — R1 Active, R2 Standby, VIP 192.168.1.1', successState: 'noted' },
+    { id: 's2', order: 2, title: 'Priority/preempt', action: 'show standby — priority 150 and P flag on R1', successState: 'noted' },
+    { id: 's3', order: 3, title: 'Physical vs VIP', action: 'Physical Gi0/0 .2; hosts default gateway is virtual .1', successState: 'interpreted' },
+    { id: 's4', order: 4, title: 'Traffic path', action: 'Active router forwards LAN traffic using the virtual MAC/IP', successState: 'forwarded' },
+  ]),
 }
 
 /* =========================================================================
@@ -2131,8 +2136,8 @@ const AUTO_REST_65 = autoInterpretBundle(
   CLI_AUTO_REST_65,
   [{ id: 'app', label: 'Python script', type: 'pc', x: 25, y: 50 }, { id: 'api', label: 'REST API', type: 'server', x: 55, y: 50, status: 'highlighted' }, { id: 'ctrl', label: 'Controller', type: 'server', x: 85, y: 50 }],
   [{ id: 'l1', source: 'app', target: 'api', label: 'GET + JSON', status: 'forwarding' }, { id: 'l2', source: 'api', target: 'ctrl', status: 'forwarding' }],
-  [{ id: 'get', label: 'GET /devices\n200 JSON', type: 'process', x: 50, y: 70, status: 'highlighted' }],
-  [],
+  [{ id: 'get', label: 'GET /devices\n200 JSON', type: 'process', x: 50, y: 65, status: 'highlighted' }, { id: 'json', label: 'Parse JSON keys', type: 'process', x: 75, y: 65 }],
+  [{ id: 'd1', source: 'get', target: 'json', label: 'hostname, mgmt IP', status: 'forwarding' }],
   [
     { id: 's1', order: 1, title: 'Request', action: 'Client sends HTTP GET with Authorization header to resource URL', successState: 'noted' },
     { id: 's2', order: 2, title: 'Response', action: 'Server returns 200 OK and JSON payload — stateless, no session stored', successState: 'noted' },

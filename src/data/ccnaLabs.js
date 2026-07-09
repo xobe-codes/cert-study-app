@@ -21,6 +21,7 @@ export const LAB_SOURCES = {
 import { EXTENDED_LAB_BUNDLES } from './ccnaLabsExtended.js'
 import { PHASE_LAB_BUNDLES } from './ccnaLabsPhases.js'
 import { applyConfigLabLite } from './configLabLiteWave.js'
+import { applyLabQuality99 } from '../lab/labQuality99.js'
 import { CLI_ROUTE_31_SHOW_OUTPUT, CLI_VLAN_TRUNK_21_SHOW_OUTPUT, CLI_OSPF_SINGLE_34_SHOW_OUTPUT, CLI_NAT_41_SHOW_OUTPUT } from '../lab/cliEngine.js'
 import { normalizeIosCli } from '../lab/iosShorthand.js'
 
@@ -1294,7 +1295,7 @@ export const allLabs = () => Object.values(LABS).map(x => x.lab)
 export function getLab(labId) {
   const raw = LABS[labId] || null
   if (!raw) return null
-  return applyConfigLabLite(raw)
+  return applyLabQuality99(applyConfigLabLite(raw))
 }
 export function labsForObjective(objectiveId) { return Object.values(LABS).filter(x => x.lab.objectiveId === objectiveId).map(x => x.lab) }
 export const troubleshootingLabs = () => allLabs().filter(l => l.labType === 'troubleshooting')

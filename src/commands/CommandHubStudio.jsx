@@ -11,6 +11,7 @@ import CommandDetailPanel from './CommandDetailPanel.jsx'
 import CommandSyntaxCoach from './CommandSyntaxCoach.jsx'
 import CommandDrillCoach from './CommandDrillCoach.jsx'
 import StudyModeHeader from '../components/StudyModeHeader.jsx'
+import { labIdForWorkflow } from './workflowLabMap.js'
 
 const CATEGORY_FILTERS = [
   { id: 'all', label: 'All types' },
@@ -74,7 +75,7 @@ function CommandRow({ cmd, detailCommand, onSelect }) {
   )
 }
 
-function WorkflowRow({ wf, index, expandedWorkflow, setExpandedWorkflow, setTab, setDetailCommand }) {
+function WorkflowRow({ wf, index, expandedWorkflow, setExpandedWorkflow, setTab, setDetailCommand, onOpenLab }) {
   const isOpen = expandedWorkflow === wf.id
   return (
     <div key={wf.id} style={{ ...styles.card, marginBottom: 8, padding: 0, overflow: 'hidden' }}>
@@ -99,6 +100,15 @@ function WorkflowRow({ wf, index, expandedWorkflow, setExpandedWorkflow, setTab,
       </button>
       {isOpen && (
         <div style={{ borderTop: `1px solid ${COLORS.border}`, padding: '8px 12px 12px' }}>
+          {labIdForWorkflow(wf.id) && onOpenLab && (
+            <button
+              type="button"
+              style={{ ...styles.primaryBtn, width: '100%', marginBottom: 10, fontSize: 'var(--ccna-type-xs)' }}
+              onClick={() => onOpenLab(labIdForWorkflow(wf.id))}
+            >
+              Practice in lab →
+            </button>
+          )}
           {wf.steps.map(step => {
             const linked = index.commands.find(c =>
               c.command.toLowerCase().includes((step.commandMatch || step.commandText).toLowerCase().split(' ')[0])
@@ -128,7 +138,7 @@ function WorkflowRow({ wf, index, expandedWorkflow, setExpandedWorkflow, setTab,
   )
 }
 
-export default function CommandHubStudio({ onBack, onSelectObjective }) {
+export default function CommandHubStudio({ onBack, onSelectObjective, onOpenLab }) {
   const index = useMemo(() => getCommandIndex(), [])
 
   const [tab, setTab] = useState('commands')
@@ -382,6 +392,7 @@ export default function CommandHubStudio({ onBack, onSelectObjective }) {
                   setExpandedWorkflow={setExpandedWorkflow}
                   setTab={setTab}
                   setDetailCommand={setDetailCommand}
+                  onOpenLab={onOpenLab}
                 />
               ))}
             </section>
@@ -397,6 +408,7 @@ export default function CommandHubStudio({ onBack, onSelectObjective }) {
             setExpandedWorkflow={setExpandedWorkflow}
             setTab={setTab}
             setDetailCommand={setDetailCommand}
+            onOpenLab={onOpenLab}
           />
         ))}
 

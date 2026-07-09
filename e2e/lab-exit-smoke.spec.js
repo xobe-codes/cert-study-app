@@ -7,7 +7,7 @@ test.describe('Lab exit smoke', () => {
     await page.goto('/#/labs')
     await expect(page.getByRole('heading', { name: /Hands-on Labs/i })).toBeVisible({ timeout: 20_000 })
 
-    await page.getByRole('button', { name: /LEARN → DO/i }).first().click()
+    await page.getByRole('button', { name: /SHOW ONLY/i }).first().click()
     await page.getByRole('button', { name: /Start hands-on lab/i }).click()
 
     await expect(page.locator('.lab-sticky-header')).toBeVisible({ timeout: 20_000 })
