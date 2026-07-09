@@ -2,8 +2,10 @@ import React, { useState, useEffect, useMemo } from 'react'
 import { COLORS, styles } from '../../ui/appTheme.js'
 import { STORAGE_KEYS } from '../../storageKeys.js'
 import OverflowMarquee from '../../components/OverflowMarquee.jsx'
-import { homeCard, homeSectionLabel, homePillCount } from '../../home/homeUi.js'
-import { buildWeakAreaRows, resolveWeakAreaStudyObjective } from './weakAreaDashboard.js'
+import { homeCard, homePillCount } from '../../home/homeUi.js'
+import HomeSectionLabel from '../../home/HomeSectionLabel.jsx'
+import { buildWeakAreaRows } from './weakAreaDashboard.js'
+import { buildStudyObjectiveHandoff } from '../../study/studyObjectiveHandoff.js'
 import { loadAllPlacementRecords } from '../domainPlacement/domainPlacementStorage.js'
 
 export default function WeakAreaDashboard({
@@ -52,8 +54,8 @@ export default function WeakAreaDashboard({
         onOpenDomainPlacement?.(row.payload)
         break
       case 'study': {
-        const obj = resolveWeakAreaStudyObjective(row.payload.objectiveId)
-        if (obj) onSelectObjective?.(obj)
+        const handoff = buildStudyObjectiveHandoff(row.payload.objectiveId, { tab: 'Practice' })
+        if (handoff) onSelectObjective?.(handoff)
         break
       }
       case 'mock':
@@ -69,25 +71,18 @@ export default function WeakAreaDashboard({
 
   return (
     <div style={homeCard({ border: `1px solid ${COLORS.roseBorder}`, background: COLORS.roseDim })}>
-      <div style={homeSectionLabel(COLORS.rose)}>WEAK AREAS</div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-        {rows.map((row, i) => (
-          <div
-            key={row.id}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 8,
-              paddingBottom: i < rows.length - 1 ? 8 : 0,
-              borderBottom: i < rows.length - 1 ? `1px solid ${COLORS.roseBorder}` : 'none',
-            }}
-          >
-            <div style={{ flex: 1, minWidth: 0, display: 'flex', alignItems: 'center', gap: 6 }}>
-              {row.badge && <span style={{ ...homePillCount('rose'), flexShrink: 0 }}>{row.badge}</span>}
-              <OverflowMarquee
-                text={row.label}
-                style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver, lineHeight: 1.45 }}
-              />
+      <HomeSectionLabel color={COLORS.rose}>WEAK AREAS</HomeSectionLabel>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        {rows.map((row) => (
+          <div key={row.id} className="ccna-weak-area-row">
+            <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 4, justifyContent: 'center' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, minWidth: 0 }}>
+                {row.badge && <span style={{ ...homePillCount('rose'), flexShrink: 0 }}>{row.badge}</span>}
+                <OverflowMarquee
+                  text={row.label}
+                  style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, fontWeight: 600, lineHeight: 1.35 }}
+                />
+              </div>
             </div>
             <button
               type="button"
@@ -96,6 +91,7 @@ export default function WeakAreaDashboard({
               style={{
                 ...styles.secondaryBtn,
                 flexShrink: 0,
+                alignSelf: 'center',
                 marginBottom: 0,
                 fontSize: 'var(--ccna-type-xs)',
                 padding: '8px 12px',

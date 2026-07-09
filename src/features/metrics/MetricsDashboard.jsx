@@ -25,7 +25,7 @@ import { loadQuizBank } from '../../quiz/quizBankStorage.js'
 import { STORAGE_KEYS } from '../../storageKeys.js'
 import { AiCallsIndicator } from '../../ai/claudeClient.js'
 import { COMMAND_DRILLS } from '../../lab/commandDrills.js'
-import QuestionHealthAdminSection from '../../components/QuestionHealthAdminSection.jsx'
+import { buildStudyObjectiveHandoff } from '../../study/studyObjectiveHandoff.js'
 
 const DAY_MS = 86400000
 
@@ -74,7 +74,7 @@ function MetricsCollapsibleSection({ title, summary, defaultOpen = false, childr
         }}
       >
         <span style={{ flex: 1, minWidth: 0 }}>
-          <span style={{ display: 'block', fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.silver, letterSpacing: 0.5 }}>{title}</span>
+          <span className="ccna-metrics-section-title" style={{ display: 'block', fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.silver, letterSpacing: 0.5 }}>{title}</span>
           {!open && summary && (
             <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 4, lineHeight: 1.35 }}>{summary}</span>
           )}
@@ -231,7 +231,10 @@ export default function MetricsDashboard({ progress, missed, dueCount = 0, onBac
     : overconfident.length || underconfident.length
       ? `${overconfident.length} overconfident · ${underconfident.length} underconfident`
       : 'Well calibrated'
-  const open = (o) => onSelectObjective({ ...o, domainId: o.domainId, domainName: o.domainName, accent: o.accent })
+  const open = (o) => {
+    const handoff = buildStudyObjectiveHandoff(o.id, { tab: o.__initialTab || 'Practice' })
+    if (handoff) onSelectObjective(handoff)
+  }
   const quadCell = (key, label, accent, hint) => (
     <div style={{ flex: '1 1 45%', background: accentColors(accent).dim, border: `1px solid ${accentColors(accent).border}`, borderRadius: 10, padding: 10 }}>
       <div style={{ fontSize: 'var(--ccna-type-xl)', fontWeight: 700, color: accentColors(accent).text }}>{quads[key].length}</div>
@@ -377,7 +380,18 @@ export default function MetricsDashboard({ progress, missed, dueCount = 0, onBac
             <div style={{ ...styles.small, fontWeight: 600, marginBottom: 4 }}>Most-missed concepts</div>
             {missedTop.map(([id, n]) => {
               const o = ALL_OBJECTIVES.find(x => x.id === id)
-              return <div key={id} style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 2 }}>{id} {o ? o.title : ''} — <span style={{ color: COLORS.rose }}>missed {n}×</span></div>
+              return (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={() => o && open(o)}
+                  style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', cursor: o ? 'pointer' : 'default', padding: '4px 0', fontFamily: 'inherit' }}
+                >
+                  <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>
+                    {id} {o ? o.title : ''} — <span style={{ color: COLORS.rose }}>missed {n}×</span>
+                  </span>
+                </button>
+              )
             })}
           </div>
         )}

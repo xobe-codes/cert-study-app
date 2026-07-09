@@ -148,7 +148,7 @@ test.describe('Domain placement smoke', () => {
     await completePlacementSession(page)
 
     await expect(page.getByText(/Baseline map/i)).toBeVisible({ timeout: 15_000 })
-    await expect(page.getByRole('button', { name: 'Study' }).first()).toBeVisible({ timeout: 10_000 })
+    await expect(page.getByText(/Study →/i).first()).toBeVisible({ timeout: 10_000 })
   })
 
   test('full baseline debrief maps every subsection with no sprint skips', async ({ page }) => {

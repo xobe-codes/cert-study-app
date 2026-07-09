@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react'
 import { COLORS, styles } from '../../ui/appTheme.js'
-import { homeBodySm, homeSectionLabel } from '../../home/homeUi.js'
+import OverflowMarquee from '../../components/OverflowMarquee.jsx'
+import { homeBodySm } from '../../home/homeUi.js'
+import HomeSectionLabel from '../../home/HomeSectionLabel.jsx'
 import { PLACEMENT_QUESTION_COUNT, PLACEMENT_MAINTENANCE_TRAP_COUNT } from './domainPlacementConfig.js'
 import { buildDomainBaselineSummary, domainBaselineBand } from './domainBaselineProfile.js'
 import { baselineBlueprintIsStale } from './placementBlueprintCoverage.js'
@@ -18,54 +20,49 @@ function ObjectiveBaselineRow({ objective, profile, onStudyObjective, highlight 
   const isWeak = status === 'weak'
 
   return (
-    <div
+    <button
+      type="button"
       className={`ccna-domain-baseline-row${highlight ? ' ccna-domain-baseline-row--weak' : ''}`}
+      disabled={!isWeak || !onStudyObjective}
+      onClick={() => isWeak && onStudyObjective?.(objective.id)}
       style={{
         display: 'flex',
         alignItems: 'center',
         gap: 8,
-        padding: isWeak ? '8px 10px' : '6px 0',
-        borderRadius: isWeak ? 8 : 0,
+        width: '100%',
+        textAlign: 'left',
+        fontFamily: 'inherit',
+        padding: isWeak ? '10px 12px' : '6px 0',
+        borderRadius: isWeak ? 10 : 0,
         background: isWeak ? COLORS.roseDim : 'transparent',
         border: isWeak ? `1px solid ${COLORS.roseBorder}` : 'none',
-        marginBottom: isWeak ? 6 : 0,
+        marginBottom: isWeak ? 8 : 0,
+        cursor: isWeak && onStudyObjective ? 'pointer' : 'default',
       }}
     >
       <DomainBaselineStatusPill status={status} compact />
-      <span
-        style={{
-          flex: 1,
-          minWidth: 0,
-          fontSize: 'var(--ccna-type-xs)',
-          color: isWeak ? COLORS.silver : COLORS.silverMid,
-          fontWeight: isWeak ? 600 : 400,
-          lineHeight: 1.35,
-        }}
-      >
-        {objective.id} {objective.title}
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, minWidth: 0 }}>
+          <span style={{ flexShrink: 0, fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: isWeak ? COLORS.rose : COLORS.silverMid }}>
+            {objective.id}
+          </span>
+          <OverflowMarquee
+            text={objective.title}
+            style={{ fontSize: 'var(--ccna-type-xs)', color: isWeak ? COLORS.silver : COLORS.silverMid, fontWeight: isWeak ? 600 : 400 }}
+          />
+        </div>
         {profile?.pct != null && (
-          <span style={{ color: COLORS.silverMid, fontWeight: 500 }}> · {profile.pct}%</span>
+          <div style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid, marginTop: 2 }}>
+            {profile.pct}% on baseline check
+          </div>
         )}
-      </span>
+      </div>
       {isWeak && onStudyObjective && (
-        <button
-          type="button"
-          className="ccna-hover"
-          aria-label={`Study ${objective.id}`}
-          onClick={() => onStudyObjective(objective.id)}
-          style={{
-            ...styles.secondaryBtn,
-            flexShrink: 0,
-            marginBottom: 0,
-            fontSize: 'var(--ccna-type-xs)',
-            padding: '6px 10px',
-            minHeight: 32,
-          }}
-        >
-          Study
-        </button>
+        <span style={{ flexShrink: 0, color: COLORS.rose, fontWeight: 700, fontSize: 'var(--ccna-type-xs)' }}>
+          Study →
+        </span>
       )}
-    </div>
+    </button>
   )
 }
 
@@ -122,7 +119,7 @@ export default function DomainBaselinePanel({
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8, flexWrap: 'wrap', marginBottom: 8 }}>
         <div>
-          <div style={homeSectionLabel(COLORS.sky)}>YOUR BASELINE</div>
+          <HomeSectionLabel color={COLORS.sky}>YOUR BASELINE</HomeSectionLabel>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
             {hasBaseline ? (
               <>
@@ -240,7 +237,7 @@ export default function DomainBaselinePanel({
         <div className="ccna-domain-baseline-map" style={{ borderTop: `1px solid ${COLORS.skyBorder}`, paddingTop: 10 }}>
           {weakObjs.length > 0 && (
             <div style={{ marginBottom: 10 }}>
-              <div style={{ fontSize: 'var(--ccna-type-micro)', fontWeight: 700, color: COLORS.rose, marginBottom: 6, letterSpacing: 0.4 }}>
+              <div style={{ fontSize: 'var(--ccna-type-micro)', fontWeight: 700, color: COLORS.rose, marginBottom: 8, letterSpacing: 0.4 }}>
                 FOCUS HERE
               </div>
               {weakObjs.map(o => (

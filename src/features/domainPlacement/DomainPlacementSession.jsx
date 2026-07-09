@@ -14,6 +14,8 @@ import { computePlacementReport } from './computePlacementReport.js'
 import { loadPlacementRecord, savePlacementAttempt } from './domainPlacementStorage.js'
 import { buildDomainBaselineSummary } from './domainBaselineProfile.js'
 import { getSprintObjectiveIdsForDomain } from './domainBaselineStudyPlan.js'
+import { stashPlacementDebriefResume, consumePlacementDebriefResume, clearPlacementDebriefResume } from './placementDebriefResume.js'
+import { buildStudyObjectiveHandoff } from '../../study/studyObjectiveHandoff.js'
 import DomainPlacementDebrief from './DomainPlacementDebrief.jsx'
 import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import { appendMissedEntry } from '../domainPass/domainPassStorage.js'
@@ -44,6 +46,7 @@ export default function DomainPlacementSession({
   const [previousAttempt, setPreviousAttempt] = useState(null)
   const [sessionMode, setSessionMode] = useState('baseline')
   const [adaptiveWeakObjectives, setAdaptiveWeakObjectives] = useState([])
+  const [resumedReport, setResumedReport] = useState(null)
   const finishSaved = useRef(false)
 
   const startSession = useCallback(async () => {
@@ -98,8 +101,17 @@ export default function DomainPlacementSession({
   }, [domain, domainId, sessionModeHint])
 
   useEffect(() => {
+    const resume = consumePlacementDebriefResume(domainId)
+    if (resume?.report) {
+      setPreviousAttempt(resume.previousAttempt || null)
+      setSessionMode(resume.sessionMode || 'baseline')
+      setAdaptiveWeakObjectives(resume.adaptiveWeakObjectives || [])
+      setResumedReport(resume.report)
+      setPhase('done')
+      return
+    }
     startSession()
-  }, [startSession])
+  }, [domainId, startSession])
 
   function selectChoice(idx) {
     if (revealed[current]) return
@@ -126,9 +138,35 @@ export default function DomainPlacementSession({
   }
 
   const report = useMemo(() => {
+    if (resumedReport) return resumedReport
     if (phase !== 'done') return null
     return computePlacementReport({ questions, responses, trapByQuestionId })
-  }, [phase, questions, responses, trapByQuestionId])
+  }, [resumedReport, phase, questions, responses, trapByQuestionId])
+
+  function handleStudyObjective(objectiveId) {
+    if (report) {
+      stashPlacementDebriefResume(domainId, {
+        report,
+        previousAttempt,
+        sessionMode,
+        adaptiveWeakObjectives,
+      })
+    }
+    const handoff = buildStudyObjectiveHandoff(objectiveId, { tab: 'Practice' })
+    if (handoff) onStudyObjective?.(handoff)
+    else onStudyObjective?.(objectiveId)
+  }
+
+  function handleRetake() {
+    setResumedReport(null)
+    clearPlacementDebriefResume()
+    startSession()
+  }
+
+  function handleExit() {
+    clearPlacementDebriefResume()
+    onExit?.()
+  }
 
   useEffect(() => {
     if (phase !== 'done' || !report || finishSaved.current) return
@@ -168,11 +206,11 @@ export default function DomainPlacementSession({
           previousAttempt={previousAttempt}
           sessionMode={sessionMode}
           adaptiveWeakObjectives={adaptiveWeakObjectives}
-          onStudyObjective={onStudyObjective}
+          onStudyObjective={handleStudyObjective}
           onOpenTrapDrill={onOpenTrapDrill}
           onOpenLab={onOpenLab}
-          onRetake={startSession}
-          onExit={onExit}
+          onRetake={handleRetake}
+          onExit={handleExit}
         />
       </div>
     )

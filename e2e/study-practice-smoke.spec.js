@@ -1,6 +1,34 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('Study Practice smoke', () => {
+  test('session size field allows clear-and-retype before practice', async ({ page }) => {
+    await page.goto('/')
+    await page.waitForFunction(() => typeof window.storage?.getItem === 'function')
+    await page.evaluate(async () => {
+      await window.storage.setItem('ccna_onboard_done_v1', true)
+      await window.storage.setItem('ccna_progress_v1', {
+        '1.5': { status: 'in_progress', quizScores: [], lastSeen: Date.now(), studySectionsViewed: true },
+      })
+    })
+
+    await page.goto('/#/objective/1.5/Practice')
+    await expect(page.locator('.ccna-quiz-idle')).toBeVisible({ timeout: 20_000 })
+
+    const input = page.locator('#quiz-session-size-1\\.5')
+    await expect(input).toBeVisible()
+    await input.click()
+    await input.fill('')
+    await expect(input).toHaveValue('')
+    await expect(page.getByRole('button', { name: /Start practice/i })).toBeDisabled()
+
+    await input.fill('3')
+    await expect(input).toHaveValue('3')
+    await expect(page.getByRole('button', { name: /Start practice/i })).toBeEnabled()
+
+    await input.blur()
+    await expect(input).toHaveValue('3')
+  })
+
   test('objective 1.5 Practice quiz shows AnswerReview after wrong pick', async ({ page }) => {
     await page.goto('/')
     await page.waitForFunction(() => typeof window.storage?.getItem === 'function')

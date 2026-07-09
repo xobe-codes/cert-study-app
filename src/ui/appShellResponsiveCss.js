@@ -27,6 +27,55 @@ export function buildAppShellResponsiveCss(colors) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
     }
+    .ccna-home-section-label {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+    .ccna-home-for-you__title {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+    .home-study-grid button {
+      word-break: normal;
+      overflow-wrap: normal;
+      white-space: normal;
+      line-height: 1.3;
+      hyphens: none;
+    }
+    .ccna-metrics-section-title {
+      white-space: normal;
+      overflow-wrap: anywhere;
+      word-break: normal;
+      line-height: 1.35;
+    }
+    .ccna-domain-baseline-row,
+    .ccna-placement-objective-row {
+      min-width: 0;
+    }
+    .ccna-placement-objective-row__title {
+      flex: 1;
+      min-width: 0;
+      font-size: var(--ccna-type-xs);
+      color: ${colors.silver};
+      line-height: 1.35;
+    }
+    .ccna-weak-area-row {
+      display: flex;
+      align-items: stretch;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid ${colors.border};
+    }
+    .ccna-weak-area-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
     @media (min-width: 540px) {
       .home-study-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));

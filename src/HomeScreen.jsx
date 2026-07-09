@@ -34,6 +34,8 @@ import { pickBaselineAwareStudyNext } from './features/domainPlacement/domainBas
 import { isPlacementDomain } from './features/domainPlacement/placementBlueprints.js'
 import { DomainBaselineStatusMark } from './features/domainPlacement/DomainBaselineStatusPill.jsx'
 import ExamReadyBanner from './home/ExamReadyBanner.jsx'
+import HomeSectionLabel from './home/HomeSectionLabel.jsx'
+import { buildStudyObjectiveHandoff } from './study/studyObjectiveHandoff.js'
 import {
   HOME_SECTION_GAP,
   homeCard,
@@ -384,8 +386,6 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
     return { mastered, inProgress, total: ALL_OBJECTIVES.length }
   }, [progress])
 
-  const sectionLabel = homeSectionLabel()
-
   return (
     <div>
       <div className="home-page-header">
@@ -534,7 +534,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
 
       {suggestions.length > 0 && (
         <div style={{ marginBottom: HOME_SECTION_GAP }} className="ccna-stagger">
-          <div style={sectionLabel}>FOR YOU</div>
+          <HomeSectionLabel>FOR YOU</HomeSectionLabel>
           {suggestions.map(s => {
             const c = accentColors(s.accent)
             return (
@@ -549,7 +549,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
                   <span style={homePill(s.accent)}>{s.chip}</span>
                   <span style={{ color: c.text, fontSize: 'var(--ccna-type-lg)', lineHeight: 1 }}>›</span>
                 </div>
-                <div style={{ fontWeight: 600, fontSize: 'var(--ccna-type-md)', color: COLORS.silver, marginBottom: 4, lineHeight: 1.4 }}>{s.title}</div>
+                <div className="ccna-home-for-you__title" style={{ fontWeight: 600, fontSize: 'var(--ccna-type-md)', color: COLORS.silver, marginBottom: 4, lineHeight: 1.4 }}>{s.title}</div>
                 <div style={{ ...homeBodyOnAccent }}>{s.body}</div>
               </button>
             )
@@ -558,7 +558,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
       )}
 
       <div style={homeCard()}>
-        <div style={sectionLabel}>STUDY MODES</div>
+        <HomeSectionLabel>STUDY MODES</HomeSectionLabel>
         <div className="home-study-grid">
           <StudyModeBtn primary onClick={onOpenMock}>Mock Exam</StudyModeBtn>
           <StudyModeBtn onClick={onOpenDomainPass}>Domain Pass ({domainPassPassedCount}/6)</StudyModeBtn>
@@ -604,10 +604,8 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         const baselineBand = baselineSummary ? domainBaselineBand(baselineSummary.domainStatus) : null
 
         function studyObjective(objectiveId) {
-          const obj = objs.find(o => o.id === objectiveId)
-          if (obj) {
-            onSelectObjective({ ...obj, domainId: domain.id, domainName: domain.name, accent: domain.accent })
-          }
+          const handoff = buildStudyObjectiveHandoff(objectiveId, { tab: 'Practice' })
+          if (handoff) onSelectObjective(handoff)
         }
 
         return (

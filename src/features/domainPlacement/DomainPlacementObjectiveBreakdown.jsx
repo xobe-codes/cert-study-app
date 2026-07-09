@@ -4,6 +4,7 @@ import { COLORS, styles } from '../../ui/appTheme.js'
 import { placementReadyBand } from './domainPlacementConfig.js'
 import { classifyObjectiveBaseline } from './domainBaselineProfile.js'
 import DomainBaselineStatusPill from './DomainBaselineStatusPill.jsx'
+import OverflowMarquee from '../../components/OverflowMarquee.jsx'
 
 export function objectiveRows(byObjective) {
   return Object.entries(byObjective || {})
@@ -82,79 +83,81 @@ export default function DomainPlacementObjectiveBreakdown({
           const isWeak = row.status === 'weak'
           const isStrong = row.status === 'strong'
           const notChecked = row.status === 'not_checked'
+          const canStudy = isWeak && onStudyObjective
 
           return (
             <div
               key={row.id}
               className="ccna-placement-objective-row"
+              role={canStudy ? 'button' : undefined}
+              tabIndex={canStudy ? 0 : undefined}
+              onClick={canStudy ? () => onStudyObjective(row.id) : undefined}
+              onKeyDown={canStudy ? (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  onStudyObjective(row.id)
+                }
+              } : undefined}
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: 8,
-                flexWrap: 'wrap',
+                flexWrap: 'nowrap',
                 fontSize: 'var(--ccna-type-xs)',
                 color: COLORS.silver,
-                padding: isWeak ? '8px 10px' : 0,
-                borderRadius: isWeak ? 8 : 0,
+                padding: isWeak ? '10px 12px' : '6px 0',
+                borderRadius: isWeak ? 10 : 0,
                 background: isWeak ? COLORS.roseDim : 'transparent',
                 border: isWeak ? `1px solid ${COLORS.roseBorder}` : 'none',
+                cursor: canStudy ? 'pointer' : 'default',
               }}
             >
               <DomainBaselineStatusPill status={row.status} compact />
-              <span style={{ width: 36, flexShrink: 0, fontWeight: 600, color: band ? COLORS[band.accent] : COLORS.silverMid }}>
+              <span style={{ width: 36, flexShrink: 0, fontWeight: 700, color: band ? COLORS[band.accent] : COLORS.silverMid }}>
                 {row.id}
               </span>
+              <div className="ccna-placement-objective-row__title">
+                <OverflowMarquee
+                  text={row.title ? `${row.title}` : 'Objective'}
+                  style={{ fontWeight: isWeak ? 600 : 400, color: isWeak ? COLORS.silver : COLORS.silverMid }}
+                />
+              </div>
               {!notChecked && (
-                <div style={{ flex: 1, minWidth: 72, height: 6, borderRadius: 999, background: COLORS.surface, overflow: 'hidden' }}>
+                <div style={{ width: 56, flexShrink: 0, height: 6, borderRadius: 999, background: COLORS.surface, overflow: 'hidden' }}>
                   <div
                     style={{
                       height: '100%',
                       width: `${Math.max(row.pct || 0, 4)}%`,
                       borderRadius: 999,
                       background: band ? COLORS[band.accent] : COLORS.silverDim,
-                      transition: 'width .25s ease',
                     }}
                   />
                 </div>
               )}
               {notChecked ? (
-                <span style={{ flex: 1, minWidth: 0, color: COLORS.silverMid }}>Skipped in sprint</span>
+                <span style={{ flexShrink: 0, color: COLORS.silverMid, fontSize: 'var(--ccna-type-micro)' }}>Skipped</span>
               ) : (
                 <>
-                  <span style={{ flexShrink: 0, minWidth: 40, textAlign: 'right', color: band ? COLORS[band.accent] : COLORS.silver, fontWeight: 600 }}>
+                  <span style={{ flexShrink: 0, minWidth: 36, textAlign: 'right', color: band ? COLORS[band.accent] : COLORS.silver, fontWeight: 700 }}>
                     {row.pct}%
                   </span>
-                  <span style={{ flexShrink: 0, minWidth: 36, textAlign: 'right', color: COLORS.silverMid }}>
+                  <span style={{ flexShrink: 0, minWidth: 28, textAlign: 'right', color: COLORS.silverMid }}>
                     {row.correct}/{row.total}
                   </span>
                 </>
               )}
               {delta != null && delta !== 0 && (
-                <span style={{ flexShrink: 0, minWidth: 32, textAlign: 'right', color: delta > 0 ? COLORS.mint : COLORS.rose, fontWeight: 600 }}>
+                <span style={{ flexShrink: 0, minWidth: 28, textAlign: 'right', color: delta > 0 ? COLORS.mint : COLORS.rose, fontWeight: 600 }}>
                   {delta > 0 ? '+' : ''}{delta}
                 </span>
               )}
               {isWeak && onStudyObjective && (
-                <button
-                  type="button"
-                  className="ccna-hover"
-                  aria-label={`Study objective ${row.id}`}
-                  onClick={() => onStudyObjective(row.id)}
-                  style={{
-                    ...styles.secondaryBtn,
-                    flexShrink: 0,
-                    marginBottom: 0,
-                    marginLeft: 'auto',
-                    fontSize: 'var(--ccna-type-xs)',
-                    padding: '6px 10px',
-                    minHeight: 32,
-                  }}
-                >
-                  Study
-                </button>
+                <span style={{ flexShrink: 0, marginLeft: 'auto', color: COLORS.rose, fontWeight: 700, fontSize: 'var(--ccna-type-micro)' }}>
+                  Study →
+                </span>
               )}
               {isStrong && (
-                <span style={{ marginLeft: 'auto', flexShrink: 0, color: COLORS.mint, fontWeight: 600 }}>
+                <span style={{ marginLeft: 'auto', flexShrink: 0, color: COLORS.mint, fontWeight: 600, fontSize: 'var(--ccna-type-micro)' }}>
                   Complete
                 </span>
               )}

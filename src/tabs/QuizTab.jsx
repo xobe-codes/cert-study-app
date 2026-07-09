@@ -21,7 +21,7 @@ import { useMobileGestureBlock } from '../ui/useMobileGestureBlock.js'
 import { STATIC_COPY } from '../ui/staticContentCopy.js'
 import { useNavHint } from '../components/NavHintProvider.jsx'
 import { NAV_HINT_KEYS } from '../ui/navHintConfig.js'
-import { DEFAULT_QUIZ_SESSION_SIZE, MAX_QUIZ_SESSION_SIZE, clampQuizSessionSize, loadQuizSessionSize, saveQuizSessionSize } from '../quizSessionConfig.js'
+import { DEFAULT_QUIZ_SESSION_SIZE, MAX_QUIZ_SESSION_SIZE, loadQuizSessionSize, saveQuizSessionSize, commitSessionSizeDraft, effectiveSessionSize, isSessionSizeDraftSubmittable, sanitizeSessionSizeDraftInput, sessionSizeDraftFromCommitted } from '../quizSessionConfig.js'
 import { BOOK_REF } from '../data/bookRefFull.js'
 import {
   PREMIUM_FEATURES,
@@ -252,12 +252,16 @@ export function QuizTab({
   const [orderDraft, setOrderDraft] = useState([])
   const [cliAnswer, setCliAnswer] = useState('')
   const [sessionSize, setSessionSize] = useState(DEFAULT_QUIZ_SESSION_SIZE)
+  const [sessionSizeDraft, setSessionSizeDraft] = useState(sessionSizeDraftFromCommitted(DEFAULT_QUIZ_SESSION_SIZE))
   const curatedPoolSize = useMemo(() => getCuratedQuestions(objective.id).length, [objective.id])
 
   useMobileGestureBlock({ pull: revealed, edge: false })
 
   useEffect(() => {
-    loadQuizSessionSize().then(setSessionSize)
+    loadQuizSessionSize().then((size) => {
+      setSessionSize(size)
+      setSessionSizeDraft(sessionSizeDraftFromCommitted(size))
+    })
   }, [])
 
   useEffect(() => {
@@ -279,30 +283,34 @@ export function QuizTab({
 
   useEffect(() => {
     if (bankSize > 0 && sessionSize > bankSize) {
-      setSessionSize(bankSize)
-      saveQuizSessionSize(bankSize)
+      const next = bankSize
+      setSessionSize(next)
+      setSessionSizeDraft(sessionSizeDraftFromCommitted(next))
+      saveQuizSessionSize(next)
     }
   }, [bankSize, sessionSize])
 
   async function commitSessionSize(raw, max = MAX_QUIZ_SESSION_SIZE) {
-    const next = clampQuizSessionSize(raw, { max })
+    const next = commitSessionSizeDraft(raw, { max, fallback: sessionSize })
     setSessionSize(next)
+    setSessionSizeDraft(sessionSizeDraftFromCommitted(next))
     await saveQuizSessionSize(next)
     return next
   }
 
   function onSessionSizeInput(e) {
-    const raw = e.target.value
-    if (raw === '') return
-    const n = parseInt(raw, 10)
-    if (!Number.isFinite(n)) return
-    const max = bankSize > 0 ? bankSize : MAX_QUIZ_SESSION_SIZE
-    setSessionSize(clampQuizSessionSize(n, { max }))
+    setSessionSizeDraft(sanitizeSessionSizeDraftInput(e.target.value))
   }
 
   async function onSessionSizeBlur() {
     const max = bankSize > 0 ? bankSize : MAX_QUIZ_SESSION_SIZE
-    await commitSessionSize(sessionSize, max)
+    await commitSessionSize(sessionSizeDraft, max)
+  }
+
+  async function startPracticeSession(forceNew = false) {
+    const max = bankSize > 0 ? bankSize : MAX_QUIZ_SESSION_SIZE
+    await commitSessionSize(sessionSizeDraft, max)
+    startQuiz(forceNew)
   }
 
   // Keep the idle screen honest about how many questions are stored locally.
@@ -579,7 +587,9 @@ export function QuizTab({
     const hasBank = bankSize >= QUIZ_BANK_MIN
     const poolMax = hasBank ? bankSize : (curatedPoolSize > 0 ? curatedPoolSize : MAX_QUIZ_SESSION_SIZE)
     const sessionMax = hasBank ? bankSize : MAX_QUIZ_SESSION_SIZE
-    const reviewCount = hasBank ? Math.min(sessionSize, bankSize) : sessionSize
+    const pendingSize = effectiveSessionSize(sessionSizeDraft, sessionSize, { max: sessionMax })
+    const reviewCount = hasBank ? Math.min(pendingSize, bankSize) : pendingSize
+    const canStartSession = isSessionSizeDraftSubmittable(sessionSizeDraft, { max: sessionMax })
     const emptyPool = !hasBank && curatedPoolSize === 0
     return (
       <div className={`ccna-quiz-idle${hasBank ? ' ccna-quiz-idle--slim' : ''}`}>
@@ -618,11 +628,10 @@ export function QuizTab({
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
             <input
               id={`quiz-session-size-${objective.id}`}
-              type="number"
-              min={1}
-              max={sessionMax}
+              type="text"
               inputMode="numeric"
-              value={sessionSize}
+              pattern="[0-9]*"
+              value={sessionSizeDraft}
               onChange={onSessionSizeInput}
               onBlur={onSessionSizeBlur}
               aria-label={`How many questions this session, up to ${poolMax} available`}
@@ -644,12 +653,12 @@ export function QuizTab({
             ← Study this topic first
           </button>
         ) : (
-          <button style={{ ...styles.primaryBtn, marginTop: 12 }} onClick={() => startQuiz(false)}>
+          <button style={{ ...styles.primaryBtn, marginTop: 12 }} disabled={!canStartSession} onClick={() => startPracticeSession(false)}>
             {hasBank ? `Practice ${reviewCount} question${reviewCount === 1 ? '' : 's'}` : emptyPool ? 'Generate practice set' : 'Start practice'}
           </button>
         )}
         {hasBank && premiumUnlocked && (
-          <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => startQuiz(true)}>Generate new questions</button>
+          <button style={{ ...styles.secondaryBtn, marginTop: 8 }} disabled={!canStartSession} onClick={() => startPracticeSession(true)}>Generate new questions</button>
         )}
       </div>
     )

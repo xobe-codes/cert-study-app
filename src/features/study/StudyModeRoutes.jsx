@@ -1,5 +1,6 @@
 import React, { lazy } from 'react'
 import { ALL_OBJECTIVES } from '../../data/ccnaDomains.js'
+import { buildStudyObjectiveHandoff } from '../../study/studyObjectiveHandoff.js'
 import { getLab } from '../../data/ccnaLabs.js'
 import { COLORS, accentColors, styles } from '../../ui/appTheme.js'
 import LazyRoute from '../../components/LazyRoute.jsx'
@@ -244,9 +245,13 @@ export default function StudyModeRoutes({
         domainId={activeDomainPlacementId}
         sessionModeHint={placementSessionMode}
         onExit={exitDomainPlacement || (() => setActiveDomainPlacementId(null))}
-        onStudyObjective={(objectiveId) => {
-          const obj = ALL_OBJECTIVES.find(o => o.id === objectiveId)
-          if (obj) onSelectObjective(obj)
+        onStudyObjective={(objectiveOrId) => {
+          if (objectiveOrId?.id && objectiveOrId?.domainId) {
+            onSelectObjective(objectiveOrId)
+            return
+          }
+          const handoff = buildStudyObjectiveHandoff(objectiveOrId, { tab: 'Practice' })
+          if (handoff) onSelectObjective(handoff)
         }}
         onOpenTrapDrill={(prefill) => onOpenTrapDrill(prefill)}
         onOpenLab={(id) => onOpenLab(id, 'domainplacement')}
