@@ -77,6 +77,7 @@ export default function PracticeRoutes({
         onSelectObjective={onSelectObjective}
         onOpenReview={onOpenReview}
         onOpenStats={onOpenStats}
+        onOpenTrapDrill={onOpenTrapDrill}
       />
     )
   }

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { COLORS, styles } from '../ui/appTheme.js'
-import { MIN_QUIZ_SESSION_SIZE, MAX_QUIZ_SESSION_SIZE } from '../quizSessionConfig.js'
+import { MIN_QUIZ_SESSION_SIZE, MAX_QUIZ_SESSION_SIZE, commitSessionSizeDraft, sanitizeSessionSizeDraftInput, sessionSizeDraftFromCommitted } from '../quizSessionConfig.js'
 import { KEYBOARD_SHORTCUTS } from '../ui/keyboardShortcuts.js'
 import { PremiumSettingsCard } from './PremiumPreview.jsx'
 
@@ -92,7 +92,7 @@ export default function SettingsSheet({
   const touchStartY = useRef(null)
   const [dragY, setDragY] = useState(0)
   const [examInput, setExamInput] = useState(examDate || '')
-  const [quizSizeInput, setQuizSizeInput] = useState(String(quizSessionSize))
+  const [quizSizeInput, setQuizSizeInput] = useState(sessionSizeDraftFromCommitted(quizSessionSize))
   const [resetStep, setResetStep] = useState(0)
   const [busy, setBusy] = useState('')
   const [msg, setMsg] = useState('')
@@ -100,7 +100,24 @@ export default function SettingsSheet({
   useFocusTrap(dialogRef)
 
   useEffect(() => { setExamInput(examDate || '') }, [examDate])
-  useEffect(() => { setQuizSizeInput(String(quizSessionSize)) }, [quizSessionSize])
+  useEffect(() => { setQuizSizeInput(sessionSizeDraftFromCommitted(quizSessionSize)) }, [quizSessionSize])
+
+  function onQuizSizeInput(e) {
+    setQuizSizeInput(sanitizeSessionSizeDraftInput(e.target.value))
+  }
+
+  async function commitQuizSize() {
+    const next = commitSessionSizeDraft(quizSizeInput, { fallback: quizSessionSize })
+    setQuizSizeInput(sessionSizeDraftFromCommitted(next))
+    await onQuizSessionSizeChange(next)
+  }
+
+  function onQuizSizeKeyDown(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      commitQuizSize()
+    }
+  }
 
   async function runAction(label, fn) {
     setBusy(label)
@@ -232,15 +249,18 @@ export default function SettingsSheet({
         <div style={{ ...styles.small, marginBottom: 6 }}>Default quiz session size</div>
         <div style={{ display: 'flex', gap: 8, marginBottom: 12, alignItems: 'center' }}>
           <input
-            type="number"
-            min={MIN_QUIZ_SESSION_SIZE}
-            max={MAX_QUIZ_SESSION_SIZE}
+            id="settings-quiz-session-size"
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
             value={quizSizeInput}
-            onChange={e => setQuizSizeInput(e.target.value)}
-            style={{ width: 72, background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 8, padding: '8px 10px', color: COLORS.silver, fontFamily: 'inherit', fontSize: 'var(--ccna-type-sm)' }}
+            onChange={onQuizSizeInput}
+            onBlur={commitQuizSize}
+            onKeyDown={onQuizSizeKeyDown}
+            aria-label={`Default quiz session size, ${MIN_QUIZ_SESSION_SIZE} to ${MAX_QUIZ_SESSION_SIZE} questions`}
+            style={{ width: 72, background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 8, padding: '8px 10px', color: COLORS.silver, fontFamily: 'inherit', fontSize: 'var(--ccna-type-sm)', textAlign: 'center' }}
           />
-          <button type="button" style={{ ...styles.secondaryBtn, flex: 0, width: 'auto', padding: '0 14px' }} onClick={() => onQuizSessionSizeChange(quizSizeInput)}>Save default</button>
-          <span style={{ ...styles.small, flex: 1 }}>{MIN_QUIZ_SESSION_SIZE}–{MAX_QUIZ_SESSION_SIZE} questions</span>
+          <span style={{ ...styles.small, flex: 1 }}>{MIN_QUIZ_SESSION_SIZE}–{MAX_QUIZ_SESSION_SIZE} questions · saves on blur</span>
         </div>
         <button type="button" style={{ ...styles.secondaryBtn, textAlign: 'left', marginBottom: 8 }} onClick={() => { onClose(); onReplayPlacement() }}>
           Replay placement check

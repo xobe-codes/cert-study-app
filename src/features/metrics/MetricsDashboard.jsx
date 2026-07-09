@@ -17,7 +17,7 @@ import {
   loadRetentionHealth,
   pickStudyNext,
 } from '../../home/learnerHome.js'
-import { computeCkuWeakness, computeTrapWeakness } from '../../weaknessUtils.js'
+import { computeCkuWeakness, computeTrapWeakness, resolveCkuWeakAction } from '../../weaknessUtils.js'
 import { masteryBreakdown } from '../../lesson/masteryCriteria.js'
 import { loadCliStats } from '../../lab/cliStatsStorage.js'
 import { loadOfflineDetail } from '../export/offlineDetail.js'
@@ -142,7 +142,7 @@ function ContentCoverage({ onOpen, bare = false }) {
   return <div style={{ ...styles.card }}>{body}</div>
 }
 
-export default function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObjective, onOpenReview, onOpenStats }) {
+export default function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObjective, onOpenReview, onOpenStats, onOpenTrapDrill }) {
   const [data, setData] = useState(null)
   const [openBankIds, setOpenBankIds] = useState(new Set())
 
@@ -234,6 +234,25 @@ export default function MetricsDashboard({ progress, missed, dueCount = 0, onBac
   const open = (o) => {
     const handoff = buildStudyObjectiveHandoff(o.id, { tab: o.__initialTab || 'Practice' })
     if (handoff) onSelectObjective(handoff)
+  }
+  const weakRowBtn = {
+    display: 'block',
+    width: '100%',
+    textAlign: 'left',
+    background: 'none',
+    border: 'none',
+    cursor: 'pointer',
+    padding: '4px 0',
+    fontFamily: 'inherit',
+  }
+  function handleCkuWeakClick(id) {
+    const action = resolveCkuWeakAction(id, missed || [])
+    if (action.kind === 'study') {
+      const handoff = buildStudyObjectiveHandoff(action.payload.objectiveId, { tab: 'Practice' })
+      if (handoff) onSelectObjective?.(handoff)
+      return
+    }
+    onOpenTrapDrill?.(action.payload)
   }
   const quadCell = (key, label, accent, hint) => (
     <div style={{ flex: '1 1 45%', background: accentColors(accent).dim, border: `1px solid ${accentColors(accent).border}`, borderRadius: 10, padding: 10 }}>
@@ -398,20 +417,39 @@ export default function MetricsDashboard({ progress, missed, dueCount = 0, onBac
         {ckuWeak.length > 0 && (
           <div style={{ marginTop: 10 }}>
             <div style={{ ...styles.small, fontWeight: 600, marginBottom: 4 }}>Weak CKUs (from missed bank)</div>
-            {ckuWeak.map(({ id, count }) => (
-              <div key={id} style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 2 }}>
-                {id} — <span style={{ color: COLORS.amber }}>missed {count}×</span>
-              </div>
-            ))}
+            {ckuWeak.map(({ id, count }) => {
+              const actionable = !!(onOpenTrapDrill || onSelectObjective)
+              return (
+                <button
+                  key={id}
+                  type="button"
+                  disabled={!actionable}
+                  onClick={() => handleCkuWeakClick(id)}
+                  style={{ ...weakRowBtn, cursor: actionable ? 'pointer' : 'default' }}
+                >
+                  <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>
+                    {id} — <span style={{ color: COLORS.amber }}>missed {count}×</span>
+                  </span>
+                </button>
+              )
+            })}
           </div>
         )}
         {trapWeak.length > 0 && (
           <div style={{ marginTop: 10 }}>
             <div style={{ ...styles.small, fontWeight: 600, marginBottom: 4 }}>Repeated exam traps</div>
             {trapWeak.map(({ trap, count }) => (
-              <div key={trap} style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 2 }}>
-                {trap} — <span style={{ color: COLORS.amber }}>{count}×</span>
-              </div>
+              <button
+                key={trap}
+                type="button"
+                disabled={!onOpenTrapDrill}
+                onClick={() => onOpenTrapDrill?.({ trapLabel: trap })}
+                style={{ ...weakRowBtn, cursor: onOpenTrapDrill ? 'pointer' : 'default' }}
+              >
+                <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>
+                  {trap} — <span style={{ color: COLORS.amber }}>{count}×</span>
+                </span>
+              </button>
             ))}
           </div>
         )}

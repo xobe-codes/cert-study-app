@@ -19,3 +19,19 @@ export function computeCkuWeakness(missed = []) {
 export function computeTrapWeakness(missed = []) {
   return groupMissedByTrap(missed).map(({ trap, count }) => ({ trap, count }))
 }
+
+/** Resolve a weak-CKU row tap into study or trap-drill action. */
+export function resolveCkuWeakAction(id, missed = []) {
+  if (id.startsWith('CKU-')) {
+    return { kind: 'trapDrill', payload: { ckuId: id } }
+  }
+  if (id.startsWith('concept:')) {
+    const concept = id.slice('concept:'.length)
+    const missedItem = missed.find(m => m.concept === concept)
+    if (missedItem?.objectiveId) {
+      return { kind: 'study', payload: { objectiveId: missedItem.objectiveId } }
+    }
+    return { kind: 'trapDrill', payload: { trapLabel: missedItem?.misconceptionTested || concept } }
+  }
+  return { kind: 'trapDrill', payload: { ckuId: id } }
+}
