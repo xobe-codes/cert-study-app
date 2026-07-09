@@ -67,10 +67,15 @@ export function buildAppShellResponsiveCss(colors) {
     }
     .ccna-weak-area-row {
       display: flex;
-      align-items: stretch;
+      align-items: center;
       gap: 10px;
       padding: 10px 0;
       border-bottom: 1px solid ${colors.border};
+      min-width: 0;
+    }
+    .ccna-weak-area-row__cta {
+      width: auto !important;
+      max-width: 42%;
     }
     .ccna-weak-area-row:last-child {
       border-bottom: none;

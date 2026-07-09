@@ -27,6 +27,8 @@ export function homePill(accent) {
     fontSize: 'var(--ccna-type-xs)',
     lineHeight: 1.3,
     padding: '4px 10px',
+    whiteSpace: 'nowrap',
+    flexShrink: 0,
   }
 }
 
@@ -96,13 +98,9 @@ export const homeTitleSm = {
   lineHeight: 1.4,
 }
 
-/** Study Next / accent CTA strip — matches card radius and padding. */
-export function homeAccentStrip(accent) {
+const homeAccentSurface = (accent) => {
   const c = accentColors(accent)
   return {
-    display: 'flex',
-    alignItems: 'center',
-    gap: 8,
     width: '100%',
     textAlign: 'left',
     cursor: 'pointer',
@@ -112,5 +110,26 @@ export function homeAccentStrip(accent) {
     borderRadius: 14,
     padding: '12px 14px',
     marginBottom: HOME_SECTION_GAP,
+  }
+}
+
+/** Study Next / horizontal accent strip — pill + title on one row. */
+export function homeAccentStrip(accent) {
+  return {
+    ...homeAccentSurface(accent),
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+  }
+}
+
+/** FOR YOU / stacked suggestion cards — chip, title, body vertically. */
+export function homeAccentCard(accent) {
+  return {
+    ...homeAccentSurface(accent),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    gap: 0,
   }
 }

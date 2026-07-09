@@ -86,10 +86,11 @@ export default function WeakAreaDashboard({
             </div>
             <button
               type="button"
-              className="ccna-hover"
+              className="ccna-hover ccna-weak-area-row__cta"
               onClick={() => handleRow(row)}
               style={{
                 ...styles.secondaryBtn,
+                width: 'auto',
                 flexShrink: 0,
                 alignSelf: 'center',
                 marginBottom: 0,

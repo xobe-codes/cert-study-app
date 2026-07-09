@@ -47,6 +47,7 @@ import {
   homeBodySm,
   homeBodyOnAccent,
   homeTitleSm,
+  homeAccentCard,
   homeAccentStrip,
 } from './home/homeUi.js'
 
@@ -543,7 +544,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
                 type="button"
                 className="ccna-hover"
                 onClick={() => onSelectObjective({ ...s.objective, __initialTab: s.tab })}
-                style={homeAccentStrip(s.accent)}
+                style={homeAccentCard(s.accent)}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
                   <span style={homePill(s.accent)}>{s.chip}</span>
