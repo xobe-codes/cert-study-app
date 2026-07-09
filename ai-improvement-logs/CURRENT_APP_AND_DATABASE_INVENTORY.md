@@ -19,7 +19,7 @@
 | Clean bank | `data/clean-question-bank/` | 1335 Q |
 | Labs | `ccnaLabs*.js` | 82 labs · 53/53 objs |
 | Lab-lite | interpret-only | 57 |
-| App.jsx lines | `src/App.jsx` | ~196 |
+| App.jsx lines | `src/App.jsx` | ~198 |
 
 ## Learner storage (localStorage)
 - `ccna_progress_v1` — per-objective mastery, reading tier, SRS

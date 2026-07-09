@@ -1,0 +1,202 @@
+import React, { useState } from 'react'
+import { DOMAINS } from '../data/ccnaDomains.js'
+import { COLORS, accentColors, styles } from '../ui/appTheme.js'
+import { labsForDomain } from '../data/labModules.js'
+import { hasCuratedReading, hasCuratedQuestions } from '../data/ccnaCurated.js'
+import { isCuratedPack } from '../curatedDisplay.js'
+import CuratedStaticBadge from '../components/CuratedStaticBadge.jsx'
+import OverflowMarquee from '../components/OverflowMarquee.jsx'
+import StatusDot from '../components/StatusDot.jsx'
+import DomainBaselinePanel from '../features/domainPlacement/DomainBaselinePanel.jsx'
+import { buildDomainBaselineSummary, domainBaselineBand } from '../features/domainPlacement/domainBaselineProfile.js'
+import { isPlacementDomain } from '../features/domainPlacement/placementBlueprints.js'
+import { DomainBaselineStatusMark } from '../features/domainPlacement/DomainBaselineStatusPill.jsx'
+import { buildStudyObjectiveHandoff } from '../study/studyObjectiveHandoff.js'
+import { domainPassStatus, domainPassBadgeLabel } from '../features/domainPass/domainPassConfig.js'
+import { DOMAIN_LAYER_LEGEND, domainDisplayTitle } from '../features/domainPlacement/domainLearningCopy.js'
+import {
+  HOME_SECTION_GAP,
+  homeCard,
+  homePill,
+  homeBodySm,
+} from './homeUi.js'
+
+/**
+ * Home screen domain accordion — baseline pills, pass badge, objective list.
+ */
+export default function HomeDomainAccordion({
+  progress,
+  placementRecords = {},
+  domainPassRecords = {},
+  openDomain,
+  offlineReady,
+  onOpenDomain,
+  onSelectObjective,
+  onOpenLabs,
+  onOpenDomainPlacement,
+  onOpenDomainPass,
+}) {
+  const [showStrongObjectives, setShowStrongObjectives] = useState({})
+
+  return (
+    <div role="group" aria-label="Course domains">
+      {DOMAINS.map(domain => {
+        const isOpen = openDomain === domain.id
+        const objs = domain.objectives
+        const masteredCount = objs.filter(o => progress[o.id]?.status === 'mastered').length
+        const accent = accentColors(domain.accent)
+        const placementRecord = placementRecords[domain.id]
+        const baselineSummary = isPlacementDomain(domain.id)
+          ? buildDomainBaselineSummary({ domain, lastAttempt: placementRecord?.lastAttempt })
+          : null
+        const baselineBand = baselineSummary ? domainBaselineBand(baselineSummary.domainStatus) : null
+
+        function studyObjective(objectiveOrId) {
+          if (objectiveOrId?.id && objectiveOrId?.domainId) {
+            onSelectObjective(objectiveOrId)
+            return
+          }
+          const handoff = buildStudyObjectiveHandoff(objectiveOrId, { tab: 'Practice' })
+          if (handoff) onSelectObjective(handoff)
+        }
+
+        const passRecord = domainPassRecords[domain.id]
+        const passStatus = domainPassStatus(passRecord)
+        const passBadge = domainPassBadgeLabel(passStatus)
+        const passBadgeAccent = passStatus === 'passed' ? 'mint' : passStatus === 'retake' ? 'amber' : 'silver'
+
+        return (
+          <div key={domain.id} className="ccna-hover" style={homeCard({ marginBottom: HOME_SECTION_GAP })}>
+            <button
+              onClick={() => onOpenDomain(isOpen ? null : domain.id)}
+              aria-expanded={isOpen}
+              aria-controls={`domain-panel-${domain.id}`}
+              style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%', background: 'none', border: 'none', color: COLORS.silver, cursor: 'pointer', minHeight: 44, padding: 0, textAlign: 'left', gap: 8 }}
+            >
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div className="ccna-home-domain-header">
+                  <div className="ccna-home-domain-title" style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, lineHeight: 1.35 }}>{domainDisplayTitle(domain)}</div>
+                  <span className="ccna-home-domain-pill" style={homePill(domain.accent)}>{domain.weight}% exam weight</span>
+                  {baselineBand && (
+                    <span className="ccna-home-domain-pill" style={homePill(baselineBand.accent)}>
+                      {baselineSummary.testedOut ? '✓ Tested out' : `${baselineSummary.pct}% ${baselineBand.label}`}
+                    </span>
+                  )}
+                  <span className="ccna-home-domain-pill" style={homePill(passBadgeAccent)}>Pass: {passBadge}</span>
+                </div>
+                <div style={{ ...homeBodySm, marginBottom: 6 }}>
+                  {masteredCount}/{objs.length} studied
+                  {placementRecord?.lastAttempt ? (
+                    <>
+                      {' · '}
+                      {objs.length - baselineSummary.notCheckedObjectives.length}/{objs.length} mapped
+                      {baselineSummary.strongObjectives.length > 0 && ` · ${baselineSummary.strongObjectives.length} strong`}
+                      {baselineSummary.weakObjectives.length > 0 && ` · ${baselineSummary.weakObjectives.length} weak`}
+                    </>
+                  ) : isPlacementDomain(domain.id) ? (
+                    <> · {objs.length} subsections · set baseline</>
+                  ) : null}
+                </div>
+                <div className="ccna-home-domain-legend" style={{ ...homeBodySm, marginBottom: 6, color: COLORS.silverMid, fontSize: 'var(--ccna-type-micro)' }}>
+                  {DOMAIN_LAYER_LEGEND}
+                </div>
+                <div style={{ width: '100%', height: 6, borderRadius: 999, background: COLORS.surface, overflow: 'hidden' }}>
+                  <div style={{ width: `${domain.weight}%`, height: '100%', borderRadius: 999, background: COLORS.surface, position: 'relative', display: 'inline-block' }}>
+                    <div style={{ width: `${Math.round(masteredCount / objs.length * 100)}%`, height: '100%', borderRadius: 999, background: accent.text }} />
+                  </div>
+                  <div style={{ display: 'inline-block', width: `${100 - domain.weight}%`, height: '100%', background: COLORS.border, borderRadius: 999 }} />
+                </div>
+              </div>
+              <span className="ccna-home-domain-pill" style={{ ...homePill(domain.accent), flexShrink: 0, minWidth: 32, textAlign: 'center' }}>{isOpen ? '−' : '+'}</span>
+            </button>
+            {isOpen && (
+              <div id={`domain-panel-${domain.id}`} className="domain-accordion-panel" role="region" aria-label={`${domain.name} objectives`} style={{ marginTop: 10, borderTop: `1px solid ${COLORS.border}`, paddingTop: 8 }}>
+                {onOpenLabs && labsForDomain(domain.id).length > 0 && (
+                  <button
+                    type="button"
+                    className="ccna-hover"
+                    onClick={() => onOpenLabs({ domainId: domain.id })}
+                    style={{ ...styles.secondaryBtn, width: '100%', marginBottom: 10, minHeight: 40, fontSize: 'var(--ccna-type-xs)' }}
+                  >
+                    🧪 Domain labs ({labsForDomain(domain.id).length})
+                  </button>
+                )}
+                {isPlacementDomain(domain.id) && onOpenDomainPlacement && (
+                  <DomainBaselinePanel
+                    domain={domain}
+                    record={placementRecord}
+                    onCheckLevel={(domainId, opts) => onOpenDomainPlacement({
+                      domainId,
+                      expandOnReturn: true,
+                      placementMode: opts?.placementMode,
+                    })}
+                    onStudyObjective={studyObjective}
+                    onOpenDomainPass={onOpenDomainPass}
+                  />
+                )}
+                {(() => {
+                  const strongObjs = baselineSummary?.testedOut
+                    ? objs.filter(o => placementRecord?.lastAttempt?.objectiveProfiles?.[o.id]?.status === 'strong')
+                    : []
+                  const hideStrong = baselineSummary?.testedOut && !showStrongObjectives[domain.id]
+                  const visibleObjs = hideStrong
+                    ? objs.filter(o => placementRecord?.lastAttempt?.objectiveProfiles?.[o.id]?.status !== 'strong')
+                    : objs
+                  return (
+                    <>
+                      {visibleObjs.map(o => {
+                        const status = progress[o.id]?.status || 'unseen'
+                        const baselineStatus = placementRecord?.lastAttempt?.objectiveProfiles?.[o.id]?.status
+                        return (
+                          <button
+                            key={o.id}
+                            onClick={() => onSelectObjective({ ...o, domainId: domain.id, domainName: domain.name, accent: domain.accent })}
+                            style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', minWidth: 0, background: baselineStatus === 'weak' ? COLORS.roseDim : 'none', border: baselineStatus === 'weak' ? `1px solid ${COLORS.roseBorder}` : 'none', borderRadius: baselineStatus === 'weak' ? 8 : 0, color: COLORS.silver, cursor: 'pointer', minHeight: 44, padding: baselineStatus === 'weak' ? '8px 10px' : '8px 0', marginBottom: baselineStatus === 'weak' ? 6 : 0, textAlign: 'left', borderBottom: baselineStatus === 'weak' ? 'none' : `1px solid ${COLORS.border}` }}
+                          >
+                            {baselineStatus ? (
+                              <DomainBaselineStatusMark status={baselineStatus} />
+                            ) : (
+                              <StatusDot status={status} />
+                            )}
+                            <OverflowMarquee
+                              text={`${o.id} ${o.title}`}
+                              style={{ fontSize: 'var(--ccna-type-sm)' }}
+                            />
+                            {(() => {
+                              if (hasCuratedReading(o.id) || hasCuratedQuestions(o.id)) {
+                                return <CuratedStaticBadge objectiveId={o.id} fontSize={9} />
+                              }
+                              return null
+                            })()}
+                            {offlineReady?.has(o.id) && !isCuratedPack(o.id) && <span style={{ color: COLORS.mint, fontSize: 'var(--ccna-type-sm)', marginLeft: 8, flexShrink: 0 }}>⤓</span>}
+                          </button>
+                        )
+                      })}
+                      {hideStrong && strongObjs.length > 0 && (
+                        <button
+                          type="button"
+                          className="ccna-hover"
+                          onClick={() => setShowStrongObjectives(s => ({ ...s, [domain.id]: true }))}
+                          style={{
+                            ...styles.secondaryBtn,
+                            width: '100%',
+                            marginTop: 4,
+                            marginBottom: 0,
+                            fontSize: 'var(--ccna-type-xs)',
+                            minHeight: 40,
+                          }}
+                        >
+                          Show {strongObjs.length} strong (complete)
+                        </button>
+                      )}
+                    </>
+                  )
+                })()}
+              </div>
+            )}
+          </div>
+        )
+      })}
+    </div>
+  )
+}

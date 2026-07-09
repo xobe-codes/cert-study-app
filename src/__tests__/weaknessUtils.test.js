@@ -53,6 +53,31 @@ describe('resolveTrapWeakAction', () => {
       payload: { trapLabel: trap },
     })
   })
+
+  it('routes factory-aligned STP trap label to trap drill', () => {
+    const trap = 'The switch with the highest bridge priority becomes the STP root.'
+    const resolved = resolveTrapDrillCku({ trapLabel: trap })
+    expect(resolved?.ckuId).toBe('CKU-STP-ROOT')
+    expect(resolveTrapWeakAction(trap, [])).toEqual({
+      kind: 'trapDrill',
+      payload: { ckuId: 'CKU-STP-ROOT', trapLabel: resolved.trapLabel },
+    })
+  })
+
+  it('routes missed-bank concept confusion to trap drill', () => {
+    const trap = 'vlan confusion'
+    const resolved = resolveTrapDrillCku({ trapLabel: trap })
+    expect(resolved?.ckuId).toBe('CKU-INTER-VLAN')
+    expect(resolveTrapWeakAction(trap, [])).toEqual({
+      kind: 'trapDrill',
+      payload: { ckuId: 'CKU-INTER-VLAN', trapLabel: resolved.trapLabel },
+    })
+  })
+
+  it('routes extended ACL factory trap to trap drill', () => {
+    const trap = 'Extended ACLs should be placed close to the destination.'
+    expect(resolveTrapDrillCku({ trapLabel: trap })?.ckuId).toBe('CKU-EXTENDED-ACL')
+  })
 })
 
 describe('computeCkuWeakness', () => {

@@ -16,17 +16,26 @@ export function stashPlacementDebriefResume(domainId, payload) {
   }
 }
 
-export function peekPlacementDebriefResume(domainId) {
-  if (typeof window === 'undefined' || !domainId) return null
+function readResumeRaw() {
+  if (typeof window === 'undefined') return null
   try {
     const raw = window.sessionStorage.getItem(RESUME_KEY)
-    if (!raw) return null
-    const data = JSON.parse(raw)
-    if (data?.domainId !== domainId) return null
-    return data
+    return raw ? JSON.parse(raw) : null
   } catch {
     return null
   }
+}
+
+export function peekPlacementDebriefResume(domainId) {
+  if (!domainId) return null
+  const data = readResumeRaw()
+  if (data?.domainId !== domainId) return null
+  return data
+}
+
+/** Peek stashed debrief without domain filter — used when restoring placement after Topic Focus. */
+export function peekAnyPlacementDebriefResume() {
+  return readResumeRaw()
 }
 
 export function consumePlacementDebriefResume(domainId) {

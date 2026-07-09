@@ -170,7 +170,9 @@ export default defineConfig({
           if (id.includes('node_modules/react-dom') || id.includes('node_modules/react/')) {
             return 'vendor-react'
           }
-          if (id.includes('ccnaCleanQuestions')) return 'clean-questions'
+          const cleanDomainMatch = id.match(/cleanQuestions\/domain-(\d+)\.js/)
+          if (cleanDomainMatch) return `clean-questions-d${cleanDomainMatch[1]}`
+          if (id.includes('ccnaCleanQuestions')) return 'clean-questions-legacy'
           if (id.includes('ccnaShelvedQuestions')) return 'shelved-questions'
           if (id.includes('ccnaSkillQuestions')) return 'skill-questions'
           // Lazy route entry points only — not entire /lab/ tree (CLIDrillTab is eager in App).

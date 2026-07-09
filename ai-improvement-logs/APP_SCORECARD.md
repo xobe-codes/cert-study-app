@@ -1,6 +1,6 @@
 # App Scorecard
 
-**Generated:** 2026-07-08 · Tier A=53/53
+**Generated:** 2026-07-09 · Tier A=53/53
 
 | Area | Score | Status |
 |------|------:|--------|
@@ -18,6 +18,6 @@
 
 Tier breakdown: A=53, B=0, C=0.
 
-**Metrics:** 82 labs (57 interpret-only) · 0 objs at trap floor · App.jsx 196 lines · ObjectiveScreen 170 lines.
-**Quality signals:** 119 unit test files · 28 e2e specs (6 mobile · a11y ✓).
+**Metrics:** 82 labs (57 interpret-only) · 0 objs at trap floor · App.jsx 198 lines · ObjectiveScreen 170 lines.
+**Quality signals:** 134 unit test files · 38 e2e specs (6 mobile · a11y ✓).
 

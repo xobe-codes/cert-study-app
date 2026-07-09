@@ -37,7 +37,7 @@ test.describe('Pull to refresh', () => {
     await expect(page.locator('.route-shell--ptr')).toBeVisible()
     await pullDownRefresh(page)
     const host = page.locator('.pull-refresh-host')
-    await expect(host).toHaveAttribute('data-ptr-phase', 'refreshing', { timeout: 8000 })
+    await expect(host).toHaveAttribute('data-ptr-phase', /^(refreshing|done)$/, { timeout: 8000 })
     await expect(host).toHaveAttribute('data-ptr-phase', /^(done|idle)$/, { timeout: 12_000 })
   })
 

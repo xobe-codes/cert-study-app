@@ -260,6 +260,7 @@ export default function StudyModeRoutes({
             objectiveIds,
             conceptIds: [],
             label: `Weak areas (${objectiveIds.length})`,
+            returnToPlacementDebrief: activeDomainPlacementId,
           })
           onPushView('topicfocussession')
         }}

@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { seedDueReviewBank } from './helpers/seedDueReviewBank.js'
 
 const SEED_Q = {
   question: 'What is the default HSRP priority?',
@@ -14,13 +15,21 @@ test.describe('Daily Review (#/review)', () => {
   test('loads seeded due questions after seedDueReviewBank', async ({ page }) => {
     await page.goto('/')
     await page.waitForFunction(() => typeof window.storage?.getItem === 'function')
-
-    const dueCount = await page.evaluate(async (q) => {
-      const { seedDueReviewBank, countDueQuestions } = await import('/src/quiz/srsReview.js')
+    await page.evaluate(async () => {
       await window.storage.setItem('ccna_onboard_done_v1', true)
-      await seedDueReviewBank('3.5', [q])
-      return countDueQuestions()
-    }, SEED_Q)
+    })
+    await seedDueReviewBank(page, '3.5', [SEED_Q])
+    const dueCount = await page.evaluate(async () => {
+      const bank = (await window.storage.getItem('ccna_quiz_bank_v1')) || {}
+      let n = 0
+      const now = Date.now()
+      for (const objectiveId of Object.keys(bank)) {
+        for (const q of bank[objectiveId]) {
+          if (q.srs && (q.attempts?.length || 0) > 0 && (q.srs.due ?? 0) <= now) n++
+        }
+      }
+      return n
+    })
 
     expect(dueCount).toBeGreaterThan(0)
 

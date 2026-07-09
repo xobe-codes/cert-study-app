@@ -40,7 +40,7 @@ test.describe('Domain learning loop smoke', () => {
     await seedSecurityWeakBaseline(page)
 
     await page.goto('/')
-    await expect(page.getByText(/Studied = SRS mastery/i).first()).toBeVisible({ timeout: 20_000 })
+    await expect(page.getByRole('group', { name: 'Course domains' })).toBeVisible({ timeout: 20_000 })
 
     const securityToggle = page.getByRole('button', { name: /D5 Security Fundamentals/i }).first()
     await expect(securityToggle).toBeVisible({ timeout: 10_000 })

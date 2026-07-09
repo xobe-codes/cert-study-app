@@ -27,7 +27,7 @@ export const STUDY_QUIZ_TAB_IMPORTS = [
   { symbol: 'MAX_QUIZ_SESSION_SIZE', from: '../quizSessionConfig.js', file: 'tabs/QuizTab.jsx' },
   { symbol: 'loadQuizSessionSize', from: '../quizSessionConfig.js', file: 'tabs/QuizTab.jsx' },
   { symbol: 'saveQuizSessionSize', from: '../quizSessionConfig.js', file: 'tabs/QuizTab.jsx' },
-  { symbol: 'preloadCleanBank', from: '../data/cleanQuestionAdapter.js', file: 'tabs/QuizTab.jsx' },
+  { symbol: 'preloadCleanBankForObjective', from: '../data/cleanQuestionAdapter.js', file: 'tabs/QuizTab.jsx' },
   { symbol: 'masteryBreakdown', from: '../lesson/masteryCriteria.js', file: 'tabs/QuizTab.jsx' },
   { symbol: 'computeMastery', from: '../netUtils.js', file: 'tabs/QuizTab.jsx' },
   { symbol: 'parseRichTextSegments', from: '../lesson/richTextParse.js', file: 'tabs/studyQuizShared.jsx' },

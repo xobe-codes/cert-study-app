@@ -1,6 +1,6 @@
 {
   "summary": {
-    "generatedAt": "2026-07-08T11:08:37.791Z",
+    "generatedAt": "2026-07-09T11:50:33.399Z",
     "totalObjectives": 53,
     "tierCounts": {
       "A": 53,
@@ -160,10 +160,10 @@
       "troubleshoot": 10
     },
     "quality": {
-      "e2eSpecCount": 28,
+      "e2eSpecCount": 38,
       "mobileE2eCount": 6,
       "a11yE2e": true,
-      "unitTestFileCount": 119
+      "unitTestFileCount": 134
     }
   },
   "rows": [

@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test'
+import { seedOnboarding } from './helpers/seedOnboarding.js'
+import { seedDueReviewBank } from './helpers/seedDueReviewBank.js'
 
 const SEED_Q = {
   id: 'shuffle-smoke-q1',
@@ -15,12 +17,11 @@ test.describe('MC choice shuffle smoke', () => {
   test('daily review shuffles MC choices and still grades correctly', async ({ page }) => {
     await page.goto('/')
     await page.waitForFunction(() => typeof window.storage?.getItem === 'function')
-    await page.evaluate(async (q) => {
-      const { seedDueReviewBank } = await import('/src/quiz/srsReview.js')
+    await page.evaluate(async () => {
       await window.storage.setItem('ccna_onboard_done_v1', true)
       await window.storage.setItem('ccna_tour_done_v1', true)
-      await seedDueReviewBank('3.5', [q])
-    }, SEED_Q)
+    })
+    await seedDueReviewBank(page, '3.5', [SEED_Q])
 
     await page.goto('/#/review')
     await expect(page.getByRole('heading', { name: 'Daily Review' })).toBeVisible({ timeout: 15_000 })
@@ -57,12 +58,11 @@ test.describe('MC choice shuffle smoke', () => {
 
     await page.goto('/')
     await page.waitForFunction(() => typeof window.storage?.getItem === 'function')
-    await page.evaluate(async (q) => {
-      const { seedDueReviewBank } = await import('/src/quiz/srsReview.js')
+    await page.evaluate(async () => {
       await window.storage.setItem('ccna_onboard_done_v1', true)
       await window.storage.setItem('ccna_tour_done_v1', true)
-      await seedDueReviewBank('3.5', [q])
-    }, META_Q)
+    })
+    await seedDueReviewBank(page, '3.5', [META_Q])
 
     await page.goto('/#/review')
     await expect(page.getByRole('heading', { name: 'Daily Review' })).toBeVisible({ timeout: 15_000 })

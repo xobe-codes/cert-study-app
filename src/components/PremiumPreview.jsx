@@ -18,7 +18,7 @@ export function PremiumSettingsCard({ premiumUnlocked = false, onTogglePremium, 
       <p style={{ ...styles.small, margin: '0 0 12px', lineHeight: 1.45 }}>
         {premiumUnlocked
           ? 'AI Tutor, Study Lens synthesis, and custom visuals are unlocked on this device.'
-          : 'AI Tutor and other coach features unlock with supporter access. Bundled lessons and quizzes stay free and offline.'}
+          : 'Curated study is complete and free; AI Tutor adds live coaching with supporter access.'}
       </p>
       {onTogglePremium && (
         <button

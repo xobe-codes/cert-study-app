@@ -16,6 +16,7 @@ import {
   studyModeOpts,
   STUDY_HUB_VIEWS,
 } from './studyModeNavigation.js'
+import { peekAnyPlacementDebriefResume } from '../domainPlacement/placementDebriefResume.js'
 
 /**
  * View/routing state and navigation handlers — extracted from App.jsx.
@@ -83,7 +84,8 @@ export function useAppNavigation() {
   /** Push a new top-level study mode (updates back stack). */
   const navigateTo = useCallback((nextView) => {
     if (nextView !== view) {
-      clearViewNestedState(view, nestedApi.current)
+      const preserveNested = view === 'domainplacement' && nextView === 'topicfocussession'
+      if (!preserveNested) clearViewNestedState(view, nestedApi.current)
       if (STUDY_HUB_VIEWS.has(nextView)) resetHubSessionState(nextView, nestedApi.current)
     }
     setReturnToView(view)
@@ -195,9 +197,14 @@ export function useAppNavigation() {
       setView('topicfocus')
       return
     }
+    if (view === 'topicfocussession' && returnToView === 'domainplacement') {
+      const domainId = topicFocusConfig?.returnToPlacementDebrief
+        || peekAnyPlacementDebriefResume()?.domainId
+      if (domainId) setActiveDomainPlacementId(domainId)
+    }
     clearViewNestedState(view, nestedApi.current)
     setView(returnToView)
-  }, [view, returnToView])
+  }, [view, returnToView, topicFocusConfig])
 
   const exitLab = useCallback(() => {
     const dest = labReturn || 'labs'

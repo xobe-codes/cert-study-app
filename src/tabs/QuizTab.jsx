@@ -8,7 +8,7 @@ import { pickReviewSet, getObjectiveCkuIds } from '../lesson/quizCoverage.js'
 import { READING_TIER_KEYS } from '../lesson/readingTier.js'
 import { masteryBreakdown } from '../lesson/masteryCriteria.js'
 import { computeMastery } from '../netUtils.js'
-import { preloadCleanBank } from '../data/cleanQuestionAdapter.js'
+import { preloadCleanBankForObjective } from '../data/cleanQuestionAdapter.js'
 import McChoices from '../components/McChoices.jsx'
 import AnswerReview from '../components/AnswerReview.jsx'
 import { McChoiceShuffleProvider } from '../context/McChoiceShuffleContext.jsx'
@@ -339,7 +339,7 @@ export function QuizTab({
     deferredTips.current = []
     setOverconfidentCallout(false)
     try {
-      await preloadCleanBank()
+      await preloadCleanBankForObjective(objective.id)
       let bank = await loadQuizBank()
       let banked = bank[objective.id] || []
       let usedApi = false

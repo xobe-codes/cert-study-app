@@ -1,24 +1,66 @@
 /**
- * Clean question bank adapter — lazy-loads the large questions module on first use.
+ * Clean question bank adapter — lazy-loads per-domain question chunks on first use.
  */
 import { CLEAN_BANK_OBJECTIVES } from './ccnaCleanBankMeta.js'
 import { isGenericExamTip } from '../answerReview/examTipLogic.js'
 
 export const CLEAN_BANK_ENABLED = true
 
+const DOMAIN_LOADERS = {
+  1: () => import('./cleanQuestions/domain-1.js'),
+  2: () => import('./cleanQuestions/domain-2.js'),
+  3: () => import('./cleanQuestions/domain-3.js'),
+  4: () => import('./cleanQuestions/domain-4.js'),
+  5: () => import('./cleanQuestions/domain-5.js'),
+  6: () => import('./cleanQuestions/domain-6.js'),
+}
+
+const domainModules = {}
+const domainPromises = {}
 let cleanModule = null
 let loadPromise = null
 
-/** Preload the clean-questions chunk (call before quiz/mock). */
-export function preloadCleanBank() {
-  if (cleanModule) return Promise.resolve(cleanModule)
-  if (!loadPromise) {
-    loadPromise = import('./ccnaCleanQuestions.js').then(m => {
-      cleanModule = m
-      return m
+function objectiveDomain(objectiveId) {
+  return Number(String(objectiveId).split('.')[0])
+}
+
+function mergeDomainModule(mod) {
+  if (!cleanModule) cleanModule = { CLEAN_QUESTIONS: {} }
+  Object.assign(cleanModule.CLEAN_QUESTIONS, mod.CLEAN_QUESTIONS)
+}
+
+function ensureDomainLoaded(domainNum) {
+  if (domainModules[domainNum]) return Promise.resolve(domainModules[domainNum])
+  const loader = DOMAIN_LOADERS[domainNum]
+  if (!loader) return Promise.resolve(null)
+  if (!domainPromises[domainNum]) {
+    domainPromises[domainNum] = loader().then((mod) => {
+      domainModules[domainNum] = mod
+      mergeDomainModule(mod)
+      return mod
     })
   }
+  return domainPromises[domainNum]
+}
+
+function allDomainsLoaded() {
+  return Object.keys(DOMAIN_LOADERS).every((d) => domainModules[Number(d)])
+}
+
+/** Preload every domain chunk (mock exam, placement, settings stats). */
+export function preloadCleanBank() {
+  if (cleanModule && allDomainsLoaded()) return Promise.resolve(cleanModule)
+  if (!loadPromise) {
+    loadPromise = Promise.all(
+      Object.keys(DOMAIN_LOADERS).map((d) => ensureDomainLoaded(Number(d))),
+    ).then(() => cleanModule)
+  }
   return loadPromise
+}
+
+/** Preload only the domain that contains objectiveId (quiz / topic focus). */
+export function preloadCleanBankForObjective(objectiveId) {
+  return ensureDomainLoaded(objectiveDomain(objectiveId)).then(() => cleanModule)
 }
 
 export function isCleanBankLoaded() {

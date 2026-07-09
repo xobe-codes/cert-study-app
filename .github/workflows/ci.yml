@@ -30,4 +30,5 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - run: npm run test:e2e
+      - run: npm run build
+      - run: CI=1 E2E_PREVIEW=1 npm run test:e2e:ship

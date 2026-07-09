@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { DOMAINS } from '../../data/ccnaDomains.js'
-import { preloadCleanBank } from '../../data/cleanQuestionAdapter.js'
+import { preloadCleanBankForObjective } from '../../data/cleanQuestionAdapter.js'
 import { gradeQuestion, buildMissedEntry } from '../../questionUtils.js'
 import { COLORS, styles } from '../../ui/appTheme.js'
 import McChoices from '../../components/McChoices.jsx'
@@ -61,7 +61,8 @@ export default function DomainPlacementSession({
     setError(null)
     finishSaved.current = false
     try {
-      await preloadCleanBank()
+      const seedObjectiveId = domain.objectives[0]?.id
+      if (seedObjectiveId) await preloadCleanBankForObjective(seedObjectiveId)
       const record = await loadPlacementRecord(domainId)
       setPreviousAttempt(record?.lastAttempt || null)
       const weakIds = record?.lastAttempt

@@ -1,5 +1,7 @@
 /** Curated trap-drill MC — 3 questions per top trap CKU (180 total). */
 
+import { TRAP_DRILL_LABEL_ALIASES } from './trapDrillLabelAliases.js'
+
 export const TRAP_DRILL_CKUS = [
   {
     ckuId: 'CKU-ACL',
@@ -2123,6 +2125,11 @@ export function resolveTrapDrillCku({ trapLabel, ckuId } = {}) {
   }
   if (!trapLabel) return null
   const label = norm(trapLabel)
+  const aliasCkuId = TRAP_DRILL_LABEL_ALIASES[label]
+  if (aliasCkuId) {
+    const byAlias = TRAP_DRILL_CKUS.find(c => c.ckuId === aliasCkuId)
+    if (byAlias) return byAlias
+  }
   const exact = TRAP_DRILL_CKUS.find(c => norm(c.trapLabel) === label)
   if (exact) return exact
   return TRAP_DRILL_CKUS.find(c => {

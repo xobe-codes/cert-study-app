@@ -41,6 +41,30 @@ export function buildAppShellResponsiveCss(colors) {
       overflow-wrap: anywhere;
       word-break: normal;
     }
+    .ccna-home-domain-header {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 2px;
+      flex-wrap: wrap;
+    }
+    .ccna-home-domain-title {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    @media (max-width: 399px) {
+      .ccna-home-domain-legend {
+        display: none;
+      }
+      .ccna-home-domain-pill {
+        font-size: var(--ccna-type-micro) !important;
+        padding: 2px 7px !important;
+        line-height: 1.25 !important;
+      }
+      .ccna-home-domain-title {
+        flex-basis: 100%;
+      }
+    }
     .home-study-grid button {
       word-break: normal;
       overflow-wrap: normal;

@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest'
 import {
   stashPlacementDebriefResume,
   peekPlacementDebriefResume,
+  peekAnyPlacementDebriefResume,
   consumePlacementDebriefResume,
   clearPlacementDebriefResume,
 } from '../features/domainPlacement/placementDebriefResume.js'
@@ -37,6 +38,12 @@ describe('placementDebriefResume', () => {
     stashPlacementDebriefResume('access', { report: { pct: 55 } })
     clearPlacementDebriefResume()
     expect(peekPlacementDebriefResume('access')).toBeNull()
+  })
+
+  it('peekAny returns stashed debrief without domain filter', () => {
+    stashPlacementDebriefResume('security', { report: { pct: 61 }, sessionMode: 'adaptive' })
+    expect(peekAnyPlacementDebriefResume()?.domainId).toBe('security')
+    expect(peekAnyPlacementDebriefResume()?.report.pct).toBe(61)
   })
 })
 
