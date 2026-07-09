@@ -3,7 +3,10 @@ import {
   DOMAIN_PASS_TOTAL_DOMAINS,
   countDomainsPassed,
   evaluateDomainPass,
+  isDomainPassPassed,
 } from './domainPassConfig.js'
+
+const MAX_FOCUS_ATTEMPTS = 20
 
 const KEY = STORAGE_KEYS.domainPass
 const PREFS_KEY = '_prefs'
@@ -88,6 +91,38 @@ export async function saveDomainPassAttempt(domainId, { correct, total, weakObje
     weakObjectives: weakObjectiveIds,
   })
   return { record, pct, passed }
+}
+
+/** Focus pass attempt — separate history; does not overwrite full domain pass record. */
+export async function saveDomainPassFocusAttempt(domainId, {
+  correct,
+  total,
+  objectiveIds = [],
+  weakObjectiveIds = [],
+}) {
+  const store = await loadRawStore()
+  const prefs = store[PREFS_KEY]
+  const records = { ...store }
+  delete records[PREFS_KEY]
+  const prev = records[domainId] || {}
+  const safeTotal = Math.max(0, total ?? 0)
+  const safeCorrect = Math.min(Math.max(0, correct ?? 0), safeTotal)
+  const pct = safeTotal > 0 ? Math.round((safeCorrect / safeTotal) * 100) : 0
+  const attempt = {
+    at: Date.now(),
+    pct,
+    passed: isDomainPassPassed(pct),
+    correct: safeCorrect,
+    total: safeTotal,
+    objectiveIds: Array.isArray(objectiveIds) ? objectiveIds : [],
+    weakObjectives: Array.isArray(weakObjectiveIds) ? weakObjectiveIds : [],
+  }
+  const focusAttempts = [...(prev.focusAttempts || []), attempt].slice(-MAX_FOCUS_ATTEMPTS)
+  const next = { ...prev, focusAttempts }
+  records[domainId] = next
+  if (prefs) records[PREFS_KEY] = prefs
+  await saveRawStore(records)
+  return { record: next, pct, passed: attempt.passed }
 }
 
 export function getDomainPassSummary(records) {

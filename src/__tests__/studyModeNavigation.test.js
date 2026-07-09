@@ -20,14 +20,19 @@ describe('studyModeNavigation', () => {
     const setView = vi.fn()
     const setReturnToView = vi.fn()
     const setActiveDomainPassId = vi.fn()
+    const setDomainPassFocusPickerId = vi.fn()
+    const setDomainPassFocusConfig = vi.fn()
     const setSelectedObjective = vi.fn()
     applyParsedHashRoute({ view: 'domainpass' }, {
       setView,
       setReturnToView,
       setActiveDomainPassId,
+      setDomainPassFocusPickerId,
+      setDomainPassFocusConfig,
       setSelectedObjective,
     })
     expect(setActiveDomainPassId).toHaveBeenCalledWith(null)
+    expect(setDomainPassFocusPickerId).toHaveBeenCalledWith(null)
     expect(setView).toHaveBeenCalledWith('domainpass')
     expect(setReturnToView).toHaveBeenCalledWith('home')
   })

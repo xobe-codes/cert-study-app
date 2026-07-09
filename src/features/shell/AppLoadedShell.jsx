@@ -88,6 +88,10 @@ export default function AppLoadedShell({
   clearTrapDrillPrefill,
   activeDomainPassId,
   setActiveDomainPassId,
+  domainPassFocusPickerId,
+  setDomainPassFocusPickerId,
+  domainPassFocusConfig,
+  setDomainPassFocusConfig,
   activeDomainPlacementId,
   setActiveDomainPlacementId,
   placementSessionMode,
@@ -257,6 +261,10 @@ export default function AppLoadedShell({
           clearTrapDrillPrefill={clearTrapDrillPrefill}
           activeDomainPassId={activeDomainPassId}
           setActiveDomainPassId={setActiveDomainPassId}
+          domainPassFocusPickerId={domainPassFocusPickerId}
+          setDomainPassFocusPickerId={setDomainPassFocusPickerId}
+          domainPassFocusConfig={domainPassFocusConfig}
+          setDomainPassFocusConfig={setDomainPassFocusConfig}
           activeDomainPlacementId={activeDomainPlacementId}
           setActiveDomainPlacementId={setActiveDomainPlacementId}
           placementSessionMode={placementSessionMode}

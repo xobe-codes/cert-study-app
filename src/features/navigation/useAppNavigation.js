@@ -27,6 +27,8 @@ export function useAppNavigation() {
   const [examTrapPrefill, setExamTrapPrefill] = useState(null)
   const [trapDrillPrefill, setTrapDrillPrefill] = useState(null)
   const [activeDomainPassId, setActiveDomainPassId] = useState(null)
+  const [domainPassFocusPickerId, setDomainPassFocusPickerId] = useState(null)
+  const [domainPassFocusConfig, setDomainPassFocusConfig] = useState(null)
   const [activeDomainPlacementId, setActiveDomainPlacementId] = useState(null)
   const [domainPassPassedCount, setDomainPassPassedCount] = useState(0)
   const [domainPassRecords, setDomainPassRecords] = useState({})
@@ -50,6 +52,8 @@ export function useAppNavigation() {
     setSelectedLab,
     setTopicFocusConfig,
     setActiveDomainPassId,
+    setDomainPassFocusPickerId,
+    setDomainPassFocusConfig,
     setActiveDomainPlacementId,
     setPlacementSessionMode,
     setMockDomainPrefill,
@@ -221,6 +225,10 @@ export function useAppNavigation() {
     trapDrillPrefill,
     activeDomainPassId,
     setActiveDomainPassId,
+    domainPassFocusPickerId,
+    setDomainPassFocusPickerId,
+    domainPassFocusConfig,
+    setDomainPassFocusConfig,
     activeDomainPlacementId,
     setActiveDomainPlacementId,
     placementSessionMode,

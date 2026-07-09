@@ -14,6 +14,13 @@ export function domainPassQuestionCount(domain) {
   return Math.max(DOMAIN_PASS_MIN_QUESTIONS, scaled)
 }
 
+/** Focus pass scales with selected objective count — min 6, max 12. */
+export function domainPassFocusQuestionCount(selectedCount, poolSize = Infinity) {
+  const safe = Math.max(0, selectedCount ?? 0)
+  const scaled = Math.min(12, Math.max(6, safe * 3))
+  return Math.min(scaled, poolSize)
+}
+
 /** Timer minutes proportional to a full 30-question / 120-minute mock. */
 export function domainPassTimerMinutes(questionCount) {
   return Math.round((questionCount / 30) * 120)

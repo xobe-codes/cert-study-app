@@ -13,8 +13,8 @@ import Spinner from '../../components/Spinner.jsx'
 import ErrorBox from '../../components/ErrorBox.jsx'
 import {
   DOMAIN_PASS_PASS_PCT,
-  domainPassQuestionCount,
   domainPassDurationSec,
+  domainPassTimerMinutes,
   isDomainPassPassed,
 } from './domainPassConfig.js'
 import { buildDomainPassPool, computeWeakObjectivesFromResponses } from './buildDomainPassPool.js'
@@ -22,6 +22,7 @@ import {
   loadDomainRecords,
   loadTimerEnabled,
   saveDomainPassAttempt,
+  saveDomainPassFocusAttempt,
   appendMissedEntry,
   getDomainRecord,
 } from './domainPassStorage.js'
@@ -48,10 +49,13 @@ function formatSeconds(total) {
  */
 export default function DomainPassSession({
   domainId,
+  objectiveFilter = null,
+  focusMode = false,
   onExit,
   onOpenMock,
   onOpenTrapDrill,
   onOpenLab,
+  onStartFocus,
   examMode = false,
   missed = [],
 }) {
@@ -66,6 +70,12 @@ export default function DomainPassSession({
   const [secondsLeft, setSecondsLeft] = useState(0)
   const [timerEnabled, setTimerEnabledState] = useState(true)
   const finishSaved = useRef(false)
+
+  const focusObjectiveIds = useMemo(
+    () => (Array.isArray(objectiveFilter) && objectiveFilter.length ? objectiveFilter : null),
+    [objectiveFilter],
+  )
+  const isFocusSession = focusMode || Boolean(focusObjectiveIds?.length)
 
   const getMcForObjective = useCallback((objectiveId) => (
     getCuratedQuestions(objectiveId).filter(isMcQuestion)
@@ -91,21 +101,32 @@ export default function DomainPassSession({
         shuffle: shuffleArray,
         weakObjectiveIds: passRecord?.weakObjectives || [],
         missedQuestions: missed,
+        objectiveFilter: focusObjectiveIds,
       })
       if (final.length === 0) {
-        throw new Error(`No questions available for ${domain.name}.`)
+        throw new Error(
+          isFocusSession
+            ? `No questions available for the selected objectives in ${domain.name}.`
+            : `No questions available for ${domain.name}.`,
+        )
       }
       setQuestions(final)
       setResponses({})
       setStudyRevealed({})
       setCurrent(0)
-      setSecondsLeft(domainPassDurationSec(domain, timerOn))
+      const qCount = final.length
+      const durationSec = timerOn
+        ? (isFocusSession
+          ? domainPassTimerMinutes(qCount) * 60
+          : domainPassDurationSec(domain, true))
+        : 0
+      setSecondsLeft(durationSec)
       setPhase('active')
     } catch (err) {
       setError(err.message)
       setPhase('error')
     }
-  }, [domain, domainId, getMcForObjective, missed])
+  }, [domain, domainId, getMcForObjective, missed, focusObjectiveIds, isFocusSession])
 
   useEffect(() => {
     startSession()
@@ -167,12 +188,21 @@ export default function DomainPassSession({
     if (phase !== 'done' || !report || finishSaved.current || !domainId) return
     finishSaved.current = true
     const weakObjectiveIds = computeWeakObjectivesFromResponses(questions, responses)
+    if (isFocusSession) {
+      saveDomainPassFocusAttempt(domainId, {
+        correct: report.correct,
+        total: report.total,
+        objectiveIds: focusObjectiveIds || [],
+        weakObjectiveIds,
+      })
+      return
+    }
     saveDomainPassAttempt(domainId, {
       correct: report.correct,
       total: report.total,
       weakObjectiveIds,
     })
-  }, [phase, report, domainId, questions, responses])
+  }, [phase, report, domainId, questions, responses, isFocusSession, focusObjectiveIds])
 
   if (!domain && phase !== 'loading') {
     return (
@@ -184,7 +214,7 @@ export default function DomainPassSession({
   }
 
   if (phase === 'loading') {
-    return <Spinner label={`Building ${domain?.name || 'domain'} pass...`} />
+    return <Spinner label={isFocusSession ? `Building focus pass…` : `Building ${domain?.name || 'domain'} pass...`} />
   }
   if (phase === 'error') {
     return <ErrorBox message={error} onRetry={startSession} />
@@ -196,9 +226,27 @@ export default function DomainPassSession({
     const skippedCount = report.total - Object.keys(responses).length
     const wrongCount = report.total - report.correct - skippedCount
 
+    const weakObjectiveIds = computeWeakObjectivesFromResponses(questions, responses)
+
     return (
       <div>
-        <StudyModeHeader title={`${domain.name} — Results`} onBack={onExit} backLabel="Domain Pass" />
+        <StudyModeHeader
+          title={isFocusSession ? `${domain.name} — Focus results` : `${domain.name} — Results`}
+          onBack={onExit}
+          backLabel="Domain Pass"
+        />
+        {isFocusSession && (
+          <div style={{ ...styles.card, marginBottom: 8, border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim }}>
+            <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.sky, fontWeight: 600, lineHeight: 1.45 }}>
+              Focus practice — does not replace full domain pass
+            </div>
+            {focusObjectiveIds?.length > 0 && (
+              <div style={{ ...styles.small, marginTop: 6, marginBottom: 0 }}>
+                Topics: {focusObjectiveIds.join(', ')}
+              </div>
+            )}
+          </div>
+        )}
         <div style={styles.card}>
           <div style={{ fontSize: 'var(--ccna-type-display)', fontWeight: 700, color: passed ? COLORS.mint : COLORS.rose }}>
             {pct}%
@@ -221,12 +269,23 @@ export default function DomainPassSession({
           onOpenTrapDrill={onOpenTrapDrill}
           onOpenLab={onOpenLab}
         />
-        {onOpenMock && (
+        {isFocusSession && weakObjectiveIds.length > 0 && onStartFocus && (
+          <button
+            type="button"
+            style={{ ...styles.secondaryBtn, marginBottom: 8 }}
+            onClick={() => onStartFocus({ domainId, objectiveIds: weakObjectiveIds })}
+          >
+            Focus these topics ({weakObjectiveIds.join(', ')}) →
+          </button>
+        )}
+        {!isFocusSession && onOpenMock && (
           <button type="button" style={{ ...styles.secondaryBtn, marginBottom: 8 }} onClick={() => onOpenMock(domainId)}>
             Take domain mock
           </button>
         )}
-        <button type="button" style={styles.primaryBtn} onClick={startSession}>Retake domain pass</button>
+        <button type="button" style={styles.primaryBtn} onClick={startSession}>
+          {isFocusSession ? 'Retake focus pass' : 'Retake domain pass'}
+        </button>
         <button type="button" style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={onExit}>Back to domains</button>
       </div>
     )
@@ -244,7 +303,16 @@ export default function DomainPassSession({
 
   return (
     <div>
-      <StudyModeHeader title={domain.name} onBack={onExit} backLabel="Exit" />
+      <StudyModeHeader
+        title={isFocusSession ? `${domain.name} — Focus` : domain.name}
+        onBack={onExit}
+        backLabel="Exit"
+      />
+      {isFocusSession && (
+        <div style={{ ...styles.small, marginBottom: 8, color: COLORS.sky, lineHeight: 1.4 }}>
+          Focus pass · {focusObjectiveIds?.join(', ')}
+        </div>
+      )}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
         <div style={styles.small}>Question {current + 1} / {questionTotal}</div>
         {timerEnabled && (
@@ -290,7 +358,9 @@ export default function DomainPassSession({
             Next →
           </button>
         ) : (
-          <button type="button" style={styles.primaryBtn} onClick={() => setPhase('done')}>Finish pass</button>
+          <button type="button" style={styles.primaryBtn} onClick={() => setPhase('done')}>
+            {isFocusSession ? 'Finish focus' : 'Finish pass'}
+          </button>
         )}
       </div>
       {current !== questionTotal - 1 && (
@@ -299,7 +369,7 @@ export default function DomainPassSession({
           style={{ ...styles.secondaryBtn, marginTop: 8, background: 'none', border: 'none', color: COLORS.silverMid }}
           onClick={() => setPhase('done')}
         >
-          Finish pass now
+          {isFocusSession ? 'Finish focus now' : 'Finish pass now'}
         </button>
       )}
     </div>

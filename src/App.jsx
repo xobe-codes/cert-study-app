@@ -141,6 +141,10 @@ export default function App() {
           clearTrapDrillPrefill={nav.clearTrapDrillPrefill}
           activeDomainPassId={nav.activeDomainPassId}
           setActiveDomainPassId={nav.setActiveDomainPassId}
+          domainPassFocusPickerId={nav.domainPassFocusPickerId}
+          setDomainPassFocusPickerId={nav.setDomainPassFocusPickerId}
+          domainPassFocusConfig={nav.domainPassFocusConfig}
+          setDomainPassFocusConfig={nav.setDomainPassFocusConfig}
           activeDomainPlacementId={nav.activeDomainPlacementId} setActiveDomainPlacementId={nav.setActiveDomainPlacementId} placementSessionMode={nav.placementSessionMode} exitDomainPlacement={nav.exitDomainPlacement}
           refreshDomainPassCount={nav.refreshDomainPassCount}
           refreshDue={bootstrap.refreshDue}

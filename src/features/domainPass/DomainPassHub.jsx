@@ -13,6 +13,7 @@ import {
 } from './domainPassStorage.js'
 import DomainPassCompleteCard from './DomainPassCompleteCard.jsx'
 import StudyModeHeader from '../../components/StudyModeHeader.jsx'
+import { useDomainCardLongPress } from './useDomainCardLongPress.js'
 import {
   homeCard,
   homeSectionLabel,
@@ -30,10 +31,12 @@ function formatAttemptDate(ts) {
 /**
  * Hub for per-domain CCNA pass attempts — progress meter, timer toggle, domain cards.
  */
-export default function DomainPassHub({ onExit, onStartDomain, onStartMockExam, onOpenSettings, onOpenDomainPlacement }) {
+export default function DomainPassHub({ onExit, onStartDomain, onOpenFocusPicker, onStartMockExam, onOpenSettings, onOpenDomainPlacement }) {
   const [records, setRecords] = useState({})
   const [timerOn, setTimerOn] = useState(true)
   const [loaded, setLoaded] = useState(false)
+
+  const longPress = useDomainCardLongPress(onOpenFocusPicker)
 
   useEffect(() => {
     let cancelled = false
@@ -78,7 +81,7 @@ export default function DomainPassHub({ onExit, onStartDomain, onStartMockExam, 
           />
         </div>
         <p style={{ ...homeBodySm, marginTop: 10, marginBottom: 0 }}>
-          Pass each domain at 80%+ to complete your blueprint. Tap a domain to start or retake.
+          Pass each domain at 80%+ to complete your blueprint. Tap a domain to start or retake. Long-press or use Focus topics to hone in on specific objectives.
         </p>
       </div>
 
@@ -120,41 +123,79 @@ export default function DomainPassHub({ onExit, onStartDomain, onStartMockExam, 
           const actionLabel = status === 'not_started' ? 'Start' : 'Retake'
 
           return (
-            <button
+            <div
               key={domain.id}
-              type="button"
               className="ccna-hover"
-              disabled={!loaded}
-              onClick={() => onStartDomain?.(domain.id)}
-              aria-label={`${domain.name} — ${badge} — ${actionLabel}`}
+              onPointerDown={() => longPress.onPointerDown(domain.id)}
+              onPointerUp={() => longPress.onPointerUp()}
+              onPointerLeave={longPress.onPointerLeave}
+              onPointerCancel={longPress.onPointerLeave}
               style={{
-                ...homeCard({ marginBottom: HOME_SECTION_GAP, width: '100%', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }),
+                ...homeCard({ marginBottom: HOME_SECTION_GAP, width: '100%', textAlign: 'left', fontFamily: 'inherit' }),
                 border: `1px solid ${accent.border}`,
                 background: accent.dim,
+                touchAction: 'manipulation',
               }}
             >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8, marginBottom: 6 }}>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, lineHeight: 1.35, marginBottom: 4 }}>
-                    {domain.name}
+              <button
+                type="button"
+                disabled={!loaded}
+                onClick={() => onStartDomain?.(domain.id)}
+                aria-label={`${domain.name} — ${badge} — ${actionLabel}`}
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  background: 'none',
+                  border: 'none',
+                  padding: 0,
+                  cursor: 'pointer',
+                  textAlign: 'left',
+                  color: 'inherit',
+                  fontFamily: 'inherit',
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8, marginBottom: 6 }}>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, lineHeight: 1.35, marginBottom: 4 }}>
+                      {domain.name}
+                    </div>
+                    <span style={homePill(domain.accent)}>{domain.weight}% exam weight</span>
                   </div>
-                  <span style={homePill(domain.accent)}>{domain.weight}% exam weight</span>
+                  <span style={homePill(badgeAccent)}>{badge}</span>
                 </div>
-                <span style={homePill(badgeAccent)}>{badge}</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
-                <div style={{ ...homeBodySm, margin: 0 }}>
-                  Best: {record?.bestPct != null ? `${record.bestPct}%` : '—'}
-                  {' · '}
-                  Last: {formatAttemptDate(record?.lastAt ?? record?.lastAttemptAt)}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
+                  <div style={{ ...homeBodySm, margin: 0 }}>
+                    Best: {record?.bestPct != null ? `${record.bestPct}%` : '—'}
+                    {' · '}
+                    Last: {formatAttemptDate(record?.lastAt ?? record?.lastAttemptAt)}
+                    {record?.focusAttempts?.length ? ` · ${record.focusAttempts.length} focus` : ''}
+                  </div>
+                  <span style={{ ...styles.small, color: accent.text, fontWeight: 600 }}>{actionLabel} →</span>
                 </div>
-                <span style={{ ...styles.small, color: accent.text, fontWeight: 600 }}>{actionLabel} →</span>
-              </div>
+              </button>
+              {onOpenFocusPicker && (
+                <button
+                  type="button"
+                  className="ccna-hover"
+                  onClick={() => onOpenFocusPicker(domain.id)}
+                  style={{
+                    ...styles.secondaryBtn,
+                    marginTop: 10,
+                    marginBottom: 0,
+                    width: '100%',
+                    fontSize: 'var(--ccna-type-xs)',
+                    padding: '8px 12px',
+                    minHeight: 36,
+                  }}
+                >
+                  Focus topics →
+                </button>
+              )}
               {isPlacementDomain(domain.id) && onOpenDomainPlacement && (
                 <button
                   type="button"
                   className="ccna-hover"
-                  onClick={(e) => { e.stopPropagation(); onOpenDomainPlacement({ domainId: domain.id }) }}
+                  onClick={() => onOpenDomainPlacement({ domainId: domain.id })}
                   style={{
                     ...styles.secondaryBtn,
                     marginTop: 10,
@@ -168,7 +209,7 @@ export default function DomainPassHub({ onExit, onStartDomain, onStartMockExam, 
                   Check my level (placement) →
                 </button>
               )}
-            </button>
+            </div>
           )
         })}
       </div>

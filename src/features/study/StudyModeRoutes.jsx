@@ -8,6 +8,7 @@ import McChoices from '../../components/McChoices.jsx'
 import { QuestionMeta } from '../../components/QuizQuestionChrome.jsx'
 import { SubnetPracticeHome } from '../../tabs/studyQuizTabs.jsx'
 import DomainPassHub from '../domainPass/DomainPassHub.jsx'
+import DomainPassFocusPicker from '../domainPass/DomainPassFocusPicker.jsx'
 import DomainPassSession from '../domainPass/DomainPassSession.jsx'
 import DomainPlacementIntro from '../domainPlacement/DomainPlacementIntro.jsx'
 import DomainPlacementSession from '../domainPlacement/DomainPlacementSession.jsx'
@@ -44,6 +45,10 @@ export default function StudyModeRoutes({
   clearTrapDrillPrefill,
   activeDomainPassId,
   setActiveDomainPassId,
+  domainPassFocusPickerId,
+  setDomainPassFocusPickerId,
+  domainPassFocusConfig,
+  setDomainPassFocusConfig,
   activeDomainPlacementId,
   setActiveDomainPlacementId,
   placementSessionMode = null,
@@ -173,23 +178,49 @@ export default function StudyModeRoutes({
       />
     )
   }
-  if (view === 'domainpass' && !activeDomainPassId) {
+  if (view === 'domainpass' && !activeDomainPassId && !domainPassFocusPickerId) {
     return (
       <DomainPassHub
         onExit={onBack}
-        onStartDomain={(id) => setActiveDomainPassId(id)}
+        onStartDomain={(id) => { setDomainPassFocusConfig?.(null); setActiveDomainPassId(id) }}
+        onOpenFocusPicker={(id) => setDomainPassFocusPickerId?.(id)}
         onStartMockExam={onOpenMockExam}
         onOpenSettings={onOpenSettings}
         onOpenDomainPlacement={onOpenDomainPlacement}
       />
     )
   }
+  if (view === 'domainpass' && domainPassFocusPickerId && !activeDomainPassId) {
+    return (
+      <DomainPassFocusPicker
+        domainId={domainPassFocusPickerId}
+        onBack={() => setDomainPassFocusPickerId?.(null)}
+        onStart={({ domainId, objectiveIds }) => {
+          setDomainPassFocusConfig?.({ objectiveIds })
+          setDomainPassFocusPickerId?.(null)
+          setActiveDomainPassId(domainId)
+        }}
+      />
+    )
+  }
   if (view === 'domainpass' && activeDomainPassId) {
+    const focusIds = domainPassFocusConfig?.objectiveIds || null
     return (
       <DomainPassSession
-        key={activeDomainPassId}
+        key={`${activeDomainPassId}-${focusIds?.join(',') || 'full'}`}
         domainId={activeDomainPassId}
-        onExit={() => { setActiveDomainPassId(null); onRefreshDomainPassCount() }}
+        objectiveFilter={focusIds}
+        focusMode={Boolean(focusIds?.length)}
+        onExit={() => {
+          setActiveDomainPassId(null)
+          setDomainPassFocusConfig?.(null)
+          setDomainPassFocusPickerId?.(null)
+          onRefreshDomainPassCount()
+        }}
+        onStartFocus={({ domainId, objectiveIds }) => {
+          setDomainPassFocusConfig?.({ objectiveIds })
+          setActiveDomainPassId(domainId)
+        }}
         onOpenMock={(id) => onOpenMockExam({ domainId: id })}
         onOpenTrapDrill={(ckuId) => onOpenTrapDrill({ ckuId })}
         onOpenLab={(id) => onOpenLab(id, 'domainpass')}

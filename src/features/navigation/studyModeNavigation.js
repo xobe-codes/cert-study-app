@@ -31,7 +31,11 @@ export const STUDY_HUB_VIEWS = new Set([
 
 /** Reset nested session state when landing on a hub via hash or home-grid navigation. */
 export function resetHubSessionState(view, api) {
-  if (view === 'domainpass') api.setActiveDomainPassId?.(null)
+  if (view === 'domainpass') {
+    api.setActiveDomainPassId?.(null)
+    api.setDomainPassFocusPickerId?.(null)
+    api.setDomainPassFocusConfig?.(null)
+  }
   if (view === 'domainplacement') {
     api.setActiveDomainPlacementId?.(null)
     api.setPlacementSessionMode?.(null)
@@ -43,7 +47,11 @@ export function resetHubSessionState(view, api) {
 export function clearViewNestedState(exitingView, api) {
   if (exitingView === 'lab') api.setSelectedLab?.(null)
   if (exitingView === 'topicfocussession') api.setTopicFocusConfig?.(null)
-  if (exitingView === 'domainpass') api.setActiveDomainPassId?.(null)
+  if (exitingView === 'domainpass') {
+    api.setActiveDomainPassId?.(null)
+    api.setDomainPassFocusPickerId?.(null)
+    api.setDomainPassFocusConfig?.(null)
+  }
   if (exitingView === 'domainplacement') {
     api.setActiveDomainPlacementId?.(null)
     api.setPlacementSessionMode?.(null)
@@ -57,6 +65,8 @@ export function clearAllNestedState(api) {
   api.setSelectedLab?.(null)
   api.setTopicFocusConfig?.(null)
   api.setActiveDomainPassId?.(null)
+  api.setDomainPassFocusPickerId?.(null)
+  api.setDomainPassFocusConfig?.(null)
   api.setActiveDomainPlacementId?.(null)
   api.setPlacementSessionMode?.(null)
   api.setMockDomainPrefill?.(null)

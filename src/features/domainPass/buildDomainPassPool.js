@@ -1,4 +1,4 @@
-import { DOMAIN_PASS_PASS_PCT, domainPassQuestionCount } from './domainPassConfig.js'
+import { DOMAIN_PASS_PASS_PCT, domainPassQuestionCount, domainPassFocusQuestionCount } from './domainPassConfig.js'
 import { isMcQuestion } from '../../questionUtils.js'
 
 function dedupeById(questions) {
@@ -63,16 +63,29 @@ export function buildDomainPassPool({
   shuffle,
   weakObjectiveIds = [],
   missedQuestions = [],
+  objectiveFilter = null,
+  questionCount = null,
 }) {
-  const count = domainPassQuestionCount(domain)
   const shuf = shuffle || (arr => [...arr])
-  const objectiveIds = new Set((domain.objectives || []).map(o => o.id))
+  const domainObjectiveIds = new Set((domain.objectives || []).map(o => o.id))
+  const filterSet = Array.isArray(objectiveFilter) && objectiveFilter.length
+    ? new Set(objectiveFilter.filter(id => domainObjectiveIds.has(id)))
+    : null
 
   let pool = collectDomainQuestions(domain, getMcQuestions).filter(isMcQuestion)
+  if (filterSet?.size) {
+    pool = pool.filter(q => filterSet.has(q.objectiveId))
+  }
+
+  const count = questionCount ?? (
+    filterSet?.size
+      ? domainPassFocusQuestionCount(filterSet.size, pool.length)
+      : domainPassQuestionCount(domain)
+  )
 
   if (missedQuestions?.length) {
     const domainMissed = missedQuestions
-      .filter(m => objectiveIds.has(m.objectiveId))
+      .filter(m => domainObjectiveIds.has(m.objectiveId) && (!filterSet || filterSet.has(m.objectiveId)))
       .map(m => hydrateMcQuestion(m, domain, getMcQuestions))
       .filter(Boolean)
     pool = dedupeById([...pool, ...domainMissed]).filter(isMcQuestion)

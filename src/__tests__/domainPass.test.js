@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest'
 import {
   DOMAIN_PASS_PASS_PCT,
   domainPassQuestionCount,
+  domainPassFocusQuestionCount,
   domainPassDurationSec,
   isDomainPassPassed,
   domainPassStatus,
@@ -31,6 +32,11 @@ describe('domainPassConfig', () => {
     expect(isDomainPassPassed(79)).toBe(false)
     expect(evaluateDomainPass({ correct: 8, total: 10 }).passed).toBe(true)
     expect(evaluateDomainPass({ correct: 7, total: 10 }).passed).toBe(false)
+  })
+
+  it('focus question count scales with selected objectives', () => {
+    expect(domainPassFocusQuestionCount(1)).toBe(6)
+    expect(domainPassFocusQuestionCount(3, 7)).toBe(7)
   })
 
   it('timer duration scales with question count when enabled', () => {
@@ -86,6 +92,17 @@ describe('buildDomainPassPool', () => {
     })
     expect(pool.every(q => Array.isArray(q.choices) && q.choices.length >= 2)).toBe(true)
   })
+
+  it('filters pool to selected objectives for focus pass', () => {
+    const pool = buildDomainPassPool({
+      domain: mockDomain,
+      getMcQuestions: getMc,
+      shuffle: a => [...a],
+      objectiveFilter: ['1.1'],
+    })
+    expect(pool.every(q => q.objectiveId === '1.1')).toBe(true)
+    expect(pool.length).toBeLessThanOrEqual(6)
+  })
 })
 
 describe('countPassedDomains', () => {
@@ -112,5 +129,15 @@ describe('domainPassCelebrated storage', () => {
     expect(await loadDomainPassCelebrated()).toBe(false)
     await saveDomainPassCelebrated(true)
     expect(await loadDomainPassCelebrated()).toBe(true)
+  })
+
+  it('saveDomainPassFocusAttempt appends without overwriting full pass record', async () => {
+    const { saveDomainPassRecord, saveDomainPassFocusAttempt, loadDomainPassRecords } = await import('../features/domainPass/domainPassStorage.js')
+    await saveDomainPassRecord('fundamentals', { passed: true, bestPct: 90, lastAt: Date.now(), weakObjectives: ['1.1'] })
+    await saveDomainPassFocusAttempt('fundamentals', { correct: 4, total: 6, objectiveIds: ['1.1'], weakObjectiveIds: ['1.2'] })
+    const records = await loadDomainPassRecords()
+    expect(records.fundamentals.passed).toBe(true)
+    expect(records.fundamentals.bestPct).toBe(90)
+    expect(records.fundamentals.focusAttempts).toHaveLength(1)
   })
 })
