@@ -10,7 +10,7 @@ import {
   sortDomainPassHubDomains,
   evaluateDomainPass,
 } from '../features/domainPass/domainPassConfig.js'
-import { buildDomainPassPool, computeWeakObjectivesFromResponses } from '../features/domainPass/buildDomainPassPool.js'
+import { buildDomainPassPool, computeWeakObjectivesFromResponses, computeSkippedQuestionIds, mergeCarryoverSkipped } from '../features/domainPass/buildDomainPassPool.js'
 import { countPassedDomains } from '../features/domainPass/domainPassStorage.js'
 
 const mockDomain = {
@@ -123,6 +123,42 @@ describe('buildDomainPassPool', () => {
     expect(pool.every(q => q.objectiveId === '1.1')).toBe(true)
     expect(pool.length).toBeLessThanOrEqual(6)
   })
+
+  it('computeSkippedQuestionIds lists unanswered question ids', () => {
+    const questions = [
+      { id: '1.1-a', objectiveId: '1.1', correctIndex: 0 },
+      { id: '1.2-a', objectiveId: '1.2', correctIndex: 1 },
+      { id: '1.2-b', objectiveId: '1.2', correctIndex: 0 },
+    ]
+    expect(computeSkippedQuestionIds(questions, { 0: 0 })).toEqual(['1.2-a', '1.2-b'])
+    expect(computeSkippedQuestionIds(questions, {})).toEqual(['1.1-a', '1.2-a', '1.2-b'])
+  })
+
+  it('mergeCarryoverSkipped drops answered carryover and appends new skips', () => {
+    const questions = [
+      { id: 'old-skip', objectiveId: '1.1', correctIndex: 0 },
+      { id: 'new-skip', objectiveId: '1.2', correctIndex: 1 },
+      { id: 'answered', objectiveId: '1.2', correctIndex: 0 },
+    ]
+    const merged = mergeCarryoverSkipped(
+      ['old-skip', 'stale'],
+      questions,
+      { 0: 0, 2: 0 },
+    )
+    expect(merged).toEqual(['stale', 'new-skip'])
+  })
+
+  it('includes carryover skipped ids first on retake', () => {
+    const pool = buildDomainPassPool({
+      domain: mockDomain,
+      getMcQuestions: getMc,
+      shuffle: a => [...a],
+      skippedQuestionIds: ['1.2-b'],
+      questionCount: 3,
+    })
+    expect(pool[0].id).toBe('1.2-b')
+    expect(pool).toHaveLength(3)
+  })
 })
 
 describe('countPassedDomains', () => {
@@ -159,5 +195,32 @@ describe('domainPassCelebrated storage', () => {
     expect(records.fundamentals.passed).toBe(true)
     expect(records.fundamentals.bestPct).toBe(90)
     expect(records.fundamentals.focusAttempts).toHaveLength(1)
+  })
+
+  it('persists skippedQuestionIds on full pass attempt and reloads them', async () => {
+    const { saveDomainPassAttempt, loadDomainPassRecords } = await import('../features/domainPass/domainPassStorage.js')
+    await saveDomainPassAttempt('fundamentals', {
+      correct: 8,
+      total: 10,
+      weakObjectiveIds: ['1.2'],
+      skippedQuestionIds: ['1.1-a', '1.2-b'],
+    })
+    const records = await loadDomainPassRecords()
+    expect(records.fundamentals.skippedQuestionIds).toEqual(['1.1-a', '1.2-b'])
+    expect(records.fundamentals.passed).toBe(true)
+  })
+
+  it('keeps skippedQuestionIds when saving unrelated record fields', async () => {
+    const { saveDomainPassRecord, loadDomainPassRecords } = await import('../features/domainPass/domainPassStorage.js')
+    await saveDomainPassRecord('fundamentals', {
+      passed: false,
+      bestPct: 60,
+      lastAt: Date.now(),
+      skippedQuestionIds: ['1.1-a'],
+    })
+    await saveDomainPassRecord('fundamentals', { passed: true, bestPct: 85, lastAt: Date.now() })
+    const records = await loadDomainPassRecords()
+    expect(records.fundamentals.skippedQuestionIds).toEqual(['1.1-a'])
+    expect(records.fundamentals.passed).toBe(true)
   })
 })

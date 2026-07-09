@@ -62,7 +62,14 @@ export async function setTimerEnabled(enabled) {
  * Merge and persist a domain pass attempt.
  * Once passed, a domain stays passed; bestPct tracks the high-water mark.
  */
-export async function saveDomainPassRecord(domainId, { passed, bestPct, lastAt, weakObjectives, attempts }) {
+export async function saveDomainPassRecord(domainId, {
+  passed,
+  bestPct,
+  lastAt,
+  weakObjectives,
+  attempts,
+  skippedQuestionIds,
+}) {
   const store = await loadRawStore()
   const prefs = store[PREFS_KEY]
   const records = { ...store }
@@ -74,6 +81,9 @@ export async function saveDomainPassRecord(domainId, { passed, bestPct, lastAt, 
     lastAt: lastAt ?? Date.now(),
     weakObjectives: Array.isArray(weakObjectives) ? weakObjectives : (prev.weakObjectives || []),
     attempts: attempts ?? (typeof prev.attempts === 'number' ? prev.attempts + 1 : 1),
+    skippedQuestionIds: skippedQuestionIds !== undefined
+      ? (Array.isArray(skippedQuestionIds) ? skippedQuestionIds : [])
+      : (prev.skippedQuestionIds || []),
   }
   records[domainId] = next
   if (prefs) records[PREFS_KEY] = prefs
@@ -82,13 +92,19 @@ export async function saveDomainPassRecord(domainId, { passed, bestPct, lastAt, 
 }
 
 /** High-level save from session results — scores attempt and updates weak objectives. */
-export async function saveDomainPassAttempt(domainId, { correct, total, weakObjectiveIds = [] }) {
+export async function saveDomainPassAttempt(domainId, {
+  correct,
+  total,
+  weakObjectiveIds = [],
+  skippedQuestionIds,
+}) {
   const { passed, pct } = evaluateDomainPass({ correct, total })
   const record = await saveDomainPassRecord(domainId, {
     passed,
     bestPct: pct,
     lastAt: Date.now(),
     weakObjectives: weakObjectiveIds,
+    skippedQuestionIds,
   })
   return { record, pct, passed }
 }
@@ -99,6 +115,7 @@ export async function saveDomainPassFocusAttempt(domainId, {
   total,
   objectiveIds = [],
   weakObjectiveIds = [],
+  skippedQuestionIds,
 }) {
   const store = await loadRawStore()
   const prefs = store[PREFS_KEY]
@@ -118,7 +135,13 @@ export async function saveDomainPassFocusAttempt(domainId, {
     weakObjectives: Array.isArray(weakObjectiveIds) ? weakObjectiveIds : [],
   }
   const focusAttempts = [...(prev.focusAttempts || []), attempt].slice(-MAX_FOCUS_ATTEMPTS)
-  const next = { ...prev, focusAttempts }
+  const next = {
+    ...prev,
+    focusAttempts,
+    skippedQuestionIds: skippedQuestionIds !== undefined
+      ? (Array.isArray(skippedQuestionIds) ? skippedQuestionIds : [])
+      : (prev.skippedQuestionIds || []),
+  }
   records[domainId] = next
   if (prefs) records[PREFS_KEY] = prefs
   await saveRawStore(records)

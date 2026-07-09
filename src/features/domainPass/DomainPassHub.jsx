@@ -192,6 +192,11 @@ export default function DomainPassHub({ onExit, onStartDomain, onOpenFocusPicker
                     <span style={homePill(domain.accent)}>{domain.weight}% exam weight</span>
                   </div>
                   <span style={homePill(badgeAccent)}>{badge}</span>
+                  {record?.skippedQuestionIds?.length > 0 && (
+                    <span style={{ ...homePill('amber'), marginLeft: 6 }}>
+                      {record.skippedQuestionIds.length} unfinished
+                    </span>
+                  )}
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
                   <div style={{ ...homeBodySm, margin: 0 }}>

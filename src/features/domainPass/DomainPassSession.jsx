@@ -18,7 +18,7 @@ import {
   domainPassTimerMinutes,
   isDomainPassPassed,
 } from './domainPassConfig.js'
-import { buildDomainPassPool, computeWeakObjectivesFromResponses } from './buildDomainPassPool.js'
+import { buildDomainPassPool, computeWeakObjectivesFromResponses, mergeCarryoverSkipped } from './buildDomainPassPool.js'
 import {
   loadDomainRecords,
   loadTimerEnabled,
@@ -71,6 +71,7 @@ export default function DomainPassSession({
   const [secondsLeft, setSecondsLeft] = useState(0)
   const [timerEnabled, setTimerEnabledState] = useState(true)
   const finishSaved = useRef(false)
+  const prevSkippedRef = useRef([])
 
   const focusObjectiveIds = useMemo(
     () => (Array.isArray(objectiveFilter) && objectiveFilter.length ? objectiveFilter : null),
@@ -96,12 +97,14 @@ export default function DomainPassSession({
       const [records, timerOn] = await Promise.all([loadDomainRecords(), loadTimerEnabled()])
       setTimerEnabledState(timerOn)
       const passRecord = getDomainRecord(records, domainId)
+      prevSkippedRef.current = passRecord?.skippedQuestionIds || []
       const final = buildDomainPassPool({
         domain,
         getMcQuestions: getMcForObjective,
         shuffle: shuffleArray,
         weakObjectiveIds: passRecord?.weakObjectives || [],
         missedQuestions: missed,
+        skippedQuestionIds: prevSkippedRef.current,
         objectiveFilter: focusObjectiveIds,
       })
       if (final.length === 0) {
@@ -189,12 +192,14 @@ export default function DomainPassSession({
     if (phase !== 'done' || !report || finishSaved.current || !domainId) return
     finishSaved.current = true
     const weakObjectiveIds = computeWeakObjectivesFromResponses(questions, responses)
+    const skippedQuestionIds = mergeCarryoverSkipped(prevSkippedRef.current, questions, responses)
     if (isFocusSession) {
       saveDomainPassFocusAttempt(domainId, {
         correct: report.correct,
         total: report.total,
         objectiveIds: focusObjectiveIds || [],
         weakObjectiveIds,
+        skippedQuestionIds,
       })
       return
     }
@@ -202,6 +207,7 @@ export default function DomainPassSession({
       correct: report.correct,
       total: report.total,
       weakObjectiveIds,
+      skippedQuestionIds,
     })
   }, [phase, report, domainId, questions, responses, isFocusSession, focusObjectiveIds])
 
@@ -261,6 +267,11 @@ export default function DomainPassSession({
             {wrongCount > 0 && <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.rose }}>✗ {wrongCount} incorrect</span>}
             {skippedCount > 0 && <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.amber }}>— {skippedCount} skipped</span>}
           </div>
+          {skippedCount > 0 && (
+            <div style={{ ...styles.small, marginTop: 8, marginBottom: 0, color: COLORS.amber }}>
+              Skipped questions are queued for your next pass.
+            </div>
+          )}
         </div>
         <MockExamDebriefActions
           report={report}
