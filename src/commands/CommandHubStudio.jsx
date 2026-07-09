@@ -2,9 +2,10 @@ import React, { useCallback, useMemo, useState } from 'react'
 import { DOMAINS } from '../data/ccnaDomains.js'
 import { COLORS, styles } from '../ui/appTheme.js'
 import { getCommandIndex } from './commandIndex.js'
-import { searchCommandsGlobal, filterCommands } from './commandSearch.js'
+import { searchCommandsGlobal, filterCommands, inDomain } from './commandSearch.js'
+import { groupCommandsByDomain, groupWorkflowsByDomain } from './commandHubLayout.js'
 import {
-  COMMAND_PRESETS, CATEGORY_LABEL, MODE_LABEL, DEVICE_LABEL,
+  COMMAND_PRESETS, CATEGORY_LABEL, MODE_LABEL,
 } from './commandWorkflows.js'
 import CommandDetailPanel from './CommandDetailPanel.jsx'
 import CommandSyntaxCoach from './CommandSyntaxCoach.jsx'
@@ -33,6 +34,100 @@ function categoryAccent(cat) {
   return 'silver'
 }
 
+function CommandRow({ cmd, detailCommand, onSelect }) {
+  const isOpen = detailCommand?.id === cmd.id
+  return (
+    <div
+      key={cmd.id}
+      style={{
+        ...styles.card,
+        marginBottom: 8,
+        padding: '10px 12px',
+        border: isOpen ? `1px solid ${COLORS.purpleBorder}` : undefined,
+      }}
+    >
+      <button
+        type="button"
+        onClick={() => onSelect(isOpen ? null : cmd)}
+        style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left', color: COLORS.silver, fontFamily: 'inherit', width: '100%' }}
+      >
+        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 6 }}>
+          <span style={{ ...styles.pill(categoryAccent(cmd.category)), fontSize: 'var(--ccna-type-micro)' }}>
+            {CATEGORY_LABEL[cmd.category]}
+          </span>
+          <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>
+            {MODE_LABEL[cmd.mode]?.split('(')[0]?.trim() || cmd.mode}
+          </span>
+          {cmd.objectiveIds.slice(0, 2).map(oid => (
+            <span key={oid} style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>{oid}</span>
+          ))}
+          {cmd.sampleOutput && <span style={{ ...styles.pill('purple'), fontSize: 'var(--ccna-type-micro)' }}>sample output</span>}
+        </div>
+        <code style={{ display: 'block', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 'var(--ccna-type-sm)', fontWeight: 600, color: COLORS.sky, marginBottom: 6, wordBreak: 'break-word' }}>
+          {cmd.command}
+        </code>
+        <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.5 }}>
+          {cmd.purpose}
+        </div>
+      </button>
+    </div>
+  )
+}
+
+function WorkflowRow({ wf, index, expandedWorkflow, setExpandedWorkflow, setTab, setDetailCommand }) {
+  const isOpen = expandedWorkflow === wf.id
+  return (
+    <div key={wf.id} style={{ ...styles.card, marginBottom: 8, padding: 0, overflow: 'hidden' }}>
+      <button
+        type="button"
+        onClick={() => setExpandedWorkflow(isOpen ? null : wf.id)}
+        style={{ width: '100%', background: 'none', border: 'none', padding: '10px 12px', cursor: 'pointer', textAlign: 'left', color: COLORS.silver, fontFamily: 'inherit' }}
+      >
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
+          <div>
+            <div style={{ fontWeight: 600, marginBottom: 4 }}>{wf.title}</div>
+            <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.45 }}>{wf.description}</div>
+            <div style={{ display: 'flex', gap: 6, marginTop: 8, flexWrap: 'wrap' }}>
+              {wf.objectiveIds.map(oid => (
+                <span key={oid} style={{ ...styles.pill('sky'), fontSize: 'var(--ccna-type-micro)' }}>{oid}</span>
+              ))}
+              <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>{wf.steps.length} steps</span>
+            </div>
+          </div>
+          <span style={{ color: COLORS.silverMid }}>{isOpen ? '−' : '+'}</span>
+        </div>
+      </button>
+      {isOpen && (
+        <div style={{ borderTop: `1px solid ${COLORS.border}`, padding: '8px 12px 12px' }}>
+          {wf.steps.map(step => {
+            const linked = index.commands.find(c =>
+              c.command.toLowerCase().includes((step.commandMatch || step.commandText).toLowerCase().split(' ')[0])
+              && (step.commandMatch ? c.command.toLowerCase().includes(step.commandMatch.toLowerCase().split(' ')[0]) : true),
+            )
+            return (
+              <div key={step.order} style={{ display: 'flex', gap: 10, marginBottom: 10, alignItems: 'flex-start' }}>
+                <span style={{ ...styles.pill('purple'), fontSize: 'var(--ccna-type-micro)', flexShrink: 0, marginTop: 2 }}>{step.order}</span>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 600, marginBottom: 4 }}>{step.label}</div>
+                  <code style={{ display: 'block', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 'var(--ccna-type-xs)', color: COLORS.mint, marginBottom: 4, wordBreak: 'break-word' }}>
+                    {step.commandText}
+                  </code>
+                  <span style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid }}>{MODE_LABEL[step.mode] || step.mode}</span>
+                  {linked && (
+                    <button type="button" style={{ ...styles.secondaryBtn, display: 'block', marginTop: 6, fontSize: 'var(--ccna-type-micro)', padding: '4px 8px' }} onClick={() => { setTab('commands'); setDetailCommand(linked) }}>
+                      Open reference
+                    </button>
+                  )}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      )}
+    </div>
+  )
+}
+
 export default function CommandHubStudio({ onBack, onSelectObjective }) {
   const index = useMemo(() => getCommandIndex(), [])
 
@@ -44,6 +139,7 @@ export default function CommandHubStudio({ onBack, onSelectObjective }) {
   const [tagFilter, setTagFilter] = useState(null)
   const [detailCommand, setDetailCommand] = useState(null)
   const [expandedWorkflow, setExpandedWorkflow] = useState(null)
+  const [collapsedDomains, setCollapsedDomains] = useState(() => new Set())
 
   const q = search.trim()
 
@@ -61,6 +157,24 @@ export default function CommandHubStudio({ onBack, onSelectObjective }) {
     return filterCommands(index, { domainFilter, categoryFilter, deviceFilter, tagFilter })
   }, [index, q, globalResults, domainFilter, categoryFilter, deviceFilter, tagFilter])
 
+  const workflowList = useMemo(() => {
+    let list = index.workflows
+    if (domainFilter !== 'all') {
+      list = list.filter(wf => wf.objectiveIds.some(oid => inDomain([oid], domainFilter, index.objectives)))
+    }
+    return list
+  }, [index, domainFilter])
+
+  const commandSections = useMemo(
+    () => (domainFilter === 'all' ? groupCommandsByDomain(commandList) : null),
+    [commandList, domainFilter],
+  )
+
+  const workflowSections = useMemo(
+    () => (domainFilter === 'all' ? groupWorkflowsByDomain(workflowList) : null),
+    [workflowList, domainFilter],
+  )
+
   const applyPreset = useCallback((preset) => {
     setTagFilter(preset.tags?.[0] || null)
     setCategoryFilter(preset.category || 'all')
@@ -72,6 +186,15 @@ export default function CommandHubStudio({ onBack, onSelectObjective }) {
   const openObjective = useCallback((objectiveId) => {
     onSelectObjective?.(objectiveId)
   }, [onSelectObjective])
+
+  const toggleDomainSection = useCallback((domainNumber) => {
+    setCollapsedDomains((prev) => {
+      const next = new Set(prev)
+      if (next.has(domainNumber)) next.delete(domainNumber)
+      else next.add(domainNumber)
+      return next
+    })
+  }, [])
 
   const hasSearchResults = q && globalResults && (
     globalResults.commands.length + globalResults.workflows.length + globalResults.clusters.length
@@ -111,13 +234,14 @@ export default function CommandHubStudio({ onBack, onSelectObjective }) {
         }}
       />
 
-      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 8 }}>
+      <div className="command-hub-domain-filters" style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 8 }}>
         <button type="button" onClick={() => setDomainFilter('all')}
           style={{ ...styles.pill(domainFilter === 'all' ? 'sky' : 'silver'), border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}>All</button>
-        {DOMAINS.map(d => (
+        {DOMAINS.map((d, i) => (
           <button key={d.id} type="button" onClick={() => setDomainFilter(d.id)}
-            style={{ ...styles.pill(domainFilter === d.id ? d.accent : 'silver'), border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}>
-            {d.weight}%
+            style={{ ...styles.pill(domainFilter === d.id ? d.accent : 'silver'), border: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: 'var(--ccna-type-xs)' }}
+            title={`${d.name} (${d.weight}%)`}>
+            D{i + 1}
           </button>
         ))}
       </div>
@@ -131,7 +255,7 @@ export default function CommandHubStudio({ onBack, onSelectObjective }) {
         ))}
       </div>
 
-      <div style={{ display: 'flex', gap: 6, marginBottom: 12, flexWrap: 'wrap' }}>
+      <div className="command-hub-primary-tabs" style={{ display: 'flex', gap: 6, marginBottom: 8, flexWrap: 'wrap' }}>
         {[
           { id: 'commands', label: `Commands (${index.commands.length})` },
           { id: 'syntax', label: 'Syntax coach' },
@@ -143,6 +267,9 @@ export default function CommandHubStudio({ onBack, onSelectObjective }) {
             {t.label}
           </button>
         ))}
+      </div>
+
+      <div className="command-hub-device-filters" style={{ display: 'flex', gap: 6, marginBottom: 12, flexWrap: 'wrap' }}>
         {DEVICE_FILTERS.map(f => (
           <button key={f.id} type="button" onClick={() => setDeviceFilter(f.id)}
             style={{ ...styles.pill(deviceFilter === f.id ? 'sky' : 'silver'), border: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: 'var(--ccna-type-xs)' }}>
@@ -193,103 +320,95 @@ export default function CommandHubStudio({ onBack, onSelectObjective }) {
           <CommandDrillCoach index={index} />
         )}
 
-        {tab === 'commands' && commandList.map(cmd => {
-          const isOpen = detailCommand?.id === cmd.id
+        {tab === 'commands' && domainFilter === 'all' && commandSections?.map((section) => {
+          const collapsed = collapsedDomains.has(section.domainNumber)
           return (
-            <div
-              key={cmd.id}
-              style={{
-                ...styles.card,
-                marginBottom: 8,
-                padding: '10px 12px',
-                border: isOpen ? `1px solid ${COLORS.purpleBorder}` : undefined,
-              }}
-            >
+            <section key={section.domainNumber} className="command-hub-domain-section" style={{ marginBottom: 12 }}>
               <button
                 type="button"
-                onClick={() => setDetailCommand(isOpen ? null : cmd)}
-                style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left', color: COLORS.silver, fontFamily: 'inherit', width: '100%' }}
+                className="command-hub-domain-section__header"
+                onClick={() => toggleDomainSection(section.domainNumber)}
+                style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%',
+                  background: 'none', border: 'none', padding: '8px 0', cursor: 'pointer',
+                  fontFamily: 'inherit', textAlign: 'left', color: COLORS.silver,
+                }}
               >
-                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 6 }}>
-                  <span style={{ ...styles.pill(categoryAccent(cmd.category)), fontSize: 'var(--ccna-type-micro)' }}>
-                    {CATEGORY_LABEL[cmd.category]}
-                  </span>
-                  <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>
-                    {MODE_LABEL[cmd.mode]?.split('(')[0]?.trim() || cmd.mode}
-                  </span>
-                  {cmd.objectiveIds.slice(0, 2).map(oid => (
-                    <span key={oid} style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>{oid}</span>
-                  ))}
-                  {cmd.sampleOutput && <span style={{ ...styles.pill('purple'), fontSize: 'var(--ccna-type-micro)' }}>sample output</span>}
-                </div>
-                <code style={{ display: 'block', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 'var(--ccna-type-sm)', fontWeight: 600, color: COLORS.sky, marginBottom: 6, wordBreak: 'break-word' }}>
-                  {cmd.command}
-                </code>
-                <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.5 }}>
-                  {cmd.purpose}
-                </div>
+                <span style={{ ...styles.pill(section.accent), fontSize: 'var(--ccna-type-xs)', fontWeight: 700 }}>
+                  {section.title}
+                </span>
+                <span style={{ color: COLORS.silverMid, fontSize: 'var(--ccna-type-xs)' }}>
+                  {section.commands.length} · {collapsed ? '+' : '−'}
+                </span>
               </button>
-            </div>
+              {!collapsed && section.commands.map(cmd => (
+                <CommandRow key={cmd.id} cmd={cmd} detailCommand={detailCommand} onSelect={setDetailCommand} />
+              ))}
+            </section>
           )
         })}
 
-        {tab === 'workflows' && index.workflows.map(wf => {
-          const isOpen = expandedWorkflow === wf.id
+        {tab === 'commands' && domainFilter !== 'all' && commandList.map(cmd => (
+          <CommandRow key={cmd.id} cmd={cmd} detailCommand={detailCommand} onSelect={setDetailCommand} />
+        ))}
+
+        {tab === 'workflows' && domainFilter === 'all' && workflowSections?.map((section) => {
+          const collapsed = collapsedDomains.has(section.domainNumber)
           return (
-            <div key={wf.id} style={{ ...styles.card, marginBottom: 8, padding: 0, overflow: 'hidden' }}>
+            <section key={section.domainNumber} className="command-hub-domain-section" style={{ marginBottom: 12 }}>
               <button
                 type="button"
-                onClick={() => setExpandedWorkflow(isOpen ? null : wf.id)}
-                style={{ width: '100%', background: 'none', border: 'none', padding: '10px 12px', cursor: 'pointer', textAlign: 'left', color: COLORS.silver, fontFamily: 'inherit' }}
+                className="command-hub-domain-section__header"
+                onClick={() => toggleDomainSection(section.domainNumber)}
+                style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%',
+                  background: 'none', border: 'none', padding: '8px 0', cursor: 'pointer',
+                  fontFamily: 'inherit', textAlign: 'left', color: COLORS.silver,
+                }}
               >
-                <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
-                  <div>
-                    <div style={{ fontWeight: 600, marginBottom: 4 }}>{wf.title}</div>
-                    <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.45 }}>{wf.description}</div>
-                    <div style={{ display: 'flex', gap: 6, marginTop: 8, flexWrap: 'wrap' }}>
-                      {wf.objectiveIds.map(oid => (
-                        <span key={oid} style={{ ...styles.pill('sky'), fontSize: 'var(--ccna-type-micro)' }}>{oid}</span>
-                      ))}
-                      <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>{wf.steps.length} steps</span>
-                    </div>
-                  </div>
-                  <span style={{ color: COLORS.silverMid }}>{isOpen ? '−' : '+'}</span>
-                </div>
+                <span style={{ ...styles.pill(section.accent), fontSize: 'var(--ccna-type-xs)', fontWeight: 700 }}>
+                  {section.title}
+                </span>
+                <span style={{ color: COLORS.silverMid, fontSize: 'var(--ccna-type-xs)' }}>
+                  {section.workflows.length} · {collapsed ? '+' : '−'}
+                </span>
               </button>
-              {isOpen && (
-                <div style={{ borderTop: `1px solid ${COLORS.border}`, padding: '8px 12px 12px' }}>
-                  {wf.steps.map(step => {
-                    const linked = index.commands.find(c =>
-                      c.command.toLowerCase().includes((step.commandMatch || step.commandText).toLowerCase().split(' ')[0])
-                      && (step.commandMatch ? c.command.toLowerCase().includes(step.commandMatch.toLowerCase().split(' ')[0]) : true),
-                    )
-                    return (
-                      <div key={step.order} style={{ display: 'flex', gap: 10, marginBottom: 10, alignItems: 'flex-start' }}>
-                        <span style={{ ...styles.pill('purple'), fontSize: 'var(--ccna-type-micro)', flexShrink: 0, marginTop: 2 }}>{step.order}</span>
-                        <div style={{ flex: 1, minWidth: 0 }}>
-                          <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 600, marginBottom: 4 }}>{step.label}</div>
-                          <code style={{ display: 'block', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 'var(--ccna-type-xs)', color: COLORS.mint, marginBottom: 4, wordBreak: 'break-word' }}>
-                            {step.commandText}
-                          </code>
-                          <span style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid }}>{MODE_LABEL[step.mode] || step.mode}</span>
-                          {linked && (
-                            <button type="button" style={{ ...styles.secondaryBtn, display: 'block', marginTop: 6, fontSize: 'var(--ccna-type-micro)', padding: '4px 8px' }} onClick={() => { setTab('commands'); setDetailCommand(linked) }}>
-                              Open reference
-                            </button>
-                          )}
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-              )}
-            </div>
+              {!collapsed && section.workflows.map(wf => (
+                <WorkflowRow
+                  key={wf.id}
+                  wf={wf}
+                  index={index}
+                  expandedWorkflow={expandedWorkflow}
+                  setExpandedWorkflow={setExpandedWorkflow}
+                  setTab={setTab}
+                  setDetailCommand={setDetailCommand}
+                />
+              ))}
+            </section>
           )
         })}
+
+        {tab === 'workflows' && domainFilter !== 'all' && workflowList.map(wf => (
+          <WorkflowRow
+            key={wf.id}
+            wf={wf}
+            index={index}
+            expandedWorkflow={expandedWorkflow}
+            setExpandedWorkflow={setExpandedWorkflow}
+            setTab={setTab}
+            setDetailCommand={setDetailCommand}
+          />
+        ))}
 
         {tab === 'commands' && commandList.length === 0 && !q && (
           <div style={{ ...styles.card, fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid }}>
             No commands match these filters. Try All domains or clear category filters.
+          </div>
+        )}
+
+        {tab === 'workflows' && workflowList.length === 0 && !q && (
+          <div style={{ ...styles.card, fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid }}>
+            No workflows match this domain filter.
           </div>
         )}
       </div>

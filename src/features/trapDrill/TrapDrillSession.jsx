@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useState, useEffect } from 'react'
 import { gradeQuestion, randomizeQuestionOrder } from '../../questionUtils.js'
 import { COLORS, styles } from '../../ui/appTheme.js'
 import McChoices from '../../components/McChoices.jsx'
@@ -15,29 +15,44 @@ import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import { useMasteryProgress } from '../progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
 
+function buildScopeFromPrefill(prefill, resolved) {
+  if (resolved || prefill?.ckuId || prefill?.trapLabel) {
+    return {
+      kind: 'cku',
+      ckuId: resolved?.ckuId ?? prefill?.ckuId,
+      trapLabel: resolved?.trapLabel ?? prefill?.trapLabel,
+    }
+  }
+  if (prefill?.domainId) return { kind: 'domain', domainId: String(prefill.domainId) }
+  return null
+}
+
 export default function TrapDrillSession({ prefill, onBack }) {
   const { recordEngagement } = useMasteryProgress()
   const resolved = useMemo(() => resolveTrapDrillCku(prefill || {}), [prefill])
-  const [scope, setScope] = useState(() => {
-    if (resolved || prefill?.ckuId || prefill?.trapLabel) return { kind: 'cku', ...prefill }
-    if (prefill?.domainId) return { kind: 'domain', domainId: String(prefill.domainId) }
-    return null
-  })
+  const [scope, setScope] = useState(() => buildScopeFromPrefill(prefill, resolved))
+  const [idx, setIdx] = useState(0)
+  const [selected, setSelected] = useState(null)
+  const [revealed, setRevealed] = useState(false)
+  const [stats, setStats] = useState({ correct: 0, total: 0 })
+
+  useEffect(() => {
+    setScope(buildScopeFromPrefill(prefill, resolved))
+    setIdx(0)
+    setSelected(null)
+    setRevealed(false)
+    setStats({ correct: 0, total: 0 })
+  }, [prefill, resolved])
 
   const questions = useMemo(() => {
     if (!scope) return []
     const pool = getTrapDrillQuestions(
       scope.kind === 'domain'
         ? { domainId: scope.domainId }
-        : { ckuId: scope.ckuId, trapLabel: scope.trapLabel },
+        : { ckuId: scope.ckuId || resolved?.ckuId, trapLabel: scope.trapLabel },
     )
     return randomizeQuestionOrder(pool)
-  }, [scope])
-
-  const [idx, setIdx] = useState(0)
-  const [selected, setSelected] = useState(null)
-  const [revealed, setRevealed] = useState(false)
-  const [stats, setStats] = useState({ correct: 0, total: 0 })
+  }, [scope, resolved])
 
   const current = questions[idx]
   const done = scope && idx >= questions.length

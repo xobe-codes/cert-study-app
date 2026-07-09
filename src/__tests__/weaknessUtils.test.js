@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import { computeCkuWeakness, resolveCkuWeakAction } from '../weaknessUtils.js'
+import { computeCkuWeakness, resolveCkuWeakAction, resolveTrapWeakAction } from '../weaknessUtils.js'
+import { resolveTrapDrillCku } from '../features/trapDrill/trapDrillQuestions.js'
 
 describe('resolveCkuWeakAction', () => {
   it('routes CKU-* ids to trap drill by ckuId', () => {
@@ -22,6 +23,34 @@ describe('resolveCkuWeakAction', () => {
     expect(resolveCkuWeakAction('concept:stp', missed)).toEqual({
       kind: 'trapDrill',
       payload: { trapLabel: 'Root bridge confusion' },
+    })
+  })
+})
+
+describe('resolveTrapWeakAction', () => {
+  it('routes resolvable trap labels to trap drill with ckuId', () => {
+    const trapLabel = 'Configure `ip helper-address` on the DHCP server interface.'
+    const resolved = resolveTrapDrillCku({ trapLabel })
+    expect(resolveTrapWeakAction(trapLabel, [])).toEqual({
+      kind: 'trapDrill',
+      payload: { ckuId: resolved.ckuId, trapLabel: resolved.trapLabel },
+    })
+  })
+
+  it('falls back to study when trap is in missed bank with objectiveId', () => {
+    const trap = 'Unresolvable custom trap label'
+    const missed = [{ misconceptionTested: trap, objectiveId: '3.2' }]
+    expect(resolveTrapWeakAction(trap, missed)).toEqual({
+      kind: 'study',
+      payload: { objectiveId: '3.2' },
+    })
+  })
+
+  it('falls back to exam traps when trap cannot be drilled or studied', () => {
+    const trap = 'Totally unknown trap'
+    expect(resolveTrapWeakAction(trap, [])).toEqual({
+      kind: 'examTraps',
+      payload: { trapLabel: trap },
     })
   })
 })

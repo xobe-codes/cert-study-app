@@ -64,6 +64,7 @@ export default function StudyModeRoutes({
   onOpenMockExam,
   labsDomainPrefill = null,
   onOpenTrapDrill,
+  onOpenExamTraps,
   onOpenDomainPlacement,
   onSelectObjective,
   onRefreshDomainPassCount,
@@ -173,7 +174,7 @@ export default function StudyModeRoutes({
   if (view === 'trapdrill') {
     return (
       <TrapDrillSession
-        key={trapDrillPrefill?.ckuId ?? 'all'}
+        key={trapDrillPrefill?.ckuId ?? trapDrillPrefill?.trapLabel ?? trapDrillPrefill?.domainId ?? 'hub'}
         prefill={trapDrillPrefill}
         onBack={() => { clearTrapDrillPrefill(); onBack() }}
       />
@@ -253,7 +254,17 @@ export default function StudyModeRoutes({
           const handoff = buildStudyObjectiveHandoff(objectiveOrId, { tab: 'Practice' })
           if (handoff) onSelectObjective(handoff)
         }}
+        onStudyWeakObjectives={(objectiveIds) => {
+          if (!objectiveIds?.length) return
+          setTopicFocusConfig({
+            objectiveIds,
+            conceptIds: [],
+            label: `Weak areas (${objectiveIds.length})`,
+          })
+          onPushView('topicfocussession')
+        }}
         onOpenTrapDrill={(prefill) => onOpenTrapDrill(prefill)}
+        onOpenExamTraps={onOpenExamTraps}
         onOpenLab={(id) => onOpenLab(id, 'domainplacement')}
       />
     )

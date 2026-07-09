@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { buildCommandIndex, getCommandById } from '../commands/commandIndex.js'
 import { CCNA_COMMAND_REGISTRY } from '../commands/ccnaCommandRegistry.js'
 import { searchCommandsGlobal, filterCommands } from '../commands/commandSearch.js'
+import { groupCommandsByDomain, groupWorkflowsByDomain, lowestDomainNumber } from '../commands/commandHubLayout.js'
 import { COMMAND_WORKFLOWS } from '../commands/commandWorkflows.js'
 
 describe('command hub', () => {
@@ -54,6 +55,42 @@ describe('command hub', () => {
     const ospfWf = index.workflows.find(w => w.id === 'wf-ospf-single-area')
     expect(ospfWf).toBeTruthy()
     expect(ospfWf.steps.length).toBeGreaterThanOrEqual(5)
+  })
+
+  it('assigns multi-domain commands to lowest domain number', () => {
+    expect(lowestDomainNumber(['3.1', '1.6'])).toBe(1)
+    expect(lowestDomainNumber(['5.3', '4.8'])).toBe(4)
+  })
+
+  it('groups commands by domain 1→6 with alpha sort within sections', () => {
+    const index = buildCommandIndex()
+    const sections = groupCommandsByDomain(filterCommands(index, { domainFilter: 'all' }))
+    expect(sections.length).toBeGreaterThan(0)
+    expect(sections[0].domainNumber).toBe(1)
+    for (let i = 1; i < sections.length; i += 1) {
+      expect(sections[i].domainNumber).toBeGreaterThan(sections[i - 1].domainNumber)
+    }
+    for (const section of sections) {
+      const sorted = [...section.commands].sort((a, b) => a.command.localeCompare(b.command))
+      expect(section.commands).toEqual(sorted)
+      for (const cmd of section.commands) {
+        expect(lowestDomainNumber(cmd.objectiveIds)).toBe(section.domainNumber)
+      }
+    }
+  })
+
+  it('groups workflows by domain 1→6', () => {
+    const index = buildCommandIndex()
+    const sections = groupWorkflowsByDomain(index.workflows)
+    expect(sections.length).toBeGreaterThan(0)
+    for (let i = 1; i < sections.length; i += 1) {
+      expect(sections[i].domainNumber).toBeGreaterThan(sections[i - 1].domainNumber)
+    }
+    for (const section of sections) {
+      for (const wf of section.workflows) {
+        expect(lowestDomainNumber(wf.objectiveIds)).toBe(section.domainNumber)
+      }
+    }
   })
 })
 

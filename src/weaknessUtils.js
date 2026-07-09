@@ -1,4 +1,5 @@
-import { groupMissedByTrap } from './missed/missedTrapGroups.js'
+import { groupMissedByTrap, getMissedTrapInfo } from './missed/missedTrapGroups.js'
+import { resolveTrapDrillCku } from './features/trapDrill/trapDrillQuestions.js'
 
 /** Local weakness aggregation by CKU and exam-trap tags — no API. */
 
@@ -34,4 +35,40 @@ export function resolveCkuWeakAction(id, missed = []) {
     return { kind: 'trapDrill', payload: { trapLabel: missedItem?.misconceptionTested || concept } }
   }
   return { kind: 'trapDrill', payload: { ckuId: id } }
+}
+
+/** Resolve a repeated exam-trap tap into trap drill, study, or exam-traps fallback. */
+export function resolveTrapWeakAction(trapLabel, missed = []) {
+  const resolved = resolveTrapDrillCku({ trapLabel })
+  if (resolved) {
+    return { kind: 'trapDrill', payload: { ckuId: resolved.ckuId, trapLabel: resolved.trapLabel } }
+  }
+  const trapItem = missed.find((m) => getMissedTrapInfo(m).trap === trapLabel)
+  if (trapItem?.objectiveId) {
+    return { kind: 'study', payload: { objectiveId: trapItem.objectiveId } }
+  }
+  return { kind: 'examTraps', payload: { trapLabel } }
+}
+
+/** Run a trap-weak action through navigation handlers. */
+export function executeTrapWeakAction(action, handlers = {}) {
+  const { onOpenTrapDrill, onOpenExamTraps, onStudyObjective } = handlers
+  switch (action?.kind) {
+    case 'trapDrill':
+      onOpenTrapDrill?.(action.payload)
+      break
+    case 'examTraps':
+      onOpenExamTraps?.(action.payload)
+      break
+    case 'study':
+      if (action.payload?.objectiveId) onStudyObjective?.(action.payload.objectiveId)
+      break
+    default:
+      break
+  }
+}
+
+/** Resolve + dispatch a trap weakness row tap. */
+export function trapWeakTap(trapLabel, missed, handlers) {
+  executeTrapWeakAction(resolveTrapWeakAction(trapLabel, missed), handlers)
 }

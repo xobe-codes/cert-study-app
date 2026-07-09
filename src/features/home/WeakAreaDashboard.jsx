@@ -7,6 +7,7 @@ import HomeSectionLabel from '../../home/HomeSectionLabel.jsx'
 import { buildWeakAreaRows } from './weakAreaDashboard.js'
 import { buildStudyObjectiveHandoff } from '../../study/studyObjectiveHandoff.js'
 import { loadAllPlacementRecords } from '../domainPlacement/domainPlacementStorage.js'
+import { resolveTrapWeakAction, executeTrapWeakAction } from '../../weaknessUtils.js'
 
 export default function WeakAreaDashboard({
   missed,
@@ -14,6 +15,7 @@ export default function WeakAreaDashboard({
   domainPassRecords,
   onSelectObjective,
   onOpenTrapDrill,
+  onOpenExamTraps,
   onOpenDomainPass,
   onOpenDomainPlacement,
   onOpenMock,
@@ -44,9 +46,22 @@ export default function WeakAreaDashboard({
 
   function handleRow(row) {
     switch (row.action) {
-      case 'trapDrill':
-        onOpenTrapDrill?.(row.payload)
+      case 'trapDrill': {
+        const trapLabel = row.payload?.trapLabel
+        if (trapLabel) {
+          executeTrapWeakAction(resolveTrapWeakAction(trapLabel, missed), {
+            onOpenTrapDrill,
+            onOpenExamTraps,
+            onStudyObjective: (objectiveId) => {
+              const handoff = buildStudyObjectiveHandoff(objectiveId, { tab: 'Practice' })
+              if (handoff) onSelectObjective?.(handoff)
+            },
+          })
+        } else {
+          onOpenTrapDrill?.(row.payload)
+        }
         break
+      }
       case 'domainPass':
         onOpenDomainPass?.(row.payload)
         break

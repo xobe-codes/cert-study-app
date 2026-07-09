@@ -5,6 +5,7 @@ import { loadDomainPassRecords, countPassedDomains } from '../domainPass/domainP
 import { loadAllPlacementRecords, countPlacementBaselines } from '../domainPlacement/domainPlacementStorage.js'
 import { countTestedOutDomains } from '../domainPlacement/domainBaselineProfile.js'
 import { placementDomainIds } from '../domainPlacement/placementBlueprints.js'
+import { resolveTrapDrillCku } from '../trapDrill/trapDrillQuestions.js'
 import { parseAppHash, syncAppHash } from '../../routing/appHashRouting.js'
 import { bumpSessionStudy } from '../../home/sessionRecap.js'
 import {
@@ -110,7 +111,14 @@ export function useAppNavigation() {
   const openTrapDrill = useCallback((prefill) => {
     const safe = studyModeOpts(prefill)
     const drillPrefill = safe && (safe.ckuId || safe.trapLabel || safe.objectiveId || safe.domainId) ? safe : null
-    setTrapDrillPrefill(drillPrefill)
+    if (drillPrefill) {
+      const resolved = resolveTrapDrillCku(drillPrefill)
+      setTrapDrillPrefill(resolved
+        ? { ...drillPrefill, ckuId: resolved.ckuId, trapLabel: resolved.trapLabel }
+        : drillPrefill)
+    } else {
+      setTrapDrillPrefill(null)
+    }
     navigateTo('trapdrill')
   }, [navigateTo])
 

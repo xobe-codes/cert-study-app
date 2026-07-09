@@ -17,7 +17,7 @@ import {
   loadRetentionHealth,
   pickStudyNext,
 } from '../../home/learnerHome.js'
-import { computeCkuWeakness, computeTrapWeakness, resolveCkuWeakAction } from '../../weaknessUtils.js'
+import { computeCkuWeakness, computeTrapWeakness, resolveCkuWeakAction, trapWeakTap } from '../../weaknessUtils.js'
 import { masteryBreakdown } from '../../lesson/masteryCriteria.js'
 import { loadCliStats } from '../../lab/cliStatsStorage.js'
 import { loadOfflineDetail } from '../export/offlineDetail.js'
@@ -142,7 +142,7 @@ function ContentCoverage({ onOpen, bare = false }) {
   return <div style={{ ...styles.card }}>{body}</div>
 }
 
-export default function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObjective, onOpenReview, onOpenStats, onOpenTrapDrill }) {
+export default function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObjective, onOpenReview, onOpenStats, onOpenTrapDrill, onOpenExamTraps }) {
   const [data, setData] = useState(null)
   const [openBankIds, setOpenBankIds] = useState(new Set())
 
@@ -253,6 +253,16 @@ export default function MetricsDashboard({ progress, missed, dueCount = 0, onBac
       return
     }
     onOpenTrapDrill?.(action.payload)
+  }
+  function handleTrapWeakClick(trap) {
+    trapWeakTap(trap, missed || [], {
+      onOpenTrapDrill,
+      onOpenExamTraps,
+      onStudyObjective: (objectiveId) => {
+        const handoff = buildStudyObjectiveHandoff(objectiveId, { tab: 'Practice' })
+        if (handoff) onSelectObjective?.(handoff)
+      },
+    })
   }
   const quadCell = (key, label, accent, hint) => (
     <div style={{ flex: '1 1 45%', background: accentColors(accent).dim, border: `1px solid ${accentColors(accent).border}`, borderRadius: 10, padding: 10 }}>
@@ -438,19 +448,22 @@ export default function MetricsDashboard({ progress, missed, dueCount = 0, onBac
         {trapWeak.length > 0 && (
           <div style={{ marginTop: 10 }}>
             <div style={{ ...styles.small, fontWeight: 600, marginBottom: 4 }}>Repeated exam traps</div>
-            {trapWeak.map(({ trap, count }) => (
+            {trapWeak.map(({ trap, count }) => {
+              const actionable = !!(onOpenTrapDrill || onOpenExamTraps || onSelectObjective)
+              return (
               <button
                 key={trap}
                 type="button"
-                disabled={!onOpenTrapDrill}
-                onClick={() => onOpenTrapDrill?.({ trapLabel: trap })}
-                style={{ ...weakRowBtn, cursor: onOpenTrapDrill ? 'pointer' : 'default' }}
+                disabled={!actionable}
+                onClick={() => handleTrapWeakClick(trap)}
+                style={{ ...weakRowBtn, cursor: actionable ? 'pointer' : 'default' }}
               >
                 <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>
                   {trap} — <span style={{ color: COLORS.amber }}>{count}×</span>
                 </span>
               </button>
-            ))}
+              )
+            })}
           </div>
         )}
       </MetricsCollapsibleSection>

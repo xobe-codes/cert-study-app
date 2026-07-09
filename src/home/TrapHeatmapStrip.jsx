@@ -1,14 +1,26 @@
 import React from 'react'
 import { COLORS } from '../ui/appTheme.js'
-import { computeTrapWeakness } from '../weaknessUtils.js'
+import { computeTrapWeakness, trapWeakTap } from '../weaknessUtils.js'
+import { buildStudyObjectiveHandoff } from '../study/studyObjectiveHandoff.js'
 import OverflowMarquee from '../components/OverflowMarquee.jsx'
 import { homeAccentStrip, homePill, homeSectionLabel } from './homeUi.js'
 
-export default function TrapHeatmapStrip({ missed, onOpenTrapDrill, onOpenMissed }) {
+export default function TrapHeatmapStrip({ missed, onOpenTrapDrill, onOpenExamTraps, onOpenMissed, onSelectObjective }) {
   const traps = computeTrapWeakness(missed || []).slice(0, 5)
   if (!traps.length) return null
 
   const maxCount = traps[0]?.count || 1
+
+  function handleTrapTap(trap) {
+    trapWeakTap(trap, missed, {
+      onOpenTrapDrill,
+      onOpenExamTraps,
+      onStudyObjective: (objectiveId) => {
+        const handoff = buildStudyObjectiveHandoff(objectiveId, { tab: 'Practice' })
+        if (handoff) onSelectObjective?.(handoff)
+      },
+    })
+  }
 
   return (
     <div style={{ marginBottom: 16 }}>
@@ -32,7 +44,7 @@ export default function TrapHeatmapStrip({ missed, onOpenTrapDrill, onOpenMissed
               key={trap}
               type="button"
               className="ccna-hover"
-              onClick={() => onOpenTrapDrill?.({ trapLabel: trap })}
+              onClick={() => handleTrapTap(trap)}
               style={{
                 ...homeAccentStrip('rose'),
                 padding: '8px 12px',

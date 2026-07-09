@@ -438,7 +438,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         />
       )}
 
-      <TrapHeatmapStrip missed={missed} onOpenTrapDrill={onOpenTrapDrill} onOpenMissed={onOpenMissed} />
+      <TrapHeatmapStrip missed={missed} onOpenTrapDrill={onOpenTrapDrill} onOpenExamTraps={onOpenExamTraps} onOpenMissed={onOpenMissed} onSelectObjective={onSelectObjective} />
 
       <ExamTrapWidget />
 
@@ -452,6 +452,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         domainPassRecords={domainPassRecords}
         onSelectObjective={onSelectObjective}
         onOpenTrapDrill={onOpenTrapDrill}
+        onOpenExamTraps={onOpenExamTraps}
         onOpenDomainPass={onOpenDomainPass}
         onOpenDomainPlacement={onOpenDomainPlacement}
         onOpenMock={onOpenMock}

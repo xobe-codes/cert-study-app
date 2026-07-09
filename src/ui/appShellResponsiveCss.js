@@ -553,6 +553,18 @@ export function buildAppShellResponsiveCss(colors) {
     .command-hub-studio .command-hub-list {
       max-height: none;
     }
+    .command-hub-domain-section {
+      min-width: 0;
+    }
+    .command-hub-domain-section__header {
+      min-height: 40px;
+      touch-action: manipulation;
+    }
+    .command-hub-primary-tabs,
+    .command-hub-device-filters,
+    .command-hub-domain-filters {
+      min-width: 0;
+    }
     .study-lens-search:focus {
       outline: 2px solid ${colors.skyBorder};
       outline-offset: 1px;
