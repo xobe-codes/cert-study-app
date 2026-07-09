@@ -5,6 +5,7 @@ import { gradeQuestion, buildMissedEntry } from '../../questionUtils.js'
 import { COLORS, styles } from '../../ui/appTheme.js'
 import McChoices from '../../components/McChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
+import { McChoiceShuffleProvider } from '../../context/McChoiceShuffleContext.jsx'
 import { QuestionMeta } from '../../components/QuizQuestionChrome.jsx'
 import Spinner from '../../components/Spinner.jsx'
 import ErrorBox from '../../components/ErrorBox.jsx'
@@ -219,6 +220,7 @@ export default function DomainPlacementSession({
         <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>
           {q.question}
         </div>
+        <McChoiceShuffleProvider q={q}>
         <McChoices q={q} selected={selected} revealed={isRevealed} onSelect={selectChoice} />
         {isRevealed && (
           <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `2px solid ${isCorrect ? COLORS.mintBorder : COLORS.rose}` }}>
@@ -228,6 +230,7 @@ export default function DomainPlacementSession({
             <AnswerReview q={q} selected={selected} objectiveId={q.objectiveId} />
           </div>
         )}
+        </McChoiceShuffleProvider>
       </div>
       {isRevealed && (
         <button type="button" style={styles.primaryBtn} onClick={next}>

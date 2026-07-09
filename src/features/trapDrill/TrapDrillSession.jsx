@@ -3,6 +3,7 @@ import { gradeQuestion, randomizeQuestionOrder } from '../../questionUtils.js'
 import { COLORS, styles } from '../../ui/appTheme.js'
 import McChoices from '../../components/McChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
+import { McChoiceShuffleProvider } from '../../context/McChoiceShuffleContext.jsx'
 import { applyAnswerReviewToQuestion } from '../../answerReviewLogic.js'
 import {
   getTrapDrillQuestions,
@@ -170,6 +171,7 @@ export default function TrapDrillSession({ prefill, onBack }) {
         <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}>
           {current.question}
         </div>
+        <McChoiceShuffleProvider q={enriched}>
         <McChoices q={enriched} selected={selected} revealed={revealed} onSelect={selectChoice} />
         {revealed && (
           <div
@@ -186,6 +188,7 @@ export default function TrapDrillSession({ prefill, onBack }) {
             <AnswerReview q={enriched} selected={selected} />
           </div>
         )}
+        </McChoiceShuffleProvider>
       </div>
       {revealed && (
         <button type="button" style={styles.primaryBtn} onClick={next}>

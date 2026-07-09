@@ -42,4 +42,44 @@ test.describe('MC choice shuffle smoke', () => {
     await page.getByRole('radio', { name: /100/ }).first().click()
     await expect(page.getByText(/Correct/i).first()).toBeVisible({ timeout: 5000 })
   })
+
+  test('meta distractors stay pinned at bottom when shuffled', async ({ page }) => {
+    const META_Q = {
+      id: 'shuffle-smoke-meta-q1',
+      question: 'Which are valid HSRP states?',
+      choices: ['Init', 'Listen', 'Speak', 'All of the above'],
+      correctIndex: 3,
+      explanation: 'All listed states are valid HSRP states.',
+      type: 'definition',
+      difficulty: 'easy',
+      concept: 'hsrp states',
+    }
+
+    await page.goto('/')
+    await page.waitForFunction(() => typeof window.storage?.getItem === 'function')
+    await page.evaluate(async (q) => {
+      const { seedDueReviewBank } = await import('/src/quiz/srsReview.js')
+      await window.storage.setItem('ccna_onboard_done_v1', true)
+      await window.storage.setItem('ccna_tour_done_v1', true)
+      await seedDueReviewBank('3.5', [q])
+    }, META_Q)
+
+    await page.goto('/#/review')
+    await expect(page.getByRole('heading', { name: 'Daily Review' })).toBeVisible({ timeout: 15_000 })
+
+    const group = page.locator('.mc-choices[data-choice-shuffle="on"]')
+    await expect(group).toBeVisible({ timeout: 10_000 })
+
+    const labels = await group.locator('[role="radio"]').allTextContents()
+    expect(labels[labels.length - 1]).toMatch(/all of the above/i)
+
+    await page.getByRole('radio', { name: /all of the above/i }).click()
+    await expect(page.getByText(/Correct/i).first()).toBeVisible({ timeout: 5000 })
+
+    const lastRadio = group.locator('[role="radio"]').last()
+    const lastLetter = await lastRadio.locator('span').first().textContent()
+    const letterMatch = lastLetter?.match(/^([A-D])\./)
+    expect(letterMatch).toBeTruthy()
+    await expect(page.getByText(new RegExp(`CORRECT ANSWER:\\s*${letterMatch[1]}`, 'i'))).toBeVisible()
+  })
 })

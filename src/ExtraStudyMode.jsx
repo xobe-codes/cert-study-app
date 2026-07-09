@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { gradeQuestion, isMcQuestion, randomizeQuestionOrder } from './questionUtils.js'
 import { applyAnswerReviewToQuestion } from './answerReviewLogic.js'
+import { McChoiceShuffleProvider } from './context/McChoiceShuffleContext.jsx'
 import { getShelvedPool, getShelvedStats, getPromoteHint } from './data/shelvedStudy.js'
 import StudyModeHeader from './components/StudyModeHeader.jsx'
 
@@ -75,27 +76,28 @@ export default function ExtraStudyMode({
           <div style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.55, whiteSpace: 'pre-wrap', marginBottom: 12 }}>{q.question}</div>
 
           {isMcQuestion(q) ? (
-            <McChoices q={q} selected={selected} revealed={revealed} onSelect={(i) => {
-              if (revealed) return
-              setSelected(i)
-              setRevealed(true)
-            }} />
+            <McChoiceShuffleProvider q={q}>
+              <McChoices q={q} selected={selected} revealed={revealed} onSelect={(i) => {
+                if (revealed) return
+                setSelected(i)
+                setRevealed(true)
+              }} />
+              {revealed && (
+                <div style={{ marginTop: 10, padding: 12, borderRadius: 10, background: COLORS.surface, border: `1px solid ${COLORS.border}` }}>
+                  <div style={{ fontWeight: 700, color: gradeQuestion(q, selected) ? COLORS.mint : COLORS.rose, marginBottom: 6, fontSize: 'var(--ccna-type-sm)' }}>
+                    {gradeQuestion(q, selected) ? 'Correct' : 'Incorrect'}
+                  </div>
+                  <AnswerReview q={applyAnswerReviewToQuestion(q)} selected={selected} />
+                  <div style={{ marginTop: 10, padding: 10, borderRadius: 8, background: accentColors('amber').dim, border: `1px solid ${accentColors('amber').border}` }}>
+                    <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: accentColors('amber').text, marginBottom: 4 }}>HOW TO PROMOTE TO MAIN BANK</div>
+                    <div style={{ fontSize: 'var(--ccna-type-xs)', lineHeight: 1.45, color: COLORS.silver }}>{getPromoteHint(q)}</div>
+                    {q.notes && <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 4 }}>Note: {q.notes}</div>}
+                  </div>
+                </div>
+              )}
+            </McChoiceShuffleProvider>
           ) : (
             <div style={styles.small}>This question type is not yet supported in Extra Study.</div>
-          )}
-
-          {revealed && isMcQuestion(q) && (
-            <div style={{ marginTop: 10, padding: 12, borderRadius: 10, background: COLORS.surface, border: `1px solid ${COLORS.border}` }}>
-              <div style={{ fontWeight: 700, color: gradeQuestion(q, selected) ? COLORS.mint : COLORS.rose, marginBottom: 6, fontSize: 'var(--ccna-type-sm)' }}>
-                {gradeQuestion(q, selected) ? 'Correct' : 'Incorrect'}
-              </div>
-              <AnswerReview q={applyAnswerReviewToQuestion(q)} selected={selected} />
-              <div style={{ marginTop: 10, padding: 10, borderRadius: 8, background: accentColors('amber').dim, border: `1px solid ${accentColors('amber').border}` }}>
-                <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: accentColors('amber').text, marginBottom: 4 }}>HOW TO PROMOTE TO MAIN BANK</div>
-                <div style={{ fontSize: 'var(--ccna-type-xs)', lineHeight: 1.45, color: COLORS.silver }}>{getPromoteHint(q)}</div>
-                {q.notes && <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 4 }}>Note: {q.notes}</div>}
-              </div>
-            </div>
           )}
         </div>
       )}

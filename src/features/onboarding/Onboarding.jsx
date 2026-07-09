@@ -11,6 +11,7 @@ import { useNavHint } from '../../components/NavHintProvider.jsx'
 import { NAV_HINT_KEYS } from '../../ui/navHintConfig.js'
 import McChoices from '../../components/McChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
+import { McChoiceShuffleProvider } from '../../context/McChoiceShuffleContext.jsx'
 import { applyAnswerReviewToQuestion } from '../../answerReviewLogic.js'
 import { QuizRichText, QuestionMeta, OrderingQuestion, CliAnswerInput } from '../../components/QuizQuestionChrome.jsx'
 import Spinner from '../../components/Spinner.jsx'
@@ -175,6 +176,7 @@ export default function Onboarding({ onComplete, onSkip }) {
         <div style={styles.card}>
           <QuestionMeta q={current} />
           <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><QuizRichText text={current.question} /></div>
+          <McChoiceShuffleProvider q={current} enabled={!ordering && !cli}>
           {ordering ? (
             <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? current.orderItems : null} />
           ) : cli ? (
@@ -193,6 +195,7 @@ export default function Onboarding({ onComplete, onSkip }) {
               />
             </div>
           )}
+          </McChoiceShuffleProvider>
         </div>
         {ordering && !revealed && <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitOrder}>Check order</button>}
         {cli && !revealed && <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitCli} disabled={!cliAnswer.trim()}>Check command</button>}

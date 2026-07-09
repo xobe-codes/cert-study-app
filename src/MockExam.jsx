@@ -27,6 +27,7 @@ import { useMasteryProgress } from './features/progress/MasteryProgressContext.j
 import { aggregateSessionByObjective, ENGAGEMENT_KINDS } from './features/progress/masteryEngagement.js'
 import McChoices from './components/McChoices.jsx'
 import AnswerReview from './components/AnswerReview.jsx'
+import { McChoiceShuffleProvider } from './context/McChoiceShuffleContext.jsx'
 import { summarizeWrongTraps } from './missed/missedTrapGroups.js'
 import { computeCkuWeakness } from './weaknessUtils.js'
 import { applyAnswerReviewToQuestion, inferTrapForChoice } from './answerReviewLogic.js'
@@ -538,6 +539,7 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
         {q.objectiveId && <div style={{ ...styles.small, marginBottom: 8 }}>Objective {q.objectiveId}</div>}
         <div style={styles.card}>
           <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>{q.question}</div>
+          <McChoiceShuffleProvider q={q}>
           <McChoices q={q} selected={selected} revealed onSelect={() => {}} />
           <div
             className="ccna-quiz-reveal"
@@ -552,6 +554,7 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
             </div>
             <AnswerReview q={q} selected={selected} hideExamTip={examMode && isStudyMode} onOpenLab={onOpenLab} />
           </div>
+          </McChoiceShuffleProvider>
         </div>
         <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
           <button style={styles.secondaryBtn} disabled={current === 0} onClick={() => setCurrent(c => Math.max(0, c - 1))}>Previous</button>
@@ -594,6 +597,7 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
       </div>
       <div style={styles.card}>
         <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>{q.question}</div>
+        <McChoiceShuffleProvider q={q}>
         <McChoices q={q} selected={selected ?? null} revealed={isCurrentRevealed} onSelect={selectChoice} />
         {isStudyMode && !isCurrentRevealed && (
           <div style={{ ...styles.small, marginTop: 10, textAlign: 'center', color: COLORS.silverMid }}>
@@ -620,6 +624,7 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
             <AnswerReview q={q} selected={selected} hideExamTip={examMode && isStudyMode} onOpenLab={onOpenLab} />
           </div>
         )}
+        </McChoiceShuffleProvider>
       </div>
       <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
         <button style={styles.secondaryBtn} disabled={current === 0} onClick={() => setCurrent(c => Math.max(0, c - 1))}>Previous</button>

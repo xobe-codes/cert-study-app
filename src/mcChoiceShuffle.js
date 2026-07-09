@@ -2,6 +2,28 @@
 
 import { isMcQuestion } from './questionUtils.js'
 
+/** Meta distractors that must stay pinned at the bottom (exam convention). */
+export function isMcMetaChoice(text) {
+  const t = String(text || '').trim()
+  if (!t) return false
+  if (/^(all|none) of the above\.?$/i.test(t)) return true
+  // Letter-referenced combos only — avoids pinning content like "Both source and destination".
+  if (/^both\s+[A-D]\s+and\s+[A-D]/i.test(t)) return true
+  if (/^[A-D]\s+and\s+[A-D]\s+only/i.test(t)) return true
+  return false
+}
+
+/** Split choice indices into shufflable vs pinned-bottom meta rows. */
+export function partitionMcChoiceIndices(choices) {
+  const regular = []
+  const meta = []
+  ;(choices || []).forEach((choice, i) => {
+    if (isMcMetaChoice(choice)) meta.push(i)
+    else regular.push(i)
+  })
+  return { regular, meta }
+}
+
 /** Fisher–Yates permutation: result[displayIndex] = originalIndex */
 export function buildChoicePermutation(length, rng = Math.random) {
   const perm = Array.from({ length }, (_, i) => i)
@@ -10,6 +32,19 @@ export function buildChoicePermutation(length, rng = Math.random) {
     ;[perm[i], perm[j]] = [perm[j], perm[i]]
   }
   return perm
+}
+
+/**
+ * Build display permutation: shuffle regular choices, pin meta choices at bottom
+ * in stable original-index order. permutation[displayIdx] = originalIdx.
+ */
+export function buildChoicePermutationForChoices(choices, rng = Math.random) {
+  const list = choices || []
+  const { regular, meta } = partitionMcChoiceIndices(list)
+  if (regular.length === 0) return [...meta]
+  if (meta.length === 0) return buildChoicePermutation(list.length, rng)
+  const shuffledRegular = buildChoicePermutation(regular.length, rng).map(i => regular[i])
+  return [...shuffledRegular, ...meta]
 }
 
 /** Map original choiceIndex → display row index. */
@@ -64,7 +99,7 @@ export function choicePermutationForQuestion(q, seed) {
     state = (state * 1664525 + 1013904223) >>> 0
     return state / 0x100000000
   }
-  return buildChoicePermutation(len, rng)
+  return buildChoicePermutationForChoices(q.choices, rng)
 }
 
 export function hashQuestionShuffleSeed(q) {

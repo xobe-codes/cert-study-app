@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { isMcQuestion } from '../questionUtils.js'
 import { getRevealedChoiceLayout } from '../mcChoicesLogic.js'
 import { useMcChoiceShuffle } from '../hooks/useMcChoiceShuffle.js'
+import { useMcChoiceShuffleContext } from '../context/McChoiceShuffleContext.jsx'
 import { COLORS, styles } from '../ui/appTheme.js'
 
 function choiceStyle(idx, { revealed, selected, correctIndex }) {
@@ -77,7 +78,9 @@ export default function McChoices({
 }) {
   const groupRef = useRef(null)
   const [othersOpen, setOthersOpen] = useState(false)
-  const { displayQ, toCanonicalIndex, toDisplayIndex, enabled: shuffled } = useMcChoiceShuffle(q, { enabled: shuffleChoices })
+  const ctxShuffle = useMcChoiceShuffleContext()
+  const localShuffle = useMcChoiceShuffle(q, { enabled: shuffleChoices && !ctxShuffle })
+  const { displayQ, toCanonicalIndex, toDisplayIndex, enabled: shuffled } = ctxShuffle || localShuffle
   const isMc = isMcQuestion(q)
   const choiceCount = displayQ?.choices?.length || 0
   const displaySelected = selected == null ? null : toDisplayIndex(selected)

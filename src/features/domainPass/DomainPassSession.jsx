@@ -6,6 +6,7 @@ import { isMcQuestion, gradeQuestion, buildMissedEntry } from '../../questionUti
 import { COLORS, styles } from '../../ui/appTheme.js'
 import McChoices from '../../components/McChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
+import { McChoiceShuffleProvider } from '../../context/McChoiceShuffleContext.jsx'
 import { summarizeWrongTraps } from '../../missed/missedTrapGroups.js'
 import MockExamDebriefActions from '../mockExam/MockExamDebriefActions.jsx'
 import StudyModeHeader from '../../components/StudyModeHeader.jsx'
@@ -329,6 +330,7 @@ export default function DomainPassSession({
         <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>
           {q.question}
         </div>
+        <McChoiceShuffleProvider q={q}>
         <McChoices q={q} selected={selected ?? null} revealed={isCurrentRevealed} onSelect={selectChoice} />
         {!isCurrentRevealed && (
           <div style={{ ...styles.small, marginTop: 10, textAlign: 'center', color: COLORS.silverMid }}>
@@ -350,6 +352,7 @@ export default function DomainPassSession({
             <AnswerReview q={q} selected={selected} hideExamTip={examMode} onOpenLab={onOpenLab} />
           </div>
         )}
+        </McChoiceShuffleProvider>
       </div>
       <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
         <button type="button" style={styles.secondaryBtn} disabled={current === 0} onClick={() => setCurrent(c => Math.max(0, c - 1))}>Previous</button>

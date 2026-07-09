@@ -11,6 +11,7 @@ import QuestionFlagPanel from './QuestionFlagPanel.jsx'
 import StemReplayCTA from '../features/stemReplay/StemReplayCTA.jsx'
 import QuestionUnderReviewBanner from './QuestionUnderReviewBanner.jsx'
 import { useCompactMobile } from '../hooks/useCompactMobile.js'
+import { useMcChoiceShuffleContext } from '../context/McChoiceShuffleContext.jsx'
 import { COLORS, accentColors } from '../ui/appTheme.js'
 
 const CHOICE_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F']
@@ -108,6 +109,11 @@ function WrongChoiceReview({ q, item }) {
 /** Post-reveal breakdown — correct + your pick expanded; other distractors collapsed. */
 export default function AnswerReview({ q, selected, cliAnswer, orderAnswer, hideExamTip = false, objectiveId, showQuestionFlag = false, onOpenLab }) {
   const compactMobile = useCompactMobile()
+  const shuffle = useMcChoiceShuffleContext()
+  const displayLetter = canonicalIdx => {
+    const displayIdx = shuffle?.toDisplayIndex ? shuffle.toDisplayIndex(canonicalIdx) : canonicalIdx
+    return choiceLetterForIndex(displayIdx) || CHOICE_LETTERS[displayIdx] || displayIdx
+  }
 
   if (isCliQuestion(q)) {
     const correct = correctAnswerLabel(q)
@@ -195,11 +201,11 @@ export default function AnswerReview({ q, selected, cliAnswer, orderAnswer, hide
   return (
     <div className={`ccna-answer-review${compactMobile ? ' ccna-answer-review--compact' : ''}`} style={{ marginTop: compactMobile ? 6 : 8, minWidth: 0 }}>
       <QuestionUnderReviewBanner questionId={q?.id} />
-      <ReviewBlock icon="✅" title={`CORRECT ANSWER: ${CHOICE_LETTERS[correctIdx] || correctIdx}`} accent="mint" collapsible={selectedWrongIdx != null || compactMobile} defaultOpen={selectedWrongIdx == null && !compactMobile}>
+      <ReviewBlock icon="✅" title={`CORRECT ANSWER: ${displayLetter(correctIdx)}`} accent="mint" collapsible={selectedWrongIdx != null || compactMobile} defaultOpen={selectedWrongIdx == null && !compactMobile}>
         <RichText text={ar?.correct?.explanation || q.explanation} />
       </ReviewBlock>
       {yourWrong.map(item => {
-        const letter = choiceLetterForIndex(item.choiceIndex) || CHOICE_LETTERS[item.choiceIndex] || item.choiceIndex
+        const letter = displayLetter(item.choiceIndex)
         const choiceText = q.choices?.[item.choiceIndex] || ''
         return (
           <ReviewBlock
@@ -221,7 +227,7 @@ export default function AnswerReview({ q, selected, cliAnswer, orderAnswer, hide
           defaultOpen={false}
         >
           {otherWrong.map(item => {
-            const letter = choiceLetterForIndex(item.choiceIndex) || CHOICE_LETTERS[item.choiceIndex] || item.choiceIndex
+            const letter = displayLetter(item.choiceIndex)
             const choiceText = q.choices?.[item.choiceIndex] || ''
             return (
               <ReviewBlock

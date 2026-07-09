@@ -11,6 +11,7 @@ import { computeMastery } from '../netUtils.js'
 import { preloadCleanBank } from '../data/cleanQuestionAdapter.js'
 import McChoices from '../components/McChoices.jsx'
 import AnswerReview from '../components/AnswerReview.jsx'
+import { McChoiceShuffleProvider } from '../context/McChoiceShuffleContext.jsx'
 import ErrorBox from '../components/ErrorBox.jsx'
 import Spinner from '../components/Spinner.jsx'
 import { CliAnswerInput } from '../components/QuizQuestionChrome.jsx'
@@ -692,6 +693,7 @@ export function QuizTab({
       <div style={styles.card}>
         <QuestionMeta q={current} />
         <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={current.question} /></div>
+        <McChoiceShuffleProvider q={current} enabled={!ordering && !cli}>
         {ordering ? (
           <OrderingQuestion
             items={orderDraft}
@@ -725,6 +727,7 @@ export function QuizTab({
             })()}
           </div>
         )}
+        </McChoiceShuffleProvider>
       </div>
       {ordering && !revealed && (
         <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitOrder}>Check order</button>

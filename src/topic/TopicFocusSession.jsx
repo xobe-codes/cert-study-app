@@ -12,6 +12,7 @@ import { buildTopicFocusQueue } from './topicFocusQuiz.js'
 import Spinner from '../components/Spinner.jsx'
 import McChoices from '../components/McChoices.jsx'
 import AnswerReview from '../components/AnswerReview.jsx'
+import { McChoiceShuffleProvider } from '../context/McChoiceShuffleContext.jsx'
 import { applyAnswerReviewToQuestion } from '../answerReviewLogic.js'
 import { QuestionMeta, QuizRichText, OrderingQuestion, CliAnswerInput } from '../components/QuizQuestionChrome.jsx'
 import StudyModeHeader from '../components/StudyModeHeader.jsx'
@@ -178,6 +179,7 @@ export default function TopicFocusSession({ config, onBack, onMissed, onDone }) 
         <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>
           <QuizRichText text={current.question} />
         </div>
+        <McChoiceShuffleProvider q={current} enabled={!ordering && !cli}>
         {ordering ? (
           <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? current.orderItems : null} />
         ) : cli ? (
@@ -198,6 +200,7 @@ export default function TopicFocusSession({ config, onBack, onMissed, onDone }) 
             />
           </div>
         )}
+        </McChoiceShuffleProvider>
       </div>
       {ordering && !revealed && (
         <button type="button" style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitOrder}>Check order</button>
