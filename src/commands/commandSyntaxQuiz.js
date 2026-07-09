@@ -1,5 +1,6 @@
-import { COMMAND_DRILLS } from '../lab/commandDrills.js'
-import { gradeCliAnswerList } from '../lab/cliGrading.js'
+import { cliStringsEquivalent } from '../lab/cliGrading.js'
+import { allSkillQuestions } from '../data/ccnaSkillQuestions.js'
+import { isIosOrderingQuestion } from './questionPlacement.js'
 import { MODE_LABEL } from './commandWorkflows.js'
 
 const MODE_OPTIONS = Object.keys(MODE_LABEL)
@@ -23,12 +24,6 @@ function shuffle(arr, rng = Math.random) {
   return out
 }
 
-function firstSentence(text) {
-  const s = String(text || '').trim()
-  const m = s.match(/^[^.!?]+[.!?]?/)
-  return (m ? m[0] : s).slice(0, 140)
-}
-
 function normalizeMode(mode) {
   const m = String(mode || '').trim()
   if (MODE_LABEL[m]) return m
@@ -42,38 +37,29 @@ function modeDistractors(correct) {
   return shuffle(pool).slice(0, 3)
 }
 
-export function buildDrillQuizItems() {
-  const items = []
-  for (const [objectiveId, drills] of Object.entries(COMMAND_DRILLS)) {
-    drills.forEach((d, i) => {
-      const answers = Array.isArray(d.answer) ? d.answer : [d.answer]
-      items.push({
-        id: `drill-${objectiveId}-${i}`,
-        type: 'type_command',
-        category: inferQuizCategory(d.prompt, answers[0]),
-        objectiveId,
-        prompt: d.prompt,
-        answers,
-        hint: d.hint,
-        displayAnswer: answers[0],
-      })
-    })
-  }
-  return items
+function inferOrderCategory(q) {
+  const text = `${q.question} ${(q.orderItems || []).join(' ')}`.toLowerCase()
+  if (/vlan|trunk|switchport|spanning|etherchannel/.test(text)) return 'switching'
+  if (/ospf|route|hsrp|standby|eigrp/.test(text)) return 'routing'
+  if (/nat|dhcp|helper/.test(text)) return 'services'
+  if (/acl|ssh|username|enable|aaa/.test(text)) return 'security'
+  return 'navigation'
 }
 
-export function buildVerifyQuizItems(commands, { limit = 24 } = {}) {
-  const verify = commands.filter(c => c.category === 'verify' && c.purpose && c.command.length < 80)
-  return shuffle(verify).slice(0, limit).map(cmd => ({
-    id: `verify-${cmd.id}`,
-    type: 'type_command',
-    category: 'verify',
-    objectiveId: cmd.objectiveIds?.[0] || null,
-    prompt: `Type the verify command: ${firstSentence(cmd.purpose)}`,
-    answers: [cmd.command, ...(cmd.aliases || [])].filter(Boolean),
-    hint: cmd.syntaxNotes || `Mode: ${cmd.mode}`,
-    displayAnswer: cmd.command,
-  }))
+export function buildSyntaxOrderItems() {
+  return allSkillQuestions()
+    .filter(isIosOrderingQuestion)
+    .map(q => ({
+      id: `order-${q.id}`,
+      type: 'order_steps',
+      category: inferOrderCategory(q),
+      objectiveId: q.objectiveId,
+      prompt: q.question,
+      orderItems: [...q.orderItems],
+      orderAccept: q.orderAccept,
+      hint: q.explanation,
+      displayAnswer: q.orderItems.join(' → '),
+    }))
 }
 
 export function buildModeQuizItems(commands, { limit = 16 } = {}) {
@@ -91,24 +77,14 @@ export function buildModeQuizItems(commands, { limit = 16 } = {}) {
       type: 'pick_mode',
       category: 'modes',
       objectiveId: cmd.objectiveIds?.[0] || null,
-      prompt: `Which IOS mode is required for this command?`,
+      prompt: 'Which IOS mode is required for this command?',
       command: cmd.command,
       options,
       answer,
-      hint: cmd.purpose ? firstSentence(cmd.purpose) : undefined,
+      hint: cmd.purpose ? String(cmd.purpose).split(/[.!?]/)[0] : undefined,
       displayAnswer: answer,
     }
   })
-}
-
-function inferQuizCategory(prompt, answer) {
-  const p = `${prompt} ${answer}`.toLowerCase()
-  if (/vlan|trunk|switchport|spanning|etherchannel|port-security/.test(p)) return 'switching'
-  if (/ospf|route|hsrp|standby|eigrp/.test(p)) return 'routing'
-  if (/nat|dhcp|helper/.test(p)) return 'services'
-  if (/acl|ssh|username|enable secret|access-list|login/.test(p)) return 'security'
-  if (/^show |^sh /.test(answer)) return 'verify'
-  return 'navigation'
 }
 
 export function buildSyntaxQuizSession(index, {
@@ -117,10 +93,9 @@ export function buildSyntaxQuizSession(index, {
   seed = Date.now(),
 } = {}) {
   const rng = mulberry32(typeof seed === 'number' ? seed : 42)
-  const drill = buildDrillQuizItems()
-  const verify = buildVerifyQuizItems(index.commands, { limit: 40 })
+  const order = buildSyntaxOrderItems()
   const mode = buildModeQuizItems(index.commands, { limit: 30 })
-  let pool = shuffle([...drill, ...verify, ...mode], rng)
+  let pool = shuffle([...order, ...mode], rng)
 
   if (category && category !== 'all') {
     const filtered = pool.filter(q => q.category === category)
@@ -131,7 +106,7 @@ export function buildSyntaxQuizSession(index, {
   const seen = new Set()
   for (const q of pool) {
     if (picked.length >= count) break
-    const key = q.type === 'pick_mode' ? q.command : q.displayAnswer
+    const key = q.type === 'pick_mode' ? q.command : q.id
     if (seen.has(key)) continue
     seen.add(key)
     picked.push(q)
@@ -142,15 +117,21 @@ export function buildSyntaxQuizSession(index, {
 
 export function gradeSyntaxQuestion(question, rawAnswer) {
   if (!question) return false
-  const answer = String(rawAnswer || '').trim()
-  if (!answer) return false
 
   if (question.type === 'pick_mode') {
+    const answer = String(rawAnswer || '').trim()
     return normalizeMode(answer) === normalizeMode(question.answer)
   }
 
-  const accepted = question.answers || [question.displayAnswer]
-  return gradeCliAnswerList(answer, accepted)
+  if (question.type === 'order_steps') {
+    const given = Array.isArray(rawAnswer) ? rawAnswer : []
+    const expected = question.orderItems || []
+    if (given.length !== expected.length) return false
+    const alts = question.orderAccept || []
+    return given.every((item, i) => cliStringsEquivalent(item, expected[i], alts[i]))
+  }
+
+  return false
 }
 
 export function syntaxSessionSummary(results) {
@@ -162,3 +143,6 @@ export function syntaxSessionSummary(results) {
     pct: total ? Math.round((correct / total) * 100) : 0,
   }
 }
+
+// Re-export for tests that assert drill pool size lives in command drills module.
+export { buildDrillQuizItems } from './commandDrillQuiz.js'

@@ -8,6 +8,7 @@ import {
 } from './commandWorkflows.js'
 import CommandDetailPanel from './CommandDetailPanel.jsx'
 import CommandSyntaxCoach from './CommandSyntaxCoach.jsx'
+import CommandDrillCoach from './CommandDrillCoach.jsx'
 import StudyModeHeader from '../components/StudyModeHeader.jsx'
 
 const CATEGORY_FILTERS = [
@@ -81,7 +82,7 @@ export default function CommandHubStudio({ onBack, onSelectObjective }) {
       <StudyModeHeader
         title="Command Hub"
         onBack={onBack}
-        subtitle="CCNA IOS reference — search commands, syntax mnemonics, practice drills, and config workflows."
+        subtitle="CCNA IOS reference — command lookup, syntax coach, command drills, and config workflows."
       />
 
       <div className="command-hub-presets ccna-h-scroll" style={{ display: 'flex', gap: 6, overflowX: 'auto', marginBottom: 12, paddingBottom: 4 }}>
@@ -134,6 +135,7 @@ export default function CommandHubStudio({ onBack, onSelectObjective }) {
         {[
           { id: 'commands', label: `Commands (${index.commands.length})` },
           { id: 'syntax', label: 'Syntax coach' },
+          { id: 'drills', label: 'Command drills' },
           { id: 'workflows', label: `Workflows (${index.workflows.length})` },
         ].map(t => (
           <button key={t.id} type="button" onClick={() => { setTab(t.id); setDetailCommand(null) }}
@@ -185,6 +187,10 @@ export default function CommandHubStudio({ onBack, onSelectObjective }) {
 
         {tab === 'syntax' && (
           <CommandSyntaxCoach index={index} />
+        )}
+
+        {tab === 'drills' && (
+          <CommandDrillCoach index={index} />
         )}
 
         {tab === 'commands' && commandList.map(cmd => {

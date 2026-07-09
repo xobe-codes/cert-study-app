@@ -17,15 +17,14 @@ test.describe('Command Hub syntax coach', () => {
     await page.getByRole('button', { name: /Start 10-question syntax sprint/i }).click()
     await expect(page.getByText(/Question 1 \//i)).toBeVisible({ timeout: 15_000 })
 
-    const input = page.getByPlaceholder('Type IOS command…')
-    if (await input.isVisible().catch(() => false)) {
-      await input.fill('show ip route')
-      await page.getByRole('button', { name: 'Check' }).click()
-      await expect(page.getByText(/Correct|Expected:/i).first()).toBeVisible({ timeout: 10_000 })
-    } else {
-      await page.getByRole('radio').first().click()
-      await page.getByRole('button', { name: 'Check' }).click()
-      await expect(page.getByText(/Correct|Expected:/i).first()).toBeVisible({ timeout: 10_000 })
+    const modeRadio = page.getByRole('radio').first()
+    if (await modeRadio.isVisible().catch(() => false)) {
+      await modeRadio.click()
     }
+
+    const checkBtn = page.getByRole('button', { name: 'Check' })
+    await expect(checkBtn).toBeEnabled({ timeout: 10_000 })
+    await checkBtn.click()
+    await expect(page.getByText(/Correct|Expected:/i).first()).toBeVisible({ timeout: 10_000 })
   })
 })

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useLayoutEffect, useMemo, useState } from 'react'
 import { COLORS, styles } from '../ui/appTheme.js'
 import { SYNTAX_TIP_CATEGORIES, filterSyntaxTips } from './commandSyntaxTips.js'
 import {
@@ -7,11 +7,13 @@ import {
   syntaxSessionSummary,
 } from './commandSyntaxQuiz.js'
 import { MODE_LABEL } from './commandWorkflows.js'
+import { OrderingQuestion } from '../tabs/studyQuizShared.jsx'
+import { shuffleArrayCopy } from '../questionUtils.js'
 
 const QUIZ_FILTERS = [
   { id: 'all', label: 'Mixed' },
   { id: 'modes', label: 'Modes' },
-  { id: 'verify', label: 'Verify' },
+  { id: 'navigation', label: 'Step order' },
   { id: 'switching', label: 'Switching' },
   { id: 'routing', label: 'Routing' },
   { id: 'security', label: 'Security' },
@@ -24,6 +26,7 @@ export default function CommandSyntaxCoach({ index }) {
   const [session, setSession] = useState(null)
   const [qIdx, setQIdx] = useState(0)
   const [answer, setAnswer] = useState('')
+  const [orderDraft, setOrderDraft] = useState([])
   const [checked, setChecked] = useState(false)
   const [results, setResults] = useState([])
   const [showHint, setShowHint] = useState(false)
@@ -34,20 +37,30 @@ export default function CommandSyntaxCoach({ index }) {
   const isCorrect = checked && lastResult?.correct
   const finished = session && qIdx >= session.length && results.length === session.length
   const summary = finished ? syntaxSessionSummary(results) : null
+  const isOrdering = current?.type === 'order_steps'
 
   const startSession = useCallback(() => {
     const deck = buildSyntaxQuizSession(index, { count: 10, category: quizFilter })
     setSession(deck)
     setQIdx(0)
     setAnswer('')
+    setOrderDraft([])
     setChecked(false)
     setResults([])
     setShowHint(false)
   }, [index, quizFilter])
 
+  useLayoutEffect(() => {
+    if (current?.type === 'order_steps') {
+      setOrderDraft(shuffleArrayCopy(current.orderItems))
+      setAnswer('')
+    }
+  }, [current?.id, current?.type, current?.orderItems])
+
   function checkAnswer() {
     if (!current || checked) return
-    const correct = gradeSyntaxQuestion(current, answer)
+    const payload = isOrdering ? orderDraft : answer
+    const correct = gradeSyntaxQuestion(current, payload)
     setResults(r => [...r, { id: current.id, correct }])
     setChecked(true)
   }
@@ -60,9 +73,12 @@ export default function CommandSyntaxCoach({ index }) {
     }
     setQIdx(i => i + 1)
     setAnswer('')
+    setOrderDraft([])
     setChecked(false)
     setShowHint(false)
   }
+
+  const canCheck = isOrdering ? orderDraft.length > 0 : Boolean(answer.trim())
 
   return (
     <div className="command-syntax-coach">
@@ -123,7 +139,7 @@ export default function CommandSyntaxCoach({ index }) {
       {section === 'practice' && (
         <>
           <p style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, margin: '0 0 10px', lineHeight: 1.5 }}>
-            Type IOS commands or pick the correct mode — shorthand like <code style={{ color: COLORS.sky }}>gi0/1</code> and <code style={{ color: COLORS.sky }}>conf t</code> count.
+            Pick the correct IOS mode or order config steps — for typing full commands, use the <strong style={{ color: COLORS.silver }}>Command drills</strong> tab.
           </p>
 
           {!session && (
@@ -185,16 +201,11 @@ export default function CommandSyntaxCoach({ index }) {
                   })}
                 </div>
               ) : (
-                <input
-                  type="text"
-                  value={answer}
-                  onChange={e => setAnswer(e.target.value)}
-                  onKeyDown={e => { if (e.key === 'Enter' && !checked) checkAnswer() }}
-                  placeholder="Type IOS command…"
-                  disabled={checked}
-                  style={{ ...styles.input, width: '100%', boxSizing: 'border-box', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}
-                  autoComplete="off"
-                  spellCheck={false}
+                <OrderingQuestion
+                  items={orderDraft}
+                  onChange={setOrderDraft}
+                  revealed={checked}
+                  correctOrder={checked ? current.orderItems : null}
                 />
               )}
 
@@ -207,7 +218,7 @@ export default function CommandSyntaxCoach({ index }) {
               <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
                 {!checked && (
                   <>
-                    <button type="button" style={styles.primaryBtn} onClick={checkAnswer} disabled={!answer.trim()}>
+                    <button type="button" style={styles.primaryBtn} onClick={checkAnswer} disabled={!canCheck}>
                       Check
                     </button>
                     {current.hint && (
@@ -237,7 +248,7 @@ export default function CommandSyntaxCoach({ index }) {
                 {summary.correct}/{summary.total} correct ({summary.pct}%)
               </div>
               <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, marginBottom: 14 }}>
-                {summary.pct >= 80 ? 'Exam-ready syntax recall — keep the sprint habit.' : 'Review Tips & mnemonics, then retry weak categories.'}
+                {summary.pct >= 80 ? 'Exam-ready syntax structure — drill commands next.' : 'Review Tips & mnemonics, then retry weak categories.'}
               </div>
               <button type="button" style={{ ...styles.primaryBtn, width: '100%' }} onClick={() => { setSession(null); setQIdx(0); setResults([]) }}>
                 New sprint
