@@ -9,6 +9,8 @@ import { baselineBlueprintIsStale } from './placementBlueprintCoverage.js'
 import DomainBaselineStatusPill from './DomainBaselineStatusPill.jsx'
 import { isPlacementDomain } from './placementBlueprints.js'
 import { auditPlacementBlueprintCoverage } from './placementBlueprintCoverage.js'
+import { buildStudyObjectiveHandoff } from '../../study/studyObjectiveHandoff.js'
+import { DOMAIN_LEARNING_TAGLINE } from './domainLearningCopy.js'
 
 function formatDate(ts) {
   if (!ts) return null
@@ -18,13 +20,31 @@ function formatDate(ts) {
 function ObjectiveBaselineRow({ objective, profile, onStudyObjective, highlight }) {
   const status = profile?.status || 'not_checked'
   const isWeak = status === 'weak'
+  const isBuilding = status === 'building'
+  const isActionable = (isWeak || isBuilding) && onStudyObjective
+
+  function handleClick() {
+    if (!isActionable) return
+    if (isBuilding) {
+      const handoff = buildStudyObjectiveHandoff(objective.id, { tab: 'Quiz' })
+      onStudyObjective(handoff || objective.id)
+      return
+    }
+    onStudyObjective(objective.id)
+  }
+
+  const rowAccent = isWeak
+    ? { bg: COLORS.roseDim, border: COLORS.roseBorder, idColor: COLORS.rose, ctaColor: COLORS.rose, cta: 'Study →' }
+    : isBuilding
+      ? { bg: COLORS.amberDim, border: COLORS.amberBorder, idColor: COLORS.amber, ctaColor: COLORS.amber, cta: 'Quiz →' }
+      : null
 
   return (
     <button
       type="button"
-      className={`ccna-domain-baseline-row${highlight ? ' ccna-domain-baseline-row--weak' : ''}`}
-      disabled={!isWeak || !onStudyObjective}
-      onClick={() => isWeak && onStudyObjective?.(objective.id)}
+      className={`ccna-domain-baseline-row${highlight ? ' ccna-domain-baseline-row--weak' : ''}${isBuilding ? ' ccna-domain-baseline-row--building' : ''}`}
+      disabled={!isActionable}
+      onClick={handleClick}
       style={{
         display: 'flex',
         alignItems: 'center',
@@ -32,23 +52,23 @@ function ObjectiveBaselineRow({ objective, profile, onStudyObjective, highlight 
         width: '100%',
         textAlign: 'left',
         fontFamily: 'inherit',
-        padding: isWeak ? '10px 12px' : '6px 0',
-        borderRadius: isWeak ? 10 : 0,
-        background: isWeak ? COLORS.roseDim : 'transparent',
-        border: isWeak ? `1px solid ${COLORS.roseBorder}` : 'none',
-        marginBottom: isWeak ? 8 : 0,
-        cursor: isWeak && onStudyObjective ? 'pointer' : 'default',
+        padding: rowAccent ? '10px 12px' : '6px 0',
+        borderRadius: rowAccent ? 10 : 0,
+        background: rowAccent?.bg || 'transparent',
+        border: rowAccent ? `1px solid ${rowAccent.border}` : 'none',
+        marginBottom: rowAccent ? 8 : 0,
+        cursor: isActionable ? 'pointer' : 'default',
       }}
     >
       <DomainBaselineStatusPill status={status} compact />
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, minWidth: 0 }}>
-          <span style={{ flexShrink: 0, fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: isWeak ? COLORS.rose : COLORS.silverMid }}>
+          <span style={{ flexShrink: 0, fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: rowAccent?.idColor || COLORS.silverMid }}>
             {objective.id}
           </span>
           <OverflowMarquee
             text={objective.title}
-            style={{ fontSize: 'var(--ccna-type-xs)', color: isWeak ? COLORS.silver : COLORS.silverMid, fontWeight: isWeak ? 600 : 400 }}
+            style={{ fontSize: 'var(--ccna-type-xs)', color: rowAccent ? COLORS.silver : COLORS.silverMid, fontWeight: rowAccent ? 600 : 400 }}
           />
         </div>
         {profile?.pct != null && (
@@ -57,9 +77,9 @@ function ObjectiveBaselineRow({ objective, profile, onStudyObjective, highlight 
           </div>
         )}
       </div>
-      {isWeak && onStudyObjective && (
-        <span style={{ flexShrink: 0, color: COLORS.rose, fontWeight: 700, fontSize: 'var(--ccna-type-xs)' }}>
-          Study →
+      {rowAccent && (
+        <span style={{ flexShrink: 0, color: rowAccent.ctaColor, fontWeight: 700, fontSize: 'var(--ccna-type-xs)' }}>
+          {rowAccent.cta}
         </span>
       )}
     </button>
@@ -120,6 +140,9 @@ export default function DomainBaselinePanel({
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8, flexWrap: 'wrap', marginBottom: 8 }}>
         <div>
           <HomeSectionLabel color={COLORS.sky}>YOUR BASELINE</HomeSectionLabel>
+          <div style={{ ...homeBodySm, margin: '0 0 6px', color: COLORS.silverMid, lineHeight: 1.4 }}>
+            {DOMAIN_LEARNING_TAGLINE}
+          </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
             {hasBaseline ? (
               <>
@@ -262,6 +285,7 @@ export default function DomainBaselinePanel({
                   key={o.id}
                   objective={o}
                   profile={summary.objectiveProfiles[o.id]}
+                  onStudyObjective={onStudyObjective}
                 />
               ))}
             </div>

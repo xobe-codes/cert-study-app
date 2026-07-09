@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import { DOMAINS } from '../../data/ccnaDomains.js'
 import { COLORS, accentColors, styles } from '../../ui/appTheme.js'
 import {
   domainPassStatus,
   domainPassBadgeLabel,
+  sortDomainPassHubDomains,
 } from './domainPassConfig.js'
 import {
   loadDomainRecords,
@@ -11,6 +12,7 @@ import {
   setTimerEnabled,
   countPassedDomains,
 } from './domainPassStorage.js'
+import { loadAllPlacementRecords } from '../domainPlacement/domainPlacementStorage.js'
 import DomainPassCompleteCard from './DomainPassCompleteCard.jsx'
 import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import { useDomainCardLongPress } from './useDomainCardLongPress.js'
@@ -22,10 +24,19 @@ import {
   HOME_SECTION_GAP,
 } from '../../home/homeUi.js'
 import { isPlacementDomain } from '../domainPlacement/placementBlueprints.js'
+import { DOMAIN_LEARNING_TAGLINE, domainDisplayTitle } from '../domainPlacement/domainLearningCopy.js'
+import { PLACEMENT_BASELINE_REFRESH_EVENT } from '../../storageKeys.js'
 
 function formatAttemptDate(ts) {
   if (!ts) return '—'
   return new Date(ts).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })
+}
+
+function formatBaselineLine(placementRecord) {
+  const last = placementRecord?.lastAttempt
+  if (!last) return 'Baseline: not set'
+  if (last.testedOut) return `Baseline: ${last.pct}% tested out`
+  return `Baseline: ${last.pct}%`
 }
 
 /**
@@ -33,6 +44,7 @@ function formatAttemptDate(ts) {
  */
 export default function DomainPassHub({ onExit, onStartDomain, onOpenFocusPicker, onStartMockExam, onOpenSettings, onOpenDomainPlacement }) {
   const [records, setRecords] = useState({})
+  const [placementRecords, setPlacementRecords] = useState({})
   const [timerOn, setTimerOn] = useState(true)
   const [loaded, setLoaded] = useState(false)
 
@@ -40,15 +52,30 @@ export default function DomainPassHub({ onExit, onStartDomain, onOpenFocusPicker
 
   useEffect(() => {
     let cancelled = false
-    ;(async () => {
-      const [recs, timer] = await Promise.all([loadDomainRecords(), loadTimerEnabled()])
+    const refresh = async () => {
+      const [recs, placement, timer] = await Promise.all([
+        loadDomainRecords(),
+        loadAllPlacementRecords(),
+        loadTimerEnabled(),
+      ])
       if (cancelled) return
       setRecords(recs)
+      setPlacementRecords(placement || {})
       setTimerOn(timer)
       setLoaded(true)
-    })()
-    return () => { cancelled = true }
+    }
+    refresh()
+    window.addEventListener(PLACEMENT_BASELINE_REFRESH_EVENT, refresh)
+    return () => {
+      cancelled = true
+      window.removeEventListener(PLACEMENT_BASELINE_REFRESH_EVENT, refresh)
+    }
   }, [])
+
+  const sortedDomains = useMemo(
+    () => sortDomainPassHubDomains(DOMAINS, { placementRecords, passRecords: records }),
+    [placementRecords, records],
+  )
 
   const passedCount = countPassedDomains(records, DOMAINS)
   const progressPct = Math.round((passedCount / DOMAINS.length) * 100)
@@ -81,7 +108,7 @@ export default function DomainPassHub({ onExit, onStartDomain, onOpenFocusPicker
           />
         </div>
         <p style={{ ...homeBodySm, marginTop: 10, marginBottom: 0 }}>
-          Pass each domain at 80%+ to complete your blueprint. Tap a domain to start or retake. Long-press or use Focus topics to hone in on specific objectives.
+          {DOMAIN_LEARNING_TAGLINE}
         </p>
       </div>
 
@@ -114,13 +141,16 @@ export default function DomainPassHub({ onExit, onStartDomain, onOpenFocusPicker
       </div>
 
       <div role="group" aria-label="Domain pass cards">
-        {DOMAINS.map(domain => {
+        {sortedDomains.map(domain => {
           const record = records[domain.id]
+          const placementRecord = placementRecords[domain.id]
+          const hasBaseline = Boolean(placementRecord?.lastAttempt)
           const status = domainPassStatus(record)
           const badge = domainPassBadgeLabel(status)
           const accent = accentColors(domain.accent)
           const badgeAccent = status === 'passed' ? 'mint' : status === 'retake' ? 'amber' : 'silver'
           const actionLabel = status === 'not_started' ? 'Start' : 'Retake'
+          const title = domainDisplayTitle(domain)
 
           return (
             <div
@@ -141,7 +171,7 @@ export default function DomainPassHub({ onExit, onStartDomain, onOpenFocusPicker
                 type="button"
                 disabled={!loaded}
                 onClick={() => onStartDomain?.(domain.id)}
-                aria-label={`${domain.name} — ${badge} — ${actionLabel}`}
+                aria-label={`${title} — ${badge} — ${actionLabel}`}
                 style={{
                   display: 'block',
                   width: '100%',
@@ -157,7 +187,7 @@ export default function DomainPassHub({ onExit, onStartDomain, onOpenFocusPicker
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8, marginBottom: 6 }}>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, lineHeight: 1.35, marginBottom: 4 }}>
-                      {domain.name}
+                      {title}
                     </div>
                     <span style={homePill(domain.accent)}>{domain.weight}% exam weight</span>
                   </div>
@@ -165,6 +195,8 @@ export default function DomainPassHub({ onExit, onStartDomain, onOpenFocusPicker
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
                   <div style={{ ...homeBodySm, margin: 0 }}>
+                    {formatBaselineLine(placementRecord)}
+                    {' · '}
                     Best: {record?.bestPct != null ? `${record.bestPct}%` : '—'}
                     {' · '}
                     Last: {formatAttemptDate(record?.lastAt ?? record?.lastAttemptAt)}
@@ -191,7 +223,25 @@ export default function DomainPassHub({ onExit, onStartDomain, onOpenFocusPicker
                   Focus topics →
                 </button>
               )}
-              {isPlacementDomain(domain.id) && onOpenDomainPlacement && (
+              {isPlacementDomain(domain.id) && onOpenDomainPlacement && !hasBaseline && (
+                <button
+                  type="button"
+                  className="ccna-hover"
+                  onClick={() => onOpenDomainPlacement({ domainId: domain.id })}
+                  style={{
+                    ...styles.primaryBtn,
+                    marginTop: 10,
+                    marginBottom: 0,
+                    width: '100%',
+                    fontSize: 'var(--ccna-type-xs)',
+                    padding: '8px 12px',
+                    minHeight: 36,
+                  }}
+                >
+                  Set baseline first →
+                </button>
+              )}
+              {isPlacementDomain(domain.id) && onOpenDomainPlacement && hasBaseline && (
                 <button
                   type="button"
                   className="ccna-hover"

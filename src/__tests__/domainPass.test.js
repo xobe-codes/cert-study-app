@@ -7,6 +7,7 @@ import {
   isDomainPassPassed,
   domainPassStatus,
   domainPassBadgeLabel,
+  sortDomainPassHubDomains,
   evaluateDomainPass,
 } from '../features/domainPass/domainPassConfig.js'
 import { buildDomainPassPool, computeWeakObjectivesFromResponses } from '../features/domainPass/buildDomainPassPool.js'
@@ -51,6 +52,25 @@ describe('domainPassConfig', () => {
     expect(domainPassStatus({ attempts: 1, passed: false, lastAt: Date.now() })).toBe('retake')
     expect(domainPassStatus({ attempts: 1, passed: true, lastAt: Date.now() })).toBe('passed')
     expect(domainPassBadgeLabel('passed')).toBe('✓ Passed')
+  })
+
+  it('sortDomainPassHubDomains orders no-baseline first, then lowest pass %, then D1→D6', () => {
+    const domains = [
+      { id: 'security', objectives: [{ id: '5.1' }] },
+      { id: 'fundamentals', objectives: [{ id: '1.1' }] },
+      { id: 'access', objectives: [{ id: '2.1' }] },
+    ]
+    const placementRecords = {
+      security: { lastAttempt: { pct: 70 } },
+      fundamentals: { lastAttempt: { pct: 85 } },
+    }
+    const passRecords = {
+      security: { bestPct: 55 },
+      fundamentals: { bestPct: 90 },
+      access: { bestPct: 40 },
+    }
+    const sorted = sortDomainPassHubDomains(domains, { placementRecords, passRecords })
+    expect(sorted.map(d => d.id)).toEqual(['access', 'security', 'fundamentals'])
   })
 })
 

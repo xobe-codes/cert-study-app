@@ -16,6 +16,7 @@ import {
   homeBodySm,
   HOME_SECTION_GAP,
 } from '../../home/homeUi.js'
+import { domainDisplayTitle } from './domainLearningCopy.js'
 
 function formatDate(ts) {
   if (!ts) return 'Never'
@@ -80,6 +81,7 @@ export default function DomainPlacementIntro({ onExit, onStart }) {
           const badgeAccent = testedOut ? 'mint' : last ? band.accent : 'silver'
           const badge = testedOut ? '✓ Tested out' : staleBlueprint ? 'Remap' : last ? `${last.pct}%` : 'Not started'
           const actionLabel = staleBlueprint ? 'Full remap' : last ? 'Retake' : 'Start'
+          const title = domainDisplayTitle(domain)
 
           return (
             <button
@@ -88,7 +90,7 @@ export default function DomainPlacementIntro({ onExit, onStart }) {
               className="ccna-hover"
               disabled={!loaded}
               onClick={() => onStart?.(domain.id)}
-              aria-label={`${domain.name} placement — ${badge} — ${actionLabel}`}
+              aria-label={`${title} placement — ${badge} — ${actionLabel}`}
               style={{
                 ...homeCard({
                   marginBottom: HOME_SECTION_GAP,
@@ -104,7 +106,7 @@ export default function DomainPlacementIntro({ onExit, onStart }) {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8, marginBottom: 6 }}>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, lineHeight: 1.35, marginBottom: 4 }}>
-                    {domain.name}
+                    {title}
                   </div>
                   <span style={homePill(domain.accent)}>{domain.weight}% exam weight</span>
                 </div>

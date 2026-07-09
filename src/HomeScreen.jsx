@@ -36,6 +36,8 @@ import { DomainBaselineStatusMark } from './features/domainPlacement/DomainBasel
 import ExamReadyBanner from './home/ExamReadyBanner.jsx'
 import HomeSectionLabel from './home/HomeSectionLabel.jsx'
 import { buildStudyObjectiveHandoff } from './study/studyObjectiveHandoff.js'
+import { domainPassStatus, domainPassBadgeLabel } from './features/domainPass/domainPassConfig.js'
+import { DOMAIN_LAYER_LEGEND, domainDisplayTitle } from './features/domainPlacement/domainLearningCopy.js'
 import {
   HOME_SECTION_GAP,
   homeCard,
@@ -605,10 +607,19 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
           : null
         const baselineBand = baselineSummary ? domainBaselineBand(baselineSummary.domainStatus) : null
 
-        function studyObjective(objectiveId) {
-          const handoff = buildStudyObjectiveHandoff(objectiveId, { tab: 'Practice' })
+        function studyObjective(objectiveOrId) {
+          if (objectiveOrId?.id && objectiveOrId?.domainId) {
+            onSelectObjective(objectiveOrId)
+            return
+          }
+          const handoff = buildStudyObjectiveHandoff(objectiveOrId, { tab: 'Practice' })
           if (handoff) onSelectObjective(handoff)
         }
+
+        const passRecord = domainPassRecords[domain.id]
+        const passStatus = domainPassStatus(passRecord)
+        const passBadge = domainPassBadgeLabel(passStatus)
+        const passBadgeAccent = passStatus === 'passed' ? 'mint' : passStatus === 'retake' ? 'amber' : 'silver'
 
         return (
           <div key={domain.id} className="ccna-hover" style={homeCard({ marginBottom: HOME_SECTION_GAP })}>
@@ -620,13 +631,14 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
             >
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 2, flexWrap: 'wrap' }}>
-                  <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, lineHeight: 1.35 }}>{domain.name}</div>
+                  <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, lineHeight: 1.35 }}>{domainDisplayTitle(domain)}</div>
                   <span style={homePill(domain.accent)}>{domain.weight}% exam weight</span>
                   {baselineBand && (
                     <span style={homePill(baselineBand.accent)}>
                       {baselineSummary.testedOut ? '✓ Tested out' : `${baselineSummary.pct}% ${baselineBand.label}`}
                     </span>
                   )}
+                  <span style={homePill(passBadgeAccent)}>Pass: {passBadge}</span>
                 </div>
                 <div style={{ ...homeBodySm, marginBottom: 6 }}>
                   {masteredCount}/{objs.length} studied
@@ -640,6 +652,9 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
                   ) : isPlacementDomain(domain.id) ? (
                     <> · {objs.length} subsections · set baseline</>
                   ) : null}
+                </div>
+                <div style={{ ...homeBodySm, marginBottom: 6, color: COLORS.silverMid, fontSize: 'var(--ccna-type-micro)' }}>
+                  {DOMAIN_LAYER_LEGEND}
                 </div>
                 {/* Outer bar width = exam weight (so D4@25% appears wider than D1@20%); fill = mastery */}
                 <div style={{ width: '100%', height: 6, borderRadius: 999, background: COLORS.surface, overflow: 'hidden' }}>

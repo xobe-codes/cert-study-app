@@ -69,3 +69,25 @@ export function domainPassBadgeLabel(status) {
   if (status === 'retake') return 'Retake'
   return 'Not started'
 }
+
+/** Hub card order: no baseline first, then lowest pass %, then D1→D6. */
+export function sortDomainPassHubDomains(domains, { placementRecords = {}, passRecords = {} } = {}) {
+  const domainNum = (d) => {
+    const n = parseInt(d?.objectives?.[0]?.id?.split('.')?.[0] || '99', 10)
+    return Number.isFinite(n) ? n : 99
+  }
+  const passPct = (d) => {
+    const rec = passRecords[d.id]
+    if (rec?.bestPct != null) return rec.bestPct
+    if (rec?.passed) return 100
+    return -1
+  }
+  return [...domains].sort((a, b) => {
+    const aBaseline = Boolean(placementRecords[a.id]?.lastAttempt)
+    const bBaseline = Boolean(placementRecords[b.id]?.lastAttempt)
+    if (aBaseline !== bBaseline) return aBaseline ? 1 : -1
+    const pctDiff = passPct(a) - passPct(b)
+    if (pctDiff !== 0) return pctDiff
+    return domainNum(a) - domainNum(b)
+  })
+}

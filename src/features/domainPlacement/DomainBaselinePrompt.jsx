@@ -4,6 +4,7 @@ import { COLORS, styles } from '../../ui/appTheme.js'
 import { homeCard, homeSectionLabel, homeBodySm } from '../../home/homeUi.js'
 import { placementDomainIds } from './placementBlueprints.js'
 import { getStaleBaselineDomains } from './placementBlueprintCoverage.js'
+import { DOMAIN_LEARNING_TAGLINE } from './domainLearningCopy.js'
 
 /** First-use nudge — set domain baselines to study faster. */
 export default function DomainBaselinePrompt({
@@ -35,6 +36,9 @@ export default function DomainBaselinePrompt({
       <div style={homeSectionLabel(remapDomain ? COLORS.amber : COLORS.sky)}>
         {remapDomain ? 'UPDATE YOUR BASELINE MAP' : 'SET YOUR BASELINE'}
       </div>
+      <p style={{ ...homeBodySm, margin: '0 0 6px', lineHeight: 1.5, color: COLORS.silverMid }}>
+        {DOMAIN_LEARNING_TAGLINE}
+      </p>
       <p style={{ ...homeBodySm, margin: '0 0 10px', lineHeight: 1.5 }}>
         {remapDomain
           ? `${remapDomain.name} uses an older baseline — full remap samples every subsection so strong vs weak routing is complete.`

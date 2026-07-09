@@ -279,6 +279,7 @@ export default function AppLoadedShell({
           onOpenMockExam={openMockExam}
           labsDomainPrefill={labsDomainPrefill}
           onOpenTrapDrill={openTrapDrill}
+          onOpenExamTraps={openExamTraps}
           onOpenDomainPlacement={openDomainPlacement}
           onSelectObjective={selectObjective}
           onRefreshDomainPassCount={refreshDomainPassCount}

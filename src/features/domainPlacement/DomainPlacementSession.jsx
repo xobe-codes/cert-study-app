@@ -30,7 +30,9 @@ export default function DomainPlacementSession({
   sessionModeHint = null,
   onExit,
   onStudyObjective,
+  onStudyWeakObjectives,
   onOpenTrapDrill,
+  onOpenExamTraps,
   onOpenLab,
 }) {
   const { recordEngagement } = useMasteryProgress()
@@ -143,18 +145,30 @@ export default function DomainPlacementSession({
     return computePlacementReport({ questions, responses, trapByQuestionId })
   }, [resumedReport, phase, questions, responses, trapByQuestionId])
 
-  function handleStudyObjective(objectiveId) {
-    if (report) {
-      stashPlacementDebriefResume(domainId, {
-        report,
-        previousAttempt,
-        sessionMode,
-        adaptiveWeakObjectives,
-      })
+  function stashDebriefResume() {
+    if (!report) return
+    stashPlacementDebriefResume(domainId, {
+      report,
+      previousAttempt,
+      sessionMode,
+      adaptiveWeakObjectives,
+    })
+  }
+
+  function handleStudyObjective(objectiveOrId) {
+    stashDebriefResume()
+    if (objectiveOrId?.id && objectiveOrId?.domainId) {
+      onStudyObjective?.(objectiveOrId)
+      return
     }
-    const handoff = buildStudyObjectiveHandoff(objectiveId, { tab: 'Practice' })
+    const handoff = buildStudyObjectiveHandoff(objectiveOrId, { tab: 'Practice' })
     if (handoff) onStudyObjective?.(handoff)
-    else onStudyObjective?.(objectiveId)
+    else onStudyObjective?.(objectiveOrId)
+  }
+
+  function handleStudyWeakObjectives(objectiveIds) {
+    stashDebriefResume()
+    onStudyWeakObjectives?.(objectiveIds)
   }
 
   function handleRetake() {
@@ -207,7 +221,9 @@ export default function DomainPlacementSession({
           sessionMode={sessionMode}
           adaptiveWeakObjectives={adaptiveWeakObjectives}
           onStudyObjective={handleStudyObjective}
+          onStudyWeakObjectives={handleStudyWeakObjectives}
           onOpenTrapDrill={onOpenTrapDrill}
+          onOpenExamTraps={onOpenExamTraps}
           onOpenLab={onOpenLab}
           onRetake={handleRetake}
           onExit={handleExit}

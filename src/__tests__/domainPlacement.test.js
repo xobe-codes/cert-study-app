@@ -210,6 +210,22 @@ describe('placement objective breakdown', () => {
     expect(html.indexOf('5.1')).toBeLessThan(html.indexOf('5.2'))
   })
 
+  it('renders building debrief rows with Quiz CTA', async () => {
+    const { default: DomainPlacementObjectiveBreakdown } = await import('../features/domainPlacement/DomainPlacementObjectiveBreakdown.jsx')
+    const { renderToStaticMarkup } = await import('react-dom/server')
+    const React = await import('react')
+    const html = renderToStaticMarkup(
+      React.createElement(DomainPlacementObjectiveBreakdown, {
+        domainId: 'security',
+        byObjective: { '5.1': { correct: 7, total: 10 } },
+        onStudyObjective: () => {},
+        showAllObjectives: true,
+      }),
+    )
+    expect(html).toContain('Quiz')
+    expect(html).toContain('5.1')
+  })
+
   it('exports objectiveRows weakest-first', async () => {
     const { objectiveRows } = await import('../features/domainPlacement/DomainPlacementObjectiveBreakdown.jsx')
     const rows = objectiveRows({ '5.2': { correct: 2, total: 2 }, '5.1': { correct: 0, total: 2 } })

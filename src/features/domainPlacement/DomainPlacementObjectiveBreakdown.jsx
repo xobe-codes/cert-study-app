@@ -5,6 +5,7 @@ import { placementReadyBand } from './domainPlacementConfig.js'
 import { classifyObjectiveBaseline } from './domainBaselineProfile.js'
 import DomainBaselineStatusPill from './DomainBaselineStatusPill.jsx'
 import OverflowMarquee from '../../components/OverflowMarquee.jsx'
+import { buildStudyObjectiveHandoff } from '../../study/studyObjectiveHandoff.js'
 
 export function objectiveRows(byObjective) {
   return Object.entries(byObjective || {})
@@ -81,21 +82,38 @@ export default function DomainPlacementObjectiveBreakdown({
           const prevPct = prev?.total ? Math.round((prev.correct / prev.total) * 100) : null
           const delta = prevPct != null && row.pct != null ? row.pct - prevPct : null
           const isWeak = row.status === 'weak'
+          const isBuilding = row.status === 'building'
           const isStrong = row.status === 'strong'
           const notChecked = row.status === 'not_checked'
-          const canStudy = isWeak && onStudyObjective
+          const canAction = (isWeak || isBuilding) && onStudyObjective
+
+          function handleRowAction() {
+            if (!canAction) return
+            if (isBuilding) {
+              const handoff = buildStudyObjectiveHandoff(row.id, { tab: 'Quiz' })
+              onStudyObjective(handoff || row.id)
+              return
+            }
+            onStudyObjective(row.id)
+          }
+
+          const rowAccent = isWeak
+            ? { bg: COLORS.roseDim, border: COLORS.roseBorder, cta: 'Study →', ctaColor: COLORS.rose }
+            : isBuilding
+              ? { bg: COLORS.amberDim, border: COLORS.amberBorder, cta: 'Quiz →', ctaColor: COLORS.amber }
+              : null
 
           return (
             <div
               key={row.id}
               className="ccna-placement-objective-row"
-              role={canStudy ? 'button' : undefined}
-              tabIndex={canStudy ? 0 : undefined}
-              onClick={canStudy ? () => onStudyObjective(row.id) : undefined}
-              onKeyDown={canStudy ? (e) => {
+              role={canAction ? 'button' : undefined}
+              tabIndex={canAction ? 0 : undefined}
+              onClick={canAction ? handleRowAction : undefined}
+              onKeyDown={canAction ? (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault()
-                  onStudyObjective(row.id)
+                  handleRowAction()
                 }
               } : undefined}
               style={{
@@ -105,11 +123,11 @@ export default function DomainPlacementObjectiveBreakdown({
                 flexWrap: 'nowrap',
                 fontSize: 'var(--ccna-type-xs)',
                 color: COLORS.silver,
-                padding: isWeak ? '10px 12px' : '6px 0',
-                borderRadius: isWeak ? 10 : 0,
-                background: isWeak ? COLORS.roseDim : 'transparent',
-                border: isWeak ? `1px solid ${COLORS.roseBorder}` : 'none',
-                cursor: canStudy ? 'pointer' : 'default',
+                padding: rowAccent ? '10px 12px' : '6px 0',
+                borderRadius: rowAccent ? 10 : 0,
+                background: rowAccent?.bg || 'transparent',
+                border: rowAccent ? `1px solid ${rowAccent.border}` : 'none',
+                cursor: canAction ? 'pointer' : 'default',
               }}
             >
               <DomainBaselineStatusPill status={row.status} compact />
@@ -151,9 +169,9 @@ export default function DomainPlacementObjectiveBreakdown({
                   {delta > 0 ? '+' : ''}{delta}
                 </span>
               )}
-              {isWeak && onStudyObjective && (
-                <span style={{ flexShrink: 0, marginLeft: 'auto', color: COLORS.rose, fontWeight: 700, fontSize: 'var(--ccna-type-micro)' }}>
-                  Study →
+              {rowAccent && (
+                <span style={{ flexShrink: 0, marginLeft: 'auto', color: rowAccent.ctaColor, fontWeight: 700, fontSize: 'var(--ccna-type-micro)' }}>
+                  {rowAccent.cta}
                 </span>
               )}
               {isStrong && (

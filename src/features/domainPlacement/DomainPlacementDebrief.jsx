@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { COLORS, styles } from '../../ui/appTheme.js'
 import { placementReadyBand } from './domainPlacementConfig.js'
 import { computePlacementDelta } from './computePlacementDelta.js'
 import { pickPlacementCta } from './pickPlacementCta.js'
 import { buildDomainBaselineSummary, domainBaselineBand } from './domainBaselineProfile.js'
 import DomainPlacementObjectiveBreakdown from './DomainPlacementObjectiveBreakdown.jsx'
+import { resolveTrapWeakAction, executeTrapWeakAction } from '../../weaknessUtils.js'
 
 function formatDelta(n, suffix = '%') {
   if (n == null || Number.isNaN(n)) return '—'
@@ -19,7 +20,9 @@ export default function DomainPlacementDebrief({
   report,
   previousAttempt,
   onStudyObjective,
+  onStudyWeakObjectives,
   onOpenTrapDrill,
+  onOpenExamTraps,
   onOpenLab,
   onRetake,
   onExit,
@@ -44,12 +47,41 @@ export default function DomainPlacementDebrief({
     previousAttempt,
   )
   const cta = pickPlacementCta(report)
+  const trapMissed = useMemo(
+    () => (report.trapMisses || []).map(t => ({
+      objectiveId: t.objectiveId,
+      misconceptionTested: t.trap,
+    })),
+    [report.trapMisses],
+  )
+  const weakCount = baselineSummary?.weakObjectives?.length || 0
+  const showBatchWeak = weakCount > 1 && Boolean(onStudyWeakObjectives)
 
   function handleCta() {
     if (!cta) return
-    if (cta.kind === 'study') onStudyObjective?.(cta.payload.objectiveId)
-    else if (cta.kind === 'trapDrill') onOpenTrapDrill?.(cta.payload)
-    else if (cta.kind === 'lab') onOpenLab?.(cta.payload.labId)
+    if (cta.kind === 'study') {
+      onStudyObjective?.(cta.payload.objectiveId)
+      return
+    }
+    if (cta.kind === 'trapDrill') {
+      const trapLabel = cta.payload.trapLabel || report.trapMisses?.[0]?.trap
+      if (trapLabel) {
+        executeTrapWeakAction(resolveTrapWeakAction(trapLabel, trapMissed), {
+          onOpenTrapDrill,
+          onOpenExamTraps,
+          onStudyObjective,
+        })
+        return
+      }
+      onOpenTrapDrill?.(cta.payload)
+      return
+    }
+    if (cta.kind === 'lab') onOpenLab?.(cta.payload.labId)
+  }
+
+  function handleBatchWeak() {
+    if (!baselineSummary?.weakObjectives?.length) return
+    onStudyWeakObjectives?.(baselineSummary.weakObjectives)
   }
 
   return (
@@ -176,6 +208,11 @@ export default function DomainPlacementDebrief({
       {cta && (
         <button type="button" style={{ ...styles.primaryBtn, marginBottom: 8 }} onClick={handleCta}>
           {cta.label} →
+        </button>
+      )}
+      {showBatchWeak && (
+        <button type="button" style={{ ...styles.secondaryBtn, marginBottom: 8 }} onClick={handleBatchWeak}>
+          Study all weak ({weakCount})
         </button>
       )}
       <button type="button" style={{ ...styles.secondaryBtn, marginBottom: 8 }} onClick={onRetake}>
