@@ -202,6 +202,14 @@ export function useAppNavigation() {
   const showNavBack = view !== 'home' && view !== 'onboarding' && view !== 'objective'
   const objectiveBackLabel = returnToView === 'home' ? 'Topics' : 'Back'
 
+  const gestureFlags = computeGestureFlags({
+    view,
+    returnToView,
+    routeScrolls,
+    chromeOverlayOpen: false,
+    blockers: { ptr: false, edgeBack: false },
+  })
+
   return {
     view,
     setView,
@@ -258,7 +266,35 @@ export function useAppNavigation() {
     compactTopChrome,
     showNavBack,
     objectiveBackLabel,
+    canPullRefresh: gestureFlags.canPullRefresh,
+    canEdgeBack: gestureFlags.canEdgeBack,
   }
+}
+
+const NO_EDGE_BACK_VIEWS = new Set(['home', 'onboarding', 'lab'])
+
+/** Pure gesture enablement — chrome overlays and dynamic blockers merged in App.jsx. */
+export function computeGestureFlags({
+  view,
+  returnToView,
+  routeScrolls,
+  chromeOverlayOpen = false,
+  blockers = {},
+}) {
+  const ptrBlocked = Boolean(blockers.ptr)
+  const edgeBackBlocked = Boolean(blockers.edgeBack)
+  const hasStack = view !== returnToView
+
+  const canEdgeBack = hasStack
+    && !NO_EDGE_BACK_VIEWS.has(view)
+    && !edgeBackBlocked
+
+  const canPullRefresh = routeScrolls
+    && view !== 'onboarding'
+    && !chromeOverlayOpen
+    && !ptrBlocked
+
+  return { canPullRefresh, canEdgeBack }
 }
 
 /** Loaded-dependent navigation effects — render once inside App. */

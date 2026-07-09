@@ -16,6 +16,7 @@ import Spinner from '../components/Spinner.jsx'
 import { CliAnswerInput } from '../components/QuizQuestionChrome.jsx'
 import DeferredExamTips from '../components/DeferredExamTips.jsx'
 import { COLORS, styles } from '../ui/appTheme.js'
+import { useMobileGestureBlock } from '../ui/useMobileGestureBlock.js'
 import { STATIC_COPY } from '../ui/staticContentCopy.js'
 import { useNavHint } from '../components/NavHintProvider.jsx'
 import { NAV_HINT_KEYS } from '../ui/navHintConfig.js'
@@ -251,6 +252,8 @@ export function QuizTab({
   const [cliAnswer, setCliAnswer] = useState('')
   const [sessionSize, setSessionSize] = useState(DEFAULT_QUIZ_SESSION_SIZE)
   const curatedPoolSize = useMemo(() => getCuratedQuestions(objective.id).length, [objective.id])
+
+  useMobileGestureBlock({ pull: revealed, edge: false })
 
   useEffect(() => {
     loadQuizSessionSize().then(setSessionSize)

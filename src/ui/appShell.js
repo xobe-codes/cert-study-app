@@ -166,7 +166,8 @@ export function buildAppShellCss(colors) {
       max-width: 100%;
       min-width: 0;
       margin: 0 auto;
-      padding: 8px 0 16px;
+      padding-top: max(8px, var(--ccna-safe-top));
+      padding-bottom: 16px;
       box-sizing: border-box;
       overflow-x: hidden;
     }

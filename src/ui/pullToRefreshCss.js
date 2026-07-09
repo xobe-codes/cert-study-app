@@ -6,7 +6,7 @@ export function buildPullToRefreshCss(colors) {
     }
     .pull-refresh-host {
       position: absolute;
-      top: 0;
+      top: var(--ccna-safe-top);
       left: 50%;
       z-index: 1;
       display: flex;
@@ -57,9 +57,20 @@ export function buildPullToRefreshCss(colors) {
       transition: none;
     }
     html[data-reduce-motion="true"] .pull-refresh-host__icon,
-    html[data-reduce-motion="true"] .route-scroll--ptr-shift {
+    html[data-reduce-motion="true"] .route-scroll--ptr-shift,
+    html[data-reduce-motion="true"] .route-scroll--edge-shift {
       animation: none !important;
       transition: none !important;
+    }
+    .route-scroll--edge-shift {
+      will-change: transform;
+      transition: transform .22s cubic-bezier(.2,.8,.2,1);
+    }
+    .route-scroll--edge-dragging {
+      transition: none;
+    }
+    .route-shell--edge-back {
+      touch-action: pan-y pinch-zoom;
     }
   `
 }

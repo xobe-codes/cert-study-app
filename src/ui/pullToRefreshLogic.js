@@ -35,6 +35,18 @@ export function ptrPhaseLabel(phase) {
   return 'Pull down to refresh'
 }
 
+/** Skip PTR when the gesture starts on buttons, links, quiz controls, or CLI terminals. */
+export function isPtrBlockedPointerTarget(el) {
+  if (isInteractivePointerTarget(el)) return true
+  if (!el || typeof el.closest !== 'function') return false
+  if (el.closest('.cisco-terminal')) return true
+  if (typeof document !== 'undefined') {
+    const active = document.activeElement
+    if (active?.closest?.('.cisco-terminal')) return true
+  }
+  return false
+}
+
 /** Skip PTR when the gesture starts on buttons, links, or quiz controls. */
 export function isInteractivePointerTarget(el) {
   if (!el || typeof el !== 'object') return false

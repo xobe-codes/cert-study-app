@@ -12,11 +12,7 @@ import { useAppSync } from './features/sync/useAppSync.js'
 import { useAppOnboarding } from './features/onboarding/useAppOnboarding.js'
 import { useAppBootstrap } from './features/bootstrap/useAppBootstrap.js'
 import { useAppSettings } from './features/settings/useAppSettings.js'
-import {
-  useAppNavigation,
-  AppNavigationLifecycle,
-  bottomNavState,
-} from './features/navigation/useAppNavigation.js'
+import { useAppNavigation, AppNavigationLifecycle, bottomNavState } from './features/navigation/useAppNavigation.js'
 import { useAppPremium } from './features/premium/useAppPremium.js'
 import { useAppProgress } from './features/progress/useAppProgress.js'
 import { useAppStudyBlock } from './features/study/useAppStudyBlock.js'
@@ -189,7 +185,7 @@ export default function App() {
           premiumToast={premium.premiumToast}
           dismissPremiumToast={premium.dismissPremiumToast}
           completeTour={onboarding.completeTour} skipTour={onboarding.skipTour}
-          pullRefresh={{ onRefresh: bootstrap.refreshApp, enabled: !chromeOverlayOpen && nav.view !== 'onboarding', reduceMotion: settings.settingsReduceMotion }}
+          onRefreshApp={bootstrap.refreshApp} canPullRefresh={nav.canPullRefresh} canEdgeBack={nav.canEdgeBack} chromeOverlayOpen={chromeOverlayOpen}
         />
       </StudyBlockProvider>
     </NavHintProvider>

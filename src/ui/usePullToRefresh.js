@@ -4,7 +4,7 @@ import {
   PTR_THRESHOLD,
   shouldTriggerRefresh,
   isVerticalPull,
-  isInteractivePointerTarget,
+  isPtrBlockedPointerTarget,
 } from './pullToRefreshLogic.js'
 
 /**
@@ -75,7 +75,7 @@ export function usePullToRefresh({
     function onPointerDown(e) {
       if (phaseRef.current === 'refreshing') return
       if (e.pointerType === 'mouse' && e.button !== 0) return
-      if (isInteractivePointerTarget(e.target)) return
+      if (isPtrBlockedPointerTarget(e.target)) return
       if (el.scrollTop > 1) return
       activePointerRef.current = e.pointerId
       startRef.current = { x: e.clientX, y: e.clientY }

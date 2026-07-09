@@ -9,6 +9,8 @@ import { logEvent } from '../eventLog.js'
 import { useMasteryProgress } from '../features/progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from '../features/progress/masteryEngagement.js'
 
+import { useMobileGestureBlock } from '../ui/useMobileGestureBlock.js'
+
 export default function CLIDrillTab({ objective }) {
   const { recordEngagement } = useMasteryProgress()
   const drills = COMMAND_DRILLS[objective.id] || []
@@ -21,6 +23,8 @@ export default function CLIDrillTab({ objective }) {
   const [hintIdx, setHintIdx] = useState(null)
   const [done, setDone] = useState(false)
   const counters = useRef({ commandsEntered: 0, syntaxErrors: 0, wrongModeErrors: 0, hintsUsed: 0 })
+
+  useMobileGestureBlock({ pull: true, edge: true })
 
   const reset = useCallback(() => {
     setMode('user'); setInput(''); setHistory([]); setStatuses(drills.map(() => false))

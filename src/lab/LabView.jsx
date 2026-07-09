@@ -11,6 +11,7 @@ import { ENGAGEMENT_KINDS } from '../features/progress/masteryEngagement.js'
 import LabLearnPanel from './LabLearnPanel.jsx'
 import { LabTierBadge, LabConfigBanner } from './LabTierBadge.jsx'
 import { isConfigLab } from '../data/labTierStrategy.js'
+import { useMobileGestureBlock } from '../ui/useMobileGestureBlock.js'
 
 const LAB_DIFF_ACCENT = { beginner: 'mint', intermediate: 'sky', advanced: 'amber' }
 
@@ -34,6 +35,7 @@ export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, 
   const showNavHint = useNavHint()
 
   const [phase, setPhase] = useState('learn')
+  useMobileGestureBlock({ pull: phase === 'practice', edge: phase === 'practice' })
   const [mode, setMode] = useState('user')
   const [entered, setEntered] = useState([])
   const [history, setHistory] = useState([])

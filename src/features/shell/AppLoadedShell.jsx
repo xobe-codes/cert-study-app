@@ -5,6 +5,8 @@ import RouteShell from '../../components/RouteShell.jsx'
 import AppShell from './AppShell.jsx'
 import AppShellStyles from './AppShellStyles.jsx'
 import BottomNav from '../../components/BottomNav.jsx'
+import { buildRouteGestures } from './routeGestures.js'
+import { useMobileGestureBlocks } from '../../ui/useMobileGestureBlocks.js'
 import StudyModeRoutes from '../study/StudyModeRoutes.jsx'
 import AppChromeOverlays from './AppChromeOverlays.jsx'
 import { MasteryProgressProvider } from '../progress/MasteryProgressContext.jsx'
@@ -134,8 +136,22 @@ export default function AppLoadedShell({
   dismissPremiumToast,
   completeTour,
   skipTour,
-  pullRefresh,
+  onRefreshApp,
+  canPullRefresh,
+  canEdgeBack,
+  chromeOverlayOpen,
 }) {
+  const gestureBlocks = useMobileGestureBlocks()
+  const routeGestures = buildRouteGestures({
+    refreshApp: onRefreshApp,
+    goBack,
+    canPullRefresh,
+    canEdgeBack,
+    chromeOverlayOpen,
+    gestureBlocks,
+    reduceMotion: settingsReduceMotion,
+  })
+
   useVisualViewportBottomInset(
     showBottomNav
     || view === 'objective'
@@ -159,7 +175,7 @@ export default function AppLoadedShell({
           <OfflineBanner />
         </div>
       )}
-      <RouteShell scroll={routeScrolls} ref={mainRef} innerClassName="ccna-route-in" key={view} pullRefresh={pullRefresh}>
+      <RouteShell scroll={routeScrolls} ref={mainRef} innerClassName="ccna-route-in" key={view} pullRefresh={routeGestures.pullRefresh} edgeBack={routeGestures.edgeBack}>
         <MasteryProgressProvider updateProgress={updateProgress} recordEngagement={recordEngagement}>
         <CoreStudyRoutes
           view={view}

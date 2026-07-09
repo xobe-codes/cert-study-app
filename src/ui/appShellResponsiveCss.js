@@ -11,6 +11,16 @@ export function buildAppShellResponsiveCss(colors) {
       flex-wrap: wrap;
       gap: 8px;
       margin-bottom: 4px;
+      position: sticky;
+      top: var(--ccna-safe-top);
+      z-index: 40;
+      padding-bottom: 6px;
+      background: linear-gradient(
+        to bottom,
+        color-mix(in srgb, ${colors.bg} 98%, transparent) 0%,
+        color-mix(in srgb, ${colors.bg} 90%, transparent) 88%,
+        transparent 100%
+      );
     }
     .home-study-grid {
       display: grid;
@@ -28,7 +38,7 @@ export function buildAppShellResponsiveCss(colors) {
         grid-template-columns: repeat(4, minmax(0, 1fr));
       }
       .route-inner.ccna-container {
-        padding-top: 12px;
+        padding-top: max(12px, var(--ccna-safe-top));
         padding-bottom: 20px;
       }
     }

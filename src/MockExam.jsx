@@ -33,6 +33,7 @@ import { applyAnswerReviewToQuestion, inferTrapForChoice } from './answerReviewL
 import DeferredExamTips from './components/DeferredExamTips.jsx'
 import MockExamDebriefActions from './features/mockExam/MockExamDebriefActions.jsx'
 import StudyModeHeader from './components/StudyModeHeader.jsx'
+import { useMobileGestureBlock } from './ui/useMobileGestureBlock.js'
 import Spinner from './components/Spinner.jsx'
 import ErrorBox from './components/ErrorBox.jsx'
 import { useNavHint } from './components/NavHintProvider.jsx'
@@ -75,6 +76,11 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
   useEffect(() => {
     preloadCleanBank().then(() => setBankReady(true))
   }, [])
+
+  useMobileGestureBlock({
+    pull: ['loading', 'active', 'review'].includes(phase),
+    edge: ['loading', 'active', 'review'].includes(phase),
+  })
 
   useEffect(() => {
     if (!initialDomainId) return

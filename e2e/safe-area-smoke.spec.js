@@ -10,6 +10,19 @@ import { STORAGE_KEYS } from '../src/storageKeys.js'
 const NOTCH_INSETS = { top: 47, right: 44, bottom: 34, left: 44 }
 
 test.describe('Safe area smoke', () => {
+  test('home title clears notch on iPhone portrait', async ({ page }) => {
+    await page.setViewportSize({ width: 430, height: 932 })
+    await seedOnboarding(page)
+    await simulateSafeArea(page, NOTCH_INSETS)
+    await page.goto('/#/')
+    const title = page.getByRole('heading', { name: /CCNA 200-301/i })
+    await expect(title).toBeVisible({ timeout: 20_000 })
+    const box = await title.boundingBox()
+    expect(box).toBeTruthy()
+    expect(box.y).toBeGreaterThanOrEqual(NOTCH_INSETS.top - 2)
+    await assertNoHorizontalOverflow(page)
+  })
+
   test('labs hub back control clears notch on iPhone portrait', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 })
     await seedOnboarding(page)
