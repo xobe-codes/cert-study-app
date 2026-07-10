@@ -401,7 +401,10 @@ export default function DomainPassSession({
           questions={questions}
           responses={responses}
           domains={DOMAINS}
-          onOpenTrapDrill={onOpenTrapDrill}
+          onOpenTrapDrill={onOpenTrapDrill ? (prefill) => {
+            stashDebriefResume()
+            onOpenTrapDrill(prefill)
+          } : undefined}
           onOpenLab={onOpenLab ? (labId) => {
             stashDebriefResume()
             onOpenLab(labId)
@@ -415,12 +418,26 @@ export default function DomainPassSession({
               This domain
             </div>
             {showTrapCta && (
-              <button type="button" style={domainActionBtn} onClick={() => onOpenTrapDrill({ domainId })}>
+              <button
+                type="button"
+                style={domainActionBtn}
+                onClick={() => {
+                  stashDebriefResume()
+                  onOpenTrapDrill({ domainId })
+                }}
+              >
                 Trap drill (this domain) →
               </button>
             )}
             {showLabsCta && (
-              <button type="button" style={domainActionBtn} onClick={() => onOpenLabs({ domainId })}>
+              <button
+                type="button"
+                style={domainActionBtn}
+                onClick={() => {
+                  stashDebriefResume()
+                  onOpenLabs({ domainId })
+                }}
+              >
                 Domain labs ({domainMeta.labCount}) →
               </button>
             )}
@@ -428,7 +445,10 @@ export default function DomainPassSession({
               <button
                 type="button"
                 style={{ ...domainActionBtn, ...(showWildcardCta ? {} : { marginBottom: 0 }) }}
-                onClick={() => onOpenCommandHub({ domainId })}
+                onClick={() => {
+                  stashDebriefResume()
+                  onOpenCommandHub({ domainId })
+                }}
               >
                 Command Hub →
               </button>
@@ -437,7 +457,10 @@ export default function DomainPassSession({
               <button
                 type="button"
                 style={{ ...domainActionBtn, marginBottom: 0 }}
-                onClick={() => onOpenSubnet()}
+                onClick={() => {
+                  stashDebriefResume()
+                  onOpenSubnet()
+                }}
               >
                 Subnetting Wildcard (ACL/OSPF) →
               </button>
@@ -454,7 +477,14 @@ export default function DomainPassSession({
           </button>
         )}
         {!isFocusSession && onOpenMock && (
-          <button type="button" style={{ ...styles.secondaryBtn, marginBottom: 8 }} onClick={() => onOpenMock(domainId)}>
+          <button
+            type="button"
+            style={{ ...styles.secondaryBtn, marginBottom: 8 }}
+            onClick={() => {
+              stashDebriefResume()
+              onOpenMock(domainId)
+            }}
+          >
             Take domain mock
           </button>
         )}

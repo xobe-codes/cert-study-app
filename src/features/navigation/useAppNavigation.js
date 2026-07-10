@@ -13,10 +13,12 @@ import {
   clearAllNestedState,
   clearViewNestedState,
   resetHubSessionState,
+  shouldPreserveNestedOnNavigate,
   studyModeOpts,
   STUDY_HUB_VIEWS,
 } from './studyModeNavigation.js'
 import { peekAnyPlacementDebriefResume } from '../domainPlacement/placementDebriefResume.js'
+import { peekAnyDomainPassDebriefResume } from '../domainPass/domainPassDebriefResume.js'
 
 /**
  * View/routing state and navigation handlers — extracted from App.jsx.
@@ -86,8 +88,9 @@ export function useAppNavigation() {
   /** Push a new top-level study mode (updates back stack). */
   const navigateTo = useCallback((nextView) => {
     if (nextView !== view) {
-      const preserveNested = view === 'domainplacement' && nextView === 'topicfocussession'
-      if (!preserveNested) clearViewNestedState(view, nestedApi.current)
+      if (!shouldPreserveNestedOnNavigate(view, nextView)) {
+        clearViewNestedState(view, nestedApi.current)
+      }
       if (STUDY_HUB_VIEWS.has(nextView)) resetHubSessionState(nextView, nestedApi.current)
     }
     setReturnToView(view)
@@ -213,6 +216,10 @@ export function useAppNavigation() {
       const domainId = topicFocusConfig?.returnToPlacementDebrief
         || peekAnyPlacementDebriefResume()?.domainId
       if (domainId) setActiveDomainPlacementId(domainId)
+    }
+    if (returnToView === 'domainpass') {
+      const domainId = peekAnyDomainPassDebriefResume()?.domainId
+      if (domainId) setActiveDomainPassId(domainId)
     }
     clearViewNestedState(view, nestedApi.current)
     setView(returnToView)

@@ -29,6 +29,25 @@ export const STUDY_HUB_VIEWS = new Set([
   'mockinterview',
 ])
 
+/** Destinations that keep Domain Pass / Placement nested session when leaving mid-flow. */
+const DOMAIN_PASS_PRESERVE_DESTINATIONS = new Set([
+  'trapdrill',
+  'commandhub',
+  'labs',
+  'subnet',
+  'mock',
+])
+
+/**
+ * When true, navigateTo must not clear the source view's nested session ids
+ * (so Back can restore Domain Pass results / Placement debrief).
+ */
+export function shouldPreserveNestedOnNavigate(fromView, toView) {
+  if (fromView === 'domainplacement' && toView === 'topicfocussession') return true
+  if (fromView === 'domainpass' && DOMAIN_PASS_PRESERVE_DESTINATIONS.has(toView)) return true
+  return false
+}
+
 /** Reset nested session state when landing on a hub via hash or home-grid navigation. */
 export function resetHubSessionState(view, api) {
   if (view === 'domainpass') {

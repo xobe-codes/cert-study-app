@@ -3,6 +3,7 @@ import {
   applyParsedHashRoute,
   clearViewNestedState,
   resetHubSessionState,
+  shouldPreserveNestedOnNavigate,
   studyModeOpts,
   STUDY_HUB_VIEWS,
 } from '../features/navigation/studyModeNavigation.js'
@@ -14,6 +15,17 @@ describe('studyModeNavigation', () => {
     expect(STUDY_HUB_VIEWS.has('topicfocus')).toBe(true)
     expect(STUDY_HUB_VIEWS.has('domainpass')).toBe(true)
     expect(STUDY_HUB_VIEWS.has('lab')).toBe(false)
+  })
+
+  it('preserves Domain Pass nested state for trap drill and Command Hub', () => {
+    expect(shouldPreserveNestedOnNavigate('domainpass', 'trapdrill')).toBe(true)
+    expect(shouldPreserveNestedOnNavigate('domainpass', 'commandhub')).toBe(true)
+    expect(shouldPreserveNestedOnNavigate('domainpass', 'labs')).toBe(true)
+    expect(shouldPreserveNestedOnNavigate('domainpass', 'subnet')).toBe(true)
+    expect(shouldPreserveNestedOnNavigate('domainpass', 'mock')).toBe(true)
+    expect(shouldPreserveNestedOnNavigate('domainpass', 'home')).toBe(false)
+    expect(shouldPreserveNestedOnNavigate('domainplacement', 'topicfocussession')).toBe(true)
+    expect(shouldPreserveNestedOnNavigate('home', 'trapdrill')).toBe(false)
   })
 
   it('applyParsedHashRoute opens hub views with session state cleared', () => {
