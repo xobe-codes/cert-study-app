@@ -196,9 +196,120 @@ export function buildAppShellChromeCss(colors) {
     .ccna-confidence-strip {
       margin-top: 4px;
     }
+    .ccna-quiz-exhibit {
+      max-width: 100%;
+      margin-bottom: 4px;
+      border-radius: 12px;
+      border: 1px solid var(--ccna-border, rgba(180, 120, 140, 0.22));
+      background: #0c1018;
+      overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+    [data-theme="light"] .ccna-quiz-exhibit {
+      background: #1a2230;
+    }
+    .ccna-quiz-exhibit__chrome {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+    }
+    .ccna-quiz-exhibit__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      flex-shrink: 0;
+    }
+    .ccna-quiz-exhibit__dot:nth-child(1) { background: #ff5f57; }
+    .ccna-quiz-exhibit__dot:nth-child(2) { background: #febc2e; }
+    .ccna-quiz-exhibit__dot:nth-child(3) { background: #28c840; }
+    .ccna-quiz-exhibit__label {
+      margin-left: 6px;
+      font-size: var(--ccna-type-micro);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(221, 208, 214, 0.72);
+    }
+    .ccna-quiz-exhibit__body {
+      padding: 10px 12px 12px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: var(--ccna-type-sm);
+      line-height: 1.55;
+      color: #d7dde8;
+    }
+    .ccna-quiz-exhibit__title {
+      font-weight: 700;
+      color: #9ecbff;
+      margin-bottom: 8px;
+    }
+    .ccna-quiz-exhibit__meta {
+      color: #a8b0c0;
+      margin-bottom: 4px;
+      white-space: pre;
+    }
+    .ccna-quiz-exhibit__legend {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(255,255,255,0.12);
+      color: #8b93a7;
+      font-size: var(--ccna-type-xs);
+      white-space: pre-wrap;
+    }
+    .ccna-quiz-exhibit__route {
+      display: grid;
+      grid-template-columns: 3.2rem minmax(7.5rem, max-content) 1fr;
+      gap: 8px 10px;
+      align-items: baseline;
+      padding: 3px 0;
+      min-width: 280px;
+    }
+    .ccna-quiz-exhibit__code {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 2.4rem;
+      padding: 1px 6px;
+      border-radius: 6px;
+      border: 1px solid currentColor;
+      background: rgba(255,255,255,0.04);
+      font-weight: 700;
+      font-size: var(--ccna-type-xs);
+      letter-spacing: 0.02em;
+    }
+    .ccna-quiz-exhibit__prefix {
+      color: #e8eef8;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .ccna-quiz-exhibit__detail {
+      color: #b7c0d0;
+      white-space: nowrap;
+    }
+    .ccna-quiz-exhibit__text {
+      white-space: pre;
+      color: #c5ccd8;
+    }
+    .ccna-quiz-exhibit__blank {
+      height: 6px;
+    }
     @media (max-width: 640px) {
       .ccna-quiz-reveal {
         padding: 10px !important;
+      }
+      .ccna-quiz-exhibit__route {
+        grid-template-columns: 2.8rem minmax(6.5rem, max-content) 1fr;
+        gap: 6px 8px;
+        min-width: 260px;
+      }
+      .ccna-quiz-exhibit__body {
+        font-size: var(--ccna-type-xs);
+        padding: 8px 10px 10px;
       }
     }
   `

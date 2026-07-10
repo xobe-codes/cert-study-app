@@ -3,12 +3,12 @@ import { COLORS, styles } from '../ui/appTheme.js'
 import { FLAG_REASONS } from '../data/questionHealthConstants.js'
 import { submitQuestionFlag } from '../quiz/questionHealthClient.js'
 
-/** Structured flag CTA after a wrong answer — feeds backend health registry. */
-export default function QuestionFlagPanel({ question, objectiveId, selectedIndex }) {
+/** Structured flag CTA after reveal — feeds backend health registry. */
+export default function QuestionFlagPanel({ question, objectiveId, selectedIndex = null }) {
   const [sent, setSent] = useState(null)
   const [busy, setBusy] = useState(false)
 
-  if (!question?.id || selectedIndex == null) return null
+  if (!question?.id) return null
 
   async function onFlag(reason) {
     if (busy || sent) return

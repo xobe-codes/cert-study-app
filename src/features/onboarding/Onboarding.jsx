@@ -13,7 +13,7 @@ import McChoices from '../../components/McChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
 import { McChoiceShuffleProvider } from '../../context/McChoiceShuffleContext.jsx'
 import { applyAnswerReviewToQuestion } from '../../answerReviewLogic.js'
-import { QuizRichText, QuestionMeta, OrderingQuestion, CliAnswerInput } from '../../components/QuizQuestionChrome.jsx'
+import { QuizQuestionStem, QuestionMeta, OrderingQuestion, CliAnswerInput } from '../../components/QuizQuestionChrome.jsx'
 import Spinner from '../../components/Spinner.jsx'
 
 const quizFeedbackA11y = { role: 'status', 'aria-live': 'polite', 'aria-atomic': true }
@@ -175,7 +175,7 @@ export default function Onboarding({ onComplete, onSkip }) {
         {obj && <div style={{ ...styles.small, marginBottom: 8 }}>{obj.id} {obj.title}</div>}
         <div style={styles.card}>
           <QuestionMeta q={current} />
-          <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><QuizRichText text={current.question} /></div>
+          <QuizQuestionStem text={current.question} />
           <McChoiceShuffleProvider q={current} enabled={!ordering && !cli}>
           {ordering ? (
             <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? current.orderItems : null} />

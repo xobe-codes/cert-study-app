@@ -13,6 +13,7 @@ export const FLAG_REASONS = [
   { id: 'two_valid', label: 'Two valid answers' },
   { id: 'outdated_ios', label: 'Outdated IOS/command' },
   { id: 'typo', label: 'Typo or grammar' },
+  { id: 'bad_display', label: 'Broken display / formatting' },
 ]
 
 export const FLAG_REASON_IDS = new Set(FLAG_REASONS.map(r => r.id))
@@ -40,4 +41,5 @@ export const SADE_REASON_LABELS = {
   missing_answer_review: 'Missing answer review',
   learner_flags: 'Learner flags',
   manual: 'Manual override',
+  bad_display: 'Broken display / formatting',
 }

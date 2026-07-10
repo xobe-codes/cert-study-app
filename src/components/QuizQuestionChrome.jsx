@@ -3,6 +3,7 @@ import { COLORS, styles } from '../ui/appTheme.js'
 import { TYPE_LABEL, SKILL_LABEL, inferSkill } from '../questionUtils.js'
 import { cliStringsEquivalent } from '../lab/cliGrading.js'
 import { parseRichTextSegments } from '../lesson/richTextParse.js'
+import { splitQuizStem, parseExhibitLines } from '../quiz/quizStemExhibit.js'
 
 export function QuizRichText({ text }) {
   if (text == null) return null
@@ -20,27 +21,77 @@ export function QuizRichText({ text }) {
   })
 }
 
-/** Split inline exhibit block (first paragraph) from the question when stem uses \\n\\n. */
+const ROUTE_CODE_COLOR = {
+  C: COLORS.mint,
+  L: COLORS.mint,
+  S: COLORS.sky,
+  O: COLORS.amber,
+  D: COLORS.purple,
+  R: COLORS.rose,
+  B: COLORS.sky,
+}
+
+function routeCodeColor(code) {
+  const key = String(code || '').trim().charAt(0)
+  return ROUTE_CODE_COLOR[key] || COLORS.silver
+}
+
+function QuizExhibitBlock({ exhibit, label }) {
+  const lines = parseExhibitLines(exhibit)
+  return (
+    <div className="ccna-quiz-exhibit" role="group" aria-label={label || 'Exhibit'}>
+      <div className="ccna-quiz-exhibit__chrome">
+        <span className="ccna-quiz-exhibit__dot" aria-hidden />
+        <span className="ccna-quiz-exhibit__dot" aria-hidden />
+        <span className="ccna-quiz-exhibit__dot" aria-hidden />
+        <span className="ccna-quiz-exhibit__label">{label || 'Exhibit'}</span>
+      </div>
+      <div className="ccna-quiz-exhibit__body ccna-h-scroll">
+        {lines.map((line, i) => {
+          if (line.type === 'blank') return <div key={i} className="ccna-quiz-exhibit__blank" />
+          if (line.type === 'title') {
+            return <div key={i} className="ccna-quiz-exhibit__title">{line.text}</div>
+          }
+          if (line.type === 'meta') {
+            return <div key={i} className="ccna-quiz-exhibit__meta">{line.text}</div>
+          }
+          if (line.type === 'legend') {
+            return <div key={i} className="ccna-quiz-exhibit__legend">{line.text}</div>
+          }
+          if (line.type === 'route') {
+            return (
+              <div key={i} className="ccna-quiz-exhibit__route">
+                <span className="ccna-quiz-exhibit__code" style={{ color: routeCodeColor(line.code), borderColor: routeCodeColor(line.code) }}>
+                  {line.code}
+                </span>
+                <span className="ccna-quiz-exhibit__prefix">{line.prefix}</span>
+                {line.detail ? <span className="ccna-quiz-exhibit__detail">{line.detail}</span> : null}
+              </div>
+            )
+          }
+          return <div key={i} className="ccna-quiz-exhibit__text">{line.text}</div>
+        })}
+      </div>
+    </div>
+  )
+}
+
+/** Split inline exhibit block from the question; format routing-table / IOS output clearly. */
 export function QuizQuestionStem({ text }) {
   if (text == null) return null
-  const raw = String(text)
-  const split = raw.indexOf('\n\n')
-  if (split < 0) {
+  const { exhibit, question, label } = splitQuizStem(text)
+  if (!exhibit) {
     return (
-      <div style={{ maxWidth: '100%', fontSize: 'var(--ccna-type-md)', fontWeight: 600, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>
-        <QuizRichText text={raw} />
+      <div className="ccna-quiz-stem" style={{ maxWidth: '100%', fontSize: 'var(--ccna-type-md)', fontWeight: 600, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>
+        <QuizRichText text={question} />
       </div>
     )
   }
-  const exhibit = raw.slice(0, split).trim()
-  const question = raw.slice(split + 2).trim()
   return (
-    <div style={{ maxWidth: '100%', marginBottom: 14 }}>
-      <div className="ccna-quiz-exhibit" style={{ maxWidth: '100%', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 'var(--ccna-type-sm)', lineHeight: 1.45, color: COLORS.silver, background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 10, padding: '10px 12px', marginBottom: 12, whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', wordBreak: 'break-word' }}>
-        {exhibit}
-      </div>
+    <div className="ccna-quiz-stem" style={{ maxWidth: '100%', marginBottom: 14 }}>
+      <QuizExhibitBlock exhibit={exhibit} label={label} />
       {question && (
-        <div style={{ maxWidth: '100%', fontSize: 'var(--ccna-type-md)', fontWeight: 600, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>
+        <div style={{ maxWidth: '100%', fontSize: 'var(--ccna-type-md)', fontWeight: 600, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word', marginTop: 12 }}>
           <QuizRichText text={question} />
         </div>
       )}

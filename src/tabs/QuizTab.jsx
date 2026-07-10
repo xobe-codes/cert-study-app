@@ -14,7 +14,7 @@ import AnswerReview from '../components/AnswerReview.jsx'
 import { McChoiceShuffleProvider } from '../context/McChoiceShuffleContext.jsx'
 import ErrorBox from '../components/ErrorBox.jsx'
 import Spinner from '../components/Spinner.jsx'
-import { CliAnswerInput } from '../components/QuizQuestionChrome.jsx'
+import { CliAnswerInput, QuizQuestionStem } from '../components/QuizQuestionChrome.jsx'
 import DeferredExamTips from '../components/DeferredExamTips.jsx'
 import { COLORS, styles } from '../ui/appTheme.js'
 import { useMobileGestureBlock } from '../ui/useMobileGestureBlock.js'
@@ -44,7 +44,7 @@ import {
   shouldShowTrapStreakCta,
 } from '../features/practice/trapStreak.js'
 import {
-  RichText, OrderingQuestion, QuestionMeta, PreAssessment,
+  OrderingQuestion, QuestionMeta, PreAssessment,
 } from './studyQuizShared.jsx'
 import {
   domainIdFromObjectiveId,
@@ -750,7 +750,7 @@ export function QuizTab({
       {sourceLabel && <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 8 }}>{sourceLabel}</div>}
       <div style={styles.card}>
         <QuestionMeta q={current} />
-        <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={current.question} /></div>
+        <QuizQuestionStem text={current.question} />
         <McChoiceShuffleProvider q={current} enabled={!ordering && !cli}>
         {ordering ? (
           <OrderingQuestion

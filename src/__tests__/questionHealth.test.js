@@ -23,6 +23,7 @@ describe('question_health_registry', () => {
   it('defines structured flag reasons', () => {
     expect(FLAG_REASON_IDS.has('wrong_key')).toBe(true)
     expect(FLAG_REASON_IDS.has('ambiguous')).toBe(true)
+    expect(FLAG_REASON_IDS.has('bad_display')).toBe(true)
     expect(LEARNER_QUARANTINE_THRESHOLD).toBeGreaterThan(1)
   })
 })

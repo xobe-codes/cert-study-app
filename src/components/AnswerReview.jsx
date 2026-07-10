@@ -221,7 +221,7 @@ export default function AnswerReview({
             <RichText text={cliGold.examTip} />
           </ReviewBlock>
         )}
-        {showQuestionFlag && objectiveId && <QuestionFlagPanel questionId={q.id} objectiveId={objectiveId} />}
+        {showQuestionFlag && objectiveId && <QuestionFlagPanel question={q} objectiveId={objectiveId} />}
         <StemReplayCTA questionId={q?.id} onOpenLab={onOpenLab} />
       </div>
     )
@@ -260,7 +260,7 @@ export default function AnswerReview({
             )}
           </ReviewBlock>
         )}
-        {showQuestionFlag && objectiveId && <QuestionFlagPanel questionId={q.id} objectiveId={objectiveId} />}
+        {showQuestionFlag && objectiveId && <QuestionFlagPanel question={q} objectiveId={objectiveId} />}
         <StemReplayCTA questionId={q?.id} onOpenLab={onOpenLab} />
       </div>
     )
@@ -362,7 +362,7 @@ export default function AnswerReview({
           <RichText text={ar.memoryHook} />
         </ReviewBlock>
       )}
-      {showQuestionFlag && selected != null && selected !== correctIdx && objectiveId && q?.id && (
+      {showQuestionFlag && selected != null && objectiveId && q?.id && (
         <QuestionFlagPanel question={q} objectiveId={objectiveId} selectedIndex={selected} />
       )}
       {selectedWrongIdx != null && (
