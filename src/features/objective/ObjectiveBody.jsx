@@ -16,7 +16,7 @@ export default function ObjectiveBody({
   computeMastery, masteryPct, ProgressBar, SectionLabel,
   objectiveTabId, objectivePanelId,
   ExplainTab, VisualAidTab, QuizTab, CLIDrillTab, SubnettingTab, VLSMTab, IPv6CalcTab, ACLCalcTab,
-  onMissed, onScoreSaved, onSelectObjective, onOpenMissed, onOpenTrapDrill, onOpenLab,
+  onMissed, onScoreSaved, onSelectObjective, onOpenMissed, onOpenTrapDrill, onOpenLab, onOpenSubnet,
   examMode, premiumUnlocked, onPremiumBlocked, showPreAssess, onUpdateProgress,
 }) {
   return (
@@ -76,6 +76,7 @@ export default function ObjectiveBody({
         onOpenMissed={onOpenMissed}
         onOpenTrapDrill={onOpenTrapDrill}
         onOpenLab={onOpenLab}
+        onOpenSubnet={onOpenSubnet}
         onSwitchTab={(t) => setTab(t === 'Explain' ? 'Study' : t === 'Quiz' ? 'Practice' : t)}
         examMode={examMode}
         premiumUnlocked={premiumUnlocked}

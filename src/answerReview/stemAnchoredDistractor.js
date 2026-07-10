@@ -215,8 +215,35 @@ function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
   if (/static route|ip route/i.test(w) && /floating|default route|next-hop|exit interface/i.test(b)) {
     return `Static routing (${hook}): **${correct}** uses the right next-hop or exit interface — **${wrong}** misconfigures recursive or floating static behavior.`
   }
+  if (/wildcard|0\.0\.0\.|255\.255\.|\/\d{1,2}/i.test(w) && /acl|ospf|mask|subnet|wildcard/i.test(b)) {
+    return `Mask/wildcard (${hook}): **${correct}** uses the mask style this stem requires — **${wrong}** confuses subnet mask with ACL/OSPF wildcard bits.`
+  }
+  if (/standard acl|extended acl|access-list|access list/i.test(w + ' ' + c) && /acl|access.?list|filter/i.test(b)) {
+    return `ACL type/placement (${hook}): **${correct}** matches match fields and placement — **${wrong}** mixes standard vs extended rules or position.`
+  }
+  if (/root bridge|root port|designated|alternate|blocked|discarding/i.test(w) && /stp|rstp|spanning/i.test(b)) {
+    return `STP roles (${hook}): **${correct}** is the role/state this topology elects — **${wrong}** swaps root, designated, or blocked behavior.`
+  }
+  if (/native vlan|access port|trunk/i.test(w) && /vlan|802\.1q|trunk|access/i.test(b)) {
+    return `VLAN tagging (${hook}): **${correct}** matches access vs trunk/native behavior — **${wrong}** applies the wrong tagging model.`
+  }
+  if (/shutdown|restrict|protect|violation/i.test(w) && /port.?security|sticky|mac/i.test(b)) {
+    return `Port security (${hook}): **${correct}** is the violation mode or learning rule tested — **${wrong}** picks a different violation action.`
+  }
+  if (/lacp|pagp|mode on|etherchannel|port-channel/i.test(w) && /etherchannel|lacp|pagp|bundle|channel/i.test(b)) {
+    return `EtherChannel (${hook}): **${correct}** matches negotiation mode — **${wrong}** mixes LACP, PAgP, or static on.`
+  }
+  if (/hsrp|vrrp|glbp|standby|virtual ip|priority/i.test(w) && /hsrp|vrrp|glbp|fhrp|first.?hop|gateway/i.test(b)) {
+    return `FHRP (${hook}): **${correct}** matches the protocol and failover behavior — **${wrong}** swaps HSRP/VRRP/GLBP roles or timers.`
+  }
+  if (/neighbor|adjacency|hello|dead interval|area/i.test(w) && /ospf/i.test(b)) {
+    return `OSPF adjacency (${hook}): **${correct}** satisfies neighbor requirements — **${wrong}** breaks area, timers, or network type matching.`
+  }
+  if (/discover|offer|request|ack|relay|helper/i.test(w) && /dhcp/i.test(b)) {
+    return `DHCP (${hook}): **${correct}** is the message or role this stem describes — **${wrong}** is a different DORA step or relay/server mix-up.`
+  }
 
-  return `For "${hook}", **${correct}** satisfies what this question tests — **${wrong}** does not.`
+  return `For "${hook}", **${correct}** matches the required behavior — **${wrong}** answers a different mechanism or constraint than the stem asks.`
 }
 
 function inferMisconception({ wrong, correct, hooks, blob }) {

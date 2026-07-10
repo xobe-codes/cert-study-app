@@ -40,7 +40,14 @@ test.describe('Wrong-answer debrief smoke', () => {
 
     expect(debriefFound).toBe(true)
     await expect(page.getByText(DEBRIEF_HEADING).first()).toBeVisible()
-    await expect(page.getByText(/What this choice implies|Why it is wrong here/i).first()).toBeVisible()
-    await expect(page.locator('.ccna-answer-review').first()).toBeVisible()
+    const review = page.locator('.ccna-answer-review').first()
+    await expect(review).toBeVisible()
+    await expect(review.getByText(/Why it is wrong here/i).first()).toBeVisible()
+    await expect(review.getByText(/What this choice implies/i).first()).toBeVisible()
+    // Family chip (Trap:) when misconception label is present
+    const trapChip = review.getByRole('button', { name: /Trap:/i })
+    if (await trapChip.count()) {
+      await expect(trapChip.first()).toBeVisible()
+    }
   })
 })

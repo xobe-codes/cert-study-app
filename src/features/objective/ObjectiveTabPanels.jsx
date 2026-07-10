@@ -18,6 +18,7 @@ export default function ObjectiveTabPanels({
   onOpenMissed,
   onOpenTrapDrill,
   onOpenLab,
+  onOpenSubnet,
   onSwitchTab,
   examMode,
   premiumUnlocked,
@@ -60,6 +61,7 @@ export default function ObjectiveTabPanels({
           onOpenMissed={onOpenMissed}
           onOpenTrapDrill={onOpenTrapDrill}
           onOpenLab={onOpenLab}
+          onOpenSubnet={onOpenSubnet}
           onSwitchTab={(t) => onSwitchTab(t)}
           examMode={examMode}
           premiumUnlocked={premiumUnlocked}

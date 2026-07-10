@@ -151,6 +151,7 @@ export default function CoreStudyRoutes({
         onSelectObjective={selectObjective}
         onOpenMissed={() => setView('missed')}
         onOpenTrapDrill={openTrapDrill}
+        onOpenSubnet={() => navigateTo('subnet')}
         ExplainTab={ExplainTab}
         VisualAidTab={VisualAidTab}
         QuizTab={QuizTab}

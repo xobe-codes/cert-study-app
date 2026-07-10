@@ -5,6 +5,7 @@
 import {
   isFallbackExplanation,
   isGenericTrap,
+  isTemplateWhyWrongHere,
 } from './answerReview/answerReviewQuality.js'
 import {
   resolveWrongChoice,
@@ -64,7 +65,12 @@ function hasExplicitSadeFields(item) {
 
 function mergeSadeFields(q, choiceIndex, item = {}, { respectExplicitBoth = false } = {}) {
   const sade = buildStemAnchoredIncorrect({ q, choiceIndex })
-  if (respectExplicitBoth && hasExplicitSadeFields(item)) {
+  const storedOk = hasExplicitSadeFields(item)
+    && !isTemplateWhyWrongHere(item.whyWrongHere)
+    && !isFallbackExplanation(item.whatItDoes)
+    && !isTemplateWhyWrongHere(item.whatItDoes)
+  // Gold (or explicit) fields win only when they are not banned templates.
+  if (respectExplicitBoth && storedOk) {
     return { whatItDoes: item.whatItDoes, whyWrongHere: item.whyWrongHere }
   }
   return { whatItDoes: sade.whatItDoes, whyWrongHere: sade.whyWrongHere }
@@ -85,7 +91,8 @@ function ensureDistinctExplanations(q, incorrect) {
     }
     if (whyWrongHere && usedWhy.has(whyWrongHere)) {
       const wrong = q.choices?.[item.choiceIndex] || ''
-      whyWrongHere = `${whyWrongHere} Picking **${wrong}** misses the exact behavior this stem tests.`
+      const correct = q.choices?.[q.correctIndex] || ''
+      whyWrongHere = `Unlike **${correct}**, **${wrong}** fails the stem constraint that makes the keyed answer unique.`
     }
     usedExpl.set(explanation, item.choiceIndex)
     if (whyWrongHere) usedWhy.set(whyWrongHere, item.choiceIndex)
@@ -188,6 +195,7 @@ export function buildWrongExplanation(q, choiceIndex) {
   return buildWrongChoiceItem(q, choiceIndex).explanation
 }
 export { isFallbackExplanation, isFallbackExplanation as isGenericWrongExplanation } from './answerReview/answerReviewQuality.js'
+export { isTemplateWhyWrongHere } from './answerReview/answerReviewQuality.js'
 export {
   scoreAnswerReview,
   validateQuestionAnswerReview,
@@ -214,7 +222,19 @@ export function generateAnswerReview(q) {
         if (choiceIndex === q.correctIndex) return null
         const fromGold = goldByChoice.get(choiceIndex)
         if (fromGold) {
-          const { whatItDoes, whyWrongHere } = mergeSadeFields(q, choiceIndex, fromGold, { respectExplicitBoth: true })
+          let { whatItDoes, whyWrongHere } = mergeSadeFields(q, choiceIndex, fromGold, { respectExplicitBoth: true })
+          if (!whyWrongHere || isTemplateWhyWrongHere(whyWrongHere) || !whatItDoes) {
+            const rebuilt = buildWrongChoiceItem(q, choiceIndex)
+            whatItDoes = whatItDoes && !isTemplateWhyWrongHere(whatItDoes) ? whatItDoes : rebuilt.whatItDoes
+            whyWrongHere = whyWrongHere && !isTemplateWhyWrongHere(whyWrongHere) ? whyWrongHere : rebuilt.whyWrongHere
+            return {
+              ...fromGold,
+              explanation: fromGold.explanation || rebuilt.explanation,
+              whatItDoes,
+              whyWrongHere,
+              misconceptionTested: fromGold.misconceptionTested || rebuilt.misconceptionTested,
+            }
+          }
           return { ...fromGold, whatItDoes, whyWrongHere }
         }
         return buildWrongChoiceItem(q, choiceIndex)
@@ -262,7 +282,9 @@ export function resolveIncorrectItem(q, item) {
   const stored = item?.explanation
   const storedTrap = item?.misconceptionTested
   const { whatItDoes, whyWrongHere } = mergeSadeFields(q, item.choiceIndex, item)
-  const lowQuality = !stored || isFallbackExplanation(stored)
+  const lowQuality = !stored
+    || isFallbackExplanation(stored)
+    || isTemplateWhyWrongHere(item?.whyWrongHere)
   if (!lowQuality) {
     return {
       choiceIndex: item.choiceIndex,
@@ -273,6 +295,7 @@ export function resolveIncorrectItem(q, item) {
         ? inferTrapForChoice(q, item.choiceIndex)
         : storedTrap,
       needsExplanationReview: item.needsExplanationReview,
+      genericDebrief: isTemplateWhyWrongHere(whyWrongHere),
     }
   }
   const rebuilt = buildWrongChoiceItem(q, item.choiceIndex)
@@ -282,6 +305,7 @@ export function resolveIncorrectItem(q, item) {
     whatItDoes: rebuilt.whatItDoes,
     whyWrongHere: rebuilt.whyWrongHere,
     misconceptionTested: rebuilt.misconceptionTested || inferTrapForChoice(q, item.choiceIndex),
+    genericDebrief: isTemplateWhyWrongHere(rebuilt.whyWrongHere),
   }
 }
 

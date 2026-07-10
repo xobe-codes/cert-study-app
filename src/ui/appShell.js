@@ -871,6 +871,13 @@ export function buildAppShellCss(colors) {
     .curated-diagram-canvas {
       touch-action: manipulation;
     }
+    .curated-diagram-zoom-canvas {
+      touch-action: none;
+      -webkit-user-scrolling: touch;
+    }
+    .curated-diagram-svg {
+      max-width: 100%;
+    }
     @media (max-width: 640px) {
       .study-visual-section {
         margin-left: 0;

@@ -435,7 +435,15 @@ export default function DomainPassSession({
             <div style={{ fontWeight: 700, color: isCurrentCorrect ? COLORS.mint : COLORS.rose, marginBottom: 6, fontSize: 'var(--ccna-type-sm)' }}>
               {isCurrentCorrect ? '✓ Correct!' : '✗ Incorrect'}
             </div>
-            <AnswerReview q={q} selected={selected} hideExamTip={examMode} onOpenLab={onOpenLab} />
+            <AnswerReview
+              q={q}
+              selected={selected}
+              hideExamTip={examMode}
+              domainId={domainId}
+              onOpenLab={onOpenLab}
+              onOpenTrapDrill={onOpenTrapDrill}
+              onOpenSubnet={onOpenSubnet}
+            />
           </div>
         )}
         </McChoiceShuffleProvider>

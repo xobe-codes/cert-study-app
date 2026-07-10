@@ -71,6 +71,8 @@
 
 Revisit when next school class starts (class pack template) or when adding a second cert. Default first build: P0 pack shell + P1 syllabus → class pack.
 
+**Question debrief 99+** (stem-grounded wrong answers + family UI) — [`QUESTION_DEBRIEF_99.md`](./QUESTION_DEBRIEF_99.md)
+
 Full shipped history: `COMPLETED_CHANGES.md`
 
 ---

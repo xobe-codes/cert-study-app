@@ -1,11 +1,17 @@
 import React, { useEffect, useId, useMemo, useRef, useState } from 'react'
 import { COLORS, accentColors, styles } from '../ui/appTheme.js'
+import {
+  DiagramDeviceIconG,
+  diagramCanvasSize,
+  diagramFontSizes,
+  shouldShowLinkLabel,
+} from './diagramDeviceIcons.jsx'
+import { useDiagramPanZoom } from '../hooks/useDiagramPanZoom.js'
 
 const MODAL_Z = 300
 const FOCUSABLE_SELECTOR = 'a[href],button:not([disabled]),textarea,input:not([type="hidden"]),select,[tabindex]:not([tabindex="-1"])'
 
 const DIAGRAM_NODE_COLOR = { router: 'mint', switch: 'purple', subnet: 'sky', process: 'amber', pc: 'sky', server: 'silver', firewall: 'rose', cloud: 'sky', attacker: 'rose', default: 'silver' }
-const DIAGRAM_NODE_ICON = { router: 'R', switch: 'S', pc: 'PC', server: 'SV', cloud: '☁', firewall: 'FW', attacker: '!', process: '●', subnet: 'NET', default: '·' }
 const TYPE_SHORT = { router: 'Router', switch: 'Switch', pc: 'PC', server: 'Server', subnet: 'Net', firewall: 'FW', cloud: 'Cloud', process: 'Step', attacker: 'Threat' }
 
 function useCompactViewport(maxWidth = 1024) {
@@ -23,6 +29,31 @@ function useCompactViewport(maxWidth = 1024) {
   }, [maxWidth])
 
   return compact
+}
+
+function useLandscapeViewport() {
+  const [landscape, setLandscape] = useState(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return false
+    return window.matchMedia('(orientation: landscape)').matches
+      || (window.innerWidth > window.innerHeight && window.innerWidth >= 700)
+  })
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return
+    const mq = window.matchMedia('(orientation: landscape)')
+    const onChange = () => {
+      setLandscape(mq.matches || (window.innerWidth > window.innerHeight && window.innerWidth >= 700))
+    }
+    onChange()
+    mq.addEventListener('change', onChange)
+    window.addEventListener('resize', onChange)
+    return () => {
+      mq.removeEventListener('change', onChange)
+      window.removeEventListener('resize', onChange)
+    }
+  }, [])
+
+  return landscape
 }
 
 /** Touch / coarse-pointer devices (iPad, phones) — no hover-only affordances. */
@@ -168,9 +199,12 @@ function DiagramAnnotations({ annotations, visuallyHidden = false }) {
   return list
 }
 
-function DiagramSvg({ diagram, detail, compact, expanded = false, isMobile = false }) {
+function DiagramSvg({ diagram, detail, compact, expanded = false, isMobile = false, isLandscape = false }) {
   const uid = useId().replace(/:/g, '')
   const isPreview = detail === 'preview'
+  const links = diagram?.links || []
+  const linkCount = links.length
+
   const layout = useMemo(() => {
     const nodes = diagram?.nodes || []
     if (!nodes.length) return null
@@ -182,41 +216,39 @@ function DiagramSvg({ diagram, detail, compact, expanded = false, isMobile = fal
     const maxY = Math.min(100, Math.max(...ys) + pad)
     const spanX = Math.max(28, maxX - minX)
     const spanY = Math.max(22, maxY - minY)
-    const W = expanded ? (isMobile ? 390 : 520) : (isMobile ? 340 : 360)
-    const H = Math.round(W * (spanY / spanX) * 0.72)
-    let clampH
-    if (expanded) clampH = Math.min(Math.max(H, isMobile ? 260 : 200), isMobile ? 520 : 420)
-    else if (compact || isPreview) clampH = Math.min(H, isMobile ? 240 : 150)
-    else clampH = Math.min(Math.max(H, isMobile ? 160 : 130), isMobile ? 300 : 240)
+    const { W, H: clampH } = diagramCanvasSize({
+      expanded, compact, isPreview, isMobile, isLandscape, spanX, spanY,
+    })
     const density = nodes.length
-    const nodeW = Math.min(expanded ? (isMobile ? 120 : 132) : (isMobile ? 108 : 118), Math.max(76, (expanded ? 116 : 108) - density * 4))
-    const nodeH = expanded ? (isMobile ? 36 : 34) : (isMobile ? 32 : 30)
-    const fontSize = expanded
-      ? (isMobile ? 10 : 9)
-      : (compact || isPreview)
-        ? (isMobile ? 8.5 : 7.5)
-        : density > 5 ? (isMobile ? 8.25 : 7.5) : (isMobile ? 9 : 8.25)
+    const fonts = diagramFontSizes({ expanded, compact, isPreview, isMobile, density })
+    const nodeW = Math.min(
+      expanded ? (isMobile ? 128 : 136) : (isMobile ? 116 : 120),
+      Math.max(84, (expanded ? 124 : 112) - density * 3),
+    )
+    const nodeH = expanded ? (isMobile ? 42 : 38) : (isMobile ? 38 : 34)
     const toX = v => ((v - minX) / spanX) * W
     const toY = v => ((v - minY) / spanY) * clampH
     const labelMax = isPreview
-      ? (isMobile ? 16 : 12)
-      : compact ? (isMobile ? 16 : 14) : expanded ? (isMobile ? 24 : 22) : (isMobile ? 20 : 18)
+      ? (isMobile ? 14 : 12)
+      : compact ? (isMobile ? 16 : 14) : expanded ? (isMobile ? 22 : 20) : (isMobile ? 18 : 16)
+    const iconSlot = fonts.icon + 10
     const nodeMap = Object.fromEntries(nodes.map(n => {
       const text = isPreview ? diagramShortLabel(n) : n.label
       const lines = splitDiagramLabel(text, labelMax)
       return [n.id, { ...n, cx: toX(n.x), cy: toY(n.y), lines, hw: nodeW / 2, hh: nodeH / 2 }]
     }))
-    return { W, H: clampH, nodeW, nodeH, fontSize, nodeMap, nodes }
-  }, [diagram, compact, expanded, isPreview, isMobile])
+    return { W, H: clampH, nodeW, nodeH, fonts, iconSlot, nodeMap, nodes }
+  }, [diagram, compact, expanded, isPreview, isMobile, isLandscape])
 
   if (!layout) return null
-  const { W, H, nodeW, nodeH, fontSize, nodeMap, nodes } = layout
+  const { W, H, nodeW, nodeH, fonts, iconSlot, nodeMap, nodes } = layout
   const nodeAt = id => nodeMap[id]
-  const showLinkLabels = detail === 'full'
   const showGlow = detail === 'full'
+  let linkLabelIndex = 0
 
   return (
     <svg
+      className="curated-diagram-svg"
       viewBox={`0 0 ${W} ${H}`}
       preserveAspectRatio="xMidYMid meet"
       style={{ width: '100%', height: '100%', display: 'block', minHeight: H }}
@@ -238,7 +270,7 @@ function DiagramSvg({ diagram, detail, compact, expanded = false, isMobile = fal
       </defs>
       <rect x="0" y="0" width={W} height={H} fill={COLORS.surface} rx="0" />
 
-      {(diagram.links || []).map(l => {
+      {links.map(l => {
         const a = nodeAt(l.source), b = nodeAt(l.target)
         if (!a || !b) return null
         const p1 = diagramEdgePoint(a.cx, a.cy, a.hw, a.hh, b.cx, b.cy)
@@ -247,21 +279,41 @@ function DiagramSvg({ diagram, detail, compact, expanded = false, isMobile = fal
         const dashed = l.status === 'dropped' || l.status === 'blocked'
         const showArrow = l.status === 'forwarding' || l.status === 'normal' || l.status === 'modified'
         const markerId = dashed ? `${uid}-blk` : `${uid}-fwd`
-        const midX = (p1.x + p2.x) / 2, midY = (p1.y + p2.y) / 2
+        const midX = (p1.x + p2.x) / 2
+        const midY = (p1.y + p2.y) / 2
         const labelShort = l.label && l.label.length > 28 ? `${l.label.slice(0, 26)}…` : l.label
+        const showLabel = shouldShowLinkLabel(l, { detail, linkCount })
+        const offset = (linkLabelIndex % 3) * 10 - 10
+        if (showLabel && labelShort) linkLabelIndex += 1
+        const labelW = Math.min(120, Math.max(56, (labelShort?.length || 0) * (fonts.link * 0.55) + 12))
         return (
           <g key={l.id}>
             <line
               x1={p1.x} y1={p1.y} x2={p2.x} y2={p2.y}
-              stroke={stroke} strokeWidth={isPreview ? 1.5 : 2}
+              stroke={stroke} strokeWidth={isPreview ? 1.75 : 2.25}
               strokeDasharray={dashed ? '5 4' : undefined} strokeLinecap="round"
               markerEnd={showArrow ? `url(#${markerId})` : undefined}
               opacity={dashed ? 0.85 : 1}
             />
-            {labelShort && showLinkLabels && (
+            {labelShort && showLabel && (
               <g>
-                <rect x={midX - 52} y={midY - 16} width={104} height={12} rx="4" fill={COLORS.bg} opacity="0.92" />
-                <text x={midX} y={midY - 7} fontSize={expanded ? 7.5 : 6.5} fill={COLORS.silverMid} textAnchor="middle">{labelShort}</text>
+                <rect
+                  x={midX - labelW / 2}
+                  y={midY - 14 + offset}
+                  width={labelW}
+                  height={fonts.link + 6}
+                  rx="4"
+                  fill={COLORS.bg}
+                  opacity="0.94"
+                />
+                <text
+                  x={midX}
+                  y={midY - 14 + offset + fonts.link + 1}
+                  fontSize={fonts.link}
+                  fill={COLORS.silverMid}
+                  textAnchor="middle"
+                  fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
+                >{labelShort}</text>
               </g>
             )}
           </g>
@@ -272,24 +324,29 @@ function DiagramSvg({ diagram, detail, compact, expanded = false, isMobile = fal
         const nd = nodeMap[n.id]
         const accent = n.status === 'error' ? 'rose' : n.status === 'highlighted' ? 'mint' : DIAGRAM_NODE_COLOR[n.type] || DIAGRAM_NODE_COLOR.default
         const c = accentColors(accent)
-        const icon = DIAGRAM_NODE_ICON[n.type] || DIAGRAM_NODE_ICON.default
-        const textX = nd.cx + 8
-        const lineH = fontSize + 2
-        const textY = nd.lines.length > 1 ? nd.cy - lineH / 2 + 2 : nd.cy + 3
+        const iconCx = nd.cx - nodeW / 2 + iconSlot / 2 + 2
+        const textX = nd.cx - nodeW / 2 + iconSlot + (nodeW - iconSlot) / 2
+        const lineH = fonts.node + 2
+        const textY = nd.lines.length > 1 ? nd.cy - lineH / 2 + 2 : nd.cy + fonts.node / 3
         return (
           <g key={n.id} filter={showGlow ? `url(#${uid}-glow)` : undefined}>
             <rect
-              x={nd.cx - nodeW / 2} y={nd.cy - nodeH / 2} width={nodeW} height={nodeH} rx="8"
+              x={nd.cx - nodeW / 2} y={nd.cy - nodeH / 2} width={nodeW} height={nodeH} rx="9"
               fill={c.dim} stroke={c.text}
-              strokeWidth={n.status === 'highlighted' || n.status === 'error' ? 2 : 1}
+              strokeWidth={n.status === 'highlighted' || n.status === 'error' ? 2 : 1.25}
             />
-            <circle cx={nd.cx - nodeW / 2 + 11} cy={nd.cy} r="7" fill={COLORS.bg} stroke={c.border} strokeWidth="1" />
-            <text x={nd.cx - nodeW / 2 + 11} y={nd.cy + (icon.length > 1 ? 2.5 : 3.5)} fontSize={icon.length > 1 ? 5 : 7} fill={c.text} textAnchor="middle" fontWeight="700" fontFamily="ui-monospace, Menlo, monospace">{icon}</text>
+            <circle cx={iconCx} cy={nd.cy} r={fonts.icon / 2 + 3} fill={COLORS.bg} stroke={c.border || c.text} strokeWidth="1" />
+            <DiagramDeviceIconG type={n.type} color={c.text} cx={iconCx} cy={nd.cy} size={fonts.icon} />
             {nd.lines.map((line, i) => (
               <text
-                key={i} x={textX} y={textY + i * lineH}
-                fontSize={fontSize} fill={c.text} textAnchor="middle"
+                key={i}
+                x={textX}
+                y={textY + i * lineH}
+                fontSize={fonts.node}
+                fill={c.text}
+                textAnchor="middle"
                 fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
+                fontWeight="600"
               >{line}</text>
             ))}
           </g>
@@ -299,12 +356,14 @@ function DiagramSvg({ diagram, detail, compact, expanded = false, isMobile = fal
   )
 }
 
-function DiagramCard({ diagram, detail, compact, expandable, onExpand, showTitle = true, ariaExpanded = false, isMobile = false, touchFriendly = false }) {
+function DiagramCard({ diagram, detail, compact, expandable, onExpand, showTitle = true, ariaExpanded = false, isMobile = false, isLandscape = false, touchFriendly = false }) {
   const linkStatuses = new Set((diagram.links || []).map(l => l.status).filter(Boolean))
   const isPreview = detail === 'preview'
   const showExpandButton = expandable && (isMobile || touchFriendly)
   const maxHeight = isMobile
-    ? (isPreview ? (compact ? 260 : 280) : compact ? 240 : 320)
+    ? (isLandscape
+      ? (isPreview ? 200 : 240)
+      : (isPreview ? (compact ? 270 : 300) : compact ? 260 : 340))
     : (isPreview ? (compact ? 148 : 200) : compact ? 168 : 260)
 
   const canvas = (
@@ -314,7 +373,7 @@ function DiagramCard({ diagram, detail, compact, expandable, onExpand, showTitle
         width: '100%',
         maxWidth: '100%',
         maxHeight,
-        ...(isMobile ? { minHeight: isPreview ? 220 : 180, height: maxHeight } : { aspectRatio: '5 / 3' }),
+        ...(isMobile ? { minHeight: isLandscape ? 160 : (isPreview ? 230 : 190), height: maxHeight } : { aspectRatio: '5 / 3' }),
         borderRadius: 10,
         overflow: 'hidden',
         background: COLORS.surface,
@@ -322,7 +381,7 @@ function DiagramCard({ diagram, detail, compact, expandable, onExpand, showTitle
         position: 'relative',
       }}
     >
-      <DiagramSvg diagram={diagram} detail={detail} compact={compact} isMobile={isMobile} />
+      <DiagramSvg diagram={diagram} detail={detail} compact={compact} isMobile={isMobile} isLandscape={isLandscape} />
       {expandable && !showExpandButton && (
         <div
           aria-hidden="true"
@@ -421,10 +480,11 @@ function DiagramCard({ diagram, detail, compact, expandable, onExpand, showTitle
   )
 }
 
-function DiagramExpandModal({ diagram, onClose, isMobile = false }) {
+function DiagramExpandModal({ diagram, onClose, isMobile = false, isLandscape = false }) {
   const dialogRef = useRef(null)
   const closeRef = useRef(null)
   useFocusTrap(dialogRef)
+  const panZoom = useDiagramPanZoom({ enabled: isMobile || true })
 
   useEffect(() => {
     function onKey(e) {
@@ -488,15 +548,27 @@ function DiagramExpandModal({ diagram, onClose, isMobile = false }) {
           <h2 id="diagram-modal-title" style={{ ...styles.h2, margin: 0, fontSize: 'var(--ccna-type-md)', lineHeight: 1.35, paddingRight: 8 }}>
             🗺️ {diagram.title}
           </h2>
-          <button
-            ref={closeRef}
-            type="button"
-            onClick={onClose}
-            aria-label="Close diagram"
-            style={{ ...styles.secondaryBtn, padding: '10px 14px', minHeight: 44, minWidth: 44, flexShrink: 0 }}
-          >
-            ✕
-          </button>
+          <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
+            {panZoom.zoomed && (
+              <button
+                type="button"
+                onClick={panZoom.reset}
+                aria-label="Reset diagram zoom"
+                style={{ ...styles.secondaryBtn, padding: '10px 12px', minHeight: 44, flexShrink: 0 }}
+              >
+                Reset
+              </button>
+            )}
+            <button
+              ref={closeRef}
+              type="button"
+              onClick={onClose}
+              aria-label="Close diagram"
+              style={{ ...styles.secondaryBtn, padding: '10px 14px', minHeight: 44, minWidth: 44, flexShrink: 0 }}
+            >
+              ✕
+            </button>
+          </div>
         </div>
         <div
           className="curated-diagram-modal-body"
@@ -508,9 +580,27 @@ function DiagramExpandModal({ diagram, onClose, isMobile = false }) {
             padding: isMobile ? '0 12px' : 0,
           }}
         >
-          <div style={{ width: '100%', minHeight: isMobile ? 280 : 220, maxHeight: isMobile ? 'none' : 'min(70vh, 480px)' }}>
-            <DiagramSvg diagram={diagram} detail="full" expanded isMobile={isMobile} />
+          <div
+            className="curated-diagram-zoom-canvas"
+            style={{
+              width: '100%',
+              minHeight: isMobile ? (isLandscape ? 200 : 280) : 220,
+              maxHeight: isMobile ? (isLandscape ? '55dvh' : 'none') : 'min(70vh, 480px)',
+              overflow: 'hidden',
+              touchAction: 'none',
+              borderRadius: 10,
+              border: `1px solid ${COLORS.border}`,
+              position: 'relative',
+            }}
+            {...panZoom.handlers}
+          >
+            <div style={{ ...panZoom.style, width: '100%', height: '100%', willChange: 'transform' }}>
+              <DiagramSvg diagram={diagram} detail="full" expanded isMobile={isMobile} isLandscape={isLandscape} />
+            </div>
           </div>
+          <p style={{ margin: '8px 0 0', fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid }}>
+            Pinch to zoom · drag to pan · double-tap to reset
+          </p>
           <div style={{ padding: isMobile ? '12px 4px max(16px, var(--ccna-safe-bottom))' : '12px 0 0' }}>
             <DiagramLegend linkStatuses={linkStatuses} />
             <DiagramAnnotations annotations={diagram.annotations} />
@@ -524,13 +614,23 @@ function DiagramExpandModal({ diagram, onClose, isMobile = false }) {
 export default function CuratedDiagram({ diagram, compact = false }) {
   const [open, setOpen] = useState(false)
   const isMobile = useCompactViewport()
+  const isLandscape = useLandscapeViewport()
   const touchFriendly = useTouchFriendly()
   const needsExpand = useMemo(() => diagramNeedsExpand(diagram), [diagram])
 
   if (!diagram?.nodes?.length) return null
 
   if (!needsExpand) {
-    return <DiagramCard diagram={diagram} detail="full" compact={compact} isMobile={isMobile} touchFriendly={touchFriendly} />
+    return (
+      <DiagramCard
+        diagram={diagram}
+        detail="full"
+        compact={compact}
+        isMobile={isMobile}
+        isLandscape={isLandscape}
+        touchFriendly={touchFriendly}
+      />
+    )
   }
 
   return (
@@ -543,9 +643,17 @@ export default function CuratedDiagram({ diagram, compact = false }) {
         ariaExpanded={open}
         onExpand={() => setOpen(true)}
         isMobile={isMobile}
+        isLandscape={isLandscape}
         touchFriendly={touchFriendly}
       />
-      {open && <DiagramExpandModal diagram={diagram} onClose={() => setOpen(false)} isMobile={isMobile} />}
+      {open && (
+        <DiagramExpandModal
+          diagram={diagram}
+          onClose={() => setOpen(false)}
+          isMobile={isMobile}
+          isLandscape={isLandscape}
+        />
+      )}
     </>
   )
 }

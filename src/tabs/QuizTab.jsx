@@ -54,10 +54,12 @@ import {
   recordSeen,
 } from '../features/domainPass/domainQuestionExposure.js'
 
-/** Resolve trap-drill prefill from a missed MC question (infer trap or objective examTraps). */
+/** Resolve trap-drill prefill from a missed MC question (prefer family label from answerReview). */
 function resolveQuizTrapDrillPrefill(question, objective, selected) {
   const enriched = applyAnswerReviewToQuestion(question)
-  let trap = inferTrapForChoice(enriched, selected)
+  const wrongItem = (enriched.answerReview?.incorrect || []).find(i => i.choiceIndex === selected)
+  let trap = wrongItem?.misconceptionTested
+    || inferTrapForChoice(enriched, selected)
   let ckuId = question.ckuIds?.[0] || enriched.ckuIds?.[0]
 
   if (!trap || !isActionableMissedTrap(trap)) {
@@ -228,7 +230,7 @@ function QuizCompleteCard({
 }
 
 export function QuizTab({
-  objective, progress, missed, onMissed, onScoreSaved, nextObjective, onSelectObjective, onOpenMissed, onOpenTrapDrill, onOpenLab, onSwitchTab,
+  objective, progress, missed, onMissed, onScoreSaved, nextObjective, onSelectObjective, onOpenMissed, onOpenTrapDrill, onOpenLab, onOpenSubnet, onSwitchTab,
   examMode = false, premiumUnlocked = false, onPremiumBlocked,
   showPreAssessFirst = false, onUpdateProgress,
 }) {
@@ -767,19 +769,29 @@ export function QuizTab({
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>
               {isCorrect ? 'Correct' : 'Incorrect'}
             </div>
-            <AnswerReview q={current} selected={selected} hideExamTip={examMode} objectiveId={objective.id} showQuestionFlag onOpenLab={onOpenLab} />
+            <AnswerReview
+              q={applyAnswerReviewToQuestion(current)}
+              selected={selected}
+              hideExamTip={examMode}
+              objectiveId={objective.id}
+              domainId={domainIdFromObjectiveId(objective.id)}
+              showQuestionFlag
+              onOpenLab={onOpenLab}
+              onOpenTrapDrill={onOpenTrapDrill}
+              onOpenSubnet={onOpenSubnet}
+            />
             {!isCorrect && onOpenTrapDrill && (() => {
               const prefill = resolveQuizTrapDrillPrefill(current, objective, selected)
               if (!prefill) return null
-              // trapStreakTick re-renders after recordTrapMiss so streak CTA updates
               const streakCta = trapStreakTick >= 0 && shouldShowTrapStreakCta(trapStreakRef.current, prefill)
+              if (!streakCta) return null
               return (
                 <button
                   type="button"
                   style={{ ...styles.secondaryBtn, marginTop: 10, width: '100%' }}
                   onClick={() => onOpenTrapDrill(prefill)}
                 >
-                  {streakCta ? 'Trap drill this misconception →' : 'Drill this trap →'}
+                  Trap drill this misconception →
                 </button>
               )
             })()}

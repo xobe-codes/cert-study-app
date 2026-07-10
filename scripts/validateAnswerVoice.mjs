@@ -4,6 +4,7 @@ import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { validateQuestionAnswerReview } from '../src/answerReview/answerReviewQuality.js'
+import { applyAnswerReviewToQuestion } from '../src/answerReviewLogic.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -38,7 +39,8 @@ for (const path of walkJson(CLEAN)) {
       if (/does not answer .+ in this stem/i.test(t)) errors.push(`${q.id}: ${where} uses stem template`)
     }
 
-    for (const msg of validateQuestionAnswerReview(q)) {
+    const applied = applyAnswerReviewToQuestion(q)
+    for (const msg of validateQuestionAnswerReview(applied)) {
       errors.push(`${q.id}: ${msg.replace(/^[^:]+:\s*/, '')}`)
     }
   }

@@ -28,7 +28,10 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['icon-192.svg', 'manifest.webmanifest'],
       manifest: false,
+      // Skip SW terser minify — workbox+terser can early-exit and fail the whole build.
+      minify: false,
       workbox: {
+        mode: 'development',
         // Curated study chunks precached at install (hashed filenames from build).
         // index.html and index-*.js stay network-first to avoid stale-shell blank screens.
         globPatterns: [

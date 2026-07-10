@@ -7,6 +7,8 @@ import {
 import { isMcQuestion, isCliQuestion, isOrderingQuestion, correctAnswerLabel, gradeQuestion } from '../questionUtils.js'
 import { cliStringsEquivalent } from '../lab/cliGrading.js'
 import { goldCliReviewFor } from '../answerReview/goldAnswerReviewsCliSkill.js'
+import { isTemplateWhyWrongHere } from '../answerReview/answerReviewQuality.js'
+import { familyRemediationActions } from '../features/practice/debriefRemediation.js'
 import QuestionFlagPanel from './QuestionFlagPanel.jsx'
 import StemReplayCTA from '../features/stemReplay/StemReplayCTA.jsx'
 import QuestionUnderReviewBanner from './QuestionUnderReviewBanner.jsx'
@@ -62,7 +64,75 @@ function ReviewBlock({ icon, title, accent, children, collapsible, defaultOpen =
   )
 }
 
-function WrongChoiceReview({ q, item }) {
+function truncateFamilyLabel(label, max = 48) {
+  const s = String(label || '').trim()
+  if (s.length <= max) return s
+  return `${s.slice(0, max - 1)}…`
+}
+
+function FamilyRemediationRow({
+  misconceptionTested,
+  objectiveId,
+  domainId,
+  ckuId,
+  onOpenTrapDrill,
+  onOpenSubnet,
+}) {
+  if (!misconceptionTested && !ckuId) return null
+  const actions = familyRemediationActions({
+    trapLabel: misconceptionTested,
+    objectiveId,
+    domainId,
+    ckuId,
+  })
+  const trapAction = actions.find(a => a.kind === 'trapDrill')
+  const wildcardAction = actions.find(a => a.kind === 'wildcard')
+
+  return (
+    <div style={{ marginTop: 8, display: 'flex', flexWrap: 'wrap', gap: 6, alignItems: 'center', minWidth: 0 }}>
+      {misconceptionTested && (
+        onOpenTrapDrill && trapAction ? (
+          <button
+            type="button"
+            className="ccna-hover"
+            onClick={() => onOpenTrapDrill(trapAction.prefill)}
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: 6, maxWidth: '100%',
+              padding: '4px 10px', borderRadius: 999, cursor: 'pointer', fontFamily: 'inherit',
+              background: COLORS.purpleDim, border: `1px solid ${COLORS.purpleDim}`,
+              color: COLORS.purpleGlow, fontSize: 'var(--ccna-type-xs)', fontWeight: 700,
+              overflowWrap: 'anywhere', wordBreak: 'break-word', textAlign: 'left',
+            }}
+          >
+            Trap: {truncateFamilyLabel(misconceptionTested)} →
+          </button>
+        ) : (
+          <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, overflowWrap: 'anywhere' }}>
+            Trap: {truncateFamilyLabel(misconceptionTested)}
+          </span>
+        )
+      )}
+      {wildcardAction && onOpenSubnet && (
+        <button
+          type="button"
+          className="ccna-hover"
+          onClick={() => onOpenSubnet()}
+          style={{
+            padding: '4px 10px', borderRadius: 999, cursor: 'pointer', fontFamily: 'inherit',
+            background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`,
+            color: COLORS.sky, fontSize: 'var(--ccna-type-xs)', fontWeight: 700,
+          }}
+        >
+          {wildcardAction.label}
+        </button>
+      )}
+    </div>
+  )
+}
+
+function WrongChoiceReview({
+  q, item, objectiveId, domainId, onOpenTrapDrill, onOpenSubnet, showFamily = true,
+}) {
   let resolved = resolveIncorrectItem(q, item)
   if (!resolved.whatItDoes || !resolved.whyWrongHere) {
     const rebuilt = buildWrongChoiceItem(q, item.choiceIndex)
@@ -75,17 +145,18 @@ function WrongChoiceReview({ q, item }) {
     }
   }
   const hasStructured = Boolean(resolved.whatItDoes && resolved.whyWrongHere)
+  const generic = resolved.genericDebrief || isTemplateWhyWrongHere(resolved.whyWrongHere)
   return (
     <>
       {hasStructured ? (
         <>
           <div style={{ marginBottom: 8 }}>
-            <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, marginBottom: 4 }}>What this choice implies</div>
-            <RichText text={resolved.whatItDoes} />
-          </div>
-          <div>
             <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, marginBottom: 4 }}>Why it is wrong here</div>
             <RichText text={resolved.whyWrongHere} />
+          </div>
+          <div>
+            <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, marginBottom: 4 }}>What this choice implies</div>
+            <RichText text={resolved.whatItDoes} />
           </div>
         </>
       ) : resolved.explanation ? (
@@ -94,10 +165,20 @@ function WrongChoiceReview({ q, item }) {
           <RichText text={resolved.explanation} />
         </div>
       ) : null}
-      {resolved.misconceptionTested && (
-        <div style={{ marginTop: 8, fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>
-          Trap tested: {resolved.misconceptionTested}
+      {generic && (
+        <div style={{ marginTop: 8, fontSize: 'var(--ccna-type-xs)', color: COLORS.amber }}>
+          Generic debrief — flag if unclear
         </div>
+      )}
+      {showFamily && (
+        <FamilyRemediationRow
+          misconceptionTested={resolved.misconceptionTested}
+          objectiveId={objectiveId}
+          domainId={domainId}
+          ckuId={q?.ckuIds?.[0]}
+          onOpenTrapDrill={onOpenTrapDrill}
+          onOpenSubnet={onOpenSubnet}
+        />
       )}
       {resolved.needsExplanationReview && (
         <div style={{ marginTop: 6, fontSize: 'var(--ccna-type-xs)', color: COLORS.amber }}>⚠ Explanation pending review</div>
@@ -106,8 +187,11 @@ function WrongChoiceReview({ q, item }) {
   )
 }
 
-/** Post-reveal breakdown — correct + your pick expanded; other distractors collapsed. */
-export default function AnswerReview({ q, selected, cliAnswer, orderAnswer, hideExamTip = false, objectiveId, showQuestionFlag = false, onOpenLab }) {
+/** Post-reveal breakdown — your pick first when wrong; other distractors collapsed. */
+export default function AnswerReview({
+  q, selected, cliAnswer, orderAnswer, hideExamTip = false, objectiveId, domainId,
+  showQuestionFlag = false, onOpenLab, onOpenTrapDrill, onOpenSubnet,
+}) {
   const compactMobile = useCompactMobile()
   const shuffle = useMcChoiceShuffleContext()
   const displayLetter = canonicalIdx => {
@@ -198,26 +282,46 @@ export default function AnswerReview({ q, selected, cliAnswer, orderAnswer, hide
     : []
   const otherWrong = incorrect.filter(item => item.choiceIndex !== selectedWrongIdx)
 
+  const correctBlock = (
+    <ReviewBlock
+      key="correct"
+      icon="✅"
+      title={`CORRECT ANSWER: ${displayLetter(correctIdx)}`}
+      accent="mint"
+      collapsible={selectedWrongIdx != null || compactMobile}
+      defaultOpen={selectedWrongIdx == null ? !compactMobile : !compactMobile}
+    >
+      <RichText text={ar?.correct?.explanation || q.explanation} />
+    </ReviewBlock>
+  )
+
+  const yourWrongBlocks = yourWrong.map(item => {
+    const letter = displayLetter(item.choiceIndex)
+    const choiceText = q.choices?.[item.choiceIndex] || ''
+    return (
+      <ReviewBlock
+        key={item.choiceIndex}
+        icon="❌"
+        title={formatYourWrongHeader(letter, choiceText)}
+        accent="rose"
+      >
+        <WrongChoiceReview
+          q={q}
+          item={item}
+          objectiveId={objectiveId}
+          domainId={domainId}
+          onOpenTrapDrill={onOpenTrapDrill}
+          onOpenSubnet={onOpenSubnet}
+          showFamily
+        />
+      </ReviewBlock>
+    )
+  })
+
   return (
     <div className={`ccna-answer-review${compactMobile ? ' ccna-answer-review--compact' : ''}`} style={{ marginTop: compactMobile ? 6 : 8, minWidth: 0 }}>
       <QuestionUnderReviewBanner questionId={q?.id} />
-      <ReviewBlock icon="✅" title={`CORRECT ANSWER: ${displayLetter(correctIdx)}`} accent="mint" collapsible={selectedWrongIdx != null || compactMobile} defaultOpen={selectedWrongIdx == null && !compactMobile}>
-        <RichText text={ar?.correct?.explanation || q.explanation} />
-      </ReviewBlock>
-      {yourWrong.map(item => {
-        const letter = displayLetter(item.choiceIndex)
-        const choiceText = q.choices?.[item.choiceIndex] || ''
-        return (
-          <ReviewBlock
-            key={item.choiceIndex}
-            icon="❌"
-            title={formatYourWrongHeader(letter, choiceText)}
-            accent="rose"
-          >
-            <WrongChoiceReview q={q} item={item} />
-          </ReviewBlock>
-        )
-      })}
+      {selectedWrongIdx != null ? [...yourWrongBlocks, correctBlock] : [correctBlock, ...yourWrongBlocks]}
       {otherWrong.length > 0 && (
         <ReviewBlock
           icon="📋"
@@ -238,7 +342,15 @@ export default function AnswerReview({ q, selected, cliAnswer, orderAnswer, hide
                 collapsible
                 defaultOpen={false}
               >
-                <WrongChoiceReview q={q} item={item} />
+                <WrongChoiceReview
+                  q={q}
+                  item={item}
+                  objectiveId={objectiveId}
+                  domainId={domainId}
+                  onOpenTrapDrill={onOpenTrapDrill}
+                  onOpenSubnet={onOpenSubnet}
+                  showFamily={false}
+                />
               </ReviewBlock>
             )
           })}

@@ -11,7 +11,7 @@ import { useObjectiveSiblings, useObjectiveToolItems } from './features/objectiv
 import { useObjectiveStudyBlockSwitch } from './features/objective/useObjectiveStudyBlockSwitch.js'
 
 export default function ObjectiveScreen({
-  objective, progress, apiOnline, offlineReady, packagingId, onPackage, onBack, backLabel = 'Back', onUpdateProgress, onMissed, missed, onOpenLab, onSelectObjective, onOpenMissed, onOpenTrapDrill,
+  objective, progress, apiOnline, offlineReady, packagingId, onPackage, onBack, backLabel = 'Back', onUpdateProgress, onMissed, missed, onOpenLab, onSelectObjective, onOpenMissed, onOpenTrapDrill, onOpenSubnet,
   ExplainTab, VisualAidTab, QuizTab, CLIDrillTab, SubnettingTab, VLSMTab, IPv6CalcTab, ACLCalcTab,
   examMode = false,
   premiumUnlocked = false,
@@ -158,6 +158,7 @@ export default function ObjectiveScreen({
         onOpenMissed={onOpenMissed}
         onOpenTrapDrill={onOpenTrapDrill}
         onOpenLab={onOpenLab}
+        onOpenSubnet={onOpenSubnet}
         examMode={examMode}
         premiumUnlocked={premiumUnlocked}
         onPremiumBlocked={onPremiumBlocked}

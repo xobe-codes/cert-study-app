@@ -7,6 +7,8 @@ export const FALLBACK_EXPLANATION_RE = [
   /describes a different mechanism than this question tests/i,
   /contradicts the expected behavior/i,
   /does not satisfy what the question asks/i,
+  /satisfies what this question tests/i,
+  /does not satisfy what this question tests/i,
   /is a plausible guess but does not explain the symptom/i,
   /doesn't fit the scenario above/i,
   /see the correct-answer explanation for why/i,
@@ -14,7 +16,14 @@ export const FALLBACK_EXPLANATION_RE = [
   /does not match the mechanism/i,
   /plausible symptom fix but does not match/i,
   /misses what this question tests/i,
+  /misses the exact behavior this stem tests/i,
 ]
+
+/** Banned SADE / clean-bank template whyWrongHere lines. */
+export function isTemplateWhyWrongHere(text) {
+  if (!text || typeof text !== 'string') return true
+  return FALLBACK_EXPLANATION_RE.some(re => re.test(text))
+}
 
 export const GENERIC_TRAP_RE = /^Picking a familiar term without matching the exact behavior tested$/i
 
@@ -104,6 +113,9 @@ export function validateQuestionAnswerReview(q) {
   for (const item of ar.incorrect) {
     if (isFallbackExplanation(item.explanation)) {
       errors.push(`${where}: fallback explanation for choice ${item.choiceIndex}`)
+    }
+    if (isTemplateWhyWrongHere(item.whyWrongHere)) {
+      errors.push(`${where}: template whyWrongHere for choice ${item.choiceIndex}`)
     }
     if (isGenericTrap(item.misconceptionTested)) {
       errors.push(`${where}: generic trap for choice ${item.choiceIndex}`)
