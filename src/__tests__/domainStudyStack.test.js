@@ -63,6 +63,7 @@ describe('CommandHubStudio initialDomainFilter', () => {
       }),
     )
     expect(html).toContain('Command Hub')
+    expect(html).toContain('Command Sprint')
     expect(html).toContain('D3')
   })
 })
@@ -70,6 +71,7 @@ describe('CommandHubStudio initialDomainFilter', () => {
 describe('command hub domain filter storage key', () => {
   it('uses dedicated storage key separate from labs', () => {
     expect(STORAGE_KEYS.commandHubDomainFilter).toBe('ccna_command_hub_domain_filter_v1')
+    expect(STORAGE_KEYS.commandHubLaunch).toBe('ccna_command_hub_launch_v1')
     expect(STORAGE_KEYS.commandHubDomainFilter).not.toBe(STORAGE_KEYS.labsDomainFilter)
   })
 })

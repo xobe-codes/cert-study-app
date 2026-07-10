@@ -77,6 +77,9 @@ export default function AppLoadedShell({
   mockDomainPrefill,
   labsDomainPrefill,
   commandHubDomainPrefill,
+  commandHubTabPrefill,
+  commandHubPackPrefill,
+  clearCommandHubLaunch,
   setMockDomainPrefill,
   finishOnboarding,
   skipOnboarding,
@@ -283,6 +286,9 @@ export default function AppLoadedShell({
           onOpenMockExam={openMockExam}
           labsDomainPrefill={labsDomainPrefill}
           commandHubDomainPrefill={commandHubDomainPrefill}
+          commandHubTabPrefill={commandHubTabPrefill}
+          commandHubPackPrefill={commandHubPackPrefill}
+          clearCommandHubLaunch={clearCommandHubLaunch}
           onOpenTrapDrill={openTrapDrill}
           onOpenExamTraps={openExamTraps}
           onOpenDomainPlacement={openDomainPlacement}

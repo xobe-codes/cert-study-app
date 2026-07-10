@@ -484,7 +484,7 @@ export default function DomainPassSession({
                 style={{ ...domainActionBtn, ...(showWildcardCta ? {} : { marginBottom: 0 }) }}
                 onClick={() => {
                   stashDebriefResume()
-                  onOpenCommandHub({ domainId })
+                  onOpenCommandHub({ domainId, tab: 'sprint' })
                 }}
               >
                 Command Hub →

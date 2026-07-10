@@ -65,6 +65,9 @@ export default function StudyModeRoutes({
   onOpenMockExam,
   labsDomainPrefill = null,
   commandHubDomainPrefill = null,
+  commandHubTabPrefill = null,
+  commandHubPackPrefill = null,
+  clearCommandHubLaunch,
   onOpenTrapDrill,
   onOpenExamTraps,
   onOpenDomainPlacement,
@@ -141,8 +144,13 @@ export default function StudyModeRoutes({
     return (
       <LazyRoute label="Loading command hub…">
         <CommandHubStudio
-          onBack={onBack}
+          onBack={() => {
+            clearCommandHubLaunch?.()
+            onBack?.()
+          }}
           initialDomainFilter={commandHubDomainPrefill}
+          initialTab={commandHubTabPrefill}
+          initialPackId={commandHubPackPrefill}
           onSelectObjective={(objectiveId) => {
             const obj = ALL_OBJECTIVES.find(o => o.id === objectiveId)
             if (obj) onSelectObjective(obj)

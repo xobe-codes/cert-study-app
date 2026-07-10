@@ -6,7 +6,7 @@ export const FAILURE_MODE_WHY = {
   retention: 'Due for spaced review · next: Daily Review → Practice',
   misconception: 'Same trap repeating · next: Trap drill → then Lab',
   application: 'Weak on scenarios · next: Practice → Domain Pass',
-  verification: 'Need CLI proof · next: Lab → Command Hub',
+  verification: 'Need CLI proof · next: Command Sprint → Lab',
   procedural: 'Math/procedure slips · next: Subnetting drill',
 }
 
@@ -14,7 +14,7 @@ export const FAILURE_MODE_NEXT_STEPS = {
   retention: ['review', 'practice'],
   misconception: ['trapDrill', 'lab'],
   application: ['practice', 'domainPass'],
-  verification: ['lab', 'commandHub'],
+  verification: ['commandHub', 'lab'],
   procedural: ['subnet'],
 }
 

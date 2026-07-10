@@ -11,6 +11,7 @@ import {
 import CommandDetailPanel from './CommandDetailPanel.jsx'
 import CommandSyntaxCoach from './CommandSyntaxCoach.jsx'
 import CommandDrillCoach from './CommandDrillCoach.jsx'
+import CommandSprintCoach from './CommandSprintCoach.jsx'
 import StudyModeHeader from '../components/StudyModeHeader.jsx'
 import { labIdForWorkflow } from './workflowLabMap.js'
 
@@ -139,10 +140,22 @@ function WorkflowRow({ wf, index, expandedWorkflow, setExpandedWorkflow, setTab,
   )
 }
 
-export default function CommandHubStudio({ onBack, onSelectObjective, onOpenLab, initialDomainFilter = null }) {
+export default function CommandHubStudio({
+  onBack,
+  onSelectObjective,
+  onOpenLab,
+  initialDomainFilter = null,
+  initialTab = null,
+  initialPackId = null,
+}) {
   const index = useMemo(() => getCommandIndex(), [])
 
-  const [tab, setTab] = useState('commands')
+  const [tab, setTab] = useState(() => (
+    initialTab === 'sprint' || initialTab === 'drills' || initialTab === 'syntax' || initialTab === 'workflows' || initialTab === 'commands'
+      ? initialTab
+      : (initialPackId ? 'sprint' : 'commands')
+  ))
+  const [sprintPackId] = useState(initialPackId)
   const [search, setSearch] = useState('')
   const [domainFilter, setDomainFilter] = useState('all')
   const [filterReady, setFilterReady] = useState(false)
@@ -152,6 +165,12 @@ export default function CommandHubStudio({ onBack, onSelectObjective, onOpenLab,
   const [detailCommand, setDetailCommand] = useState(null)
   const [expandedWorkflow, setExpandedWorkflow] = useState(null)
   const [collapsedDomains, setCollapsedDomains] = useState(() => new Set())
+
+  useEffect(() => {
+    if (!initialTab && !initialPackId) return
+    const next = initialTab || (initialPackId ? 'sprint' : null)
+    if (next) setTab(next)
+  }, [initialTab, initialPackId])
 
   useEffect(() => {
     let cancelled = false
@@ -233,7 +252,7 @@ export default function CommandHubStudio({ onBack, onSelectObjective, onOpenLab,
       <StudyModeHeader
         title="Command Hub"
         onBack={onBack}
-        subtitle="CCNA IOS reference — command lookup, syntax coach, command drills, and config workflows."
+        subtitle="CCNA IOS reference — lookup, Command Sprint, syntax coach, drills, and workflows."
       />
 
       <div className="command-hub-presets ccna-h-scroll" style={{ display: 'flex', gap: 6, overflowX: 'auto', marginBottom: 12, paddingBottom: 4 }}>
@@ -286,6 +305,7 @@ export default function CommandHubStudio({ onBack, onSelectObjective, onOpenLab,
       <div className="command-hub-primary-tabs" style={{ display: 'flex', gap: 6, marginBottom: 8, flexWrap: 'wrap' }}>
         {[
           { id: 'commands', label: `Commands (${index.commands.length})` },
+          { id: 'sprint', label: 'Command Sprint' },
           { id: 'syntax', label: 'Syntax coach' },
           { id: 'drills', label: 'Command drills' },
           { id: 'workflows', label: `Workflows (${index.workflows.length})` },
@@ -338,6 +358,14 @@ export default function CommandHubStudio({ onBack, onSelectObjective, onOpenLab,
           <div style={{ ...styles.card, marginBottom: 12, fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid }}>
             No commands for “{q}”. Try show ip route, vlan, router ospf, or sh ip int brief.
           </div>
+        )}
+
+        {tab === 'sprint' && (
+          <CommandSprintCoach
+            domainFilter={domainFilter}
+            onOpenLab={onOpenLab}
+            initialPackId={sprintPackId}
+          />
         )}
 
         {tab === 'syntax' && (

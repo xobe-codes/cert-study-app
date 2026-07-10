@@ -329,7 +329,7 @@ export default function HomeDomainAccordion({
                     </button>
                   )}
                   {onOpenCommandHub && (
-                    <button type="button" className="ccna-hover" style={{ ...studyModeBtn, opacity: 0.92 }} onClick={() => onOpenCommandHub({ domainId: domain.id })}>
+                    <button type="button" className="ccna-hover" style={{ ...studyModeBtn, opacity: 0.92 }} onClick={() => onOpenCommandHub({ domainId: domain.id, tab: 'sprint' })}>
                       Command Hub
                     </button>
                   )}

@@ -127,12 +127,11 @@ export default function App() {
           celebrate={celebrate}
           haptic={haptic}
           settingsExamMode={settings.settingsExamMode}
-          mockDomainPrefill={nav.mockDomainPrefill}
-          labsDomainPrefill={nav.labsDomainPrefill}
-          commandHubDomainPrefill={nav.commandHubDomainPrefill}
+          mockDomainPrefill={nav.mockDomainPrefill} labsDomainPrefill={nav.labsDomainPrefill}
+          commandHubDomainPrefill={nav.commandHubDomainPrefill} commandHubTabPrefill={nav.commandHubTabPrefill}
+          commandHubPackPrefill={nav.commandHubPackPrefill} clearCommandHubLaunch={nav.clearCommandHubLaunch}
           setMockDomainPrefill={nav.setMockDomainPrefill}
-          finishOnboarding={onboarding.finishOnboarding}
-          skipOnboarding={onboarding.skipOnboarding}
+          finishOnboarding={onboarding.finishOnboarding} skipOnboarding={onboarding.skipOnboarding}
           selectedLab={nav.selectedLab}
           labReturn={nav.labReturn}
           topicFocusConfig={nav.topicFocusConfig}
