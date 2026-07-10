@@ -911,9 +911,7 @@ ${pendingRows}
 
 | id | area | work |
 |----|------|------|
-| \`trap_depth_wave22\` | exam_traps | Further trap depth beyond avg ${Math.round(metrics.avgTraps)} |
-| \`config_lab_convert\` | labs | Convert remaining ${metrics.configLabCount} config labs to lab-lite |
-| \`chunk_split_domains\` | mobile | Split clean-question chunk by domain for faster first paint |
+| _(empty)_ | — | Next-pass backlog cleared (gold 32 + trap wave 22 shipped; config labs interpret-only; domain chunks split) |
 
 Full shipped history: \`COMPLETED_CHANGES.md\`
 

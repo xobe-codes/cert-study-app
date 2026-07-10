@@ -59,3 +59,4 @@
 - **2026-07-10** `topology_svg_99`: Device silhouettes, iPhone type floors, landscape clamps, pinch/pan expand modal, `diagram-iphone-smoke` e2e.
 - **2026-07-10** `polish_99`: AnswerReview parity across Mock/Review/Focus/Placement; home Domain Pass + Fix Next hierarchy; diagram type/shortLabel wave; Study diagram earlier; reveal CSS.
 - **2026-07-10** `polish_99_next`: Gold batch 31 (40 short/high-traffic debriefs); defer full clean-bank warm to idle; confirm all config labs interpret-only + domain chunk split already shipped.
+- **2026-07-10** `polish_99_finish`: Gold batch 32 (40 more short tails) + trap wave 22 (+1 trap × 53 → avg ≈13).

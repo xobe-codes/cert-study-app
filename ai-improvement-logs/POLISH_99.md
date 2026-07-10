@@ -12,10 +12,12 @@ One-pass polish after feature-complete ~99. No new modes.
 | Study flow | Diagram moved up (after intro, before long reading blocks) |
 | Reveal chrome | `.ccna-quiz-reveal` mobile padding / min-width polish |
 | Gold batch 31 | Hand polish of 40 short/high-traffic debriefs |
+| Gold batch 32 | Hand polish of 40 remaining short curated tails |
+| Trap wave 22 | +1 exam trap × 53 objectives (avg ≈13) |
 | First paint | Domain chunks already split; defer full-bank warm to idle |
 | Config labs | All 25 former config labs interpret-only (`CONFIG_LAB_IDS` empty) |
 
 ## Deferred (future maintenance)
 
-- Further gold polish beyond batch 31 on remaining short tails
-- Trap depth wave 22+ when avg traps need another lift
+- Optional further gold polish on remaining short tails beyond batch 32
+- Trap depth wave 23+ only if avg traps need another lift

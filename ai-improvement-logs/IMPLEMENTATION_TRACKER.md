@@ -1,7 +1,7 @@
 # Implementation Tracker — 99+ North Star
 
 **Single source of truth** for current work, queue, scores, and shipped history.
-**Updated:** 2026-07-09 · **Overall:** ~99/100 → target **99+** (all areas ≥95)
+**Updated:** 2026-07-10 · **Overall:** ~99/100 → target **99+** (all areas ≥95)
 
 ---
 
@@ -33,11 +33,11 @@
 | Area | Now | 99+ bar | Signal / gap-closer |
 |------|----:|--------:|---------------------|
 | Coverage breadth | 99 | 97 | Tier-A ratio (53/53) |
-| Coverage depth | 99 | 97 | avg 25 Q · 12 traps/obj |
+| Coverage depth | 99 | 97 | avg 25 Q · 13 traps/obj |
 | Learning flow | 99 | 97 | SRS + stem-replay loops; question volume |
 | Engineer perspective | 99 | 97 | engineer view 53/53 |
 | CLI verification | 99 | 96 | ≥2 verify cmds 53/53 |
-| Exam traps | 100 | 97 | avg 12 traps · floor 0 |
+| Exam traps | 100 | 97 | avg 13 traps · floor 0 |
 | Labs / CLI | 99 | 97 | lab/obj + 82 interpret (0 config) + TS |
 | Maintainability | 97 | 96 | App 198L · ObjScreen 170L · 0 files >900L |
 | Mobile / a11y | 99 | 96 | 6 mobile e2e · a11y ✓ |
@@ -59,8 +59,7 @@
 
 | id | area | work |
 |----|------|------|
-| `trap_depth_wave22` | exam_traps | Further trap depth beyond avg 12 |
-| `gold_polish_wave32` | content | Optional further gold polish on remaining short tails |
+| _(empty)_ | — | Next-pass backlog cleared (gold 32 + trap wave 22 shipped) |
 
 ## Parked — next phase (do not implement until asked)
 
