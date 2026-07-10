@@ -11,7 +11,7 @@ import {
 import {
   explanationBodyFromReading, explanationBodyFromAi, resolveBigTakeaway, resolveAiTakeaway,
 } from '../lesson/explanationFormat.js'
-import CuratedDiagram from '../components/CuratedDiagram.jsx'
+import CuratedVisualBundle from '../components/CuratedVisualBundle.jsx'
 import CuratedStaticBadge from '../components/CuratedStaticBadge.jsx'
 import OverflowMarquee from '../components/OverflowMarquee.jsx'
 import EngineerViewSection from '../components/EngineerViewSection.jsx'
@@ -38,36 +38,6 @@ import {
 import { EXAM_SOURCES } from './studyConstants.js'
 import { RichText, Bullets, PreAssessment } from './studyQuizShared.jsx'
 import ObjectiveLabCTA from './ObjectiveLabCTA.jsx'
-
-function VisualBadge({ children, accent }) {
-  const c = accent || COLORS.purpleGlow
-  return (
-    <span style={{
-      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-      minWidth: 22, height: 22, borderRadius: 6, fontSize: 'var(--ccna-type-xs)', fontWeight: 700,
-      background: COLORS.surface, border: `1px solid ${COLORS.border}`, color: c, padding: '0 6px',
-    }}>{children}</span>
-  )
-}
-
-function CuratedPacketFlow({ data }) {
-  const pf = data?.packetFlow
-  if (!pf?.steps?.length) return null
-  return (
-    <div style={{ ...styles.card, border: `1px solid ${COLORS.mintBorder}`, background: COLORS.mintDim, marginTop: 8, marginBottom: 12 }}>
-      <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.mint, marginBottom: 10 }}>{pf.title}</div>
-      {pf.steps.map((s, i) => (
-        <div key={s.id} style={{ display: 'flex', gap: 8, marginBottom: i < pf.steps.length - 1 ? 8 : 0, alignItems: 'flex-start' }}>
-          <VisualBadge accent={COLORS.mint}>{s.order}</VisualBadge>
-          <div>
-            <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 600, color: COLORS.silver }}>{s.title}</div>
-            <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.45 }}>{s.action}</div>
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-}
 
 const TERMS_CACHE_KEY = 'ccna_terms_cache_v1'
 const TERMS_PROMPT_SYSTEM = `You are a CCNA 200-301 study aid generator. Use the provided reference notes as your primary source; where the notes don't fully cover a detail a CCNA candidate needs, fill the gap with accurate CCNA 200-301 knowledge consistent with the notes. Produce 6-8 key-term flashcards for this objective — the most exam-relevant terms, acronyms, commands, or concepts to know cold.
@@ -389,7 +359,7 @@ function CuratedReading({ data, progressEntry, onTierChange, onOpenReference, on
       />
       {showDiagram && data.diagram && (
         <div className="study-visual-section" style={{ marginTop: 10, marginBottom: 4 }}>
-          <CuratedDiagram diagram={data.diagram} />
+          <CuratedVisualBundle data={data} />
         </div>
       )}
       <CoreConceptsBlock ckus={data.ckus} />
@@ -656,7 +626,13 @@ export function ExplainTab({
   const testedOut = !!progress?.[objective.id]?.testedOut
   const curated = hasCuratedReading(objective.id) ? getCurated(objective.id) : null
   const curatedData = useMemo(() => getCurated(objective.id), [objective.id])
-  const hasCuratedVisual = !!curatedData?.diagram || !!curatedData?.packetFlow?.steps?.length
+  const hasCuratedVisual = !!(
+    curatedData?.diagram
+    || curatedData?.visualCompare
+    || curatedData?.visualTraps?.length
+    || curatedData?.packetFlow?.steps?.length
+  )
+  const isDomain6Visual = String(objective.id || '').startsWith('6.')
   const showReference = hasLessonReference(objective.id)
   const bankedForCoverage = useMemo(() => getCuratedQuestions(objective.id), [objective.id])
   const isStudy = layout === 'study'
@@ -821,6 +797,14 @@ export function ExplainTab({
             </div>
           )}
           {error && <ErrorBox message={error} onRetry={() => { setRecalled(true); fetchExplanation(true) }} />}
+          {isStudy && isDomain6Visual && hasCuratedVisual && (curated || recalled) && (
+            <div className="study-visual-section study-visual-section--above" style={{ marginTop: 4, marginBottom: 14, maxWidth: '100%', minWidth: 0 }}>
+              <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, marginBottom: 8, letterSpacing: 0.4 }}>
+                VISUAL FIRST
+              </div>
+              <CuratedVisualBundle data={curatedData} />
+            </div>
+          )}
           {showReading && curated && (
             <CuratedReading
               data={curated}
@@ -850,10 +834,9 @@ export function ExplainTab({
               <SourcesPanel objective={objective} />
             </>
           )}
-          {isStudy && hasCuratedVisual && (curated || recalled) && (
+          {isStudy && hasCuratedVisual && !isDomain6Visual && (curated || recalled) && (
             <div className="study-visual-section" style={{ marginTop: 12, marginBottom: 12, maxWidth: '100%', minWidth: 0 }}>
-              {curatedData.diagram && <CuratedDiagram diagram={curatedData.diagram} />}
-              <CuratedPacketFlow data={curatedData} />
+              <CuratedVisualBundle data={curatedData} />
             </div>
           )}
           {isStudy && !hasCuratedVisual && VisualAidTabProp && recalled && (

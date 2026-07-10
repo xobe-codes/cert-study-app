@@ -31,7 +31,7 @@ import { mergeKbReadingPatch, finalizeReading } from '../lesson/readingEnrichmen
 import { READING_SUPPLEMENTS } from './curatedReadingSupplement.js'
 import { READING_SUPPLEMENTS_2 } from './curatedReadingSupplement2.js'
 import { applyContentEnrichment, getEnrichmentPatchQuestions } from './contentEnrichmentPatches.js'
-import { VISUAL_DIAGRAMS } from './visualDiagramSupplement.js'
+import { VISUAL_DIAGRAMS, VISUAL_COMPARE, VISUAL_TRAP_CALLOUTS, VISUAL_FLOWS } from './visualDiagramSupplement.js'
 import { applyAnswerReviewToQuestion } from '../answerReviewLogic.js'
 import { filterHealthyQuestions } from './questionHealth.js'
 
@@ -2007,7 +2007,16 @@ export function getCurated(objectiveId) {
     base = { ...base, reading: finalizeReading(base.reading, base) }
   }
   const vis = VISUAL_DIAGRAMS[objectiveId]
-  const withVis = vis ? { ...base, diagram: vis } : base
+  let withVis = vis ? { ...base, diagram: vis } : base
+  if (VISUAL_COMPARE[objectiveId]) {
+    withVis = { ...withVis, visualCompare: VISUAL_COMPARE[objectiveId] }
+  }
+  if (VISUAL_TRAP_CALLOUTS[objectiveId]?.length) {
+    withVis = { ...withVis, visualTraps: VISUAL_TRAP_CALLOUTS[objectiveId] }
+  }
+  if (VISUAL_FLOWS[objectiveId]) {
+    withVis = { ...withVis, packetFlow: VISUAL_FLOWS[objectiveId] }
+  }
   return applyContentEnrichment(withVis, objectiveId)
 }
 

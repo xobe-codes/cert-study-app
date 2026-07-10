@@ -56,4 +56,10 @@ describe('e2e smoke — exam coverage invariants', () => {
   it('visual supplement covers at least 20 high-weight objectives', () => {
     expect(Object.keys(VISUAL_DIAGRAMS).length).toBeGreaterThanOrEqual(20)
   })
+
+  it('Domain 6 has curated diagrams for 6.1–6.6', () => {
+    for (const id of ['6.1', '6.2', '6.3', '6.4', '6.5', '6.6']) {
+      expect(VISUAL_DIAGRAMS[id]?.nodes?.length, id).toBeGreaterThanOrEqual(3)
+    }
+  })
 })
