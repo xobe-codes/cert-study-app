@@ -3,6 +3,25 @@ import { DOMAINS, ALL_OBJECTIVES } from '../data/ccnaDomains.js'
 export function parseAppHash() {
   const raw = window.location.hash.replace(/^#/, '')
   if (!raw) return null
+  // Alias: #/study/3.2 → objective Study tab
+  const studyMatch = raw.match(/^\/study\/([^/]+)$/)
+  if (studyMatch) {
+    const id = decodeURIComponent(studyMatch[1])
+    const obj = ALL_OBJECTIVES.find(o => o.id === id)
+    if (!obj) return null
+    const domain = DOMAINS.find(d => d.objectives.some(o => o.id === id))
+    if (!domain) return null
+    return {
+      view: 'objective',
+      objective: {
+        ...obj,
+        domainId: domain.id,
+        domainName: domain.name,
+        accent: domain.accent,
+        __initialTab: 'Study',
+      },
+    }
+  }
   const objMatch = raw.match(/^\/objective\/([^/]+)(?:\/(.+))?$/)
   if (objMatch) {
     const id = decodeURIComponent(objMatch[1])

@@ -44,7 +44,13 @@ export default function GlobalSearchModal({ progress, onSelectObjective, onClose
 
   function pick(obj) {
     const domain = DOMAINS.find(d => d.objectives.some(o => o.id === obj.id))
-    onSelectObjective({ ...obj, domainId: domain?.id, domainName: domain?.name, accent: domain?.accent })
+    onSelectObjective({
+      ...obj,
+      domainId: domain?.id,
+      domainName: domain?.name,
+      accent: domain?.accent,
+      __initialTab: 'Study',
+    })
     onClose()
   }
 

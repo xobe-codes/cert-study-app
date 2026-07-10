@@ -26,6 +26,7 @@ import ExamReadyBanner from './home/ExamReadyBanner.jsx'
 import HomeSectionLabel from './home/HomeSectionLabel.jsx'
 import ContentHealthHomeStrip from './components/ContentHealthHomeStrip.jsx'
 import { pickBaselineAwareStudyNext } from './features/domainPlacement/domainBaselineStudyPlan.js'
+import { resumeStudyHandoff, pickDomainLessonObjective } from './home/resumeStudy.js'
 import {
   HOME_SECTION_GAP,
   homeCard,
@@ -367,6 +368,15 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
     return pickStudyNext(learnerSummary, dueCount, { domainPassRecords, commandDrills })
   }, [learnerSummary, dueCount, placementRecords, domainPassRecords, commandDrills])
 
+  const resumeLesson = useMemo(() => resumeStudyHandoff(progress), [progress])
+
+  function openLessonsBrowse() {
+    const open = openDomain ? DOMAINS.find(d => d.id === openDomain) : DOMAINS[0]
+    const handoff = pickDomainLessonObjective(open || DOMAINS[0], progress)
+    if (handoff) onSelectObjective(handoff)
+    else if (!openDomain) onOpenDomain?.(DOMAINS[0]?.id)
+  }
+
   const totals = useMemo(() => {
     let mastered = 0, inProgress = 0
     ALL_OBJECTIVES.forEach(o => {
@@ -395,6 +405,22 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         onOpenReview={onOpenReview}
         onOpenDomainPlacement={onOpenDomainPlacement}
       />
+
+      {resumeLesson && (
+        <button
+          type="button"
+          className="ccna-hover"
+          onClick={() => onSelectObjective(resumeLesson)}
+          style={{ ...styles.secondaryBtn, width: '100%', marginBottom: HOME_SECTION_GAP, textAlign: 'left' }}
+        >
+          <div style={{ fontWeight: 700, fontSize: 'var(--ccna-type-sm)', color: COLORS.sky, marginBottom: 2 }}>
+            Resume lesson
+          </div>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.35 }}>
+            {resumeLesson.id} · {resumeLesson.title} → Study
+          </div>
+        </button>
+      )}
 
       {onOpenDomainPlacement && (
         <DomainBaselinePrompt
@@ -543,7 +569,8 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
       <div style={homeCard()}>
         <HomeSectionLabel>STUDY MODES</HomeSectionLabel>
         <div className="home-study-grid">
-          <StudyModeBtn primary onClick={onOpenMock}>Mock Exam</StudyModeBtn>
+          <StudyModeBtn primary onClick={openLessonsBrowse}>Lessons</StudyModeBtn>
+          <StudyModeBtn onClick={onOpenMock}>Mock Exam</StudyModeBtn>
           <StudyModeBtn onClick={onOpenDomainPass}>Domain Pass ({domainPassPassedCount}/6)</StudyModeBtn>
           {onOpenDomainPlacement && (
             <StudyModeBtn onClick={() => onOpenDomainPlacement()}>

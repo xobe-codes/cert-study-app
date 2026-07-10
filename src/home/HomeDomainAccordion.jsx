@@ -183,29 +183,75 @@ export default function HomeDomainAccordion({
                       {visibleObjs.map(o => {
                         const status = progress[o.id]?.status || 'unseen'
                         const baselineStatus = placementRecord?.lastAttempt?.objectiveProfiles?.[o.id]?.status
+                        const studyHandoff = {
+                          ...o,
+                          domainId: domain.id,
+                          domainName: domain.name,
+                          accent: domain.accent,
+                          __initialTab: 'Study',
+                        }
+                        const practiceHandoff = buildStudyObjectiveHandoff(o.id, { tab: 'Practice' })
+                          || { ...studyHandoff, __initialTab: 'Practice' }
                         return (
-                          <button
+                          <div
                             key={o.id}
-                            onClick={() => onSelectObjective({ ...o, domainId: domain.id, domainName: domain.name, accent: domain.accent })}
-                            style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', minWidth: 0, background: baselineStatus === 'weak' ? COLORS.roseDim : 'none', border: baselineStatus === 'weak' ? `1px solid ${COLORS.roseBorder}` : 'none', borderRadius: baselineStatus === 'weak' ? 8 : 0, color: COLORS.silver, cursor: 'pointer', minHeight: 44, padding: baselineStatus === 'weak' ? '8px 10px' : '8px 0', marginBottom: baselineStatus === 'weak' ? 6 : 0, textAlign: 'left', borderBottom: baselineStatus === 'weak' ? 'none' : `1px solid ${COLORS.border}` }}
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: 6,
+                              width: '100%',
+                              minWidth: 0,
+                              background: baselineStatus === 'weak' ? COLORS.roseDim : 'none',
+                              border: baselineStatus === 'weak' ? `1px solid ${COLORS.roseBorder}` : 'none',
+                              borderRadius: baselineStatus === 'weak' ? 8 : 0,
+                              padding: baselineStatus === 'weak' ? '6px 8px' : '4px 0',
+                              marginBottom: baselineStatus === 'weak' ? 6 : 0,
+                              borderBottom: baselineStatus === 'weak' ? 'none' : `1px solid ${COLORS.border}`,
+                            }}
                           >
-                            {baselineStatus ? (
-                              <DomainBaselineStatusMark status={baselineStatus} />
-                            ) : (
-                              <StatusDot status={status} />
-                            )}
-                            <OverflowMarquee
-                              text={`${o.id} ${o.title}`}
-                              style={{ fontSize: 'var(--ccna-type-sm)' }}
-                            />
-                            {(() => {
-                              if (hasCuratedReading(o.id) || hasCuratedQuestions(o.id)) {
-                                return <CuratedStaticBadge objectiveId={o.id} fontSize={9} />
-                              }
-                              return null
-                            })()}
-                            {offlineReady?.has(o.id) && !isCuratedPack(o.id) && <span style={{ color: COLORS.mint, fontSize: 'var(--ccna-type-sm)', marginLeft: 8, flexShrink: 0 }}>⤓</span>}
-                          </button>
+                            <button
+                              type="button"
+                              onClick={() => onSelectObjective(studyHandoff)}
+                              style={{
+                                display: 'flex', alignItems: 'center', gap: 8, flex: 1, minWidth: 0,
+                                background: 'none', border: 'none', color: COLORS.silver, cursor: 'pointer',
+                                minHeight: 44, padding: '4px 0', textAlign: 'left',
+                              }}
+                            >
+                              {baselineStatus ? (
+                                <DomainBaselineStatusMark status={baselineStatus} />
+                              ) : (
+                                <StatusDot status={status} />
+                              )}
+                              <OverflowMarquee
+                                text={`${o.id} ${o.title}`}
+                                style={{ fontSize: 'var(--ccna-type-sm)' }}
+                              />
+                              {(hasCuratedReading(o.id) || hasCuratedQuestions(o.id)) && (
+                                <CuratedStaticBadge objectiveId={o.id} fontSize={9} />
+                              )}
+                              {offlineReady?.has(o.id) && !isCuratedPack(o.id) && (
+                                <span style={{ color: COLORS.mint, fontSize: 'var(--ccna-type-sm)', marginLeft: 4, flexShrink: 0 }}>⤓</span>
+                              )}
+                            </button>
+                            <button
+                              type="button"
+                              className="ccna-hover"
+                              aria-label={`Practice ${o.id}`}
+                              onClick={() => onSelectObjective(practiceHandoff)}
+                              style={{
+                                ...styles.secondaryBtn,
+                                flex: '0 0 auto',
+                                width: 'auto',
+                                minHeight: 36,
+                                padding: '4px 10px',
+                                fontSize: 'var(--ccna-type-xs)',
+                                marginBottom: 0,
+                              }}
+                            >
+                              Practice
+                            </button>
+                          </div>
                         )
                       })}
                       {hideStrong && strongObjs.length > 0 && (
@@ -235,6 +281,32 @@ export default function HomeDomainAccordion({
                   <div style={{ ...homeBodySm, marginBottom: 8, color: COLORS.silverMid }} aria-label="Domain readiness">
                     {readinessLine}
                   </div>
+                  <button
+                    type="button"
+                    className="ccna-hover"
+                    style={{
+                      ...studyModeBtn,
+                      borderColor: COLORS.skyBorder,
+                      background: COLORS.skyDim,
+                      color: COLORS.sky,
+                      fontWeight: 700,
+                    }}
+                    onClick={() => {
+                      const handoff = {
+                        ...objs[0],
+                        domainId: domain.id,
+                        domainName: domain.name,
+                        accent: domain.accent,
+                        __initialTab: 'Study',
+                      }
+                      const firstUnseen = objs.find(o => !progress[o.id]?.lastSeen)
+                      onSelectObjective(firstUnseen
+                        ? { ...firstUnseen, domainId: domain.id, domainName: domain.name, accent: domain.accent, __initialTab: 'Study' }
+                        : handoff)
+                    }}
+                  >
+                    Lessons — open Study
+                  </button>
                   {onOpenDomainPass && (
                     <button
                       type="button"

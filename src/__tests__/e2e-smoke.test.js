@@ -62,4 +62,8 @@ describe('e2e smoke — exam coverage invariants', () => {
       expect(VISUAL_DIAGRAMS[id]?.nodes?.length, id).toBeGreaterThanOrEqual(3)
     }
   })
+
+  it('all domains have curated diagrams for every objective', () => {
+    expect(Object.keys(VISUAL_DIAGRAMS).length).toBeGreaterThanOrEqual(53)
+  })
 })

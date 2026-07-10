@@ -73,6 +73,17 @@ export default function ObjectiveScreen({
     showNavHint,
   })
 
+  function onSelectSiblingWithTab(target) {
+    if (!target) return
+    handleSelectSibling({
+      ...target,
+      domainId: objective.domainId || target.domainId,
+      domainName: objective.domainName || target.domainName,
+      accent: objective.accent || target.accent,
+      __initialTab: tab === 'Practice' ? 'Practice' : 'Study',
+    })
+  }
+
   useEffect(() => {
     if (status === 'unseen') {
       onUpdateProgress(objective.id, { status: 'in_progress', lastSeen: Date.now() })
@@ -108,7 +119,7 @@ export default function ObjectiveScreen({
         StatusLabel={StatusLabel}
         prevObj={prevObj}
         nextObj={nextObj}
-        onSelectSibling={handleSelectSibling}
+        onSelectSibling={onSelectSiblingWithTab}
         objLabs={objLabs}
         onOpenLab={onOpenLab}
         isOffline={isOffline}

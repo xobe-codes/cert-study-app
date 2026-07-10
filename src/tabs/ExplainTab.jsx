@@ -632,7 +632,6 @@ export function ExplainTab({
     || curatedData?.visualTraps?.length
     || curatedData?.packetFlow?.steps?.length
   )
-  const isDomain6Visual = String(objective.id || '').startsWith('6.')
   const showReference = hasLessonReference(objective.id)
   const bankedForCoverage = useMemo(() => getCuratedQuestions(objective.id), [objective.id])
   const isStudy = layout === 'study'
@@ -797,7 +796,7 @@ export function ExplainTab({
             </div>
           )}
           {error && <ErrorBox message={error} onRetry={() => { setRecalled(true); fetchExplanation(true) }} />}
-          {isStudy && isDomain6Visual && hasCuratedVisual && (curated || recalled) && (
+          {isStudy && hasCuratedVisual && (curated || recalled) && (
             <div className="study-visual-section study-visual-section--above" style={{ marginTop: 4, marginBottom: 14, maxWidth: '100%', minWidth: 0 }}>
               <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, marginBottom: 8, letterSpacing: 0.4 }}>
                 VISUAL FIRST
@@ -833,11 +832,6 @@ export function ExplainTab({
               </div>
               <SourcesPanel objective={objective} />
             </>
-          )}
-          {isStudy && hasCuratedVisual && !isDomain6Visual && (curated || recalled) && (
-            <div className="study-visual-section" style={{ marginTop: 12, marginBottom: 12, maxWidth: '100%', minWidth: 0 }}>
-              <CuratedVisualBundle data={curatedData} />
-            </div>
           )}
           {isStudy && !hasCuratedVisual && VisualAidTabProp && recalled && (
             <div className="study-visual-section" style={{ marginTop: 12, marginBottom: 12 }}>
