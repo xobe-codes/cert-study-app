@@ -1,5 +1,6 @@
 /** CLI type-in skill questions — sourced from COMMAND_DRILLS with shorthand-aware grading. */
 import { COMMAND_DRILLS } from '../lab/commandDrills.js'
+import { resolveCliModeContext } from '../lab/cliModeContext.js'
 
 function slug(s) {
   return String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 24)
@@ -7,6 +8,7 @@ function slug(s) {
 
 function drillToCliQuestion(objectiveId, drill, index) {
   const answers = Array.isArray(drill.answer) ? drill.answer : [drill.answer]
+  const ctx = resolveCliModeContext({ ...drill, objectiveId, answers })
   return {
     id: `${objectiveId}-cli-${index}-${slug(drill.prompt)}`,
     type: 'cli',
@@ -17,15 +19,22 @@ function drillToCliQuestion(objectiveId, drill, index) {
     answers,
     hint: drill.hint,
     explanation: drill.hint || `Accepted forms include ${answers[0]}.`,
+    objectiveId,
+    cliMode: ctx.mode,
+    cliPrompt: ctx.prompt,
+    cliHostname: ctx.hostname,
+    ...(ctx.interfaceName ? { cliInterface: ctx.interfaceName } : {}),
+    cliModeBlurb: ctx.blurb,
+    answerScope: ctx.answerScope,
   }
 }
 
-/** One CLI recall question per objective that has command drills. */
+/** All CLI recall questions per objective that has command drills. */
 export function buildCliSkillQuestions() {
   const out = {}
   for (const [objectiveId, drills] of Object.entries(COMMAND_DRILLS)) {
     if (!drills?.length) continue
-    out[objectiveId] = [drillToCliQuestion(objectiveId, drills[0], 0)]
+    out[objectiveId] = drills.map((drill, index) => drillToCliQuestion(objectiveId, drill, index))
   }
   return out
 }

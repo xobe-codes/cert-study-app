@@ -4,6 +4,7 @@ import { TYPE_LABEL, SKILL_LABEL, inferSkill } from '../questionUtils.js'
 import { cliStringsEquivalent } from '../lab/cliGrading.js'
 import { parseRichTextSegments } from '../lesson/richTextParse.js'
 import { splitQuizStem, parseExhibitLines } from '../quiz/quizStemExhibit.js'
+import { resolveCliModeContext, CLI_MODES } from '../lab/cliModeContext.js'
 
 export function QuizRichText({ text }) {
   if (text == null) return null
@@ -203,15 +204,58 @@ export function OrderingQuestion({ items, onChange, revealed, correctOrder }) {
   )
 }
 
+export function CliModeBanner({ question, compact = false }) {
+  if (!question) return null
+  const ctx = resolveCliModeContext(question)
+  if (!ctx?.prompt) return null
+  const short = CLI_MODES[ctx.mode]?.short || ctx.label
+  return (
+    <div
+      className="ccna-cli-mode"
+      role="group"
+      aria-label={`Current IOS mode: ${ctx.label}`}
+      style={{
+        marginBottom: compact ? 8 : 10,
+        borderRadius: 10,
+        border: `1px solid ${COLORS.skyBorder}`,
+        background: COLORS.skyDim,
+        overflow: 'hidden',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
+          padding: compact ? '6px 10px' : '8px 12px',
+          borderBottom: `1px solid ${COLORS.skyBorder}`,
+          fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+          fontSize: 'var(--ccna-type-sm)',
+          fontWeight: 700,
+          color: COLORS.mint,
+        }}
+      >
+        <span aria-hidden style={{ color: COLORS.sky }}>●</span>
+        <span>{ctx.prompt}</span>
+        <span style={{ ...styles.pill('sky'), marginLeft: 'auto', fontSize: 'var(--ccna-type-micro)' }}>{short}</span>
+      </div>
+      <div style={{ padding: compact ? '6px 10px 8px' : '8px 12px 10px', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.45 }}>
+        {ctx.blurb}
+      </div>
+    </div>
+  )
+}
+
 export function CliAnswerInput({ value, onChange, onSubmit, revealed, question, disabled }) {
   return (
     <div>
+      <CliModeBanner question={question} />
       <input
         type="text"
         value={value}
         onChange={e => onChange(e.target.value)}
         onKeyDown={e => { if (e.key === 'Enter' && !revealed && onSubmit) onSubmit() }}
-        placeholder="Type IOS command…"
+        placeholder="Type next IOS command…"
         disabled={disabled || revealed}
         autoComplete="off"
         spellCheck={false}

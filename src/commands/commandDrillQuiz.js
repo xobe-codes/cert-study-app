@@ -1,5 +1,6 @@
 import { COMMAND_DRILLS } from '../lab/commandDrills.js'
 import { gradeCliAnswerList } from '../lab/cliGrading.js'
+import { resolveCliModeContext } from '../lab/cliModeContext.js'
 
 function mulberry32(seed) {
   let t = seed >>> 0
@@ -41,6 +42,7 @@ export function buildDrillQuizItems() {
   for (const [objectiveId, drills] of Object.entries(COMMAND_DRILLS)) {
     drills.forEach((d, i) => {
       const answers = Array.isArray(d.answer) ? d.answer : [d.answer]
+      const ctx = resolveCliModeContext({ ...d, objectiveId, answers })
       items.push({
         id: `drill-${objectiveId}-${i}`,
         type: 'type_command',
@@ -50,6 +52,12 @@ export function buildDrillQuizItems() {
         answers,
         hint: d.hint,
         displayAnswer: answers[0],
+        cliMode: ctx.mode,
+        cliPrompt: ctx.prompt,
+        cliHostname: ctx.hostname,
+        cliInterface: ctx.interfaceName,
+        cliModeBlurb: ctx.blurb,
+        answerScope: ctx.answerScope,
       })
     })
   }
@@ -58,16 +66,33 @@ export function buildDrillQuizItems() {
 
 export function buildVerifyQuizItems(commands, { limit = 24 } = {}) {
   const verify = commands.filter(c => c.category === 'verify' && c.purpose && c.command.length < 80)
-  return shuffle(verify).slice(0, limit).map(cmd => ({
-    id: `verify-${cmd.id}`,
-    type: 'type_command',
-    category: 'verify',
-    objectiveId: cmd.objectiveIds?.[0] || null,
-    prompt: `Type the verify command: ${firstSentence(cmd.purpose)}`,
-    answers: [cmd.command, ...(cmd.aliases || [])].filter(Boolean),
-    hint: cmd.syntaxNotes || `Mode: ${cmd.mode}`,
-    displayAnswer: cmd.command,
-  }))
+  return shuffle(verify).slice(0, limit).map(cmd => {
+    const answers = [cmd.command, ...(cmd.aliases || [])].filter(Boolean)
+    const ctx = resolveCliModeContext({
+      answers,
+      prompt: cmd.purpose,
+      objectiveId: cmd.objectiveIds?.[0],
+      cliMode: cmd.mode === 'privileged' || cmd.mode === 'exec' ? 'priv_exec'
+        : cmd.mode === 'config' ? 'global_config'
+          : undefined,
+      cliHostname: 'R1',
+    })
+    return {
+      id: `verify-${cmd.id}`,
+      type: 'type_command',
+      category: 'verify',
+      objectiveId: cmd.objectiveIds?.[0] || null,
+      prompt: `Type the verify command: ${firstSentence(cmd.purpose)}`,
+      answers,
+      hint: cmd.syntaxNotes || `Mode: ${cmd.mode}`,
+      displayAnswer: cmd.command,
+      cliMode: ctx.mode,
+      cliPrompt: ctx.prompt,
+      cliHostname: ctx.hostname,
+      cliModeBlurb: ctx.blurb,
+      answerScope: ctx.answerScope,
+    }
+  })
 }
 
 export function buildCommandDrillSession(index, {

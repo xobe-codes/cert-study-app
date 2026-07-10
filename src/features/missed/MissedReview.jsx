@@ -10,7 +10,7 @@ import {
 import OverflowMarquee from '../../components/OverflowMarquee.jsx'
 import StemReplayCTA from '../stemReplay/StemReplayCTA.jsx'
 import StudyModeHeader from '../../components/StudyModeHeader.jsx'
-import { QuizQuestionStem } from '../../components/QuizQuestionChrome.jsx'
+import { QuizQuestionStem, CliModeBanner } from '../../components/QuizQuestionChrome.jsx'
 
 function normalizeQuestionText(q) {
   return (q || '').trim().toLowerCase().replace(/\s+/g, ' ')
@@ -79,6 +79,7 @@ export default function MissedReview({ missed, onBack, onRemove, onOpenExamTraps
           <div key={`${m.objectiveId}-${normalizeQuestionText(m.question)}-${idx}`} style={styles.card}>
             <div style={{ ...styles.small, marginBottom: 6 }}>{m.objectiveId}</div>
             <QuizQuestionStem text={m.question} />
+            {(m.type === 'cli' || m.cliPrompt) && <div style={{ marginTop: 8 }}><CliModeBanner question={m} compact /></div>}
             <div style={{ marginTop: 10 }}>
               {optionRows.map((row, ci) => {
                 const reveal = revealedIdx === idx

@@ -1,4 +1,6 @@
-/** Gold debrief copy for CLI type-in skill questions (one per drilled objective). */
+/** Gold debrief copy for CLI type-in skill questions (curated for primary drills; others auto-fill). */
+import { CLI_SKILL_QUESTIONS } from '../data/cliSkillQuestions.js'
+
 export const CLI_SKILL_GOLD = {
   '1.1-cli-0-show-a-summary-of-all-in': {
     explanation: '**`show ip interface brief`** is the first L3 sanity check — IP, method, and line protocol in one table.',
@@ -18,7 +20,7 @@ export const CLI_SKILL_GOLD = {
   },
   '1.6-cli-0-enter-interface-configur': {
     explanation: 'From global config, **`interface gigabitethernet0/1`** (abbreviations OK) enters **interface configuration** mode.',
-    examTip: 'Config sequence: **`conf t`** → **`interface …`** → L3/L2 commands.',
+    examTip: 'Config sequence: **`conf t`** → **`interface …`** → L3/L2 commands. You start already at `(config)#` for this item.',
   },
   '1.8-cli-0-enable-ipv6-routing-on-t': {
     explanation: '**`ipv6 unicast-routing`** in global config enables the router to **forward IPv6** — required before routed v6 works.',
@@ -54,7 +56,7 @@ export const CLI_SKILL_GOLD = {
   },
   '3.4-cli-0-enter-ospf-process-1-con': {
     explanation: '**`router ospf 1`** enters OSPF process **1** — process ID is **local**; areas must match for adjacency.',
-    examTip: 'OSPF config: **`router ospf <pid>`** → **`network … area …`** under router config.',
+    examTip: 'OSPF config: **`router ospf <pid>`** → **`network … area …`** under router config. You start already at `(config)#`.',
   },
   '3.5-cli-0-on-interface-gi0-1-enabl': {
     explanation: '**`standby 1 ip 192.168.1.1`** enables **HSRP group 1** with virtual IP **192.168.1.1** on the interface.',
@@ -66,7 +68,7 @@ export const CLI_SKILL_GOLD = {
   },
   '4.6-cli-0-create-a-dhcp-pool-named': {
     explanation: '**`ip dhcp pool LAN_POOL`** creates a named DHCP pool — then set **network, default-router, dns-server** inside pool config.',
-    examTip: 'DHCP server: **`ip dhcp pool`** → **`network`** + **`default-router`**.',
+    examTip: 'DHCP server: **`ip dhcp pool`** → **`network`** + **`default-router`**. You start already at `(config)#`.',
   },
   '4.8-cli-0-set-the-domain-name-to-c': {
     explanation: '**`ip domain-name ccna.local`** sets the domain for **RSA key generation** and SSH host naming.',
@@ -78,7 +80,7 @@ export const CLI_SKILL_GOLD = {
   },
   '5.5-cli-0-create-a-named-extended-': {
     explanation: '**`ip access-list extended BLOCK_TELNET`** creates a **named extended ACL** — match protocol/port near the source.',
-    examTip: 'Extended ACL → **`ip access-list extended <name>`**; standard → **`standard`**. ',
+    examTip: 'Extended ACL → **`ip access-list extended <name>`**; standard → **`standard`**. You start already at `(config)#`.',
   },
   '5.9-cli-0-show-wlan-security-setti': {
     explanation: '**`show wlan security 1`** verifies **WPA2-PSK / AES (CCMP)** for WLAN ID 1 — not WEP or TKIP.',
@@ -90,6 +92,30 @@ export const CLI_SKILL_GOLD = {
   },
 }
 
-export function goldCliReviewFor(questionId) {
-  return CLI_SKILL_GOLD[questionId] || null
+function autoGoldFromQuestion(q) {
+  const primary = (q.answers || [q.answer])[0]
+  const cmd = primary ? `**\`${primary}\`**` : 'the accepted IOS form'
+  return {
+    explanation: q.explanation?.length > 40
+      ? q.explanation
+      : `${cmd} is entered at **${q.cliPrompt || 'the current IOS prompt'}** — type only that next command.`,
+    examTip: q.cliModeBlurb
+      || `Read the prompt (**${q.cliPrompt || 'R1#'}**) — do not re-type enable/conf t unless the item asks for a mode change.`,
+  }
+}
+
+function findCliSkillQuestion(questionId) {
+  for (const list of Object.values(CLI_SKILL_QUESTIONS)) {
+    const hit = list.find(q => q.id === questionId)
+    if (hit) return hit
+  }
+  return null
+}
+
+/** Curated gold first; otherwise synthesize from CLI skill question + mode context. */
+export function goldCliReviewFor(questionId, question = null) {
+  if (CLI_SKILL_GOLD[questionId]) return CLI_SKILL_GOLD[questionId]
+  const q = question || findCliSkillQuestion(questionId)
+  if (q) return autoGoldFromQuestion(q)
+  return null
 }

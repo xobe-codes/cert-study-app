@@ -202,7 +202,7 @@ export default function AnswerReview({
   if (isCliQuestion(q)) {
     const correct = correctAnswerLabel(q)
     const userCmd = String(cliAnswer || '').trim()
-    const cliGold = goldCliReviewFor(q?.id)
+    const cliGold = goldCliReviewFor(q?.id, q)
     return (
       <div className={`ccna-answer-review${compactMobile ? ' ccna-answer-review--compact' : ''}`} style={{ marginTop: compactMobile ? 6 : 8, minWidth: 0 }}>
         <QuestionUnderReviewBanner questionId={q?.id} />

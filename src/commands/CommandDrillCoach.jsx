@@ -5,6 +5,7 @@ import {
   gradeCommandDrillQuestion,
   drillSessionSummary,
 } from './commandDrillQuiz.js'
+import { CliModeBanner } from '../components/QuizQuestionChrome.jsx'
 
 const DRILL_FILTERS = [
   { id: 'all', label: 'Mixed' },
@@ -91,12 +92,14 @@ export default function CommandDrillCoach({ index }) {
             {current.prompt}
           </div>
 
+          <CliModeBanner question={current} compact />
+
           <input
             type="text"
             value={answer}
             onChange={e => setAnswer(e.target.value)}
             onKeyDown={e => { if (e.key === 'Enter' && !checked) checkAnswer() }}
-            placeholder="Type IOS command…"
+            placeholder="Type next IOS command…"
             disabled={checked}
             aria-label="IOS command answer"
             style={{ ...styles.input, width: '100%', boxSizing: 'border-box', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}
