@@ -21,6 +21,7 @@ describe('answerReviewSessionProps', () => {
     expect(props.q.answerReview?.incorrect?.length).toBeGreaterThan(0)
     expect(props.onOpenTrapDrill).toBe(onOpenTrapDrill)
     expect(props.objectiveId).toBe('1.1')
+    expect(props.showQuestionFlag).toBe(true)
     expect(enrichQuestionForReview(q).answerReview).toBeTruthy()
   })
 })

@@ -18,7 +18,7 @@ export function answerReviewSessionProps({
   objectiveId,
   domainId,
   hideExamTip = false,
-  showQuestionFlag = false,
+  showQuestionFlag = true,
   onOpenLab,
   onOpenTrapDrill,
   onOpenSubnet,
