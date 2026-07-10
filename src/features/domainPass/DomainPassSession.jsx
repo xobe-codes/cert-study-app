@@ -17,6 +17,11 @@ import { QuizQuestionStem, QuestionMeta } from '../../components/QuizQuestionChr
 import { getDomainStudyMeta } from '../../home/domainStudyRoutes.js'
 import { buildDomainPassWeakStudyHandoff } from './domainPassWeakStudy.js'
 import {
+  stashDomainPassDebriefResume,
+  consumeDomainPassDebriefResume,
+  clearDomainPassDebriefResume,
+} from './domainPassDebriefResume.js'
+import {
   DOMAIN_PASS_PASS_PCT,
   domainPassDurationSec,
   domainPassTimerMinutes,
@@ -85,8 +90,10 @@ export default function DomainPassSession({
   const [studyRevealed, setStudyRevealed] = useState({})
   const [secondsLeft, setSecondsLeft] = useState(0)
   const [timerEnabled, setTimerEnabledState] = useState(true)
+  const [resumedReport, setResumedReport] = useState(null)
   const finishSaved = useRef(false)
   const prevSkippedRef = useRef([])
+  const bootstrappedRef = useRef(false)
 
   const focusObjectiveIds = useMemo(
     () => (Array.isArray(objectiveFilter) && objectiveFilter.length ? objectiveFilter : null),
@@ -106,6 +113,8 @@ export default function DomainPassSession({
     }
     setPhase('loading')
     setError(null)
+    setResumedReport(null)
+    clearDomainPassDebriefResume()
     finishSaved.current = false
     try {
       await preloadCleanBank()
@@ -156,8 +165,23 @@ export default function DomainPassSession({
   }, [domain, domainId, getMcForObjective, missed, focusObjectiveIds, isFocusSession])
 
   useEffect(() => {
+    bootstrappedRef.current = false
+  }, [domainId])
+
+  useEffect(() => {
+    if (bootstrappedRef.current) return
+    bootstrappedRef.current = true
+    const resume = consumeDomainPassDebriefResume(domainId)
+    if (resume?.report && Array.isArray(resume.questions) && resume.questions.length) {
+      finishSaved.current = true
+      setQuestions(resume.questions)
+      setResponses(resume.responses || {})
+      setResumedReport(resume.report)
+      setPhase('done')
+      return
+    }
     startSession()
-  }, [startSession])
+  }, [domainId, startSession])
 
   useEffect(() => {
     if (phase !== 'active' || !timerEnabled) return
@@ -191,6 +215,7 @@ export default function DomainPassSession({
   }
 
   const report = useMemo(() => {
+    if (resumedReport) return resumedReport
     if (phase !== 'done') return null
     const byDomain = {}
     DOMAINS.forEach(d => { byDomain[d.id] = { name: d.name, correct: 0, total: 0 } })
@@ -209,7 +234,7 @@ export default function DomainPassSession({
       questions.map((_, idx) => responses[idx]),
     )
     return { correct, total: questions.length, byDomain, trapDebrief }
-  }, [phase, questions, responses])
+  }, [resumedReport, phase, questions, responses])
 
   useEffect(() => {
     if (phase !== 'done' || !report || finishSaved.current || !domainId) return
@@ -267,10 +292,27 @@ export default function DomainPassSession({
     const showDomainActions = showTrapCta || showLabsCta || showCommandHubCta || showWildcardCta
     const topWeakId = weakObjectiveIds[0] || null
 
+    function stashDebriefResume() {
+      if (!report || !questions.length) return
+      stashDomainPassDebriefResume(domainId, { report, questions, responses })
+    }
+
     function openWeakStudy(objectiveId) {
       if (!onSelectObjective) return
+      stashDebriefResume()
       const handoff = buildDomainPassWeakStudyHandoff(domain, objectiveId)
       if (handoff) onSelectObjective(handoff)
+    }
+
+    function handleExit() {
+      clearDomainPassDebriefResume()
+      onExit?.()
+    }
+
+    function handleRetake() {
+      setResumedReport(null)
+      clearDomainPassDebriefResume()
+      startSession()
     }
 
     const domainActionBtn = {
@@ -286,7 +328,7 @@ export default function DomainPassSession({
       <div>
         <StudyModeHeader
           title={isFocusSession ? `${domain.name} — Focus results` : `${domain.name} — Results`}
-          onBack={onExit}
+          onBack={handleExit}
           backLabel="Domain Pass"
         />
         {isFocusSession && (
@@ -360,7 +402,10 @@ export default function DomainPassSession({
           responses={responses}
           domains={DOMAINS}
           onOpenTrapDrill={onOpenTrapDrill}
-          onOpenLab={onOpenLab}
+          onOpenLab={onOpenLab ? (labId) => {
+            stashDebriefResume()
+            onOpenLab(labId)
+          } : undefined}
           onStudyDomain={() => openWeakStudy(topWeakId)}
           onSelectObjective={onSelectObjective ? (oid) => openWeakStudy(oid) : undefined}
         />
@@ -413,10 +458,10 @@ export default function DomainPassSession({
             Take domain mock
           </button>
         )}
-        <button type="button" style={styles.primaryBtn} onClick={startSession}>
+        <button type="button" style={styles.primaryBtn} onClick={handleRetake}>
           {isFocusSession ? 'Retake focus pass' : 'Retake domain pass'}
         </button>
-        <button type="button" style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={onExit}>Back to domains</button>
+        <button type="button" style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={handleExit}>Back to domains</button>
       </div>
     )
   }
