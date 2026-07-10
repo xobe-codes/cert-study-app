@@ -36,4 +36,17 @@ describe('masteryEngagement', () => {
     })
     expect(sources).toEqual(expect.arrayContaining(['Quiz', 'Trap drill']))
   })
+
+  it('records Command Sprint completion and lists the source', () => {
+    const patch = buildEngagementProgressPatch({}, {
+      kind: ENGAGEMENT_KINDS.COMMAND_SPRINT,
+      correct: 1,
+      total: 1,
+    })
+    expect(patch.commandSprintCompleted).toBe(true)
+    expect(patch.engagementScores).toHaveLength(1)
+    expect(patch.engagementScores[0].kind).toBe(ENGAGEMENT_KINDS.COMMAND_SPRINT)
+    const sources = getEngagementSources({ engagementScores: patch.engagementScores })
+    expect(sources).toEqual(expect.arrayContaining(['Command Sprint']))
+  })
 })

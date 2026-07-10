@@ -49,12 +49,25 @@ export function parseAppHash() {
     )
     return { view: 'labs', labsDomainId: validDomain ? segment : null }
   }
+  const commandHubMatch = raw.match(/^\/commandhub(?:\/(sprint)(?:\/([^/]+))?)?$/)
+  if (commandHubMatch) {
+    const tab = commandHubMatch[1] || null
+    const packId = commandHubMatch[2] ? decodeURIComponent(commandHubMatch[2]) : null
+    if (tab || packId) {
+      return {
+        view: 'commandhub',
+        commandHubTab: tab || (packId ? 'sprint' : null),
+        commandHubPackId: packId,
+      }
+    }
+    return { view: 'commandhub' }
+  }
   const simple = raw.replace(/^\//, '')
   // topicfocussession needs live config (topicFocusConfig) — restore picker on refresh instead.
   if (simple === 'topicfocussession') return { view: 'topicfocus' }
   if ([
     'mock', 'mockinterview', 'metrics', 'stats', 'review', 'missed', 'labs', 'focus', 'tutor',
-    'topicfocus', 'commandhub', 'studylens', 'examtraps', 'trapdrill', 'subnet', 'routing', 'extrastudy',
+    'topicfocus', 'studylens', 'examtraps', 'trapdrill', 'subnet', 'routing', 'extrastudy',
     'domainpass', 'domainplacement',
   ].includes(simple)) {
     return { view: simple }
@@ -62,7 +75,7 @@ export function parseAppHash() {
   return null
 }
 
-export function syncAppHash(view, objective, labsDomainId = null) {
+export function syncAppHash(view, objective, labsDomainId = null, commandHubTab = null, commandHubPackId = null) {
   if (typeof window === 'undefined') return
   const base = window.location.pathname + window.location.search
   let next = ''
@@ -71,6 +84,14 @@ export function syncAppHash(view, objective, labsDomainId = null) {
     next = tab ? `#/objective/${objective.id}/${encodeURIComponent(tab)}` : `#/objective/${objective.id}`
   } else if (view === 'labs' && labsDomainId) {
     next = `#/labs/${encodeURIComponent(labsDomainId)}`
+  } else if (view === 'commandhub') {
+    if (commandHubTab === 'sprint' && commandHubPackId) {
+      next = `#/commandhub/sprint/${encodeURIComponent(commandHubPackId)}`
+    } else if (commandHubTab === 'sprint') {
+      next = '#/commandhub/sprint'
+    } else {
+      next = '#/commandhub'
+    }
   } else if (view !== 'home' && view !== 'onboarding' && view !== 'lab') {
     next = `#/${view}`
   }

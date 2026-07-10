@@ -4,11 +4,12 @@ import { seedOnboarding } from './helpers/seedOnboarding.js'
 test.describe('Command Hub Command Sprint', () => {
   test.beforeEach(async ({ page }) => {
     await seedOnboarding(page)
-    await page.goto('/#/commandhub')
-    await expect(page.getByRole('heading', { name: /Command Hub/i })).toBeVisible({ timeout: 20_000 })
   })
 
   test('sprint pack starts type-in session without opening a lab', async ({ page }) => {
+    await page.goto('/#/commandhub')
+    await expect(page.getByRole('heading', { name: /Command Hub/i })).toBeVisible({ timeout: 20_000 })
+
     await page.getByRole('button', { name: 'Command Sprint' }).click()
     await expect(page.locator('[data-command-sprint="true"]')).toBeVisible({ timeout: 15_000 })
     await expect(page.getByText(/Learn IOS commands in a short sprint/i)).toBeVisible()
@@ -27,5 +28,13 @@ test.describe('Command Hub Command Sprint', () => {
     // Still on Command Hub — no lab chrome
     await expect(page.getByRole('heading', { name: /Command Hub/i })).toBeVisible()
     await expect(page.getByRole('button', { name: 'Command Sprint' })).toBeVisible()
+  })
+
+  test('deep-link auto-starts sprint pack session', async ({ page }) => {
+    await page.goto('/#/commandhub/sprint/sprint-vlan-access')
+    await expect(page.getByRole('heading', { name: /Command Hub/i })).toBeVisible({ timeout: 20_000 })
+    await expect(page.locator('[data-command-sprint="true"]')).toBeVisible({ timeout: 15_000 })
+    await expect(page.getByText(/\d+\/\d+/)).toBeVisible({ timeout: 15_000 })
+    await expect(page.getByLabel('IOS command answer')).toBeVisible()
   })
 })

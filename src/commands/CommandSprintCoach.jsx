@@ -8,6 +8,8 @@ import {
   sprintPackAvailability,
 } from './commandSprintQuiz.js'
 import { labIdForSprintPack } from './commandSprintPacks.js'
+import { useMasteryProgress } from '../features/progress/MasteryProgressContext.jsx'
+import { ENGAGEMENT_KINDS } from '../features/progress/masteryEngagement.js'
 
 /**
  * Command Sprint — curated type-in packs without full lab chrome.
@@ -18,6 +20,7 @@ export default function CommandSprintCoach({
   onOpenLab,
   initialPackId = null,
 }) {
+  const { recordEngagement } = useMasteryProgress()
   const packs = useMemo(
     () => sprintPackAvailability(domainFilter === 'all' ? null : domainFilter),
     [domainFilter],
@@ -50,8 +53,10 @@ export default function CommandSprintCoach({
   }, [])
 
   useEffect(() => {
-    if (autoStarted || !initialPackId || !packs.length) return
-    const match = packs.find(p => p.id === initialPackId)
+    if (autoStarted || !initialPackId) return
+    // Resolve from full catalog so deep-links work even if domain filter is narrowed.
+    const match = sprintPackAvailability(null).find(p => p.id === initialPackId)
+      || packs.find(p => p.id === initialPackId)
     if (match) {
       setAutoStarted(true)
       startPack(match)
@@ -63,6 +68,13 @@ export default function CommandSprintCoach({
     const correct = gradeSprintQuestion(current, answer)
     setResults(r => [...r, { id: current.id, correct, objectiveId: current.objectiveId }])
     setChecked(true)
+    if (current.objectiveId) {
+      recordEngagement?.(current.objectiveId, {
+        kind: ENGAGEMENT_KINDS.COMMAND_SPRINT,
+        correct: correct ? 1 : 0,
+        total: 1,
+      })
+    }
   }
 
   function nextQuestion() {

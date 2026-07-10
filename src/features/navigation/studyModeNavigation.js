@@ -115,6 +115,13 @@ export function applyParsedHashRoute(route, api) {
       api.setLabsDomainPrefill?.(route.labsDomainId)
       window.storage?.setItem(STORAGE_KEYS.labsDomainFilter, route.labsDomainId)
     }
+    if (route.commandHubTab || route.commandHubPackId) {
+      const tab = route.commandHubTab || (route.commandHubPackId ? 'sprint' : null)
+      const packId = route.commandHubPackId || null
+      api.setCommandHubTabPrefill?.(tab)
+      api.setCommandHubPackPrefill?.(packId)
+      window.storage?.setItem(STORAGE_KEYS.commandHubLaunch, { tab, packId })
+    }
     if (STUDY_HUB_VIEWS.has(route.view)) resetHubSessionState(route.view, api)
     api.setView?.(route.view)
   }

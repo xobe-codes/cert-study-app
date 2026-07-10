@@ -58,6 +58,7 @@ function mergeProgressEntry(a, b) {
     studySectionsViewed: a.studySectionsViewed || b.studySectionsViewed,
     labCompleted: a.labCompleted || b.labCompleted,
     cliDrillCompleted: a.cliDrillCompleted || b.cliDrillCompleted,
+    commandSprintCompleted: a.commandSprintCompleted || b.commandSprintCompleted,
     examTrapsViewed: Math.max(a.examTrapsViewed || 0, b.examTrapsViewed || 0),
     lastSeen: Math.max(a.lastSeen || 0, b.lastSeen || 0),
   }

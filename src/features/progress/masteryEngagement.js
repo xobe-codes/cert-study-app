@@ -9,6 +9,7 @@ export const ENGAGEMENT_KINDS = {
   EXAM_TRAP: 'exam_trap',
   LAB: 'lab',
   CLI_DRILL: 'cli_drill',
+  COMMAND_SPRINT: 'command_sprint',
   MOCK: 'mock',
   DOMAIN_PASS: 'domain_pass',
   DOMAIN_PLACEMENT: 'domain_placement',
@@ -23,6 +24,7 @@ export const ENGAGEMENT_KIND_LABELS = {
   [ENGAGEMENT_KINDS.EXAM_TRAP]: 'Exam traps',
   [ENGAGEMENT_KINDS.LAB]: 'Lab',
   [ENGAGEMENT_KINDS.CLI_DRILL]: 'CLI drill',
+  [ENGAGEMENT_KINDS.COMMAND_SPRINT]: 'Command Sprint',
   [ENGAGEMENT_KINDS.MOCK]: 'Mock exam',
   [ENGAGEMENT_KINDS.DOMAIN_PASS]: 'Domain pass',
   [ENGAGEMENT_KINDS.DOMAIN_PLACEMENT]: 'Placement',
@@ -55,6 +57,7 @@ export function buildEngagementProgressPatch(entry, activity) {
     merged.examTrapsViewed = (merged.examTrapsViewed || 0) + 1
   }
   if (activity.kind === ENGAGEMENT_KINDS.CLI_DRILL) merged.cliDrillCompleted = true
+  if (activity.kind === ENGAGEMENT_KINDS.COMMAND_SPRINT) merged.commandSprintCompleted = true
 
   const prevMastered = computeMastery(entry || {}).mastered
   const { score: masteryScore, mastered } = computeMastery(merged)
@@ -66,6 +69,7 @@ export function buildEngagementProgressPatch(entry, activity) {
     labCompleted: merged.labCompleted,
     examTrapsViewed: merged.examTrapsViewed,
     cliDrillCompleted: merged.cliDrillCompleted,
+    commandSprintCompleted: merged.commandSprintCompleted,
     masteryScore,
     status: mastered ? 'mastered' : (hadActivity ? 'in_progress' : (entry?.status || 'unseen')),
     justMastered: mastered && !prevMastered,

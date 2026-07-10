@@ -99,6 +99,33 @@ export const COMMAND_SPRINT_PACKS = [
     objectiveIds: ['5.9', '5.3'],
     count: 5,
   },
+  {
+    id: 'sprint-auto-ops',
+    title: 'Automation ops & controllers',
+    blurb: 'IaC playbook verify and controller inventory — type-in without the full lab.',
+    domainId: 'automation',
+    objectiveIds: ['6.1', '6.2'],
+    count: 6,
+    labId: 'LAB-AUTO-MGMT-61',
+  },
+  {
+    id: 'sprint-sdn-api',
+    title: 'SDN architecture & REST APIs',
+    blurb: 'Northbound/southbound, DNA Center, and REST show commands.',
+    domainId: 'automation',
+    objectiveIds: ['6.3', '6.4', '6.5'],
+    count: 7,
+    labId: 'LAB-AUTO-SDN-63',
+  },
+  {
+    id: 'sprint-json-ansible',
+    title: 'JSON & Ansible playbooks',
+    blurb: 'JSON payloads and Ansible inventory/playbook verify commands.',
+    domainId: 'automation',
+    objectiveIds: ['6.6'],
+    count: 5,
+    labId: 'LAB-AUTO-JSON-66',
+  },
 ]
 
 export function getSprintPack(packId) {

@@ -66,6 +66,8 @@ export function useAppNavigation() {
     setMockDomainPrefill,
     setLabsDomainPrefill,
     setCommandHubDomainPrefill,
+    setCommandHubTabPrefill,
+    setCommandHubPackPrefill,
     setExamTrapPrefill,
     setTrapDrillPrefill,
     setSelectedObjective,
@@ -414,8 +416,10 @@ export function AppNavigationLifecycle({
 
   useEffect(() => {
     if (!loaded) return
-    syncAppHash(view, selectedObjective, nav.labsDomainPrefill)
-  }, [loaded, view, selectedObjective, nav.labsDomainPrefill])
+    const hubTab = view === 'commandhub' ? nav.commandHubTabPrefill : null
+    const hubPack = view === 'commandhub' ? nav.commandHubPackPrefill : null
+    syncAppHash(view, selectedObjective, nav.labsDomainPrefill, hubTab, hubPack)
+  }, [loaded, view, selectedObjective, nav.labsDomainPrefill, nav.commandHubTabPrefill, nav.commandHubPackPrefill])
 
   useEffect(() => {
     if (!loaded || hashBootstrapped.current) return

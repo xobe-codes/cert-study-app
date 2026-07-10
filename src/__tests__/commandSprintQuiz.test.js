@@ -8,13 +8,14 @@ import {
 } from '../commands/commandSprintQuiz.js'
 
 describe('commandSprintPacks', () => {
-  it('covers domains 1–5 with curated packs', () => {
+  it('covers domains 1–6 with curated packs', () => {
     const domains = new Set(COMMAND_SPRINT_PACKS.map(p => p.domainId))
     expect(domains.has('fundamentals')).toBe(true)
     expect(domains.has('access')).toBe(true)
     expect(domains.has('connectivity')).toBe(true)
     expect(domains.has('services')).toBe(true)
     expect(domains.has('security')).toBe(true)
+    expect(domains.has('automation')).toBe(true)
   })
 
   it('filters packs by domain', () => {
