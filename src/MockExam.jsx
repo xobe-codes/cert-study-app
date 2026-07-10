@@ -37,7 +37,7 @@ import StudyModeHeader from './components/StudyModeHeader.jsx'
 import { useMobileGestureBlock } from './ui/useMobileGestureBlock.js'
 import Spinner from './components/Spinner.jsx'
 import ErrorBox from './components/ErrorBox.jsx'
-import { QuizQuestionStem } from './components/QuizQuestionChrome.jsx'
+import { QuizQuestionStem, QuestionMeta } from './components/QuizQuestionChrome.jsx'
 import { useNavHint } from './components/NavHintProvider.jsx'
 import { NAV_HINT_KEYS } from './ui/navHintConfig.js'
 
@@ -537,8 +537,8 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
         <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'baseline', marginBottom: 8 }}>
           <span style={styles.small}>{current + 1} / {questions.length}</span>
         </div>
-        {q.objectiveId && <div style={{ ...styles.small, marginBottom: 8 }}>Objective {q.objectiveId}</div>}
         <div style={styles.card}>
+          <QuestionMeta q={q} />
           <QuizQuestionStem text={q.question} />
           <McChoiceShuffleProvider q={q}>
           <McChoices q={q} selected={selected} revealed onSelect={() => {}} />
@@ -597,6 +597,7 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
         )}
       </div>
       <div style={styles.card}>
+        <QuestionMeta q={q} />
         <QuizQuestionStem text={q.question} />
         <McChoiceShuffleProvider q={q}>
         <McChoices q={q} selected={selected ?? null} revealed={isCurrentRevealed} onSelect={selectChoice} />

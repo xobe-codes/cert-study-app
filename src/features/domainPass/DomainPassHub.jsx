@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import { DOMAINS } from '../../data/ccnaDomains.js'
+import { getCuratedQuestions } from '../../data/ccnaCurated.js'
+import { isMcQuestion } from '../../questionUtils.js'
 import { COLORS, accentColors, styles } from '../../ui/appTheme.js'
 import {
   domainPassStatus,
@@ -16,6 +18,12 @@ import { loadAllPlacementRecords } from '../domainPlacement/domainPlacementStora
 import DomainPassCompleteCard from './DomainPassCompleteCard.jsx'
 import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import { useDomainCardLongPress } from './useDomainCardLongPress.js'
+import { collectDomainQuestionIds } from './buildDomainPassPool.js'
+import {
+  getDomainSeenMap,
+  getExposureStats,
+  loadDomainQuestionExposure,
+} from './domainQuestionExposure.js'
 import {
   homeCard,
   homeSectionLabel,
@@ -45,22 +53,42 @@ function formatBaselineLine(placementRecord) {
 export default function DomainPassHub({ onExit, onStartDomain, onOpenFocusPicker, onStartMockExam, onOpenSettings, onOpenDomainPlacement }) {
   const [records, setRecords] = useState({})
   const [placementRecords, setPlacementRecords] = useState({})
+  const [exposureStore, setExposureStore] = useState({})
   const [timerOn, setTimerOn] = useState(true)
   const [loaded, setLoaded] = useState(false)
+
+  const getMcForObjective = useCallback((objectiveId) => (
+    getCuratedQuestions(objectiveId).filter(isMcQuestion)
+  ), [])
+
+  const domainBankStats = useMemo(() => {
+    const stats = {}
+    for (const domain of DOMAINS) {
+      const bankIds = collectDomainQuestionIds(domain, getMcForObjective)
+      const seenById = getDomainSeenMap(exposureStore, domain.id)
+      stats[domain.id] = {
+        bankCount: bankIds.length,
+        ...getExposureStats(domain.id, bankIds, seenById),
+      }
+    }
+    return stats
+  }, [exposureStore, getMcForObjective])
 
   const longPress = useDomainCardLongPress(onOpenFocusPicker)
 
   useEffect(() => {
     let cancelled = false
     const refresh = async () => {
-      const [recs, placement, timer] = await Promise.all([
+      const [recs, placement, timer, exposure] = await Promise.all([
         loadDomainRecords(),
         loadAllPlacementRecords(),
         loadTimerEnabled(),
+        loadDomainQuestionExposure(),
       ])
       if (cancelled) return
       setRecords(recs)
       setPlacementRecords(placement || {})
+      setExposureStore(exposure || {})
       setTimerOn(timer)
       setLoaded(true)
     }
@@ -144,6 +172,8 @@ export default function DomainPassHub({ onExit, onStartDomain, onOpenFocusPicker
         {sortedDomains.map(domain => {
           const record = records[domain.id]
           const placementRecord = placementRecords[domain.id]
+          const bankStats = domainBankStats[domain.id]
+          const hasExposureRecord = Boolean(record) || (bankStats?.seenCount ?? 0) > 0
           const hasBaseline = Boolean(placementRecord?.lastAttempt)
           const status = domainPassStatus(record)
           const badge = domainPassBadgeLabel(status)
@@ -209,6 +239,11 @@ export default function DomainPassHub({ onExit, onStartDomain, onOpenFocusPicker
                   </div>
                   <span style={{ ...styles.small, color: accent.text, fontWeight: 600 }}>{actionLabel} →</span>
                 </div>
+                {hasExposureRecord && bankStats?.bankCount > 0 && (
+                  <div style={{ ...homeBodySm, marginTop: 6, marginBottom: 0, color: COLORS.silverMid }}>
+                    {bankStats.bankCount} in bank · {bankStats.seenCount} seen
+                  </div>
+                )}
               </button>
               {onOpenFocusPicker && (
                 <button

@@ -40,6 +40,7 @@ export function useAppNavigation() {
   const [placementSessionMode, setPlacementSessionMode] = useState(null)
   const [mockDomainPrefill, setMockDomainPrefill] = useState(null)
   const [labsDomainPrefill, setLabsDomainPrefill] = useState(null)
+  const [commandHubDomainPrefill, setCommandHubDomainPrefill] = useState(null)
   const [selectedObjective, setSelectedObjective] = useState(null)
   const [openDomain, setOpenDomain] = useState(null)
   const [selectedLab, setSelectedLab] = useState(null)
@@ -60,6 +61,7 @@ export function useAppNavigation() {
     setPlacementSessionMode,
     setMockDomainPrefill,
     setLabsDomainPrefill,
+    setCommandHubDomainPrefill,
     setExamTrapPrefill,
     setTrapDrillPrefill,
     setSelectedObjective,
@@ -182,6 +184,16 @@ export function useAppNavigation() {
     navigateTo('labs')
   }, [navigateTo])
 
+  const openCommandHub = useCallback((opts) => {
+    const safe = studyModeOpts(opts)
+    const domainId = safe?.domainId
+    if (domainId) {
+      setCommandHubDomainPrefill(domainId)
+      window.storage?.setItem(STORAGE_KEYS.commandHubDomainFilter, domainId)
+    }
+    navigateTo('commandhub')
+  }, [navigateTo])
+
   const clearExamTrapPrefill = useCallback(() => setExamTrapPrefill(null), [])
   const clearTrapDrillPrefill = useCallback(() => setTrapDrillPrefill(null), [])
 
@@ -256,6 +268,8 @@ export function useAppNavigation() {
     setMockDomainPrefill,
     labsDomainPrefill,
     setLabsDomainPrefill,
+    commandHubDomainPrefill,
+    setCommandHubDomainPrefill,
     selectedObjective,
     setSelectedObjective,
     openDomain,
@@ -278,6 +292,7 @@ export function useAppNavigation() {
     exitDomainPlacement,
     openMockExam,
     openLabs,
+    openCommandHub,
     clearExamTrapPrefill,
     clearTrapDrillPrefill,
     consumeTrapDrillPrefill,

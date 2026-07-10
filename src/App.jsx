@@ -92,6 +92,7 @@ export default function App() {
           selectObjective={nav.selectObjective}
           openMockExam={nav.openMockExam}
           openLabs={nav.openLabs}
+          openCommandHub={nav.openCommandHub}
           navigateTo={nav.navigateTo}
           handlePremiumBlocked={premium.handlePremiumBlocked}
           premiumUnlocked={bootstrap.premiumUnlocked}
@@ -128,6 +129,7 @@ export default function App() {
           settingsExamMode={settings.settingsExamMode}
           mockDomainPrefill={nav.mockDomainPrefill}
           labsDomainPrefill={nav.labsDomainPrefill}
+          commandHubDomainPrefill={nav.commandHubDomainPrefill}
           setMockDomainPrefill={nav.setMockDomainPrefill}
           finishOnboarding={onboarding.finishOnboarding}
           skipOnboarding={onboarding.skipOnboarding}

@@ -64,9 +64,12 @@ export default function StudyModeRoutes({
   onOpenLab,
   onOpenMockExam,
   labsDomainPrefill = null,
+  commandHubDomainPrefill = null,
   onOpenTrapDrill,
   onOpenExamTraps,
   onOpenDomainPlacement,
+  onOpenCommandHub,
+  onOpenLabs,
   onSelectObjective,
   onRefreshDomainPassCount,
   onMissed,
@@ -138,6 +141,7 @@ export default function StudyModeRoutes({
       <LazyRoute label="Loading command hub…">
         <CommandHubStudio
           onBack={onBack}
+          initialDomainFilter={commandHubDomainPrefill}
           onSelectObjective={(objectiveId) => {
             const obj = ALL_OBJECTIVES.find(o => o.id === objectiveId)
             if (obj) onSelectObjective(obj)
@@ -227,8 +231,11 @@ export default function StudyModeRoutes({
           setActiveDomainPassId(domainId)
         }}
         onOpenMock={(id) => onOpenMockExam({ domainId: id })}
-        onOpenTrapDrill={(ckuId) => onOpenTrapDrill({ ckuId })}
+        onOpenTrapDrill={onOpenTrapDrill}
         onOpenLab={(id) => onOpenLab(id, 'domainpass')}
+        onOpenLabs={onOpenLabs}
+        onOpenCommandHub={onOpenCommandHub}
+        onSelectObjective={onSelectObjective}
         examMode={settingsExamMode}
         missed={missed}
       />

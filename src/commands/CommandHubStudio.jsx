@@ -1,5 +1,6 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { DOMAINS } from '../data/ccnaDomains.js'
+import { STORAGE_KEYS } from '../storageKeys.js'
 import { COLORS, styles } from '../ui/appTheme.js'
 import { getCommandIndex } from './commandIndex.js'
 import { searchCommandsGlobal, filterCommands, inDomain } from './commandSearch.js'
@@ -138,18 +139,35 @@ function WorkflowRow({ wf, index, expandedWorkflow, setExpandedWorkflow, setTab,
   )
 }
 
-export default function CommandHubStudio({ onBack, onSelectObjective, onOpenLab }) {
+export default function CommandHubStudio({ onBack, onSelectObjective, onOpenLab, initialDomainFilter = null }) {
   const index = useMemo(() => getCommandIndex(), [])
 
   const [tab, setTab] = useState('commands')
   const [search, setSearch] = useState('')
   const [domainFilter, setDomainFilter] = useState('all')
+  const [filterReady, setFilterReady] = useState(false)
   const [categoryFilter, setCategoryFilter] = useState('all')
   const [deviceFilter, setDeviceFilter] = useState('all')
   const [tagFilter, setTagFilter] = useState(null)
   const [detailCommand, setDetailCommand] = useState(null)
   const [expandedWorkflow, setExpandedWorkflow] = useState(null)
   const [collapsedDomains, setCollapsedDomains] = useState(() => new Set())
+
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      let next = initialDomainFilter
+      if (!next) next = await window.storage?.getItem(STORAGE_KEYS.commandHubDomainFilter)
+      if (!cancelled && next) setDomainFilter(next)
+      if (!cancelled) setFilterReady(true)
+    })()
+    return () => { cancelled = true }
+  }, [initialDomainFilter])
+
+  useEffect(() => {
+    if (!filterReady) return
+    window.storage?.setItem(STORAGE_KEYS.commandHubDomainFilter, domainFilter === 'all' ? null : domainFilter)
+  }, [domainFilter, filterReady])
 
   const q = search.trim()
 

@@ -594,6 +594,8 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         onOpenLabs={onOpenLabs}
         onOpenDomainPlacement={onOpenDomainPlacement}
         onOpenDomainPass={onOpenDomainPass}
+        onOpenTrapDrill={onOpenTrapDrill}
+        onOpenCommandHub={onOpenCommandHub}
       />
     </div>
   )

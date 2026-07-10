@@ -10,7 +10,7 @@ import AnswerReview from '../components/AnswerReview.jsx'
 import { McChoiceShuffleProvider } from '../context/McChoiceShuffleContext.jsx'
 import { applyAnswerReviewToQuestion } from '../answerReviewLogic.js'
 import ErrorBox from '../components/ErrorBox.jsx'
-import { CliAnswerInput, QuizQuestionStem } from '../components/QuizQuestionChrome.jsx'
+import { CliAnswerInput, QuizQuestionStem, QuestionMeta } from '../components/QuizQuestionChrome.jsx'
 import { cliStringsEquivalent } from '../lab/cliGrading.js'
 import SvgConfetti from '../components/SvgConfetti.jsx'
 import { COLORS, styles } from '../ui/appTheme.js'
@@ -125,23 +125,7 @@ export function OrderingQuestion({ items, onChange, revealed, correctOrder }) {
 
 // AnswerReview lives in components/AnswerReview.jsx (accordion on other distractors).
 
-// Small type + difficulty badges shown above a question (mixed-type quizzes).
-export function QuestionMeta({ q }) {
-  if (!q || (!q.type && !q.difficulty && !q.skill)) return null
-  const skill = q.skill || inferSkill(q)
-  // easy = green (approachable) · medium = blue (learning) · hard = amber
-  // (heads-up). Red stays reserved for wrong answers, never for difficulty.
-  const dAccent = q.difficulty === 'hard' ? 'amber' : q.difficulty === 'medium' ? 'sky' : 'mint'
-  const skillAccent = skill === 'troubleshoot' ? 'amber' : skill === 'implement' ? 'sky' : 'mint'
-  return (
-    <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
-      {q.difficulty && <span style={{ ...styles.pill(dAccent), fontSize: 'var(--ccna-type-micro)' }}>{q.difficulty.toUpperCase()}</span>}
-      {q.type && <span style={{ ...styles.pill(q.type === 'troubleshooting' || q.type === 'ordering' || q.type === 'cli' ? 'sky' : 'silver'), fontSize: 'var(--ccna-type-micro)' }}>{TYPE_LABEL[q.type] || q.type}</span>}
-      {skill && <span style={{ ...styles.pill(skillAccent), fontSize: 'var(--ccna-type-micro)' }}>{SKILL_LABEL[skill] || skill}</span>}
-      {q.concept && <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, alignSelf: 'center' }}>{q.concept}</span>}
-    </div>
-  )
-}
+export { QuestionMeta }
 
 export function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked = false, onPremiumBlocked }) {
   const [phase, setPhase] = useState('intro') // intro | loading | active | result | error

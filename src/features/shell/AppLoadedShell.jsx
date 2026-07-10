@@ -37,6 +37,7 @@ export default function AppLoadedShell({
   selectObjective,
   openMockExam,
   openLabs,
+  openCommandHub,
   navigateTo,
   handlePremiumBlocked,
   premiumUnlocked,
@@ -75,6 +76,7 @@ export default function AppLoadedShell({
   settingsExamMode,
   mockDomainPrefill,
   labsDomainPrefill,
+  commandHubDomainPrefill,
   setMockDomainPrefill,
   finishOnboarding,
   skipOnboarding,
@@ -193,6 +195,7 @@ export default function AppLoadedShell({
           selectObjective={selectObjective}
           openMockExam={openMockExam}
           openLabs={openLabs}
+          openCommandHub={openCommandHub}
           navigateTo={navigateTo}
           handlePremiumBlocked={handlePremiumBlocked}
           premiumUnlocked={premiumUnlocked}
@@ -228,6 +231,7 @@ export default function AppLoadedShell({
           settingsExamMode={settingsExamMode}
           mockDomainPrefill={mockDomainPrefill}
           labsDomainPrefill={labsDomainPrefill}
+          commandHubDomainPrefill={commandHubDomainPrefill}
           setMockDomainPrefill={setMockDomainPrefill}
         />
         <PracticeRoutes
@@ -278,9 +282,12 @@ export default function AppLoadedShell({
           onOpenLab={openLab}
           onOpenMockExam={openMockExam}
           labsDomainPrefill={labsDomainPrefill}
+          commandHubDomainPrefill={commandHubDomainPrefill}
           onOpenTrapDrill={openTrapDrill}
           onOpenExamTraps={openExamTraps}
           onOpenDomainPlacement={openDomainPlacement}
+          onOpenCommandHub={openCommandHub}
+          onOpenLabs={openLabs}
           onSelectObjective={selectObjective}
           onRefreshDomainPassCount={refreshDomainPassCount}
           onMissed={handleMissed}

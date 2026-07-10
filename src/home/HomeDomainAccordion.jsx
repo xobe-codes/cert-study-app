@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { DOMAINS } from '../data/ccnaDomains.js'
 import { COLORS, accentColors, styles } from '../ui/appTheme.js'
-import { labsForDomain } from '../data/labModules.js'
 import { hasCuratedReading, hasCuratedQuestions } from '../data/ccnaCurated.js'
 import { isCuratedPack } from '../curatedDisplay.js'
 import CuratedStaticBadge from '../components/CuratedStaticBadge.jsx'
@@ -14,6 +13,7 @@ import { DomainBaselineStatusMark } from '../features/domainPlacement/DomainBase
 import { buildStudyObjectiveHandoff } from '../study/studyObjectiveHandoff.js'
 import { domainPassStatus, domainPassBadgeLabel } from '../features/domainPass/domainPassConfig.js'
 import { DOMAIN_LAYER_LEGEND, domainDisplayTitle } from '../features/domainPlacement/domainLearningCopy.js'
+import { getDomainStudyMeta, pickDomainPracticeObjective } from './domainStudyRoutes.js'
 import {
   HOME_SECTION_GAP,
   homeCard,
@@ -35,6 +35,8 @@ export default function HomeDomainAccordion({
   onOpenLabs,
   onOpenDomainPlacement,
   onOpenDomainPass,
+  onOpenTrapDrill,
+  onOpenCommandHub,
 }) {
   const [showStrongObjectives, setShowStrongObjectives] = useState({})
 
@@ -64,6 +66,27 @@ export default function HomeDomainAccordion({
         const passStatus = domainPassStatus(passRecord)
         const passBadge = domainPassBadgeLabel(passStatus)
         const passBadgeAccent = passStatus === 'passed' ? 'mint' : passStatus === 'retake' ? 'amber' : 'silver'
+        const studyMeta = getDomainStudyMeta(domain.id)
+
+        function practiceDomain() {
+          if (studyMeta.hasPlacement && !placementRecord?.lastAttempt && onOpenDomainPlacement) {
+            onOpenDomainPlacement({ domainId: domain.id, expandOnReturn: true })
+            return
+          }
+          const objectiveId = pickDomainPracticeObjective(domain, { placementRecord, baselineSummary, progress })
+          if (!objectiveId) return
+          const handoff = buildStudyObjectiveHandoff(objectiveId, { tab: 'Practice' })
+          if (handoff) onSelectObjective(handoff)
+        }
+
+        const studyModeBtn = {
+          ...styles.secondaryBtn,
+          width: '100%',
+          marginBottom: 6,
+          minHeight: 40,
+          fontSize: 'var(--ccna-type-xs)',
+          textAlign: 'left',
+        }
 
         return (
           <div key={domain.id} className="ccna-hover" style={homeCard({ marginBottom: HOME_SECTION_GAP })}>
@@ -111,16 +134,6 @@ export default function HomeDomainAccordion({
             </button>
             {isOpen && (
               <div id={`domain-panel-${domain.id}`} className="domain-accordion-panel" role="region" aria-label={`${domain.name} objectives`} style={{ marginTop: 10, borderTop: `1px solid ${COLORS.border}`, paddingTop: 8 }}>
-                {onOpenLabs && labsForDomain(domain.id).length > 0 && (
-                  <button
-                    type="button"
-                    className="ccna-hover"
-                    onClick={() => onOpenLabs({ domainId: domain.id })}
-                    style={{ ...styles.secondaryBtn, width: '100%', marginBottom: 10, minHeight: 40, fontSize: 'var(--ccna-type-xs)' }}
-                  >
-                    🧪 Domain labs ({labsForDomain(domain.id).length})
-                  </button>
-                )}
                 {isPlacementDomain(domain.id) && onOpenDomainPlacement && (
                   <DomainBaselinePanel
                     domain={domain}
@@ -192,6 +205,34 @@ export default function HomeDomainAccordion({
                     </>
                   )
                 })()}
+                <div className="domain-study-modes" style={{ marginTop: 12, borderTop: `1px solid ${COLORS.border}`, paddingTop: 10 }}>
+                  <div style={{ ...homeBodySm, fontWeight: 700, marginBottom: 8, color: COLORS.silverMid, letterSpacing: 0.3 }}>
+                    Study modes
+                  </div>
+                  {onOpenDomainPass && (
+                    <button type="button" className="ccna-hover" style={studyModeBtn} onClick={() => onOpenDomainPass({ domainId: domain.id })}>
+                      Domain Pass — {passBadge}
+                    </button>
+                  )}
+                  {onOpenTrapDrill && (
+                    <button type="button" className="ccna-hover" style={studyModeBtn} onClick={() => onOpenTrapDrill({ domainId: domain.id })}>
+                      Trap Drill
+                    </button>
+                  )}
+                  {onOpenCommandHub && (
+                    <button type="button" className="ccna-hover" style={studyModeBtn} onClick={() => onOpenCommandHub({ domainId: domain.id })}>
+                      Command Hub
+                    </button>
+                  )}
+                  <button type="button" className="ccna-hover" style={studyModeBtn} onClick={practiceDomain}>
+                    Practice domain
+                  </button>
+                  {onOpenLabs && studyMeta.labCount > 0 && (
+                    <button type="button" className="ccna-hover" style={{ ...studyModeBtn, marginBottom: 0 }} onClick={() => onOpenLabs({ domainId: domain.id })}>
+                      🧪 Domain labs ({studyMeta.labCount})
+                    </button>
+                  )}
+                </div>
               </div>
             )}
           </div>

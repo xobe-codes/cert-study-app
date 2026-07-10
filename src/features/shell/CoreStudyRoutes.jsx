@@ -38,6 +38,7 @@ export default function CoreStudyRoutes({
   openMockExam,
   navigateTo,
   openLabs,
+  openCommandHub,
   handlePremiumBlocked,
   premiumUnlocked,
   domainPassPassedCount,
@@ -103,7 +104,7 @@ export default function CoreStudyRoutes({
         onOpenReview={() => navigateTo('review')}
         onOpenFocus={() => navigateTo('focus')}
         onOpenTopicFocus={() => navigateTo('topicfocus')}
-        onOpenCommandHub={() => navigateTo('commandhub')}
+        onOpenCommandHub={openCommandHub}
         onOpenStudyLens={() => navigateTo('studylens')}
         onOpenExamTraps={openExamTraps}
         onOpenTrapDrill={openTrapDrill}

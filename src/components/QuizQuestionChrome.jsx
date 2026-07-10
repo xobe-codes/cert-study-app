@@ -48,13 +48,24 @@ export function QuizQuestionStem({ text }) {
   )
 }
 
+export function DomainObjectivePill({ objectiveId, accent = 'silver' }) {
+  if (!objectiveId) return null
+  const domainNum = objectiveId.split('.')[0]
+  return (
+    <span style={{ ...styles.pill(accent), fontSize: 'var(--ccna-type-micro)' }}>
+      D{domainNum} · {objectiveId}
+    </span>
+  )
+}
+
 export function QuestionMeta({ q }) {
-  if (!q || (!q.type && !q.difficulty && !q.skill)) return null
+  if (!q || (!q.type && !q.difficulty && !q.skill && !q.objectiveId)) return null
   const skill = q.skill || inferSkill(q)
   const dAccent = q.difficulty === 'hard' ? 'amber' : q.difficulty === 'medium' ? 'sky' : 'mint'
   const skillAccent = skill === 'troubleshoot' ? 'amber' : skill === 'implement' ? 'sky' : 'mint'
   return (
     <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
+      {q.objectiveId && <DomainObjectivePill objectiveId={q.objectiveId} />}
       {q.difficulty && <span style={{ ...styles.pill(dAccent), fontSize: 'var(--ccna-type-micro)' }}>{q.difficulty.toUpperCase()}</span>}
       {q.type && <span style={{ ...styles.pill(q.type === 'troubleshooting' || q.type === 'ordering' || q.type === 'cli' ? 'sky' : 'silver'), fontSize: 'var(--ccna-type-micro)' }}>{TYPE_LABEL[q.type] || q.type}</span>}
       {skill && <span style={{ ...styles.pill(skillAccent), fontSize: 'var(--ccna-type-micro)' }}>{SKILL_LABEL[skill] || skill}</span>}

@@ -12,14 +12,15 @@ import MockExamDebriefActions from '../mockExam/MockExamDebriefActions.jsx'
 import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import Spinner from '../../components/Spinner.jsx'
 import ErrorBox from '../../components/ErrorBox.jsx'
-import { QuizQuestionStem } from '../../components/QuizQuestionChrome.jsx'
+import { QuizQuestionStem, QuestionMeta } from '../../components/QuizQuestionChrome.jsx'
+import { getDomainStudyMeta } from '../../home/domainStudyRoutes.js'
 import {
   DOMAIN_PASS_PASS_PCT,
   domainPassDurationSec,
   domainPassTimerMinutes,
   isDomainPassPassed,
 } from './domainPassConfig.js'
-import { buildDomainPassPool, computeWeakObjectivesFromResponses, mergeCarryoverSkipped } from './buildDomainPassPool.js'
+import { buildDomainPassPool, collectDomainQuestionIds, computeWeakObjectivesFromResponses, mergeCarryoverSkipped } from './buildDomainPassPool.js'
 import {
   loadDomainRecords,
   loadTimerEnabled,
@@ -28,6 +29,12 @@ import {
   appendMissedEntry,
   getDomainRecord,
 } from './domainPassStorage.js'
+import {
+  getDomainSeenMap,
+  getExposureStats,
+  loadDomainQuestionExposure,
+  recordSeen,
+} from './domainQuestionExposure.js'
 import { useMasteryProgress } from '../progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
 
@@ -57,6 +64,9 @@ export default function DomainPassSession({
   onOpenMock,
   onOpenTrapDrill,
   onOpenLab,
+  onOpenLabs,
+  onOpenCommandHub,
+  onSelectObjective,
   onStartFocus,
   examMode = false,
   missed = [],
@@ -95,10 +105,17 @@ export default function DomainPassSession({
     finishSaved.current = false
     try {
       await preloadCleanBank()
-      const [records, timerOn] = await Promise.all([loadDomainRecords(), loadTimerEnabled()])
+      const [records, timerOn, exposureStore] = await Promise.all([
+        loadDomainRecords(),
+        loadTimerEnabled(),
+        loadDomainQuestionExposure(),
+      ])
       setTimerEnabledState(timerOn)
       const passRecord = getDomainRecord(records, domainId)
       prevSkippedRef.current = passRecord?.skippedQuestionIds || []
+      const allDomainIds = collectDomainQuestionIds(domain, getMcForObjective)
+      const seenById = getDomainSeenMap(exposureStore, domainId)
+      const exposureStats = getExposureStats(domainId, allDomainIds, seenById)
       const final = buildDomainPassPool({
         domain,
         getMcQuestions: getMcForObjective,
@@ -107,6 +124,7 @@ export default function DomainPassSession({
         missedQuestions: missed,
         skippedQuestionIds: prevSkippedRef.current,
         objectiveFilter: focusObjectiveIds,
+        exposureStats,
       })
       if (final.length === 0) {
         throw new Error(
@@ -194,6 +212,8 @@ export default function DomainPassSession({
     finishSaved.current = true
     const weakObjectiveIds = computeWeakObjectivesFromResponses(questions, responses)
     const skippedQuestionIds = mergeCarryoverSkipped(prevSkippedRef.current, questions, responses)
+    const sessionQuestionIds = questions.map(q => q.id ?? q.questionId).filter(id => id != null)
+    recordSeen(domainId, sessionQuestionIds)
     if (isFocusSession) {
       saveDomainPassFocusAttempt(domainId, {
         correct: report.correct,
@@ -235,6 +255,17 @@ export default function DomainPassSession({
     const wrongCount = report.total - report.correct - skippedCount
 
     const weakObjectiveIds = computeWeakObjectivesFromResponses(questions, responses)
+    const domainMeta = getDomainStudyMeta(domainId)
+    const hasWrongTraps = (report.trapDebrief || []).length > 0
+
+    const domainActionBtn = {
+      ...styles.secondaryBtn,
+      width: '100%',
+      textAlign: 'left',
+      fontSize: 'var(--ccna-type-sm)',
+      padding: '8px 10px',
+      marginBottom: 4,
+    }
 
     return (
       <div>
@@ -281,7 +312,33 @@ export default function DomainPassSession({
           domains={DOMAINS}
           onOpenTrapDrill={onOpenTrapDrill}
           onOpenLab={onOpenLab}
+          onSelectObjective={onSelectObjective ? (oid) => {
+            const obj = domain.objectives.find(o => o.id === oid)
+            if (obj) onSelectObjective({ ...obj, domainId: domain.id, domainName: domain.name, accent: domain.accent })
+          } : undefined}
         />
+        {(hasWrongTraps || domainMeta.labCount > 0 || onOpenCommandHub) && (
+          <div style={{ ...styles.card, marginBottom: 8, border: `1px solid ${COLORS.purpleBorder}`, background: COLORS.purpleDim }}>
+            <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.purple, marginBottom: 8, letterSpacing: 0.3 }}>
+              This domain
+            </div>
+            {hasWrongTraps && onOpenTrapDrill && (
+              <button type="button" style={domainActionBtn} onClick={() => onOpenTrapDrill({ domainId })}>
+                Trap drill (this domain) →
+              </button>
+            )}
+            {domainMeta.labCount > 0 && onOpenLabs && (
+              <button type="button" style={domainActionBtn} onClick={() => onOpenLabs({ domainId })}>
+                Domain labs ({domainMeta.labCount}) →
+              </button>
+            )}
+            {onOpenCommandHub && (
+              <button type="button" style={{ ...domainActionBtn, marginBottom: 0 }} onClick={() => onOpenCommandHub({ domainId })}>
+                Command Hub →
+              </button>
+            )}
+          </div>
+        )}
         {isFocusSession && weakObjectiveIds.length > 0 && onStartFocus && (
           <button
             type="button"
@@ -338,7 +395,7 @@ export default function DomainPassSession({
         )}
       </div>
       <div style={styles.card}>
-        {q.objectiveId && <div style={{ ...styles.small, marginBottom: 8 }}>Objective {q.objectiveId}</div>}
+        <QuestionMeta q={q} />
         <QuizQuestionStem text={q.question} />
         <McChoiceShuffleProvider q={q}>
         <McChoices q={q} selected={selected ?? null} revealed={isCurrentRevealed} onSelect={selectChoice} />
