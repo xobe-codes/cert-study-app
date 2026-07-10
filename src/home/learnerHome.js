@@ -1,6 +1,7 @@
 import { DOMAINS, ALL_OBJECTIVES } from '../data/ccnaDomains.js'
 import { STORAGE_KEYS } from '../storageKeys.js'
 import { computeMastery, masteryScoreSessions } from '../netUtils.js'
+import { pickCoachObjectiveNext, whyForFailureMode } from './studyCoach.js'
 
 const REVIEW_SESSION_CAP = 20
 
@@ -113,13 +114,14 @@ export function generateLocalSuggestions(summary, commandDrills = {}) {
   }
   const inProgress = perObjective.filter(o => o.status === 'in_progress' && o.attempts > 0)
 
-  // 1. Weakest active topic
+  // 1. Weakest active topic — post-study path: Practice (not re-read Study)
   const weakest = [...inProgress].sort((a, b) => a.mastery - b.mastery)[0]
   if (weakest && weakest.mastery < 0.6) {
     add({
-      key: 'weak', chip: 'WEAK SPOT', accent: 'rose', objective: weakest, tab: 'Explain',
+      key: 'weak', chip: 'WEAK SPOT', accent: 'rose', objective: weakest, tab: 'Practice',
       title: `${weakest.id} ${weakest.title}`,
-      body: `Your weakest active topic at ${Math.round(weakest.mastery * 100)}% mastery. A focused review will move the needle most.`,
+      body: `Your weakest active topic at ${Math.round(weakest.mastery * 100)}% mastery. Practice + traps beat re-reading — refresh Study only if the model is fuzzy.`,
+      why: whyForFailureMode('application'),
     })
   }
 
@@ -132,6 +134,7 @@ export function generateLocalSuggestions(summary, commandDrills = {}) {
       key: 'cli', chip: 'HANDS-ON', accent: 'sky', objective: cliStruggle, tab: 'CLI Drill',
       title: `${cliStruggle.id} ${cliStruggle.title}`,
       body: `You rated several questions here tough. Reinforce it with the CLI drill — muscle memory beats re-reading.`,
+      why: whyForFailureMode('verification'),
     })
   }
 
@@ -141,9 +144,10 @@ export function generateLocalSuggestions(summary, commandDrills = {}) {
     .sort((a, b) => b.mastery - a.mastery)[0]
   if (near) {
     add({
-      key: 'near', chip: 'ALMOST THERE', accent: 'mint', objective: near, tab: 'Quiz',
+      key: 'near', chip: 'ALMOST THERE', accent: 'mint', objective: near, tab: 'Practice',
       title: `${near.id} ${near.title}`,
-      body: `Nearly mastered at ${Math.round(near.mastery * 100)}%. One more quiz set from your bank could lock it in.`,
+      body: `Nearly mastered at ${Math.round(near.mastery * 100)}%. One more Practice set from your bank could lock it in.`,
+      why: 'Almost ready · next: Practice to lock mastery',
     })
   }
 
@@ -153,9 +157,10 @@ export function generateLocalSuggestions(summary, commandDrills = {}) {
     const o = perObjective.find(x => x.id === missedTop[0])
     if (o) {
       add({
-        key: 'missed', chip: 'RECURRING MISS', accent: 'rose', objective: o, tab: 'Quiz',
+        key: 'missed', chip: 'RECURRING MISS', accent: 'rose', objective: o, tab: 'Practice',
         title: `${o.id} ${o.title}`,
-        body: `You've missed ${missedTop[1]} questions here. Re-quiz from the bank — wrong answers come back first.`,
+        body: `You've missed ${missedTop[1]} questions here. Practice the bank, then Trap Drill the repeating misconception.`,
+        why: whyForFailureMode('misconception', { count: missedTop[1] }),
       })
     }
   }
@@ -166,9 +171,10 @@ export function generateLocalSuggestions(summary, commandDrills = {}) {
     .sort((a, b) => b.daysSince - a.daysSince)[0]
   if (stale) {
     add({
-      key: 'stale', chip: 'REVIEW', accent: 'purple', objective: stale, tab: 'Quiz',
+      key: 'stale', chip: 'REVIEW', accent: 'purple', objective: stale, tab: 'Practice',
       title: `${stale.id} ${stale.title}`,
-      body: `Mastered but not reviewed in ${stale.daysSince} days. A quick pass keeps retention from slipping.`,
+      body: `Mastered but not reviewed in ${stale.daysSince} days. A quick Practice pass keeps retention from slipping.`,
+      why: whyForFailureMode('retention'),
     })
   }
 
@@ -187,18 +193,25 @@ export function generateLocalSuggestions(summary, commandDrills = {}) {
   return cards.slice(0, 3)
 }
 
-// Top study action from the same local rules as Metrics / For You (no API).
-export function pickStudyNext(summary, dueCount) {
+/**
+ * Top study action. Priority (after caller handles incomplete baseline):
+ * SRS due → domain-pass weak → high trap → almost-ready → For You cards.
+ */
+export function pickStudyNext(summary, dueCount, extras = {}) {
   if (dueCount > 0) {
     const ready = Math.min(dueCount, REVIEW_SESSION_CAP)
     return {
       kind: 'review',
       accent: 'purple',
       shortTitle: `Today's Review — ${ready} due · ~${Math.max(1, Math.round(ready * 0.5))} min`,
+      why: whyForFailureMode('retention'),
+      failureMode: 'retention',
     }
   }
   if (!summary) return null
-  const top = generateLocalSuggestions(summary)[0]
+  const coach = pickCoachObjectiveNext(summary, extras)
+  if (coach) return coach
+  const top = generateLocalSuggestions(summary, extras.commandDrills)[0]
   if (!top) return null
   return {
     kind: 'objective',
@@ -206,5 +219,7 @@ export function pickStudyNext(summary, dueCount) {
     shortTitle: top.title,
     objective: top.objective,
     tab: top.tab,
+    why: top.why || null,
+    failureMode: top.failureMode || null,
   }
 }

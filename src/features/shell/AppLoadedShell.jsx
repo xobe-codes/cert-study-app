@@ -288,6 +288,7 @@ export default function AppLoadedShell({
           onOpenDomainPlacement={openDomainPlacement}
           onOpenCommandHub={openCommandHub}
           onOpenLabs={openLabs}
+          onOpenSubnet={() => navigateTo('subnet')}
           onSelectObjective={selectObjective}
           onRefreshDomainPassCount={refreshDomainPassCount}
           onMissed={handleMissed}

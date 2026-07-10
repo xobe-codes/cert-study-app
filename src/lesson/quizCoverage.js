@@ -49,9 +49,13 @@ function ckuAttemptWeight(banked, ckuId) {
 /**
  * Session picker with CKU coverage bias: under-tested CKUs get a slot first,
  * then the usual review priority fills the rest.
+ * Optional preferUnseenIds lightly boosts never-seen bank ids (exposure).
  */
-export function pickReviewSet(banked, accuracy = null, sessionSize = 5, { ckuIds = [] } = {}) {
+export function pickReviewSet(banked, accuracy = null, sessionSize = 5, { ckuIds = [], preferUnseenIds = null } = {}) {
   const limit = Math.min(Math.max(1, sessionSize), banked.length)
+  const unseen = preferUnseenIds instanceof Set
+    ? preferUnseenIds
+    : (Array.isArray(preferUnseenIds) ? new Set(preferUnseenIds) : null)
   const diffBias = accuracy == null ? {}
     : accuracy >= 0.8 ? { easy: 0.35, medium: 0, hard: -0.35 }
     : accuracy < 0.5 ? { easy: -0.35, medium: 0, hard: 0.35 }
@@ -59,7 +63,11 @@ export function pickReviewSet(banked, accuracy = null, sessionSize = 5, { ckuIds
   const typeBias = { troubleshooting: -0.45, ordering: -0.35 }
 
   const score = (q, ckuBoost = 0) => (
-    questionPriority(q) + (diffBias[q.difficulty] ?? 0) + (typeBias[q.type] ?? 0) + ckuBoost
+    questionPriority(q)
+    + (diffBias[q.difficulty] ?? 0)
+    + (typeBias[q.type] ?? 0)
+    + ckuBoost
+    + (unseen?.has(q.id) ? -0.35 : 0)
   )
 
   const selected = []

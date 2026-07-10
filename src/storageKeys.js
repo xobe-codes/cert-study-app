@@ -20,6 +20,8 @@ export const STORAGE_KEYS = {
   mockHistory: 'ccna_mock_history_v1',
   examMode: 'ccna_exam_mode_v1',
   nudgeDismissed: 'ccna_nudge_dismissed_v1',
+  /** Per-objective Study-first / Refresh-Study soft-gate dismiss date (YYYY-MM-DD). */
+  studyCoachDismissed: 'ccna_study_coach_dismissed_v1',
   quizSessionSize: 'ccna_quiz_session_size_v1',
   studyBlock: 'ccna_study_block_v1',
   premiumUnlocked: 'ccna_premium_unlocked_v1',

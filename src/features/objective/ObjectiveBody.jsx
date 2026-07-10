@@ -3,6 +3,7 @@ import StudyBlockCompleteCard from '../../components/StudyBlockCompleteCard.jsx'
 import { ObjectiveBodyIntro } from './ObjectiveHeader.jsx'
 import ObjectiveToolPanels from './ObjectiveToolPanels.jsx'
 import ObjectiveTabPanels from './ObjectiveTabPanels.jsx'
+import StudyCoachBanner from '../../home/StudyCoachBanner.jsx'
 
 /**
  * Scrollable body of the objective screen: why-line intro, study-block
@@ -34,6 +35,14 @@ export default function ObjectiveBody({
         objective={objective}
         ProgressBar={ProgressBar}
       />
+      {!toolPanel && (tab === 'Study' || tab === 'Practice') && (
+        <StudyCoachBanner
+          objectiveId={objective.id}
+          progressEntry={progress[objective.id]}
+          onGoStudy={() => { setTab('Study'); setToolPanel(null) }}
+          compact={tab === 'Practice'}
+        />
+      )}
       <StudyBlockCompleteCard
         objectiveId={objective.id}
         masteryPct={masteryPct}

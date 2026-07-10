@@ -6,6 +6,7 @@ import {
   getExposureStats,
   recordSeen,
   loadDomainQuestionExposure,
+  domainIdFromObjectiveId,
 } from '../features/domainPass/domainQuestionExposure.js'
 import { buildDomainPassPool } from '../features/domainPass/buildDomainPassPool.js'
 
@@ -77,6 +78,10 @@ describe('domainQuestionExposure', () => {
     const store = await loadDomainQuestionExposure()
     expect(store.fundamentals['1.1-a']).toBeTypeOf('number')
     expect(store.fundamentals['1.2-b']).toBeTypeOf('number')
+  })
+
+  it('domainIdFromObjectiveId derives domain from objective prefix', () => {
+    expect(domainIdFromObjectiveId('3.4')).toBe('connectivity')
   })
 })
 

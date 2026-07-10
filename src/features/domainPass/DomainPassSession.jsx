@@ -37,6 +37,7 @@ import {
 } from './domainQuestionExposure.js'
 import { useMasteryProgress } from '../progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
+import { shouldShowWildcardBridge } from '../practice/trapStreak.js'
 
 function shuffleArray(arr) {
   const a = [...arr]
@@ -66,6 +67,7 @@ export default function DomainPassSession({
   onOpenLab,
   onOpenLabs,
   onOpenCommandHub,
+  onOpenSubnet,
   onSelectObjective,
   onStartFocus,
   examMode = false,
@@ -256,7 +258,11 @@ export default function DomainPassSession({
 
     const weakObjectiveIds = computeWeakObjectivesFromResponses(questions, responses)
     const domainMeta = getDomainStudyMeta(domainId)
-    const hasWrongTraps = (report.trapDebrief || []).length > 0
+    const showTrapCta = Boolean(onOpenTrapDrill)
+    const showLabsCta = domainMeta.labCount > 0 && Boolean(onOpenLabs)
+    const showCommandHubCta = Boolean(onOpenCommandHub)
+    const showWildcardCta = shouldShowWildcardBridge(domainId, onOpenSubnet)
+    const showDomainActions = showTrapCta || showLabsCta || showCommandHubCta || showWildcardCta
 
     const domainActionBtn = {
       ...styles.secondaryBtn,
@@ -317,24 +323,37 @@ export default function DomainPassSession({
             if (obj) onSelectObjective({ ...obj, domainId: domain.id, domainName: domain.name, accent: domain.accent })
           } : undefined}
         />
-        {(hasWrongTraps || domainMeta.labCount > 0 || onOpenCommandHub) && (
+        {showDomainActions && (
           <div style={{ ...styles.card, marginBottom: 8, border: `1px solid ${COLORS.purpleBorder}`, background: COLORS.purpleDim }}>
             <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.purple, marginBottom: 8, letterSpacing: 0.3 }}>
               This domain
             </div>
-            {hasWrongTraps && onOpenTrapDrill && (
+            {showTrapCta && (
               <button type="button" style={domainActionBtn} onClick={() => onOpenTrapDrill({ domainId })}>
                 Trap drill (this domain) →
               </button>
             )}
-            {domainMeta.labCount > 0 && onOpenLabs && (
+            {showLabsCta && (
               <button type="button" style={domainActionBtn} onClick={() => onOpenLabs({ domainId })}>
                 Domain labs ({domainMeta.labCount}) →
               </button>
             )}
-            {onOpenCommandHub && (
-              <button type="button" style={{ ...domainActionBtn, marginBottom: 0 }} onClick={() => onOpenCommandHub({ domainId })}>
+            {showCommandHubCta && (
+              <button
+                type="button"
+                style={{ ...domainActionBtn, ...(showWildcardCta ? {} : { marginBottom: 0 }) }}
+                onClick={() => onOpenCommandHub({ domainId })}
+              >
                 Command Hub →
+              </button>
+            )}
+            {showWildcardCta && (
+              <button
+                type="button"
+                style={{ ...domainActionBtn, marginBottom: 0 }}
+                onClick={() => onOpenSubnet()}
+              >
+                Subnetting Wildcard (ACL/OSPF) →
               </button>
             )}
           </div>

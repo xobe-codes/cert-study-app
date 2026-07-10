@@ -363,8 +363,8 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
   const studyNext = useMemo(() => {
     const baselineNext = pickBaselineAwareStudyNext({ placementRecords, dueCount })
     if (baselineNext) return baselineNext
-    return pickStudyNext(learnerSummary, dueCount)
-  }, [learnerSummary, dueCount, placementRecords])
+    return pickStudyNext(learnerSummary, dueCount, { domainPassRecords, commandDrills })
+  }, [learnerSummary, dueCount, placementRecords, domainPassRecords, commandDrills])
 
   const totals = useMemo(() => {
     let mastered = 0, inProgress = 0

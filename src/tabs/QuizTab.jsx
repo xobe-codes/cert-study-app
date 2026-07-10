@@ -39,8 +39,20 @@ import { applyAnswerReviewToQuestion, inferTrapForChoice } from '../answerReview
 import { isActionableMissedTrap } from '../missed/missedTrapGroups.js'
 import { bumpSessionStudy } from '../home/sessionRecap.js'
 import {
+  createTrapStreakState,
+  recordTrapMiss,
+  shouldShowTrapStreakCta,
+} from '../features/practice/trapStreak.js'
+import {
   RichText, OrderingQuestion, QuestionMeta, PreAssessment,
 } from './studyQuizShared.jsx'
+import {
+  domainIdFromObjectiveId,
+  getDomainSeenMap,
+  getExposureStats,
+  loadDomainQuestionExposure,
+  recordSeen,
+} from '../features/domainPass/domainQuestionExposure.js'
 
 /** Resolve trap-drill prefill from a missed MC question (infer trap or objective examTraps). */
 function resolveQuizTrapDrillPrefill(question, objective, selected) {
@@ -237,7 +249,11 @@ export function QuizTab({
   const [sourceLabel, setSourceLabel] = useState(null) // where this session's questions came from
   const sessionRatings = useRef([])
   const missedOnce = useRef(new Set()) // question IDs missed once this session → 2nd miss = near-front re-queue
+  const trapStreakRef = useRef(createTrapStreakState())
+  const [trapStreakTick, setTrapStreakTick] = useState(0) // bump to re-render after trap-family miss
   const [streak, setStreak] = useState(0) // consecutive correct answers this session
+  const sessionQuestionIdsRef = useRef([])
+  const exposureRecordedRef = useRef(false)
 
   function collectDeferredTip(q, selectedIndex) {
     if (!examMode || !q) return
@@ -270,6 +286,12 @@ export function QuizTab({
       justMasteredRef.current = false
       return
     }
+    if (!exposureRecordedRef.current) {
+      exposureRecordedRef.current = true
+      const domainId = domainIdFromObjectiveId(objective.id)
+      const ids = sessionQuestionIdsRef.current
+      if (domainId && ids.length) recordSeen(domainId, ids)
+    }
     if (doneHintFired.current) return
     doneHintFired.current = true
     if (justMasteredRef.current) return
@@ -279,7 +301,7 @@ export function QuizTab({
     } else {
       showNavHint(NAV_HINT_KEYS.QUIZ_PASS, { nextId: nextObjective?.id })
     }
-  }, [phase, stats, nextObjective?.id, showNavHint])
+  }, [phase, stats, nextObjective?.id, showNavHint, objective.id])
 
   useEffect(() => {
     if (bankSize > 0 && sessionSize > bankSize) {
@@ -402,8 +424,25 @@ export function QuizTab({
 
       const breakdown = masteryBreakdown(progress?.[objective.id])
       const ckuIds = getObjectiveCkuIds(objective.id)
-      const set = pickReviewSet(banked, breakdown.has ? breakdown.acc : null, sessionSize, { ckuIds })
+      let preferUnseenIds = null
+      try {
+        const domainId = domainIdFromObjectiveId(objective.id)
+        if (domainId) {
+          const exposureStore = await loadDomainQuestionExposure()
+          const seenMap = getDomainSeenMap(exposureStore, domainId)
+          const stats = getExposureStats(domainId, banked.map(q => q.id).filter(Boolean), seenMap)
+          if (stats.unseen.length) preferUnseenIds = new Set(stats.unseen)
+        }
+      } catch {
+        preferUnseenIds = null
+      }
+      const set = pickReviewSet(banked, breakdown.has ? breakdown.acc : null, sessionSize, {
+        ckuIds,
+        preferUnseenIds,
+      })
       if (set.length === 0) throw new Error('No questions available for this objective yet.')
+      sessionQuestionIdsRef.current = set.map(q => q.id).filter(id => id != null)
+      exposureRecordedRef.current = false
       setBankSize(banked.length)
       setSourceLabel(usedApi ? 'Freshly generated · added to your bank' : STATIC_COPY.sessionBank(banked.length))
       setQueue(set.slice(1))
@@ -431,6 +470,8 @@ export function QuizTab({
     setStreak(0)
     sessionRatings.current = []
     deferredTips.current = []
+    trapStreakRef.current = createTrapStreakState()
+    setTrapStreakTick(0)
     setOverconfidentCallout(false)
     missedOnce.current = new Set()
     refreshBankSize()
@@ -466,6 +507,12 @@ export function QuizTab({
     if (!correct) {
       collectDeferredTip(current, idx)
       onMissed(buildMissedEntry(objective.id, current, { selectedIndex: idx }))
+      const trapPrefill = resolveQuizTrapDrillPrefill(current, objective, idx)
+      if (trapPrefill) {
+        const recorded = recordTrapMiss(trapStreakRef.current, trapPrefill)
+        trapStreakRef.current = recorded.state
+        setTrapStreakTick(t => t + 1)
+      }
       const qKey = current.id || current.question
       if (missedOnce.current.has(qKey)) {
         setQueue(q => [q[0], current, ...q.slice(1)].filter(Boolean))
@@ -724,13 +771,15 @@ export function QuizTab({
             {!isCorrect && onOpenTrapDrill && (() => {
               const prefill = resolveQuizTrapDrillPrefill(current, objective, selected)
               if (!prefill) return null
+              // trapStreakTick re-renders after recordTrapMiss so streak CTA updates
+              const streakCta = trapStreakTick >= 0 && shouldShowTrapStreakCta(trapStreakRef.current, prefill)
               return (
                 <button
                   type="button"
                   style={{ ...styles.secondaryBtn, marginTop: 10, width: '100%' }}
                   onClick={() => onOpenTrapDrill(prefill)}
                 >
-                  Drill this trap →
+                  {streakCta ? 'Trap drill this misconception →' : 'Drill this trap →'}
                 </button>
               )
             })()}

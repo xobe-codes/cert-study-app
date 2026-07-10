@@ -35,6 +35,7 @@ describe('buildWeakAreaRows', () => {
     expect(rows.some(r => r.cta === 'Domain pass →' && r.label.includes('D5'))).toBe(true)
     expect(rows.some(r => r.cta === 'Practice →' && r.label.includes('Last mock 62%'))).toBe(true)
     expect(rows.some(r => r.cta === 'Interview →' && r.label.includes('Verbal warm-up'))).toBe(true)
+    expect(rows.every(r => typeof r.why === 'string' && r.why.length > 0)).toBe(true)
   })
 
   it('defaults to 3 rows when limit is set', () => {
@@ -127,6 +128,7 @@ describe('WeakAreaDashboard', () => {
     expect(html).toContain('Domain pass →')
     expect(html).toContain('Traps')
     expect(html).toContain('Domains')
+    expect(html).toMatch(/Trap drill/i)
   })
 
   it('renders empty state when no gaps', () => {

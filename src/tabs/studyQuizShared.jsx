@@ -24,6 +24,10 @@ import {
   PREASSESS_CACHE_KEY, PREASSESS_PROMPT_SYSTEM, PREASSESS_SCHEMA,
   logEvent, haptic,
 } from './tabRuntimeDeps.js'
+import {
+  domainIdFromObjectiveId,
+  recordSeen,
+} from '../features/domainPass/domainQuestionExposure.js'
 
 // Renders `inline code` and **bold** segments in lesson prose.
 export function RichText({ text }) {
@@ -139,6 +143,7 @@ export function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked
   const [results, setResults] = useState([]) // { concept, correct }
   const showNavHint = useNavHint()
   const resultHintFired = useRef(false)
+  const exposureRecordedRef = useRef(false)
   const [showConfetti, setShowConfetti] = useState(false)
   const quizPoolSize = useMemo(() => getCuratedQuestions(objective.id).length, [objective.id])
   const preassessCount = 6
@@ -156,6 +161,12 @@ export function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked
       setShowConfetti(false)
       return
     }
+    if (!exposureRecordedRef.current && questions.length) {
+      exposureRecordedRef.current = true
+      const domainId = domainIdFromObjectiveId(objective.id)
+      const ids = questions.map(q => q.id).filter(id => id != null)
+      if (domainId && ids.length) recordSeen(domainId, ids)
+    }
     if (resultHintFired.current || results.length === 0) return
     resultHintFired.current = true
     const correct = results.filter(r => r.correct).length
@@ -169,7 +180,7 @@ export function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked
     } else {
       showNavHint(NAV_HINT_KEYS.PREASSESS_FAIL)
     }
-  }, [phase, results, showNavHint])
+  }, [phase, results, showNavHint, questions, objective.id])
 
   const start = useCallback(async () => {
     setPhase('loading'); setError(null)
@@ -199,6 +210,7 @@ export function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked
         await window.storage.setItem(PREASSESS_CACHE_KEY, cache)
       }
       setQuestions(randomizeQuestionOrder(qs)); setIdx(0); setSelected(null); setRevealed(false); setResults([])
+      exposureRecordedRef.current = false
       setPhase('active')
       logEvent('user_started_preassessment', { objectiveId: objective.id })
     } catch (err) {

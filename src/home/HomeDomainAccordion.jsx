@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { DOMAINS } from '../data/ccnaDomains.js'
 import { COLORS, accentColors, styles } from '../ui/appTheme.js'
 import { hasCuratedReading, hasCuratedQuestions } from '../data/ccnaCurated.js'
@@ -14,6 +14,9 @@ import { buildStudyObjectiveHandoff } from '../study/studyObjectiveHandoff.js'
 import { domainPassStatus, domainPassBadgeLabel } from '../features/domainPass/domainPassConfig.js'
 import { DOMAIN_LAYER_LEGEND, domainDisplayTitle } from '../features/domainPlacement/domainLearningCopy.js'
 import { getDomainStudyMeta, pickDomainPracticeObjective } from './domainStudyRoutes.js'
+import { buildDomainReadinessLine } from './domainReadiness.js'
+import { labsForDomain } from '../data/labModules.js'
+import { loadLabDone } from '../lab/labStorage.js'
 import {
   HOME_SECTION_GAP,
   homeCard,
@@ -39,6 +42,17 @@ export default function HomeDomainAccordion({
   onOpenCommandHub,
 }) {
   const [showStrongObjectives, setShowStrongObjectives] = useState({})
+  const [labDoneIds, setLabDoneIds] = useState([])
+
+  useEffect(() => {
+    let cancelled = false
+    loadLabDone().then((ids) => {
+      if (!cancelled) setLabDoneIds(Array.isArray(ids) ? ids : [])
+    }).catch(() => {
+      if (!cancelled) setLabDoneIds([])
+    })
+    return () => { cancelled = true }
+  }, [])
 
   return (
     <div role="group" aria-label="Course domains">
@@ -67,6 +81,15 @@ export default function HomeDomainAccordion({
         const passBadge = domainPassBadgeLabel(passStatus)
         const passBadgeAccent = passStatus === 'passed' ? 'mint' : passStatus === 'retake' ? 'amber' : 'silver'
         const studyMeta = getDomainStudyMeta(domain.id)
+        const domainLabs = labsForDomain(domain.id)
+        const labDoneCount = domainLabs.filter(l => labDoneIds.includes(l.id)).length
+        const readinessLine = buildDomainReadinessLine({
+          domainId: domain.id,
+          placementRecord,
+          passRecord,
+          labDone: labDoneCount,
+          labTotal: studyMeta.labCount,
+        })
 
         function practiceDomain() {
           if (studyMeta.hasPlacement && !placementRecord?.lastAttempt && onOpenDomainPlacement) {
@@ -206,8 +229,11 @@ export default function HomeDomainAccordion({
                   )
                 })()}
                 <div className="domain-study-modes" style={{ marginTop: 12, borderTop: `1px solid ${COLORS.border}`, paddingTop: 10 }}>
-                  <div style={{ ...homeBodySm, fontWeight: 700, marginBottom: 8, color: COLORS.silverMid, letterSpacing: 0.3 }}>
+                  <div style={{ ...homeBodySm, fontWeight: 700, marginBottom: 4, color: COLORS.silverMid, letterSpacing: 0.3 }}>
                     Study modes
+                  </div>
+                  <div style={{ ...homeBodySm, marginBottom: 8, color: COLORS.silverMid }} aria-label="Domain readiness">
+                    {readinessLine}
                   </div>
                   {onOpenDomainPass && (
                     <button type="button" className="ccna-hover" style={studyModeBtn} onClick={() => onOpenDomainPass({ domainId: domain.id })}>

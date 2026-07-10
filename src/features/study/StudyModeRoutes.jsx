@@ -70,6 +70,7 @@ export default function StudyModeRoutes({
   onOpenDomainPlacement,
   onOpenCommandHub,
   onOpenLabs,
+  onOpenSubnet,
   onSelectObjective,
   onRefreshDomainPassCount,
   onMissed,
@@ -235,6 +236,7 @@ export default function StudyModeRoutes({
         onOpenLab={(id) => onOpenLab(id, 'domainpass')}
         onOpenLabs={onOpenLabs}
         onOpenCommandHub={onOpenCommandHub}
+        onOpenSubnet={onOpenSubnet}
         onSelectObjective={onSelectObjective}
         examMode={settingsExamMode}
         missed={missed}

@@ -4,6 +4,7 @@ import { placementDomainIds } from '../domainPlacement/placementBlueprints.js'
 import { shouldSuggestPlacement } from '../domainPlacement/domainPlacementStorage.js'
 import { getStaleBaselineDomains } from '../domainPlacement/placementBlueprintCoverage.js'
 import { domainNumberLabel } from '../domainPlacement/domainLearningCopy.js'
+import { pickFailureMode, whyForFailureMode, FAILURE_MODE_NEXT_STEPS } from '../../home/studyCoach.js'
 
 export const FIX_NEXT_CATEGORIES = {
   traps: 'Traps',
@@ -61,16 +62,21 @@ function tierForDomainRow(row) {
 }
 
 function buildTrapRows(missed) {
-  return groupMissedByTrap(missed).slice(0, 2).map(g => ({
-    id: `trap:${g.trap}`,
-    category: 'traps',
-    label: g.trap,
-    badge: `${g.count}×`,
-    why: g.count > 1 ? `${g.count} missed on this trap` : undefined,
-    cta: CTA.trapDrill,
-    action: 'trapDrill',
-    payload: { trapLabel: g.trap, objectiveId: g.items[0]?.objectiveId },
-  }))
+  return groupMissedByTrap(missed).slice(0, 2).map(g => {
+    const mode = pickFailureMode({ trapCount: g.count })
+    return {
+      id: `trap:${g.trap}`,
+      category: 'traps',
+      label: g.trap,
+      badge: `${g.count}×`,
+      why: whyForFailureMode(mode, { count: g.count }) || `${g.count} missed on this trap · next: Trap drill → then Lab`,
+      nextSteps: FAILURE_MODE_NEXT_STEPS.misconception,
+      failureMode: mode || 'misconception',
+      cta: CTA.trapDrill,
+      action: 'trapDrill',
+      payload: { trapLabel: g.trap, objectiveId: g.items[0]?.objectiveId },
+    }
+  })
 }
 
 function collectMergedDomainRows(placementRecords, domainPassRecords, readiness) {
@@ -86,7 +92,8 @@ function collectMergedDomainRows(placementRecords, domainPassRecords, readiness)
       kind: 'remap',
       category: 'baseline',
       label: `${domainNumberLabel(domain)} · Blueprint outdated`,
-      why: 'Full remap samples every subsection',
+      why: 'Full remap samples every subsection · next: Remap → then Practice',
+      nextSteps: ['domainPlacement', 'practice'],
       cta: CTA.remapBaseline,
       action: 'domainPlacement',
       payload: { domainId: domain.id, expandOnReturn: true },
@@ -103,7 +110,9 @@ function collectMergedDomainRows(placementRecords, domainPassRecords, readiness)
       hasBaselineWeak: true,
       objectiveIds: weakObjs,
       label: weakObjectiveLabel(domain, weakObjs),
-      why: 'Baseline gaps',
+      why: 'Baseline gaps · next: Practice → then Lab',
+      nextSteps: ['practice', 'lab'],
+      failureMode: 'application',
       cta: CTA.practice,
       action: 'study',
       payload: { objectiveId: weakObjs[0] },
@@ -122,7 +131,8 @@ function collectMergedDomainRows(placementRecords, domainPassRecords, readiness)
       label: last
         ? `${domainNumberLabel(domain)} · Placement ${last.pct}%`
         : `${domainNumberLabel(domain)} · No baseline yet`,
-      why: last ? 'Recheck your level' : 'Establish placement baseline',
+      why: last ? 'Recheck your level · next: Placement → then Practice' : 'Establish placement baseline · next: Check level',
+      nextSteps: ['domainPlacement', 'practice'],
       cta: CTA.checkLevel,
       action: 'domainPlacement',
       payload: { domainId },
@@ -140,7 +150,9 @@ function collectMergedDomainRows(placementRecords, domainPassRecords, readiness)
       hasDomainPassWeak: true,
       objectiveIds: weakObjs,
       label: weakObjectiveLabel(domain, weakObjs),
-      why: `${weakObjs.length} weak in domain pass`,
+      why: whyForFailureMode('application') || `${weakObjs.length} weak in domain pass · next: Practice → Domain Pass`,
+      nextSteps: FAILURE_MODE_NEXT_STEPS.application,
+      failureMode: 'application',
       cta: CTA.practice,
       action: 'study',
       payload: { objectiveId: weakObjs[0] },
@@ -156,7 +168,9 @@ function collectMergedDomainRows(placementRecords, domainPassRecords, readiness)
       kind: 'domainPass',
       category: 'domains',
       label: `${domainNumberLabel(domain)} · ${Math.round(stat.avg * 100)}% mastery`,
-      why: 'Below exam-ready threshold',
+      why: 'Below exam-ready threshold · next: Domain Pass → Fix Next',
+      nextSteps: ['domainPass', 'practice'],
+      failureMode: 'application',
       cta: CTA.domainPass,
       action: 'domainPass',
       payload: { domainId: stat.id },
@@ -196,7 +210,9 @@ function buildMockRows(mockHistory, readiness) {
       label: objHint
         ? `Last mock ${last.pct}% · ${objHint}`
         : `Last mock ${last.pct}% · ${domainNumberLabel(domain) || domainId}`,
-      why: 'Below 70% passing threshold',
+      why: 'Below 70% passing threshold · next: Practice → Mock retake',
+      nextSteps: ['practice', 'mock'],
+      failureMode: 'application',
       badge: `${last.pct}%`,
       cta: objHint ? CTA.practice : CTA.mock,
       action: objHint ? 'study' : 'mock',
@@ -209,7 +225,9 @@ function buildMockRows(mockHistory, readiness) {
       id: 'mockinterview:last',
       category: 'mock',
       label: `Verbal warm-up · ${last.weakObjectiveIds.slice(0, 2).join(', ')}`,
-      why: 'Mock weak spots',
+      why: 'Mock weak spots · next: Interview warm-up → Practice',
+      nextSteps: ['mockInterview', 'practice'],
+      failureMode: 'application',
       cta: CTA.interview,
       action: 'mockInterview',
       payload: { objectiveIds: last.weakObjectiveIds },

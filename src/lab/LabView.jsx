@@ -12,6 +12,11 @@ import LabLearnPanel from './LabLearnPanel.jsx'
 import { LabTierBadge, LabConfigBanner } from './LabTierBadge.jsx'
 import { isConfigLab } from '../data/labTierStrategy.js'
 import { useMobileGestureBlock } from '../ui/useMobileGestureBlock.js'
+import {
+  isNearLabComplete,
+  matchVerificationCommand,
+  primaryVerifyPrompt,
+} from './labVerifyCue.js'
 
 const LAB_DIFF_ACCENT = { beginner: 'mint', intermediate: 'sky', advanced: 'amber' }
 
@@ -45,12 +50,26 @@ export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, 
   )
   const [activeTaskIdx, setActiveTaskIdx] = useState(0)
   const [revealVerify, setRevealVerify] = useState(false)
+  const [verifyCueSkipped, setVerifyCueSkipped] = useState(false)
+  const [verifyAttempted, setVerifyAttempted] = useState(false)
   const taskScrollRef = useRef(null)
   const justCompleted = useRef(false)
 
   const prog = labProgress(lab.id, entered)
   const activeTask = lab.tasks[activeTaskIdx]
   const host = deviceHostname(activeTask?.device || 'R1')
+  const verifyPrompt = primaryVerifyPrompt(validator?.verificationChecks)
+  const showVerifyCue = Boolean(
+    verifyPrompt
+    && isNearLabComplete(prog.done.length, prog.total)
+    && !verifyCueSkipped
+    && !verifyAttempted,
+  )
+
+  useEffect(() => {
+    setVerifyCueSkipped(false)
+    setVerifyAttempted(false)
+  }, [lab.id])
 
   useEffect(() => {
     if (phase !== 'practice') return
@@ -137,6 +156,10 @@ export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, 
   function submit() {
     const raw = input.trim()
     if (!raw || !activeTask) return
+
+    if (!verifyAttempted && matchVerificationCommand(raw, validator?.verificationChecks)) {
+      setVerifyAttempted(true)
+    }
 
     const expected = activeTask.expectedCommands || []
     const doneFlags = taskCmdDone[activeTask.id] || []
@@ -287,6 +310,50 @@ export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, 
             Swipe tasks · IOS modes: &gt; → # → (config)# · Type hint or ?
           </div>
         </>
+      )}
+
+      {showVerifyCue && (
+        <div
+          className="lab-verify-cue"
+          style={{
+            ...styles.card,
+            background: COLORS.skyDim,
+            border: `1px solid ${COLORS.skyBorder}`,
+            marginBottom: 12,
+          }}
+        >
+          <div style={{ fontWeight: 700, color: COLORS.sky, fontSize: 'var(--ccna-type-sm)', marginBottom: 4 }}>
+            Soft check — verify with a show command
+          </div>
+          <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.45, marginBottom: 10 }}>
+            Try{' '}
+            <span style={{ fontFamily: 'ui-monospace, Menlo, monospace', color: COLORS.sky }}>
+              {verifyPrompt.device}# {verifyPrompt.command}
+            </span>
+            {' '}to confirm the lab stuck. Optional — skip anytime.
+          </div>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <button
+              type="button"
+              style={styles.secondaryBtn}
+              onClick={() => {
+                setRevealVerify(true)
+                setPhase('practice')
+              }}
+            >
+              Show verify list
+            </button>
+            <button type="button" style={styles.secondaryBtn} onClick={() => setVerifyCueSkipped(true)}>
+              Skip
+            </button>
+          </div>
+        </div>
+      )}
+
+      {verifyAttempted && !verifyCueSkipped && (
+        <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.mint, marginBottom: 10 }}>
+          ✓ Verify attempted — nice habit for the exam.
+        </div>
       )}
 
       {prog.complete && (

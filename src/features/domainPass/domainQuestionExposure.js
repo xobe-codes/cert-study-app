@@ -1,6 +1,14 @@
 import { STORAGE_KEYS } from '../../storageKeys.js'
+import { DOMAINS } from '../../data/ccnaDomains.js'
 
 export const STALE_DAYS_MS = 14 * 24 * 60 * 60 * 1000
+
+/** Map objective id prefix (e.g. "2.4") → domain id (e.g. "access"). */
+export function domainIdFromObjectiveId(objectiveId, domains = DOMAINS) {
+  const n = parseInt(String(objectiveId || '').split('.')[0], 10)
+  if (!Number.isFinite(n) || n < 1) return null
+  return domains[n - 1]?.id || null
+}
 
 export const EXPOSURE_TIERS = {
   UNSEEN: 'unseen',
