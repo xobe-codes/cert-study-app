@@ -3,7 +3,7 @@
  * Uses lightweight CLEAN_BANK_COUNTS meta (no lazy-load required for counts).
  */
 import { CLEAN_BANK_OBJECTIVES, CLEAN_BANK_COUNTS } from './ccnaCleanBankMeta.js'
-import { getSkillQuestions } from './ccnaSkillQuestions.js'
+import { getSkillQuestionsLazy as getSkillQuestions } from './skillQuestionsRegistry.js'
 import { getEnrichmentPatchQuestions } from './contentEnrichmentPatches.js'
 
 function cleanQuestionCount(objectiveId) {

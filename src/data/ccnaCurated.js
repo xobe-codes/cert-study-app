@@ -18,7 +18,7 @@
 
 
 import { SUPPLEMENTAL_QUESTIONS } from './ccnaQuestionSupplemental.js'
-import { getSkillQuestions } from './ccnaSkillQuestions.js'
+import { getSkillQuestionsLazy as getSkillQuestions } from './skillQuestionsRegistry.js'
 import { hasCleanBank, getImportedOrCleanQuestions } from './cleanQuestionAdapter.js'
 import { CLEAN_BANK_OBJECTIVES } from './ccnaCleanBankMeta.js'
 import { countObjectiveQuestions } from './questionBankCount.js'

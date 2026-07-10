@@ -1,5 +1,5 @@
 import { cliStringsEquivalent } from '../lab/cliGrading.js'
-import { allSkillQuestions } from '../data/ccnaSkillQuestions.js'
+import { allSkillQuestionsLazy as allSkillQuestions } from '../data/skillQuestionsRegistry.js'
 import { isIosOrderingQuestion } from './questionPlacement.js'
 import { MODE_LABEL } from './commandWorkflows.js'
 

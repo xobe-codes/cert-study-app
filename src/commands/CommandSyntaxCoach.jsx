@@ -7,7 +7,7 @@ import {
   syntaxSessionSummary,
 } from './commandSyntaxQuiz.js'
 import { MODE_LABEL } from './commandWorkflows.js'
-import { OrderingQuestion } from '../tabs/studyQuizShared.jsx'
+import { OrderingQuestion } from '../tabs/OrderingQuestion.jsx'
 import { shuffleArrayCopy } from '../questionUtils.js'
 
 const QUIZ_FILTERS = [

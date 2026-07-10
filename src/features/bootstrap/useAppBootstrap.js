@@ -16,6 +16,7 @@ import { applyParsedHashRoute } from '../navigation/studyModeNavigation.js'
 import { resolveOnboardingBootstrap } from '../onboarding/useAppOnboarding.js'
 import { checkApiReachable } from '../../ai/claudeClient.js'
 import { STORAGE_KEYS, APP_REFRESH_EVENT } from '../../storageKeys.js'
+import { setSkillQuestionsModule } from '../../data/skillQuestionsRegistry.js'
 
 /**
  * App bootstrap — initial data load, preload, theme init, API health polling.
@@ -95,9 +96,17 @@ export function useAppBootstrap({
   // Main bootstrap — load all persisted state
   useEffect(() => {
     (async () => {
+      // Load skill-questions chunk in parallel with persisted state so it
+      // is ready before the user can navigate to a quiz (previously this was
+      // a static import that forced the 1.2 MB chunk to block initial render).
+      const skillQuestionsPromise = import('../../data/ccnaSkillQuestions.js')
+        .then(mod => setSkillQuestionsModule(mod))
+        .catch(() => {})
+
       const [p, m, s, off, due, premium] = await Promise.all([
         loadProgress(), loadMissed(), loadStreak(), loadOfflineReadyIds(),
         countDueQuestions(), loadPremiumUnlocked(),
+        skillQuestionsPromise,
       ])
       setProgress(p)
       setMissed(m)
