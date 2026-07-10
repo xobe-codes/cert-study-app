@@ -1,36 +1,792 @@
 {
-  "generatedAt": "2026-06-30T15:46:34.068Z",
+  "generatedAt": "2026-07-10T06:18:18.611Z",
   "threshold": 3,
   "totalQuestions": 914,
   "summary": {
     "belowThreshold": 0,
     "atOrAboveThreshold": 914,
-    "avgMin": 4,
-    "avgAvg": 4,
+    "avgMin": 3.8380743982494527,
+    "avgAvg": 3.913202042304888,
     "totalFallbackSlots": 0,
     "weakStemAnchor": 0,
     "duplicateExplanationCount": 0
   },
   "worst": [
     {
-      "id": "1.1-c-q1",
+      "id": "1.6-c-q9",
       "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.1.json",
-      "min": 4,
-      "avg": 4,
+      "file": "data/clean-question-bank/domain-1/1.6.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 5,
+      "items": [
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "1.7-c-q3",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-1/1.7.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 4,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "1.7-c-q7",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-1/1.7.json",
+      "min": 3,
+      "avg": 3,
       "fallbackCount": 0,
       "duplicateTexts": false,
       "stemAnchorMin": 6,
       "items": [
         {
           "choiceIndex": 0,
-          "score": 4,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "1.8-c-q3",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-1/1.8.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 6,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "1.9-c-q7",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-1/1.9.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 4,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "4.1-q10",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-4/4.1.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 3,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
           "fallback": false,
           "genericTrap": false
         },
         {
           "choiceIndex": 1,
-          "score": 4,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "5.4-legacy-q002",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-5/5.4.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 6,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "5.4-legacy-q003",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-5/5.4.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 6,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-2.4-source-q010",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-2/2.4.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 3,
+      "items": [
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-3.2-source-q034",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-3/3.2.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 4,
+      "items": [
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-3.3-source-q034",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-3/3.3.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 5,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-3.5-source-q012",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-3/3.5.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 3,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-5.6-source-q013",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-5/5.5.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 4,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-5.6-source-q021",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-5/5.5.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 3,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-5.7-source-q016",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-5/5.6.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 4,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-5.7-source-q021",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-5/5.6.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 5,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-5.8-source-q006",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-5/5.7.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 4,
+      "items": [
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-5.8-source-q008",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-5/5.7.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 4,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-5.8-source-q010",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-5/5.7.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 6,
+      "items": [
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-6.3-source-q016",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-6/6.3.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 3,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-6.3-source-q018",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-6/6.3.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 3,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-6.6-source-q015",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-6/6.6.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 6,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-6.6-source-q016",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-6/6.6.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 5,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-6.7-source-q002",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-6/6.6.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 3,
+      "items": [
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-6.7-source-q007",
+      "objectiveId": "6.6",
+      "file": "data/clean-question-bank/domain-6/6.6.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 4,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-6.7-source-q008",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-6/6.6.json",
+      "min": 3,
+      "avg": 3,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 4,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "1.5-c-q12",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-1/1.5.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 5,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
           "fallback": false,
           "genericTrap": false
         },
@@ -43,11 +799,131 @@
       ]
     },
     {
-      "id": "1.1-c-q2",
+      "id": "1.5-c-q4",
       "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.1.json",
-      "min": 4,
-      "avg": 4,
+      "file": "data/clean-question-bank/domain-1/1.5.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 6,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 4,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "1.5-c-q6",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-1/1.5.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 4,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 4,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "1.8-c-q2",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-1/1.8.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 3,
+      "items": [
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 4,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "3.1-q9",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-3/3.1.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 6,
+      "items": [
+        {
+          "choiceIndex": 1,
+          "score": 4,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "3.2-c-q10",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-3/3.2.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
       "fallbackCount": 0,
       "duplicateTexts": false,
       "stemAnchorMin": 4,
@@ -60,7 +936,37 @@
         },
         {
           "choiceIndex": 2,
-          "score": 4,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "3.3-q6",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-3/3.3.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 6,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
           "fallback": false,
           "genericTrap": false
         },
@@ -73,11 +979,461 @@
       ]
     },
     {
-      "id": "1.1-c-q3",
+      "id": "3.4-c-q4",
       "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.1.json",
-      "min": 4,
-      "avg": 4,
+      "file": "data/clean-question-bank/domain-3/3.4.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 6,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 4,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-3.1-source-q010",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-3/3.1.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 3,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 1,
+          "score": 4,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-3.2-source-q019",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-3/3.2.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 4,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 4,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-3.2-source-q026",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-3/3.2.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 3,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 4,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-3.2-source-q030",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-3/3.2.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 5,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 4,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-3.2-source-q032",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-3/3.2.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 3,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 4,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-3.3-source-q036",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-3/3.3.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 4,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 4,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-3.4-source-q050",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-3/3.4.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 6,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 4,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-3.4-source-q051",
+      "objectiveId": "3.4",
+      "file": "data/clean-question-bank/domain-3/3.4.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 4,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 4,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-3.4-source-q056",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-3/3.4.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 3,
+      "items": [
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 4,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-3.4-source-q057",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-3/3.4.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 4,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 4,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-3.5-source-q007",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-3/3.5.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 3,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 4,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-4.2-source-q003",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-4/4.2.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 5,
+      "items": [
+        {
+          "choiceIndex": 1,
+          "score": 4,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-4.2-source-q005",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-4/4.2.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 3,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 1,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 4,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-5.3-source-q017",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-5/5.3.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
+      "fallbackCount": 0,
+      "duplicateTexts": false,
+      "stemAnchorMin": 3,
+      "items": [
+        {
+          "choiceIndex": 0,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 2,
+          "score": 4,
+          "fallback": false,
+          "genericTrap": false
+        },
+        {
+          "choiceIndex": 3,
+          "score": 3,
+          "fallback": false,
+          "genericTrap": false
+        }
+      ]
+    },
+    {
+      "id": "obj-5.6-source-q003",
+      "objectiveId": null,
+      "file": "data/clean-question-bank/domain-5/5.5.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
       "fallbackCount": 0,
       "duplicateTexts": false,
       "stemAnchorMin": 5,
@@ -89,115 +1445,25 @@
           "genericTrap": false
         },
         {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.1-c-q4",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.1.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 3,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.1-c-q5",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.1.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 5,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.1-c-q6",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.1.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 4,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
           "choiceIndex": 1,
-          "score": 4,
+          "score": 3,
           "fallback": false,
           "genericTrap": false
         },
         {
           "choiceIndex": 3,
-          "score": 4,
+          "score": 3,
           "fallback": false,
           "genericTrap": false
         }
       ]
     },
     {
-      "id": "1.1-c-q7",
+      "id": "obj-5.6-source-q004",
       "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.1.json",
-      "min": 4,
-      "avg": 4,
+      "file": "data/clean-question-bank/domain-5/5.5.json",
+      "min": 3,
+      "avg": 3.3333333333333335,
       "fallbackCount": 0,
       "duplicateTexts": false,
       "stemAnchorMin": 3,
@@ -210,1243 +1476,13 @@
         },
         {
           "choiceIndex": 2,
-          "score": 4,
+          "score": 3,
           "fallback": false,
           "genericTrap": false
         },
         {
           "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.1-c-q8",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.1.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 6,
-      "items": [
-        {
-          "choiceIndex": 1,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.10-c-q1",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.10.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 4,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.10-c-q2",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.10.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 4,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.10-c-q3",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.10.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 3,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.10-c-q4",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.10.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 6,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.10-c-q5",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.10.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 4,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.10-c-q6",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.10.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 4,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.10-c-q7",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.10.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 4,
-      "items": [
-        {
-          "choiceIndex": 1,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.10-c-q8",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.10.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 5,
-      "items": [
-        {
-          "choiceIndex": 1,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.11-c-q1",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.11.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 4,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.11-c-q2",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.11.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 3,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.11-c-q3",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.11.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 6,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.11-c-q4",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.11.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 5,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.11-c-q5",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.11.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 3,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 1,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.11-c-q6",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.11.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 6,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.11-c-q7",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.11.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 5,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.11-c-q8",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.11.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 6,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.12-c-q1",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.12.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 6,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.12-c-q2",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.12.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 4,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.12-c-q3",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.12.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 5,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.12-c-q4",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.12.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 6,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.12-c-q5",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.12.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 6,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.12-c-q6",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.12.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 4,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.12-c-q7",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.12.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 6,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.12-c-q8",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.12.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 6,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.2-c-q1",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.2.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 4,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 1,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.2-c-q2",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.2.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 4,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.2-c-q3",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.2.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 3,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.2-c-q4",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.2.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 3,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.2-c-q5",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.2.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 3,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.2-c-q6",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.2.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 4,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.2-c-q7",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.2.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 5,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 1,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.2-c-q8",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.2.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 6,
-      "items": [
-        {
-          "choiceIndex": 1,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.3-c-q1",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.3.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 3,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.3-c-q2",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.3.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 4,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.3-c-q3",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.3.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 5,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.3-c-q4",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.3.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 3,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.3-c-q5",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.3.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 5,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 1,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.3-c-q6",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.3.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 3,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.3-c-q7",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.3.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 4,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.3-c-q8",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.3.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 6,
-      "items": [
-        {
-          "choiceIndex": 1,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.4-c-q1",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.4.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 4,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        }
-      ]
-    },
-    {
-      "id": "1.4-c-q2",
-      "objectiveId": null,
-      "file": "data/clean-question-bank/domain-1/1.4.json",
-      "min": 4,
-      "avg": 4,
-      "fallbackCount": 0,
-      "duplicateTexts": false,
-      "stemAnchorMin": 6,
-      "items": [
-        {
-          "choiceIndex": 0,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 2,
-          "score": 4,
-          "fallback": false,
-          "genericTrap": false
-        },
-        {
-          "choiceIndex": 3,
-          "score": 4,
+          "score": 3,
           "fallback": false,
           "genericTrap": false
         }

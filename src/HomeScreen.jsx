@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
+import { useNavCallbacks } from './context/AppNavigationContext.jsx'
 import { DOMAINS, ALL_OBJECTIVES } from './data/ccnaDomains.js'
 import { COLORS, accentColors, styles } from './ui/appTheme.js'
 import { STORAGE_KEYS } from './storageKeys.js'
@@ -318,7 +319,33 @@ function StudyModeBtn({ onClick, children, primary, disabled }) {
   )
 }
 
-export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMockInterview, onOpenMissed, onOpenTutor, onPremiumBlocked, premiumUnlocked = false, onOpenMetrics, onOpenStats, onOpenSettings, onOpenReview, onOpenLabs, onOpenFocus, onOpenTopicFocus, onOpenCommandHub, onOpenStudyLens, onOpenExamTraps, onOpenTrapDrill, onOpenDomainPass, onOpenDomainPlacement, domainPassPassedCount = 0, placementBaselineCount = 0, placementTestedOutCount = 0, placementRecords = {}, domainPassRecords = {}, examDate = null, onOpenSubnet, onOpenRouting, onOpenExtraStudy, commandDrills = {}, theme, onToggleTheme }) {
+export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, premiumUnlocked = false, domainPassPassedCount = 0, placementBaselineCount = 0, placementTestedOutCount = 0, placementRecords = {}, domainPassRecords = {}, examDate = null, commandDrills = {}, theme }) {
+  const {
+    onOpenDomain,
+    onSelectObjective,
+    onOpenMock,
+    onOpenMockInterview,
+    onOpenMissed,
+    onOpenTutor,
+    onPremiumBlocked,
+    onOpenMetrics,
+    onOpenStats,
+    onOpenSettings,
+    onOpenReview,
+    onOpenLabs,
+    onOpenFocus,
+    onOpenTopicFocus,
+    onOpenCommandHub,
+    onOpenStudyLens,
+    onOpenExamTraps,
+    onOpenTrapDrill,
+    onOpenDomainPass,
+    onOpenDomainPlacement,
+    onOpenSubnet,
+    onOpenRouting,
+    onOpenExtraStudy,
+    onToggleTheme,
+  } = useNavCallbacks()
   const [suggestions, setSuggestions] = useState([])
   const [learnerSummary, setLearnerSummary] = useState(null)
   const [retention, setRetention] = useState([])
@@ -399,28 +426,37 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         readinessScore={readiness.score}
       />
 
+      {resumeLesson && (
+        <button
+          type="button"
+          className="ccna-hover"
+          onClick={() => onSelectObjective(resumeLesson)}
+          style={{
+            ...homeAccentStrip(resumeLesson.accent || 'sky'),
+            flexDirection: 'column',
+            alignItems: 'stretch',
+            gap: 4,
+          }}
+        >
+          <span style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0, width: '100%' }}>
+            <span style={{ ...homePill(resumeLesson.accent || 'sky'), flexShrink: 0 }}>CONTINUE →</span>
+            <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              {resumeLesson.domainName || ''}
+            </span>
+            <span style={{ color: accentColors(resumeLesson.accent || 'sky').text, fontSize: 'var(--ccna-type-lg)', lineHeight: 1, flexShrink: 0 }} aria-hidden="true">›</span>
+          </span>
+          <span style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 600, color: COLORS.silver, lineHeight: 1.35, paddingLeft: 2 }}>
+            {resumeLesson.id} · {resumeLesson.title}
+          </span>
+        </button>
+      )}
+
       <StudyNextStrip
         next={studyNext}
         onSelectObjective={onSelectObjective}
         onOpenReview={onOpenReview}
         onOpenDomainPlacement={onOpenDomainPlacement}
       />
-
-      {resumeLesson && (
-        <button
-          type="button"
-          className="ccna-hover"
-          onClick={() => onSelectObjective(resumeLesson)}
-          style={{ ...styles.secondaryBtn, width: '100%', marginBottom: HOME_SECTION_GAP, textAlign: 'left' }}
-        >
-          <div style={{ fontWeight: 700, fontSize: 'var(--ccna-type-sm)', color: COLORS.sky, marginBottom: 2 }}>
-            Resume lesson
-          </div>
-          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.35 }}>
-            {resumeLesson.id} · {resumeLesson.title} → Study
-          </div>
-        </button>
-      )}
 
       {onOpenDomainPlacement && (
         <DomainBaselinePrompt

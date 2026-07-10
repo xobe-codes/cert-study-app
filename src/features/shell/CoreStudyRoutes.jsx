@@ -1,4 +1,5 @@
 import React, { lazy } from 'react'
+import { AppNavigationProvider } from '../../context/AppNavigationContext.jsx'
 import { ALL_OBJECTIVES } from '../../data/ccnaDomains.js'
 import { COMMAND_DRILLS } from '../../lab/commandDrills.js'
 import CLIDrillTab from '../../lab/CLIDrillTab.jsx'
@@ -82,50 +83,54 @@ export default function CoreStudyRoutes({
   }
 
   if (view === 'home') {
+    const homeNavCallbacks = {
+      onSelectObjective: selectObjective,
+      onOpenMock: openMockExam,
+      onOpenMockInterview: () => navigateTo('mockinterview'),
+      onOpenMissed: () => navigateTo('missed'),
+      onOpenTutor: () => navigateTo('tutor'),
+      onPremiumBlocked: handlePremiumBlocked,
+      onOpenMetrics: () => navigateTo('metrics'),
+      onOpenStats: () => navigateTo('stats'),
+      onOpenSettings: () => setShowSettings(true),
+      onOpenLabs: openLabs || (() => navigateTo('labs')),
+      onOpenReview: () => navigateTo('review'),
+      onOpenFocus: () => navigateTo('focus'),
+      onOpenTopicFocus: () => navigateTo('topicfocus'),
+      onOpenCommandHub: openCommandHub,
+      onOpenStudyLens: () => navigateTo('studylens'),
+      onOpenExamTraps: openExamTraps,
+      onOpenTrapDrill: openTrapDrill,
+      onOpenDomainPass: openDomainPass,
+      onOpenDomainPlacement: openDomainPlacement,
+      onOpenSubnet: () => navigateTo('subnet'),
+      onOpenRouting: () => navigateTo('routing'),
+      onOpenExtraStudy: () => navigateTo('extrastudy'),
+      onOpenDomain: setOpenDomain,
+      onToggleTheme: toggleTheme,
+    }
     return (
-      <HomeScreen
-        progress={progress}
-        streak={streak}
-        missed={missed}
-        missedCount={missed.length}
-        apiOnline={apiOnline}
-        offlineReady={offlineReady}
-        onSelectObjective={selectObjective}
-        onOpenMock={openMockExam}
-        onOpenMockInterview={() => navigateTo('mockinterview')}
-        onOpenMissed={() => navigateTo('missed')}
-        onOpenTutor={() => navigateTo('tutor')}
-        premiumUnlocked={premiumUnlocked}
-        onPremiumBlocked={handlePremiumBlocked}
-        onOpenMetrics={() => navigateTo('metrics')}
-        onOpenStats={() => navigateTo('stats')}
-        onOpenSettings={() => setShowSettings(true)}
-        onOpenLabs={openLabs || (() => navigateTo('labs'))}
-        onOpenReview={() => navigateTo('review')}
-        onOpenFocus={() => navigateTo('focus')}
-        onOpenTopicFocus={() => navigateTo('topicfocus')}
-        onOpenCommandHub={openCommandHub}
-        onOpenStudyLens={() => navigateTo('studylens')}
-        onOpenExamTraps={openExamTraps}
-        onOpenTrapDrill={openTrapDrill}
-        onOpenDomainPass={openDomainPass}
-        onOpenDomainPlacement={openDomainPlacement}
-        domainPassPassedCount={domainPassPassedCount}
-        domainPassRecords={domainPassRecords}
-        placementBaselineCount={placementBaselineCount}
-        placementTestedOutCount={placementTestedOutCount}
-        placementRecords={placementRecords}
-        examDate={settingsExamDate}
-        onOpenSubnet={() => navigateTo('subnet')}
-        onOpenRouting={() => navigateTo('routing')}
-        onOpenExtraStudy={() => navigateTo('extrastudy')}
-        dueCount={dueCount}
-        openDomain={openDomain}
-        onOpenDomain={setOpenDomain}
-        commandDrills={COMMAND_DRILLS}
-        theme={theme}
-        onToggleTheme={toggleTheme}
-      />
+      <AppNavigationProvider callbacks={homeNavCallbacks}>
+        <HomeScreen
+          progress={progress}
+          streak={streak}
+          missed={missed}
+          missedCount={missed.length}
+          apiOnline={apiOnline}
+          offlineReady={offlineReady}
+          premiumUnlocked={premiumUnlocked}
+          domainPassPassedCount={domainPassPassedCount}
+          domainPassRecords={domainPassRecords}
+          placementBaselineCount={placementBaselineCount}
+          placementTestedOutCount={placementTestedOutCount}
+          placementRecords={placementRecords}
+          examDate={settingsExamDate}
+          dueCount={dueCount}
+          openDomain={openDomain}
+          commandDrills={COMMAND_DRILLS}
+          theme={theme}
+        />
+      </AppNavigationProvider>
     )
   }
 

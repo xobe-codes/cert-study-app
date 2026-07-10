@@ -51,6 +51,7 @@
     "voice:pipeline": "npm run onenote:pipeline && npm run validate:voice && npm run validate:reading-explanation && npm run regenerate:answer-voice && npm run validate:answer-voice",
     "onenote:pipeline": "npm run onenote:sync && npm run validate:topic-map && npm run onenote:import && npm run sanitize:kb-prose && npm run kb:merge-onenote && npm run kb:compile-curated && npm run validate:onenote-import && npm run validate:single-source && npm run validate:content-depth",
     "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
     "test:e2e:ship": "playwright test e2e/ship-smoke.spec.js e2e/study-mode-nav-smoke.spec.js e2e/domain-placement-smoke.spec.js e2e/domain-pass-smoke.spec.js e2e/domain-pass-trap-resume-smoke.spec.js e2e/domain-learning-loop-smoke.spec.js e2e/mock-debrief-domain-pass-smoke.spec.js e2e/trap-drill-smoke.spec.js e2e/a11y-smoke.spec.js",
     "test:e2e:ship:full": "playwright test e2e/ship-smoke.spec.js e2e/study-mode-nav-smoke.spec.js e2e/command-hub-syntax-smoke.spec.js e2e/command-hub-drills-smoke.spec.js e2e/pull-to-refresh-smoke.spec.js e2e/gestures-smoke.spec.js e2e/domain-pass-smoke.spec.js e2e/domain-pass-focus-smoke.spec.js e2e/domain-pass-trap-resume-smoke.spec.js e2e/domain-placement-smoke.spec.js e2e/domain-learning-loop-smoke.spec.js e2e/mock-debrief-domain-pass-smoke.spec.js e2e/mock-exam-smoke.spec.js e2e/automation-lab-smoke.spec.js e2e/labs-domain-filter-smoke.spec.js e2e/reading-tts-smoke.spec.js e2e/cli-skill-smoke.spec.js e2e/cli-abbrev-smoke.spec.js e2e/offline-curated-smoke.spec.js e2e/diagram-ipad-smoke.spec.js e2e/diagram-iphone-smoke.spec.js e2e/tutor-premium-smoke.spec.js e2e/device-matrix.spec.js e2e/home-study-grid-smoke.spec.js e2e/wrong-answer-debrief-smoke.spec.js e2e/mc-choice-shuffle-smoke.spec.js e2e/lab-landscape-smoke.spec.js e2e/lab-exit-smoke.spec.js e2e/trap-drill-smoke.spec.js e2e/safe-area-smoke.spec.js e2e/review-daily.spec.js e2e/a11y-smoke.spec.js e2e/offline-preview-smoke.spec.js",
@@ -69,7 +70,8 @@
     "audit:coverage": "node scripts/auditContentCoverage.mjs",
     "audit:parametric": "node scripts/auditParametricCoverage.mjs",
     "generate:improvement-logs": "node scripts/generateImprovementLogs.mjs",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "lighthouse": "lhci autorun"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -77,8 +79,10 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@lhci/cli": "^0.14.0",
     "@playwright/test": "^1.61.1",
     "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/coverage-v8": "^4.1.10",
     "@vitest/ui": "^4.1.8",
     "eslint": "^10.5.0",
     "eslint-plugin-react": "^7.37.5",

@@ -1,5 +1,155 @@
 # Project Log — CCNA Study App
 
-**→ Archived.** Active tracking lives in [`ai-improvement-logs/IMPLEMENTATION_TRACKER.md`](ai-improvement-logs/IMPLEMENTATION_TRACKER.md).
+**Sync date:** 2026-07-10  
+**Active tracking:** [`ai-improvement-logs/IMPLEMENTATION_TRACKER.md`](ai-improvement-logs/IMPLEMENTATION_TRACKER.md) (Cursor's live source of truth)  
+**Cursor working dir:** `ai-improvement-logs/` — do not delete
 
-Historical Timeline (items 1–23) was preserved in git history prior to 2026-07-07 consolidation.
+---
+
+## Status Summary
+
+| Metric | Value |
+|--------|-------|
+| Objectives covered | **53 / 53** (all Tier A) |
+| Labs | **82** (all interpret-only) |
+| Trap / flashcard / cmd gaps | **0 / 0 / 0** |
+| Unit test files | **134** |
+| e2e specs | **38** (6 mobile · a11y ✓) |
+| App.jsx size | **~198 lines** |
+| Overall scorecard | **99 / 100** |
+| Queue pending | **0** (backlog empty) |
+
+Scorecard breakdown from `ai-improvement-logs/APP_SCORECARD.md` (generated 2026-07-09):
+
+| Area | Score |
+|------|------:|
+| Coverage breadth | 99 |
+| Coverage depth | 99 |
+| Learning flow | 99 |
+| Engineer perspective | 99 |
+| CLI verification | 99 |
+| Exam traps | 100 |
+| Lab coverage | 99 |
+| Maintainability | 97 |
+| Mobile / accessibility | 99 |
+| Tests / CI | 99 |
+| **Overall** | **99** |
+
+---
+
+## Timeline
+
+### Items 1–8 — Claude Code sessions (up to commit a2cccf4)
+
+Covered in git history prior to the 2026-07-07 consolidation. Highlights:
+
+- Phases 1–5 of the study app scaffolded (placement flow, objective screen, practice quiz, mock exam, labs hub)
+- SRS / Missed Review loop wired
+- Subnetting drill and Settings import/export
+- `ai-improvement-logs/` directory created with first audit artifact set
+
+### Items 9–23 — Cursor implementation wave (commits since a2cccf4)
+
+All work below shipped via Cursor and is documented in `ai-improvement-logs/COMPLETED_CHANGES.md`.
+
+**2026-06-15**
+- Factory exam-trap patches for 22 objectives; zero-trap count eliminated
+- `EngineerViewSection` added; engineer-view enrichment for 2.1, 2.5, 3.1, 5.9, 6.x
+- `ExplainTab` / `QuizTab` extracted to `src/tabs/`
+- Home UI: FOR YOU card accent strips; session recap radius
+
+**2026-06-17**
+- Mock study: per-question instant feedback, question summary grid, jump-to-first-wrong
+- Content depth: 40 new questions for 10 thin objectives (2.3/2.4/2.6/2.7/2.8/4.3/4.7/4.9/5.2/5.7)
+- New labs: wireless arch 2.6, DHCP/DNS 4.3, SSH device access 5.3
+- 53 cliEngine unit tests; mobile dvh terminal fix
+
+**2026-06-22**
+- `factoryFlashcardPatches.js`: 48 flashcards (2 each) for 24 Tier-C objectives; zero-flashcard count eliminated
+
+**2026-06-29 (P0/P1 crash fixes — functionality audit)**
+- Fixed 7 broken routes: `objectiveTabId`, `MAX_QUIZ_SESSION_SIZE`, `preloadCleanBank`, `masteryBreakdown`, `LabsHub`, `SubnetPracticeHome`, hash deep-link tab mapping
+- Added `FUNCTIONALITY_AUDIT_REPORT.md`; 78/82 smoke checks passing post-fix
+
+**2026-06-29 (CI guardrails)**
+- Import regression tests (`appImportRegression.test.js`, `importContracts.js`)
+- SRS smoke test (`srsReviewSmoke.test.js`) with `seedDueReviewBank` helper
+
+**2026-06-30**
+- Content depth: HSRP skill questions for 3.5; skill Qs for 5.9/6.1; `questionBankCount` shared
+- App shell extraction: tutor/search/modals/sessions → `src/features/`; App.jsx 5071→3401 lines
+- Labs: LAB-ROUTE-FORWARD-32, LAB-OSPF-VERIFY-34, LAB-HSRP-VERIFY-35; `cliEngine` show standby/protocols
+- Tier-C engineer-view patches (10 objectives) via `factoryEngineerViewPatches.js`
+- PWA: SW `ccna-curated-v3` stale-while-revalidate; 9 curated chunks precached at install
+- Playwright CI job added
+
+**2026-07-04**
+- Stem-replay mappings wave 14 (lab-lite + TS diagnose labs)
+- Mock polish: compact mobile answer review, mock debrief lab CTAs, confidence strip CSS
+- 25 config labs tiered with INTERPRET/CONFIG badges and interpret alternates
+- PWA broadened: 9 curated study chunks precached at install
+
+**2026-07-07**
+- Baseline routing: stale v1 remap CTAs, Study Next routing, weak-area dashboard hooks, `validatePlacementBlueprints` CI gate
+- **Doc consolidation:** `IMPLEMENTATION_TRACKER.md` replaces AGENT_NEXT_STEPS / SCORE_95_TARGET / HIGH_IMPACT / PROJECT_LOG / ENHANCEMENT_PRIORITIES for active tracking
+- `score_99_push`: 10-dimension audit rubric (mobile/a11y + tests/CI); extracted `ObjectiveBody.jsx`; split `cliEngine.js`→`cliProcess.js` and `appShell.js`→`appShellResponsiveCss.js`; a11y-smoke e2e in ship gate; overall 93→**99**
+- Labs Hub ordered into 7 modules (Foundation→Capstone); `labModules.test.js` coverage lock
+
+**2026-07-10**
+- Question debrief 99+: stem-grounded wrong-answer rebuild; AnswerReview order (miss→family chip→correct); Trap/Wildcard remediation; CI validates runtime-applied reviews
+- Topology SVG 99+: device silhouettes, iPhone type floors, landscape clamps, pinch/pan expand modal, `diagram-iphone-smoke` e2e
+- Polish 99+: AnswerReview parity across Mock/Review/Focus/Placement; home Domain Pass + Fix Next hierarchy; diagram type/shortLabel wave; Study diagram earlier; reveal CSS
+- Gold batches 31–33 (40 short/high-traffic debriefs each); trap waves 22–23 (+2 traps/obj → avg ≈14)
+- Teach-first orchestration: coach soft gates, post-study retention, trap handoffs, lab verify cue, practice exposure
+- Bank-wide visual packs; domain-6 visual packs for all 6 objectives
+- Confidence ratings wired into SRS/practice mix; IOS mode context on CLI syntax questions
+- Parametric pass: thin-objective families + pattern-clone expansion; Content Health Process
+- Routing-table exhibit UI and `bad_display` question flag; Missed Review crash fix (CLI/ordering)
+- Domain Pass session persistence across trap drill / Command Hub / Study / lab returns
+
+---
+
+## 2026-07-10 — P5: Wave/Patch Architecture Audit (Claude Code)
+
+Investigated the full data architecture to assess consolidation opportunities and identify thin objectives.
+
+**Architecture confirmed:**
+- `cleanQuestions/domain-{1-6}.js` — sole source for the quiz question pool, served by `cleanQuestionAdapter.js`
+- `tierBTrapWave{4-23}Patches.js` (20 files) + `contentDepthWave{3-11}Patches.js` (9 files) — contribute `examTraps`, `flashcards`, and supplemental questions via `contentEnrichmentPatches.js → applyContentEnrichment()`. NOT quiz pool questions.
+- `goldAnswerReviewsBatch{2-32}.js` (32 files) — static lookup overrides for answer review display only.
+
+**No files deleted/merged** — all wave files are actively imported. Merging is cosmetic with real breakage risk; deferred.
+
+**Pool depth audit findings:**
+- CRITICAL thin: 5.9 (4 Qs), 4.9 (5 Qs)
+- LOW: 6.1 (6 Qs), 2.7 (7 Qs), 5.2 (7 Qs)
+- FLOOR (8 Qs): 1.1–1.4, 1.7, 1.9–1.12, 2.1, 2.2
+- Pre-audit claim "3.5 has 1 question" is outdated — 3.5 now has 30 questions.
+
+Full report: `ai-improvement-logs/WAVE_CONSOLIDATION_REPORT.md`
+
+---
+
+## Next planned work
+
+**P1–P7 remediation pass** (Claude Code sessions, 2026-07-10):
+
+- P1: Verify current unit-test and e2e counts match scorecard claims (134 unit files · 38 e2e)
+- P2: Confirm 82-lab count and interpret-only status vs. COMPLETED_CHANGES
+- P3: Audit `App.jsx` line count (scorecard says 198 vs. earlier 3401-line baseline after extractions)
+- P4: Validate `validatePlacementBlueprints` CI gate is wired and passing
+- P5: Check bank-wide visual packs shipped for all 53 objectives or just domain 6
+- P6: Smoke-test Domain Pass session persistence across drill/hub/study/lab nav
+- P7: (**this task**) Sync PROJECT_LOG.md with current app state
+
+After the remediation pass: queue is empty and backlog is clear. Next meaningful work requires an explicit feature request or the `PLATFORM_NEXT_PHASE.md` multi-pack curriculum plan to be unlocked.
+
+---
+
+## Source files for this sync
+
+- `ai-improvement-logs/APP_SCORECARD.md` (generated 2026-07-09)
+- `ai-improvement-logs/COMPLETED_CHANGES.md`
+- `ai-improvement-logs/FUNCTIONALITY_AUDIT_REPORT.md`
+- `ai-improvement-logs/IMPLEMENTATION_TRACKER.md`
+- `git log --oneline -20` (most recent 20 commits as of 2026-07-10)
