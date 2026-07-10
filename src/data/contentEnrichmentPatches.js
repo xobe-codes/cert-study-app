@@ -5,6 +5,7 @@ import { FACTORY_FLASHCARD_PATCHES } from './factoryFlashcardPatches.js'
 import { FACTORY_ENGINEER_VIEW_PATCHES } from './factoryEngineerViewPatches.js'
 import { FACTORY_DEPTH_WAVE3_QUESTIONS } from './factoryDepthWave3Questions.js'
 import { FACTORY_DEPTH_WAVE4_QUESTIONS } from './factoryDepthWave4Questions.js'
+import { FACTORY_PARAMETRIC_WAVE1_QUESTIONS } from './factoryParametricWave1Questions.js'
 import { CONTENT_DEPTH_WAVE3_PATCHES } from './contentDepthWave3Patches.js'
 import { CONTENT_DEPTH_WAVE4_PATCHES } from './contentDepthWave4Patches.js'
 import { TIER_B_TRAP_WAVE4_PATCHES } from './tierBTrapWave4Patches.js'
@@ -64,6 +65,7 @@ function factoryPatchFor(objectiveId) {
   const depthQuestions = [
     ...(FACTORY_DEPTH_WAVE3_QUESTIONS[objectiveId] || []),
     ...(FACTORY_DEPTH_WAVE4_QUESTIONS[objectiveId] || []),
+    ...(FACTORY_PARAMETRIC_WAVE1_QUESTIONS[objectiveId] || []),
   ]
   if (!traps && !flash && !engineer && !depthQuestions.length) return null
   const flashcards = [
