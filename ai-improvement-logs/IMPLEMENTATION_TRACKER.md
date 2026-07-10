@@ -73,6 +73,8 @@ Revisit when next school class starts (class pack template) or when adding a sec
 
 **Question debrief 99+** (stem-grounded wrong answers + family UI) — [`QUESTION_DEBRIEF_99.md`](./QUESTION_DEBRIEF_99.md)
 
+**Topology SVG 99+** (iPhone device glyphs + pinch/pan) — [`TOPOLOGY_SVG_99.md`](./TOPOLOGY_SVG_99.md)
+
 Full shipped history: `COMPLETED_CHANGES.md`
 
 ---
