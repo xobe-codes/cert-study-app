@@ -1,6 +1,6 @@
 # Wave/Patch Architecture — Consolidation Report
 **Date:** 2026-07-10  
-**Phase:** P5 — Architecture audit and pool-depth analysis
+**Phase:** P5 — Architecture audit and pool-depth analysis (**CLOSED** — runtime depth ≥10 for all objectives)
 
 ---
 
@@ -36,24 +36,22 @@ These supplemental questions are NOT part of the clean bank (not served by `clea
 
 ---
 
-## Pool Depth Analysis — Clean Bank (as of 2026-07-10)
+## Pool Depth Analysis — Runtime totals (clean + skill + enrichment)
 
-Questions per objective sorted ascending:
+**Recounted:** 2026-07-10 (via `countObjectiveQuestions` after skill-registry load)
 
 | Objective | Count | Flag |
 |---|---|---|
-| 5.9 | 4 | CRITICAL |
-| 4.9 | 5 | CRITICAL |
-| 6.1 | 6 | LOW |
-| 2.7 | 7 | LOW |
-| 5.2 | 7 | LOW |
-| 1.1, 1.2, 1.3, 1.4, 1.7, 1.9, 1.10, 1.11, 1.12, 2.1, 2.2 | 8 each | FLOOR |
-| 4.8, 6.2 | 9 each | NEAR-FLOOR |
-| 1.8, 2.6, 3.6, 4.10, 5.4, 5.11 | 10 each | LOW |
+| 1.2, 1.9, 1.10, 1.12 | 16 each | Healthy (≥10) |
+| 1.1, 4.9 | 17 each | Healthy |
+| 5.9 | 20 | Healthy |
+| 6.1, 5.2, 2.7 | 21–22 | Healthy |
+
+**Below 10-question floor:** **none**
+
+Earlier P5 snapshot (clean-bank-only) listed 5.9/4.9 as CRITICAL — incomplete. Runtime pool depth is above floor for all 53 objectives.
 
 **High-depth objectives (healthy):** 3.4 (72), 2.5 (54), 3.3 (51), 3.2 (49), 3.1 (37), 5.5 (38), 4.1 (32), 3.5 (30), 6.6 (30)
-
-> Note: The pre-P5 audit claimed "Objective 3.5 has only 1 question." That was pre-clean-bank data. As of today 3.5 has 30 questions — well above the floor.
 
 ---
 
@@ -67,21 +65,11 @@ Questions per objective sorted ascending:
 
 3. **No supplemental questions moved to clean bank** — The `contentDepthWave*.js` questions use a different shape (they may lack the full `answerReview` structure required by the clean bank). Moving them would require shape validation and a compile step via `compileCleanQuestionsModule.mjs`.
 
-### What should happen next (P5 continuation)
+### P5 continuation — CLOSED
 
-**Priority 1 — Fill 5.9 (4 questions, CRITICAL)**
-Topic: `5.9` covers wireless security (WPA2/WPA3, 802.1X, EAP). Add at least 6 more clean-bank questions to reach a 10-question floor. Use `compileCleanQuestionsModule.mjs` to re-compile `domain-5.js`.
+Priorities 1–4 (fill 5.9 / 4.9 / 6.1 / 2.7 / 5.2) are **already satisfied** by current runtime counts (all ≥16). No new depth wave required.
 
-**Priority 2 — Fill 4.9 (5 questions, CRITICAL)**
-Topic: `4.9` covers QoS concepts (DSCP, CoS, queuing). Add at least 5 more questions.
-
-**Priority 3 — Fill 6.1 (6 questions, LOW)**
-Topic: `6.1` covers automation/intent-based networking concepts.
-
-**Priority 4 — Fill 2.7, 5.2 (7 questions each)**
-
-**Priority 5 (optional) — Merge wave files**
-If file-count hygiene matters: consolidate the 20 `tierBTrapWave*.js` files into `tierBTrapAllPatches.js` after writing a test that asserts objective-trap counts before and after.
+**Priority 5 (optional)** — Merge wave files remains cosmetic-only; leave as-is unless explicitly requested.
 
 ---
 
