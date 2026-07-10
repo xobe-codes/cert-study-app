@@ -1,0 +1,1770 @@
+{
+  "generatedAt": "2026-07-10T12:03:13.987Z",
+  "totals": {
+    "families": 65,
+    "parametricQuestions": 271,
+    "objectivesWithParametric": 53,
+    "objectivesTotal": 53,
+    "thinObjectives": 33,
+    "thinMissingParametric": 0,
+    "ckusTouchedByParametric": 78
+  },
+  "thinMissingParametric": [],
+  "zeroParametricObjectives": [],
+  "ckuParametricCounts": {
+    "CKU-SYSLOG": 16,
+    "CKU-SUBNET-MASK": 14,
+    "CKU-PORT-NUMBERS": 14,
+    "CKU-AD": 13,
+    "CKU-STP-ROOT": 11,
+    "CKU-WIFI-CHANNELS": 9,
+    "CKU-PORT-SECURITY": 8,
+    "CKU-SECURITY-PROGRAM": 8,
+    "CKU-SUBNETTING": 7,
+    "CKU-ACCESS-PORT": 7,
+    "CKU-VPN": 7,
+    "CKU-BLOCK-SIZE": 6,
+    "CKU-ROUTE-SELECT": 6,
+    "CKU-WIFI-BANDS": 6,
+    "CKU-LACP": 6,
+    "CKU-ETHERCHANNEL": 6,
+    "CKU-SNMP": 6,
+    "CKU-WLAN-SECURITY": 6,
+    "CKU-VLAN": 5,
+    "CKU-INTER-VLAN": 5,
+    "CKU-OSPF-AREA": 5,
+    "CKU-HSRP": 5,
+    "CKU-REST": 5,
+    "CKU-AAA": 5,
+    "CKU-ACL": 4,
+    "CKU-UTP": 4,
+    "CKU-TOPOLOGY": 4,
+    "CKU-CAMPUS-TIER": 4,
+    "CKU-INTERFACE-ERRORS": 4,
+    "CKU-CRC": 4,
+    "CKU-IPV6-TYPES": 4,
+    "CKU-IPV6-GLOBAL-UNICAST": 4,
+    "CKU-IPCONFIG": 4,
+    "CKU-DNS-GW-ISSUES": 4,
+    "CKU-VIRTUALIZATION": 4,
+    "CKU-HYPERVISOR": 4,
+    "CKU-NFV": 4,
+    "CKU-WLAN-CLIENT": 4,
+    "CKU-ROUTE-TSHOOT": 4,
+    "CKU-TROUBLESHOOT": 4,
+    "CKU-QOS-PHB": 4,
+    "CKU-QOS": 4,
+    "CKU-SSH": 4,
+    "CKU-DHCP-SNOOPING": 4,
+    "CKU-BPDU-GUARD": 4,
+    "CKU-SEGMENTATION": 4,
+    "CKU-DNA": 4,
+    "CKU-OSPF-TIMERS": 3,
+    "CKU-NAT": 3,
+    "CKU-NTP": 3,
+    "CKU-JSON-XML-YAML": 3,
+    "CKU-YANG": 3,
+    "CKU-NETCONF": 3,
+    "CKU-JSON-ANSIBLE": 3,
+    "CKU-COLLISIONS": 3,
+    "CKU-SWITCH": 3,
+    "CKU-TRUNK": 3,
+    "CKU-NATIVE-VLAN": 3,
+    "CKU-STATIC-ROUTE": 3,
+    "CKU-SECURITY-CONCEPTS": 3,
+    "CKU-RFC1918": 3,
+    "CKU-IPV4": 3,
+    "CKU-APIPA": 3,
+    "CKU-IPV6-SHORTENING": 3,
+    "CKU-IPV6-ADDR": 3,
+    "CKU-WLAN": 3,
+    "CKU-WLAN-ARCH": 3,
+    "CKU-WLC": 3,
+    "CKU-WLAN-PHYS": 3,
+    "CKU-DHCP-RELAY": 3,
+    "CKU-MGMT-CLOUD": 3,
+    "CKU-CLOUD-MGMT": 3,
+    "CKU-WLAN-SEC": 3,
+    "CKU-WPA2-PSK": 3,
+    "CKU-DHCP": 2,
+    "CKU-SDN": 2,
+    "CKU-TFTP-FTP": 2,
+    "CKU-AAA-SERVERS": 2
+  },
+  "objectives": [
+    {
+      "objectiveId": "1.1",
+      "title": "Network components (routers, switches, firewalls, APs, controllers)",
+      "cleanQuestions": 8,
+      "bankQuestions": 16,
+      "parametricQuestions": 3,
+      "families": 1,
+      "familyIds": [
+        "1.1-collision-clones"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 6,
+      "parametricCkuCount": 2,
+      "parametricCkus": [
+        "CKU-COLLISIONS",
+        "CKU-SWITCH"
+      ]
+    },
+    {
+      "objectiveId": "1.2",
+      "title": "Network topology architectures",
+      "cleanQuestions": 8,
+      "bankQuestions": 16,
+      "parametricQuestions": 4,
+      "families": 1,
+      "familyIds": [
+        "1.2-topo-clones"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 5,
+      "parametricCkuCount": 2,
+      "parametricCkus": [
+        "CKU-CAMPUS-TIER",
+        "CKU-TOPOLOGY"
+      ]
+    },
+    {
+      "objectiveId": "1.3",
+      "title": "Physical interface and cabling types",
+      "cleanQuestions": 8,
+      "bankQuestions": 17,
+      "parametricQuestions": 4,
+      "families": 1,
+      "familyIds": [
+        "1.3-cable-clones"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 5,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-UTP"
+      ]
+    },
+    {
+      "objectiveId": "1.4",
+      "title": "Identify interface and cable issues",
+      "cleanQuestions": 8,
+      "bankQuestions": 17,
+      "parametricQuestions": 4,
+      "families": 1,
+      "familyIds": [
+        "1.4-error-clones"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 6,
+      "parametricCkuCount": 2,
+      "parametricCkus": [
+        "CKU-CRC",
+        "CKU-INTERFACE-ERRORS"
+      ]
+    },
+    {
+      "objectiveId": "1.5",
+      "title": "Switching concepts (MAC table, frame forwarding)",
+      "cleanQuestions": 12,
+      "bankQuestions": 30,
+      "parametricQuestions": 14,
+      "families": 1,
+      "familyIds": [
+        "1.5-well-known-ports"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 7,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-PORT-NUMBERS"
+      ]
+    },
+    {
+      "objectiveId": "1.6",
+      "title": "Configure and verify IPv4 addressing and subnetting",
+      "cleanQuestions": 12,
+      "bankQuestions": 44,
+      "parametricQuestions": 27,
+      "families": 4,
+      "familyIds": [
+        "1.6-usable-hosts",
+        "1.6-block-size",
+        "1.6-dotted-mask",
+        "1.6-host-bits"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 5,
+      "parametricCkuCount": 3,
+      "parametricCkus": [
+        "CKU-BLOCK-SIZE",
+        "CKU-SUBNET-MASK",
+        "CKU-SUBNETTING"
+      ]
+    },
+    {
+      "objectiveId": "1.7",
+      "title": "Describe private IPv4 addressing",
+      "cleanQuestions": 8,
+      "bankQuestions": 18,
+      "parametricQuestions": 6,
+      "families": 2,
+      "familyIds": [
+        "1.7-rfc1918",
+        "1.7-apipa-clones"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 4,
+      "parametricCkuCount": 3,
+      "parametricCkus": [
+        "CKU-APIPA",
+        "CKU-IPV4",
+        "CKU-RFC1918"
+      ]
+    },
+    {
+      "objectiveId": "1.8",
+      "title": "Configure and verify IPv6 addressing and prefix",
+      "cleanQuestions": 10,
+      "bankQuestions": 17,
+      "parametricQuestions": 3,
+      "families": 1,
+      "familyIds": [
+        "1.8-compress-clones"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 6,
+      "parametricCkuCount": 2,
+      "parametricCkus": [
+        "CKU-IPV6-ADDR",
+        "CKU-IPV6-SHORTENING"
+      ]
+    },
+    {
+      "objectiveId": "1.9",
+      "title": "Compare IPv6 address types",
+      "cleanQuestions": 8,
+      "bankQuestions": 16,
+      "parametricQuestions": 4,
+      "families": 1,
+      "familyIds": [
+        "1.9-ipv6-types"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 6,
+      "parametricCkuCount": 2,
+      "parametricCkus": [
+        "CKU-IPV6-GLOBAL-UNICAST",
+        "CKU-IPV6-TYPES"
+      ]
+    },
+    {
+      "objectiveId": "1.10",
+      "title": "Verify IP parameters for client OS",
+      "cleanQuestions": 8,
+      "bankQuestions": 16,
+      "parametricQuestions": 4,
+      "families": 1,
+      "familyIds": [
+        "1.10-client-clones"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 4,
+      "parametricCkuCount": 2,
+      "parametricCkus": [
+        "CKU-DNS-GW-ISSUES",
+        "CKU-IPCONFIG"
+      ]
+    },
+    {
+      "objectiveId": "1.11",
+      "title": "Describe wireless principles",
+      "cleanQuestions": 8,
+      "bankQuestions": 21,
+      "parametricQuestions": 9,
+      "families": 2,
+      "familyIds": [
+        "1.11-channels-24",
+        "1.11-channels-5"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 5,
+      "parametricCkuCount": 3,
+      "parametricCkus": [
+        "CKU-WIFI-BANDS",
+        "CKU-WIFI-CHANNELS",
+        "CKU-WLAN"
+      ]
+    },
+    {
+      "objectiveId": "1.12",
+      "title": "Explain virtualization fundamentals",
+      "cleanQuestions": 8,
+      "bankQuestions": 16,
+      "parametricQuestions": 4,
+      "families": 1,
+      "familyIds": [
+        "1.12-virt-clones"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 5,
+      "parametricCkuCount": 3,
+      "parametricCkus": [
+        "CKU-HYPERVISOR",
+        "CKU-NFV",
+        "CKU-VIRTUALIZATION"
+      ]
+    },
+    {
+      "objectiveId": "2.1",
+      "title": "Configure and verify VLANs",
+      "cleanQuestions": 8,
+      "bankQuestions": 25,
+      "parametricQuestions": 12,
+      "families": 2,
+      "familyIds": [
+        "2.1-intervlan-need-l3",
+        "2.1-access-vlan-assign"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 6,
+      "parametricCkuCount": 3,
+      "parametricCkus": [
+        "CKU-ACCESS-PORT",
+        "CKU-INTER-VLAN",
+        "CKU-VLAN"
+      ]
+    },
+    {
+      "objectiveId": "2.2",
+      "title": "Configure and verify interswitch connectivity (trunking)",
+      "cleanQuestions": 8,
+      "bankQuestions": 16,
+      "parametricQuestions": 3,
+      "families": 1,
+      "familyIds": [
+        "2.2-trunk-clones"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 6,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-TRUNK"
+      ]
+    },
+    {
+      "objectiveId": "2.3",
+      "title": "Configure and verify Layer 2 discovery protocols (CDP/LLDP)",
+      "cleanQuestions": 15,
+      "bankQuestions": 29,
+      "parametricQuestions": 3,
+      "families": 1,
+      "familyIds": [
+        "2.3-native-vlan-clones"
+      ],
+      "thin": false,
+      "hasParametric": true,
+      "bankCkuCount": 5,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-NATIVE-VLAN"
+      ]
+    },
+    {
+      "objectiveId": "2.4",
+      "title": "Configure and verify EtherChannel (LACP)",
+      "cleanQuestions": 15,
+      "bankQuestions": 32,
+      "parametricQuestions": 6,
+      "families": 2,
+      "familyIds": [
+        "2.4-lacp-modes",
+        "2.4-channel-group"
+      ],
+      "thin": false,
+      "hasParametric": true,
+      "bankCkuCount": 3,
+      "parametricCkuCount": 2,
+      "parametricCkus": [
+        "CKU-ETHERCHANNEL",
+        "CKU-LACP"
+      ]
+    },
+    {
+      "objectiveId": "2.5",
+      "title": "Describe Spanning Tree Protocol concepts",
+      "cleanQuestions": 54,
+      "bankQuestions": 68,
+      "parametricQuestions": 11,
+      "families": 2,
+      "familyIds": [
+        "2.5-bridge-priority",
+        "2.5-root-primary-clones"
+      ],
+      "thin": false,
+      "hasParametric": true,
+      "bankCkuCount": 4,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-STP-ROOT"
+      ]
+    },
+    {
+      "objectiveId": "2.6",
+      "title": "Compare Cisco wireless architectures and AP modes",
+      "cleanQuestions": 10,
+      "bankQuestions": 23,
+      "parametricQuestions": 3,
+      "families": 1,
+      "familyIds": [
+        "2.6-wlan-arch"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 2,
+      "parametricCkuCount": 2,
+      "parametricCkus": [
+        "CKU-WLAN-ARCH",
+        "CKU-WLC"
+      ]
+    },
+    {
+      "objectiveId": "2.7",
+      "title": "Describe physical infrastructure connections of WLAN components",
+      "cleanQuestions": 7,
+      "bankQuestions": 21,
+      "parametricQuestions": 3,
+      "families": 1,
+      "familyIds": [
+        "2.7-wlan-phys"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 2,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-WLAN-PHYS"
+      ]
+    },
+    {
+      "objectiveId": "2.8",
+      "title": "Configure WLAN components for client connectivity",
+      "cleanQuestions": 23,
+      "bankQuestions": 38,
+      "parametricQuestions": 4,
+      "families": 1,
+      "familyIds": [
+        "2.8-wlan-client"
+      ],
+      "thin": false,
+      "hasParametric": true,
+      "bankCkuCount": 2,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-WLAN-CLIENT"
+      ]
+    },
+    {
+      "objectiveId": "3.1",
+      "title": "Interpret the components of a routing table",
+      "cleanQuestions": 37,
+      "bankQuestions": 52,
+      "parametricQuestions": 7,
+      "families": 1,
+      "familyIds": [
+        "3.1-default-ad"
+      ],
+      "thin": false,
+      "hasParametric": true,
+      "bankCkuCount": 5,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-AD"
+      ]
+    },
+    {
+      "objectiveId": "3.2",
+      "title": "Determine how a router makes a forwarding decision by default",
+      "cleanQuestions": 49,
+      "bankQuestions": 58,
+      "parametricQuestions": 6,
+      "families": 1,
+      "familyIds": [
+        "3.2-ad-winner-clones"
+      ],
+      "thin": false,
+      "hasParametric": true,
+      "bankCkuCount": 8,
+      "parametricCkuCount": 2,
+      "parametricCkus": [
+        "CKU-AD",
+        "CKU-ROUTE-SELECT"
+      ]
+    },
+    {
+      "objectiveId": "3.3",
+      "title": "Configure and verify IPv4 and IPv6 static routing",
+      "cleanQuestions": 51,
+      "bankQuestions": 59,
+      "parametricQuestions": 3,
+      "families": 1,
+      "familyIds": [
+        "3.3-static-route-clones"
+      ],
+      "thin": false,
+      "hasParametric": true,
+      "bankCkuCount": 5,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-STATIC-ROUTE"
+      ]
+    },
+    {
+      "objectiveId": "3.4",
+      "title": "Configure and verify single area OSPFv2",
+      "cleanQuestions": 72,
+      "bankQuestions": 85,
+      "parametricQuestions": 8,
+      "families": 2,
+      "familyIds": [
+        "3.4-ospf-area-clones",
+        "3.4-ospf-timers-clones"
+      ],
+      "thin": false,
+      "hasParametric": true,
+      "bankCkuCount": 6,
+      "parametricCkuCount": 2,
+      "parametricCkus": [
+        "CKU-OSPF-AREA",
+        "CKU-OSPF-TIMERS"
+      ]
+    },
+    {
+      "objectiveId": "3.5",
+      "title": "Describe and configure first hop redundancy protocols (HSRP)",
+      "cleanQuestions": 30,
+      "bankQuestions": 46,
+      "parametricQuestions": 5,
+      "families": 1,
+      "familyIds": [
+        "3.5-hsrp-priority"
+      ],
+      "thin": false,
+      "hasParametric": true,
+      "bankCkuCount": 2,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-HSRP"
+      ]
+    },
+    {
+      "objectiveId": "3.6",
+      "title": "Troubleshoot routing issues",
+      "cleanQuestions": 10,
+      "bankQuestions": 24,
+      "parametricQuestions": 4,
+      "families": 1,
+      "familyIds": [
+        "3.6-route-tshoot"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 3,
+      "parametricCkuCount": 2,
+      "parametricCkus": [
+        "CKU-ROUTE-TSHOOT",
+        "CKU-TROUBLESHOOT"
+      ]
+    },
+    {
+      "objectiveId": "4.1",
+      "title": "Configure and verify inside source NAT",
+      "cleanQuestions": 32,
+      "bankQuestions": 40,
+      "parametricQuestions": 3,
+      "families": 1,
+      "familyIds": [
+        "4.1-nat-clones"
+      ],
+      "thin": false,
+      "hasParametric": true,
+      "bankCkuCount": 4,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-NAT"
+      ]
+    },
+    {
+      "objectiveId": "4.2",
+      "title": "Configure and verify NTP",
+      "cleanQuestions": 12,
+      "bankQuestions": 25,
+      "parametricQuestions": 3,
+      "families": 1,
+      "familyIds": [
+        "4.2-ntp-stratum-clones"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 1,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-NTP"
+      ]
+    },
+    {
+      "objectiveId": "4.3",
+      "title": "Explain the role of DHCP and DNS",
+      "cleanQuestions": 12,
+      "bankQuestions": 24,
+      "parametricQuestions": 2,
+      "families": 1,
+      "familyIds": [
+        "4.3-dhcp-ports"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 2,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-DHCP"
+      ]
+    },
+    {
+      "objectiveId": "4.4",
+      "title": "Explain the function of SNMP",
+      "cleanQuestions": 12,
+      "bankQuestions": 28,
+      "parametricQuestions": 6,
+      "families": 2,
+      "familyIds": [
+        "4.4-snmp-ver",
+        "4.4-snmp-ops"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 1,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-SNMP"
+      ]
+    },
+    {
+      "objectiveId": "4.5",
+      "title": "Describe the use of syslog features",
+      "cleanQuestions": 12,
+      "bankQuestions": 38,
+      "parametricQuestions": 16,
+      "families": 2,
+      "familyIds": [
+        "4.5-syslog-severity",
+        "4.5-syslog-name-from-level"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 1,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-SYSLOG"
+      ]
+    },
+    {
+      "objectiveId": "4.6",
+      "title": "Configure and verify DHCP client and relay",
+      "cleanQuestions": 12,
+      "bankQuestions": 26,
+      "parametricQuestions": 3,
+      "families": 1,
+      "familyIds": [
+        "4.6-helper"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 2,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-DHCP-RELAY"
+      ]
+    },
+    {
+      "objectiveId": "4.7",
+      "title": "Explain QoS forwarding per-hop behavior",
+      "cleanQuestions": 14,
+      "bankQuestions": 28,
+      "parametricQuestions": 4,
+      "families": 1,
+      "familyIds": [
+        "4.7-qos-phb"
+      ],
+      "thin": false,
+      "hasParametric": true,
+      "bankCkuCount": 3,
+      "parametricCkuCount": 2,
+      "parametricCkus": [
+        "CKU-QOS",
+        "CKU-QOS-PHB"
+      ]
+    },
+    {
+      "objectiveId": "4.8",
+      "title": "Configure network devices for remote access using SSH",
+      "cleanQuestions": 9,
+      "bankQuestions": 24,
+      "parametricQuestions": 4,
+      "families": 1,
+      "familyIds": [
+        "4.8-ssh-steps"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 2,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-SSH"
+      ]
+    },
+    {
+      "objectiveId": "4.9",
+      "title": "Describe TFTP and FTP capabilities",
+      "cleanQuestions": 5,
+      "bankQuestions": 17,
+      "parametricQuestions": 2,
+      "families": 1,
+      "familyIds": [
+        "4.9-tftp-ftp"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 2,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-TFTP-FTP"
+      ]
+    },
+    {
+      "objectiveId": "4.10",
+      "title": "Compare local and cloud-based device management",
+      "cleanQuestions": 10,
+      "bankQuestions": 23,
+      "parametricQuestions": 3,
+      "families": 1,
+      "familyIds": [
+        "4.10-mgmt-models"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 2,
+      "parametricCkuCount": 2,
+      "parametricCkus": [
+        "CKU-CLOUD-MGMT",
+        "CKU-MGMT-CLOUD"
+      ]
+    },
+    {
+      "objectiveId": "5.1",
+      "title": "Define key security concepts",
+      "cleanQuestions": 24,
+      "bankQuestions": 30,
+      "parametricQuestions": 3,
+      "families": 1,
+      "familyIds": [
+        "5.1-security-concepts"
+      ],
+      "thin": false,
+      "hasParametric": true,
+      "bankCkuCount": 5,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-SECURITY-CONCEPTS"
+      ]
+    },
+    {
+      "objectiveId": "5.2",
+      "title": "Describe security program elements",
+      "cleanQuestions": 7,
+      "bankQuestions": 21,
+      "parametricQuestions": 4,
+      "families": 1,
+      "familyIds": [
+        "5.2-sec-program"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 1,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-SECURITY-PROGRAM"
+      ]
+    },
+    {
+      "objectiveId": "5.3",
+      "title": "Configure and verify device access control",
+      "cleanQuestions": 25,
+      "bankQuestions": 40,
+      "parametricQuestions": 4,
+      "families": 1,
+      "familyIds": [
+        "5.3-port-security-max"
+      ],
+      "thin": false,
+      "hasParametric": true,
+      "bankCkuCount": 3,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-PORT-SECURITY"
+      ]
+    },
+    {
+      "objectiveId": "5.4",
+      "title": "Configure and verify AAA with TACACS+/RADIUS",
+      "cleanQuestions": 10,
+      "bankQuestions": 25,
+      "parametricQuestions": 5,
+      "families": 2,
+      "familyIds": [
+        "5.4-aaa-ports",
+        "5.4-aaa-clones"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 3,
+      "parametricCkuCount": 2,
+      "parametricCkus": [
+        "CKU-AAA",
+        "CKU-AAA-SERVERS"
+      ]
+    },
+    {
+      "objectiveId": "5.5",
+      "title": "Configure and verify access control lists",
+      "cleanQuestions": 38,
+      "bankQuestions": 47,
+      "parametricQuestions": 4,
+      "families": 1,
+      "familyIds": [
+        "5.5-acl-wildcard-clones"
+      ],
+      "thin": false,
+      "hasParametric": true,
+      "bankCkuCount": 5,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-ACL"
+      ]
+    },
+    {
+      "objectiveId": "5.6",
+      "title": "Configure Layer 2 security features",
+      "cleanQuestions": 29,
+      "bankQuestions": 44,
+      "parametricQuestions": 4,
+      "families": 1,
+      "familyIds": [
+        "5.6-l2-sec"
+      ],
+      "thin": false,
+      "hasParametric": true,
+      "bankCkuCount": 4,
+      "parametricCkuCount": 3,
+      "parametricCkus": [
+        "CKU-BPDU-GUARD",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY"
+      ]
+    },
+    {
+      "objectiveId": "5.7",
+      "title": "Compare authentication, authorization, accounting",
+      "cleanQuestions": 13,
+      "bankQuestions": 26,
+      "parametricQuestions": 3,
+      "families": 1,
+      "familyIds": [
+        "5.7-vpn-clones"
+      ],
+      "thin": false,
+      "hasParametric": true,
+      "bankCkuCount": 4,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-VPN"
+      ]
+    },
+    {
+      "objectiveId": "5.8",
+      "title": "Describe wireless security protocols",
+      "cleanQuestions": 12,
+      "bankQuestions": 26,
+      "parametricQuestions": 3,
+      "families": 1,
+      "familyIds": [
+        "5.8-wpa-modes"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 2,
+      "parametricCkuCount": 2,
+      "parametricCkus": [
+        "CKU-WLAN-SEC",
+        "CKU-WLAN-SECURITY"
+      ]
+    },
+    {
+      "objectiveId": "5.9",
+      "title": "Configure WLAN using WPA2 PSK",
+      "cleanQuestions": 4,
+      "bankQuestions": 19,
+      "parametricQuestions": 3,
+      "families": 1,
+      "familyIds": [
+        "5.9-wpa2-psk"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 2,
+      "parametricCkuCount": 2,
+      "parametricCkus": [
+        "CKU-WLAN-SECURITY",
+        "CKU-WPA2-PSK"
+      ]
+    },
+    {
+      "objectiveId": "5.10",
+      "title": "Differentiate types of VPN and security concepts",
+      "cleanQuestions": 17,
+      "bankQuestions": 31,
+      "parametricQuestions": 4,
+      "families": 1,
+      "familyIds": [
+        "5.10-vpn-types"
+      ],
+      "thin": false,
+      "hasParametric": true,
+      "bankCkuCount": 1,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-VPN"
+      ]
+    },
+    {
+      "objectiveId": "5.11",
+      "title": "Describe security concepts of network segmentation",
+      "cleanQuestions": 10,
+      "bankQuestions": 24,
+      "parametricQuestions": 4,
+      "families": 1,
+      "familyIds": [
+        "5.11-segment"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 2,
+      "parametricCkuCount": 2,
+      "parametricCkus": [
+        "CKU-SECURITY-PROGRAM",
+        "CKU-SEGMENTATION"
+      ]
+    },
+    {
+      "objectiveId": "6.1",
+      "title": "Explain how automation impacts network management",
+      "cleanQuestions": 6,
+      "bankQuestions": 21,
+      "parametricQuestions": 5,
+      "families": 1,
+      "familyIds": [
+        "6.1-rest-verbs"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 2,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-REST"
+      ]
+    },
+    {
+      "objectiveId": "6.2",
+      "title": "Compare traditional networks with controller-based networking",
+      "cleanQuestions": 9,
+      "bankQuestions": 22,
+      "parametricQuestions": 3,
+      "families": 1,
+      "familyIds": [
+        "6.2-data-formats"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 3,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-JSON-XML-YAML"
+      ]
+    },
+    {
+      "objectiveId": "6.3",
+      "title": "Describe controller-based and software defined architectures",
+      "cleanQuestions": 24,
+      "bankQuestions": 37,
+      "parametricQuestions": 3,
+      "families": 1,
+      "familyIds": [
+        "6.3-model-driven"
+      ],
+      "thin": false,
+      "hasParametric": true,
+      "bankCkuCount": 4,
+      "parametricCkuCount": 2,
+      "parametricCkus": [
+        "CKU-NETCONF",
+        "CKU-YANG"
+      ]
+    },
+    {
+      "objectiveId": "6.4",
+      "title": "Compare traditional campus management with Cisco DNA Center",
+      "cleanQuestions": 11,
+      "bankQuestions": 25,
+      "parametricQuestions": 4,
+      "families": 1,
+      "familyIds": [
+        "6.4-dna-clones"
+      ],
+      "thin": true,
+      "hasParametric": true,
+      "bankCkuCount": 1,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-DNA"
+      ]
+    },
+    {
+      "objectiveId": "6.5",
+      "title": "Describe characteristics of REST-based APIs",
+      "cleanQuestions": 20,
+      "bankQuestions": 32,
+      "parametricQuestions": 2,
+      "families": 1,
+      "familyIds": [
+        "6.5-controller-planes"
+      ],
+      "thin": false,
+      "hasParametric": true,
+      "bankCkuCount": 3,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-SDN"
+      ]
+    },
+    {
+      "objectiveId": "6.6",
+      "title": "Interpret JSON data and configuration management tools",
+      "cleanQuestions": 30,
+      "bankQuestions": 43,
+      "parametricQuestions": 3,
+      "families": 1,
+      "familyIds": [
+        "6.6-ansible-clones"
+      ],
+      "thin": false,
+      "hasParametric": true,
+      "bankCkuCount": 2,
+      "parametricCkuCount": 1,
+      "parametricCkus": [
+        "CKU-JSON-ANSIBLE"
+      ]
+    }
+  ],
+  "families": [
+    {
+      "id": "1.6-usable-hosts",
+      "objectiveId": "1.6",
+      "kind": "parametric",
+      "concept": "usable hosts by prefix",
+      "ckuIds": [
+        "CKU-SUBNETTING"
+      ],
+      "variants": 7
+    },
+    {
+      "id": "1.6-block-size",
+      "objectiveId": "1.6",
+      "kind": "parametric",
+      "concept": "block size by prefix",
+      "ckuIds": [
+        "CKU-BLOCK-SIZE"
+      ],
+      "variants": 6
+    },
+    {
+      "id": "1.6-dotted-mask",
+      "objectiveId": "1.6",
+      "kind": "parametric",
+      "concept": "CIDR to dotted mask",
+      "ckuIds": [
+        "CKU-SUBNET-MASK"
+      ],
+      "variants": 7
+    },
+    {
+      "id": "1.6-host-bits",
+      "objectiveId": "1.6",
+      "kind": "parametric",
+      "concept": "host bits by prefix",
+      "ckuIds": [
+        "CKU-SUBNET-MASK"
+      ],
+      "variants": 7
+    },
+    {
+      "id": "3.1-default-ad",
+      "objectiveId": "3.1",
+      "kind": "parametric",
+      "concept": "default administrative distance",
+      "ckuIds": [
+        "CKU-AD"
+      ],
+      "variants": 7
+    },
+    {
+      "id": "3.2-ad-winner-clones",
+      "objectiveId": "3.2",
+      "kind": "clone",
+      "concept": "lower AD wins",
+      "ckuIds": [
+        "CKU-AD",
+        "CKU-ROUTE-SELECT"
+      ],
+      "variants": 6
+    },
+    {
+      "id": "1.5-well-known-ports",
+      "objectiveId": "1.5",
+      "kind": "parametric",
+      "concept": "well-known port numbers",
+      "ckuIds": [
+        "CKU-PORT-NUMBERS"
+      ],
+      "variants": 14
+    },
+    {
+      "id": "2.1-intervlan-need-l3",
+      "objectiveId": "2.1",
+      "kind": "clone",
+      "concept": "inter-VLAN routing required",
+      "ckuIds": [
+        "CKU-VLAN",
+        "CKU-INTER-VLAN"
+      ],
+      "variants": 5
+    },
+    {
+      "id": "2.1-access-vlan-assign",
+      "objectiveId": "2.1",
+      "kind": "clone",
+      "concept": "access VLAN assignment",
+      "ckuIds": [
+        "CKU-ACCESS-PORT"
+      ],
+      "variants": 7
+    },
+    {
+      "id": "2.5-bridge-priority",
+      "objectiveId": "2.5",
+      "kind": "parametric",
+      "concept": "STP bridge priority values",
+      "ckuIds": [
+        "CKU-STP-ROOT"
+      ],
+      "variants": 6
+    },
+    {
+      "id": "2.5-root-primary-clones",
+      "objectiveId": "2.5",
+      "kind": "clone",
+      "concept": "STP root primary per VLAN",
+      "ckuIds": [
+        "CKU-STP-ROOT"
+      ],
+      "variants": 5
+    },
+    {
+      "id": "3.4-ospf-area-clones",
+      "objectiveId": "3.4",
+      "kind": "clone",
+      "concept": "OSPF area membership",
+      "ckuIds": [
+        "CKU-OSPF-AREA"
+      ],
+      "variants": 5
+    },
+    {
+      "id": "3.4-ospf-timers-clones",
+      "objectiveId": "3.4",
+      "kind": "clone",
+      "concept": "OSPF hello/dead defaults",
+      "ckuIds": [
+        "CKU-OSPF-TIMERS"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "3.5-hsrp-priority",
+      "objectiveId": "3.5",
+      "kind": "parametric",
+      "concept": "HSRP priority",
+      "ckuIds": [
+        "CKU-HSRP"
+      ],
+      "variants": 5
+    },
+    {
+      "id": "4.1-nat-clones",
+      "objectiveId": "4.1",
+      "kind": "clone",
+      "concept": "NAT overload pattern",
+      "ckuIds": [
+        "CKU-NAT"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "4.2-ntp-stratum-clones",
+      "objectiveId": "4.2",
+      "kind": "clone",
+      "concept": "NTP stratum preference",
+      "ckuIds": [
+        "CKU-NTP"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "4.3-dhcp-ports",
+      "objectiveId": "4.3",
+      "kind": "clone",
+      "concept": "DHCP UDP ports",
+      "ckuIds": [
+        "CKU-DHCP"
+      ],
+      "variants": 2
+    },
+    {
+      "id": "4.5-syslog-severity",
+      "objectiveId": "4.5",
+      "kind": "parametric",
+      "concept": "syslog severity levels",
+      "ckuIds": [
+        "CKU-SYSLOG"
+      ],
+      "variants": 8
+    },
+    {
+      "id": "4.5-syslog-name-from-level",
+      "objectiveId": "4.5",
+      "kind": "parametric",
+      "concept": "syslog severity names",
+      "ckuIds": [
+        "CKU-SYSLOG"
+      ],
+      "variants": 8
+    },
+    {
+      "id": "5.3-port-security-max",
+      "objectiveId": "5.3",
+      "kind": "parametric",
+      "concept": "port security maximum",
+      "ckuIds": [
+        "CKU-PORT-SECURITY"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "5.5-acl-wildcard-clones",
+      "objectiveId": "5.5",
+      "kind": "clone",
+      "concept": "ACL wildcard mask",
+      "ckuIds": [
+        "CKU-ACL"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "5.7-vpn-clones",
+      "objectiveId": "5.7",
+      "kind": "clone",
+      "concept": "site-to-site VPN traits",
+      "ckuIds": [
+        "CKU-VPN"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "6.1-rest-verbs",
+      "objectiveId": "6.1",
+      "kind": "clone",
+      "concept": "REST HTTP verbs",
+      "ckuIds": [
+        "CKU-REST"
+      ],
+      "variants": 5
+    },
+    {
+      "id": "6.2-data-formats",
+      "objectiveId": "6.2",
+      "kind": "clone",
+      "concept": "data serialization formats",
+      "ckuIds": [
+        "CKU-JSON-XML-YAML"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "6.3-model-driven",
+      "objectiveId": "6.3",
+      "kind": "clone",
+      "concept": "model-driven telemetry / YANG",
+      "ckuIds": [
+        "CKU-YANG",
+        "CKU-NETCONF"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "6.5-controller-planes",
+      "objectiveId": "6.5",
+      "kind": "clone",
+      "concept": "northbound vs southbound",
+      "ckuIds": [
+        "CKU-SDN"
+      ],
+      "variants": 2
+    },
+    {
+      "id": "6.6-ansible-clones",
+      "objectiveId": "6.6",
+      "kind": "clone",
+      "concept": "Ansible traits",
+      "ckuIds": [
+        "CKU-JSON-ANSIBLE"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "1.1-collision-clones",
+      "objectiveId": "1.1",
+      "kind": "clone",
+      "concept": "collision domains",
+      "ckuIds": [
+        "CKU-COLLISIONS",
+        "CKU-SWITCH"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "1.3-cable-clones",
+      "objectiveId": "1.3",
+      "kind": "clone",
+      "concept": "UTP cable choice",
+      "ckuIds": [
+        "CKU-UTP"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "2.2-trunk-clones",
+      "objectiveId": "2.2",
+      "kind": "clone",
+      "concept": "trunk allowed VLANs",
+      "ckuIds": [
+        "CKU-TRUNK"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "2.3-native-vlan-clones",
+      "objectiveId": "2.3",
+      "kind": "clone",
+      "concept": "native VLAN mismatch",
+      "ckuIds": [
+        "CKU-NATIVE-VLAN"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "3.3-static-route-clones",
+      "objectiveId": "3.3",
+      "kind": "clone",
+      "concept": "static route syntax pattern",
+      "ckuIds": [
+        "CKU-STATIC-ROUTE"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "5.1-security-concepts",
+      "objectiveId": "5.1",
+      "kind": "clone",
+      "concept": "CIA triad",
+      "ckuIds": [
+        "CKU-SECURITY-CONCEPTS"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "1.2-topo-clones",
+      "objectiveId": "1.2",
+      "kind": "clone",
+      "concept": "topology architectures",
+      "ckuIds": [
+        "CKU-TOPOLOGY",
+        "CKU-CAMPUS-TIER"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "1.4-error-clones",
+      "objectiveId": "1.4",
+      "kind": "clone",
+      "concept": "interface error counters",
+      "ckuIds": [
+        "CKU-INTERFACE-ERRORS",
+        "CKU-CRC"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "1.7-rfc1918",
+      "objectiveId": "1.7",
+      "kind": "parametric",
+      "concept": "RFC1918 private ranges",
+      "ckuIds": [
+        "CKU-RFC1918",
+        "CKU-IPV4"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "1.7-apipa-clones",
+      "objectiveId": "1.7",
+      "kind": "clone",
+      "concept": "APIPA / link-local IPv4",
+      "ckuIds": [
+        "CKU-APIPA"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "1.8-compress-clones",
+      "objectiveId": "1.8",
+      "kind": "clone",
+      "concept": "IPv6 compression",
+      "ckuIds": [
+        "CKU-IPV6-SHORTENING",
+        "CKU-IPV6-ADDR"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "1.9-ipv6-types",
+      "objectiveId": "1.9",
+      "kind": "parametric",
+      "concept": "IPv6 address types",
+      "ckuIds": [
+        "CKU-IPV6-TYPES",
+        "CKU-IPV6-GLOBAL-UNICAST"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "1.10-client-clones",
+      "objectiveId": "1.10",
+      "kind": "clone",
+      "concept": "client IP verification",
+      "ckuIds": [
+        "CKU-IPCONFIG",
+        "CKU-DNS-GW-ISSUES"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "1.11-channels-24",
+      "objectiveId": "1.11",
+      "kind": "parametric",
+      "concept": "2.4 GHz non-overlapping channels",
+      "ckuIds": [
+        "CKU-WIFI-CHANNELS",
+        "CKU-WLAN"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "1.11-channels-5",
+      "objectiveId": "1.11",
+      "kind": "parametric",
+      "concept": "5 GHz channel examples",
+      "ckuIds": [
+        "CKU-WIFI-CHANNELS",
+        "CKU-WIFI-BANDS"
+      ],
+      "variants": 6
+    },
+    {
+      "id": "1.12-virt-clones",
+      "objectiveId": "1.12",
+      "kind": "clone",
+      "concept": "virtualization fundamentals",
+      "ckuIds": [
+        "CKU-VIRTUALIZATION",
+        "CKU-HYPERVISOR",
+        "CKU-NFV"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "2.4-lacp-modes",
+      "objectiveId": "2.4",
+      "kind": "parametric",
+      "concept": "LACP modes",
+      "ckuIds": [
+        "CKU-LACP",
+        "CKU-ETHERCHANNEL"
+      ],
+      "variants": 2
+    },
+    {
+      "id": "2.4-channel-group",
+      "objectiveId": "2.4",
+      "kind": "parametric",
+      "concept": "channel-group configuration",
+      "ckuIds": [
+        "CKU-ETHERCHANNEL",
+        "CKU-LACP"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "2.6-wlan-arch",
+      "objectiveId": "2.6",
+      "kind": "clone",
+      "concept": "wireless architectures",
+      "ckuIds": [
+        "CKU-WLAN-ARCH",
+        "CKU-WLC"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "2.7-wlan-phys",
+      "objectiveId": "2.7",
+      "kind": "clone",
+      "concept": "AP physical infrastructure",
+      "ckuIds": [
+        "CKU-WLAN-PHYS"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "2.8-wlan-client",
+      "objectiveId": "2.8",
+      "kind": "clone",
+      "concept": "WLAN client connectivity",
+      "ckuIds": [
+        "CKU-WLAN-CLIENT"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "3.6-route-tshoot",
+      "objectiveId": "3.6",
+      "kind": "clone",
+      "concept": "routing troubleshooting",
+      "ckuIds": [
+        "CKU-ROUTE-TSHOOT",
+        "CKU-TROUBLESHOOT"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "4.4-snmp-ver",
+      "objectiveId": "4.4",
+      "kind": "parametric",
+      "concept": "SNMP versions",
+      "ckuIds": [
+        "CKU-SNMP"
+      ],
+      "variants": 2
+    },
+    {
+      "id": "4.4-snmp-ops",
+      "objectiveId": "4.4",
+      "kind": "clone",
+      "concept": "SNMP operations",
+      "ckuIds": [
+        "CKU-SNMP"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "4.6-helper",
+      "objectiveId": "4.6",
+      "kind": "parametric",
+      "concept": "DHCP relay helper",
+      "ckuIds": [
+        "CKU-DHCP-RELAY"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "4.7-qos-phb",
+      "objectiveId": "4.7",
+      "kind": "parametric",
+      "concept": "QoS PHB markings",
+      "ckuIds": [
+        "CKU-QOS-PHB",
+        "CKU-QOS"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "4.8-ssh-steps",
+      "objectiveId": "4.8",
+      "kind": "clone",
+      "concept": "SSH device setup",
+      "ckuIds": [
+        "CKU-SSH"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "4.9-tftp-ftp",
+      "objectiveId": "4.9",
+      "kind": "parametric",
+      "concept": "TFTP vs FTP",
+      "ckuIds": [
+        "CKU-TFTP-FTP"
+      ],
+      "variants": 2
+    },
+    {
+      "id": "4.10-mgmt-models",
+      "objectiveId": "4.10",
+      "kind": "clone",
+      "concept": "device management models",
+      "ckuIds": [
+        "CKU-MGMT-CLOUD",
+        "CKU-CLOUD-MGMT"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "5.2-sec-program",
+      "objectiveId": "5.2",
+      "kind": "clone",
+      "concept": "security program elements",
+      "ckuIds": [
+        "CKU-SECURITY-PROGRAM"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "5.4-aaa-ports",
+      "objectiveId": "5.4",
+      "kind": "parametric",
+      "concept": "AAA server ports",
+      "ckuIds": [
+        "CKU-AAA-SERVERS",
+        "CKU-AAA"
+      ],
+      "variants": 2
+    },
+    {
+      "id": "5.4-aaa-clones",
+      "objectiveId": "5.4",
+      "kind": "clone",
+      "concept": "AAA model",
+      "ckuIds": [
+        "CKU-AAA"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "5.6-l2-sec",
+      "objectiveId": "5.6",
+      "kind": "clone",
+      "concept": "Layer 2 security features",
+      "ckuIds": [
+        "CKU-PORT-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-BPDU-GUARD"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "5.8-wpa-modes",
+      "objectiveId": "5.8",
+      "kind": "parametric",
+      "concept": "wireless security protocols",
+      "ckuIds": [
+        "CKU-WLAN-SEC",
+        "CKU-WLAN-SECURITY"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "5.9-wpa2-psk",
+      "objectiveId": "5.9",
+      "kind": "clone",
+      "concept": "WPA2-PSK WLAN config",
+      "ckuIds": [
+        "CKU-WPA2-PSK",
+        "CKU-WLAN-SECURITY"
+      ],
+      "variants": 3
+    },
+    {
+      "id": "5.10-vpn-types",
+      "objectiveId": "5.10",
+      "kind": "parametric",
+      "concept": "VPN types",
+      "ckuIds": [
+        "CKU-VPN"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "5.11-segment",
+      "objectiveId": "5.11",
+      "kind": "clone",
+      "concept": "network segmentation",
+      "ckuIds": [
+        "CKU-SEGMENTATION",
+        "CKU-SECURITY-PROGRAM"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "6.4-dna-clones",
+      "objectiveId": "6.4",
+      "kind": "clone",
+      "concept": "controller-based vs traditional",
+      "ckuIds": [
+        "CKU-DNA"
+      ],
+      "variants": 4
+    }
+  ]
+}

@@ -64,6 +64,7 @@
     "audit:help": "node scripts/runAudit.mjs --list",
     "audit:mark-done": "node scripts/markQueueDone.mjs",
     "audit:coverage": "node scripts/auditContentCoverage.mjs",
+    "audit:parametric": "node scripts/auditParametricCoverage.mjs",
     "generate:improvement-logs": "node scripts/generateImprovementLogs.mjs",
     "lint": "eslint src"
   },
