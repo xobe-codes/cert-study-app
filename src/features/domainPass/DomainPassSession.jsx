@@ -12,6 +12,7 @@ import MockExamDebriefActions from '../mockExam/MockExamDebriefActions.jsx'
 import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import Spinner from '../../components/Spinner.jsx'
 import ErrorBox from '../../components/ErrorBox.jsx'
+import { QuizQuestionStem } from '../../components/QuizQuestionChrome.jsx'
 import {
   DOMAIN_PASS_PASS_PCT,
   domainPassDurationSec,
@@ -338,9 +339,7 @@ export default function DomainPassSession({
       </div>
       <div style={styles.card}>
         {q.objectiveId && <div style={{ ...styles.small, marginBottom: 8 }}>Objective {q.objectiveId}</div>}
-        <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>
-          {q.question}
-        </div>
+        <QuizQuestionStem text={q.question} />
         <McChoiceShuffleProvider q={q}>
         <McChoices q={q} selected={selected ?? null} revealed={isCurrentRevealed} onSelect={selectChoice} />
         {!isCurrentRevealed && (

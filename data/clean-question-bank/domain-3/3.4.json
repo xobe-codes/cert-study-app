@@ -2487,7 +2487,8 @@
     },
     {
       "id": "obj-3.4-source-q041",
-      "question": "You have configured OSPF on Router B. The network command entered was network 197.234.3.0 0.0.0.63 area 0. You find out that one of the interfaces is not participating in OSPF. Which interface is not participating? Refer to the following...",
+      "question": "Router B interfaces (network 197.234.3.0 0.0.0.63 area 0):\nSerial0/3/0         197.234.3.1/30\nSerial0/3/0.1       197.234.3.5/30\nSerial0/3/0.2       197.234.3.9/30\nGigabitEthernet0/0  197.234.3.100/26\nWildcard 0.0.0.63 matches 197.234.3.0–197.234.3.63 (.0–.63 in the fourth octet).\n\nYou have configured OSPF on Router B. The network command entered was network 197.234.3.0 0.0.0.63 area 0. You find out that one of the interfaces is not participating in OSPF. Which interface is not participating?",
+      "exhibitConverted": true,
       "choices": [
         "Interface Serial 0/3/0",
         "Interface Serial 0/3/0.1",

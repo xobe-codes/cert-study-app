@@ -40,7 +40,27 @@ export const EXHIBIT_STEM_PATTERNS = [
   /following exhibit/i,
   /exhibit below/i,
   /shown in the exhibit/i,
+  /refer to the following/i,
+  /in the exhibit/i,
+  /examining the show .+ in the exhibit/i,
 ]
+
+export const TRUNCATED_STEM_PATTERN = /\.\.\.\s*$/
+
+const INLINE_EXHIBIT_PREFIX = /^(Routing table|Running-config|NAT topology|Syslog|Network layout|Topology:|Router [A-Z]|OSPF|WLC|CDP|Gateway of last resort|Codes:|Router B interfaces)/i
+
+export function hasInlineExhibit(question) {
+  const stem = question.question || question.stem || ''
+  if (question.exhibitConverted) return true
+  if (stem.includes('\n\n')) return true
+  if (INLINE_EXHIBIT_PREFIX.test(stem.trim())) return true
+  return false
+}
+
+export function isTruncatedStem(question) {
+  const stem = question.question || question.stem || ''
+  return TRUNCATED_STEM_PATTERN.test(stem.trim())
+}
 
 export const LEAK_PATTERNS = [
   /source answer/i,
@@ -65,8 +85,9 @@ export function ckuToConcept(ckuId) {
 
 export function isExhibitDependent(question) {
   const stem = question.question || question.stem || ''
-  if (EXHIBIT_STEM_PATTERNS.some(re => re.test(stem))) return true
-  if (question.qualityFlags?.exhibitRequired === true) return true
+  const hasPointer = EXHIBIT_STEM_PATTERNS.some(re => re.test(stem))
+  if (hasPointer && !hasInlineExhibit(question)) return true
+  if (question.qualityFlags?.exhibitRequired === true && !hasInlineExhibit(question)) return true
   return false
 }
 
@@ -157,7 +178,8 @@ export function validateCleanQuestion(q, objectiveId) {
     if (hasLeakText(text)) errors.push(`${where}: source metadata leak in text`)
   }
 
-  if (isExhibitDependent(q)) errors.push(`${where}: exhibit-dependent question in active clean bank`)
+  if (isTruncatedStem(q)) errors.push(`${where}: truncated question stem`)
+  if (isExhibitDependent(q)) errors.push(`${where}: exhibit-dependent question without inline exhibit`)
 
   if (q.answerReview) {
     const wrongIndexes = new Set(

@@ -673,7 +673,7 @@
     },
     {
       "id": "obj-3.2-source-q003",
-      "question": "You review a router and discover that there is a static default route configured for a next hop of 192.168.1.2. You also notice that there is a default route being populated from RIP for a next hop of 192.168.2.2. Which default...",
+      "question": "You review a router and discover that there is a static default route configured for a next hop of 192.168.1.2. You also notice that there is a default route being populated from RIP for a next hop of 192.168.2.2. Which default route will the router use?",
       "choices": [
         "The route with the lowest AD",
         "The route with the highest AD",

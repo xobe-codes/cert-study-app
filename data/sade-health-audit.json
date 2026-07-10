@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-30T10:47:29.592Z",
+  "generatedAt": "2026-07-10T06:18:19.107Z",
   "thresholds": {
     "quarantineMin": 2,
     "needsFixMin": 3
@@ -9,8 +9,8 @@
     "quarantineCandidates": 0,
     "needsFixCandidates": 0,
     "weakStemAnchor": 0,
-    "avgMin": 4,
-    "avgAvg": 4,
+    "avgMin": 3.843157894736842,
+    "avgAvg": 3.916140350877188,
     "totalFallbackSlots": 0
   },
   "quarantinedBySade": [],

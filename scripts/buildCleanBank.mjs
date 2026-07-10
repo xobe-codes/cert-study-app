@@ -19,6 +19,7 @@ import { DOMAIN_META, filesForDomain, OSPF_34_EXCLUDE } from './lib/sourceBankCo
 import { tryConvertExhibit } from './lib/exhibitConverters.mjs'
 import { APPROVED_UNCERTAIN_IDS, PROMOTED_OSPF_34_IDS } from './lib/shelvedOverrides.mjs'
 import { applyAnswerReviewToQuestion } from './lib/generateAnswerReview.mjs'
+import { applyQuestionStemFixes } from './lib/questionStemFixes.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -58,7 +59,7 @@ function mergeCuratedHand(appId) {
 }
 
 function processQuestion(q, appId, shelved) {
-  let clean = q
+  let clean = applyQuestionStemFixes(q)
   if (isExhibitDependent(clean)) {
     const converted = tryConvertExhibit(clean, appId)
     if (converted) {

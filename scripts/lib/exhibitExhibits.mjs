@@ -95,6 +95,19 @@ Router D Gi0/0: 192.168.5.2/24, OSPF priority default 1`,
   'obj-3.4-source-q054': `Router A: network 10.0.0.0 0.0.0.255 area 0
 Router B: network 10.0.0.0 0.0.0.255 area 1`,
 
+  'obj-3.1-source-q004': `Routing table excerpt:
+C    192.168.1.0/26 is directly connected, Serial0/0
+S    192.168.1.0/24 [1/0] via 172.16.1.100
+O    192.168.1.128/25 [110/10] via 172.16.1.200
+Codes: C=connected, S=static, O=OSPF`,
+
+  'obj-3.4-source-q041': `Router B interfaces (network 197.234.3.0 0.0.0.63 area 0):
+Serial0/3/0         197.234.3.1/30
+Serial0/3/0.1       197.234.3.5/30
+Serial0/3/0.2       197.234.3.9/30
+GigabitEthernet0/0  197.234.3.100/26
+Wildcard 0.0.0.63 matches 197.234.3.0–197.234.3.63 (.0–.63 in the fourth octet).`,
+
   'obj-3.4-source-q055': `Single OSPF area 0; Router A has default route via Serial0/0 to ISP.
 Need to inject default into OSPF for all area routers.`,
 
@@ -179,7 +192,9 @@ export function exhibitForQuestion(q) {
   const stem = (q.question || '')
     .replace(/Using the referenced source exhibit,?\s*/gi, '')
     .replace(/Using the following exhibit,?\s*/gi, '')
+    .replace(/Refer to the following\.{0,3}\s*/gi, '')
     .replace(/in the following exhibit/gi, 'below')
+    .replace(/Examining the show ip route statement in the exhibit,?\s*/gi, '')
     .replace(/shown in the exhibit below/gi, 'shown below')
     .replace(/The following exhibit shows/gi, 'The following output shows')
     .trim()

@@ -1493,7 +1493,7 @@
     },
     {
       "id": "obj-3.5-source-q030",
-      "question": "You have four routers configured with HSRP. Four routers—Router A, Router B, Router C, and Router D—are configured with the default priority. You change the priority of Router A to 80, Router B to 100, Router C to 140, and Router D is...",
+      "question": "You have four routers configured with HSRP. Four routers—Router A, Router B, Router C, and Router D—are configured with the default priority. You change the priority of Router A to 80, Router B to 100, Router C to 140, and Router D is left at the default priority. Which router will become the active router?",
       "choices": [
         "Router A will become the active router.",
         "Router B will become the active router.",

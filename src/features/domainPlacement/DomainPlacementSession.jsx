@@ -6,7 +6,7 @@ import { COLORS, styles } from '../../ui/appTheme.js'
 import McChoices from '../../components/McChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
 import { McChoiceShuffleProvider } from '../../context/McChoiceShuffleContext.jsx'
-import { QuestionMeta } from '../../components/QuizQuestionChrome.jsx'
+import { QuestionMeta, QuizQuestionStem } from '../../components/QuizQuestionChrome.jsx'
 import Spinner from '../../components/Spinner.jsx'
 import ErrorBox from '../../components/ErrorBox.jsx'
 import { buildPlacementPool, computeWeakObjectivesFromPlacement } from './buildPlacementPool.js'
@@ -272,9 +272,7 @@ export default function DomainPlacementSession({
       </div>
       <div style={styles.card}>
         <QuestionMeta q={q} />
-        <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>
-          {q.question}
-        </div>
+        <QuizQuestionStem text={q.question} />
         <McChoiceShuffleProvider q={q}>
         <McChoices q={q} selected={selected} revealed={isRevealed} onSelect={selectChoice} />
         {isRevealed && (

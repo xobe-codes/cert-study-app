@@ -10,7 +10,7 @@ import AnswerReview from '../components/AnswerReview.jsx'
 import { McChoiceShuffleProvider } from '../context/McChoiceShuffleContext.jsx'
 import { applyAnswerReviewToQuestion } from '../answerReviewLogic.js'
 import ErrorBox from '../components/ErrorBox.jsx'
-import { CliAnswerInput } from '../components/QuizQuestionChrome.jsx'
+import { CliAnswerInput, QuizQuestionStem } from '../components/QuizQuestionChrome.jsx'
 import { cliStringsEquivalent } from '../lab/cliGrading.js'
 import SvgConfetti from '../components/SvgConfetti.jsx'
 import { COLORS, styles } from '../ui/appTheme.js'
@@ -310,7 +310,7 @@ export function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked
       <div style={{ ...styles.small, marginBottom: 8 }}>Pre-assessment · {idx + 1} of {questions.length}</div>
       <div style={styles.card}>
         <QuestionMeta q={q} />
-        <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={q.question} /></div>
+        <QuizQuestionStem text={q.question} />
         <McChoiceShuffleProvider q={q} enabled={!ordering && !cli}>
         {ordering ? (
           <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? q.orderItems : null} />

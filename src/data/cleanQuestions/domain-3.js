@@ -644,7 +644,8 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.1-source-q004",
-      "question": "Examining the show ip route statement in the exhibit, which will be the next hop for a destination address of 192.168.1.5?",
+      "question": "Routing table excerpt:\nC    192.168.1.0/26 is directly connected, Serial0/0\nS    192.168.1.0/24 [1/0] via 172.16.1.100\nO    192.168.1.128/25 [110/10] via 172.16.1.200\nCodes: C=connected, S=static, O=OSPF\n\nRouting table excerpt:\nC    192.168.1.0/26 is directly connected, Serial0/0\nS    192.168.1.0/24 [1/0] via 172.16.1.100\nO    192.168.1.128/25 [110/10] via 172.16.1.200\nCodes: C=connected, S=static, O=OSPF\n\nWhich will be the next hop for a destination address of 192.168.1.5?",
+      "exhibitConverted": true,
       "choices": [
         "The gateway 172.16.1.200",
         "The exit interface Serial 0/0",
@@ -750,7 +751,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.1-source-q006",
-      "question": "Routing table excerpt:\nGateway of last resort is not set\n      10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks\nO        10.1.0.0/16 [110/20] via 10.0.0.1, 00:05:00, Gi0/0\nO        10.2.0.0/16 [110/30] via 10.0.0.2, 00:05:00, Gi0/1\nO        10.3.0.0/16 [110/25] via 10.0.0.3, 00:05:00, Gi0/2\n\nwhat does the top line of the output represent?",
+      "question": "Routing table excerpt:\nGateway of last resort is not set\n      10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks\nO        10.1.0.0/16 [110/20] via 10.0.0.1, 00:05:00, Gi0/0\nO        10.2.0.0/16 [110/30] via 10.0.0.2, 00:05:00, Gi0/1\nO        10.3.0.0/16 [110/25] via 10.0.0.3, 00:05:00, Gi0/2\n\nRouting table excerpt:\nGateway of last resort is not set\n      10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks\nO        10.1.0.0/16 [110/20] via 10.0.0.1, 00:05:00, Gi0/0\nO        10.2.0.0/16 [110/30] via 10.0.0.2, 00:05:00, Gi0/1\nO        10.3.0.0/16 [110/25] via 10.0.0.3, 00:05:00, Gi0/2\n\nwhat does the top line of the output represent?",
       "choices": [
         "The 10.0.0.0/8 is a route in the routing table.",
         "The 10.0.0.0/8 is a summarization of the routes in the table.",
@@ -2568,7 +2569,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.2-source-q003",
-      "question": "You review a router and discover that there is a static default route configured for a next hop of 192.168.1.2. You also notice that there is a default route being populated from RIP for a next hop of 192.168.2.2. Which default...",
+      "question": "You review a router and discover that there is a static default route configured for a next hop of 192.168.1.2. You also notice that there is a default route being populated from RIP for a next hop of 192.168.2.2. Which default route will the router use?",
       "choices": [
         "The route with the lowest AD",
         "The route with the highest AD",
@@ -5697,7 +5698,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q019",
-      "question": "Topology:\n- Router A: Gi0/0 192.168.1.1/24 (Network A), Gi0/1 192.168.2.1/24 (link to Router B)\n- Router B: Gi0/0 192.168.2.2/24 (link to A), Gi0/1 192.168.3.1/24 (Network B)\nGoal: Router A must reach 192.168.3.0/24\n\nwhich route statement needs to be configured on Router A to allow routing to Network B?",
+      "question": "Topology:\n- Router A: Gi0/0 192.168.1.1/24 (Network A), Gi0/1 192.168.2.1/24 (link to Router B)\n- Router B: Gi0/0 192.168.2.2/24 (link to A), Gi0/1 192.168.3.1/24 (Network B)\nGoal: Router A must reach 192.168.3.0/24\n\nTopology:\n- Router A: Gi0/0 192.168.1.1/24 (Network A), Gi0/1 192.168.2.1/24 (link to Router B)\n- Router B: Gi0/0 192.168.2.2/24 (link to A), Gi0/1 192.168.3.1/24 (Network B)\nGoal: Router A must reach 192.168.3.0/24\n\nwhich route statement needs to be configured on Router A to allow routing to Network B?",
       "choices": [
         "RouterA(config)#ip route 192.168.3.0 255.255.255.0 serial 0/1",
         "RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.1",
@@ -6161,7 +6162,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q028",
-      "question": "Router routing table:\nC    192.168.0.0/16 is directly connected, Vlan1\nC    192.168.4.0/24 is directly connected, Gi0/1\nS    172.30.0.0/16 [1/0] via 10.1.1.1\nS    192.168.128.0/24 [1/0] via 10.1.1.2 (unreachable next-hop)\n\nwhich network is routable?",
+      "question": "Router routing table:\nC    192.168.0.0/16 is directly connected, Vlan1\nC    192.168.4.0/24 is directly connected, Gi0/1\nS    172.30.0.0/16 [1/0] via 10.1.1.1\nS    192.168.128.0/24 [1/0] via 10.1.1.2 (unreachable next-hop)\n\nRouter routing table:\nC    192.168.0.0/16 is directly connected, Vlan1\nC    192.168.4.0/24 is directly connected, Gi0/1\nS    172.30.0.0/16 [1/0] via 10.1.1.1\nS    192.168.128.0/24 [1/0] via 10.1.1.2 (unreachable next-hop)\n\nwhich network is routable?",
       "choices": [
         "The 172.30.0/16 network",
         "The 192.168.128.0/24 network",
@@ -6213,7 +6214,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q029",
-      "question": "Topology:\n- Network A: 198.44.4.0/24 behind Router A\n- Router B: S0/0 198.55.4.9/30 (to A), S0/1 198.55.4.10/30 (toward Network A path)\nRouter B needs a route to Network A 198.44.4.0/24\n\nwhat must be configured on Router B to allow routing to Network A?",
+      "question": "Topology:\n- Network A: 198.44.4.0/24 behind Router A\n- Router B: S0/0 198.55.4.9/30 (to A), S0/1 198.55.4.10/30 (toward Network A path)\nRouter B needs a route to Network A 198.44.4.0/24\n\nTopology:\n- Network A: 198.44.4.0/24 behind Router A\n- Router B: S0/0 198.55.4.9/30 (to A), S0/1 198.55.4.10/30 (toward Network A path)\nRouter B needs a route to Network A 198.44.4.0/24\n\nwhat must be configured on Router B to allow routing to Network A?",
       "choices": [
         "RouterB(config)#ip route 198.44.4.0/24 198.55.4.9",
         "RouterB(config)#ip route 198.44.4.0 255.255.255.0 198.55.4.10",
@@ -6418,7 +6419,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q033",
-      "question": "Router B routing table:\nC    192.168.4.0/24 is directly connected, Gi0/0\nS    192.168.5.0/24 [1/0] via 192.168.4.2\nS    192.168.5.0/24 [1/0] via 192.168.4.5\nPacket destination: 192.168.5.6\n\nwhich interface or IP address will a packet be routed to with a destination address of 192.168.5.6?",
+      "question": "Router B routing table:\nC    192.168.4.0/24 is directly connected, Gi0/0\nS    192.168.5.0/24 [1/0] via 192.168.4.2\nS    192.168.5.0/24 [1/0] via 192.168.4.5\nPacket destination: 192.168.5.6\n\nRouter B routing table:\nC    192.168.4.0/24 is directly connected, Gi0/0\nS    192.168.5.0/24 [1/0] via 192.168.4.2\nS    192.168.5.0/24 [1/0] via 192.168.4.5\nPacket destination: 192.168.5.6\n\nwhich interface or IP address will a packet be routed to with a destination address of 192.168.5.6?",
       "choices": [
         "IP address of 192.168.4.2",
         "IP address of 192.168.4.5",
@@ -6782,7 +6783,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q040",
-      "question": "When you check the IPv6 addresses configured on the interfaces, you find two IPv6 addresses: One address is a 2001:db8::/64 address, and the other is an ff80::/64 address. However, you do not see a route statement for the ff80::/64...",
+      "question": "When you check the IPv6 addresses configured on the interfaces, you find two IPv6 addresses: One address is a 2001:db8::/64 address, and the other is an fe80::/64 address. However, you do not see a route statement for the fe80::/64 network in the routing table. Why is that?",
       "choices": [
         "Multicast addresses do not get added to the routing tables.",
         "Link-local addresses do not get added to the routing tables.",
@@ -6835,7 +6836,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q041",
-      "question": "Topology:\n- Network B (hosts) behind Router B Gi0/2\n- Router B Gi0/3 S0/3/0 connects to ISP for Internet\n- IPv6 autoconfig needed on LAN toward hosts\n\nwhich command on Router B will allow hosts on Network B to reach the Internet?",
+      "question": "Topology:\n- Network B (hosts) behind Router B Gi0/2\n- Router B Gi0/3 S0/3/0 connects to ISP for Internet\n- IPv6 autoconfig needed on LAN toward hosts\n\nTopology:\n- Network B (hosts) behind Router B Gi0/2\n- Router B Gi0/3 S0/3/0 connects to ISP for Internet\n- IPv6 autoconfig needed on LAN toward hosts\n\nwhich command on Router B will allow hosts on Network B to reach the Internet?",
       "choices": [
         "RouterB(config-if )#ipv6 address default",
         "RouterB(config)#ip route ::/0 serial 0/3/0",
@@ -7834,7 +7835,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q009",
-      "question": "OSPF hierarchy:\n- Router A sits between OSPF Area 0 and external networks (ASBR role)\n- Areas 1 and 2 connect through ABRs B and C\n\nwhat is Router A called in OSPF terminology?",
+      "question": "OSPF hierarchy:\n- Router A sits between OSPF Area 0 and external networks (ASBR role)\n- Areas 1 and 2 connect through ABRs B and C\n\nOSPF hierarchy:\n- Router A sits between OSPF Area 0 and external networks (ASBR role)\n- Areas 1 and 2 connect through ABRs B and C\n\nwhat is Router A called in OSPF terminology?",
       "choices": [
         "Area border router",
         "Autonomous system router",
@@ -7938,7 +7939,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q011",
-      "question": "OSPF multi-area layout:\n- Area 0 (backbone) contains Routers A and B\n- Routers C, D, E each connect Area 0 to non-zero areas (ABR role)\n\nwhat are Routers C, D, and E called in OSPF terminology?",
+      "question": "OSPF multi-area layout:\n- Area 0 (backbone) contains Routers A and B\n- Routers C, D, E each connect Area 0 to non-zero areas (ABR role)\n\nOSPF multi-area layout:\n- Area 0 (backbone) contains Routers A and B\n- Routers C, D, E each connect Area 0 to non-zero areas (ABR role)\n\nwhat are Routers C, D, and E called in OSPF terminology?",
       "choices": [
         "Area border routers",
         "Autonomous system routers",
@@ -9374,7 +9375,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q039",
-      "question": "Router OSPF config goal:\nAdvertise 128.24.0.0/14 into both Area 0 and Area 1\n\nyou have two areas that you want OSPF to advertise routes for. Which command(s) will achieve this?",
+      "question": "Router OSPF config goal:\nAdvertise 128.24.0.0/14 into both Area 0 and Area 1\n\nRouter OSPF config goal:\nAdvertise 128.24.0.0/14 into both Area 0 and Area 1\n\nyou have two areas that you want OSPF to advertise routes for. Which command(s) will achieve this?",
       "choices": [
         "Router(config-router)#network 128.24.0.0/22 area 0 Router(config-router)#network 128.24.0.0/22 area 1",
         "Router(config-router)#network 128.24.0.0 0.0.252.255 area 0 Router(config-router)#network 128.24.0.0 0.0.252.255 area 1",
@@ -9477,7 +9478,8 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q041",
-      "question": "You have configured OSPF on Router B. The network command entered was network 197.234.3.0 0.0.0.63 area 0. You find out that one of the interfaces is not participating in OSPF. Which interface is not participating? Refer to the following...",
+      "question": "Router B interfaces (network 197.234.3.0 0.0.0.63 area 0):\nSerial0/3/0         197.234.3.1/30\nSerial0/3/0.1       197.234.3.5/30\nSerial0/3/0.2       197.234.3.9/30\nGigabitEthernet0/0  197.234.3.100/26\nWildcard 0.0.0.63 matches 197.234.3.0–197.234.3.63 (.0–.63 in the fourth octet).\n\nRouter B interfaces (network 197.234.3.0 0.0.0.63 area 0):\nSerial0/3/0         197.234.3.1/30\nSerial0/3/0.1       197.234.3.5/30\nSerial0/3/0.2       197.234.3.9/30\nGigabitEthernet0/0  197.234.3.100/26\nWildcard 0.0.0.63 matches 197.234.3.0–197.234.3.63 (.0–.63 in the fourth octet).\n\nYou have configured OSPF on Router B. The network command entered was network 197.234.3.0 0.0.0.63 area 0. You find out that one of the interfaces is not participating in OSPF. Which interface is not participating?",
+      "exhibitConverted": true,
       "choices": [
         "Interface Serial 0/3/0",
         "Interface Serial 0/3/0.1",
@@ -9630,7 +9632,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q044",
-      "question": "OSPF neighbors on broadcast segment (Area 0):\nRouter A: FULL/DROTHER  192.168.1.1\nRouter B: FULL/DR       192.168.1.2\nRouter C: FULL/BDR      192.168.1.3\n\nwhich router is the DR?",
+      "question": "OSPF neighbors on broadcast segment (Area 0):\nRouter A: FULL/DROTHER  192.168.1.1\nRouter B: FULL/DR       192.168.1.2\nRouter C: FULL/BDR      192.168.1.3\n\nOSPF neighbors on broadcast segment (Area 0):\nRouter A: FULL/DROTHER  192.168.1.1\nRouter B: FULL/DR       192.168.1.2\nRouter C: FULL/BDR      192.168.1.3\n\nwhich router is the DR?",
       "choices": [
         "Router C",
         "Router B",
@@ -9683,7 +9685,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q045",
-      "question": "OSPF hierarchy:\n- Router B connects Area 0 to Area 1 (ABR)\n- Router A in Area 0, Router C in Area 1\n\nwhat is Router B called in this hierarchy?",
+      "question": "OSPF hierarchy:\n- Router B connects Area 0 to Area 1 (ABR)\n- Router A in Area 0, Router C in Area 1\n\nOSPF hierarchy:\n- Router B connects Area 0 to Area 1 (ABR)\n- Router A in Area 0, Router C in Area 1\n\nwhat is Router B called in this hierarchy?",
       "choices": [
         "ASBR",
         "ABR",
@@ -9788,7 +9790,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q047",
-      "question": "Router A OSPF: hello 10, dead 40\nRouter B OSPF: hello 10, dead 40\n(Note: timers shown mismatched in running-config — A hello 5 dead 20)\n\nRouter A and Router B will not form an adjacency. What is the cause of the problem?",
+      "question": "Router A OSPF: hello 10, dead 40\nRouter B OSPF: hello 10, dead 40\n(Note: timers shown mismatched in running-config — A hello 5 dead 20)\n\nRouter A OSPF: hello 10, dead 40\nRouter B OSPF: hello 10, dead 40\n(Note: timers shown mismatched in running-config — A hello 5 dead 20)\n\nRouter A and Router B will not form an adjacency. What is the cause of the problem?",
       "choices": [
         "The hello and dead timers do not match.",
         "The link is a point-to-point connection.",
@@ -9893,7 +9895,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q049",
-      "question": "show ip ospf neighbor:\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DR         00:00:35   10.0.0.2     Gi0/0\n\nwhich is a correct statement about the neighbor ID of 192.168.2.2?",
+      "question": "show ip ospf neighbor:\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DR         00:00:35   10.0.0.2     Gi0/0\n\nshow ip ospf neighbor:\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DR         00:00:35   10.0.0.2     Gi0/0\n\nwhich is a correct statement about the neighbor ID of 192.168.2.2?",
       "choices": [
         "The neighbor is having a problem forming an adjacency.",
         "The neighbor’s OSPF process is recalculating cost.",
@@ -10001,7 +10003,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q051",
-      "question": "show ip ospf neighbor (non-DR router on multi-access):\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DROTHER    00:00:35   10.0.0.2     Gi0/0\n\nwhich is a correct statement about router ID 192.168.2.2?",
+      "question": "show ip ospf neighbor (non-DR router on multi-access):\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DROTHER    00:00:35   10.0.0.2     Gi0/0\n\nshow ip ospf neighbor (non-DR router on multi-access):\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DROTHER    00:00:35   10.0.0.2     Gi0/0\n\nwhich is a correct statement about router ID 192.168.2.2?",
       "choices": [
         "It is in the process of forming an adjacency.",
         "It is the designated router.",
@@ -10054,7 +10056,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q052",
-      "question": "OSPF broadcast segment — current DR is Router C (priority 1):\nRouter D Gi0/0: 192.168.5.2/24, OSPF priority default 1\n\nYou want to make Router D the DR. Which command will assure that it becomes the DR?",
+      "question": "OSPF broadcast segment — current DR is Router C (priority 1):\nRouter D Gi0/0: 192.168.5.2/24, OSPF priority default 1\n\nOSPF broadcast segment — current DR is Router C (priority 1):\nRouter D Gi0/0: 192.168.5.2/24, OSPF priority default 1\n\nYou want to make Router D the DR. Which command will assure that it becomes the DR?",
       "choices": [
         "RouterD(config-router)#ospf priority",
         "RouterD(config-if)#ip ospf priority 10",
@@ -10161,7 +10163,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q054",
-      "question": "Router A: network 10.0.0.0 0.0.0.255 area 0\nRouter B: network 10.0.0.0 0.0.0.255 area 1\n\nRouter A will not form an adjacency with Router B. What is the problem?",
+      "question": "Router A: network 10.0.0.0 0.0.0.255 area 0\nRouter B: network 10.0.0.0 0.0.0.255 area 1\n\nRouter A: network 10.0.0.0 0.0.0.255 area 0\nRouter B: network 10.0.0.0 0.0.0.255 area 1\n\nRouter A will not form an adjacency with Router B. What is the problem?",
       "choices": [
         "The hello and dead timers do not match.",
         "There is no designated router on the network.",
@@ -10214,7 +10216,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q055",
-      "question": "Single OSPF area 0; Router A has default route via Serial0/0 to ISP.\nNeed to inject default into OSPF for all area routers.\n\nyou have one OSPF area and want to populate the default route to all routers in the OSPF area. Which command would you use?",
+      "question": "Single OSPF area 0; Router A has default route via Serial0/0 to ISP.\nNeed to inject default into OSPF for all area routers.\n\nSingle OSPF area 0; Router A has default route via Serial0/0 to ISP.\nNeed to inject default into OSPF for all area routers.\n\nyou have one OSPF area and want to populate the default route to all routers in the OSPF area. Which command would you use?",
       "choices": [
         "RouterA(config)#ip route 0.0.0.0 0.0.0.0 serial 0/0",
         "RouterA(config-router)#default-route originate",
@@ -11963,7 +11965,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.5-source-q026",
-      "question": "HSRP topology:\nRouter A (active) and Router B (standby) share VIP 192.168.1.254\nBoth track upstream ISP link on serial 0/0/1 for failover\n\nYou are running HSRP on Router A and Router B. You intermittently have ISP outages. What command should you configure to alert HSRP to the outage?",
+      "question": "HSRP topology:\nRouter A (active) and Router B (standby) share VIP 192.168.1.254\nBoth track upstream ISP link on serial 0/0/1 for failover\n\nHSRP topology:\nRouter A (active) and Router B (standby) share VIP 192.168.1.254\nBoth track upstream ISP link on serial 0/0/1 for failover\n\nYou are running HSRP on Router A and Router B. You intermittently have ISP outages. What command should you configure to alert HSRP to the outage?",
       "choices": [
         "RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1",
         "RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1",
@@ -12168,7 +12170,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.5-source-q030",
-      "question": "You have four routers configured with HSRP. Four routers—Router A, Router B, Router C, and Router D—are configured with the default priority. You change the priority of Router A to 80, Router B to 100, Router C to 140, and Router D is...",
+      "question": "You have four routers configured with HSRP. Four routers—Router A, Router B, Router C, and Router D—are configured with the default priority. You change the priority of Router A to 80, Router B to 100, Router C to 140, and Router D is left at the default priority. Which router will become the active router?",
       "choices": [
         "Router A will become the active router.",
         "Router B will become the active router.",

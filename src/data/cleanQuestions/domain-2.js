@@ -1370,7 +1370,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-2.3-source-q013",
-      "question": "CDP neighbor detail (SwitchB):\nDevice ID: SwitchB\nEntry address(es): IP 192.168.1.2\nPlatform: cisco WS-C2960, Capabilities: Switch\nInterface: GigabitEthernet0/2, Port ID (outgoing port): GigabitEthernet0/1\nHoldtime: 162 sec\n\nThe following output shows the output of the CDP details. Which statement is correct about what is displayed?",
+      "question": "CDP neighbor detail (SwitchB):\nDevice ID: SwitchB\nEntry address(es): IP 192.168.1.2\nPlatform: cisco WS-C2960, Capabilities: Switch\nInterface: GigabitEthernet0/2, Port ID (outgoing port): GigabitEthernet0/1\nHoldtime: 162 sec\n\nCDP neighbor detail (SwitchB):\nDevice ID: SwitchB\nEntry address(es): IP 192.168.1.2\nPlatform: cisco WS-C2960, Capabilities: Switch\nInterface: GigabitEthernet0/2, Port ID (outgoing port): GigabitEthernet0/1\nHoldtime: 162 sec\n\nThe following output shows the output of the CDP details. Which statement is correct about what is displayed?",
       "choices": [
         "The advertisement was seen 162 seconds ago.",
         "Switch B interface Gi0/1 connects to Switch A.",
@@ -6833,7 +6833,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-2.9-source-q010",
-      "question": "WLC WLAN summary — MaintDept:\nProfile Name: MaintDept\nStatus: Disabled\nRadio Policy: All\nMulticast VLAN: Disabled\nBroadcast SSID: Disabled\n\nYou were just notified by your maintenance department that they lost all wireless connectivity. Earlier you had a contractor working on the WLC. You log into the WLC and click on the WLAN of MaintDept shown below. What can you do to correct the problem?",
+      "question": "WLC WLAN summary — MaintDept:\nProfile Name: MaintDept\nStatus: Disabled\nRadio Policy: All\nMulticast VLAN: Disabled\nBroadcast SSID: Disabled\n\nWLC WLAN summary — MaintDept:\nProfile Name: MaintDept\nStatus: Disabled\nRadio Policy: All\nMulticast VLAN: Disabled\nBroadcast SSID: Disabled\n\nYou were just notified by your maintenance department that they lost all wireless connectivity. Earlier you had a contractor working on the WLC. You log into the WLC and click on the WLAN of MaintDept shown below. What can you do to correct the problem?",
       "choices": [
         "Enable the status",
         "Change the radio policy",
@@ -6886,7 +6886,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-2.9-source-q011",
-      "question": "WLC WLAN security — CorpWLAN:\nSecurity Policy: WPA2\nAuthentication Key Mgmt: PSK\nEncryption: AES-CCMP (WPA2 Personal)\n\nWhich statement is true about the WLAN below?",
+      "question": "WLC WLAN security — CorpWLAN:\nSecurity Policy: WPA2\nAuthentication Key Mgmt: PSK\nEncryption: AES-CCMP (WPA2 Personal)\n\nWLC WLAN security — CorpWLAN:\nSecurity Policy: WPA2\nAuthentication Key Mgmt: PSK\nEncryption: AES-CCMP (WPA2 Personal)\n\nWhich statement is true about the WLAN below?",
       "choices": [
         "WPA is enabled.",
         "WPA2 enterprise is enabled.",

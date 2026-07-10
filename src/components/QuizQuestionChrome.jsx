@@ -20,6 +20,34 @@ export function QuizRichText({ text }) {
   })
 }
 
+/** Split inline exhibit block (first paragraph) from the question when stem uses \\n\\n. */
+export function QuizQuestionStem({ text }) {
+  if (text == null) return null
+  const raw = String(text)
+  const split = raw.indexOf('\n\n')
+  if (split < 0) {
+    return (
+      <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>
+        <QuizRichText text={raw} />
+      </div>
+    )
+  }
+  const exhibit = raw.slice(0, split).trim()
+  const question = raw.slice(split + 2).trim()
+  return (
+    <div style={{ marginBottom: 14 }}>
+      <div className="ccna-quiz-exhibit" style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 'var(--ccna-type-sm)', lineHeight: 1.45, color: COLORS.silver, background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 10, padding: '10px 12px', marginBottom: 12, whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', wordBreak: 'break-word' }}>
+        {exhibit}
+      </div>
+      {question && (
+        <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>
+          <QuizRichText text={question} />
+        </div>
+      )}
+    </div>
+  )
+}
+
 export function QuestionMeta({ q }) {
   if (!q || (!q.type && !q.difficulty && !q.skill)) return null
   const skill = q.skill || inferSkill(q)

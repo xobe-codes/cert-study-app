@@ -2403,7 +2403,7 @@
     },
     {
       "id": "obj-3.3-source-q040",
-      "question": "When you check the IPv6 addresses configured on the interfaces, you find two IPv6 addresses: One address is a 2001:db8::/64 address, and the other is an ff80::/64 address. However, you do not see a route statement for the ff80::/64...",
+      "question": "When you check the IPv6 addresses configured on the interfaces, you find two IPv6 addresses: One address is a 2001:db8::/64 address, and the other is an fe80::/64 address. However, you do not see a route statement for the fe80::/64 network in the routing table. Why is that?",
       "choices": [
         "Multicast addresses do not get added to the routing tables.",
         "Link-local addresses do not get added to the routing tables.",

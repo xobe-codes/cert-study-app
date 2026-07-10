@@ -645,7 +645,8 @@
     },
     {
       "id": "obj-3.1-source-q004",
-      "question": "Examining the show ip route statement in the exhibit, which will be the next hop for a destination address of 192.168.1.5?",
+      "question": "Routing table excerpt:\nC    192.168.1.0/26 is directly connected, Serial0/0\nS    192.168.1.0/24 [1/0] via 172.16.1.100\nO    192.168.1.128/25 [110/10] via 172.16.1.200\nCodes: C=connected, S=static, O=OSPF\n\nWhich will be the next hop for a destination address of 192.168.1.5?",
+      "exhibitConverted": true,
       "choices": [
         "The gateway 172.16.1.200",
         "The exit interface Serial 0/0",

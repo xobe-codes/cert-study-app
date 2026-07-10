@@ -6316,7 +6316,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-2.3-source-q013",
-      "question": "CDP neighbor detail (SwitchB):\nDevice ID: SwitchB\nEntry address(es): IP 192.168.1.2\nPlatform: cisco WS-C2960, Capabilities: Switch\nInterface: GigabitEthernet0/2, Port ID (outgoing port): GigabitEthernet0/1\nHoldtime: 162 sec\n\nThe following output shows the output of the CDP details. Which statement is correct about what is displayed?",
+      "question": "CDP neighbor detail (SwitchB):\nDevice ID: SwitchB\nEntry address(es): IP 192.168.1.2\nPlatform: cisco WS-C2960, Capabilities: Switch\nInterface: GigabitEthernet0/2, Port ID (outgoing port): GigabitEthernet0/1\nHoldtime: 162 sec\n\nCDP neighbor detail (SwitchB):\nDevice ID: SwitchB\nEntry address(es): IP 192.168.1.2\nPlatform: cisco WS-C2960, Capabilities: Switch\nInterface: GigabitEthernet0/2, Port ID (outgoing port): GigabitEthernet0/1\nHoldtime: 162 sec\n\nThe following output shows the output of the CDP details. Which statement is correct about what is displayed?",
       "choices": [
         "The advertisement was seen 162 seconds ago.",
         "Switch B interface Gi0/1 connects to Switch A.",
@@ -11779,7 +11779,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-2.9-source-q010",
-      "question": "WLC WLAN summary — MaintDept:\nProfile Name: MaintDept\nStatus: Disabled\nRadio Policy: All\nMulticast VLAN: Disabled\nBroadcast SSID: Disabled\n\nYou were just notified by your maintenance department that they lost all wireless connectivity. Earlier you had a contractor working on the WLC. You log into the WLC and click on the WLAN of MaintDept shown below. What can you do to correct the problem?",
+      "question": "WLC WLAN summary — MaintDept:\nProfile Name: MaintDept\nStatus: Disabled\nRadio Policy: All\nMulticast VLAN: Disabled\nBroadcast SSID: Disabled\n\nWLC WLAN summary — MaintDept:\nProfile Name: MaintDept\nStatus: Disabled\nRadio Policy: All\nMulticast VLAN: Disabled\nBroadcast SSID: Disabled\n\nYou were just notified by your maintenance department that they lost all wireless connectivity. Earlier you had a contractor working on the WLC. You log into the WLC and click on the WLAN of MaintDept shown below. What can you do to correct the problem?",
       "choices": [
         "Enable the status",
         "Change the radio policy",
@@ -11832,7 +11832,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-2.9-source-q011",
-      "question": "WLC WLAN security — CorpWLAN:\nSecurity Policy: WPA2\nAuthentication Key Mgmt: PSK\nEncryption: AES-CCMP (WPA2 Personal)\n\nWhich statement is true about the WLAN below?",
+      "question": "WLC WLAN security — CorpWLAN:\nSecurity Policy: WPA2\nAuthentication Key Mgmt: PSK\nEncryption: AES-CCMP (WPA2 Personal)\n\nWLC WLAN security — CorpWLAN:\nSecurity Policy: WPA2\nAuthentication Key Mgmt: PSK\nEncryption: AES-CCMP (WPA2 Personal)\n\nWhich statement is true about the WLAN below?",
       "choices": [
         "WPA is enabled.",
         "WPA2 enterprise is enabled.",
@@ -12631,7 +12631,8 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.1-source-q004",
-      "question": "Examining the show ip route statement in the exhibit, which will be the next hop for a destination address of 192.168.1.5?",
+      "question": "Routing table excerpt:\nC    192.168.1.0/26 is directly connected, Serial0/0\nS    192.168.1.0/24 [1/0] via 172.16.1.100\nO    192.168.1.128/25 [110/10] via 172.16.1.200\nCodes: C=connected, S=static, O=OSPF\n\nRouting table excerpt:\nC    192.168.1.0/26 is directly connected, Serial0/0\nS    192.168.1.0/24 [1/0] via 172.16.1.100\nO    192.168.1.128/25 [110/10] via 172.16.1.200\nCodes: C=connected, S=static, O=OSPF\n\nWhich will be the next hop for a destination address of 192.168.1.5?",
+      "exhibitConverted": true,
       "choices": [
         "The gateway 172.16.1.200",
         "The exit interface Serial 0/0",
@@ -12737,7 +12738,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.1-source-q006",
-      "question": "Routing table excerpt:\nGateway of last resort is not set\n      10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks\nO        10.1.0.0/16 [110/20] via 10.0.0.1, 00:05:00, Gi0/0\nO        10.2.0.0/16 [110/30] via 10.0.0.2, 00:05:00, Gi0/1\nO        10.3.0.0/16 [110/25] via 10.0.0.3, 00:05:00, Gi0/2\n\nwhat does the top line of the output represent?",
+      "question": "Routing table excerpt:\nGateway of last resort is not set\n      10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks\nO        10.1.0.0/16 [110/20] via 10.0.0.1, 00:05:00, Gi0/0\nO        10.2.0.0/16 [110/30] via 10.0.0.2, 00:05:00, Gi0/1\nO        10.3.0.0/16 [110/25] via 10.0.0.3, 00:05:00, Gi0/2\n\nRouting table excerpt:\nGateway of last resort is not set\n      10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks\nO        10.1.0.0/16 [110/20] via 10.0.0.1, 00:05:00, Gi0/0\nO        10.2.0.0/16 [110/30] via 10.0.0.2, 00:05:00, Gi0/1\nO        10.3.0.0/16 [110/25] via 10.0.0.3, 00:05:00, Gi0/2\n\nwhat does the top line of the output represent?",
       "choices": [
         "The 10.0.0.0/8 is a route in the routing table.",
         "The 10.0.0.0/8 is a summarization of the routes in the table.",
@@ -14555,7 +14556,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.2-source-q003",
-      "question": "You review a router and discover that there is a static default route configured for a next hop of 192.168.1.2. You also notice that there is a default route being populated from RIP for a next hop of 192.168.2.2. Which default...",
+      "question": "You review a router and discover that there is a static default route configured for a next hop of 192.168.1.2. You also notice that there is a default route being populated from RIP for a next hop of 192.168.2.2. Which default route will the router use?",
       "choices": [
         "The route with the lowest AD",
         "The route with the highest AD",
@@ -17684,7 +17685,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q019",
-      "question": "Topology:\n- Router A: Gi0/0 192.168.1.1/24 (Network A), Gi0/1 192.168.2.1/24 (link to Router B)\n- Router B: Gi0/0 192.168.2.2/24 (link to A), Gi0/1 192.168.3.1/24 (Network B)\nGoal: Router A must reach 192.168.3.0/24\n\nwhich route statement needs to be configured on Router A to allow routing to Network B?",
+      "question": "Topology:\n- Router A: Gi0/0 192.168.1.1/24 (Network A), Gi0/1 192.168.2.1/24 (link to Router B)\n- Router B: Gi0/0 192.168.2.2/24 (link to A), Gi0/1 192.168.3.1/24 (Network B)\nGoal: Router A must reach 192.168.3.0/24\n\nTopology:\n- Router A: Gi0/0 192.168.1.1/24 (Network A), Gi0/1 192.168.2.1/24 (link to Router B)\n- Router B: Gi0/0 192.168.2.2/24 (link to A), Gi0/1 192.168.3.1/24 (Network B)\nGoal: Router A must reach 192.168.3.0/24\n\nwhich route statement needs to be configured on Router A to allow routing to Network B?",
       "choices": [
         "RouterA(config)#ip route 192.168.3.0 255.255.255.0 serial 0/1",
         "RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.1",
@@ -18148,7 +18149,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q028",
-      "question": "Router routing table:\nC    192.168.0.0/16 is directly connected, Vlan1\nC    192.168.4.0/24 is directly connected, Gi0/1\nS    172.30.0.0/16 [1/0] via 10.1.1.1\nS    192.168.128.0/24 [1/0] via 10.1.1.2 (unreachable next-hop)\n\nwhich network is routable?",
+      "question": "Router routing table:\nC    192.168.0.0/16 is directly connected, Vlan1\nC    192.168.4.0/24 is directly connected, Gi0/1\nS    172.30.0.0/16 [1/0] via 10.1.1.1\nS    192.168.128.0/24 [1/0] via 10.1.1.2 (unreachable next-hop)\n\nRouter routing table:\nC    192.168.0.0/16 is directly connected, Vlan1\nC    192.168.4.0/24 is directly connected, Gi0/1\nS    172.30.0.0/16 [1/0] via 10.1.1.1\nS    192.168.128.0/24 [1/0] via 10.1.1.2 (unreachable next-hop)\n\nwhich network is routable?",
       "choices": [
         "The 172.30.0/16 network",
         "The 192.168.128.0/24 network",
@@ -18200,7 +18201,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q029",
-      "question": "Topology:\n- Network A: 198.44.4.0/24 behind Router A\n- Router B: S0/0 198.55.4.9/30 (to A), S0/1 198.55.4.10/30 (toward Network A path)\nRouter B needs a route to Network A 198.44.4.0/24\n\nwhat must be configured on Router B to allow routing to Network A?",
+      "question": "Topology:\n- Network A: 198.44.4.0/24 behind Router A\n- Router B: S0/0 198.55.4.9/30 (to A), S0/1 198.55.4.10/30 (toward Network A path)\nRouter B needs a route to Network A 198.44.4.0/24\n\nTopology:\n- Network A: 198.44.4.0/24 behind Router A\n- Router B: S0/0 198.55.4.9/30 (to A), S0/1 198.55.4.10/30 (toward Network A path)\nRouter B needs a route to Network A 198.44.4.0/24\n\nwhat must be configured on Router B to allow routing to Network A?",
       "choices": [
         "RouterB(config)#ip route 198.44.4.0/24 198.55.4.9",
         "RouterB(config)#ip route 198.44.4.0 255.255.255.0 198.55.4.10",
@@ -18405,7 +18406,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q033",
-      "question": "Router B routing table:\nC    192.168.4.0/24 is directly connected, Gi0/0\nS    192.168.5.0/24 [1/0] via 192.168.4.2\nS    192.168.5.0/24 [1/0] via 192.168.4.5\nPacket destination: 192.168.5.6\n\nwhich interface or IP address will a packet be routed to with a destination address of 192.168.5.6?",
+      "question": "Router B routing table:\nC    192.168.4.0/24 is directly connected, Gi0/0\nS    192.168.5.0/24 [1/0] via 192.168.4.2\nS    192.168.5.0/24 [1/0] via 192.168.4.5\nPacket destination: 192.168.5.6\n\nRouter B routing table:\nC    192.168.4.0/24 is directly connected, Gi0/0\nS    192.168.5.0/24 [1/0] via 192.168.4.2\nS    192.168.5.0/24 [1/0] via 192.168.4.5\nPacket destination: 192.168.5.6\n\nwhich interface or IP address will a packet be routed to with a destination address of 192.168.5.6?",
       "choices": [
         "IP address of 192.168.4.2",
         "IP address of 192.168.4.5",
@@ -18769,7 +18770,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q040",
-      "question": "When you check the IPv6 addresses configured on the interfaces, you find two IPv6 addresses: One address is a 2001:db8::/64 address, and the other is an ff80::/64 address. However, you do not see a route statement for the ff80::/64...",
+      "question": "When you check the IPv6 addresses configured on the interfaces, you find two IPv6 addresses: One address is a 2001:db8::/64 address, and the other is an fe80::/64 address. However, you do not see a route statement for the fe80::/64 network in the routing table. Why is that?",
       "choices": [
         "Multicast addresses do not get added to the routing tables.",
         "Link-local addresses do not get added to the routing tables.",
@@ -18822,7 +18823,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q041",
-      "question": "Topology:\n- Network B (hosts) behind Router B Gi0/2\n- Router B Gi0/3 S0/3/0 connects to ISP for Internet\n- IPv6 autoconfig needed on LAN toward hosts\n\nwhich command on Router B will allow hosts on Network B to reach the Internet?",
+      "question": "Topology:\n- Network B (hosts) behind Router B Gi0/2\n- Router B Gi0/3 S0/3/0 connects to ISP for Internet\n- IPv6 autoconfig needed on LAN toward hosts\n\nTopology:\n- Network B (hosts) behind Router B Gi0/2\n- Router B Gi0/3 S0/3/0 connects to ISP for Internet\n- IPv6 autoconfig needed on LAN toward hosts\n\nwhich command on Router B will allow hosts on Network B to reach the Internet?",
       "choices": [
         "RouterB(config-if )#ipv6 address default",
         "RouterB(config)#ip route ::/0 serial 0/3/0",
@@ -19821,7 +19822,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q009",
-      "question": "OSPF hierarchy:\n- Router A sits between OSPF Area 0 and external networks (ASBR role)\n- Areas 1 and 2 connect through ABRs B and C\n\nwhat is Router A called in OSPF terminology?",
+      "question": "OSPF hierarchy:\n- Router A sits between OSPF Area 0 and external networks (ASBR role)\n- Areas 1 and 2 connect through ABRs B and C\n\nOSPF hierarchy:\n- Router A sits between OSPF Area 0 and external networks (ASBR role)\n- Areas 1 and 2 connect through ABRs B and C\n\nwhat is Router A called in OSPF terminology?",
       "choices": [
         "Area border router",
         "Autonomous system router",
@@ -19925,7 +19926,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q011",
-      "question": "OSPF multi-area layout:\n- Area 0 (backbone) contains Routers A and B\n- Routers C, D, E each connect Area 0 to non-zero areas (ABR role)\n\nwhat are Routers C, D, and E called in OSPF terminology?",
+      "question": "OSPF multi-area layout:\n- Area 0 (backbone) contains Routers A and B\n- Routers C, D, E each connect Area 0 to non-zero areas (ABR role)\n\nOSPF multi-area layout:\n- Area 0 (backbone) contains Routers A and B\n- Routers C, D, E each connect Area 0 to non-zero areas (ABR role)\n\nwhat are Routers C, D, and E called in OSPF terminology?",
       "choices": [
         "Area border routers",
         "Autonomous system routers",
@@ -21361,7 +21362,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q039",
-      "question": "Router OSPF config goal:\nAdvertise 128.24.0.0/14 into both Area 0 and Area 1\n\nyou have two areas that you want OSPF to advertise routes for. Which command(s) will achieve this?",
+      "question": "Router OSPF config goal:\nAdvertise 128.24.0.0/14 into both Area 0 and Area 1\n\nRouter OSPF config goal:\nAdvertise 128.24.0.0/14 into both Area 0 and Area 1\n\nyou have two areas that you want OSPF to advertise routes for. Which command(s) will achieve this?",
       "choices": [
         "Router(config-router)#network 128.24.0.0/22 area 0 Router(config-router)#network 128.24.0.0/22 area 1",
         "Router(config-router)#network 128.24.0.0 0.0.252.255 area 0 Router(config-router)#network 128.24.0.0 0.0.252.255 area 1",
@@ -21464,7 +21465,8 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q041",
-      "question": "You have configured OSPF on Router B. The network command entered was network 197.234.3.0 0.0.0.63 area 0. You find out that one of the interfaces is not participating in OSPF. Which interface is not participating? Refer to the following...",
+      "question": "Router B interfaces (network 197.234.3.0 0.0.0.63 area 0):\nSerial0/3/0         197.234.3.1/30\nSerial0/3/0.1       197.234.3.5/30\nSerial0/3/0.2       197.234.3.9/30\nGigabitEthernet0/0  197.234.3.100/26\nWildcard 0.0.0.63 matches 197.234.3.0–197.234.3.63 (.0–.63 in the fourth octet).\n\nRouter B interfaces (network 197.234.3.0 0.0.0.63 area 0):\nSerial0/3/0         197.234.3.1/30\nSerial0/3/0.1       197.234.3.5/30\nSerial0/3/0.2       197.234.3.9/30\nGigabitEthernet0/0  197.234.3.100/26\nWildcard 0.0.0.63 matches 197.234.3.0–197.234.3.63 (.0–.63 in the fourth octet).\n\nYou have configured OSPF on Router B. The network command entered was network 197.234.3.0 0.0.0.63 area 0. You find out that one of the interfaces is not participating in OSPF. Which interface is not participating?",
+      "exhibitConverted": true,
       "choices": [
         "Interface Serial 0/3/0",
         "Interface Serial 0/3/0.1",
@@ -21617,7 +21619,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q044",
-      "question": "OSPF neighbors on broadcast segment (Area 0):\nRouter A: FULL/DROTHER  192.168.1.1\nRouter B: FULL/DR       192.168.1.2\nRouter C: FULL/BDR      192.168.1.3\n\nwhich router is the DR?",
+      "question": "OSPF neighbors on broadcast segment (Area 0):\nRouter A: FULL/DROTHER  192.168.1.1\nRouter B: FULL/DR       192.168.1.2\nRouter C: FULL/BDR      192.168.1.3\n\nOSPF neighbors on broadcast segment (Area 0):\nRouter A: FULL/DROTHER  192.168.1.1\nRouter B: FULL/DR       192.168.1.2\nRouter C: FULL/BDR      192.168.1.3\n\nwhich router is the DR?",
       "choices": [
         "Router C",
         "Router B",
@@ -21670,7 +21672,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q045",
-      "question": "OSPF hierarchy:\n- Router B connects Area 0 to Area 1 (ABR)\n- Router A in Area 0, Router C in Area 1\n\nwhat is Router B called in this hierarchy?",
+      "question": "OSPF hierarchy:\n- Router B connects Area 0 to Area 1 (ABR)\n- Router A in Area 0, Router C in Area 1\n\nOSPF hierarchy:\n- Router B connects Area 0 to Area 1 (ABR)\n- Router A in Area 0, Router C in Area 1\n\nwhat is Router B called in this hierarchy?",
       "choices": [
         "ASBR",
         "ABR",
@@ -21775,7 +21777,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q047",
-      "question": "Router A OSPF: hello 10, dead 40\nRouter B OSPF: hello 10, dead 40\n(Note: timers shown mismatched in running-config — A hello 5 dead 20)\n\nRouter A and Router B will not form an adjacency. What is the cause of the problem?",
+      "question": "Router A OSPF: hello 10, dead 40\nRouter B OSPF: hello 10, dead 40\n(Note: timers shown mismatched in running-config — A hello 5 dead 20)\n\nRouter A OSPF: hello 10, dead 40\nRouter B OSPF: hello 10, dead 40\n(Note: timers shown mismatched in running-config — A hello 5 dead 20)\n\nRouter A and Router B will not form an adjacency. What is the cause of the problem?",
       "choices": [
         "The hello and dead timers do not match.",
         "The link is a point-to-point connection.",
@@ -21880,7 +21882,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q049",
-      "question": "show ip ospf neighbor:\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DR         00:00:35   10.0.0.2     Gi0/0\n\nwhich is a correct statement about the neighbor ID of 192.168.2.2?",
+      "question": "show ip ospf neighbor:\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DR         00:00:35   10.0.0.2     Gi0/0\n\nshow ip ospf neighbor:\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DR         00:00:35   10.0.0.2     Gi0/0\n\nwhich is a correct statement about the neighbor ID of 192.168.2.2?",
       "choices": [
         "The neighbor is having a problem forming an adjacency.",
         "The neighbor’s OSPF process is recalculating cost.",
@@ -21988,7 +21990,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q051",
-      "question": "show ip ospf neighbor (non-DR router on multi-access):\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DROTHER    00:00:35   10.0.0.2     Gi0/0\n\nwhich is a correct statement about router ID 192.168.2.2?",
+      "question": "show ip ospf neighbor (non-DR router on multi-access):\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DROTHER    00:00:35   10.0.0.2     Gi0/0\n\nshow ip ospf neighbor (non-DR router on multi-access):\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DROTHER    00:00:35   10.0.0.2     Gi0/0\n\nwhich is a correct statement about router ID 192.168.2.2?",
       "choices": [
         "It is in the process of forming an adjacency.",
         "It is the designated router.",
@@ -22041,7 +22043,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q052",
-      "question": "OSPF broadcast segment — current DR is Router C (priority 1):\nRouter D Gi0/0: 192.168.5.2/24, OSPF priority default 1\n\nYou want to make Router D the DR. Which command will assure that it becomes the DR?",
+      "question": "OSPF broadcast segment — current DR is Router C (priority 1):\nRouter D Gi0/0: 192.168.5.2/24, OSPF priority default 1\n\nOSPF broadcast segment — current DR is Router C (priority 1):\nRouter D Gi0/0: 192.168.5.2/24, OSPF priority default 1\n\nYou want to make Router D the DR. Which command will assure that it becomes the DR?",
       "choices": [
         "RouterD(config-router)#ospf priority",
         "RouterD(config-if)#ip ospf priority 10",
@@ -22148,7 +22150,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q054",
-      "question": "Router A: network 10.0.0.0 0.0.0.255 area 0\nRouter B: network 10.0.0.0 0.0.0.255 area 1\n\nRouter A will not form an adjacency with Router B. What is the problem?",
+      "question": "Router A: network 10.0.0.0 0.0.0.255 area 0\nRouter B: network 10.0.0.0 0.0.0.255 area 1\n\nRouter A: network 10.0.0.0 0.0.0.255 area 0\nRouter B: network 10.0.0.0 0.0.0.255 area 1\n\nRouter A will not form an adjacency with Router B. What is the problem?",
       "choices": [
         "The hello and dead timers do not match.",
         "There is no designated router on the network.",
@@ -22201,7 +22203,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q055",
-      "question": "Single OSPF area 0; Router A has default route via Serial0/0 to ISP.\nNeed to inject default into OSPF for all area routers.\n\nyou have one OSPF area and want to populate the default route to all routers in the OSPF area. Which command would you use?",
+      "question": "Single OSPF area 0; Router A has default route via Serial0/0 to ISP.\nNeed to inject default into OSPF for all area routers.\n\nSingle OSPF area 0; Router A has default route via Serial0/0 to ISP.\nNeed to inject default into OSPF for all area routers.\n\nyou have one OSPF area and want to populate the default route to all routers in the OSPF area. Which command would you use?",
       "choices": [
         "RouterA(config)#ip route 0.0.0.0 0.0.0.0 serial 0/0",
         "RouterA(config-router)#default-route originate",
@@ -23950,7 +23952,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.5-source-q026",
-      "question": "HSRP topology:\nRouter A (active) and Router B (standby) share VIP 192.168.1.254\nBoth track upstream ISP link on serial 0/0/1 for failover\n\nYou are running HSRP on Router A and Router B. You intermittently have ISP outages. What command should you configure to alert HSRP to the outage?",
+      "question": "HSRP topology:\nRouter A (active) and Router B (standby) share VIP 192.168.1.254\nBoth track upstream ISP link on serial 0/0/1 for failover\n\nHSRP topology:\nRouter A (active) and Router B (standby) share VIP 192.168.1.254\nBoth track upstream ISP link on serial 0/0/1 for failover\n\nYou are running HSRP on Router A and Router B. You intermittently have ISP outages. What command should you configure to alert HSRP to the outage?",
       "choices": [
         "RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1",
         "RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1",
@@ -24155,7 +24157,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.5-source-q030",
-      "question": "You have four routers configured with HSRP. Four routers—Router A, Router B, Router C, and Router D—are configured with the default priority. You change the priority of Router A to 80, Router B to 100, Router C to 140, and Router D is...",
+      "question": "You have four routers configured with HSRP. Four routers—Router A, Router B, Router C, and Router D—are configured with the default priority. You change the priority of Router A to 80, Router B to 100, Router C to 140, and Router D is left at the default priority. Which router will become the active router?",
       "choices": [
         "Router A will become the active router.",
         "Router B will become the active router.",
@@ -33647,7 +33649,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.3-source-q015",
-      "question": "Switch# show users\n    Line       User       Host(s)              Idle       Location\n*  0 con 0                idle                 0          local\n   1 vty 0     admin      192.168.1.50         0          local\n   2 vty 1                idle                 5          local\n\nyou have listed all management sessions on the switch. On which line are you connected?",
+      "question": "Switch# show users\n    Line       User       Host(s)              Idle       Location\n*  0 con 0                idle                 0          local\n   1 vty 0     admin      192.168.1.50         0          local\n   2 vty 1                idle                 5          local\n\nSwitch# show users\n    Line       User       Host(s)              Idle       Location\n*  0 con 0                idle                 0          local\n   1 vty 0     admin      192.168.1.50         0          local\n   2 vty 1                idle                 5          local\n\nyou have listed all management sessions on the switch. On which line are you connected?",
       "choices": [
         "Console 0",
         "VTY 0",
@@ -35539,7 +35541,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.6-source-q019",
-      "question": "Network layout:\nHost 192.168.2.6 on user VLAN\nHR web server 192.168.1.3 port 80\nOther servers and Internet should remain reachable\n\nyou need to block traffic from the host 192.168.2.6 to the HR web application server but allow it to get to all other servers and the Internet. Which command(s) will achieve this?",
+      "question": "Network layout:\nHost 192.168.2.6 on user VLAN\nHR web server 192.168.1.3 port 80\nOther servers and Internet should remain reachable\n\nNetwork layout:\nHost 192.168.2.6 on user VLAN\nHR web server 192.168.1.3 port 80\nOther servers and Internet should remain reachable\n\nyou need to block traffic from the host 192.168.2.6 to the HR web application server but allow it to get to all other servers and the Internet. Which command(s) will achieve this?",
       "choices": [
         "Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any",
         "Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any",
@@ -35692,7 +35694,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.6-source-q022",
-      "question": "ACL requirement:\nBlock host network → HR web app (TCP/80) while permitting intranet web server access\nNeeds protocol/port matching → extended ACL\n\nyou need to block traffic from the host network to the HR web application and allow all traffic to get to the intranet web server. Which type of ACL would you use?",
+      "question": "ACL requirement:\nBlock host network → HR web app (TCP/80) while permitting intranet web server access\nNeeds protocol/port matching → extended ACL\n\nACL requirement:\nBlock host network → HR web app (TCP/80) while permitting intranet web server access\nNeeds protocol/port matching → extended ACL\n\nyou need to block traffic from the host network to the HR web application and allow all traffic to get to the intranet web server. Which type of ACL would you use?",
       "choices": [
         "Standard",
         "Dynamic",
@@ -35844,7 +35846,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.6-source-q025",
-      "question": "Topology:\nGi0/0: user network (hosts)\nGi0/2: HR network (to be blocked from host network)\nACL 2: deny host network, permit other traffic — apply outbound on HR-facing interface\n\nyou want to block the host network from accessing the HR network. Which commands will place the access list on the proper interface to make it effective?",
+      "question": "Topology:\nGi0/0: user network (hosts)\nGi0/2: HR network (to be blocked from host network)\nACL 2: deny host network, permit other traffic — apply outbound on HR-facing interface\n\nTopology:\nGi0/0: user network (hosts)\nGi0/2: HR network (to be blocked from host network)\nACL 2: deny host network, permit other traffic — apply outbound on HR-facing interface\n\nyou want to block the host network from accessing the HR network. Which commands will place the access list on the proper interface to make it effective?",
       "choices": [
         "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in",
         "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out",
@@ -35896,7 +35898,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.6-source-q026",
-      "question": "Switch# show ip access-list named_list\nExtended IP access list named_list\n    10 deny tcp host 192.168.2.6 host 192.168.1.3 eq www\n    20 permit ip any any\n\nWhich command can see the output below with the line numbers?",
+      "question": "Switch# show ip access-list named_list\nExtended IP access list named_list\n    10 deny tcp host 192.168.2.6 host 192.168.1.3 eq www\n    20 permit ip any any\n\nSwitch# show ip access-list named_list\nExtended IP access list named_list\n    10 deny tcp host 192.168.2.6 host 192.168.1.3 eq www\n    20 permit ip any any\n\nWhich command can see the output below with the line numbers?",
       "choices": [
         "Switch#show access-list named_list",
         "Switch#show ip access-list named_list",
@@ -37206,7 +37208,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.7-source-q023",
-      "question": "Switch# show port-security interface Gi0/1\nPort Security              : Enabled\nPort Status                : Secure-shutdown\nViolation Mode             : Shutdown\nTotal MAC Addresses        : 1 (max 1)\nSecurity Violation Count   : 1\n\nYou received a call that a port is no longer active. The port has port security configured on it. What is the problem?",
+      "question": "Switch# show port-security interface Gi0/1\nPort Security              : Enabled\nPort Status                : Secure-shutdown\nViolation Mode             : Shutdown\nTotal MAC Addresses        : 1 (max 1)\nSecurity Violation Count   : 1\n\nSwitch# show port-security interface Gi0/1\nPort Security              : Enabled\nPort Status                : Secure-shutdown\nViolation Mode             : Shutdown\nTotal MAC Addresses        : 1 (max 1)\nSecurity Violation Count   : 1\n\nYou received a call that a port is no longer active. The port has port security configured on it. What is the problem?",
       "choices": [
         "The port has been administratively shutdown.",
         "The port has an access violation on it.",
@@ -37309,7 +37311,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.7-source-q025",
-      "question": "Switch# show port-security interface Gi0/2\nPort Status                : Secure-shutdown (violation)\nViolation Mode             : Shutdown\n\nYou receive a call that a port on the switch is not working. You determine that a port-security violation has been experienced. Once the violation has been remediated, how will you reset the port so that it functions again?",
+      "question": "Switch# show port-security interface Gi0/2\nPort Status                : Secure-shutdown (violation)\nViolation Mode             : Shutdown\n\nSwitch# show port-security interface Gi0/2\nPort Status                : Secure-shutdown (violation)\nViolation Mode             : Shutdown\n\nYou receive a call that a port on the switch is not working. You determine that a port-security violation has been experienced. Once the violation has been remediated, how will you reset the port so that it functions again?",
       "choices": [
         "SwitchA(config-if)#no port-security",
         "SwitchA(config-if)#no shutdown",
@@ -37412,7 +37414,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.7-source-q027",
-      "question": "Switch# show port-security\nSecure Port  MaxSecureAddr  CurrentAddr  SecurityViolation  Security Action\nGi0/1        1              1            0                  Shutdown\nGi0/2        2              2            1                  Shutdown\n\nWhich command is used to see the output below?",
+      "question": "Switch# show port-security\nSecure Port  MaxSecureAddr  CurrentAddr  SecurityViolation  Security Action\nGi0/1        1              1            0                  Shutdown\nGi0/2        2              2            1                  Shutdown\n\nSwitch# show port-security\nSecure Port  MaxSecureAddr  CurrentAddr  SecurityViolation  Security Action\nGi0/1        1              1            0                  Shutdown\nGi0/2        2              2            1                  Shutdown\n\nWhich command is used to see the output below?",
       "choices": [
         "Switch#show port-security details",
         "Switch#show mac address-table secure",
@@ -39241,7 +39243,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.5-source-q004",
-      "question": "Router A tunnel config:\ninterface Tunnel0\n ip address 192.168.2.1 255.255.255.0\n tunnel source Serial0/0/0\n tunnel destination 203.0.113.2\n! No ip route to remote tunnel endpoint network\n\nyou are configuring a GRE tunnel. What is wrong with this configuration?",
+      "question": "Router A tunnel config:\ninterface Tunnel0\n ip address 192.168.2.1 255.255.255.0\n tunnel source Serial0/0/0\n tunnel destination 203.0.113.2\n! No ip route to remote tunnel endpoint network\n\nRouter A tunnel config:\ninterface Tunnel0\n ip address 192.168.2.1 255.255.255.0\n tunnel source Serial0/0/0\n tunnel destination 203.0.113.2\n! No ip route to remote tunnel endpoint network\n\nyou are configuring a GRE tunnel. What is wrong with this configuration?",
       "choices": [
         "Nothing is wrong with the configuration.",
         "The destination on Router A of the tunnel is incorrect.",
@@ -39293,7 +39295,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.5-source-q005",
-      "question": "GRE topology:\nRouter A: LAN 192.168.2.0/24, Tunnel0 192.168.2.1, peer Router B LAN 192.168.3.0/24\nSerial link: 203.0.113.0/30 (A=203.0.113.1, B=203.0.113.2)\n\nyou are configuring a GRE tunnel and need to configure a route statement on Router A. Which is the correct route statement?",
+      "question": "GRE topology:\nRouter A: LAN 192.168.2.0/24, Tunnel0 192.168.2.1, peer Router B LAN 192.168.3.0/24\nSerial link: 203.0.113.0/30 (A=203.0.113.1, B=203.0.113.2)\n\nGRE topology:\nRouter A: LAN 192.168.2.0/24, Tunnel0 192.168.2.1, peer Router B LAN 192.168.3.0/24\nSerial link: 203.0.113.0/30 (A=203.0.113.1, B=203.0.113.2)\n\nyou are configuring a GRE tunnel and need to configure a route statement on Router A. Which is the correct route statement?",
       "choices": [
         "Router(config)#ip route 192.168.3.0 255.255.255.0 tunnel 0",
         "Router(config)#ip route 192.168.2.0 255.255.255.0 tunnel 0",
@@ -39445,7 +39447,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.5-source-q008",
-      "question": "GRE tunnel carries traffic directly between tunnel endpoints:\nRouter A ping/traceroute to 192.168.3.50 crosses one GRE hop (tunnel encapsulation).\n\nif you do a traceroute on Router A to a destination of 192.168.3.50, how many hops will show?",
+      "question": "GRE tunnel carries traffic directly between tunnel endpoints:\nRouter A ping/traceroute to 192.168.3.50 crosses one GRE hop (tunnel encapsulation).\n\nGRE tunnel carries traffic directly between tunnel endpoints:\nRouter A ping/traceroute to 192.168.3.50 crosses one GRE hop (tunnel encapsulation).\n\nif you do a traceroute on Router A to a destination of 192.168.3.50, how many hops will show?",
       "choices": [
         "One hop",
         "Two hops",
@@ -39497,7 +39499,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.5-source-q009",
-      "question": "Router A Tunnel0 up/up but missing route to 192.168.3.0/24 via tunnel.\nCannot ping remote tunnel endpoint LAN 192.168.3.1\n\nYou are configuring a GRE tunnel. However, you cannot ping from Router A to 192.168.3.1. What is the problem?",
+      "question": "Router A Tunnel0 up/up but missing route to 192.168.3.0/24 via tunnel.\nCannot ping remote tunnel endpoint LAN 192.168.3.1\n\nRouter A Tunnel0 up/up but missing route to 192.168.3.0/24 via tunnel.\nCannot ping remote tunnel endpoint LAN 192.168.3.1\n\nYou are configuring a GRE tunnel. However, you cannot ping from Router A to 192.168.3.1. What is the problem?",
       "choices": [
         "The tunnel numbers do not match.",
         "The destination on Router A of the tunnel is incorrect.",
@@ -39600,7 +39602,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.5-source-q011",
-      "question": "Serial link between routers:\nRouter A S0/0/0: encapsulation ppp\nRouter B S0/0/0: encapsulation hdlc\n\nYou have configured a point-to-point dedicated line between two locations. However, you cannot ping between the two routers. What is the problem?",
+      "question": "Serial link between routers:\nRouter A S0/0/0: encapsulation ppp\nRouter B S0/0/0: encapsulation hdlc\n\nSerial link between routers:\nRouter A S0/0/0: encapsulation ppp\nRouter B S0/0/0: encapsulation hdlc\n\nYou have configured a point-to-point dedicated line between two locations. However, you cannot ping between the two routers. What is the problem?",
       "choices": [
         "The interface is administratively shut down.",
         "There is a wiring problem.",

@@ -7,6 +7,8 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { DOMAIN_META, DOMAIN_1_OBJECTIVES, EXTRA_CLEAN_OBJECTIVES } from './lib/sourceBankConfig.mjs'
+import { applyQuestionStemFixes } from './lib/questionStemFixes.mjs'
+import { exhibitForQuestion } from './lib/exhibitExhibits.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -21,9 +23,16 @@ function loadExcludedIds() {
   return new Set(excludedIds || [])
 }
 
+function normalizeCompiledQuestion(q) {
+  let out = applyQuestionStemFixes(q)
+  const converted = exhibitForQuestion(out)
+  if (converted) out = converted
+  return out
+}
+
 function filterExcluded(questions, excluded) {
-  if (!excluded.size) return questions || []
-  return (questions || []).filter(q => !q?.id || !excluded.has(q.id))
+  if (!excluded.size) return (questions || []).map(normalizeCompiledQuestion)
+  return (questions || []).filter(q => !q?.id || !excluded.has(q.id)).map(normalizeCompiledQuestion)
 }
 
 function main() {
