@@ -4,23 +4,75 @@ import { SITE_COLUMN_MAX } from './appShell.js'
 export function buildAppShellResponsiveCss(colors) {
   return `
     /* ---- Responsive layout: phone, tablet, desktop ---- */
-    .home-page-header {
+    .ccna-home-topbar {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 6px;
+      max-height: 120px;
+      min-width: 0;
+    }
+    .ccna-home-topbar__row1 {
+      display: flex;
+      align-items: center;
       gap: 8px;
-      margin-bottom: 4px;
-      position: sticky;
-      top: var(--ccna-safe-top);
-      z-index: 40;
-      padding-bottom: 6px;
-      background: linear-gradient(
-        to bottom,
-        color-mix(in srgb, ${colors.bg} 98%, transparent) 0%,
-        color-mix(in srgb, ${colors.bg} 90%, transparent) 88%,
-        transparent 100%
-      );
+      min-width: 0;
+    }
+    .ccna-home-topbar__title-wrap {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .ccna-home-topbar__title {
+      margin: 0 !important;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      line-height: 1.2 !important;
+    }
+    .ccna-home-topbar__subtitle {
+      font-size: var(--ccna-type-xs);
+      color: ${colors.silverMid};
+      line-height: 1.3;
+      margin-top: 1px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .ccna-home-topbar__actions {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+    .ccna-home-topbar__stats {
+      padding: 10px 4px !important;
+    }
+    .ccna-home-topbar__streak {
+      font-size: var(--ccna-type-xs);
+      color: ${colors.mint};
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ccna-home-topbar__chips {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 6px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 2px;
+      margin-bottom: -2px;
+    }
+    @media (max-width: 390px) {
+      .ccna-home-topbar__title {
+        max-width: 100%;
+      }
+      .ccna-home-topbar__chips {
+        margin-left: -2px;
+        margin-right: -2px;
+        padding-left: 2px;
+        padding-right: 2px;
+      }
     }
     .home-study-grid {
       display: grid;

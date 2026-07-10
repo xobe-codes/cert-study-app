@@ -33,7 +33,7 @@ test.describe('Mock debrief → domain pass smoke', () => {
     await seedWeakMockHistory(page)
 
     await page.goto('/')
-    await expect(page.getByText('WEAK AREAS', { exact: true })).toBeVisible({ timeout: 20_000 })
+    await expect(page.getByText('FIX NEXT', { exact: true })).toBeVisible({ timeout: 20_000 })
     await expect(page.getByText(/Last mock 55%/i).first()).toBeVisible({ timeout: 10_000 })
 
     await page.getByRole('button', { name: /Domain Pass/i }).first().click()

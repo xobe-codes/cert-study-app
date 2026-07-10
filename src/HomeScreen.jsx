@@ -14,10 +14,9 @@ import {
 } from './home/learnerHome.js'
 import StudyNextStrip from './home/StudyNextStrip.jsx'
 import TrapHeatmapStrip from './home/TrapHeatmapStrip.jsx'
-import ThemeToggleButton from './components/ThemeToggleButton.jsx'
+import HomeTopBar from './home/HomeTopBar.jsx'
 import StatusLabel from './components/StatusLabel.jsx'
 import ProgressRing from './components/ProgressRing.jsx'
-import { todayStr } from './home/sessionUtils.js'
 import { getSessionStudy, isRecapDismissed, dismissSessionRecap } from './home/sessionRecap.js'
 import { groupMissedByTrap } from './missed/missedTrapGroups.js'
 import DomainPassCompleteCard from './features/domainPass/DomainPassCompleteCard.jsx'
@@ -379,30 +378,15 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
 
   return (
     <div>
-      <div className="home-page-header">
-        <h1 style={{ ...styles.h1, flex: '1 1 auto', minWidth: 0, margin: 0 }} className="ccna-grad-text">CCNA 200-301</h1>
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, flexShrink: 0 }}>
-          <ThemeToggleButton theme={theme} onToggle={onToggleTheme} />
-          {streak.count > 0 && (() => {
-          const count = streak.count
-          const msg = count >= 30 ? 'Legendary! 🏆' : count >= 14 ? 'Unstoppable! 💪🏾' : count >= 7 ? 'On fire! 🔥' : count >= 3 ? 'Nice momentum!' : 'Keep it going!'
-          const today = todayStr()
-          const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10)
-          const lastLabel = streak.lastStudyDate === today ? 'Today' : streak.lastStudyDate === yesterday ? 'Yesterday' : null
-          return (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 3, flexShrink: 0 }}>
-              <div style={{ ...homePill('mint'), whiteSpace: 'nowrap' }}>🔥 {count} day{count === 1 ? '' : 's'} streak</div>
-              <div style={{ fontSize: 'var(--ccna-type-xs)', color: accentColors('mint').text, fontWeight: 500, textAlign: 'right' }}>{msg}</div>
-              {lastLabel && <div style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid }}>Last studied: {lastLabel}</div>}
-            </div>
-          )
-        })()}
-        </div>
-      </div>
-      <div style={{ ...homeBodySm, marginBottom: HOME_SECTION_GAP }}>
-        {totals.mastered} mastered · {totals.inProgress} in progress · {totals.total - totals.mastered - totals.inProgress} not started
-        {offlineReady?.size > 0 && <> · ⤓ {offlineReady.size} offline-ready</>}
-      </div>
+      <HomeTopBar
+        streak={streak}
+        totals={totals}
+        theme={theme}
+        onToggleTheme={onToggleTheme}
+        onOpenStats={onOpenStats}
+        offlineReady={offlineReady}
+        readinessScore={readiness.score}
+      />
 
       <StudyNextStrip
         next={studyNext}
@@ -440,6 +424,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         missed={missed}
         readiness={readiness}
         domainPassRecords={domainPassRecords}
+        placementRecords={placementRecords}
         onSelectObjective={onSelectObjective}
         onOpenTrapDrill={onOpenTrapDrill}
         onOpenExamTraps={onOpenExamTraps}
