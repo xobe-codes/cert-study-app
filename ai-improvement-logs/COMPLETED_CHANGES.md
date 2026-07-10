@@ -58,3 +58,4 @@
 - **2026-07-10** `question_debrief_99`: Stem-grounded wrong-answer rebuild (ban `satisfies what this question tests`); AnswerReview order miss→family chip→correct; Trap/Wildcard remediation; CI validates runtime-applied reviews; workbox SW minify flake fix (`mode: 'development'`).
 - **2026-07-10** `topology_svg_99`: Device silhouettes, iPhone type floors, landscape clamps, pinch/pan expand modal, `diagram-iphone-smoke` e2e.
 - **2026-07-10** `polish_99`: AnswerReview parity across Mock/Review/Focus/Placement; home Domain Pass + Fix Next hierarchy; diagram type/shortLabel wave; Study diagram earlier; reveal CSS.
+- **2026-07-10** `polish_99_next`: Gold batch 31 (40 short/high-traffic debriefs); defer full clean-bank warm to idle; confirm all config labs interpret-only + domain chunk split already shipped.

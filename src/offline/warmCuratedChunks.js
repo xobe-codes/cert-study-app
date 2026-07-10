@@ -41,6 +41,9 @@ function warmScriptChunk(matcher) {
 /**
  * Eagerly load large curated chunks so the PWA runtime cache stores them.
  * Idempotent per page session; failures are silent (offline-first must not block UI).
+ *
+ * First-paint: defer full clean-bank preload so home does not compete with
+ * domain-chunk downloads. Quiz/topic paths still use preloadCleanBankForObjective.
  */
 export async function warmCuratedChunksForOffline() {
   if (warmed || typeof window === 'undefined') return
@@ -48,12 +51,22 @@ export async function warmCuratedChunksForOffline() {
   if (!isOfflineCapable()) return
 
   const tasks = [
-    preloadCleanBank().catch(() => {}),
     ...LAZY_CHUNK_IMPORTS.map(loader => loader().catch(() => {})),
     ...SCRIPT_CHUNK_MATCHERS.map(warmScriptChunk),
   ]
 
   await Promise.all(tasks)
+
+  const scheduleBank = (cb) => {
+    if (typeof requestIdleCallback === 'function') {
+      requestIdleCallback(() => cb(), { timeout: 4000 })
+    } else {
+      setTimeout(cb, 1500)
+    }
+  }
+  scheduleBank(() => {
+    preloadCleanBank().catch(() => {})
+  })
 }
 
 /** Test-only reset for warm guard. */

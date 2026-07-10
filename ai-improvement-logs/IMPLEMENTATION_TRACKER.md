@@ -22,7 +22,7 @@
 | Metric | Value |
 |--------|------:|
 | Objectives | 53 · Tier A **53** · B 0 · C 0 |
-| Labs | 82 (57 interpret · 25 config) |
+| Labs | 82 (82 interpret · 0 config) |
 | Trap / flashcard / cmd gaps | **0 / 0 / 0** |
 | App.jsx | ~198 lines |
 
@@ -38,7 +38,7 @@
 | Engineer perspective | 99 | 97 | engineer view 53/53 |
 | CLI verification | 99 | 96 | ≥2 verify cmds 53/53 |
 | Exam traps | 100 | 97 | avg 12 traps · floor 0 |
-| Labs / CLI | 99 | 97 | lab/obj + 57 interpret + 10 TS |
+| Labs / CLI | 99 | 97 | lab/obj + 82 interpret (0 config) + TS |
 | Maintainability | 97 | 96 | App 198L · ObjScreen 170L · 0 files >900L |
 | Mobile / a11y | 99 | 96 | 6 mobile e2e · a11y ✓ |
 | Tests / CI | 99 | 96 | 134 unit files · 38 e2e |
@@ -60,8 +60,7 @@
 | id | area | work |
 |----|------|------|
 | `trap_depth_wave22` | exam_traps | Further trap depth beyond avg 12 |
-| `config_lab_convert` | labs | Convert remaining 25 config labs to lab-lite |
-| `chunk_split_domains` | mobile | Split clean-question chunk by domain for faster first paint |
+| `gold_polish_wave32` | content | Optional further gold polish on remaining short tails |
 
 ## Parked — next phase (do not implement until asked)
 

@@ -31,12 +31,19 @@ describe('warmCuratedChunksForOffline', () => {
     expect(isOfflineCapable()).toBe(true)
   })
 
-  it('calls preloadCleanBank once per session', async () => {
+  it('defers preloadCleanBank until idle (once per session)', async () => {
+    vi.stubGlobal('requestIdleCallback', undefined)
+    vi.useFakeTimers()
     const { preloadCleanBank } = await import('../data/cleanQuestionAdapter.js')
     const { warmCuratedChunksForOffline } = await import('../offline/warmCuratedChunks.js')
     await warmCuratedChunksForOffline()
-    await warmCuratedChunksForOffline()
+    expect(preloadCleanBank).not.toHaveBeenCalled()
+    await vi.advanceTimersByTimeAsync(2000)
     expect(preloadCleanBank).toHaveBeenCalledTimes(1)
+    await warmCuratedChunksForOffline()
+    await vi.advanceTimersByTimeAsync(2000)
+    expect(preloadCleanBank).toHaveBeenCalledTimes(1)
+    vi.useRealTimers()
   })
 
   it('warms lazy route chunks for offline PWA', async () => {
