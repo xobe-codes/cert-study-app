@@ -63,6 +63,14 @@
 | `config_lab_convert` | labs | Convert remaining 25 config labs to lab-lite |
 | `chunk_split_domains` | mobile | Split clean-question chunk by domain for faster first paint |
 
+## Parked — next phase (do not implement until asked)
+
+**Curriculum Study OS / multi-pack platform** — saved plan for after current CCNA class.
+
+→ Full spec: [`PLATFORM_NEXT_PHASE.md`](./PLATFORM_NEXT_PHASE.md)
+
+Revisit when next school class starts (class pack template) or when adding a second cert. Default first build: P0 pack shell + P1 syllabus → class pack.
+
 Full shipped history: `COMPLETED_CHANGES.md`
 
 ---
