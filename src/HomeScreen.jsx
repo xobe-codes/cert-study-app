@@ -24,6 +24,7 @@ import WeakAreaDashboard from './features/home/WeakAreaDashboard.jsx'
 import DomainBaselinePrompt from './features/domainPlacement/DomainBaselinePrompt.jsx'
 import ExamReadyBanner from './home/ExamReadyBanner.jsx'
 import HomeSectionLabel from './home/HomeSectionLabel.jsx'
+import ContentHealthHomeStrip from './components/ContentHealthHomeStrip.jsx'
 import { pickBaselineAwareStudyNext } from './features/domainPlacement/domainBaselineStudyPlan.js'
 import {
   HOME_SECTION_GAP,
@@ -508,6 +509,11 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
           </button>
         )
       })()}
+
+      <ContentHealthHomeStrip
+        premiumUnlocked={premiumUnlocked}
+        onOpenSettings={onOpenSettings}
+      />
 
       {suggestions.length > 0 && (
         <div style={{ marginBottom: HOME_SECTION_GAP }} className="ccna-stagger">

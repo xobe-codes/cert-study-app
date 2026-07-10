@@ -3,6 +3,8 @@ import { COLORS, styles } from '../ui/appTheme.js'
 import { MIN_QUIZ_SESSION_SIZE, MAX_QUIZ_SESSION_SIZE, commitSessionSizeDraft, sanitizeSessionSizeDraftInput, sessionSizeDraftFromCommitted } from '../quizSessionConfig.js'
 import { KEYBOARD_SHORTCUTS } from '../ui/keyboardShortcuts.js'
 import { PremiumSettingsCard } from './PremiumPreview.jsx'
+import ContentHealthSettings from './ContentHealthSettings.jsx'
+import { STORAGE_KEYS } from '../storageKeys.js'
 
 const MODAL_Z = 300
 
@@ -52,6 +54,7 @@ const SECTION_LINKS = [
   { id: 'settings-appearance', label: 'Appearance' },
   { id: 'settings-study', label: 'Study' },
   { id: 'settings-ai', label: 'AI' },
+  { id: 'settings-content-health', label: 'Health' },
   { id: 'settings-data', label: 'Data' },
   { id: 'settings-about', label: 'About' },
 ]
@@ -86,6 +89,8 @@ export default function SettingsSheet({
   onDonatePreview,
   premiumUnlocked = false,
   onTogglePremium,
+  onPremiumBlocked,
+  apiOnline = true,
 }) {
   const dialogRef = useRef(null)
   const sheetRef = useRef(null)
@@ -101,6 +106,21 @@ export default function SettingsSheet({
 
   useEffect(() => { setExamInput(examDate || '') }, [examDate])
   useEffect(() => { setQuizSizeInput(sessionSizeDraftFromCommitted(quizSessionSize)) }, [quizSessionSize])
+
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      try {
+        const focusId = await window.storage?.getItem(STORAGE_KEYS.settingsFocusSection)
+        if (!focusId || cancelled) return
+        await window.storage?.removeItem(STORAGE_KEYS.settingsFocusSection)
+        requestAnimationFrame(() => {
+          sheetRef.current?.querySelector(`#${focusId}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        })
+      } catch { /* ignore */ }
+    })()
+    return () => { cancelled = true }
+  }, [])
 
   function onQuizSizeInput(e) {
     setQuizSizeInput(sanitizeSessionSizeDraftInput(e.target.value))
@@ -284,6 +304,12 @@ export default function SettingsSheet({
         </div>
 
         </div>
+
+        <ContentHealthSettings
+          premiumUnlocked={premiumUnlocked}
+          onPremiumBlocked={onPremiumBlocked}
+          apiOnline={apiOnline}
+        />
 
         <div id="settings-data">
         <SectionLabel>DATA</SectionLabel>

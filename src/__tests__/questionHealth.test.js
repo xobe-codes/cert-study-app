@@ -20,6 +20,14 @@ describe('question_health_registry', () => {
     expect(isQuestionExcluded(excluded)).toBe(true)
   })
 
+  it('filterHealthyQuestions also drops local soft-quarantine ids', async () => {
+    const { setLocalQuarantineIds } = await import('../data/questionHealth.js')
+    setLocalQuarantineIds(['soft-q'])
+    const qs = [{ id: 'soft-q', question: 'x' }, { id: 'ok', question: 'y' }]
+    expect(filterHealthyQuestions(qs)).toEqual([{ id: 'ok', question: 'y' }])
+    setLocalQuarantineIds([])
+  })
+
   it('defines structured flag reasons', () => {
     expect(FLAG_REASON_IDS.has('wrong_key')).toBe(true)
     expect(FLAG_REASON_IDS.has('ambiguous')).toBe(true)

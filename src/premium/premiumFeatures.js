@@ -10,6 +10,7 @@ export const PREMIUM_FEATURES = {
   quiz_generate: 'quiz_generate',
   donate_preview: 'donate_preview',
   mock_interview: 'mock_interview',
+  content_health_ai: 'content_health_ai',
 }
 
 export const PREMIUM_COMING_SOON_LABEL = 'Premium — coming soon'

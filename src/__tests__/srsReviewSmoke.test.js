@@ -77,4 +77,13 @@ describe('SRS review smoke', () => {
     expect(await countDueQuestions()).toBe(0)
     expect(await loadDueQuestions()).toEqual([])
   })
+
+  it('practice rating forces a not-yet-due item into Daily Review', async () => {
+    const future = Date.now() + 86400000 * 14
+    const [id] = await seedDueReviewBank('3.5', [SAMPLE_Q], { dueAt: future })
+    await recordQuizResult('3.5', id, { rating: 'practice', schedule: true })
+    expect(await countDueQuestions()).toBe(1)
+    const due = await loadDueQuestions(5)
+    expect(due.some(q => q.id === id)).toBe(true)
+  })
 })

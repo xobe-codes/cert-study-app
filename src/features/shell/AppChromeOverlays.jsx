@@ -91,6 +91,8 @@ export default function AppChromeOverlays({
           onDonatePreview={settings.onDonatePreview}
           premiumUnlocked={settings.premiumUnlocked}
           onTogglePremium={settings.onTogglePremium}
+          onPremiumBlocked={settings.onPremiumBlocked}
+          apiOnline={settings.apiOnline}
         />
       )}
       <PremiumToast message={premiumToast} onDismiss={onDismissPremiumToast} />

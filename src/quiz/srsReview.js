@@ -2,10 +2,9 @@ import { STORAGE_KEYS } from '../storageKeys.js'
 import { computeMastery } from '../netUtils.js'
 import { randomizeQuestionOrder } from '../questionUtils.js'
 import { loadQuizBank, saveQuizBank, mergeIntoBank, recordQuizResult } from './quizBankStorage.js'
+import { confidenceDuePriority, shouldForceReview } from './confidenceScheduler.js'
 
 export const REVIEW_SESSION_CAP = 20
-
-const DAY_MS = 86400000
 
 async function loadProgress() {
   return (await window.storage.getItem(STORAGE_KEYS.progress)) || {}
@@ -15,13 +14,15 @@ function normalizeQuestionText(q) {
   return (q || '').trim().toLowerCase().replace(/\s+/g, ' ')
 }
 
-/** Count banked questions due for SRS review right now. */
+/** Count banked questions due for SRS review right now (includes confidence pins). */
 export async function countDueQuestions(now = Date.now()) {
   const bank = await loadQuizBank()
   let n = 0
   for (const objectiveId of Object.keys(bank)) {
     for (const q of bank[objectiveId]) {
-      if (q.srs && (q.attempts?.length || 0) > 0 && (q.srs.due ?? 0) <= now) n++
+      if (!q.srs || (q.attempts?.length || 0) === 0) continue
+      const due = (q.srs.due ?? 0) <= now
+      if (due || shouldForceReview(q, now)) n++
     }
   }
   return n
@@ -35,12 +36,6 @@ export async function loadDueQuestions(limit = REVIEW_SESSION_CAP, now = Date.no
   const daysToExam = examDate ? Math.ceil((new Date(examDate) - now) / 86400000) : 999
   const nearExam = daysToExam > 0 && daysToExam <= 30
 
-  function isOverconfident(q) {
-    if (!q.srs || (q.srs.lapses || 0) === 0) return false
-    const lastRating = q.ratings?.length ? q.ratings[q.ratings.length - 1].value : null
-    return lastRating === 'easy'
-  }
-
   function hasDecliningAccuracy(objId) {
     const entry = progress[objId]
     if (!entry) return false
@@ -52,22 +47,21 @@ export async function loadDueQuestions(limit = REVIEW_SESSION_CAP, now = Date.no
     return accs[0] > accs[1] && accs[1] > accs[2]
   }
 
-  function qPriority(q, overconf) {
-    if (q.type === 'troubleshooting' && (nearExam || (q.srs?.intervalIndex || 0) >= 2)) return 0
-    if (overconf) return 1
-    return 2
-  }
-
   const bySection = {}
   for (const objectiveId of Object.keys(bank)) {
     const declining = hasDecliningAccuracy(objectiveId)
     for (const q of bank[objectiveId]) {
       if (!q.srs || (q.attempts?.length || 0) === 0) continue
       const due = (q.srs.due ?? 0) <= now
-      const overconf = isOverconfident(q)
-      if (!due && !overconf && !declining) continue
-      const priority = qPriority(q, overconf)
-      ;(bySection[objectiveId] ||= []).push({ ...q, objectiveId, dueAt: q.srs.due ?? 0, _priority: priority })
+      const forced = shouldForceReview(q, now)
+      if (!due && !forced && !declining) continue
+      const priority = confidenceDuePriority(q, { nearExam })
+      ;(bySection[objectiveId] ||= []).push({
+        ...q,
+        objectiveId,
+        dueAt: q.srs.due ?? 0,
+        _priority: declining && !due && !forced ? priority + 0.5 : priority,
+      })
     }
   }
 

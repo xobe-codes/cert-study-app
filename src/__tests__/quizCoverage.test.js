@@ -22,4 +22,30 @@ describe('quizCoverage', () => {
     const ids = new Set(set.map(q => q.id))
     expect(ids.has('q2') || ids.has('q3')).toBe(true)
   })
+
+  it('confidence weights prefer need-practice over easy+correct', () => {
+    const banked = [
+      {
+        id: 'easy-q',
+        ckuIds: ['CKU-A'],
+        attempts: [{ correct: true, at: 1 }],
+        ratings: [{ value: 'easy', at: 1 }],
+        difficulty: 'easy',
+        type: 'definition',
+      },
+      {
+        id: 'practice-q',
+        ckuIds: ['CKU-A'],
+        attempts: [{ correct: true, at: 1 }],
+        ratings: [{ value: 'practice', at: 1 }],
+        difficulty: 'easy',
+        type: 'definition',
+      },
+    ]
+    const picks = []
+    for (let i = 0; i < 20; i++) {
+      picks.push(pickReviewSet(banked, null, 1, { ckuIds: ['CKU-A'] })[0].id)
+    }
+    expect(picks.filter(id => id === 'practice-q').length).toBeGreaterThan(picks.filter(id => id === 'easy-q').length)
+  })
 })

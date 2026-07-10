@@ -35,6 +35,7 @@ import {
 } from './tabRuntimeDeps.js'
 import { QUIZ_SCHEMA } from '../ai/claudeClient.js'
 import { recordQuestionHealthSignal } from '../quiz/questionHealthSignals.js'
+import { confidenceFeedbackCopy } from '../quiz/confidenceScheduler.js'
 import { applyAnswerReviewToQuestion, inferTrapForChoice } from '../answerReviewLogic.js'
 import { isActionableMissedTrap } from '../missed/missedTrapGroups.js'
 import { bumpSessionStudy } from '../home/sessionRecap.js'
@@ -247,6 +248,7 @@ export function QuizTab({
   const [selected, setSelected] = useState(null)
   const [revealed, setRevealed] = useState(false)
   const [rating, setRating] = useState(null) // confidence rating for the current question
+  const [confidenceHint, setConfidenceHint] = useState(null)
   const [stats, setStats] = useState({ correct: 0, total: 0, missedCount: 0 })
   const [sourceLabel, setSourceLabel] = useState(null) // where this session's questions came from
   const sessionRatings = useRef([])
@@ -452,6 +454,7 @@ export function QuizTab({
       setSelected(null)
       setRevealed(false)
       setRating(null)
+      setConfidenceHint(null)
       setStats({ correct: 0, total: 0, missedCount: 0 })
       setPhase('active')
       logEvent('user_started_quiz', { objectiveId: objective.id, source: usedApi ? 'fresh' : 'bank', size: set.length })
@@ -469,6 +472,7 @@ export function QuizTab({
     setSelected(null)
     setRevealed(false)
     setRating(null)
+    setConfidenceHint(null)
     setStreak(0)
     sessionRatings.current = []
     deferredTips.current = []
@@ -580,11 +584,17 @@ export function QuizTab({
     sessionRatings.current.push(value)
     if (current.id) recordQuizResult(objective.id, current.id, { rating: value })
     logEvent('user_rated_question_difficulty', { objectiveId: objective.id, questionId: current.id, rating: value })
-    if (value === 'easy' && revealed) {
-      const ordering = isOrderingQuestion(current)
-      const cli = isCliQuestion(current)
-      const wasWrong = ordering ? !gradeQuestion(current, orderDraft) : cli ? !gradeQuestion(current, cliAnswer) : (selected != null && !gradeQuestion(current, selected))
-      if (wasWrong) setOverconfidentCallout(true)
+    const ordering = isOrderingQuestion(current)
+    const cli = isCliQuestion(current)
+    let wasCorrect = null
+    if (revealed) {
+      if (ordering) wasCorrect = gradeQuestion(current, orderDraft)
+      else if (cli) wasCorrect = gradeQuestion(current, cliAnswer)
+      else if (selected != null) wasCorrect = gradeQuestion(current, selected)
+    }
+    setConfidenceHint(confidenceFeedbackCopy(value, wasCorrect))
+    if (value === 'easy' && revealed && wasCorrect === false) {
+      setOverconfidentCallout(true)
     }
   }
 
@@ -599,6 +609,7 @@ export function QuizTab({
     setSelected(null)
     setRevealed(false)
     setRating(null)
+    setConfidenceHint(null)
     setCliAnswer('')
     setOverconfidentCallout(false)
   }
@@ -833,6 +844,11 @@ export function QuizTab({
               )
             })}
           </div>
+          {confidenceHint && (
+            <div style={{ ...styles.small, marginTop: 8, color: COLORS.sky, lineHeight: 1.4 }}>
+              {confidenceHint}
+            </div>
+          )}
         </div>
       )}
       {revealed && <button style={styles.primaryBtn} onClick={next}>{queue.length === 0 ? 'Finish' : 'Next question'}</button>}

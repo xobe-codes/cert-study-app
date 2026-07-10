@@ -1,5 +1,6 @@
 import { randomizeQuestionOrder } from '../questionUtils.js'
 import { getCurated, getCuratedQuestions, curatedObjectiveIds } from '../data/ccnaCurated.js'
+import { confidencePickScore } from '../quiz/confidenceScheduler.js'
 
 export function getObjectiveCkuIds(objectiveId) {
   const curated = getCurated(objectiveId)
@@ -28,13 +29,7 @@ export function computeCkuCoverage(objectiveId, bankedQuestions) {
 }
 
 function questionPriority(q) {
-  const lastRating = q.ratings?.length ? q.ratings[q.ratings.length - 1].value : null
-  const lastAttempt = q.attempts?.length ? q.attempts[q.attempts.length - 1] : null
-  if (!q.attempts?.length) return 0
-  if (lastAttempt && !lastAttempt.correct) return 1
-  if (lastRating === 'hard' || lastRating === 'practice') return 2
-  if (lastRating === 'medium') return 3
-  return 4
+  return confidencePickScore(q)
 }
 
 function ckuAttemptWeight(banked, ckuId) {
@@ -48,7 +43,7 @@ function ckuAttemptWeight(banked, ckuId) {
 
 /**
  * Session picker with CKU coverage bias: under-tested CKUs get a slot first,
- * then the usual review priority fills the rest.
+ * then confidence-weighted review priority fills the rest.
  * Optional preferUnseenIds lightly boosts never-seen bank ids (exposure).
  */
 export function pickReviewSet(banked, accuracy = null, sessionSize = 5, { ckuIds = [], preferUnseenIds = null } = {}) {

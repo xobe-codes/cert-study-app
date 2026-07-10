@@ -1,11 +1,11 @@
 import { STORAGE_KEYS } from '../storageKeys.js'
 import { normalizeQuestionForBank } from '../questionUtils.js'
+import { nextSrs, applyConfidenceToSrs, SRS_LADDER } from './confidenceScheduler.js'
 
 export const QUIZ_BANK_MIN = 5
 export const MASTERY_GATE = 0.7
 
 const DAY_MS = 86400000
-const SRS_LADDER = [2, 7, 14, 30, 60]
 
 function normalizeQuestionText(q) {
   return (q || '').trim().toLowerCase().replace(/\s+/g, ' ')
@@ -14,17 +14,6 @@ function normalizeQuestionText(q) {
 /** Dedup key for quiz bank merge (sync + import). */
 export function quizQuestionKey(q) {
   return normalizeQuestionText(q?.question ?? q)
-}
-
-function nextSrs(prev, correct) {
-  const s = prev || { reps: 0, lapses: 0 }
-  let reps = s.reps || 0
-  let lapses = s.lapses || 0
-  if (correct) reps += 1
-  else { reps = 0; lapses += 1 }
-  const intervalIndex = Math.min(Math.max(reps - 1, 0), SRS_LADDER.length - 1)
-  const interval = SRS_LADDER[intervalIndex]
-  return { interval, reps, lapses, intervalIndex, due: Date.now() + interval * DAY_MS }
 }
 
 export async function loadQuizBank() {
@@ -52,11 +41,31 @@ export async function recordQuizResult(objectiveId, questionId, { correct, ratin
   if (!list) return
   const q = list.find(x => x.id === questionId)
   if (!q) return
+
   if (typeof correct === 'boolean') {
     q.attempts.push({ correct, at: Date.now() })
-    if (schedule) q.srs = nextSrs(q.srs, correct)
+    if (schedule) q.srs = nextSrs(q.srs, correct, rating || null)
   }
-  if (rating) q.ratings.push({ value: rating, at: Date.now() })
+
+  if (rating) {
+    q.ratings.push({ value: rating, at: Date.now() })
+    if (schedule) {
+      const lastAttempt = q.attempts?.length ? q.attempts[q.attempts.length - 1] : null
+      const lastCorrect = lastAttempt ? lastAttempt.correct : null
+      if (q.srs) {
+        q.srs = applyConfidenceToSrs(q.srs, rating, lastCorrect)
+      } else if (lastCorrect != null) {
+        q.srs = nextSrs(undefined, lastCorrect, rating)
+      } else if (rating === 'practice') {
+        q.srs = applyConfidenceToSrs(
+          { interval: 0, reps: 0, lapses: 0, intervalIndex: 0, due: Date.now() },
+          'practice',
+          null,
+        )
+      }
+    }
+  }
+
   await saveQuizBank(bank)
 }
 
@@ -74,8 +83,6 @@ export async function enableSectionReview(objectiveId) {
   if (changed) await saveQuizBank(bank)
 }
 
-/** Due-question queue lives in srsReview.js (re-exported via tabRuntimeDeps). */
-
 export async function seedTestedOutReview(objectiveId, questions) {
   let bank = await loadQuizBank()
   bank = mergeIntoBank(bank, objectiveId, questions)
@@ -89,3 +96,5 @@ export async function seedTestedOutReview(objectiveId, questions) {
   })
   await saveQuizBank(bank)
 }
+
+export { nextSrs, applyConfidenceToSrs, SRS_LADDER }

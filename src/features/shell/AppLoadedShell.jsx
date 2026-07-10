@@ -369,6 +369,8 @@ export default function AppLoadedShell({
           onDonatePreview: () => handlePremiumBlocked(PREMIUM_FEATURES.donate_preview, 'settings'),
           premiumUnlocked,
           onTogglePremium: handleTogglePremium,
+          onPremiumBlocked: handlePremiumBlocked,
+          apiOnline,
         }}
         premiumToast={premiumToast}
         onDismissPremiumToast={dismissPremiumToast}

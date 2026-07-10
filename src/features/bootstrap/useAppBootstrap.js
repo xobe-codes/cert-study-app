@@ -9,6 +9,7 @@ import {
   applyReduceMotionPreference,
 } from '../../settings/settingsActions.js'
 import { flushQuestionFlagQueue } from '../../quiz/questionHealthClient.js'
+import { hydrateLocalQuarantine } from '../../quiz/contentHealthProcess.js'
 import { warmCuratedChunksForOffline } from '../../offline/warmCuratedChunks.js'
 import { parseAppHash } from '../../routing/appHashRouting.js'
 import { applyParsedHashRoute } from '../navigation/studyModeNavigation.js'
@@ -74,6 +75,7 @@ export function useAppBootstrap({
     setPremiumUnlocked(premium)
     setApiOnline(online)
     flushQuestionFlagQueue().catch(() => {})
+    hydrateLocalQuarantine().catch(() => {})
     if (typeof window !== 'undefined') {
       window.dispatchEvent(new CustomEvent(APP_REFRESH_EVENT))
     }
@@ -105,6 +107,7 @@ export function useAppBootstrap({
       setPremiumUnlocked(premium)
       setLoaded(true)
       flushQuestionFlagQueue().catch(() => {})
+      hydrateLocalQuarantine().catch(() => {})
       const reduceMotion = await loadReduceMotion()
       applyReduceMotionPreference(reduceMotion)
       const onboardingView = await resolveOnboardingBootstrap(p)
