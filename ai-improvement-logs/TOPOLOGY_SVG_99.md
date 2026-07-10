@@ -8,12 +8,12 @@ Readable Cisco-like topologies on 390×844 and landscape: distinct device glyphs
 
 | Piece | Where |
 |-------|--------|
-| Device silhouettes | `diagramDeviceIcons.jsx` |
-| Font / canvas clamps | `diagramFontSizes`, `diagramCanvasSize` |
+| Device silhouettes | `diagramDeviceIcons.jsx` (process ≠ highlight) |
+| Font / canvas clamps | `diagramFontSizes` (≥10px mobile node+link), `diagramCanvasSize` |
 | Link label rules | `shouldShowLinkLabel` |
 | Pinch / pan / double-tap reset | `diagramPanZoom.js` + `useDiagramPanZoom` |
 | Expand modal zoom canvas | `CuratedDiagram.jsx` |
-| E2E | `diagram-iphone-smoke.spec.js` |
+| E2E | `diagram-iphone-smoke.spec.js` (portrait + landscape 844×390) |
 
 ## Out of scope
 

@@ -39,29 +39,39 @@ async function seedDomainPassResultsResume(page) {
   }, RESUME_KEY)
 }
 
-test.describe('Domain pass trap resume smoke', () => {
+async function openDomainPassResults(page) {
+  await seedOnboarding(page)
+  await seedDomainPassResultsResume(page)
+  await page.goto('/#/domainpass')
+  await expect(page.getByRole('heading', { name: /Domain Pass/i })).toBeVisible({ timeout: 20_000 })
+  await page.getByRole('button', { name: /Network Fundamentals/i }).first().click()
+  await expect(page.getByRole('heading', { name: /Network Fundamentals — Results/i })).toBeVisible({ timeout: 20_000 })
+  await expect(page.getByText('FAIL', { exact: true })).toBeVisible()
+  await expect(page.getByText(/1 \/ 2 correct/i)).toBeVisible()
+}
+
+async function backToDomainPassResults(page) {
+  const bottomBack = page.getByRole('navigation', { name: /main navigation/i }).getByRole('button', { name: 'Back', exact: true })
+  await expect(bottomBack).toBeVisible({ timeout: 10_000 })
+  await bottomBack.click()
+  await expect(page.getByRole('heading', { name: /Network Fundamentals — Results/i })).toBeVisible({ timeout: 20_000 })
+  await expect(page.getByText('FAIL', { exact: true })).toBeVisible()
+  await expect(page.getByText(/1 \/ 2 correct/i)).toBeVisible()
+  await expect(page.getByText(/Question 1 \//i)).toHaveCount(0)
+}
+
+test.describe('Domain pass side-trip resume smoke', () => {
   test('trap drill from results returns to Domain Pass results on Back', async ({ page }) => {
-    await seedOnboarding(page)
-    await seedDomainPassResultsResume(page)
-
-    await page.goto('/#/domainpass')
-    await expect(page.getByRole('heading', { name: /Domain Pass/i })).toBeVisible({ timeout: 20_000 })
-
-    await page.getByRole('button', { name: /Network Fundamentals/i }).first().click()
-    await expect(page.getByRole('heading', { name: /Network Fundamentals — Results/i })).toBeVisible({ timeout: 20_000 })
-    await expect(page.getByText('FAIL', { exact: true })).toBeVisible()
-    await expect(page.getByText(/1 \/ 2 correct/i)).toBeVisible()
-
+    await openDomainPassResults(page)
     await page.getByRole('button', { name: /Trap drill \(this domain\)/i }).click()
     await expect(page.getByRole('heading', { name: /Trap Drill/i })).toBeVisible({ timeout: 20_000 })
+    await backToDomainPassResults(page)
+  })
 
-    const bottomBack = page.getByRole('navigation', { name: /main navigation/i }).getByRole('button', { name: 'Back', exact: true })
-    await expect(bottomBack).toBeVisible({ timeout: 10_000 })
-    await bottomBack.click()
-
-    await expect(page.getByRole('heading', { name: /Network Fundamentals — Results/i })).toBeVisible({ timeout: 20_000 })
-    await expect(page.getByText('FAIL', { exact: true })).toBeVisible()
-    await expect(page.getByText(/1 \/ 2 correct/i)).toBeVisible()
-    await expect(page.getByText(/Question 1 \//i)).toHaveCount(0)
+  test('Command Hub from results returns to Domain Pass results on Back', async ({ page }) => {
+    await openDomainPassResults(page)
+    await page.getByRole('button', { name: /^Command Hub/i }).click()
+    await expect(page.getByRole('heading', { name: /Command Hub/i })).toBeVisible({ timeout: 20_000 })
+    await backToDomainPassResults(page)
   })
 })

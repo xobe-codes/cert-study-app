@@ -40,6 +40,19 @@ describe('trapDrillQuestions', () => {
     expect(getTrapDrillQuestions({ ckuId: 'CKU-HSRP' })).toHaveLength(3)
   })
 
+  it('resolves inferTrap CONCEPT_TRAPS labels to trap-drill CKUs', () => {
+    const cases = [
+      ['Reversing forward vs reverse DNS lookup', 'CKU-DNS-RECORDS'],
+      ['Mixing SNMP versions or trap vs inform behavior', 'CKU-SNMPv2'],
+      ['Misreading syslog severity (lower number = more severe)', 'CKU-SYSLOG'],
+      ['Confusing NTP stratum direction or client/server role', 'CKU-NTP-STRATUM'],
+      ['Confusing how switches learn source MACs vs use destination MACs', 'CKU-ARP'],
+    ]
+    for (const [trapLabel, ckuId] of cases) {
+      expect(resolveTrapDrillCku({ trapLabel })?.ckuId, trapLabel).toBe(ckuId)
+    }
+  })
+
   it('includes exam-trap topics: DHCP relay, STP, NAT/PAT, HSRP, trunk', () => {
     const ids = TRAP_DRILL_CKUS.map(c => c.ckuId)
     expect(ids).toEqual(expect.arrayContaining([

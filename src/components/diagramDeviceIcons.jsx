@@ -83,7 +83,7 @@ export function DiagramDeviceIconG({ type, color, cx, cy, size = 14 }) {
       return wrap(
         <>
           <circle cx="8" cy="8" r="5.5" {...common} />
-          <path d="M8 5.5v5M5.5 8h5" {...common} />
+          <path d="M5.2 8h5.6M8 5.2l2.8 2.8L8 10.8 5.2 8z" {...common} />
         </>,
       )
     default:
@@ -93,16 +93,16 @@ export function DiagramDeviceIconG({ type, color, cx, cy, size = 14 }) {
 
 export function diagramFontSizes({ expanded, compact, isPreview, isMobile, density }) {
   if (expanded) {
-    return { node: isMobile ? 11.5 : 10, link: isMobile ? 9.5 : 8, icon: isMobile ? 15 : 14 }
+    return { node: isMobile ? 11.5 : 10, link: isMobile ? 10.5 : 8, icon: isMobile ? 15 : 14 }
   }
   if (compact || isPreview) {
-    return { node: isMobile ? 10 : 8.5, link: isMobile ? 9 : 7.5, icon: isMobile ? 14 : 12 }
+    return { node: isMobile ? 10 : 8.5, link: isMobile ? 10 : 7.5, icon: isMobile ? 14 : 12 }
   }
   const dense = density > 5
   return {
     node: isMobile ? (dense ? 10 : 11) : (dense ? 8.5 : 9),
-    link: isMobile ? 9 : 7.5,
-    icon: isMobile ? 14 : 12,
+    link: isMobile ? 10 : 7.5,
+    icon: isMobile ? (dense ? 13 : 14) : 12,
   }
 }
 

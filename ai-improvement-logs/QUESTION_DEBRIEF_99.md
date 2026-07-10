@@ -33,3 +33,10 @@ Runtime contract for MC wrong-answer teaching. Clean-bank templates are rebuilt 
 ## Out of scope
 
 Theme tokens · App.jsx routing · live AI free debriefs · mass cleanQuestions rewrite
+
+## Closed in follow-up (2026-07-10)
+
+| Area | Change |
+|------|--------|
+| CONCEPT_TRAPS → Trap Drill | DNS / SNMP / syslog / NTP / MAC aliases in `trapDrillLabelAliases.js` |
+| Tracker | Debrief marked shipped in `IMPLEMENTATION_TRACKER.md` |

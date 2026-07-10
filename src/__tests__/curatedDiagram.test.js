@@ -52,6 +52,11 @@ describe('diagramFontSizes (iPhone floors)', () => {
   it('keeps mobile expanded node text ≥11', () => {
     expect(diagramFontSizes({ expanded: true, compact: false, isPreview: false, isMobile: true, density: 6 }).node).toBeGreaterThanOrEqual(11)
   })
+
+  it('keeps mobile link text ≥10 in preview and expanded', () => {
+    expect(diagramFontSizes({ expanded: false, compact: false, isPreview: true, isMobile: true, density: 4 }).link).toBeGreaterThanOrEqual(10)
+    expect(diagramFontSizes({ expanded: true, compact: false, isPreview: false, isMobile: true, density: 6 }).link).toBeGreaterThanOrEqual(10)
+  })
 })
 
 describe('shouldShowLinkLabel', () => {

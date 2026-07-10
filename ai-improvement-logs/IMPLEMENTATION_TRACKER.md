@@ -63,17 +63,13 @@
 
 ## Parked — next phase (do not implement until asked)
 
-**Curriculum Study OS / multi-pack platform** — saved plan for after current CCNA class.
+See `PLATFORM_NEXT_PHASE.md` for the multi-pack curriculum plan (implement only when explicitly requested).
 
-→ Full spec: [`PLATFORM_NEXT_PHASE.md`](./PLATFORM_NEXT_PHASE.md)
+**Question debrief 99+** — shipped (see `QUESTION_DEBRIEF_99.md` + `COMPLETED_CHANGES`).
 
-Revisit when next school class starts (class pack template) or when adding a second cert. Default first build: P0 pack shell + P1 syllabus → class pack.
+**Topology SVG 99+** — shipped (see `TOPOLOGY_SVG_99.md`; landscape e2e + mobile link floors).
 
-**Question debrief 99+** (stem-grounded wrong answers + family UI) — [`QUESTION_DEBRIEF_99.md`](./QUESTION_DEBRIEF_99.md)
-
-**Topology SVG 99+** (iPhone device glyphs + pinch/pan) — [`TOPOLOGY_SVG_99.md`](./TOPOLOGY_SVG_99.md)
-
-**Polish 99+** (parity + hierarchy + diagram content) — [`POLISH_99.md`](./POLISH_99.md)
+**Polish 99+** — shipped (see `POLISH_99.md`; deferred empty).
 
 Full shipped history: `COMPLETED_CHANGES.md`
 

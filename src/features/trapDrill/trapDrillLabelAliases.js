@@ -39,6 +39,13 @@ export const TRAP_DRILL_LABEL_ALIASES = {
   'confusing vlan tagging, trunking, and access ports': 'CKU-INTER-VLAN',
   'static route next-hop vs exit-interface behavior': 'CKU-ADMINISTRATIVE-DISTANCE',
 
+  // CONCEPT_TRAPS from inferTrapForChoice (services + MAC)
+  'reversing forward vs reverse dns lookup': 'CKU-DNS-RECORDS',
+  'mixing snmp versions or trap vs inform behavior': 'CKU-SNMPv2',
+  'misreading syslog severity (lower number = more severe)': 'CKU-SYSLOG',
+  'confusing ntp stratum direction or client/server role': 'CKU-NTP-STRATUM',
+  'confusing how switches learn source macs vs use destination macs': 'CKU-ARP',
+
   // Factory-trap alignment (high-traffic objectives)
   'the switch with the highest bridge priority becomes the stp root.': 'CKU-STP-ROOT',
   'extended acls should be placed close to the destination.': 'CKU-EXTENDED-ACL',

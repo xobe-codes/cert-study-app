@@ -19,3 +19,10 @@ Feature-complete ~99 polish — no new modes. Next-pass deferred items cleared.
 ## Deferred
 
 None for this polish track. Optional future maintenance only.
+
+## Closed in follow-up (2026-07-10)
+
+| Area | Change |
+|------|--------|
+| Practice CLI/order debrief | `QuizTab` passes `cliAnswer` / `orderAnswer` into `AnswerReview` |
+| Tracker | Polish marked shipped in `IMPLEMENTATION_TRACKER.md` |

@@ -787,6 +787,8 @@ export function QuizTab({
               objectiveId={objective.id}
               domainId={domainIdFromObjectiveId(objective.id)}
               showQuestionFlag
+              cliAnswer={cli ? cliAnswer : undefined}
+              orderAnswer={ordering ? orderDraft : undefined}
               onOpenLab={onOpenLab}
               onOpenTrapDrill={onOpenTrapDrill}
               onOpenSubnet={onOpenSubnet}
