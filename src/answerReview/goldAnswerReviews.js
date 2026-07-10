@@ -33,6 +33,7 @@ import { BATCH29_GOLD } from './goldAnswerReviewsBatch29.js'
 import { BATCH30_GOLD } from './goldAnswerReviewsBatch30.js'
 import { BATCH31_GOLD } from './goldAnswerReviewsBatch31.js'
 import { BATCH32_GOLD } from './goldAnswerReviewsBatch32.js'
+import { BATCH33_GOLD } from './goldAnswerReviewsBatch33.js'
 import { CURATED61_GOLD } from './goldAnswerReviewsCurated61.js'
 import { HIGH_TRAFFIC_GOLD } from './goldAnswerReviewsHighTraffic.js'
 import { WLAN_58_GOLD } from './goldAnswerReviewsWlan58.js'
@@ -158,9 +159,10 @@ export const GOLD_ANSWER_REVIEWS = {
   ...PLACEMENT_TRAP_GOLD,
   ...PLACEMENT_TRAP_GOLD_BATCH2,
   ...PLACEMENT_TRAP_GOLD_BATCH3,
-  // Batch 31/32 last — polish overrides earlier short/high-traffic gold
+  // Batch 31–33 last — polish overrides earlier short/high-traffic gold
   ...BATCH31_GOLD,
   ...BATCH32_GOLD,
+  ...BATCH33_GOLD,
 }
 
 export function goldAnswerReviewFor(questionId) {

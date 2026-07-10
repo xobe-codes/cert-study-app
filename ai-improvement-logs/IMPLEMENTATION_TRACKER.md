@@ -33,11 +33,11 @@
 | Area | Now | 99+ bar | Signal / gap-closer |
 |------|----:|--------:|---------------------|
 | Coverage breadth | 99 | 97 | Tier-A ratio (53/53) |
-| Coverage depth | 99 | 97 | avg 25 Q · 13 traps/obj |
+| Coverage depth | 99 | 97 | avg 25 Q · 14 traps/obj |
 | Learning flow | 99 | 97 | SRS + stem-replay loops; question volume |
 | Engineer perspective | 99 | 97 | engineer view 53/53 |
 | CLI verification | 99 | 96 | ≥2 verify cmds 53/53 |
-| Exam traps | 100 | 97 | avg 13 traps · floor 0 |
+| Exam traps | 100 | 97 | avg 14 traps · floor 0 |
 | Labs / CLI | 99 | 97 | lab/obj + 82 interpret (0 config) + TS |
 | Maintainability | 97 | 96 | App 198L · ObjScreen 170L · 0 files >900L |
 | Mobile / a11y | 99 | 96 | 6 mobile e2e · a11y ✓ |
@@ -59,7 +59,7 @@
 
 | id | area | work |
 |----|------|------|
-| _(empty)_ | — | Next-pass backlog cleared (gold 32 + trap wave 22 shipped) |
+| _(empty)_ | — | Polish next-pass cleared (gold 33 + trap wave 23) |
 
 ## Parked — next phase (do not implement until asked)
 

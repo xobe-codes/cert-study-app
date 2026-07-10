@@ -911,7 +911,7 @@ ${pendingRows}
 
 | id | area | work |
 |----|------|------|
-| _(empty)_ | — | Next-pass backlog cleared (gold 32 + trap wave 22 shipped; config labs interpret-only; domain chunks split) |
+| _(empty)_ | — | Polish next-pass cleared (gold 33 + trap wave 23; config labs interpret-only; domain chunks split) |
 
 Full shipped history: \`COMPLETED_CHANGES.md\`
 

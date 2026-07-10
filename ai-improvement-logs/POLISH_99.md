@@ -1,6 +1,6 @@
 # Polish 99+ (existing features, sharper)
 
-One-pass polish after feature-complete ~99. No new modes.
+Feature-complete ~99 polish — no new modes. Next-pass deferred items cleared.
 
 ## Shipped
 
@@ -11,13 +11,11 @@ One-pass polish after feature-complete ~99. No new modes.
 | Topology content | Visual supplement: correct switch/firewall/AP types + shortLabels |
 | Study flow | Diagram moved up (after intro, before long reading blocks) |
 | Reveal chrome | `.ccna-quiz-reveal` mobile padding / min-width polish |
-| Gold batch 31 | Hand polish of 40 short/high-traffic debriefs |
-| Gold batch 32 | Hand polish of 40 remaining short curated tails |
-| Trap wave 22 | +1 exam trap × 53 objectives (avg ≈13) |
-| First paint | Domain chunks already split; defer full-bank warm to idle |
-| Config labs | All 25 former config labs interpret-only (`CONFIG_LAB_IDS` empty) |
+| Gold batches 31–33 | 120 hand-polished short/high-traffic debriefs |
+| Trap waves 22–23 | +2 traps × 53 objectives (avg ≈14) |
+| First paint | Domain chunks split; defer full-bank warm to idle |
+| Config labs | All former config labs interpret-only (`CONFIG_LAB_IDS` empty) |
 
-## Deferred (future maintenance)
+## Deferred
 
-- Optional further gold polish on remaining short tails beyond batch 32
-- Trap depth wave 23+ only if avg traps need another lift
+None for this polish track. Optional future maintenance only.
