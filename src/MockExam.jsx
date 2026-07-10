@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { DOMAINS } from './data/ccnaDomains.js'
 import { getCuratedQuestions } from './data/ccnaCurated.js'
 import { preloadCleanBank } from './data/cleanQuestionAdapter.js'
-import { isMcQuestion, gradeQuestion } from './questionUtils.js'
+import { isChoiceQuestion, isMcQuestion, isMultiQuestion, gradeQuestion, normalizeSelectedIndexes } from './questionUtils.js'
 import {
   MOCK_EXAM_QUESTION_COUNT,
   MOCK_EXAM_DURATION_MIN,
@@ -26,6 +26,7 @@ import { buildMockHistoryEntry } from './features/mockExam/mockHistoryEntry.js'
 import { useMasteryProgress } from './features/progress/MasteryProgressContext.jsx'
 import { aggregateSessionByObjective, ENGAGEMENT_KINDS } from './features/progress/masteryEngagement.js'
 import McChoices from './components/McChoices.jsx'
+import MultiChoices from './components/MultiChoices.jsx'
 import AnswerReview from './components/AnswerReview.jsx'
 import { answerReviewSessionProps } from './components/answerReviewSessionProps.js'
 import { McChoiceShuffleProvider } from './context/McChoiceShuffleContext.jsx'
@@ -71,8 +72,9 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
   const [error, setError] = useState(null)
   const [questions, setQuestions] = useState([])
   const [current, setCurrent] = useState(0)
-  const [responses, setResponses] = useState({}) // qIndex -> selectedIndex
+  const [responses, setResponses] = useState({}) // qIndex -> selectedIndex | selectedIndexes[]
   const [studyRevealed, setStudyRevealed] = useState({}) // qIndex -> true once answer shown (study mode only)
+  const [multiDraft, setMultiDraft] = useState([])
   const [secondsLeft, setSecondsLeft] = useState(MOCK_EXAM_DURATION_MIN * 60)
   const [bankReady, setBankReady] = useState(false)
 
@@ -93,7 +95,7 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
   }, [initialDomainId])
 
   const getMcForObjective = useCallback((objectiveId) => (
-    getCuratedQuestions(objectiveId).filter(isMcQuestion)
+    getCuratedQuestions(objectiveId).filter(isChoiceQuestion)
   ), [])
 
   const canUseStaticOnly = useMemo(() => (
@@ -139,7 +141,7 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
     setIsStudyMode(false)
     try {
       await preloadCleanBank()
-      const getMc = (id) => getCuratedQuestions(id).filter(isMcQuestion)
+      const getMc = (id) => getCuratedQuestions(id).filter(isChoiceQuestion)
 
       if (!staticMockExamReady(DOMAINS, getMc)) {
         throw new Error('Not enough static questions for a full exam. Add more questions to the bank.')
@@ -177,15 +179,53 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
     return () => clearInterval(id)
   }, [phase, isStudyMode])
 
+  useEffect(() => {
+    setMultiDraft(Array.isArray(responses[current]) ? responses[current] : [])
+  }, [current, responses])
+
   function selectChoice(idx) {
     // In study mode, lock the answer once revealed — no changing after first pick
     if (isStudyMode && studyRevealed[current]) return
+    const q = questions[current]
+    if (isMultiQuestion(q)) return
     setResponses(r => ({ ...r, [current]: idx }))
     if (isStudyMode) {
       setStudyRevealed(r => ({ ...r, [current]: true }))
-      const q = questions[current]
       if (q?.objectiveId) {
         const correct = gradeQuestion(q, idx)
+        recordEngagement?.(q.objectiveId, {
+          kind: ENGAGEMENT_KINDS.MOCK,
+          correct: correct ? 1 : 0,
+          total: 1,
+        })
+      }
+    }
+  }
+
+  function toggleMultiChoice(idx) {
+    if (isStudyMode && studyRevealed[current]) return
+    const q = questions[current]
+    if (!isMultiQuestion(q)) return
+    setMultiDraft(prev => {
+      const set = new Set(prev)
+      if (set.has(idx)) set.delete(idx)
+      else set.add(idx)
+      const next = normalizeSelectedIndexes([...set])
+      if (!isStudyMode) setResponses(r => ({ ...r, [current]: next }))
+      return next
+    })
+  }
+
+  function submitMultiChoice() {
+    const q = questions[current]
+    if (!isMultiQuestion(q) || multiDraft.length < 1) return
+    if (isStudyMode && studyRevealed[current]) return
+    const answer = normalizeSelectedIndexes(multiDraft)
+    setResponses(r => ({ ...r, [current]: answer }))
+    if (isStudyMode) {
+      setStudyRevealed(r => ({ ...r, [current]: true }))
+      if (q?.objectiveId) {
+        const correct = gradeQuestion(q, answer)
         recordEngagement?.(q.objectiveId, {
           kind: ENGAGEMENT_KINDS.MOCK,
           correct: correct ? 1 : 0,
@@ -203,7 +243,7 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
       questions,
       questions.map((_, idx) => responses[idx]),
       ENGAGEMENT_KINDS.MOCK,
-      (q, resp) => resp === q.correctIndex,
+      (q, resp) => gradeQuestion(q, resp),
     ).forEach(({ objectiveId, activity }) => recordEngagement?.(objectiveId, activity))
   }, [phase, isStudyMode, questions, responses, recordEngagement])
 
@@ -221,7 +261,7 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
     doneHintFired.current = true
     let correct = 0
     questions.forEach((q, idx) => {
-      if (responses[idx] === q.correctIndex) correct++
+      if (gradeQuestion(q, responses[idx])) correct++
     })
     const pct = correct / questions.length
     if (pct >= 0.7) showNavHint(NAV_HINT_KEYS.MOCK_PASS)
@@ -237,7 +277,7 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
       const domainIdx = parseInt((q.objectiveId || '1.1').split('.')[0], 10) - 1
       const domain = DOMAINS[domainIdx] || DOMAINS[0]
       byDomain[domain.id].total++
-      if (responses[idx] === q.correctIndex) {
+      if (gradeQuestion(q, responses[idx])) {
         byDomain[domain.id].correct++
         correct++
       }
@@ -249,11 +289,14 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
     const deferredTips = examMode && isStudyMode
       ? questions.flatMap((q, idx) => {
         const selected = responses[idx]
-        if (selected == null || selected === q.correctIndex) return []
+        if (selected == null || gradeQuestion(q, selected)) return []
         const enriched = applyAnswerReviewToQuestion(q)
         const tip = enriched.answerReview?.examTip
         if (!tip) return []
-        return [{ tip, trap: inferTrapForChoice(enriched, selected) }]
+        const trapIdx = Array.isArray(selected)
+          ? (selected.find(i => !(q.correctIndexes || []).includes(i)) ?? selected[0])
+          : selected
+        return [{ tip, trap: inferTrapForChoice(enriched, trapIdx) }]
       })
       : []
     const result = { correct, total: questions.length, byDomain, trapDebrief, deferredTips }
@@ -426,7 +469,7 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
           <div className="ccna-mock-results__qgrid" style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 8 }}>
             {questions.map((qItem, idx) => {
               const sel = responses[idx]
-              const isCorrect = sel != null && sel === qItem.correctIndex
+              const isCorrect = sel != null && gradeQuestion(qItem, sel)
               const isSkipped = sel == null
               return (
                 <button
@@ -497,7 +540,7 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
         {(() => {
           const firstWrongIdx = questions.findIndex((qItem, idx) => {
             const sel = responses[idx]
-            return sel != null && sel !== qItem.correctIndex
+            return sel != null && !gradeQuestion(qItem, sel)
           })
           return firstWrongIdx >= 0 ? (
             <button
@@ -542,7 +585,16 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
           <QuestionMeta q={q} />
           <QuizQuestionStem text={q.question} />
           <McChoiceShuffleProvider q={q}>
-          <McChoices q={q} selected={selected} revealed onSelect={() => {}} />
+          {isMultiQuestion(q) ? (
+            <MultiChoices
+              q={q}
+              selectedIndexes={Array.isArray(selected) ? selected : []}
+              revealed
+              onToggle={() => {}}
+            />
+          ) : (
+            <McChoices q={q} selected={typeof selected === 'number' ? selected : null} revealed onSelect={() => {}} />
+          )}
           <div
             className="ccna-quiz-reveal"
             style={{
@@ -556,7 +608,8 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
             </div>
             <AnswerReview {...answerReviewSessionProps({
               q,
-              selected,
+              selected: typeof selected === 'number' ? selected : undefined,
+              selectedIndexes: Array.isArray(selected) ? selected : undefined,
               hideExamTip: examMode && isStudyMode,
               onOpenLab,
               onOpenTrapDrill,
@@ -575,15 +628,20 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
   // active — study mode reveals answer immediately on selection; full mock keeps choices hidden until submit.
   const q = questions[current]
   const selected = responses[current]
+  const multi = isMultiQuestion(q)
   const answeredCount = Object.keys(responses).length
   const isCurrentRevealed = isStudyMode && !!studyRevealed[current]
-  const isCurrentCorrect = selected != null && selected === q.correctIndex
+  const isCurrentCorrect = selected != null && gradeQuestion(q, selected)
 
   // Running score pill for study mode: counts only questions already answered
   const studyAnsweredCount = Object.keys(studyRevealed).length
   const studyCorrectCount = isStudyMode
     ? Object.keys(studyRevealed).filter(
-        idx => responses[parseInt(idx, 10)] === questions[parseInt(idx, 10)]?.correctIndex,
+        idx => {
+          const i = parseInt(idx, 10)
+          const qq = questions[i]
+          return qq && gradeQuestion(qq, responses[i])
+        },
       ).length
     : 0
 
@@ -607,8 +665,27 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
         <QuestionMeta q={q} />
         <QuizQuestionStem text={q.question} />
         <McChoiceShuffleProvider q={q}>
-        <McChoices q={q} selected={selected ?? null} revealed={isCurrentRevealed} onSelect={selectChoice} />
-        {isStudyMode && !isCurrentRevealed && (
+        {multi ? (
+          <MultiChoices
+            q={q}
+            selectedIndexes={isCurrentRevealed && Array.isArray(selected) ? selected : multiDraft}
+            revealed={isCurrentRevealed}
+            onToggle={toggleMultiChoice}
+          />
+        ) : (
+          <McChoices q={q} selected={typeof selected === 'number' ? selected : null} revealed={isCurrentRevealed} onSelect={selectChoice} />
+        )}
+        {multi && !isCurrentRevealed && (
+          <button
+            type="button"
+            style={{ ...styles.primaryBtn, marginTop: 10 }}
+            disabled={multiDraft.length < 1}
+            onClick={submitMultiChoice}
+          >
+            {isStudyMode ? 'Check answers' : 'Save selection'}
+          </button>
+        )}
+        {isStudyMode && !isCurrentRevealed && !multi && (
           <div style={{ ...styles.small, marginTop: 10, textAlign: 'center', color: COLORS.silverMid }}>
             Select an answer to see instant feedback
           </div>
@@ -632,7 +709,8 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
             </div>
             <AnswerReview {...answerReviewSessionProps({
               q,
-              selected,
+              selected: typeof selected === 'number' ? selected : undefined,
+              selectedIndexes: Array.isArray(selected) ? selected : undefined,
               hideExamTip: examMode && isStudyMode,
               onOpenLab,
               onOpenTrapDrill,

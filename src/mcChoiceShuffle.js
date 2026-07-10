@@ -1,6 +1,6 @@
-/** Shuffle MC choice display order while keeping canonical choiceIndex for grading/reviews. */
+/** Shuffle MC / multi choice display order while keeping canonical choiceIndex for grading/reviews. */
 
-import { isMcQuestion } from './questionUtils.js'
+import { isChoiceQuestion, isMultiQuestion, multiCorrectIndexes } from './questionUtils.js'
 
 /** Meta distractors that must stay pinned at the bottom (exam convention). */
 export function isMcMetaChoice(text) {
@@ -59,39 +59,47 @@ export function invertChoicePermutation(permutation) {
 export function remapAnswerReviewForDisplay(answerReview, permutation) {
   if (!answerReview) return answerReview
   const inverse = invertChoicePermutation(permutation)
+  const remapItem = item => (item && typeof item.choiceIndex === 'number'
+    ? { ...item, choiceIndex: inverse[item.choiceIndex] }
+    : item)
   return {
     ...answerReview,
-    correct: answerReview.correct
-      ? { ...answerReview.correct, choiceIndex: inverse[answerReview.correct.choiceIndex] }
-      : answerReview.correct,
-    incorrect: (answerReview.incorrect || []).map(item => ({
-      ...item,
-      choiceIndex: inverse[item.choiceIndex],
-    })),
+    correct: remapItem(answerReview.correct) || answerReview.correct,
+    correctChoices: (answerReview.correctChoices || []).map(remapItem),
+    incorrect: (answerReview.incorrect || []).map(remapItem),
   }
 }
 
 /**
- * Build a display-facing MC question with shuffled choices and remapped indices.
+ * Build a display-facing MC/multi question with shuffled choices and remapped indices.
  * @param {object} q — canonical question (grading/review use original via permutation)
  * @param {number[]} permutation — displayIndex → originalIndex
  */
 export function applyChoicePermutationToQuestion(q, permutation) {
-  if (!isMcQuestion(q) || !permutation?.length) return q
+  if (!isChoiceQuestion(q) || !permutation?.length) return q
   const inverse = invertChoicePermutation(permutation)
-  return {
+  const base = {
     ...q,
     choices: permutation.map(i => q.choices[i]),
-    correctIndex: inverse[q.correctIndex],
     ...(q.answerReview
       ? { answerReview: remapAnswerReviewForDisplay(q.answerReview, permutation) }
       : {}),
+  }
+  if (isMultiQuestion(q)) {
+    return {
+      ...base,
+      correctIndexes: multiCorrectIndexes(q).map(i => inverse[i]),
+    }
+  }
+  return {
+    ...base,
+    correctIndex: inverse[q.correctIndex],
   }
 }
 
 /** Stable per-question shuffle (new order when question id changes). */
 export function choicePermutationForQuestion(q, seed) {
-  if (!isMcQuestion(q)) return null
+  if (!isChoiceQuestion(q)) return null
   const len = q.choices.length
   if (len < 2) return Array.from({ length: len }, (_, i) => i)
   let state = (seed >>> 0) || 1
@@ -113,7 +121,7 @@ export function hashQuestionShuffleSeed(q) {
 }
 
 export function shuffleMcQuestionForDisplay(q, { seed } = {}) {
-  if (!isMcQuestion(q)) {
+  if (!isChoiceQuestion(q)) {
     return { canonical: q, display: q, permutation: [], inverse: [] }
   }
   const permutation = choicePermutationForQuestion(q, seed ?? hashQuestionShuffleSeed(q))

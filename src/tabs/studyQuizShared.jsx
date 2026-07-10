@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { getCuratedQuestions } from '../data/ccnaCurated.js'
 import {
-  TYPE_LABEL, SKILL_LABEL, isOrderingQuestion, isMcQuestion, isCliQuestion, gradeQuestion,
-  shuffleArrayCopy, randomizeQuestionOrder, inferSkill,
+  TYPE_LABEL, SKILL_LABEL, isOrderingQuestion, isMcQuestion, isCliQuestion, isMultiQuestion, gradeQuestion,
+  shuffleArrayCopy, randomizeQuestionOrder, inferSkill, normalizeSelectedIndexes,
 } from '../questionUtils.js'
 import { parseRichTextSegments } from '../lesson/richTextParse.js'
 import McChoices from '../components/McChoices.jsx'
+import MultiChoices from '../components/MultiChoices.jsx'
 import AnswerReview from '../components/AnswerReview.jsx'
 import { McChoiceShuffleProvider } from '../context/McChoiceShuffleContext.jsx'
 import { applyAnswerReviewToQuestion } from '../answerReviewLogic.js'
@@ -64,6 +65,7 @@ export function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked
   const [questions, setQuestions] = useState([])
   const [idx, setIdx] = useState(0)
   const [selected, setSelected] = useState(null)
+  const [selectedIndexes, setSelectedIndexes] = useState([])
   const [revealed, setRevealed] = useState(false)
   const [orderDraft, setOrderDraft] = useState([])
   const [cliAnswer, setCliAnswer] = useState('')
@@ -80,6 +82,7 @@ export function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked
     if (q && isOrderingQuestion(q)) setOrderDraft(shuffleArrayCopy(q.orderItems))
     else setOrderDraft([])
     setCliAnswer('')
+    setSelectedIndexes([])
   }, [q])
 
   useEffect(() => {
@@ -136,7 +139,7 @@ export function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked
         cache[objective.id] = qs
         await window.storage.setItem(PREASSESS_CACHE_KEY, cache)
       }
-      setQuestions(randomizeQuestionOrder(qs)); setIdx(0); setSelected(null); setRevealed(false); setResults([])
+      setQuestions(randomizeQuestionOrder(qs)); setIdx(0); setSelected(null); setSelectedIndexes([]); setRevealed(false); setResults([])
       exposureRecordedRef.current = false
       setPhase('active')
       logEvent('user_started_preassessment', { objectiveId: objective.id })
@@ -151,6 +154,23 @@ export function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked
     const correct = gradeQuestion(q, i)
     haptic(correct ? 15 : [10, 40, 10])
     setSelected(i); setRevealed(true)
+    setResults(r => [...r, { concept: q.concept, correct }])
+  }
+  function toggleMulti(i) {
+    if (revealed || !isMultiQuestion(questions[idx])) return
+    setSelectedIndexes(prev => {
+      const set = new Set(prev)
+      if (set.has(i)) set.delete(i)
+      else set.add(i)
+      return normalizeSelectedIndexes([...set])
+    })
+  }
+  function submitMulti() {
+    if (revealed || !isMultiQuestion(questions[idx]) || selectedIndexes.length < 1) return
+    const q = questions[idx]
+    const correct = gradeQuestion(q, selectedIndexes)
+    haptic(correct ? 15 : [10, 40, 10])
+    setRevealed(true)
     setResults(r => [...r, { concept: q.concept, correct }])
   }
   function submitOrder() {
@@ -171,7 +191,7 @@ export function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked
   }
   function next() {
     if (idx + 1 >= questions.length) { setPhase('result'); return }
-    setIdx(i => i + 1); setSelected(null); setRevealed(false); setCliAnswer('')
+    setIdx(i => i + 1); setSelected(null); setSelectedIndexes([]); setRevealed(false); setCliAnswer('')
   }
 
   if (phase === 'intro') {
@@ -227,7 +247,13 @@ export function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked
   // active
   const ordering = isOrderingQuestion(q)
   const cli = isCliQuestion(q)
-  const isCorrect = revealed && (ordering ? gradeQuestion(q, orderDraft) : cli ? gradeQuestion(q, cliAnswer) : gradeQuestion(q, selected))
+  const multi = isMultiQuestion(q)
+  const isCorrect = revealed && (
+    ordering ? gradeQuestion(q, orderDraft)
+      : cli ? gradeQuestion(q, cliAnswer)
+        : multi ? gradeQuestion(q, selectedIndexes)
+          : gradeQuestion(q, selected)
+  )
   return (
     <div>
       <div style={{ ...styles.small, marginBottom: 8 }}>Pre-assessment · {idx + 1} of {questions.length}</div>
@@ -239,6 +265,8 @@ export function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked
           <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? q.orderItems : null} />
         ) : cli ? (
           <CliAnswerInput value={cliAnswer} onChange={setCliAnswer} onSubmit={submitCli} revealed={revealed} question={q} />
+        ) : multi ? (
+          <MultiChoices q={q} selectedIndexes={selectedIndexes} revealed={revealed} onToggle={toggleMulti} />
         ) : (
           <McChoices q={q} selected={selected} revealed={revealed} onSelect={answer} />
         )}
@@ -248,6 +276,7 @@ export function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked
             <AnswerReview
               q={applyAnswerReviewToQuestion(q)}
               selected={selected}
+              selectedIndexes={multi ? selectedIndexes : undefined}
               cliAnswer={cliAnswer}
               orderAnswer={orderDraft}
             />
@@ -257,6 +286,7 @@ export function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked
       </div>
       {ordering && !revealed && <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitOrder}>Check order</button>}
       {cli && !revealed && <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitCli} disabled={!cliAnswer.trim()}>Check command</button>}
+      {multi && !revealed && <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitMulti} disabled={selectedIndexes.length < 1}>Check answers</button>}
       {revealed && <button style={styles.primaryBtn} onClick={next}>{idx + 1 >= questions.length ? 'See result' : 'Next'}</button>}
     </div>
   )

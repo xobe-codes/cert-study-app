@@ -1,9 +1,14 @@
 import { inferTrapForChoice, applyAnswerReviewToQuestion } from '../answerReviewLogic.js'
+import { gradeQuestion, isMultiQuestion } from '../questionUtils.js'
 
 function trapForMissed(m) {
   if (m.misconceptionTested) return m.misconceptionTested
   const ar = m.answerReview
   if (ar?.incorrect?.[0]?.misconceptionTested) return ar.incorrect[0].misconceptionTested
+  if (Array.isArray(m.selectedIndexes) && m.selectedIndexes.length && Array.isArray(m.choices)) {
+    const wrong = m.selectedIndexes.find(i => !(m.correctIndexes || []).includes(i))
+    if (wrong != null) return inferTrapForChoice({ ...m, answerReview: ar }, wrong)
+  }
   if (m.selectedIndex != null && Array.isArray(m.choices)) {
     return inferTrapForChoice({ ...m, answerReview: ar }, m.selectedIndex)
   }
@@ -42,10 +47,15 @@ export function groupMissedByTrap(missed = []) {
 export function summarizeWrongTraps(questions, responses, { limit = 8 } = {}) {
   const tallies = new Map()
   questions.forEach((q, idx) => {
-    const selected = responses[idx]
-    if (selected == null || selected === q.correctIndex) return
+    const selected = Array.isArray(responses) ? responses[idx] : responses?.[idx]
+    if (selected == null) return
+    if (gradeQuestion(q, selected)) return
     const enriched = applyAnswerReviewToQuestion(q)
-    const trap = inferTrapForChoice(enriched, selected)
+    let trapIdx = selected
+    if (isMultiQuestion(q) && Array.isArray(selected)) {
+      trapIdx = selected.find(i => !(q.correctIndexes || []).includes(i)) ?? selected[0]
+    }
+    const trap = (typeof trapIdx === 'number' ? inferTrapForChoice(enriched, trapIdx) : null)
       || enriched.answerReview?.examTip
       || enriched.concept
       || 'Review this topic'

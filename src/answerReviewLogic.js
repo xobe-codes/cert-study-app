@@ -16,6 +16,7 @@ import { buildStemAnchoredIncorrect } from './answerReview/stemAnchoredDistracto
 import { goldAnswerReviewFor } from './answerReview/goldAnswerReviews.js'
 import { examTipFor, isGenericExamTip } from './answerReview/examTipLogic.js'
 import { sanitizeAnswerText } from './lib/voiceProse.js'
+import { isMultiQuestion, multiCorrectIndexes } from './questionUtils.js'
 
 export { examTipFor, isGenericExamTip } from './answerReview/examTipLogic.js'
 
@@ -203,6 +204,36 @@ export {
 } from './answerReview/answerReviewQuality.js'
 
 export function generateAnswerReview(q) {
+  if (isMultiQuestion(q)) {
+    const correctSet = new Set(multiCorrectIndexes(q))
+    const firstCorrect = multiCorrectIndexes(q)[0]
+    const authored = q.answerReview || {}
+    const incorrect = (authored.incorrect || [])
+      .filter(item => item && !correctSet.has(item.choiceIndex))
+    const missingWrong = q.choices
+      .map((_, choiceIndex) => choiceIndex)
+      .filter(i => !correctSet.has(i) && !incorrect.some(item => item.choiceIndex === i))
+      .map(choiceIndex => ({
+        choiceIndex,
+        explanation: `This option is not part of the correct set.`,
+        misconceptionTested: 'Selecting an incomplete or incorrect combination on a select-all question',
+      }))
+    return {
+      correct: {
+        choiceIndex: firstCorrect,
+        explanation: authored.correct?.explanation || (q.explanation || '').trim()
+          || `Correct selections: ${multiCorrectIndexes(q).map(i => String.fromCharCode(65 + i)).join(', ')}.`,
+      },
+      correctChoices: authored.correctChoices || multiCorrectIndexes(q).map(choiceIndex => ({
+        choiceIndex,
+        explanation: authored.correct?.explanation || q.explanation || '',
+      })),
+      incorrect: [...incorrect, ...missingWrong],
+      examTip: authored.examTip && !isGenericExamTip(authored.examTip) ? authored.examTip : examTipFor(q),
+      ...(authored.memoryHook ? { memoryHook: authored.memoryHook } : {}),
+    }
+  }
+
   if (!Array.isArray(q.choices) || typeof q.correctIndex !== 'number') return null
 
   const gold = goldAnswerReviewFor(q.id)
@@ -324,6 +355,14 @@ export function applyAnswerReviewToQuestion(q) {
       ...(item.whatItDoes ? { whatItDoes: sanitizeAnswerText(item.whatItDoes) } : {}),
       ...(item.whyWrongHere ? { whyWrongHere: sanitizeAnswerText(item.whyWrongHere) } : {}),
     })),
+    ...(answerReview.correctChoices?.length
+      ? {
+          correctChoices: answerReview.correctChoices.map(item => ({
+            ...item,
+            explanation: sanitizeAnswerText(item.explanation),
+          })),
+        }
+      : {}),
   }
   const next = { ...q, answerReview: polished, explanation: sanitizeAnswerText(q.explanation) }
   delete next.needsExplanationReview

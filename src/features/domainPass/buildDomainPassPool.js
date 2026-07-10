@@ -1,5 +1,5 @@
 import { DOMAIN_PASS_PASS_PCT, domainPassQuestionCount, domainPassFocusQuestionCount } from './domainPassConfig.js'
-import { isMcQuestion } from '../../questionUtils.js'
+import { isChoiceQuestion, gradeQuestion } from '../../questionUtils.js'
 import { EXPOSURE_TIERS } from './domainQuestionExposure.js'
 
 function dedupeById(questions) {
@@ -31,7 +31,7 @@ export function collectDomainQuestionIds(domain, getMcQuestions) {
   const seen = new Set()
   const ids = []
   for (const q of collectDomainQuestions(domain, getMcQuestions)) {
-    if (!isMcQuestion(q)) continue
+    if (!isChoiceQuestion(q)) continue
     const id = questionId(q)
     if (id == null || seen.has(id)) continue
     seen.add(id)
@@ -44,7 +44,7 @@ function findMcById(domain, getMcQuestions, qid) {
   if (!qid) return null
   for (const obj of domain?.objectives || []) {
     const found = getMcQuestions(obj.id).find(q => q.id === qid)
-    if (found && isMcQuestion(found)) {
+    if (found && isChoiceQuestion(found)) {
       return { ...found, objectiveId: found.objectiveId || obj.id }
     }
   }
@@ -54,7 +54,7 @@ function findMcById(domain, getMcQuestions, qid) {
 /** Resolve missed/partial entries to full MC stems from the curated bank. */
 export function hydrateMcQuestion(entry, domain, getMcQuestions) {
   if (!entry) return null
-  if (isMcQuestion(entry)) return { ...entry, objectiveId: entry.objectiveId }
+  if (isChoiceQuestion(entry)) return { ...entry, objectiveId: entry.objectiveId }
   const qid = entry.id ?? entry.questionId
   const hydrated = findMcById(domain, getMcQuestions, qid)
   if (!hydrated) return null
@@ -69,7 +69,7 @@ function responseForIndex(responses, idx) {
 
 function isCorrectResponse(question, selected) {
   if (selected == null) return false
-  return selected === question.correctIndex
+  return gradeQuestion(question, selected)
 }
 
 /**
@@ -328,7 +328,7 @@ export function buildDomainPassPool({
     : null
   const spreadCap = filterSet?.size ? null : maxPerObjective
 
-  let pool = collectDomainQuestions(domain, getMcQuestions).filter(isMcQuestion)
+  let pool = collectDomainQuestions(domain, getMcQuestions).filter(isChoiceQuestion)
   if (filterSet?.size) {
     pool = pool.filter(q => filterSet.has(q.objectiveId))
   }
@@ -344,9 +344,9 @@ export function buildDomainPassPool({
       .filter(m => domainObjectiveIds.has(m.objectiveId) && (!filterSet || filterSet.has(m.objectiveId)))
       .map(m => hydrateMcQuestion(m, domain, getMcQuestions))
       .filter(Boolean)
-    pool = dedupeById([...pool, ...domainMissed]).filter(isMcQuestion)
+    pool = dedupeById([...pool, ...domainMissed]).filter(isChoiceQuestion)
   } else {
-    pool = dedupeById(pool).filter(isMcQuestion)
+    pool = dedupeById(pool).filter(isChoiceQuestion)
   }
 
   const carryoverQuestions = dedupeById(
@@ -354,7 +354,7 @@ export function buildDomainPassPool({
       .map(id => findMcById(domain, getMcQuestions, id))
       .filter(Boolean)
       .filter(q => !filterSet || filterSet.has(q.objectiveId)),
-  ).filter(isMcQuestion)
+  ).filter(isChoiceQuestion)
 
   const carryoverIds = new Set(carryoverQuestions.map(q => questionId(q)))
   const poolExcludingCarryover = pool.filter(q => !carryoverIds.has(questionId(q)))
@@ -394,7 +394,7 @@ export function buildDomainPassPool({
       maxPerObjective: spreadCap,
     })
 
-  return dedupeById([...carryoverSlice, ...remainderPicked]).filter(isMcQuestion).slice(0, count)
+  return dedupeById([...carryoverSlice, ...remainderPicked]).filter(isChoiceQuestion).slice(0, count)
 }
 
 /** Objective ids where the user missed at least one question in the session. */

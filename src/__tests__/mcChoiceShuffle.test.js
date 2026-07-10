@@ -155,4 +155,20 @@ describe('mcChoiceShuffle', () => {
       expect(perm.slice(-1)).toEqual([3])
     }
   })
+
+  it('remaps multi correctIndexes with shuffled choices', () => {
+    const multi = {
+      id: 'multi-shuffle',
+      type: 'multi',
+      question: 'Pick two',
+      choices: ['A', 'B', 'C', 'D'],
+      correctIndexes: [0, 2],
+      explanation: 'A and C',
+    }
+    const { display, permutation } = shuffleMcQuestionForDisplay(multi, { seed: 7 })
+    expect(display.correctIndexes).toHaveLength(2)
+    const original = display.correctIndexes.map(di => permutation[di]).sort((a, b) => a - b)
+    expect(original).toEqual([0, 2])
+    expect(gradeQuestion(multi, [0, 2])).toBe(true)
+  })
 })

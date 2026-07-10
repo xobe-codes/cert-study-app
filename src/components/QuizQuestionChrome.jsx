@@ -119,7 +119,7 @@ export function QuestionMeta({ q }) {
     <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
       {q.objectiveId && <DomainObjectivePill objectiveId={q.objectiveId} />}
       {q.difficulty && <span style={{ ...styles.pill(dAccent), fontSize: 'var(--ccna-type-micro)' }}>{q.difficulty.toUpperCase()}</span>}
-      {q.type && <span style={{ ...styles.pill(q.type === 'troubleshooting' || q.type === 'ordering' || q.type === 'cli' ? 'sky' : 'silver'), fontSize: 'var(--ccna-type-micro)' }}>{TYPE_LABEL[q.type] || q.type}</span>}
+      {q.type && <span style={{ ...styles.pill(q.type === 'troubleshooting' || q.type === 'ordering' || q.type === 'cli' || q.type === 'multi' || q.type === 'select-all' ? 'sky' : 'silver'), fontSize: 'var(--ccna-type-micro)' }}>{TYPE_LABEL[q.type] || q.type}</span>}
       {skill && <span style={{ ...styles.pill(skillAccent), fontSize: 'var(--ccna-type-micro)' }}>{SKILL_LABEL[skill] || skill}</span>}
       {q.concept && <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, alignSelf: 'center' }}>{q.concept}</span>}
     </div>

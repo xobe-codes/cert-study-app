@@ -1,5 +1,5 @@
 import { useMemo, useRef } from 'react'
-import { isMcQuestion } from '../questionUtils.js'
+import { isChoiceQuestion } from '../questionUtils.js'
 import { choicePermutationForQuestion, applyChoicePermutationToQuestion, invertChoicePermutation } from '../mcChoiceShuffle.js'
 
 /**
@@ -15,7 +15,7 @@ export function useMcChoiceShuffle(q, { enabled = true } = {}) {
   }
 
   return useMemo(() => {
-    if (!enabled || !isMcQuestion(q)) {
+    if (!enabled || !isChoiceQuestion(q)) {
       const n = q?.choices?.length ?? 0
       const identity = Array.from({ length: n }, (_, i) => i)
       return {

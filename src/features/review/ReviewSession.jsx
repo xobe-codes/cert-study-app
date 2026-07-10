@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import {
-  isOrderingQuestion, isMcQuestion, isCliQuestion, gradeQuestion, buildMissedEntry,
-  shuffleArrayCopy, randomizeQuestionOrder,
+  isOrderingQuestion, isMcQuestion, isCliQuestion, isMultiQuestion, gradeQuestion, buildMissedEntry,
+  shuffleArrayCopy, randomizeQuestionOrder, normalizeSelectedIndexes,
 } from '../../questionUtils.js'
 import { ALL_OBJECTIVES } from '../../data/ccnaDomains.js'
 import { COLORS, styles } from '../../ui/appTheme.js'
@@ -12,6 +12,7 @@ import { useNavHint } from '../../components/NavHintProvider.jsx'
 import { NAV_HINT_KEYS } from '../../ui/navHintConfig.js'
 import { haptic } from '../../ui/feedbackHelpers.jsx'
 import McChoices from '../../components/McChoices.jsx'
+import MultiChoices from '../../components/MultiChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
 import { answerReviewSessionProps } from '../../components/answerReviewSessionProps.js'
 import { McChoiceShuffleProvider } from '../../context/McChoiceShuffleContext.jsx'
@@ -31,6 +32,7 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection,
   const [queue, setQueue] = useState([])
   const [current, setCurrent] = useState(null)
   const [selected, setSelected] = useState(null)
+  const [selectedIndexes, setSelectedIndexes] = useState([])
   const [revealed, setRevealed] = useState(false)
   const [orderDraft, setOrderDraft] = useState([])
   const [cliAnswer, setCliAnswer] = useState('')
@@ -44,6 +46,7 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection,
       setOrderDraft([])
     }
     setCliAnswer('')
+    setSelectedIndexes([])
   }, [current])
 
   useEffect(() => {
@@ -78,6 +81,31 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection,
       onMissed({ objectiveId: current.objectiveId, questionId: current.id, question: current.question, choices: current.choices, correctIndex: current.correctIndex, selectedIndex: idx, explanation: current.explanation, concept: current.concept, type: current.type, skill: current.skill, addedAt: Date.now() })
     }
   }
+
+  function toggleMulti(idx) {
+    if (revealed || !isMultiQuestion(current)) return
+    setSelectedIndexes(prev => {
+      const set = new Set(prev)
+      if (set.has(idx)) set.delete(idx)
+      else set.add(idx)
+      return normalizeSelectedIndexes([...set])
+    })
+  }
+
+  function submitMulti() {
+    if (revealed || !isMultiQuestion(current) || selectedIndexes.length < 1) return
+    const correct = gradeQuestion(current, selectedIndexes)
+    setRevealed(true)
+    haptic(correct ? 15 : [10, 40, 10])
+    setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
+    recordQuizResult(current.objectiveId, current.id, { correct })
+    recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.REVIEW, correct: correct ? 1 : 0, total: 1 })
+    logEvent('user_reviewed_concept', { objectiveId: current.objectiveId, questionId: current.id, correct })
+    if (!correct) {
+      onMissed(buildMissedEntry(current.objectiveId, current, { selectedIndexes: [...selectedIndexes] }))
+    }
+  }
+
   function submitOrder() {
     if (revealed || !isOrderingQuestion(current)) return
     const correct = gradeQuestion(current, orderDraft)
@@ -106,7 +134,7 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection,
   }
   function next() {
     if (queue.length === 0) { setPhase('done'); onDone?.(); return }
-    setCurrent(queue[0]); setQueue(q => q.slice(1)); setSelected(null); setRevealed(false); setCliAnswer('')
+    setCurrent(queue[0]); setQueue(q => q.slice(1)); setSelected(null); setSelectedIndexes([]); setRevealed(false); setCliAnswer('')
   }
 
   if (phase === 'loading') return <div><StudyModeHeader title="Daily Review" onBack={onBack} /><Spinner label="Gathering your reviews..." /></div>
@@ -134,7 +162,13 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection,
 
   const ordering = isOrderingQuestion(current)
   const cli = isCliQuestion(current)
-  const isCorrect = revealed && (ordering ? gradeQuestion(current, orderDraft) : cli ? gradeQuestion(current, cliAnswer) : gradeQuestion(current, selected))
+  const multi = isMultiQuestion(current)
+  const isCorrect = revealed && (
+    ordering ? gradeQuestion(current, orderDraft)
+      : cli ? gradeQuestion(current, cliAnswer)
+        : multi ? gradeQuestion(current, selectedIndexes)
+          : gradeQuestion(current, selected)
+  )
   const obj = ALL_OBJECTIVES.find(o => o.id === current.objectiveId)
   return (
     <div className="ccna-review-flow">
@@ -152,6 +186,8 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection,
           <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? current.orderItems : null} />
         ) : cli ? (
           <CliAnswerInput value={cliAnswer} onChange={setCliAnswer} onSubmit={submitCli} revealed={revealed} question={current} />
+        ) : multi ? (
+          <MultiChoices q={current} selectedIndexes={selectedIndexes} revealed={revealed} onToggle={toggleMulti} />
         ) : (
           <McChoices q={current} selected={selected} revealed={revealed} onSelect={answer} />
         )}
@@ -161,6 +197,7 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection,
             <AnswerReview {...answerReviewSessionProps({
               q: current,
               selected,
+              selectedIndexes: multi ? selectedIndexes : undefined,
               cliAnswer,
               orderAnswer: orderDraft,
               objectiveId: current?.objectiveId,
@@ -181,6 +218,7 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection,
       </div>
       {ordering && !revealed && <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitOrder}>Check order</button>}
       {cli && !revealed && <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitCli} disabled={!cliAnswer.trim()}>Check command</button>}
+      {multi && !revealed && <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitMulti} disabled={selectedIndexes.length < 1}>Check answers</button>}
       {revealed && <button style={styles.primaryBtn} onClick={next}>{queue.length === 0 ? 'Finish' : 'Next'}</button>}
     </div>
   )

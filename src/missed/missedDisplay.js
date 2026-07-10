@@ -2,6 +2,8 @@ import {
   isCliQuestion,
   isOrderingQuestion,
   isMcQuestion,
+  isMultiQuestion,
+  multiCorrectIndexes,
   correctAnswerLabel,
 } from '../questionUtils.js'
 
@@ -26,12 +28,15 @@ export function findMissedBankIndex(missed, entry) {
 export function missedReviewOptionRows(m) {
   if (!m) return []
   if (Array.isArray(m.choices) && m.choices.length > 0) {
+    const correctSet = isMultiQuestion(m)
+      ? new Set(multiCorrectIndexes(m))
+      : null
     return m.choices.map((text, ci) => ({
       text: String(text ?? ''),
-      isAnswer: ci === m.correctIndex,
+      isAnswer: correctSet ? correctSet.has(ci) : ci === m.correctIndex,
     }))
   }
-  if (isCliQuestion(m) || isOrderingQuestion(m) || isMcQuestion(m)) {
+  if (isCliQuestion(m) || isOrderingQuestion(m) || isMcQuestion(m) || isMultiQuestion(m)) {
     const label = correctAnswerLabel(m)
     return label ? [{ text: label, isAnswer: true }] : []
   }
@@ -46,6 +51,12 @@ export function missedUserAttemptLabel(m) {
   }
   if (isOrderingQuestion(m) && Array.isArray(m.orderAnswer) && m.orderAnswer.length) {
     return `Your order: ${m.orderAnswer.map((s, i) => `${i + 1}. ${s}`).join(' → ')}`
+  }
+  if (Array.isArray(m.selectedIndexes) && Array.isArray(m.choices)) {
+    const labels = m.selectedIndexes
+      .filter(i => typeof i === 'number' && m.choices[i] != null)
+      .map(i => m.choices[i])
+    if (labels.length) return `Your answers: ${labels.join('; ')}`
   }
   if (Array.isArray(m.choices) && typeof m.selectedIndex === 'number' && m.choices[m.selectedIndex] != null) {
     return `Your answer: ${m.choices[m.selectedIndex]}`

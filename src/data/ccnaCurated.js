@@ -2039,6 +2039,7 @@ function mapQuizQuestion(q, objectiveId) {
     question: q.question,
     choices: q.choices,
     correctIndex: q.correctIndex,
+    ...(Array.isArray(q.correctIndexes) ? { correctIndexes: q.correctIndexes } : {}),
     explanation: q.explanation,
     type: q.type,
     difficulty: q.difficulty,
@@ -2049,7 +2050,8 @@ function mapQuizQuestion(q, objectiveId) {
     ...(q.ckuIds?.length ? { ckuIds: q.ckuIds } : {}),
     ...(q.answerReview ? { answerReview: q.answerReview } : {}),
   }
-  return q.choices?.length && q.correctIndex != null
+  const hasChoices = q.choices?.length && (q.correctIndex != null || Array.isArray(q.correctIndexes))
+  return hasChoices
     ? applyAnswerReviewToQuestion({ ...shaped, objectiveId })
     : shaped
 }

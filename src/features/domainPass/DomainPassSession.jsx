@@ -2,9 +2,10 @@ import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { DOMAINS } from '../../data/ccnaDomains.js'
 import { getCuratedQuestions } from '../../data/ccnaCurated.js'
 import { preloadCleanBank } from '../../data/cleanQuestionAdapter.js'
-import { isMcQuestion, gradeQuestion, buildMissedEntry } from '../../questionUtils.js'
+import { isChoiceQuestion, isMcQuestion, isMultiQuestion, gradeQuestion, buildMissedEntry, normalizeSelectedIndexes } from '../../questionUtils.js'
 import { COLORS, styles } from '../../ui/appTheme.js'
 import McChoices from '../../components/McChoices.jsx'
+import MultiChoices from '../../components/MultiChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
 import { answerReviewSessionProps } from '../../components/answerReviewSessionProps.js'
 import { McChoiceShuffleProvider } from '../../context/McChoiceShuffleContext.jsx'
@@ -88,12 +89,17 @@ export default function DomainPassSession({
   const [current, setCurrent] = useState(0)
   const [responses, setResponses] = useState({})
   const [studyRevealed, setStudyRevealed] = useState({})
+  const [multiDraft, setMultiDraft] = useState([])
   const [secondsLeft, setSecondsLeft] = useState(0)
   const [timerEnabled, setTimerEnabledState] = useState(true)
   const [resumedReport, setResumedReport] = useState(null)
   const finishSaved = useRef(false)
   const prevSkippedRef = useRef([])
   const bootstrappedRef = useRef(false)
+
+  useEffect(() => {
+    setMultiDraft([])
+  }, [current])
 
   const focusObjectiveIds = useMemo(
     () => (Array.isArray(objectiveFilter) && objectiveFilter.length ? objectiveFilter : null),
@@ -102,7 +108,7 @@ export default function DomainPassSession({
   const isFocusSession = focusMode || Boolean(focusObjectiveIds?.length)
 
   const getMcForObjective = useCallback((objectiveId) => (
-    getCuratedQuestions(objectiveId).filter(isMcQuestion)
+    getCuratedQuestions(objectiveId).filter(isChoiceQuestion)
   ), [])
 
   const startSession = useCallback(async () => {
@@ -200,9 +206,10 @@ export default function DomainPassSession({
 
   function selectChoice(idx) {
     if (studyRevealed[current]) return
+    const q = questions[current]
+    if (!isMcQuestion(q)) return
     setResponses(r => ({ ...r, [current]: idx }))
     setStudyRevealed(r => ({ ...r, [current]: true }))
-    const q = questions[current]
     if (q?.objectiveId) {
       const correct = gradeQuestion(q, idx)
       recordEngagement?.(q.objectiveId, {
@@ -211,6 +218,36 @@ export default function DomainPassSession({
         total: 1,
       })
       if (!correct) appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndex: idx }))
+    }
+  }
+
+  function toggleMultiChoice(idx) {
+    if (studyRevealed[current]) return
+    const q = questions[current]
+    if (!isMultiQuestion(q)) return
+    setMultiDraft(prev => {
+      const set = new Set(prev)
+      if (set.has(idx)) set.delete(idx)
+      else set.add(idx)
+      return normalizeSelectedIndexes([...set])
+    })
+  }
+
+  function submitMultiChoice() {
+    if (studyRevealed[current] || multiDraft.length < 1) return
+    const q = questions[current]
+    if (!isMultiQuestion(q)) return
+    const answer = normalizeSelectedIndexes(multiDraft)
+    setResponses(r => ({ ...r, [current]: answer }))
+    setStudyRevealed(r => ({ ...r, [current]: true }))
+    if (q?.objectiveId) {
+      const correct = gradeQuestion(q, answer)
+      recordEngagement?.(q.objectiveId, {
+        kind: ENGAGEMENT_KINDS.DOMAIN_PASS,
+        correct: correct ? 1 : 0,
+        total: 1,
+      })
+      if (!correct) appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndexes: answer }))
     }
   }
 
@@ -224,7 +261,7 @@ export default function DomainPassSession({
       const domainIdx = parseInt((q.objectiveId || '1.1').split('.')[0], 10) - 1
       const d = DOMAINS[domainIdx] || DOMAINS[0]
       byDomain[d.id].total++
-      if (responses[idx] === q.correctIndex) {
+      if (gradeQuestion(q, responses[idx])) {
         byDomain[d.id].correct++
         correct++
       }
@@ -499,10 +536,15 @@ export default function DomainPassSession({
   const q = questions[current]
   const selected = responses[current]
   const isCurrentRevealed = !!studyRevealed[current]
-  const isCurrentCorrect = selected != null && selected === q.correctIndex
+  const multi = isMultiQuestion(q)
+  const isCurrentCorrect = selected != null && gradeQuestion(q, selected)
   const studyAnsweredCount = Object.keys(studyRevealed).length
   const studyCorrectCount = Object.keys(studyRevealed).filter(
-    idx => responses[parseInt(idx, 10)] === questions[parseInt(idx, 10)]?.correctIndex,
+    idx => {
+      const i = parseInt(idx, 10)
+      const qq = questions[i]
+      return qq && gradeQuestion(qq, responses[i])
+    },
   ).length
   const questionTotal = questions.length
 
@@ -533,8 +575,27 @@ export default function DomainPassSession({
         <QuestionMeta q={q} />
         <QuizQuestionStem text={q.question} />
         <McChoiceShuffleProvider q={q}>
-        <McChoices q={q} selected={selected ?? null} revealed={isCurrentRevealed} onSelect={selectChoice} />
-        {!isCurrentRevealed && (
+        {multi ? (
+          <MultiChoices
+            q={q}
+            selectedIndexes={isCurrentRevealed ? (Array.isArray(selected) ? selected : []) : multiDraft}
+            revealed={isCurrentRevealed}
+            onToggle={toggleMultiChoice}
+          />
+        ) : (
+          <McChoices q={q} selected={typeof selected === 'number' ? selected : null} revealed={isCurrentRevealed} onSelect={selectChoice} />
+        )}
+        {multi && !isCurrentRevealed && (
+          <button
+            type="button"
+            style={{ ...styles.primaryBtn, marginTop: 10 }}
+            disabled={multiDraft.length < 1}
+            onClick={submitMultiChoice}
+          >
+            Check answers
+          </button>
+        )}
+        {!isCurrentRevealed && !multi && (
           <div style={{ ...styles.small, marginTop: 10, textAlign: 'center', color: COLORS.silverMid }}>
             Select an answer to see instant feedback
           </div>
@@ -553,7 +614,8 @@ export default function DomainPassSession({
             </div>
             <AnswerReview {...answerReviewSessionProps({
               q,
-              selected,
+              selected: typeof selected === 'number' ? selected : undefined,
+              selectedIndexes: Array.isArray(selected) ? selected : undefined,
               hideExamTip: examMode,
               domainId,
               onOpenLab,

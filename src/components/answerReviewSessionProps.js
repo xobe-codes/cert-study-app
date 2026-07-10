@@ -13,6 +13,7 @@ export function enrichQuestionForReview(q) {
 export function answerReviewSessionProps({
   q,
   selected,
+  selectedIndexes,
   cliAnswer,
   orderAnswer,
   objectiveId,
@@ -29,6 +30,7 @@ export function answerReviewSessionProps({
   return {
     q: enriched,
     selected,
+    selectedIndexes,
     cliAnswer,
     orderAnswer,
     objectiveId: oid,

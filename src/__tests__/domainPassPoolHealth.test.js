@@ -2,8 +2,8 @@ import { describe, it, expect } from 'vitest'
 import { DOMAINS } from '../data/ccnaDomains.js'
 import { preloadCleanBank } from '../data/cleanQuestionAdapter.js'
 import { getCuratedQuestions } from '../data/ccnaCurated.js'
-import { isMcQuestion } from '../questionUtils.js'
-import { auditQuestionShape, isPlayableMcQuestion } from '../questionShapeAudit.js'
+import { isChoiceQuestion } from '../questionUtils.js'
+import { auditQuestionShape, isPlayableChoiceQuestion } from '../questionShapeAudit.js'
 import { buildDomainPassPool, hydrateMcQuestion } from '../features/domainPass/buildDomainPassPool.js'
 
 describe('domain pass pool health', () => {
@@ -21,13 +21,13 @@ describe('domain pass pool health', () => {
     expect(failures).toEqual([])
   })
 
-  it('domain pass pools contain only playable MC questions', async () => {
+  it('domain pass pools contain only playable choice questions', async () => {
     await preloadCleanBank()
-    const getMc = id => getCuratedQuestions(id).filter(isMcQuestion)
+    const getMc = id => getCuratedQuestions(id).filter(isChoiceQuestion)
     for (const domain of DOMAINS) {
       const pool = buildDomainPassPool({ domain, getMcQuestions: getMc, shuffle: a => [...a] })
       expect(pool.length).toBeGreaterThan(0)
-      expect(pool.every(q => isPlayableMcQuestion(q))).toBe(true)
+      expect(pool.every(q => isPlayableChoiceQuestion(q))).toBe(true)
       expect(pool.every(q => q.choices?.length >= 2)).toBe(true)
     }
   })
@@ -35,7 +35,7 @@ describe('domain pass pool health', () => {
   it('drops partial missed entries and hydrates by questionId', async () => {
     await preloadCleanBank()
     const domain = DOMAINS.find(d => d.id === 'security')
-    const getMc = id => getCuratedQuestions(id).filter(isMcQuestion)
+    const getMc = id => getCuratedQuestions(id).filter(isChoiceQuestion)
     const sample = getMc(domain.objectives[0].id)[0]
     const partial = {
       objectiveId: sample.objectiveId,
@@ -55,7 +55,7 @@ describe('domain pass pool health', () => {
       shuffle: a => [...a],
       missedQuestions: [partial, orderingMissed],
     })
-    expect(pool.every(q => isPlayableMcQuestion(q))).toBe(true)
+    expect(pool.every(q => isPlayableChoiceQuestion(q))).toBe(true)
     const hydrated = hydrateMcQuestion(partial, domain, getMc)
     expect(hydrated?.choices?.length).toBeGreaterThanOrEqual(2)
     expect(hydrated?.id).toBe(sample.id)

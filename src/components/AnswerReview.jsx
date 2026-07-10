@@ -4,7 +4,7 @@ import {
   resolveIncorrectItem, buildWrongChoiceItem,
   choiceLetterForIndex, formatYourWrongHeader, formatOtherWrongHeader,
 } from '../answerReviewLogic.js'
-import { isMcQuestion, isCliQuestion, isOrderingQuestion, correctAnswerLabel, gradeQuestion } from '../questionUtils.js'
+import { isMcQuestion, isCliQuestion, isOrderingQuestion, isMultiQuestion, multiCorrectIndexes, normalizeSelectedIndexes, correctAnswerLabel, gradeQuestion } from '../questionUtils.js'
 import { cliStringsEquivalent } from '../lab/cliGrading.js'
 import { goldCliReviewFor } from '../answerReview/goldAnswerReviewsCliSkill.js'
 import { isTemplateWhyWrongHere } from '../answerReview/answerReviewQuality.js'
@@ -189,7 +189,7 @@ function WrongChoiceReview({
 
 /** Post-reveal breakdown — your pick first when wrong; other distractors collapsed. */
 export default function AnswerReview({
-  q, selected, cliAnswer, orderAnswer, hideExamTip = false, objectiveId, domainId,
+  q, selected, selectedIndexes, cliAnswer, orderAnswer, hideExamTip = false, objectiveId, domainId,
   showQuestionFlag = false, onOpenLab, onOpenTrapDrill, onOpenSubnet,
 }) {
   const compactMobile = useCompactMobile()
@@ -262,6 +262,68 @@ export default function AnswerReview({
         )}
         {showQuestionFlag && <QuestionFlagPanel question={q} objectiveId={objectiveId} />}
         <StemReplayCTA questionId={q?.id} onOpenLab={onOpenLab} />
+      </div>
+    )
+  }
+
+  if (isMultiQuestion(q)) {
+    const correctIdxs = multiCorrectIndexes(q)
+    const given = normalizeSelectedIndexes(selectedIndexes ?? selected)
+    const ok = gradeQuestion(q, given)
+    const correctSet = new Set(correctIdxs)
+    const givenSet = new Set(given)
+    const missedCorrect = correctIdxs.filter(i => !givenSet.has(i))
+    const extraWrong = given.filter(i => !correctSet.has(i))
+    const ar = q.answerReview
+    const incorrect = (ar?.incorrect || []).filter(item => !correctSet.has(item.choiceIndex))
+    const letters = correctIdxs.map(displayLetter).join(', ')
+
+    return (
+      <div className={`ccna-answer-review${compactMobile ? ' ccna-answer-review--compact' : ''}`} style={{ marginTop: compactMobile ? 6 : 8, minWidth: 0 }}>
+        <QuestionUnderReviewBanner questionId={q?.id} />
+        <ReviewBlock icon="✅" title={`CORRECT ANSWERS: ${letters}`} accent="mint">
+          <RichText text={ar?.correct?.explanation || q.explanation} />
+          {!ok && (
+            <div style={{ marginTop: 8, fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid }}>
+              You selected {given.length ? given.map(displayLetter).join(', ') : 'nothing'}
+              {missedCorrect.length ? ` · missed ${missedCorrect.map(displayLetter).join(', ')}` : ''}
+              {extraWrong.length ? ` · extra ${extraWrong.map(displayLetter).join(', ')}` : ''}
+            </div>
+          )}
+        </ReviewBlock>
+        {extraWrong.map(choiceIndex => {
+          const item = incorrect.find(i => i.choiceIndex === choiceIndex) || { choiceIndex }
+          const letter = displayLetter(choiceIndex)
+          const choiceText = q.choices?.[choiceIndex] || ''
+          return (
+            <ReviewBlock
+              key={`extra-${choiceIndex}`}
+              icon="❌"
+              title={formatYourWrongHeader(letter, choiceText)}
+              accent="rose"
+            >
+              <WrongChoiceReview
+                q={q}
+                item={item}
+                objectiveId={objectiveId}
+                domainId={domainId}
+                onOpenTrapDrill={onOpenTrapDrill}
+                onOpenSubnet={onOpenSubnet}
+                showFamily
+              />
+            </ReviewBlock>
+          )
+        })}
+        {missedCorrect.length > 0 && (
+          <ReviewBlock icon="📋" title={`MISSED CORRECT (${missedCorrect.map(displayLetter).join(', ')})`} accent="amber">
+            <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.45, color: COLORS.silverMid }}>
+              Select-all questions require the full correct set — partial credit is not awarded on the exam.
+            </div>
+          </ReviewBlock>
+        )}
+        {(!hideExamTip && ar?.examTip) && <ReviewBlock icon="💡" title="EXAM TIP" accent="amber" collapsible defaultOpen={false}><RichText text={ar.examTip} /></ReviewBlock>}
+        {showQuestionFlag && <QuestionFlagPanel question={q} objectiveId={objectiveId} />}
+        {!ok && <StemReplayCTA questionId={q?.id} onOpenLab={onOpenLab} />}
       </div>
     )
   }

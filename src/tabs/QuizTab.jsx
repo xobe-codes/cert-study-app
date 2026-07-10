@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
-import { getCurated, getCuratedQuestions } from '../data/ccnaCurated.js'
+import { getCuratedQuestions } from '../data/ccnaCurated.js'
 import {
-  TYPE_LABEL, SKILL_LABEL, isOrderingQuestion, isMcQuestion, isCliQuestion, gradeQuestion,
-  shuffleArrayCopy, computeBankMix, buildMissedEntry,
+  isOrderingQuestion, isMcQuestion, isCliQuestion, isMultiQuestion, gradeQuestion,
+  shuffleArrayCopy, buildMissedEntry, normalizeSelectedIndexes,
 } from '../questionUtils.js'
 import { pickReviewSet, getObjectiveCkuIds } from '../lesson/quizCoverage.js'
 import { READING_TIER_KEYS } from '../lesson/readingTier.js'
 import { masteryBreakdown } from '../lesson/masteryCriteria.js'
-import { computeMastery } from '../netUtils.js'
 import { preloadCleanBankForObjective } from '../data/cleanQuestionAdapter.js'
 import McChoices from '../components/McChoices.jsx'
+import MultiChoices from '../components/MultiChoices.jsx'
 import AnswerReview from '../components/AnswerReview.jsx'
 import { McChoiceShuffleProvider } from '../context/McChoiceShuffleContext.jsx'
 import ErrorBox from '../components/ErrorBox.jsx'
@@ -37,7 +37,6 @@ import { QUIZ_SCHEMA } from '../ai/claudeClient.js'
 import { recordQuestionHealthSignal } from '../quiz/questionHealthSignals.js'
 import { confidenceFeedbackCopy } from '../quiz/confidenceScheduler.js'
 import { applyAnswerReviewToQuestion, inferTrapForChoice } from '../answerReviewLogic.js'
-import { isActionableMissedTrap } from '../missed/missedTrapGroups.js'
 import { bumpSessionStudy } from '../home/sessionRecap.js'
 import {
   createTrapStreakState,
@@ -54,181 +53,14 @@ import {
   loadDomainQuestionExposure,
   recordSeen,
 } from '../features/domainPass/domainQuestionExposure.js'
-
-/** Resolve trap-drill prefill from a missed MC question (prefer family label from answerReview). */
-function resolveQuizTrapDrillPrefill(question, objective, selected) {
-  const enriched = applyAnswerReviewToQuestion(question)
-  const wrongItem = (enriched.answerReview?.incorrect || []).find(i => i.choiceIndex === selected)
-  let trap = wrongItem?.misconceptionTested
-    || inferTrapForChoice(enriched, selected)
-  let ckuId = question.ckuIds?.[0] || enriched.ckuIds?.[0]
-
-  if (!trap || !isActionableMissedTrap(trap)) {
-    const examTraps = getCurated(objective.id)?.examTraps || []
-    const match = examTraps.find(t => t.ckuIds?.some(id => id === ckuId)) || examTraps[0]
-    if (match?.trap) {
-      trap = match.trap
-      ckuId = ckuId || match.ckuIds?.[0]
-    }
-  }
-
-  if (!trap) return null
-  return { trapLabel: trap, objectiveId: objective.id, ckuId }
-}
-
-/* =========================================================================
-   QUIZ TAB
-   ========================================================================= */
-const QUIZ_PROMPT_SYSTEM = `You are a CCNA 200-301 quiz generator. Use the provided reference notes as your primary source; where the notes don't cover a detail needed for a good question, you may draw on accurate broader CCNA 200-301 knowledge consistent with the notes. Write questions at genuine CCNA exam difficulty.
-
-Mix the question types across the set:
-- definition/recall (2): test knowing a fact or term
-- scenario-based (2-3): a short situation the learner must reason about
-- application (1-2): apply a concept to solve something
-- true-false on a common misconception (1): give exactly two choices ["True","False"]
-- troubleshooting (2-3): a realistic fault scenario where the learner diagnoses the MOST LIKELY cause
-
-Tag each question with skill: design (planning/architecture), implement (configuration/deployment), or troubleshoot (diagnosis). AI-generated questions are multiple-choice only — ordering/drag-drop questions come from the curated skill bank.
-
-For troubleshooting questions, write them the way a network engineer actually troubleshoots: describe a concrete symptom (e.g. "Hosts on VLAN 20 can't reach their gateway"), include a short relevant config or "show" snippet inline using backticks for commands/output, then ask for the most likely cause. Use specific but VARIED surface details (interface names, IPs, VLAN IDs, subnet masks) so regenerated questions test the same underlying principle without being memorizable by pattern. The correct answer must be deducible from the snippet + reference notes; the distractors should be plausible real mistakes.
-
-Spread difficulty from easy to hard. Tag each question with its type, difficulty (easy/medium/hard), skill (design/implement/troubleshoot), and the short sub-concept it tests. Each question's explanation should be 1-2 sentences on why the correct answer is right. Most questions have 4 choices; true-false questions have exactly 2.`
-
-function BankMixDisplay({ questions }) {
-  const mix = computeBankMix(questions)
-  if (!mix.total) return null
-  const typeLine = Object.entries(mix.types).sort((a, b) => b[1] - a[1]).map(([t, n]) => `${TYPE_LABEL[t] || t} ${n}`).join(' · ')
-  const skillLine = Object.entries(mix.skills).sort((a, b) => b[1] - a[1]).map(([s, n]) => `${SKILL_LABEL[s] || s} ${n}`).join(' · ')
-  return (
-    <div style={{ marginTop: 8, marginBottom: 8, padding: '8px 10px', borderRadius: 10, background: COLORS.surface, border: `1px solid ${COLORS.border}` }}>
-      <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.45 }}>{typeLine}</div>
-      {skillLine && <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverDim, lineHeight: 1.45, marginTop: 2 }}>{skillLine}</div>}
-    </div>
-  )
-}
-
-const CONFIDENCE_OPTIONS = [
-  { value: 'easy', label: 'Easy', accent: COLORS.mint, dim: COLORS.mintDim, border: COLORS.mintBorder },
-  { value: 'medium', label: 'Medium', accent: COLORS.sky, dim: COLORS.skyDim, border: COLORS.skyBorder },
-  { value: 'hard', label: 'Hard', accent: COLORS.purpleGlow, dim: COLORS.purpleDim, border: COLORS.borderGlow },
-  { value: 'practice', label: 'Need practice', accent: COLORS.rose, dim: COLORS.roseDim, border: COLORS.roseBorder },
-]
-
-const FOCUSABLE_SELECTOR = 'a[href],button:not([disabled]),textarea,input:not([type="hidden"]),select,[tabindex]:not([tabindex="-1"])'
-
-function useFocusTrap(containerRef) {
-  useEffect(() => {
-    const root = containerRef.current
-    if (!root) return
-    const previous = document.activeElement
-
-    function focusables() {
-      return [...root.querySelectorAll(FOCUSABLE_SELECTOR)].filter(el => !el.hasAttribute('disabled'))
-    }
-
-    const nodes = focusables()
-    if (nodes.length) nodes[0].focus()
-    else {
-      root.tabIndex = -1
-      root.focus()
-    }
-
-    function onKeyDown(e) {
-      if (e.key !== 'Tab') return
-      const list = focusables()
-      if (!list.length) {
-        e.preventDefault()
-        return
-      }
-      const first = list[0]
-      const last = list[list.length - 1]
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault()
-        last.focus()
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault()
-        first.focus()
-      }
-    }
-
-    root.addEventListener('keydown', onKeyDown)
-    return () => {
-      root.removeEventListener('keydown', onKeyDown)
-      if (previous?.focus) previous.focus()
-    }
-  }, [containerRef])
-}
-
-const quizFeedbackA11y = { role: 'status', 'aria-live': 'polite', 'aria-atomic': true }
-
-function QuizCompleteCard({
-  title = 'Quiz complete',
-  stats,
-  objectiveId,
-  progress,
-  nextObjective,
-  missedCountGlobal = 0,
-  onReviewAgain,
-  onGenerateNew,
-  onOpenMissed,
-  onSelectObjective,
-  onSwitchTab,
-  footnote,
-  premiumUnlocked = false,
-}) {
-  const pct = stats.total ? Math.round((stats.correct / stats.total) * 100) : 0
-  const mastery = computeMastery(progress?.[objectiveId] || {})
-  const sessionMissed = stats.missedCount || 0
-  const scoreColor = pct >= 80 ? COLORS.mint : pct >= 60 ? COLORS.sky : COLORS.rose
-
-  let primaryLabel
-  let primaryAction
-  if (sessionMissed > 0) {
-    primaryLabel = missedCountGlobal > 0 ? `Review missed questions (${missedCountGlobal})` : 'Review missed questions'
-    primaryAction = onOpenMissed
-  } else if (nextObjective) {
-    primaryLabel = `Next objective: ${nextObjective.id}`
-    primaryAction = () => onSelectObjective?.({ ...nextObjective, __initialTab: 'Practice' })
-  } else {
-    primaryLabel = 'Review again from bank'
-    primaryAction = onReviewAgain
-  }
-
-  return (
-    <div style={styles.card}>
-      <h2 style={styles.h2}>{title}</h2>
-      <p style={{ fontSize: 'var(--ccna-type-2xl)', fontWeight: 700, color: scoreColor, margin: '4px 0' }}>{stats.correct} / {stats.total}</p>
-      <p style={{ ...styles.small, marginBottom: 4 }}>
-        {pct}% this session · Topic mastery {Math.round(mastery.score * 100)}%
-        {mastery.mastered ? ' · Mastered ✓' : ''}
-      </p>
-      {sessionMissed > 0 && (
-        <p style={{ ...styles.small, marginBottom: 10, color: COLORS.rose }}>
-          {sessionMissed} answer{sessionMissed === 1 ? '' : 's'} missed this session — saved to your review bank.
-        </p>
-      )}
-      {footnote && <p style={{ ...styles.small, marginBottom: 10 }}>{footnote}</p>}
-      <button style={{ ...styles.primaryBtn, marginTop: 4 }} onClick={primaryAction}>{primaryLabel}</button>
-      {sessionMissed > 0 && nextObjective && (
-        <button
-          style={{ ...styles.secondaryBtn, marginTop: 8 }}
-          onClick={() => onSelectObjective?.({ ...nextObjective, __initialTab: 'Practice' })}
-        >
-          Continue to {nextObjective.id} instead
-        </button>
-      )}
-      <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => onSwitchTab?.('Study')}>
-        Read explanation
-      </button>
-      {primaryAction !== onReviewAgain && (
-        <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={onReviewAgain}>Review again from bank</button>
-      )}
-      {premiumUnlocked && (
-        <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={onGenerateNew}>Generate new questions</button>
-      )}
-    </div>
-  )
-}
+import {
+  resolveQuizTrapDrillPrefill,
+  QUIZ_PROMPT_SYSTEM,
+  BankMixDisplay,
+  CONFIDENCE_OPTIONS,
+  quizFeedbackA11y,
+  QuizCompleteCard,
+} from './quizTabChrome.jsx'
 
 export function QuizTab({
   objective, progress, missed, onMissed, onScoreSaved, nextObjective, onSelectObjective, onOpenMissed, onOpenTrapDrill, onOpenLab, onOpenSubnet, onSwitchTab,
@@ -246,6 +78,7 @@ export function QuizTab({
   const [queue, setQueue] = useState([]) // remaining questions
   const [current, setCurrent] = useState(null)
   const [selected, setSelected] = useState(null)
+  const [selectedIndexes, setSelectedIndexes] = useState([])
   const [revealed, setRevealed] = useState(false)
   const [rating, setRating] = useState(null) // confidence rating for the current question
   const [confidenceHint, setConfidenceHint] = useState(null)
@@ -354,6 +187,7 @@ export function QuizTab({
       setOrderDraft([])
     }
     setCliAnswer('')
+    setSelectedIndexes([])
   }, [current])
 
   // forceNew=true always generates a fresh set via the API and adds it to the
@@ -452,6 +286,7 @@ export function QuizTab({
       setQueue(set.slice(1))
       setCurrent(set[0])
       setSelected(null)
+      setSelectedIndexes([])
       setRevealed(false)
       setRating(null)
       setConfidenceHint(null)
@@ -470,6 +305,7 @@ export function QuizTab({
     setQueue([])
     setCurrent(null)
     setSelected(null)
+    setSelectedIndexes([])
     setRevealed(false)
     setRating(null)
     setConfidenceHint(null)
@@ -496,7 +332,7 @@ export function QuizTab({
     setStreak(newStreak)
     if (correct && newStreak >= 4) {
       setQueue(q => {
-        const tIdx = q.findIndex(x => x.type === 'troubleshooting' || x.type === 'ordering')
+        const tIdx = q.findIndex(x => x.type === 'troubleshooting' || x.type === 'ordering' || x.type === 'multi')
         if (tIdx > 0) return [q[tIdx], ...q.slice(0, tIdx), ...q.slice(tIdx + 1)]
         return q
       })
@@ -514,6 +350,56 @@ export function QuizTab({
       collectDeferredTip(current, idx)
       onMissed(buildMissedEntry(objective.id, current, { selectedIndex: idx }))
       const trapPrefill = resolveQuizTrapDrillPrefill(current, objective, idx)
+      if (trapPrefill) {
+        const recorded = recordTrapMiss(trapStreakRef.current, trapPrefill)
+        trapStreakRef.current = recorded.state
+        setTrapStreakTick(t => t + 1)
+      }
+      const qKey = current.id || current.question
+      if (missedOnce.current.has(qKey)) {
+        setQueue(q => [q[0], current, ...q.slice(1)].filter(Boolean))
+      } else {
+        missedOnce.current.add(qKey)
+        setQueue(q => [...q, current])
+      }
+    }
+  }
+
+  function toggleMultiChoice(idx) {
+    if (revealed || !isMultiQuestion(current)) return
+    setSelectedIndexes(prev => {
+      const set = new Set(prev)
+      if (set.has(idx)) set.delete(idx)
+      else set.add(idx)
+      return normalizeSelectedIndexes([...set])
+    })
+  }
+
+  function submitMulti() {
+    if (revealed || !isMultiQuestion(current)) return
+    if (selectedIndexes.length < 1) return
+    setRevealed(true)
+    const correct = gradeQuestion(current, selectedIndexes)
+    haptic(correct ? 15 : [10, 40, 10])
+    if (correct) bumpSessionStudy('correct')
+    else bumpSessionStudy('incorrect')
+    setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1, missedCount: s.missedCount + (correct ? 0 : 1) }))
+    const newStreak = correct ? streak + 1 : 0
+    setStreak(newStreak)
+    if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
+    if (current.id) {
+      recordQuestionHealthSignal(current.id, objective.id, {
+        correct,
+        selectedIndexes,
+        lastRating: current.ratings?.length ? current.ratings[current.ratings.length - 1].value : null,
+      })
+    }
+    logEvent('user_answered_question', { objectiveId: objective.id, questionId: current.id, correct })
+    if (!correct) {
+      const firstWrong = selectedIndexes.find(i => !(current.correctIndexes || []).includes(i))
+      collectDeferredTip(current, firstWrong ?? selectedIndexes[0])
+      onMissed(buildMissedEntry(objective.id, current, { selectedIndexes: [...selectedIndexes] }))
+      const trapPrefill = resolveQuizTrapDrillPrefill(current, objective, firstWrong ?? selectedIndexes[0])
       if (trapPrefill) {
         const recorded = recordTrapMiss(trapStreakRef.current, trapPrefill)
         trapStreakRef.current = recorded.state
@@ -586,10 +472,12 @@ export function QuizTab({
     logEvent('user_rated_question_difficulty', { objectiveId: objective.id, questionId: current.id, rating: value })
     const ordering = isOrderingQuestion(current)
     const cli = isCliQuestion(current)
+    const multi = isMultiQuestion(current)
     let wasCorrect = null
     if (revealed) {
       if (ordering) wasCorrect = gradeQuestion(current, orderDraft)
       else if (cli) wasCorrect = gradeQuestion(current, cliAnswer)
+      else if (multi) wasCorrect = gradeQuestion(current, selectedIndexes)
       else if (selected != null) wasCorrect = gradeQuestion(current, selected)
     }
     setConfidenceHint(confidenceFeedbackCopy(value, wasCorrect))
@@ -607,6 +495,7 @@ export function QuizTab({
     setCurrent(queue[0])
     setQueue(q => q.slice(1))
     setSelected(null)
+    setSelectedIndexes([])
     setRevealed(false)
     setRating(null)
     setConfidenceHint(null)
@@ -751,7 +640,13 @@ export function QuizTab({
   // active
   const ordering = isOrderingQuestion(current)
   const cli = isCliQuestion(current)
-  const isCorrect = revealed && (ordering ? gradeQuestion(current, orderDraft) : cli ? gradeQuestion(current, cliAnswer) : gradeQuestion(current, selected))
+  const multi = isMultiQuestion(current)
+  const isCorrect = revealed && (
+    ordering ? gradeQuestion(current, orderDraft)
+      : cli ? gradeQuestion(current, cliAnswer)
+        : multi ? gradeQuestion(current, selectedIndexes)
+          : gradeQuestion(current, selected)
+  )
   return (
     <div className="ccna-practice-active ccna-review-flow">
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
@@ -772,8 +667,25 @@ export function QuizTab({
           />
         ) : cli ? (
           <CliAnswerInput value={cliAnswer} onChange={setCliAnswer} onSubmit={submitCli} revealed={revealed} question={current} />
+        ) : multi ? (
+          <MultiChoices
+            q={current}
+            selectedIndexes={selectedIndexes}
+            revealed={revealed}
+            onToggle={toggleMultiChoice}
+          />
         ) : (
           <McChoices q={current} selected={selected} revealed={revealed} onSelect={selectAnswer} />
+        )}
+        {multi && !revealed && (
+          <button
+            type="button"
+            style={{ ...styles.primaryBtn, marginTop: 8 }}
+            disabled={selectedIndexes.length < 1}
+            onClick={submitMulti}
+          >
+            Check answers
+          </button>
         )}
         {revealed && (
           <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `2px solid ${isCorrect ? COLORS.mintBorder : COLORS.rose}` }} {...quizFeedbackA11y}>
@@ -783,6 +695,7 @@ export function QuizTab({
             <AnswerReview
               q={applyAnswerReviewToQuestion(current)}
               selected={selected}
+              selectedIndexes={multi ? selectedIndexes : undefined}
               hideExamTip={examMode}
               objectiveId={objective.id}
               domainId={domainIdFromObjectiveId(objective.id)}
@@ -794,7 +707,13 @@ export function QuizTab({
               onOpenSubnet={onOpenSubnet}
             />
             {!isCorrect && onOpenTrapDrill && (() => {
-              const prefill = resolveQuizTrapDrillPrefill(current, objective, selected)
+              const prefill = resolveQuizTrapDrillPrefill(
+                current,
+                objective,
+                multi
+                  ? (selectedIndexes.find(i => !(current.correctIndexes || []).includes(i)) ?? selectedIndexes[0])
+                  : selected,
+              )
               if (!prefill) return null
               const streakCta = trapStreakTick >= 0 && shouldShowTrapStreakCta(trapStreakRef.current, prefill)
               if (!streakCta) return null

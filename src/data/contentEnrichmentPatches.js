@@ -40,6 +40,7 @@ import { TIER_B_TRAP_WAVE20_PATCHES } from './tierBTrapWave20Patches.js'
 import { TIER_B_TRAP_WAVE21_PATCHES } from './tierBTrapWave21Patches.js'
 import { TIER_B_TRAP_WAVE22_PATCHES } from './tierBTrapWave22Patches.js'
 import { TIER_B_TRAP_WAVE23_PATCHES } from './tierBTrapWave23Patches.js'
+import { MULTI_SELECT_QUESTION_PATCHES } from './multiSelectQuestionPatches.js'
 
 const ENGINEER_VIEW_WAVE_SUPPLEMENTS = [
   FACTORY_ENGINEER_VIEW_WAVE3_SUPPLEMENTS,
@@ -547,6 +548,9 @@ export function getEnrichmentPatchQuestions(objectiveId) {
   }
   if (WLAN_ENRICHMENT_WAVE5_PATCHES[objectiveId]?.questions?.length) {
     qs.push(...WLAN_ENRICHMENT_WAVE5_PATCHES[objectiveId].questions)
+  }
+  if (MULTI_SELECT_QUESTION_PATCHES[objectiveId]?.questions?.length) {
+    qs.push(...MULTI_SELECT_QUESTION_PATCHES[objectiveId].questions)
   }
   return qs
 }

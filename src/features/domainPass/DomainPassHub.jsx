@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import { DOMAINS } from '../../data/ccnaDomains.js'
 import { getCuratedQuestions } from '../../data/ccnaCurated.js'
-import { isMcQuestion } from '../../questionUtils.js'
+import { isChoiceQuestion } from '../../questionUtils.js'
 import { COLORS, accentColors, styles } from '../../ui/appTheme.js'
 import {
   domainPassStatus,
@@ -58,7 +58,7 @@ export default function DomainPassHub({ onExit, onStartDomain, onOpenFocusPicker
   const [loaded, setLoaded] = useState(false)
 
   const getMcForObjective = useCallback((objectiveId) => (
-    getCuratedQuestions(objectiveId).filter(isMcQuestion)
+    getCuratedQuestions(objectiveId).filter(isChoiceQuestion)
   ), [])
 
   const domainBankStats = useMemo(() => {

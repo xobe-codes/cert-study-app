@@ -3,6 +3,8 @@ import {
   isOrderingQuestion,
   isMcQuestion,
   isCliQuestion,
+  isMultiQuestion,
+  isChoiceQuestion,
   gradeQuestion,
   correctAnswerLabel,
   inferSkill,
@@ -36,6 +38,15 @@ const cliQ = {
   question: 'Show the IP routing table',
   answers: ['show ip route', 'sh ip route'],
   explanation: 'show ip route displays the RIB.',
+}
+
+const multiQ = {
+  type: 'multi',
+  skill: 'design',
+  question: 'Which frame types are flooded? Select all that apply.',
+  choices: ['Unknown unicast', 'Broadcast', 'Multicast', 'Known unicast'],
+  correctIndexes: [0, 1, 2],
+  explanation: 'BUM traffic is flooded.',
 }
 
 describe('isOrderingQuestion', () => {
@@ -72,6 +83,9 @@ describe('isMcQuestion', () => {
   it('returns false for ordering', () => {
     expect(isMcQuestion(orderingQ)).toBe(false)
   })
+  it('returns false for multi', () => {
+    expect(isMcQuestion(multiQ)).toBe(false)
+  })
   it('returns false when choices missing', () => {
     expect(isMcQuestion({ correctIndex: 0 })).toBe(false)
   })
@@ -83,10 +97,30 @@ describe('isMcQuestion', () => {
   })
 })
 
+describe('isMultiQuestion', () => {
+  it('returns true for valid multi', () => {
+    expect(isMultiQuestion(multiQ)).toBe(true)
+  })
+  it('returns false with fewer than 2 correctIndexes', () => {
+    expect(isMultiQuestion({ ...multiQ, correctIndexes: [0] })).toBe(false)
+  })
+  it('is included in isChoiceQuestion', () => {
+    expect(isChoiceQuestion(multiQ)).toBe(true)
+    expect(isChoiceQuestion(mcQ)).toBe(true)
+  })
+})
+
 describe('gradeQuestion', () => {
   it('grades MC correct answer', () => {
     expect(gradeQuestion(mcQ, 0)).toBe(true)
     expect(gradeQuestion(mcQ, 1)).toBe(false)
+  })
+  it('grades multi exact set only', () => {
+    expect(gradeQuestion(multiQ, [0, 1, 2])).toBe(true)
+    expect(gradeQuestion(multiQ, [2, 0, 1])).toBe(true)
+    expect(gradeQuestion(multiQ, [0, 1])).toBe(false)
+    expect(gradeQuestion(multiQ, [0, 1, 2, 3])).toBe(false)
+    expect(gradeQuestion(multiQ, [0, 1, 3])).toBe(false)
   })
   it('grades ordering with exact sequence', () => {
     expect(gradeQuestion(orderingQ, orderingQ.orderItems)).toBe(true)
@@ -118,6 +152,12 @@ describe('correctAnswerLabel', () => {
   })
   it('returns MC choice text', () => {
     expect(correctAnswerLabel(mcQ)).toBe('Area mismatch')
+  })
+  it('lists multi correct letters', () => {
+    const label = correctAnswerLabel(multiQ)
+    expect(label).toContain('A.')
+    expect(label).toContain('Unknown unicast')
+    expect(label).toContain('Broadcast')
   })
 })
 
@@ -165,6 +205,12 @@ describe('normalizeQuestionForBank', () => {
     expect(n.answers).toEqual(cliQ.answers)
     expect(n.skill).toBe('implement')
     expect(n.id).toBe('4.1-skill-2')
+  })
+  it('preserves correctIndexes for multi questions', () => {
+    const n = normalizeQuestionForBank(multiQ, '1.5', 3)
+    expect(n.correctIndexes).toEqual([0, 1, 2])
+    expect(n.choices).toHaveLength(4)
+    expect(n.type).toBe('multi')
   })
 })
 

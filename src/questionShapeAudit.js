@@ -1,4 +1,4 @@
-import { isMcQuestion, isOrderingQuestion, isCliQuestion } from './questionUtils.js'
+import { isMcQuestion, isOrderingQuestion, isCliQuestion, isMultiQuestion, multiCorrectIndexes } from './questionUtils.js'
 
 /** Human-readable issues when question type does not match answer shape. */
 export function auditQuestionShape(q) {
@@ -8,6 +8,7 @@ export function auditQuestionShape(q) {
 
   const ordering = isOrderingQuestion(q)
   const cli = isCliQuestion(q)
+  const multi = isMultiQuestion(q)
   const hasOrderItems = Array.isArray(q?.orderItems) && q.orderItems.length >= 3
   const hasChoices = Array.isArray(q?.choices) && q.choices.length > 0
   const mc = isMcQuestion(q)
@@ -27,7 +28,14 @@ export function auditQuestionShape(q) {
     if (q?.type !== 'ordering') issues.push('orderItems-without-ordering-type')
   }
 
-  if (mc) {
+  if (multi) {
+    if (q.choices.length < 3) issues.push('multi-too-few-choices')
+    const idxs = multiCorrectIndexes(q)
+    if (idxs.length < 2) issues.push('multi-too-few-correct')
+    if (idxs.some(i => i < 0 || i >= q.choices.length)) issues.push('multi-bad-correctIndexes')
+    const blankChoices = q.choices.filter(c => !String(c ?? '').trim()).length
+    if (blankChoices) issues.push(`multi-blank-choice-text:${blankChoices}`)
+  } else if (mc) {
     if (q.choices.length < 2) issues.push('mc-too-few-choices')
     if (q.correctIndex < 0 || q.correctIndex >= q.choices.length) issues.push('mc-bad-correctIndex')
     const blankChoices = q.choices.filter(c => !String(c ?? '').trim()).length
@@ -44,4 +52,9 @@ export function auditQuestionShape(q) {
 /** MC questions safe for Domain Pass / mock MC-only surfaces. */
 export function isPlayableMcQuestion(q) {
   return auditQuestionShape(q).length === 0 && isMcQuestion(q)
+}
+
+/** Single- or multi-choice questions safe for Domain Pass / mock choice pools. */
+export function isPlayableChoiceQuestion(q) {
+  return auditQuestionShape(q).length === 0 && (isMcQuestion(q) || isMultiQuestion(q))
 }

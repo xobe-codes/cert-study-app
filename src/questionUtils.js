@@ -10,6 +10,8 @@ export const TYPE_LABEL = {
   troubleshooting: 'Troubleshooting',
   ordering: 'Put in order',
   cli: 'Type command',
+  multi: 'Select all',
+  'select-all': 'Select all',
 }
 
 export const SKILL_LABEL = {
@@ -28,11 +30,41 @@ export function isCliQuestion(q) {
   return answers.length > 0 && String(answers[0] || '').trim().length > 0
 }
 
-export function isMcQuestion(q) {
+/** Normalize multi-select answer indexes (unique, sorted). */
+export function normalizeSelectedIndexes(answer) {
+  if (!Array.isArray(answer)) return []
+  return [...new Set(answer.filter(i => typeof i === 'number' && Number.isInteger(i)))].sort((a, b) => a - b)
+}
+
+/** Canonical correctIndexes for a multi question (unique, sorted). */
+export function multiCorrectIndexes(q) {
+  return normalizeSelectedIndexes(q?.correctIndexes)
+}
+
+/**
+ * Select-all-that-apply: choices + ≥2 correctIndexes in range.
+ * Prefer type `multi` / `select-all`; also accepts correctIndexes without type.
+ */
+export function isMultiQuestion(q) {
   if (isOrderingQuestion(q) || isCliQuestion(q)) return false
+  if (!Array.isArray(q?.choices) || q.choices.length < 3) return false
+  const idxs = multiCorrectIndexes(q)
+  if (idxs.length < 2) return false
+  const n = q.choices.length
+  if (idxs.length >= n) return false
+  return idxs.every(i => i >= 0 && i < n)
+}
+
+export function isMcQuestion(q) {
+  if (isOrderingQuestion(q) || isCliQuestion(q) || isMultiQuestion(q)) return false
   if (!Array.isArray(q?.choices) || q.choices.length < 2) return false
   if (typeof q.correctIndex !== 'number') return false
   return q.correctIndex >= 0 && q.correctIndex < q.choices.length
+}
+
+/** Single- or multi-choice pool item (Domain Pass / Mock). */
+export function isChoiceQuestion(q) {
+  return isMcQuestion(q) || isMultiQuestion(q)
 }
 
 export function inferSkill(q) {
@@ -60,6 +92,12 @@ export function gradeQuestion(q, answer) {
     const alts = q.orderAccept || []
     return given.every((item, i) => orderStepMatches(item, expected[i], alts[i]))
   }
+  if (isMultiQuestion(q)) {
+    const expected = multiCorrectIndexes(q)
+    const given = normalizeSelectedIndexes(answer)
+    if (given.length !== expected.length) return false
+    return given.every((v, i) => v === expected[i])
+  }
   return answer === q.correctIndex
 }
 
@@ -69,6 +107,11 @@ export function correctAnswerLabel(q) {
     return primary || ''
   }
   if (isOrderingQuestion(q)) return q.orderItems.map((s, i) => `${i + 1}. ${s}`).join(' → ')
+  if (isMultiQuestion(q)) {
+    return multiCorrectIndexes(q)
+      .map(i => `${String.fromCharCode(65 + i)}. ${q.choices[i]}`)
+      .join('; ')
+  }
   if (isMcQuestion(q)) return q.choices[q.correctIndex]
   return ''
 }
@@ -81,6 +124,7 @@ export function buildMissedEntry(objectiveId, q, extra = {}) {
     question: q.question,
     choices: q.choices,
     correctIndex: q.correctIndex,
+    ...(isMultiQuestion(q) ? { correctIndexes: multiCorrectIndexes(q) } : {}),
     orderItems: q.orderItems,
     answers: q.answers,
     answer: q.answer,
@@ -152,6 +196,14 @@ export function normalizeQuestionForBank(q, objectiveId, counter) {
       answers: q.answers || [q.answer],
       ...(q.accept?.length ? { accept: q.accept } : {}),
       ...(q.hint ? { hint: q.hint } : {}),
+    }
+  }
+  if (isMultiQuestion(q)) {
+    return {
+      ...base,
+      type: q.type || 'multi',
+      choices: q.choices,
+      correctIndexes: multiCorrectIndexes(q),
     }
   }
   return {
