@@ -17,6 +17,153 @@ export function cidrFromMask(mask) {
   return mask.reduce((acc, o) => acc + o.toString(2).split('1').length - 1, 0)
 }
 
+/** Normalize mask/wildcard input to 4 octets (array or dotted decimal). */
+function toOctets(value) {
+  return Array.isArray(value) ? value.map(Number) : ipToOctets(String(value))
+}
+
+/** Wildcard dotted decimal from subnet mask octets or dotted mask. */
+export function wildcardFromMask(mask) {
+  return octetsToIp(toOctets(mask).map(m => 255 - m))
+}
+
+/** Wildcard dotted decimal from CIDR prefix length. */
+export function wildcardFromCidr(cidr) {
+  return wildcardFromMask(maskFromCidr(cidr))
+}
+
+/** Subnet mask octets from wildcard octets or dotted wildcard. */
+export function maskFromWildcard(wildcardOctets) {
+  return toOctets(wildcardOctets).map(w => 255 - w)
+}
+
+/** CIDR prefix length from wildcard octets or dotted wildcard. */
+export function cidrFromWildcard(wildcard) {
+  return cidrFromMask(maskFromWildcard(wildcard))
+}
+
+/**
+ * ACL/OSPF match: bits where wildcard is 0 must equal between IP and network.
+ * Returns true when (ip XOR network) AND ~wildcard is all zeros.
+ */
+export function ipMatchesWildcard(ip, wildcard, network) {
+  const ipO = toOctets(ip)
+  const wcO = toOctets(wildcard)
+  const netO = toOctets(network)
+  return ipO.every((o, i) => ((o ^ netO[i]) & (255 - wcO[i])) === 0)
+}
+
+/**
+ * Random wildcard drill: mask→wildcard, wildcard→cidr/mask, or ACL match yes/no.
+ */
+export function generateWildcardProblem() {
+  const kind = ['mask-to-wildcard', 'wildcard-to-cidr', 'match-check'][randInt(0, 2)]
+  const cidr = randInt(8, 30)
+  const mask = maskFromCidr(cidr)
+  const maskStr = octetsToIp(mask)
+  const wildcard = wildcardFromCidr(cidr)
+
+  if (kind === 'mask-to-wildcard') {
+    const givenAsCidr = randInt(0, 1) === 0
+    return {
+      type: 'wildcard',
+      kind,
+      cidr,
+      mask: maskStr,
+      wildcard,
+      given: givenAsCidr ? `/${cidr}` : maskStr,
+      givenLabel: givenAsCidr ? 'CIDR prefix' : 'Subnet mask',
+      prompt: givenAsCidr
+        ? `Convert /${cidr} to a wildcard mask`
+        : `Convert ${maskStr} to a wildcard mask`,
+      answer: wildcard,
+      answerLabel: 'Wildcard mask',
+      answerPlaceholder: '0.0.0.x',
+      acceptCidr: false,
+      acceptMask: false,
+      steps: [
+        `Subnet mask for /${cidr} = ${maskStr}`,
+        `Wildcard = 255 − each mask octet → ${wildcard}`,
+        `Remember: 0 = must match, 1 = don't care (ACL/OSPF)`,
+      ],
+    }
+  }
+
+  if (kind === 'wildcard-to-cidr') {
+    const answerAsCidr = randInt(0, 1) === 0
+    return {
+      type: 'wildcard',
+      kind,
+      cidr,
+      mask: maskStr,
+      wildcard,
+      given: wildcard,
+      givenLabel: 'Wildcard mask',
+      prompt: answerAsCidr
+        ? `What CIDR prefix matches wildcard ${wildcard}?`
+        : `What subnet mask matches wildcard ${wildcard}?`,
+      answer: answerAsCidr ? `/${cidr}` : maskStr,
+      answerAlt: answerAsCidr ? String(cidr) : null,
+      answerLabel: answerAsCidr ? 'CIDR (/n)' : 'Subnet mask',
+      answerPlaceholder: answerAsCidr ? '/n or n' : '255.x.x.x',
+      acceptCidr: answerAsCidr,
+      acceptMask: !answerAsCidr,
+      steps: [
+        `Mask = 255 − each wildcard octet → ${maskStr}`,
+        `Count network 1-bits → /${cidr}`,
+        `Wildcard ${wildcard} ↔ mask ${maskStr} ↔ /${cidr}`,
+      ],
+    }
+  }
+
+  // match-check: IP + wildcard + candidate network → yes/no
+  const networkOctets = [randInt(1, 223), randInt(0, 255), randInt(0, 255), randInt(0, 255)]
+    .map((o, i) => o & mask[i])
+  const network = octetsToIp(networkOctets)
+
+  // Start inside the match range (don't-care bits randomized)
+  let ipOctets = networkOctets.map((o, i) => o | (randInt(0, 255) & (255 - mask[i])))
+  const shouldMatch = randInt(0, 1) === 0
+  if (!shouldMatch) {
+    // Flip one must-match bit so the IP falls outside the wildcard range
+    const careIdx = mask.map((m, i) => (m !== 0 ? i : -1)).filter(i => i >= 0)
+    const oi = careIdx[randInt(0, careIdx.length - 1)]
+    for (let b = 0; b < 8; b++) {
+      const probe = 1 << b
+      if ((mask[oi] & probe) !== 0) {
+        ipOctets[oi] ^= probe
+        break
+      }
+    }
+  }
+  const ip = octetsToIp(ipOctets)
+  const matches = ipMatchesWildcard(ip, wildcard, network)
+
+  return {
+    type: 'wildcard',
+    kind,
+    cidr,
+    mask: maskStr,
+    wildcard,
+    ip,
+    network,
+    matches,
+    given: `${ip}  ·  wildcard ${wildcard}  ·  network ${network}`,
+    givenLabel: 'ACL / OSPF match check',
+    prompt: `Does ${ip} match network ${network} with wildcard ${wildcard}?`,
+    answer: matches ? 'yes' : 'no',
+    answerLabel: 'Match? (yes / no)',
+    answerPlaceholder: 'yes or no',
+    acceptCidr: false,
+    acceptMask: false,
+    steps: [
+      `0 bits in the wildcard must match; 1 bits are don't-care`,
+      `Compare ${ip} to ${network} under wildcard ${wildcard}`,
+      `Equivalent mask ${maskStr} (/${cidr}): care bits ${matches ? 'all match → YES' : 'differ → NO'}`,
+    ],
+  }
+}
+
 export function shuffleArray(arr) {
   const a = [...arr]
   for (let i = a.length - 1; i > 0; i--) {

@@ -1,31 +1,69 @@
 import React, { useState } from 'react'
 import { COLORS, styles } from '../ui/appTheme.js'
 import {
-  generateSubnetProblem, generateVLSMProblem, maskFromCidr,
+  generateSubnetProblem, generateVLSMProblem, generateWildcardProblem, maskFromCidr,
   expandIPv6, compressIPv6,
 } from '../netUtils.js'
 
-export function SubnetField({ label, value, onChange, placeholder }) {
+export function SubnetField({ label, value, onChange, placeholder, inputMode = 'decimal' }) {
   return (
-    <div style={{ marginBottom: 8 }}>
+    <div style={{ marginBottom: 8, maxWidth: '100%' }}>
       <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 4 }}>{label}</div>
-      <input style={{ ...styles.input, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}
+      <input style={{ ...styles.input, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', maxWidth: '100%' }}
         value={value} onChange={onChange} placeholder={placeholder}
-        autoCapitalize="none" autoCorrect="off" spellCheck={false} inputMode="decimal" />
+        autoCapitalize="none" autoCorrect="off" spellCheck={false} inputMode={inputMode} />
     </div>
   )
 }
 
-export function SubnettingTab() {
-  const [problem, setProblem] = useState(() => generateSubnetProblem())
-  const [answers, setAnswers] = useState({ network: '', broadcast: '', firstUsable: '', lastUsable: '', usableHosts: '' })
-  const [checked, setChecked] = useState(false)
-  const [drillMode, setDrillMode] = useState(false)
+const MODE_OPTIONS = [
+  { id: 'standard', label: '🔣 Standard' },
+  { id: 'binary', label: '🔢 Binary' },
+  { id: 'wildcard', label: '🎯 Wildcard' },
+]
 
-  function newProblem() {
-    setProblem(generateSubnetProblem())
-    setAnswers({ network: '', broadcast: '', firstUsable: '', lastUsable: '', usableHosts: '' })
+function emptySubnetAnswers() {
+  return { network: '', broadcast: '', firstUsable: '', lastUsable: '', usableHosts: '' }
+}
+
+function wildcardAnswerOk(problem, raw) {
+  const got = (raw || '').trim().toLowerCase()
+  if (!got) return false
+  if (problem.kind === 'match-check') {
+    if (problem.answer === 'yes') return ['yes', 'y', 'true', '1', 'match'].includes(got)
+    return ['no', 'n', 'false', '0', 'nomatch', 'no match'].includes(got)
+  }
+  if (problem.acceptCidr) {
+    const n = got.replace(/^\//, '')
+    return n === String(problem.cidr)
+  }
+  return got === String(problem.answer).toLowerCase()
+}
+
+export function SubnettingTab() {
+  const [mode, setMode] = useState('standard')
+  const [problem, setProblem] = useState(() => generateSubnetProblem())
+  const [wcProblem, setWcProblem] = useState(() => generateWildcardProblem())
+  const [answers, setAnswers] = useState(emptySubnetAnswers)
+  const [wcAnswer, setWcAnswer] = useState('')
+  const [checked, setChecked] = useState(false)
+
+  const drillMode = mode === 'binary'
+
+  function newProblem(nextMode = mode) {
     setChecked(false)
+    if (nextMode === 'wildcard') {
+      setWcProblem(generateWildcardProblem())
+      setWcAnswer('')
+      return
+    }
+    setProblem(generateSubnetProblem())
+    setAnswers(emptySubnetAnswers())
+  }
+
+  function switchMode(next) {
+    setMode(next)
+    newProblem(next)
   }
 
   function field(key) {
@@ -40,76 +78,124 @@ export function SubnettingTab() {
 
   const ipBin = drillMode ? problem.ip.split('.').map(o => parseInt(o).toString(2).padStart(8, '0')).join('.') : null
   const maskBin = drillMode ? maskFromCidr(problem.cidr).map(o => o.toString(2).padStart(8, '0')).join('.') : null
+  const wcOk = checked && mode === 'wildcard' ? wildcardAnswerOk(wcProblem, wcAnswer) : null
 
   return (
-    <div>
-      <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
-        {[false, true].map(dm => (
-          <button key={String(dm)} onClick={() => { setDrillMode(dm); newProblem() }}
-            style={{ flex: 1, minHeight: 36, borderRadius: 10, border: `1px solid ${drillMode === dm ? COLORS.skyBorder : COLORS.border}`, background: drillMode === dm ? COLORS.skyDim : COLORS.surface, color: drillMode === dm ? COLORS.sky : COLORS.silverMid, fontSize: 'var(--ccna-type-xs)', cursor: 'pointer', fontFamily: 'inherit' }}>
-            {dm ? '🔢 Binary Drill' : '🔣 Standard'}
+    <div style={{ maxWidth: '100%', overflowWrap: 'anywhere' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 10 }}>
+        {MODE_OPTIONS.map(opt => (
+          <button key={opt.id} type="button" onClick={() => switchMode(opt.id)}
+            style={{ flex: '1 1 90px', minHeight: 36, borderRadius: 10, border: `1px solid ${mode === opt.id ? COLORS.skyBorder : COLORS.border}`, background: mode === opt.id ? COLORS.skyDim : COLORS.surface, color: mode === opt.id ? COLORS.sky : COLORS.silverMid, fontSize: 'var(--ccna-type-xs)', cursor: 'pointer', fontFamily: 'inherit' }}>
+            {opt.label}
           </button>
         ))}
       </div>
 
-      <div style={styles.card}>
-        <div style={styles.small}>Given:</div>
-        <div style={{ fontSize: 'var(--ccna-type-lg)', fontWeight: 700, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', marginTop: 4, marginBottom: drillMode ? 4 : 12 }}>
-          {problem.ip} /{problem.cidr}
-        </div>
-        {drillMode && (
-          <div style={{ fontSize: 'var(--ccna-type-xs)', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', color: COLORS.sky, marginBottom: 12, lineHeight: 1.8 }}>
-            <div>IP:   {ipBin}</div>
-            <div>Mask: {maskBin}</div>
-            <div style={{ color: COLORS.silverMid, fontSize: 'var(--ccna-type-micro)', marginTop: 4 }}>AND the IP with the mask to find the network; OR with wildcard for broadcast</div>
+      {mode === 'wildcard' ? (
+        <>
+          <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, marginBottom: 10 }}>
+            <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.sky, lineHeight: 1.55 }}>
+              Teach: wildcard = 255 − each mask octet · 0 = must match, 1 = don&apos;t care (ACL/OSPF)
+            </div>
           </div>
-        )}
-        <SubnetField label="Network address" placeholder="x.x.x.x" {...field('network')} />
-        <SubnetField label="Broadcast address" placeholder="x.x.x.x" {...field('broadcast')} />
-        <SubnetField label="First usable host" placeholder="x.x.x.x or n/a" {...field('firstUsable')} />
-        <SubnetField label="Last usable host" placeholder="x.x.x.x or n/a" {...field('lastUsable')} />
-        <SubnetField label="Number of usable hosts" placeholder="0" {...field('usableHosts')} />
 
-        {checked && (
-          <div style={{ marginTop: 4, marginBottom: 4 }}>
-            {[
-              ['network', problem.network],
-              ['broadcast', problem.broadcast],
-              ['firstUsable', problem.firstUsable ?? 'n/a'],
-              ['lastUsable', problem.lastUsable ?? 'n/a'],
-              ['usableHosts', problem.usableHosts],
-            ].map(([key, expected]) => {
-              const ok = isCorrect(key, expected)
-              return (
-                <div key={key} style={{ fontSize: 'var(--ccna-type-sm)', color: ok ? COLORS.mint : COLORS.rose, marginBottom: 2 }}>
-                  {ok ? '✓' : '✗'} {key}: expected {String(expected)}
-                </div>
-              )
-            })}
+          <div style={styles.card}>
+            <div style={styles.small}>{wcProblem.givenLabel}</div>
+            <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 700, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', marginTop: 4, marginBottom: 8, lineHeight: 1.45, wordBreak: 'break-word' }}>
+              {wcProblem.prompt}
+            </div>
+            {wcProblem.kind === 'match-check' && (
+              <div style={{ fontSize: 'var(--ccna-type-xs)', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', color: COLORS.silverMid, marginBottom: 10, lineHeight: 1.7 }}>
+                <div>IP: {wcProblem.ip}</div>
+                <div>Wildcard: {wcProblem.wildcard}</div>
+                <div>Network: {wcProblem.network}</div>
+              </div>
+            )}
+            <SubnetField
+              label={wcProblem.answerLabel}
+              placeholder={wcProblem.answerPlaceholder}
+              value={wcAnswer}
+              onChange={e => setWcAnswer(e.target.value)}
+              inputMode={wcProblem.kind === 'match-check' ? 'text' : 'decimal'}
+            />
+            {checked && (
+              <div style={{ fontSize: 'var(--ccna-type-sm)', color: wcOk ? COLORS.mint : COLORS.rose, marginBottom: 2 }}>
+                {wcOk ? '✓' : '✗'} expected {wcProblem.answer}
+              </div>
+            )}
           </div>
-        )}
-      </div>
 
-      {checked && (
-        <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}` }}>
-          <div style={styles.h2}>Step-by-step solution</div>
-          {drillMode && (
-            <div style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 'var(--ccna-type-xs)', color: COLORS.sky, marginBottom: 10, lineHeight: 1.8 }}>
-              <div>IP:        {ipBin}</div>
-              <div>Mask:      {maskBin}</div>
-              <div>Network:   {problem.network.split('.').map(o => parseInt(o).toString(2).padStart(8,'0')).join('.')} = {problem.network}</div>
-              <div>Broadcast: {problem.broadcast.split('.').map(o => parseInt(o).toString(2).padStart(8,'0')).join('.')} = {problem.broadcast}</div>
+          {checked && (
+            <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}` }}>
+              <div style={styles.h2}>Step-by-step solution</div>
+              <ol style={{ paddingLeft: 18, margin: 0, fontSize: 'var(--ccna-type-sm)', lineHeight: 1.7 }}>
+                {wcProblem.steps.map((s, i) => <li key={i}>{s}</li>)}
+              </ol>
             </div>
           )}
-          <ol style={{ paddingLeft: 18, margin: 0, fontSize: 'var(--ccna-type-sm)', lineHeight: 1.7 }}>
-            {problem.steps.map((s, i) => <li key={i}>{s}</li>)}
-          </ol>
-        </div>
+        </>
+      ) : (
+        <>
+          <div style={styles.card}>
+            <div style={styles.small}>Given:</div>
+            <div style={{ fontSize: 'var(--ccna-type-lg)', fontWeight: 700, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', marginTop: 4, marginBottom: drillMode ? 4 : 12 }}>
+              {problem.ip} /{problem.cidr}
+            </div>
+            {drillMode && (
+              <div style={{ fontSize: 'var(--ccna-type-xs)', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', color: COLORS.sky, marginBottom: 12, lineHeight: 1.8 }}>
+                <div>IP:   {ipBin}</div>
+                <div>Mask: {maskBin}</div>
+                <div style={{ color: COLORS.silverMid, fontSize: 'var(--ccna-type-micro)', marginTop: 4 }}>AND the IP with the mask to find the network; OR with wildcard for broadcast</div>
+              </div>
+            )}
+            <SubnetField label="Network address" placeholder="x.x.x.x" {...field('network')} />
+            <SubnetField label="Broadcast address" placeholder="x.x.x.x" {...field('broadcast')} />
+            <SubnetField label="First usable host" placeholder="x.x.x.x or n/a" {...field('firstUsable')} />
+            <SubnetField label="Last usable host" placeholder="x.x.x.x or n/a" {...field('lastUsable')} />
+            <SubnetField label="Number of usable hosts" placeholder="0" {...field('usableHosts')} />
+
+            {checked && (
+              <div style={{ marginTop: 4, marginBottom: 4 }}>
+                {[
+                  ['network', problem.network],
+                  ['broadcast', problem.broadcast],
+                  ['firstUsable', problem.firstUsable ?? 'n/a'],
+                  ['lastUsable', problem.lastUsable ?? 'n/a'],
+                  ['usableHosts', problem.usableHosts],
+                ].map(([key, expected]) => {
+                  const ok = isCorrect(key, expected)
+                  return (
+                    <div key={key} style={{ fontSize: 'var(--ccna-type-sm)', color: ok ? COLORS.mint : COLORS.rose, marginBottom: 2 }}>
+                      {ok ? '✓' : '✗'} {key}: expected {String(expected)}
+                    </div>
+                  )
+                })}
+              </div>
+            )}
+          </div>
+
+          {checked && (
+            <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}` }}>
+              <div style={styles.h2}>Step-by-step solution</div>
+              {drillMode && (
+                <div style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 'var(--ccna-type-xs)', color: COLORS.sky, marginBottom: 10, lineHeight: 1.8 }}>
+                  <div>IP:        {ipBin}</div>
+                  <div>Mask:      {maskBin}</div>
+                  <div>Network:   {problem.network.split('.').map(o => parseInt(o).toString(2).padStart(8,'0')).join('.')} = {problem.network}</div>
+                  <div>Broadcast: {problem.broadcast.split('.').map(o => parseInt(o).toString(2).padStart(8,'0')).join('.')} = {problem.broadcast}</div>
+                </div>
+              )}
+              <ol style={{ paddingLeft: 18, margin: 0, fontSize: 'var(--ccna-type-sm)', lineHeight: 1.7 }}>
+                {problem.steps.map((s, i) => <li key={i}>{s}</li>)}
+              </ol>
+            </div>
+          )}
+        </>
       )}
 
-      <div style={{ display: 'flex', gap: 8 }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
         {!checked && <button style={styles.primaryBtn} onClick={() => setChecked(true)}>Check answers</button>}
-        <button style={checked ? styles.primaryBtn : styles.secondaryBtn} onClick={newProblem}>New problem</button>
+        <button style={checked ? styles.primaryBtn : styles.secondaryBtn} onClick={() => newProblem()}>New problem</button>
       </div>
     </div>
   )

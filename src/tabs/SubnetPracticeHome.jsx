@@ -9,7 +9,7 @@ export function SubnetPracticeHome({ onBack }) {
       <StudyModeHeader
         title="Subnetting Drill"
         onBack={onBack}
-        subtitle="Practice network/broadcast/range calculations — works offline."
+        subtitle="Practice network/broadcast/range, binary, and wildcard (ACL/OSPF) — works offline."
       />
       <SubnettingTab />
     </div>

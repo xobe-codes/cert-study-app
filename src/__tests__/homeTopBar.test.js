@@ -4,6 +4,13 @@ import {
   formatStreakLine,
   buildProgressChipLabels,
 } from '../home/homeTopBarUtils.js'
+import { buildAppShellResponsiveCss } from '../ui/appShellResponsiveCss.js'
+
+const TOPBAR_CSS = buildAppShellResponsiveCss({
+  silverMid: '#999',
+  mint: '#0f0',
+  border: '#333',
+})
 
 describe('streakLastLabel', () => {
   it('returns Today for today', () => {
@@ -57,5 +64,26 @@ describe('buildProgressChipLabels', () => {
   it('skips offline chip when size is zero', () => {
     const chips = buildProgressChipLabels({ mastered: 0, inProgress: 0, total: 53 }, 0)
     expect(chips).toHaveLength(3)
+  })
+})
+
+describe('home top bar layout CSS', () => {
+  it('does not clip chips with a max-height on the topbar', () => {
+    expect(TOPBAR_CSS).not.toMatch(/\.ccna-home-topbar\s*\{[^}]*max-height:\s*120px/)
+  })
+
+  it('stacks actions vertically and right-aligns them', () => {
+    expect(TOPBAR_CSS).toMatch(/\.ccna-home-topbar__actions\s*\{[^}]*flex-direction:\s*column/)
+    expect(TOPBAR_CSS).toMatch(/\.ccna-home-topbar__actions\s*\{[^}]*align-items:\s*flex-end/)
+  })
+
+  it('keeps topbar and chips within the column without negative bleed margins', () => {
+    expect(TOPBAR_CSS).toMatch(/\.ccna-home-topbar\s*\{[^}]*max-width:\s*100%/)
+    expect(TOPBAR_CSS).toMatch(/\.ccna-home-topbar\s*\{[^}]*overflow:\s*visible/)
+    expect(TOPBAR_CSS).toMatch(/\.ccna-home-topbar__chips\s*\{[^}]*min-width:\s*0/)
+    expect(TOPBAR_CSS).toMatch(/\.ccna-home-topbar__chips\s*\{[^}]*max-width:\s*100%/)
+    expect(TOPBAR_CSS).not.toMatch(/\.ccna-home-topbar__chips\s*\{[^}]*margin-left:\s*-/)
+    expect(TOPBAR_CSS).not.toMatch(/margin-left:\s*-2px/)
+    expect(TOPBAR_CSS).not.toMatch(/margin-right:\s*-2px/)
   })
 })

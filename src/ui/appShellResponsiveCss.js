@@ -7,15 +7,17 @@ export function buildAppShellResponsiveCss(colors) {
     .ccna-home-topbar {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      max-height: 120px;
+      gap: 4px;
       min-width: 0;
+      max-width: 100%;
+      overflow: visible;
     }
     .ccna-home-topbar__row1 {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 8px;
       min-width: 0;
+      max-width: 100%;
     }
     .ccna-home-topbar__title-wrap {
       flex: 1 1 auto;
@@ -39,12 +41,14 @@ export function buildAppShellResponsiveCss(colors) {
     }
     .ccna-home-topbar__actions {
       display: flex;
-      align-items: center;
-      gap: 2px;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0;
       flex-shrink: 0;
     }
     .ccna-home-topbar__stats {
-      padding: 10px 4px !important;
+      padding: 2px 0 !important;
+      min-height: 0 !important;
     }
     .ccna-home-topbar__streak {
       font-size: var(--ccna-type-xs);
@@ -53,26 +57,28 @@ export function buildAppShellResponsiveCss(colors) {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      min-width: 0;
+      max-width: 100%;
     }
     .ccna-home-topbar__chips {
       display: flex;
       flex-wrap: nowrap;
       gap: 6px;
+      min-width: 0;
+      max-width: 100%;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       padding-bottom: 2px;
-      margin-bottom: -2px;
     }
     @media (max-width: 390px) {
       .ccna-home-topbar__title {
         max-width: 100%;
       }
-      .ccna-home-topbar__chips {
-        margin-left: -2px;
-        margin-right: -2px;
-        padding-left: 2px;
-        padding-right: 2px;
-      }
+    }
+    .ccna-home-scroll {
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
     }
     .home-study-grid {
       display: grid;
@@ -148,10 +154,13 @@ export function buildAppShellResponsiveCss(colors) {
       padding: 10px 0;
       border-bottom: 1px solid ${colors.border};
       min-width: 0;
+      max-width: 100%;
     }
     .ccna-weak-area-row__cta {
       width: auto !important;
       max-width: 42%;
+      box-sizing: border-box;
+      white-space: nowrap;
     }
     .ccna-weak-area-row:last-child {
       border-bottom: none;

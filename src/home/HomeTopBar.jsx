@@ -29,12 +29,12 @@ export default function HomeTopBar({
           )}
         </div>
         <div className="ccna-home-topbar__actions">
+          <ThemeToggleButton theme={theme} onToggle={onToggleTheme} />
           {onOpenStats && (
             <button type="button" className="ccna-home-topbar__stats" onClick={onOpenStats} style={homeLinkBtn(COLORS.purpleGlow)}>
               Stats →
             </button>
           )}
-          <ThemeToggleButton theme={theme} onToggle={onToggleTheme} />
         </div>
       </div>
 

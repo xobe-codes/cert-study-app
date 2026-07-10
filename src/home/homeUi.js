@@ -102,6 +102,9 @@ const homeAccentSurface = (accent) => {
   const c = accentColors(accent)
   return {
     width: '100%',
+    maxWidth: '100%',
+    minWidth: 0,
+    boxSizing: 'border-box',
     textAlign: 'left',
     cursor: 'pointer',
     fontFamily: 'inherit',

@@ -377,7 +377,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
   }, [progress])
 
   return (
-    <div>
+    <div className="ccna-home-scroll">
       <HomeTopBar
         streak={streak}
         totals={totals}
