@@ -15,6 +15,7 @@ import Spinner from '../../components/Spinner.jsx'
 import ErrorBox from '../../components/ErrorBox.jsx'
 import { QuizQuestionStem, QuestionMeta } from '../../components/QuizQuestionChrome.jsx'
 import { getDomainStudyMeta } from '../../home/domainStudyRoutes.js'
+import { buildDomainPassWeakStudyHandoff } from './domainPassWeakStudy.js'
 import {
   DOMAIN_PASS_PASS_PCT,
   domainPassDurationSec,
@@ -264,6 +265,13 @@ export default function DomainPassSession({
     const showCommandHubCta = Boolean(onOpenCommandHub)
     const showWildcardCta = shouldShowWildcardBridge(domainId, onOpenSubnet)
     const showDomainActions = showTrapCta || showLabsCta || showCommandHubCta || showWildcardCta
+    const topWeakId = weakObjectiveIds[0] || null
+
+    function openWeakStudy(objectiveId) {
+      if (!onSelectObjective) return
+      const handoff = buildDomainPassWeakStudyHandoff(domain, objectiveId)
+      if (handoff) onSelectObjective(handoff)
+    }
 
     const domainActionBtn = {
       ...styles.secondaryBtn,
@@ -312,6 +320,40 @@ export default function DomainPassSession({
             </div>
           )}
         </div>
+        {weakObjectiveIds.length > 0 && onSelectObjective && (
+          <div
+            className="ccna-domain-pass-weak-study"
+            style={{ ...styles.card, marginBottom: 8, border: `1px solid ${COLORS.roseBorder}`, background: COLORS.roseDim }}
+          >
+            <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.rose, marginBottom: 8, letterSpacing: 0.3 }}>
+              Weak topics — Study first
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+              {weakObjectiveIds.map((oid) => {
+                const obj = domain.objectives.find(o => o.id === oid)
+                return (
+                  <button
+                    key={oid}
+                    type="button"
+                    style={domainActionBtn}
+                    onClick={() => openWeakStudy(oid)}
+                  >
+                    Study {oid}{obj?.title ? ` — ${obj.title}` : ''} →
+                  </button>
+                )
+              })}
+            </div>
+            {topWeakId && (
+              <button
+                type="button"
+                style={{ ...styles.primaryBtn, marginTop: 8, background: COLORS.rose, borderColor: COLORS.rose }}
+                onClick={() => openWeakStudy(topWeakId)}
+              >
+                Study {topWeakId} first →
+              </button>
+            )}
+          </div>
+        )}
         <MockExamDebriefActions
           report={report}
           questions={questions}
@@ -319,10 +361,8 @@ export default function DomainPassSession({
           domains={DOMAINS}
           onOpenTrapDrill={onOpenTrapDrill}
           onOpenLab={onOpenLab}
-          onSelectObjective={onSelectObjective ? (oid) => {
-            const obj = domain.objectives.find(o => o.id === oid)
-            if (obj) onSelectObjective({ ...obj, domainId: domain.id, domainName: domain.name, accent: domain.accent })
-          } : undefined}
+          onStudyDomain={() => openWeakStudy(topWeakId)}
+          onSelectObjective={onSelectObjective ? (oid) => openWeakStudy(oid) : undefined}
         />
         {showDomainActions && (
           <div style={{ ...styles.card, marginBottom: 8, border: `1px solid ${COLORS.purpleBorder}`, background: COLORS.purpleDim }}>

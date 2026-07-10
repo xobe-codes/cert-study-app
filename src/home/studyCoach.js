@@ -121,7 +121,7 @@ export function pickCoachObjectiveNext(summary, { domainPassRecords = {} } = {})
         accent: 'rose',
         shortTitle: `Pass weak — ${obj.id} ${obj.title}`,
         objective: obj,
-        tab: 'Practice',
+        tab: 'Study',
         why: whyForFailureMode('application'),
         failureMode: 'application',
       }

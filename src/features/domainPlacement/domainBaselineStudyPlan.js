@@ -76,8 +76,8 @@ export function pickBaselineAwareStudyNext({ placementRecords = {}, dueCount = 0
         accent: 'rose',
         shortTitle: `Baseline focus — ${obj.id} ${obj.title}`,
         objective: obj,
-        tab: 'Practice',
-        why: 'Baseline gaps · next: Practice (refresh Study if the model is fuzzy)',
+        tab: 'Study',
+        why: 'Baseline gaps · next: Study the model, then Practice to lock it',
       }
     }
   }

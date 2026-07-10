@@ -163,7 +163,7 @@ export default function DomainPlacementSession({
       onStudyObjective?.(objectiveOrId)
       return
     }
-    const handoff = buildStudyObjectiveHandoff(objectiveOrId, { tab: 'Practice' })
+    const handoff = buildStudyObjectiveHandoff(objectiveOrId, { tab: 'Study' })
     if (handoff) onStudyObjective?.(handoff)
     else onStudyObjective?.(objectiveOrId)
   }

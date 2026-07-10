@@ -114,13 +114,13 @@ export function generateLocalSuggestions(summary, commandDrills = {}) {
   }
   const inProgress = perObjective.filter(o => o.status === 'in_progress' && o.attempts > 0)
 
-  // 1. Weakest active topic — post-study path: Practice (not re-read Study)
+  // 1. Weakest active topic — Study the model first, then Practice
   const weakest = [...inProgress].sort((a, b) => a.mastery - b.mastery)[0]
   if (weakest && weakest.mastery < 0.6) {
     add({
-      key: 'weak', chip: 'WEAK SPOT', accent: 'rose', objective: weakest, tab: 'Practice',
+      key: 'weak', chip: 'WEAK SPOT', accent: 'rose', objective: weakest, tab: 'Study',
       title: `${weakest.id} ${weakest.title}`,
-      body: `Your weakest active topic at ${Math.round(weakest.mastery * 100)}% mastery. Practice + traps beat re-reading — refresh Study only if the model is fuzzy.`,
+      body: `Your weakest active topic at ${Math.round(weakest.mastery * 100)}% mastery. Open Study to firm the model, then Practice + traps.`,
       why: whyForFailureMode('application'),
     })
   }

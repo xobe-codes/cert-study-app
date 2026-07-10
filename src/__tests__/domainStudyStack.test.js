@@ -34,6 +34,24 @@ describe('domainStudyRoutes', () => {
     })
     expect(oid).toBe('2.3')
   })
+
+  it('pickDomainPracticeObjective accepts string weak objective ids', () => {
+    const domain = getDomainStudyMeta('access').domain
+    const oid = pickDomainPracticeObjective(domain, {
+      baselineSummary: { weakObjectives: ['2.1', '2.3'] },
+      progress: {},
+    })
+    expect(oid).toBe('2.1')
+  })
+
+  it('pickDomainPracticeObjective falls back to placement attempt weak strings', () => {
+    const domain = getDomainStudyMeta('access').domain
+    const oid = pickDomainPracticeObjective(domain, {
+      placementRecord: { lastAttempt: { weakObjectives: ['2.5'] } },
+      progress: {},
+    })
+    expect(oid).toBe('2.5')
+  })
 })
 
 describe('CommandHubStudio initialDomainFilter', () => {

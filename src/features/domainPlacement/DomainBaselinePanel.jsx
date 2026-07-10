@@ -30,7 +30,8 @@ function ObjectiveBaselineRow({ objective, profile, onStudyObjective, highlight 
       onStudyObjective(handoff || objective.id)
       return
     }
-    onStudyObjective(objective.id)
+    const handoff = buildStudyObjectiveHandoff(objective.id, { tab: 'Study' })
+    onStudyObjective(handoff || objective.id)
   }
 
   const rowAccent = isWeak

@@ -54,4 +54,10 @@ describe('buildStudyObjectiveHandoff', () => {
     expect(handoff?.__initialTab).toBe('Practice')
     expect(handoff?.domainId).toBeTruthy()
   })
+
+  it('returns objective with Study tab for weak remediation', () => {
+    const handoff = buildStudyObjectiveHandoff('5.3', { tab: 'Study' })
+    expect(handoff?.id).toBe('5.3')
+    expect(handoff?.__initialTab).toBe('Study')
+  })
 })

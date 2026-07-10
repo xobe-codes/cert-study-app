@@ -95,7 +95,7 @@ describe('pickCoachObjectiveNext / pickStudyNext', () => {
       domainPassRecords: { security: { weakObjectives: ['5.3'] } },
     })
     expect(next.shortTitle).toContain('Pass weak')
-    expect(next.tab).toBe('Practice')
+    expect(next.tab).toBe('Study')
     expect(next.failureMode).toBe('application')
   })
 
@@ -121,14 +121,14 @@ describe('pickCoachObjectiveNext / pickStudyNext', () => {
 })
 
 describe('generateLocalSuggestions post-study path', () => {
-  it('routes weak active topics to Practice not Explain', () => {
+  it('routes weak active topics to Study first', () => {
     const cards = generateLocalSuggestions({
       perObjective: [
         { id: '3.1', title: 'IP', status: 'in_progress', mastery: 0.3, hardCount: 0, attempts: 2, daysSince: 1 },
       ],
       missedByObj: {},
     })
-    expect(cards[0].tab).toBe('Practice')
+    expect(cards[0].tab).toBe('Study')
     expect(cards[0].why).toBeTruthy()
   })
 })

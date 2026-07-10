@@ -97,7 +97,7 @@ export default function WeakAreaDashboard({
         onOpenDomainPlacement?.(row.payload)
         break
       case 'study': {
-        const handoff = buildStudyObjectiveHandoff(row.payload.objectiveId, { tab: 'Practice' })
+        const handoff = buildStudyObjectiveHandoff(row.payload.objectiveId, { tab: 'Study' })
         if (handoff) onSelectObjective?.(handoff)
         break
       }

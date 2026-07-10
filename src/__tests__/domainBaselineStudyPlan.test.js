@@ -57,6 +57,7 @@ describe('domainBaselineStudyPlan', () => {
     const next = pickBaselineAwareStudyNext({ placementRecords: records, dueCount: 0 })
     expect(next?.kind).toBe('baselineWeak')
     expect(next?.objective?.id).toBe('5.3')
+    expect(next?.tab).toBe('Study')
   })
 
   it('returns sprint targets excluding strong-only domains', () => {

@@ -263,7 +263,7 @@ export default function StudyModeRoutes({
             onSelectObjective(objectiveOrId)
             return
           }
-          const handoff = buildStudyObjectiveHandoff(objectiveOrId, { tab: 'Practice' })
+          const handoff = buildStudyObjectiveHandoff(objectiveOrId, { tab: 'Study' })
           if (handoff) onSelectObjective(handoff)
         }}
         onStudyWeakObjectives={(objectiveIds) => {

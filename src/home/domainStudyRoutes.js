@@ -25,10 +25,20 @@ export function buildDomainStudyRoutes() {
   )
 }
 
+/** Normalize weak id from baseline summary (string ids or { id } objects). */
+function firstWeakObjectiveId(weakObjectives) {
+  const raw = weakObjectives?.[0]
+  if (!raw) return null
+  return typeof raw === 'string' ? raw : raw.id || null
+}
+
 /** First objective to open for domain-scoped Practice handoff. */
 export function pickDomainPracticeObjective(domain, { placementRecord, baselineSummary, progress } = {}) {
-  const weakFromBaseline = baselineSummary?.weakObjectives?.[0]
-  if (weakFromBaseline) return weakFromBaseline.id
+  const weakFromBaseline = firstWeakObjectiveId(baselineSummary?.weakObjectives)
+  if (weakFromBaseline) return weakFromBaseline
+
+  const weakFromAttempt = firstWeakObjectiveId(placementRecord?.lastAttempt?.weakObjectives)
+  if (weakFromAttempt && domain.objectives.some(o => o.id === weakFromAttempt)) return weakFromAttempt
 
   const weakFromProfile = domain.objectives.find(
     o => placementRecord?.lastAttempt?.objectiveProfiles?.[o.id]?.status === 'weak',

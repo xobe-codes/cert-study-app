@@ -12,6 +12,8 @@ import {
 } from '../features/domainPass/domainPassConfig.js'
 import { buildDomainPassPool, computeWeakObjectivesFromResponses, computeSkippedQuestionIds, mergeCarryoverSkipped } from '../features/domainPass/buildDomainPassPool.js'
 import { countPassedDomains } from '../features/domainPass/domainPassStorage.js'
+import { buildDomainPassWeakStudyHandoff } from '../features/domainPass/domainPassWeakStudy.js'
+import { DOMAINS } from '../data/ccnaDomains.js'
 
 const mockDomain = {
   id: 'fundamentals',
@@ -222,5 +224,21 @@ describe('domainPassCelebrated storage', () => {
     const records = await loadDomainPassRecords()
     expect(records.fundamentals.skippedQuestionIds).toEqual(['1.1-a'])
     expect(records.fundamentals.passed).toBe(true)
+  })
+})
+
+describe('buildDomainPassWeakStudyHandoff', () => {
+  it('opens Study tab with domain chrome for a weak objective', () => {
+    const domain = DOMAINS.find(d => d.id === 'security')
+    const handoff = buildDomainPassWeakStudyHandoff(domain, '5.3')
+    expect(handoff?.id).toBe('5.3')
+    expect(handoff?.__initialTab).toBe('Study')
+    expect(handoff?.domainId).toBe('security')
+    expect(handoff?.domainName).toBe(domain.name)
+  })
+
+  it('returns null without domain or objective', () => {
+    expect(buildDomainPassWeakStudyHandoff(null, '5.3')).toBeNull()
+    expect(buildDomainPassWeakStudyHandoff(DOMAINS[0], null)).toBeNull()
   })
 })

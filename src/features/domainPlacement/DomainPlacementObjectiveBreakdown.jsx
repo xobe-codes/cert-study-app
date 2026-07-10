@@ -94,7 +94,8 @@ export default function DomainPlacementObjectiveBreakdown({
               onStudyObjective(handoff || row.id)
               return
             }
-            onStudyObjective(row.id)
+            const handoff = buildStudyObjectiveHandoff(row.id, { tab: 'Study' })
+            onStudyObjective(handoff || row.id)
           }
 
           const rowAccent = isWeak
