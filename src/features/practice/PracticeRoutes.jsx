@@ -44,6 +44,8 @@ export default function PracticeRoutes({
         onMissed={onMissed}
         onDone={onDone}
         onOpenSection={onOpenSection}
+        onOpenTrapDrill={onOpenTrapDrill}
+        onOpenLab={onOpenLab}
       />
     )
   }
@@ -54,6 +56,8 @@ export default function PracticeRoutes({
         onBack={onBack}
         onMissed={onMissed}
         onDone={onDone}
+        onOpenTrapDrill={onOpenTrapDrill}
+        onOpenLab={onOpenLab}
       />
     )
   }

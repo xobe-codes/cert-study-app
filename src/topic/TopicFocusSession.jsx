@@ -12,8 +12,8 @@ import { buildTopicFocusQueue } from './topicFocusQuiz.js'
 import Spinner from '../components/Spinner.jsx'
 import McChoices from '../components/McChoices.jsx'
 import AnswerReview from '../components/AnswerReview.jsx'
+import { answerReviewSessionProps } from '../components/answerReviewSessionProps.js'
 import { McChoiceShuffleProvider } from '../context/McChoiceShuffleContext.jsx'
-import { applyAnswerReviewToQuestion } from '../answerReviewLogic.js'
 import { QuestionMeta, QuizRichText, OrderingQuestion, CliAnswerInput } from '../components/QuizQuestionChrome.jsx'
 import StudyModeHeader from '../components/StudyModeHeader.jsx'
 import { useMasteryProgress } from '../features/progress/MasteryProgressContext.jsx'
@@ -192,12 +192,13 @@ export default function TopicFocusSession({ config, onBack, onMissed, onDone }) 
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>
               {isCorrect ? 'Correct' : 'Incorrect'}
             </div>
-            <AnswerReview
-              q={applyAnswerReviewToQuestion(current)}
-              selected={selected}
-              cliAnswer={cliAnswer}
-              orderAnswer={orderDraft}
-            />
+            <AnswerReview {...answerReviewSessionProps({
+              q: current,
+              selected,
+              cliAnswer,
+              orderAnswer: orderDraft,
+              objectiveId: current?.objectiveId,
+            })} />
           </div>
         )}
         </McChoiceShuffleProvider>

@@ -186,5 +186,20 @@ export function buildAppShellChromeCss(colors) {
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
     }
+    .ccna-quiz-reveal {
+      min-width: 0;
+      max-width: 100%;
+    }
+    .ccna-quiz-reveal .ccna-answer-review {
+      margin-top: 6px;
+    }
+    .ccna-confidence-strip {
+      margin-top: 4px;
+    }
+    @media (max-width: 640px) {
+      .ccna-quiz-reveal {
+        padding: 10px !important;
+      }
+    }
   `
 }

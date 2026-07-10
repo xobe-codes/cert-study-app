@@ -57,3 +57,4 @@
 - **2026-07-07** `lab_modules_curriculum`: Labs Hub ordered into 7 modules (Foundation→Capstone) with beginner→advanced sort; fixed `ip_services`→`services` on DHCP labs; `labModules.test.js` locks coverage.
 - **2026-07-10** `question_debrief_99`: Stem-grounded wrong-answer rebuild (ban `satisfies what this question tests`); AnswerReview order miss→family chip→correct; Trap/Wildcard remediation; CI validates runtime-applied reviews; workbox SW minify flake fix (`mode: 'development'`).
 - **2026-07-10** `topology_svg_99`: Device silhouettes, iPhone type floors, landscape clamps, pinch/pan expand modal, `diagram-iphone-smoke` e2e.
+- **2026-07-10** `polish_99`: AnswerReview parity across Mock/Review/Focus/Placement; home Domain Pass + Fix Next hierarchy; diagram type/shortLabel wave; Study diagram earlier; reveal CSS.

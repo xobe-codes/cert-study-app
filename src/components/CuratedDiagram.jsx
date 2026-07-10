@@ -11,7 +11,10 @@ import { useDiagramPanZoom } from '../hooks/useDiagramPanZoom.js'
 const MODAL_Z = 300
 const FOCUSABLE_SELECTOR = 'a[href],button:not([disabled]),textarea,input:not([type="hidden"]),select,[tabindex]:not([tabindex="-1"])'
 
-const DIAGRAM_NODE_COLOR = { router: 'mint', switch: 'purple', subnet: 'sky', process: 'amber', pc: 'sky', server: 'silver', firewall: 'rose', cloud: 'sky', attacker: 'rose', default: 'silver' }
+const DIAGRAM_NODE_COLOR = {
+  router: 'mint', switch: 'purple', subnet: 'sky', process: 'amber', pc: 'sky', server: 'silver',
+  firewall: 'rose', cloud: 'sky', attacker: 'rose', highlight: 'amber', default: 'silver',
+}
 const TYPE_SHORT = { router: 'Router', switch: 'Switch', pc: 'PC', server: 'Server', subnet: 'Net', firewall: 'FW', cloud: 'Cloud', process: 'Step', attacker: 'Threat' }
 
 function useCompactViewport(maxWidth = 1024) {

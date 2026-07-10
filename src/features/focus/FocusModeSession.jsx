@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react'
 import { isOrderingQuestion, isMcQuestion, isCliQuestion, gradeQuestion, buildMissedEntry,
   shuffleArrayCopy, randomizeQuestionOrder,
 } from '../../questionUtils.js'
-import { applyAnswerReviewToQuestion } from '../../answerReviewLogic.js'
 import { ALL_OBJECTIVES } from '../../data/ccnaDomains.js'
 import { COLORS, styles } from '../../ui/appTheme.js'
 import { computeMastery } from '../../netUtils.js'
@@ -13,6 +12,7 @@ import { NAV_HINT_KEYS } from '../../ui/navHintConfig.js'
 import { haptic } from '../../ui/feedbackHelpers.jsx'
 import McChoices from '../../components/McChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
+import { answerReviewSessionProps } from '../../components/answerReviewSessionProps.js'
 import { McChoiceShuffleProvider } from '../../context/McChoiceShuffleContext.jsx'
 import { QuizRichText, QuestionMeta, OrderingQuestion, CliAnswerInput } from '../../components/QuizQuestionChrome.jsx'
 import Spinner from '../../components/Spinner.jsx'
@@ -22,7 +22,7 @@ import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
 
 const quizFeedbackA11y = { role: 'status', 'aria-live': 'polite', 'aria-atomic': true }
 
-export default function FocusModeSession({ progress, onBack, onMissed, onDone }) {
+export default function FocusModeSession({ progress, onBack, onMissed, onDone, onOpenTrapDrill, onOpenLab }) {
   const { recordEngagement } = useMasteryProgress()
   const showNavHint = useNavHint()
   const doneHintFired = useRef(false)
@@ -170,12 +170,15 @@ export default function FocusModeSession({ progress, onBack, onMissed, onDone })
         {revealed && (
           <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `2px solid ${isCorrect ? COLORS.mintBorder : COLORS.rose}` }} {...quizFeedbackA11y}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
-            <AnswerReview
-              q={applyAnswerReviewToQuestion(current)}
-              selected={selected}
-              cliAnswer={cliAnswer}
-              orderAnswer={orderDraft}
-            />
+            <AnswerReview {...answerReviewSessionProps({
+              q: current,
+              selected,
+              cliAnswer,
+              orderAnswer: orderDraft,
+              objectiveId: current?.objectiveId,
+              onOpenTrapDrill,
+              onOpenLab,
+            })} />
           </div>
         )}
         </McChoiceShuffleProvider>

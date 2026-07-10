@@ -387,6 +387,11 @@ function CuratedReading({ data, progressEntry, onTierChange, onOpenReference, on
         body={explanationBodyFromReading(r, tier)}
         takeaway={resolveBigTakeaway(r)}
       />
+      {showDiagram && data.diagram && (
+        <div className="study-visual-section" style={{ marginTop: 10, marginBottom: 4 }}>
+          <CuratedDiagram diagram={data.diagram} />
+        </div>
+      )}
       <CoreConceptsBlock ckus={data.ckus} />
       <ExplainBlock icon="📌" title="KEY POINTS" accent="amber" speechText={bulletsToSpeech(r.keyPoints)}><Bullets items={r.keyPoints} /></ExplainBlock>
       <ExplainBlock icon="⚠️" title="COMMON MISTAKES" accent="rose" speechText={bulletsToSpeech(r.commonMistakes)}><Bullets items={r.commonMistakes} /></ExplainBlock>
@@ -398,7 +403,6 @@ function CuratedReading({ data, progressEntry, onTierChange, onOpenReference, on
       {labsForObjective(data.objectiveId).length > 0 && (
         <ObjectiveLabCTA objectiveId={data.objectiveId} onOpenLab={onOpenLab} />
       )}
-      {showDiagram && data.diagram && <CuratedDiagram diagram={data.diagram} />}
       <CuratedSources data={data} />
     </div>
   )

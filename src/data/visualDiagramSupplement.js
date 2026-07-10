@@ -18,7 +18,7 @@ export const VISUAL_DIAGRAMS = {
   ], ['Block size = 256 − mask octet', '4 subnets × 62 hosts each from /24']),
 
   '2.1': topo('DIAG-2.1-vlan', 'VLAN broadcast domains', [
-    { id: 'sw', label: 'Switch', type: 'router', x: 50, y: 40 },
+    { id: 'sw', label: 'Switch', shortLabel: 'SW', type: 'switch', x: 50, y: 40 },
     { id: 'v10', label: 'VLAN 10 Sales', type: 'subnet', x: 20, y: 75 },
     { id: 'v20', label: 'VLAN 20 Eng', type: 'subnet', x: 80, y: 75 },
   ], [
@@ -27,13 +27,13 @@ export const VISUAL_DIAGRAMS = {
   ], ['Same VLAN = same broadcast domain', 'Inter-VLAN routing needs L3']),
 
   '2.5': topo('DIAG-2.5-stp', 'STP loop prevention', [
-    { id: 'root', label: 'Root Bridge', type: 'highlight', x: 50, y: 15 },
-    { id: 'sw1', label: 'SW1', type: 'router', x: 25, y: 55 },
-    { id: 'sw2', label: 'SW2', type: 'router', x: 75, y: 55 },
+    { id: 'root', label: 'Root Bridge', shortLabel: 'Root', type: 'switch', x: 50, y: 15, status: 'highlighted' },
+    { id: 'sw1', label: 'SW1', shortLabel: 'SW1', type: 'switch', x: 25, y: 55 },
+    { id: 'sw2', label: 'SW2', shortLabel: 'SW2', type: 'switch', x: 75, y: 55 },
   ], [
     { id: 'l1', source: 'root', target: 'sw1', label: 'forwarding' },
     { id: 'l2', source: 'root', target: 'sw2', label: 'forwarding' },
-    { id: 'l3', source: 'sw1', target: 'sw2', label: 'blocked', status: 'dropped' },
+    { id: 'l3', source: 'sw1', target: 'sw2', label: 'blocked', status: 'blocked', priority: true },
   ], ['One redundant link blocked to prevent loop']),
 
   '3.1': topo('DIAG-3.1-route-line', 'Routing table entry', [
@@ -70,7 +70,7 @@ export const VISUAL_DIAGRAMS = {
     { id: 'r', label: 'Router ACL', type: 'router', x: 50, y: 50 },
     { id: 'dst', label: 'Destination', type: 'server', x: 85, y: 50 },
   ], [
-    { id: 'l1', source: 'src', target: 'r', label: 'extended ACL near source' },
+    { id: 'l1', source: 'src', target: 'r', label: 'ext ACL @ source', priority: true },
     { id: 'l2', source: 'r', target: 'dst', label: 'filter' },
   ], ['Extended ACL: place close to source']),
 
@@ -82,9 +82,9 @@ export const VISUAL_DIAGRAMS = {
   ]),
 
   '2.4': topo('DIAG-2.4-po', 'EtherChannel Port-channel', [
-    { id: 'sw1', label: 'SW1', type: 'router', x: 25, y: 50 },
-    { id: 'po', label: 'Po1 (LACP)', type: 'highlight', x: 50, y: 50 },
-    { id: 'sw2', label: 'SW2', type: 'router', x: 75, y: 50 },
+    { id: 'sw1', label: 'SW1', shortLabel: 'SW1', type: 'switch', x: 25, y: 50 },
+    { id: 'po', label: 'Po1 (LACP)', shortLabel: 'Po1', type: 'process', x: 50, y: 50, status: 'highlighted' },
+    { id: 'sw2', label: 'SW2', shortLabel: 'SW2', type: 'switch', x: 75, y: 50 },
   ], [
     { id: 'l1', source: 'sw1', target: 'po', label: '2+ links' },
     { id: 'l2', source: 'po', target: 'sw2', label: '' },
@@ -92,7 +92,7 @@ export const VISUAL_DIAGRAMS = {
 
   '5.6': topo('DIAG-5.6-portsec', 'Port security on access port', [
     { id: 'host', label: 'PC MAC', type: 'pc', x: 20, y: 50 },
-    { id: 'port', label: 'Gi0/1 access', type: 'router', x: 50, y: 50, status: 'highlighted' },
+    { id: 'port', label: 'Gi0/1 access', shortLabel: 'Gi0/1', type: 'switch', x: 50, y: 50, status: 'highlighted' },
     { id: 'rogue', label: 'Rogue MAC', type: 'pc', x: 80, y: 50, status: 'dropped' },
   ], [
     { id: 'l1', source: 'host', target: 'port', label: 'sticky learned' },
@@ -101,7 +101,7 @@ export const VISUAL_DIAGRAMS = {
 
   '1.1': topo('DIAG-1.1-components', 'End-to-end network path', [
     { id: 'pc', label: 'End host', type: 'pc', x: 12, y: 50 },
-    { id: 'sw', label: 'L2 Switch', type: 'router', x: 35, y: 50 },
+    { id: 'sw', label: 'L2 Switch', shortLabel: 'SW', type: 'switch', x: 35, y: 50 },
     { id: 'r', label: 'L3 Router', type: 'router', x: 58, y: 50, status: 'highlighted' },
     { id: 'srv', label: 'Server', type: 'server', x: 85, y: 50 },
   ], [
@@ -119,7 +119,7 @@ export const VISUAL_DIAGRAMS = {
 
   '2.2': topo('DIAG-2.2-trunk', '802.1Q trunk tagging', [
     { id: 'sw1', label: 'SW1', type: 'router', x: 25, y: 50 },
-    { id: 'trunk', label: 'Trunk (tagged)', type: 'highlight', x: 50, y: 50 },
+    { id: 'trunk', label: 'Trunk (tagged)', shortLabel: 'Trunk', type: 'process', x: 50, y: 50, status: 'highlighted' },
     { id: 'sw2', label: 'SW2', type: 'router', x: 75, y: 50 },
   ], [
     { id: 'l1', source: 'sw1', target: 'trunk', label: 'VLAN 10,20 tags' },
@@ -127,9 +127,9 @@ export const VISUAL_DIAGRAMS = {
   ], ['Native VLAN untagged on trunk; match both ends']),
 
   '2.6': topo('DIAG-2.6-wireless', 'Centralized wireless', [
-    { id: 'ap', label: 'Lightweight AP', type: 'router', x: 20, y: 55 },
+    { id: 'ap', label: 'Lightweight AP', shortLabel: 'AP', type: 'cloud', x: 20, y: 55 },
     { id: 'wlc', label: 'WLC', type: 'server', x: 50, y: 30, status: 'highlighted' },
-    { id: 'sw', label: 'Switch', type: 'router', x: 50, y: 70 },
+    { id: 'sw', label: 'Switch', shortLabel: 'SW', type: 'switch', x: 50, y: 70 },
     { id: 'client', label: 'Wi-Fi client', type: 'pc', x: 80, y: 55 },
   ], [
     { id: 'l1', source: 'ap', target: 'sw', label: 'CAPWAP tunnel' },
@@ -138,7 +138,7 @@ export const VISUAL_DIAGRAMS = {
   ]),
 
   '3.2': topo('DIAG-3.2-lpm', 'Longest prefix match', [
-    { id: 'pkt', label: 'Dest 10.1.1.5', type: 'highlight', x: 15, y: 50 },
+    { id: 'pkt', label: 'Dest 10.1.1.5', shortLabel: 'Pkt', type: 'process', x: 15, y: 50, status: 'highlighted' },
     { id: 'r24', label: '10.1.1.0/24', type: 'subnet', x: 45, y: 35, status: 'highlighted' },
     { id: 'r16', label: '10.1.0.0/16', type: 'subnet', x: 45, y: 65 },
     { id: 'fwd', label: 'Forward /24', type: 'process', x: 80, y: 50 },
@@ -150,7 +150,7 @@ export const VISUAL_DIAGRAMS = {
   '3.5': topo('DIAG-3.5-fhrp', 'HSRP active/standby', [
     { id: 'r1', label: 'R1 Active', type: 'router', x: 30, y: 40, status: 'highlighted' },
     { id: 'r2', label: 'R2 Standby', type: 'router', x: 70, y: 40 },
-    { id: 'vip', label: 'VIP .1', type: 'highlight', x: 50, y: 70 },
+    { id: 'vip', label: 'VIP .1', shortLabel: 'VIP', type: 'process', x: 50, y: 70, status: 'highlighted' },
   ], [
     { id: 'l1', source: 'r1', target: 'vip', label: 'responds ARP' },
     { id: 'l2', source: 'r2', target: 'vip', label: 'monitors', status: 'dropped' },
@@ -174,7 +174,7 @@ export const VISUAL_DIAGRAMS = {
 
   '5.1': topo('DIAG-5.1-security', 'Defense layers on a LAN', [
     { id: 'user', label: 'User VLAN', type: 'pc', x: 15, y: 50 },
-    { id: 'fw', label: 'ACL / policy', type: 'router', x: 45, y: 50, status: 'highlighted' },
+    { id: 'fw', label: 'ACL / policy', shortLabel: 'ACL', type: 'firewall', x: 45, y: 50, status: 'highlighted' },
     { id: 'srv', label: 'Server zone', type: 'server', x: 75, y: 50 },
   ], [
     { id: 'l1', source: 'user', target: 'fw', label: 'filter' },
@@ -183,8 +183,8 @@ export const VISUAL_DIAGRAMS = {
 
   '6.2': topo('DIAG-6.2-sdn', 'SDN control vs data plane', [
     { id: 'ctrl', label: 'SDN Controller', type: 'server', x: 50, y: 20, status: 'highlighted' },
-    { id: 'sw1', label: 'Switch', type: 'router', x: 25, y: 65 },
-    { id: 'sw2', label: 'Switch', type: 'router', x: 75, y: 65 },
+    { id: 'sw1', label: 'Switch', shortLabel: 'SW1', type: 'switch', x: 25, y: 65 },
+    { id: 'sw2', label: 'Switch', shortLabel: 'SW2', type: 'switch', x: 75, y: 65 },
   ], [
     { id: 'l1', source: 'ctrl', target: 'sw1', label: 'southbound API' },
     { id: 'l2', source: 'ctrl', target: 'sw2', label: 'southbound API' },
@@ -193,7 +193,7 @@ export const VISUAL_DIAGRAMS = {
 
   '5.9': topo('DIAG-5.9-wpa2', 'WPA2-PSK WLAN flow', [
     { id: 'client', label: 'Wi-Fi client', type: 'pc', x: 15, y: 55 },
-    { id: 'ap', label: 'Lightweight AP', type: 'router', x: 40, y: 55 },
+    { id: 'ap', label: 'Lightweight AP', shortLabel: 'AP', type: 'cloud', x: 40, y: 55 },
     { id: 'wlc', label: 'WLC (WLAN + PSK)', type: 'server', x: 65, y: 35, status: 'highlighted' },
     { id: 'vlan', label: 'Employee VLAN', type: 'subnet', x: 85, y: 55 },
   ], [
@@ -205,8 +205,8 @@ export const VISUAL_DIAGRAMS = {
   '6.1': topo('DIAG-6.1-auto', 'Manual CLI vs automation', [
     { id: 'eng', label: 'Engineer', type: 'pc', x: 15, y: 50 },
     { id: 'play', label: 'Ansible playbook', type: 'process', x: 45, y: 30, status: 'highlighted' },
-    { id: 'sw1', label: 'Switch A', type: 'router', x: 70, y: 40 },
-    { id: 'sw2', label: 'Switch B', type: 'router', x: 70, y: 65 },
+    { id: 'sw1', label: 'Switch A', shortLabel: 'SW-A', type: 'switch', x: 70, y: 40 },
+    { id: 'sw2', label: 'Switch B', shortLabel: 'SW-B', type: 'switch', x: 70, y: 65 },
   ], [
     { id: 'l1', source: 'eng', target: 'play', label: 'template / IaC' },
     { id: 'l2', source: 'play', target: 'sw1', label: 'SSH push' },

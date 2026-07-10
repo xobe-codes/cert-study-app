@@ -236,25 +236,36 @@ export default function HomeDomainAccordion({
                     {readinessLine}
                   </div>
                   {onOpenDomainPass && (
-                    <button type="button" className="ccna-hover" style={studyModeBtn} onClick={() => onOpenDomainPass({ domainId: domain.id })}>
+                    <button
+                      type="button"
+                      className="ccna-hover"
+                      style={{
+                        ...studyModeBtn,
+                        borderColor: COLORS.mintBorder,
+                        background: COLORS.mintDim,
+                        color: COLORS.mint,
+                        fontWeight: 700,
+                      }}
+                      onClick={() => onOpenDomainPass({ domainId: domain.id })}
+                    >
                       Domain Pass — {passBadge}
                     </button>
                   )}
                   {onOpenTrapDrill && (
-                    <button type="button" className="ccna-hover" style={studyModeBtn} onClick={() => onOpenTrapDrill({ domainId: domain.id })}>
+                    <button type="button" className="ccna-hover" style={{ ...studyModeBtn, opacity: 0.92 }} onClick={() => onOpenTrapDrill({ domainId: domain.id })}>
                       Trap Drill
                     </button>
                   )}
                   {onOpenCommandHub && (
-                    <button type="button" className="ccna-hover" style={studyModeBtn} onClick={() => onOpenCommandHub({ domainId: domain.id })}>
+                    <button type="button" className="ccna-hover" style={{ ...studyModeBtn, opacity: 0.92 }} onClick={() => onOpenCommandHub({ domainId: domain.id })}>
                       Command Hub
                     </button>
                   )}
-                  <button type="button" className="ccna-hover" style={studyModeBtn} onClick={practiceDomain}>
+                  <button type="button" className="ccna-hover" style={{ ...studyModeBtn, opacity: 0.92 }} onClick={practiceDomain}>
                     Practice domain
                   </button>
                   {onOpenLabs && studyMeta.labCount > 0 && (
-                    <button type="button" className="ccna-hover" style={{ ...studyModeBtn, marginBottom: 0 }} onClick={() => onOpenLabs({ domainId: domain.id })}>
+                    <button type="button" className="ccna-hover" style={{ ...studyModeBtn, marginBottom: 0, opacity: 0.92 }} onClick={() => onOpenLabs({ domainId: domain.id })}>
                       🧪 Domain labs ({studyMeta.labCount})
                     </button>
                   )}

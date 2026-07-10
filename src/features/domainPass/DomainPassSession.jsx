@@ -6,6 +6,7 @@ import { isMcQuestion, gradeQuestion, buildMissedEntry } from '../../questionUti
 import { COLORS, styles } from '../../ui/appTheme.js'
 import McChoices from '../../components/McChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
+import { answerReviewSessionProps } from '../../components/answerReviewSessionProps.js'
 import { McChoiceShuffleProvider } from '../../context/McChoiceShuffleContext.jsx'
 import { summarizeWrongTraps } from '../../missed/missedTrapGroups.js'
 import MockExamDebriefActions from '../mockExam/MockExamDebriefActions.jsx'
@@ -435,15 +436,15 @@ export default function DomainPassSession({
             <div style={{ fontWeight: 700, color: isCurrentCorrect ? COLORS.mint : COLORS.rose, marginBottom: 6, fontSize: 'var(--ccna-type-sm)' }}>
               {isCurrentCorrect ? '✓ Correct!' : '✗ Incorrect'}
             </div>
-            <AnswerReview
-              q={q}
-              selected={selected}
-              hideExamTip={examMode}
-              domainId={domainId}
-              onOpenLab={onOpenLab}
-              onOpenTrapDrill={onOpenTrapDrill}
-              onOpenSubnet={onOpenSubnet}
-            />
+            <AnswerReview {...answerReviewSessionProps({
+              q,
+              selected,
+              hideExamTip: examMode,
+              domainId,
+              onOpenLab,
+              onOpenTrapDrill,
+              onOpenSubnet,
+            })} />
           </div>
         )}
         </McChoiceShuffleProvider>

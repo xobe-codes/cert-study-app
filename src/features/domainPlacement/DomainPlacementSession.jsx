@@ -5,6 +5,7 @@ import { gradeQuestion, buildMissedEntry } from '../../questionUtils.js'
 import { COLORS, styles } from '../../ui/appTheme.js'
 import McChoices from '../../components/McChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
+import { answerReviewSessionProps } from '../../components/answerReviewSessionProps.js'
 import { McChoiceShuffleProvider } from '../../context/McChoiceShuffleContext.jsx'
 import { QuestionMeta, QuizQuestionStem } from '../../components/QuizQuestionChrome.jsx'
 import Spinner from '../../components/Spinner.jsx'
@@ -280,7 +281,13 @@ export default function DomainPlacementSession({
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>
               {isCorrect ? 'Correct' : 'Incorrect'}
             </div>
-            <AnswerReview q={q} selected={selected} objectiveId={q.objectiveId} />
+            <AnswerReview {...answerReviewSessionProps({
+              q,
+              selected,
+              objectiveId: q.objectiveId,
+              onOpenTrapDrill,
+              onOpenLab,
+            })} />
           </div>
         )}
         </McChoiceShuffleProvider>

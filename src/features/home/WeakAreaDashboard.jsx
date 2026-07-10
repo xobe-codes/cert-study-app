@@ -149,7 +149,7 @@ export default function WeakAreaDashboard({
             }}>
               {group.label}
             </div>
-            {group.rows.map((row) => (
+            {group.rows.map((row, rowIdx) => (
               <div key={row.id} className="ccna-weak-area-row">
                 <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 2, justifyContent: 'center' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 6, minWidth: 0 }}>
@@ -170,7 +170,7 @@ export default function WeakAreaDashboard({
                   className="ccna-hover ccna-weak-area-row__cta"
                   onClick={() => handleRow(row)}
                   style={{
-                    ...styles.secondaryBtn,
+                    ...(rowIdx === 0 && group.key === groups[0]?.key ? styles.primaryBtn : styles.secondaryBtn),
                     width: 'auto',
                     flexShrink: 0,
                     alignSelf: 'center',

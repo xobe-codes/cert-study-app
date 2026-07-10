@@ -27,6 +27,7 @@ import { useMasteryProgress } from './features/progress/MasteryProgressContext.j
 import { aggregateSessionByObjective, ENGAGEMENT_KINDS } from './features/progress/masteryEngagement.js'
 import McChoices from './components/McChoices.jsx'
 import AnswerReview from './components/AnswerReview.jsx'
+import { answerReviewSessionProps } from './components/answerReviewSessionProps.js'
 import { McChoiceShuffleProvider } from './context/McChoiceShuffleContext.jsx'
 import { summarizeWrongTraps } from './missed/missedTrapGroups.js'
 import { computeCkuWeakness } from './weaknessUtils.js'
@@ -553,7 +554,13 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
             <div style={{ fontWeight: 700, color: unanswered ? COLORS.amber : isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>
               {unanswered ? 'Unanswered' : isCorrect ? 'Correct' : 'Incorrect'}
             </div>
-            <AnswerReview q={q} selected={selected} hideExamTip={examMode && isStudyMode} onOpenLab={onOpenLab} />
+            <AnswerReview {...answerReviewSessionProps({
+              q,
+              selected,
+              hideExamTip: examMode && isStudyMode,
+              onOpenLab,
+              onOpenTrapDrill,
+            })} />
           </div>
           </McChoiceShuffleProvider>
         </div>
@@ -623,7 +630,13 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
             }}>
               {isCurrentCorrect ? '✓ Correct!' : '✗ Incorrect'}
             </div>
-            <AnswerReview q={q} selected={selected} hideExamTip={examMode && isStudyMode} onOpenLab={onOpenLab} />
+            <AnswerReview {...answerReviewSessionProps({
+              q,
+              selected,
+              hideExamTip: examMode && isStudyMode,
+              onOpenLab,
+              onOpenTrapDrill,
+            })} />
           </div>
         )}
         </McChoiceShuffleProvider>

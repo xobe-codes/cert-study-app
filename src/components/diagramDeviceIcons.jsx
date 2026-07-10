@@ -79,6 +79,13 @@ export function DiagramDeviceIconG({ type, color, cx, cy, size = 14 }) {
       return wrap(
         <path d="M8 2 L13.5 5.5 V11.5 L8 15 L2.5 11.5 V5.5 Z" {...common} />,
       )
+    case 'highlight':
+      return wrap(
+        <>
+          <circle cx="8" cy="8" r="5.5" {...common} />
+          <path d="M8 5.5v5M5.5 8h5" {...common} />
+        </>,
+      )
     default:
       return wrap(<circle cx="8" cy="8" r="5" {...common} />)
   }

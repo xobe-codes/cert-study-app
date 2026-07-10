@@ -75,6 +75,8 @@ Revisit when next school class starts (class pack template) or when adding a sec
 
 **Topology SVG 99+** (iPhone device glyphs + pinch/pan) — [`TOPOLOGY_SVG_99.md`](./TOPOLOGY_SVG_99.md)
 
+**Polish 99+** (parity + hierarchy + diagram content) — [`POLISH_99.md`](./POLISH_99.md)
+
 Full shipped history: `COMPLETED_CHANGES.md`
 
 ---
