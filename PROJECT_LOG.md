@@ -132,17 +132,11 @@ Full report: `ai-improvement-logs/WAVE_CONSOLIDATION_REPORT.md`
 
 ## Next planned work
 
-**P1–P7 remediation pass** (Claude Code sessions, 2026-07-10):
+**P1–P7 remediation + first-paint split:** shipped (`ab57ba4`, `004266a`).
 
-- P1: Verify current unit-test and e2e counts match scorecard claims (134 unit files · 38 e2e)
-- P2: Confirm 82-lab count and interpret-only status vs. COMPLETED_CHANGES
-- P3: Audit `App.jsx` line count (scorecard says 198 vs. earlier 3401-line baseline after extractions)
-- P4: Validate `validatePlacementBlueprints` CI gate is wired and passing
-- P5: Check bank-wide visual packs shipped for all 53 objectives or just domain 6
-- P6: Smoke-test Domain Pass session persistence across drill/hub/study/lab nav
-- P7: (**this task**) Sync PROJECT_LOG.md with current app state
+**P5 pool-depth continuation:** closed — runtime counts show **no objective below 10** (lowest ≈16). Stale CRITICAL flags for 5.9/4.9 were clean-bank-only snapshots; see updated `WAVE_CONSOLIDATION_REPORT.md`.
 
-After the remediation pass: queue is empty and backlog is clear. Next meaningful work requires an explicit feature request or the `PLATFORM_NEXT_PHASE.md` multi-pack curriculum plan to be unlocked.
+Queue empty · backlog empty. Next work needs an explicit feature request.
 
 ---
 
