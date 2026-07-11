@@ -1,7 +1,7 @@
 # Implementation Tracker — 99+ North Star
 
 **Single source of truth** for current work, queue, scores, and shipped history.
-**Updated:** 2026-07-10 · **Overall:** ~99/100 → target **99+** (all areas ≥95)
+**Updated:** 2026-07-11 · **Overall:** ~99/100 → target **99+** (all areas ≥95)
 
 ---
 
@@ -24,7 +24,8 @@
 | Objectives | 53 · Tier A **53** · B 0 · C 0 |
 | Labs | 82 (82 interpret · 0 config) |
 | Trap / flashcard / cmd gaps | **0 / 0 / 0** |
-| App.jsx | ~198 lines |
+| App.jsx | ~149 lines |
+| Command scenarios | ≥3 per domain (6 domains) |
 
 ---
 
@@ -34,14 +35,14 @@
 |------|----:|--------:|---------------------|
 | Coverage breadth | 99 | 97 | Tier-A ratio (53/53) |
 | Coverage depth | 99 | 97 | avg 25 Q · 14 traps/obj |
-| Learning flow | 99 | 97 | SRS + stem-replay loops; question volume |
+| Learning flow | 99 | 97 | Specs 1–15 domain OS + unified lessons |
 | Engineer perspective | 99 | 97 | engineer view 53/53 |
-| CLI verification | 99 | 96 | ≥2 verify cmds 53/53 |
+| CLI verification | 99 | 96 | ≥2 verify cmds 53/53 · scenario packs |
 | Exam traps | 100 | 97 | avg 14 traps · floor 0 |
 | Labs / CLI | 99 | 97 | lab/obj + 82 interpret (0 config) + TS |
-| Maintainability | 97 | 96 | App 198L · ObjScreen 170L · 0 files >900L |
-| Mobile / a11y | 99 | 96 | 6 mobile e2e · a11y ✓ |
-| Tests / CI | 99 | 96 | 134 unit files · 38 e2e |
+| Maintainability | 97 | 96 | App ≤200 · ExplainTab extract · 0 >900L |
+| Mobile / a11y | 99 | 96 | phone diagrams · mobile e2e · a11y ✓ |
+| Tests / CI | 99 | 96 | Terms Hub e2e in ship:full |
 
 ---
 
@@ -59,7 +60,12 @@
 
 | id | area | work |
 |----|------|------|
-| _(empty)_ | — | Polish next-pass cleared (gold 33 + trap wave 23) |
+| _(empty)_ | — | Optional polish cleared 2026-07-11 (Terms Hub e2e + scenario density) |
+
+## Recently shipped
+
+- **Specs 8–15** — unified lessons, Terms Hub, Command scenarios, study health, phone diagrams (`ae5abf7`+)
+- **Optional polish** — Terms Hub ship e2e; ≥3 scenarios/domain
 
 ## Parked — next phase (do not implement until asked)
 
@@ -78,4 +84,3 @@ Full shipped history: `COMPLETED_CHANGES.md`
 ## Do not touch
 
 `.env*` · `src/ui/appTheme.js` · hash routing in `App.jsx` · live AI on load. See `DO_NOT_TOUCH.md`.
-

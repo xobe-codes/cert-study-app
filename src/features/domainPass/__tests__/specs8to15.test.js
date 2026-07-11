@@ -6,7 +6,12 @@ import { createSectionTtsPlaylist } from '../../../lib/sectionTtsPlaylist.js'
 import { pickPhoneInlineDiagram, isPhoneViewport, diagramCaption } from '../../../components/diagramPhoneVariant.js'
 import { buildTermsCatalog, filterTermsCatalog } from '../../../terms/termsCatalog.js'
 import { gradeTypeTerm, buildPickDefinitionItems } from '../../../terms/termsDrillQuiz.js'
-import { pickScenarioSession, gradeScenario } from '../../../commands/commandScenarioQuiz.js'
+import {
+  pickScenarioSession,
+  gradeScenario,
+  scenarioCoverageByDomain,
+  MIN_SCENARIOS_PER_DOMAIN,
+} from '../../../commands/commandScenarioQuiz.js'
 
 const NOW = Date.now()
 
@@ -95,5 +100,13 @@ describe('Spec 12 command scenarios', () => {
     const session = pickScenarioSession('access', 3)
     expect(session.length).toBeGreaterThan(0)
     expect(gradeScenario(session[0], session[0].correctIndex)).toBe(true)
+  })
+
+  it('keeps ≥3 scenarios in every exam domain', () => {
+    const coverage = scenarioCoverageByDomain()
+    for (const [domainId, count] of Object.entries(coverage)) {
+      expect(count, domainId).toBeGreaterThanOrEqual(MIN_SCENARIOS_PER_DOMAIN)
+      expect(pickScenarioSession(domainId, 5).length).toBeGreaterThanOrEqual(MIN_SCENARIOS_PER_DOMAIN)
+    }
   })
 })
