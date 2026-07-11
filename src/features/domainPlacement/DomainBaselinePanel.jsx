@@ -169,51 +169,69 @@ export default function DomainBaselinePanel({
           )}
         </div>
         {summary.testedOut ? (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flexShrink: 0, minWidth: 140 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flexShrink: 0, minWidth: 140, maxWidth: 200 }}>
             {blueprintStale && (
+              <div>
+                <button
+                  type="button"
+                  className="ccna-hover"
+                  style={{
+                    ...styles.primaryBtn,
+                    marginBottom: 0,
+                    width: '100%',
+                    fontSize: 'var(--ccna-type-xs)',
+                    padding: '10px 14px',
+                    minHeight: 40,
+                  }}
+                  onClick={() => onCheckLevel?.(domain.id)}
+                >
+                  Full remap ({PLACEMENT_QUESTION_COUNT} Q) →
+                </button>
+                <div style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid, marginTop: 3, lineHeight: 1.35 }}>
+                  Blueprint changed — rebuilds the whole map
+                </div>
+              </div>
+            )}
+            <div>
               <button
                 type="button"
                 className="ccna-hover"
                 style={{
                   ...styles.primaryBtn,
                   marginBottom: 0,
+                  width: '100%',
                   fontSize: 'var(--ccna-type-xs)',
                   padding: '10px 14px',
                   minHeight: 40,
                 }}
+                onClick={() => onCheckLevel?.(domain.id, { placementMode: 'maintenance' })}
+              >
+                Pulse ({PLACEMENT_MAINTENANCE_TRAP_COUNT} traps) →
+              </button>
+              <div style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid, marginTop: 3, lineHeight: 1.35 }}>
+                Quick trap check — keeps your map as-is
+              </div>
+            </div>
+            <div>
+              <button
+                type="button"
+                className="ccna-hover"
+                style={{
+                  ...styles.secondaryBtn,
+                  marginBottom: 0,
+                  width: '100%',
+                  fontSize: 'var(--ccna-type-xs)',
+                  padding: '8px 12px',
+                  minHeight: 36,
+                }}
                 onClick={() => onCheckLevel?.(domain.id)}
               >
-                Full remap ({PLACEMENT_QUESTION_COUNT} Q) →
+                Refresh map ({PLACEMENT_QUESTION_COUNT} Q) →
               </button>
-            )}
-            <button
-              type="button"
-              className="ccna-hover"
-              style={{
-                ...styles.primaryBtn,
-                marginBottom: 0,
-                fontSize: 'var(--ccna-type-xs)',
-                padding: '10px 14px',
-                minHeight: 40,
-              }}
-              onClick={() => onCheckLevel?.(domain.id, { placementMode: 'maintenance' })}
-            >
-              Maintenance ({PLACEMENT_MAINTENANCE_TRAP_COUNT} traps) →
-            </button>
-            <button
-              type="button"
-              className="ccna-hover"
-              style={{
-                ...styles.secondaryBtn,
-                marginBottom: 0,
-                fontSize: 'var(--ccna-type-xs)',
-                padding: '8px 12px',
-                minHeight: 36,
-              }}
-              onClick={() => onCheckLevel?.(domain.id)}
-            >
-              Full refresh ({PLACEMENT_QUESTION_COUNT} Q) →
-            </button>
+              <div style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid, marginTop: 3, lineHeight: 1.35 }}>
+                Full resample — rewrites your strong/weak map
+              </div>
+            </div>
           </div>
         ) : (
           <button

@@ -239,13 +239,14 @@ export default function StudyModeRoutes({
           setDomainPassFocusConfig?.({ objectiveIds })
           setActiveDomainPassId(domainId)
         }}
-        onOpenMock={(id) => onOpenMockExam({ domainId: id })}
+        onOpenMock={(opts) => onOpenMockExam(typeof opts === 'string' ? { domainId: opts } : opts)}
         onOpenTrapDrill={onOpenTrapDrill}
         onOpenLab={(id) => onOpenLab(id, 'domainpass')}
         onOpenLabs={onOpenLabs}
         onOpenCommandHub={onOpenCommandHub}
         onOpenSubnet={onOpenSubnet}
         onSelectObjective={onSelectObjective}
+        onOpenPlacementPulse={(domainId) => onOpenDomainPlacement({ domainId, placementMode: 'maintenance' })}
         examMode={settingsExamMode}
         missed={missed}
       />

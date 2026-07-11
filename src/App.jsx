@@ -131,6 +131,7 @@ export default function App() {
           commandHubDomainPrefill={nav.commandHubDomainPrefill} commandHubTabPrefill={nav.commandHubTabPrefill}
           commandHubPackPrefill={nav.commandHubPackPrefill} clearCommandHubLaunch={nav.clearCommandHubLaunch}
           setMockDomainPrefill={nav.setMockDomainPrefill}
+          mockModePrefill={nav.mockModePrefill} setMockModePrefill={nav.setMockModePrefill}
           finishOnboarding={onboarding.finishOnboarding} skipOnboarding={onboarding.skipOnboarding}
           selectedLab={nav.selectedLab}
           labReturn={nav.labReturn}

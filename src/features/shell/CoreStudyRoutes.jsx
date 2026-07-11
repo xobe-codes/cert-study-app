@@ -77,6 +77,8 @@ export default function CoreStudyRoutes({
   labsDomainPrefill,
   mockDomainPrefill,
   setMockDomainPrefill,
+  mockModePrefill,
+  setMockModePrefill,
 }) {
   if (view === 'onboarding') {
     return <Onboarding onComplete={onFinishOnboarding} onSkip={onSkipOnboarding} />
@@ -192,10 +194,12 @@ export default function CoreStudyRoutes({
     return (
       <LazyRoute label="Loading mock exam…">
         <MockExamRoute
-          onExit={() => { setMockDomainPrefill(null); goBack() }}
+          onExit={() => { setMockDomainPrefill(null); setMockModePrefill?.(null); goBack() }}
           examMode={settingsExamMode}
           missed={missed}
           initialDomainId={mockDomainPrefill}
+          initialMode={mockModePrefill?.mode || null}
+          initialMissOnly={Boolean(mockModePrefill?.missOnly)}
           onOpenLab={(id) => openLab(id, 'mock')}
           onOpenTrapDrill={(prefill) => openTrapDrill(typeof prefill === 'string' ? { ckuId: prefill } : prefill)}
           onSelectObjective={(id) => {

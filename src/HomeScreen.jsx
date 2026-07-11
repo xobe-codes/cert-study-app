@@ -643,6 +643,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         domainPassRecords={domainPassRecords}
         openDomain={openDomain}
         offlineReady={offlineReady}
+        missed={missed}
         onOpenDomain={onOpenDomain}
         onSelectObjective={onSelectObjective}
         onOpenLabs={onOpenLabs}
@@ -650,6 +651,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         onOpenDomainPass={onOpenDomainPass}
         onOpenTrapDrill={onOpenTrapDrill}
         onOpenCommandHub={onOpenCommandHub}
+        onOpenMockExam={onOpenMock}
       />
     </div>
   )

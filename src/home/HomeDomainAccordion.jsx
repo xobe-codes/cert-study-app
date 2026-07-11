@@ -33,6 +33,7 @@ export default function HomeDomainAccordion({
   domainPassRecords = {},
   openDomain,
   offlineReady,
+  missed = [],
   onOpenDomain,
   onSelectObjective,
   onOpenLabs,
@@ -40,6 +41,7 @@ export default function HomeDomainAccordion({
   onOpenDomainPass,
   onOpenTrapDrill,
   onOpenCommandHub,
+  onOpenMockExam,
 }) {
   const [showStrongObjectives, setShowStrongObjectives] = useState({})
   const [labDoneIds, setLabDoneIds] = useState([])
@@ -77,6 +79,8 @@ export default function HomeDomainAccordion({
         }
 
         const passRecord = domainPassRecords[domain.id]
+        const domainObjectiveIds = new Set(objs.map(o => o.id))
+        const domainMissCount = missed.filter(m => domainObjectiveIds.has(m?.objectiveId)).length
         const passStatus = domainPassStatus(passRecord)
         const passBadge = domainPassBadgeLabel(passStatus)
         const passBadgeAccent = passStatus === 'passed' ? 'mint' : passStatus === 'retake' ? 'amber' : 'silver'
@@ -336,6 +340,32 @@ export default function HomeDomainAccordion({
                   <button type="button" className="ccna-hover" style={{ ...studyModeBtn, opacity: 0.92 }} onClick={practiceDomain}>
                     Practice domain
                   </button>
+                  {onOpenMockExam && (
+                    <button
+                      type="button"
+                      className="ccna-hover"
+                      style={{ ...studyModeBtn, opacity: 0.92 }}
+                      onClick={() => onOpenMockExam({ domainId: domain.id, mode: 'bankburn' })}
+                    >
+                      Burn bank in Mock →
+                    </button>
+                  )}
+                  {onOpenMockExam && domainMissCount > 0 && (
+                    <button
+                      type="button"
+                      className="ccna-hover"
+                      style={{
+                        ...studyModeBtn,
+                        borderColor: COLORS.roseBorder,
+                        background: COLORS.roseDim,
+                        color: COLORS.rose,
+                        fontWeight: 700,
+                      }}
+                      onClick={() => onOpenMockExam({ domainId: domain.id, mode: 'bankburn', missOnly: true })}
+                    >
+                      Fix misses ({domainMissCount}) →
+                    </button>
+                  )}
                   {onOpenLabs && studyMeta.labCount > 0 && (
                     <button type="button" className="ccna-hover" style={{ ...studyModeBtn, marginBottom: 0, opacity: 0.92 }} onClick={() => onOpenLabs({ domainId: domain.id })}>
                       🧪 Domain labs ({studyMeta.labCount})

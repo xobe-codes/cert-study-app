@@ -1,0 +1,49 @@
+---
+description: Session hygiene + HANDOFF 99 — one job, file-first memory, token-lean, no surprise c&d
+alwaysApply: true
+---
+
+# Session & HANDOFF 99
+
+Context usage ≠ billing quota. Fat chats degrade agents before the bar hits 100%.
+
+**Doctrine:** `ai-improvement-logs/AGENT_MEMORY_99.md`  
+**Live memory:** `ai-improvement-logs/ACTIVE_HANDOFF.md` (read before coding if it exists; update on interrupt/partial/done)
+
+## Session rules
+
+1. **One job only** — this message’s task; don’t reload old planning essays.
+2. **Prefer files over chat** — `ACTIVE_HANDOFF.md` (and pasted HANDOFF) beat transcript archaeology.
+3. **Token-lean** — short status; cite paths; never dump huge files or restate the whole 99 plan.
+4. **Before coding** (≤10 lines): goal · likely files · done definition · conflict risks.
+5. **Don’t commit/deploy** unless user says `c&d` / `ship it` / `commit`.
+6. **Sub-agents OK** — short task prompts + “return HANDOFF”; never forward this whole chat.
+
+## Chat split
+
+| Chat | Use for | Do not |
+|------|---------|--------|
+| **Plan** | Specs, tradeoffs | Large multi-file implementation |
+| **Implement A** | One vertical slice | Relitigate the whole plan |
+| **Implement B** | Non-overlapping slice | Edit the same spine as A |
+
+New implement chat: paste goal checklist + point at `ACTIVE_HANDOFF.md` + `DO_NOT_TOUCH.md` / `AGENTS.md` — not the planning transcript.
+
+**Unsafe parallel spine:** `HomeDomainAccordion`, exposure ledger, Mock intro, Domain Pass hub, `App.jsx`.
+
+## Mandatory HANDOFF
+
+On interrupt, usage limit, or partial finish: **write `ACTIVE_HANDOFF.md` first**, then print a short block (or “see ACTIVE_HANDOFF.md”). Schema:
+
+### HANDOFF — CCNA
+- Status: NOT STARTED | IN PROGRESS | PARTIAL | DONE
+- Completed:
+- Not done:
+- Files created/modified:
+- Spine locks / don’t-touch:
+- Exact next 1–3 steps:
+- Commands to run:
+- Commit status:
+- Resume prompt: (2–4 sentences to paste into a new chat)
+
+If the user pastes a HANDOFF, treat it as source of truth (sync into `ACTIVE_HANDOFF.md`) — do not restart from scratch.

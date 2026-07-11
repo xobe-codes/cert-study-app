@@ -41,6 +41,7 @@ export function useAppNavigation() {
   const [placementRecords, setPlacementRecords] = useState({})
   const [placementSessionMode, setPlacementSessionMode] = useState(null)
   const [mockDomainPrefill, setMockDomainPrefill] = useState(null)
+  const [mockModePrefill, setMockModePrefill] = useState(null) // { mode: 'bankburn', missOnly?: boolean }
   const [labsDomainPrefill, setLabsDomainPrefill] = useState(null)
   const [commandHubDomainPrefill, setCommandHubDomainPrefill] = useState(null)
   const [commandHubTabPrefill, setCommandHubTabPrefill] = useState(null)
@@ -178,6 +179,9 @@ export function useAppNavigation() {
   const openMockExam = useCallback((opts) => {
     const safe = studyModeOpts(opts)
     setMockDomainPrefill(safe?.domainId || null)
+    setMockModePrefill(safe?.mode
+      ? { mode: safe.mode, missOnly: Boolean(safe.missOnly) }
+      : null)
     navigateTo('mock')
   }, [navigateTo])
 
@@ -290,6 +294,8 @@ export function useAppNavigation() {
     placementRecords,
     mockDomainPrefill,
     setMockDomainPrefill,
+    mockModePrefill,
+    setMockModePrefill,
     labsDomainPrefill,
     setLabsDomainPrefill,
     commandHubDomainPrefill,

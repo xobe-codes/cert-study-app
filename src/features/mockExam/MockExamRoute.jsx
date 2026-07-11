@@ -8,6 +8,8 @@ export default function MockExamRoute({
   examMode,
   missed,
   initialDomainId,
+  initialMode,
+  initialMissOnly,
   onOpenLab,
   onOpenTrapDrill,
   onSelectObjective,
@@ -20,6 +22,8 @@ export default function MockExamRoute({
         examMode={examMode}
         missed={missed}
         initialDomainId={initialDomainId}
+        initialMode={initialMode}
+        initialMissOnly={initialMissOnly}
         onOpenLab={onOpenLab}
         onOpenTrapDrill={onOpenTrapDrill}
         onSelectObjective={onSelectObjective}

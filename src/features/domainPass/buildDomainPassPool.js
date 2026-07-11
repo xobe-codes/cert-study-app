@@ -308,6 +308,10 @@ function fillExposureRemainder({
  * Carryover skips are reserved first; remainder uses exposure tiers when exposureStats is set.
  * Adaptive retake: 60% unseen, 30% stale, ~10% weak-objective (60/40 within weak slot).
  * Without exposureStats, falls back to legacy 60/40 weak split for the full remainder.
+ *
+ * Shared exposure contract (also used by Mock Bank burn / Domain sim via
+ * features/mockExam/bankBurnPool.js): prefer UNSEEN → STALE → miss-retry;
+ * RECENT questions are spillover only — never recycled while unseen remain.
  */
 export function buildDomainPassPool({
   domain,

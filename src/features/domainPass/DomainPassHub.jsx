@@ -32,6 +32,7 @@ import {
   HOME_SECTION_GAP,
 } from '../../home/homeUi.js'
 import { isPlacementDomain } from '../domainPlacement/placementBlueprints.js'
+import { suggestDomainPassNextAction } from './domainPassReadiness.js'
 import { DOMAIN_LEARNING_TAGLINE, domainDisplayTitle } from '../domainPlacement/domainLearningCopy.js'
 import { PLACEMENT_BASELINE_REFRESH_EVENT } from '../../storageKeys.js'
 
@@ -242,6 +243,17 @@ export default function DomainPassHub({ onExit, onStartDomain, onOpenFocusPicker
                 {hasExposureRecord && bankStats?.bankCount > 0 && (
                   <div style={{ ...homeBodySm, marginTop: 6, marginBottom: 0, color: COLORS.silverMid }}>
                     {bankStats.bankCount} in bank · {bankStats.seenCount} seen
+                  </div>
+                )}
+                {loaded && (
+                  <div style={{ ...homeBodySm, marginTop: 4, marginBottom: 0, color: accent.text, fontWeight: 600 }}>
+                    Next: {suggestDomainPassNextAction({
+                      domainId: domain.id,
+                      status,
+                      hasBaseline,
+                      weakCount: record?.weakObjectives?.length || 0,
+                      unseenCount: bankStats?.unseen?.length || 0,
+                    })}
                   </div>
                 )}
               </button>

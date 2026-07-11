@@ -46,6 +46,7 @@ import {
 import { useMasteryProgress } from '../progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
 import { shouldShowWildcardBridge } from '../practice/trapStreak.js'
+import { isPlacementDomain } from '../domainPlacement/placementBlueprints.js'
 
 function shuffleArray(arr) {
   const a = [...arr]
@@ -78,6 +79,7 @@ export default function DomainPassSession({
   onOpenSubnet,
   onSelectObjective,
   onStartFocus,
+  onOpenPlacementPulse,
   examMode = false,
   missed = [],
 }) {
@@ -399,6 +401,37 @@ export default function DomainPassSession({
             </div>
           )}
         </div>
+        {!passed && !isFocusSession && (onOpenMock || (onOpenPlacementPulse && isPlacementDomain(domainId))) && (
+          <div style={{ ...styles.card, marginBottom: 8, border: `1px solid ${COLORS.amberBorder}`, background: COLORS.amberDim }}>
+            <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.amber, marginBottom: 8, letterSpacing: 0.3 }}>
+              Fix next — no full remap needed
+            </div>
+            {onOpenMock && (
+              <button
+                type="button"
+                style={domainActionBtn}
+                onClick={() => {
+                  stashDebriefResume()
+                  onOpenMock({ domainId, mode: 'bankburn', missOnly: true })
+                }}
+              >
+                Fix misses (this domain) →
+              </button>
+            )}
+            {onOpenPlacementPulse && isPlacementDomain(domainId) && (
+              <button
+                type="button"
+                style={{ ...domainActionBtn, marginBottom: 0 }}
+                onClick={() => {
+                  stashDebriefResume()
+                  onOpenPlacementPulse(domainId)
+                }}
+              >
+                Pulse traps (maintenance) →
+              </button>
+            )}
+          </div>
+        )}
         {weakObjectiveIds.length > 0 && onSelectObjective && (
           <div
             className="ccna-domain-pass-weak-study"
@@ -519,7 +552,7 @@ export default function DomainPassSession({
             style={{ ...styles.secondaryBtn, marginBottom: 8 }}
             onClick={() => {
               stashDebriefResume()
-              onOpenMock(domainId)
+              onOpenMock({ domainId })
             }}
           >
             Take domain mock

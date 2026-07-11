@@ -4,10 +4,11 @@
 
 ## Session start (read in order)
 
-1. `ai-improvement-logs/IMPLEMENTATION_TRACKER.md`
-2. `ai-improvement-logs/DO_NOT_TOUCH.md`
-3. `ai-improvement-logs/IMPLEMENTATION_QUEUE.json`
-4. `npm run audit:show-next-task`
+1. `ai-improvement-logs/ACTIVE_HANDOFF.md` (if Status ≠ DONE — continue; don’t restart)
+2. `ai-improvement-logs/IMPLEMENTATION_TRACKER.md`
+3. `ai-improvement-logs/DO_NOT_TOUCH.md`
+4. `ai-improvement-logs/IMPLEMENTATION_QUEUE.json`
+5. `npm run audit:show-next-task`
 
 ## Audit pass (one queue item)
 

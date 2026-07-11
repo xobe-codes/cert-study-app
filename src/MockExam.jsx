@@ -19,6 +19,17 @@ import {
   resolveSelectedDomains,
   validateDomainStudyStart,
 } from './domainStudyConfig.js'
+import {
+  buildBankBurnPool,
+  collectMissRetryIds,
+  computeBankCoverage,
+  domainSimDurationSec,
+} from './features/mockExam/bankBurnPool.js'
+import {
+  domainIdFromObjectiveId,
+  loadDomainQuestionExposure,
+  recordSeen,
+} from './features/domainPass/domainQuestionExposure.js'
 import { COLORS, styles, accentColors } from './ui/appTheme.js'
 import { STATIC_COPY } from './ui/staticContentCopy.js'
 import { STORAGE_KEYS } from './storageKeys.js'
@@ -58,16 +69,22 @@ function formatSeconds(total) {
   return `${m}:${String(s).padStart(2, '0')}`
 }
 
-export default function MockExam({ onExit, examMode = false, missed = [], initialDomainId = null, onOpenLab, onOpenTrapDrill, onSelectObjective, onOpenMockInterview }) {
+export default function MockExam({ onExit, examMode = false, missed = [], initialDomainId = null, initialMode = null, initialMissOnly = false, onOpenLab, onOpenTrapDrill, onSelectObjective, onOpenMockInterview }) {
   const showNavHint = useNavHint()
   const { recordEngagement } = useMasteryProgress()
   const doneHintFired = useRef(false)
   const examEngagementSaved = useRef(false)
+  const exposureSaved = useRef(false)
   const [phase, setPhase] = useState('intro') // intro | loading | active | done | review | error
-  const [introTab, setIntroTab] = useState('full') // full | domain
+  const [introTab, setIntroTab] = useState('full') // full (Exam sim) | bank (Bank burn) | domain (Domain sim / study)
   const [selectedDomainIds, setSelectedDomainIds] = useState([])
   const [studySessionSize, setStudySessionSize] = useState(DOMAIN_STUDY_DEFAULT_SIZE)
   const [isStudyMode, setIsStudyMode] = useState(false)
+  // exam | bank | domainStudy | domainSim — drives history writes, timing, and coverage delta
+  const [sessionKind, setSessionKind] = useState('exam')
+  const [bankMissOnly, setBankMissOnly] = useState(false)
+  const [domainSimTimed, setDomainSimTimed] = useState(false)
+  const [coverageDelta, setCoverageDelta] = useState(null)
   const [introError, setIntroError] = useState(null)
   const [error, setError] = useState(null)
   const [questions, setQuestions] = useState([])
@@ -88,11 +105,12 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
   })
 
   useEffect(() => {
-    if (!initialDomainId) return
-    setIntroTab('domain')
-    setSelectedDomainIds([initialDomainId])
+    if (!initialDomainId && !initialMode) return
+    setIntroTab(initialMode === 'bankburn' ? 'bank' : 'domain')
+    if (initialDomainId) setSelectedDomainIds([initialDomainId])
+    if (initialMode === 'bankburn') setBankMissOnly(Boolean(initialMissOnly))
     setIntroError(null)
-  }, [initialDomainId])
+  }, [initialDomainId, initialMode, initialMissOnly])
 
   const getMcForObjective = useCallback((objectiveId) => (
     getCuratedQuestions(objectiveId).filter(isChoiceQuestion)
@@ -118,12 +136,64 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
     }
     setPhase('loading')
     setError(null)
-    setIsStudyMode(true)
+    setIsStudyMode(!domainSimTimed)
+    setSessionKind(domainSimTimed ? 'domainSim' : 'domainStudy')
+    setCoverageDelta(null)
     try {
       await preloadCleanBank()
       const selected = resolveSelectedDomains(DOMAINS, selectedDomainIds)
-      const final = buildDomainStudyPool(selected, getMcForObjective, studySessionSize, shuffleArray)
+      // Domain sim uses the exposure-aware picker (unseen → stale → miss-retry);
+      // untimed study keeps the plain shuffled union pool.
+      const final = domainSimTimed
+        ? buildBankBurnPool({
+          domains: selected,
+          getMcQuestions: getMcForObjective,
+          exposureStore: await loadDomainQuestionExposure(),
+          missed,
+          count: studySessionSize,
+          shuffle: shuffleArray,
+        })
+        : buildDomainStudyPool(selected, getMcForObjective, studySessionSize, shuffleArray)
       if (final.length === 0) throw new Error('No questions were available for the selected domain(s).')
+      setQuestions(final)
+      setResponses({})
+      setStudyRevealed({})
+      setCurrent(0)
+      if (domainSimTimed) setSecondsLeft(domainSimDurationSec(final.length))
+      setPhase('active')
+    } catch (err) {
+      setError(err.message)
+      setPhase('error')
+    }
+  }, [selectedDomainIds, studySessionSize, getMcForObjective, domainSimTimed, missed])
+
+  const startBankBurn = useCallback(async () => {
+    setIntroError(null)
+    setPhase('loading')
+    setError(null)
+    setIsStudyMode(true)
+    setSessionKind('bank')
+    setCoverageDelta(null)
+    try {
+      await preloadCleanBank()
+      const selected = selectedDomainIds.length
+        ? resolveSelectedDomains(DOMAINS, selectedDomainIds)
+        : DOMAINS
+      const exposureStore = await loadDomainQuestionExposure()
+      const final = buildBankBurnPool({
+        domains: selected,
+        getMcQuestions: getMcForObjective,
+        exposureStore,
+        missed,
+        count: studySessionSize,
+        shuffle: shuffleArray,
+        missOnly: bankMissOnly,
+      })
+      if (final.length === 0) {
+        throw new Error(bankMissOnly
+          ? 'No missed questions to retry in the selected domain(s). Clear the misses-only filter or pick another domain.'
+          : 'No questions were available for the selected domain(s).')
+      }
       setQuestions(final)
       setResponses({})
       setStudyRevealed({})
@@ -133,12 +203,14 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
       setError(err.message)
       setPhase('error')
     }
-  }, [selectedDomainIds, studySessionSize, getMcForObjective])
+  }, [selectedDomainIds, studySessionSize, getMcForObjective, missed, bankMissOnly])
 
   const start = useCallback(async () => {
     setPhase('loading')
     setError(null)
     setIsStudyMode(false)
+    setSessionKind('exam')
+    setCoverageDelta(null)
     try {
       await preloadCleanBank()
       const getMc = (id) => getCuratedQuestions(id).filter(isChoiceQuestion)
@@ -250,7 +322,43 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
   useEffect(() => {
     if (phase !== 'intro' && phase !== 'loading') return
     examEngagementSaved.current = false
+    exposureSaved.current = false
   }, [phase])
+
+  // Shared exposure ledger: every mock-surface session marks its questions seen,
+  // so Domain Pass and Bank burn never re-serve them while unseen remain.
+  useEffect(() => {
+    if (phase !== 'done' || questions.length === 0) return
+    if (exposureSaved.current) return
+    exposureSaved.current = true
+    const byDomain = {}
+    for (const q of questions) {
+      const domainId = q.domainId || domainIdFromObjectiveId(q.objectiveId)
+      const id = q.id ?? q.questionId
+      if (!domainId || id == null) continue
+      ;(byDomain[domainId] ||= []).push(id)
+    }
+    ;(async () => {
+      const involved = new Set(Object.keys(byDomain))
+      const domains = DOMAINS.filter(d => involved.has(d.id))
+      const before = sessionKind === 'bank'
+        ? computeBankCoverage(domains, getMcForObjective, await loadDomainQuestionExposure())
+        : null
+      for (const [domainId, ids] of Object.entries(byDomain)) {
+        await recordSeen(domainId, ids)
+      }
+      if (before) {
+        const after = computeBankCoverage(domains, getMcForObjective, await loadDomainQuestionExposure())
+        setCoverageDelta(domains.map(d => ({
+          domainId: d.id,
+          name: d.name,
+          bankCount: after[d.id].bankCount,
+          seenBefore: before[d.id].seenCount,
+          seenAfter: after[d.id].seenCount,
+        })))
+      }
+    })()
+  }, [phase, questions, sessionKind, getMcForObjective])
 
   useEffect(() => {
     if (phase !== 'done') {
@@ -300,7 +408,8 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
       })
       : []
     const result = { correct, total: questions.length, byDomain, trapDebrief, deferredTips }
-    if (!isStudyMode) {
+    // Only true Exam sim attempts count toward mock history (bank burn / domain sim are practice surfaces).
+    if (sessionKind === 'exam') {
       ;(async () => {
         const hist = (await window.storage.getItem(STORAGE_KEYS.mockHistory)) || []
         hist.push(buildMockHistoryEntry({
@@ -314,7 +423,7 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
       })()
     }
     return result
-  }, [phase, questions, responses, examMode, isStudyMode])
+  }, [phase, questions, responses, examMode, isStudyMode, sessionKind])
 
   if (phase === 'intro') {
     const staticCount = bankReady
@@ -331,7 +440,14 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
             style={styles.tabBtn(introTab === 'full')}
             onClick={() => { setIntroTab('full'); setIntroError(null) }}
           >
-            Full mock exam
+            Exam sim
+          </button>
+          <button
+            type="button"
+            style={styles.tabBtn(introTab === 'bank')}
+            onClick={() => { setIntroTab('bank'); setIntroError(null) }}
+          >
+            Bank burn
           </button>
           <button
             type="button"
@@ -341,7 +457,84 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
             Study by domain
           </button>
         </div>
-        {introTab === 'full' ? (
+        {introTab === 'bank' && (
+          <>
+            <div style={styles.card}>
+              <div style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.7, marginBottom: 12 }}>
+                <div>• Burns through your bank: <span style={{ color: COLORS.mint }}>unseen first</span>, then stale, then miss retries</div>
+                <div>• Never recycles recent questions while unseen remain</div>
+                <div>• Instant feedback, no countdown — coverage delta at the end</div>
+              </div>
+              <div style={{ ...styles.small, marginBottom: 8 }}>Domains (none selected = whole bank)</div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                {DOMAINS.map(d => {
+                  const active = selectedDomainIds.includes(d.id)
+                  const c = accentColors(d.accent)
+                  return (
+                    <button
+                      key={d.id}
+                      type="button"
+                      onClick={() => toggleDomain(d.id)}
+                      style={{
+                        ...styles.pill(d.accent),
+                        cursor: 'pointer',
+                        border: `2px solid ${active ? c.text : c.border}`,
+                        opacity: active ? 1 : 0.72,
+                        padding: '8px 12px',
+                        fontSize: 'var(--ccna-type-sm)',
+                      }}
+                    >
+                      {active ? '✓ ' : ''}{d.name}
+                    </button>
+                  )
+                })}
+              </div>
+              <button
+                type="button"
+                role="switch"
+                aria-checked={bankMissOnly}
+                onClick={() => setBankMissOnly(v => !v)}
+                style={{
+                  ...styles.tabBtn(bankMissOnly),
+                  marginTop: 12,
+                  width: '100%',
+                  fontSize: 'var(--ccna-type-sm)',
+                }}
+              >
+                {bankMissOnly ? '✓ Misses only — retry what you got wrong' : 'Misses only (off) — full bank order'}
+              </button>
+              <div style={{ ...styles.small, marginTop: 14, marginBottom: 8 }}>Session size</div>
+              <div style={{ display: 'flex', gap: 8 }}>
+                {DOMAIN_STUDY_SIZE_OPTIONS.map(size => (
+                  <button
+                    key={size}
+                    type="button"
+                    onClick={() => { setStudySessionSize(size); setIntroError(null) }}
+                    style={{
+                      ...styles.tabBtn(studySessionSize === size),
+                      flex: 1,
+                      fontSize: 'var(--ccna-type-sm)',
+                    }}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+              {bankReady && bankMissOnly && (
+                <div style={{ ...styles.small, marginTop: 10, color: COLORS.silverMid }}>
+                  {collectMissRetryIds(missed, selectedDomainIds.length ? resolveSelectedDomains(DOMAINS, selectedDomainIds) : DOMAINS).length} missed question(s) available to retry
+                </div>
+              )}
+            </div>
+            {introError && (
+              <div style={{ ...styles.small, color: COLORS.rose, marginBottom: 8 }}>{introError}</div>
+            )}
+            <button style={styles.primaryBtn} onClick={startBankBurn} disabled={!bankReady}>
+              {bankReady ? 'Start bank burn' : 'Loading question bank…'}
+            </button>
+          </>
+        )}
+        {introTab === 'full' && (
           <>
             <div style={styles.card}>
               <div style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.7 }}>
@@ -378,15 +571,30 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
               </button>
             )}
           </>
-        ) : (
+        )}
+        {introTab === 'domain' && (
           <>
             <div style={styles.card}>
               <div style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.7, marginBottom: 12 }}>
                 <div>• Pick one or more CCNA domains</div>
-                <div>• No countdown — study at your own pace</div>
+                <div>• {domainSimTimed ? 'Domain sim — exam-style countdown, answers revealed at the end' : 'No countdown — study at your own pace'}</div>
                 <div>• Score + trap debrief scoped to your selection</div>
                 {examMode && <div>• Exam mode on — tips deferred until results</div>}
               </div>
+              <button
+                type="button"
+                role="switch"
+                aria-checked={domainSimTimed}
+                onClick={() => { setDomainSimTimed(v => !v); setIntroError(null) }}
+                style={{
+                  ...styles.tabBtn(domainSimTimed),
+                  width: '100%',
+                  marginBottom: 12,
+                  fontSize: 'var(--ccna-type-sm)',
+                }}
+              >
+                {domainSimTimed ? '✓ Domain sim — timed, exam chrome, exposure-aware pool' : 'Domain sim (off) — untimed study with instant feedback'}
+              </button>
               <div style={{ ...styles.small, marginBottom: 8 }}>Domains</div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                 {DOMAINS.map(d => {
@@ -438,15 +646,18 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
               <div style={{ ...styles.small, color: COLORS.rose, marginBottom: 8 }}>{introError}</div>
             )}
             <button style={styles.primaryBtn} onClick={startDomainStudy} disabled={!bankReady}>
-              {bankReady ? 'Start study session' : 'Loading question bank…'}
+              {bankReady ? (domainSimTimed ? 'Start domain sim' : 'Start study session') : 'Loading question bank…'}
             </button>
           </>
         )}
       </div>
     )
   }
+  const restartSession = sessionKind === 'bank' ? startBankBurn
+    : (sessionKind === 'domainStudy' || sessionKind === 'domainSim') ? startDomainStudy
+      : start
   if (phase === 'loading') return <Spinner label={isStudyMode ? 'Building your study session...' : 'Building your exam...'} />
-  if (phase === 'error') return <ErrorBox message={error} onRetry={isStudyMode ? startDomainStudy : start} />
+  if (phase === 'error') return <ErrorBox message={error} onRetry={restartSession} />
 
   if (phase === 'done') {
     const pct = report.total > 0 ? Math.round((report.correct / report.total) * 100) : 0
@@ -464,6 +675,22 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
             {skippedCount > 0 && <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.amber }}>— {skippedCount} skipped</span>}
           </div>
         </div>
+        {sessionKind === 'bank' && coverageDelta?.length > 0 && (
+          <div style={{ ...styles.card, border: `1px solid ${COLORS.mintBorder}`, background: COLORS.mintDim }}>
+            <h2 style={{ ...styles.h2, color: COLORS.mint }}>Bank coverage</h2>
+            {coverageDelta.map(d => {
+              const gained = d.seenAfter - d.seenBefore
+              return (
+                <div key={d.domainId} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 'var(--ccna-type-sm)', marginBottom: 4, gap: 8 }}>
+                  <span>{d.name}</span>
+                  <span style={{ fontWeight: 600 }}>
+                    {d.seenAfter}/{d.bankCount} seen{gained > 0 ? ` (+${gained})` : ''}
+                  </span>
+                </div>
+              )
+            })}
+          </div>
+        )}
         <div className="ccna-mock-results__grid" style={styles.card}>
           <h2 style={styles.h2}>Question summary</h2>
           <div className="ccna-mock-results__qgrid" style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 8 }}>
@@ -554,9 +781,9 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
         <button style={{ ...styles.primaryBtn, marginTop: 8 }} onClick={() => { setCurrent(0); setPhase('review') }}>Review all answers</button>
         <button
           style={{ ...styles.secondaryBtn, marginTop: 8 }}
-          onClick={isStudyMode ? startDomainStudy : start}
+          onClick={restartSession}
         >
-          {isStudyMode ? 'Study again' : 'Retake mock exam'}
+          {sessionKind === 'bank' ? 'Burn more bank' : isStudyMode ? 'Study again' : sessionKind === 'domainSim' ? 'Retake domain sim' : 'Retake mock exam'}
         </button>
         {isStudyMode && (
           <button
