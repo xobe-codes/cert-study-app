@@ -11,6 +11,14 @@ describe('multiSelectQuestionPatches', () => {
     expect([...domains].sort()).toEqual(['1', '2', '3', '4', '5', '6'])
   })
 
+  it('ships at least 18 multi questions across objectives', () => {
+    const total = Object.values(MULTI_SELECT_QUESTION_PATCHES).reduce(
+      (n, patch) => n + (patch.questions?.length || 0),
+      0,
+    )
+    expect(total).toBeGreaterThanOrEqual(18)
+  })
+
   it('every patch question is a valid multi and grades exact-set', () => {
     for (const [oid, patch] of Object.entries(MULTI_SELECT_QUESTION_PATCHES)) {
       for (const q of patch.questions || []) {

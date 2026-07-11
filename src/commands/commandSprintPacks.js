@@ -105,7 +105,7 @@ export const COMMAND_SPRINT_PACKS = [
     blurb: 'IaC playbook verify and controller inventory — type-in without the full lab.',
     domainId: 'automation',
     objectiveIds: ['6.1', '6.2'],
-    count: 6,
+    count: 8,
     labId: 'LAB-AUTO-MGMT-61',
   },
   {
@@ -114,7 +114,7 @@ export const COMMAND_SPRINT_PACKS = [
     blurb: 'Northbound/southbound, DNA Center, and REST show commands.',
     domainId: 'automation',
     objectiveIds: ['6.3', '6.4', '6.5'],
-    count: 7,
+    count: 10,
     labId: 'LAB-AUTO-SDN-63',
   },
   {

@@ -1,10 +1,14 @@
 /**
- * Config vs interpret-only lab tiering — all former typing labs ship as lab-lite verify paths.
- * High-traffic objectives also ship interpret-only alternates for exam prep / stem-replay.
+ * Config vs interpret-only lab tiering — most former typing labs ship as lab-lite verify paths.
+ * A small set of restored typing labs stay in CONFIG_LAB_IDS; stem-replay prefers interpret alternates.
  */
 
 /** @type {Set<string>} */
-export const CONFIG_LAB_IDS = new Set([])
+export const CONFIG_LAB_IDS = new Set([
+  'LAB-PORT-SECURITY',
+  'LAB-EXTENDED-ACL-BUILD',
+  'LAB-OSPF-DEFAULT',
+])
 
 /** Preferred interpret-only alternate for stem-replay / exam-prep paths. */
 export const INTERPRET_ALTERNATE_BY_CONFIG = {

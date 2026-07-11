@@ -3,17 +3,27 @@ import { allLabs, getLab } from '../data/ccnaLabs.js'
 import { CONFIG_LAB_LITE_IDS } from '../data/configLabLiteWave.js'
 import { CONFIG_LAB_IDS, getInterpretAlternate, isConfigLab, INTERPRET_ALTERNATE_BY_CONFIG } from '../data/labTierStrategy.js'
 
+const RESTORED_CONFIG_LAB_IDS = [
+  'LAB-PORT-SECURITY',
+  'LAB-EXTENDED-ACL-BUILD',
+  'LAB-OSPF-DEFAULT',
+]
+
 describe('labTierStrategy', () => {
-  it('tracks zero config labs after lab-lite wave 3', () => {
+  it('tracks three restored config labs', () => {
     const configFromData = allLabs().filter(l => !l.interpretOnly && CONFIG_LAB_IDS.has(l.id)).map(l => l.id).sort()
-    expect(configFromData).toEqual([])
-    expect(CONFIG_LAB_IDS.size).toBe(0)
+    expect(configFromData).toEqual([...RESTORED_CONFIG_LAB_IDS].sort())
+    expect(CONFIG_LAB_IDS.size).toBe(3)
   })
 
-  it('converts all former config labs to lab-lite interpret-only via getLab', () => {
+  it('keeps lite-wave labs interpret-only and marks restored labs as config', () => {
     for (const id of CONFIG_LAB_LITE_IDS) {
       expect(CONFIG_LAB_IDS.has(id)).toBe(false)
       expect(getLab(id)?.lab?.interpretOnly, id).toBe(true)
+    }
+    for (const id of RESTORED_CONFIG_LAB_IDS) {
+      expect(isConfigLab(id)).toBe(true)
+      expect(getLab(id)?.lab?.interpretOnly, id).toBeFalsy()
     }
   })
 
@@ -28,6 +38,7 @@ describe('labTierStrategy', () => {
       'LAB-SSH-ACCESS',
       'LAB-D22-22',
       'LAB-LLDP',
+      ...RESTORED_CONFIG_LAB_IDS,
     ]
     for (const id of mustHaveAlt) {
       const alt = getInterpretAlternate(id)

@@ -6,6 +6,7 @@ import {
   ENGAGEMENT_KINDS,
 } from '../features/progress/masteryEngagement.js'
 import { computeMastery, masteryScoreSessions } from '../netUtils.js'
+import { getMasteryChecklist } from '../lesson/masteryCriteria.js'
 
 describe('masteryEngagement', () => {
   it('merges quiz and engagement into mastery sessions', () => {
@@ -48,5 +49,21 @@ describe('masteryEngagement', () => {
     expect(patch.engagementScores[0].kind).toBe(ENGAGEMENT_KINDS.COMMAND_SPRINT)
     const sources = getEngagementSources({ engagementScores: patch.engagementScores })
     expect(sources).toEqual(expect.arrayContaining(['Command Sprint']))
+  })
+
+  it('checklist includes lab and sprint rows that met when flags set', () => {
+    const rows = getMasteryChecklist({
+      labCompleted: true,
+      commandSprintCompleted: true,
+    })
+    const ids = rows.map(r => r.id)
+    expect(ids).toEqual(['read', 'practice', 'lab', 'sprint', 'mastered'])
+    expect(rows.find(r => r.id === 'lab')).toMatchObject({ met: true, label: 'Complete a lab' })
+    expect(rows.find(r => r.id === 'sprint')).toMatchObject({ met: true, label: 'Command sprint' })
+  })
+
+  it('checklist omits lab and sprint rows without completion flags', () => {
+    const rows = getMasteryChecklist({})
+    expect(rows.map(r => r.id)).toEqual(['read', 'practice', 'mastered'])
   })
 })

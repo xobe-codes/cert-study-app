@@ -161,8 +161,30 @@ export function validateCleanQuestion(q, objectiveId) {
   if (!q.id) errors.push(`${where}: missing id`)
   if (!q.question?.trim()) errors.push(`${where}: empty question`)
   if (!Array.isArray(q.choices) || q.choices.length < 2) errors.push(`${where}: need >= 2 choices`)
-  if (typeof q.correctIndex !== 'number' || q.correctIndex < 0 || q.correctIndex >= (q.choices?.length || 0)) {
+
+  const isMulti = q.type === 'multi' || Array.isArray(q.correctIndexes)
+  let correctSet = new Set()
+
+  if (isMulti) {
+    if (!Array.isArray(q.correctIndexes) || q.correctIndexes.length < 2) {
+      errors.push(`${where}: multi needs correctIndexes length >= 2`)
+    } else {
+      const seen = new Set()
+      for (const idx of q.correctIndexes) {
+        if (typeof idx !== 'number' || idx < 0 || idx >= (q.choices?.length || 0)) {
+          errors.push(`${where}: invalid correctIndexes entry ${idx}`)
+        } else if (seen.has(idx)) {
+          errors.push(`${where}: duplicate correctIndexes entry ${idx}`)
+        } else {
+          seen.add(idx)
+        }
+      }
+      correctSet = seen
+    }
+  } else if (typeof q.correctIndex !== 'number' || q.correctIndex < 0 || q.correctIndex >= (q.choices?.length || 0)) {
     errors.push(`${where}: invalid correctIndex`)
+  } else {
+    correctSet = new Set([q.correctIndex])
   }
 
   const texts = [q.question, q.explanation, ...(q.choices || [])]
@@ -183,7 +205,7 @@ export function validateCleanQuestion(q, objectiveId) {
 
   if (q.answerReview) {
     const wrongIndexes = new Set(
-      (q.choices || []).map((_, i) => i).filter(i => i !== q.correctIndex),
+      (q.choices || []).map((_, i) => i).filter(i => !correctSet.has(i)),
     )
     const covered = new Set((q.answerReview.incorrect || []).map(i => i.choiceIndex))
     for (const idx of wrongIndexes) {
@@ -210,6 +232,7 @@ export function shelvedRecord(q, objectiveId, reason, notes = '') {
     question: q.question,
     choices: q.choices,
     correctIndex: q.correctIndex,
+    ...(Array.isArray(q.correctIndexes) ? { correctIndexes: q.correctIndexes } : {}),
     explanation: q.explanation || '',
     type: q.type,
     difficulty: q.difficulty,

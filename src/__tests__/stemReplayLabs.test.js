@@ -55,7 +55,7 @@ describe('stemReplayLabs', () => {
       ['3.2-c-q1', 'LAB-31-ROUTE-INTERPRET'],
       ['2.5-c-q1', 'LAB-STP-ROOT'],
       ['2.1-c-q1', 'LAB-INTERVLAN-SVI'],
-      ['3.4-c-q1', 'LAB-OSPF-DEFAULT'],
+      ['3.4-c-q1', 'LAB-OSPF-SINGLE-AREA'],
       ['1.5-c-q3', 'LAB-MAC-FORWARD-15'],
     ]
     for (const [qid, labId] of cases) {

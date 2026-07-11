@@ -593,6 +593,20 @@ export const COMMAND_DRILLS = {
       mode: 'priv_exec',
       host: 'AUTO',
     }),
+    d({
+      prompt: 'Show Git repository sync status for automation playbooks',
+      answer: ['show automation git status'],
+      hint: 'IaC source of truth — clean/dirty working tree for playbook repos.',
+      mode: 'priv_exec',
+      host: 'AUTO',
+    }),
+    d({
+      prompt: 'Show automation run error rates by playbook',
+      answer: ['show automation error rates'],
+      hint: 'Failed task percentage — catch flaky playbooks before production.',
+      mode: 'priv_exec',
+      host: 'AUTO',
+    }),
   ],
   '6.2': [
     d({
@@ -613,6 +627,20 @@ export const COMMAND_DRILLS = {
       prompt: 'Show controller policy push status',
       answer: ['show controller policy'],
       hint: 'Southbound policy applied from the controller.',
+      mode: 'priv_exec',
+      host: 'CTRL',
+    }),
+    d({
+      prompt: 'Show where the data plane still runs in a controller-based network',
+      answer: ['show controller data plane'],
+      hint: 'Data plane stays on devices; controller owns the control plane.',
+      mode: 'priv_exec',
+      host: 'CTRL',
+    }),
+    d({
+      prompt: 'Show controller southbound protocol sessions to devices',
+      answer: ['show controller southbound'],
+      hint: 'Controller → device channel (NETCONF/RESTCONF/OpenFlow).',
       mode: 'priv_exec',
       host: 'CTRL',
     }),
@@ -639,6 +667,20 @@ export const COMMAND_DRILLS = {
       mode: 'priv_exec',
       host: 'CTRL',
     }),
+    d({
+      prompt: 'Show OpenFlow as an SDN southbound protocol option',
+      answer: ['show sdn openflow'],
+      hint: 'OpenFlow is one southbound path — not the only SDN model.',
+      mode: 'priv_exec',
+      host: 'CTRL',
+    }),
+    d({
+      prompt: 'Show where the SDN control plane is centralized',
+      answer: ['show sdn control plane'],
+      hint: 'Control plane moves to the controller; forwarding stays local.',
+      mode: 'priv_exec',
+      host: 'CTRL',
+    }),
   ],
   '6.4': [
     d({
@@ -659,6 +701,20 @@ export const COMMAND_DRILLS = {
       prompt: 'Show DNA Center provisioning workflow status',
       answer: ['show dna provision status'],
       hint: 'Template onboarding vs 12 manual CLI sessions.',
+      mode: 'priv_exec',
+      host: 'DNA',
+    }),
+    d({
+      prompt: 'Show DNA Center image compliance across the site',
+      answer: ['show dna image compliance'],
+      hint: 'Gold image vs installed versions — software standardization.',
+      mode: 'priv_exec',
+      host: 'DNA',
+    }),
+    d({
+      prompt: 'Show the DNA Center architecture pillars (policy, assurance, automation)',
+      answer: ['show dna pillars'],
+      hint: 'Cisco DNA pillars: policy, assurance, and automation.',
       mode: 'priv_exec',
       host: 'DNA',
     }),
@@ -685,6 +741,20 @@ export const COMMAND_DRILLS = {
       mode: 'priv_exec',
       host: 'API',
     }),
+    d({
+      prompt: 'Show the difference between REST PUT and PATCH',
+      answer: ['show rest put vs patch'],
+      hint: 'PUT replaces the resource; PATCH updates selected fields.',
+      mode: 'priv_exec',
+      host: 'API',
+    }),
+    d({
+      prompt: 'Show when REST returns HTTP 401 vs 404',
+      answer: ['show rest status 401 404'],
+      hint: '401 = auth failed; 404 = resource path not found.',
+      mode: 'priv_exec',
+      host: 'API',
+    }),
   ],
   '6.6': [
     d({
@@ -707,6 +777,20 @@ export const COMMAND_DRILLS = {
       hint: 'Agentless Ansible SSH vs agent-based Puppet/Chef.',
       mode: 'priv_exec',
       host: 'AUTO',
+    }),
+    d({
+      prompt: 'Show how config management tools compare (Ansible vs Puppet/Chef)',
+      answer: ['show config tools compare'],
+      hint: 'Ansible agentless SSH; Puppet/Chef typically agent-based.',
+      mode: 'priv_exec',
+      host: 'AUTO',
+    }),
+    d({
+      prompt: 'Show JSON syntax rules that trip up exam stems',
+      answer: ['show json syntax rules'],
+      hint: 'Double-quoted keys/strings; no trailing commas; true/false/null lowercase.',
+      mode: 'priv_exec',
+      host: 'API',
     }),
   ],
 }

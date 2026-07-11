@@ -78,6 +78,53 @@ export const MULTI_SELECT_QUESTION_PATCHES = {
       }),
     ],
   },
+  '1.4': {
+    questions: [
+      multiQ({
+        id: '1.4-multi-cabling',
+        objectiveId: '1.4',
+        concept: 'cabling and interfaces',
+        question: 'Which statements correctly describe Ethernet copper and fiber at the CCNA level? (Choose 2.) Select all that apply.',
+        choices: [
+          'Straight-through UTP commonly connects unlike devices (PC↔switch, router↔switch)',
+          'Fiber links are immune to EMI and support longer distances than copper',
+          'Crossover cable is always required between a PC and a modern auto-MDIX switch',
+          'Multimode fiber is preferred for WAN spans of hundreds of kilometers',
+        ],
+        correctIndexes: [0, 1],
+        explanation: 'Unlike devices use straight-through; fiber resists EMI and goes farther. Auto-MDIX makes crossover rare for PC↔switch. Multimode is for shorter campus runs; single-mode for long haul.',
+        examTip: 'Straight-through for unlike devices; fiber = EMI + distance; auto-MDIX often removes crossover needs.',
+        incorrect: [
+          [2, 'Modern switches with auto-MDIX usually work with straight-through to PCs.', 'Requiring crossover for every PC↔switch link'],
+          [3, 'Long WAN spans use single-mode fiber; multimode is shorter reach.', 'Using multimode for long-haul WAN'],
+        ],
+      }),
+    ],
+  },
+  '2.1': {
+    questions: [
+      multiQ({
+        id: '2.1-multi-vlan-svi',
+        objectiveId: '2.1',
+        concept: 'vlans and svi',
+        skill: 'implement',
+        question: 'Which statements about VLANs and SVIs on a multilayer switch are true? (Choose 2.) Select all that apply.',
+        choices: [
+          'An SVI (interface VLAN x) provides a Layer 3 gateway for that VLAN',
+          'Access ports belong to one VLAN and do not carry 802.1Q tags by default',
+          'Creating VLAN 20 automatically assigns every unused port to VLAN 20',
+          'SVIs only work if the switch is in transparent VTP mode',
+        ],
+        correctIndexes: [0, 1],
+        explanation: 'SVIs are the L3 interface for a VLAN; access ports are untagged single-VLAN. Creating a VLAN does not auto-assign ports. VTP mode is unrelated to whether SVIs can exist.',
+        examTip: 'VLAN = broadcast domain; SVI = gateway for that VLAN; access = one VLAN, no tag.',
+        incorrect: [
+          [2, 'Ports stay in their configured VLAN (often VLAN 1) until you assign them.', 'Assuming new VLANs auto-claim ports'],
+          [3, 'SVIs work regardless of VTP mode; VTP is about VLAN database sync.', 'Tying SVIs to VTP transparent'],
+        ],
+      }),
+    ],
+  },
   '2.2': {
     questions: [
       multiQ({
@@ -126,6 +173,29 @@ export const MULTI_SELECT_QUESTION_PATCHES = {
       }),
     ],
   },
+  '3.1': {
+    questions: [
+      multiQ({
+        id: '3.1-multi-routing-table',
+        objectiveId: '3.1',
+        concept: 'routing table',
+        question: 'Which codes or facts correctly describe a Cisco IPv4 routing table? (Choose 2.) Select all that apply.',
+        choices: [
+          'C marks a directly connected network',
+          'S marks a static route',
+          'O always means the route was learned via BGP',
+          'Gateway of last resort is never shown for a default route',
+        ],
+        correctIndexes: [0, 1],
+        explanation: 'C = connected, S = static. O is OSPF (not BGP — that is B). A default route often appears as the gateway of last resort.',
+        examTip: 'Memorize codes: C connected, S static, O OSPF, B BGP, D EIGRP.',
+        incorrect: [
+          [2, 'O is OSPF; BGP uses code B.', 'Confusing OSPF O with BGP'],
+          [3, 'Default routes commonly install as gateway of last resort.', 'Denying gateway of last resort for defaults'],
+        ],
+      }),
+    ],
+  },
   '3.2': {
     questions: [
       multiQ({
@@ -146,6 +216,30 @@ export const MULTI_SELECT_QUESTION_PATCHES = {
         incorrect: [
           [2, 'Prefix length beats AD/metric — a /24 always beats a /16 for that destination.', 'Using bandwidth before longest match'],
           [3, 'Next-hop lexicographic order is not a routing decision criterion.', 'Inventing alphabetical next-hop tie-break'],
+        ],
+      }),
+    ],
+  },
+  '3.3': {
+    questions: [
+      multiQ({
+        id: '3.3-multi-static-route',
+        objectiveId: '3.3',
+        concept: 'static routing',
+        skill: 'implement',
+        question: 'Which statements about IPv4 static routes on Cisco IOS are true? (Choose 2.) Select all that apply.',
+        choices: [
+          'ip route network mask next-hop installs a static route to that prefix',
+          'A floating static uses a higher AD so it backs up a dynamic route',
+          'Static routes always override connected routes regardless of prefix length',
+          'You must disable OSPF globally before any static route will install',
+        ],
+        correctIndexes: [0, 1],
+        explanation: 'Standard static syntax uses network/mask/next-hop (or exit interface). Floating statics raise AD above the primary protocol. Connected routes still win on equal/more-specific prefixes; OSPF need not be disabled.',
+        examTip: 'Floating static = higher AD backup. Longest match still beats AD.',
+        incorrect: [
+          [2, 'Longest match and connected prefixes still matter — statics do not blindly trump everything.', 'Assuming static always wins over connected'],
+          [3, 'Static and dynamic protocols can coexist; floating statics are the backup pattern.', 'Requiring OSPF off for statics'],
         ],
       }),
     ],
@@ -199,6 +293,29 @@ export const MULTI_SELECT_QUESTION_PATCHES = {
       }),
     ],
   },
+  '4.3': {
+    questions: [
+      multiQ({
+        id: '4.3-multi-dhcp',
+        objectiveId: '4.3',
+        concept: 'dhcp and dns',
+        question: 'Which statements correctly describe DHCP and DNS roles in an enterprise LAN? (Choose 2.) Select all that apply.',
+        choices: [
+          'DHCP assigns IP address, mask, default gateway, and often DNS servers',
+          'DNS resolves hostnames to IP addresses for clients and apps',
+          'DHCP replaces the need for a default gateway on every host',
+          'DNS servers assign IP addresses instead of DHCP',
+        ],
+        correctIndexes: [0, 1],
+        explanation: 'DHCP leases addressing parameters including gateway and DNS options. DNS does name→IP resolution. DHCP does not remove the gateway concept; DNS does not assign addresses.',
+        examTip: 'DHCP = lease addressing; DNS = names. Do not swap their jobs.',
+        incorrect: [
+          [2, 'Hosts still need a default gateway; DHCP often provides it as option 3.', 'Thinking DHCP eliminates gateways'],
+          [3, 'DNS resolves names; address assignment is DHCP’s role.', 'Swapping DNS and DHCP functions'],
+        ],
+      }),
+    ],
+  },
   '4.7': {
     questions: [
       multiQ({
@@ -242,6 +359,30 @@ export const MULTI_SELECT_QUESTION_PATCHES = {
         incorrect: [
           [2, 'Unmatched packets are denied by the implicit deny any.', 'Assuming implicit permit'],
           [3, 'Named ACLs support both permit and deny entries.', 'Thinking named ACLs are permit-only'],
+        ],
+      }),
+    ],
+  },
+  '5.6': {
+    questions: [
+      multiQ({
+        id: '5.6-multi-port-sec',
+        objectiveId: '5.6',
+        concept: 'port security',
+        skill: 'implement',
+        question: 'Which statements correctly describe switchport port-security? (Choose 2.) Select all that apply.',
+        choices: [
+          'It limits how many MAC addresses can be learned on an access port',
+          'Violation modes include shutdown, restrict, and protect',
+          'It is configured on trunk ports to replace 802.1Q tagging',
+          'Sticky learning permanently disables the CAM table on the switch',
+        ],
+        correctIndexes: [0, 1],
+        explanation: 'Port security caps MACs on a port and defines violation action. It is typically on access ports, not a trunk/tagging replacement. Sticky learning saves learned MACs to running-config — it does not disable the CAM table.',
+        examTip: 'Port-sec = MAC limit + violation action; usually access ports.',
+        incorrect: [
+          [2, 'Port security is not a substitute for trunk tagging; trunks carry multiple VLANs.', 'Replacing trunks with port security'],
+          [3, 'Sticky learning stores MACs in running-config; the CAM table still operates.', 'Thinking sticky disables CAM'],
         ],
       }),
     ],
@@ -292,6 +433,29 @@ export const MULTI_SELECT_QUESTION_PATCHES = {
       }),
     ],
   },
+  '6.2': {
+    questions: [
+      multiQ({
+        id: '6.2-multi-controller',
+        objectiveId: '6.2',
+        concept: 'controller vs traditional',
+        question: 'Which statements correctly contrast controller-based and traditional networking? (Choose 2.) Select all that apply.',
+        choices: [
+          'Traditional networks distribute control plane logic on each device',
+          'Controller-based designs centralize policy and often expose northbound APIs',
+          'Controllers always remove the data plane from every switch',
+          'Traditional CLI means no routing protocols can ever run',
+        ],
+        correctIndexes: [0, 1],
+        explanation: 'Traditional = per-device control plane; controllers centralize policy/APIs. The data plane still forwards on devices. Traditional networks run OSPF/EIGRP/etc. via CLI.',
+        examTip: 'Controller = centralized control/policy; data plane stays on boxes.',
+        incorrect: [
+          [2, 'Data plane forwarding remains on network devices under controller models.', 'Thinking controllers erase the data plane'],
+          [3, 'Traditional CLI networks commonly run dynamic routing protocols.', 'Claiming CLI forbids routing protocols'],
+        ],
+      }),
+    ],
+  },
   '6.4': {
     questions: [
       multiQ({
@@ -311,6 +475,29 @@ export const MULTI_SELECT_QUESTION_PATCHES = {
         incorrect: [
           [2, 'REST is API-over-HTTP, not console Telnet.', 'Requiring Telnet for REST'],
           [3, 'SNMP traps are not REST payloads.', 'Mixing SNMP traps with REST bodies'],
+        ],
+      }),
+    ],
+  },
+  '6.5': {
+    questions: [
+      multiQ({
+        id: '6.5-multi-rest-methods',
+        objectiveId: '6.5',
+        concept: 'rest http methods',
+        question: 'Which HTTP methods are correctly paired with common REST API intent? (Choose 2.) Select all that apply.',
+        choices: [
+          'GET retrieves a resource without changing server state',
+          'DELETE removes a resource identified by the URI',
+          'GET always creates a new resource on the controller',
+          'PUT is identical to GET and never modifies data',
+        ],
+        correctIndexes: [0, 1],
+        explanation: 'GET is safe/read; DELETE removes. Creating is typically POST (or PUT for replace); PUT modifies/replaces and is not a read-only twin of GET.',
+        examTip: 'CRUD map: POST create, GET read, PUT/PATCH update, DELETE remove.',
+        incorrect: [
+          [2, 'GET reads; creation uses POST (or PUT for full replace).', 'Using GET to create resources'],
+          [3, 'PUT replaces/updates a resource; it is not a read-only GET alias.', 'Equating PUT with GET'],
         ],
       }),
     ],

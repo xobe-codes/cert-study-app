@@ -23,7 +23,7 @@ function readComplete(entry) {
   return false
 }
 
-/** 3-step checklist: read → practice pass → mastered. */
+/** Checklist: read → practice → (lab/sprint when done) → mastered. */
 export function getMasteryChecklist(entry) {
   const scores = masteryScoreSessions(entry)
   const recent = scores.slice(-3)
@@ -34,9 +34,17 @@ export function getMasteryChecklist(entry) {
   const practicePass = acc >= 0.8 && fullSession
   const { mastered } = computeMastery(entry || {})
 
-  return [
+  const rows = [
     { id: 'read', label: 'Complete reading', met: readComplete(entry), detail: readComplete(entry) ? '✓' : '—' },
     { id: 'practice', label: 'Pass practice (≥80%)', met: practicePass, detail: recent.length ? `${Math.round(acc * 100)}%` : '—' },
-    { id: 'mastered', label: 'Topic mastered', met: mastered, detail: mastered ? '✓' : '—' },
   ]
+  // Surface completed lab/sprint only — avoid empty circles on every objective.
+  if (entry?.labCompleted) {
+    rows.push({ id: 'lab', label: 'Complete a lab', met: true, detail: '✓' })
+  }
+  if (entry?.commandSprintCompleted) {
+    rows.push({ id: 'sprint', label: 'Command sprint', met: true, detail: '✓' })
+  }
+  rows.push({ id: 'mastered', label: 'Topic mastered', met: mastered, detail: mastered ? '✓' : '—' })
+  return rows
 }
