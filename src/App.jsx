@@ -92,106 +92,55 @@ export default function App() {
           selectObjective={nav.selectObjective}
           openMockExam={nav.openMockExam}
           openLabs={nav.openLabs}
-          openCommandHub={nav.openCommandHub}
-          navigateTo={nav.navigateTo}
-          handlePremiumBlocked={premium.handlePremiumBlocked}
-          premiumUnlocked={bootstrap.premiumUnlocked}
-          domainPassPassedCount={nav.domainPassPassedCount}
-          domainPassRecords={nav.domainPassRecords}
-          placementBaselineCount={nav.placementBaselineCount}
-          placementTestedOutCount={nav.placementTestedOutCount}
-          placementRecords={nav.placementRecords}
-          settingsExamDate={settings.settingsExamDate}
-          dueCount={bootstrap.dueCount}
-          openDomain={nav.openDomain}
-          setOpenDomain={nav.setOpenDomain}
-          openExamTraps={nav.openExamTraps}
-          openTrapDrill={nav.openTrapDrill}
-          openDomainPass={nav.openDomainPass}
-          openDomainPlacement={nav.openDomainPlacement}
-          theme={bootstrap.theme}
-          toggleTheme={bootstrap.toggleTheme}
-          setShowSettings={chrome.setShowSettings}
-          selectedObjective={nav.selectedObjective}
-          packagingId={premium.packagingId}
-          packageObjective={premium.packageObjective}
-          goBack={nav.goBack} navigateHome={nav.navigateHome} replaceView={nav.replaceView}
-          exitLab={nav.exitLab}
-          objectiveBackLabel={nav.objectiveBackLabel}
-          updateProgress={progressApi.updateProgress}
-          recordEngagement={progressApi.recordEngagement}
-          handleMissed={progressApi.handleMissed}
-          openLab={nav.openLab}
-          computeMastery={computeMastery}
-          logEvent={logEvent}
-          celebrate={celebrate}
-          haptic={haptic}
-          settingsExamMode={settings.settingsExamMode}
-          mockDomainPrefill={nav.mockDomainPrefill} labsDomainPrefill={nav.labsDomainPrefill}
+          openCommandHub={nav.openCommandHub} openTermsHub={nav.openTermsHub} navigateTo={nav.navigateTo}
+          handlePremiumBlocked={premium.handlePremiumBlocked} premiumUnlocked={bootstrap.premiumUnlocked}
+          domainPassPassedCount={nav.domainPassPassedCount} domainPassRecords={nav.domainPassRecords}
+          placementBaselineCount={nav.placementBaselineCount} placementTestedOutCount={nav.placementTestedOutCount}
+          placementRecords={nav.placementRecords} settingsExamDate={settings.settingsExamDate} dueCount={bootstrap.dueCount}
+          openDomain={nav.openDomain} setOpenDomain={nav.setOpenDomain} openExamTraps={nav.openExamTraps}
+          openTrapDrill={nav.openTrapDrill} openDomainPass={nav.openDomainPass} openDomainPlacement={nav.openDomainPlacement}
+          theme={bootstrap.theme} toggleTheme={bootstrap.toggleTheme} setShowSettings={chrome.setShowSettings}
+          selectedObjective={nav.selectedObjective} packagingId={premium.packagingId} packageObjective={premium.packageObjective}
+          goBack={nav.goBack} navigateHome={nav.navigateHome} replaceView={nav.replaceView} exitLab={nav.exitLab}
+          objectiveBackLabel={nav.objectiveBackLabel} updateProgress={progressApi.updateProgress}
+          recordEngagement={progressApi.recordEngagement} handleMissed={progressApi.handleMissed} openLab={nav.openLab}
+          computeMastery={computeMastery} logEvent={logEvent} celebrate={celebrate} haptic={haptic}
+          settingsExamMode={settings.settingsExamMode} mockDomainPrefill={nav.mockDomainPrefill} labsDomainPrefill={nav.labsDomainPrefill}
           commandHubDomainPrefill={nav.commandHubDomainPrefill} commandHubTabPrefill={nav.commandHubTabPrefill}
-          commandHubPackPrefill={nav.commandHubPackPrefill} clearCommandHubLaunch={nav.clearCommandHubLaunch}
-          setMockDomainPrefill={nav.setMockDomainPrefill}
+          commandHubPackPrefill={nav.commandHubPackPrefill} termsHubDomainPrefill={nav.termsHubDomainPrefill}
+          clearCommandHubLaunch={nav.clearCommandHubLaunch} setMockDomainPrefill={nav.setMockDomainPrefill}
           mockModePrefill={nav.mockModePrefill} setMockModePrefill={nav.setMockModePrefill}
           finishOnboarding={onboarding.finishOnboarding} skipOnboarding={onboarding.skipOnboarding}
-          selectedLab={nav.selectedLab}
-          labReturn={nav.labReturn}
-          topicFocusConfig={nav.topicFocusConfig}
-          setTopicFocusConfig={nav.setTopicFocusConfig}
-          examTrapPrefill={nav.examTrapPrefill}
-          clearExamTrapPrefill={nav.clearExamTrapPrefill}
-          trapDrillPrefill={nav.trapDrillPrefill}
-          clearTrapDrillPrefill={nav.clearTrapDrillPrefill}
-          activeDomainPassId={nav.activeDomainPassId}
-          setActiveDomainPassId={nav.setActiveDomainPassId}
-          domainPassFocusPickerId={nav.domainPassFocusPickerId}
-          setDomainPassFocusPickerId={nav.setDomainPassFocusPickerId}
-          domainPassFocusConfig={nav.domainPassFocusConfig}
+          selectedLab={nav.selectedLab} labReturn={nav.labReturn} topicFocusConfig={nav.topicFocusConfig}
+          setTopicFocusConfig={nav.setTopicFocusConfig} examTrapPrefill={nav.examTrapPrefill}
+          clearExamTrapPrefill={nav.clearExamTrapPrefill} trapDrillPrefill={nav.trapDrillPrefill}
+          clearTrapDrillPrefill={nav.clearTrapDrillPrefill} activeDomainPassId={nav.activeDomainPassId}
+          setActiveDomainPassId={nav.setActiveDomainPassId} domainPassFocusPickerId={nav.domainPassFocusPickerId}
+          setDomainPassFocusPickerId={nav.setDomainPassFocusPickerId} domainPassFocusConfig={nav.domainPassFocusConfig}
           setDomainPassFocusConfig={nav.setDomainPassFocusConfig}
-          activeDomainPlacementId={nav.activeDomainPlacementId} setActiveDomainPlacementId={nav.setActiveDomainPlacementId} placementSessionMode={nav.placementSessionMode} exitDomainPlacement={nav.exitDomainPlacement}
-          refreshDomainPassCount={nav.refreshDomainPassCount}
-          refreshDue={bootstrap.refreshDue}
-          openSettings={chrome.openSettings}
-          openSearch={chrome.openSearch}
-          removeMissed={progressApi.removeMissed}
-          showExport={chrome.showExport}
-          showSearch={chrome.showSearch}
-          showSync={chrome.showSync}
-          showSettings={chrome.showSettings}
-          showTour={onboarding.showTour}
-          closeExport={chrome.closeExport}
-          closeSearch={chrome.closeSearch}
-          closeSync={chrome.closeSync}
-          closeSettings={chrome.closeSettings}
-          syncCode={sync.syncCode}
-          lastSynced={sync.lastSynced}
-          syncBusy={sync.syncBusy}
-          syncMsg={sync.syncMsg}
-          doSync={sync.doSync}
-          handleGenerateSync={sync.handleGenerateSync}
-          handleLinkSync={sync.handleLinkSync}
-          handleUnlinkSync={sync.handleUnlinkSync}
-          handleImport={sync.handleImport}
-          pickImportFile={sync.pickImportFile}
-          settingsQuizSize={settings.settingsQuizSize}
-          settingsReduceMotion={settings.settingsReduceMotion}
-          handleSaveExamDate={settings.handleSaveExamDate}
-          handleClearExamDate={settings.handleClearExamDate}
+          activeDomainPlacementId={nav.activeDomainPlacementId} setActiveDomainPlacementId={nav.setActiveDomainPlacementId}
+          placementSessionMode={nav.placementSessionMode} exitDomainPlacement={nav.exitDomainPlacement}
+          refreshDomainPassCount={nav.refreshDomainPassCount} refreshDue={bootstrap.refreshDue}
+          openSettings={chrome.openSettings} openSearch={chrome.openSearch}
+          removeMissed={progressApi.removeMissed} removeMissedByQuestionIds={progressApi.removeMissedByQuestionIds}
+          showExport={chrome.showExport} showSearch={chrome.showSearch} showSync={chrome.showSync}
+          showSettings={chrome.showSettings} showTour={onboarding.showTour} closeExport={chrome.closeExport}
+          closeSearch={chrome.closeSearch} closeSync={chrome.closeSync} closeSettings={chrome.closeSettings}
+          syncCode={sync.syncCode} lastSynced={sync.lastSynced} syncBusy={sync.syncBusy} syncMsg={sync.syncMsg}
+          doSync={sync.doSync} handleGenerateSync={sync.handleGenerateSync} handleLinkSync={sync.handleLinkSync}
+          handleUnlinkSync={sync.handleUnlinkSync} handleImport={sync.handleImport} pickImportFile={sync.pickImportFile}
+          settingsQuizSize={settings.settingsQuizSize} settingsReduceMotion={settings.settingsReduceMotion}
+          handleSaveExamDate={settings.handleSaveExamDate} handleClearExamDate={settings.handleClearExamDate}
           handleQuizSessionSizeChange={settings.handleQuizSessionSizeChange}
-          handleReduceMotionChange={settings.handleReduceMotionChange}
-          handleExamModeChange={settings.handleExamModeChange}
-          cleanBankStats={settings.cleanBankStats}
-          replayPlacementCheck={onboarding.replayPlacementCheck}
-          showTourAgain={onboarding.showTourAgain}
-          openSync={chrome.openSync}
-          openExport={chrome.openExport}
-          handleClearTutorChat={settings.handleClearTutorChat}
-          handleClearAiCaches={settings.handleClearAiCaches}
-          handleResetProgress={settings.handleResetProgress}
-          handleTogglePremium={premium.handleTogglePremium}
-          premiumToast={premium.premiumToast}
-          dismissPremiumToast={premium.dismissPremiumToast}
+          handleReduceMotionChange={settings.handleReduceMotionChange} handleExamModeChange={settings.handleExamModeChange}
+          cleanBankStats={settings.cleanBankStats} replayPlacementCheck={onboarding.replayPlacementCheck}
+          showTourAgain={onboarding.showTourAgain} openSync={chrome.openSync} openExport={chrome.openExport}
+          handleClearTutorChat={settings.handleClearTutorChat} handleClearAiCaches={settings.handleClearAiCaches}
+          handleResetProgress={settings.handleResetProgress} handleTogglePremium={premium.handleTogglePremium}
+          premiumToast={premium.premiumToast} dismissPremiumToast={premium.dismissPremiumToast}
           completeTour={onboarding.completeTour} skipTour={onboarding.skipTour}
-          onRefreshApp={bootstrap.refreshApp} canPullRefresh={nav.canPullRefresh} canEdgeBack={nav.canEdgeBack} chromeOverlayOpen={chromeOverlayOpen}
+          onRefreshApp={bootstrap.refreshApp} canPullRefresh={nav.canPullRefresh} canEdgeBack={nav.canEdgeBack}
+          chromeOverlayOpen={chromeOverlayOpen}
         />
       </StudyBlockProvider>
     </NavHintProvider>

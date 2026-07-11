@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
 import { getCurated, hasCuratedReading, getCuratedQuestions } from '../data/ccnaCurated.js'
-import { labsForObjective } from '../data/ccnaLabs.js'
 import { getLessonReference, hasLessonReference } from '../lesson/knowledgeReference.js'
 import { buildConceptDetail } from '../lesson/conceptDetail.js'
 import { computeCkuCoverage } from '../lesson/quizCoverage.js'
@@ -13,14 +12,9 @@ import {
 } from '../lesson/explanationFormat.js'
 import CuratedVisualBundle from '../components/CuratedVisualBundle.jsx'
 import CuratedStaticBadge from '../components/CuratedStaticBadge.jsx'
-import OverflowMarquee from '../components/OverflowMarquee.jsx'
-import EngineerViewSection from '../components/EngineerViewSection.jsx'
 import TabSectionLabel from '../components/TabSectionLabel.jsx'
-import QuestionHealthAdminSection from '../components/QuestionHealthAdminSection.jsx'
 import { ReadingTtsControls, SectionListenButton } from '../components/ReadingTtsControls.jsx'
-import { shouldDefaultOpenRealWorld } from '../lesson/readingEnrichment.js'
-import { buildCuratedReadingSpeech, buildAiReadingSpeech, bulletsToSpeech } from '../lib/readingTts.js'
-import { formatCuratedAttribution } from '../curatedDisplay.js'
+import { buildAiReadingSpeech, bulletsToSpeech } from '../lib/readingTts.js'
 import ErrorBox from '../components/ErrorBox.jsx'
 import Spinner from '../components/Spinner.jsx'
 import { COLORS, accentColors, styles } from '../ui/appTheme.js'
@@ -38,6 +32,7 @@ import {
 import { EXAM_SOURCES } from './studyConstants.js'
 import { RichText, Bullets, PreAssessment } from './studyQuizShared.jsx'
 import ObjectiveLabCTA from './ObjectiveLabCTA.jsx'
+import CuratedUnifiedReading from './CuratedUnifiedReading.jsx'
 
 const TERMS_CACHE_KEY = 'ccna_terms_cache_v1'
 const TERMS_PROMPT_SYSTEM = `You are a CCNA 200-301 study aid generator. Use the provided reference notes as your primary source; where the notes don't fully cover a detail a CCNA candidate needs, fill the gap with accurate CCNA 200-301 knowledge consistent with the notes. Produce 6-8 key-term flashcards for this objective — the most exam-relevant terms, acronyms, commands, or concepts to know cold.
@@ -206,7 +201,7 @@ function KeyTermsCarousel({ objective, premiumUnlocked = false, onPremiumBlocked
 }
 
 /* ---- Structured explanation renderer (progressive disclosure) ---- */
-function ExplainBlock({ icon, title, accent, children, collapsible, defaultOpen = true, speechText }) {
+function ExplainBlock({ icon, title, accent, children, collapsible, defaultOpen = true, speechText, onListen }) {
   const [open, setOpen] = useState(defaultOpen)
   const c = accentColors(accent)
   return (
@@ -217,7 +212,7 @@ function ExplainBlock({ icon, title, accent, children, collapsible, defaultOpen 
       >
         <span style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, letterSpacing: 0.3, display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
           {icon} {title}
-          <SectionListenButton speechText={speechText} />
+          <SectionListenButton speechText={speechText} onListen={onListen} />
         </span>
         {collapsible && <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid }}>{open ? '−' : '+'}</span>}
       </button>
@@ -280,129 +275,13 @@ function StructuredExplanation({ data }) {
 }
 
 /* ---- Curated content renderers (Phase 19 — static, no AI) ---- */
-
-// Renders a curated objective's reading: source-grounded, no AI call. Reuses
-// the same ExplainBlock visual language as the AI path so it feels native.
-function CuratedReading({ data, progressEntry, onTierChange, onOpenReference, onOpenLab, showDiagram = true }) {
-  const resolvedTier = useMemo(() => getReadingTier(progressEntry), [progressEntry])
-  const [tier, setTier] = useState(resolvedTier)
-  const hint = useMemo(() => readingTierHint(progressEntry, tier), [progressEntry, tier])
-
-  useEffect(() => {
-    setTier(getReadingTier(progressEntry))
-  }, [data.objectiveId, progressEntry?.readingTier, progressEntry?.testedOut, progressEntry?.preAssessPct])
-
-  function selectTier(key) {
-    setTier(key)
-    onTierChange?.(key)
-  }
-
-  const r = data.reading
-  const speechText = useMemo(() => buildCuratedReadingSpeech(r, tier), [r, tier])
-  const openRealWorld = shouldDefaultOpenRealWorld(data)
-  const attribution = formatCuratedAttribution(r.sourceRefs, data.objectiveId)
+function CuratedReading(props) {
   return (
-    <div className="ccna-stagger objective-reading-prose lesson-prose">
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10, flexWrap: 'nowrap' }}>
-        <CuratedStaticBadge objectiveId={data.objectiveId} fontSize={10} />
-        <OverflowMarquee
-          text={attribution}
-          style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}
-        />
-      </div>
-      {hint && (
-        <div style={{
-          ...styles.card,
-          marginBottom: 10,
-          padding: '10px 12px',
-          borderColor: hint.type === 'testedOut' ? COLORS.mintBorder : COLORS.skyBorder,
-          background: hint.type === 'testedOut' ? COLORS.mintDim : COLORS.skyDim,
-        }}>
-          <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.45, color: COLORS.silver, marginBottom: hint.showFullWalkthrough || hint.showReferenceLink ? 8 : 0 }}>
-            {hint.message}
-          </div>
-          {(hint.showFullWalkthrough || hint.showReferenceLink) && (
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-              {hint.showFullWalkthrough && (
-                <button
-                  type="button"
-                  style={styles.secondaryBtn}
-                  onClick={() => selectTier(READING_TIER_KEYS.intermediate)}
-                >
-                  Full walkthrough
-                </button>
-              )}
-              {hint.showReferenceLink && onOpenReference && (
-                <button type="button" style={styles.secondaryBtn} onClick={onOpenReference}>
-                  Traps & commands →
-                </button>
-              )}
-            </div>
-          )}
-        </div>
-      )}
-      <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, marginBottom: 6, letterSpacing: 0.4 }}>
-        READING DEPTH
-      </div>
-      <div style={{ display: 'flex', gap: 6, marginBottom: 10 }}>
-        {READING_TIERS.map(t => {
-          const active = tier === t.key
-          return (
-            <button key={t.key} onClick={() => selectTier(t.key)} style={{ flex: 1, minHeight: 36, borderRadius: 8, border: `1px solid ${active ? COLORS.skyBorder : COLORS.border}`, background: active ? COLORS.skyDim : COLORS.surface, color: active ? COLORS.sky : COLORS.silverMid, fontSize: 'var(--ccna-type-xs)', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{t.label}</button>
-          )
-        })}
-      </div>
-      <ReadingTtsControls speechText={speechText} />
-      <ExplanationSection
-        body={explanationBodyFromReading(r, tier)}
-        takeaway={resolveBigTakeaway(r)}
-      />
-      {showDiagram && data.diagram && (
-        <div className="study-visual-section" style={{ marginTop: 10, marginBottom: 4 }}>
-          <CuratedVisualBundle data={data} />
-        </div>
-      )}
-      <CoreConceptsBlock ckus={data.ckus} />
-      <ExplainBlock icon="📌" title="KEY POINTS" accent="amber" speechText={bulletsToSpeech(r.keyPoints)}><Bullets items={r.keyPoints} /></ExplainBlock>
-      <ExplainBlock icon="⚠️" title="COMMON MISTAKES" accent="rose" speechText={bulletsToSpeech(r.commonMistakes)}><Bullets items={r.commonMistakes} /></ExplainBlock>
-      {r.realWorld && <ExplainBlock icon="🔧" title="REAL-WORLD APPLICATION" accent="purple" collapsible defaultOpen={openRealWorld} speechText={r.realWorld}><RichText text={r.realWorld} /></ExplainBlock>}
-      {r.advanced && <ExplainBlock icon="🧬" title="ADVANCED DETAILS" accent="silver" collapsible defaultOpen={false} speechText={r.advanced}><RichText text={r.advanced} /></ExplainBlock>}
-      {r.related?.length > 0 && <ExplainBlock icon="🔗" title="RELATED CONCEPTS" accent="sky" collapsible defaultOpen={false} speechText={bulletsToSpeech(r.related)}><Bullets items={r.related} /></ExplainBlock>}
-      {data.engineerView && <EngineerViewSection data={data.engineerView} defaultOpen={openRealWorld} />}
-      <QuestionHealthAdminSection objectiveId={data.objectiveId} />
-      {labsForObjective(data.objectiveId).length > 0 && (
-        <ObjectiveLabCTA objectiveId={data.objectiveId} onOpenLab={onOpenLab} />
-      )}
-      <CuratedSources data={data} />
-    </div>
-  )
-}
-
-// Sources panel for curated content — lists the actual per-reading sourceRefs.
-function CuratedSources({ data }) {
-  const [open, setOpen] = useState(false)
-  const refs = data.reading.sourceRefs
-  return (
-    <div style={{ ...styles.card, padding: 12, marginTop: 4 }}>
-      <button onClick={() => setOpen(o => !o)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: COLORS.silver }}>
-        <span style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid }}>📚 SOURCES (verifiable)</span>
-        <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid }}>{open ? '−' : '+'}</span>
-      </button>
-      {open && (
-        <div style={{ marginTop: 10, fontSize: 'var(--ccna-type-xs)', lineHeight: 1.5, color: COLORS.silverMid }}>
-          <div style={{ marginBottom: 8 }}>
-            <a href={EXAM_SOURCES.blueprintUrl} target="_blank" rel="noreferrer" style={{ color: COLORS.sky, textDecoration: 'none' }}>{EXAM_SOURCES.examName} exam topic {data.objectiveId}</a> — official blueprint (authoritative).
-          </div>
-          {refs.map((s, i) => (
-            <div key={i} style={{ marginBottom: 6 }}>
-              <span style={{ color: COLORS.silver }}>{s.sourceName}</span>{s.chapter ? ` — ${s.chapter}` : ''}.
-              <span style={{ color: COLORS.silverDim }}> confidence {Math.round(s.confidence * 100)}%</span>
-            </div>
-          ))}
-          <div style={{ marginTop: 6, fontSize: 'var(--ccna-type-xs)', color: COLORS.silverDim }}>{STATIC_COPY.sources}</div>
-        </div>
-      )}
-    </div>
+    <CuratedUnifiedReading
+      {...props}
+      ExplainBlock={ExplainBlock}
+      CoreConceptsBlock={CoreConceptsBlock}
+    />
   )
 }
 

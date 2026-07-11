@@ -336,6 +336,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
     onOpenFocus,
     onOpenTopicFocus,
     onOpenCommandHub,
+    onOpenTermsHub,
     onOpenStudyLens,
     onOpenExamTraps,
     onOpenTrapDrill,
@@ -390,10 +391,10 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
 
   const readiness = useMemo(() => computeReadinessScore(progress, retention), [progress, retention])
   const studyNext = useMemo(() => {
-    const baselineNext = pickBaselineAwareStudyNext({ placementRecords, dueCount })
+    const baselineNext = pickBaselineAwareStudyNext({ placementRecords, dueCount, missed })
     if (baselineNext) return baselineNext
     return pickStudyNext(learnerSummary, dueCount, { domainPassRecords, commandDrills })
-  }, [learnerSummary, dueCount, placementRecords, domainPassRecords, commandDrills])
+  }, [learnerSummary, dueCount, placementRecords, domainPassRecords, commandDrills, missed])
 
   const resumeLesson = useMemo(() => resumeStudyHandoff(progress), [progress])
 
@@ -456,6 +457,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         onSelectObjective={onSelectObjective}
         onOpenReview={onOpenReview}
         onOpenDomainPlacement={onOpenDomainPlacement}
+        onOpenMockExam={onOpenMock}
       />
 
       {onOpenDomainPlacement && (
@@ -616,6 +618,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
           <StudyModeBtn onClick={onOpenFocus}>Weak Areas</StudyModeBtn>
           <StudyModeBtn onClick={onOpenTopicFocus}>Topic Focus</StudyModeBtn>
           <StudyModeBtn onClick={onOpenCommandHub}>Command Hub</StudyModeBtn>
+          <StudyModeBtn onClick={onOpenTermsHub}>Terms Hub</StudyModeBtn>
           <StudyModeBtn onClick={onOpenStudyLens}>Study Lens</StudyModeBtn>
           <StudyModeBtn onClick={onOpenMissed}>Missed ({missedCount})</StudyModeBtn>
           <StudyModeBtn onClick={onOpenExamTraps}>Exam Traps</StudyModeBtn>
@@ -651,6 +654,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         onOpenDomainPass={onOpenDomainPass}
         onOpenTrapDrill={onOpenTrapDrill}
         onOpenCommandHub={onOpenCommandHub}
+        onOpenTermsHub={onOpenTermsHub}
         onOpenMockExam={onOpenMock}
       />
     </div>

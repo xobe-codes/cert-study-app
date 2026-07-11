@@ -1,14 +1,19 @@
 # ACTIVE_HANDOFF
 
 - Status: DONE
-- Slice: initial map→burn→maintain→prove→mock (Specs 17–20)
-- Completed:
-  - Shared exposure contract used by Domain Pass + Mock bankBurnPool
-  - Mock Exam sim / Bank burn / Domain sim
-  - Domain Pass readiness + action debrief CTAs
-  - Pulse / Refresh map / Full remap clarity
-  - Domain → Burn bank in Mock + Fix misses
-  - verify:ship green (1310 unit + 80 e2e); vite P1 chunking reverted (caused blank-screen e2e hangs)
-- Not done (parked): unified lesson, section TTS, phone visuals, Terms Hub, Command Hub Know→Type→Scenario
-- Commit status: shipping now
-- Resume prompt: Start parked teaching slice (Specs 9–15) in a new chat; do not re-touch Mock/Pass exposure unless bugs.
+- Slice: Specs 8–15 (observability + teaching polish)
+- Completed checklist:
+  - Spec 8: `domainStudyHealth.js` + strip on Domain Workspace
+  - Spec 9: `unifiedLessonDoc.js` + `CuratedUnifiedReading.jsx` (no Beginner/Intermediate/Exam tabs)
+  - Spec 10: `sectionTtsPlaylist.js` + section ▶ / auto-advance / highlight + lesson-level TTS controls
+  - Spec 11: `src/terms/` Terms Hub (browse / flash / type / pick) + `termshub` route
+  - Spec 12: Command Hub Know → Hear → Type → Scenario (`commandScenarioQuiz.js`)
+  - Spec 13: Terms + Commands wired into Domain Workspace
+  - Spec 14: `diagramPhoneVariant.js` + CuratedDiagram phone simplify
+  - Spec 15: lesson spine hook → visual → plain → how → remember → don’t confuse → terms
+- What works user-visible: unified lesson + section/lesson TTS; Terms Hub; Command Scenario; study health strip; phone diagrams
+- NOT done yet: none for this slice
+- Next 1–3 steps: pick next queue / Specs beyond 15 as needed
+- Commands to run first: n/a
+- Commit status: shipping via c&d
+- Resume prompt: Specs 8–15 shipped; start next slice from tracker/queue.

@@ -5,6 +5,7 @@ import {
   shuffleArrayCopy, buildMissedEntry, normalizeSelectedIndexes,
 } from '../questionUtils.js'
 import { pickReviewSet, getObjectiveCkuIds } from '../lesson/quizCoverage.js'
+import { buildExposureAwarePool } from '../features/domainPass/buildExposureAwarePool.js'
 import { READING_TIER_KEYS } from '../lesson/readingTier.js'
 import { masteryBreakdown } from '../lesson/masteryCriteria.js'
 import { preloadCleanBankForObjective } from '../data/cleanQuestionAdapter.js'
@@ -53,6 +54,9 @@ import {
   loadDomainQuestionExposure,
   recordSeen,
 } from '../features/domainPass/domainQuestionExposure.js'
+import { recordMissClearAttempt } from '../features/domainPass/missDrillQueue.js'
+import { useMasteryProgress } from '../features/progress/MasteryProgressContext.jsx'
+import { ENGAGEMENT_KINDS } from '../features/progress/masteryEngagement.js'
 import {
   resolveQuizTrapDrillPrefill,
   QUIZ_PROMPT_SYSTEM,
@@ -68,6 +72,8 @@ export function QuizTab({
   showPreAssessFirst = false, onUpdateProgress,
 }) {
   const showNavHint = useNavHint()
+  const { recordEngagement, removeMissedByQuestionIds } = useMasteryProgress() || {}
+  const removeMissedByQuestionId = (qid) => removeMissedByQuestionIds?.([qid])
   const doneHintFired = useRef(false)
   const justMasteredRef = useRef(false)
   const deferredTips = useRef([])
@@ -112,10 +118,12 @@ export function QuizTab({
 
   useEffect(() => {
     loadQuizSessionSize().then((size) => {
-      setSessionSize(size)
-      setSessionSizeDraft(sessionSizeDraftFromCommitted(size))
+      const forced = Number(objective?.__sessionSize)
+      const next = Number.isFinite(forced) && forced > 0 ? Math.min(forced, MAX_QUIZ_SESSION_SIZE) : size
+      setSessionSize(next)
+      setSessionSizeDraft(sessionSizeDraftFromCommitted(next))
     })
-  }, [])
+  }, [objective?.id, objective?.__sessionSize])
 
   useEffect(() => {
     if (phase !== 'done') {
@@ -262,22 +270,44 @@ export function QuizTab({
 
       const breakdown = masteryBreakdown(progress?.[objective.id])
       const ckuIds = getObjectiveCkuIds(objective.id)
-      let preferUnseenIds = null
+      let set = []
       try {
         const domainId = domainIdFromObjectiveId(objective.id)
         if (domainId) {
           const exposureStore = await loadDomainQuestionExposure()
           const seenMap = getDomainSeenMap(exposureStore, domainId)
-          const stats = getExposureStats(domainId, banked.map(q => q.id).filter(Boolean), seenMap)
-          if (stats.unseen.length) preferUnseenIds = new Set(stats.unseen)
+          const missRetryIds = (missed || [])
+            .filter(m => m?.objectiveId === objective.id)
+            .map(m => m.id ?? m.questionId)
+            .filter(Boolean)
+          set = buildExposureAwarePool({
+            candidates: banked,
+            seenById: seenMap,
+            missRetryIds,
+            count: sessionSize,
+          })
         }
       } catch {
-        preferUnseenIds = null
+        set = []
       }
-      const set = pickReviewSet(banked, breakdown.has ? breakdown.acc : null, sessionSize, {
-        ckuIds,
-        preferUnseenIds,
-      })
+      if (!set.length) {
+        let preferUnseenIds = null
+        try {
+          const domainId = domainIdFromObjectiveId(objective.id)
+          if (domainId) {
+            const exposureStore = await loadDomainQuestionExposure()
+            const seenMap = getDomainSeenMap(exposureStore, domainId)
+            const stats = getExposureStats(domainId, banked.map(q => q.id).filter(Boolean), seenMap)
+            if (stats.unseen.length) preferUnseenIds = new Set(stats.unseen)
+          }
+        } catch {
+          preferUnseenIds = null
+        }
+        set = pickReviewSet(banked, breakdown.has ? breakdown.acc : null, sessionSize, {
+          ckuIds,
+          preferUnseenIds,
+        })
+      }
       if (set.length === 0) throw new Error('No questions available for this objective yet.')
       sessionQuestionIdsRef.current = set.map(q => q.id).filter(id => id != null)
       exposureRecordedRef.current = false
@@ -346,9 +376,21 @@ export function QuizTab({
       })
     }
     logEvent('user_answered_question', { objectiveId: objective.id, questionId: current.id, correct })
+    recordEngagement?.(objective.id, {
+      kind: ENGAGEMENT_KINDS.QUIZ,
+      correct: correct ? 1 : 0,
+      total: 1,
+      questionId: current.id,
+    })
+    if (correct && current.id) {
+      recordMissClearAttempt(current.id, { correct: true, sessionKey: `quiz-${objective.id}` }).then((result) => {
+        if (result?.cleared) removeMissedByQuestionId?.(current.id)
+      }).catch(() => {})
+    }
     if (!correct) {
       collectDeferredTip(current, idx)
       onMissed(buildMissedEntry(objective.id, current, { selectedIndex: idx }))
+      recordMissClearAttempt(current.id, { correct: false }).catch(() => {})
       const trapPrefill = resolveQuizTrapDrillPrefill(current, objective, idx)
       if (trapPrefill) {
         const recorded = recordTrapMiss(trapStreakRef.current, trapPrefill)

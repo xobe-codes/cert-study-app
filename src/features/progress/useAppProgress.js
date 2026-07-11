@@ -48,5 +48,15 @@ export function useAppProgress({ setProgress, setMissed }) {
     })
   }, [setMissed])
 
-  return { updateProgress, recordEngagement, handleMissed, removeMissed }
+  const removeMissedByQuestionIds = useCallback((questionIds) => {
+    const drop = new Set((questionIds || []).filter(Boolean))
+    if (!drop.size) return
+    setMissed(prev => {
+      const next = prev.filter(m => !drop.has(m?.id ?? m?.questionId))
+      saveMissed(next)
+      return next
+    })
+  }, [setMissed])
+
+  return { updateProgress, recordEngagement, handleMissed, removeMissed, removeMissedByQuestionIds }
 }

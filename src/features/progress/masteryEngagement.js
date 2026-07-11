@@ -15,6 +15,7 @@ export const ENGAGEMENT_KINDS = {
   DOMAIN_PLACEMENT: 'domain_placement',
   FOCUS: 'focus',
   TOPIC_FOCUS: 'topic_focus',
+  TERMS: 'terms',
 }
 
 export const ENGAGEMENT_KIND_LABELS = {
@@ -30,6 +31,7 @@ export const ENGAGEMENT_KIND_LABELS = {
   [ENGAGEMENT_KINDS.DOMAIN_PLACEMENT]: 'Placement',
   [ENGAGEMENT_KINDS.FOCUS]: 'Weak areas',
   [ENGAGEMENT_KINDS.TOPIC_FOCUS]: 'Topic focus',
+  [ENGAGEMENT_KINDS.TERMS]: 'Terms Hub',
 }
 
 const MAX_ENGAGEMENT = 40

@@ -1,8 +1,30 @@
-import { DOMAINS } from '../../data/ccnaDomains.js'
-import { ALL_OBJECTIVES } from '../../data/ccnaDomains.js'
+import { DOMAINS, ALL_OBJECTIVES } from '../../data/ccnaDomains.js'
 import { placementDomainIds } from './placementBlueprints.js'
 import { buildDomainBaselineSummary } from './domainBaselineProfile.js'
 import { getNextStaleBaselineDomain } from './placementBlueprintCoverage.js'
+import { formatMissStudyNextLine } from '../domainPass/missDrillQueue.js'
+
+/** Domain with the most open misses (for Study Next). */
+export function pickTopMissDomain(missed = []) {
+  const counts = {}
+  for (const m of missed || []) {
+    const prefix = String(m?.objectiveId || '').split('.')[0]
+    const n = parseInt(prefix, 10)
+    if (!Number.isFinite(n) || n < 1) continue
+    const domain = DOMAINS[n - 1]
+    if (!domain) continue
+    counts[domain.id] = (counts[domain.id] || 0) + 1
+  }
+  let best = null
+  let bestN = 0
+  for (const [id, n] of Object.entries(counts)) {
+    if (n > bestN) {
+      bestN = n
+      best = DOMAINS.find(d => d.id === id)
+    }
+  }
+  return best && bestN > 0 ? { domain: best, missCount: bestN } : null
+}
 
 /** First placement-enabled domain without a baseline attempt. */
 export function getNextUncheckedBaselineDomain(records = {}) {
@@ -44,8 +66,21 @@ export function resolveBaselineObjective(objectiveId) {
  * Study-next priority when baselines incomplete or weak areas exist.
  * Returns null to fall through to generic pickStudyNext.
  */
-export function pickBaselineAwareStudyNext({ placementRecords = {}, dueCount = 0 }) {
+export function pickBaselineAwareStudyNext({ placementRecords = {}, dueCount = 0, missed = [] }) {
   if (dueCount > 0) return null
+
+  const missHit = pickTopMissDomain(missed)
+  if (missHit && missHit.missCount >= 3) {
+    return {
+      kind: 'fixMisses',
+      accent: 'rose',
+      shortTitle: formatMissStudyNextLine(missHit.domain.name, missHit.missCount),
+      domainId: missHit.domain.id,
+      mockMode: 'bankburn',
+      missOnly: true,
+      why: 'Clear domain misses before they harden into exam traps',
+    }
+  }
 
   const nextDomain = getNextUncheckedBaselineDomain(placementRecords)
   if (nextDomain) {

@@ -38,6 +38,7 @@ export default function AppLoadedShell({
   openMockExam,
   openLabs,
   openCommandHub,
+  openTermsHub,
   navigateTo,
   handlePremiumBlocked,
   premiumUnlocked,
@@ -79,6 +80,7 @@ export default function AppLoadedShell({
   commandHubDomainPrefill,
   commandHubTabPrefill,
   commandHubPackPrefill,
+  termsHubDomainPrefill,
   clearCommandHubLaunch,
   setMockDomainPrefill,
   finishOnboarding,
@@ -106,6 +108,7 @@ export default function AppLoadedShell({
   openSettings,
   openSearch,
   removeMissed,
+  removeMissedByQuestionIds,
   showExport,
   showSearch,
   showSync,
@@ -185,7 +188,7 @@ export default function AppLoadedShell({
         </div>
       )}
       <RouteShell scroll={routeScrolls} ref={mainRef} innerClassName="ccna-route-in" key={view} pullRefresh={routeGestures.pullRefresh} edgeBack={routeGestures.edgeBack}>
-        <MasteryProgressProvider updateProgress={updateProgress} recordEngagement={recordEngagement}>
+        <MasteryProgressProvider updateProgress={updateProgress} recordEngagement={recordEngagement} removeMissedByQuestionIds={removeMissedByQuestionIds}>
         <CoreStudyRoutes
           view={view}
           onFinishOnboarding={finishOnboarding}
@@ -199,6 +202,7 @@ export default function AppLoadedShell({
           openMockExam={openMockExam}
           openLabs={openLabs}
           openCommandHub={openCommandHub}
+          openTermsHub={openTermsHub}
           navigateTo={navigateTo}
           handlePremiumBlocked={handlePremiumBlocked}
           premiumUnlocked={premiumUnlocked}
@@ -288,11 +292,13 @@ export default function AppLoadedShell({
           commandHubDomainPrefill={commandHubDomainPrefill}
           commandHubTabPrefill={commandHubTabPrefill}
           commandHubPackPrefill={commandHubPackPrefill}
+          termsHubDomainPrefill={termsHubDomainPrefill}
           clearCommandHubLaunch={clearCommandHubLaunch}
           onOpenTrapDrill={openTrapDrill}
           onOpenExamTraps={openExamTraps}
           onOpenDomainPlacement={openDomainPlacement}
           onOpenCommandHub={openCommandHub}
+          onOpenTermsHub={openTermsHub}
           onOpenLabs={openLabs}
           onOpenSubnet={() => navigateTo('subnet')}
           onSelectObjective={selectObjective}

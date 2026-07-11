@@ -29,6 +29,7 @@ const LabView = lazy(() => import('../../lab/LabView.jsx'))
 const TopicFocusStudio = lazy(() => import('../../topic/TopicFocusStudio.jsx'))
 const TopicFocusSession = lazy(() => import('../../topic/TopicFocusSession.jsx'))
 const CommandHubStudio = lazy(() => import('../../commands/CommandHubStudio.jsx'))
+const TermsHubStudio = lazy(() => import('../../terms/TermsHubStudio.jsx'))
 const StudyLensStudio = lazy(() => import('../../lens/StudyLensStudio.jsx'))
 const ExamTrapStudyMode = lazy(() => import('../../ExamTrapStudyMode.jsx'))
 const RoutingDecoderMode = lazy(() => import('../../RoutingDecoderMode.jsx'))
@@ -68,10 +69,12 @@ export default function StudyModeRoutes({
   commandHubTabPrefill = null,
   commandHubPackPrefill = null,
   clearCommandHubLaunch,
+  termsHubDomainPrefill = null,
   onOpenTrapDrill,
   onOpenExamTraps,
   onOpenDomainPlacement,
   onOpenCommandHub,
+  onOpenTermsHub,
   onOpenLabs,
   onOpenSubnet,
   onSelectObjective,
@@ -156,6 +159,16 @@ export default function StudyModeRoutes({
             if (obj) onSelectObjective(obj)
           }}
           onOpenLab={(id) => onOpenLab(id, 'commandhub')}
+        />
+      </LazyRoute>
+    )
+  }
+  if (view === 'termshub') {
+    return (
+      <LazyRoute label="Loading terms hub…">
+        <TermsHubStudio
+          onBack={onBack}
+          domainPrefill={termsHubDomainPrefill}
         />
       </LazyRoute>
     )

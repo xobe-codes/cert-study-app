@@ -3,14 +3,16 @@ import { COLORS, accentColors } from '../ui/appTheme.js'
 import OverflowMarquee from '../components/OverflowMarquee.jsx'
 import { homeAccentStrip, homePill } from './homeUi.js'
 
-export default function StudyNextStrip({ next, onSelectObjective, onOpenReview, onOpenDomainPlacement, sticky = false }) {
+export default function StudyNextStrip({ next, onSelectObjective, onOpenReview, onOpenDomainPlacement, onOpenMockExam, sticky = false }) {
   if (!next) return null
   const c = accentColors(next.accent)
   const onClick = next.kind === 'review'
     ? onOpenReview
     : (next.kind === 'baseline' || next.kind === 'baselineRemap')
       ? () => onOpenDomainPlacement?.({ domainId: next.domainId, expandOnReturn: true })
-      : () => onSelectObjective?.({ ...next.objective, __initialTab: next.tab })
+      : next.kind === 'fixMisses'
+        ? () => onOpenMockExam?.({ domainId: next.domainId, mode: next.mockMode || 'bankburn', missOnly: !!next.missOnly })
+        : () => onSelectObjective?.({ ...next.objective, __initialTab: next.tab })
   return (
     <button
       type="button"

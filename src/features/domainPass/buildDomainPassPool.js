@@ -213,9 +213,12 @@ function fillExposureRemainder({
   const stalePool = available.filter(q => tierForQuestion(q, exposureStats) === EXPOSURE_TIERS.STALE)
   const recentPool = available.filter(q => tierForQuestion(q, exposureStats) === EXPOSURE_TIERS.RECENT)
 
+  // Spec 1 mix: 60% unseen · 25% stale · 15% weak/miss-retry slot
   const targetUnseen = Math.round(remaining * 0.6)
-  const targetStale = Math.round(remaining * 0.3)
+  const targetStale = Math.round(remaining * 0.25)
   const targetWeak = Math.max(0, remaining - targetUnseen - targetStale)
+  const softFloorUnseen = (exposureStats?.unseen?.length || 0) >= 10
+  const maxRecentSpill = softFloorUnseen ? 1 : remaining
 
   const picked = []
 
@@ -284,14 +287,29 @@ function fillExposureRemainder({
 
   const slotsLeft = Math.max(0, remaining - picked.length)
   if (slotsLeft > 0) {
+    let recentBudget = maxRecentSpill
     const spillOrder = [
       ...unseenPool,
       ...stalePool,
       ...recentPool,
       ...available,
     ]
+    const filteredSpill = []
+    const spillUsed = new Set()
+    for (const q of spillOrder) {
+      const id = questionId(q)
+      if (id != null && (usedIds.has(id) || spillUsed.has(id))) continue
+      const isRecent = tierForQuestion(q, exposureStats) === EXPOSURE_TIERS.RECENT
+      if (isRecent) {
+        if (recentBudget <= 0) continue
+        recentBudget -= 1
+      }
+      if (id != null) spillUsed.add(id)
+      filteredSpill.push(q)
+      if (filteredSpill.length >= slotsLeft) break
+    }
     picked.push(...pickWithSpread({
-      candidates: spillOrder,
+      candidates: filteredSpill,
       count: slotsLeft,
       shuf,
       usedIds,

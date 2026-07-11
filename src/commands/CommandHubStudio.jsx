@@ -334,6 +334,7 @@ export default function CommandHubStudio({
             onClose={() => setDetailCommand(null)}
             onOpenCommand={setDetailCommand}
             onOpenObjective={openObjective}
+            onStartSprint={() => { setTab('sprint'); setDetailCommand(null) }}
           />
         </div>
       )}

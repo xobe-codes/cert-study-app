@@ -3,6 +3,8 @@ import { COLORS, styles } from '../ui/appTheme.js'
 import {
   CATEGORY_LABEL, MODE_LABEL, DEVICE_LABEL, EXAM_WEIGHT_LABEL,
 } from './commandWorkflows.js'
+import { speak, stopSpeaking, isTtsSupported } from '../lib/browserTts.js'
+import { pickScenarioSession } from './commandScenarioQuiz.js'
 
 async function copyText(text) {
   try {
@@ -25,14 +27,20 @@ export default function CommandDetailPanel({
   onClose,
   onOpenCommand,
   onOpenObjective,
+  onStartSprint,
 }) {
   const [copied, setCopied] = useState(false)
+  const [scenarioIdx, setScenarioIdx] = useState(0)
+  const [scenarioPick, setScenarioPick] = useState(null)
+  const [scenarios] = useState(() => pickScenarioSession(null, 3))
   if (!command) return null
 
   const related = (command.relatedCommandIds || [])
     .map(id => index.commandById.get(id))
     .filter(Boolean)
     .slice(0, 8)
+  const wrongSibling = related[0]
+  const scenario = scenarios[scenarioIdx]
 
   async function handleCopy(text) {
     const ok = await copyText(text)
@@ -67,9 +75,30 @@ export default function CommandDetailPanel({
         <button type="button" onClick={onClose} aria-label="Close" style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-xl)', cursor: 'pointer', padding: 4, lineHeight: 1 }}>×</button>
       </div>
 
-      <p style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 'var(--ccna-line-read)', color: COLORS.silver, margin: '0 0 12px' }}>
-        {command.purpose}
-      </p>
+      <div style={{ ...styles.card, marginBottom: 10, borderColor: COLORS.skyBorder, background: COLORS.skyDim }}>
+        <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.sky, marginBottom: 4 }}>KNOW</div>
+        <p style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 'var(--ccna-line-read)', color: COLORS.silver, margin: 0 }}>
+          {command.purpose}
+        </p>
+        {wrongSibling && (
+          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.amber, marginTop: 8 }}>
+            Don’t confuse with <code style={{ color: COLORS.mint }}>{wrongSibling.command}</code>
+          </div>
+        )}
+      </div>
+
+      {isTtsSupported() && (
+        <button
+          type="button"
+          style={{ ...styles.secondaryBtn, marginBottom: 10 }}
+          onClick={() => {
+            stopSpeaking()
+            speak(`${command.purpose}. Example: ${command.example || command.command}`, { rate: 0.95 })
+          }}
+        >
+          ▶ Hear purpose + example
+        </button>
+      )}
 
       {command.example && (
         <div style={{ marginBottom: 12 }}>
@@ -82,6 +111,49 @@ export default function CommandDetailPanel({
               {copied ? 'Copied' : 'Copy'}
             </button>
           </div>
+        </div>
+      )}
+
+      <button
+        type="button"
+        style={{ ...styles.primaryBtn, marginBottom: 12 }}
+        onClick={() => onStartSprint?.(command)}
+      >
+        Type it — start Sprint →
+      </button>
+
+      {scenario && (
+        <div style={{ ...styles.card, marginBottom: 12, borderColor: COLORS.purpleBorder, background: COLORS.purpleDim }}>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.purple, marginBottom: 6 }}>
+            SCENARIO {scenarioIdx + 1}/{scenarios.length}
+          </div>
+          <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, marginBottom: 8, lineHeight: 1.45 }}>{scenario.stem}</div>
+          {scenario.choices.map((c, i) => (
+            <button
+              key={i}
+              type="button"
+              disabled={scenarioPick != null}
+              onClick={() => {
+                setScenarioPick(i)
+                setTimeout(() => {
+                  setScenarioPick(null)
+                  if (scenarioIdx < scenarios.length - 1) setScenarioIdx(x => x + 1)
+                }, 700)
+              }}
+              style={{
+                ...styles.secondaryBtn,
+                textAlign: 'left',
+                marginBottom: 6,
+                borderColor: scenarioPick == null ? COLORS.border
+                  : (i === scenario.correctIndex ? COLORS.mintBorder : (scenarioPick === i ? COLORS.roseBorder : COLORS.border)),
+              }}
+            >
+              {c}
+            </button>
+          ))}
+          {scenarioPick != null && (
+            <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 4 }}>{scenario.why}</div>
+          )}
         </div>
       )}
 

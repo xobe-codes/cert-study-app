@@ -44,6 +44,10 @@ export const STORAGE_KEYS = {
   domainPassCelebrated: 'ccna_domain_pass_celebrated_v1',
   domainPlacement: 'ccna_domain_placement_v1',
   baselineHandoff: 'ccna_baseline_handoff_v1',
+  /** Spec 3: per-question correct attempts toward clearing a miss (2-correct rule). */
+  missClearProgress: 'ccna_miss_clear_v1',
+  /** Spec 5: trapId → ownedAt ms. */
+  trapOwnership: 'ccna_trap_ownership_v1',
 }
 
 /** CustomEvent name for dev/e2e trap-drill prefill handoff. */

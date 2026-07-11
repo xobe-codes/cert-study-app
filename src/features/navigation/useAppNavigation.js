@@ -212,6 +212,13 @@ export function useAppNavigation() {
     navigateTo('commandhub')
   }, [navigateTo])
 
+  const [termsHubDomainPrefill, setTermsHubDomainPrefill] = useState(null)
+  const openTermsHub = useCallback((opts) => {
+    const safe = studyModeOpts(opts)
+    setTermsHubDomainPrefill(safe?.domainId || null)
+    navigateTo('termshub')
+  }, [navigateTo])
+
   const clearCommandHubLaunch = useCallback(() => {
     setCommandHubTabPrefill(null)
     setCommandHubPackPrefill(null)
@@ -326,6 +333,8 @@ export function useAppNavigation() {
     openMockExam,
     openLabs,
     openCommandHub,
+    openTermsHub,
+    termsHubDomainPrefill,
     clearCommandHubLaunch,
     clearExamTrapPrefill,
     clearTrapDrillPrefill,

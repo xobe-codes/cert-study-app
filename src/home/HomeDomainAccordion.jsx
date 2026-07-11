@@ -17,6 +17,7 @@ import { getDomainStudyMeta, pickDomainPracticeObjective } from './domainStudyRo
 import { buildDomainReadinessLine } from './domainReadiness.js'
 import { labsForDomain } from '../data/labModules.js'
 import { loadLabDone } from '../lab/labStorage.js'
+import DomainWorkspacePanel from '../features/domainPass/DomainWorkspacePanel.jsx'
 import {
   HOME_SECTION_GAP,
   homeCard,
@@ -41,6 +42,7 @@ export default function HomeDomainAccordion({
   onOpenDomainPass,
   onOpenTrapDrill,
   onOpenCommandHub,
+  onOpenTermsHub,
   onOpenMockExam,
 }) {
   const [showStrongObjectives, setShowStrongObjectives] = useState({})
@@ -79,8 +81,6 @@ export default function HomeDomainAccordion({
         }
 
         const passRecord = domainPassRecords[domain.id]
-        const domainObjectiveIds = new Set(objs.map(o => o.id))
-        const domainMissCount = missed.filter(m => domainObjectiveIds.has(m?.objectiveId)).length
         const passStatus = domainPassStatus(passRecord)
         const passBadge = domainPassBadgeLabel(passStatus)
         const passBadgeAccent = passStatus === 'passed' ? 'mint' : passStatus === 'retake' ? 'amber' : 'silver'
@@ -104,15 +104,6 @@ export default function HomeDomainAccordion({
           if (!objectiveId) return
           const handoff = buildStudyObjectiveHandoff(objectiveId, { tab: 'Practice' })
           if (handoff) onSelectObjective(handoff)
-        }
-
-        const studyModeBtn = {
-          ...styles.secondaryBtn,
-          width: '100%',
-          marginBottom: 6,
-          minHeight: 40,
-          fontSize: 'var(--ccna-type-xs)',
-          textAlign: 'left',
         }
 
         return (
@@ -278,100 +269,25 @@ export default function HomeDomainAccordion({
                     </>
                   )
                 })()}
-                <div className="domain-study-modes" style={{ marginTop: 12, borderTop: `1px solid ${COLORS.border}`, paddingTop: 10 }}>
-                  <div style={{ ...homeBodySm, fontWeight: 700, marginBottom: 4, color: COLORS.silverMid, letterSpacing: 0.3 }}>
-                    Study modes
-                  </div>
-                  <div style={{ ...homeBodySm, marginBottom: 8, color: COLORS.silverMid }} aria-label="Domain readiness">
-                    {readinessLine}
-                  </div>
-                  <button
-                    type="button"
-                    className="ccna-hover"
-                    style={{
-                      ...studyModeBtn,
-                      borderColor: COLORS.skyBorder,
-                      background: COLORS.skyDim,
-                      color: COLORS.sky,
-                      fontWeight: 700,
-                    }}
-                    onClick={() => {
-                      const handoff = {
-                        ...objs[0],
-                        domainId: domain.id,
-                        domainName: domain.name,
-                        accent: domain.accent,
-                        __initialTab: 'Study',
-                      }
-                      const firstUnseen = objs.find(o => !progress[o.id]?.lastSeen)
-                      onSelectObjective(firstUnseen
-                        ? { ...firstUnseen, domainId: domain.id, domainName: domain.name, accent: domain.accent, __initialTab: 'Study' }
-                        : handoff)
-                    }}
-                  >
-                    Lessons — open Study
-                  </button>
-                  {onOpenDomainPass && (
-                    <button
-                      type="button"
-                      className="ccna-hover"
-                      style={{
-                        ...studyModeBtn,
-                        borderColor: COLORS.mintBorder,
-                        background: COLORS.mintDim,
-                        color: COLORS.mint,
-                        fontWeight: 700,
-                      }}
-                      onClick={() => onOpenDomainPass({ domainId: domain.id })}
-                    >
-                      Domain Pass — {passBadge}
-                    </button>
-                  )}
-                  {onOpenTrapDrill && (
-                    <button type="button" className="ccna-hover" style={{ ...studyModeBtn, opacity: 0.92 }} onClick={() => onOpenTrapDrill({ domainId: domain.id })}>
-                      Trap Drill
-                    </button>
-                  )}
-                  {onOpenCommandHub && (
-                    <button type="button" className="ccna-hover" style={{ ...studyModeBtn, opacity: 0.92 }} onClick={() => onOpenCommandHub({ domainId: domain.id, tab: 'sprint' })}>
-                      Command Hub
-                    </button>
-                  )}
-                  <button type="button" className="ccna-hover" style={{ ...studyModeBtn, opacity: 0.92 }} onClick={practiceDomain}>
-                    Practice domain
-                  </button>
-                  {onOpenMockExam && (
-                    <button
-                      type="button"
-                      className="ccna-hover"
-                      style={{ ...studyModeBtn, opacity: 0.92 }}
-                      onClick={() => onOpenMockExam({ domainId: domain.id, mode: 'bankburn' })}
-                    >
-                      Burn bank in Mock →
-                    </button>
-                  )}
-                  {onOpenMockExam && domainMissCount > 0 && (
-                    <button
-                      type="button"
-                      className="ccna-hover"
-                      style={{
-                        ...studyModeBtn,
-                        borderColor: COLORS.roseBorder,
-                        background: COLORS.roseDim,
-                        color: COLORS.rose,
-                        fontWeight: 700,
-                      }}
-                      onClick={() => onOpenMockExam({ domainId: domain.id, mode: 'bankburn', missOnly: true })}
-                    >
-                      Fix misses ({domainMissCount}) →
-                    </button>
-                  )}
-                  {onOpenLabs && studyMeta.labCount > 0 && (
-                    <button type="button" className="ccna-hover" style={{ ...studyModeBtn, marginBottom: 0, opacity: 0.92 }} onClick={() => onOpenLabs({ domainId: domain.id })}>
-                      🧪 Domain labs ({studyMeta.labCount})
-                    </button>
-                  )}
-                </div>
+                <DomainWorkspacePanel
+                  domain={domain}
+                  progress={progress}
+                  baselineSummary={baselineSummary}
+                  passRecord={passRecord}
+                  missed={missed}
+                  readinessLine={readinessLine}
+                  passBadge={passBadge}
+                  studyMeta={studyMeta}
+                  onSelectObjective={onSelectObjective}
+                  onOpenDomainPlacement={onOpenDomainPlacement}
+                  onOpenDomainPass={onOpenDomainPass}
+                  onOpenTrapDrill={onOpenTrapDrill}
+                  onOpenCommandHub={onOpenCommandHub}
+                  onOpenTermsHub={onOpenTermsHub}
+                  onOpenMockExam={onOpenMockExam}
+                  onOpenLabs={onOpenLabs}
+                  practiceDomain={practiceDomain}
+                />
               </div>
             )}
           </div>

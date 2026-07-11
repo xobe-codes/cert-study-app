@@ -68,7 +68,7 @@ export function parseAppHash() {
   if ([
     'mock', 'mockinterview', 'metrics', 'stats', 'review', 'missed', 'labs', 'focus', 'tutor',
     'topicfocus', 'studylens', 'examtraps', 'trapdrill', 'subnet', 'routing', 'extrastudy',
-    'domainpass', 'domainplacement',
+    'domainpass', 'domainplacement', 'termshub',
   ].includes(simple)) {
     return { view: simple }
   }

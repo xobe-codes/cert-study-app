@@ -7,6 +7,11 @@ import {
   shouldShowLinkLabel,
 } from './diagramDeviceIcons.jsx'
 import { useDiagramPanZoom } from '../hooks/useDiagramPanZoom.js'
+import {
+  pickPhoneInlineDiagram,
+  diagramCaption,
+  PHONE_VIEWPORT_MAX,
+} from './diagramPhoneVariant.js'
 
 const MODAL_Z = 300
 const FOCUSABLE_SELECTOR = 'a[href],button:not([disabled]),textarea,input:not([type="hidden"]),select,[tabindex]:not([tabindex="-1"])'
@@ -617,29 +622,44 @@ function DiagramExpandModal({ diagram, onClose, isMobile = false, isLandscape = 
 export default function CuratedDiagram({ diagram, compact = false }) {
   const [open, setOpen] = useState(false)
   const isMobile = useCompactViewport()
+  const isPhone = useCompactViewport(PHONE_VIEWPORT_MAX)
   const isLandscape = useLandscapeViewport()
   const touchFriendly = useTouchFriendly()
   const needsExpand = useMemo(() => diagramNeedsExpand(diagram), [diagram])
+  const inlineDiagram = useMemo(() => {
+    if (!isPhone || !needsExpand) return diagram
+    return pickPhoneInlineDiagram(diagram)
+  }, [diagram, isPhone, needsExpand])
+  const caption = useMemo(() => diagramCaption(inlineDiagram || diagram), [inlineDiagram, diagram])
 
   if (!diagram?.nodes?.length) return null
 
   if (!needsExpand) {
     return (
-      <DiagramCard
-        diagram={diagram}
-        detail="full"
-        compact={compact}
-        isMobile={isMobile}
-        isLandscape={isLandscape}
-        touchFriendly={touchFriendly}
-      />
+      <>
+        <DiagramCard
+          diagram={diagram}
+          detail="full"
+          compact={compact}
+          isMobile={isMobile}
+          isLandscape={isLandscape}
+          touchFriendly={touchFriendly}
+        />
+        {caption && (
+          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.4, marginTop: 6 }}>
+            <div><strong style={{ color: COLORS.silver }}>Looking at:</strong> {caption.lookingAt}</div>
+            <div><strong style={{ color: COLORS.silver }}>What matters:</strong> {caption.whatMatters}</div>
+            <div><strong style={{ color: COLORS.silver }}>Exam trap:</strong> {caption.examTrap}</div>
+          </div>
+        )}
+      </>
     )
   }
 
   return (
     <>
       <DiagramCard
-        diagram={diagram}
+        diagram={inlineDiagram}
         detail="preview"
         compact={compact}
         expandable
@@ -649,6 +669,13 @@ export default function CuratedDiagram({ diagram, compact = false }) {
         isLandscape={isLandscape}
         touchFriendly={touchFriendly}
       />
+      {caption && (
+        <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.4, marginTop: 6 }}>
+          <div><strong style={{ color: COLORS.silver }}>Looking at:</strong> {caption.lookingAt}</div>
+          <div><strong style={{ color: COLORS.silver }}>What matters:</strong> {caption.whatMatters}</div>
+          <div><strong style={{ color: COLORS.silver }}>Exam trap:</strong> {caption.examTrap}</div>
+        </div>
+      )}
       {open && (
         <DiagramExpandModal
           diagram={diagram}

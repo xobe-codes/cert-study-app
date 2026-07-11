@@ -421,13 +421,25 @@ export default function DomainPassSession({
             {onOpenPlacementPulse && isPlacementDomain(domainId) && (
               <button
                 type="button"
-                style={{ ...domainActionBtn, marginBottom: 0 }}
+                style={{ ...domainActionBtn, marginBottom: onOpenTrapDrill ? 6 : 0 }}
                 onClick={() => {
                   stashDebriefResume()
                   onOpenPlacementPulse(domainId)
                 }}
               >
                 Pulse traps (maintenance) →
+              </button>
+            )}
+            {onOpenTrapDrill && (
+              <button
+                type="button"
+                style={{ ...domainActionBtn, marginBottom: 0 }}
+                onClick={() => {
+                  stashDebriefResume()
+                  onOpenTrapDrill({ domainId })
+                }}
+              >
+                Own top traps (this domain) →
               </button>
             )}
           </div>

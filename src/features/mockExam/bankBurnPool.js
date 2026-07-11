@@ -1,10 +1,9 @@
 import { isChoiceQuestion } from '../../questionUtils.js'
 import {
-  EXPOSURE_TIERS,
   getDomainSeenMap,
   getExposureStats,
-  pickExposureTier,
 } from '../domainPass/domainQuestionExposure.js'
+import { buildExposureAwarePool } from '../domainPass/buildExposureAwarePool.js'
 
 function questionId(q) {
   return q?.id ?? q?.questionId
@@ -39,7 +38,6 @@ export function collectBankQuestions(domains, getMcQuestions) {
 
 /**
  * Per-domain bank coverage snapshot: { [domainId]: { bankCount, seenCount } }.
- * Used to show the coverage delta at the end of a Bank burn session.
  */
 export function computeBankCoverage(domains, getMcQuestions, exposureStore) {
   const coverage = {}
@@ -81,12 +79,23 @@ export function collectMissRetryIds(missed, domains) {
 }
 
 /**
- * Bank burn picker — the shared exposure contract:
- * prefer UNSEEN, then STALE, then MISS-RETRY; never recycle RECENT while
- * unseen or stale questions remain. Recent questions are spillover only.
- *
- * missOnly builds the queue exclusively from the caller's missed bank
- * (Fix misses flow); exposure ordering still applies within that queue.
+ * Flatten per-domain seen maps into a single seenById for multi-domain pools.
+ * Prefers the most recent timestamp if a question appears in multiple domains.
+ */
+function mergeSeenById(domains, exposureStore) {
+  const merged = {}
+  for (const domain of domains || []) {
+    const map = getDomainSeenMap(exposureStore, domain.id)
+    for (const [id, ts] of Object.entries(map)) {
+      if (merged[id] == null || ts > merged[id]) merged[id] = ts
+    }
+  }
+  return merged
+}
+
+/**
+ * Bank burn picker — Spec 1 shared exposure contract via buildExposureAwarePool.
+ * missOnly: queue exclusively from missed bank (Fix misses).
  */
 export function buildBankBurnPool({
   domains,
@@ -96,44 +105,28 @@ export function buildBankBurnPool({
   count,
   shuffle,
   missOnly = false,
+  missRetryIds: missRetryIdsOverride = null,
 }) {
-  const shuf = shuffle || (arr => [...arr])
   const bank = collectBankQuestions(domains, getMcQuestions)
-  const missRetryIds = new Set(collectMissRetryIds(missed, domains))
+  const missRetryIds = missRetryIdsOverride != null
+    ? missRetryIdsOverride
+    : collectMissRetryIds(missed, domains)
 
   let candidates = bank
   if (missOnly) {
-    candidates = bank.filter(q => missRetryIds.has(questionId(q)))
+    const missSet = new Set(missRetryIds)
+    candidates = bank.filter(q => missSet.has(questionId(q)))
     if (!candidates.length) return []
   }
 
-  const now = Date.now()
-  const seenAtFor = (q) => {
-    const seenById = getDomainSeenMap(exposureStore, q.domainId)
-    return seenById[questionId(q)]
-  }
-
-  const unseen = []
-  const stale = []
-  const recentMissRetry = []
-  const recent = []
-  for (const q of candidates) {
-    const tier = pickExposureTier(questionId(q), { seenAt: seenAtFor(q), now })
-    if (tier === EXPOSURE_TIERS.UNSEEN) unseen.push(q)
-    else if (tier === EXPOSURE_TIERS.STALE) stale.push(q)
-    else if (missRetryIds.has(questionId(q))) recentMissRetry.push(q)
-    else recent.push(q)
-  }
-
-  // Priority order: unseen → stale → miss-retry → recent (spillover only).
-  const ordered = [
-    ...shuf(unseen),
-    ...shuf(stale),
-    ...shuf(recentMissRetry),
-    ...shuf(recent),
-  ]
-  const cap = Math.max(0, Math.min(count ?? ordered.length, ordered.length))
-  return ordered.slice(0, cap)
+  const seenById = mergeSeenById(domains, exposureStore)
+  return buildExposureAwarePool({
+    candidates,
+    seenById,
+    missRetryIds,
+    count: count ?? candidates.length,
+    shuffle,
+  })
 }
 
 /** Exam-ish timing for Domain sim: 2 minutes per question. */

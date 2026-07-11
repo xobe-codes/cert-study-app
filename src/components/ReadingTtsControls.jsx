@@ -4,8 +4,8 @@ import { STORAGE_KEYS } from '../storageKeys.js'
 import { isTtsSupported, speak, stopSpeaking } from '../lib/browserTts.js'
 
 /** One-shot listen control for a lesson section. */
-export function SectionListenButton({ speechText, label = 'Listen' }) {
-  const canSpeak = Boolean(String(speechText || '').trim())
+export function SectionListenButton({ speechText, label = 'Listen', onListen }) {
+  const canSpeak = Boolean(String(speechText || '').trim()) || typeof onListen === 'function'
   if (!isTtsSupported() || !canSpeak) return null
 
   return (
@@ -14,6 +14,10 @@ export function SectionListenButton({ speechText, label = 'Listen' }) {
       aria-label={`${label} to this section`}
       onClick={(e) => {
         e.stopPropagation()
+        if (typeof onListen === 'function') {
+          onListen()
+          return
+        }
         stopSpeaking()
         speak(speechText, { rate: 0.95 })
       }}

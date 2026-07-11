@@ -2,6 +2,7 @@ export const READING_TIER_KEYS = {
   beginner: 'beginner',
   intermediate: 'intermediate',
   examReady: 'examReady',
+  unified: 'unified',
 }
 
 export const READING_TIERS = [
@@ -10,17 +11,18 @@ export const READING_TIERS = [
   { key: READING_TIER_KEYS.examReady, label: 'Exam-ready' },
 ]
 
-const VALID_KEYS = new Set(READING_TIERS.map(t => t.key))
+const VALID_KEYS = new Set([...READING_TIERS.map(t => t.key), READING_TIER_KEYS.unified])
 
 /** Default depth from test-out / pre-assessment signals (no manual override). */
 export function computeDefaultReadingTier(entry = {}) {
+  if (entry.readingTier === READING_TIER_KEYS.unified) return READING_TIER_KEYS.unified
   if (entry.testedOut) return READING_TIER_KEYS.examReady
   if (typeof entry.preAssessPct === 'number') {
     if (entry.preAssessPct >= 0.85) return READING_TIER_KEYS.intermediate
     if (entry.preAssessPct >= 0.6) return READING_TIER_KEYS.intermediate
     return READING_TIER_KEYS.beginner
   }
-  return READING_TIER_KEYS.intermediate
+  return READING_TIER_KEYS.unified
 }
 
 /** Resolved tier: saved preference when valid, otherwise computed default. */

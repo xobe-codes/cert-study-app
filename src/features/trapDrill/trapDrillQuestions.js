@@ -1,6 +1,7 @@
 /** Curated trap-drill MC — 3 questions per top trap CKU (180 total). */
 
 import { TRAP_DRILL_LABEL_ALIASES } from './trapDrillLabelAliases.js'
+import { DOMAINS } from '../../data/ccnaDomains.js'
 
 export const TRAP_DRILL_CKUS = [
   {
@@ -2138,9 +2139,20 @@ export function resolveTrapDrillCku({ trapLabel, ckuId } = {}) {
   }) || null
 }
 
-/** Trap CKUs scoped to one CCNA exam domain (1–6). */
-export function getTrapDrillCkusForDomain(domainId) {
+/** Trap CKUs scoped to one CCNA exam domain (1–6 or slug like "access"). */
+export function resolveTrapDomainNumber(domainId) {
   const d = String(domainId || '')
+  if (!d) return ''
+  if (/^[1-6]$/.test(d)) return d
+  const fromSlug = DOMAINS.findIndex(x => x.id === d)
+  if (fromSlug >= 0) return String(fromSlug + 1)
+  const prefix = d.split('.')[0]
+  if (/^[1-6]$/.test(prefix)) return prefix
+  return d
+}
+
+export function getTrapDrillCkusForDomain(domainId) {
+  const d = resolveTrapDomainNumber(domainId)
   if (!d) return []
   return TRAP_DRILL_CKUS.filter(c => String(c.objectiveId).startsWith(`${d}.`))
 }
