@@ -12,6 +12,7 @@ import StemReplayCTA from '../stemReplay/StemReplayCTA.jsx'
 import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import { QuizQuestionStem, CliModeBanner } from '../../components/QuizQuestionChrome.jsx'
 import { handoffStudyFromWeakSignal } from '../study/batchHandoff.js'
+import { MISSED_RETEST_PROVE_UNLOCK_MAX } from './missedRetestPool.js'
 
 function normalizeQuestionText(q) {
   return (q || '').trim().toLowerCase().replace(/\s+/g, ' ')
@@ -25,6 +26,7 @@ export default function MissedReview({
   onOpenTrapDrill,
   onOpenLab,
   onSelectObjective,
+  onStartRetest,
   placementRecords = {},
   progress = {},
 }) {
@@ -58,6 +60,41 @@ export default function MissedReview({
         onBack={onBack}
         subtitle={`${bank.length} question${bank.length === 1 ? '' : 's'} saved for review.`}
       />
+      {onStartRetest && (
+        <div style={{ ...styles.card, marginBottom: 14, padding: 12 }}>
+          <div style={{ ...styles.small, fontWeight: 700, marginBottom: 8 }}>Retest{trapFilter ? ` — ${trapFilter}` : ''}</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            <button
+              type="button"
+              style={{ ...styles.primaryBtn, flex: '1 1 auto', marginBottom: 0 }}
+              onClick={() => onStartRetest('clear', trapFilter)}
+            >
+              Clear queue →
+            </button>
+            <button
+              type="button"
+              style={{
+                ...styles.secondaryBtn,
+                flex: '1 1 auto',
+                marginBottom: 0,
+                opacity: bank.length > MISSED_RETEST_PROVE_UNLOCK_MAX ? 0.55 : 1,
+              }}
+              disabled={bank.length > MISSED_RETEST_PROVE_UNLOCK_MAX}
+              title={bank.length > MISSED_RETEST_PROVE_UNLOCK_MAX
+                ? `Unlocks once your missed bank is ${MISSED_RETEST_PROVE_UNLOCK_MAX} or fewer (currently ${bank.length})`
+                : undefined}
+              onClick={() => onStartRetest('prove', trapFilter)}
+            >
+              Prove it →
+            </button>
+          </div>
+          {bank.length > MISSED_RETEST_PROVE_UNLOCK_MAX && (
+            <div style={{ ...styles.small, marginTop: 8, color: COLORS.silverMid }}>
+              Prove it unlocks at {MISSED_RETEST_PROVE_UNLOCK_MAX} or fewer missed — clear the queue a few times to get there.
+            </div>
+          )}
+        </div>
+      )}
       {trapGroups.length > 1 && (
         <div style={{ ...styles.card, marginBottom: 14, padding: 12 }}>
           <div style={{ ...styles.small, fontWeight: 700, marginBottom: 8 }}>Trap patterns ({trapGroups.length})</div>

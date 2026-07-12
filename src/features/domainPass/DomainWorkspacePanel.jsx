@@ -9,11 +9,7 @@ import {
   getDomainSeenMap,
   getExposureStats,
 } from './domainQuestionExposure.js'
-import {
-  formatBankCoverageMeter,
-  countNewThisWeek,
-} from './buildExposureAwarePool.js'
-import { buildDomainStudyHealth, formatStudyHealthStrip } from './domainStudyHealth.js'
+import { buildDomainStudyHealth } from './domainStudyHealth.js'
 import { collectDomainQuestionIds } from './buildDomainPassPool.js'
 import { buildDomainLessonsRail, pickContinueLesson } from './domainLessonsRail.js'
 import { buildDomainActionPlan } from './domainBaselineActionPlan.js'
@@ -68,8 +64,7 @@ export default function DomainWorkspacePanel({
   onOpenTermsHub,
   practiceDomain,
 }) {
-  const [coverageLine, setCoverageLine] = useState(null)
-  const [healthLine, setHealthLine] = useState(null)
+  const [health, setHealth] = useState(null)
   const [unseenCount, setUnseenCount] = useState(0)
   const [ownership, setOwnership] = useState({})
   const [fluencyStore, setFluencyStore] = useState(null)
@@ -150,6 +145,8 @@ export default function DomainWorkspacePanel({
     [domain, baselineSummary, missed, progress, rankedTraps, ownership, fluencyStore],
   )
 
+  const targetObjectiveId = batch.objectiveIds[0] || continueLesson?.id
+
   const hasBaseline = !!(baselineSummary && baselineSummary.domainStatus !== 'not_started')
 
   const activeBeat = useMemo(() => {
@@ -197,21 +194,14 @@ export default function DomainWorkspacePanel({
         const stats = getExposureStats(domain.id, ids, seenById)
         if (cancelled) return
         setUnseenCount(stats.unseen.length)
-        setCoverageLine(formatBankCoverageMeter({
-          bankCount: ids.length,
-          seenCount: stats.seenCount,
-          newThisWeek: countNewThisWeek(seenById),
-        }))
-        const health = buildDomainStudyHealth({
+        setHealth(buildDomainStudyHealth({
           domainId: domain.id,
           allQuestionIds: ids,
           exposureStore: store,
-        })
-        setHealthLine(formatStudyHealthStrip(health))
+        }))
       } catch {
         if (!cancelled) {
-          setCoverageLine(null)
-          setHealthLine(null)
+          setHealth(null)
           setUnseenCount(0)
         }
       }
@@ -260,16 +250,17 @@ export default function DomainWorkspacePanel({
         Now
       </div>
       {batch.objectiveIds.length > 0 && (
-        <div style={{ ...homeBodySm, marginBottom: 6, color: COLORS.sky }}>{batch.label}</div>
+        <div style={{ ...homeBodySm, marginBottom: 6, color: COLORS.sky }}>
+          {`Next: ${batch.objectiveIds.join(', ')}`}
+        </div>
       )}
-      {readinessLine && (
-        <div style={{ ...homeBodySm, marginBottom: 4, color: COLORS.silverMid }}>{readinessLine}</div>
-      )}
-      {coverageLine && (
-        <div style={{ ...homeBodySm, marginBottom: 4, color: COLORS.mint }}>{coverageLine}</div>
-      )}
-      {healthLine && (
-        <div style={{ ...homeBodySm, marginBottom: 8, color: COLORS.silverMid }}>{healthLine}</div>
+      {(health || readinessLine) && (
+        <div style={{ ...homeBodySm, marginBottom: 8, color: COLORS.silverMid }}>
+          {[
+            health ? `${health.coveragePct}% of the bank seen (${health.seenCount}/${health.bankCount})` : null,
+            readinessLine || null,
+          ].filter(Boolean).join(' · ')}
+        </div>
       )}
 
       <button
@@ -342,10 +333,10 @@ export default function DomainWorkspacePanel({
               }}
               onClick={() => onOpenTermsHub({
                 domainId: domain.id,
-                objectiveId: batch.objectiveIds[0] || continueLesson?.id,
+                objectiveId: targetObjectiveId,
               })}
             >
-              Terms
+              {targetObjectiveId ? `Terms · ${targetObjectiveId}` : 'Terms'}
             </button>
           )}
           {onOpenCommandHub && (
@@ -363,10 +354,10 @@ export default function DomainWorkspacePanel({
               onClick={() => onOpenCommandHub({
                 domainId: domain.id,
                 tab: 'commands',
-                objectiveId: batch.objectiveIds[0] || continueLesson?.id,
+                objectiveId: targetObjectiveId,
               })}
             >
-              Commands
+              {targetObjectiveId ? `Commands · ${targetObjectiveId}` : 'Commands'}
             </button>
           )}
           {onOpenLabs && (
@@ -383,10 +374,10 @@ export default function DomainWorkspacePanel({
               }}
               onClick={() => onOpenLabs({
                 domainId: domain.id,
-                objectiveId: batch.objectiveIds[0] || continueLesson?.id,
+                objectiveId: targetObjectiveId,
               })}
             >
-              Lab
+              {targetObjectiveId ? `Lab · ${targetObjectiveId}` : 'Lab'}
             </button>
           )}
         </div>
@@ -439,7 +430,7 @@ export default function DomainWorkspacePanel({
                 style={{ ...modeBtn, marginBottom: 0, flex: '1 1 80px' }}
                 onClick={() => openProve5(row.objective.id)}
               >
-                5Q prove
+                Quick check (5Q)
               </button>
               {row.hasLab && onOpenLabs && (
                 <button
@@ -460,6 +451,9 @@ export default function DomainWorkspacePanel({
         <>
           <div style={{ ...homeBodySm, fontWeight: 700, margin: '4px 0 6px', color: COLORS.silverMid, letterSpacing: 0.3 }}>
             Traps {batch.openTrapCount > 0 ? `(${batch.openTrapCount} open)` : ''}
+          </div>
+          <div style={{ ...homeBodySm, marginBottom: 6, color: COLORS.silverMid }}>
+            Own = you've got this, stop surfacing it as a priority.
           </div>
           {rankedTraps.slice(0, 3).map(t => (
             <div
@@ -512,6 +506,11 @@ export default function DomainWorkspacePanel({
 
       {showMore && (
         <div style={{ marginTop: 4 }}>
+          {(onOpenDomainPass) && (
+            <div style={{ ...homeBodySm, fontWeight: 700, margin: '8px 0 6px', color: COLORS.silverMid, letterSpacing: 0.3 }}>
+              Prove mastery
+            </div>
+          )}
           {onOpenDomainPass && (
             <button
               type="button"
@@ -538,11 +537,47 @@ export default function DomainWorkspacePanel({
               Pass Focus flood · {batch.objectiveIds.join(', ')}
             </button>
           )}
+
+          {(onOpenMockExam || onOpenTrapDrill) && (
+            <div style={{ ...homeBodySm, fontWeight: 700, margin: '8px 0 6px', color: COLORS.silverMid, letterSpacing: 0.3 }}>
+              Fix weak spots
+            </div>
+          )}
+          {onOpenMockExam && domainMissCount > 0 && (
+            <button
+              type="button"
+              className="ccna-hover"
+              style={{
+                ...modeBtn,
+                borderColor: COLORS.roseBorder,
+                background: COLORS.roseDim,
+                color: COLORS.rose,
+                fontWeight: 700,
+              }}
+              onClick={() => onOpenMockExam({ domainId: domain.id, mode: 'bankburn', missOnly: true })}
+            >
+              Fix misses ({domainMissCount}) →
+            </button>
+          )}
           {onOpenTrapDrill && (
             <button type="button" className="ccna-hover" style={modeBtn} onClick={() => onOpenTrapDrill({ domainId: domain.id })}>
               Trap Drill (domain)
             </button>
           )}
+          {onOpenMockExam && (
+            <button
+              type="button"
+              className="ccna-hover"
+              style={modeBtn}
+              onClick={() => onOpenMockExam({ domainId: domain.id, mode: 'bankburn' })}
+            >
+              Burn bank in Mock →
+            </button>
+          )}
+
+          <div style={{ ...homeBodySm, fontWeight: 700, margin: '8px 0 6px', color: COLORS.silverMid, letterSpacing: 0.3 }}>
+            Reference
+          </div>
           {onOpenTermsHub && (
             <button type="button" className="ccna-hover" style={modeBtn} onClick={() => onOpenTermsHub({ domainId: domain.id })}>
               Terms Hub
@@ -561,32 +596,6 @@ export default function DomainWorkspacePanel({
           <button type="button" className="ccna-hover" style={modeBtn} onClick={practiceDomain}>
             Practice domain
           </button>
-          {onOpenMockExam && (
-            <button
-              type="button"
-              className="ccna-hover"
-              style={modeBtn}
-              onClick={() => onOpenMockExam({ domainId: domain.id, mode: 'bankburn' })}
-            >
-              Burn bank in Mock →
-            </button>
-          )}
-          {onOpenMockExam && domainMissCount > 0 && (
-            <button
-              type="button"
-              className="ccna-hover"
-              style={{
-                ...modeBtn,
-                borderColor: COLORS.roseBorder,
-                background: COLORS.roseDim,
-                color: COLORS.rose,
-                fontWeight: 700,
-              }}
-              onClick={() => onOpenMockExam({ domainId: domain.id, mode: 'bankburn', missOnly: true })}
-            >
-              Fix misses ({domainMissCount}) →
-            </button>
-          )}
           {onOpenLabs && studyMeta.labCount > 0 && (
             <button type="button" className="ccna-hover" style={{ ...modeBtn, marginBottom: 0 }} onClick={() => onOpenLabs({ domainId: domain.id })}>
               Domain labs ({studyMeta.labCount})

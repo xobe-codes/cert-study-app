@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react'
 import { hasCuratedReading, hasCuratedQuestions } from '../../data/ccnaCurated.js'
 import { DOMAINS, ALL_OBJECTIVES } from '../../data/ccnaDomains.js'
+import { searchLibrary, kindLabel } from '../../library/libraryIndex.js'
 import { COLORS, styles } from '../../ui/appTheme.js'
 import { MODAL_Z } from '../../ui/modalConstants.js'
 import { useFocusTrap } from '../../ui/useFocusTrap.js'
@@ -25,7 +26,7 @@ export default function GlobalSearchModal({ progress, onSelectObjective, onClose
   }, [onClose])
 
   const results = useMemo(() => {
-    const q = query.trim().toLowerCase()
+    const q = query.trim()
     if (!q) {
       const recent = ALL_OBJECTIVES
         .map(o => ({ o, last: progress[o.id]?.lastSeen || 0 }))
@@ -35,21 +36,30 @@ export default function GlobalSearchModal({ progress, onSelectObjective, onClose
         .map(x => x.o)
       const seen = new Set(recent.map(o => o.id))
       const fill = ALL_OBJECTIVES.filter(o => !seen.has(o.id)).slice(0, Math.max(0, 12 - recent.length))
-      return [...recent, ...fill]
+      // Wrap bare objectives into the same hit shape searchLibrary hits use, so the
+      // result rows below have one rendering/click path regardless of query state.
+      return [...recent, ...fill].map(o => ({
+        id: `objective:${o.id}`,
+        kind: 'objective',
+        title: `${o.id} — ${o.title}`,
+        objectiveIds: [o.id],
+        nav: { view: 'objective', objectiveId: o.id, tab: 'Study' },
+      }))
     }
-    return ALL_OBJECTIVES.filter(o =>
-      o.id.toLowerCase().includes(q) || o.title.toLowerCase().includes(q)
-    ).slice(0, 15)
+    return searchLibrary(q, { limit: 15 }).hits
   }, [query, progress])
 
-  function pick(obj) {
+  function pick(hit) {
+    const oid = hit.nav?.objectiveId || hit.objectiveIds?.[0]
+    const obj = ALL_OBJECTIVES.find(o => o.id === oid)
+    if (!obj) { onClose(); return }
     const domain = DOMAINS.find(d => d.objectives.some(o => o.id === obj.id))
     onSelectObjective({
       ...obj,
       domainId: domain?.id,
       domainName: domain?.name,
       accent: domain?.accent,
-      __initialTab: 'Study',
+      __initialTab: hit.nav?.tab || 'Study',
     })
     onClose()
   }
@@ -77,35 +87,41 @@ export default function GlobalSearchModal({ progress, onSelectObjective, onClose
             enterKeyHint="search"
             value={query}
             onChange={e => setQuery(e.target.value)}
-            placeholder="Search objectives — e.g. 'OSPF' or '3.4'"
+            placeholder="Search terms, commands, objectives — e.g. 'OSPF' or 'show ip route'"
             style={{ flex: 1, background: 'none', border: 'none', outline: 'none', fontSize: 'var(--ccna-type-md)', color: COLORS.silver, fontFamily: 'inherit' }}
           />
           <button type="button" onClick={onClose} aria-label="Close search" style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-sm)', cursor: 'pointer', minWidth: 44, minHeight: 44, padding: '4px 8px' }}>✕</button>
         </div>
         <div className="global-search-results">
-          {results.map(o => {
-            const status = progress[o.id]?.status || 'unseen'
-            const domain = DOMAINS.find(d => d.objectives.some(x => x.id === o.id))
+          {results.map(hit => {
+            const oid = hit.objectiveIds?.[0]
+            const isObjective = hit.kind === 'objective'
+            const status = isObjective ? (progress[oid]?.status || 'unseen') : null
+            const domain = oid ? DOMAINS.find(d => d.objectives.some(x => x.id === oid)) : null
+            const title = isObjective && oid && hit.title.startsWith(`${oid} — `)
+              ? hit.title.slice(oid.length + 3)
+              : hit.title
             return (
               <button
-                key={o.id}
-                onClick={() => pick(o)}
+                key={hit.id}
+                onClick={() => pick(hit)}
                 style={{ display: 'flex', alignItems: 'center', gap: 10, width: '100%', minWidth: 0, padding: '12px 16px', background: 'none', border: 'none', borderBottom: `1px solid ${COLORS.border}`, color: COLORS.silver, cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}
               >
-                <StatusDot status={status} />
-                <span style={{ ...styles.pill(domain?.accent || 'purple'), fontSize: 'var(--ccna-type-micro)', flexShrink: 0 }}>{o.id}</span>
-                <OverflowMarquee text={o.title} style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.4 }} />
-                {(hasCuratedReading(o.id) || hasCuratedQuestions(o.id)) && (
-                  <CuratedStaticBadge objectiveId={o.id} fontSize={8} />
+                {isObjective && <StatusDot status={status} />}
+                {oid && <span style={{ ...styles.pill(domain?.accent || 'purple'), fontSize: 'var(--ccna-type-micro)', flexShrink: 0 }}>{oid}</span>}
+                <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)', flexShrink: 0 }}>{kindLabel(hit.kind)}</span>
+                <OverflowMarquee text={title} style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.4 }} />
+                {oid && (hasCuratedReading(oid) || hasCuratedQuestions(oid)) && (
+                  <CuratedStaticBadge objectiveId={oid} fontSize={8} />
                 )}
               </button>
             )
           })}
           {results.length === 0 && (
-            <div style={{ padding: 20, textAlign: 'center', color: COLORS.silverMid, fontSize: 'var(--ccna-type-sm)' }}>No objectives match "{query}"</div>
+            <div style={{ padding: 20, textAlign: 'center', color: COLORS.silverMid, fontSize: 'var(--ccna-type-sm)' }}>No results match "{query}"</div>
           )}
         </div>
-        {!query && <div style={{ padding: '8px 16px', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverDim, borderTop: `1px solid ${COLORS.border}` }}>Recent objectives first · type to search all {ALL_OBJECTIVES.length}</div>}
+        {!query && <div style={{ padding: '8px 16px', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverDim, borderTop: `1px solid ${COLORS.border}` }}>Recent objectives first · type to search terms, commands & objectives</div>}
       </div>
     </div>
   )

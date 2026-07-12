@@ -45,6 +45,14 @@ export function getMasteryChecklist(entry) {
   if (entry?.commandSprintCompleted) {
     rows.push({ id: 'sprint', label: 'Command sprint', met: true, detail: '✓' })
   }
+  // Confidence gate is invisible without this row — surface it only once there's activity to rate.
+  if (scores.length > 0) {
+    const ratings = entry?.confidenceRatings || []
+    const conf = ratings.length
+      ? ratings.reduce((s, r) => s + (RATING_CONFIDENCE[r] ?? 0.6), 0) / ratings.length
+      : 0.6
+    rows.push({ id: 'confidence', label: 'Rate answers confidently', met: conf >= 0.5, detail: ratings.length ? `${Math.round(conf * 100)}%` : '—' })
+  }
   rows.push({ id: 'mastered', label: 'Topic mastered', met: mastered, detail: mastered ? '✓' : '—' })
   return rows
 }

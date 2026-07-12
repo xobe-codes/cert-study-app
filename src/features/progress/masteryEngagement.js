@@ -16,6 +16,7 @@ export const ENGAGEMENT_KINDS = {
   FOCUS: 'focus',
   TOPIC_FOCUS: 'topic_focus',
   TERMS: 'terms',
+  MISSED_RETEST: 'missed_retest',
 }
 
 export const ENGAGEMENT_KIND_LABELS = {
@@ -32,6 +33,7 @@ export const ENGAGEMENT_KIND_LABELS = {
   [ENGAGEMENT_KINDS.FOCUS]: 'Weak areas',
   [ENGAGEMENT_KINDS.TOPIC_FOCUS]: 'Topic focus',
   [ENGAGEMENT_KINDS.TERMS]: 'Terms Hub',
+  [ENGAGEMENT_KINDS.MISSED_RETEST]: 'Missed retest',
 }
 
 const MAX_ENGAGEMENT = 40
