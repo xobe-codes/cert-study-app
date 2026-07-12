@@ -2,6 +2,7 @@ import React from 'react'
 import { COLORS, styles } from '../../ui/appTheme.js'
 import { getStemReplayLab } from '../stemReplay/stemReplayLabs.js'
 import { resolveTrapDrillCku } from '../trapDrill/trapDrillQuestions.js'
+import { handoffStudyFromWeakSignal, handoffPassFocusBatch } from '../study/batchHandoff.js'
 
 function replayPriority(objectiveId) {
   if (!objectiveId) return 3
@@ -14,16 +15,35 @@ function trapObjectiveId(trap) {
   return trap?.objectiveIds?.[0] || null
 }
 
+function openStudy(objectiveId, {
+  missed,
+  placementRecords,
+  progress,
+  onSelectObjective,
+}) {
+  if (!objectiveId || !onSelectObjective) return
+  handoffStudyFromWeakSignal(objectiveId, {
+    missed,
+    placementRecords,
+    progress,
+    onSelectObjective,
+  })
+}
+
 /** Post-mock CTAs — weak domains, trap drill, stem-replay lab, and objective deep-links. */
 export default function MockExamDebriefActions({
   report,
   questions,
   responses,
   domains,
+  missed = [],
+  placementRecords = {},
+  progress = {},
   onOpenTrapDrill,
   onOpenLab,
   onStudyDomain,
   onSelectObjective,
+  onOpenDomainPass,
 }) {
   if (!report) return null
 
@@ -99,6 +119,8 @@ export default function MockExamDebriefActions({
     padding: '8px 10px',
   }
 
+  const studyCtx = { missed, placementRecords, progress, onSelectObjective }
+
   return (
     <div className="ccna-mock-debrief" style={{ ...styles.card, marginBottom: 8, border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim }}>
       <h2 className="ccna-mock-debrief__title" style={{ ...styles.h2, color: COLORS.sky, marginBottom: 4 }}>Next steps</h2>
@@ -124,7 +146,7 @@ export default function MockExamDebriefActions({
                   </div>
                   <div className="ccna-mock-debrief__actions" style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 6 }}>
                     {oid && onSelectObjective && (
-                      <button type="button" style={{ ...btnCompact, width: 'auto', flex: '1 1 140px' }} onClick={() => onSelectObjective(oid)}>
+                      <button type="button" style={{ ...btnCompact, width: 'auto', flex: '1 1 140px' }} onClick={() => openStudy(oid, studyCtx)}>
                         Study {oid} →
                       </button>
                     )}
@@ -148,14 +170,36 @@ export default function MockExamDebriefActions({
       <div className="ccna-mock-debrief__actions" style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
         {weakDomains.map(d => (
           <div key={d.id} className="ccna-mock-debrief__domain" style={{ display: 'flex', flexDirection: 'column', gap: 4, marginBottom: 4 }}>
-            <button type="button" style={btnCompact} onClick={() => onStudyDomain?.(d.id)}>
+            <button
+              type="button"
+              style={btnCompact}
+              onClick={() => {
+                const oid = weakestObjectiveInDomain(d.id)
+                if (oid && onSelectObjective) openStudy(oid, studyCtx)
+                else onStudyDomain?.(d.id)
+              }}
+            >
               Study {d.name} — {d.correct}/{d.total} ({d.pct}%)
             </button>
+            {onOpenDomainPass && (
+              <button
+                type="button"
+                style={{ ...btnCompact, borderColor: COLORS.purpleBorder, color: COLORS.purple }}
+                onClick={() => handoffPassFocusBatch(d.id, {
+                  missed,
+                  placementRecords,
+                  progress,
+                  onOpenDomainPass,
+                })}
+              >
+                Pass Focus · {d.name} →
+              </button>
+            )}
             {onSelectObjective && (() => {
               const oid = weakestObjectiveInDomain(d.id)
               if (!oid) return null
               return (
-                <button type="button" style={btnCompact} onClick={() => onSelectObjective(oid)}>
+                <button type="button" style={btnCompact} onClick={() => openStudy(oid, studyCtx)}>
                   Weakest topic {oid} →
                 </button>
               )

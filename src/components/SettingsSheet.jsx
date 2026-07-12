@@ -4,6 +4,7 @@ import { MIN_QUIZ_SESSION_SIZE, MAX_QUIZ_SESSION_SIZE, commitSessionSizeDraft, s
 import { KEYBOARD_SHORTCUTS } from '../ui/keyboardShortcuts.js'
 import { PremiumSettingsCard } from './PremiumPreview.jsx'
 import ContentHealthSettings from './ContentHealthSettings.jsx'
+import DevSettingsPanel from './DevSettingsPanel.jsx'
 import { STORAGE_KEYS } from '../storageKeys.js'
 
 const MODAL_Z = 300
@@ -56,6 +57,7 @@ const SECTION_LINKS = [
   { id: 'settings-ai', label: 'AI' },
   { id: 'settings-content-health', label: 'Health' },
   { id: 'settings-data', label: 'Data' },
+  { id: 'settings-dev', label: 'Dev' },
   { id: 'settings-about', label: 'About' },
 ]
 
@@ -330,6 +332,8 @@ export default function SettingsSheet({
           {resetStep ? 'Tap again to confirm — erase all progress' : 'Reset all study progress…'}
         </button>
         </div>
+
+        <DevSettingsPanel onMessage={setMsg} />
 
         <SectionLabel>KEYBOARD</SectionLabel>
         <ul style={{ margin: '0 0 16px', paddingLeft: 18, fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.6 }}>

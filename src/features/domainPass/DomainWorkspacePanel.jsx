@@ -30,6 +30,7 @@ import {
   suggestFollowingBeat,
   runWeakBatchBeat,
 } from './weakBatch.js'
+import { loadAnswerFluency } from '../study/answerFluency.js'
 import { homeBodySm } from '../../home/homeUi.js'
 
 function getMc(oid) {
@@ -71,8 +72,17 @@ export default function DomainWorkspacePanel({
   const [healthLine, setHealthLine] = useState(null)
   const [unseenCount, setUnseenCount] = useState(0)
   const [ownership, setOwnership] = useState({})
+  const [fluencyStore, setFluencyStore] = useState(null)
   const [beatStep, setBeatStep] = useState('review')
   const [showMore, setShowMore] = useState(false)
+
+  useEffect(() => {
+    let cancelled = false
+    loadAnswerFluency().then(store => {
+      if (!cancelled) setFluencyStore(store)
+    }).catch(() => {})
+    return () => { cancelled = true }
+  }, [domain.id])
 
   const domainMissCount = useMemo(() => {
     const ids = new Set((domain.objectives || []).map(o => o.id))
@@ -135,8 +145,9 @@ export default function DomainWorkspacePanel({
       progress,
       rankedTraps,
       ownership,
+      fluencyStore,
     }),
-    [domain, baselineSummary, missed, progress, rankedTraps, ownership],
+    [domain, baselineSummary, missed, progress, rankedTraps, ownership, fluencyStore],
   )
 
   const hasBaseline = !!(baselineSummary && baselineSummary.domainStatus !== 'not_started')
@@ -312,6 +323,72 @@ export default function DomainWorkspacePanel({
               </button>
             )
           })}
+        </div>
+      )}
+
+      {(onOpenTermsHub || onOpenCommandHub || onOpenLabs) && (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 4 }}>
+          {onOpenTermsHub && (
+            <button
+              type="button"
+              className="ccna-hover"
+              style={{
+                ...styles.secondaryBtn,
+                width: 'auto',
+                minHeight: 32,
+                padding: '4px 10px',
+                fontSize: 'var(--ccna-type-micro)',
+                marginBottom: 0,
+              }}
+              onClick={() => onOpenTermsHub({
+                domainId: domain.id,
+                objectiveId: batch.objectiveIds[0] || continueLesson?.id,
+              })}
+            >
+              Terms
+            </button>
+          )}
+          {onOpenCommandHub && (
+            <button
+              type="button"
+              className="ccna-hover"
+              style={{
+                ...styles.secondaryBtn,
+                width: 'auto',
+                minHeight: 32,
+                padding: '4px 10px',
+                fontSize: 'var(--ccna-type-micro)',
+                marginBottom: 0,
+              }}
+              onClick={() => onOpenCommandHub({
+                domainId: domain.id,
+                tab: 'commands',
+                objectiveId: batch.objectiveIds[0] || continueLesson?.id,
+              })}
+            >
+              Commands
+            </button>
+          )}
+          {onOpenLabs && (
+            <button
+              type="button"
+              className="ccna-hover"
+              style={{
+                ...styles.secondaryBtn,
+                width: 'auto',
+                minHeight: 32,
+                padding: '4px 10px',
+                fontSize: 'var(--ccna-type-micro)',
+                marginBottom: 0,
+              }}
+              onClick={() => onOpenLabs({
+                domainId: domain.id,
+                objectiveId: batch.objectiveIds[0] || continueLesson?.id,
+              })}
+            >
+              Lab
+            </button>
+          )}
         </div>
       )}
 

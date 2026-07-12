@@ -27,10 +27,12 @@ describe('MockExamDebriefActions', () => {
         onOpenLab: () => {},
         onStudyDomain: () => {},
         onSelectObjective: () => {},
+        onOpenDomainPass: () => {},
       }),
     )
     expect(html).toContain('Next steps')
     expect(html).toContain('Study Security')
+    expect(html).toContain('Pass Focus')
     expect(html).toContain('Drill trap')
     expect(html).toContain('Weakest topic')
     expect(html).toContain('Study 5.5')

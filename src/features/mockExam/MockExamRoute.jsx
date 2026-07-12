@@ -14,6 +14,7 @@ export default function MockExamRoute({
   onOpenTrapDrill,
   onSelectObjective,
   onOpenMockInterview,
+  onOpenDomainPass,
 }) {
   return (
     <Suspense fallback={<Spinner label="Loading mock exam…" />}>
@@ -28,6 +29,7 @@ export default function MockExamRoute({
         onOpenTrapDrill={onOpenTrapDrill}
         onSelectObjective={onSelectObjective}
         onOpenMockInterview={onOpenMockInterview}
+        onOpenDomainPass={onOpenDomainPass}
       />
     </Suspense>
   )

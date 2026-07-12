@@ -48,6 +48,8 @@ export const STORAGE_KEYS = {
   missClearProgress: 'ccna_miss_clear_v1',
   /** Spec 5: trapId → ownedAt ms. */
   trapOwnership: 'ccna_trap_ownership_v1',
+  /** WB-2: per-question / per-objective fluency samples. */
+  answerFluency: 'ccna_answer_fluency_v1',
 }
 
 /** CustomEvent name for dev/e2e trap-drill prefill handoff. */

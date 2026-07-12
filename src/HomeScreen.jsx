@@ -627,6 +627,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         readiness={readiness}
         domainPassRecords={domainPassRecords}
         placementRecords={placementRecords}
+        progress={progress}
         onSelectObjective={onSelectObjective}
         onOpenTrapDrill={onOpenTrapDrill}
         onOpenExamTraps={onOpenExamTraps}

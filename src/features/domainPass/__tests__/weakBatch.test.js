@@ -47,6 +47,21 @@ describe('WB-3 weakBatch', () => {
   it('formats batch label', () => {
     expect(formatBatchLabel(0, 2, ['2.1', '2.2'])).toBe('Batch 1 of 2 · 2.1, 2.2')
   })
+
+  it('demotes fluency-store fluent objectives from the batch', () => {
+    const batch = buildWeakBatch({
+      domain,
+      missed: [{ objectiveId: '2.1' }, { objectiveId: '2.2' }],
+      progress: {},
+      fluencyStore: {
+        objectives: {
+          '2.1': { fluent: 3, fragile: 0, sticky: 0, lastTag: 'fluent' },
+        },
+      },
+    })
+    expect(batch.objectiveIds).not.toContain('2.1')
+    expect(batch.objectiveIds).toContain('2.2')
+  })
 })
 
 describe('WB-0 nextBeat', () => {

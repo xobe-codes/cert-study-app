@@ -4,6 +4,7 @@
  */
 import { DOMAINS } from '../../data/ccnaDomains.js'
 import { buildStudyObjectiveHandoff } from '../../study/studyObjectiveHandoff.js'
+import { isObjectiveFluentInStore } from '../study/answerFluency.js'
 import { isTrapOwned } from './trapOwnership.js'
 
 export const WEAK_BATCH_SIZE = 3
@@ -40,6 +41,7 @@ export function buildWeakBatch({
   progress = {},
   rankedTraps = [],
   ownership = {},
+  fluencyStore = null,
   batchIndex = 0,
 } = {}) {
   const domainId = domain?.id || null
@@ -77,7 +79,7 @@ export function buildWeakBatch({
 
   const ranked = objs.map(o => {
     const entry = progress[o.id]
-    const fluent = isFluent(entry)
+    const fluent = isFluent(entry) || isObjectiveFluentInStore(fluencyStore, o.id)
     const misses = missCountByObj[o.id] || 0
     const traps = trapDebtByObj[o.id] || 0
     const baselineWeak = weakSet.has(o.id)

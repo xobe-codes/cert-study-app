@@ -65,6 +65,8 @@ import {
   quizFeedbackA11y,
   QuizCompleteCard,
 } from './quizTabChrome.jsx'
+import IdkButton from '../components/IdkButton.jsx'
+import { takeLatencyMs, recordAnswerOutcome, unknownMissExtra } from '../features/study/answerOutcome.js'
 
 export function QuizTab({
   objective, progress, missed, onMissed, onScoreSaved, nextObjective, onSelectObjective, onOpenMissed, onOpenTrapDrill, onOpenLab, onOpenSubnet, onSwitchTab,
@@ -97,6 +99,8 @@ export function QuizTab({
   const [streak, setStreak] = useState(0) // consecutive correct answers this session
   const sessionQuestionIdsRef = useRef([])
   const exposureRecordedRef = useRef(false)
+  const shownAtRef = useRef(null)
+  const [unknownMarked, setUnknownMarked] = useState(false)
 
   function collectDeferredTip(q, selectedIndex) {
     if (!examMode || !q) return
@@ -349,11 +353,20 @@ export function QuizTab({
     refreshBankSize()
   }, [objective.id, refreshBankSize])
 
+  useEffect(() => {
+    if (phase === 'active' && current) {
+      shownAtRef.current = Date.now()
+      setUnknownMarked(false)
+    }
+  }, [phase, current?.id, current?.question])
+
   function selectAnswer(idx) {
     if (revealed || !isMcQuestion(current)) return
     setSelected(idx)
     setRevealed(true)
+    setUnknownMarked(false)
     const correct = gradeQuestion(current, idx)
+    const latencyMs = takeLatencyMs(shownAtRef.current)
     haptic(correct ? 15 : [10, 40, 10])
     if (correct) bumpSessionStudy('correct')
     else bumpSessionStudy('incorrect')
@@ -375,7 +388,13 @@ export function QuizTab({
         lastRating: current.ratings?.length ? current.ratings[current.ratings.length - 1].value : null,
       })
     }
-    logEvent('user_answered_question', { objectiveId: objective.id, questionId: current.id, correct })
+    recordAnswerOutcome({
+      objectiveId: objective.id,
+      questionId: current.id,
+      correct,
+      latencyMs,
+      selectedIndex: idx,
+    }).catch(() => {})
     recordEngagement?.(objective.id, {
       kind: ENGAGEMENT_KINDS.QUIZ,
       correct: correct ? 1 : 0,
@@ -404,6 +423,41 @@ export function QuizTab({
         missedOnce.current.add(qKey)
         setQueue(q => [...q, current])
       }
+    }
+  }
+
+  function markUnknown() {
+    if (revealed || !isMcQuestion(current)) return
+    setSelected(null)
+    setRevealed(true)
+    setUnknownMarked(true)
+    const latencyMs = takeLatencyMs(shownAtRef.current)
+    bumpSessionStudy('incorrect')
+    haptic([10, 40, 10])
+    setStats(s => ({ correct: s.correct, total: s.total + 1, missedCount: s.missedCount + 1 }))
+    setStreak(0)
+    if (current.id) recordQuizResult(objective.id, current.id, { correct: false, schedule: !!progress?.[objective.id]?.reviewEligible })
+    recordAnswerOutcome({
+      objectiveId: objective.id,
+      questionId: current.id,
+      correct: false,
+      unknown: true,
+      latencyMs,
+    }).catch(() => {})
+    recordEngagement?.(objective.id, {
+      kind: ENGAGEMENT_KINDS.QUIZ,
+      correct: 0,
+      total: 1,
+      questionId: current.id,
+    })
+    onMissed(buildMissedEntry(objective.id, current, unknownMissExtra(null)))
+    recordMissClearAttempt(current.id, { correct: false }).catch(() => {})
+    const qKey = current.id || current.question
+    if (missedOnce.current.has(qKey)) {
+      setQueue(q => [q[0], current, ...q.slice(1)].filter(Boolean))
+    } else {
+      missedOnce.current.add(qKey)
+      setQueue(q => [...q, current])
     }
   }
 
@@ -437,6 +491,13 @@ export function QuizTab({
       })
     }
     logEvent('user_answered_question', { objectiveId: objective.id, questionId: current.id, correct })
+    recordAnswerOutcome({
+      objectiveId: objective.id,
+      questionId: current.id,
+      correct,
+      latencyMs: takeLatencyMs(shownAtRef.current),
+      selectedIndexes: [...selectedIndexes],
+    }).catch(() => {})
     if (!correct) {
       const firstWrong = selectedIndexes.find(i => !(current.correctIndexes || []).includes(i))
       collectDeferredTip(current, firstWrong ?? selectedIndexes[0])
@@ -537,6 +598,7 @@ export function QuizTab({
     setCurrent(queue[0])
     setQueue(q => q.slice(1))
     setSelected(null)
+    setUnknownMarked(false)
     setSelectedIndexes([])
     setRevealed(false)
     setRating(null)
@@ -719,6 +781,9 @@ export function QuizTab({
         ) : (
           <McChoices q={current} selected={selected} revealed={revealed} onSelect={selectAnswer} />
         )}
+        {!revealed && isMcQuestion(current) && !multi && !ordering && !cli && (
+          <IdkButton onClick={markUnknown} />
+        )}
         {multi && !revealed && (
           <button
             type="button"
@@ -730,9 +795,18 @@ export function QuizTab({
           </button>
         )}
         {revealed && (
-          <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `2px solid ${isCorrect ? COLORS.mintBorder : COLORS.rose}` }} {...quizFeedbackA11y}>
-            <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>
-              {isCorrect ? 'Correct' : 'Incorrect'}
+          <div className="ccna-quiz-reveal" style={{
+            marginTop: 8, padding: 12, borderRadius: 10,
+            background: isCorrect ? COLORS.mintDim : (unknownMarked ? COLORS.amberDim : COLORS.roseDim),
+            border: `2px solid ${isCorrect ? COLORS.mintBorder : (unknownMarked ? COLORS.amberBorder : COLORS.rose)}`,
+          }} {...quizFeedbackA11y}>
+            <div style={{
+              fontWeight: 700,
+              color: isCorrect ? COLORS.mint : (unknownMarked ? COLORS.amber : COLORS.rose),
+              marginBottom: 4,
+              fontSize: 'var(--ccna-type-sm)',
+            }}>
+              {isCorrect ? 'Correct' : (unknownMarked ? 'Unknown' : 'Incorrect')}
             </div>
             <AnswerReview
               q={applyAnswerReviewToQuestion(current)}

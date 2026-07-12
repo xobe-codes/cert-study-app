@@ -204,11 +204,16 @@ export default function CoreStudyRoutes({
           initialMissOnly={Boolean(mockModePrefill?.missOnly)}
           onOpenLab={(id) => openLab(id, 'mock')}
           onOpenTrapDrill={(prefill) => openTrapDrill(typeof prefill === 'string' ? { ckuId: prefill } : prefill)}
-          onSelectObjective={(id) => {
-            const obj = ALL_OBJECTIVES.find(o => o.id === id)
+          onSelectObjective={(idOrObj) => {
+            if (idOrObj && typeof idOrObj === 'object') {
+              selectObjective(idOrObj)
+              return
+            }
+            const obj = ALL_OBJECTIVES.find(o => o.id === idOrObj)
             if (obj) selectObjective(obj)
           }}
           onOpenMockInterview={() => navigateTo('mockinterview')}
+          onOpenDomainPass={openDomainPass}
         />
       </LazyRoute>
     )

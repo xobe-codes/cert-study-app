@@ -11,12 +11,23 @@ import OverflowMarquee from '../../components/OverflowMarquee.jsx'
 import StemReplayCTA from '../stemReplay/StemReplayCTA.jsx'
 import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import { QuizQuestionStem, CliModeBanner } from '../../components/QuizQuestionChrome.jsx'
+import { handoffStudyFromWeakSignal } from '../study/batchHandoff.js'
 
 function normalizeQuestionText(q) {
   return (q || '').trim().toLowerCase().replace(/\s+/g, ' ')
 }
 
-export default function MissedReview({ missed, onBack, onRemove, onOpenExamTraps, onOpenTrapDrill, onOpenLab }) {
+export default function MissedReview({
+  missed,
+  onBack,
+  onRemove,
+  onOpenExamTraps,
+  onOpenTrapDrill,
+  onOpenLab,
+  onSelectObjective,
+  placementRecords = {},
+  progress = {},
+}) {
   const bank = Array.isArray(missed) ? missed : []
   const [revealedIdx, setRevealedIdx] = useState(null)
   const [trapFilter, setTrapFilter] = useState(null)
@@ -142,6 +153,20 @@ export default function MissedReview({ missed, onBack, onRemove, onOpenExamTraps
                   )
                 })()}
                 <StemReplayCTA questionId={m.questionId} onOpenLab={onOpenLab} />
+                {onSelectObjective && m.objectiveId && (
+                  <button
+                    type="button"
+                    style={{ ...styles.primaryBtn, marginTop: 8 }}
+                    onClick={() => handoffStudyFromWeakSignal(m.objectiveId, {
+                      missed: bank,
+                      placementRecords,
+                      progress,
+                      onSelectObjective,
+                    })}
+                  >
+                    Study weak batch →
+                  </button>
+                )}
                 <button
                   style={{ ...styles.secondaryBtn, marginTop: 8 }}
                   onClick={() => {

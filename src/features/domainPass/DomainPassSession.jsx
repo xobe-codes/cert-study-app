@@ -47,6 +47,8 @@ import { useMasteryProgress } from '../progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
 import { shouldShowWildcardBridge } from '../practice/trapStreak.js'
 import { isPlacementDomain } from '../domainPlacement/placementBlueprints.js'
+import IdkButton from '../../components/IdkButton.jsx'
+import { takeLatencyMs, recordAnswerOutcome, unknownMissExtra } from '../study/answerOutcome.js'
 
 function shuffleArray(arr) {
   const a = [...arr]
@@ -95,6 +97,8 @@ export default function DomainPassSession({
   const [secondsLeft, setSecondsLeft] = useState(0)
   const [timerEnabled, setTimerEnabledState] = useState(true)
   const [resumedReport, setResumedReport] = useState(null)
+  const [unknownFlags, setUnknownFlags] = useState({})
+  const shownAtRef = useRef(null)
   const finishSaved = useRef(false)
   const prevSkippedRef = useRef([])
   const bootstrappedRef = useRef(false)
@@ -206,20 +210,60 @@ export default function DomainPassSession({
     return () => clearInterval(id)
   }, [phase, timerEnabled])
 
+  useEffect(() => {
+    if (phase === 'active' && questions[current]) {
+      shownAtRef.current = Date.now()
+    }
+  }, [phase, current, questions])
+
   function selectChoice(idx) {
     if (studyRevealed[current]) return
     const q = questions[current]
     if (!isMcQuestion(q)) return
     setResponses(r => ({ ...r, [current]: idx }))
     setStudyRevealed(r => ({ ...r, [current]: true }))
+    setUnknownFlags(f => ({ ...f, [current]: false }))
     if (q?.objectiveId) {
       const correct = gradeQuestion(q, idx)
+      const latencyMs = takeLatencyMs(shownAtRef.current)
       recordEngagement?.(q.objectiveId, {
         kind: ENGAGEMENT_KINDS.DOMAIN_PASS,
         correct: correct ? 1 : 0,
         total: 1,
       })
+      recordAnswerOutcome({
+        objectiveId: q.objectiveId,
+        questionId: q.id,
+        correct,
+        latencyMs,
+        selectedIndex: idx,
+      }).catch(() => {})
       if (!correct) appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndex: idx }))
+    }
+  }
+
+  function markUnknown() {
+    if (studyRevealed[current]) return
+    const q = questions[current]
+    if (!isMcQuestion(q)) return
+    setResponses(r => ({ ...r, [current]: null }))
+    setStudyRevealed(r => ({ ...r, [current]: true }))
+    setUnknownFlags(f => ({ ...f, [current]: true }))
+    if (q?.objectiveId) {
+      const latencyMs = takeLatencyMs(shownAtRef.current)
+      recordEngagement?.(q.objectiveId, {
+        kind: ENGAGEMENT_KINDS.DOMAIN_PASS,
+        correct: 0,
+        total: 1,
+      })
+      recordAnswerOutcome({
+        objectiveId: q.objectiveId,
+        questionId: q.id,
+        correct: false,
+        unknown: true,
+        latencyMs,
+      }).catch(() => {})
+      appendMissedEntry(buildMissedEntry(q.objectiveId, q, unknownMissExtra(null)))
     }
   }
 
@@ -249,6 +293,13 @@ export default function DomainPassSession({
         correct: correct ? 1 : 0,
         total: 1,
       })
+      recordAnswerOutcome({
+        objectiveId: q.objectiveId,
+        questionId: q.id,
+        correct,
+        latencyMs: takeLatencyMs(shownAtRef.current),
+        selectedIndexes: answer,
+      }).catch(() => {})
       if (!correct) appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndexes: answer }))
     }
   }
@@ -483,6 +534,7 @@ export default function DomainPassSession({
           questions={questions}
           responses={responses}
           domains={DOMAINS}
+          missed={missed}
           onOpenTrapDrill={onOpenTrapDrill ? (prefill) => {
             stashDebriefResume()
             onOpenTrapDrill(prefill)
@@ -492,7 +544,17 @@ export default function DomainPassSession({
             onOpenLab(labId)
           } : undefined}
           onStudyDomain={() => openWeakStudy(topWeakId)}
-          onSelectObjective={onSelectObjective ? (oid) => openWeakStudy(oid) : undefined}
+          onSelectObjective={onSelectObjective ? (handoffOrId) => {
+            const oid = typeof handoffOrId === 'object' ? handoffOrId?.id : handoffOrId
+            openWeakStudy(oid)
+          } : undefined}
+          onOpenDomainPass={onStartFocus ? (opts) => {
+            stashDebriefResume()
+            onStartFocus({
+              domainId: opts?.domainId || domainId,
+              objectiveIds: opts?.focusObjectiveIds || opts?.objectiveIds,
+            })
+          } : undefined}
         />
         {showDomainActions && (
           <div style={{ ...styles.card, marginBottom: 8, border: `1px solid ${COLORS.purpleBorder}`, background: COLORS.purpleDim }}>
@@ -641,21 +703,29 @@ export default function DomainPassSession({
           </button>
         )}
         {!isCurrentRevealed && !multi && (
-          <div style={{ ...styles.small, marginTop: 10, textAlign: 'center', color: COLORS.silverMid }}>
-            Select an answer to see instant feedback
-          </div>
+          <>
+            <IdkButton onClick={markUnknown} />
+            <div style={{ ...styles.small, marginTop: 10, textAlign: 'center', color: COLORS.silverMid }}>
+              Select an answer to see instant feedback
+            </div>
+          </>
         )}
         {isCurrentRevealed && (
           <div
             className="ccna-quiz-reveal"
             style={{
               marginTop: 10, padding: 12, borderRadius: 10,
-              background: isCurrentCorrect ? COLORS.mintDim : COLORS.roseDim,
-              border: `2px solid ${isCurrentCorrect ? COLORS.mintBorder : COLORS.rose}`,
+              background: isCurrentCorrect ? COLORS.mintDim : (unknownFlags[current] ? COLORS.amberDim : COLORS.roseDim),
+              border: `2px solid ${isCurrentCorrect ? COLORS.mintBorder : (unknownFlags[current] ? COLORS.amberBorder : COLORS.rose)}`,
             }}
           >
-            <div style={{ fontWeight: 700, color: isCurrentCorrect ? COLORS.mint : COLORS.rose, marginBottom: 6, fontSize: 'var(--ccna-type-sm)' }}>
-              {isCurrentCorrect ? '✓ Correct!' : '✗ Incorrect'}
+            <div style={{
+              fontWeight: 700,
+              color: isCurrentCorrect ? COLORS.mint : (unknownFlags[current] ? COLORS.amber : COLORS.rose),
+              marginBottom: 6,
+              fontSize: 'var(--ccna-type-sm)',
+            }}>
+              {isCurrentCorrect ? '✓ Correct!' : (unknownFlags[current] ? '○ Unknown' : '✗ Incorrect')}
             </div>
             <AnswerReview {...answerReviewSessionProps({
               q,

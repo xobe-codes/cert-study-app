@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { DOMAINS } from './data/ccnaDomains.js'
 import { getCuratedQuestions } from './data/ccnaCurated.js'
 import { preloadCleanBank } from './data/cleanQuestionAdapter.js'
-import { isChoiceQuestion, isMcQuestion, isMultiQuestion, gradeQuestion, normalizeSelectedIndexes } from './questionUtils.js'
+import { isChoiceQuestion, isMcQuestion, isMultiQuestion, gradeQuestion, normalizeSelectedIndexes, buildMissedEntry } from './questionUtils.js'
 import {
   MOCK_EXAM_QUESTION_COUNT,
   MOCK_EXAM_DURATION_MIN,
@@ -38,6 +38,9 @@ import { useMasteryProgress } from './features/progress/MasteryProgressContext.j
 import { aggregateSessionByObjective, ENGAGEMENT_KINDS } from './features/progress/masteryEngagement.js'
 import McChoices from './components/McChoices.jsx'
 import MultiChoices from './components/MultiChoices.jsx'
+import IdkButton from './components/IdkButton.jsx'
+import { takeLatencyMs, recordAnswerOutcome, unknownMissExtra } from './features/study/answerOutcome.js'
+import { appendMissedEntry } from './features/domainPass/domainPassStorage.js'
 import AnswerReview from './components/AnswerReview.jsx'
 import { answerReviewSessionProps } from './components/answerReviewSessionProps.js'
 import { McChoiceShuffleProvider } from './context/McChoiceShuffleContext.jsx'
@@ -69,7 +72,7 @@ function formatSeconds(total) {
   return `${m}:${String(s).padStart(2, '0')}`
 }
 
-export default function MockExam({ onExit, examMode = false, missed = [], initialDomainId = null, initialMode = null, initialMissOnly = false, onOpenLab, onOpenTrapDrill, onSelectObjective, onOpenMockInterview }) {
+export default function MockExam({ onExit, examMode = false, missed = [], initialDomainId = null, initialMode = null, initialMissOnly = false, onOpenLab, onOpenTrapDrill, onSelectObjective, onOpenMockInterview, onOpenDomainPass }) {
   const showNavHint = useNavHint()
   const { recordEngagement } = useMasteryProgress()
   const doneHintFired = useRef(false)
@@ -91,6 +94,8 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
   const [current, setCurrent] = useState(0)
   const [responses, setResponses] = useState({}) // qIndex -> selectedIndex | selectedIndexes[]
   const [studyRevealed, setStudyRevealed] = useState({}) // qIndex -> true once answer shown (study mode only)
+  const [unknownFlags, setUnknownFlags] = useState({})
+  const shownAtRef = useRef(null)
   const [multiDraft, setMultiDraft] = useState([])
   const [secondsLeft, setSecondsLeft] = useState(MOCK_EXAM_DURATION_MIN * 60)
   const [bankReady, setBankReady] = useState(false)
@@ -255,6 +260,10 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
     setMultiDraft(Array.isArray(responses[current]) ? responses[current] : [])
   }, [current, responses])
 
+  useEffect(() => {
+    if (phase === 'active') shownAtRef.current = Date.now()
+  }, [phase, current])
+
   function selectChoice(idx) {
     // In study mode, lock the answer once revealed — no changing after first pick
     if (isStudyMode && studyRevealed[current]) return
@@ -263,14 +272,44 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
     setResponses(r => ({ ...r, [current]: idx }))
     if (isStudyMode) {
       setStudyRevealed(r => ({ ...r, [current]: true }))
+      setUnknownFlags(f => ({ ...f, [current]: false }))
       if (q?.objectiveId) {
         const correct = gradeQuestion(q, idx)
+        const latencyMs = takeLatencyMs(shownAtRef.current)
         recordEngagement?.(q.objectiveId, {
           kind: ENGAGEMENT_KINDS.MOCK,
           correct: correct ? 1 : 0,
           total: 1,
         })
+        recordAnswerOutcome({
+          objectiveId: q.objectiveId,
+          questionId: q.id,
+          correct,
+          latencyMs,
+          selectedIndex: idx,
+        }).catch(() => {})
+        if (!correct) appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndex: idx }))
       }
+    }
+  }
+
+  function markUnknown() {
+    if (!isStudyMode || studyRevealed[current]) return
+    const q = questions[current]
+    if (!isMcQuestion(q)) return
+    setResponses(r => ({ ...r, [current]: null }))
+    setStudyRevealed(r => ({ ...r, [current]: true }))
+    setUnknownFlags(f => ({ ...f, [current]: true }))
+    if (q?.objectiveId) {
+      recordEngagement?.(q.objectiveId, { kind: ENGAGEMENT_KINDS.MOCK, correct: 0, total: 1 })
+      recordAnswerOutcome({
+        objectiveId: q.objectiveId,
+        questionId: q.id,
+        correct: false,
+        unknown: true,
+        latencyMs: takeLatencyMs(shownAtRef.current),
+      }).catch(() => {})
+      appendMissedEntry(buildMissedEntry(q.objectiveId, q, unknownMissExtra(null)))
     }
   }
 
@@ -303,6 +342,14 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
           correct: correct ? 1 : 0,
           total: 1,
         })
+        recordAnswerOutcome({
+          objectiveId: q.objectiveId,
+          questionId: q.id,
+          correct,
+          latencyMs: takeLatencyMs(shownAtRef.current),
+          selectedIndexes: answer,
+        }).catch(() => {})
+        if (!correct) appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndexes: answer }))
       }
     }
   }
@@ -745,8 +792,10 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
           questions={questions}
           responses={responses}
           domains={DOMAINS}
+          missed={missed}
           onOpenTrapDrill={onOpenTrapDrill}
           onOpenLab={onOpenLab}
+          onOpenDomainPass={onOpenDomainPass}
           onStudyDomain={(domainId) => {
             setSelectedDomainIds([domainId])
             setIntroTab('domain')
@@ -913,26 +962,29 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
           </button>
         )}
         {isStudyMode && !isCurrentRevealed && !multi && (
-          <div style={{ ...styles.small, marginTop: 10, textAlign: 'center', color: COLORS.silverMid }}>
-            Select an answer to see instant feedback
-          </div>
+          <>
+            <IdkButton onClick={markUnknown} />
+            <div style={{ ...styles.small, marginTop: 10, textAlign: 'center', color: COLORS.silverMid }}>
+              Select an answer to see instant feedback
+            </div>
+          </>
         )}
         {isCurrentRevealed && (
           <div
             className="ccna-quiz-reveal"
             style={{
               marginTop: 10, padding: 12, borderRadius: 10,
-              background: isCurrentCorrect ? COLORS.mintDim : COLORS.roseDim,
-              border: `2px solid ${isCurrentCorrect ? COLORS.mintBorder : COLORS.rose}`,
+              background: isCurrentCorrect ? COLORS.mintDim : (unknownFlags[current] ? COLORS.amberDim : COLORS.roseDim),
+              border: `2px solid ${isCurrentCorrect ? COLORS.mintBorder : (unknownFlags[current] ? COLORS.amberBorder : COLORS.rose)}`,
             }}
           >
             <div style={{
               fontWeight: 700,
-              color: isCurrentCorrect ? COLORS.mint : COLORS.rose,
+              color: isCurrentCorrect ? COLORS.mint : (unknownFlags[current] ? COLORS.amber : COLORS.rose),
               marginBottom: 6,
               fontSize: 'var(--ccna-type-sm)',
             }}>
-              {isCurrentCorrect ? '✓ Correct!' : '✗ Incorrect'}
+              {isCurrentCorrect ? '✓ Correct!' : (unknownFlags[current] ? '○ Unknown' : '✗ Incorrect')}
             </div>
             <AnswerReview {...answerReviewSessionProps({
               q,

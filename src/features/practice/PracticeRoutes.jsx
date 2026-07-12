@@ -34,6 +34,8 @@ export default function PracticeRoutes({
         onOpenExamTraps={onOpenExamTraps}
         onOpenTrapDrill={onOpenTrapDrill}
         onOpenLab={onOpenLab}
+        onSelectObjective={onSelectObjective}
+        progress={progress}
       />
     )
   }

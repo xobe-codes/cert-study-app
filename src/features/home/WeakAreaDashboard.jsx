@@ -6,6 +6,7 @@ import { homeCard, homePillCount, homeLinkBtn, homeBodySm } from '../../home/hom
 import HomeSectionLabel from '../../home/HomeSectionLabel.jsx'
 import { buildWeakAreaRows, FIX_NEXT_CATEGORIES } from './weakAreaDashboard.js'
 import { buildStudyObjectiveHandoff } from '../../study/studyObjectiveHandoff.js'
+import { handoffStudyFromWeakSignal, handoffPassFocusBatch } from '../study/batchHandoff.js'
 import { loadAllPlacementRecords } from '../domainPlacement/domainPlacementStorage.js'
 import { resolveTrapWeakAction, executeTrapWeakAction } from '../../weaknessUtils.js'
 
@@ -25,6 +26,7 @@ export default function WeakAreaDashboard({
   readiness,
   domainPassRecords,
   placementRecords: placementRecordsProp,
+  progress = {},
   onSelectObjective,
   onOpenTrapDrill,
   onOpenExamTraps,
@@ -91,14 +93,27 @@ export default function WeakAreaDashboard({
         break
       }
       case 'domainPass':
-        onOpenDomainPass?.(row.payload)
+        if (row.payload?.domainId && onOpenDomainPass) {
+          handoffPassFocusBatch(row.payload.domainId, {
+            missed,
+            placementRecords,
+            progress,
+            onOpenDomainPass,
+          })
+        } else {
+          onOpenDomainPass?.(row.payload)
+        }
         break
       case 'domainPlacement':
         onOpenDomainPlacement?.(row.payload)
         break
       case 'study': {
-        const handoff = buildStudyObjectiveHandoff(row.payload.objectiveId, { tab: 'Study' })
-        if (handoff) onSelectObjective?.(handoff)
+        handoffStudyFromWeakSignal(row.payload.objectiveId, {
+          missed,
+          placementRecords,
+          progress,
+          onSelectObjective,
+        })
         break
       }
       case 'mock':
