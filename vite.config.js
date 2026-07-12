@@ -44,6 +44,7 @@ export default defineConfig({
           'assets/studios*.js',
           'assets/skill-questions*.js',
           'assets/shelved-questions*.js',
+          'assets/core*.js',
           'assets/vendor-react*.js',
         ],
         globIgnores: ['**/index*.js', '**/index.html'],
@@ -177,7 +178,21 @@ export default defineConfig({
           if (cleanDomainMatch) return `clean-questions-d${cleanDomainMatch[1]}`
           if (id.includes('ccnaCleanQuestions')) return 'clean-questions-legacy'
           if (id.includes('ccnaShelvedQuestions')) return 'shelved-questions'
-          if (id.includes('ccnaSkillQuestions')) return 'skill-questions'
+          // Leaf data file only. Assigning the ccnaSkillQuestions.js wrapper here
+          // made Rollup host its shared deps inside this chunk, turning it into a
+          // static dep of the entry despite every import() in source being lazy.
+          if (id.includes('ccnaSkillQuestionsExtended')) return 'skill-questions'
+          // The wrapper stays auto-chunked: it is only ever import()ed (bootstrap,
+          // offline warmer), so Rollup gives it its own async chunk.
+          if (id.includes('ccnaSkillQuestions')) return undefined
+          // Gold answer reviews stay in 'core' (not their own chunk): goldAnswerReviews.js
+          // is a 40-file aggregator (import-only, no shared deps outward), and giving
+          // an aggregator-of-many-leaves its own manual chunk name reproducibly hit a
+          // same-chunk `Cannot access 'X' before initialization` — Rollup's ordering
+          // inside a large manually-named chunk isn't guaranteed safe for that shape,
+          // even with zero real circular imports in the source graph. Verified live in
+          // browser (blank screen + reproducible TDZ via direct import()), not just by
+          // build success. Leave this data in the general 'core' bucket below.
           // Lazy route entry points only — not entire /lab/ tree (CLIDrillTab is eager in App).
           if (id.endsWith('/MockExam.jsx')) return 'mock-exam'
           if (id.endsWith('/lab/LabsHub.jsx') || id.endsWith('/lab/LabView.jsx')) return 'labs'
@@ -188,6 +203,19 @@ export default defineConfig({
             || id.endsWith('/CommandHubStudio.jsx') || id.endsWith('/StudyLensStudio.jsx')) {
             return 'studios'
           }
+          // Everything else in src is shared foundation (curated content tree,
+          // component kit, feature storage, theme). Pin it to ONE eager chunk —
+          // without an assignment Rollup hosts shared modules inside the route
+          // chunks above, which turns every "lazy" route chunk into a static dep
+          // of the entry (the modulepreload-at-startup bug). Do NOT split this
+          // further by folder (e.g. data vs code): src/data/ccnaLabsExtended.js
+          // and src/lab/cliEngine.js form a real (multi-hop) dependency cycle, and
+          // splitting a cycle across two physical chunks breaks ESM init order —
+          // `Cannot access 'X' before initialization` at runtime with no build
+          // error and no console output until you probe it. Keeping the whole
+          // shared graph in one chunk lets JS resolve the cycle the same way it
+          // always has, since it's one file again.
+          if (id.includes('/src/')) return 'core'
         },
       },
     },
