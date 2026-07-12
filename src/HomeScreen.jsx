@@ -29,6 +29,14 @@ import ContentHealthHomeStrip from './components/ContentHealthHomeStrip.jsx'
 import { pickBaselineAwareStudyNext } from './features/domainPlacement/domainBaselineStudyPlan.js'
 import { resumeStudyHandoff, pickDomainLessonObjective } from './home/resumeStudy.js'
 import {
+  buildWeakBatch,
+  buildProgressGlance,
+  pickActiveBatchDomain,
+  resolveNextBeat,
+} from './features/domainPass/weakBatch.js'
+import { buildDomainBaselineSummary } from './features/domainPlacement/domainBaselineProfile.js'
+import { buildStudyObjectiveHandoff } from './study/studyObjectiveHandoff.js'
+import {
   HOME_SECTION_GAP,
   homeCard,
   homeSectionLabel,
@@ -69,7 +77,13 @@ function ContentTrustCard() {
   )
 }
 
-function YourProgressCard({ progress, readiness, onOpenStats }) {
+function YourProgressCard({
+  progress,
+  readiness,
+  onOpenStats,
+  glance = null,
+  onNowClick = null,
+}) {
   const [dismissed, setDismissed] = useState(isRecapDismissed())
   const data = useMemo(() => getSessionStudy(), [])
   const total = data.correct + data.incorrect
@@ -84,6 +98,34 @@ function YourProgressCard({ progress, readiness, onOpenStats }) {
           Stats & trends →
         </button>
       </div>
+      {glance && (
+        <div style={{ marginBottom: 12, padding: '10px 12px', borderRadius: 12, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}` }}>
+          <div style={{ fontSize: 'var(--ccna-type-micro)', fontWeight: 700, color: COLORS.sky, letterSpacing: 0.4, marginBottom: 4 }}>NOW</div>
+          {onNowClick ? (
+            <button
+              type="button"
+              onClick={onNowClick}
+              style={{
+                display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none',
+                padding: 0, cursor: 'pointer', fontFamily: 'inherit',
+                fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.silver, marginBottom: 8, lineHeight: 1.4,
+              }}
+            >
+              {glance.now} →
+            </button>
+          ) : (
+            <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.silver, marginBottom: 8, lineHeight: 1.4 }}>
+              {glance.now}
+            </div>
+          )}
+          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 4, lineHeight: 1.4 }}>
+            <strong style={{ color: COLORS.purple }}>Pulse:</strong> {glance.pulse}
+          </div>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.4 }}>
+            <strong style={{ color: COLORS.mint }}>Aim:</strong> {glance.aim}
+          </div>
+        </div>
+      )}
       <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start', marginBottom: !dismissed && total > 0 ? 12 : 0 }}>
         <ProgressRing value={readiness.score} size={68} accent="purple" caption="Exam readiness" />
         <div style={{ flex: 1, minWidth: 0 }}>
@@ -398,11 +440,100 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
 
   const resumeLesson = useMemo(() => resumeStudyHandoff(progress), [progress])
 
+  const homeBatchGlance = useMemo(() => {
+    const domain = pickActiveBatchDomain({
+      openDomainId: openDomain,
+      placementRecords,
+      missed,
+      progress,
+    })
+    if (!domain) return null
+    const baselineSummary = buildDomainBaselineSummary({
+      domain,
+      lastAttempt: placementRecords?.[domain.id]?.lastAttempt,
+    })
+    const batch = buildWeakBatch({
+      domain,
+      baselineSummary,
+      missed,
+      progress,
+      rankedTraps: [],
+    })
+    const hasBaseline = baselineSummary && baselineSummary.domainStatus !== 'not_started'
+    const missCount = missed.filter(m => domain.objectives.some(o => o.id === m?.objectiveId)).length
+    const nextBeat = resolveNextBeat({
+      batch,
+      hasBaseline: !!hasBaseline,
+      missCount,
+      passReady: false,
+    })
+    const weakest = readiness.domainStats?.[0]
+    return {
+      domain,
+      batch,
+      nextBeat,
+      glance: buildProgressGlance({
+        batch,
+        nextBeat,
+        stickyMissCount: missCount,
+        openTrapCount: batch.openTrapCount,
+        domainPassPassed: domainPassPassedCount,
+        weakestDomainName: weakest?.name || domain.name,
+      }),
+    }
+  }, [openDomain, placementRecords, missed, progress, readiness, domainPassPassedCount])
+
   function openLessonsBrowse() {
-    const open = openDomain ? DOMAINS.find(d => d.id === openDomain) : DOMAINS[0]
-    const handoff = pickDomainLessonObjective(open || DOMAINS[0], progress)
+    const domain = homeBatchGlance?.domain
+      || (openDomain ? DOMAINS.find(d => d.id === openDomain) : null)
+      || DOMAINS[0]
+    const batchIds = homeBatchGlance?.batch?.objectiveIds || []
+    if (batchIds[0]) {
+      const handoff = buildStudyObjectiveHandoff(batchIds[0], { tab: 'Study' })
+      if (handoff) {
+        onSelectObjective(handoff)
+        return
+      }
+    }
+    if (resumeLesson) {
+      onSelectObjective(resumeLesson)
+      return
+    }
+    const handoff = pickDomainLessonObjective(domain, progress)
     if (handoff) onSelectObjective(handoff)
-    else if (!openDomain) onOpenDomain?.(DOMAINS[0]?.id)
+    else if (!openDomain) onOpenDomain?.(domain?.id)
+  }
+
+  function openGlanceNow() {
+    const domain = homeBatchGlance?.domain
+    const beat = homeBatchGlance?.nextBeat
+    if (!domain || !beat) {
+      openLessonsBrowse()
+      return
+    }
+    if (beat.beat === 'baseline') {
+      onOpenDomainPlacement?.({ domainId: domain.id, expandOnReturn: true })
+      return
+    }
+    if (beat.beat === 'fix_misses') {
+      onOpenMock?.({ domainId: domain.id, mode: 'bankburn', missOnly: true })
+      return
+    }
+    if (beat.beat === 'flood' || beat.beat === 'pass_full') {
+      onOpenDomainPass?.({
+        domainId: domain.id,
+        ...(beat.beat === 'flood' ? { focusObjectiveIds: beat.objectiveIds } : {}),
+      })
+      return
+    }
+    const oid = beat.objectiveId || beat.objectiveIds?.[0]
+    if (oid) {
+      const handoff = buildStudyObjectiveHandoff(oid, { tab: beat.beat === 'prove' ? 'Practice' : 'Study' })
+      if (handoff) onSelectObjective(handoff)
+      else openLessonsBrowse()
+      return
+    }
+    onOpenDomain?.(domain.id)
   }
 
   const totals = useMemo(() => {
@@ -483,7 +614,13 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
 
       <ContentTrustCard />
 
-      <YourProgressCard progress={progress} readiness={readiness} onOpenStats={onOpenStats} />
+      <YourProgressCard
+        progress={progress}
+        readiness={readiness}
+        onOpenStats={onOpenStats}
+        glance={homeBatchGlance?.glance || null}
+        onNowClick={openGlanceNow}
+      />
 
       <WeakAreaDashboard
         missed={missed}
@@ -607,7 +744,11 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
       <div style={homeCard()}>
         <HomeSectionLabel>STUDY MODES</HomeSectionLabel>
         <div className="home-study-grid">
-          <StudyModeBtn primary onClick={openLessonsBrowse}>Lessons</StudyModeBtn>
+          <StudyModeBtn primary onClick={openLessonsBrowse}>
+            {homeBatchGlance?.batch?.objectiveIds?.length
+              ? `Lessons · batch Review`
+              : 'Lessons'}
+          </StudyModeBtn>
           <StudyModeBtn onClick={onOpenMock}>Mock Exam</StudyModeBtn>
           <StudyModeBtn onClick={onOpenDomainPass}>Domain Pass ({domainPassPassedCount}/6)</StudyModeBtn>
           {onOpenDomainPlacement && (

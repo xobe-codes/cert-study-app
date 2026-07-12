@@ -40,6 +40,7 @@ test.describe('Labs hub domain filter', () => {
     })
     await page.goto('/')
     await page.getByRole('button', { name: /Network Access/i }).click()
+    await page.getByRole('button', { name: /More tools/i }).click()
     await page.getByRole('button', { name: /Domain labs/i }).click()
     await expect(page.getByRole('heading', { name: /Hands-on Labs/i })).toBeVisible({ timeout: 15_000 })
     await expect(page.getByRole('tab', { name: /D2 Access/i })).toHaveAttribute('aria-selected', 'true')

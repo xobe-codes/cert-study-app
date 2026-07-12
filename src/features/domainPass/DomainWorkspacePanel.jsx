@@ -25,6 +25,11 @@ import {
   clearTrapOwned,
   isTrapOwned,
 } from './trapOwnership.js'
+import {
+  buildWeakBatch,
+  suggestFollowingBeat,
+  runWeakBatchBeat,
+} from './weakBatch.js'
 import { homeBodySm } from '../../home/homeUi.js'
 
 function getMc(oid) {
@@ -41,7 +46,7 @@ const modeBtn = {
 }
 
 /**
- * Spec 7 Domain Workspace body — plan CTA, coverage, lessons rail, ranked traps, modes.
+ * Domain Workspace — book UI: Now + TOC lessons + demoted modes (WB-4 / WB-5).
  */
 export default function DomainWorkspacePanel({
   domain,
@@ -66,6 +71,8 @@ export default function DomainWorkspacePanel({
   const [healthLine, setHealthLine] = useState(null)
   const [unseenCount, setUnseenCount] = useState(0)
   const [ownership, setOwnership] = useState({})
+  const [beatStep, setBeatStep] = useState('review')
+  const [showMore, setShowMore] = useState(false)
 
   const domainMissCount = useMemo(() => {
     const ids = new Set((domain.objectives || []).map(o => o.id))
@@ -120,6 +127,55 @@ export default function DomainWorkspacePanel({
     }).slice(0, 5)
   }, [domain.id, missed, actionPlan.weak, ownership])
 
+  const batch = useMemo(
+    () => buildWeakBatch({
+      domain,
+      baselineSummary,
+      missed,
+      progress,
+      rankedTraps,
+      ownership,
+    }),
+    [domain, baselineSummary, missed, progress, rankedTraps, ownership],
+  )
+
+  const hasBaseline = !!(baselineSummary && baselineSummary.domainStatus !== 'not_started')
+
+  const activeBeat = useMemo(() => {
+    if (!hasBaseline && studyMeta.hasPlacement) {
+      return { beat: 'baseline', label: 'Set baseline map', objectiveIds: [] }
+    }
+    if (domainMissCount >= 3) {
+      return { beat: 'fix_misses', label: `Fix misses (${domainMissCount})`, objectiveIds: batch.objectiveIds }
+    }
+    if (!batch.objectiveIds.length) {
+      if (actionPlan.primaryCta === 'pass') {
+        return { beat: 'pass_full', label: 'Domain Pass — prove domain', objectiveIds: [] }
+      }
+      return { beat: 'practice', label: 'Practice domain', objectiveIds: [] }
+    }
+    if (beatStep === 'prove') return suggestFollowingBeat('review', batch)
+    if (beatStep === 'traps') return suggestFollowingBeat('prove', batch)
+    if (beatStep === 'flood') {
+      return {
+        beat: 'flood',
+        label: `Pass Focus · ${batch.objectiveIds.join(', ')}`,
+        objectiveIds: batch.objectiveIds,
+      }
+    }
+    return {
+      beat: 'review',
+      label: `Study · ${batch.objectiveIds[0]}`,
+      objectiveId: batch.objectiveIds[0],
+      objectiveIds: batch.objectiveIds,
+    }
+  }, [hasBaseline, studyMeta.hasPlacement, domainMissCount, batch, actionPlan.primaryCta, beatStep])
+
+  useEffect(() => {
+    setBeatStep('review')
+    setShowMore(false)
+  }, [domain.id])
+
   useEffect(() => {
     let cancelled = false
     ;(async () => {
@@ -153,29 +209,21 @@ export default function DomainWorkspacePanel({
     return () => { cancelled = true }
   }, [domain])
 
-  function runPrimaryCta() {
-    switch (actionPlan.primaryCta) {
-      case 'baseline':
-        onOpenDomainPlacement?.({ domainId: domain.id, expandOnReturn: true })
-        break
-      case 'fix_misses':
-        onOpenMockExam?.({ domainId: domain.id, mode: 'bankburn', missOnly: true })
-        break
-      case 'study': {
-        const oid = actionPlan.nextLessons[0] || domain.objectives[0]?.id
-        const handoff = buildStudyObjectiveHandoff(oid, { tab: 'Study' })
-        if (handoff) onSelectObjective(handoff)
-        break
-      }
-      case 'pass':
-        onOpenDomainPass?.({ domainId: domain.id })
-        break
-      case 'burn':
-        onOpenMockExam?.({ domainId: domain.id, mode: 'bankburn' })
-        break
-      default:
-        practiceDomain?.()
-    }
+  const handlers = {
+    domainId: domain.id,
+    onSelectObjective,
+    onOpenDomainPlacement,
+    onOpenDomainPass,
+    onOpenTrapDrill,
+    onOpenMockExam,
+    practiceDomain,
+  }
+
+  function runNow() {
+    runWeakBatchBeat(activeBeat, handlers)
+    if (activeBeat.beat === 'review') setBeatStep('prove')
+    else if (activeBeat.beat === 'prove') setBeatStep(batch.openTrapCount > 0 ? 'traps' : 'flood')
+    else if (activeBeat.beat === 'traps') setBeatStep('flood')
   }
 
   function openProve5(objectiveId) {
@@ -193,24 +241,26 @@ export default function DomainWorkspacePanel({
     }
   }
 
+  const follow = batch.objectiveIds.length ? suggestFollowingBeat(activeBeat.beat === 'practice' ? 'review' : activeBeat.beat, batch) : null
+
   return (
     <div className="domain-workspace" style={{ marginTop: 12, borderTop: `1px solid ${COLORS.border}`, paddingTop: 10 }}>
       <div style={{ ...homeBodySm, fontWeight: 700, marginBottom: 4, color: COLORS.silverMid, letterSpacing: 0.3 }}>
-        Plan
+        Now
       </div>
-      <div style={{ ...homeBodySm, marginBottom: 8, color: COLORS.silverMid }} aria-label="Domain readiness">
-        {readinessLine}
-      </div>
+      {batch.objectiveIds.length > 0 && (
+        <div style={{ ...homeBodySm, marginBottom: 6, color: COLORS.sky }}>{batch.label}</div>
+      )}
+      {readinessLine && (
+        <div style={{ ...homeBodySm, marginBottom: 4, color: COLORS.silverMid }}>{readinessLine}</div>
+      )}
       {coverageLine && (
-        <div style={{ ...homeBodySm, marginBottom: 4, color: COLORS.mint }} aria-label="Bank coverage">
-          {coverageLine}
-        </div>
+        <div style={{ ...homeBodySm, marginBottom: 4, color: COLORS.mint }}>{coverageLine}</div>
       )}
       {healthLine && (
-        <div style={{ ...homeBodySm, marginBottom: 8, color: COLORS.silverMid }} aria-label="Study health">
-          {healthLine}
-        </div>
+        <div style={{ ...homeBodySm, marginBottom: 8, color: COLORS.silverMid }}>{healthLine}</div>
       )}
+
       <button
         type="button"
         className="ccna-hover"
@@ -221,10 +271,49 @@ export default function DomainWorkspacePanel({
           color: COLORS.sky,
           fontWeight: 700,
         }}
-        onClick={runPrimaryCta}
+        onClick={runNow}
       >
-        {actionPlan.primaryLabel} →
+        {activeBeat.label} →
       </button>
+
+      {follow && activeBeat.beat !== 'baseline' && activeBeat.beat !== 'fix_misses' && batch.objectiveIds.length > 0 && (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 8 }}>
+          {['prove', 'traps', 'flood'].map(step => {
+            if (step === 'traps' && !(batch.openTrapCount > 0)) return null
+            const info = step === 'prove'
+              ? suggestFollowingBeat('review', batch)
+              : step === 'traps'
+                ? suggestFollowingBeat('prove', batch)
+                : { beat: 'flood', label: `Pass Focus · ${batch.objectiveIds.join(', ')}`, objectiveIds: batch.objectiveIds }
+            const active = activeBeat.beat === info.beat
+            return (
+              <button
+                key={step}
+                type="button"
+                className="ccna-hover"
+                style={{
+                  ...styles.secondaryBtn,
+                  width: 'auto',
+                  minHeight: 32,
+                  padding: '4px 10px',
+                  fontSize: 'var(--ccna-type-micro)',
+                  marginBottom: 0,
+                  borderColor: active ? COLORS.skyBorder : COLORS.border,
+                  opacity: active ? 1 : 0.85,
+                }}
+                onClick={() => {
+                  setBeatStep(step)
+                  runWeakBatchBeat(info, handlers)
+                  if (step === 'prove') setBeatStep('traps')
+                  else if (step === 'traps') setBeatStep('flood')
+                }}
+              >
+                {info.label}
+              </button>
+            )
+          })}
+        </div>
+      )}
 
       <div style={{ ...homeBodySm, fontWeight: 700, margin: '12px 0 6px', color: COLORS.silverMid, letterSpacing: 0.3 }}>
         Lessons
@@ -293,9 +382,9 @@ export default function DomainWorkspacePanel({
       {rankedTraps.length > 0 && (
         <>
           <div style={{ ...homeBodySm, fontWeight: 700, margin: '4px 0 6px', color: COLORS.silverMid, letterSpacing: 0.3 }}>
-            Traps (unowned first)
+            Traps {batch.openTrapCount > 0 ? `(${batch.openTrapCount} open)` : ''}
           </div>
-          {rankedTraps.map(t => (
+          {rankedTraps.slice(0, 3).map(t => (
             <div
               key={t.id}
               style={{
@@ -317,16 +406,16 @@ export default function DomainWorkspacePanel({
               <button
                 type="button"
                 aria-pressed={!!t.owned}
-                title={t.owned ? 'Mark unowned' : 'Mark owned'}
-                onClick={() => toggleOwned(t.id)}
+                className="ccna-hover"
                 style={{
-                  ...modeBtn,
+                  ...styles.secondaryBtn,
+                  width: 'auto',
+                  minHeight: 36,
+                  padding: '4px 10px',
+                  fontSize: 'var(--ccna-type-micro)',
                   marginBottom: 0,
-                  flex: '0 0 auto',
-                  padding: '6px 10px',
-                  borderColor: t.owned ? COLORS.mintBorder : COLORS.border,
-                  color: t.owned ? COLORS.mint : COLORS.silverMid,
                 }}
+                onClick={() => toggleOwned(t.id)}
               >
                 {t.owned ? 'Owned ✓' : 'Own'}
               </button>
@@ -335,78 +424,98 @@ export default function DomainWorkspacePanel({
         </>
       )}
 
-      <div style={{ ...homeBodySm, fontWeight: 700, margin: '12px 0 6px', color: COLORS.silverMid, letterSpacing: 0.3 }}>
-        Modes
-      </div>
-      {onOpenDomainPass && (
-        <button
-          type="button"
-          className="ccna-hover"
-          style={{
-            ...modeBtn,
-            borderColor: COLORS.mintBorder,
-            background: COLORS.mintDim,
-            color: COLORS.mint,
-            fontWeight: 700,
-          }}
-          onClick={() => onOpenDomainPass({ domainId: domain.id })}
-        >
-          Domain Pass — {passBadge}
-        </button>
-      )}
-      {onOpenTrapDrill && (
-        <button type="button" className="ccna-hover" style={{ ...modeBtn, opacity: 0.92 }} onClick={() => onOpenTrapDrill({ domainId: domain.id })}>
-          Trap Drill
-        </button>
-      )}
-      {onOpenTermsHub && (
-        <button type="button" className="ccna-hover" style={{ ...modeBtn, opacity: 0.92 }} onClick={() => onOpenTermsHub({ domainId: domain.id })}>
-          Terms Hub
-        </button>
-      )}
-      {onOpenCommandHub && (
-        <button type="button" className="ccna-hover" style={{ ...modeBtn, opacity: 0.92 }} onClick={() => onOpenCommandHub({ domainId: domain.id, tab: 'commands' })}>
-          Commands
-        </button>
-      )}
-      {onOpenCommandHub && (
-        <button type="button" className="ccna-hover" style={{ ...modeBtn, opacity: 0.92 }} onClick={() => onOpenCommandHub({ domainId: domain.id, tab: 'sprint' })}>
-          Command Sprint
-        </button>
-      )}
-      <button type="button" className="ccna-hover" style={{ ...modeBtn, opacity: 0.92 }} onClick={practiceDomain}>
-        Practice domain
+      <button
+        type="button"
+        className="ccna-hover"
+        style={{ ...modeBtn, marginTop: 8, opacity: 0.9 }}
+        onClick={() => setShowMore(v => !v)}
+      >
+        {showMore ? 'Hide more tools' : 'More tools'}
       </button>
-      {onOpenMockExam && (
-        <button
-          type="button"
-          className="ccna-hover"
-          style={{ ...modeBtn, opacity: 0.92 }}
-          onClick={() => onOpenMockExam({ domainId: domain.id, mode: 'bankburn' })}
-        >
-          Burn bank in Mock →
-        </button>
-      )}
-      {onOpenMockExam && domainMissCount > 0 && (
-        <button
-          type="button"
-          className="ccna-hover"
-          style={{
-            ...modeBtn,
-            borderColor: COLORS.roseBorder,
-            background: COLORS.roseDim,
-            color: COLORS.rose,
-            fontWeight: 700,
-          }}
-          onClick={() => onOpenMockExam({ domainId: domain.id, mode: 'bankburn', missOnly: true })}
-        >
-          Fix misses ({domainMissCount}) →
-        </button>
-      )}
-      {onOpenLabs && studyMeta.labCount > 0 && (
-        <button type="button" className="ccna-hover" style={{ ...modeBtn, marginBottom: 0, opacity: 0.92 }} onClick={() => onOpenLabs({ domainId: domain.id })}>
-          Domain labs ({studyMeta.labCount})
-        </button>
+
+      {showMore && (
+        <div style={{ marginTop: 4 }}>
+          {onOpenDomainPass && (
+            <button
+              type="button"
+              className="ccna-hover"
+              style={{
+                ...modeBtn,
+                borderColor: COLORS.mintBorder,
+                background: COLORS.mintDim,
+                color: COLORS.mint,
+                fontWeight: 700,
+              }}
+              onClick={() => onOpenDomainPass({ domainId: domain.id })}
+            >
+              Full Domain Pass — {passBadge}
+            </button>
+          )}
+          {batch.objectiveIds.length > 0 && onOpenDomainPass && (
+            <button
+              type="button"
+              className="ccna-hover"
+              style={{ ...modeBtn }}
+              onClick={() => onOpenDomainPass({ domainId: domain.id, focusObjectiveIds: batch.objectiveIds })}
+            >
+              Pass Focus flood · {batch.objectiveIds.join(', ')}
+            </button>
+          )}
+          {onOpenTrapDrill && (
+            <button type="button" className="ccna-hover" style={modeBtn} onClick={() => onOpenTrapDrill({ domainId: domain.id })}>
+              Trap Drill (domain)
+            </button>
+          )}
+          {onOpenTermsHub && (
+            <button type="button" className="ccna-hover" style={modeBtn} onClick={() => onOpenTermsHub({ domainId: domain.id })}>
+              Terms Hub
+            </button>
+          )}
+          {onOpenCommandHub && (
+            <button type="button" className="ccna-hover" style={modeBtn} onClick={() => onOpenCommandHub({ domainId: domain.id, tab: 'commands' })}>
+              Commands
+            </button>
+          )}
+          {onOpenCommandHub && (
+            <button type="button" className="ccna-hover" style={modeBtn} onClick={() => onOpenCommandHub({ domainId: domain.id, tab: 'sprint' })}>
+              Command Sprint
+            </button>
+          )}
+          <button type="button" className="ccna-hover" style={modeBtn} onClick={practiceDomain}>
+            Practice domain
+          </button>
+          {onOpenMockExam && (
+            <button
+              type="button"
+              className="ccna-hover"
+              style={modeBtn}
+              onClick={() => onOpenMockExam({ domainId: domain.id, mode: 'bankburn' })}
+            >
+              Burn bank in Mock →
+            </button>
+          )}
+          {onOpenMockExam && domainMissCount > 0 && (
+            <button
+              type="button"
+              className="ccna-hover"
+              style={{
+                ...modeBtn,
+                borderColor: COLORS.roseBorder,
+                background: COLORS.roseDim,
+                color: COLORS.rose,
+                fontWeight: 700,
+              }}
+              onClick={() => onOpenMockExam({ domainId: domain.id, mode: 'bankburn', missOnly: true })}
+            >
+              Fix misses ({domainMissCount}) →
+            </button>
+          )}
+          {onOpenLabs && studyMeta.labCount > 0 && (
+            <button type="button" className="ccna-hover" style={{ ...modeBtn, marginBottom: 0 }} onClick={() => onOpenLabs({ domainId: domain.id })}>
+              Domain labs ({studyMeta.labCount})
+            </button>
+          )}
+        </div>
       )}
     </div>
   )

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { COLORS, styles } from '../../ui/appTheme.js'
 import OverflowMarquee from '../../components/OverflowMarquee.jsx'
 import { homeBodySm } from '../../home/homeUi.js'
@@ -127,6 +127,8 @@ export default function DomainBaselinePanel({
   const strongObjs = domain.objectives.filter(o => summary.strongObjectives.includes(o.id))
   const uncheckedObjs = domain.objectives.filter(o => summary.notCheckedObjectives.includes(o.id))
 
+  const [mapToolsOpen, setMapToolsOpen] = useState(false)
+
   return (
     <div
       className="ccna-domain-baseline-panel"
@@ -170,7 +172,7 @@ export default function DomainBaselinePanel({
         </div>
         {summary.testedOut ? (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flexShrink: 0, minWidth: 140, maxWidth: 200 }}>
-            {blueprintStale && (
+            {blueprintStale ? (
               <div>
                 <button
                   type="button"
@@ -191,28 +193,7 @@ export default function DomainBaselinePanel({
                   Blueprint changed — rebuilds the whole map
                 </div>
               </div>
-            )}
-            <div>
-              <button
-                type="button"
-                className="ccna-hover"
-                style={{
-                  ...styles.primaryBtn,
-                  marginBottom: 0,
-                  width: '100%',
-                  fontSize: 'var(--ccna-type-xs)',
-                  padding: '10px 14px',
-                  minHeight: 40,
-                }}
-                onClick={() => onCheckLevel?.(domain.id, { placementMode: 'maintenance' })}
-              >
-                Pulse ({PLACEMENT_MAINTENANCE_TRAP_COUNT} traps) →
-              </button>
-              <div style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid, marginTop: 3, lineHeight: 1.35 }}>
-                Quick trap check — keeps your map as-is
-              </div>
-            </div>
-            <div>
+            ) : (
               <button
                 type="button"
                 className="ccna-hover"
@@ -224,14 +205,55 @@ export default function DomainBaselinePanel({
                   padding: '8px 12px',
                   minHeight: 36,
                 }}
-                onClick={() => onCheckLevel?.(domain.id)}
+                onClick={() => setMapToolsOpen(v => !v)}
               >
-                Refresh map ({PLACEMENT_QUESTION_COUNT} Q) →
+                {mapToolsOpen ? 'Hide map tools' : 'Map tools ▾'}
               </button>
-              <div style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid, marginTop: 3, lineHeight: 1.35 }}>
-                Full resample — rewrites your strong/weak map
-              </div>
-            </div>
+            )}
+            {mapToolsOpen && !blueprintStale && (
+              <>
+                <div>
+                  <button
+                    type="button"
+                    className="ccna-hover"
+                    style={{
+                      ...styles.primaryBtn,
+                      marginBottom: 0,
+                      width: '100%',
+                      fontSize: 'var(--ccna-type-xs)',
+                      padding: '10px 14px',
+                      minHeight: 40,
+                    }}
+                    onClick={() => onCheckLevel?.(domain.id, { placementMode: 'maintenance' })}
+                  >
+                    Pulse ({PLACEMENT_MAINTENANCE_TRAP_COUNT} traps) →
+                  </button>
+                  <div style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid, marginTop: 3, lineHeight: 1.35 }}>
+                    Quick trap check — keeps your map as-is
+                  </div>
+                </div>
+                <div>
+                  <button
+                    type="button"
+                    className="ccna-hover"
+                    style={{
+                      ...styles.secondaryBtn,
+                      marginBottom: 0,
+                      width: '100%',
+                      fontSize: 'var(--ccna-type-xs)',
+                      padding: '8px 12px',
+                      minHeight: 36,
+                    }}
+                    onClick={() => onCheckLevel?.(domain.id)}
+                  >
+                    Refresh map ({PLACEMENT_QUESTION_COUNT} Q) →
+                  </button>
+                  <div style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid, marginTop: 3, lineHeight: 1.35 }}>
+                    Full resample — rewrites your strong/weak map
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         ) : (
           <button
@@ -262,15 +284,28 @@ export default function DomainBaselinePanel({
       {summary.testedOut && onOpenDomainPass && (
         <div style={{ marginBottom: 10 }}>
           <div style={{ ...homeBodySm, margin: '0 0 8px', color: COLORS.mint, lineHeight: 1.45 }}>
-            Baseline tested out — subsections mapped. Domain Pass is the timed exam gate when you are ready.
+            Map ready. Daily prove = Pass Focus on your weak batch (below). Full Domain Pass when the batch queue is clear.
           </div>
+          {summary.weakObjectives.length > 0 ? (
+            <button
+              type="button"
+              className="ccna-hover"
+              style={{ ...styles.primaryBtn, marginBottom: 6, width: '100%', fontSize: 'var(--ccna-type-xs)' }}
+              onClick={() => onOpenDomainPass({
+                domainId: domain.id,
+                focusObjectiveIds: summary.weakObjectives.slice(0, 3),
+              })}
+            >
+              Pass Focus · {summary.weakObjectives.slice(0, 3).join(', ')} →
+            </button>
+          ) : null}
           <button
             type="button"
             className="ccna-hover"
             style={{ ...styles.secondaryBtn, marginBottom: 0, width: '100%', fontSize: 'var(--ccna-type-xs)' }}
             onClick={() => onOpenDomainPass({ domainId: domain.id })}
           >
-            Start Domain Pass →
+            Full Domain Pass →
           </button>
         </div>
       )}

@@ -1,7 +1,7 @@
 # Implementation Tracker — 99+ North Star
 
 **Single source of truth** for current work, queue, scores, and shipped history.
-**Updated:** 2026-07-11 · **Overall:** ~99/100 → target **99+** (all areas ≥95)
+**Updated:** 2026-07-12 · **Overall:** ~99/100 → target **99+** (all areas ≥95)
 
 ---
 
@@ -64,6 +64,7 @@
 
 ## Recently shipped
 
+- **WB MVP (0/3/4/4b/4c/5/9/10)** — Weak Batch Now + Pass Focus flood; baseline Map tools demoted; Lessons→batch Review; home Now·Pulse·Aim; TTS repair
 - **Specs 8–15** — unified lessons, Terms Hub, Command scenarios, study health, phone diagrams (`ae5abf7`+)
 - **Optional polish** — Terms Hub ship e2e; ≥3 scenarios/domain
 

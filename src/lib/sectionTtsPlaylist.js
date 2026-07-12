@@ -32,7 +32,7 @@ export function createSectionTtsPlaylist(sections = [], opts = {}) {
     stopSpeaking()
     speak(section.text, {
       rate: opts.rate ?? 0.95,
-      onend: () => {
+      onEnd: () => {
         speaking = false
         if (autoAdvance && index >= 0 && index < list.length - 1) {
           playAt(index + 1)
@@ -41,7 +41,7 @@ export function createSectionTtsPlaylist(sections = [], opts = {}) {
           opts.onEnd?.()
         }
       },
-      onerror: () => {
+      onError: () => {
         speaking = false
         emitActive(null)
       },

@@ -150,7 +150,18 @@ export function useAppNavigation() {
 
   const openDomainPass = useCallback((opts) => {
     const safe = studyModeOpts(opts)
+    const focusIds = Array.isArray(safe?.focusObjectiveIds)
+      ? safe.focusObjectiveIds.filter(Boolean)
+      : null
+    if (focusIds?.length && safe?.domainId) {
+      setDomainPassFocusConfig({ objectiveIds: focusIds })
+      setDomainPassFocusPickerId(null)
+      setActiveDomainPassId(safe.domainId)
+      navigateTo('domainpass')
+      return
+    }
     setActiveDomainPassId(safe?.domainId || null)
+    if (!safe?.domainId) setDomainPassFocusConfig(null)
     navigateTo('domainpass')
   }, [navigateTo])
 
