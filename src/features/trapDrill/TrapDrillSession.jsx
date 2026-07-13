@@ -35,6 +35,8 @@ export default function TrapDrillSession({ prefill, onBack }) {
   const [selected, setSelected] = useState(null)
   const [revealed, setRevealed] = useState(false)
   const [stats, setStats] = useState({ correct: 0, total: 0 })
+  const [missedIds, setMissedIds] = useState(new Set())
+  const [isFirstPass, setIsFirstPass] = useState(true)
 
   useEffect(() => {
     setScope(buildScopeFromPrefill(prefill, resolved))
@@ -42,6 +44,8 @@ export default function TrapDrillSession({ prefill, onBack }) {
     setSelected(null)
     setRevealed(false)
     setStats({ correct: 0, total: 0 })
+    setMissedIds(new Set())
+    setIsFirstPass(true)
   }, [prefill, resolved])
 
   const questions = useMemo(() => {
@@ -51,8 +55,12 @@ export default function TrapDrillSession({ prefill, onBack }) {
         ? { domainId: scope.domainId }
         : { ckuId: scope.ckuId || resolved?.ckuId, trapLabel: scope.trapLabel },
     )
-    return randomizeQuestionOrder(pool)
-  }, [scope, resolved])
+    // On subsequent passes, only show questions they missed
+    const filtered = !isFirstPass && missedIds.size > 0
+      ? pool.filter(q => missedIds.has(q.id))
+      : pool
+    return randomizeQuestionOrder(filtered)
+  }, [scope, resolved, isFirstPass, missedIds])
 
   const current = questions[idx]
   const done = scope && idx >= questions.length
@@ -63,6 +71,8 @@ export default function TrapDrillSession({ prefill, onBack }) {
     setSelected(null)
     setRevealed(false)
     setStats({ correct: 0, total: 0 })
+    setMissedIds(new Set())
+    setIsFirstPass(true)
   }
 
   function startCku(ckuId) {
@@ -71,6 +81,8 @@ export default function TrapDrillSession({ prefill, onBack }) {
     setSelected(null)
     setRevealed(false)
     setStats({ correct: 0, total: 0 })
+    setMissedIds(new Set())
+    setIsFirstPass(true)
   }
 
   function backToHub() {
@@ -79,6 +91,8 @@ export default function TrapDrillSession({ prefill, onBack }) {
     setSelected(null)
     setRevealed(false)
     setStats({ correct: 0, total: 0 })
+    setMissedIds(new Set())
+    setIsFirstPass(true)
   }
 
   function selectChoice(choiceIdx) {
@@ -88,6 +102,10 @@ export default function TrapDrillSession({ prefill, onBack }) {
     setSelected(choiceIdx)
     setRevealed(true)
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
+    // Track missed questions for subsequent passes
+    if (!correct && isFirstPass) {
+      setMissedIds(m => new Set([...m, current.id]))
+    }
     if (current.objectiveId) {
       recordEngagement?.(current.objectiveId, {
         kind: ENGAGEMENT_KINDS.TRAP_DRILL,
@@ -112,6 +130,7 @@ export default function TrapDrillSession({ prefill, onBack }) {
     setSelected(null)
     setRevealed(false)
     setStats({ correct: 0, total: 0 })
+    setIsFirstPass(false)
   }
 
   if (!scope) {
@@ -138,12 +157,23 @@ export default function TrapDrillSession({ prefill, onBack }) {
   if (done) {
     const pct = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0
     const domainMeta = scope.kind === 'domain' ? trapDomainMeta(scope.domainId) : null
+    const missedCount = missedIds.size
     return (
       <div>
         <StudyModeHeader title="Trap Drill Complete" onBack={backToHub} backLabel="Choose domain" />
         <div style={styles.card}>
           <div style={{ fontSize: 'var(--ccna-type-display)', fontWeight: 700, color: pct >= 70 ? COLORS.mint : COLORS.amber }}>{pct}%</div>
           <div style={styles.small}>{stats.correct} / {stats.total} correct</div>
+          {isFirstPass && missedCount > 0 && (
+            <div style={{ ...styles.small, marginTop: 12, padding: 8, background: COLORS.amberDim, borderRadius: 6 }}>
+              💡 <strong>{missedCount} question{missedCount !== 1 ? 's' : ''}</strong> to review on next pass
+            </div>
+          )}
+          {!isFirstPass && (
+            <div style={{ ...styles.small, marginTop: 8, color: COLORS.silverMid }}>
+              Round 2 of {resolved ? resolved.trapLabel : 'Trap Drill'}
+            </div>
+          )}
           {resolved && (
             <div style={{ ...styles.small, marginTop: 8, color: COLORS.silverMid }}>
               Pattern: {resolved.trapLabel}
@@ -155,8 +185,17 @@ export default function TrapDrillSession({ prefill, onBack }) {
             </div>
           )}
         </div>
-        <button type="button" style={styles.primaryBtn} onClick={restart}>Drill again</button>
-        <button type="button" style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={backToHub}>Pick another domain</button>
+        {isFirstPass && missedCount > 0 ? (
+          <>
+            <button type="button" style={styles.primaryBtn} onClick={restart}>Drill missed questions</button>
+            <button type="button" style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={backToHub}>Pick another domain</button>
+          </>
+        ) : (
+          <>
+            <button type="button" style={styles.primaryBtn} onClick={restart}>Drill again</button>
+            <button type="button" style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={backToHub}>Pick another domain</button>
+          </>
+        )}
         <button type="button" style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={onBack}>Done</button>
       </div>
     )
