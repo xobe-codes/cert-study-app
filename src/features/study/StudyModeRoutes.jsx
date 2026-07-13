@@ -86,6 +86,7 @@ export default function StudyModeRoutes({
   haptic,
   premiumUnlocked,
   onPremiumBlocked,
+  progress = {},
 }) {
   if (view === 'labs') {
     return (
@@ -270,6 +271,7 @@ export default function StudyModeRoutes({
       <DomainPlacementIntro
         onExit={onBack}
         onStart={(id) => setActiveDomainPlacementId(id)}
+        progress={progress}
       />
     )
   }

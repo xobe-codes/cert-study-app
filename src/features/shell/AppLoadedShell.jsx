@@ -310,6 +310,7 @@ export default function AppLoadedShell({
           haptic={haptic}
           premiumUnlocked={premiumUnlocked}
           onPremiumBlocked={handlePremiumBlocked}
+          progress={progress}
         />
         </MasteryProgressProvider>
       </RouteShell>

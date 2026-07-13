@@ -8,6 +8,7 @@ import { placementReadyBand } from './domainPlacementConfig.js'
 import { baselineBlueprintIsStale } from './placementBlueprintCoverage.js'
 import { auditPlacementBlueprintCoverage } from './placementBlueprintCoverage.js'
 import StudyModeHeader from '../../components/StudyModeHeader.jsx'
+import DomainCompletionRoadmap from '../../components/DomainCompletionRoadmap.jsx'
 import { PLACEMENT_BASELINE_REFRESH_EVENT } from '../../storageKeys.js'
 import {
   homeCard,
@@ -24,9 +25,10 @@ function formatDate(ts) {
 }
 
 /** Hub — pick a domain for fixed-set placement (all 6 CCNA domains). */
-export default function DomainPlacementIntro({ onExit, onStart }) {
+export default function DomainPlacementIntro({ onExit, onStart, progress = {} }) {
   const [records, setRecords] = useState({})
   const [loaded, setLoaded] = useState(false)
+  const [showRoadmap, setShowRoadmap] = useState(false)
 
   const placementDomains = placementDomainIds()
     .map(id => DOMAINS.find(d => d.id === id))
@@ -55,6 +57,30 @@ export default function DomainPlacementIntro({ onExit, onStart }) {
   return (
     <div className="ccna-placement-intro">
       <StudyModeHeader title="Domain baseline" onBack={onExit} />
+
+      <div style={{ marginBottom: 16 }}>
+        <button
+          type="button"
+          onClick={() => setShowRoadmap(!showRoadmap)}
+          style={{
+            width: '100%',
+            padding: '12px',
+            background: COLORS.cardBg,
+            border: `1px solid ${COLORS.cardBorder}`,
+            borderRadius: 8,
+            color: COLORS.sky,
+            fontSize: 'var(--ccna-type-sm)',
+            fontWeight: 600,
+            cursor: 'pointer',
+            marginBottom: showRoadmap ? 16 : 0,
+          }}
+        >
+          {showRoadmap ? '▼ Hide' : '▶ Show'} Your Path to 100% Completion
+        </button>
+        {showRoadmap && (
+          <DomainCompletionRoadmap progress={progress} onSelectDomain={onStart} />
+        )}
+      </div>
 
       <div style={homeCard({ border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim })}>
         <div style={homeSectionLabel(COLORS.sky)}>FULL DOMAIN MAP</div>
