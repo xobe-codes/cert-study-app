@@ -1,4 +1,5 @@
 name = "ccna-study-app"
+pages_build_output_dir = "dist"
 
 # D1 database binding for sync functionality (Cloudflare Pages Functions)
 [[d1_databases]]
