@@ -164,7 +164,11 @@ export function countPassedDomains(records, domains) {
 
 export async function appendMissedEntry(entry) {
   const missed = (await window.storage.getItem(STORAGE_KEYS.missed)) || []
-  await window.storage.setItem(STORAGE_KEYS.missed, [...missed, entry])
+  // Only add if this question hasn't already been marked as missed
+  const alreadyMissed = missed.some(m => m.questionId === entry.questionId && m.objectiveId === entry.objectiveId)
+  if (!alreadyMissed) {
+    await window.storage.setItem(STORAGE_KEYS.missed, [...missed, entry])
+  }
 }
 
 export async function loadDomainPassCelebrated() {
