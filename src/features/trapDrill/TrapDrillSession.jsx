@@ -60,7 +60,7 @@ export default function TrapDrillSession({ prefill, onBack }) {
       ? pool.filter(q => missedIds.has(q.id))
       : pool
     return randomizeQuestionOrder(filtered)
-  }, [scope, resolved, isFirstPass, missedIds])
+  }, [scope, resolved, isFirstPass])
 
   const current = questions[idx]
   const done = scope && idx >= questions.length
