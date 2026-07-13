@@ -29,6 +29,7 @@ import {
 import { loadAnswerFluency } from '../study/answerFluency.js'
 import { homeBodySm } from '../../home/homeUi.js'
 import FocusedLessonBank from '../../components/FocusedLessonBank.jsx'
+import CompactLessonsList from '../../components/CompactLessonsList.jsx'
 
 function getMc(oid) {
   return getCuratedQuestions(oid).filter(isChoiceQuestion)
@@ -276,69 +277,23 @@ export default function DomainWorkspacePanel({
         />
       )}
 
-      <div style={{ ...homeBodySm, fontWeight: 700, margin: '12px 0 6px', color: COLORS.silverMid, letterSpacing: 0.3 }}>
-        Lessons
-      </div>
-      {continueLesson && (
-        <button
-          type="button"
-          className="ccna-hover"
-          style={{ ...modeBtn, opacity: 0.95 }}
-          onClick={() => {
-            const handoff = buildStudyObjectiveHandoff(continueLesson.id, { tab: 'Study' })
-            if (handoff) onSelectObjective(handoff)
-          }}
-        >
-          Continue lesson · {continueLesson.id}
-        </button>
-      )}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 8 }}>
-        {lessonsRail.slice(0, 4).map(row => (
-          <div
-            key={row.objective.id}
-            style={{
-              border: `1px solid ${COLORS.border}`,
-              borderRadius: 10,
-              padding: '8px 10px',
-            }}
-          >
-            <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 600, color: COLORS.silver, marginBottom: 6 }}>
-              {row.objective.id} · {row.reason}
-            </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-              <button
-                type="button"
-                className="ccna-hover"
-                style={{ ...modeBtn, marginBottom: 0, flex: '1 1 80px' }}
-                onClick={() => {
-                  const handoff = buildStudyObjectiveHandoff(row.objective.id, { tab: 'Study' })
-                  if (handoff) onSelectObjective(handoff)
-                }}
-              >
-                Study
-              </button>
-              <button
-                type="button"
-                className="ccna-hover"
-                style={{ ...modeBtn, marginBottom: 0, flex: '1 1 80px' }}
-                onClick={() => openProve5(row.objective.id)}
-              >
-                Quick check (5Q)
-              </button>
-              {row.hasLab && onOpenLabs && (
-                <button
-                  type="button"
-                  className="ccna-hover"
-                  style={{ ...modeBtn, marginBottom: 0, flex: '1 1 80px' }}
-                  onClick={() => onOpenLabs({ domainId: domain.id, objectiveId: row.objective.id })}
-                >
-                  Lab
-                </button>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
+      {/* Compact lessons list: 1 line per lesson instead of 4+ line cards */}
+      <CompactLessonsList
+        lessons={lessonsRail.slice(0, 8).map(row => ({
+          id: row.objective.id,
+          status: row.reason.toLowerCase().replace(/\s+/g, '_'),
+          hasLab: row.hasLab,
+        }))}
+        nextObjectiveId={batch.objectiveIds[0]}
+        onStudy={(objId) => {
+          const handoff = buildStudyObjectiveHandoff(objId, { tab: 'Study' })
+          if (handoff) onSelectObjective(handoff)
+        }}
+        onQuickCheck={(objId) => openProve5(objId)}
+        onOpenLab={(objId) => {
+          onOpenLabs?.({ domainId: domain.id, objectiveId: objId })
+        }}
+      />
 
       {rankedTraps.length > 0 && (
         <>
