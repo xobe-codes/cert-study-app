@@ -28,6 +28,7 @@ import {
 } from './weakBatch.js'
 import { loadAnswerFluency } from '../study/answerFluency.js'
 import { homeBodySm } from '../../home/homeUi.js'
+import FocusedLessonBank from '../../components/FocusedLessonBank.jsx'
 
 function getMc(oid) {
   return getCuratedQuestions(oid).filter(isChoiceQuestion)
@@ -246,141 +247,33 @@ export default function DomainWorkspacePanel({
 
   return (
     <div className="domain-workspace" style={{ marginTop: 12, borderTop: `1px solid ${COLORS.border}`, paddingTop: 10 }}>
-      <div style={{ ...homeBodySm, fontWeight: 700, marginBottom: 4, color: COLORS.silverMid, letterSpacing: 0.3 }}>
-        Now
-      </div>
+      {/* Replace cluttered "Now" section with efficient FocusedLessonBank */}
       {batch.objectiveIds.length > 0 && (
-        <div style={{ ...homeBodySm, marginBottom: 6, color: COLORS.sky }}>
-          {`Next: ${batch.objectiveIds.join(', ')}`}
-        </div>
-      )}
-      {(health || readinessLine) && (
-        <div style={{ ...homeBodySm, marginBottom: 8, color: COLORS.silverMid }}>
-          {[
-            health ? `${health.coveragePct}% of the bank seen (${health.seenCount}/${health.bankCount})` : null,
-            readinessLine || null,
-          ].filter(Boolean).join(' · ')}
-        </div>
-      )}
-
-      <button
-        type="button"
-        className="ccna-hover"
-        style={{
-          ...modeBtn,
-          borderColor: COLORS.skyBorder,
-          background: COLORS.skyDim,
-          color: COLORS.sky,
-          fontWeight: 700,
-        }}
-        onClick={runNow}
-      >
-        {activeBeat.label} →
-      </button>
-
-      {follow && activeBeat.beat !== 'baseline' && activeBeat.beat !== 'fix_misses' && batch.objectiveIds.length > 0 && (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 8 }}>
-          {['prove', 'traps', 'flood'].map(step => {
-            if (step === 'traps' && !(batch.openTrapCount > 0)) return null
-            const info = step === 'prove'
-              ? suggestFollowingBeat('review', batch)
-              : step === 'traps'
-                ? suggestFollowingBeat('prove', batch)
-                : { beat: 'flood', label: `Pass Focus · ${batch.objectiveIds.join(', ')}`, objectiveIds: batch.objectiveIds }
-            const active = activeBeat.beat === info.beat
-            return (
-              <button
-                key={step}
-                type="button"
-                className="ccna-hover"
-                style={{
-                  ...styles.secondaryBtn,
-                  width: 'auto',
-                  minHeight: 32,
-                  padding: '4px 10px',
-                  fontSize: 'var(--ccna-type-micro)',
-                  marginBottom: 0,
-                  borderColor: active ? COLORS.skyBorder : COLORS.border,
-                  opacity: active ? 1 : 0.85,
-                }}
-                onClick={() => {
-                  setBeatStep(step)
-                  runWeakBatchBeat(info, handlers)
-                  if (step === 'prove') setBeatStep('traps')
-                  else if (step === 'traps') setBeatStep('flood')
-                }}
-              >
-                {info.label}
-              </button>
-            )
-          })}
-        </div>
-      )}
-
-      {(onOpenTermsHub || onOpenCommandHub || onOpenLabs) && (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 4 }}>
-          {onOpenTermsHub && (
-            <button
-              type="button"
-              className="ccna-hover"
-              style={{
-                ...styles.secondaryBtn,
-                width: 'auto',
-                minHeight: 32,
-                padding: '4px 10px',
-                fontSize: 'var(--ccna-type-micro)',
-                marginBottom: 0,
-              }}
-              onClick={() => onOpenTermsHub({
-                domainId: domain.id,
-                objectiveId: targetObjectiveId,
-              })}
-            >
-              {targetObjectiveId ? `Terms · ${targetObjectiveId}` : 'Terms'}
-            </button>
-          )}
-          {onOpenCommandHub && (
-            <button
-              type="button"
-              className="ccna-hover"
-              style={{
-                ...styles.secondaryBtn,
-                width: 'auto',
-                minHeight: 32,
-                padding: '4px 10px',
-                fontSize: 'var(--ccna-type-micro)',
-                marginBottom: 0,
-              }}
-              onClick={() => onOpenCommandHub({
-                domainId: domain.id,
-                tab: 'commands',
-                objectiveId: targetObjectiveId,
-              })}
-            >
-              {targetObjectiveId ? `Commands · ${targetObjectiveId}` : 'Commands'}
-            </button>
-          )}
-          {onOpenLabs && (
-            <button
-              type="button"
-              className="ccna-hover"
-              style={{
-                ...styles.secondaryBtn,
-                width: 'auto',
-                minHeight: 32,
-                padding: '4px 10px',
-                fontSize: 'var(--ccna-type-micro)',
-                marginBottom: 0,
-              }}
-              onClick={() => onOpenLabs({
-                domainId: domain.id,
-                objectiveId: targetObjectiveId,
-              })}
-            >
-              {targetObjectiveId ? `Lab · ${targetObjectiveId}` : 'Lab'}
-            </button>
-          )}
-        </div>
+        <FocusedLessonBank
+          nextObjectives={batch.objectiveIds}
+          domainId={domain.id}
+          onStudy={(objId) => {
+            const handoff = buildStudyObjectiveHandoff(objId, { tab: 'Study' })
+            if (handoff) onSelectObjective(handoff)
+          }}
+          onQuickCheck={(objId) => {
+            const handoff = buildStudyObjectiveHandoff(objId, { tab: 'Practice' })
+            if (handoff) onSelectObjective({ ...handoff, __sessionSize: 5 })
+          }}
+          onOpenLab={(objId) => {
+            onOpenLabs?.({
+              domainId: domain.id,
+              objectiveId: objId,
+            })
+          }}
+          onOpenTerms={(objId) => {
+            onOpenTermsHub?.({
+              domainId: domain.id,
+              objectiveId: objId,
+            })
+          }}
+          showDetailedMetrics={false}
+        />
       )}
 
       <div style={{ ...homeBodySm, fontWeight: 700, margin: '12px 0 6px', color: COLORS.silverMid, letterSpacing: 0.3 }}>
