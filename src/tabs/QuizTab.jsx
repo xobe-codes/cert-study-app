@@ -65,6 +65,7 @@ import {
   quizFeedbackA11y,
   QuizCompleteCard,
 } from './quizTabChrome.jsx'
+import PostPracticeSecondaryTools from '../components/PostPracticeSecondaryTools.jsx'
 import IdkButton from '../components/IdkButton.jsx'
 import { takeLatencyMs, recordAnswerOutcome, unknownMissExtra } from '../features/study/answerOutcome.js'
 
@@ -720,6 +721,7 @@ export function QuizTab({
   if (phase === 'error') return <ErrorBox message={error} onRetry={() => startQuiz(false)} />
   if (phase === 'done') {
     const missedCountGlobal = (missed || []).length
+    const score = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0
     return (
       <>
         <QuizCompleteCard
@@ -735,6 +737,19 @@ export function QuizTab({
           onSwitchTab={onSwitchTab}
           footnote={examMode ? 'Exam mode — tips saved for debrief below.' : null}
           premiumUnlocked={premiumUnlocked}
+        />
+        {/* Option B: Post-practice secondary tools appear contextually after user practices */}
+        <PostPracticeSecondaryTools
+          objectiveId={objective.id}
+          domainId={objective.domainId}
+          score={score}
+          onOpenTrapDrill={onOpenTrapDrill}
+          onOpenDomainPass={onSelectObjective ? (opts) => onSelectObjective({
+            ...objective,
+            __mode: 'domainPass',
+            __focusObjectiveIds: opts?.focusObjectiveIds,
+          }) : undefined}
+          onOpenMockExam={onSelectObjective}
         />
         {examMode && <DeferredExamTips tips={deferredTips.current} />}
       </>
