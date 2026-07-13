@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
+import { copyFileSync } from 'fs'
+import { resolve } from 'path'
 
 /** Reject SPA HTML fallbacks cached as JS/CSS (breaks module load → blank screen). */
 const rejectHtmlAsScript = {
@@ -23,6 +25,13 @@ const chunkCacheGuard = {
 
 export default defineConfig({
   plugins: [
+    {
+      name: 'copy-routes',
+      apply: 'build',
+      writeBundle() {
+        copyFileSync(resolve(__dirname, 'public/_routes.json'), resolve(__dirname, 'dist/_routes.json'))
+      },
+    },
     react(),
     VitePWA({
       registerType: 'autoUpdate',
