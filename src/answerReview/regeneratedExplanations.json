@@ -1,0 +1,862 @@
+{
+  "1.1-c-q1": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes think 'physical connectivity' is the layer that defines router operation, since routers have visible physical ports.",
+        "whyItSeems": "Routers connect via cables and have physical interfaces, so it's tempting to associate their 'primary' function with the visible physical layer.",
+        "whyWrongHere": "This question asks where a router primarily operates, meaning the layer it makes forwarding decisions at. A router has Layer 1 ports, but its defining job is reading the destination IP address and choosing an outbound interface via its routing table — that's Layer 3. Layer 1 only handles electrical/optical signaling with no address awareness at all.",
+        "memoryAnchor": "'Primarily operates at' means 'makes its forwarding decision at' — for a router, that's Layer 3 (IP), not the physical wire.",
+        "contrast": "Layer 1 devices (hubs, cables) move bits with zero address awareness; a router reads the IP header and picks a path — a fundamentally different, address-based decision."
+      },
+      {
+        "choiceIndex": 1,
+        "misconceptionReason": "Students blend switch and router behavior because both are 'forwarding devices,' so they assume a router forwards like a switch at Layer 2.",
+        "whyItSeems": "Layer 2 is a commonly tested layer, and routers sometimes have switch-like ports on multilayer models, so it feels plausible.",
+        "whyWrongHere": "Layer 2 is where switches forward frames using MAC addresses within one broadcast domain. A router's job is different — it moves traffic between networks by reading the Layer 3 IP header. If a router only worked at Layer 2, it couldn't route between subnets at all; it would just be a switch.",
+        "memoryAnchor": "MAC address decisions = Layer 2 = switch. IP address decisions = Layer 3 = router.",
+        "contrast": "A switch never rewrites MAC addresses or crosses subnet boundaries; a router rewrites the Layer 2 header at every hop and forwards based on the Layer 3 destination."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Learners sometimes think 'smart' devices must operate at the application layer because that's the most feature-rich, 'advanced' layer.",
+        "whyItSeems": "Modern routers can have application-aware features, which can make Layer 7 feel like a tempting 'advanced' answer.",
+        "whyWrongHere": "Layer 7 is where applications like HTTP and DNS operate — that's about the meaning of data, not choosing a network path. A basic router's core forwarding decision never looks at application data; it only reads the Layer 3 IP header to decide where to send the packet next.",
+        "memoryAnchor": "Layer 7 = what the data means to an application. Layer 3 = where the packet goes on the network. Routing is a Layer 3 job.",
+        "contrast": "Application-layer devices interpret payload content (URLs, DNS names); a router ignores payload and only reads the IP header to forward."
+      }
+    ]
+  },
+  "1.1-c-q2": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Learners sometimes assume any 'forwarding table' is a routing table because that's the more familiar term from router configuration.",
+        "whyItSeems": "Both switches and routers 'forward' traffic, and 'routing table' is the term most students learn first, so it gets applied loosely to any forwarding device.",
+        "whyWrongHere": "This question is specifically about a Layer 2 switch forwarding frames within a LAN. A routing table maps IP networks to next-hop addresses for Layer 3 devices — a switch doesn't look at IP addresses when forwarding; it checks the destination MAC against its learned MAC address table.",
+        "memoryAnchor": "Routing table = Layer 3, IP-based, lives on routers. MAC address table = Layer 2, lives on switches.",
+        "contrast": "A routing table entry points to a next-hop IP over an interface; a MAC table entry just maps a MAC address to a local switch port — no IP involved."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes conflate 'table the device consults' with DNS because DNS is the most familiar lookup mechanism from everyday networking.",
+        "whyItSeems": "Both a MAC table and a DNS cache are lookup structures mapping one identifier to another, so the general shape invites confusion.",
+        "whyWrongHere": "DNS resolves human-readable names to IP addresses at Layer 7 — it has nothing to do with how a switch decides which physical port to send a frame out of. A switch forwarding a frame never consults DNS; it reads the frame's destination MAC and checks its own MAC table.",
+        "memoryAnchor": "DNS = names to IPs (Layer 7). MAC table = MACs to switch ports (Layer 2). Totally different jobs.",
+        "contrast": "DNS cache entries expire and are queried over the network; a MAC table is built locally and instantly from frames the switch has already seen."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students associate the 'list' or 'table' a switch checks with an ACL because ACLs are also a lookup switches consult before acting on traffic.",
+        "whyItSeems": "ACLs can be applied on switches and do influence what happens to a frame, so it feels plausible that an ACL decides forwarding.",
+        "whyWrongHere": "An ACL is an optional permit/deny filter — it decides whether traffic is allowed, not which port to send it out of. The question asks what a switch uses to forward frames, which is the MAC address table; ACLs, if configured at all, are a separate filtering step layered on top.",
+        "memoryAnchor": "ACLs filter (permit/deny); the MAC table forwards (chooses the exit port). Different tools for different questions.",
+        "contrast": "Without any ACL configured, a switch still forwards every frame using its MAC table — forwarding doesn't depend on ACLs existing at all."
+      }
+    ]
+  },
+  "1.1-c-q3": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes lump any 'special switch feature' involving traffic handling under one umbrella, so port mirroring gets mistaken for a routing feature.",
+        "whyItSeems": "Port mirroring is a legitimate advanced switch feature dealing with traffic flow between ports, which can sound related to moving traffic between VLANs.",
+        "whyWrongHere": "The question asks how to route traffic between VLAN 10 and VLAN 20 without a separate router. Port mirroring copies traffic to a monitoring port for analysis — it never creates a path for VLAN 10 hosts to actually reach VLAN 20 hosts.",
+        "memoryAnchor": "Port mirroring = 'watch a copy of the traffic.' SVI = 'actually create a routed path between VLANs.'",
+        "contrast": "Mirrored traffic is a passive copy sent to one monitoring destination; an SVI is an active Layer 3 interface that both receives and forwards real inter-VLAN packets."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes think any switch-level topology-management feature must be the answer to any switch-design question, including inter-VLAN routing.",
+        "whyItSeems": "Spanning Tree is a core switching concept learned early, and campus switch questions often mention it, so it becomes a default guess.",
+        "whyWrongHere": "Spanning Tree Protocol prevents Layer 2 loops by blocking redundant paths within a VLAN — it never moves traffic between different VLANs. Since the question needs a path from VLAN 10 to VLAN 20, STP is the wrong layer and the wrong job entirely.",
+        "memoryAnchor": "STP = loop prevention within Layer 2. SVI = the actual Layer 3 gateway that routes between VLANs.",
+        "contrast": "STP operates purely within a single broadcast domain per VLAN; an SVI operates above VLANs, giving each one a routable IP gateway."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes assume 'bundling links' is a general-purpose fix for any connectivity requirement, including inter-VLAN routing.",
+        "whyItSeems": "EtherChannel is another advanced switch feature involving multiple interfaces, so it can seem like a plausible 'special config' answer.",
+        "whyWrongHere": "EtherChannel bundles multiple physical links into one logical link for bandwidth and redundancy — it never changes which VLANs can reach each other. Even with EtherChannel configured, VLAN 10 and VLAN 20 remain separate broadcast domains until something routes between them, which is exactly what an SVI does.",
+        "memoryAnchor": "EtherChannel = more bandwidth on one logical link. SVI = a routed gateway between VLANs. Neither substitutes for the other.",
+        "contrast": "EtherChannel still forwards within a single VLAN per link; an SVI is what actually crosses the VLAN 10/VLAN 20 boundary."
+      }
+    ]
+  },
+  "1.1-c-q4": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes reduce 'firewall' down to 'blocks specific protocols,' picking a random protocol like UDP as the differentiator.",
+        "whyItSeems": "Firewalls do block traffic by protocol/port as part of basic rules, so 'blocks a protocol' feels firewall-related.",
+        "whyWrongHere": "Both basic packet filters and NGFWs can filter any protocol, including UDP — that's not the distinguishing feature. What sets an NGFW apart is tracking connection state and inspecting the actual application (knowing 'this is streaming video,' not just 'this is TCP port 443'), not which protocol it blocks.",
+        "memoryAnchor": "Protocol filtering is basic to both device types. Stateful, application-aware inspection is what's unique to NGFWs.",
+        "contrast": "A basic packet filter checks each packet's header in isolation; an NGFW tracks the whole connection's state and identifies the actual application generating the traffic."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes imagine 'next-generation' devices as all-in-one boxes that absorb the roles of other network devices, including switching.",
+        "whyItSeems": "NGFWs are marketed as feature-rich, multi-function appliances, so it's tempting to assume they take over every other device's job too.",
+        "whyWrongHere": "The question is about firewall inspection capability, not device consolidation. An NGFW enforces security policy on traffic passing through it; it does not perform Layer 2 MAC-based frame switching for a campus LAN — that job still belongs to switches.",
+        "memoryAnchor": "NGFW = smarter traffic inspection, not a switch replacement. Switching and firewalling remain separate functions.",
+        "contrast": "A switch's core job (MAC table, frame forwarding) is untouched by adding an NGFW — the NGFW inspects and enforces policy, it doesn't do LAN switching."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes think 'physical security appliance' implies the device works at the lowest, physical layer.",
+        "whyItSeems": "Firewalls are physical boxes sitting inline in the network path, so it can feel tied to the physical layer where the cable plugs in.",
+        "whyWrongHere": "An NGFW's whole value is inspecting traffic well above Layer 1 — it examines Layer 3 addresses, Layer 4 ports/state, and Layer 7 application data. Operating 'only' at Layer 1 would mean it just passes electrical signals with no inspection at all, the opposite of what a next-gen firewall does.",
+        "memoryAnchor": "NGFW inspection spans Layer 3 through Layer 7 — more layers seen means smarter decisions.",
+        "contrast": "A Layer 1 device (hub, repeater) has zero awareness of addresses or applications; an NGFW's whole purpose is deep awareness across multiple layers."
+      }
+    ]
+  },
+  "1.1-c-q5": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes assume any 'discovery' process on a network must involve DNS, since DNS is the most familiar discovery mechanism.",
+        "whyItSeems": "APs can use DNS-based discovery as one of several WLC discovery methods, so DNS feels connected to the process.",
+        "whyWrongHere": "Even when DNS is used as one discovery method, the AP isn't joining or registering with the DNS server — DNS only helps it find the WLC's address. The actual join and registration happens via CAPWAP with the wireless LAN controller, which owns AP management, configuration, and policy.",
+        "memoryAnchor": "DNS can help find the WLC's address, but the AP always joins and registers with the WLC itself, not with DNS.",
+        "contrast": "A DNS server just answers name lookups with no concept of AP management state; the WLC actively tracks join status, config, and policy for every registered AP."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes assume the 'most important' device in the network must control every other device, including APs.",
+        "whyItSeems": "Traffic from the AP may pass through a core router en route to the WLC, so it's easy to conflate 'passes through' with 'registers with.'",
+        "whyWrongHere": "A core router can forward the AP's CAPWAP discovery/join traffic, but it has no awareness of AP configuration, licensing, or wireless policy. Only the WLC actually performs the join and registration process and takes ownership of managing that AP.",
+        "memoryAnchor": "Routers move packets toward the WLC; only the WLC actually manages and registers the AP.",
+        "contrast": "The core router's job ends at forwarding IP packets; the WLC's job is to authenticate, configure, and centrally manage the AP itself."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes bundle 'getting on the network' steps together, assuming DHCP (which gives the AP its IP) is the same step as WLC registration.",
+        "whyItSeems": "An AP typically needs DHCP first to get an IP address before it can reach a WLC, so DHCP relay feels like part of the 'joining' process.",
+        "whyWrongHere": "DHCP relay simply forwards DHCP requests so the AP can obtain an IP address — a necessary early step, but a separate one. Getting an IP address doesn't mean the AP has discovered or registered with anything; that step specifically targets the wireless LAN controller.",
+        "memoryAnchor": "DHCP gets the AP an IP address; the WLC is who the AP actually joins and registers with afterward.",
+        "contrast": "DHCP relay's job ends once an IP is assigned; the WLC's CAPWAP join process is what actually brings the AP under management."
+      }
+    ]
+  },
+  "1.1-c-q6": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes think any device that 'sits at the edge' facing users or the internet counts as an endpoint.",
+        "whyItSeems": "A web server can feel like an 'end point' of a connection since that's where a web request terminates, resembling the word 'endpoint.'",
+        "whyWrongHere": "In CCNA terminology, 'endpoint' specifically refers to client/user devices — the things people directly use, like laptops, phones, and tablets. A web server is infrastructure that provides a service to endpoints, not an endpoint itself.",
+        "memoryAnchor": "Endpoints are what people use (laptops, phones). Servers provide services to endpoints — they're infrastructure, not endpoints.",
+        "contrast": "An employee laptop initiates requests as a user tool; a web server exists purely to respond to those requests as a service."
+      },
+      {
+        "choiceIndex": 1,
+        "misconceptionReason": "Students may assume any device attached to the network edge, including a DNS server, qualifies loosely as an 'endpoint' since it isn't a core switch or router.",
+        "whyItSeems": "DNS servers are often smaller, single-purpose boxes, which can make them feel more 'end-user-like' than they really are.",
+        "whyWrongHere": "A DNS server delivers a network service (name resolution) to other devices — it's infrastructure supporting the network, just like a web server. The question asks for an example of an endpoint, which means a client device like the employee laptop, not a service-providing server.",
+        "memoryAnchor": "If a device provides a service to others, it's infrastructure. If a device is used directly by a person, it's an endpoint.",
+        "contrast": "A DNS server answers lookups for many clients at once; an employee laptop is a single user's device generating its own traffic."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes think 'endpoint' just means 'a device at some end of the network topology,' which could describe a router at the network's edge.",
+        "whyItSeems": "A core router does sit at a boundary point in network diagrams, and the word 'end' in 'endpoint' can suggest any boundary device.",
+        "whyWrongHere": "A core router is infrastructure that forwards traffic between networks — it's never the 'end' destination or source of user data itself. An endpoint, like the employee laptop, is the actual client device generating and consuming data.",
+        "memoryAnchor": "Endpoints generate/consume data for a user; core routers just move that data along — they're never the source or destination.",
+        "contrast": "The core router forwards packets for thousands of other devices; the employee laptop is itself one of those devices with its own user and data."
+      }
+    ]
+  },
+  "1.1-c-q7": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students often think of the access switch as the 'first' device in the physical topology, so it seems like the natural first stop for any traffic leaving the PC.",
+        "whyItSeems": "The PC is physically cabled to the access switch, and the frame does pass through it first at Layer 2 — so it's easy to stop the reasoning there.",
+        "whyWrongHere": "While the frame physically passes through the switch, the switch only forwards within the local VLAN using MAC addresses — it can't route to a remote subnet. Because the destination is remote, the PC's IP stack already addressed the frame to the default gateway's MAC address, so the switch is just relaying it toward that gateway.",
+        "memoryAnchor": "The switch is a pass-through link to the gateway; the gateway is who actually makes the 'how do I reach that remote subnet' decision.",
+        "contrast": "The switch forwards purely on MAC address with no awareness of subnets; the default gateway examines the destination IP and routes accordingly."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes assume any 'controller' device in the network handles general traffic forwarding decisions.",
+        "whyItSeems": "If the PC's traffic happens to originate over Wi-Fi, wireless infrastructure is somewhere in the path, which can make the WLC feel relevant.",
+        "whyWrongHere": "The WLC's job is managing APs and wireless policy — it doesn't function as a routing device that receives traffic destined for a remote subnet. Regardless of wired or wireless, traffic to a remote subnet is addressed to the default gateway, not to the WLC.",
+        "memoryAnchor": "WLC = manages wireless infrastructure. Default gateway = handles routing between subnets. Different jobs entirely.",
+        "contrast": "The WLC never appears in the Layer 3 forwarding path for a data packet; the default gateway is the actual next hop for cross-subnet traffic."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes conflate 'resolving where to send traffic' with DNS, since DNS is involved early when the destination is a hostname.",
+        "whyItSeems": "Before sending traffic, a PC often first queries DNS to get an IP address, so DNS feels like part of the sending process.",
+        "whyWrongHere": "DNS resolution, if needed, happens before the packet is even built — it converts a name to an IP address but doesn't touch or forward the resulting packet. Once addressed and sent to a remote subnet, the packet is delivered first to the default gateway for routing, not to a DNS server.",
+        "memoryAnchor": "DNS answers 'what's the IP for this name?' The default gateway answers 'how do I get this packet to that IP?' Two separate steps.",
+        "contrast": "DNS only handles name-to-IP lookups and is out of the picture once the packet exists; the default gateway is in the actual forwarding path for every packet leaving the local subnet."
+      }
+    ]
+  },
+  "1.1-c-q8": {
+    "incorrect": [
+      {
+        "choiceIndex": 1,
+        "misconceptionReason": "Students sometimes think each AP can operate fully independently since it's a physical device on its own, similar to old-style autonomous APs.",
+        "whyItSeems": "Older, autonomous AP deployments really did configure each AP individually, so 'False' can feel right if picturing that legacy model.",
+        "whyWrongHere": "This question specifically describes lightweight APs paired with a wireless LAN controller — that architecture exists precisely to centralize configuration, RF management, and policy in the WLC rather than on each AP. Saying 'False' ignores the entire point of controller-based wireless design.",
+        "memoryAnchor": "Lightweight AP + WLC = centralized management. Autonomous AP = each AP self-managed. This question is about the controller-based model.",
+        "contrast": "An autonomous AP holds its own full configuration locally; a lightweight AP holds almost nothing locally and pulls its configuration and policy from the WLC."
+      }
+    ]
+  },
+  "1.2-c-q1": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes think the 'core' of the network, being the most important-sounding tier, must be closest to the users it serves.",
+        "whyItSeems": "'Core' can intuitively sound like the center of activity, suggesting it's where user connections happen.",
+        "whyWrongHere": "In the three-tier model, the core tier provides fast, simple, high-speed backbone transport between distribution blocks — it deliberately avoids policy or direct device connections to keep forwarding fast. End-user devices physically plug into the access tier, not the core.",
+        "memoryAnchor": "Core = fast backbone, no user devices, no policy. Access = where users physically plug in.",
+        "contrast": "Core switches are typically few in number carrying aggregated traffic from distribution blocks; access switches are numerous and each connects directly to end-user ports."
+      },
+      {
+        "choiceIndex": 1,
+        "misconceptionReason": "Students sometimes conflate distribution with access because distribution switches sit right above access switches and are involved in 'distributing' connectivity.",
+        "whyItSeems": "The word 'distribution' can sound like it's distributing connections to users, inviting confusion with the access layer's role.",
+        "whyWrongHere": "The distribution tier aggregates multiple access switches and applies policy (inter-VLAN routing, ACLs, QoS) — it connects to access switches, not directly to end-user devices. The tier that physically terminates user PCs, phones, and APs is the access tier.",
+        "memoryAnchor": "Distribution aggregates access switches and enforces policy; access is the tier that physically touches end-user devices.",
+        "contrast": "A distribution switch's downlinks go to access switches, not individual end-user ports; an access switch's downlinks go directly to PCs, phones, and printers."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes mix up data center terminology (spine-leaf) with the campus three-tier model since both describe layered switch architectures.",
+        "whyItSeems": "'Spine' sounds like it could be another tier name in a layered design, so it can be mistaken for a valid answer.",
+        "whyWrongHere": "Spine is a data center fabric term (spine-leaf), not part of the traditional campus three-tier model, which uses access/distribution/core. Since this question is explicitly about the three-tier campus design, 'spine' isn't even one of its tiers.",
+        "memoryAnchor": "Campus = access/distribution/core. Data center fabric = spine/leaf. Different architectures, different vocabulary.",
+        "contrast": "Access is a real tier in the three-tier campus model that terminates end devices; spine belongs to a completely different data center design."
+      }
+    ]
+  },
+  "1.2-c-q2": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes assume any advanced-sounding architecture term could apply to small networks if they don't yet have a clear sense of scale differences.",
+        "whyItSeems": "Both spine-leaf and SOHO Wi-Fi involve 'connecting devices to a network,' so without considering scale, the terms can seem interchangeable.",
+        "whyWrongHere": "Spine-leaf is a multi-switch fabric built to handle massive east-west (server-to-server) traffic inside a data center. A SOHO Wi-Fi setup is the opposite extreme — a single access point/router serving a handful of devices, with no need for a multi-tier switching fabric.",
+        "memoryAnchor": "Spine-leaf = large-scale data center fabric. SOHO = one integrated device for a home/small office. Wildly different scales.",
+        "contrast": "Spine-leaf uses dozens of switches wired in a full mesh for massive bandwidth; SOHO Wi-Fi uses a single all-in-one router/AP."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes pick an unrelated legacy term as a distractor guess when unsure, especially if it just sounds like 'another kind of network.'",
+        "whyItSeems": "Dial-up WAN is a network topology term from CCNA WAN topics, so in a list of architecture options it can seem superficially plausible.",
+        "whyWrongHere": "Dial-up WAN describes low-bandwidth remote access over telephone lines between distant sites — it's about wide-area connectivity, not east-west switching within a data center. Spine-leaf is purely an internal data center switching topology.",
+        "memoryAnchor": "Dial-up WAN = legacy long-distance remote access. Spine-leaf = high-speed internal data center switching. Not even the same category.",
+        "contrast": "Dial-up WAN links are slow, point-to-point, and span long distances; spine-leaf links are high-speed and confined within a single data center."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes associate 'high bandwidth' scenarios generally with anything requiring speed, including gaming, without considering where the architecture is deployed.",
+        "whyItSeems": "Gaming does need low latency and good bandwidth, so it can feel intuitively connected to a 'high-performance' architecture like spine-leaf.",
+        "whyWrongHere": "Home gaming traffic runs over a home network with a single router/gateway — there's no data center, no server-to-server traffic, and no need for a multi-switch fabric. Spine-leaf solves scaling problems for many servers talking to each other inside a data center.",
+        "memoryAnchor": "Spine-leaf solves data center server-to-server (east-west) scale — home gaming traffic never needs that kind of fabric.",
+        "contrast": "Home gaming traffic exits through one home gateway to the internet; spine-leaf traffic mostly stays inside the data center moving between server racks."
+      }
+    ]
+  },
+  "1.2-c-q3": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes assume 'many branches connected to a network' automatically means every site connects to every other site.",
+        "whyItSeems": "Both full mesh and hub-and-spoke involve multiple branch sites, so without checking link arrangement, they can seem similar.",
+        "whyWrongHere": "The question states all ten branches send traffic through headquarters — meaning branches don't have direct links to each other, only to HQ. Full mesh would require direct links between every pair of branches, which isn't described here.",
+        "memoryAnchor": "If every site links to every other site, it's full mesh. If every site links only to one central site, it's hub-and-spoke.",
+        "contrast": "Full mesh needs n(n-1)/2 links for any-to-any connectivity; hub-and-spoke needs only n links, one per branch to HQ."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes reach for spine-leaf as a generic 'network topology' answer without checking whether the scenario is actually about a data center.",
+        "whyItSeems": "Spine-leaf is a topology term studied around the same time as WAN topologies, so it can get pulled in as a distractor.",
+        "whyWrongHere": "Spine-leaf is a data center switching fabric between switches within one facility — it has nothing to do with WAN connectivity between branch offices and headquarters. This scenario describes branch offices routing WAN traffic through HQ, the textbook definition of hub-and-spoke.",
+        "memoryAnchor": "Spine-leaf = inside one data center. Hub-and-spoke = WAN topology connecting branch sites to a central hub.",
+        "contrast": "Spine-leaf connects switches within a single facility for internal traffic; hub-and-spoke connects geographically separate branch offices to a central WAN hub."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes think 'point-to-point' describes any single link, and since HQ has a link to each branch, it might seem to fit.",
+        "whyItSeems": "Each individual branch-to-HQ connection technically is a point-to-point link, so the term isn't entirely unrelated.",
+        "whyWrongHere": "'Point-to-point only' implies just one isolated link between two sites, not a topology with ten branches all converging on one central hub. The overall pattern — many spokes terminating at one hub — is specifically what 'hub-and-spoke' names, even though each individual link is point-to-point.",
+        "memoryAnchor": "Point-to-point describes one link; hub-and-spoke describes the overall pattern of many point-to-point links all meeting at one hub.",
+        "contrast": "'Point-to-point only' suggests a single, isolated connection between two sites; hub-and-spoke describes the full topology of many such links converging on HQ."
+      }
+    ]
+  },
+  "1.2-c-q4": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes assume that whatever trait is 'asked about as a downside' must be the opposite of what full mesh is actually known for.",
+        "whyItSeems": "Since the question asks for a 'trade-off' (something negative), and redundancy sounds positive, it's tempting to guess full mesh must lack it.",
+        "whyWrongHere": "Full mesh is actually the topology that maximizes redundancy — every site connects directly to every other site, giving many alternate paths if one link fails. The real trade-off is the opposite problem: with n(n-1)/2 links required, cost and management complexity grow quickly as sites are added.",
+        "memoryAnchor": "Full mesh's strength is redundancy; its weakness is the cost/complexity of that many links.",
+        "contrast": "A topology with poor redundancy has one path per site; full mesh gives every site multiple direct paths — the opposite of 'no redundancy.'"
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes assume 'high-performance' or 'advanced' topologies must require premium physical media like fiber.",
+        "whyItSeems": "Full mesh sounds like a sophisticated design, so it might seem to imply advanced cabling requirements.",
+        "whyWrongHere": "Full mesh describes how sites are logically interconnected, not what physical medium is used — mesh links can run over fiber, copper, wireless, or WAN circuits of any kind. The real trade-off is the number of links needed growing rapidly as sites are added.",
+        "memoryAnchor": "Mesh is a topology (logical connection pattern), not a media requirement — it works over any transport.",
+        "contrast": "Media type is an independent design choice; the mesh trade-off is purely about link count and management overhead."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes think that because every site has a direct link to every other site, routing decisions somehow become unnecessary.",
+        "whyItSeems": "With a direct link everywhere, it might seem like traffic can just go straight across without any routing logic involved.",
+        "whyWrongHere": "Routing protocols are still needed on a full-mesh WAN to determine best paths, handle failures, and manage all those direct links — mesh describes the topology, not a replacement for Layer 3 routing. The actual trade-off tested here is cost and complexity, not any change to whether routing is needed.",
+        "memoryAnchor": "Mesh topology and routing are independent concepts — more links means routing still runs, just with more paths to manage.",
+        "contrast": "Eliminating routing would mean no Layer 3 decision-making at all; full mesh actually increases routing complexity because there are more paths to choose between."
+      }
+    ]
+  },
+  "1.2-c-q5": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes take 'collapsed' to its extreme and assume it means everything is merged into a single flat tier.",
+        "whyItSeems": "'Collapsed' suggests things being combined/reduced, so it can feel like the natural endpoint is reducing all the way down to one tier.",
+        "whyWrongHere": "'Collapsed core' specifically means the core and distribution functions are combined onto one device/tier, but the access tier is still separate — so there are still two functional tiers, not one flat tier.",
+        "memoryAnchor": "Collapsed core merges core + distribution into one tier, but access remains separate — that's two tiers total, not one.",
+        "contrast": "A truly single-tier (flat) network has no separation between access and any aggregation/routing layer; collapsed core still keeps access switches distinct from the combined core/distribution switch."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes assume 'collapsed' networks must have grown more complex rather than simpler, especially thinking of larger enterprise designs.",
+        "whyItSeems": "Larger designs sometimes add more layers, so it's easy to guess a higher number without recalling the specific collapsed-core definition.",
+        "whyWrongHere": "Collapsed core is specifically a simplification of the three-tier model down to fewer tiers, not an expansion. Combining core and distribution into a single tier alongside access results in two tiers, not four.",
+        "memoryAnchor": "'Collapsed' always means fewer tiers than the standard three-tier model, which already has only three — four would be going the wrong direction.",
+        "contrast": "The standard three-tier model already tops out at three tiers; collapsed core reduces that to two, so four tiers isn't a valid direction for this term."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes confuse 'collapsed core' with more complex data center topologies that can involve additional layers, inflating their tier count guess.",
+        "whyItSeems": "Since 'core' architecture questions can appear alongside data center topics with multiple layers, a higher number can feel plausible.",
+        "whyWrongHere": "Collapsed core is a small/midsize campus simplification, not a large multi-layer design — it merges core and distribution into one tier and keeps access separate, giving exactly two tiers. Five tiers has no relationship to this term.",
+        "memoryAnchor": "Collapsed core = simpler and smaller than three-tier, landing at exactly two tiers — never five.",
+        "contrast": "Five tiers would describe an unusually large, layered architecture; collapsed core is specifically the choice for smaller networks needing fewer, not more, tiers."
+      }
+    ]
+  },
+  "1.2-c-q6": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes think any device performing multiple functions (NAT, DHCP, Wi-Fi) sounds 'powerful' enough to be core datacenter equipment.",
+        "whyItSeems": "The wireless router in the scenario does handle several functions at once, which might suggest a more 'enterprise' role.",
+        "whyWrongHere": "The scenario explicitly describes one home user with a single wireless router — the textbook definition of a SOHO setup, not a data center. Core datacenter equipment consists of high-capacity switches handling massive east-west traffic between many servers, nothing like a single consumer router.",
+        "memoryAnchor": "One integrated router/AP handling NAT+DHCP+Wi-Fi for a home = SOHO. Redundant high-capacity switching fabric for servers = core datacenter.",
+        "contrast": "A core datacenter switch handles traffic for potentially thousands of servers with no NAT/DHCP/Wi-Fi role; a SOHO router handles a handful of devices and bundles those consumer functions into one box."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes reach for a WAN-related term as a guess whenever 'network design category' is being tested, even in a single-site home scenario.",
+        "whyItSeems": "Full mesh WAN is another network design pattern studied around the same time, so it can surface as a distractor.",
+        "whyWrongHere": "Full mesh WAN describes multiple sites all directly interconnected across a wide area — this scenario is a single home with one router, with no other 'sites' involved. A lone home router with NAT/DHCP/Wi-Fi is the definition of SOHO.",
+        "memoryAnchor": "Full mesh WAN needs multiple sites interconnected; SOHO is a single small site with one all-in-one device.",
+        "contrast": "Full mesh WAN involves many locations each linked to every other; this scenario has exactly one location with one integrated router."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes default to a 'sophisticated-sounding' architecture term when the real answer is meant to be the simplest possible option.",
+        "whyItSeems": "If 'spine fabric' was recently studied, it might come to mind as a generic architecture answer without checking the scenario's scale.",
+        "whyWrongHere": "Spine fabric describes a data center's internal switch interconnection for massive server-to-server traffic — nothing like a single home router doing NAT, DHCP, and Wi-Fi for one household. The scenario's scale is specifically what 'SOHO' describes.",
+        "memoryAnchor": "Spine fabric = data center internal switching at scale. SOHO = one small integrated gateway for a home or small office.",
+        "contrast": "Spine fabric involves many dedicated switches in a data center; SOHO is literally one all-in-one box serving a handful of devices."
+      }
+    ]
+  },
+  "1.2-c-q7": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes only remember that cloud models differ by 'how much you manage' without pinning down exactly which layer is whose responsibility.",
+        "whyItSeems": "SaaS is a cloud model also commonly tested alongside PaaS and IaaS, so it's a natural guess among the 'cloud service model' options.",
+        "whyWrongHere": "The question asks about a model where the customer manages the OS but not the hardware — in SaaS, the provider manages everything, including the application itself; the customer doesn't touch the OS at all. That level of OS control matches IaaS, not SaaS.",
+        "memoryAnchor": "SaaS = provider manages everything, even the app. IaaS = customer manages OS and up; provider only owns hardware.",
+        "contrast": "A SaaS customer just uses a finished application with zero infrastructure or OS access; an IaaS customer gets a virtual machine and configures the OS themselves."
+      },
+      {
+        "choiceIndex": 1,
+        "misconceptionReason": "Students sometimes blur PaaS and IaaS together since both are 'more hands-on' cloud models compared to SaaS.",
+        "whyItSeems": "PaaS does give the customer more control than SaaS, so it can feel like a plausible middle-ground answer.",
+        "whyWrongHere": "In PaaS, the provider manages the OS and runtime environment — the customer only deploys and manages application code on top. Since the question requires the customer to manage the OS themselves, that's the defining trait of IaaS, where the provider only supplies the hardware/virtualization.",
+        "memoryAnchor": "PaaS = provider manages OS/runtime, customer manages app. IaaS = provider manages only hardware, customer manages OS and up.",
+        "contrast": "A PaaS customer never logs into or patches an OS; an IaaS customer gets a virtual machine and is responsible for OS installation, patching, and configuration."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes think 'customer manages the OS' sounds like full ownership, which can be mistaken for owning everything, as in an on-premises deployment.",
+        "whyItSeems": "On-prem does give the customer full OS control, which superficially matches part of the question's description.",
+        "whyWrongHere": "On-premises means the customer owns and manages the physical hardware too — there's no cloud provider involved. The question describes a cloud model where hardware is NOT managed by the customer, which points to IaaS, where the provider supplies and maintains physical infrastructure while the customer manages the OS.",
+        "memoryAnchor": "On-prem = customer owns hardware AND OS. IaaS = provider owns hardware, customer manages OS and above.",
+        "contrast": "On-prem has no cloud provider managing hardware; IaaS specifically hands hardware/virtualization management to the provider while leaving the OS to the customer."
+      }
+    ]
+  },
+  "1.2-c-q8": {
+    "incorrect": [
+      {
+        "choiceIndex": 1,
+        "misconceptionReason": "Students sometimes assume network fabrics generally use partial or selective connections to save cost, similar to how campus networks avoid full mesh.",
+        "whyItSeems": "Full mesh is usually described as expensive and impractical in campus/WAN contexts, so it might seem unlikely a 'modern' design like spine-leaf would use it.",
+        "whyWrongHere": "The defining trait of spine-leaf, unlike campus/WAN full mesh, is that every leaf switch connects to every spine switch — this full interconnection gives spine-leaf its predictable, low-latency, non-blocking performance. Saying 'False' denies the core architectural principle the design is built around.",
+        "memoryAnchor": "Every leaf touches every spine — that full interconnection is the entire point of spine-leaf.",
+        "contrast": "Unlike a full-mesh WAN between many sites (expensive due to n² links), spine-leaf's full mesh is only between two switch tiers, which stays manageable at that scale."
+      }
+    ]
+  },
+  "1.3-c-q1": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes underestimate cable run distances, picturing only very short patch cables rather than a full horizontal cable run.",
+        "whyItSeems": "10 meters might feel like a 'safe,' short distance that avoids any signal degradation concerns.",
+        "whyWrongHere": "The question asks for the maximum recommended length, and 10 m is far shorter than what copper UTP actually supports. The standard exam figure for a UTP Ethernet segment is 100 meters — 10 m would unnecessarily limit real-world cable runs.",
+        "memoryAnchor": "100 m is the number to remember for copper UTP Ethernet — not 10 m, and not 1 km.",
+        "contrast": "10 m only covers a very short patch connection; 100 m is what's actually needed to reach from a wiring closet to a typical office desk."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes mix up fiber and copper distance specifications, assigning fiber-like distances to copper cabling.",
+        "whyItSeems": "500 m is a plausible-sounding 'networking distance' figure, and some multimode fiber specs are in that general range.",
+        "whyWrongHere": "500 m significantly exceeds copper UTP's signal-carrying capability — copper Ethernet is standardized at a 100 m maximum segment length due to signal attenuation. Distances like 500 m are the territory of fiber optics, not copper UTP.",
+        "memoryAnchor": "Copper UTP tops out at 100 m; longer distances like 500 m require fiber instead.",
+        "contrast": "Copper UTP degrades past 100 m due to electrical signal attenuation; fiber can travel hundreds of meters or more because it uses light instead of electrical signaling."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes recall 'long distance' networking figures from fiber topics and misapply them to copper cabling questions.",
+        "whyItSeems": "1 km sounds like a reasonable 'backbone' distance in networking generally, tempting if the copper-specific limit isn't firmly memorized.",
+        "whyWrongHere": "1 km is well beyond what copper UTP can reliably carry a signal — that kind of distance is squarely fiber territory. For copper UTP Ethernet, the standard maximum segment length tested on the exam is 100 m.",
+        "memoryAnchor": "1 km+ = fiber. 100 m = copper UTP maximum. Keep these two numbers separate.",
+        "contrast": "Fiber's light-based signaling supports kilometers of distance with minimal loss; copper's electrical signaling degrades much sooner, capping out at 100 m."
+      }
+    ]
+  },
+  "1.3-c-q2": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes remember 'crossover cables connect two devices' without recalling which specific device pairs need it.",
+        "whyItSeems": "Crossover is a real Ethernet cable type used between certain devices, so it's a plausible guess without recalling exactly when it's needed.",
+        "whyWrongHere": "Crossover cables connect like devices to each other (switch-to-switch, PC-to-PC) on equipment without auto-MDIX. This question asks about connecting a PC to a switch — unlike devices — which is exactly when a straight-through cable is used.",
+        "memoryAnchor": "Unlike devices (PC-switch, router-switch) = straight-through. Like devices (switch-switch, PC-PC) on legacy gear = crossover.",
+        "contrast": "A crossover cable swaps the transmit/receive pins to let two similar devices talk; a straight-through cable keeps pins aligned, exactly what's needed between a PC and a switch."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes conflate any 'connecting a PC to network equipment' scenario with the console/management connection method they've also studied.",
+        "whyItSeems": "Console rollover cables are also used to connect a PC to a switch, creating surface-level confusion about which cable applies here.",
+        "whyWrongHere": "A console rollover cable connects a PC to a switch's console port for out-of-band CLI management — it doesn't carry regular Ethernet data traffic. This question is about a normal LAN data connection, which uses a straight-through Ethernet cable, not a rollover cable.",
+        "memoryAnchor": "Console rollover = management access via console port, no data traffic. Straight-through = normal Ethernet data link.",
+        "contrast": "A rollover cable connects to a serial/console port for CLI access only; a straight-through cable connects to a regular Ethernet port and carries actual network data."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes think 'connecting to a switch' implies fiber if picturing enterprise-grade switch uplinks rather than a basic PC connection.",
+        "whyItSeems": "Fiber does connect to switches in many designs, so it can feel like a valid general answer for 'switch connectivity.'",
+        "whyWrongHere": "The question is about a typical copper connection between a PC and a switch — nearly all PC NICs use copper RJ-45 Ethernet ports, not fiber. Single-mode fiber is reserved for long-distance links, not standard desktop PC-to-switch cabling.",
+        "memoryAnchor": "PCs connect to switches over copper (straight-through) in virtually every typical scenario — fiber is for longer-distance uplinks.",
+        "contrast": "Single-mode fiber is built for long-haul links measured in kilometers; a PC-to-switch connection is a short copper run using a standard straight-through cable."
+      }
+    ]
+  },
+  "1.3-c-q3": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes see 'fiber' in both options and assume any fiber type works equally well for long distances.",
+        "whyItSeems": "Multimode is fiber, and fiber in general is associated with 'long distance' networking, so it seems reasonable without distinguishing multimode from single-mode.",
+        "whyWrongHere": "Multimode fiber (typically orange or aqua jacketed) is designed for shorter campus-distance runs because light bouncing through its wider core causes modal dispersion over long distances. Long-distance WAN links need single-mode fiber (yellow jacketed), which uses a narrower core for reliability across long spans.",
+        "memoryAnchor": "Orange/aqua multimode = short campus runs. Yellow single-mode = long-distance WAN links.",
+        "contrast": "Multimode's wider core causes signal spreading that limits it to shorter distances; single-mode's narrow core avoids that, enabling much longer reliable runs."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes forget that Cat5 is copper, not fiber, especially if focused on 'cable type' questions generally.",
+        "whyItSeems": "Cat5 is a familiar cable name from CCNA cabling topics, which could make it a tempting generic guess.",
+        "whyWrongHere": "Cat5 is twisted-pair copper Ethernet cabling, limited to about 100 meters — nowhere near sufficient for a long-distance WAN link. WAN links spanning long distances require fiber, specifically single-mode fiber, not copper of any category.",
+        "memoryAnchor": "Copper (Cat5/5e/6/6a) tops out around 100 m; long-distance WAN links need fiber, specifically single-mode.",
+        "contrast": "Copper Cat5 is limited by electrical signal attenuation to about 100 m; single-mode fiber can span many kilometers using light instead of electricity."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes recall coax as an 'older, long-distance' cable type from cable TV or legacy broadband contexts, mistakenly applying that to modern WAN fiber links.",
+        "whyItSeems": "Coax has historically been used for broadband/cable internet delivery, so it can feel plausible for 'distance' scenarios.",
+        "whyWrongHere": "Coax is legacy cabling used mainly for cable broadband/video, not the standard medium for modern long-distance carrier WAN links. Long-distance WAN connections use single-mode fiber because of its very low signal loss over great distances, which coax cannot match.",
+        "memoryAnchor": "Coax = legacy cable broadband. Single-mode fiber = modern long-distance WAN standard.",
+        "contrast": "Coax signal degrades over distance much faster than fiber and is largely legacy technology; single-mode fiber is purpose-built for the long, low-loss runs WAN links require."
+      }
+    ]
+  },
+  "1.3-c-q4": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes think of RJ-45 as the 'default' networking connector for any switch port, including SFP slots.",
+        "whyItSeems": "RJ-45 is the most familiar Ethernet connector from everyday copper networking, so it's an easy default guess.",
+        "whyWrongHere": "RJ-45 is the connector used for copper Ethernet cabling, not for SFP modules, which are designed to carry fiber optic connections. SFP modules typically use LC connectors to terminate the fiber cable into the module.",
+        "memoryAnchor": "RJ-45 = copper Ethernet. LC = fiber connector commonly found on SFP modules.",
+        "contrast": "RJ-45 carries electrical signals over twisted-pair copper; SFP/LC connections carry light signals over glass fiber — different media entirely."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes recall DB-9 from console/serial connections and mistakenly generalize it to any small connector question about network hardware.",
+        "whyItSeems": "DB-9 is a connector type studied in CCNA (console/serial cabling), so it can surface as a plausible-sounding 'connector' answer.",
+        "whyWrongHere": "DB-9 connectors are used for legacy serial/console connections, not for fiber SFP modules. SFP modules are built around small, fiber-specific connectors like LC, physically and functionally unrelated to a DB-9 serial connector.",
+        "memoryAnchor": "DB-9 = serial/console cabling. LC = fiber connector for SFP transceivers. Completely different use cases.",
+        "contrast": "A DB-9 carries a serial data stream for device management; an LC connector on an SFP carries a fiber optic network data link."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes assume modern hardware universally uses USB-C given its prevalence on consumer devices.",
+        "whyItSeems": "USB-C has become the ubiquitous modern connector on laptops and phones, tempting to assume it's used everywhere, including networking hardware.",
+        "whyWrongHere": "USB-C is a general-purpose data/power connector for consumer electronics — it is not used on standard Cisco SFP transceiver modules. SFP modules are purpose-built for fiber networking and use fiber-specific connectors like LC.",
+        "memoryAnchor": "USB-C belongs to consumer device charging/data — SFP modules use dedicated fiber connectors like LC, not USB-C.",
+        "contrast": "USB-C is designed for short-range consumer device connections; LC connectors on SFPs are designed to couple precisely aligned fiber cores for reliable optical signaling."
+      }
+    ]
+  },
+  "1.3-c-q5": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes underestimate newer cable category speeds, defaulting to older, more familiar figures like 100 Mbps from early Ethernet/Cat5 days.",
+        "whyItSeems": "100 Mbps is a commonly remembered 'basic Ethernet' speed from Cat5's Fast Ethernet association.",
+        "whyWrongHere": "100 Mbps is the speed associated with older Cat5 cabling (Fast Ethernet), not Cat6a. Cat6a was specifically developed to support much higher throughput — 10 Gbps — at the full 100-meter distance.",
+        "memoryAnchor": "100 Mbps = Cat5/Fast Ethernet territory. Cat6a is built for 10 Gbps at 100 m.",
+        "contrast": "Cat5 was designed for 100 Mbps Fast Ethernet; Cat6a uses tighter twisting and better shielding to support 100x that speed over the same 100 m distance."
+      },
+      {
+        "choiceIndex": 1,
+        "misconceptionReason": "Students sometimes settle on 1 Gbps because it's the most commonly deployed copper Ethernet speed today, without recalling Cat6a's specific higher-speed rating.",
+        "whyItSeems": "1 Gbps is achievable on Cat5e and Cat6, both closely related cable categories, so it's easy to assume Cat6a shares that same rated speed.",
+        "whyWrongHere": "While Cat6a can run at 1 Gbps, that's not its defining or exam-tested speed — Cat6a was engineered to support 10 Gbps at the full 100-meter distance, which lower categories like Cat5e/Cat6 cannot reliably achieve at that distance.",
+        "memoryAnchor": "Cat5e/Cat6 are commonly paired with 1 Gbps; Cat6a's defining spec is 10 Gbps at 100 m.",
+        "contrast": "Cat6 can only sustain 10 Gbps over shorter distances (around 55 m); Cat6a's added shielding lets it sustain 10 Gbps across the full 100 m."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes overshoot on cable category speeds, assuming 'a' in Cat6a implies an even higher speed tier than 10 Gbps.",
+        "whyItSeems": "Since Cat6a sounds like an 'upgraded' version of Cat6, it might seem like it should support an even more dramatic speed jump, like 40 Gbps.",
+        "whyWrongHere": "40 Gbps over copper twisted pair at 100 m is beyond what Cat6a can reliably support — that kind of speed typically requires fiber or much shorter copper runs. For the CCNA exam, Cat6a's tested pairing is specifically 10 Gbps at 100 m.",
+        "memoryAnchor": "Cat6a = 10 Gbps at 100 m is the exam-tested figure — 40 Gbps over copper at that distance isn't realistic for this category.",
+        "contrast": "40 Gbps copper links require dramatically shorter distances to work reliably; Cat6a trades some of that speed ceiling for reaching the full 100 m distance at 10 Gbps."
+      }
+    ]
+  },
+  "1.3-c-q6": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes over-generalize 'straight-through is the default Ethernet cable' without accounting for when two identical devices are connected.",
+        "whyItSeems": "Straight-through cables are the most commonly used Ethernet cable type in modern networks (thanks to auto-MDIX), so it's an easy default guess.",
+        "whyWrongHere": "The question specifies two legacy switches without auto-MDIX — connecting like devices (switch-to-switch) on hardware that can't automatically detect and correct pinout requires a crossover cable. A straight-through cable would leave the transmit/receive pairs misaligned, and without auto-MDIX the link would fail.",
+        "memoryAnchor": "Auto-MDIX-capable gear tolerates either cable, but legacy like-to-like connections (switch-switch) need crossover.",
+        "contrast": "Straight-through works correctly between unlike devices (PC-switch); crossover is required between like devices when auto-MDIX isn't available."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes think 'connecting two networking devices together' broadly includes console cabling, mixing up management access with data links.",
+        "whyItSeems": "Console cables also connect to switches, so in a list of cable-type options it can seem superficially relevant.",
+        "whyWrongHere": "A console cable connects a PC to a switch's management port for CLI access — it's not designed to link two switches' Ethernet data ports together. This question is about an Ethernet data connection between two switches, which needs a crossover cable on legacy hardware.",
+        "memoryAnchor": "Console cable = out-of-band management access to one device via a PC. Crossover = Ethernet data link between two switches.",
+        "contrast": "A console cable plugs into a serial/console port for terminal access; a crossover cable plugs into Ethernet ports and carries actual network traffic."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes recall 'DCE/DTE' cabling from router WAN topics and misapply it to a switch-to-switch scenario.",
+        "whyItSeems": "Serial DCE/DTE cabling is another cable-type concept studied in CCNA, so it can surface as a distractor.",
+        "whyWrongHere": "Serial DCE cabling is used for WAN connections between routers — it has nothing to do with connecting two Ethernet switches together. Two legacy switches without auto-MDIX need a crossover Ethernet cable, not a serial WAN cable.",
+        "memoryAnchor": "Serial DCE/DTE = router WAN links. Crossover = switch-to-switch Ethernet links on legacy hardware.",
+        "contrast": "Serial DCE cabling carries WAN clocking and serial data between routers; crossover cabling carries standard Ethernet frames directly between two switches."
+      }
+    ]
+  },
+  "1.3-c-q7": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes assume any hardware upgrade/module, including SFPs, must improve overall device performance broadly, like CPU power.",
+        "whyItSeems": "Adding hardware modules can feel like a general performance upgrade if the specific function of the SFP isn't clearly understood.",
+        "whyWrongHere": "SFP modules are Layer 1 physical media transceivers — they let a switch port use different types of cabling, but have no connection to the switch's CPU at all. The primary benefit tested here is flexibility of physical media on a port, not any performance boost to the processor.",
+        "memoryAnchor": "SFPs change what media a port can use — they never touch the switch's CPU or internal processing.",
+        "contrast": "CPU speed is determined by the switch's hardware/chipset; SFP modules only determine what type of physical cable can plug into a given port."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes assume any 'improvement' a network device offers must relate to loop prevention or Spanning Tree, since STP is such a heavily emphasized topic.",
+        "whyItSeems": "Since STP is one of the most-discussed switch features, it can become a default guess for 'what does this switch feature do' questions.",
+        "whyWrongHere": "SFP modules are physical layer transceivers for port media flexibility — they have nothing to do with detecting or preventing Layer 2 loops, which is STP's job. A switch with SFP ports still needs Spanning Tree running exactly the same way as one with fixed RJ-45 ports.",
+        "memoryAnchor": "SFP = physical media flexibility (Layer 1). STP = loop prevention (Layer 2). Unrelated functions.",
+        "contrast": "STP actively monitors the topology and blocks redundant links; an SFP module simply provides a slot for different types of physical connectors — it plays no role in loop detection."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes assume any hardware feature that sounds 'advanced' must be security-related, like encryption.",
+        "whyItSeems": "SFPs are sometimes discussed alongside secure/optical transport in enterprise contexts, which can blur into assuming they encrypt data.",
+        "whyWrongHere": "SFP modules operate at the physical layer, converting electrical or optical signals for transmission — they pass data through as-is without inspecting or altering its content. Encryption is a much higher-layer function, completely separate from what an SFP transceiver does.",
+        "memoryAnchor": "SFPs move signals at Layer 1 with no awareness of data content — encryption happens at higher layers, in software.",
+        "contrast": "Encryption transforms the actual payload data before it's sent; an SFP module doesn't touch the data content at all — it only converts the signal format for the chosen media."
+      }
+    ]
+  },
+  "1.3-c-q8": {
+    "incorrect": [
+      {
+        "choiceIndex": 1,
+        "misconceptionReason": "Students sometimes think all fiber cabling looks the same or uses a single universal color, unaware that color coding is a real industry convention.",
+        "whyItSeems": "If color-coding conventions weren't explicitly memorized, it might seem safer to assume there's no standardized color difference between fiber types.",
+        "whyWrongHere": "The industry does use jacket color as a quick visual identifier — multimode fiber is commonly orange (OM1/OM2) or aqua (OM3/OM4), while single-mode fiber is yellow. Saying 'False' denies a real, commonly tested visual convention used to avoid mismatching fiber types.",
+        "memoryAnchor": "Orange/aqua = multimode. Yellow = single-mode. A quick way to identify fiber type by sight.",
+        "contrast": "Mixing up cable colors isn't just cosmetic — connecting mismatched multimode and single-mode fiber can cause serious signal loss, which is exactly why the color convention exists."
+      }
+    ]
+  },
+  "1.4-c-q1": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes assume any interface counter or statistic reflects overall network health in a positive sense, including successful routing.",
+        "whyItSeems": "Since CRC is a technical-sounding interface statistic, it might seem like it could indicate something is working correctly.",
+        "whyWrongHere": "CRC errors are a Layer 2 frame integrity check failure — they mean a frame arrived corrupted or damaged, unrelated to whether Layer 3 routing decisions are being made correctly. CRC errors specifically indicate a problem, the opposite of 'correct' behavior.",
+        "memoryAnchor": "CRC errors always signal a problem (corrupted frames) — never a sign that something is working correctly.",
+        "contrast": "Correct routing is a Layer 3 process that only happens after a frame arrives intact; CRC errors indicate the frame itself was damaged before routing could even matter."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes group all 'error' or 'failure' symptoms together without distinguishing which OSI layer each one operates at.",
+        "whyItSeems": "Both CRC errors and DNS failures are 'something going wrong' on the network, so without considering layers, they can seem interchangeable.",
+        "whyWrongHere": "DNS failures happen at the application layer when name resolution doesn't work — they have no effect on a Layer 2 interface's CRC counter, which only tracks physical/data-link frame integrity. A CRC error means the frame itself was corrupted in transit, a different layer and cause entirely.",
+        "memoryAnchor": "CRC = Layer 2 frame integrity issue. DNS failure = Layer 7 name resolution issue. Different layers, different causes.",
+        "contrast": "DNS failures leave the physical frame perfectly intact — the problem is in resolving a name; CRC errors mean the frame's actual bits were corrupted during transmission."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes assume that any traffic showing up with a technical detail (like a VLAN tag) mentioned nearby must be related to that detail's correctness.",
+        "whyItSeems": "802.1Q VLAN tagging modifies the frame slightly, so it might seem like tagging issues could be the cause of CRC errors.",
+        "whyWrongHere": "Valid VLAN tagging describes properly-formed 802.1Q frames — a normal, expected condition, not an error. CRC errors specifically mean the frame's contents were corrupted or damaged during transmission, unrelated to whether VLAN tags are properly applied.",
+        "memoryAnchor": "Valid VLAN tagging is normal, healthy frame formatting; CRC errors mean the frame's bits were physically damaged — two unrelated conditions.",
+        "contrast": "A frame can have perfectly valid VLAN tagging and still get a CRC error if a bad cable corrupts it in transit — tagging correctness and frame integrity are independent."
+      }
+    ]
+  },
+  "1.4-c-q2": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes default to 'show ip route' as a catch-all troubleshooting command since it's one of the most frequently used CLI commands.",
+        "whyItSeems": "show ip route is a heavily emphasized command throughout CCNA study, so it can become an automatic guess.",
+        "whyWrongHere": "show ip route displays the Layer 3 routing table — which networks are reachable and via which next hop — it has nothing to do with Layer 2 interface error statistics like CRC or collision counters. To see those, the correct command is show interfaces counters errors.",
+        "memoryAnchor": "show ip route = Layer 3 routing table. show interfaces counters errors = Layer 1/2 interface error statistics. Different purposes.",
+        "contrast": "show ip route tells you where traffic will be forwarded; show interfaces counters errors tells you whether the physical link itself is healthy."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes assume any 'show' command related to switch ports could reveal error statistics, including VLAN commands.",
+        "whyItSeems": "show vlan brief does list interfaces grouped by VLAN membership, so it can seem plausible without checking what info it shows.",
+        "whyWrongHere": "show vlan brief only lists which VLANs exist and which ports are assigned to each — it contains no error counters, CRC data, or collision statistics. Those specific metrics are shown by show interfaces counters errors, a different command entirely.",
+        "memoryAnchor": "show vlan brief = VLAN-to-port mapping. show interfaces counters errors = physical/data-link error statistics. Not the same data.",
+        "contrast": "show vlan brief answers 'which VLAN is this port in?'; show interfaces counters errors answers 'is this port experiencing CRC or collision problems?'"
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes think 'show version' is a general diagnostic command that reveals a broad range of device health information, including interface errors.",
+        "whyItSeems": "show version is commonly used for checking device status, so it can seem like a reasonable 'general health check' guess.",
+        "whyWrongHere": "show version only displays the IOS version, system uptime, and hardware/memory information — it contains no per-interface statistics like CRC or collision counters. Interface error counters specifically require show interfaces counters errors.",
+        "memoryAnchor": "show version = device-level info (IOS, uptime, hardware). show interfaces counters errors = per-port error statistics. Different scope.",
+        "contrast": "show version tells you about the device as a whole; show interfaces counters errors drills down into the health of individual physical ports."
+      }
+    ]
+  },
+  "1.4-c-q3": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes assume any serious misconfiguration must cause a complete link failure rather than degraded performance.",
+        "whyItSeems": "A duplex mismatch does sound like a significant misconfiguration, so 'total failure' can feel like the intuitively worse and thus more likely answer.",
+        "whyWrongHere": "A duplex mismatch typically doesn't bring the link down — the physical link light stays up and basic connectivity often still works, but performance suffers badly. The real symptom is degraded performance with increasing CRC and late collision errors, not complete loss of connectivity.",
+        "memoryAnchor": "Duplex mismatch usually looks like 'it's slow and glitchy,' not 'it's completely dead' — link stays up, performance tanks.",
+        "contrast": "A truly down link shows no traffic passing at all; a duplex mismatch still passes traffic, just with heavy errors and poor throughput."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes think mismatched settings could randomly produce either a positive or negative effect, guessing 'double speed' as an unusual but possible outcome.",
+        "whyItSeems": "Since duplex settings relate to how data flows on the link, it might seem plausible that a mismatch could somehow multiply throughput.",
+        "whyWrongHere": "A duplex mismatch causes one side to expect to send and receive simultaneously (full-duplex) while the other takes turns (half-duplex), leading to collisions and retransmissions — this reduces effective throughput significantly, it never doubles it.",
+        "memoryAnchor": "Duplex mismatches always hurt performance — they never provide a speed boost of any kind.",
+        "contrast": "Matched full-duplex settings can use the link's full bandwidth in both directions simultaneously; a mismatch forces collision-prone, inefficient communication that reduces throughput."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes reach for Spanning Tree as a default explanation for any switch-related connectivity symptom, since STP is a heavily tested topic.",
+        "whyItSeems": "STP blocking is a real switch behavior that can affect connectivity, so it can surface as a guess whenever a switch port issue is described.",
+        "whyWrongHere": "STP blocking is a deliberate Layer 2 loop-prevention state triggered by redundant topology, completely unrelated to duplex settings. A duplex mismatch is a Layer 1/2 signaling problem between two directly connected ports, producing CRC and late collision errors — not an STP topology decision.",
+        "memoryAnchor": "STP blocking = deliberate loop prevention based on topology. Duplex mismatch = signaling misconfiguration between two directly connected ports. Unrelated causes.",
+        "contrast": "STP blocking is intentional and topology-driven, occurring even with perfectly matched duplex settings; duplex mismatch is unintentional and shows up as errors, not a blocked STP state."
+      }
+    ]
+  },
+  "1.4-c-q4": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes recall that collisions were a normal, expected part of older half-duplex Ethernet and mistakenly apply that same expectation to modern full-duplex links.",
+        "whyItSeems": "Collisions were indeed a routine part of shared half-duplex Ethernet, which could make 'normal' feel plausible if the full-duplex context isn't fully considered.",
+        "whyWrongHere": "The question specifies a modern full-duplex switch access port — full-duplex eliminates the shared collision domain entirely, since each side has dedicated transmit/receive paths. Sustained collisions on a full-duplex port are abnormal and point to a duplex mismatch or misconfiguration.",
+        "memoryAnchor": "Full-duplex should have zero collisions by design — any sustained collisions there are a red flag, not normal.",
+        "contrast": "Half-duplex shared segments could see occasional collisions as a normal side effect of contention; a full-duplex switch port has no shared medium, so collisions there always indicate a problem."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes group all 'network problem' symptoms together without separating which OSI layer they belong to.",
+        "whyItSeems": "OSPF issues and interface collisions can both appear in a troubleshooting scenario, so without careful layer analysis they might seem related.",
+        "whyWrongHere": "OSPF adjacency is a Layer 3 routing protocol relationship between routers — it has nothing to do with Layer 1/2 collision counters on a switch access port. Collisions reflect physical/data-link signaling issues, a completely separate layer and cause from OSPF neighbor relationships.",
+        "memoryAnchor": "Collisions = Layer 1/2 physical signaling issue. OSPF adjacency = Layer 3 routing protocol relationship. Different layers entirely.",
+        "contrast": "OSPF adjacency problems show up as neighbors stuck in a non-FULL state; collisions show up as interface error counters — diagnosed with completely different commands and causes."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes lump any interface activity together, assuming address-related processes like DHCP could somehow explain physical-layer symptoms like collisions.",
+        "whyItSeems": "DHCP renewal happens periodically on network interfaces, so it might seem loosely connected to 'things happening on the interface.'",
+        "whyWrongHere": "DHCP renewal is a Layer 3 process for maintaining an IP address lease — it doesn't interact with the Layer 1/2 signaling that produces collisions. Sustained collisions on a full-duplex port point specifically to a duplex mismatch or physical misconfiguration, unrelated to IP addressing processes like DHCP.",
+        "memoryAnchor": "DHCP renewal = Layer 3 IP address maintenance. Collisions = Layer 1/2 physical signaling problem. Not connected.",
+        "contrast": "A DHCP renewal failure would show up as an addressing problem; collisions show up as interface error counters regardless of whether the device even has a valid IP address yet."
+      }
+    ]
+  },
+  "1.4-c-q5": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes reach for 'reload/reboot' as a generic first troubleshooting step for any kind of problem, treating it as a universal fix.",
+        "whyItSeems": "Reloading a device can resolve various software glitches, so it can feel like a safe 'try this first' answer even when the problem is physical.",
+        "whyWrongHere": "CRC errors point to a Layer 1/2 physical issue — like a bad cable, connector, or duplex mismatch — which a reload won't fix, since the underlying hardware/cabling problem persists after reboot. The correct first step is to check and, if needed, replace the cable and verify speed/duplex settings.",
+        "memoryAnchor": "Physical-layer symptoms (like CRC errors) need physical-layer fixes (cable, speed/duplex) — a reload doesn't touch the wire.",
+        "contrast": "A reload might clear a stuck software process; it does nothing for a damaged cable or a duplex mismatch, which is what's actually driving the CRC errors."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes assume any interface problem might be resolved by adjusting Layer 2/3 logical configuration, like VLAN assignment.",
+        "whyItSeems": "VLAN misconfiguration is a common troubleshooting topic, so it can come to mind as a general 'fix the interface' step.",
+        "whyWrongHere": "VLAN misconfiguration causes connectivity/reachability problems, not CRC errors, which are a physical frame-integrity issue. Changing the VLAN wouldn't address a bad cable or duplex mismatch — the actual causes of rising CRC counts.",
+        "memoryAnchor": "VLAN issues cause reachability problems; CRC errors are a physical-layer symptom needing a physical-layer fix (cable/speed/duplex), not a VLAN change.",
+        "contrast": "A VLAN mismatch would still show clean, uncorrupted frames just going to the wrong broadcast domain; CRC errors mean the frames themselves are physically damaged."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes reach for a routing protocol as a fix-all answer, assuming enabling more advanced features could resolve interface-level problems.",
+        "whyItSeems": "OSPF is heavily emphasized in CCNA study, so it can surface as a default troubleshooting guess even in scenarios that aren't about routing.",
+        "whyWrongHere": "OSPF is a Layer 3 routing protocol that has no relationship to Layer 1/2 physical frame integrity — enabling it wouldn't fix CRC errors on a link. The actual first step is to check the cable and verify speed/duplex settings.",
+        "memoryAnchor": "CRC errors are a cabling/physical-layer symptom — routing protocols like OSPF operate at Layer 3 and can't fix a Layer 1/2 problem.",
+        "contrast": "OSPF issues would show up as routes missing from the routing table; CRC errors show up as corrupted frames regardless of what routing protocol is or isn't running."
+      }
+    ]
+  },
+  "1.4-c-q6": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes mix up the terminology for frame-size errors, confusing 'runt' with its opposite counterpart.",
+        "whyItSeems": "Both runts and oversized frames ('giants') are frame-size error categories studied together, so the terms can get swapped if not memorized precisely.",
+        "whyWrongHere": "'Runt' specifically refers to a frame smaller than the minimum valid Ethernet frame size, typically due to a collision or bad NIC — the opposite of oversized. Oversized frames exceeding the maximum length are called 'giants,' a completely separate error category.",
+        "memoryAnchor": "Runts = too small (below minimum). Giants = too big (above maximum). Opposite ends of the size spectrum.",
+        "contrast": "A runt is usually the product of a collision cutting a frame short; a giant/oversized frame usually results from a misconfigured MTU or jumbo frame issue."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes conflate frame-size categories with frame-type categories, assuming 'runt' describes what kind of traffic it is rather than its size.",
+        "whyItSeems": "Both runts and broadcasts are terms that appear together in interface statistics output, so it's easy to blur them into one category.",
+        "whyWrongHere": "'Runt' is purely a size classification — any type of frame can become a runt if it's truncated below the minimum Ethernet frame size. It's not limited to or defined by broadcast traffic at all; the defining trait is being undersized, regardless of the original frame type.",
+        "memoryAnchor": "Runt describes frame size (too small), not frame type (broadcast/unicast/multicast) — those are independent classifications.",
+        "contrast": "A broadcast frame is defined by its destination (all hosts on the segment); a runt is defined purely by its size — a unicast frame can be a runt just as easily as a broadcast frame."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes assume any unusual-sounding frame classification must relate to security processing like encryption.",
+        "whyItSeems": "'Runt' is an unfamiliar-sounding term, so without a clear definition it might get associated with some other advanced frame property.",
+        "whyWrongHere": "Encryption changes the content of a frame's payload but doesn't inherently make it undersized — encryption is unrelated to the Layer 2 frame-size classification the question asks about. A runt is defined strictly by its length falling below the minimum valid Ethernet frame size, regardless of content.",
+        "memoryAnchor": "Runt is about frame length, not frame content — encryption status has no bearing on whether a frame counts as a runt.",
+        "contrast": "Encryption affects what's inside the frame's payload; being a runt is purely about the frame's total length falling below the Ethernet minimum, independent of content."
+      }
+    ]
+  },
+  "1.4-c-q7": {
+    "incorrect": [
+      {
+        "choiceIndex": 1,
+        "misconceptionReason": "Students sometimes assume 'up/up' status means the link is completely error-free, treating link state and error counters as the same thing.",
+        "whyItSeems": "'Up/up' sounds like a clean bill of health, so it's intuitive to think it would rule out any ongoing errors like CRC counts.",
+        "whyWrongHere": "Link status (up/up) only reflects whether the physical connection and protocol are active — it says nothing about frame integrity. An interface can absolutely be up/up while still accumulating CRC errors from a marginal cable, EMI, or a duplex mismatch; the two metrics are tracked independently.",
+        "memoryAnchor": "'Up/up' only means the link is active — always check interface error counters separately to know if it's actually healthy.",
+        "contrast": "Link state answers 'is there a connection?'; the CRC/error counters answer 'is that connection clean?' — a link can pass the first check and fail the second at the same time."
+      }
+    ]
+  },
+  "1.4-c-q8": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes default to IP addressing issues as the go-to explanation for any connectivity-flavored symptom, even physical ones.",
+        "whyItSeems": "Subnet misconfiguration is one of the most commonly tested troubleshooting causes, so it can become an automatic guess.",
+        "whyWrongHere": "A wrong IP subnet causes Layer 3 reachability failures — it has no effect on Layer 1/2 CRC error counters. The scenario specifically describes CRC errors tied to a cable running parallel to power lines, pointing to electromagnetic interference (EMI) corrupting the physical signal, not an addressing mistake.",
+        "memoryAnchor": "CRC errors near power lines = physical-layer EMI issue. Wrong subnet = Layer 3 addressing issue. Different layers, different fixes.",
+        "contrast": "A wrong subnet would still deliver clean, uncorrupted frames that simply get dropped due to logical mismatch; EMI actually corrupts the electrical signal itself, producing the CRC errors described."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes reach for a Layer 3 routing explanation for any 'traffic isn't working right' symptom, regardless of what layer the clue actually points to.",
+        "whyItSeems": "A missing default route is a classic troubleshooting cause for reachability problems, so it can surface as a guess even when the clue points elsewhere.",
+        "whyWrongHere": "A missing default route would prevent traffic from reaching remote networks, but it has nothing to do with corrupting frames or causing CRC errors on a specific cable. The scenario's detail about the cable running parallel to power lines points to electromagnetic interference (EMI) as the physical cause.",
+        "memoryAnchor": "Missing default route breaks reachability to remote networks; CRC errors near power lines point to physical EMI, not a routing gap.",
+        "contrast": "A missing default route still delivers intact frames locally; EMI actively corrupts the frame's bits during transmission, which is what CRC checks catch."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes assume any security-related setting could be the hidden cause of a network symptom, even when the scenario clearly describes a wired issue.",
+        "whyItSeems": "WPA3 misconfig is a plausible-sounding technical answer, and wireless security topics are common in CCNA study.",
+        "whyWrongHere": "WPA3 is a wireless security protocol — it has no relevance to a scenario describing a copper cable physically running parallel to power lines, a wired, Layer 1 environment. The clue about proximity to power lines points directly to electromagnetic interference degrading the copper cable's signal.",
+        "memoryAnchor": "WPA3 governs wireless encryption; a copper cable near power lines points to EMI, a purely physical-layer wired issue.",
+        "contrast": "WPA3 misconfiguration would affect wireless client authentication/encryption; the scenario describes a wired copper cable being physically influenced by nearby electrical interference — a completely different domain."
+      }
+    ]
+  },
+  "1.5-c-q1": {
+    "incorrect": [
+      {
+        "choiceIndex": 0,
+        "misconceptionReason": "Students sometimes assume the switch 'learns' whichever address seems most relevant to where the frame is going, which intuitively feels like the destination.",
+        "whyItSeems": "The destination MAC is what determines where the switch forwards the frame, so it can seem logical that this is also the address being learned.",
+        "whyWrongHere": "The question specifically asks which address the switch records when learning — that's the source MAC, taken from the frame that just arrived on a given port, so the switch now knows 'this MAC lives out this port.' The destination MAC is used for the forwarding decision, not for updating the MAC table.",
+        "memoryAnchor": "Learning uses the source MAC ('who sent this, and from which port'); forwarding uses the destination MAC ('where does this need to go').",
+        "contrast": "Learning is a write operation using the source address on the incoming port; forwarding is a read/lookup operation using the destination address to pick the outgoing port."
+      },
+      {
+        "choiceIndex": 2,
+        "misconceptionReason": "Students sometimes assume the switch must capture both addresses in a frame since both are visible in the frame header.",
+        "whyItSeems": "Since both addresses are present in every Ethernet frame, it can seem reasonable that the switch would record both for its table.",
+        "whyWrongHere": "The switch's MAC address table only stores one MAC-to-port mapping at a time, built from the source address of arriving frames — it isn't simultaneously recording the destination address as a new table entry. The destination MAC is only used to decide where to forward, not to create or update a table entry.",
+        "memoryAnchor": "The MAC table only ever gets new entries from source addresses on incoming frames — never from destination addresses.",
+        "contrast": "If a destination MAC isn't yet in the table, the switch floods the frame instead of learning it from the destination; only source-address learning actually populates new entries."
+      },
+      {
+        "choiceIndex": 3,
+        "misconceptionReason": "Students sometimes conflate Layer 2 and Layer 3 forwarding tables, assuming switches must also track IP addresses like routers do.",
+        "whyItSeems": "Networking devices in general do handle IP addresses somewhere in the stack, so it can seem plausible that switches track them too.",
+        "whyWrongHere": "A standard Layer 2 switch's MAC address table is built and used entirely at Layer 2 — it has no concept of IP addresses in this context. The question is specifically about MAC learning, and the switch learns the source MAC address of frames arriving on each port, not any IP information.",
+        "memoryAnchor": "MAC address tables are Layer 2 only — IP addresses belong to Layer 3 routing tables, a completely separate mechanism.",
+        "contrast": "A router's routing table maps IP networks to next hops based on Layer 3 headers; a switch's MAC table maps individual MAC addresses to local ports based on Layer 2 headers."
+      }
+    ]
+  }
+}
