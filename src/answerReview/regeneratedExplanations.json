@@ -858,5 +858,815 @@
         "contrast": "A router's routing table maps IP networks to next hops based on Layer 3 headers; a switch's MAC table maps individual MAC addresses to local ports based on Layer 2 headers."
       }
     ]
-  }
+  },
+  "1.5-c-q2": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners think every frame the switch doesn't immediately recognize as 'this exact port' triggers a flood, blurring the line between unknown-unicast handling and known-unicast forwarding.",
+      "whyItSeems": "Flooding is the switch's fallback when it doesn't know where to send a frame, so it's tempting to apply that same logic whenever the destination is 'different' from the source port.",
+      "whyWrongHere": "The switch already has a CAM entry mapping this MAC to a specific port — flooding is reserved for frames whose destination MAC has NO table entry. Since the mapping exists, the switch reads it and sends the frame out that one port only; flooding here would waste bandwidth and defeat the purpose of learning.",
+      "memoryAnchor": "Known MAC in the table = one port, no exceptions; flooding is only for the unknown.",
+      "contrast": "Unknown-unicast flooding sprays every port in the VLAN because the switch has no better information; known-unicast forwarding uses the CAM entry to go straight to a single port."
+    },
+    {
+      "choiceIndex": 1,
+      "misconceptionReason": "Learners sometimes assume a frame destined for a 'different' port than it arrived on is somehow invalid or a policy violation, so the switch discards it.",
+      "whyItSeems": "Switches DO drop frames in some scenarios (e.g., port security violations, ACL denies), so it feels plausible that mismatched source/destination ports trigger a drop.",
+      "whyWrongHere": "There is nothing abnormal about a destination MAC mapping to a port different from the ingress port — that's the everyday case of two different hosts on two different switch ports talking to each other. The switch's normal job is to forward it out the mapped port, not discard it.",
+      "memoryAnchor": "Different ingress and egress port is the NORMAL case — forward, don't drop.",
+      "contrast": "Frames get dropped for exceptions like port security violations or STP blocking states; a routine known-unicast lookup with a valid CAM entry always forwards."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners conflate 'send to other hosts in the VLAN' with broadcasting, forgetting that a specific, known destination MAC calls for a targeted forward, not a VLAN-wide broadcast.",
+      "whyItSeems": "Both broadcasting and flooding involve sending a frame to multiple ports, so when a learner isn't sure of the exact mechanism, 'broadcast to the VLAN' sounds like a safe generic answer.",
+      "whyWrongHere": "This is a unicast frame with a specific, known destination MAC — broadcasting is reserved for frames sent to FFFF.FFFF.FFFF or truly unknown destinations needing a flood. Because the CAM table has an exact match, the switch sends it out that ONE port, never touching the other ports in the VLAN.",
+      "memoryAnchor": "A known unicast MAC gets a private letter to one address, not a mass mailing to the whole VLAN.",
+      "contrast": "Broadcast frames (dest FFFF.FFFF.FFFF) always go to every port in the VLAN by design; known unicast frames go to exactly one port by CAM lookup."
+    }
+  ],
+  "1.5-c-q3": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners assume that if a switch 'doesn't know' where something goes, it must be an error condition and get discarded — treating 'unknown' like 'invalid'.",
+      "whyItSeems": "In many other systems (routers with no route, DNS with no record), 'unknown destination' really does mean failure/drop, so it's natural to expect the same here.",
+      "whyWrongHere": "A switch has no concept of 'no route' the way a router does — every frame must go somewhere so the destination host has a chance to reply and get learned. With no CAM entry, the switch floods the frame out every port in the VLAN except the one it came in on, rather than discarding it.",
+      "memoryAnchor": "No CAM match ≠ error — it means 'flood and wait to learn,' not 'drop.'",
+      "contrast": "A router with no matching route entry truly does drop the packet (destination unreachable); a switch with no CAM entry floods instead, because Layer 2 has no 'no forwarding information' failure state."
+    },
+    {
+      "choiceIndex": 1,
+      "misconceptionReason": "Learners import a request/reply mental model (like ping or ARP) onto plain Ethernet switching, assuming the switch itself replies when it can't resolve a destination.",
+      "whyItSeems": "Networking is full of request-response patterns (ARP, DNS, ICMP), so 'ask the sender for more info' or 'bounce it back' feels like a reasonable fallback.",
+      "whyWrongHere": "A switch performs pure Layer 2 forwarding — it has no protocol for talking back to a sending host about an unresolved MAC. Its only two moves for an unknown unicast are flood or (in rare filtering cases) drop; sending the frame back to the exact port it arrived on would create a loop and serves no purpose here.",
+      "memoryAnchor": "A switch never talks back — it only forwards, filters, or floods.",
+      "contrast": "ARP explicitly involves a broadcast-then-reply exchange; plain frame switching is silent and one-directional — flood the unknown frame outward, don't echo it to the sender."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners blur the line between Layer 2 switching decisions and Layer 3 routing decisions, assuming any 'I don't know what to do' moment escalates to the router.",
+      "whyItSeems": "In real troubleshooting, when something 'doesn't work,' the default gateway often comes up as the answer — so it feels like a safe catch-all for uncertainty.",
+      "whyWrongHere": "The default gateway matters when a packet needs to leave the local subnet — that's an IP-layer decision. This question is entirely about MAC-address forwarding within one VLAN; there's no Layer 3 lookup happening, so escalating to a default gateway isn't part of the switch's job. It floods within the VLAN instead.",
+      "memoryAnchor": "Default gateway = leaving the subnet at Layer 3; MAC flooding = staying inside the VLAN at Layer 2 — don't mix the layers.",
+      "contrast": "A router sends off-subnet traffic to the default gateway based on IP; a switch with an unknown MAC floods locally within the VLAN — it never hands the decision to a gateway."
+    }
+  ],
+  "1.5-c-q4": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners often mix up MAC aging with other short Cisco timers (like some STP-related defaults), landing on 30 seconds as 'the' quick timeout value.",
+      "whyItSeems": "30 seconds sounds appropriately 'quick' for something as short-lived as a dynamically learned entry, so it feels intuitively right even without memorizing the real number.",
+      "whyWrongHere": "The Cisco IOS default MAC address table aging timer is specifically 300 seconds (5 minutes), configurable via mac address-table aging-time. 30 seconds isn't a default value tied to MAC learning at all — it doesn't match any of the standard CDP/aging defaults on a switch.",
+      "memoryAnchor": "MAC aging default = 300, not 30 — one extra zero matters on the exam.",
+      "contrast": "300 seconds is the MAC table's inactivity timeout; nothing in normal switch operation defaults to a flat 30-second aging value."
+    },
+    {
+      "choiceIndex": 1,
+      "misconceptionReason": "Learners confuse the MAC address table aging timer with CDP's default 60-second advertisement interval, since both are 'switch timers' studied around the same time.",
+      "whyItSeems": "60 seconds is a genuinely correct Cisco default — just for CDP hello messages, not MAC aging — so the number is memorable but attached to the wrong feature.",
+      "whyWrongHere": "CDP advertises every 60 seconds by default, but that has nothing to do with how long a dynamic MAC entry stays in the CAM table. The MAC aging default is 300 seconds; picking 60 seconds here means answering a different question (CDP timing) instead of this one (MAC aging).",
+      "memoryAnchor": "60 seconds is CDP's clock; 300 seconds is the MAC table's clock — different features, different numbers.",
+      "contrast": "CDP hellos repeat every 60 seconds regardless of traffic; MAC entries expire after 300 seconds of inactivity — conflating the two timers is a common exam trap."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners round up to a 'nice' unit like one hour, assuming longer retention is safer or more efficient without recalling the actual configured default.",
+      "whyItSeems": "An hour feels like a reasonable amount of time to remember a MAC-to-port mapping, especially if a learner is thinking about how infrequently some hosts move — so 3600 seems 'sensible' even though it isn't the real default.",
+      "whyWrongHere": "Cisco's default aging timer is 300 seconds specifically because it balances table freshness (catching moved hosts reasonably fast) against relearning overhead. 3600 seconds is 12 times longer than the actual default and would leave stale entries mapped to old ports for far too long after a host moves.",
+      "memoryAnchor": "5 minutes (300s), not 1 hour (3600s) — the switch relearns fast, on purpose.",
+      "contrast": "300 seconds keeps the CAM table responsive to host moves; a 3600-second timer (not the default) would let stale port mappings linger long after a device relocates."
+    }
+  ],
+  "1.5-c-q5": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners assume every frame the switch processes must exit some other port, treating 'forwarding' as the default action regardless of where source and destination actually sit.",
+      "whyItSeems": "Most switching questions do involve forwarding out a different port, so it's an easy pattern to over-apply even to this edge case.",
+      "whyWrongHere": "Both PC-A and PC-B are reachable through the SAME switch port (because they share a hub upstream of that port). The switch's CAM table maps both MACs to that one port, so there is no 'different port' to forward to — the destination is already on the segment the frame arrived from, so it is filtered instead.",
+      "memoryAnchor": "Same port in, same port mapped out = filter, not forward — there's nowhere else to send it.",
+      "contrast": "Normal forwarding sends a frame out a DIFFERENT port than it arrived on; here source and destination share one port, so the switch filters instead."
+    },
+    {
+      "choiceIndex": 1,
+      "misconceptionReason": "Learners default to 'flood' whenever a scenario feels unusual or edge-case-y, without checking whether the destination MAC is actually known.",
+      "whyItSeems": "Flooding is the switch's fallback for uncertainty, so an unfamiliar scenario like a hub sharing one port can make flooding feel like the 'safe' catch-all answer.",
+      "whyWrongHere": "Flooding only happens for UNKNOWN destinations. PC-B's MAC is already known and mapped to the same port PC-A used — that's a known destination, and known destinations get filtered (if same port) or forwarded (if a different port), never flooded.",
+      "memoryAnchor": "Flooding is for unknowns; a known MAC — even one sharing the ingress port — is never flooded.",
+      "contrast": "Flooding sends a frame everywhere because the switch has no CAM entry; filtering withholds the frame entirely because the CAM entry shows the destination is already on the same segment."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners treat 'the switch does nothing with this frame' as equivalent to an error condition, since 'not forwarding' sounds abnormal.",
+      "whyItSeems": "Filtering and dropping both mean the frame doesn't reach a new port, so without a clear vocabulary distinction they can look identical from the outside.",
+      "whyWrongHere": "Filtering isn't a fault — it's correct, intentional behavior: the switch recognizes the destination is already on the same physical segment as the source (via the shared hub) and doesn't need to retransmit it. No error is logged and no frame is malformed; the switch is simply avoiding an unnecessary retransmission.",
+      "memoryAnchor": "Filtering is a deliberate 'no need to resend,' not a failure.",
+      "contrast": "An error/drop condition (like a CRC failure or security violation) discards a frame the switch SHOULD have otherwise forwarded; filtering here is normal, correct behavior for same-port traffic."
+    }
+  ],
+  "1.5-c-q6": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners sometimes assume the 'special' all-zero pattern must represent some reserved/special-case address, mixing it up with concepts like IPv4's 0.0.0.0 'any' address.",
+      "whyItSeems": "0.0.0.0 IS a meaningful special value in IPv4 (default route/unspecified), so it's tempting to assume an all-zero MAC plays a similarly special broadcast-like role.",
+      "whyWrongHere": "There is no defined meaning for 0000.0000.0000 as a Layer 2 broadcast — the Ethernet broadcast address is specifically all binary 1s (FFFF.FFFF.FFFF), not all 0s. An all-zero MAC would just be an unassigned/invalid address, not a signal to flood.",
+      "memoryAnchor": "Broadcast = all 1s (FFFF...), not all 0s — the opposite pattern from what some IPv4 instincts suggest.",
+      "contrast": "IPv4's 0.0.0.0 can mean 'unspecified'; Ethernet's all-zero MAC has no such special broadcast meaning — the broadcast MAC is always all Fs."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners assume that because FFFF appears somewhere in the address, it must be the (partial) broadcast signature, without realizing the ENTIRE 48 bits must be 1s.",
+      "whyItSeems": "Seeing 'FFFF' in the last group can pattern-match to 'broadcast-ish,' especially if a learner only half-remembers the exact format.",
+      "whyWrongHere": "The Ethernet broadcast address requires all 48 bits to be 1 — FFFF.FFFF.FFFF, not just the last 16 bits. 0000.0000.FFFF is simply a specific unicast-looking MAC value with no broadcast significance; switches would treat it as a normal (likely unknown) unicast destination.",
+      "memoryAnchor": "It's all six bytes of F, not just the last one — FFFF.FFFF.FFFF, full stop.",
+      "contrast": "A partial-F address like 0000.0000.FFFF is just an ordinary 48-bit MAC value; only the fully-all-1s FFFF.FFFF.FFFF is recognized network-wide as broadcast."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners sometimes pick a 'symmetric-looking' repeated hex pattern, assuming any uniform address must carry special networking significance.",
+      "whyItSeems": "AAAA.AAAA.AAAA looks deliberately patterned (like a placeholder or example value), which can make it seem 'special' the way FFFF does.",
+      "whyWrongHere": "AAAA in hex is 10101010 in binary — a mixed pattern of 1s and 0s, not all 1s. Only an address of all binary 1s (FFFF.FFFF.FFFF) is reserved as the Layer 2 broadcast; AAAA.AAAA.AAAA is just an arbitrary (and likely locally-administered-looking) unicast MAC with no broadcast role.",
+      "memoryAnchor": "Only all-1s (F) means broadcast — any other repeating hex pattern, including A, is just a regular address.",
+      "contrast": "FFFF in binary is 1111 1111 1111 1111 — all ones; AAAA is 1010 1010 1010 1010 — alternating bits. Only the all-ones pattern is the reserved Ethernet broadcast."
+    }
+  ],
+  "1.5-c-q7": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners assume flooding means 'send to literally every physical port on the switch,' forgetting that VLANs create separate logical broadcast domains that flooding respects.",
+      "whyItSeems": "Physically, all the switch's ports sit on the same hardware, so it can feel like flooding should reach all of them regardless of VLAN configuration.",
+      "whyWrongHere": "VLANs exist precisely to segment broadcast/flood domains — a switch tracks which VLAN each port belongs to and only floods a frame out ports assigned to the SAME VLAN the frame arrived on. Flooding into a different VLAN would violate the entire purpose of VLAN isolation and never happens in normal switch operation.",
+      "memoryAnchor": "Flooding stays inside its own VLAN fence — it never hops the fence into another VLAN.",
+      "contrast": "Within one VLAN, flooding legitimately reaches every port except the ingress port; across VLAN boundaries, flooding is completely blocked by design — that's the whole point of VLAN segmentation."
+    }
+  ],
+  "1.5-c-q8": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners reach for the most familiar 'show' command (show ip interface brief) as a catch-all verification tool, without checking whether it actually displays the requested information.",
+      "whyItSeems": "show ip interface brief is one of the first verification commands learned and used constantly for interface status, so it can feel like the default answer to any 'which show command' question.",
+      "whyWrongHere": "show ip interface brief reports Layer 3 interface status and IP addresses — it has no visibility into the Layer 2 MAC address table at all. To see MAC-to-port mappings, you need show mac address-table, a completely different command targeting a completely different data structure.",
+      "memoryAnchor": "IP interface brief = Layer 3 status; MAC address-table = Layer 2 CAM entries — different layer, different command.",
+      "contrast": "show ip interface brief shows interface up/down and IP assignment; show mac address-table shows which MAC is learned on which port/VLAN — they answer entirely different questions."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners lump all switch-related 'show' commands together, assuming VLAN info and MAC info live in the same output since both are Layer 2 switching concepts.",
+      "whyItSeems": "VLANs and MAC addresses are both core Layer 2 topics covered together in study material, so it's easy to assume one command covers both.",
+      "whyWrongHere": "show vlan brief lists which VLANs exist and which access ports belong to them — it says nothing about which specific MAC addresses have been learned on those ports. That learned-MAC-to-port mapping only appears in show mac address-table.",
+      "memoryAnchor": "VLAN brief = port-to-VLAN membership; MAC address-table = MAC-to-port learning — two different tables.",
+      "contrast": "show vlan brief tells you which VLAN a port belongs to; show mac address-table tells you which specific device (MAC) was learned on that port — related but distinct data."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners conflate neighbor discovery (which devices are physically connected) with MAC learning (which source MACs have sent traffic), since both feel like 'what's out there' commands.",
+      "whyItSeems": "CDP neighbors and MAC learning both reveal 'devices near this switch,' so without precise recall it's easy to blur the two into one general-purpose discovery command.",
+      "whyWrongHere": "show cdp neighbors reports directly-connected Cisco devices (via CDP advertisements) — it has nothing to do with the dynamically learned MAC address table, which tracks every source MAC seen on every port, Cisco or not. The correct command for that is show mac address-table.",
+      "memoryAnchor": "CDP neighbors = 'what Cisco gear is plugged in here'; MAC address-table = 'what MAC addresses have I actually seen.'",
+      "contrast": "CDP discovery relies on a Cisco-proprietary advertisement protocol between directly connected devices; MAC learning happens passively from ordinary frame traffic on any port, Cisco device or not."
+    }
+  ],
+  "1.5-c-q9": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners assume disabling the aging TIMER (setting it to 0) is equivalent to permanently pinning a specific MAC entry, conflating 'stops aging globally' with 'creates one static entry.'",
+      "whyItSeems": "Both ideas involve 'not aging out,' so it's easy to think one command achieves the same practical outcome as the other.",
+      "whyWrongHere": "mac address-table aging-time 0 changes the GLOBAL aging behavior for all dynamically learned entries on the switch (effectively disabling aging entirely) — it does not add any specific MAC-to-port binding. To create ONE permanent, specific entry you need mac address-table static <mac> vlan <id> interface <intf>, a completely different command with a completely different scope.",
+      "memoryAnchor": "aging-time 0 = a global dial affecting ALL dynamic entries; mac address-table static = a scalpel adding ONE fixed entry.",
+      "contrast": "Disabling aging globally leaves stale dynamic entries around indefinitely without pinning any of them to a specific interface; the static command explicitly and individually binds one MAC to one VLAN/port, immune to aging by design."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners see the word 'static' in the command name and assume any switchport-related 'static' keyword must be the answer, without checking that it configures VLAN mode, not MAC bindings.",
+      "whyItSeems": "Pattern-matching on the word 'static' alone (rather than its actual context) makes switchport mode static feel plausible if you're skimming CLI syntax rather than recalling exact commands.",
+      "whyWrongHere": "switchport mode static is not even valid Cisco IOS syntax for MAC pinning — switchport mode configures whether a port is access, trunk, or dynamic, nothing about MAC-table entries. The real syntax for a fixed MAC binding is mac address-table static <mac> vlan <id> interface <intf>.",
+      "memoryAnchor": "'switchport mode' configures port TYPE (access/trunk); 'mac address-table static' configures a fixed MAC ENTRY — different commands, different targets.",
+      "contrast": "switchport mode commands control how a port handles VLAN tagging; mac address-table static commands control a specific MAC-to-port binding in the CAM table — unrelated configuration areas."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners cross Layer 2 (MAC/CAM table) concepts with Layer 3 (ARP/IP-to-MAC mapping) concepts, assuming 'static' entries of any kind live in the ARP table.",
+      "whyItSeems": "ARP entries and MAC table entries are both 'address mapping tables' conceptually close together in study material, so it's easy to reach for the wrong one under pressure.",
+      "whyWrongHere": "arp <mac> static configures a static ARP entry, which maps an IP address to a MAC address at Layer 3 for a router or host — it has nothing to do with the switch's own internal MAC address table (CAM), which maps MAC addresses to physical switch ports at Layer 2. Pinning a CAM entry requires mac address-table static, not an ARP command.",
+      "memoryAnchor": "ARP static = IP-to-MAC mapping (Layer 3); MAC address-table static = MAC-to-port mapping (Layer 2) — different tables entirely.",
+      "contrast": "A static ARP entry lives on a router/host and answers 'what MAC does this IP belong to'; a static MAC address-table entry lives on a switch and answers 'what port is this MAC always on.'"
+    }
+  ],
+  "1.5-c-q10": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners think a switch needs prior knowledge (a learned MAC) before it can deliver ANY frame to a host, treating 'unlearned' as 'unreachable.'",
+      "whyItSeems": "It feels logical that the switch must 'know' a device before talking to it — similar to how you can't call someone whose number you don't have.",
+      "whyWrongHere": "The switch doesn't need to know the destination's MAC in advance to deliver a frame — it just floods unknown-unicast frames out every port in the VLAN (except the ingress port), and whichever host actually owns that MAC receives it and can reply. The 'first contact' problem is solved by flooding, not blocked by it.",
+      "memoryAnchor": "Unlearned doesn't mean unreachable — it means 'flood until the destination replies and gets learned.'",
+      "contrast": "A phone call truly requires knowing the number in advance; Ethernet flooding is a broadcast-style delivery mechanism that reaches an unlearned host anyway, without any prior 'lookup' step."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners assume an unresolved/unknown situation at Layer 2 is exceptional enough to warrant an error log, similar to how unreachable destinations or failures get logged elsewhere in networking.",
+      "whyItSeems": "Error logging feels like the 'responsible' behavior for any situation the switch can't fully resolve, so it's an intuitive but incorrect extension of how other protocols handle failures.",
+      "whyWrongHere": "An unknown destination MAC is completely routine, expected behavior for a switch — every brand-new device on the network starts out 'unknown' until it sends its first frame. The switch simply floods the frame normally; there's no fault condition, so nothing gets dropped or logged as an error.",
+      "memoryAnchor": "Unknown unicast is Tuesday for a switch — not an error, just the normal 'first contact' case.",
+      "contrast": "Genuine error conditions (like a CRC failure or a security violation) get dropped/logged; a routine unknown-unicast lookup is expected and gets flooded, never treated as a fault."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners import the ARP request/reply pattern (used at Layer 3 for IP-to-MAC resolution) into a purely Layer 2 forwarding scenario, assuming the switch itself needs to 'ask' who owns a MAC.",
+      "whyItSeems": "ARP genuinely IS how hosts resolve IP-to-MAC before sending — so it's an easy but misplaced analogy to assume the switch performs a similar lookup step before forwarding.",
+      "whyWrongHere": "ARP is a Layer 3 protocol run by HOSTS to discover a MAC address for a known IP — switches don't originate ARP requests as part of normal frame forwarding. A switch works purely with the MAC address already present in the frame's Ethernet header; if it's not in the CAM table, the switch just floods the frame — it never needs to 'ask' anything first.",
+      "memoryAnchor": "ARP is a host's job to find a MAC from an IP; the switch's job is just 'flood if unknown' — no asking required.",
+      "contrast": "ARP resolution happens BEFORE a host even builds the Ethernet frame (to fill in the destination MAC); the switch's flood decision happens AFTER the frame already exists, purely based on whether that MAC is in its table."
+    }
+  ],
+  "1.5-c-q11": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners think of MAC table entries as permanent records once learned, not realizing every dynamic entry is subject to aging and continuous relearning from new traffic.",
+      "whyItSeems": "Once something is 'learned,' it can feel like it should stick — similar to how a person's name, once learned, isn't easily forgotten.",
+      "whyWrongHere": "Dynamic MAC entries are tied to an aging timer (default 300 seconds) and get updated whenever new traffic arrives from that MAC on a different port. As soon as the laptop sends its first frame from port 5, the switch relearns the mapping to port 5; the stale port-1 entry either gets overwritten immediately or ages out shortly after — it does not persist forever.",
+      "memoryAnchor": "MAC learning is continuous and self-correcting — the next frame always updates the table, nothing sticks forever.",
+      "contrast": "A static MAC entry (configured manually) truly does stay fixed until removed; a dynamic entry (the default, learned automatically) is always subject to aging and relearning as traffic patterns change."
+    },
+    {
+      "choiceIndex": 1,
+      "misconceptionReason": "Learners overreact to a single topology change, assuming any host move is disruptive enough to reset the entire MAC table rather than just updating the one affected entry.",
+      "whyItSeems": "A move feels like a 'big' network event, so it's tempting to imagine a correspondingly big response from the switch (wiping everything) rather than the actual small, surgical update that occurs.",
+      "whyWrongHere": "The switch's MAC learning process is entry-by-entry and traffic-driven — it never performs a full table flush just because one host moved ports. Only the specific entry for that one MAC gets updated (or aged out and relearned); every other host's mapping on the switch is completely unaffected.",
+      "memoryAnchor": "One host moving updates ONE entry — the rest of the table doesn't even notice.",
+      "contrast": "A full MAC table flush only happens in specific administrative or fault scenarios (like a manual clear mac address-table command or certain STP topology changes); a routine port move is handled with a single, targeted relearn."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners confuse ordinary MAC relearning with security enforcement features like port security, assuming any 'unexpected' MAC arrival triggers a protective shutdown.",
+      "whyItSeems": "Port security DOES shut down ports in response to certain MAC violations, so if a learner has studied that feature recently, it's easy to misapply that behavior to a completely unconfigured, default scenario.",
+      "whyWrongHere": "Without port security (or a similar restrictive feature) configured, a switch has no reason to disable a port just because a new MAC shows up on it — that's exactly how normal host mobility is supposed to work. Port 5 simply learns the laptop's MAC as any port would; nothing about a plain move triggers err-disable.",
+      "memoryAnchor": "Default behavior welcomes a moved host; only explicit port security configuration would ever shut a port down for this.",
+      "contrast": "Port security with a MAC violation action of shutdown WOULD err-disable a port on an unexpected MAC — but that's a deliberately configured security feature, not default switch behavior for a routine host relocation."
+    }
+  ],
+  "1.5-c-q12": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners who haven't fully internalized what 'intelligent forwarding' means may see both devices as just 'boxes that connect multiple cables together' and assume they behave the same way.",
+      "whyItSeems": "From a purely physical standpoint, both hubs and switches have multiple ports that PCs plug into, so at a glance they can look functionally interchangeable.",
+      "whyWrongHere": "A hub is a dumb Layer 1 repeater — every bit that arrives gets repeated out every other port, with zero awareness of MAC addresses or which host is where. A switch is a Layer 2 device that learns MAC-to-port mappings and forwards known-unicast frames out only the correct single port, dramatically reducing unnecessary traffic and collisions.",
+      "memoryAnchor": "Hub = dumb repeater, everything everywhere; switch = smart forwarder, right frame to the right port.",
+      "contrast": "A hub creates one shared collision domain across all ports (anything in, everything out); a switch creates a separate collision domain per port and only floods when it genuinely doesn't know the destination."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners get the roles backwards, assigning the 'smart' MAC-table behavior to the simpler device (hub) instead of the actual device (switch) that performs MAC learning.",
+      "whyItSeems": "If a learner isn't confident about which device does what, it's easy to guess in either direction — and this option flips the correct assignment entirely.",
+      "whyWrongHere": "Hubs operate purely at Layer 1 (electrical signal repetition) and have no concept of MAC addresses or tables at all — they can't even read the Ethernet header. It's the SWITCH that builds and maintains a MAC address table (CAM) to make intelligent, per-port forwarding decisions; the hub does none of that.",
+      "memoryAnchor": "MAC tables belong to switches, never to hubs — a hub can't even see a MAC address, let alone remember one.",
+      "contrast": "A switch inspects every frame's source MAC to build its CAM table and inspects the destination MAC to decide where to forward; a hub does neither — it just repeats raw electrical signals blindly."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners confuse switch capability (some switches are 'multilayer' and CAN route) with switch's PRIMARY, defining function, assuming plain switching implies Layer 3 operation.",
+      "whyItSeems": "Advanced Layer 3 switches do exist and get mentioned in CCNA material, so a learner who's seen that term might overgeneralize it to all switches, including basic Layer 2 ones.",
+      "whyWrongHere": "A standard switch's defining, primary function is Layer 2 Ethernet frame forwarding based on MAC addresses — that's what distinguishes it from both a hub (Layer 1, no intelligence) and a router (Layer 3, IP-based forwarding). Saying 'switch only works at Layer 3' misses the entire point of what makes a switch a switch.",
+      "memoryAnchor": "Plain switch = Layer 2 by definition; Layer 3 switching is a specialized ADD-ON some switches have, not the baseline.",
+      "contrast": "A router forwards based on destination IP address at Layer 3; a switch (in its defining role) forwards based on destination MAC address at Layer 2 — mixing these up loses the fundamental Layer 2 vs Layer 3 distinction this question tests."
+    }
+  ],
+  "1.6-c-q1": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners compute 2^6 = 64 correctly but forget the final step of subtracting the two reserved addresses (network and broadcast), treating 'total addresses' as if it equaled 'usable hosts.'",
+      "whyItSeems": "64 is the literal, correct result of the exponent math (2^6), so it feels 'done' right after that calculation — the subtraction step is easy to forget under exam pressure.",
+      "whyWrongHere": "2^6 = 64 gives the TOTAL number of addresses in the subnet, but two of those are always reserved: the network address (all host bits 0) and the broadcast address (all host bits 1). Neither can be assigned to a host, so usable hosts = 64 − 2 = 62.",
+      "memoryAnchor": "Total addresses minus 2 (network + broadcast) = usable hosts — never skip the −2.",
+      "contrast": "64 answers 'how many addresses exist in this subnet'; 62 answers 'how many can I actually assign to devices' — the question specifically asks for USABLE hosts."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners miscount the host bits for /26, accidentally applying the math for one prefix size shorter (/27), which yields 30 usable hosts.",
+      "whyItSeems": "30 and 62 are both common 'usable host' answers students memorize from a subnetting table, so it's easy to grab the adjacent value if the prefix-to-host-bits mapping isn't rock solid.",
+      "whyWrongHere": "/26 leaves 32 − 26 = 6 host bits, giving 2^6 − 2 = 62 usable hosts. 30 usable hosts corresponds to a /27 (5 host bits: 2^5 − 2 = 30) — one prefix size smaller (more subnets, fewer hosts each) than what this question asks about.",
+      "memoryAnchor": "/26 → 62 usable; /27 → 30 usable — one prefix bit shifts the whole answer.",
+      "contrast": "A /27 has one MORE network bit (and one fewer host bit) than a /26, cutting the usable host count roughly in half — 62 for /26 versus 30 for /27."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners miscount host bits in the other direction, applying the math for a /25 (7 host bits) instead of the /26 (6 host bits) actually asked about.",
+      "whyItSeems": "126 and 62 both appear on standard subnetting cheat sheets, so without a reliable way to derive the number from the prefix directly, it's easy to pick the wrong adjacent row.",
+      "whyWrongHere": "/25 leaves 7 host bits (32−25), giving 2^7 − 2 = 126 usable hosts — that's a LARGER subnet than a /26. The question specifically asks about /26, which leaves only 6 host bits: 2^6 − 2 = 62 usable hosts.",
+      "memoryAnchor": "/25 → 126 usable; /26 → 62 usable — don't grab the neighboring prefix's number.",
+      "contrast": "A /25 has one FEWER network bit than a /26, roughly doubling the usable hosts per subnet — 126 versus 62 — so mixing them up is an easy off-by-one-prefix mistake."
+    }
+  ],
+  "1.6-c-q2": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners shift the host-bit count by one, computing the block size for a /28 (4 host bits → 2^4=16) instead of the /27 actually asked about.",
+      "whyItSeems": "16 and 32 are adjacent values in the standard 128/64/32/16/8 block-size progression, so it's an easy slip to grab the wrong rung of the ladder.",
+      "whyWrongHere": "A /27 mask (255.255.255.224) leaves 32 − 27 = 5 host bits, and block size = 2^5 = 32. 16 is the block size for a /28 (4 host bits, 2^4=16) — one prefix size longer (smaller subnets) than what this question asks.",
+      "memoryAnchor": "Memorize the ladder: /25=128, /26=64, /27=32, /28=16, /29=8 — /27 always lands on 32.",
+      "contrast": "A /28 has one more network bit than a /27, halving the block size again — 16 versus 32 — so picking 16 answers a different, smaller subnet size."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners shift the host-bit count the other way, computing the block size for a /26 (6 host bits → 2^6=64) instead of the /27 actually asked about.",
+      "whyItSeems": "64 is also a common block size seen constantly in subnetting practice, so without double-checking which prefix maps to which host-bit count, it's easy to default to a frequently-seen number.",
+      "whyWrongHere": "255.255.255.224 corresponds to a /27, leaving 5 host bits (32−27), so block size = 2^5 = 32. 64 is the block size for a /26 (6 host bits, 2^6=64) — a larger subnet, one prefix size shorter than /27.",
+      "memoryAnchor": "/26 = 64 block size; /27 = 32 block size — halving each time you add a network bit.",
+      "contrast": "A /26 has one fewer network bit than a /27, doubling the block size — 64 versus 32 — so 64 answers the wrong (larger) subnet size."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners jump two steps down the block-size ladder, computing for a /29 (3 host bits → 2^3=8) instead of the /27 in question.",
+      "whyItSeems": "8 is a small, memorable block size often associated with point-to-point-style small subnets, so it can surface as a guess when the exact host-bit count for /27 isn't recalled precisely.",
+      "whyWrongHere": "255.255.255.224 is a /27 with 5 host bits (32−27), giving block size 2^5 = 32. 8 is the block size for a /29 (3 host bits, 2^3=8) — a much smaller subnet than /27, two sizes down the ladder.",
+      "memoryAnchor": "/27=32, /28=16, /29=8 — 8 is two steps down from /27, not the answer for it.",
+      "contrast": "A /29 has two more network bits than a /27, shrinking the block size by a factor of 4 — 8 versus 32 — a big jump, not a small rounding error."
+    }
+  ],
+  "1.6-c-q3": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners default to the /24 broadcast pattern (last octet .255) out of habit, forgetting that a /26 subdivides the /24 into four smaller blocks, each with its OWN broadcast address.",
+      "whyItSeems": ".255 is the most memorized 'broadcast-looking' ending from basic /24 networking, so it feels automatically 'right' for any broadcast question involving a 192.168.x.x address.",
+      "whyWrongHere": "192.168.10.0/26 is only 64 addresses (.0–.63) — a QUARTER of the full /24 range. The broadcast address is the LAST address within that smaller 64-address block, which is .63, not .255 (which would only be the broadcast if this were a /24, not a /26).",
+      "memoryAnchor": "The subnet mask decides the block size — a /26 broadcast ends at .63, only a full /24 ends at .255.",
+      "contrast": "A /24 network's broadcast really is the last octet at .255; a /26 network is four times smaller, so its broadcast lands at .63 — far short of .255."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners correctly identify that broadcast = last address of the block, but miscalculate which 64-address block 192.168.10.0 actually falls into, mistakenly using the NEXT subnet's boundary.",
+      "whyItSeems": "192.168.10.0/26 and 192.168.10.64/26 are adjacent subnets, and .127 IS a valid broadcast — just for the wrong (second) block — so it's an easy off-by-one-subnet error.",
+      "whyWrongHere": "192.168.10.0/26 spans exactly .0 through .63 (block size 64, starting at .0). .127 is the broadcast address of the NEXT subnet up, 192.168.10.64/26 (which spans .64–.127) — not this one.",
+      "memoryAnchor": "192.168.10.0/26 ends at .63; the NEXT block (192.168.10.64/26) ends at .127 — know which block you're in.",
+      "contrast": "192.168.10.0/26's range is .0–.63 (broadcast .63); 192.168.10.64/26's range is .64–.127 (broadcast .127) — adjacent but distinct subnets with different broadcasts."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners confuse the broadcast address (last address of THIS subnet) with the network address of the NEXT subnet, since .64 is the very next number after .63.",
+      "whyItSeems": ".64 is exactly where the numbers 'continue' after .63, so if a learner is just counting upward without distinguishing 'last address of this block' from 'first address of the next block,' .64 can look plausible.",
+      "whyWrongHere": ".64 is actually the NETWORK address of the next /26 subnet (192.168.10.64/26), not the broadcast of THIS one (192.168.10.0/26). This subnet's broadcast is the LAST address before the next block starts — that's .63, one less than .64.",
+      "memoryAnchor": "Broadcast is the last address BEFORE the next subnet starts (.63), not the first address OF the next subnet (.64).",
+      "contrast": ".63 is the highest address usable within 192.168.10.0/26; .64 is the lowest address of the following subnet — one is an ending, the other is a beginning."
+    }
+  ],
+  "1.6-c-q4": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners default to the 'first' subnet boundary (.0) whenever the exact block a host falls into isn't immediately recalculated, treating .0 as a safe generic answer.",
+      "whyItSeems": ".0 is the most familiar-looking 'network address,' so without doing the block-size division, it can feel like the default correct-sounding choice.",
+      "whyWrongHere": "172.16.0.0/26 only covers the range .0–.63 (block size 64). The host address .100 is ABOVE that range — it falls in the NEXT /26 block, 172.16.0.64–172.16.0.127, so its subnet is 172.16.0.64, not 172.16.0.0.",
+      "memoryAnchor": "Divide the host octet by the block size (100 ÷ 64 = 1 remainder 36) and floor to the boundary — that lands in the .64 block, not .0.",
+      "contrast": "172.16.0.0/26 covers hosts .1–.62; 172.16.0.64/26 covers hosts .65–.126 — host .100 clearly sits in the second range, not the first."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners may confuse the block boundaries for a /26 (multiples of 64) with a smaller subnet size's boundaries (multiples of 32, which would include .96), miscounting the block size.",
+      "whyItSeems": ".96 is a valid subnet boundary for /27-sized blocks (32-address increments: 0, 32, 64, 96...), so if a learner momentarily uses the wrong block size, .96 can look like a legitimate stopping point.",
+      "whyWrongHere": "For a /26 (block size 64), valid subnet boundaries are only 0, 64, 128, 192 — NOT 96. Since .100 is between .64 and .127, it belongs to the .64 subnet; .96 isn't even a valid /26 boundary, so it can't be the right answer for this mask.",
+      "memoryAnchor": "/26 boundaries only land on multiples of 64 (0,64,128,192) — .96 would only make sense for a /27, not this /26.",
+      "contrast": "A /27 (block size 32) WOULD have a boundary at .96; a /26 (block size 64) skips straight from .64 to .128, with no stop at .96 at all."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners overshoot to the next block after correctly identifying .64 as a nearby boundary, mistakenly rounding UP instead of DOWN to find which subnet the host belongs to.",
+      "whyItSeems": ".128 is the next major boundary after .64 in the /26 progression (0,64,128,192), so if a learner isn't careful about rounding direction, it's easy to jump one block too far.",
+      "whyWrongHere": "172.16.0.128/26 covers the range .128–.191 — host .100 is BELOW that entire range, so it can't belong there. The correct subnet is the one whose range actually CONTAINS .100, which is 172.16.0.64–172.16.0.127 (subnet ID 172.16.0.64).",
+      "memoryAnchor": "Always round DOWN to the nearest block boundary that the host address actually falls within — never round up past it.",
+      "contrast": "172.16.0.64/26 contains .64 through .127 (includes .100); 172.16.0.128/26 contains .128 through .191 (does NOT include .100) — only the first range is correct."
+    }
+  ],
+  "1.6-c-q5": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners default to a 'safer, bigger' subnet whenever host count is close to a boundary, assuming oversizing is a neutral or even preferable choice rather than recognizing it wastes addresses.",
+      "whyItSeems": "/26 does technically satisfy 'at least 30 hosts' (it gives 62), so it's not factually wrong about capacity — it just fails the SECOND part of the question: fewest addresses wasted.",
+      "whyWrongHere": "The question asks for the mask with the FEWEST wasted addresses that still meets the 30-host requirement. /26 provides 62 usable hosts — more than double what's needed — wasting 32 addresses that /27 (which provides exactly 30) would not waste.",
+      "memoryAnchor": "Meeting the requirement isn't enough — pick the SMALLEST mask that still meets it, to minimize waste.",
+      "contrast": "/27 gives exactly 30 usable hosts (a tight fit); /26 gives 62 usable hosts (a loose fit that wastes 32 addresses for the same 30-host requirement)."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners assume 'smaller subnet must mean less waste' without first checking whether it can even satisfy the host-count requirement — smaller isn't always sufficient.",
+      "whyItSeems": "The exam-savvy instinct to minimize waste is correct in spirit, but applying it here without checking capacity first leads to picking something too small to actually work.",
+      "whyWrongHere": "/28 leaves only 4 host bits, giving 2^4 − 2 = 14 usable hosts — that's LESS than the 30 hosts required, so it fails the requirement entirely regardless of how little it wastes. /27 (30 usable) is the smallest mask that actually meets the 'at least 30 hosts' condition.",
+      "memoryAnchor": "Minimizing waste only matters AFTER you confirm the mask can fit the required host count — /28's 14 hosts can't fit 30.",
+      "contrast": "/27 provides exactly 30 usable hosts (meets the requirement with zero slack); /28 provides only 14 usable hosts (fails the requirement outright, regardless of efficiency)."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners over-apply the 'go small to save addresses' instinct even further than /28, without checking that /29 falls even further short of the 30-host requirement.",
+      "whyItSeems": "If a learner is fixated purely on 'smallest possible mask' as the goal, /29 seems like an even more efficient answer than /27 — but efficiency only matters once the requirement is actually met.",
+      "whyWrongHere": "/29 leaves only 3 host bits, giving 2^3 − 2 = 6 usable hosts — drastically short of the 30 hosts required. This mask is typically reserved for tiny point-to-point links, not a subnet that needs to support 30 devices.",
+      "memoryAnchor": "/29's 6 usable hosts is a WAN-link-sized mask — nowhere near enough for a 30-host requirement.",
+      "contrast": "/27 (30 usable) exactly meets the stated requirement; /29 (6 usable) meets less than a quarter of it — not a viable candidate at all."
+    }
+  ],
+  "1.6-c-q6": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners may think of a /30 as barely large enough for 'just one device,' undercounting because they conflate it with the /31 special case used for some point-to-point links.",
+      "whyItSeems": "A /30 is already a very small subnet, so 'just 1 usable host' can feel plausible if a learner senses it's tiny without doing the exact math.",
+      "whyWrongHere": "A /30 leaves 2 host bits (32−30), giving 2^2 = 4 total addresses, minus the network and broadcast addresses = 2 usable hosts. That's specifically sized for point-to-point links needing exactly two addressable ends (e.g., two router interfaces) — not one.",
+      "memoryAnchor": "/30 = 2 usable hosts, exactly enough for both ends of a point-to-point WAN link.",
+      "contrast": "A /31 (a special RFC 3021 case with no network/broadcast subtracted) can support 2 hosts with only 2 total addresses; a /30 has 4 total addresses and still yields 2 usable after subtracting network/broadcast."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners stop the calculation after computing 2^2=4 total addresses, forgetting to subtract the reserved network and broadcast addresses to get the USABLE count.",
+      "whyItSeems": "4 is the immediate, correct result of 2^(host bits) — it's easy to treat that as the final answer if the '−2' step for reserved addresses isn't automatic yet.",
+      "whyWrongHere": "2^2 = 4 gives the TOTAL addresses in the /30 block, but 2 of those 4 are always reserved (network address and broadcast address) and can never be assigned to a host. That leaves only 4 − 2 = 2 usable addresses for actual devices.",
+      "memoryAnchor": "Total addresses (4) minus network and broadcast (2) equals usable hosts (2) — never skip the subtraction.",
+      "contrast": "4 answers 'how many addresses exist in this /30 block'; 2 answers 'how many hosts I can actually assign' — the question specifically asks for usable hosts."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners may confuse the /30's usable-host math with the true edge case of a /32 (a single host address, no room for network/broadcast subtraction) or misremember /30 as similarly degenerate.",
+      "whyItSeems": "Very small subnet masks CAN have unusual host-count rules (like /31's special zero-usable-in-classic-counting behavior mentioned for even smaller masks), so it's easy to assume /30 is 'too small to have any usable hosts' without checking the actual math.",
+      "whyWrongHere": "A /30 is deliberately sized to be the smallest STANDARD subnet that still supports 2 usable hosts (via the classic '2^host bits − 2' formula) — it's specifically the go-to mask for point-to-point WAN links precisely because it always has exactly 2 usable addresses, never zero.",
+      "memoryAnchor": "/30 always yields 2 usable hosts — it's the standard, go-to size for a point-to-point link, not a zero-host edge case.",
+      "contrast": "Only a /31 (in modern RFC 3021 usage) or /32 involves non-standard host counting; a /30 follows the ordinary 2^h − 2 rule and reliably gives 2 usable hosts."
+    }
+  ],
+  "1.6-c-q7": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners apply an outdated classful subnetting rule (subtracting the 'all-zeros' and 'all-ones' subnets) that hasn't applied to modern CIDR-based subnetting for decades.",
+      "whyItSeems": "Older subnetting conventions (pre-CIDR) did reserve the first and last subnet in some contexts, so if a learner picked up that legacy rule, subtracting 2 from 2^3=8 to get 6 can feel like 'the careful, complete' answer.",
+      "whyWrongHere": "Modern CIDR-based subnetting (which CCNA tests) uses ALL possible subnets created by the borrowed bits — the formula is simply 2^(borrowed bits), no subtraction. Borrowing 3 bits creates 2^3 = 8 usable subnets, not 6; the old 'subtract 2' rule for subnets is obsolete and not tested this way.",
+      "memoryAnchor": "Subnets = 2^(borrowed bits), full stop — no subtracting 2 the way host counts do.",
+      "contrast": "Host counts subtract 2 for network/broadcast reservations (2^h − 2); subnet counts do NOT subtract anything in modern CIDR — it's a clean 2^(borrowed bits)."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners double the correct exponent, computing as if 4 bits were borrowed (2^4=16) instead of the 3 bits stated in the question.",
+      "whyItSeems": "16 is a common, 'round' subnet count seen often in practice problems, so without carefully tracking the exact bit count given, it's an easy number to default to.",
+      "whyWrongHere": "The question explicitly states 3 bits are borrowed, so the subnet count is 2^3 = 8. 16 subnets would require borrowing 4 bits (2^4=16) — one bit more than what's specified here.",
+      "memoryAnchor": "Match the exponent to the EXACT number of bits stated — 3 borrowed bits means 2^3, not 2^4.",
+      "contrast": "Borrowing 3 bits yields 8 subnets; borrowing 4 bits yields 16 subnets — each additional borrowed bit DOUBLES the subnet count, so precision on the bit count matters."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners answer with the number of borrowed BITS itself, confusing 'how many bits did we borrow' with 'how many subnets does that create.'",
+      "whyItSeems": "3 is literally the number given in the question, so if a learner isn't confident about the 2^n relationship, restating the given number can feel like a 'safe' answer.",
+      "whyWrongHere": "3 is the INPUT to the formula (the number of borrowed bits), not the OUTPUT (the number of subnets). The actual subnet count is 2^3 = 8 — borrowing 3 bits doesn't create 3 subnets, it creates 8, because each additional bit doubles the possible subnet combinations.",
+      "memoryAnchor": "Borrowed bits and subnet count are different numbers — always apply 2^(bits), don't just repeat the bit count.",
+      "contrast": "3 describes how many BITS were taken from the host portion; 8 describes how many distinct SUBNETS those 3 bits can represent (2^3 combinations) — input versus output."
+    }
+  ],
+  "1.6-c-q8": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners misread the binary value of the last octet, associating .240 with a mask that has fewer network bits (/26, which actually ends in .192) than it really has.",
+      "whyItSeems": "Without converting .240 to binary explicitly, it's easy to underestimate how many bits are set to 1, especially if a learner is working from memorized decimal values rather than the binary pattern.",
+      "whyWrongHere": "255.255.255.192 (not .240) is the mask for a /26 — .192 in binary is 11000000 (2 bits set). .240 in binary is 11110000 (4 bits set), which corresponds to 24 (from the first three full octets) + 4 = /28, not /26.",
+      "memoryAnchor": "/26 ends in .192 (2 bits); /28 ends in .240 (4 bits) — don't confuse the two common mask endings.",
+      "contrast": ".192 = 11000000 (2 network bits in the last octet, /26); .240 = 11110000 (4 network bits in the last octet, /28) — different bit counts, different prefixes."
+    },
+    {
+      "choiceIndex": 1,
+      "misconceptionReason": "Learners are close but off by one bit, associating .240 with the mask ending in .224 (/27) instead of correctly converting .240's own binary pattern.",
+      "whyItSeems": ".224 and .240 are adjacent values in the standard subnet mask progression (128,192,224,240,248...), so it's an easy one-step slip between them.",
+      "whyWrongHere": "255.255.255.224 (not .240) is the /27 mask — .224 in binary is 11100000 (3 bits set), giving 24+3=/27. .240 in binary is 11110000 (4 bits set), giving 24+4=/28 — one more bit than /27.",
+      "memoryAnchor": "/27 ends in .224 (3 bits); /28 ends in .240 (4 bits) — sequential masks, but distinct prefixes.",
+      "contrast": ".224 = 11100000 (3 ones, /27); .240 = 11110000 (4 ones, /28) — the extra bit set in .240 is exactly what pushes it to /28."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners overshoot by one bit in the other direction, associating .240 with the mask ending in .248 (/29) instead of correctly reading .240's own bit pattern.",
+      "whyItSeems": ".240 and .248 are also adjacent in the standard mask progression, so it's just as easy to slip one step too far as it is to slip one step short.",
+      "whyWrongHere": "255.255.255.248 (not .240) is the /29 mask — .248 in binary is 11111000 (5 bits set), giving 24+5=/29. .240 in binary is 11110000 (only 4 bits set), giving 24+4=/28 — one fewer bit than /29.",
+      "memoryAnchor": "/28 ends in .240 (4 bits); /29 ends in .248 (5 bits) — one more 1-bit pushes you from /28 to /29.",
+      "contrast": ".240 = 11110000 (4 ones, /28); .248 = 11111000 (5 ones, /29) — the question's mask has exactly 4 ones, landing squarely on /28."
+    }
+  ],
+  "1.6-c-q9": [
+    {
+      "choiceIndex": 1,
+      "misconceptionReason": "Learners correctly exclude the network address (.0) but forget to also exclude the broadcast address (.7) at the top of the range, treating the broadcast as if it were assignable.",
+      "whyItSeems": "It's easy to remember 'don't start at .0' (the obvious network address) while forgetting the equally important 'don't end at the very last address' (the broadcast), since the broadcast rule is a separate mental step.",
+      "whyWrongHere": "10.0.0.0/29 spans 8 total addresses (.0–.7), with .0 as the network address and .7 as the broadcast address — BOTH ends are reserved and unusable. The correct usable range excludes both: .1 through .6, not .1 through .7.",
+      "memoryAnchor": "Usable range excludes BOTH ends — first host is network+1, last host is broadcast−1, never the broadcast itself.",
+      "contrast": ".1–.7 wrongly includes the broadcast address as if assignable; .1–.6 correctly stops one address short of the broadcast, matching the true usable range."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners treat the ENTIRE subnet range (including both reserved addresses) as if it were all directly assignable to hosts, skipping the exclusion step entirely.",
+      "whyItSeems": "The block .0–.7 IS the full, correct set of addresses that belong to this subnet — so without the extra step of remembering which two are reserved, it can look like the 'complete and safe' answer.",
+      "whyWrongHere": "While .0–.7 correctly identifies all 8 addresses in the subnet, the FIRST (.0, network) and LAST (.7, broadcast) are both reserved and cannot be assigned to hosts. The usable range for actual devices is only the 6 addresses in between: .1 through .6.",
+      "memoryAnchor": "The full subnet range and the usable host range are different things — usable always excludes the first and last address of the block.",
+      "contrast": ".0–.7 describes the entire address block (8 addresses, including reserved ones); .1–.6 describes only the addresses a host can actually be assigned (6 addresses)."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners apply the block size of a LARGER subnet (/29 uses block size 8, but .14 implies a block size of 16, i.e., a /28) rather than correctly using the /29 stated in the question.",
+      "whyItSeems": "14 usable hosts is a commonly memorized number for /28 subnets, so if the exact prefix isn't tracked carefully, it's easy to default to a more 'familiar' larger range.",
+      "whyWrongHere": "A /29 has only 3 host bits (32−29), giving a block size of 2^3=8 addresses total (.0–.7) — the range simply doesn't extend to .14 at all. A range up to .14 (usable .1–.14, 14 hosts) describes a /28 subnet (4 host bits, block size 16), which is a completely different, larger prefix than the /29 given.",
+      "memoryAnchor": "/29 tops out at .7 (block size 8); reaching .14 would require a /28 (block size 16) — check the prefix before the range.",
+      "contrast": "A /29 block spans only 8 addresses (.0–.7, usable .1–.6); a /28 block spans 16 addresses (.0–.15, usable .1–.14) — twice the size, a different question."
+    }
+  ],
+  "1.6-c-q10": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners answer with the prefix number itself, confusing 'the CIDR notation number' (total network bits) with 'the host bits remaining' — treating the two as if they were the same value.",
+      "whyItSeems": "26 is right there in the question ('/26'), so restating it can feel like a direct, safe answer if the network-bits-vs-host-bits subtraction step isn't automatic.",
+      "whyWrongHere": "The '26' in /26 represents the number of NETWORK bits (out of 32 total), not host bits. To find host bits, you subtract: 32 − 26 = 6. Answering '26' confuses the two different quantities the question is asking about.",
+      "memoryAnchor": "The CIDR number IS the network bit count; host bits = 32 minus that number — they are never the same value.",
+      "contrast": "26 is the count of NETWORK bits (fixed portion identifying the subnet); 6 is the count of HOST bits (variable portion identifying devices within it) — different halves of the same 32-bit address."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners recall '8 host bits' as a very common CCNA answer (correct for a /24) and misapply it to this /26 question without re-deriving the subtraction for the actual prefix given.",
+      "whyItSeems": "8 host bits for a full octet (/24) is one of the most repeated facts in early networking study, making it an easy default to reach for even when the actual prefix in the question is different.",
+      "whyWrongHere": "8 host bits corresponds specifically to a /24 (32−24=8), where the entire last octet is available for hosts. This question asks about a /26, which has borrowed 2 additional bits from that last octet for subnetting, leaving only 32−26=6 host bits, not 8.",
+      "memoryAnchor": "/24 → 8 host bits (whole last octet); /26 → 6 host bits (2 bits borrowed for subnetting) — don't default to the /24 number.",
+      "contrast": "A /24 leaves the full last octet (8 bits) for hosts; a /26 has borrowed 2 of those 8 bits for extra subnets, leaving only 6 host bits behind."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners overshoot the subtraction, mentally landing on the host-bit count for a /28 instead of the /26 actually asked about.",
+      "whyItSeems": "4 host bits is also a frequently memorized value (for /28), so without recalculating 32−26 directly, it's easy to grab a nearby 'small number' associated with subnetting in general.",
+      "whyWrongHere": "4 host bits corresponds to a /28 (32−28=4) — a smaller subnet with two MORE borrowed bits than the /26 in this question. For a /26 specifically, the correct subtraction is 32−26=6 host bits, not 4.",
+      "memoryAnchor": "/26 → 6 host bits; /28 → 4 host bits — these are two prefix sizes apart, not interchangeable.",
+      "contrast": "A /26 leaves 6 host bits (fits up to 62 hosts); a /28 leaves only 4 host bits (fits up to 14 hosts) — a meaningfully smaller subnet than what /26 describes."
+    }
+  ],
+  "1.6-c-q11": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners assume every address WITHIN the subnet's numeric range is automatically assignable, without recognizing that the first and last addresses of every block serve special, non-host purposes.",
+      "whyItSeems": "The network and broadcast addresses look like 'ordinary' IP addresses in every visible respect — same format, same range — so without the specific reservation rule in mind, they can seem just as assignable as any other address in the block.",
+      "whyWrongHere": "By definition, the network address (all host bits = 0) identifies the SUBNET itself, and the broadcast address (all host bits = 1) is used to send to EVERY host in that subnet at once — neither can identify one specific host. That's exactly why usable host counts always subtract 2 from the total (2^h − 2): those two addresses are permanently reserved for these roles.",
+      "memoryAnchor": "Network address = 'the subnet's name'; broadcast address = 'send to everyone' — neither one is 'a specific host,' so neither can be assigned to one.",
+      "contrast": "Every other address in the range (from network+1 to broadcast−1) identifies one specific device; the network and broadcast addresses instead identify the SUBNET AS A WHOLE and 'ALL HOSTS,' respectively — structurally different roles."
+    }
+  ],
+  "1.6-c-q12": [
+    {
+      "choiceIndex": 1,
+      "misconceptionReason": "Learners underestimate the host bits needed, forgetting that /25 provides fewer usable addresses (126) than the 200 hosts required.",
+      "whyItSeems": "/25 sits right next to /24 in the mask progression and 'feels' close enough to be a reasonable guess if a learner doesn't carefully verify the actual usable-host math against the 200-host requirement.",
+      "whyWrongHere": "/25 leaves 7 host bits, giving 2^7 − 2 = 126 usable hosts — well short of the 200 hosts needed. /24 leaves 8 host bits, giving 2^8 − 2 = 254 usable hosts, which is the smallest standard mask that actually accommodates 200 devices.",
+      "memoryAnchor": "/25 = 126 usable (too few for 200); /24 = 254 usable (enough) — always check the number against the requirement.",
+      "contrast": "126 usable hosts (/25) falls short of the 200-host requirement; 254 usable hosts (/24) comfortably covers it — the requirement itself rules out /25."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners overcorrect, assuming a bigger subnet is always the 'safe' choice without checking whether a smaller one (that also meets the requirement) would waste fewer addresses.",
+      "whyItSeems": "/23 definitely has enough room (510 usable hosts) for 200 devices, so it 'technically works' — but the question specifically asks for the SMALLEST standard mask that fits, not just any mask that's big enough.",
+      "whyWrongHere": "/23 leaves 9 host bits, giving 2^9 − 2 = 510 usable hosts — more than double what's needed for 200 hosts, wasting a large number of addresses. /24 (254 usable) is the smallest standard mask that still comfortably fits 200 hosts without that excess waste.",
+      "memoryAnchor": "Bigger-than-needed still 'works' but wastes addresses — always pick the SMALLEST mask that satisfies the requirement.",
+      "contrast": "/24 provides 254 usable hosts (a tight, efficient fit for 200 devices); /23 provides 510 usable hosts (over twice as many as needed, wasting address space)."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners severely underestimate the required subnet size, perhaps confusing this scenario with a much smaller host-count question they've seen elsewhere.",
+      "whyItSeems": "/26 is a commonly practiced mask in subnetting drills, so it can surface as a reflexive answer even when the actual host requirement (200) is far beyond what it supports.",
+      "whyWrongHere": "/26 leaves only 6 host bits, giving 2^6 − 2 = 62 usable hosts — drastically insufficient for the 200 hosts required (covering less than a third of the need). /24, with 254 usable hosts, is the smallest standard mask that actually fits 200 devices.",
+      "memoryAnchor": "/26's 62 usable hosts isn't even close to 200 — always verify capacity against the stated requirement, not habit.",
+      "contrast": "/26 (62 usable) meets less than a third of the 200-host requirement; /24 (254 usable) meets it with a comfortable margin — not a viable candidate at all."
+    }
+  ],
+  "1.7-c-q1": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners may not have the exact RFC 1918 ranges memorized and instead guess based on which addresses 'feel' commonly used, without recognizing 8.8.8.0/24 as Google's well-known public DNS block.",
+      "whyItSeems": "All four options look like generic IPv4 addresses at a glance, so without recalling the three specific reserved private blocks, any of them can seem equally plausible.",
+      "whyWrongHere": "8.8.8.0/24 sits within space allocated to and publicly routed by Google (home of the famous 8.8.8.8 DNS server) — it's globally unique, public Internet space, the opposite of RFC 1918 private addressing. RFC 1918 private space is specifically limited to 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16.",
+      "memoryAnchor": "8.8.8.8 is one of the most famous PUBLIC addresses on the Internet — the opposite of a private RFC 1918 example.",
+      "contrast": "192.168.50.0/24 falls within the reserved 192.168.0.0/16 private block; 8.8.8.0/24 falls within publicly routed, globally unique Google address space — private versus public, respectively."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners may mistake special-purpose DOCUMENTATION address blocks (TEST-NET ranges) for private, reusable address space, since both are 'not meant for a real production host' in some vague sense.",
+      "whyItSeems": "203.0.113.0/24 doesn't look like a 'famous' public address, so if a learner only knows RFC 1918 covers 'addresses you're not supposed to route on the real Internet,' this documentation block can seem to fit that same general idea.",
+      "whyWrongHere": "203.0.113.0/24 is reserved specifically for DOCUMENTATION AND EXAMPLES (RFC 5737 TEST-NET-3) — meant to appear in books and labs without being a real routable or private address. It is NOT one of the three RFC 1918 private ranges (10/8, 172.16/12, 192.168/16), even though it shares the general theme of 'not for live Internet traffic.'",
+      "memoryAnchor": "203.0.113.x, 192.0.2.x, and 198.51.100.x are DOCUMENTATION blocks — a separate reserved category from RFC 1918 private space.",
+      "contrast": "192.168.50.0/24 is genuine RFC 1918 private space meant for real internal networks; 203.0.113.0/24 is a documentation-only block meant for examples in books, not actual private LANs."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners lump ALL 'special, non-standard-looking' address ranges together as if they were interchangeable with RFC 1918 private space, without distinguishing APIPA's very different purpose.",
+      "whyItSeems": "169.254.x.x addresses are indeed 'not normal public Internet addresses,' so if a learner only has a fuzzy sense of 'private = weird-looking reserved range,' APIPA can seem to qualify.",
+      "whyWrongHere": "169.254.0.0/16 is the APIPA (Automatic Private IP Addressing) range, self-assigned by a host ONLY when DHCP fails — it's a distinct reserved category (RFC 3927 link-local) from the three genuine RFC 1918 private ranges (10/8, 172.16/12, 192.168/16), which are deliberately configured for normal private networking, not a failure fallback.",
+      "memoryAnchor": "169.254.x.x = 'DHCP failed, I gave myself an address' (APIPA); 192.168.x.x = deliberately configured RFC 1918 private space — different purposes entirely.",
+      "contrast": "RFC 1918 addresses (like 192.168.50.0/24) are intentionally assigned for normal private networking; APIPA addresses (169.254.x.x) only appear automatically when DHCP has failed — a fallback, not a deliberate private-network choice."
+    }
+  ],
+  "1.7-c-q2": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners may associate the number '10' with a 'real,' commonly-seen address and assume anything that looks like a normal-format IPv4 network must be publicly routable by default.",
+      "whyItSeems": "10.0.0.0/8 doesn't have an obviously 'special' look to it the way 169.254.x.x or 224.x.x.x might, so without the specific RFC 1918 fact memorized, assuming it's 'just a normal public network' can feel reasonable.",
+      "whyWrongHere": "10.0.0.0/8 is explicitly one of the three ranges reserved by RFC 1918 for PRIVATE use — Internet routers do not carry routes for this block, and it's reused independently inside millions of separate private networks worldwide. It is specifically NOT globally unique or publicly routable.",
+      "memoryAnchor": "10.0.0.0/8 is reserved, non-routable private space — never assume a 'normal-looking' address is automatically public.",
+      "contrast": "Public routable addresses are globally unique and carried in Internet routing tables; 10.0.0.0/8 is deliberately excluded from those tables and reused independently in countless private networks."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners may confuse the CONCEPT of 'a reserved special-purpose block' with multicast specifically, without recalling that multicast has its own entirely separate reserved range.",
+      "whyItSeems": "Both private addressing and multicast involve 'addresses that behave differently from ordinary public unicast,' so without precise recall, it's easy to blend the two special-purpose categories together.",
+      "whyWrongHere": "Multicast addressing uses the completely separate 224.0.0.0/4 range (Class D) — 10.0.0.0/8 is ordinary private UNICAST space, used for normal one-to-one host addressing within private networks, with no multicast role at all.",
+      "memoryAnchor": "224.0.0.0/4 = multicast; 10.0.0.0/8 = private unicast — completely separate reserved ranges serving different purposes.",
+      "contrast": "Multicast addresses (224.x.x.x range) are used for one-to-many group communication; 10.0.0.0/8 addresses are used for ordinary one-to-one host-to-host communication within a private network."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners group all 'non-public-looking' address ranges together as functionally equivalent, missing that APIPA and RFC 1918 private space serve very different roles.",
+      "whyItSeems": "Both APIPA and RFC 1918 ranges are 'not routed on the public Internet,' so at a surface level they can seem like variations on the same idea of 'private addressing.'",
+      "whyWrongHere": "APIPA is specifically the 169.254.0.0/16 range, self-assigned automatically ONLY when a host's DHCP request fails — it's a distinct reserved block (RFC 3927) from the three deliberate RFC 1918 private ranges (10/8, 172.16/12, 192.168/16) used for normal, functioning private networks.",
+      "memoryAnchor": "169.254.x.x = automatic fallback when DHCP fails; 10.0.0.0/8 = deliberately assigned private network space — different ranges, different triggers.",
+      "contrast": "10.0.0.0/8 is configured on purpose for a working private network; 169.254.x.x (APIPA) only appears automatically as a symptom of a DHCP failure — one is a design choice, the other is a fallback."
+    }
+  ],
+  "1.7-c-q3": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners may not have the full 172.16.0.0–172.31.255.255 RFC 1918 range memorized and assume any address starting with '172' outside of the more famous '172.16' example must be public.",
+      "whyItSeems": "172.20.x.x isn't as instantly recognizable as '172.16.x.x' (the number often quoted in RFC 1918 summaries), so if a learner only remembers '172.16 is private' as a literal single network rather than a /12 RANGE, 172.20 can seem like it falls outside that private space.",
+      "whyWrongHere": "The RFC 1918 private range for the 172 block is 172.16.0.0/12, which covers ALL addresses from 172.16.0.0 through 172.31.255.255 — not just the literal '172.16' network. 172.20.5.10 falls squarely within that /12 range, making it private, not public.",
+      "memoryAnchor": "172.16/12 covers 172.16 through 172.31 — sixteen full /16 blocks, not just the single '172.16' one people often quote.",
+      "contrast": "A /12 mask spans 16 contiguous /16 networks (172.16 through 172.31); thinking of it as 'just 172.16.x.x' misses 15 other private networks that fall in the same private range, including 172.20.x.x."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners conflate the METHOD of address assignment (DHCP vs. static) with the CLASSIFICATION of the address (private vs. public), assuming private status somehow depends on how the address was configured.",
+      "whyItSeems": "DHCP is closely associated with typical private-network client configuration, so it's an easy but incorrect leap to think DHCP assignment is what MAKES an address private, rather than the address simply falling within a reserved private range regardless of configuration method.",
+      "whyWrongHere": "Whether an address is private (RFC 1918) or public depends ENTIRELY on which numeric range it falls into — 172.16.0.0/12 is private by definition, whether assigned via DHCP, configured statically, or hard-coded in a lab. The assignment method has no bearing on the address's classification.",
+      "memoryAnchor": "Private vs. public is a property of the NUMBER itself, not of how that number got onto the interface (DHCP or static).",
+      "contrast": "A statically configured 172.20.5.10 is exactly as private as a DHCP-assigned 172.20.5.10 — RFC 1918 classification depends only on the address range, never on the assignment mechanism."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners may assume 'private addressing' as a general networking concept is somehow tied specifically to IPv6's private/unique-local addressing scheme, forgetting that IPv4 has its own long-established private ranges.",
+      "whyItSeems": "IPv6 does have its own private addressing concept (unique local addresses), so if 'private addressing' feels like a modern/IPv6-associated topic, it's easy to mistakenly assume the IPv4 question must actually be about IPv6.",
+      "whyWrongHere": "172.20.5.10 is clearly formatted as an IPv4 address (four dotted decimal octets), and IPv4 has had its own RFC 1918 private ranges since long before modern IPv6 private addressing existed. This address is private specifically because it falls within IPv4's 172.16.0.0/12 reserved block — nothing about it involves IPv6 at all.",
+      "memoryAnchor": "Dotted-decimal format = IPv4; RFC 1918 (10/8, 172.16/12, 192.168/16) is IPv4's OWN private addressing scheme, independent of IPv6.",
+      "contrast": "IPv4 private addressing uses RFC 1918 ranges like 172.16.0.0/12; IPv6 has an entirely separate private addressing scheme (unique local addresses, fc00::/7) — the two are unrelated mechanisms for their respective protocols."
+    }
+  ],
+  "1.7-c-q4": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners may assume that because the PC 'has an IP address at all,' something must have worked correctly, without recognizing that 169.254.x.x specifically signals the OPPOSITE — a failed DHCP attempt.",
+      "whyItSeems": "The PC does have SOME IP configured, and 'having an IP' can loosely feel like 'networking is working,' so without recognizing the specific 169.254 pattern, it's easy to assume this represents normal, successful configuration.",
+      "whyWrongHere": "A successful DHCP lease would assign an address from the DHCP server's actual configured scope (e.g., a normal LAN range like 192.168.1.x) — never a 169.254.x.x address. Seeing 169.254.x.x is the diagnostic SIGNAL that DHCP specifically FAILED and the OS fell back to self-assigning an APIPA address instead.",
+      "memoryAnchor": "169.254.x.x is the exact OPPOSITE of a successful DHCP lease — it's the OS's fallback when DHCP couldn't be reached at all.",
+      "contrast": "A successful DHCP lease produces an address from the server's real scope (and typically comes with a default gateway, DNS servers, etc.); an APIPA address (169.254.x.x) has no gateway and signals DHCP never succeeded."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners may assume any manually-set-looking address (since APIPA is self-assigned, not server-assigned) must represent a deliberate static configuration by an administrator, rather than an automatic OS fallback.",
+      "whyItSeems": "APIPA addresses ARE technically 'self-assigned' rather than DHCP-assigned, which can loosely resemble the idea of 'static' configuration if the automatic, no-gateway nature of APIPA isn't fully understood.",
+      "whyWrongHere": "169.254.0.0/16 is specifically the reserved link-local APIPA range (RFC 3927) — it is NEVER a valid PUBLIC address and would never be intentionally statically configured for real Internet-facing use. Its presence specifically indicates the Windows OS auto-assigned it because DHCP failed, not that an administrator chose it.",
+      "memoryAnchor": "169.254.x.x is never a real static public IP choice — its presence is itself the symptom of a DHCP problem.",
+      "contrast": "A deliberately configured static public IP would come from real, globally routable address space; 169.254.x.x specifically only ever appears as an automatic, non-routable fallback when DHCP isn't available."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners may reach for a DNS-related explanation because DNS problems are a common, frequently-discussed troubleshooting topic, even though this symptom (an IP address itself) has nothing to do with name resolution.",
+      "whyItSeems": "DNS troubleshooting is common enough in general networking discussions that it can surface as a plausible-sounding guess for 'something went wrong,' even when the actual clue (the 169.254 IP address itself) points to a completely different layer of the problem.",
+      "whyWrongHere": "Flushing a DNS cache only clears locally cached name-to-IP resolution records — it has zero effect on the PC's own IP address configuration. A 169.254.x.x address is specifically the OS's automatic self-assignment when DHCP fails to respond, an entirely separate mechanism (IP configuration) from DNS (name resolution).",
+      "memoryAnchor": "DNS resolves NAMES to IPs; APIPA is about the PC's OWN IP when DHCP fails — unrelated layers of the network stack.",
+      "contrast": "A DNS cache flush affects only cached name lookups, leaving the PC's actual IP configuration untouched; a 169.254.x.x address reflects a failure in IP ADDRESS ASSIGNMENT itself, upstream of any DNS activity."
+    }
+  ],
+  "1.7-c-q5": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners may vaguely associate 'can't reach the Internet directly' with some kind of technical limitation in the address FORMAT itself, rather than the actual reason: routing policy.",
+      "whyItSeems": "If a learner doesn't know the real reason (non-uniqueness/non-routability), 'something about the address itself must be deficient' can feel like a reasonable, if vague, guess — 'too short' sounds like a plausible generic technical flaw.",
+      "whyWrongHere": "Private IPv4 addresses (like 192.168.1.1) are exactly the same LENGTH and FORMAT (32 bits, dotted decimal) as any public IPv4 address — there's nothing structurally 'shorter' or different about them. The real reason NAT is needed is that private addresses are NOT globally unique (many different networks reuse the same private ranges) and Internet routers are explicitly configured to NOT route them.",
+      "memoryAnchor": "Private and public IPv4 addresses are identical in format and length — the difference is routability and global uniqueness, not the address itself.",
+      "contrast": "A public address is guaranteed globally unique and is carried in Internet routing tables; a private address (same 32-bit format) is reused independently by countless networks and deliberately excluded from those routing tables."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners may assume that because NAT and private addressing are heavily discussed in IPv4 contexts, the underlying reason must relate to some IPv6-specific limitation, confusing the version of the protocol with the reason NAT exists.",
+      "whyItSeems": "IPv6 is sometimes framed as 'solving the address shortage that caused NAT,' so it's an easy but backward leap to think private addressing (and thus NAT) is somehow tied to IPv6 rather than being a fundamentally IPv4 concept.",
+      "whyWrongHere": "The scenario (and RFC 1918 itself) is specifically about IPv4 private addressing — NAT was developed BECAUSE IPv4's limited 32-bit address space made private/reused addressing necessary, with translation required to reach the public IPv4 Internet. This has nothing to do with IPv6, which uses a completely different, much larger 128-bit address space and different private addressing (unique local addresses).",
+      "memoryAnchor": "NAT exists to solve an IPv4 (32-bit) address scarcity problem — it predates and is unrelated to IPv6's own separate private addressing scheme.",
+      "contrast": "IPv4 private addresses require NAT specifically because the 32-bit space is limited and reused; IPv6's vastly larger 128-bit space was designed so that NAT for scarcity reasons is largely unnecessary."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners may conflate a firewall's SECURITY filtering function with the actual ROUTING reason private addresses can't reach the Internet directly, treating both as the same kind of 'blocking.'",
+      "whyItSeems": "Firewalls DO block various kinds of traffic, so 'firewalls block it' can feel like a generalized, catch-all explanation for 'why can't this reach the Internet,' even when the real issue is upstream routers simply not knowing how to route non-unique private addresses at all.",
+      "whyWrongHere": "Firewalls selectively filter traffic based on configured rules — they do NOT block 'all IPv4' as a blanket policy, and that's not the reason private addresses fail to reach the Internet directly anyway. The actual reason is that private addresses are non-globally-unique and Internet routers are specifically configured to drop/ignore RFC 1918 space in routing tables — NAT translates the source address to a real, routable public one so the packet CAN be forwarded across the Internet.",
+      "memoryAnchor": "The Internet doesn't route private addresses at all (regardless of any firewall); NAT translates them into something that CAN be routed.",
+      "contrast": "A firewall selectively permits or denies specific traffic based on rules; the Internet's core routers structurally don't carry ANY routes for RFC 1918 space at all — an entirely different (and more fundamental) kind of 'blocking.'"
+    }
+  ],
+  "1.7-c-q6": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners may not have all three RFC 1918 ranges (10/8, 172.16/12, 192.168/16) fully memorized and may only recognize 192.168.x.x as 'the' private pattern, mistakenly assuming 10.x.x.x looks public by comparison.",
+      "whyItSeems": "192.168.x.x is the most commonly seen private address in home routers, so if that's the only pattern a learner strongly associates with 'private,' a less familiar-looking 10.x.x.x address can seem like it might be public by default.",
+      "whyWrongHere": "10.1.1.1 falls within 10.0.0.0/8 — one of the three RFC 1918 private ranges, just as reserved and non-routable on the public Internet as any 192.168.x.x address. 198.51.100.50, by contrast, falls within a documentation/public-illustrative TEST-NET-2 block that is NOT one of the three private ranges.",
+      "memoryAnchor": "All three RFC 1918 ranges (10/8, 172.16/12, 192.168/16) are equally private — don't treat 192.168.x.x as 'more private' than 10.x.x.x.",
+      "contrast": "10.1.1.1 is private RFC 1918 space (10.0.0.0/8); 198.51.100.50 falls outside all three RFC 1918 ranges, making it the only genuinely public-routable-style address among the choices."
+    },
+    {
+      "choiceIndex": 1,
+      "misconceptionReason": "Learners may second-guess a highly familiar textbook example, assuming that because 172.16.x.x is so commonly cited as THE RFC 1918 example, this particular instance must be an exception meant to represent something else (public) in this question.",
+      "whyItSeems": "Since 172.16.x.x is frequently used as the canonical RFC 1918 example in textbooks, a learner second-guessing themselves might assume this specific instance is meant to represent something different in this particular question.",
+      "whyWrongHere": "172.16.1.1 falls squarely within 172.16.0.0/12 — private, non-routable RFC 1918 space, with no special exception. 198.51.100.50, in contrast, is NOT in any of the three RFC 1918 ranges, making it the address that behaves like public space in this comparison.",
+      "memoryAnchor": "172.16.1.1 is textbook RFC 1918 private — there's no 'exception' version of it that becomes public.",
+      "contrast": "172.16.1.1 sits inside the reserved 172.16.0.0/12 private block; 198.51.100.50 sits outside all RFC 1918 ranges entirely, which is exactly why it (not 172.16.1.1) represents the public address here."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners may assume that because 192.168.1.1 is an extremely common home-router address seen 'everywhere,' its ubiquity implies it must be a normal, public-facing address rather than recognizing that its ubiquity is PRECISELY because it's reused privately millions of times.",
+      "whyItSeems": "192.168.1.1 is such a frequently seen default gateway address that its familiarity can create a false sense that it must be a 'real,' generally-routable address rather than a private one reused independently by countless separate home networks.",
+      "whyWrongHere": "192.168.1.1 is squarely within 192.168.0.0/16 — RFC 1918 private space, and its extreme popularity as a default router address is EXACTLY because it's private and gets reused identically across millions of independent home networks (which would be impossible if it were a single globally unique public address). 198.51.100.50, by contrast, is not in any RFC 1918 range.",
+      "memoryAnchor": "192.168.1.1's popularity as a default gateway address is proof it's private and reused everywhere — a public address couldn't be duplicated like that.",
+      "contrast": "192.168.1.1 is deliberately reused as identical, non-unique private space across countless separate networks; 198.51.100.50 is treated as globally unique, public-style address space in this comparison."
+    }
+  ],
+  "1.7-c-q7": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners lump all 'special/reserved-looking' address categories together, assuming APIPA must just be part of the broader RFC 1918 private addressing scheme rather than its own distinct reserved block.",
+      "whyItSeems": "Both APIPA and RFC 1918 addresses share the general theme of 'not routed on the public Internet,' so without precise recall of the exact separate ranges, it's easy to assume they're the same category under different names.",
+      "whyWrongHere": "APIPA uses the specific 169.254.0.0/16 range (RFC 3927), reserved exclusively for automatic self-assignment when DHCP fails. RFC 1918 private addressing (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) is a completely separate set of ranges used for deliberately configured private networks — the two never overlap and serve fundamentally different purposes (automatic fallback vs. intentional network design).",
+      "memoryAnchor": "169.254.x.x (APIPA, DHCP failure fallback) and 192.168.x.x (RFC 1918, deliberate private network) are two entirely separate reserved ranges — never the same block.",
+      "contrast": "192.168.x.x addresses are assigned on purpose (by DHCP or statically) for normal network operation; 169.254.x.x addresses only appear automatically as a symptom of DHCP failure — different ranges reflecting fundamentally different situations."
+    }
+  ],
+  "1.7-c-q8": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners may reach for a familiar Layer-2 acronym (STP) without checking whether it has anything to do with translating or sharing IP addresses at all.",
+      "whyItSeems": "STP is a frequently studied core CCNA topic, so when a scenario mentions 'multiple devices' and 'a shared resource,' it can superficially pattern-match to STP's job of managing multiple paths/loops in a switched topology.",
+      "whyWrongHere": "Spanning Tree Protocol (STP) prevents Layer 2 switching loops by blocking redundant paths between switches — it has nothing to do with IP addressing or how multiple private hosts share one public IP address. That translation function belongs entirely to NAT/PAT, an IP-layer technology.",
+      "memoryAnchor": "STP stops switching LOOPS at Layer 2; NAT/PAT translates ADDRESSES at Layer 3 — completely different problems.",
+      "contrast": "STP manages redundant physical/logical paths between switches to avoid loops; NAT/PAT manages how multiple internal IP addresses map to one or few external IP addresses — unrelated functions at different layers."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners may confuse VTP's role in synchronizing VLAN databases across switches with the concept of 'many things sharing one thing,' loosely pattern-matching it to address-sharing scenarios.",
+      "whyItSeems": "VTP does involve a kind of centralized distribution (VLAN info from a server switch to clients), which can superficially feel similar to 'many hosts sharing one central IP' if the actual mechanisms aren't clearly distinguished.",
+      "whyWrongHere": "VLAN Trunking Protocol (VTP) synchronizes VLAN configuration information across a group of switches — it has no role whatsoever in IP address translation or allowing multiple hosts to share a single public IP. That is exclusively the job of NAT/PAT.",
+      "memoryAnchor": "VTP distributes VLAN DATABASES between switches; NAT/PAT translates IP ADDRESSES between private and public space — no overlap in function.",
+      "contrast": "VTP keeps VLAN numbering/naming consistent across multiple switches; NAT/PAT lets multiple private IP addresses appear as one (or a few) public IP addresses to the outside world."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners may associate LLDP's 'discovery of neighboring devices' with some general notion of 'connecting many devices together,' loosely conflating discovery with address-sharing technology.",
+      "whyItSeems": "LLDP does involve multiple devices exchanging information, which can create a vague sense of 'multi-device coordination' that gets mixed up with the actual multi-device-sharing-one-IP scenario in the question.",
+      "whyWrongHere": "Link Layer Discovery Protocol (LLDP) is a vendor-neutral discovery protocol that lets directly connected devices advertise information about themselves (like CDP) — it has no involvement in IP address translation or public/private address sharing. NAT/PAT is the specific technology that allows many private hosts to share one public IP.",
+      "memoryAnchor": "LLDP discovers what's PLUGGED IN NEXT to a device; NAT/PAT translates IP ADDRESSES for Internet access — entirely separate jobs.",
+      "contrast": "LLDP advertises device identity/capability information to directly connected neighbors; NAT/PAT rewrites source IP addresses (and often ports) so multiple internal hosts can share a single external address."
+    }
+  ],
+  "1.8-c-q1": [
+    {
+      "choiceIndex": 0,
+      "misconceptionReason": "Learners default to the IPv4 address length (32 bits) out of habit or confusion between the two protocol versions, treating them as if they shared the same address size.",
+      "whyItSeems": "32 bits is deeply memorized from IPv4 study, so without a clear mental separation between the two protocols, it's an easy reflex answer even when the question explicitly asks about IPv6.",
+      "whyWrongHere": "32 bits is specifically the IPv4 address length — IPv6 was designed with a much larger 128-bit address space (eight groups of 16 bits, i.e., hextets) specifically to solve IPv4's address exhaustion problem. Answering '32' here answers the wrong protocol's address length.",
+      "memoryAnchor": "IPv4 = 32 bits; IPv6 = 128 bits — four times longer, one of the core facts distinguishing the two protocols.",
+      "contrast": "IPv4's 32-bit space provides about 4.3 billion addresses; IPv6's 128-bit space is vastly larger — a difference so extreme it's one of IPv6's primary design goals."
+    },
+    {
+      "choiceIndex": 1,
+      "misconceptionReason": "Learners confuse the 64-bit INTERFACE ID portion (used in many IPv6 addressing schemes like SLAAC/EUI-64) with the total address length, mistaking a component for the whole.",
+      "whyItSeems": "64 bits IS a genuinely important, frequently discussed IPv6 number — specifically the size of the interface identifier portion in a typical /64 prefix — so it's an easy mix-up between 'a significant 64-bit piece' and 'the entire address.'",
+      "whyWrongHere": "In a common IPv6 addressing scheme, the address splits into a 64-bit network prefix and a 64-bit interface ID — but that's 64+64=128 bits TOTAL, not 64 bits alone. The full IPv6 address is 128 bits; 64 bits describes only half of it (typically the host/interface portion).",
+      "memoryAnchor": "64 bits is HALF an IPv6 address (the interface ID in a typical /64); the full address is 128 bits.",
+      "contrast": "A /64 prefix commonly splits an IPv6 address into a 64-bit network portion and a 64-bit interface ID — together these two 64-bit halves make up the complete 128-bit address."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners may double the correct 128-bit figure, assuming 'bigger must be even bigger' or misremembering IPv6 as an even larger jump than it actually is.",
+      "whyItSeems": "256 is a common 'round' number in computing (256 values in a byte, for example), so it can feel like a plausible 'big number' guess for something as large as an IPv6 address if the exact figure isn't precisely recalled.",
+      "whyWrongHere": "IPv6 addresses are specifically standardized at 128 bits (eight 16-bit hextets) — not 256 bits. 256 isn't used anywhere in standard IPv6 addressing; doubling the correct 128-bit figure overshoots the actual, well-defined address length.",
+      "memoryAnchor": "IPv6 = 128 bits, precisely — not 256; don't round up to a 'bigger-sounding' number.",
+      "contrast": "128 bits is the full, standardized IPv6 address length (8 hextets × 16 bits each); 256 bits doesn't correspond to any standard IPv6 addressing structure at all."
+    }
+  ],
+  "1.8-c-q2": [
+    {
+      "choiceIndex": 1,
+      "misconceptionReason": "Learners assume that if one pair of colons (::) compresses a run of zeros, using an EXTRA colon (:::) might compress even more effectively, misunderstanding the strict single-use rule for ::.",
+      "whyItSeems": "Adding more of the same symbol can intuitively feel like it should represent 'more compression,' especially if the exact IPv6 shortening rules aren't fully internalized.",
+      "whyWrongHere": "The IPv6 shortening standard allows exactly ONE :: per address, representing one contiguous run of one or more all-zero hextets — there's no such thing as a triple-colon (:::) notation, and it isn't valid syntax at all. The correctly shortened form uses a single :: to represent the run of zero hextets: 2001:db8::1.",
+      "memoryAnchor": ":: appears exactly once, however many zero hextets it's hiding — there's no 'extra strength' triple-colon version.",
+      "contrast": "2001:db8::1 uses one valid :: to compress the zero run between db8 and 1; 2001:db8:::1 uses invalid, non-standard triple-colon syntax that no IPv6 parser would accept."
+    },
+    {
+      "choiceIndex": 2,
+      "misconceptionReason": "Learners may try to preserve explicit zero-hextet markers (like '0:') alongside the :: shorthand, misunderstanding that :: already fully represents ALL the compressed zero hextets — you can't partially spell some out and abbreviate others in the same run.",
+      "whyItSeems": "Mixing an explicit '0' with the :: shorthand might feel like a way to be 'extra clear' about where the zeros were, if a learner isn't confident that :: alone is sufficient and unambiguous.",
+      "whyWrongHere": "The :: notation already represents the ENTIRE contiguous run of zero hextets — you never write out a partial '0' alongside it, and critically, :: can only be used ONCE per address (using it twice, as in ::0:1::, creates ambiguity about how many zero groups each :: represents, which is explicitly disallowed).",
+      "memoryAnchor": ":: means 'all the zeros go here, fully' — never mix an explicit 0 with it, and never use it twice.",
+      "contrast": "2001:db8::1 correctly uses one :: to silently represent every zero hextet in that run; 2001:db8::0:1:: incorrectly mixes an explicit zero with :: AND uses :: twice, both of which are invalid."
+    },
+    {
+      "choiceIndex": 3,
+      "misconceptionReason": "Learners may think multiple separate short runs elsewhere in the address can each get their own :: compression, not realizing the rule restricts an address to only ONE :: total, no matter how many zero-hextet runs exist.",
+      "whyItSeems": "If an address conceptually has 'zeros in two different spots,' it might seem natural to compress each spot independently with its own ::, rather than recognizing the single-use restriction.",
+      "whyWrongHere": "An IPv6 address may contain only ONE :: — full stop — because if there were two, a parser couldn't determine how many zero hextets each :: represents (the total must always add up to eight hextets, and two variable-length gaps make that math ambiguous). The original address here has just one contiguous run of zero hextets, correctly compressed once: 2001:db8::1.",
+      "memoryAnchor": ":: is a one-time-use tool per address — never split zero compression across two separate ::.",
+      "contrast": "2001:db8::1 uses a single, valid :: for the one zero run present in this address; 2001::db8::1 attempts two separate :: compressions, which is invalid IPv6 syntax regardless of the address's actual zero pattern."
+    }
+  ]
 }

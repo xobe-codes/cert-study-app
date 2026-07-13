@@ -17,6 +17,8 @@ import ErrorBox from '../../components/ErrorBox.jsx'
 import { QuizQuestionStem, QuestionMeta } from '../../components/QuizQuestionChrome.jsx'
 import { getDomainStudyMeta } from '../../home/domainStudyRoutes.js'
 import { buildDomainPassWeakStudyHandoff } from './domainPassWeakStudy.js'
+import WeakAreasCompact from './WeakAreasCompact.jsx'
+import ResultsNextAction from './ResultsNextAction.jsx'
 import {
   stashDomainPassDebriefResume,
   consumeDomainPassDebriefResume,
@@ -98,6 +100,7 @@ export default function DomainPassSession({
   const [timerEnabled, setTimerEnabledState] = useState(true)
   const [resumedReport, setResumedReport] = useState(null)
   const [unknownFlags, setUnknownFlags] = useState({})
+  const [showMoreTools, setShowMoreTools] = useState(false)
   const shownAtRef = useRef(null)
   const finishSaved = useRef(false)
   const prevSkippedRef = useRef([])
@@ -452,83 +455,32 @@ export default function DomainPassSession({
             </div>
           )}
         </div>
-        {!passed && !isFocusSession && (onOpenMock || (onOpenPlacementPulse && isPlacementDomain(domainId))) && (
-          <div style={{ ...styles.card, marginBottom: 8, border: `1px solid ${COLORS.amberBorder}`, background: COLORS.amberDim }}>
-            <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.amber, marginBottom: 8, letterSpacing: 0.3 }}>
-              Fix next — no full remap needed
-            </div>
-            {onOpenMock && (
-              <button
-                type="button"
-                style={domainActionBtn}
-                onClick={() => {
-                  stashDebriefResume()
-                  onOpenMock({ domainId, mode: 'bankburn', missOnly: true })
-                }}
-              >
-                Fix misses (this domain) →
-              </button>
-            )}
-            {onOpenPlacementPulse && isPlacementDomain(domainId) && (
-              <button
-                type="button"
-                style={{ ...domainActionBtn, marginBottom: onOpenTrapDrill ? 6 : 0 }}
-                onClick={() => {
-                  stashDebriefResume()
-                  onOpenPlacementPulse(domainId)
-                }}
-              >
-                Pulse traps (maintenance) →
-              </button>
-            )}
-            {onOpenTrapDrill && (
-              <button
-                type="button"
-                style={{ ...domainActionBtn, marginBottom: 0 }}
-                onClick={() => {
-                  stashDebriefResume()
-                  onOpenTrapDrill({ domainId })
-                }}
-              >
-                Own top traps (this domain) →
-              </button>
-            )}
-          </div>
-        )}
-        {weakObjectiveIds.length > 0 && onSelectObjective && (
-          <div
-            className="ccna-domain-pass-weak-study"
-            style={{ ...styles.card, marginBottom: 8, border: `1px solid ${COLORS.roseBorder}`, background: COLORS.roseDim }}
-          >
-            <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.rose, marginBottom: 8, letterSpacing: 0.3 }}>
-              Weak topics — Study first
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-              {weakObjectiveIds.map((oid) => {
-                const obj = domain.objectives.find(o => o.id === oid)
-                return (
-                  <button
-                    key={oid}
-                    type="button"
-                    style={domainActionBtn}
-                    onClick={() => openWeakStudy(oid)}
-                  >
-                    Study {oid}{obj?.title ? ` — ${obj.title}` : ''} →
-                  </button>
-                )
-              })}
-            </div>
-            {topWeakId && (
-              <button
-                type="button"
-                style={{ ...styles.primaryBtn, marginTop: 8, background: COLORS.rose, borderColor: COLORS.rose }}
-                onClick={() => openWeakStudy(topWeakId)}
-              >
-                Study {topWeakId} first →
-              </button>
-            )}
-          </div>
-        )}
+        {/* Clean weak areas display (top 3 only) */}
+        <WeakAreasCompact
+          domainId={domainId}
+          weakObjectiveIds={weakObjectiveIds}
+          responses={responses}
+          questions={questions}
+          onSelectObjective={onSelectObjective}
+        />
+
+        {/* Smart next action based on pass/fail */}
+        <ResultsNextAction
+          passed={passed}
+          pct={pct}
+          weakObjectiveIds={weakObjectiveIds}
+          topWeakId={topWeakId}
+          onNextDomain={null}
+          onStudyWeak={weakObjectiveIds.length > 0 && onSelectObjective ? () => {
+            const handoff = buildDomainPassWeakStudyHandoff(domain, weakObjectiveIds[0])
+            if (handoff) {
+              stashDebriefResume()
+              onSelectObjective(handoff)
+            }
+          } : undefined}
+          onRetake={() => handleRetake()}
+          isFocusSession={isFocusSession}
+        />
         <MockExamDebriefActions
           report={report}
           questions={questions}
@@ -556,58 +508,84 @@ export default function DomainPassSession({
             })
           } : undefined}
         />
+        {/* Collapsible secondary tools */}
         {showDomainActions && (
-          <div style={{ ...styles.card, marginBottom: 8, border: `1px solid ${COLORS.purpleBorder}`, background: COLORS.purpleDim }}>
-            <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.purple, marginBottom: 8, letterSpacing: 0.3 }}>
-              This domain
-            </div>
-            {showTrapCta && (
-              <button
-                type="button"
-                style={domainActionBtn}
-                onClick={() => {
-                  stashDebriefResume()
-                  onOpenTrapDrill({ domainId })
-                }}
-              >
-                Trap drill (this domain) →
-              </button>
-            )}
-            {showLabsCta && (
-              <button
-                type="button"
-                style={domainActionBtn}
-                onClick={() => {
-                  stashDebriefResume()
-                  onOpenLabs({ domainId })
-                }}
-              >
-                Domain labs ({domainMeta.labCount}) →
-              </button>
-            )}
-            {showCommandHubCta && (
-              <button
-                type="button"
-                style={{ ...domainActionBtn, ...(showWildcardCta ? {} : { marginBottom: 0 }) }}
-                onClick={() => {
-                  stashDebriefResume()
-                  onOpenCommandHub({ domainId, tab: 'sprint' })
-                }}
-              >
-                Command Hub →
-              </button>
-            )}
-            {showWildcardCta && (
-              <button
-                type="button"
-                style={{ ...domainActionBtn, marginBottom: 0 }}
-                onClick={() => {
-                  stashDebriefResume()
-                  onOpenSubnet()
-                }}
-              >
-                Subnetting Wildcard (ACL/OSPF) →
-              </button>
+          <div style={{ ...styles.card, marginBottom: 8 }}>
+            <button
+              type="button"
+              onClick={() => setShowMoreTools(!showMoreTools)}
+              style={{
+                width: '100%',
+                textAlign: 'left',
+                background: 'transparent',
+                border: 'none',
+                color: COLORS.text,
+                cursor: 'pointer',
+                fontSize: 'var(--ccna-type-sm)',
+                fontWeight: 600,
+                padding: 0,
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              More options
+              <span style={{ fontSize: 'var(--ccna-type-xs)' }}>
+                {showMoreTools ? '▼' : '▶'}
+              </span>
+            </button>
+
+            {showMoreTools && (
+              <div style={{ marginTop: 12, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                {showTrapCta && (
+                  <button
+                    type="button"
+                    style={domainActionBtn}
+                    onClick={() => {
+                      stashDebriefResume()
+                      onOpenTrapDrill({ domainId })
+                    }}
+                  >
+                    Trap drill (this domain) →
+                  </button>
+                )}
+                {showLabsCta && (
+                  <button
+                    type="button"
+                    style={domainActionBtn}
+                    onClick={() => {
+                      stashDebriefResume()
+                      onOpenLabs({ domainId })
+                    }}
+                  >
+                    Domain labs ({domainMeta.labCount}) →
+                  </button>
+                )}
+                {showCommandHubCta && (
+                  <button
+                    type="button"
+                    style={domainActionBtn}
+                    onClick={() => {
+                      stashDebriefResume()
+                      onOpenCommandHub({ domainId, tab: 'sprint' })
+                    }}
+                  >
+                    Command Hub →
+                  </button>
+                )}
+                {showWildcardCta && (
+                  <button
+                    type="button"
+                    style={{ ...domainActionBtn, marginBottom: 0 }}
+                    onClick={() => {
+                      stashDebriefResume()
+                      onOpenSubnet()
+                    }}
+                  >
+                    Subnetting Wildcard (ACL/OSPF) →
+                  </button>
+                )}
+              </div>
             )}
           </div>
         )}
