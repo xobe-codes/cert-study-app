@@ -88,6 +88,7 @@ export default function FocusedLessonBank({
             fontWeight: 600,
             background: COLORS.cardBg,
             border: `1px solid ${COLORS.cardBorder}`,
+            color: COLORS.text,
             cursor: 'pointer',
             borderRadius: 6,
           }}
@@ -105,6 +106,7 @@ export default function FocusedLessonBank({
             fontWeight: 600,
             background: COLORS.cardBg,
             border: `1px solid ${COLORS.cardBorder}`,
+            color: COLORS.text,
             cursor: 'pointer',
             borderRadius: 6,
           }}
@@ -122,6 +124,7 @@ export default function FocusedLessonBank({
             fontWeight: 600,
             background: COLORS.cardBg,
             border: `1px solid ${COLORS.cardBorder}`,
+            color: COLORS.text,
             cursor: 'pointer',
             borderRadius: 6,
           }}
