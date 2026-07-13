@@ -1,0 +1,7 @@
+name = "ccna-study-app"
+
+# D1 database binding for sync functionality (Cloudflare Pages Functions)
+[[d1_databases]]
+binding = "DB"
+database_name = "ccna-sync"
+database_id = "431f853e-62b6-404c-8dc8-cdb8df284e48"
