@@ -34,13 +34,13 @@ export default function EngineerViewSection({ data, defaultOpen = false }) {
         }}
       >
         <div>
-          <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.mint, letterSpacing: 0.4 }}>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.sky, letterSpacing: 0.4 }}>
             ENGINEER VIEW
           </div>
-          <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, marginTop: 2, lineHeight: 1.4 }}>
+          <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, marginTop: 2, lineHeight: 1.4 }}>
             {data.title || 'Verify & troubleshoot'}
             {!open && data.summary && (
-              <span style={{ color: COLORS.silverMid }}> — {data.summary}</span>
+              <span style={{ color: COLORS.silverDim }}> — {data.summary}</span>
             )}
           </div>
         </div>
@@ -57,7 +57,7 @@ export default function EngineerViewSection({ data, defaultOpen = false }) {
 
           {data.verifyCommands?.length > 0 && (
             <div style={{ marginBottom: 10 }}>
-              <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, marginBottom: 6 }}>
+              <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.sky, marginBottom: 6 }}>
                 VERIFY COMMANDS
               </div>
               <ul style={{ margin: 0, paddingLeft: 18 }}>
@@ -73,7 +73,7 @@ export default function EngineerViewSection({ data, defaultOpen = false }) {
 
           {data.interpretExample && (
             <div style={{ marginBottom: 10, ...styles.card, padding: '8px 10px' }}>
-              <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, marginBottom: 4 }}>
+              <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.sky, marginBottom: 4 }}>
                 READ ONE LINE
               </div>
               <code style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.sky, marginBottom: 6, wordBreak: 'break-all' }}>
@@ -87,7 +87,7 @@ export default function EngineerViewSection({ data, defaultOpen = false }) {
 
           {data.symptoms?.length > 0 && (
             <div style={{ marginBottom: 10 }}>
-              <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, marginBottom: 6 }}>
+              <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.sky, marginBottom: 6 }}>
                 SYMPTOMS → CHECK
               </div>
               <ul style={{ margin: 0, paddingLeft: 18 }}>
