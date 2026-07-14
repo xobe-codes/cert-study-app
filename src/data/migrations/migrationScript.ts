@@ -22,7 +22,7 @@ import {
   MasteryStatus,
   ActivityType,
   createUnifiedLearningState,
-} from '../features/unifiedLearning/unifiedLearningState';
+} from '../../features/unifiedLearning/unifiedLearningState';
 
 /**
  * Legacy data structures - what we're migrating FROM
