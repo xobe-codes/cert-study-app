@@ -41,6 +41,7 @@ import { TIER_B_TRAP_WAVE21_PATCHES } from './tierBTrapWave21Patches.js'
 import { TIER_B_TRAP_WAVE22_PATCHES } from './tierBTrapWave22Patches.js'
 import { TIER_B_TRAP_WAVE23_PATCHES } from './tierBTrapWave23Patches.js'
 import { MULTI_SELECT_QUESTION_PATCHES } from './multiSelectQuestionPatches.js'
+import { PRACTICE_EXAM_PATCHES } from './practiceExamPatches.js'
 
 const ENGINEER_VIEW_WAVE_SUPPLEMENTS = [
   FACTORY_ENGINEER_VIEW_WAVE3_SUPPLEMENTS,
@@ -551,6 +552,9 @@ export function getEnrichmentPatchQuestions(objectiveId) {
   }
   if (MULTI_SELECT_QUESTION_PATCHES[objectiveId]?.questions?.length) {
     qs.push(...MULTI_SELECT_QUESTION_PATCHES[objectiveId].questions)
+  }
+  if (PRACTICE_EXAM_PATCHES[objectiveId]?.questions?.length) {
+    qs.push(...PRACTICE_EXAM_PATCHES[objectiveId].questions)
   }
   return qs
 }

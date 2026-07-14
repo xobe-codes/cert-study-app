@@ -3,7 +3,7 @@ import { defineConfig } from 'vitest/config'
 export default defineConfig({
   test: {
     environment: 'node',
-    include: ['src/**/*.test.{js,jsx}'],
+    include: ['src/**/*.test.{js,jsx,ts,tsx}'],
     setupFiles: ['src/__tests__/vitest.setup.js'],
     // Several integration tests parse the full 47k-line clean question bank;
     // under parallel workers these exceed the 5s default. Bounded higher.
