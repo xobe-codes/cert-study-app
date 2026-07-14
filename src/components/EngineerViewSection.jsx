@@ -50,7 +50,7 @@ export default function EngineerViewSection({ data, defaultOpen = false }) {
       </button>
 
       {open && (
-        <div style={{ padding: '10px 12px 12px', fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.5 }}>
+        <div style={{ padding: '10px 12px 12px', fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, lineHeight: 1.5 }}>
           {data.summary && (
             <p style={{ margin: '0 0 10px', color: COLORS.silverMid }}>{data.summary}</p>
           )}

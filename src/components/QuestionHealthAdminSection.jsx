@@ -43,7 +43,7 @@ export default function QuestionHealthAdminSection({
       : 'All 914 clean-bank questions pass SADE audit'
 
   const body = (
-    <div style={{ padding: embedded ? 0 : '10px 12px 12px', fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.5 }}>
+    <div style={{ padding: embedded ? 0 : '10px 12px 12px', fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, lineHeight: 1.5 }}>
       {summary.total === 0 ? (
         <p style={{ margin: 0, color: COLORS.silverMid }}>
           {objectiveId
@@ -102,7 +102,7 @@ export default function QuestionHealthAdminSection({
           })}
         </ul>
       )}
-      <p style={{ margin: '8px 0 0', fontSize: 'var(--ccna-type-caption)', color: COLORS.silverDim }}>
+      <p style={{ margin: '8px 0 0', fontSize: 'var(--ccna-type-caption)', color: COLORS.silverMid }}>
         Quarantined IDs are excluded at compile — learners never see them until resolved.
       </p>
     </div>
@@ -144,10 +144,10 @@ export default function QuestionHealthAdminSection({
           <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.amber, letterSpacing: 0.4 }}>
             QUESTION HEALTH (ADMIN)
           </div>
-          <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, marginTop: 2, lineHeight: 1.4 }}>
+          <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, marginTop: 2, lineHeight: 1.4 }}>
             {statusLine}
             {!open && summary.sade > 0 && (
-              <span style={{ color: COLORS.silverMid }}> — {summary.sade} SADE</span>
+              <span style={{ color: COLORS.silverDim }}> — {summary.sade} SADE</span>
             )}
           </div>
         </div>
