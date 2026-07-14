@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { styles } from '../ui/appTheme.js'
 import { STORAGE_KEYS } from '../storageKeys.js'
-import { isTtsSupported, speak, stopSpeaking } from '../lib/browserTts.js'
+import { isTtsSupported, speak, stopSpeaking, isSpeaking } from '../lib/browserTts.js'
 
 /** One-shot listen control for a lesson section. */
 export function SectionListenButton({ speechText, label = 'Listen', onListen }) {
@@ -16,6 +16,13 @@ export function SectionListenButton({ speechText, label = 'Listen', onListen }) 
         e.stopPropagation()
         if (typeof onListen === 'function') {
           onListen()
+          // Fallback: if playlist doesn't play (empty sections), speak directly
+          setTimeout(() => {
+            if (!isSpeaking() && speechText) {
+              stopSpeaking()
+              speak(speechText, { rate: 0.95 })
+            }
+          }, 150)
           return
         }
         stopSpeaking()
