@@ -37,11 +37,8 @@ CREATE TABLE IF NOT EXISTS learning_states (
 
   -- Metadata
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  schema_version VARCHAR(20) DEFAULT '1.0.0',
-
-  INDEX idx_user_exam_readiness (user_id, exam_readiness_score),
-  INDEX idx_updated_at (updated_at)
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  schema_version VARCHAR(20) DEFAULT '1.0.0'
 );
 
 -- ============================================================================
@@ -52,17 +49,14 @@ CREATE TABLE IF NOT EXISTS learning_states (
 -- ============================================================================
 
 CREATE TABLE IF NOT EXISTS objective_performance (
-  performance_id INT AUTO_INCREMENT PRIMARY KEY,
+  performance_id INTEGER PRIMARY KEY AUTOINCREMENT,
 
   user_id VARCHAR(255) NOT NULL,
   domain_id VARCHAR(10) NOT NULL,    -- D1-D6
   objective_id VARCHAR(20) NOT NULL, -- 1.1, 2.3, 3.5a, etc.
 
   -- Current status and mastery
-  status ENUM(
-    'NOT_STARTED', 'LEARNING', 'COMPETENT',
-    'PROFICIENT', 'MASTERED', 'REFRESHING', 'STALE'
-  ) DEFAULT 'NOT_STARTED',
+  status TEXT DEFAULT 'NOT_STARTED' CHECK(status IN ('NOT_STARTED', 'LEARNING', 'COMPETENT', 'PROFICIENT', 'MASTERED', 'REFRESHING', 'STALE')),
 
   -- Performance metrics
   last_attempt_score INT NULL CHECK (last_attempt_score IS NULL OR (last_attempt_score >= 0 AND last_attempt_score <= 100)),
@@ -88,15 +82,10 @@ CREATE TABLE IF NOT EXISTS objective_performance (
   -- Metadata
   last_attempt_date DATETIME NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 
-  UNIQUE KEY uk_user_objective (user_id, objective_id),
-  FOREIGN KEY (user_id) REFERENCES learning_states(user_id) ON DELETE CASCADE,
-
-  INDEX idx_user_status (user_id, status),
-  INDEX idx_user_domain (user_id, domain_id),
-  INDEX idx_next_refresh (user_id, next_refresh_date),
-  INDEX idx_mastered_date (mastered_date)
+  UNIQUE (user_id, objective_id),
+  FOREIGN KEY (user_id) REFERENCES learning_states(user_id) ON DELETE CASCADE
 );
 
 -- ============================================================================
@@ -107,13 +96,13 @@ CREATE TABLE IF NOT EXISTS objective_performance (
 -- ============================================================================
 
 CREATE TABLE IF NOT EXISTS domain_milestones (
-  milestone_id INT AUTO_INCREMENT PRIMARY KEY,
+  milestone_id INTEGER PRIMARY KEY AUTOINCREMENT,
 
   user_id VARCHAR(255) NOT NULL,
   domain_id VARCHAR(10) NOT NULL,    -- D1-D6
 
   -- Milestone type
-  type ENUM('baseline', 'domain_pass', 'lab', 'mock_exam_partial') NOT NULL,
+  type TEXT NOT NULL CHECK(type IN ('baseline', 'domain_pass', 'lab', 'mock_exam_partial')),
 
   -- Attempt number (for retryable types)
   attempt_number INT NULL,
@@ -132,14 +121,9 @@ CREATE TABLE IF NOT EXISTS domain_milestones (
 
   -- Metadata
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 
-  FOREIGN KEY (user_id) REFERENCES learning_states(user_id) ON DELETE CASCADE,
-
-  INDEX idx_user_domain_type (user_id, domain_id, type),
-  INDEX idx_attempt_date (attempt_date),
-  INDEX idx_passed (user_id, passed),
-  INDEX idx_user_latest (user_id, domain_id, attempt_date DESC)
+  FOREIGN KEY (user_id) REFERENCES learning_states(user_id) ON DELETE CASCADE
 );
 
 -- ============================================================================
@@ -150,14 +134,14 @@ CREATE TABLE IF NOT EXISTS domain_milestones (
 -- ============================================================================
 
 CREATE TABLE IF NOT EXISTS spaced_repetition_schedule (
-  schedule_id INT AUTO_INCREMENT PRIMARY KEY,
+  schedule_id INTEGER PRIMARY KEY AUTOINCREMENT,
 
   user_id VARCHAR(255) NOT NULL,
   domain_id VARCHAR(10) NOT NULL,    -- D1-D6
   objective_id VARCHAR(20) NULL,     -- NULL for domain-level, specific ID for objectives
 
   -- Schedule type
-  type ENUM('objective_refresh', 'domain_refresh', 'baseline_refresh') NOT NULL,
+  type TEXT NOT NULL CHECK(type IN ('objective_refresh', 'domain_refresh', 'baseline_refresh')),
 
   -- Dates
   due_date DATETIME NOT NULL,
@@ -165,7 +149,7 @@ CREATE TABLE IF NOT EXISTS spaced_repetition_schedule (
   mastered_date DATETIME NOT NULL,
 
   -- Schedule phase
-  schedule_phase ENUM('day7', 'day30', 'day60', 'maintenance') DEFAULT 'day7',
+  schedule_phase TEXT DEFAULT 'day7' CHECK(schedule_phase IN ('day7', 'day30', 'day60', 'maintenance')),
   refresh_count INT DEFAULT 0 CHECK (refresh_count >= 0),
   days_since_mastery INT DEFAULT 0,
   priority INT DEFAULT 5 CHECK (priority >= 1 AND priority <= 10),
@@ -176,13 +160,9 @@ CREATE TABLE IF NOT EXISTS spaced_repetition_schedule (
 
   -- Metadata
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 
-  FOREIGN KEY (user_id) REFERENCES learning_states(user_id) ON DELETE CASCADE,
-
-  INDEX idx_user_due_date (user_id, due_date),
-  INDEX idx_not_completed (user_id, completed),
-  INDEX idx_priority_due (user_id, priority DESC, due_date ASC)
+  FOREIGN KEY (user_id) REFERENCES learning_states(user_id) ON DELETE CASCADE
 );
 
 -- ============================================================================
@@ -193,18 +173,14 @@ CREATE TABLE IF NOT EXISTS spaced_repetition_schedule (
 -- ============================================================================
 
 CREATE TABLE IF NOT EXISTS study_activities (
-  activity_id INT AUTO_INCREMENT PRIMARY KEY,
+  activity_id INTEGER PRIMARY KEY AUTOINCREMENT,
 
   user_id VARCHAR(255) NOT NULL,
   domain_id VARCHAR(10) NOT NULL,
   objective_id VARCHAR(20) NULL,
 
   -- Activity type
-  type ENUM(
-    'lesson_completed', 'quiz_attempt', 'bank_burn', 'trap_drill',
-    'domain_baseline', 'domain_pass', 'mock_exam', 'lab_completed',
-    'test_out_claimed', 'refresh_drill'
-  ) NOT NULL,
+  type TEXT NOT NULL CHECK(type IN ('lesson_completed', 'quiz_attempt', 'bank_burn', 'trap_drill', 'domain_baseline', 'domain_pass', 'mock_exam', 'lab_completed', 'test_out_claimed', 'refresh_drill')),
 
   -- Performance
   score INT NULL CHECK (score IS NULL OR (score >= 0 AND score <= 100)),
@@ -220,12 +196,7 @@ CREATE TABLE IF NOT EXISTS study_activities (
   activity_date DATETIME NOT NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 
-  FOREIGN KEY (user_id) REFERENCES learning_states(user_id) ON DELETE CASCADE,
-
-  INDEX idx_user_date (user_id, activity_date DESC),
-  INDEX idx_user_type (user_id, type),
-  INDEX idx_objective (user_id, objective_id, activity_date DESC),
-  INDEX idx_session (user_id, session_id)
+  FOREIGN KEY (user_id) REFERENCES learning_states(user_id) ON DELETE CASCADE
 );
 
 -- ============================================================================
@@ -235,7 +206,7 @@ CREATE TABLE IF NOT EXISTS study_activities (
 -- ============================================================================
 
 CREATE TABLE IF NOT EXISTS mock_exam_results (
-  exam_id INT AUTO_INCREMENT PRIMARY KEY,
+  exam_id INTEGER PRIMARY KEY AUTOINCREMENT,
 
   user_id VARCHAR(255) NOT NULL,
   attempt_date DATETIME NOT NULL,
@@ -244,10 +215,10 @@ CREATE TABLE IF NOT EXISTS mock_exam_results (
   score INT NOT NULL CHECK (score >= 0 AND score <= 100),
   total_questions INT NOT NULL CHECK (total_questions > 0),
   questions_correct INT NOT NULL CHECK (questions_correct >= 0 AND questions_correct <= total_questions),
-  percentage DECIMAL(5, 2) GENERATED ALWAYS AS (ROUND((questions_correct / total_questions) * 100, 2)) STORED,
+  percentage DECIMAL(5, 2),
 
   -- Exam type
-  type ENUM('full', 'partial', 'adaptive_retake') DEFAULT 'full',
+  type TEXT DEFAULT 'full' CHECK(type IN ('full', 'partial', 'adaptive_retake')),
   time_spent_minutes INT NULL CHECK (time_spent_minutes IS NULL OR time_spent_minutes >= 0),
 
   -- Per-domain breakdown
@@ -261,13 +232,9 @@ CREATE TABLE IF NOT EXISTS mock_exam_results (
 
   -- Metadata
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 
-  FOREIGN KEY (user_id) REFERENCES learning_states(user_id) ON DELETE CASCADE,
-
-  INDEX idx_user_date (user_id, attempt_date DESC),
-  INDEX idx_percentage (user_id, percentage),
-  INDEX idx_type (user_id, type)
+  FOREIGN KEY (user_id) REFERENCES learning_states(user_id) ON DELETE CASCADE
 );
 
 -- ============================================================================
@@ -277,14 +244,14 @@ CREATE TABLE IF NOT EXISTS mock_exam_results (
 -- ============================================================================
 
 CREATE TABLE IF NOT EXISTS migration_status (
-  migration_id INT AUTO_INCREMENT PRIMARY KEY,
+  migration_id INTEGER PRIMARY KEY AUTOINCREMENT,
 
   user_id VARCHAR(255) NOT NULL,
   migration_version VARCHAR(20) NOT NULL,
 
   -- Migration details
   source_system VARCHAR(50),
-  status ENUM('pending', 'in_progress', 'completed', 'failed', 'rolled_back') DEFAULT 'pending',
+  status TEXT DEFAULT 'pending' CHECK(status IN ('pending', 'in_progress', 'completed', 'failed', 'rolled_back')),
   error_message TEXT NULL,
 
   -- Counts
@@ -298,11 +265,8 @@ CREATE TABLE IF NOT EXISTS migration_status (
   completed_at DATETIME NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 
-  UNIQUE KEY uk_user_version (user_id, migration_version),
-  FOREIGN KEY (user_id) REFERENCES learning_states(user_id) ON DELETE CASCADE,
-
-  INDEX idx_status (status),
-  INDEX idx_completed_at (completed_at)
+  UNIQUE (user_id, migration_version),
+  FOREIGN KEY (user_id) REFERENCES learning_states(user_id) ON DELETE CASCADE
 );
 
 -- ============================================================================
@@ -311,7 +275,7 @@ CREATE TABLE IF NOT EXISTS migration_status (
 -- Convenience view summarizing user progress across all domains.
 -- ============================================================================
 
-CREATE OR REPLACE VIEW vw_user_progress_summary AS
+CREATE VIEW IF NOT EXISTS vw_user_progress_summary AS
 SELECT
   ls.user_id,
   ls.exam_readiness_score,
@@ -333,7 +297,7 @@ GROUP BY ls.user_id;
 -- Shows all refreshes due for each user, sorted by priority and due date.
 -- ============================================================================
 
-CREATE OR REPLACE VIEW vw_refresh_queue AS
+CREATE VIEW IF NOT EXISTS vw_refresh_queue AS
 SELECT
   srs.user_id,
   srs.domain_id,
@@ -343,10 +307,10 @@ SELECT
   srs.schedule_phase,
   srs.type,
   srs.days_since_mastery,
-  DATEDIFF(srs.due_date, NOW()) as days_until_due,
+  CAST((julianday(srs.due_date) - julianday('now')) AS INTEGER) as days_until_due,
   CASE
-    WHEN DATEDIFF(srs.due_date, NOW()) <= 0 THEN 'overdue'
-    WHEN DATEDIFF(srs.due_date, NOW()) <= 3 THEN 'due_soon'
+    WHEN CAST((julianday(srs.due_date) - julianday('now')) AS INTEGER) <= 0 THEN 'overdue'
+    WHEN CAST((julianday(srs.due_date) - julianday('now')) AS INTEGER) <= 3 THEN 'due_soon'
     ELSE 'future'
   END as status
 FROM spaced_repetition_schedule srs
@@ -358,11 +322,45 @@ ORDER BY srs.user_id, srs.due_date ASC;
 -- Indexes for Performance
 -- ============================================================================
 
--- Additional performance indexes for high-cardinality queries
+-- Learning states indexes
+CREATE INDEX IF NOT EXISTS idx_user_exam_readiness ON learning_states(user_id, exam_readiness_score);
+CREATE INDEX IF NOT EXISTS idx_updated_at ON learning_states(updated_at);
+
+-- Objective performance indexes
+CREATE INDEX IF NOT EXISTS idx_user_status ON objective_performance(user_id, status);
+CREATE INDEX IF NOT EXISTS idx_user_domain ON objective_performance(user_id, domain_id);
+CREATE INDEX IF NOT EXISTS idx_next_refresh ON objective_performance(user_id, next_refresh_date);
+CREATE INDEX IF NOT EXISTS idx_mastered_date ON objective_performance(mastered_date);
 CREATE INDEX IF NOT EXISTS idx_objective_performance_user_status ON objective_performance(user_id, status);
-CREATE INDEX IF NOT EXISTS idx_domain_milestones_user_domain_date ON domain_milestones(user_id, domain_id, attempt_date DESC);
-CREATE INDEX IF NOT EXISTS idx_study_activities_recent ON study_activities(user_id, activity_date DESC);
+CREATE INDEX IF NOT EXISTS idx_domain_milestones_user_domain_date ON domain_milestones(user_id, domain_id, attempt_date);
+
+-- Domain milestones indexes
+CREATE INDEX IF NOT EXISTS idx_user_domain_type ON domain_milestones(user_id, domain_id, type);
+CREATE INDEX IF NOT EXISTS idx_attempt_date ON domain_milestones(attempt_date);
+CREATE INDEX IF NOT EXISTS idx_passed ON domain_milestones(user_id, passed);
+CREATE INDEX IF NOT EXISTS idx_user_latest ON domain_milestones(user_id, domain_id, attempt_date);
+
+-- Spaced repetition indexes
+CREATE INDEX IF NOT EXISTS idx_user_due_date ON spaced_repetition_schedule(user_id, due_date);
+CREATE INDEX IF NOT EXISTS idx_not_completed ON spaced_repetition_schedule(user_id, completed);
+CREATE INDEX IF NOT EXISTS idx_priority_due ON spaced_repetition_schedule(user_id, priority, due_date);
 CREATE INDEX IF NOT EXISTS idx_spaced_rep_user_due ON spaced_repetition_schedule(user_id, due_date);
+
+-- Study activities indexes
+CREATE INDEX IF NOT EXISTS idx_user_date ON study_activities(user_id, activity_date);
+CREATE INDEX IF NOT EXISTS idx_user_type ON study_activities(user_id, type);
+CREATE INDEX IF NOT EXISTS idx_objective ON study_activities(user_id, objective_id, activity_date);
+CREATE INDEX IF NOT EXISTS idx_session ON study_activities(user_id, session_id);
+CREATE INDEX IF NOT EXISTS idx_study_activities_recent ON study_activities(user_id, activity_date);
+
+-- Mock exam results indexes
+CREATE INDEX IF NOT EXISTS idx_exam_user_date ON mock_exam_results(user_id, attempt_date);
+CREATE INDEX IF NOT EXISTS idx_exam_percentage ON mock_exam_results(user_id, percentage);
+CREATE INDEX IF NOT EXISTS idx_exam_type ON mock_exam_results(user_id, type);
+
+-- Migration status indexes
+CREATE INDEX IF NOT EXISTS idx_migration_status ON migration_status(status);
+CREATE INDEX IF NOT EXISTS idx_completed_at ON migration_status(completed_at);
 
 -- ============================================================================
 -- Sample Data Insertion (Comment out in production)
