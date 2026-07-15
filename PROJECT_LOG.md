@@ -107,6 +107,42 @@ All work below shipped via Cursor and is documented in `ai-improvement-logs/COMP
 - Routing-table exhibit UI and `bad_display` question flag; Missed Review crash fix (CLI/ordering)
 - Domain Pass session persistence across trap drill / Command Hub / Study / lab returns
 
+**2026-07-14**
+- **Phase 3: Advanced Validation Features** — Lab Testing & Validation Framework Part 2 (continued from Phase 1-2 CLI validation)
+  - `src/features/labs/advancedMistakes.ts` (10 advanced mistake patterns):
+    * RoutingLoop: conflicting routes causing traffic loops
+    * MTUMismatch: mismatched MTU values on interfaces
+    * HelloTimerMismatch: OSPF hello/dead timer mismatches preventing adjacency
+    * ACLBlocksTraffic: ACL rules denying required traffic
+    * NATConflict: overlapping NAT rules causing translation conflicts
+    * SubnetConflict: duplicate/overlapping subnets on different interfaces
+    * ConfigIncomplete: OSPF configured but missing network statements
+    * UnexpectedShutdown: interface in shutdown state blocking traffic
+    * CostMismatch: incorrect OSPF costs affecting route selection
+    * DeadIntervalMismatch: dead interval mismatch in OSPF neighbors
+    * Each pattern includes detection logic, problem description, root cause explanation, detection method, step-by-step fix, and common misconception
+  - `src/features/labs/contextualFeedback.ts` (intelligent error messaging):
+    * enhanceBasicMistakeMessage() & enhanceAdvancedMistakeMessage() — contextual feedback with "why" + "how" + misconception
+    * formatFeedbackForDisplay() — user-friendly formatted output
+    * aggregateMultipleErrors() — batch error handling with severity sorting
+    * generateAdaptiveFeedback() — escalating guidance based on attempt number
+    * trackFeedbackSession() & getLearningInsights() — feedback analytics
+  - `src/features/labs/progressiveDifficulty.ts` (difficulty adaptation):
+    * Easy labs: max 2 mistakes, full hints (level 3), partial credit allowed, retry enabled
+    * Medium labs: max 1 mistake, limited hints (level 2), no partial credit, retry enabled
+    * Hard labs: 0 mistakes (strict mode), minimal hints (level 1), no partial credit, no retry
+    * evaluatePerformance() — adapt difficulty based on accuracy/attempts
+    * calculateLabScore() — difficulty-multiplied scoring (easy 1x, medium 1.25x, hard 1.5x)
+    * detectPlateauing() — detect when user is stuck or dominating
+    * getBadgeEarned() — award master/warrior/sharpshooter/speedrunner badges
+    * estimateTimeToComplete() — personalized time estimates based on success rate
+  - `src/__tests__/advancedValidation.test.ts` (59 comprehensive tests):
+    * 12 tests for advanced mistake detection patterns
+    * 12 tests for contextual feedback system (formatting, adaptive generation, session tracking, insights)
+    * 35 tests for progressive difficulty (settings, failure logic, performance evaluation, recommendations, scoring, progression, badges)
+- Fixes: Type correction (AdvancedMismatch → AdvancedMistake), plateau detection threshold refinement
+- All 165 lab-related tests passing (59 new + 106 existing); no regressions in lab framework
+
 ---
 
 ## 2026-07-10 — P5: Wave/Patch Architecture Audit (Claude Code)

@@ -1,0 +1,464 @@
+/* Lab Progress Dashboard Styles */
+
+.lab-progress-dashboard {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: var(--bg-primary, #f9f9f9);
+  color: var(--text-primary, #1a1a1a);
+}
+
+.dashboard-header {
+  margin-bottom: 40px;
+}
+
+.dashboard-header h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: var(--text-primary, #1a1a1a);
+}
+
+.header-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.stat-card {
+  background: white;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--primary-color, #2563eb);
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: var(--text-secondary, #666);
+}
+
+/* Tabs */
+.dashboard-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid var(--border-color, #e0e0e0);
+}
+
+.tab-btn {
+  padding: 12px 24px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-secondary, #666);
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  margin-bottom: -2px;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary, #1a1a1a);
+}
+
+.tab-btn.active {
+  color: var(--primary-color, #2563eb);
+  border-bottom-color: var(--primary-color, #2563eb);
+}
+
+.tab-content {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Sections */
+.section {
+  background: white;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.section h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: var(--text-primary, #1a1a1a);
+}
+
+.overview-grid,
+.analysis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+}
+
+/* Labs Grid */
+.labs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.lab-card {
+  background: var(--card-bg, #ffffff);
+  border: 2px solid var(--border-color, #e0e0e0);
+  border-radius: 10px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.lab-card:hover {
+  border-color: var(--primary-color, #2563eb);
+  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.15);
+  transform: translateY(-4px);
+}
+
+.lab-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 12px;
+}
+
+.lab-card-header h3 {
+  font-size: 16px;
+  margin: 0;
+  flex: 1;
+  font-weight: 600;
+}
+
+.lab-score {
+  background: var(--primary-color, #2563eb);
+  color: white;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  min-width: 50px;
+  text-align: center;
+}
+
+.lab-card-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color, #e0e0e0);
+}
+
+.stat {
+  font-size: 12px;
+}
+
+.stat .value {
+  display: block;
+  font-weight: bold;
+  color: var(--text-primary, #1a1a1a);
+}
+
+.lab-badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.badge-mini {
+  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--badge-bg, #f0f0f0);
+  border-radius: 50%;
+  cursor: help;
+  transition: all 0.2s ease;
+}
+
+.badge-mini:hover {
+  transform: scale(1.15);
+  background: var(--primary-color, #2563eb);
+}
+
+/* Badges Display */
+.badges-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 16px;
+}
+
+.badge-item {
+  text-align: center;
+  padding: 16px;
+  background: var(--badge-bg, #f9f9f9);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.badge-item:hover {
+  border-color: var(--primary-color, #2563eb);
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.1);
+  transform: translateY(-2px);
+}
+
+.badge-emoji {
+  font-size: 40px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.badge-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary, #1a1a1a);
+}
+
+/* Recommendation Card */
+.recommendation-card {
+  border: 2px solid var(--primary-color, #2563eb);
+  border-radius: 10px;
+  padding: 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(37, 99, 235, 0.05),
+    rgba(37, 99, 235, 0.02)
+  );
+}
+
+.recommendation-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--primary-color, #2563eb);
+  margin-bottom: 8px;
+}
+
+.recommendation-description {
+  font-size: 14px;
+  color: var(--text-secondary, #666);
+  margin-bottom: 12px;
+}
+
+.recommendation-reason {
+  font-size: 14px;
+  color: var(--text-primary, #1a1a1a);
+  margin-bottom: 16px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  background: var(--primary-color, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark, #1d4ed8);
+  transform: scale(1.02);
+}
+
+/* Skills Chart */
+.skills-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skill-bar {
+  display: grid;
+  grid-template-columns: 120px 1fr 50px;
+  gap: 12px;
+  align-items: center;
+}
+
+.skill-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary, #1a1a1a);
+}
+
+.skill-progress {
+  height: 24px;
+  background: var(--progress-bg, #e0e0e0);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color, #2563eb), var(--primary-light, #60a5fa));
+  transition: width 0.5s ease;
+  border-radius: 12px;
+}
+
+.skill-count {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary, #666);
+  text-align: right;
+}
+
+/* Time Chart */
+.time-chart,
+.time-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.time-entry {
+  gap: 8px;
+}
+
+.time-label {
+  font-size: 13px;
+  color: var(--text-secondary, #666);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.time-value {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary, #1a1a1a);
+}
+
+/* Stats List */
+.stats-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.stat-item {
+  background: var(--stat-bg, #f9f9f9);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.stat-item .stat-label {
+  font-size: 12px;
+  color: var(--text-secondary, #666);
+  margin-bottom: 8px;
+}
+
+.stat-highlight {
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--primary-color, #2563eb);
+}
+
+/* Empty State */
+.empty-state,
+.no-data {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary, #999);
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .lab-progress-dashboard {
+    padding: 16px;
+  }
+
+  .header-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .overview-grid,
+  .analysis-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .labs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-header h1 {
+    font-size: 24px;
+  }
+
+  .stat-card {
+    padding: 16px;
+  }
+
+  .stat-value {
+    font-size: 24px;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .lab-progress-dashboard {
+    background: var(--bg-primary, #1a1a1a);
+    color: var(--text-primary, #e0e0e0);
+  }
+
+  .stat-card,
+  .section,
+  .lab-card,
+  .badge-item {
+    background: var(--card-bg, #2a2a2a);
+    border-color: var(--border-color, #3a3a3a);
+  }
+
+  .lab-card:hover {
+    border-color: var(--primary-color, #60a5fa);
+  }
+
+  .recommendation-card {
+    border-color: var(--primary-color, #60a5fa);
+    background: rgba(96, 165, 250, 0.1);
+  }
+
+  .progress-fill {
+    background: linear-gradient(90deg, var(--primary-color, #60a5fa), var(--primary-light, #2563eb));
+  }
+}
