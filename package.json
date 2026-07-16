@@ -68,7 +68,10 @@
     "audit:help": "node scripts/runAudit.mjs --list",
     "audit:mark-done": "node scripts/markQueueDone.mjs",
     "audit:coverage": "node scripts/auditContentCoverage.mjs",
+    "audit:lesson-bank": "node scripts/auditLessonBankAlignment.mjs",
     "audit:parametric": "node scripts/auditParametricCoverage.mjs",
+    "validate:lesson-prose": "node scripts/validateLessonProse.mjs",
+    "generate:lesson-align": "node scripts/generateLessonAlignmentWave12.mjs",
     "generate:improvement-logs": "node scripts/generateImprovementLogs.mjs",
     "lint": "eslint src",
     "lighthouse": "lhci autorun"

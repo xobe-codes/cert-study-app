@@ -126,6 +126,7 @@ CCNA audit — descriptive npm shortcuts
   npm run audit:show-next-task     Print next queue item to implement
   npm run audit:test-and-build     npm run verify:ship (test + build + ship e2e)
   npm run audit:print-summary      Print tier/gap/queue summary
+  npm run audit:lesson-bank        Lesson↔bank alignment matrix (reverse CKU + prose floors)
   npm run audit:scan-and-refresh   Scan + refresh logs (common pair)
   npm run audit:full               All automated steps (skips show-next-task)
   npm run audit:mark-done          Mark queue item done + append COMPLETED_CHANGES

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-09T11:50:33.399Z",
+  "generatedAt": "2026-07-16T11:51:49.759Z",
   "items": [
     {
       "id": "improve_vlan_engineer_verify",
@@ -309,6 +309,711 @@
         "src/sw.js"
       ],
       "completedAt": "2026-07-04T04:34:49.895Z"
+    },
+    {
+      "id": "lesson-align-2.8",
+      "priority": "critical",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "2.8",
+      "problem": "27 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 540
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-3.1",
+      "priority": "critical",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "3.1",
+      "problem": "20 bank CKU(s) untaught in Study (reverse coverage 17%)",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 500
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-3.2",
+      "priority": "critical",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "3.2",
+      "problem": "19 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 475
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-3.3",
+      "priority": "critical",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "3.3",
+      "problem": "15 bank CKU(s) untaught in Study (reverse coverage 21%)",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 375
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-3.4",
+      "priority": "critical",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "3.4",
+      "problem": "15 bank CKU(s) untaught in Study (reverse coverage 25%)",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 375
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-3.6",
+      "priority": "critical",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "3.6",
+      "problem": "15 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 375
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-5.3",
+      "priority": "critical",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "5.3",
+      "problem": "19 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 285
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-2.3",
+      "priority": "critical",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "2.3",
+      "problem": "14 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 280
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-2.6",
+      "priority": "critical",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "2.6",
+      "problem": "12 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 240
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-6.5",
+      "priority": "critical",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "6.5",
+      "problem": "24 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 240
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-3.5",
+      "priority": "critical",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "3.5",
+      "problem": "9 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 225
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-5.7",
+      "priority": "critical",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "5.7",
+      "problem": "14 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 210
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-2.4",
+      "priority": "high",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "2.4",
+      "problem": "10 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 200
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-6.3",
+      "priority": "high",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "6.3",
+      "problem": "19 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 190
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-5.2",
+      "priority": "high",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "5.2",
+      "problem": "12 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 180
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-5.8",
+      "priority": "high",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "5.8",
+      "problem": "12 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 180
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-6.4",
+      "priority": "high",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "6.4",
+      "problem": "18 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 180
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-5.1",
+      "priority": "high",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "5.1",
+      "problem": "11 bank CKU(s) untaught in Study (reverse coverage 31%)",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 165
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-5.4",
+      "priority": "high",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "5.4",
+      "problem": "11 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 165
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-2.7",
+      "priority": "high",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "2.7",
+      "problem": "8 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 160
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-6.6",
+      "priority": "high",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "6.6",
+      "problem": "16 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 160
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-2.5",
+      "priority": "high",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "2.5",
+      "problem": "7 bank CKU(s) untaught in Study (reverse coverage 30%)",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 140
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-4.7",
+      "priority": "high",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "4.7",
+      "problem": "14 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 140
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-5.9",
+      "priority": "high",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "5.9",
+      "problem": "9 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 135
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-5.11",
+      "priority": "medium",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "5.11",
+      "problem": "9 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 135
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-4.3",
+      "priority": "medium",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "4.3",
+      "problem": "12 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 120
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-4.1",
+      "priority": "medium",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "4.1",
+      "problem": "11 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 110
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-4.8",
+      "priority": "medium",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "4.8",
+      "problem": "11 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 110
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-6.2",
+      "priority": "medium",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "6.2",
+      "problem": "11 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 110
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-4.4",
+      "priority": "medium",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "4.4",
+      "problem": "10 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 100
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-4.5",
+      "priority": "medium",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "4.5",
+      "problem": "9 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 90
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-4.10",
+      "priority": "medium",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "4.10",
+      "problem": "9 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 90
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-5.6",
+      "priority": "medium",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "5.6",
+      "problem": "6 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 90
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-4.9",
+      "priority": "medium",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "4.9",
+      "problem": "8 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 80
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-5.10",
+      "priority": "medium",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "5.10",
+      "problem": "5 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 75
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-4.2",
+      "priority": "medium",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "4.2",
+      "problem": "7 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 70
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-4.6",
+      "priority": "low",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "4.6",
+      "problem": "7 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 70
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-6.1",
+      "priority": "low",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "6.1",
+      "problem": "6 missing CKU(s) + thin prose",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 60
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-5.5",
+      "priority": "low",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "5.5",
+      "problem": "3 bank CKU(s) untaught in Study (reverse coverage 57%)",
+      "recommendedImprovement": "Add CKU anchors to reading/traps/flashcards until reverse coverage >=95% (LESSON_BANK_ALIGNMENT_99_SPEC 3.1)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 45
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-1.1",
+      "priority": "low",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "1.1",
+      "problem": "Lesson prose fails retention floors (thin/draft)",
+      "recommendedImprovement": "Beautify tiers/keyPoints/examTraps to clear prose floors (LESSON_BANK_ALIGNMENT_99_SPEC 3.2)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 20
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-1.2",
+      "priority": "low",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "1.2",
+      "problem": "Lesson prose fails retention floors (thin/draft)",
+      "recommendedImprovement": "Beautify tiers/keyPoints/examTraps to clear prose floors (LESSON_BANK_ALIGNMENT_99_SPEC 3.2)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 20
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-1.7",
+      "priority": "low",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "1.7",
+      "problem": "Lesson prose fails retention floors (thin/draft)",
+      "recommendedImprovement": "Beautify tiers/keyPoints/examTraps to clear prose floors (LESSON_BANK_ALIGNMENT_99_SPEC 3.2)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 20
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-1.10",
+      "priority": "low",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "1.10",
+      "problem": "Lesson prose fails retention floors (thin/draft)",
+      "recommendedImprovement": "Beautify tiers/keyPoints/examTraps to clear prose floors (LESSON_BANK_ALIGNMENT_99_SPEC 3.2)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 20
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-1.11",
+      "priority": "low",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "1.11",
+      "problem": "Lesson prose fails retention floors (thin/draft)",
+      "recommendedImprovement": "Beautify tiers/keyPoints/examTraps to clear prose floors (LESSON_BANK_ALIGNMENT_99_SPEC 3.2)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 20
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-1.12",
+      "priority": "low",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "1.12",
+      "problem": "Lesson prose fails retention floors (thin/draft)",
+      "recommendedImprovement": "Beautify tiers/keyPoints/examTraps to clear prose floors (LESSON_BANK_ALIGNMENT_99_SPEC 3.2)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 20
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-2.1",
+      "priority": "low",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "2.1",
+      "problem": "Lesson prose fails retention floors (thin/draft)",
+      "recommendedImprovement": "Beautify tiers/keyPoints/examTraps to clear prose floors (LESSON_BANK_ALIGNMENT_99_SPEC 3.2)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 20
+      },
+      "source": "audit:lesson-bank"
+    },
+    {
+      "id": "lesson-align-2.2",
+      "priority": "low",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "2.2",
+      "problem": "Lesson prose fails retention floors (thin/draft)",
+      "recommendedImprovement": "Beautify tiers/keyPoints/examTraps to clear prose floors (LESSON_BANK_ALIGNMENT_99_SPEC 3.2)",
+      "riskLevel": "low",
+      "confidenceScore": 70,
+      "scoreImpact": {
+        "alignmentScore": 20
+      },
+      "source": "audit:lesson-bank"
     }
   ]
 }

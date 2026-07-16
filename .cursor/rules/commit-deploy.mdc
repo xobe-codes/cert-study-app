@@ -19,7 +19,7 @@ When the user says **commit & deploy**, **c&d**, or **ship it**, run this workfl
 ## Report back
 
 - Commit hash + message (if committed)
-- Live URL: https://master.ccna-study-tool.pages.dev
+- Live URL: https://ccna-study-tool.pages.dev
 - Note if deploy was skipped (no changes / tests failed)
 
 ## Do not
