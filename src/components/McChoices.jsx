@@ -57,7 +57,9 @@ function ChoiceButton({ idx, choice, correctIndex, selected, revealed, onSelect,
       }}
     >
       <span aria-hidden="true" style={{ fontWeight: 700, marginRight: 8, color: revealed && idx === selected && idx !== correctIndex ? COLORS.rose : COLORS.silverMid }}>
-        {revealed && idx === selected && idx !== correctIndex ? '✗ ' : ''}{String.fromCharCode(65 + idx)}.
+        {revealed
+          ? (idx === correctIndex ? '✓ ' : '✗ ')
+          : ''}{String.fromCharCode(65 + idx)}.
       </span>
       <span style={{ overflowWrap: 'anywhere', wordBreak: 'break-word' }}>{choice}</span>
     </button>

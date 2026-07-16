@@ -15,6 +15,7 @@ import {
 import { buildStemAnchoredIncorrect } from './answerReview/stemAnchoredDistractor.js'
 import { goldAnswerReviewFor } from './answerReview/goldAnswerReviews.js'
 import { examTipFor, isGenericExamTip } from './answerReview/examTipLogic.js'
+import { regenIncorrectFor } from './features/explanationIntegration.js'
 import { sanitizeAnswerText } from './lib/voiceProse.js'
 import { isMultiQuestion, multiCorrectIndexes } from './questionUtils.js'
 
@@ -77,18 +78,29 @@ function mergeSadeFields(q, choiceIndex, item = {}, { respectExplicitBoth = fals
   return { whatItDoes: sade.whatItDoes, whyWrongHere: sade.whyWrongHere }
 }
 
+function hasQualityDistractorFields(item) {
+  return Boolean(
+    item?.whyWrongHere
+    && !isTemplateWhyWrongHere(item.whyWrongHere)
+    && item?.whatItDoes
+    && !isFallbackExplanation(item.whatItDoes),
+  )
+}
+
 function ensureDistinctExplanations(q, incorrect) {
   const usedExpl = new Map()
   const usedWhy = new Map()
   return incorrect.map(item => {
     let { explanation, misconceptionTested, whatItDoes, whyWrongHere } = item
     const regen = () => buildStemAnchoredIncorrect({ q, choiceIndex: item.choiceIndex })
-    if (usedExpl.has(explanation)) {
+    if (usedExpl.has(explanation) && !hasQualityDistractorFields(item)) {
       const sade = regen()
       explanation = sade.explanation
       whatItDoes = sade.whatItDoes
       whyWrongHere = sade.whyWrongHere
       misconceptionTested = sade.misconceptionTested || inferTrapForChoice(q, item.choiceIndex)
+    } else if (usedExpl.has(explanation) && hasQualityDistractorFields(item)) {
+      explanation = `${explanation} (choice ${choiceLetterForIndex(item.choiceIndex)})`
     }
     if (whyWrongHere && usedWhy.has(whyWrongHere)) {
       const wrong = q.choices?.[item.choiceIndex] || ''
@@ -99,6 +111,57 @@ function ensureDistinctExplanations(q, incorrect) {
     if (whyWrongHere) usedWhy.set(whyWrongHere, item.choiceIndex)
     return { ...item, explanation, misconceptionTested, whatItDoes, whyWrongHere }
   })
+}
+
+function bankIncorrectFor(q, choiceIndex) {
+  const item = q.answerReview?.incorrect?.find(i => i.choiceIndex === choiceIndex)
+  if (!item) return null
+  const resolved = resolveIncorrectItem(q, item)
+  if (resolved.genericDebrief || isTemplateWhyWrongHere(resolved.whyWrongHere)) return null
+  return resolved
+}
+
+/** Gold → regen → clean-bank → SADE precedence for one wrong choice. */
+function resolveWrongChoiceForReview(q, choiceIndex, { fromGold = null } = {}) {
+  if (fromGold) {
+    const goldExplicit = hasExplicitSadeFields(fromGold)
+      && !isTemplateWhyWrongHere(fromGold.whyWrongHere)
+      && !isTemplateWhyWrongHere(fromGold.whatItDoes)
+      && fromGold.explanation
+      && !isFallbackExplanation(fromGold.explanation)
+    if (goldExplicit) {
+      const { whatItDoes, whyWrongHere } = mergeSadeFields(q, choiceIndex, fromGold, { respectExplicitBoth: true })
+      return { ...fromGold, whatItDoes, whyWrongHere }
+    }
+  }
+
+  const fromRegen = regenIncorrectFor(q.id, choiceIndex)
+  if (fromRegen) {
+    return {
+      ...fromRegen,
+      explanation: fromGold?.explanation || fromRegen.explanation,
+      misconceptionTested: fromGold?.misconceptionTested || fromRegen.misconceptionTested,
+    }
+  }
+
+  const fromBank = bankIncorrectFor(q, choiceIndex)
+  if (fromBank) {
+    return {
+      ...fromBank,
+      explanation: fromGold?.explanation || fromBank.explanation,
+      misconceptionTested: fromGold?.misconceptionTested || fromBank.misconceptionTested,
+    }
+  }
+
+  const rebuilt = buildWrongChoiceItem(q, choiceIndex)
+  if (fromGold?.explanation && !isFallbackExplanation(fromGold.explanation)) {
+    return {
+      ...rebuilt,
+      explanation: fromGold.explanation,
+      misconceptionTested: fromGold.misconceptionTested || rebuilt.misconceptionTested,
+    }
+  }
+  return rebuilt
 }
 
 /** Choice-specific misconception trap labels. */
@@ -252,23 +315,7 @@ export function generateAnswerReview(q) {
       .map((_, choiceIndex) => {
         if (choiceIndex === q.correctIndex) return null
         const fromGold = goldByChoice.get(choiceIndex)
-        if (fromGold) {
-          let { whatItDoes, whyWrongHere } = mergeSadeFields(q, choiceIndex, fromGold, { respectExplicitBoth: true })
-          if (!whyWrongHere || isTemplateWhyWrongHere(whyWrongHere) || !whatItDoes) {
-            const rebuilt = buildWrongChoiceItem(q, choiceIndex)
-            whatItDoes = whatItDoes && !isTemplateWhyWrongHere(whatItDoes) ? whatItDoes : rebuilt.whatItDoes
-            whyWrongHere = whyWrongHere && !isTemplateWhyWrongHere(whyWrongHere) ? whyWrongHere : rebuilt.whyWrongHere
-            return {
-              ...fromGold,
-              explanation: fromGold.explanation || rebuilt.explanation,
-              whatItDoes,
-              whyWrongHere,
-              misconceptionTested: fromGold.misconceptionTested || rebuilt.misconceptionTested,
-            }
-          }
-          return { ...fromGold, whatItDoes, whyWrongHere }
-        }
-        return buildWrongChoiceItem(q, choiceIndex)
+        return resolveWrongChoiceForReview(q, choiceIndex, { fromGold })
       })
       .filter(Boolean)
 
@@ -288,7 +335,7 @@ export function generateAnswerReview(q) {
   const incorrect = q.choices
     .map((_, choiceIndex) => {
       if (choiceIndex === q.correctIndex) return null
-      const item = buildWrongChoiceItem(q, choiceIndex)
+      const item = resolveWrongChoiceForReview(q, choiceIndex)
       return {
         ...item,
         ...(needsReview ? { needsExplanationReview: true } : {}),
