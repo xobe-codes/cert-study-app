@@ -196,6 +196,10 @@ export function useAppNavigation() {
     navigateTo('mock')
   }, [navigateTo])
 
+  const openLabExam = useCallback(() => {
+    navigateTo('labexam')
+  }, [navigateTo])
+
   const openLabs = useCallback((opts) => {
     const safe = studyModeOpts(opts)
     const domainId = safe?.domainId
@@ -342,6 +346,7 @@ export function useAppNavigation() {
     openDomainPlacement,
     exitDomainPlacement,
     openMockExam,
+    openLabExam,
     openLabs,
     openCommandHub,
     openTermsHub,

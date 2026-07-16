@@ -14,6 +14,7 @@ export const STUDY_HUB_VIEWS = new Set([
   'topicfocus',
   'labs',
   'mock',
+  'labexam',
   'focus',
   'missed',
   'review',

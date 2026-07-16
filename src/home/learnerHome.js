@@ -131,9 +131,9 @@ export function generateLocalSuggestions(summary, commandDrills = {}) {
     .sort((a, b) => b.hardCount - a.hardCount)[0]
   if (cliStruggle) {
     add({
-      key: 'cli', chip: 'HANDS-ON', accent: 'sky', objective: cliStruggle, tab: 'CLI Drill',
+      key: 'cli', chip: 'HANDS-ON', accent: 'sky', objective: cliStruggle, tab: 'Practice',
       title: `${cliStruggle.id} ${cliStruggle.title}`,
-      body: `You rated several questions here tough. Reinforce it with the CLI drill — muscle memory beats re-reading.`,
+      body: `You rated several questions here tough. Reinforce it in Practice — CLI type-ins are mixed into the set.`,
       why: whyForFailureMode('verification'),
     })
   }

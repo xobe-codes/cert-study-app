@@ -16,10 +16,10 @@ export function useObjectiveSiblings(objective) {
   }, [objective.domainId, objective.id])
 }
 
-export function useObjectiveToolItems(objectiveId, commandDrills) {
+export function useObjectiveToolItems(objectiveId, _commandDrills) {
   return useMemo(() => {
     const items = []
-    if (commandDrills[objectiveId]) items.push({ id: 'CLI Drill', label: 'CLI Drill', icon: '💻' })
+    // CLI Drill demoted: Practice mixes type:cli skill Qs; Hub + hash deep-link still work.
     if (objectiveId === '1.6') {
       items.push({ id: 'Subnetting', label: 'Subnetting', icon: '🧮' })
       items.push({ id: 'VLSM', label: 'VLSM', icon: '🧮' })
@@ -27,5 +27,5 @@ export function useObjectiveToolItems(objectiveId, commandDrills) {
     if (objectiveId === '1.8') items.push({ id: 'IPv6 Calc', label: 'IPv6 Calc', icon: '🔢' })
     if (objectiveId === '5.5' || objectiveId === '5.6') items.push({ id: 'ACL Calc', label: 'ACL Calc', icon: '🔒' })
     return items
-  }, [objectiveId, commandDrills])
+  }, [objectiveId])
 }

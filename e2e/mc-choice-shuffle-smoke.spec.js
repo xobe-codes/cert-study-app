@@ -76,9 +76,9 @@ test.describe('MC choice shuffle smoke', () => {
     await page.getByRole('radio', { name: /all of the above/i }).click()
     await expect(page.getByText(/Correct/i).first()).toBeVisible({ timeout: 5000 })
 
-    const lastRadio = group.locator('[role="radio"]').last()
-    const lastLetter = await lastRadio.locator('span').first().textContent()
-    const letterMatch = lastLetter?.match(/^([A-D])\./)
+    const metaRadio = page.getByRole('radio', { name: /all of the above/i })
+    const metaLetter = await metaRadio.locator('span').first().textContent()
+    const letterMatch = metaLetter?.match(/([A-D])\./)
     expect(letterMatch).toBeTruthy()
     await expect(page.getByText(new RegExp(`CORRECT ANSWER:\\s*${letterMatch[1]}`, 'i'))).toBeVisible()
   })

@@ -66,7 +66,7 @@ export function parseAppHash() {
   // topicfocussession needs live config (topicFocusConfig) — restore picker on refresh instead.
   if (simple === 'topicfocussession') return { view: 'topicfocus' }
   if ([
-    'mock', 'mockinterview', 'metrics', 'stats', 'review', 'missed', 'labs', 'focus', 'tutor',
+    'mock', 'mockinterview', 'labexam', 'metrics', 'stats', 'review', 'missed', 'labs', 'focus', 'tutor',
     'topicfocus', 'studylens', 'examtraps', 'trapdrill', 'subnet', 'routing', 'extrastudy',
     'domainpass', 'domainplacement', 'termshub',
   ].includes(simple)) {

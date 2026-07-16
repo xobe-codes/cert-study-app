@@ -50,6 +50,10 @@ async function openDomainPassResults(page) {
   await expect(page.getByText(/1 \/ 2 correct/i)).toBeVisible()
 }
 
+async function expandMoreOptions(page) {
+  await page.getByRole('button', { name: /More options/i }).click()
+}
+
 async function backToDomainPassResults(page) {
   const bottomBack = page.getByRole('navigation', { name: /main navigation/i }).getByRole('button', { name: 'Back', exact: true })
   await expect(bottomBack).toBeVisible({ timeout: 10_000 })
@@ -63,6 +67,7 @@ async function backToDomainPassResults(page) {
 test.describe('Domain pass side-trip resume smoke', () => {
   test('trap drill from results returns to Domain Pass results on Back', async ({ page }) => {
     await openDomainPassResults(page)
+    await expandMoreOptions(page)
     await page.getByRole('button', { name: /Trap drill \(this domain\)/i }).click()
     await expect(page.getByRole('heading', { name: /Trap Drill/i })).toBeVisible({ timeout: 20_000 })
     await backToDomainPassResults(page)
@@ -70,6 +75,7 @@ test.describe('Domain pass side-trip resume smoke', () => {
 
   test('Command Hub from results returns to Domain Pass results on Back', async ({ page }) => {
     await openDomainPassResults(page)
+    await expandMoreOptions(page)
     await page.getByRole('button', { name: /^Command Hub/i }).click()
     await expect(page.getByRole('heading', { name: /Command Hub/i })).toBeVisible({ timeout: 20_000 })
     await backToDomainPassResults(page)

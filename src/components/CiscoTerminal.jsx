@@ -80,6 +80,7 @@ export default function CiscoTerminal({
               if (e.key === 'Enter') onSubmit?.()
             }}
             placeholder={placeholder}
+            autoComplete="off"
             autoCapitalize="none"
             autoCorrect="off"
             spellCheck={false}

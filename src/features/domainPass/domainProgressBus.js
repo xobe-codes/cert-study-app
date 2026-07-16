@@ -1,7 +1,7 @@
 /**
  * Spec 2 — single graded-answer writer: engagement + exposure + optional miss.
  */
-import { recordSeen, domainIdFromObjectiveId } from './domainQuestionExposure.js'
+import { recordExposureOutcome, domainIdFromObjectiveId } from './domainQuestionExposure.js'
 
 /**
  * @param {object} opts
@@ -41,7 +41,7 @@ export async function recordGradedAnswer({
 
   if (markExposure && questionId) {
     const dId = domainId || domainIdFromObjectiveId(objectiveId)
-    if (dId) await recordSeen(dId, [questionId])
+    if (dId) await recordExposureOutcome(dId, questionId, { seen: true, correct: !!correct })
   }
 
   return {

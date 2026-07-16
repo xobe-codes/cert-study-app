@@ -12,3 +12,8 @@ data/source-question-bank/*
 # OneNote export copies (source lives in ~/Documents/markdown)
 data/onenote/raw/
 data/onenote/normalized/
+
+# Batch-claim coordination state (see ai-improvement-logs/BATCH_CLAIM_99.md) — ephemeral,
+# per-machine, never meant to be committed
+ai-improvement-logs/batch_claims.json
+ai-improvement-logs/.batch_claims.lock

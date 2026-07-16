@@ -258,6 +258,8 @@ export function CliAnswerInput({ value, onChange, onSubmit, revealed, question, 
         placeholder="Type next IOS command…"
         disabled={disabled || revealed}
         autoComplete="off"
+        autoCapitalize="none"
+        autoCorrect="off"
         spellCheck={false}
         aria-label="IOS command answer"
         style={{

@@ -64,6 +64,7 @@ export default function StudyModeRoutes({
   onPushView,
   onOpenLab,
   onOpenMockExam,
+  onOpenLabExam,
   labsDomainPrefill = null,
   commandHubDomainPrefill = null,
   commandHubTabPrefill = null,
@@ -95,6 +96,7 @@ export default function StudyModeRoutes({
           onBack={onBack}
           initialDomainFilter={labsDomainPrefill}
           onOpenLab={(id) => onOpenLab(id, 'labs')}
+          onOpenLabExam={onOpenLabExam}
         />
       </LazyRoute>
     )

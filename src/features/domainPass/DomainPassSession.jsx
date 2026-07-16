@@ -44,6 +44,7 @@ import {
   getExposureStats,
   loadDomainQuestionExposure,
   recordSeen,
+  recordExposureOutcome,
 } from './domainQuestionExposure.js'
 import { useMasteryProgress } from '../progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
@@ -51,6 +52,11 @@ import { shouldShowWildcardBridge } from '../practice/trapStreak.js'
 import { isPlacementDomain } from '../domainPlacement/placementBlueprints.js'
 import IdkButton from '../../components/IdkButton.jsx'
 import { takeLatencyMs, recordAnswerOutcome, unknownMissExtra } from '../study/answerOutcome.js'
+
+function recordPassExposure(domainId, questionId, correct) {
+  if (!domainId || !questionId) return
+  recordExposureOutcome(domainId, questionId, { seen: true, correct: !!correct }).catch(() => {})
+}
 
 function shuffleArray(arr) {
   const a = [...arr]
@@ -241,6 +247,7 @@ export default function DomainPassSession({
         latencyMs,
         selectedIndex: idx,
       }).catch(() => {})
+      recordPassExposure(domainId, q.id, correct)
       if (!correct) appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndex: idx }))
     }
   }
@@ -266,6 +273,7 @@ export default function DomainPassSession({
         unknown: true,
         latencyMs,
       }).catch(() => {})
+      recordPassExposure(domainId, q.id, false)
       appendMissedEntry(buildMissedEntry(q.objectiveId, q, unknownMissExtra(null)))
     }
   }
@@ -303,6 +311,7 @@ export default function DomainPassSession({
         latencyMs: takeLatencyMs(shownAtRef.current),
         selectedIndexes: answer,
       }).catch(() => {})
+      recordPassExposure(domainId, q.id, correct)
       if (!correct) appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndexes: answer }))
     }
   }

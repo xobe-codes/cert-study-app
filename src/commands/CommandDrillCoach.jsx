@@ -104,6 +104,8 @@ export default function CommandDrillCoach({ index }) {
             aria-label="IOS command answer"
             style={{ ...styles.input, width: '100%', boxSizing: 'border-box', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}
             autoComplete="off"
+            autoCapitalize="none"
+            autoCorrect="off"
             spellCheck={false}
           />
 

@@ -22,6 +22,7 @@ import { MASTERY_GATE, enableSectionReview } from '../../quiz/quizBankStorage.js
 import { bumpSessionStudy } from '../../home/sessionRecap.js'
 
 const MockExamRoute = lazy(() => import('../mockExam/MockExamRoute.jsx'))
+const LabExamRoute = lazy(() => import('../labExam/LabExamRoute.jsx'))
 
 /** Home, objective, mock, tutor, and onboarding routes extracted from App.jsx. */
 export default function CoreStudyRoutes({
@@ -37,6 +38,7 @@ export default function CoreStudyRoutes({
   offlineReady,
   selectObjective,
   openMockExam,
+  openLabExam,
   navigateTo,
   openLabs,
   openCommandHub,
@@ -89,6 +91,7 @@ export default function CoreStudyRoutes({
     const homeNavCallbacks = {
       onSelectObjective: selectObjective,
       onOpenMock: openMockExam,
+      onOpenLabExam: openLabExam || (() => navigateTo('labexam')),
       onOpenMockInterview: () => navigateTo('mockinterview'),
       onOpenMissed: () => navigateTo('missed'),
       onOpenTutor: () => navigateTo('tutor'),
@@ -214,6 +217,26 @@ export default function CoreStudyRoutes({
           }}
           onOpenMockInterview={() => navigateTo('mockinterview')}
           onOpenDomainPass={openDomainPass}
+        />
+      </LazyRoute>
+    )
+  }
+
+  if (view === 'labexam') {
+    return (
+      <LazyRoute label="Loading lab exam…">
+        <LabExamRoute
+          onExit={goBack}
+          haptic={haptic}
+          onSelectObjective={(idOrObj) => {
+            if (idOrObj && typeof idOrObj === 'object') {
+              selectObjective(idOrObj)
+              return
+            }
+            const obj = ALL_OBJECTIVES.find(o => o.id === idOrObj)
+            if (obj) selectObjective(obj)
+          }}
+          onOpenLabs={openLabs || (() => navigateTo('labs'))}
         />
       </LazyRoute>
     )

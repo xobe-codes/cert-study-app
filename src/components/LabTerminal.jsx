@@ -173,6 +173,10 @@ export default function LabTerminal({
           onKeyDown={handleKeyDown}
           disabled={isLoading}
           placeholder="Type command..."
+          autoComplete="off"
+          autoCapitalize="none"
+          autoCorrect="off"
+          spellCheck={false}
           style={{
             flex: 1,
             border: 'none',

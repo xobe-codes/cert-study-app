@@ -366,6 +366,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
     onOpenDomain,
     onSelectObjective,
     onOpenMock,
+    onOpenLabExam,
     onOpenMockInterview,
     onOpenMissed,
     onOpenTutor,
@@ -751,6 +752,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
               : 'Lessons'}
           </StudyModeBtn>
           <StudyModeBtn onClick={onOpenMock}>Mock Exam</StudyModeBtn>
+          {onOpenLabExam && <StudyModeBtn onClick={onOpenLabExam}>Lab Exam</StudyModeBtn>}
           <StudyModeBtn onClick={onOpenDomainPass}>Domain Pass ({domainPassPassedCount}/6)</StudyModeBtn>
           {onOpenDomainPlacement && (
             <StudyModeBtn onClick={() => onOpenDomainPlacement()}>

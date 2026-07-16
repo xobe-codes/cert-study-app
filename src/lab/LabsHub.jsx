@@ -24,7 +24,7 @@ function domainChipLabel(domain, domainNumber) {
   return `D${domainNumber} ${short[domain.id] || domain.name}`
 }
 
-export default function LabsHub({ onBack, onOpenLab, initialDomainFilter = null }) {
+export default function LabsHub({ onBack, onOpenLab, onOpenLabExam, initialDomainFilter = null }) {
   const [done, setDone] = useState([])
   const [domainFilter, setDomainFilter] = useState('all')
   const [filterReady, setFilterReady] = useState(false)
@@ -105,6 +105,15 @@ export default function LabsHub({ onBack, onOpenLab, initialDomainFilter = null 
           {' '}Browse all {allProgress.total} labs in curriculum order.
           {allProgress.done > 0 && ` You have completed ${allProgress.done}.`}
         </p>
+        {onOpenLabExam && (
+          <button
+            type="button"
+            onClick={onOpenLabExam}
+            style={{ ...styles.primaryBtn, marginTop: 12, width: '100%' }}
+          >
+            Lab Exam — timed verify stations
+          </button>
+        )}
       </div>
 
       <div

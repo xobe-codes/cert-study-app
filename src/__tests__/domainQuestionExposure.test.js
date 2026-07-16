@@ -3,12 +3,15 @@ import {
   EXPOSURE_TIERS,
   STALE_DAYS_MS,
   pickExposureTier,
+  normalizeExposureEntry,
   getExposureStats,
   recordSeen,
+  recordExposureOutcome,
   loadDomainQuestionExposure,
   domainIdFromObjectiveId,
 } from '../features/domainPass/domainQuestionExposure.js'
 import { buildDomainPassPool } from '../features/domainPass/buildDomainPassPool.js'
+import { buildExposureAwarePool } from '../features/domainPass/buildExposureAwarePool.js'
 
 const mockDomain = {
   id: 'fundamentals',
@@ -53,11 +56,21 @@ describe('domainQuestionExposure', () => {
     })
   })
 
-  it('pickExposureTier classifies unseen, stale, and recent', () => {
+  it('pickExposureTier classifies unseen, stale, recent, and correctRecent', () => {
     const now = Date.now()
     expect(pickExposureTier('q1', {})).toBe(EXPOSURE_TIERS.UNSEEN)
     expect(pickExposureTier('q2', { seenAt: now - STALE_DAYS_MS - 1, now })).toBe(EXPOSURE_TIERS.STALE)
     expect(pickExposureTier('q3', { seenAt: now - 1000, now })).toBe(EXPOSURE_TIERS.RECENT)
+    expect(pickExposureTier('q4', {
+      entry: { seenAt: now - 1000, lastCorrectAt: now - 500 },
+      now,
+    })).toBe(EXPOSURE_TIERS.CORRECT_RECENT)
+  })
+
+  it('normalizeExposureEntry accepts legacy numbers and object form', () => {
+    expect(normalizeExposureEntry(123)).toEqual({ seenAt: 123 })
+    expect(normalizeExposureEntry({ seenAt: 100, lastCorrectAt: 200, correctCount: 2 }))
+      .toEqual({ seenAt: 100, lastCorrectAt: 200, correctCount: 2 })
   })
 
   it('getExposureStats buckets ids and counts seen', () => {
@@ -73,11 +86,42 @@ describe('domainQuestionExposure', () => {
     expect(stats.seenCount).toBe(2)
   })
 
-  it('recordSeen persists per-domain timestamps', async () => {
+  it('recordSeen persists per-domain object entries', async () => {
     await recordSeen('fundamentals', ['1.1-a', '1.2-b'])
     const store = await loadDomainQuestionExposure()
-    expect(store.fundamentals['1.1-a']).toBeTypeOf('number')
-    expect(store.fundamentals['1.2-b']).toBeTypeOf('number')
+    expect(store.fundamentals['1.1-a']).toMatchObject({ seenAt: expect.any(Number) })
+    expect(store.fundamentals['1.2-b']).toMatchObject({ seenAt: expect.any(Number) })
+  })
+
+  it('recordExposureOutcome sets lastCorrectAt on correct grade', async () => {
+    await recordExposureOutcome('fundamentals', '1.1-a', { seen: true, correct: true })
+    const store = await loadDomainQuestionExposure()
+    expect(store.fundamentals['1.1-a']).toMatchObject({
+      seenAt: expect.any(Number),
+      lastCorrectAt: expect.any(Number),
+      correctCount: 1,
+    })
+  })
+
+  it('buildExposureAwarePool deprioritizes correctRecent below unseen', () => {
+    const now = Date.now()
+    const candidates = [
+      makeMc('fresh-1', '1.1'),
+      makeMc('fresh-2', '1.1'),
+      makeMc('got-it', '1.1'),
+    ]
+    const exposureById = {
+      'got-it': { seenAt: now - 1000, lastCorrectAt: now - 500 },
+    }
+    const pool = buildExposureAwarePool({
+      candidates,
+      exposureById,
+      count: 2,
+      shuffle: a => a,
+      now,
+      softFloor: 1,
+    })
+    expect(pool.map(q => q.id)).toEqual(['fresh-1', 'fresh-2'])
   })
 
   it('domainIdFromObjectiveId derives domain from objective prefix', () => {

@@ -91,6 +91,7 @@ export default function App() {
           offlineReady={bootstrap.offlineReady}
           selectObjective={nav.selectObjective}
           openMockExam={nav.openMockExam}
+          openLabExam={nav.openLabExam}
           openLabs={nav.openLabs}
           openCommandHub={nav.openCommandHub} openTermsHub={nav.openTermsHub} navigateTo={nav.navigateTo}
           handlePremiumBlocked={premium.handlePremiumBlocked} premiumUnlocked={bootstrap.premiumUnlocked}

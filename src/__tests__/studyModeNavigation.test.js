@@ -14,6 +14,7 @@ describe('studyModeNavigation', () => {
     expect(STUDY_HUB_VIEWS.has('labs')).toBe(true)
     expect(STUDY_HUB_VIEWS.has('topicfocus')).toBe(true)
     expect(STUDY_HUB_VIEWS.has('domainpass')).toBe(true)
+    expect(STUDY_HUB_VIEWS.has('labexam')).toBe(true)
     expect(STUDY_HUB_VIEWS.has('lab')).toBe(false)
   })
 

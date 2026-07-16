@@ -36,6 +36,7 @@ export default function AppLoadedShell({
   offlineReady,
   selectObjective,
   openMockExam,
+  openLabExam,
   openLabs,
   openCommandHub,
   openTermsHub,
@@ -200,6 +201,7 @@ export default function AppLoadedShell({
           offlineReady={offlineReady}
           selectObjective={selectObjective}
           openMockExam={openMockExam}
+          openLabExam={openLabExam}
           openLabs={openLabs}
           openCommandHub={openCommandHub}
           openTermsHub={openTermsHub}
@@ -288,6 +290,7 @@ export default function AppLoadedShell({
           onPushView={navigateTo}
           onOpenLab={openLab}
           onOpenMockExam={openMockExam}
+          onOpenLabExam={openLabExam}
           labsDomainPrefill={labsDomainPrefill}
           commandHubDomainPrefill={commandHubDomainPrefill}
           commandHubTabPrefill={commandHubTabPrefill}

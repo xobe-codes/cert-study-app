@@ -4,8 +4,8 @@ import {
   isOrderingQuestion, isMcQuestion, isCliQuestion, isMultiQuestion, gradeQuestion,
   shuffleArrayCopy, buildMissedEntry, normalizeSelectedIndexes,
 } from '../questionUtils.js'
-import { pickReviewSet, getObjectiveCkuIds } from '../lesson/quizCoverage.js'
-import { buildExposureAwarePool } from '../features/domainPass/buildExposureAwarePool.js'
+import { getObjectiveCkuIds } from '../lesson/quizCoverage.js'
+import { pickQuizSessionSet } from './pickQuizSessionSet.js'
 import { READING_TIER_KEYS } from '../lesson/readingTier.js'
 import { masteryBreakdown } from '../lesson/masteryCriteria.js'
 import { preloadCleanBankForObjective } from '../data/cleanQuestionAdapter.js'
@@ -49,11 +49,9 @@ import {
 } from './studyQuizShared.jsx'
 import {
   domainIdFromObjectiveId,
-  getDomainSeenMap,
-  getExposureStats,
-  loadDomainQuestionExposure,
   recordSeen,
 } from '../features/domainPass/domainQuestionExposure.js'
+import { loadPracticeExposurePool, recordPracticeExposure } from './practiceExposure.js'
 import { recordMissClearAttempt } from '../features/domainPass/missDrillQueue.js'
 import { useMasteryProgress } from '../features/progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from '../features/progress/masteryEngagement.js'
@@ -275,44 +273,24 @@ export function QuizTab({
 
       const breakdown = masteryBreakdown(progress?.[objective.id])
       const ckuIds = getObjectiveCkuIds(objective.id)
-      let set = []
+      let exposurePool = null
+      let preferUnseenIds = null
       try {
-        const domainId = domainIdFromObjectiveId(objective.id)
-        if (domainId) {
-          const exposureStore = await loadDomainQuestionExposure()
-          const seenMap = getDomainSeenMap(exposureStore, domainId)
-          const missRetryIds = (missed || [])
-            .filter(m => m?.objectiveId === objective.id)
-            .map(m => m.id ?? m.questionId)
-            .filter(Boolean)
-          set = buildExposureAwarePool({
-            candidates: banked,
-            seenById: seenMap,
-            missRetryIds,
-            count: sessionSize,
-          })
-        }
+        const loaded = await loadPracticeExposurePool(objective.id, banked, missed)
+        exposurePool = loaded.exposurePool
+        preferUnseenIds = loaded.preferUnseenIds
       } catch {
-        set = []
+        exposurePool = null
+        preferUnseenIds = null
       }
-      if (!set.length) {
-        let preferUnseenIds = null
-        try {
-          const domainId = domainIdFromObjectiveId(objective.id)
-          if (domainId) {
-            const exposureStore = await loadDomainQuestionExposure()
-            const seenMap = getDomainSeenMap(exposureStore, domainId)
-            const stats = getExposureStats(domainId, banked.map(q => q.id).filter(Boolean), seenMap)
-            if (stats.unseen.length) preferUnseenIds = new Set(stats.unseen)
-          }
-        } catch {
-          preferUnseenIds = null
-        }
-        set = pickReviewSet(banked, breakdown.has ? breakdown.acc : null, sessionSize, {
-          ckuIds,
-          preferUnseenIds,
-        })
-      }
+      const set = pickQuizSessionSet({
+        banked,
+        sessionSize,
+        accuracy: breakdown.has ? breakdown.acc : null,
+        ckuIds,
+        preferUnseenIds,
+        exposurePool,
+      })
       if (set.length === 0) throw new Error('No questions available for this objective yet.')
       sessionQuestionIdsRef.current = set.map(q => q.id).filter(id => id != null)
       exposureRecordedRef.current = false
@@ -396,6 +374,7 @@ export function QuizTab({
       latencyMs,
       selectedIndex: idx,
     }).catch(() => {})
+    recordPracticeExposure(objective.id, current.id, correct)
     recordEngagement?.(objective.id, {
       kind: ENGAGEMENT_KINDS.QUIZ,
       correct: correct ? 1 : 0,
@@ -445,6 +424,7 @@ export function QuizTab({
       unknown: true,
       latencyMs,
     }).catch(() => {})
+    recordPracticeExposure(objective.id, current.id, false)
     recordEngagement?.(objective.id, {
       kind: ENGAGEMENT_KINDS.QUIZ,
       correct: 0,
@@ -499,6 +479,7 @@ export function QuizTab({
       latencyMs: takeLatencyMs(shownAtRef.current),
       selectedIndexes: [...selectedIndexes],
     }).catch(() => {})
+    recordPracticeExposure(objective.id, current.id, correct)
     if (!correct) {
       const firstWrong = selectedIndexes.find(i => !(current.correctIndexes || []).includes(i))
       collectDeferredTip(current, firstWrong ?? selectedIndexes[0])
@@ -531,6 +512,7 @@ export function QuizTab({
     setStreak(newStreak)
     if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
     logEvent('user_answered_question', { objectiveId: objective.id, questionId: current.id, correct })
+    recordPracticeExposure(objective.id, current.id, correct)
     if (!correct) {
       collectDeferredTip(current, null)
       onMissed(buildMissedEntry(objective.id, current, { orderAnswer: orderDraft }))
@@ -556,6 +538,7 @@ export function QuizTab({
     setStreak(newStreak)
     if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
     logEvent('user_answered_question', { objectiveId: objective.id, questionId: current.id, correct })
+    recordPracticeExposure(objective.id, current.id, correct)
     if (!correct) {
       collectDeferredTip(current, null)
       onMissed(buildMissedEntry(objective.id, current, { cliAnswer }))

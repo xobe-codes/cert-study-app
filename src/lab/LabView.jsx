@@ -34,12 +34,12 @@ function LabSection({ icon, title, accent, items }) {
   )
 }
 
-export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, haptic, exitLabel }) {
+export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, haptic, exitLabel, examMode = false }) {
   const { recordEngagement } = useMasteryProgress()
   const { lab, topology, validator, diagram, packetFlows } = bundle
   const showNavHint = useNavHint()
 
-  const [phase, setPhase] = useState('learn')
+  const [phase, setPhase] = useState(examMode ? 'practice' : 'learn')
   useMobileGestureBlock({ pull: phase === 'practice', edge: phase === 'practice' })
   const [mode, setMode] = useState('user')
   const [entered, setEntered] = useState([])
@@ -262,12 +262,16 @@ export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, 
                           <span style={{ ...styles.pill('purple'), fontSize: 'var(--ccna-type-micro)' }}>{t.device}</span>
                         </div>
                         <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, lineHeight: 1.5, marginBottom: 8 }}>{t.instruction}</div>
-                        <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 600, color: COLORS.sky, marginBottom: 4 }}>Commands for this step</div>
-                        {(t.expectedCommands || []).map((c, i) => (
-                          <div key={i} style={{ fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 'var(--ccna-type-xs)', color: flags[i] ? COLORS.mint : COLORS.silver, padding: '2px 0' }}>
-                            {flags[i] ? '✓' : '›'} {c}
-                          </div>
-                        ))}
+                        {!examMode && (
+                          <>
+                            <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 600, color: COLORS.sky, marginBottom: 4 }}>Commands for this step</div>
+                            {(t.expectedCommands || []).map((c, i) => (
+                              <div key={i} style={{ fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 'var(--ccna-type-xs)', color: flags[i] ? COLORS.mint : COLORS.silver, padding: '2px 0' }}>
+                                {flags[i] ? '✓' : '›'} {c}
+                              </div>
+                            ))}
+                          </>
+                        )}
                       </div>
                     )
                   })}
@@ -298,7 +302,7 @@ export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, 
                 input={input}
                 onInputChange={setInput}
                 onSubmit={submit}
-                teachHint={getTeachHint(input)}
+                teachHint={examMode ? null : getTeachHint(input)}
                 emptyMessage={lab.interpretOnly
                   ? `${host} ready — type enable, then run the show command for each task.`
                   : `${host} ready — type enable, then configure terminal.`}

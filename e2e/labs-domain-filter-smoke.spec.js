@@ -31,17 +31,8 @@ test.describe('Labs hub domain filter', () => {
     await expect(page.getByText(/DOMAIN 6/i)).toBeVisible()
   })
 
-  test('home domain panel opens labs filtered to that domain', async ({ page }) => {
-    await page.goto('/')
-    await page.waitForFunction(() => typeof window.storage?.getItem === 'function')
-    await page.evaluate(async () => {
-      await window.storage.setItem('ccna_onboard_done_v1', true)
-      await window.storage.setItem('ccna_tour_done_v1', true)
-    })
-    await page.goto('/')
-    await page.getByRole('button', { name: /Network Access/i }).click()
-    await page.getByRole('button', { name: /More tools/i }).click()
-    await page.getByRole('button', { name: /Domain labs/i }).click()
+  test('labs hash deep link opens filtered to that domain', async ({ page }) => {
+    await page.goto('/#/labs/access')
     await expect(page.getByRole('heading', { name: /Hands-on Labs/i })).toBeVisible({ timeout: 15_000 })
     await expect(page.getByRole('tab', { name: /D2 Access/i })).toHaveAttribute('aria-selected', 'true')
     await expect(page.getByText(/DOMAIN 2/i)).toBeVisible()

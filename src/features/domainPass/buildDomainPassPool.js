@@ -119,6 +119,7 @@ function tierForQuestion(q, exposureStats) {
   if (!exposureStats || id == null) return EXPOSURE_TIERS.UNSEEN
   if (exposureStats.unseen?.includes(id)) return EXPOSURE_TIERS.UNSEEN
   if (exposureStats.stale?.includes(id)) return EXPOSURE_TIERS.STALE
+  if (exposureStats.correctRecent?.includes(id)) return EXPOSURE_TIERS.CORRECT_RECENT
   return EXPOSURE_TIERS.RECENT
 }
 
@@ -211,7 +212,8 @@ function fillExposureRemainder({
 
   const unseenPool = available.filter(q => tierForQuestion(q, exposureStats) === EXPOSURE_TIERS.UNSEEN)
   const stalePool = available.filter(q => tierForQuestion(q, exposureStats) === EXPOSURE_TIERS.STALE)
-  const recentPool = available.filter(q => tierForQuestion(q, exposureStats) === EXPOSURE_TIERS.RECENT)
+  const recentWrongPool = available.filter(q => tierForQuestion(q, exposureStats) === EXPOSURE_TIERS.RECENT)
+  const correctRecentPool = available.filter(q => tierForQuestion(q, exposureStats) === EXPOSURE_TIERS.CORRECT_RECENT)
 
   // Spec 1 mix: 60% unseen · 25% stale · 15% weak/miss-retry slot
   const targetUnseen = Math.round(remaining * 0.6)
@@ -273,7 +275,7 @@ function fillExposureRemainder({
     }))
   } else if (weakBudget > 0) {
     picked.push(...pickWithSpread({
-      candidates: [...unseenPool, ...stalePool, ...recentPool].filter(q => {
+      candidates: [...unseenPool, ...stalePool, ...recentWrongPool, ...correctRecentPool].filter(q => {
         const id = questionId(q)
         return id == null || !usedIds.has(id)
       }),
@@ -287,11 +289,13 @@ function fillExposureRemainder({
 
   const slotsLeft = Math.max(0, remaining - picked.length)
   if (slotsLeft > 0) {
-    let recentBudget = maxRecentSpill
+    let recentWrongBudget = maxRecentSpill
+    let correctRecentBudget = softFloorUnseen ? 0 : maxRecentSpill
     const spillOrder = [
       ...unseenPool,
       ...stalePool,
-      ...recentPool,
+      ...recentWrongPool,
+      ...correctRecentPool,
       ...available,
     ]
     const filteredSpill = []
@@ -299,10 +303,13 @@ function fillExposureRemainder({
     for (const q of spillOrder) {
       const id = questionId(q)
       if (id != null && (usedIds.has(id) || spillUsed.has(id))) continue
-      const isRecent = tierForQuestion(q, exposureStats) === EXPOSURE_TIERS.RECENT
-      if (isRecent) {
-        if (recentBudget <= 0) continue
-        recentBudget -= 1
+      const tier = tierForQuestion(q, exposureStats)
+      if (tier === EXPOSURE_TIERS.CORRECT_RECENT) {
+        if (correctRecentBudget <= 0) continue
+        correctRecentBudget -= 1
+      } else if (tier === EXPOSURE_TIERS.RECENT) {
+        if (recentWrongBudget <= 0) continue
+        recentWrongBudget -= 1
       }
       if (id != null) spillUsed.add(id)
       filteredSpill.push(q)

@@ -55,7 +55,8 @@ export function pickReviewSet(banked, accuracy = null, sessionSize = 5, { ckuIds
     : accuracy >= 0.8 ? { easy: 0.35, medium: 0, hard: -0.35 }
     : accuracy < 0.5 ? { easy: -0.35, medium: 0, hard: 0.35 }
     : {}
-  const typeBias = { troubleshooting: -0.45, ordering: -0.35 }
+  // Prefer CLI recall lightly when present so Practice feels in-lesson (not a separate tool).
+  const typeBias = { troubleshooting: -0.45, ordering: -0.35, cli: -0.4 }
 
   const score = (q, ckuBoost = 0) => (
     questionPriority(q)
@@ -89,7 +90,32 @@ export function pickReviewSet(banked, accuracy = null, sessionSize = 5, { ckuIds
     .slice(0, limit - selected.length)
     .map(x => x.q)
 
-  return randomizeQuestionOrder([...selected, ...fill])
+  return ensureCliInReviewSet(randomizeQuestionOrder([...selected, ...fill]), banked, limit)
+}
+
+/**
+ * Guarantee ~1 CLI type-in per 4–5 Practice questions when the bank has them.
+ * Pure rearrange — no new question types or corpus.
+ */
+export function ensureCliInReviewSet(set, banked, sessionSize = 5) {
+  const out = Array.isArray(set) ? [...set] : []
+  if (!out.length || !banked?.length) return out
+  const cliBank = banked.filter(q => q?.type === 'cli' && (q.answers?.length || q.answer))
+  if (!cliBank.length) return out
+  const want = Math.min(Math.max(1, Math.ceil(sessionSize / 4)), cliBank.length, out.length)
+  const have = out.filter(q => q?.type === 'cli').length
+  if (have >= want) return out
+  const used = new Set(out.map(q => q.id).filter(Boolean))
+  const extras = cliBank.filter(q => !used.has(q.id))
+  let need = want - have
+  for (let i = out.length - 1; i >= 0 && need > 0 && extras.length; i--) {
+    if (out[i]?.type === 'cli') continue
+    const next = extras.shift()
+    if (!next) break
+    out[i] = next
+    need -= 1
+  }
+  return out
 }
 
 /** Build-time coverage check — every CKU should have >=1 curated question. */

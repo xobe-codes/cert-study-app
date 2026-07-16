@@ -13,6 +13,7 @@ test.describe('Home study grid — 390px', () => {
     await expect(grid).toBeVisible()
     await expect(grid.getByRole('button', { name: /Lessons/i })).toBeVisible()
     await expect(grid.getByRole('button', { name: /Mock Exam/i })).toBeVisible()
+    await expect(grid.getByRole('button', { name: /Lab Exam/i })).toBeVisible()
     await expect(grid.getByRole('button', { name: /Labs/i })).toBeVisible()
 
     const overflow = await page.evaluate(() => {
