@@ -1,6 +1,6 @@
 # Wrong-Answer Debrief — 99 Spec (screenshot parity)
 
-**Status:** Spec only · **Intent:** content + small wiring/polish — not a rebuild  
+**Status:** Implemented (P0–P2) · **Intent:** content + small wiring/polish — not a rebuild
 **Related:** `QUESTION_DEBRIEF_99.md` (runtime contract) · `explanationPattern99.md` (regen fields) · `EXPLANATION_REGEN_PROGRESS.md`
 
 ---

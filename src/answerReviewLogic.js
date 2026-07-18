@@ -135,7 +135,7 @@ function resolveWrongChoiceForReview(q, choiceIndex, { fromGold = null } = {}) {
     }
   }
 
-  const fromRegen = regenIncorrectFor(q.id, choiceIndex)
+  const fromRegen = regenIncorrectFor(q, choiceIndex)
   if (fromRegen) {
     return {
       ...fromRegen,

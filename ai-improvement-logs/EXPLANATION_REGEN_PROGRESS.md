@@ -83,3 +83,12 @@ This file did not exist before 2026-07-13; entries below reconstruct the evening
 | 2026-07-15 | Afternoon | 5 (found+resolved; 4 overwritten by concurrent-run collision, 1 deliberately skipped by this run) | 33 | 198/914 |
 | 2026-07-15 | Evening | 5 (found+resolved incl. schema-regression fix for 132 prior entries) | 33 (net new, same range as this run's discarded draft) | 203/914 |
 | 2026-07-15 | (this run) | 0 (already resolved by earlier concurrent runs) | 33 (net new, after 2nd collision) | 231/914 (235 total incl. 4 surviving flagged) |
+| 2026-07-17 | Full deterministic closeout | 0 (no active flags in this pass) | 679 backfilled from validated learner-visible runtime reviews | **914/914** |
+
+## 2026-07-17 — full backlog closeout
+
+- Claimed all 679 remaining IDs with `claimQuestionBatch.mjs` before writing; claim completed and released with no overlap.
+- Preserved all 235 authored entries byte-for-byte at the JSON-object level.
+- Added 679 question entries / 2,031 distractor explanations using the validated runtime review as the curated source; no external API or live AI was used.
+- Added `validate:regen-coverage`: **914/914 questions**, **2,712/2,712 distractors**, zero missing entries, zero schema/template/mechanism errors.
+- `validate:answer-reviews` and `validate:mechanism-language` remain green across all 914 learner-visible reviews.

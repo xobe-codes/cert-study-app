@@ -5,9 +5,10 @@ import LabView from '../../lab/LabView.jsx'
 import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import {
   aggregateLabExamScore,
-  buildQuickLabExamStations,
+  buildLabExamStations,
+  LAB_EXAM_DOMAIN_LABELS,
+  LAB_EXAM_MODES,
   LAB_EXAM_PASS_PCT,
-  QUICK_LAB_EXAM_MINUTES,
 } from './quickLabExamPool.js'
 
 function formatMmSs(totalSeconds) {
@@ -30,9 +31,14 @@ export default function LabExam({
   onOpenLabs,
   haptic,
 }) {
-  const stations = useMemo(() => buildQuickLabExamStations(getLab), [])
-  const totalSeconds = QUICK_LAB_EXAM_MINUTES * 60
-
+  const [selectedMode, setSelectedMode] = useState('quick')
+  const [selectedDomain, setSelectedDomain] = useState('access')
+  const modeConfig = LAB_EXAM_MODES[selectedMode]
+  const stations = useMemo(
+    () => buildLabExamStations({ mode: selectedMode, domainId: selectedDomain, getLabFn: getLab }),
+    [selectedMode, selectedDomain],
+  )
+  const totalSeconds = modeConfig.minutes * 60
   const [phase, setPhase] = useState('idle')
   const [stationIndex, setStationIndex] = useState(0)
   const [secondsLeft, setSecondsLeft] = useState(totalSeconds)
@@ -134,18 +140,49 @@ export default function LabExam({
       <div className="lab-exam">
         <StudyModeHeader title="Lab Exam" onBack={onExit} />
         <div style={{ ...styles.card, marginBottom: 12 }}>
-          <h2 style={{ ...styles.h2, marginBottom: 8 }}>Quick Lab Exam</h2>
+          <h2 style={{ ...styles.h2, marginBottom: 8 }}>{modeConfig.label} Lab Exam</h2>
           <p style={{ ...styles.body, color: COLORS.silver, lineHeight: 1.5, marginBottom: 12 }}>
-            Timed skills check over {stations.length} verify-heavy stations (~{QUICK_LAB_EXAM_MINUTES} min).
+            Timed skills check over {stations.length} curated stations (~{modeConfig.minutes} min).
             Complete each lab or skip to advance. Pass bar: {LAB_EXAM_PASS_PCT}%.
           </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 12 }}>
+            {Object.entries(LAB_EXAM_MODES).map(([mode, config]) => (
+              <button
+                key={mode}
+                type="button"
+                onClick={() => setSelectedMode(mode)}
+                style={mode === selectedMode ? styles.primaryBtn : styles.secondaryBtn}
+                aria-pressed={mode === selectedMode}
+              >
+                {config.label}
+              </button>
+            ))}
+          </div>
+          <div style={{ ...styles.small, color: COLORS.silverMid, marginBottom: 12 }}>
+            {modeConfig.description}
+          </div>
+          {selectedMode === 'domain' && (
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 12 }}>
+              {Object.entries(LAB_EXAM_DOMAIN_LABELS).map(([domainId, label]) => (
+                <button
+                  key={domainId}
+                  type="button"
+                  onClick={() => setSelectedDomain(domainId)}
+                  style={domainId === selectedDomain ? styles.primaryBtn : styles.secondaryBtn}
+                  aria-pressed={domainId === selectedDomain}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          )}
           <ul style={{ margin: '0 0 16px', paddingLeft: 18, color: COLORS.silverMid, fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}>
             {stations.map(s => (
               <li key={s.labId}>{s.title}</li>
             ))}
           </ul>
           <button type="button" style={styles.primaryBtn} onClick={startExam}>
-            Start Quick Lab Exam
+            Start {modeConfig.label} Lab Exam
           </button>
         </div>
       </div>
@@ -155,7 +192,7 @@ export default function LabExam({
   if (phase === 'debrief') {
     return (
       <div className="lab-exam lab-exam--debrief">
-        <StudyModeHeader title="Lab Exam Results" onBack={onExit} backLabel="Exit" />
+        <StudyModeHeader title={`${modeConfig.label} Lab Exam Results`} onBack={onExit} backLabel="Exit" />
         <div style={{
           ...styles.card,
           marginBottom: 12,
@@ -243,7 +280,7 @@ export default function LabExam({
 
   return (
     <div className="lab-exam lab-exam--active">
-      <StudyModeHeader title="Lab Exam" onBack={onExit} />
+      <StudyModeHeader title={`${modeConfig.label} Lab Exam`} onBack={onExit} />
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginBottom: 10, flexWrap: 'wrap' }}>
         <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-xs)' }}>
           Station {stationIndex + 1} / {stations.length}

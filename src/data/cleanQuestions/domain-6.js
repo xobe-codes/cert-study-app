@@ -49,7 +49,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Network automation → consistent, reproducible configs (IaC, templates, APIs)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Automation increases errors",
+          "whyItSeems": "\"To increase the possibility for misconfiguration\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"automation\", To create an outcome that can be reproduced matches the required behavior — To increase the possibility for misconfiguration answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Network automation → consistent, reproducible configs (IaC, templates, APIs).",
+          "contrast": "Correct \"To create an outcome that can be reproduced\" vs wrong \"To increase the possibility for misconfiguration\": For \"automation\", To create an outcome that can be reproduced matches the required behavior — To increase the possibility for misconfiguration answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Generic “fewer problems”",
+          "whyItSeems": "\"To decrease problems from the new configuration\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"automation\", To create an outcome that can be reproduced matches the required behavior — To decrease problems from the new configuration answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Network automation → consistent, reproducible configs (IaC, templates, APIs).",
+          "contrast": "Correct \"To create an outcome that can be reproduced\" vs wrong \"To decrease problems from the new configuration\": For \"automation\", To create an outcome that can be reproduced matches the required behavior — To decrease problems from the new configuration answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Laziness over reproducibility",
+          "whyItSeems": "\"To allow you to do less work\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"automation\", To create an outcome that can be reproduced matches the required behavior — To allow you to do less work answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Network automation → consistent, reproducible configs (IaC, templates, APIs).",
+          "contrast": "Correct \"To create an outcome that can be reproduced\" vs wrong \"To allow you to do less work\": For \"automation\", To create an outcome that can be reproduced matches the required behavior — To allow you to do less work answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.1-source-q002",
@@ -100,7 +126,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Many devices, same change → script/API (Python/Ansible), not manual CLI paste."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Treating repetitive CLI as a manual-only task",
+          "whyItSeems": "Copy and paste scripts built in Notepad++ into each router. applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"automation\", Create a Python script to configure each router. matches the required behavior — Copy and paste scripts built in Notepad++ into each router. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Many devices, same change → script/API (Python/Ansible), not manual CLI paste.",
+          "contrast": "Correct \"Create a Python script to configure each router.\" vs wrong \"Copy and paste scripts built in Notepad++ into each router.\": For \"automation\", Create a Python script to configure each router."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Using office tools instead of network automation",
+          "whyItSeems": "Copy and paste scripts built in Excel into each router. applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"automation\", Create a Python script to configure each router. matches the required behavior — Copy and paste scripts built in Excel into each router. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Many devices, same change → script/API (Python/Ansible), not manual CLI paste.",
+          "contrast": "Correct \"Create a Python script to configure each router.\" vs wrong \"Copy and paste scripts built in Excel into each router.\": For \"automation\", Create a Python script to configure each router."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Doubling manual labor instead of automating",
+          "whyItSeems": "\"Work with a partner so that both of you can double-check each other’s work and cut the time in half.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "CAM learning stores one mapping per arrival (automation): Create a Python script to configure each router. — not both addresses as table entries.",
+          "memoryAnchor": "Many devices, same change → script/API (Python/Ansible), not manual CLI paste.",
+          "contrast": "Correct \"Create a Python script to configure each router.\" vs wrong \"Work with a partner so that both of you can double-check each other’s work and cut the time in half.\": CAM learning stores one mapping per arrival (automation): Create a Python script to configure each router."
+        }
+      ]
     },
     {
       "id": "obj-6.1-source-q003",
@@ -150,7 +202,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Network automation #1 driver → reduce human error on repetitive, scalable changes."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Equating automation with minimizing change count",
+          "whyItSeems": "\"Reduce the number of changes to be made\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"automation\", Reduce the human error factor matches the required behavior — Reduce the number of changes to be made answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Network automation #1 driver → reduce human error on repetitive, scalable changes.",
+          "contrast": "Correct \"Reduce the human error factor\" vs wrong \"Reduce the number of changes to be made\": For \"automation\", Reduce the human error factor matches the required behavior — Reduce the number of changes to be made answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Choosing complication reduction over human error",
+          "whyItSeems": "\"Reduce the complications that arise from changes\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"automation\", Reduce the human error factor matches the required behavior — Reduce the complications that arise from changes answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Network automation #1 driver → reduce human error on repetitive, scalable changes.",
+          "contrast": "Correct \"Reduce the human error factor\" vs wrong \"Reduce the complications that arise from changes\": For \"automation\", Reduce the human error factor matches the required behavior — Reduce the complications that arise from changes answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Planning time as primary automation driver",
+          "whyItSeems": "\"Reduce the planning time for the changes\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"automation\", Reduce the human error factor matches the required behavior — Reduce the planning time for the changes answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Network automation #1 driver → reduce human error on repetitive, scalable changes.",
+          "contrast": "Correct \"Reduce the human error factor\" vs wrong \"Reduce the planning time for the changes\": For \"automation\", Reduce the human error factor matches the required behavior — Reduce the planning time for the changes answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.1-source-q004",
@@ -202,7 +280,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Network automation culture → DevOps (Agile + automation); not NetOps/SecOps on CCNA stems."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "NetOps as automation framework name",
+          "whyItSeems": "\"NetOps\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"automation\", DevOps matches the required behavior — NetOps answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Network automation culture → DevOps (Agile + automation); not NetOps/SecOps on CCNA stems.",
+          "contrast": "Correct \"DevOps\" vs wrong \"NetOps\": For \"automation\", DevOps matches the required behavior — NetOps answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SysOps as network automation framework",
+          "whyItSeems": "\"SysOps\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"automation\", DevOps matches the required behavior — SysOps answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Network automation culture → DevOps (Agile + automation); not NetOps/SecOps on CCNA stems.",
+          "contrast": "Correct \"DevOps\" vs wrong \"SysOps\": For \"automation\", DevOps matches the required behavior — SysOps answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "SecOps as automation framework",
+          "whyItSeems": "\"SecOps\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"automation\", DevOps matches the required behavior — SecOps answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Network automation culture → DevOps (Agile + automation); not NetOps/SecOps on CCNA stems.",
+          "contrast": "Correct \"DevOps\" vs wrong \"SecOps\": For \"automation\", DevOps matches the required behavior — SecOps answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.1-source-q005",
@@ -253,7 +357,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Automation + rapid iteration → Lean/Agile; Waterfall = opposite of automation-friendly cadence."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Waterfall for network automation",
+          "whyItSeems": "\"Waterfall\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"automation\", Lean and Agile matches the required behavior — Waterfall answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Automation + rapid iteration → Lean/Agile; Waterfall = opposite of automation-friendly cadence.",
+          "contrast": "Correct \"Lean and Agile\" vs wrong \"Waterfall\": For \"automation\", Lean and Agile matches the required behavior — Waterfall answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Kanban as primary automation methodology",
+          "whyItSeems": "\"Kanban\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"automation\", Lean and Agile matches the required behavior — Kanban answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Automation + rapid iteration → Lean/Agile; Waterfall = opposite of automation-friendly cadence.",
+          "contrast": "Correct \"Lean and Agile\" vs wrong \"Kanban\": For \"automation\", Lean and Agile matches the required behavior — Kanban answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Scrum alone as automation methodology",
+          "whyItSeems": "\"Scrum\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"automation\", Lean and Agile matches the required behavior — Scrum answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Automation + rapid iteration → Lean/Agile; Waterfall = opposite of automation-friendly cadence.",
+          "contrast": "Correct \"Lean and Agile\" vs wrong \"Scrum\": For \"automation\", Lean and Agile matches the required behavior — Scrum answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.1-source-q006",
@@ -303,7 +433,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Automation lifecycle: plan → build → test → deploy → monitor."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Running test phase after go-live",
+          "whyItSeems": "\"Testing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"automation\", Monitoring matches the required behavior — Testing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Automation lifecycle: plan → build → test → deploy → monitor.",
+          "contrast": "Correct \"Monitoring\" vs wrong \"Testing\": For \"automation\", Monitoring matches the required behavior — Testing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Confusing build phase with post-deploy ops",
+          "whyItSeems": "\"Building\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"automation\", Monitoring matches the required behavior — Building answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Automation lifecycle: plan → build → test → deploy → monitor.",
+          "contrast": "Correct \"Monitoring\" vs wrong \"Building\": For \"automation\", Monitoring matches the required behavior — Building answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Re-planning instead of monitoring outcomes",
+          "whyItSeems": "\"Planning\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"automation\", Monitoring matches the required behavior — Planning answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Automation lifecycle: plan → build → test → deploy → monitor.",
+          "contrast": "Correct \"Monitoring\" vs wrong \"Planning\": For \"automation\", Monitoring matches the required behavior — Planning answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     }
   ],
   "6.2": [
@@ -355,7 +511,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Controller benefits: centralized policy, automation, consistent config — data plane still forwards locally."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Zero problems claim",
+          "whyItSeems": "\"Decreased problems\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", Increased security matches the required behavior — Decreased problems answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Controller benefits: centralized policy, automation, consistent config — data plane still forwards locally.",
+          "contrast": "Correct \"Increased security\" vs wrong \"Decreased problems\": For \"controller based networking\", Increased security matches the required behavior — Decreased problems answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SDN equals faster links",
+          "whyItSeems": "\"Increased throughput\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", Increased security matches the required behavior — Increased throughput answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Controller benefits: centralized policy, automation, consistent config — data plane still forwards locally.",
+          "contrast": "Correct \"Increased security\" vs wrong \"Increased throughput\": For \"controller based networking\", Increased security matches the required behavior — Increased throughput answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Complexity as benefit",
+          "whyItSeems": "\"Increased complexity\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", Increased security matches the required behavior — Increased complexity answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Controller benefits: centralized policy, automation, consistent config — data plane still forwards locally.",
+          "contrast": "Correct \"Increased security\" vs wrong \"Increased complexity\": For \"controller based networking\", Increased security matches the required behavior — Increased complexity answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.2-source-q002",
@@ -407,7 +589,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Hardware-only controllers",
+          "whyItSeems": "\"Controller-based networking is always in the form of hardware appliances.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", Controller-based networking has a logically centralized control plane. matches the required behavior — Controller-based networking is always in the form of hardware appliances. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Controller-based networking has a logically centralized control plane.\" vs wrong \"Controller-based networking is always in the form of hardware appliances.\": For \"controller based networking\", Controller-based networking has a logically centralized control plane."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Centralized data plane",
+          "whyItSeems": "\"Controller-based networking has a logically centralized data plane.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", Controller-based networking has a logically centralized control plane. matches the required behavior — Controller-based networking has a logically centralized data plane. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Controller-based networking has a logically centralized control plane.\" vs wrong \"Controller-based networking has a logically centralized data plane.\": For \"controller based networking\", Controller-based networking has a logically centralized control plane."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "ASIC central switching",
+          "whyItSeems": "\"Controller-based networking uses ASICs to centrally switch frames.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", Controller-based networking has a logically centralized control plane. matches the required behavior — Controller-based networking uses ASICs to centrally switch frames. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Controller-based networking has a logically centralized control plane.\" vs wrong \"Controller-based networking uses ASICs to centrally switch frames.\": For \"controller based networking\", Controller-based networking has a logically centralized control plane."
+        }
+      ]
     },
     {
       "id": "obj-6.2-source-q003",
@@ -459,7 +667,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Multi-site single policy fabric over WAN → SD-WAN (vManage); DC fabric → ACI."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Generic SDN for multi-site WAN",
+          "whyItSeems": "\"SDN\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", SD-WAN matches the required behavior — SDN answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Multi-site single policy fabric over WAN → SD-WAN (vManage); DC fabric → ACI.",
+          "contrast": "Correct \"SD-WAN\" vs wrong \"SDN\": For \"controller based networking\", SD-WAN matches the required behavior — SDN answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SD-LAN as multi-site term",
+          "whyItSeems": "\"SD-LAN\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", SD-WAN matches the required behavior — SD-LAN answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Multi-site single policy fabric over WAN → SD-WAN (vManage); DC fabric → ACI.",
+          "contrast": "Correct \"SD-WAN\" vs wrong \"SD-LAN\": For \"controller based networking\", SD-WAN matches the required behavior — SD-LAN answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "VPN as SD-WAN equivalent",
+          "whyItSeems": "\"VPN\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", SD-WAN matches the required behavior — VPN answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Multi-site single policy fabric over WAN → SD-WAN (vManage); DC fabric → ACI.",
+          "contrast": "Correct \"SD-WAN\" vs wrong \"VPN\": For \"controller based networking\", SD-WAN matches the required behavior — VPN answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.2-source-q004",
@@ -510,7 +744,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Scalability as SDN disadvantage",
+          "whyItSeems": "\"Scalability\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", Maturity matches the required behavior — Scalability answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Maturity\" vs wrong \"Scalability\": For \"controller based networking\", Maturity matches the required behavior — Scalability answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Security as disadvantage",
+          "whyItSeems": "\"Security\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", Maturity matches the required behavior — Security answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Maturity\" vs wrong \"Security\": For \"controller based networking\", Maturity matches the required behavior — Security answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Centralized provisioning as disadvantage",
+          "whyItSeems": "\"Centralized provisioning\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", Maturity matches the required behavior — Centralized provisioning answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Maturity\" vs wrong \"Centralized provisioning\": For \"controller based networking\", Maturity matches the required behavior — Centralized provisioning answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.2-source-q005",
@@ -560,7 +820,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "CPU as SDN QoS control",
+          "whyItSeems": "\"CPU utilization\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", QoS matches the required behavior — CPU utilization answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"QoS\" vs wrong \"CPU utilization\": For \"controller based networking\", QoS matches the required behavior — CPU utilization answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Memory as SDN policy",
+          "whyItSeems": "\"Memory utilization\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", QoS matches the required behavior — Memory utilization answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"QoS\" vs wrong \"Memory utilization\": For \"controller based networking\", QoS matches the required behavior — Memory utilization answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Forwarding only not QoS",
+          "whyItSeems": "\"Forwarding of traffic\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", QoS matches the required behavior — Forwarding of traffic answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"QoS\" vs wrong \"Forwarding of traffic\": For \"controller based networking\", QoS matches the required behavior — Forwarding of traffic answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.2-source-q006",
@@ -611,7 +897,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Central controller switching all data",
+          "whyItSeems": "\"All data is centrally switched at the SDN controller.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", All SDN switches are stateless with respect to configuration. matches the required behavior — All data is centrally switched at the SDN controller. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"All SDN switches are stateless with respect to configuration.\" vs wrong \"All data is centrally switched at the SDN controller.\": For \"controller based networking\", All SDN switches are stateless with respect to configuration."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Stateful config on every switch",
+          "whyItSeems": "\"All SDN switches are stateful with respect to configuration.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", All SDN switches are stateless with respect to configuration. matches the required behavior — All SDN switches are stateful with respect to configuration. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"All SDN switches are stateless with respect to configuration.\" vs wrong \"All SDN switches are stateful with respect to configuration.\": For \"controller based networking\", All SDN switches are stateless with respect to configuration."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "All traffic stateless",
+          "whyItSeems": "\"All data flowing through the switch is stateless.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", All SDN switches are stateless with respect to configuration. matches the required behavior — All data flowing through the switch is stateless. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"All SDN switches are stateless with respect to configuration.\" vs wrong \"All data flowing through the switch is stateless.\": For \"controller based networking\", All SDN switches are stateless with respect to configuration."
+        }
+      ]
     },
     {
       "id": "obj-6.2-source-q007",
@@ -662,7 +974,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Syslog as SNMP replacement",
+          "whyItSeems": "Syslog assigns a syslog severity or facility level that may reverse the lower-number-is-more-severe rule.",
+          "whyWrongHere": "For \"controller based networking\", SNMP matches the required behavior — Syslog answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"SNMP\" vs wrong \"Syslog\": For \"controller based networking\", SNMP matches the required behavior — Syslog answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SDN as monitoring protocol",
+          "whyItSeems": "\"SDN\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", SNMP matches the required behavior — SDN answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"SNMP\" vs wrong \"SDN\": For \"controller based networking\", SNMP matches the required behavior — SDN answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "CDP for NMS polling",
+          "whyItSeems": "\"CDP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", SNMP matches the required behavior — CDP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"SNMP\" vs wrong \"CDP\": For \"controller based networking\", SNMP matches the required behavior — CDP answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.2-source-q008",
@@ -714,7 +1052,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Trap as aggregator",
+          "whyItSeems": "Trap mixes SNMP version, trap/inform, or community/security features.",
+          "whyWrongHere": "SNMP (controller based networking): NMS matches version, trap/inform, or security — Trap mixes SNMPv2/v3 features or trap types.",
+          "memoryAnchor": "Planes: data=forward · control=routing/STP · management=SNMP/syslog.",
+          "contrast": "Correct \"NMS\" vs wrong \"Trap\": SNMP (controller based networking): NMS matches version, trap/inform, or security — Trap mixes SNMPv2/v3 features or trap types."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "False belief that Agent as NMS — treating \"SNMP agent\" as if it satisfied the stem instead of \"NMS\".",
+          "whyItSeems": "\"SNMP agent\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", NMS matches the required behavior — SNMP agent answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Planes: data=forward · control=routing/STP · management=SNMP/syslog.",
+          "contrast": "Correct \"NMS\" vs wrong \"SNMP agent\": For \"controller based networking\", NMS matches the required behavior — SNMP agent answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Syslog server as SNMP aggregator",
+          "whyItSeems": "Syslog server assigns a syslog severity or facility level that may reverse the lower-number-is-more-severe rule.",
+          "whyWrongHere": "For \"controller based networking\", NMS matches the required behavior — Syslog server answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Planes: data=forward · control=routing/STP · management=SNMP/syslog.",
+          "contrast": "Correct \"NMS\" vs wrong \"Syslog server\": For \"controller based networking\", NMS matches the required behavior — Syslog server answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.2-source-q009",
@@ -766,7 +1130,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "CAPWAP for Prime config",
+          "whyItSeems": "CAPWAP assumes a centralized WLC/CAPWAP architecture rather than standalone AP operation.",
+          "whyWrongHere": "For \"controller based networking\", SNMP matches the required behavior — CAPWAP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"SNMP\" vs wrong \"CAPWAP\": For \"controller based networking\", SNMP matches the required behavior — CAPWAP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "LWAPP for Prime",
+          "whyItSeems": "\"LWAPP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"controller based networking\", SNMP matches the required behavior — LWAPP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"SNMP\" vs wrong \"LWAPP\": For \"controller based networking\", SNMP matches the required behavior — LWAPP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "RESTCONF as Prime primary",
+          "whyItSeems": "RESTCONF names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "Automation tooling (controller based networking): SNMP matches the API or tool named in the stem — RESTCONF swaps REST, NETCONF, or orchestration roles.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"SNMP\" vs wrong \"RESTCONF\": Automation tooling (controller based networking): SNMP matches the API or tool named in the stem — RESTCONF swaps REST, NETCONF, or orchestration roles."
+        }
+      ]
     }
   ],
   "6.3": [
@@ -819,7 +1209,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Controller/SDN fabric → spine-leaf. Legacy campus → three-tier."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Applying legacy three-tier to SDN fabric",
+          "whyItSeems": "\"Three tier\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Spine/Leaf matches the required behavior — Three tier answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Spine/Leaf\" — not \"Three tier\" — for what this stem actually tests.",
+          "contrast": "Correct \"Spine/Leaf\" vs wrong \"Three tier\": For \"sdn architecture\", Spine/Leaf matches the required behavior — Three tier answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Confusing collapsed core with spine-leaf",
+          "whyItSeems": "\"Collapsed core\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Spine/Leaf matches the required behavior — Collapsed core answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Spine/Leaf\" — not \"Collapsed core\" — for what this stem actually tests.",
+          "contrast": "Correct \"Spine/Leaf\" vs wrong \"Collapsed core\": For \"sdn architecture\", Spine/Leaf matches the required behavior — Collapsed core answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Dragging storage fabric into SDN campus question",
+          "whyItSeems": "\"SAN fabric\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Spine/Leaf matches the required behavior — SAN fabric answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Spine/Leaf\" — not \"SAN fabric\" — for what this stem actually tests.",
+          "contrast": "Correct \"Spine/Leaf\" vs wrong \"SAN fabric\": For \"sdn architecture\", Spine/Leaf matches the required behavior — SAN fabric answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q002",
@@ -869,7 +1285,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Spine-leaf: hosts on leaf, leafs connect only to spines, never leaf-to-leaf."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Leaf-to-leaf mesh in spine-leaf",
+          "whyItSeems": "\"The Leaf switches connect to other Leaf switches.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", The Leaf switches never connect to other Leaf switches, only Spine switches. matches the required behavior — The Leaf switches connect to other Leaf switches. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Spine-leaf: hosts on leaf, leafs connect only to spines, never leaf-to-leaf.",
+          "contrast": "Correct \"The Leaf switches never connect to other Leaf switches, only Spine switches.\" vs wrong \"The Leaf switches connect to other Leaf switches.\": For \"sdn architecture\", The Leaf switches never connect to other Leaf switches, only Spine switches."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Single spine as spine-leaf rule",
+          "whyItSeems": "\"There is only one Spine switch per network.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", The Leaf switches never connect to other Leaf switches, only Spine switches. matches the required behavior — There is only one Spine switch per network. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Spine-leaf: hosts on leaf, leafs connect only to spines, never leaf-to-leaf.",
+          "contrast": "Correct \"The Leaf switches never connect to other Leaf switches, only Spine switches.\" vs wrong \"There is only one Spine switch per network.\": For \"sdn architecture\", The Leaf switches never connect to other Leaf switches, only Spine switches."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Hosts connecting directly to spine switches",
+          "whyItSeems": "\"Spine switches provide access to hosts.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", The Leaf switches never connect to other Leaf switches, only Spine switches. matches the required behavior — Spine switches provide access to hosts. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Spine-leaf: hosts on leaf, leafs connect only to spines, never leaf-to-leaf.",
+          "contrast": "Correct \"The Leaf switches never connect to other Leaf switches, only Spine switches.\" vs wrong \"Spine switches provide access to hosts.\": For \"sdn architecture\", The Leaf switches never connect to other Leaf switches, only Spine switches."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q003",
@@ -919,7 +1361,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Spine-leaf east-west path → leaf–spine–leaf (full mesh between tiers)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Leaf-to-leaf before spine",
+          "whyItSeems": "\"Leaf to Leaf to Spine\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Leaf to Spine to Leaf matches the required behavior — Leaf to Leaf to Spine answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Spine-leaf east-west path → leaf–spine–leaf (full mesh between tiers).",
+          "contrast": "Correct \"Leaf to Spine to Leaf\" vs wrong \"Leaf to Leaf to Spine\": For \"sdn architecture\", Leaf to Spine to Leaf matches the required behavior — Leaf to Leaf to Spine answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Spine as traffic endpoint",
+          "whyItSeems": "\"Spine to Leaf to Spine\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Leaf to Spine to Leaf matches the required behavior — Spine to Leaf to Spine answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Spine-leaf east-west path → leaf–spine–leaf (full mesh between tiers).",
+          "contrast": "Correct \"Leaf to Spine to Leaf\" vs wrong \"Spine to Leaf to Spine\": For \"sdn architecture\", Leaf to Spine to Leaf matches the required behavior — Spine to Leaf to Spine answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Direct leaf-to-leaf forwarding",
+          "whyItSeems": "\"Leaf to Leaf\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Leaf to Spine to Leaf matches the required behavior — Leaf to Leaf answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Spine-leaf east-west path → leaf–spine–leaf (full mesh between tiers).",
+          "contrast": "Correct \"Leaf to Spine to Leaf\" vs wrong \"Leaf to Leaf\": For \"sdn architecture\", Leaf to Spine to Leaf matches the required behavior — Leaf to Leaf answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q004",
@@ -972,7 +1440,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN map: ACI = DC | APIC-EM/DNA = campus | vManage = SD-WAN."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "APIC-EM as data center SDN",
+          "whyItSeems": "\"Cisco APIC-EM\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Cisco ACI matches the required behavior — Cisco APIC-EM answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN map: ACI = DC | APIC-EM/DNA = campus | vManage = SD-WAN.",
+          "contrast": "Correct \"Cisco ACI\" vs wrong \"Cisco APIC-EM\": For \"sdn architecture\", Cisco ACI matches the required behavior — Cisco APIC-EM answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "OpenDaylight as Cisco DC solution",
+          "whyItSeems": "\"OpenDaylight\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Cisco ACI matches the required behavior — OpenDaylight answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN map: ACI = DC | APIC-EM/DNA = campus | vManage = SD-WAN.",
+          "contrast": "Correct \"Cisco ACI\" vs wrong \"OpenDaylight\": For \"sdn architecture\", Cisco ACI matches the required behavior — OpenDaylight answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SD-WAN as data center SDN",
+          "whyItSeems": "\"Cisco SD-WAN\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Cisco ACI matches the required behavior — Cisco SD-WAN answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN map: ACI = DC | APIC-EM/DNA = campus | vManage = SD-WAN.",
+          "contrast": "Correct \"Cisco ACI\" vs wrong \"Cisco SD-WAN\": For \"sdn architecture\", Cisco ACI matches the required behavior — Cisco SD-WAN answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q005",
@@ -1025,7 +1519,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Northbound = apps → controller. Southbound = controller → devices (NETCONF/RESTCONF/OpenFlow)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Swapping northbound and southbound",
+          "whyItSeems": "\"Cisco APIC-EM\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Cisco SD-WAN matches the required behavior — Cisco APIC-EM answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Cisco SD-WAN\" — not \"Cisco APIC-EM\" — for what this stem actually tests.",
+          "contrast": "Correct \"Cisco SD-WAN\" vs wrong \"Cisco APIC-EM\": For \"sdn architecture\", Cisco SD-WAN matches the required behavior — Cisco APIC-EM answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Using SNMP as SDN southbound",
+          "whyItSeems": "\"Cisco Prime Infrastructure\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Cisco SD-WAN matches the required behavior — Cisco Prime Infrastructure answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Cisco SD-WAN\" — not \"Cisco Prime Infrastructure\" — for what this stem actually tests.",
+          "contrast": "Correct \"Cisco SD-WAN\" vs wrong \"Cisco Prime Infrastructure\": For \"sdn architecture\", Cisco SD-WAN matches the required behavior — Cisco Prime Infrastructure answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Discovery protocol as SDN API",
+          "whyItSeems": "\"OpenDaylight\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Cisco SD-WAN matches the required behavior — OpenDaylight answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Cisco SD-WAN\" — not \"OpenDaylight\" — for what this stem actually tests.",
+          "contrast": "Correct \"Cisco SD-WAN\" vs wrong \"OpenDaylight\": For \"sdn architecture\", Cisco SD-WAN matches the required behavior — OpenDaylight answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q006",
@@ -1076,7 +1596,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Campus tiers: access → distribution → core; DC modern: spine/leaf (no distribution)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Spine/leaf as distribution-layer model",
+          "whyItSeems": "\"Spine/Leaf\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Campus matches the required behavior — Spine/Leaf answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Campus tiers: access → distribution → core; DC modern: spine/leaf (no distribution).",
+          "contrast": "Correct \"Campus\" vs wrong \"Spine/Leaf\": For \"sdn architecture\", Campus matches the required behavior — Spine/Leaf answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "CLOS as campus distribution model",
+          "whyItSeems": "\"CLOS\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Campus matches the required behavior — CLOS answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Campus tiers: access → distribution → core; DC modern: spine/leaf (no distribution).",
+          "contrast": "Correct \"Campus\" vs wrong \"CLOS\": For \"sdn architecture\", Campus matches the required behavior — CLOS answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "SDN as distribution-layer architecture",
+          "whyItSeems": "\"SDN\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Campus matches the required behavior — SDN answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Campus tiers: access → distribution → core; DC modern: spine/leaf (no distribution).",
+          "contrast": "Correct \"Campus\" vs wrong \"SDN\": For \"sdn architecture\", Campus matches the required behavior — SDN answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q007",
@@ -1130,7 +1676,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN split: data plane on switch | control plane on controller | mgmt often still local."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Controller as management-plane only",
+          "whyItSeems": "\"The SDN controller configures the management plane of network devices.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", The SDN controller replaces the control plane of the SDN. matches the required behavior — The SDN controller configures the management plane of network devices. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN split: data plane on switch | control plane on controller | mgmt often still local.",
+          "contrast": "Correct \"The SDN controller replaces the control plane of the SDN.\" vs wrong \"The SDN controller configures the management plane of network devices.\": For \"sdn architecture\", The SDN controller replaces the control plane of the SDN."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Controller as data-plane monitor only",
+          "whyItSeems": "\"The SDN controller monitors data plane traffic.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", The SDN controller replaces the control plane of the SDN. matches the required behavior — The SDN controller monitors data plane traffic. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN split: data plane on switch | control plane on controller | mgmt often still local.",
+          "contrast": "Correct \"The SDN controller replaces the control plane of the SDN.\" vs wrong \"The SDN controller monitors data plane traffic.\": For \"sdn architecture\", The SDN controller replaces the control plane of the SDN."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Controller complements instead of replaces control plane",
+          "whyItSeems": "\"The SDN controller complements the control plane of the SDN device.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", The SDN controller replaces the control plane of the SDN. matches the required behavior — The SDN controller complements the control plane of the SDN device. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN split: data plane on switch | control plane on controller | mgmt often still local.",
+          "contrast": "Correct \"The SDN controller replaces the control plane of the SDN.\" vs wrong \"The SDN controller complements the control plane of the SDN device.\": For \"sdn architecture\", The SDN controller replaces the control plane of the SDN."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q008",
@@ -1184,7 +1756,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Cisco enterprise SDN controller → APIC-EM; SD-WAN = vManage; ACI = APIC (data center)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "OpenSDN as Cisco enterprise controller",
+          "whyItSeems": "\"OpenSDN\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", APIC-EM matches the required behavior — OpenSDN answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cisco enterprise SDN controller → APIC-EM; SD-WAN = vManage; ACI = APIC (data center).",
+          "contrast": "Correct \"APIC-EM\" vs wrong \"OpenSDN\": For \"sdn architecture\", APIC-EM matches the required behavior — OpenSDN answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "OpenStack as Cisco SDN controller",
+          "whyItSeems": "\"OpenStack\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", APIC-EM matches the required behavior — OpenStack answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cisco enterprise SDN controller → APIC-EM; SD-WAN = vManage; ACI = APIC (data center).",
+          "contrast": "Correct \"APIC-EM\" vs wrong \"OpenStack\": For \"sdn architecture\", APIC-EM matches the required behavior — OpenStack answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "OpenDaylight as Cisco proprietary controller",
+          "whyItSeems": "\"OpenDaylight\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", APIC-EM matches the required behavior — OpenDaylight answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cisco enterprise SDN controller → APIC-EM; SD-WAN = vManage; ACI = APIC (data center).",
+          "contrast": "Correct \"APIC-EM\" vs wrong \"OpenDaylight\": For \"sdn architecture\", APIC-EM matches the required behavior — OpenDaylight answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q009",
@@ -1236,7 +1834,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "STP on data plane",
+          "whyItSeems": "\"Data plane\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Control plane matches the required behavior — Data plane answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Control plane\" vs wrong \"Data plane\": For \"sdn architecture\", Control plane matches the required behavior — Data plane answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "STP on management plane",
+          "whyItSeems": "\"Management plane\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Control plane matches the required behavior — Management plane answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Control plane\" vs wrong \"Management plane\": For \"sdn architecture\", Control plane matches the required behavior — Management plane answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented switch plane",
+          "whyItSeems": "\"Switch plane\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Control plane matches the required behavior — Switch plane answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Control plane\" vs wrong \"Switch plane\": For \"sdn architecture\", Control plane matches the required behavior — Switch plane answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q010",
@@ -1288,7 +1912,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Syslog as data plane",
+          "whyItSeems": "\"Data plane\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Management plane matches the required behavior — Data plane answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Management plane\" vs wrong \"Data plane\": For \"sdn architecture\", Management plane matches the required behavior — Data plane answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Syslog as control plane",
+          "whyItSeems": "\"Control plane\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Management plane matches the required behavior — Control plane answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Management plane\" vs wrong \"Control plane\": For \"sdn architecture\", Management plane matches the required behavior — Control plane answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented switch plane",
+          "whyItSeems": "\"Switch plane\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Management plane matches the required behavior — Switch plane answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Management plane\" vs wrong \"Switch plane\": For \"sdn architecture\", Management plane matches the required behavior — Switch plane answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q011",
@@ -1340,7 +1990,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Control plane forwards packets",
+          "whyItSeems": "\"Control plane\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Data plane matches the required behavior — Control plane answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Planes: data=forward · control=routing/STP · management=SNMP/syslog.",
+          "contrast": "Correct \"Data plane\" vs wrong \"Control plane\": For \"sdn architecture\", Data plane matches the required behavior — Control plane answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Management plane forwarding",
+          "whyItSeems": "\"Management plane\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Data plane matches the required behavior — Management plane answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Planes: data=forward · control=routing/STP · management=SNMP/syslog.",
+          "contrast": "Correct \"Data plane\" vs wrong \"Management plane\": For \"sdn architecture\", Data plane matches the required behavior — Management plane answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Routing plane term",
+          "whyItSeems": "\"Switch plane\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Data plane matches the required behavior — Switch plane answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Planes: data=forward · control=routing/STP · management=SNMP/syslog.",
+          "contrast": "Correct \"Data plane\" vs wrong \"Switch plane\": For \"sdn architecture\", Data plane matches the required behavior — Switch plane answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q012",
@@ -1392,7 +2068,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Routing protocols on data plane",
+          "whyItSeems": "\"Data plane\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Control plane matches the required behavior — Data plane answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Planes: data=forward · control=routing/STP · management=SNMP/syslog.",
+          "contrast": "Correct \"Control plane\" vs wrong \"Data plane\": For \"sdn architecture\", Control plane matches the required behavior — Data plane answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "OSPF on management plane",
+          "whyItSeems": "\"Management plane\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Control plane matches the required behavior — Management plane answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Planes: data=forward · control=routing/STP · management=SNMP/syslog.",
+          "contrast": "Correct \"Control plane\" vs wrong \"Management plane\": For \"sdn architecture\", Control plane matches the required behavior — Management plane answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Routing plane terminology",
+          "whyItSeems": "\"Routing plane\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Control plane matches the required behavior — Routing plane answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Planes: data=forward · control=routing/STP · management=SNMP/syslog.",
+          "contrast": "Correct \"Control plane\" vs wrong \"Routing plane\": For \"sdn architecture\", Control plane matches the required behavior — Routing plane answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q013",
@@ -1445,7 +2147,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "CDP as data plane",
+          "whyItSeems": "\"Data plane\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Management plane matches the required behavior — Data plane answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Management plane\" vs wrong \"Data plane\": For \"sdn architecture\", Management plane matches the required behavior — Data plane answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "CDP as control plane",
+          "whyItSeems": "\"Control plane\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Management plane matches the required behavior — Control plane answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Management plane\" vs wrong \"Control plane\": For \"sdn architecture\", Management plane matches the required behavior — Control plane answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Network plane for CDP",
+          "whyItSeems": "\"Network plane\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Management plane matches the required behavior — Network plane answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Management plane\" vs wrong \"Network plane\": For \"sdn architecture\", Management plane matches the required behavior — Network plane answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q014",
@@ -1499,7 +2227,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN directions: NBI = apps ↑ | SBI = devices ↓."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "NBI for direct device communication",
+          "whyItSeems": "\"The northbound interface (NBI)\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", The southbound interface (SBI) matches the required behavior — The northbound interface (NBI) answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN directions: NBI = apps ↑ | SBI = devices ↓.",
+          "contrast": "Correct \"The southbound interface (SBI)\" vs wrong \"The northbound interface (NBI)\": For \"sdn architecture\", The southbound interface (SBI) matches the required behavior — The northbound interface (NBI) answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Controller core as device API",
+          "whyItSeems": "\"The core of the controller\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", The southbound interface (SBI) matches the required behavior — The core of the controller answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN directions: NBI = apps ↑ | SBI = devices ↓.",
+          "contrast": "Correct \"The southbound interface (SBI)\" vs wrong \"The core of the controller\": For \"sdn architecture\", The southbound interface (SBI) matches the required behavior — The core of the controller answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Hosted apps as southbound path",
+          "whyItSeems": "\"Applications hosted on the controller\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", The southbound interface (SBI) matches the required behavior — Applications hosted on the controller answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN directions: NBI = apps ↑ | SBI = devices ↓.",
+          "contrast": "Correct \"The southbound interface (SBI)\" vs wrong \"Applications hosted on the controller\": For \"sdn architecture\", The southbound interface (SBI) matches the required behavior — Applications hosted on the controller answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q015",
@@ -1550,7 +2304,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "API as transfer program",
+          "whyItSeems": "\"An API is a program that allows for data transfer.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", An API is a programming interface or standard allowing one program to communicate with another program. matches the required behavior — An API is a program that allows for data transfer. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"An API is a programming interface or standard allowing one program to communicate with another program.\" vs wrong \"An API is a program that allows for data transfer.\": For \"sdn architecture\", An API is a programming interface or standard allowing one program to communicate with another program."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "API as programming language",
+          "whyItSeems": "\"An API is a programming language for network programmability.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", An API is a programming interface or standard allowing one program to communicate with another program. matches the required behavior — An API is a programming language for network programmability. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"An API is a programming interface or standard allowing one program to communicate with another program.\" vs wrong \"An API is a programming language for network programmability.\": For \"sdn architecture\", An API is a programming interface or standard allowing one program to communicate with another program."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "API as virtualization",
+          "whyItSeems": "\"An API allows for programs to be virtualized.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", An API is a programming interface or standard allowing one program to communicate with another program. matches the required behavior — An API allows for programs to be virtualized. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"An API is a programming interface or standard allowing one program to communicate with another program.\" vs wrong \"An API allows for programs to be virtualized.\": For \"sdn architecture\", An API is a programming interface or standard allowing one program to communicate with another program."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q016",
@@ -1605,7 +2385,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "SBI for application traffic",
+          "whyItSeems": "\"The southbound interface (SBI)\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", The northbound interface (NBI) matches the required behavior — The southbound interface (SBI) answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"The northbound interface (NBI)\" vs wrong \"The southbound interface (SBI)\": For \"sdn architecture\", The northbound interface (NBI) matches the required behavior — The southbound interface (SBI) answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Controller core as app API",
+          "whyItSeems": "\"The core of the controller\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", The northbound interface (NBI) matches the required behavior — The core of the controller answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"The northbound interface (NBI)\" vs wrong \"The core of the controller\": For \"sdn architecture\", The northbound interface (NBI) matches the required behavior — The core of the controller answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "SNMP as SDN app API",
+          "whyItSeems": "\"Simple Network Management Protocol (SNMP)\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", The northbound interface (NBI) matches the required behavior — Simple Network Management Protocol (SNMP) answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"The northbound interface (NBI)\" vs wrong \"Simple Network Management Protocol (SNMP)\": For \"sdn architecture\", The northbound interface (NBI) matches the required behavior — Simple Network Management Protocol (SNMP) answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q017",
@@ -1658,7 +2464,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Control plane packet forwarding",
+          "whyItSeems": "\"Control plane\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Data plane matches the required behavior — Control plane answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Planes: data=forward · control=routing/STP · management=SNMP/syslog.",
+          "contrast": "Correct \"Data plane\" vs wrong \"Control plane\": For \"sdn architecture\", Data plane matches the required behavior — Control plane answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Management plane routing",
+          "whyItSeems": "\"Management plane\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Data plane matches the required behavior — Management plane answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Planes: data=forward · control=routing/STP · management=SNMP/syslog.",
+          "contrast": "Correct \"Data plane\" vs wrong \"Management plane\": For \"sdn architecture\", Data plane matches the required behavior — Management plane answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Routing plane term",
+          "whyItSeems": "\"Routing plane\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Data plane matches the required behavior — Routing plane answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Planes: data=forward · control=routing/STP · management=SNMP/syslog.",
+          "contrast": "Correct \"Data plane\" vs wrong \"Routing plane\": For \"sdn architecture\", Data plane matches the required behavior — Routing plane answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q018",
@@ -1708,7 +2540,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Single hop fabric",
+          "whyItSeems": "\"1 hop\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", 3 hops matches the required behavior — 1 hop answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"3 hops\" vs wrong \"1 hop\": For \"sdn architecture\", 3 hops matches the required behavior — 1 hop answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Four hops as fabric max",
+          "whyItSeems": "\"4 hops\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", 3 hops matches the required behavior — 4 hops answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"3 hops\" vs wrong \"4 hops\": For \"sdn architecture\", 3 hops matches the required behavior — 4 hops answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Five hops as fabric max",
+          "whyItSeems": "\"5 hops\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", 3 hops matches the required behavior — 5 hops answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"3 hops\" vs wrong \"5 hops\": For \"sdn architecture\", 3 hops matches the required behavior — 5 hops answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q019",
@@ -1761,7 +2619,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Overlay MTU setting",
+          "whyItSeems": "\"Overlay\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Underlay matches the required behavior — Overlay answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Underlay\" vs wrong \"Overlay\": For \"sdn architecture\", Underlay matches the required behavior — Overlay answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Tunnel as MTU layer only",
+          "whyItSeems": "\"Tunnel\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Underlay matches the required behavior — Tunnel answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Underlay\" vs wrong \"Tunnel\": For \"sdn architecture\", Underlay matches the required behavior — Tunnel answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Leaf as MTU config point",
+          "whyItSeems": "\"Leaf\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Underlay matches the required behavior — Leaf answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Underlay\" vs wrong \"Leaf\": For \"sdn architecture\", Underlay matches the required behavior — Leaf answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q020",
@@ -1814,7 +2698,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Three planes: data = forward, control = routing/ACL policy, management = admin access."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Equating ACL policy with device management plane",
+          "whyItSeems": "\"Management plane\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Control plane matches the required behavior — Management plane answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Three planes: data = forward, control = routing/ACL policy, management = admin access.",
+          "contrast": "Correct \"Control plane\" vs wrong \"Management plane\": For \"sdn architecture\", Control plane matches the required behavior — Management plane answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Inventing non-standard plane name for ACL config",
+          "whyItSeems": "\"Configuration plane\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Control plane matches the required behavior — Configuration plane answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Three planes: data = forward, control = routing/ACL policy, management = admin access.",
+          "contrast": "Correct \"Control plane\" vs wrong \"Configuration plane\": For \"sdn architecture\", Control plane matches the required behavior — Configuration plane answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Confusing policy configuration with packet forwarding plane",
+          "whyItSeems": "\"Data plane\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", Control plane matches the required behavior — Data plane answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Three planes: data = forward, control = routing/ACL policy, management = admin access.",
+          "contrast": "Correct \"Control plane\" vs wrong \"Data plane\": For \"sdn architecture\", Control plane matches the required behavior — Data plane answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q021",
@@ -1868,7 +2778,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "VXLAN for WAN offices",
+          "whyItSeems": "\"VXLAN\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", DMVPN matches the required behavior — VXLAN answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"DMVPN\" vs wrong \"VXLAN\": For \"sdn architecture\", DMVPN matches the required behavior — VXLAN answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "VLAN as WAN overlay",
+          "whyItSeems": "\"VLAN\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", DMVPN matches the required behavior — VLAN answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"DMVPN\" vs wrong \"VLAN\": For \"sdn architecture\", DMVPN matches the required behavior — VLAN answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "ECMP as overlay VPN",
+          "whyItSeems": "\"ECMP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", DMVPN matches the required behavior — ECMP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"DMVPN\" vs wrong \"ECMP\": For \"sdn architecture\", DMVPN matches the required behavior — ECMP answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q022",
@@ -1921,7 +2857,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "ECMP for L2 tunnel",
+          "whyItSeems": "\"ECMP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", VXLAN matches the required behavior — ECMP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"VXLAN\" vs wrong \"ECMP\": For \"sdn architecture\", VXLAN matches the required behavior — ECMP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "DMVPN as L2 overlay",
+          "whyItSeems": "\"DMVPN\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", VXLAN matches the required behavior — DMVPN answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"VXLAN\" vs wrong \"DMVPN\": For \"sdn architecture\", VXLAN matches the required behavior — DMVPN answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "EIGRP as L2 tunnel",
+          "whyItSeems": "EIGRP applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"sdn architecture\", VXLAN matches the required behavior — EIGRP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"VXLAN\" vs wrong \"EIGRP\": For \"sdn architecture\", VXLAN matches the required behavior — EIGRP answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q023",
@@ -1973,7 +2935,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "CDP as management monitoring",
+          "whyItSeems": "\"CDP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", SNMP matches the required behavior — CDP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"SNMP\" vs wrong \"CDP\": For \"sdn architecture\", SNMP matches the required behavior — CDP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "ICMP as management plane",
+          "whyItSeems": "ICMP names a transport protocol or port behavior that may not match reliability or connection requirements.",
+          "whyWrongHere": "For \"sdn architecture\", SNMP matches the required behavior — ICMP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"SNMP\" vs wrong \"ICMP\": For \"sdn architecture\", SNMP matches the required behavior — ICMP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "VTP as management",
+          "whyItSeems": "\"VTP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", SNMP matches the required behavior — VTP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"SNMP\" vs wrong \"VTP\": For \"sdn architecture\", SNMP matches the required behavior — VTP answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.3-source-q024",
@@ -2025,7 +3013,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "OSPF as next-hop forwarding",
+          "whyItSeems": "\"OSPF\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", ECMP matches the required behavior — OSPF answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"ECMP\" vs wrong \"OSPF\": For \"sdn architecture\", ECMP matches the required behavior — OSPF answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "MPLS as SDN fabric forwarding",
+          "whyItSeems": "\"MPLS\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", ECMP matches the required behavior — MPLS answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"ECMP\" vs wrong \"MPLS\": For \"sdn architecture\", ECMP matches the required behavior — MPLS answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "CLOS as protocol",
+          "whyItSeems": "\"CLOS\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sdn architecture\", ECMP matches the required behavior — CLOS answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"ECMP\" vs wrong \"CLOS\": For \"sdn architecture\", ECMP matches the required behavior — CLOS answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     }
   ],
   "6.4": [
@@ -2079,7 +3093,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "APIC-EM successor → Cisco DNA Center for campus automation and assurance."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "OpenFlow as APIC-EM successor product",
+          "whyItSeems": "\"OpenFlow\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Cisco DNA Center matches the required behavior — OpenFlow answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "APIC-EM successor → Cisco DNA Center for campus automation and assurance.",
+          "contrast": "Correct \"Cisco DNA Center\" vs wrong \"OpenFlow\": For \"cisco dna center\", Cisco DNA Center matches the required behavior — OpenFlow answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Prime as APIC-EM replacement",
+          "whyItSeems": "\"Cisco Prime Infrastructure\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Cisco DNA Center matches the required behavior — Cisco Prime Infrastructure answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "APIC-EM successor → Cisco DNA Center for campus automation and assurance.",
+          "contrast": "Correct \"Cisco DNA Center\" vs wrong \"Cisco Prime Infrastructure\": For \"cisco dna center\", Cisco DNA Center matches the required behavior — Cisco Prime Infrastructure answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "SD-WAN controller as APIC-EM replacement",
+          "whyItSeems": "\"Cisco SD-WAN\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Cisco DNA Center matches the required behavior — Cisco SD-WAN answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "APIC-EM successor → Cisco DNA Center for campus automation and assurance.",
+          "contrast": "Correct \"Cisco DNA Center\" vs wrong \"Cisco SD-WAN\": For \"cisco dna center\", Cisco DNA Center matches the required behavior — Cisco SD-WAN answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.4-source-q002",
@@ -2133,7 +3173,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DNA discovery = SSH/HTTPS/NETCONF/SNMP; OpenFlow = southbound forwarding API, not inventory crawl."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "SSH excluded from DNA discovery",
+          "whyItSeems": "\"SSH\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", OpenFlow matches the required behavior — SSH answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNA discovery = SSH/HTTPS/NETCONF/SNMP; OpenFlow = southbound forwarding API, not inventory crawl.",
+          "contrast": "Correct \"OpenFlow\" vs wrong \"SSH\": For \"cisco dna center\", OpenFlow matches the required behavior — SSH answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "HTTPS excluded from DNA discovery",
+          "whyItSeems": "\"HTTPS\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", OpenFlow matches the required behavior — HTTPS answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNA discovery = SSH/HTTPS/NETCONF/SNMP; OpenFlow = southbound forwarding API, not inventory crawl.",
+          "contrast": "Correct \"OpenFlow\" vs wrong \"HTTPS\": For \"cisco dna center\", OpenFlow matches the required behavior — HTTPS answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "NETCONF excluded from DNA discovery",
+          "whyItSeems": "NETCONF names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "For \"cisco dna center\", OpenFlow matches the required behavior — NETCONF answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNA discovery = SSH/HTTPS/NETCONF/SNMP; OpenFlow = southbound forwarding API, not inventory crawl.",
+          "contrast": "Correct \"OpenFlow\" vs wrong \"NETCONF\": For \"cisco dna center\", OpenFlow matches the required behavior — NETCONF answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.4-source-q003",
@@ -2184,7 +3250,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DNA Assurance = health analytics post-deploy (clients, onboarding, QoE)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Confusing design with assurance",
+          "whyItSeems": "\"Design\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Assurance matches the required behavior — Design answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNA Assurance = health analytics post-deploy (clients, onboarding, QoE).",
+          "contrast": "Correct \"Assurance\" vs wrong \"Design\": For \"cisco dna center\", Assurance matches the required behavior — Design answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Provision vs assurance",
+          "whyItSeems": "\"Policy\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Assurance matches the required behavior — Policy answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNA Assurance = health analytics post-deploy (clients, onboarding, QoE).",
+          "contrast": "Correct \"Assurance\" vs wrong \"Policy\": For \"cisco dna center\", Assurance matches the required behavior — Policy answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "License UI as assurance",
+          "whyItSeems": "\"Platform\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Assurance matches the required behavior — Platform answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNA Assurance = health analytics post-deploy (clients, onboarding, QoE).",
+          "contrast": "Correct \"Assurance\" vs wrong \"Platform\": For \"cisco dna center\", Assurance matches the required behavior — Platform answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.4-source-q004",
@@ -2235,7 +3327,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "IP-based AC for DNS/NTP templates",
+          "whyItSeems": "\"IP-based access control\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Plug and Play matches the required behavior — IP-based access control answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNA Center: Design/Policy/Provision/Assurance/Platform — know which does what.",
+          "contrast": "Correct \"Plug and Play\" vs wrong \"IP-based access control\": For \"cisco dna center\", Plug and Play matches the required behavior — IP-based access control answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Group-based AC for baseline",
+          "whyItSeems": "\"Group-based access control\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Plug and Play matches the required behavior — Group-based access control answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNA Center: Design/Policy/Provision/Assurance/Platform — know which does what.",
+          "contrast": "Correct \"Plug and Play\" vs wrong \"Group-based access control\": For \"cisco dna center\", Plug and Play matches the required behavior — Group-based access control answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Assurance for templating",
+          "whyItSeems": "\"Assurance\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Plug and Play matches the required behavior — Assurance answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNA Center: Design/Policy/Provision/Assurance/Platform — know which does what.",
+          "contrast": "Correct \"Plug and Play\" vs wrong \"Assurance\": For \"cisco dna center\", Plug and Play matches the required behavior — Assurance answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.4-source-q005",
@@ -2287,7 +3405,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Assurance for topology map",
+          "whyItSeems": "\"Assurance\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Provision matches the required behavior — Assurance answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Provision\" vs wrong \"Assurance\": For \"cisco dna center\", Provision matches the required behavior — Assurance answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Platform for site map",
+          "whyItSeems": "\"Platform\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Provision matches the required behavior — Platform answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Provision\" vs wrong \"Platform\": For \"cisco dna center\", Provision matches the required behavior — Platform answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Policy for connectivity map",
+          "whyItSeems": "\"Policy\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Provision matches the required behavior — Policy answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Provision\" vs wrong \"Policy\": For \"cisco dna center\", Provision matches the required behavior — Policy answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.4-source-q006",
@@ -2339,7 +3483,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Bulk CLI on many routers in DNA Center → Command Runner templates."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Using access control feature for routing configuration",
+          "whyItSeems": "\"IP-based access control\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", DNA Command Runner matches the required behavior — IP-based access control answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Bulk CLI on many routers in DNA Center → Command Runner templates.",
+          "contrast": "Correct \"DNA Command Runner\" vs wrong \"IP-based access control\": For \"cisco dna center\", DNA Command Runner matches the required behavior — IP-based access control answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Defaulting to Python when Command Runner is the exam shortcut",
+          "whyItSeems": "Python names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "For \"cisco dna center\", DNA Command Runner matches the required behavior — Python answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Bulk CLI on many routers in DNA Center → Command Runner templates.",
+          "contrast": "Correct \"DNA Command Runner\" vs wrong \"Python\": For \"cisco dna center\", DNA Command Runner matches the required behavior — Python answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Expecting Inventory to push config without Command Runner",
+          "whyItSeems": "\"Inventory\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", DNA Command Runner matches the required behavior — Inventory answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Bulk CLI on many routers in DNA Center → Command Runner templates.",
+          "contrast": "Correct \"DNA Command Runner\" vs wrong \"Inventory\": For \"cisco dna center\", DNA Command Runner matches the required behavior — Inventory answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.4-source-q007",
@@ -2392,7 +3562,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Policy for inventory",
+          "whyItSeems": "\"Policy\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Provision matches the required behavior — Policy answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Provision\" vs wrong \"Policy\": For \"cisco dna center\", Provision matches the required behavior — Policy answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Design for live inventory",
+          "whyItSeems": "\"Design\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Provision matches the required behavior — Design answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Provision\" vs wrong \"Design\": For \"cisco dna center\", Provision matches the required behavior — Design answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Assurance for device inventory",
+          "whyItSeems": "\"Assurance\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Provision matches the required behavior — Assurance answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Provision\" vs wrong \"Assurance\": For \"cisco dna center\", Provision matches the required behavior — Assurance answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.4-source-q008",
@@ -2446,7 +3642,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Design for API docs",
+          "whyItSeems": "\"Design\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Platform matches the required behavior — Design answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNA Center: Design/Policy/Provision/Assurance/Platform — know which does what.",
+          "contrast": "Correct \"Platform\" vs wrong \"Design\": For \"cisco dna center\", Platform matches the required behavior — Design answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Policy for REST APIs",
+          "whyItSeems": "\"Policy\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Platform matches the required behavior — Policy answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNA Center: Design/Policy/Provision/Assurance/Platform — know which does what.",
+          "contrast": "Correct \"Platform\" vs wrong \"Policy\": For \"cisco dna center\", Platform matches the required behavior — Policy answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Provision for API reference",
+          "whyItSeems": "\"Provision\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Platform matches the required behavior — Provision answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNA Center: Design/Policy/Provision/Assurance/Platform — know which does what.",
+          "contrast": "Correct \"Platform\" vs wrong \"Provision\": For \"cisco dna center\", Platform matches the required behavior — Provision answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.4-source-q009",
@@ -2499,7 +3721,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Easy-QoS for fabric",
+          "whyItSeems": "\"Easy-QOS\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", SD-Access matches the required behavior — Easy-QOS answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNA Center: Design/Policy/Provision/Assurance/Platform — know which does what.",
+          "contrast": "Correct \"SD-Access\" vs wrong \"Easy-QOS\": For \"cisco dna center\", SD-Access matches the required behavior — Easy-QOS answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "System 360 for fabric",
+          "whyItSeems": "\"System 360\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", SD-Access matches the required behavior — System 360 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNA Center: Design/Policy/Provision/Assurance/Platform — know which does what.",
+          "contrast": "Correct \"SD-Access\" vs wrong \"System 360\": For \"cisco dna center\", SD-Access matches the required behavior — System 360 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "ISE as fabric automation",
+          "whyItSeems": "\"Cisco ISE\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", SD-Access matches the required behavior — Cisco ISE answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNA Center: Design/Policy/Provision/Assurance/Platform — know which does what.",
+          "contrast": "Correct \"SD-Access\" vs wrong \"Cisco ISE\": For \"cisco dna center\", SD-Access matches the required behavior — Cisco ISE answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.4-source-q010",
@@ -2549,7 +3797,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Heat maps Prime-only",
+          "whyItSeems": "\"Client coverage heat maps\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Device configuration backup matches the required behavior — Client coverage heat maps answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Device configuration backup\" vs wrong \"Client coverage heat maps\": For \"cisco dna center\", Device configuration backup matches the required behavior — Client coverage heat maps answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Triangulation Prime-only",
+          "whyItSeems": "\"Client triangulation support\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Device configuration backup matches the required behavior — Client triangulation support answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Device configuration backup\" vs wrong \"Client triangulation support\": For \"cisco dna center\", Device configuration backup matches the required behavior — Client triangulation support answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Application health Prime-only",
+          "whyItSeems": "\"Application health\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Device configuration backup matches the required behavior — Application health answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Device configuration backup\" vs wrong \"Application health\": For \"cisco dna center\", Device configuration backup matches the required behavior — Application health answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.4-source-q011",
@@ -2601,7 +3875,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "SSH only for discovery",
+          "whyItSeems": "\"SSH\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Both A and B matches the required behavior — SSH answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Both A and B\" vs wrong \"SSH\": For \"cisco dna center\", Both A and B matches the required behavior — SSH answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "SNMP only for discovery",
+          "whyItSeems": "\"SNMP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Both A and B matches the required behavior — SNMP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Both A and B\" vs wrong \"SNMP\": For \"cisco dna center\", Both A and B matches the required behavior — SNMP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Logging for discovery",
+          "whyItSeems": "\"Logging\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cisco dna center\", Both A and B matches the required behavior — Logging answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Both A and B\" vs wrong \"Logging\": For \"cisco dna center\", Both A and B matches the required behavior — Logging answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     }
   ],
   "6.5": [
@@ -2655,7 +3955,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Automate via RESTCONF/NETCONF/API — start with the vendor API reference."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "UI layout for automation",
+          "whyItSeems": "\"User interface layout\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", API reference matches the required behavior — User interface layout answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Automate via RESTCONF/NETCONF/API — start with the vendor API reference.",
+          "contrast": "Correct \"API reference\" vs wrong \"User interface layout\": For \"rest api\", API reference matches the required behavior — User interface layout answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Source code over API docs",
+          "whyItSeems": "\"Source code of the device\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", API reference matches the required behavior — Source code of the device answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Automate via RESTCONF/NETCONF/API — start with the vendor API reference.",
+          "contrast": "Correct \"API reference\" vs wrong \"Source code of the device\": For \"rest api\", API reference matches the required behavior — Source code of the device answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Device storage research",
+          "whyItSeems": "\"Data storage of the device\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", API reference matches the required behavior — Data storage of the device answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Automate via RESTCONF/NETCONF/API — start with the vendor API reference.",
+          "contrast": "Correct \"API reference\" vs wrong \"Data storage of the device\": For \"rest api\", API reference matches the required behavior — Data storage of the device answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.5-source-q002",
@@ -2709,7 +4035,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Legacy API-like mgmt: SNMP GET/WALK; modern: REST/RESTCONF/NETCONF."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "CLI as API-like retrieval interface",
+          "whyItSeems": "\"CLI\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", SNMP matches the required behavior — CLI answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Legacy API-like mgmt: SNMP GET/WALK; modern: REST/RESTCONF/NETCONF.",
+          "contrast": "Correct \"SNMP\" vs wrong \"CLI\": For \"rest api\", SNMP matches the required behavior — CLI answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Syslog as API-like data retrieval",
+          "whyItSeems": "Syslog assigns a syslog severity or facility level that may reverse the lower-number-is-more-severe rule.",
+          "whyWrongHere": "For \"rest api\", SNMP matches the required behavior — Syslog answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Legacy API-like mgmt: SNMP GET/WALK; modern: REST/RESTCONF/NETCONF.",
+          "contrast": "Correct \"SNMP\" vs wrong \"Syslog\": For \"rest api\", SNMP matches the required behavior — Syslog answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "SSH as structured retrieval API",
+          "whyItSeems": "\"SSH\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", SNMP matches the required behavior — SSH answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Legacy API-like mgmt: SNMP GET/WALK; modern: REST/RESTCONF/NETCONF.",
+          "contrast": "Correct \"SNMP\" vs wrong \"SSH\": For \"rest api\", SNMP matches the required behavior — SSH answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.5-source-q003",
@@ -2762,7 +4114,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SNMP successor on exams → NETCONF (+ YANG). RESTCONF combines REST + NETCONF ideas."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Syslog as SNMP replacement",
+          "whyItSeems": "Syslog assigns a syslog severity or facility level that may reverse the lower-number-is-more-severe rule.",
+          "whyWrongHere": "For \"rest api\", NETCONF matches the required behavior — Syslog answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"NETCONF\" — not \"Syslog\" — for what this stem actually tests.",
+          "contrast": "Correct \"NETCONF\" vs wrong \"Syslog\": For \"rest api\", NETCONF matches the required behavior — Syslog answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "REST label without NETCONF",
+          "whyItSeems": "REST names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "Automation tooling (rest api): NETCONF matches the API or tool named in the stem — REST swaps REST, NETCONF, or orchestration roles.",
+          "memoryAnchor": "Remember: choose \"NETCONF\" — not \"REST\" — for what this stem actually tests.",
+          "contrast": "Correct \"NETCONF\" vs wrong \"REST\": Automation tooling (rest api): NETCONF matches the API or tool named in the stem — REST swaps REST, NETCONF, or orchestration roles."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "SSH as management protocol",
+          "whyItSeems": "\"SSH\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", NETCONF matches the required behavior — SSH answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"NETCONF\" — not \"SSH\" — for what this stem actually tests.",
+          "contrast": "Correct \"NETCONF\" vs wrong \"SSH\": For \"rest api\", NETCONF matches the required behavior — SSH answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.5-source-q004",
@@ -2816,7 +4194,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "YANG = data model language; transported by NETCONF (XML) or RESTCONF (HTTP/JSON)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "REST as YANG-carrying protocol",
+          "whyItSeems": "REST names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "Automation tooling (rest api): NETCONF matches the API or tool named in the stem — REST swaps REST, NETCONF, or orchestration roles.",
+          "memoryAnchor": "YANG = data model language; transported by NETCONF (XML) or RESTCONF (HTTP/JSON).",
+          "contrast": "Correct \"NETCONF\" vs wrong \"REST\": Automation tooling (rest api): NETCONF matches the API or tool named in the stem — REST swaps REST, NETCONF, or orchestration roles."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SNMP as YANG protocol",
+          "whyItSeems": "\"SNMP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", NETCONF matches the required behavior — SNMP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "YANG = data model language; transported by NETCONF (XML) or RESTCONF (HTTP/JSON).",
+          "contrast": "Correct \"NETCONF\" vs wrong \"SNMP\": For \"rest api\", NETCONF matches the required behavior — SNMP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "YAML as YANG data model protocol",
+          "whyItSeems": "YAML names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "Automation tooling (rest api): NETCONF matches the API or tool named in the stem — YAML swaps REST, NETCONF, or orchestration roles.",
+          "memoryAnchor": "YANG = data model language; transported by NETCONF (XML) or RESTCONF (HTTP/JSON).",
+          "contrast": "Correct \"NETCONF\" vs wrong \"YAML\": Automation tooling (rest api): NETCONF matches the API or tool named in the stem — YAML swaps REST, NETCONF, or orchestration roles."
+        }
+      ]
     },
     {
       "id": "obj-6.5-source-q005",
@@ -2870,7 +4274,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "HTTPS + YANG + REST verbs → RESTCONF; SSH + XML RPC → NETCONF."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "NETCONF as HTTPS REST protocol",
+          "whyItSeems": "NETCONF names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "Automation tooling (rest api): RESTCONF matches the API or tool named in the stem — NETCONF swaps REST, NETCONF, or orchestration roles.",
+          "memoryAnchor": "HTTPS + YANG + REST verbs → RESTCONF; SSH + XML RPC → NETCONF.",
+          "contrast": "Correct \"RESTCONF\" vs wrong \"NETCONF\": Automation tooling (rest api): RESTCONF matches the API or tool named in the stem — NETCONF swaps REST, NETCONF, or orchestration roles."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SNMP as HTTPS config protocol",
+          "whyItSeems": "\"SNMP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", RESTCONF matches the required behavior — SNMP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HTTPS + YANG + REST verbs → RESTCONF; SSH + XML RPC → NETCONF.",
+          "contrast": "Correct \"RESTCONF\" vs wrong \"SNMP\": For \"rest api\", RESTCONF matches the required behavior — SNMP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Syslog as HTTPS config protocol",
+          "whyItSeems": "Syslog assigns a syslog severity or facility level that may reverse the lower-number-is-more-severe rule.",
+          "whyWrongHere": "For \"rest api\", RESTCONF matches the required behavior — Syslog answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HTTPS + YANG + REST verbs → RESTCONF; SSH + XML RPC → NETCONF.",
+          "contrast": "Correct \"RESTCONF\" vs wrong \"Syslog\": For \"rest api\", RESTCONF matches the required behavior — Syslog answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.5-source-q006",
@@ -2923,7 +4353,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "REST on CCNA = HTTP/HTTPS + verbs (GET/POST/PUT/PATCH/DELETE) + status codes."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "SNMP as REST transport",
+          "whyItSeems": "\"SNMP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", HTTP matches the required behavior — SNMP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "REST on CCNA = HTTP/HTTPS + verbs (GET/POST/PUT/PATCH/DELETE) + status codes.",
+          "contrast": "Correct \"HTTP\" vs wrong \"SNMP\": For \"rest api\", HTTP matches the required behavior — SNMP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SNTP as REST protocol",
+          "whyItSeems": "\"SNTP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", HTTP matches the required behavior — SNTP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "REST on CCNA = HTTP/HTTPS + verbs (GET/POST/PUT/PATCH/DELETE) + status codes.",
+          "contrast": "Correct \"HTTP\" vs wrong \"SNTP\": For \"rest api\", HTTP matches the required behavior — SNTP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "SOAP as default REST protocol",
+          "whyItSeems": "\"SOAP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", HTTP matches the required behavior — SOAP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "REST on CCNA = HTTP/HTTPS + verbs (GET/POST/PUT/PATCH/DELETE) + status codes.",
+          "contrast": "Correct \"HTTP\" vs wrong \"SOAP\": For \"rest api\", HTTP matches the required behavior — SOAP answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.5-source-q007",
@@ -2978,7 +4434,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DNA Center flow: POST /auth/token → X-Auth-Token header on subsequent REST calls."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Credentials in every REST request",
+          "whyItSeems": "Pass the username and password in every request. names a DHCP DORA message step that may not be the phase described in the stem.",
+          "whyWrongHere": "For \"rest api\", Send a POST to the API for an authentication token. matches the required behavior — Pass the username and password in every request. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNA Center flow: POST /auth/token → X-Auth-Token header on subsequent REST calls.",
+          "contrast": "Correct \"Send a POST to the API for an authentication token.\" vs wrong \"Pass the username and password in every request.\": For \"rest api\", Send a POST to the API for an authentication token."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "GET for authentication token",
+          "whyItSeems": "\"Send a GET to the API for an auth token.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", Send a POST to the API for an authentication token. matches the required behavior — Send a GET to the API for an auth token. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNA Center flow: POST /auth/token → X-Auth-Token header on subsequent REST calls.",
+          "contrast": "Correct \"Send a POST to the API for an authentication token.\" vs wrong \"Send a GET to the API for an auth token.\": For \"rest api\", Send a POST to the API for an authentication token."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Key pair auth for DNA Center API",
+          "whyItSeems": "\"Create a public private key pair for the Cisco DNA Center appliance.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", Send a POST to the API for an authentication token. matches the required behavior — Create a public private key pair for the Cisco DNA Center appliance. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNA Center flow: POST /auth/token → X-Auth-Token header on subsequent REST calls.",
+          "contrast": "Correct \"Send a POST to the API for an authentication token.\" vs wrong \"Create a public private key pair for the Cisco DNA Center appliance.\": For \"rest api\", Send a POST to the API for an authentication token."
+        }
+      ]
     },
     {
       "id": "obj-6.5-source-q008",
@@ -3029,7 +4511,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "CRUD ↔ HTTP: POST=Create | GET=Read | PUT/PATCH=Update | DELETE=Delete."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "CRUD as memory management",
+          "whyItSeems": "\"Memory cleanup\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", Data actions matches the required behavior — Memory cleanup answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "CRUD ↔ HTTP: POST=Create | GET=Read | PUT/PATCH=Update | DELETE=Delete.",
+          "contrast": "Correct \"Data actions\" vs wrong \"Memory cleanup\": For \"rest api\", Data actions matches the required behavior — Memory cleanup answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "CRUD as REST replacement",
+          "whyItSeems": "Replacement for REST-based APIs names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "Automation tooling (rest api): Data actions matches the API or tool named in the stem — Replacement for REST-based APIs swaps REST, NETCONF, or orchestration roles.",
+          "memoryAnchor": "CRUD ↔ HTTP: POST=Create | GET=Read | PUT/PATCH=Update | DELETE=Delete.",
+          "contrast": "Correct \"Data actions\" vs wrong \"Replacement for REST-based APIs\": Automation tooling (rest api): Data actions matches the API or tool named in the stem — Replacement for REST-based APIs swaps REST, NETCONF, or orchestration roles."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "CRUD as data encoding scheme",
+          "whyItSeems": "\"Data encoding\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", Data actions matches the required behavior — Data encoding answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "CRUD ↔ HTTP: POST=Create | GET=Read | PUT/PATCH=Update | DELETE=Delete.",
+          "contrast": "Correct \"Data actions\" vs wrong \"Data encoding\": For \"rest api\", Data actions matches the required behavior — Data encoding answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.5-source-q009",
@@ -3082,7 +4590,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Basic auth = Authorization: Basic <base64(user:pass)> on the token POST."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "AD integrated as REST token auth type",
+          "whyItSeems": "\"AD integrated\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", Basic matches the required behavior — AD integrated answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Basic auth = Authorization: Basic <base64(user:pass)> on the token POST.",
+          "contrast": "Correct \"Basic\" vs wrong \"AD integrated\": For \"rest api\", Basic matches the required behavior — AD integrated answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SSL as authentication type for token",
+          "whyItSeems": "\"SSL\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", Basic matches the required behavior — SSL answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Basic auth = Authorization: Basic <base64(user:pass)> on the token POST.",
+          "contrast": "Correct \"Basic\" vs wrong \"SSL\": For \"rest api\", Basic matches the required behavior — SSL answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Pass-through auth for DNA token",
+          "whyItSeems": "\"Pass-through\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", Basic matches the required behavior — Pass-through answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Basic auth = Authorization: Basic <base64(user:pass)> on the token POST.",
+          "contrast": "Correct \"Basic\" vs wrong \"Pass-through\": For \"rest api\", Basic matches the required behavior — Pass-through answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.5-source-q010",
@@ -3134,7 +4668,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "After auth POST → every call carries X-Auth-Token in the HTTP header."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Script variable without HTTP header",
+          "whyItSeems": "Add it as a variable named X-Auth-Token in the script. applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"rest api\", Place it in the header of the request as an X-Auth-Token element. matches the required behavior — Add it as a variable named X-Auth-Token in the script. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "After auth POST → every call carries X-Auth-Token in the HTTP header.",
+          "contrast": "Correct \"Place it in the header of the request as an X-Auth-Token element.\" vs wrong \"Add it as a variable named X-Auth-Token in the script.\": For \"rest api\", Place it in the header of the request as an X-Auth-Token element."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Token passed in URI query string",
+          "whyItSeems": "Pass the token in the URI of subsequent requests. names a DHCP DORA message step that may not be the phase described in the stem.",
+          "whyWrongHere": "For \"rest api\", Place it in the header of the request as an X-Auth-Token element. matches the required behavior — Pass the token in the URI of subsequent requests. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "After auth POST → every call carries X-Auth-Token in the HTTP header.",
+          "contrast": "Correct \"Place it in the header of the request as an X-Auth-Token element.\" vs wrong \"Pass the token in the URI of subsequent requests.\": For \"rest api\", Place it in the header of the request as an X-Auth-Token element."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Re-authenticate within 10 seconds per request",
+          "whyItSeems": "Perform a POST for the authentication token within 10 seconds of the subsequent request. names a DHCP DORA message step that may not be the phase described in the stem.",
+          "whyWrongHere": "For \"rest api\", Place it in the header of the request as an X-Auth-Token element. matches the required behavior — Perform a POST for the authentication token within 10 seconds of the subsequent request. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "After auth POST → every call carries X-Auth-Token in the HTTP header.",
+          "contrast": "Correct \"Place it in the header of the request as an X-Auth-Token element.\" vs wrong \"Perform a POST for the authentication token within 10 seconds of the subsequent request.\": For \"rest api\", Place it in the header of the request as an X-Auth-Token element."
+        }
+      ]
     },
     {
       "id": "obj-6.5-source-q011",
@@ -3190,7 +4750,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Basic auth stack: scheme = Basic | payload encoding = Base64(user:pass)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "SSL as credential encoding method",
+          "whyItSeems": "\"SSL\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", Base64 matches the required behavior — SSL answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Basic auth stack: scheme = Basic | payload encoding = Base64(user:pass).",
+          "contrast": "Correct \"Base64\" vs wrong \"SSL\": For \"rest api\", Base64 matches the required behavior — SSL answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "AAA as encoding for Basic auth",
+          "whyItSeems": "\"AAA\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", Base64 matches the required behavior — AAA answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Basic auth stack: scheme = Basic | payload encoding = Base64(user:pass).",
+          "contrast": "Correct \"Base64\" vs wrong \"AAA\": For \"rest api\", Base64 matches the required behavior — AAA answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Basic scheme name as encoding method",
+          "whyItSeems": "\"Basic\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", Base64 matches the required behavior — Basic answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Basic auth stack: scheme = Basic | payload encoding = Base64(user:pass).",
+          "contrast": "Correct \"Base64\" vs wrong \"Basic\": For \"rest api\", Base64 matches the required behavior — Basic answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.5-source-q012",
@@ -3244,7 +4830,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "YANG config path: RESTCONF (HTTPS/JSON) or NETCONF (SSH/XML) — not SNMP/OpenFlow."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "OpenFlow for YANG device config",
+          "whyItSeems": "\"OpenFlow\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", RESTCONF matches the required behavior — OpenFlow answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "YANG config path: RESTCONF (HTTPS/JSON) or NETCONF (SSH/XML) — not SNMP/OpenFlow.",
+          "contrast": "Correct \"RESTCONF\" vs wrong \"OpenFlow\": For \"rest api\", RESTCONF matches the required behavior — OpenFlow answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SNMP for YANG data model config",
+          "whyItSeems": "\"SNMP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", RESTCONF matches the required behavior — SNMP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "YANG config path: RESTCONF (HTTPS/JSON) or NETCONF (SSH/XML) — not SNMP/OpenFlow.",
+          "contrast": "Correct \"RESTCONF\" vs wrong \"SNMP\": For \"rest api\", RESTCONF matches the required behavior — SNMP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Generic REST instead of RESTCONF for YANG",
+          "whyItSeems": "REST-based API names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "Automation tooling (rest api): RESTCONF matches the API or tool named in the stem — REST-based API swaps REST, NETCONF, or orchestration roles.",
+          "memoryAnchor": "YANG config path: RESTCONF (HTTPS/JSON) or NETCONF (SSH/XML) — not SNMP/OpenFlow.",
+          "contrast": "Correct \"RESTCONF\" vs wrong \"REST-based API\": Automation tooling (rest api): RESTCONF matches the API or tool named in the stem — REST-based API swaps REST, NETCONF, or orchestration roles."
+        }
+      ]
     },
     {
       "id": "obj-6.5-source-q013",
@@ -3298,7 +4910,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "RESTCONF Accept/Content-Type: application/yang-data+json | application/yang-data+xml."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Generic JSON content type for RESTCONF",
+          "whyItSeems": "application/json names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "Automation tooling (rest api): application/yang-data+json matches the API or tool named in the stem — application/json swaps REST, NETCONF, or orchestration roles.",
+          "memoryAnchor": "RESTCONF Accept/Content-Type: application/yang-data+json | application/yang-data+xml.",
+          "contrast": "Correct \"application/yang-data+json\" vs wrong \"application/json\": Automation tooling (rest api): application/yang-data+json matches the API or tool named in the stem — application/json swaps REST, NETCONF, or orchestration roles."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Invented data/json content type",
+          "whyItSeems": "data/json names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "Automation tooling (rest api): application/yang-data+json matches the API or tool named in the stem — data/json swaps REST, NETCONF, or orchestration roles.",
+          "memoryAnchor": "RESTCONF Accept/Content-Type: application/yang-data+json | application/yang-data+xml.",
+          "contrast": "Correct \"application/yang-data+json\" vs wrong \"data/json\": Automation tooling (rest api): application/yang-data+json matches the API or tool named in the stem — data/json swaps REST, NETCONF, or orchestration roles."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "YAML content type for RESTCONF requests",
+          "whyItSeems": "data/yaml names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "Automation tooling (rest api): application/yang-data+json matches the API or tool named in the stem — data/yaml swaps REST, NETCONF, or orchestration roles.",
+          "memoryAnchor": "RESTCONF Accept/Content-Type: application/yang-data+json | application/yang-data+xml.",
+          "contrast": "Correct \"application/yang-data+json\" vs wrong \"data/yaml\": Automation tooling (rest api): application/yang-data+json matches the API or tool named in the stem — data/yaml swaps REST, NETCONF, or orchestration roles."
+        }
+      ]
     },
     {
       "id": "obj-6.5-source-q014",
@@ -3352,7 +4990,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Client format for 500",
+          "whyItSeems": "\"Format your response correctly.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", Restart the REST-based service. matches the required behavior — Format your response correctly. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Restart the REST-based service.\" vs wrong \"Format your response correctly.\": For \"rest api\", Restart the REST-based service."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "False belief that Auth for 500 — treating \"Authenticate to the device first.\" as if it satisfied the stem instead of \"Restart the REST-based service.\".",
+          "whyItSeems": "\"Authenticate to the device first.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", Restart the REST-based service. matches the required behavior — Authenticate to the device first. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Restart the REST-based service.\" vs wrong \"Authenticate to the device first.\": For \"rest api\", Restart the REST-based service."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "False belief that 500 means OK — treating \"Nothing; this code means OK.\" as if it satisfied the stem instead of \"Restart the REST-based service.\".",
+          "whyItSeems": "\"Nothing; this code means OK.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", Restart the REST-based service. matches the required behavior — Nothing; this code means OK. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Restart the REST-based service.\" vs wrong \"Nothing; this code means OK.\": For \"rest api\", Restart the REST-based service."
+        }
+      ]
     },
     {
       "id": "obj-6.5-source-q015",
@@ -3406,7 +5070,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "NBI for device RESTCONF",
+          "whyItSeems": "\"Northbound interface\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", Southbound interface matches the required behavior — Northbound interface answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Southbound interface\" vs wrong \"Northbound interface\": For \"rest api\", Southbound interface matches the required behavior — Northbound interface answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Eastbound for RESTCONF",
+          "whyItSeems": "\"Eastbound interface\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", Southbound interface matches the required behavior — Eastbound interface answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Southbound interface\" vs wrong \"Eastbound interface\": For \"rest api\", Southbound interface matches the required behavior — Eastbound interface answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Westbound for RESTCONF",
+          "whyItSeems": "\"Westbound interface\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", Southbound interface matches the required behavior — Westbound interface answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Southbound interface\" vs wrong \"Westbound interface\": For \"rest api\", Southbound interface matches the required behavior — Westbound interface answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.5-source-q016",
@@ -3457,7 +5147,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Status in HTTP body",
+          "whyItSeems": "\"HTTP body\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", HTTP header matches the required behavior — HTTP body answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"HTTP header\" vs wrong \"HTTP body\": For \"rest api\", HTTP header matches the required behavior — HTTP body answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Status as script variable",
+          "whyItSeems": "Script variable applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"rest api\", HTTP header matches the required behavior — Script variable answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"HTTP header\" vs wrong \"Script variable\": For \"rest api\", HTTP header matches the required behavior — Script variable answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Status as JSON object",
+          "whyItSeems": "Script data object applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"rest api\", HTTP header matches the required behavior — Script data object answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"HTTP header\" vs wrong \"Script data object\": For \"rest api\", HTTP header matches the required behavior — Script data object answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.5-source-q017",
@@ -3510,7 +5226,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "GET returns 201",
+          "whyItSeems": "\"GET\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", POST matches the required behavior — GET answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "REST: GET read · POST create · PUT/PATCH update · DELETE.",
+          "contrast": "Correct \"POST\" vs wrong \"GET\": For \"rest api\", POST matches the required behavior — GET answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "PATCH returns 201",
+          "whyItSeems": "PATCH implies many-inside-to-few-outside PAT/overload translation.",
+          "whyWrongHere": "For \"rest api\", POST matches the required behavior — PATCH answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "REST: GET read · POST create · PUT/PATCH update · DELETE.",
+          "contrast": "Correct \"POST\" vs wrong \"PATCH\": For \"rest api\", POST matches the required behavior — PATCH answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "DELETE returns 201",
+          "whyItSeems": "\"DELETE\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", POST matches the required behavior — DELETE answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "REST: GET read · POST create · PUT/PATCH update · DELETE.",
+          "contrast": "Correct \"POST\" vs wrong \"DELETE\": For \"rest api\", POST matches the required behavior — DELETE answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.5-source-q018",
@@ -3561,7 +5303,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Backslash starts query string",
+          "whyItSeems": "\"Backslash\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", Question mark matches the required behavior — Backslash answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Question mark\" vs wrong \"Backslash\": For \"rest api\", Question mark matches the required behavior — Backslash answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Forward slash starts query",
+          "whyItSeems": "\"Forward slash\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", Question mark matches the required behavior — Forward slash answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Question mark\" vs wrong \"Forward slash\": For \"rest api\", Question mark matches the required behavior — Forward slash answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Ampersand starts query",
+          "whyItSeems": "\"Ampersand\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", Question mark matches the required behavior — Ampersand answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Question mark\" vs wrong \"Ampersand\": For \"rest api\", Question mark matches the required behavior — Ampersand answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.5-source-q019",
@@ -3612,7 +5380,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "False belief that GET creates — treating \"GET\" as if it satisfied the stem instead of \"POST\".",
+          "whyItSeems": "\"GET\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", POST matches the required behavior — GET answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "REST: GET read · POST create · PUT/PATCH update · DELETE remove.",
+          "contrast": "Correct \"POST\" vs wrong \"GET\": For \"rest api\", POST matches the required behavior — GET answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented UPDATE verb",
+          "whyItSeems": "\"UPDATE\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", POST matches the required behavior — UPDATE answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "REST: GET read · POST create · PUT/PATCH update · DELETE remove.",
+          "contrast": "Correct \"POST\" vs wrong \"UPDATE\": For \"rest api\", POST matches the required behavior — UPDATE answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "False belief that PUT as insert — treating \"PUT\" as if it satisfied the stem instead of \"POST\".",
+          "whyItSeems": "\"PUT\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", POST matches the required behavior — PUT answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "REST: GET read · POST create · PUT/PATCH update · DELETE remove.",
+          "contrast": "Correct \"POST\" vs wrong \"PUT\": For \"rest api\", POST matches the required behavior — PUT answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.5-source-q020",
@@ -3664,7 +5458,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Missing params for 504",
+          "whyItSeems": "\"The command is missing parameters.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", The command has timed out. matches the required behavior — The command is missing parameters. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"The command has timed out.\" vs wrong \"The command is missing parameters.\": For \"rest api\", The command has timed out."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "403 for timeout",
+          "whyItSeems": "The command is restricted. names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "Automation tooling (rest api): The command has timed out. matches the API or tool named in the stem — The command is restricted. swaps REST, NETCONF, or orchestration roles.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"The command has timed out.\" vs wrong \"The command is restricted.\": Automation tooling (rest api): The command has timed out."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "503 vs 504 confusion",
+          "whyItSeems": "\"The service is down.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"rest api\", The command has timed out. matches the required behavior — The service is down. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"The command has timed out.\" vs wrong \"The service is down.\": For \"rest api\", The command has timed out."
+        }
+      ]
     }
   ],
   "6.6": [
@@ -3717,7 +5537,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Config management trio: Ansible (agentless) | Chef/Puppet (agent-based) — all enforce desired config."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "NMS role for Ansible/Chef/Puppet",
+          "whyItSeems": "\"Network management station\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Configuration management matches the required behavior — Network management station answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Config management trio: Ansible (agentless) | Chef/Puppet (agent-based) — all enforce desired config.",
+          "contrast": "Correct \"Configuration management\" vs wrong \"Network management station\": For \"configuration management\", Configuration management matches the required behavior — Network management station answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SDN as config management function",
+          "whyItSeems": "\"Software-defined networking\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Configuration management matches the required behavior — Software-defined networking answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Config management trio: Ansible (agentless) | Chef/Puppet (agent-based) — all enforce desired config.",
+          "contrast": "Correct \"Configuration management\" vs wrong \"Software-defined networking\": For \"configuration management\", Configuration management matches the required behavior — Software-defined networking answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Logging as config management",
+          "whyItSeems": "\"Centralized logging\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Configuration management matches the required behavior — Centralized logging answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Config management trio: Ansible (agentless) | Chef/Puppet (agent-based) — all enforce desired config.",
+          "contrast": "Correct \"Configuration management\" vs wrong \"Centralized logging\": For \"configuration management\", Configuration management matches the required behavior — Centralized logging answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.6-source-q002",
@@ -3770,7 +5616,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Config formats: Ansible = YAML | Chef = Ruby recipes | Puppet = manifest DSL."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "DNA Center as YAML config tool",
+          "whyItSeems": "\"Cisco DNA Center\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Ansible matches the required behavior — Cisco DNA Center answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Config formats: Ansible = YAML | Chef = Ruby recipes | Puppet = manifest DSL.",
+          "contrast": "Correct \"Ansible\" vs wrong \"Cisco DNA Center\": For \"configuration management\", Ansible matches the required behavior — Cisco DNA Center answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Chef as YAML-based tool",
+          "whyItSeems": "\"Chef\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Ansible matches the required behavior — Chef answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Config formats: Ansible = YAML | Chef = Ruby recipes | Puppet = manifest DSL.",
+          "contrast": "Correct \"Ansible\" vs wrong \"Chef\": For \"configuration management\", Ansible matches the required behavior — Chef answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Puppet as YAML config store",
+          "whyItSeems": "\"Puppet\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Ansible matches the required behavior — Puppet answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Config formats: Ansible = YAML | Chef = Ruby recipes | Puppet = manifest DSL.",
+          "contrast": "Correct \"Ansible\" vs wrong \"Puppet\": For \"configuration management\", Ansible matches the required behavior — Puppet answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.6-source-q003",
@@ -3822,7 +5694,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Ansible flow: inventory (hosts) → playbook (tasks) → modules (actions)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Playbook as connection definition",
+          "whyItSeems": "\"Playbook\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Inventory matches the required behavior — Playbook answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Ansible flow: inventory (hosts) → playbook (tasks) → modules (actions).",
+          "contrast": "Correct \"Inventory\" vs wrong \"Playbook\": For \"configuration management\", Inventory matches the required behavior — Playbook answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Settings file as host connection list",
+          "whyItSeems": "\"Settings\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Inventory matches the required behavior — Settings answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Ansible flow: inventory (hosts) → playbook (tasks) → modules (actions).",
+          "contrast": "Correct \"Inventory\" vs wrong \"Settings\": For \"configuration management\", Inventory matches the required behavior — Settings answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Modules as connection inventory",
+          "whyItSeems": "\"Modules\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Inventory matches the required behavior — Modules answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Ansible flow: inventory (hosts) → playbook (tasks) → modules (actions).",
+          "contrast": "Correct \"Inventory\" vs wrong \"Modules\": For \"configuration management\", Inventory matches the required behavior — Modules answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.6-source-q004",
@@ -3874,7 +5772,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Agentless → Ansible. Agent-based → Chef/Puppet clients on nodes."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Puppet as agentless tool",
+          "whyItSeems": "\"Puppet\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Ansible matches the required behavior — Puppet answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Ansible\" — not \"Puppet\" — for what this stem actually tests.",
+          "contrast": "Correct \"Ansible\" vs wrong \"Puppet\": For \"configuration management\", Ansible matches the required behavior — Puppet answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Chef as agentless tool",
+          "whyItSeems": "\"Chef\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Ansible matches the required behavior — Chef answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Ansible\" — not \"Chef\" — for what this stem actually tests.",
+          "contrast": "Correct \"Ansible\" vs wrong \"Chef\": For \"configuration management\", Ansible matches the required behavior — Chef answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "DNA Center as agentless config answer",
+          "whyItSeems": "\"Cisco DNA Center\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Ansible matches the required behavior — Cisco DNA Center answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Ansible\" — not \"Cisco DNA Center\" — for what this stem actually tests.",
+          "contrast": "Correct \"Ansible\" vs wrong \"Cisco DNA Center\": For \"configuration management\", Ansible matches the required behavior — Cisco DNA Center answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.6-source-q005",
@@ -3925,7 +5849,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Puppet: manifest = desired state | module = reusable bundle | agent = enforcer."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Puppet agent as config container",
+          "whyItSeems": "\"Agent\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Manifest matches the required behavior — Agent answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Puppet: manifest = desired state | module = reusable bundle | agent = enforcer.",
+          "contrast": "Correct \"Manifest\" vs wrong \"Agent\": For \"configuration management\", Manifest matches the required behavior — Agent answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Class as primary Puppet config file",
+          "whyItSeems": "\"Class\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Manifest matches the required behavior — Class answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Puppet: manifest = desired state | module = reusable bundle | agent = enforcer.",
+          "contrast": "Correct \"Manifest\" vs wrong \"Class\": For \"configuration management\", Manifest matches the required behavior — Class answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Module as manifest equivalent",
+          "whyItSeems": "\"Module\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Manifest matches the required behavior — Module answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Puppet: manifest = desired state | module = reusable bundle | agent = enforcer.",
+          "contrast": "Correct \"Manifest\" vs wrong \"Module\": For \"configuration management\", Manifest matches the required behavior — Module answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.6-source-q006",
@@ -3978,7 +5928,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Chef hierarchy: cookbook → recipes → applied by chef-client on nodes."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Cookbook as instruction set vs container",
+          "whyItSeems": "\"Cookbook\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Recipe matches the required behavior — Cookbook answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Chef hierarchy: cookbook → recipes → applied by chef-client on nodes.",
+          "contrast": "Correct \"Recipe\" vs wrong \"Cookbook\": For \"configuration management\", Recipe matches the required behavior — Cookbook answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Crock Pot as Chef component",
+          "whyItSeems": "\"Crock Pot\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Recipe matches the required behavior — Crock Pot answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Chef hierarchy: cookbook → recipes → applied by chef-client on nodes.",
+          "contrast": "Correct \"Recipe\" vs wrong \"Crock Pot\": For \"configuration management\", Recipe matches the required behavior — Crock Pot answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Chef node as instruction container",
+          "whyItSeems": "\"Chef Node\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Recipe matches the required behavior — Chef Node answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Chef hierarchy: cookbook → recipes → applied by chef-client on nodes.",
+          "contrast": "Correct \"Recipe\" vs wrong \"Chef Node\": For \"configuration management\", Recipe matches the required behavior — Chef Node answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.6-source-q007",
@@ -4029,7 +6005,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Chef fact chain: Ohai (collect) → Chef Server (store) → recipes use node data."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Chef-Client as fact collector",
+          "whyItSeems": "\"Chef-Client\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Ohai matches the required behavior — Chef-Client answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Chef fact chain: Ohai (collect) → Chef Server (store) → recipes use node data.",
+          "contrast": "Correct \"Ohai\" vs wrong \"Chef-Client\": For \"configuration management\", Ohai matches the required behavior — Chef-Client answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Workstation as system state reporter",
+          "whyItSeems": "\"Chef Workstation\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Ohai matches the required behavior — Chef Workstation answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Chef fact chain: Ohai (collect) → Chef Server (store) → recipes use node data.",
+          "contrast": "Correct \"Ohai\" vs wrong \"Chef Workstation\": For \"configuration management\", Ohai matches the required behavior — Chef Workstation answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Knife as state collection component",
+          "whyItSeems": "\"Knife\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Ohai matches the required behavior — Knife answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Chef fact chain: Ohai (collect) → Chef Server (store) → recipes use node data.",
+          "contrast": "Correct \"Ohai\" vs wrong \"Knife\": For \"configuration management\", Ohai matches the required behavior — Knife answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.6-source-q008",
@@ -4079,7 +6081,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Ansible config search: ANSIBLE_CONFIG env → ./ansible.cfg → ~/.ansible.cfg → /etc/ansible/ansible.cfg."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "ANSIBLE_SETTINGS as config path variable",
+          "whyItSeems": "ANSIBLE_SETTINGS names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "For \"configuration management\", ANSIBLE_CONFIG matches the required behavior — ANSIBLE_SETTINGS answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Ansible config search: ANSIBLE_CONFIG env → ./ansible.cfg → ~/.ansible.cfg → /etc/ansible/ansible.cfg.",
+          "contrast": "Correct \"ANSIBLE_CONFIG\" vs wrong \"ANSIBLE_SETTINGS\": For \"configuration management\", ANSIBLE_CONFIG matches the required behavior — ANSIBLE_SETTINGS answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Connection variable as ansible.cfg locator",
+          "whyItSeems": "ansible_connection names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "For \"configuration management\", ANSIBLE_CONFIG matches the required behavior — ansible_connection answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Ansible config search: ANSIBLE_CONFIG env → ./ansible.cfg → ~/.ansible.cfg → /etc/ansible/ansible.cfg.",
+          "contrast": "Correct \"ANSIBLE_CONFIG\" vs wrong \"ansible_connection\": For \"configuration management\", ANSIBLE_CONFIG matches the required behavior — ansible_connection answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Inventory path as settings file variable",
+          "whyItSeems": "/etc/ansible/hosts names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "For \"configuration management\", ANSIBLE_CONFIG matches the required behavior — /etc/ansible/hosts answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Ansible config search: ANSIBLE_CONFIG env → ./ansible.cfg → ~/.ansible.cfg → /etc/ansible/ansible.cfg.",
+          "contrast": "Correct \"ANSIBLE_CONFIG\" vs wrong \"/etc/ansible/hosts\": For \"configuration management\", ANSIBLE_CONFIG matches the required behavior — /etc/ansible/hosts answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.6-source-q009",
@@ -4129,7 +6157,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Before using a module: ansible-doc -l (list) | ansible-doc <name> (details)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "man as Ansible module documentation",
+          "whyItSeems": "\"man\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", ansible-doc matches the required behavior — man answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Before using a module: ansible-doc -l (list) | ansible-doc <name> (details).",
+          "contrast": "Correct \"ansible-doc\" vs wrong \"man\": For \"configuration management\", ansible-doc matches the required behavior — man answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "cat as module documentation command",
+          "whyItSeems": "\"cat\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", ansible-doc matches the required behavior — cat answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Before using a module: ansible-doc -l (list) | ansible-doc <name> (details).",
+          "contrast": "Correct \"ansible-doc\" vs wrong \"cat\": For \"configuration management\", ansible-doc matches the required behavior — cat answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Ad-hoc command as module documentation",
+          "whyItSeems": "\"ad-hoc\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", ansible-doc matches the required behavior — ad-hoc answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Before using a module: ansible-doc -l (list) | ansible-doc <name> (details).",
+          "contrast": "Correct \"ansible-doc\" vs wrong \"ad-hoc\": For \"configuration management\", ansible-doc matches the required behavior — ad-hoc answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.6-source-q010",
@@ -4180,7 +6234,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Ad-hoc pattern: ansible <host> -m <module> -a '<args>' — no playbook required."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Knife as Ansible quick-test tool",
+          "whyItSeems": "\"Knife interface\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Ad-hoc interface matches the required behavior — Knife interface answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Ad-hoc pattern: ansible <host> -m <module> -a '<args>' — no playbook required.",
+          "contrast": "Correct \"Ad-hoc interface\" vs wrong \"Knife interface\": For \"configuration management\", Ad-hoc interface matches the required behavior — Knife interface answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Playbook command for no-playbook testing",
+          "whyItSeems": "ansible_playbook command names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "For \"configuration management\", Ad-hoc interface matches the required behavior — ansible_playbook command answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Ad-hoc pattern: ansible <host> -m <module> -a '<args>' — no playbook required.",
+          "contrast": "Correct \"Ad-hoc interface\" vs wrong \"ansible_playbook command\": For \"configuration management\", Ad-hoc interface matches the required behavior — ansible_playbook command answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Tower as ad-hoc command interface",
+          "whyItSeems": "Ansible Tower names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "For \"configuration management\", Ad-hoc interface matches the required behavior — Ansible Tower answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Ad-hoc pattern: ansible <host> -m <module> -a '<args>' — no playbook required.",
+          "contrast": "Correct \"Ad-hoc interface\" vs wrong \"Ansible Tower\": For \"configuration management\", Ad-hoc interface matches the required behavior — Ansible Tower answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.6-source-q011",
@@ -4230,7 +6310,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Puppet: facts = discovered node data | manifests = desired state declarations."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Resource as Puppet node variables",
+          "whyItSeems": "\"Resource\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Facts matches the required behavior — Resource answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Puppet: facts = discovered node data | manifests = desired state declarations.",
+          "contrast": "Correct \"Facts\" vs wrong \"Resource\": For \"configuration management\", Facts matches the required behavior — Resource answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Class as Puppet fact store",
+          "whyItSeems": "\"Class\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Facts matches the required behavior — Class answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Puppet: facts = discovered node data | manifests = desired state declarations.",
+          "contrast": "Correct \"Facts\" vs wrong \"Class\": For \"configuration management\", Facts matches the required behavior — Class answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Module as Puppet fact name",
+          "whyItSeems": "\"Module\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Facts matches the required behavior — Module answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Puppet: facts = discovered node data | manifests = desired state declarations.",
+          "contrast": "Correct \"Facts\" vs wrong \"Module\": For \"configuration management\", Facts matches the required behavior — Module answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.6-source-q012",
@@ -4282,7 +6388,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Chef upload flow: Workstation knife cookbook upload → Server Bookshelf → Client pulls recipes."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Workstation as cookbook storage on server",
+          "whyItSeems": "\"Chef Workstation\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Bookshelf matches the required behavior — Chef Workstation answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Chef upload flow: Workstation knife cookbook upload → Server Bookshelf → Client pulls recipes.",
+          "contrast": "Correct \"Bookshelf\" vs wrong \"Chef Workstation\": For \"configuration management\", Bookshelf matches the required behavior — Chef Workstation answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Node as cookbook upload destination",
+          "whyItSeems": "\"Chef Node\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Bookshelf matches the required behavior — Chef Node answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Chef upload flow: Workstation knife cookbook upload → Server Bookshelf → Client pulls recipes.",
+          "contrast": "Correct \"Bookshelf\" vs wrong \"Chef Node\": For \"configuration management\", Bookshelf matches the required behavior — Chef Node answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Client as cookbook repository",
+          "whyItSeems": "\"Chef-Client\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Bookshelf matches the required behavior — Chef-Client answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Chef upload flow: Workstation knife cookbook upload → Server Bookshelf → Client pulls recipes.",
+          "contrast": "Correct \"Bookshelf\" vs wrong \"Chef-Client\": For \"configuration management\", Bookshelf matches the required behavior — Chef-Client answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.6-source-q013",
@@ -4333,7 +6465,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Ansible stack: ansible (engine) + Tower/AWX (GUI, RBAC, scheduling)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Chef as Red Hat RBAC controller",
+          "whyItSeems": "\"Chef\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Ansible Tower matches the required behavior — Chef answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Ansible stack: ansible (engine) + Tower/AWX (GUI, RBAC, scheduling).",
+          "contrast": "Correct \"Ansible Tower\" vs wrong \"Chef\": For \"configuration management\", Ansible Tower matches the required behavior — Chef answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Puppet as Ansible Tower equivalent",
+          "whyItSeems": "\"Puppet\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Ansible Tower matches the required behavior — Puppet answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Ansible stack: ansible (engine) + Tower/AWX (GUI, RBAC, scheduling).",
+          "contrast": "Correct \"Ansible Tower\" vs wrong \"Puppet\": For \"configuration management\", Ansible Tower matches the required behavior — Puppet answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Core Ansible as RBAC management platform",
+          "whyItSeems": "Ansible names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "For \"configuration management\", Ansible Tower matches the required behavior — Ansible answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Ansible stack: ansible (engine) + Tower/AWX (GUI, RBAC, scheduling).",
+          "contrast": "Correct \"Ansible Tower\" vs wrong \"Ansible\": For \"configuration management\", Ansible Tower matches the required behavior — Ansible answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.6-source-q014",
@@ -4385,7 +6543,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Puppet as easiest Cisco CM",
+          "whyItSeems": "\"Puppet\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Ansible matches the required behavior — Puppet answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Ansible\" vs wrong \"Puppet\": For \"configuration management\", Ansible matches the required behavior — Puppet answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Python as CM utility",
+          "whyItSeems": "\"Chef\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Ansible matches the required behavior — Chef answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Ansible\" vs wrong \"Chef\": For \"configuration management\", Ansible matches the required behavior — Chef answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Chef as easiest setup",
+          "whyItSeems": "Python names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "For \"configuration management\", Ansible matches the required behavior — Python answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Ansible\" vs wrong \"Python\": For \"configuration management\", Ansible matches the required behavior — Python answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.6-source-q015",
@@ -4436,7 +6620,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Knife as bookshelf storage",
+          "whyItSeems": "\"Storage of the Bookshelf\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", CLI utility for the management of Chef matches the required behavior — Storage of the Bookshelf answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"CLI utility for the management of Chef\" vs wrong \"Storage of the Bookshelf\": For \"configuration management\", CLI utility for the management of Chef matches the required behavior — Storage of the Bookshelf answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Knife as server config store",
+          "whyItSeems": "\"Storage of the configuration of Chef\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", CLI utility for the management of Chef matches the required behavior — Storage of the configuration of Chef answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"CLI utility for the management of Chef\" vs wrong \"Storage of the configuration of Chef\": For \"configuration management\", CLI utility for the management of Chef matches the required behavior — Storage of the configuration of Chef answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Knife as node agent",
+          "whyItSeems": "\"Client-side agent\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", CLI utility for the management of Chef matches the required behavior — Client-side agent answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"CLI utility for the management of Chef\" vs wrong \"Client-side agent\": For \"configuration management\", CLI utility for the management of Chef matches the required behavior — Client-side agent answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.6-source-q016",
@@ -4487,7 +6697,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "IaaS for config drift",
+          "whyItSeems": "\"IaaS helps maintain configuration over the life cycle of the host.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", IaC solutions prevent drift with Idempotence. matches the required behavior — IaaS helps maintain configuration over the life cycle of the host. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"IaC solutions prevent drift with Idempotence.\" vs wrong \"IaaS helps maintain configuration over the life cycle of the host.\": For \"configuration management\", IaC solutions prevent drift with Idempotence."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "NTP prevents drift",
+          "whyItSeems": "\"Configuration management prevents drift with NTP.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", IaC solutions prevent drift with Idempotence. matches the required behavior — Configuration management prevents drift with NTP. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"IaC solutions prevent drift with Idempotence.\" vs wrong \"Configuration management prevents drift with NTP.\": For \"configuration management\", IaC solutions prevent drift with Idempotence."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Per-host licensing required",
+          "whyItSeems": "\"Configuration management software requires per-host licensing.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", IaC solutions prevent drift with Idempotence. matches the required behavior — Configuration management software requires per-host licensing. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"IaC solutions prevent drift with Idempotence.\" vs wrong \"Configuration management software requires per-host licensing.\": For \"configuration management\", IaC solutions prevent drift with Idempotence."
+        }
+      ]
     },
     {
       "id": "obj-6.6-source-q017",
@@ -4539,7 +6775,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "False belief that Chef easiest — treating \"Chef\" as if it satisfied the stem instead of \"Ansible\".",
+          "whyItSeems": "\"Chef\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Ansible matches the required behavior — Chef answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Ansible = agentless + YAML — usually simplest CM start vs Puppet/Chef.",
+          "contrast": "Correct \"Ansible\" vs wrong \"Chef\": For \"configuration management\", Ansible matches the required behavior — Chef answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "False belief that Puppet easiest — treating \"Puppet\" as if it satisfied the stem instead of \"Ansible\".",
+          "whyItSeems": "\"Puppet\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Ansible matches the required behavior — Puppet answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Ansible = agentless + YAML — usually simplest CM start vs Puppet/Chef.",
+          "contrast": "Correct \"Ansible\" vs wrong \"Puppet\": For \"configuration management\", Ansible matches the required behavior — Puppet answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "False belief that DNA easiest CM — treating \"Cisco DNA Center\" as if it satisfied the stem instead of \"Ansible\".",
+          "whyItSeems": "\"Cisco DNA Center\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", Ansible matches the required behavior — Cisco DNA Center answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Ansible = agentless + YAML — usually simplest CM start vs Puppet/Chef.",
+          "contrast": "Correct \"Ansible\" vs wrong \"Cisco DNA Center\": For \"configuration management\", Ansible matches the required behavior — Cisco DNA Center answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.6-source-q018",
@@ -4592,7 +6854,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "YAML as module format",
+          "whyItSeems": "YAML names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "For \"configuration management\", JSON matches the required behavior — YAML answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Ansible: playbooks = YAML; know exam wording for module packaging formats.",
+          "contrast": "Correct \"JSON\" vs wrong \"YAML\": For \"configuration management\", JSON matches the required behavior — YAML answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "CSV as module format",
+          "whyItSeems": "\"CSV\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration management\", JSON matches the required behavior — CSV answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Ansible: playbooks = YAML; know exam wording for module packaging formats.",
+          "contrast": "Correct \"JSON\" vs wrong \"CSV\": For \"configuration management\", JSON matches the required behavior — CSV answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "XML as module format",
+          "whyItSeems": "XML names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "For \"configuration management\", JSON matches the required behavior — XML answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Ansible: playbooks = YAML; know exam wording for module packaging formats.",
+          "contrast": "Correct \"JSON\" vs wrong \"XML\": For \"configuration management\", JSON matches the required behavior — XML answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.7-source-q001",
@@ -4642,7 +6930,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Definition element",
+          "whyItSeems": "\"Definition\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"json\", Mapping matches the required behavior — Definition answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Structured data: JSON {/[ · YAML indent/--- · XML tags.",
+          "contrast": "Correct \"Mapping\" vs wrong \"Definition\": For \"json\", Mapping matches the required behavior — Definition answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Lists for key-value",
+          "whyItSeems": "\"Lists\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"json\", Mapping matches the required behavior — Lists answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Structured data: JSON {/[ · YAML indent/--- · XML tags.",
+          "contrast": "Correct \"Mapping\" vs wrong \"Lists\": For \"json\", Mapping matches the required behavior — Lists answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Keys element type",
+          "whyItSeems": "\"Keys\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"json\", Mapping matches the required behavior — Keys answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Structured data: JSON {/[ · YAML indent/--- · XML tags.",
+          "contrast": "Correct \"Mapping\" vs wrong \"Keys\": For \"json\", Mapping matches the required behavior — Keys answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.7-source-q002",
@@ -4692,7 +7006,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Hashbang for YAML",
+          "whyItSeems": "\"The file begins with a hashbang preprocessor.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", The file begins with three dashes. matches the required behavior — The file begins with a hashbang preprocessor. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Structured data: JSON {/[ · YAML indent/--- · XML tags.",
+          "contrast": "Correct \"The file begins with three dashes.\" vs wrong \"The file begins with a hashbang preprocessor.\": For \"identify\", The file begins with three dashes."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Curly brackets for YAML",
+          "whyItSeems": "\"The contents are contained between curly brackets.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", The file begins with three dashes. matches the required behavior — The contents are contained between curly brackets. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Structured data: JSON {/[ · YAML indent/--- · XML tags.",
+          "contrast": "Correct \"The file begins with three dashes.\" vs wrong \"The contents are contained between curly brackets.\": For \"identify\", The file begins with three dashes."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Square brackets for YAML",
+          "whyItSeems": "\"The contents are contained between square brackets.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", The file begins with three dashes. matches the required behavior — The contents are contained between square brackets. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Structured data: JSON {/[ · YAML indent/--- · XML tags.",
+          "contrast": "Correct \"The file begins with three dashes.\" vs wrong \"The contents are contained between square brackets.\": For \"identify\", The file begins with three dashes."
+        }
+      ]
     },
     {
       "id": "obj-6.7-source-q003",
@@ -4742,7 +7082,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "YAML resembles HTML",
+          "whyItSeems": "YAML names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "For \"structured\", XML matches the required behavior — YAML answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"XML\" vs wrong \"YAML\": For \"structured\", XML matches the required behavior — YAML answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "JSON resembles HTML",
+          "whyItSeems": "JSON names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "For \"structured\", XML matches the required behavior — JSON answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"XML\" vs wrong \"JSON\": For \"structured\", XML matches the required behavior — JSON answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "CSV resembles HTML",
+          "whyItSeems": "\"CSV\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"structured\", XML matches the required behavior — CSV answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"XML\" vs wrong \"CSV\": For \"structured\", XML matches the required behavior — CSV answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.7-source-q004",
@@ -4792,7 +7158,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "JSON whitespace structure",
+          "whyItSeems": "JSON names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "For \"structured\", YAML matches the required behavior — JSON answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"YAML\" vs wrong \"JSON\": For \"structured\", YAML matches the required behavior — JSON answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "XML whitespace structure",
+          "whyItSeems": "XML names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "For \"structured\", YAML matches the required behavior — XML answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"YAML\" vs wrong \"XML\": For \"structured\", YAML matches the required behavior — XML answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "CSV whitespace nesting",
+          "whyItSeems": "\"CSV\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"structured\", YAML matches the required behavior — CSV answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"YAML\" vs wrong \"CSV\": For \"structured\", YAML matches the required behavior — CSV answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.7-source-q005",
@@ -4842,7 +7234,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "YAML dashes as JSON",
+          "whyItSeems": "\"Three dashes\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", A curly bracket matches the required behavior — Three dashes answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"A curly bracket\" — not \"Three dashes\" — for what this stem actually tests.",
+          "contrast": "Correct \"A curly bracket\" vs wrong \"Three dashes\": For \"identify\", A curly bracket matches the required behavior — Three dashes answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Array as object start",
+          "whyItSeems": "\"A square bracket\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", A curly bracket matches the required behavior — A square bracket answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"A curly bracket\" — not \"A square bracket\" — for what this stem actually tests.",
+          "contrast": "Correct \"A curly bracket\" vs wrong \"A square bracket\": For \"identify\", A curly bracket matches the required behavior — A square bracket answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Quote as JSON start",
+          "whyItSeems": "\"A double quote\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", A curly bracket matches the required behavior — A double quote answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"A curly bracket\" — not \"A double quote\" — for what this stem actually tests.",
+          "contrast": "Correct \"A curly bracket\" vs wrong \"A double quote\": For \"identify\", A curly bracket matches the required behavior — A double quote answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-6.7-source-q006",
@@ -4892,7 +7310,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Bracket introduces single value",
+          "whyItSeems": "\"The value that follows the square bracket is the value you are looking for.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"concluded\", There are several key-value pairs for the key you need. matches the required behavior — The value that follows the square bracket is the value you are looking for. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"There are several key-value pairs for the key you need.\" vs wrong \"The value that follows the square bracket is the value you are looking for.\": For \"concluded\", There are several key-value pairs for the key you need."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Bracket closes value",
+          "whyItSeems": "\"The value is after the matching square bracket.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"concluded\", There are several key-value pairs for the key you need. matches the required behavior — The value is after the matching square bracket. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"There are several key-value pairs for the key you need.\" vs wrong \"The value is after the matching square bracket.\": For \"concluded\", There are several key-value pairs for the key you need."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Unknown value from bracket",
+          "whyItSeems": "\"The value is unknown.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"concluded\", There are several key-value pairs for the key you need. matches the required behavior — The value is unknown. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"There are several key-value pairs for the key you need.\" vs wrong \"The value is unknown.\": For \"concluded\", There are several key-value pairs for the key you need."
+        }
+      ]
     },
     {
       "id": "obj-6.7-source-q007",
@@ -4945,7 +7389,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Fa0/1 capitalization invalid",
+          "whyItSeems": "The interface of Fa0/1 is capitalized. states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (interface): There is a missing curly bracket. matches prefix, shortening, or assignment rules — The interface of Fa0/1 is capitalized. breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"There is a missing curly bracket.\" vs wrong \"The interface of Fa0/1 is capitalized.\": IPv6 addressing (interface): There is a missing curly bracket."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "address needs array",
+          "whyItSeems": "\"The address should have a square bracket.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"interface\", There is a missing curly bracket. matches the required behavior — The address should have a square bracket. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"There is a missing curly bracket.\" vs wrong \"The address should have a square bracket.\": For \"interface\", There is a missing curly bracket."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Nothing wrong in JSON",
+          "whyItSeems": "\"Nothing is wrong.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"interface\", There is a missing curly bracket. matches the required behavior — Nothing is wrong. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"There is a missing curly bracket.\" vs wrong \"Nothing is wrong.\": For \"interface\", There is a missing curly bracket."
+        }
+      ]
     },
     {
       "id": "obj-6.7-source-q008",
@@ -4995,7 +7465,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "JSON spaces in values vs CSV",
+          "whyItSeems": "\"Values can be used that contain spaces.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"advantage\", Hierarchical structure allows for programmability. matches the required behavior — Values can be used that contain spaces. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Hierarchical structure allows for programmability.\" vs wrong \"Values can be used that contain spaces.\": For \"advantage\", Hierarchical structure allows for programmability."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Multiple values per CSV key",
+          "whyItSeems": "\"There are multiple values for a particular key.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"advantage\", Hierarchical structure allows for programmability. matches the required behavior — There are multiple values for a particular key. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Hierarchical structure allows for programmability.\" vs wrong \"There are multiple values for a particular key.\": For \"advantage\", Hierarchical structure allows for programmability."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Line-by-line as JSON advantage",
+          "whyItSeems": "\"The files can be read line by line for every value.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"advantage\", Hierarchical structure allows for programmability. matches the required behavior — The files can be read line by line for every value. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Hierarchical structure allows for programmability.\" vs wrong \"The files can be read line by line for every value.\": For \"advantage\", Hierarchical structure allows for programmability."
+        }
+      ]
     },
     {
       "id": "obj-6.7-source-q009",
@@ -5048,7 +7544,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "XML DNA response",
+          "whyItSeems": "XML names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "Automation tooling (information): JSON matches the API or tool named in the stem — XML swaps REST, NETCONF, or orchestration roles.",
+          "memoryAnchor": "DNA Center REST → JSON request/response bodies.",
+          "contrast": "Correct \"JSON\" vs wrong \"XML\": Automation tooling (information): JSON matches the API or tool named in the stem — XML swaps REST, NETCONF, or orchestration roles."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "CSV DNA response",
+          "whyItSeems": "\"CSV\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"information\", JSON matches the required behavior — CSV answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNA Center REST → JSON request/response bodies.",
+          "contrast": "Correct \"JSON\" vs wrong \"CSV\": For \"information\", JSON matches the required behavior — CSV answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "YAML DNA response",
+          "whyItSeems": "YAML names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "Automation tooling (information): JSON matches the API or tool named in the stem — YAML swaps REST, NETCONF, or orchestration roles.",
+          "memoryAnchor": "DNA Center REST → JSON request/response bodies.",
+          "contrast": "Correct \"JSON\" vs wrong \"YAML\": Automation tooling (information): JSON matches the API or tool named in the stem — YAML swaps REST, NETCONF, or orchestration roles."
+        }
+      ]
     },
     {
       "id": "obj-6.7-source-q010",
@@ -5100,7 +7622,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Comma after routes key only",
+          "whyItSeems": "\"The interface data is incorrect because it is missing a comma after the routes.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route. matches the required behavior — The interface data is incorrect because it is missing a comma after the routes. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"The interface data is incorrect because it is missing a set of square brackets around the second route.\" vs wrong \"The interface data is incorrect because it is missing a comma after the routes.\": For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Underscore invalid in JSON",
+          "whyItSeems": "\"The interface data is incorrect because it contains an illegal underscore character.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route. matches the required behavior — The interface data is incorrect because it contains an illegal underscore character. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"The interface data is incorrect because it is missing a set of square brackets around the second route.\" vs wrong \"The interface data is incorrect because it contains an illegal underscore character.\": For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Valid JSON exhibit",
+          "whyItSeems": "\"Nothing is wrong with the exhibit.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route. matches the required behavior — Nothing is wrong with the exhibit. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"The interface data is incorrect because it is missing a set of square brackets around the second route.\" vs wrong \"Nothing is wrong with the exhibit.\": For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route."
+        }
+      ]
     },
     {
       "id": "obj-6.7-source-q011",
@@ -5152,7 +7700,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Missing comma after defaultgw",
+          "whyItSeems": "\"The interface data is incorrect because it is missing a comma after defaultgw.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"ipaddress\", Nothing is wrong with the exhibit. matches the required behavior — The interface data is incorrect because it is missing a comma after defaultgw. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Nothing is wrong with the exhibit.\" vs wrong \"The interface data is incorrect because it is missing a comma after defaultgw.\": For \"ipaddress\", Nothing is wrong with the exhibit."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Missing subnet for second IP",
+          "whyItSeems": "The interface data is incorrect because it is missing a subnet mask for the second IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"ipaddress\", Nothing is wrong with the exhibit. matches the required behavior — The interface data is incorrect because it is missing a subnet mask for the second IP address. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Nothing is wrong with the exhibit.\" vs wrong \"The interface data is incorrect because it is missing a subnet mask for the second IP address.\": For \"ipaddress\", Nothing is wrong with the exhibit."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Underscore illegal",
+          "whyItSeems": "\"The interface data is incorrect because it contains an illegal underscore character.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"ipaddress\", Nothing is wrong with the exhibit. matches the required behavior — The interface data is incorrect because it contains an illegal underscore character. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
+          "contrast": "Correct \"Nothing is wrong with the exhibit.\" vs wrong \"The interface data is incorrect because it contains an illegal underscore character.\": For \"ipaddress\", Nothing is wrong with the exhibit."
+        }
+      ]
     },
     {
       "id": "obj-6.7-source-q012",
@@ -5204,7 +7778,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Comma after defaultgw primary issue",
+          "whyItSeems": "\"The interface data is incorrect because it is missing a comma after defaultgw.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"interface\", The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses. matches the required behavior — The interface data is incorrect because it is missing a comma after defaultgw. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Structured data: JSON {/[ · YAML indent/--- · XML tags.",
+          "contrast": "Correct \"The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses.\" vs wrong \"The interface data is incorrect because it is missing a comma after defaultgw.\": For \"interface\", The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Underscore invalid",
+          "whyItSeems": "\"The interface data is incorrect because it contains an illegal underscore character.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"interface\", The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses. matches the required behavior — The interface data is incorrect because it contains an illegal underscore character. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Structured data: JSON {/[ · YAML indent/--- · XML tags.",
+          "contrast": "Correct \"The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses.\" vs wrong \"The interface data is incorrect because it contains an illegal underscore character.\": For \"interface\", The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Valid JSON exhibit",
+          "whyItSeems": "\"Nothing is wrong with the exhibit.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"interface\", The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses. matches the required behavior — Nothing is wrong with the exhibit. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Structured data: JSON {/[ · YAML indent/--- · XML tags.",
+          "contrast": "Correct \"The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses.\" vs wrong \"Nothing is wrong with the exhibit.\": For \"interface\", The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses."
+        }
+      ]
     }
   ]
 }

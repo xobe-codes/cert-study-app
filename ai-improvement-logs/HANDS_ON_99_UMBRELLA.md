@@ -1,6 +1,6 @@
 # Hands-On 99 — Umbrella Plan (v1 · recommended)
 
-**Status:** Spec / plan only — judge’s pick for you to tweak  
+**Status:** Implemented through P2 (P3 polish remains optional)
 **North star:** One path from lesson → command recall → lab → timed skills exam, without rebuilding Packet Tracer.
 
 ---

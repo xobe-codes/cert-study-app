@@ -51,7 +51,7 @@ describe('stemReplayLabs', () => {
   it('maps NAT/PAT, trunk, routing, and STP questions to real labs', () => {
     const cases = [
       ['4.1-c-q2', 'LAB-NAT-PAT'],
-      ['2.2-c-q1', 'LAB-VLAN-TRUNK'],
+      ['2.2-c-q1', 'LAB-D22-22'],
       ['3.2-c-q1', 'LAB-31-ROUTE-INTERPRET'],
       ['2.5-c-q1', 'LAB-STP-ROOT'],
       ['2.1-c-q1', 'LAB-INTERVLAN-SVI'],
@@ -124,7 +124,7 @@ describe('stemReplayLabs', () => {
   it('resolves config stem-replay targets to interpret-only lab-lite labs', () => {
     const liteCases = [
       ['2.5-c-q5', 'LAB-STP-PORTFAST'],
-      ['3.2-c-q2', 'LAB-STATIC-FLOATING'],
+      ['3.2-c-q2', 'LAB-31-ROUTE-INTERPRET'],
       ['obj-2.3-source-q001', 'LAB-LLDP'],
       ['obj-4.4-source-q001', 'LAB-SNMP'],
       ['2.2-c-q2', 'LAB-D22-22'],

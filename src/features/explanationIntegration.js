@@ -1,4 +1,3 @@
-import regeneratedExplanations from '../answerReview/regeneratedExplanations.json' with { type: 'json' }
 import {
   isFallbackExplanation,
   isTemplateWhyWrongHere,
@@ -30,11 +29,15 @@ function regenItemPassesQuality(item) {
   return true
 }
 
-/** Per-choice regen lookup for generateAnswerReview merge. */
-export function regenIncorrectFor(questionId, choiceIndex) {
-  const regen = regeneratedExplanations[questionId]
-  if (!regen?.incorrect) return null
-  const raw = regen.incorrect.find(exp => exp.choiceIndex === choiceIndex)
+/**
+ * Per-choice regen lookup for generateAnswerReview merge.
+ * Regen travels with the lazy-loaded clean-bank question so the 99-spec corpus
+ * stays in per-domain chunks instead of inflating the startup core bundle.
+ */
+export function regenIncorrectFor(question, choiceIndex) {
+  const incorrect = question?.regeneratedIncorrect
+  if (!Array.isArray(incorrect)) return null
+  const raw = incorrect.find(exp => exp.choiceIndex === choiceIndex)
   if (!raw) return null
   const mapped = mapRegenToIncorrectItem(raw)
   return regenItemPassesQuality(mapped) ? mapped : null
@@ -44,17 +47,12 @@ export function regenIncorrectFor(questionId, choiceIndex) {
  * Apply 99-spec regenerated explanations to quiz questions.
  * Merges high-quality wrong-answer explanations into question data at render time.
  */
-export function applyRegenExplanations(question, questionId) {
-  if (!question || !regeneratedExplanations[questionId]) {
-    return question
-  }
-
-  const regen = regeneratedExplanations[questionId]
-  if (!regen.incorrect) return question
+export function applyRegenExplanations(question) {
+  if (!question || !Array.isArray(question.regeneratedIncorrect)) return question
 
   return {
     ...question,
-    explanations: regen.incorrect.map(exp => ({
+    explanations: question.regeneratedIncorrect.map(exp => ({
       ...exp,
       // Map choiceIndex to the actual choice text
       choice: question.choices?.[exp.choiceIndex],
@@ -66,29 +64,28 @@ export function applyRegenExplanations(question, questionId) {
  * Get 99-spec explanation for a specific choice.
  * Used in ExplainMistake and wrong-answer reveal flows.
  */
-export function getChoiceExplanation(questionId, choiceIndex) {
-  const regen = regeneratedExplanations[questionId]
-  if (!regen?.incorrect) return null
-
-  return regen.incorrect.find(exp => exp.choiceIndex === choiceIndex)
+export function getChoiceExplanation(question, choiceIndex) {
+  if (!Array.isArray(question?.regeneratedIncorrect)) return null
+  return question.regeneratedIncorrect.find(exp => exp.choiceIndex === choiceIndex)
 }
 
 /**
  * Check if a question has regenerated explanations.
  */
-export function hasRegenExplanations(questionId) {
-  return !!regeneratedExplanations[questionId]?.incorrect
+export function hasRegenExplanations(question) {
+  return Array.isArray(question?.regeneratedIncorrect)
+    && question.regeneratedIncorrect.length > 0
 }
 
 /**
  * Get stats on regenerated explanations coverage.
  */
-export function getRegenStats() {
+export function getRegenStats(questions = []) {
   return {
-    totalQuestionsRegen: Object.keys(regeneratedExplanations).length,
-    totalChoicesRegen: Object.values(regeneratedExplanations).reduce(
-      (sum, item) => sum + (item.incorrect?.length || 0),
-      0
+    totalQuestionsRegen: questions.filter(hasRegenExplanations).length,
+    totalChoicesRegen: questions.reduce(
+      (sum, question) => sum + (question.regeneratedIncorrect?.length || 0),
+      0,
     ),
   }
 }

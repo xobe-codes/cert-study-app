@@ -47,7 +47,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Router = Layer 3. Switch = Layer 2. Firewall can span L3–L7."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes think 'physical connectivity' is the layer that defines router operation, since routers have visible physical ports.",
+          "whyItSeems": "Routers connect via cables and have physical interfaces, so it's tempting to associate their 'primary' function with the visible physical layer.",
+          "whyWrongHere": "This question asks where a router primarily operates, meaning the layer it makes forwarding decisions at. A router has Layer 1 ports, but its defining job is reading the destination IP address and choosing an outbound interface via its routing table — that's Layer 3. Layer 1 only handles electrical/optical signaling with no address awareness at all.",
+          "memoryAnchor": "'Primarily operates at' means 'makes its forwarding decision at' — for a router, that's Layer 3 (IP), not the physical wire.",
+          "contrast": "Layer 1 devices (hubs, cables) move bits with zero address awareness; a router reads the IP header and picks a path — a fundamentally different, address-based decision."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Students blend switch and router behavior because both are 'forwarding devices,' so they assume a router forwards like a switch at Layer 2.",
+          "whyItSeems": "Layer 2 is a commonly tested layer, and routers sometimes have switch-like ports on multilayer models, so it feels plausible.",
+          "whyWrongHere": "Layer 2 is where switches forward frames using MAC addresses within one broadcast domain. A router's job is different — it moves traffic between networks by reading the Layer 3 IP header. If a router only worked at Layer 2, it couldn't route between subnets at all; it would just be a switch.",
+          "memoryAnchor": "MAC address decisions = Layer 2 = switch. IP address decisions = Layer 3 = router.",
+          "contrast": "A switch never rewrites MAC addresses or crosses subnet boundaries; a router rewrites the Layer 2 header at every hop and forwards based on the Layer 3 destination."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners sometimes think 'smart' devices must operate at the application layer because that's the most feature-rich, 'advanced' layer.",
+          "whyItSeems": "Modern routers can have application-aware features, which can make Layer 7 feel like a tempting 'advanced' answer.",
+          "whyWrongHere": "Layer 7 is where applications like HTTP and DNS operate — that's about the meaning of data, not choosing a network path. A basic router's core forwarding decision never looks at application data; it only reads the Layer 3 IP header to decide where to send the packet next.",
+          "memoryAnchor": "Layer 7 = what the data means to an application. Layer 3 = where the packet goes on the network. Routing is a Layer 3 job.",
+          "contrast": "Application-layer devices interpret payload content (URLs, DNS names); a router ignores payload and only reads the IP header to forward."
+        }
+      ]
     },
     {
       "id": "1.1-c-q2",
@@ -95,7 +121,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Switch forwards with MAC table. Router forwards with routing table."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners sometimes assume any 'forwarding table' is a routing table because that's the more familiar term from router configuration.",
+          "whyItSeems": "Both switches and routers 'forward' traffic, and 'routing table' is the term most students learn first, so it gets applied loosely to any forwarding device.",
+          "whyWrongHere": "This question is specifically about a Layer 2 switch forwarding frames within a LAN. A routing table maps IP networks to next-hop addresses for Layer 3 devices — a switch doesn't look at IP addresses when forwarding; it checks the destination MAC against its learned MAC address table.",
+          "memoryAnchor": "Routing table = Layer 3, IP-based, lives on routers. MAC address table = Layer 2, lives on switches.",
+          "contrast": "A routing table entry points to a next-hop IP over an interface; a MAC table entry just maps a MAC address to a local switch port — no IP involved."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes conflate 'table the device consults' with DNS because DNS is the most familiar lookup mechanism from everyday networking.",
+          "whyItSeems": "Both a MAC table and a DNS cache are lookup structures mapping one identifier to another, so the general shape invites confusion.",
+          "whyWrongHere": "DNS resolves human-readable names to IP addresses at Layer 7 — it has nothing to do with how a switch decides which physical port to send a frame out of. A switch forwarding a frame never consults DNS; it reads the frame's destination MAC and checks its own MAC table.",
+          "memoryAnchor": "DNS = names to IPs (Layer 7). MAC table = MACs to switch ports (Layer 2). Totally different jobs.",
+          "contrast": "DNS cache entries expire and are queried over the network; a MAC table is built locally and instantly from frames the switch has already seen."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students associate the 'list' or 'table' a switch checks with an ACL because ACLs are also a lookup switches consult before acting on traffic.",
+          "whyItSeems": "ACLs can be applied on switches and do influence what happens to a frame, so it feels plausible that an ACL decides forwarding.",
+          "whyWrongHere": "An ACL is an optional permit/deny filter — it decides whether traffic is allowed, not which port to send it out of. The question asks what a switch uses to forward frames, which is the MAC address table; ACLs, if configured at all, are a separate filtering step layered on top.",
+          "memoryAnchor": "ACLs filter (permit/deny); the MAC table forwards (chooses the exit port). Different tools for different questions.",
+          "contrast": "Without any ACL configured, a switch still forwards every frame using its MAC table — forwarding doesn't depend on ACLs existing at all."
+        }
+      ]
     },
     {
       "id": "1.1-c-q3",
@@ -143,7 +195,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Inter-VLAN on one switch without external router → SVI on an L3 switch."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes lump any 'special switch feature' involving traffic handling under one umbrella, so port mirroring gets mistaken for a routing feature.",
+          "whyItSeems": "Port mirroring is a legitimate advanced switch feature dealing with traffic flow between ports, which can sound related to moving traffic between VLANs.",
+          "whyWrongHere": "The question asks how to route traffic between VLAN 10 and VLAN 20 without a separate router. Port mirroring copies traffic to a monitoring port for analysis — it never creates a path for VLAN 10 hosts to actually reach VLAN 20 hosts.",
+          "memoryAnchor": "Port mirroring = 'watch a copy of the traffic.' SVI = 'actually create a routed path between VLANs.'",
+          "contrast": "Mirrored traffic is a passive copy sent to one monitoring destination; an SVI is an active Layer 3 interface that both receives and forwards real inter-VLAN packets."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes think any switch-level topology-management feature must be the answer to any switch-design question, including inter-VLAN routing.",
+          "whyItSeems": "Spanning Tree is a core switching concept learned early, and campus switch questions often mention it, so it becomes a default guess.",
+          "whyWrongHere": "Spanning Tree Protocol prevents Layer 2 loops by blocking redundant paths within a VLAN — it never moves traffic between different VLANs. Since the question needs a path from VLAN 10 to VLAN 20, STP is the wrong layer and the wrong job entirely.",
+          "memoryAnchor": "STP = loop prevention within Layer 2. SVI = the actual Layer 3 gateway that routes between VLANs.",
+          "contrast": "STP operates purely within a single broadcast domain per VLAN; an SVI operates above VLANs, giving each one a routable IP gateway."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes assume 'bundling links' is a general-purpose fix for any connectivity requirement, including inter-VLAN routing.",
+          "whyItSeems": "EtherChannel is another advanced switch feature involving multiple interfaces, so it can seem like a plausible 'special config' answer.",
+          "whyWrongHere": "EtherChannel bundles multiple physical links into one logical link for bandwidth and redundancy — it never changes which VLANs can reach each other. Even with EtherChannel configured, VLAN 10 and VLAN 20 remain separate broadcast domains until something routes between them, which is exactly what an SVI does.",
+          "memoryAnchor": "EtherChannel = more bandwidth on one logical link. SVI = a routed gateway between VLANs. Neither substitutes for the other.",
+          "contrast": "EtherChannel still forwards within a single VLAN per link; an SVI is what actually crosses the VLAN 10/VLAN 20 boundary."
+        }
+      ]
     },
     {
       "id": "1.1-c-q4",
@@ -191,7 +269,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Basic ACL = static permit/deny. NGFW = stateful + application-aware."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes reduce 'firewall' down to 'blocks specific protocols,' picking a random protocol like UDP as the differentiator.",
+          "whyItSeems": "Firewalls do block traffic by protocol/port as part of basic rules, so 'blocks a protocol' feels firewall-related.",
+          "whyWrongHere": "Both basic packet filters and NGFWs can filter any protocol, including UDP — that's not the distinguishing feature. What sets an NGFW apart is tracking connection state and inspecting the actual application (knowing 'this is streaming video,' not just 'this is TCP port 443'), not which protocol it blocks.",
+          "memoryAnchor": "Protocol filtering is basic to both device types. Stateful, application-aware inspection is what's unique to NGFWs.",
+          "contrast": "A basic packet filter checks each packet's header in isolation; an NGFW tracks the whole connection's state and identifies the actual application generating the traffic."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes imagine 'next-generation' devices as all-in-one boxes that absorb the roles of other network devices, including switching.",
+          "whyItSeems": "NGFWs are marketed as feature-rich, multi-function appliances, so it's tempting to assume they take over every other device's job too.",
+          "whyWrongHere": "The question is about firewall inspection capability, not device consolidation. An NGFW enforces security policy on traffic passing through it; it does not perform Layer 2 MAC-based frame switching for a campus LAN — that job still belongs to switches.",
+          "memoryAnchor": "NGFW = smarter traffic inspection, not a switch replacement. Switching and firewalling remain separate functions.",
+          "contrast": "A switch's core job (MAC table, frame forwarding) is untouched by adding an NGFW — the NGFW inspects and enforces policy, it doesn't do LAN switching."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes think 'physical security appliance' implies the device works at the lowest, physical layer.",
+          "whyItSeems": "Firewalls are physical boxes sitting inline in the network path, so it can feel tied to the physical layer where the cable plugs in.",
+          "whyWrongHere": "An NGFW's whole value is inspecting traffic well above Layer 1 — it examines Layer 3 addresses, Layer 4 ports/state, and Layer 7 application data. Operating 'only' at Layer 1 would mean it just passes electrical signals with no inspection at all, the opposite of what a next-gen firewall does.",
+          "memoryAnchor": "NGFW inspection spans Layer 3 through Layer 7 — more layers seen means smarter decisions.",
+          "contrast": "A Layer 1 device (hub, repeater) has zero awareness of addresses or applications; an NGFW's whole purpose is deep awareness across multiple layers."
+        }
+      ]
     },
     {
       "id": "1.1-c-q5",
@@ -239,7 +343,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Lightweight AP → discovers and joins WLC for centralized wireless control."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes assume any 'discovery' process on a network must involve DNS, since DNS is the most familiar discovery mechanism.",
+          "whyItSeems": "APs can use DNS-based discovery as one of several WLC discovery methods, so DNS feels connected to the process.",
+          "whyWrongHere": "Even when DNS is used as one discovery method, the AP isn't joining or registering with the DNS server — DNS only helps it find the WLC's address. The actual join and registration happens via CAPWAP with the wireless LAN controller, which owns AP management, configuration, and policy.",
+          "memoryAnchor": "DNS can help find the WLC's address, but the AP always joins and registers with the WLC itself, not with DNS.",
+          "contrast": "A DNS server just answers name lookups with no concept of AP management state; the WLC actively tracks join status, config, and policy for every registered AP."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes assume the 'most important' device in the network must control every other device, including APs.",
+          "whyItSeems": "Traffic from the AP may pass through a core router en route to the WLC, so it's easy to conflate 'passes through' with 'registers with.'",
+          "whyWrongHere": "A core router can forward the AP's CAPWAP discovery/join traffic, but it has no awareness of AP configuration, licensing, or wireless policy. Only the WLC actually performs the join and registration process and takes ownership of managing that AP.",
+          "memoryAnchor": "Routers move packets toward the WLC; only the WLC actually manages and registers the AP.",
+          "contrast": "The core router's job ends at forwarding IP packets; the WLC's job is to authenticate, configure, and centrally manage the AP itself."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes bundle 'getting on the network' steps together, assuming DHCP (which gives the AP its IP) is the same step as WLC registration.",
+          "whyItSeems": "An AP typically needs DHCP first to get an IP address before it can reach a WLC, so DHCP relay feels like part of the 'joining' process.",
+          "whyWrongHere": "DHCP relay simply forwards DHCP requests so the AP can obtain an IP address — a necessary early step, but a separate one. Getting an IP address doesn't mean the AP has discovered or registered with anything; that step specifically targets the wireless LAN controller.",
+          "memoryAnchor": "DHCP gets the AP an IP address; the WLC is who the AP actually joins and registers with afterward.",
+          "contrast": "DHCP relay's job ends once an IP is assigned; the WLC's CAPWAP join process is what actually brings the AP under management."
+        }
+      ]
     },
     {
       "id": "1.1-c-q6",
@@ -287,7 +417,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Endpoint = user/client device (laptop, phone). Not core routers or services."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes think any device that 'sits at the edge' facing users or the internet counts as an endpoint.",
+          "whyItSeems": "A web server can feel like an 'end point' of a connection since that's where a web request terminates, resembling the word 'endpoint.'",
+          "whyWrongHere": "In CCNA terminology, 'endpoint' specifically refers to client/user devices — the things people directly use, like laptops, phones, and tablets. A web server is infrastructure that provides a service to endpoints, not an endpoint itself.",
+          "memoryAnchor": "Endpoints are what people use (laptops, phones). Servers provide services to endpoints — they're infrastructure, not endpoints.",
+          "contrast": "An employee laptop initiates requests as a user tool; a web server exists purely to respond to those requests as a service."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Students may assume any device attached to the network edge, including a DNS server, qualifies loosely as an 'endpoint' since it isn't a core switch or router.",
+          "whyItSeems": "DNS servers are often smaller, single-purpose boxes, which can make them feel more 'end-user-like' than they really are.",
+          "whyWrongHere": "A DNS server delivers a network service (name resolution) to other devices — it's infrastructure supporting the network, just like a web server. The question asks for an example of an endpoint, which means a client device like the employee laptop, not a service-providing server.",
+          "memoryAnchor": "If a device provides a service to others, it's infrastructure. If a device is used directly by a person, it's an endpoint.",
+          "contrast": "A DNS server answers lookups for many clients at once; an employee laptop is a single user's device generating its own traffic."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes think 'endpoint' just means 'a device at some end of the network topology,' which could describe a router at the network's edge.",
+          "whyItSeems": "A core router does sit at a boundary point in network diagrams, and the word 'end' in 'endpoint' can suggest any boundary device.",
+          "whyWrongHere": "A core router is infrastructure that forwards traffic between networks — it's never the 'end' destination or source of user data itself. An endpoint, like the employee laptop, is the actual client device generating and consuming data.",
+          "memoryAnchor": "Endpoints generate/consume data for a user; core routers just move that data along — they're never the source or destination.",
+          "contrast": "The core router forwards packets for thousands of other devices; the employee laptop is itself one of those devices with its own user and data."
+        }
+      ]
     },
     {
       "id": "1.1-c-q7",
@@ -335,7 +491,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Same subnet → direct ARP. Remote subnet → default gateway first."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students often think of the access switch as the 'first' device in the physical topology, so it seems like the natural first stop for any traffic leaving the PC.",
+          "whyItSeems": "The PC is physically cabled to the access switch, and the frame does pass through it first at Layer 2 — so it's easy to stop the reasoning there.",
+          "whyWrongHere": "While the frame physically passes through the switch, the switch only forwards within the local VLAN using MAC addresses — it can't route to a remote subnet. Because the destination is remote, the PC's IP stack already addressed the frame to the default gateway's MAC address, so the switch is just relaying it toward that gateway.",
+          "memoryAnchor": "The switch is a pass-through link to the gateway; the gateway is who actually makes the 'how do I reach that remote subnet' decision.",
+          "contrast": "The switch forwards purely on MAC address with no awareness of subnets; the default gateway examines the destination IP and routes accordingly."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes assume any 'controller' device in the network handles general traffic forwarding decisions.",
+          "whyItSeems": "If the PC's traffic happens to originate over Wi-Fi, wireless infrastructure is somewhere in the path, which can make the WLC feel relevant.",
+          "whyWrongHere": "The WLC's job is managing APs and wireless policy — it doesn't function as a routing device that receives traffic destined for a remote subnet. Regardless of wired or wireless, traffic to a remote subnet is addressed to the default gateway, not to the WLC.",
+          "memoryAnchor": "WLC = manages wireless infrastructure. Default gateway = handles routing between subnets. Different jobs entirely.",
+          "contrast": "The WLC never appears in the Layer 3 forwarding path for a data packet; the default gateway is the actual next hop for cross-subnet traffic."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes conflate 'resolving where to send traffic' with DNS, since DNS is involved early when the destination is a hostname.",
+          "whyItSeems": "Before sending traffic, a PC often first queries DNS to get an IP address, so DNS feels like part of the sending process.",
+          "whyWrongHere": "DNS resolution, if needed, happens before the packet is even built — it converts a name to an IP address but doesn't touch or forward the resulting packet. Once addressed and sent to a remote subnet, the packet is delivered first to the default gateway for routing, not to a DNS server.",
+          "memoryAnchor": "DNS answers 'what's the IP for this name?' The default gateway answers 'how do I get this packet to that IP?' Two separate steps.",
+          "contrast": "DNS only handles name-to-IP lookups and is out of the picture once the packet exists; the default gateway is in the actual forwarding path for every packet leaving the local subnet."
+        }
+      ]
     },
     {
       "id": "1.1-c-q8",
@@ -367,7 +549,17 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Lightweight AP + WLC = centralized wireless control. Autonomous AP = local config."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Students sometimes think each AP can operate fully independently since it's a physical device on its own, similar to old-style autonomous APs.",
+          "whyItSeems": "Older, autonomous AP deployments really did configure each AP individually, so 'False' can feel right if picturing that legacy model.",
+          "whyWrongHere": "This question specifically describes lightweight APs paired with a wireless LAN controller — that architecture exists precisely to centralize configuration, RF management, and policy in the WLC rather than on each AP. Saying 'False' ignores the entire point of controller-based wireless design.",
+          "memoryAnchor": "Lightweight AP + WLC = centralized management. Autonomous AP = each AP self-managed. This question is about the controller-based model.",
+          "contrast": "An autonomous AP holds its own full configuration locally; a lightweight AP holds almost nothing locally and pulls its configuration and policy from the WLC."
+        }
+      ]
     }
   ],
   "1.2": [
@@ -417,7 +609,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Campus three-tier: Access = users. Distribution = policy/aggregation. Core = backbone."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes think the 'core' of the network, being the most important-sounding tier, must be closest to the users it serves.",
+          "whyItSeems": "'Core' can intuitively sound like the center of activity, suggesting it's where user connections happen.",
+          "whyWrongHere": "In the three-tier model, the core tier provides fast, simple, high-speed backbone transport between distribution blocks — it deliberately avoids policy or direct device connections to keep forwarding fast. End-user devices physically plug into the access tier, not the core.",
+          "memoryAnchor": "Core = fast backbone, no user devices, no policy. Access = where users physically plug in.",
+          "contrast": "Core switches are typically few in number carrying aggregated traffic from distribution blocks; access switches are numerous and each connects directly to end-user ports."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Students sometimes conflate distribution with access because distribution switches sit right above access switches and are involved in 'distributing' connectivity.",
+          "whyItSeems": "The word 'distribution' can sound like it's distributing connections to users, inviting confusion with the access layer's role.",
+          "whyWrongHere": "The distribution tier aggregates multiple access switches and applies policy (inter-VLAN routing, ACLs, QoS) — it connects to access switches, not directly to end-user devices. The tier that physically terminates user PCs, phones, and APs is the access tier.",
+          "memoryAnchor": "Distribution aggregates access switches and enforces policy; access is the tier that physically touches end-user devices.",
+          "contrast": "A distribution switch's downlinks go to access switches, not individual end-user ports; an access switch's downlinks go directly to PCs, phones, and printers."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes mix up data center terminology (spine-leaf) with the campus three-tier model since both describe layered switch architectures.",
+          "whyItSeems": "'Spine' sounds like it could be another tier name in a layered design, so it can be mistaken for a valid answer.",
+          "whyWrongHere": "Spine is a data center fabric term (spine-leaf), not part of the traditional campus three-tier model, which uses access/distribution/core. Since this question is explicitly about the three-tier campus design, 'spine' isn't even one of its tiers.",
+          "memoryAnchor": "Campus = access/distribution/core. Data center fabric = spine/leaf. Different architectures, different vocabulary.",
+          "contrast": "Access is a real tier in the three-tier campus model that terminates end devices; spine belongs to a completely different data center design."
+        }
+      ]
     },
     {
       "id": "1.2-c-q2",
@@ -465,7 +683,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Spine-leaf = data center east-west scalability. Campus = access/distribution/core."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes assume any advanced-sounding architecture term could apply to small networks if they don't yet have a clear sense of scale differences.",
+          "whyItSeems": "Both spine-leaf and SOHO Wi-Fi involve 'connecting devices to a network,' so without considering scale, the terms can seem interchangeable.",
+          "whyWrongHere": "Spine-leaf is a multi-switch fabric built to handle massive east-west (server-to-server) traffic inside a data center. A SOHO Wi-Fi setup is the opposite extreme — a single access point/router serving a handful of devices, with no need for a multi-tier switching fabric.",
+          "memoryAnchor": "Spine-leaf = large-scale data center fabric. SOHO = one integrated device for a home/small office. Wildly different scales.",
+          "contrast": "Spine-leaf uses dozens of switches wired in a full mesh for massive bandwidth; SOHO Wi-Fi uses a single all-in-one router/AP."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes pick an unrelated legacy term as a distractor guess when unsure, especially if it just sounds like 'another kind of network.'",
+          "whyItSeems": "Dial-up WAN is a network topology term from CCNA WAN topics, so in a list of architecture options it can seem superficially plausible.",
+          "whyWrongHere": "Dial-up WAN describes low-bandwidth remote access over telephone lines between distant sites — it's about wide-area connectivity, not east-west switching within a data center. Spine-leaf is purely an internal data center switching topology.",
+          "memoryAnchor": "Dial-up WAN = legacy long-distance remote access. Spine-leaf = high-speed internal data center switching. Not even the same category.",
+          "contrast": "Dial-up WAN links are slow, point-to-point, and span long distances; spine-leaf links are high-speed and confined within a single data center."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes associate 'high bandwidth' scenarios generally with anything requiring speed, including gaming, without considering where the architecture is deployed.",
+          "whyItSeems": "Gaming does need low latency and good bandwidth, so it can feel intuitively connected to a 'high-performance' architecture like spine-leaf.",
+          "whyWrongHere": "Home gaming traffic runs over a home network with a single router/gateway — there's no data center, no server-to-server traffic, and no need for a multi-switch fabric. Spine-leaf solves scaling problems for many servers talking to each other inside a data center.",
+          "memoryAnchor": "Spine-leaf solves data center server-to-server (east-west) scale — home gaming traffic never needs that kind of fabric.",
+          "contrast": "Home gaming traffic exits through one home gateway to the internet; spine-leaf traffic mostly stays inside the data center moving between server racks."
+        }
+      ]
     },
     {
       "id": "1.2-c-q3",
@@ -513,7 +757,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "All branches → HQ = hub-and-spoke. Every site ↔ every site = full mesh."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes assume 'many branches connected to a network' automatically means every site connects to every other site.",
+          "whyItSeems": "Both full mesh and hub-and-spoke involve multiple branch sites, so without checking link arrangement, they can seem similar.",
+          "whyWrongHere": "The question states all ten branches send traffic through headquarters — meaning branches don't have direct links to each other, only to HQ. Full mesh would require direct links between every pair of branches, which isn't described here.",
+          "memoryAnchor": "If every site links to every other site, it's full mesh. If every site links only to one central site, it's hub-and-spoke.",
+          "contrast": "Full mesh needs n(n-1)/2 links for any-to-any connectivity; hub-and-spoke needs only n links, one per branch to HQ."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes reach for spine-leaf as a generic 'network topology' answer without checking whether the scenario is actually about a data center.",
+          "whyItSeems": "Spine-leaf is a topology term studied around the same time as WAN topologies, so it can get pulled in as a distractor.",
+          "whyWrongHere": "Spine-leaf is a data center switching fabric between switches within one facility — it has nothing to do with WAN connectivity between branch offices and headquarters. This scenario describes branch offices routing WAN traffic through HQ, the textbook definition of hub-and-spoke.",
+          "memoryAnchor": "Spine-leaf = inside one data center. Hub-and-spoke = WAN topology connecting branch sites to a central hub.",
+          "contrast": "Spine-leaf connects switches within a single facility for internal traffic; hub-and-spoke connects geographically separate branch offices to a central WAN hub."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes think 'point-to-point' describes any single link, and since HQ has a link to each branch, it might seem to fit.",
+          "whyItSeems": "Each individual branch-to-HQ connection technically is a point-to-point link, so the term isn't entirely unrelated.",
+          "whyWrongHere": "'Point-to-point only' implies just one isolated link between two sites, not a topology with ten branches all converging on one central hub. The overall pattern — many spokes terminating at one hub — is specifically what 'hub-and-spoke' names, even though each individual link is point-to-point.",
+          "memoryAnchor": "Point-to-point describes one link; hub-and-spoke describes the overall pattern of many point-to-point links all meeting at one hub.",
+          "contrast": "'Point-to-point only' suggests a single, isolated connection between two sites; hub-and-spoke describes the full topology of many such links converging on HQ."
+        }
+      ]
     },
     {
       "id": "1.2-c-q4",
@@ -561,7 +831,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Full mesh = max redundancy, max cost. Hub-spoke = cheaper, single point at hub."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes assume that whatever trait is 'asked about as a downside' must be the opposite of what full mesh is actually known for.",
+          "whyItSeems": "Since the question asks for a 'trade-off' (something negative), and redundancy sounds positive, it's tempting to guess full mesh must lack it.",
+          "whyWrongHere": "Full mesh is actually the topology that maximizes redundancy — every site connects directly to every other site, giving many alternate paths if one link fails. The real trade-off is the opposite problem: with n(n-1)/2 links required, cost and management complexity grow quickly as sites are added.",
+          "memoryAnchor": "Full mesh's strength is redundancy; its weakness is the cost/complexity of that many links.",
+          "contrast": "A topology with poor redundancy has one path per site; full mesh gives every site multiple direct paths — the opposite of 'no redundancy.'"
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes assume 'high-performance' or 'advanced' topologies must require premium physical media like fiber.",
+          "whyItSeems": "Full mesh sounds like a sophisticated design, so it might seem to imply advanced cabling requirements.",
+          "whyWrongHere": "Full mesh describes how sites are logically interconnected, not what physical medium is used — mesh links can run over fiber, copper, wireless, or WAN circuits of any kind. The real trade-off is the number of links needed growing rapidly as sites are added.",
+          "memoryAnchor": "Mesh is a topology (logical connection pattern), not a media requirement — it works over any transport.",
+          "contrast": "Media type is an independent design choice; the mesh trade-off is purely about link count and management overhead."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes think that because every site has a direct link to every other site, routing decisions somehow become unnecessary.",
+          "whyItSeems": "With a direct link everywhere, it might seem like traffic can just go straight across without any routing logic involved.",
+          "whyWrongHere": "Routing protocols are still needed on a full-mesh WAN to determine best paths, handle failures, and manage all those direct links — mesh describes the topology, not a replacement for Layer 3 routing. The actual trade-off tested here is cost and complexity, not any change to whether routing is needed.",
+          "memoryAnchor": "Mesh topology and routing are independent concepts — more links means routing still runs, just with more paths to manage.",
+          "contrast": "Eliminating routing would mean no Layer 3 decision-making at all; full mesh actually increases routing complexity because there are more paths to choose between."
+        }
+      ]
     },
     {
       "id": "1.2-c-q5",
@@ -609,7 +905,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Collapsed core = 2 tiers (access + collapsed core/distribution). Classic = 3 tiers."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes take 'collapsed' to its extreme and assume it means everything is merged into a single flat tier.",
+          "whyItSeems": "'Collapsed' suggests things being combined/reduced, so it can feel like the natural endpoint is reducing all the way down to one tier.",
+          "whyWrongHere": "'Collapsed core' specifically means the core and distribution functions are combined onto one device/tier, but the access tier is still separate — so there are still two functional tiers, not one flat tier.",
+          "memoryAnchor": "Collapsed core merges core + distribution into one tier, but access remains separate — that's two tiers total, not one.",
+          "contrast": "A truly single-tier (flat) network has no separation between access and any aggregation/routing layer; collapsed core still keeps access switches distinct from the combined core/distribution switch."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes assume 'collapsed' networks must have grown more complex rather than simpler, especially thinking of larger enterprise designs.",
+          "whyItSeems": "Larger designs sometimes add more layers, so it's easy to guess a higher number without recalling the specific collapsed-core definition.",
+          "whyWrongHere": "Collapsed core is specifically a simplification of the three-tier model down to fewer tiers, not an expansion. Combining core and distribution into a single tier alongside access results in two tiers, not four.",
+          "memoryAnchor": "'Collapsed' always means fewer tiers than the standard three-tier model, which already has only three — four would be going the wrong direction.",
+          "contrast": "The standard three-tier model already tops out at three tiers; collapsed core reduces that to two, so four tiers isn't a valid direction for this term."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes confuse 'collapsed core' with more complex data center topologies that can involve additional layers, inflating their tier count guess.",
+          "whyItSeems": "Since 'core' architecture questions can appear alongside data center topics with multiple layers, a higher number can feel plausible.",
+          "whyWrongHere": "Collapsed core is a small/midsize campus simplification, not a large multi-layer design — it merges core and distribution into one tier and keeps access separate, giving exactly two tiers. Five tiers has no relationship to this term.",
+          "memoryAnchor": "Collapsed core = simpler and smaller than three-tier, landing at exactly two tiers — never five.",
+          "contrast": "Five tiers would describe an unusually large, layered architecture; collapsed core is specifically the choice for smaller networks needing fewer, not more, tiers."
+        }
+      ]
     },
     {
       "id": "1.2-c-q6",
@@ -657,7 +979,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SOHO = all-in-one gateway (NAT + DHCP + Wi‑Fi) | Enterprise = layered, redundant design."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes think any device performing multiple functions (NAT, DHCP, Wi-Fi) sounds 'powerful' enough to be core datacenter equipment.",
+          "whyItSeems": "The wireless router in the scenario does handle several functions at once, which might suggest a more 'enterprise' role.",
+          "whyWrongHere": "The scenario explicitly describes one home user with a single wireless router — the textbook definition of a SOHO setup, not a data center. Core datacenter equipment consists of high-capacity switches handling massive east-west traffic between many servers, nothing like a single consumer router.",
+          "memoryAnchor": "One integrated router/AP handling NAT+DHCP+Wi-Fi for a home = SOHO. Redundant high-capacity switching fabric for servers = core datacenter.",
+          "contrast": "A core datacenter switch handles traffic for potentially thousands of servers with no NAT/DHCP/Wi-Fi role; a SOHO router handles a handful of devices and bundles those consumer functions into one box."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes reach for a WAN-related term as a guess whenever 'network design category' is being tested, even in a single-site home scenario.",
+          "whyItSeems": "Full mesh WAN is another network design pattern studied around the same time, so it can surface as a distractor.",
+          "whyWrongHere": "Full mesh WAN describes multiple sites all directly interconnected across a wide area — this scenario is a single home with one router, with no other 'sites' involved. A lone home router with NAT/DHCP/Wi-Fi is the definition of SOHO.",
+          "memoryAnchor": "Full mesh WAN needs multiple sites interconnected; SOHO is a single small site with one all-in-one device.",
+          "contrast": "Full mesh WAN involves many locations each linked to every other; this scenario has exactly one location with one integrated router."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes default to a 'sophisticated-sounding' architecture term when the real answer is meant to be the simplest possible option.",
+          "whyItSeems": "If 'spine fabric' was recently studied, it might come to mind as a generic architecture answer without checking the scenario's scale.",
+          "whyWrongHere": "Spine fabric describes a data center's internal switch interconnection for massive server-to-server traffic — nothing like a single home router doing NAT, DHCP, and Wi-Fi for one household. The scenario's scale is specifically what 'SOHO' describes.",
+          "memoryAnchor": "Spine fabric = data center internal switching at scale. SOHO = one small integrated gateway for a home or small office.",
+          "contrast": "Spine fabric involves many dedicated switches in a data center; SOHO is literally one all-in-one box serving a handful of devices."
+        }
+      ]
     },
     {
       "id": "1.2-c-q7",
@@ -705,7 +1053,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Cloud stack: IaaS (you manage OS) → PaaS (you manage code) → SaaS (you use app)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes only remember that cloud models differ by 'how much you manage' without pinning down exactly which layer is whose responsibility.",
+          "whyItSeems": "SaaS is a cloud model also commonly tested alongside PaaS and IaaS, so it's a natural guess among the 'cloud service model' options.",
+          "whyWrongHere": "The question asks about a model where the customer manages the OS but not the hardware — in SaaS, the provider manages everything, including the application itself; the customer doesn't touch the OS at all. That level of OS control matches IaaS, not SaaS.",
+          "memoryAnchor": "SaaS = provider manages everything, even the app. IaaS = customer manages OS and up; provider only owns hardware.",
+          "contrast": "A SaaS customer just uses a finished application with zero infrastructure or OS access; an IaaS customer gets a virtual machine and configures the OS themselves."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Students sometimes blur PaaS and IaaS together since both are 'more hands-on' cloud models compared to SaaS.",
+          "whyItSeems": "PaaS does give the customer more control than SaaS, so it can feel like a plausible middle-ground answer.",
+          "whyWrongHere": "In PaaS, the provider manages the OS and runtime environment — the customer only deploys and manages application code on top. Since the question requires the customer to manage the OS themselves, that's the defining trait of IaaS, where the provider only supplies the hardware/virtualization.",
+          "memoryAnchor": "PaaS = provider manages OS/runtime, customer manages app. IaaS = provider manages only hardware, customer manages OS and up.",
+          "contrast": "A PaaS customer never logs into or patches an OS; an IaaS customer gets a virtual machine and is responsible for OS installation, patching, and configuration."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes think 'customer manages the OS' sounds like full ownership, which can be mistaken for owning everything, as in an on-premises deployment.",
+          "whyItSeems": "On-prem does give the customer full OS control, which superficially matches part of the question's description.",
+          "whyWrongHere": "On-premises means the customer owns and manages the physical hardware too — there's no cloud provider involved. The question describes a cloud model where hardware is NOT managed by the customer, which points to IaaS, where the provider supplies and maintains physical infrastructure while the customer manages the OS.",
+          "memoryAnchor": "On-prem = customer owns hardware AND OS. IaaS = provider owns hardware, customer manages OS and above.",
+          "contrast": "On-prem has no cloud provider managing hardware; IaaS specifically hands hardware/virtualization management to the provider while leaving the OS to the customer."
+        }
+      ]
     },
     {
       "id": "1.2-c-q8",
@@ -737,7 +1111,17 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Spine-leaf: leaves = access/aggregation | spines = core — every leaf ↔ every spine."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Students sometimes assume network fabrics generally use partial or selective connections to save cost, similar to how campus networks avoid full mesh.",
+          "whyItSeems": "Full mesh is usually described as expensive and impractical in campus/WAN contexts, so it might seem unlikely a 'modern' design like spine-leaf would use it.",
+          "whyWrongHere": "The defining trait of spine-leaf, unlike campus/WAN full mesh, is that every leaf switch connects to every spine switch — this full interconnection gives spine-leaf its predictable, low-latency, non-blocking performance. Saying 'False' denies the core architectural principle the design is built around.",
+          "memoryAnchor": "Every leaf touches every spine — that full interconnection is the entire point of spine-leaf.",
+          "contrast": "Unlike a full-mesh WAN between many sites (expensive due to n² links), spine-leaf's full mesh is only between two switch tiers, which stays manageable at that scale."
+        }
+      ]
     }
   ],
   "1.3": [
@@ -787,7 +1171,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Copper UTP Ethernet segment = 100 m. Know this cold."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes underestimate cable run distances, picturing only very short patch cables rather than a full horizontal cable run.",
+          "whyItSeems": "10 meters might feel like a 'safe,' short distance that avoids any signal degradation concerns.",
+          "whyWrongHere": "The question asks for the maximum recommended length, and 10 m is far shorter than what copper UTP actually supports. The standard exam figure for a UTP Ethernet segment is 100 meters — 10 m would unnecessarily limit real-world cable runs.",
+          "memoryAnchor": "100 m is the number to remember for copper UTP Ethernet — not 10 m, and not 1 km.",
+          "contrast": "10 m only covers a very short patch connection; 100 m is what's actually needed to reach from a wiring closet to a typical office desk."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes mix up fiber and copper distance specifications, assigning fiber-like distances to copper cabling.",
+          "whyItSeems": "500 m is a plausible-sounding 'networking distance' figure, and some multimode fiber specs are in that general range.",
+          "whyWrongHere": "500 m significantly exceeds copper UTP's signal-carrying capability — copper Ethernet is standardized at a 100 m maximum segment length due to signal attenuation. Distances like 500 m are the territory of fiber optics, not copper UTP.",
+          "memoryAnchor": "Copper UTP tops out at 100 m; longer distances like 500 m require fiber instead.",
+          "contrast": "Copper UTP degrades past 100 m due to electrical signal attenuation; fiber can travel hundreds of meters or more because it uses light instead of electrical signaling."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes recall 'long distance' networking figures from fiber topics and misapply them to copper cabling questions.",
+          "whyItSeems": "1 km sounds like a reasonable 'backbone' distance in networking generally, tempting if the copper-specific limit isn't firmly memorized.",
+          "whyWrongHere": "1 km is well beyond what copper UTP can reliably carry a signal — that kind of distance is squarely fiber territory. For copper UTP Ethernet, the standard maximum segment length tested on the exam is 100 m.",
+          "memoryAnchor": "1 km+ = fiber. 100 m = copper UTP maximum. Keep these two numbers separate.",
+          "contrast": "Fiber's light-based signaling supports kilometers of distance with minimal loss; copper's electrical signaling degrades much sooner, capping out at 100 m."
+        }
+      ]
     },
     {
       "id": "1.3-c-q2",
@@ -835,7 +1245,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "PC → switch = straight-through. Like → like (no auto-MDIX) = crossover."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes remember 'crossover cables connect two devices' without recalling which specific device pairs need it.",
+          "whyItSeems": "Crossover is a real Ethernet cable type used between certain devices, so it's a plausible guess without recalling exactly when it's needed.",
+          "whyWrongHere": "Crossover cables connect like devices to each other (switch-to-switch, PC-to-PC) on equipment without auto-MDIX. This question asks about connecting a PC to a switch — unlike devices — which is exactly when a straight-through cable is used.",
+          "memoryAnchor": "Unlike devices (PC-switch, router-switch) = straight-through. Like devices (switch-switch, PC-PC) on legacy gear = crossover.",
+          "contrast": "A crossover cable swaps the transmit/receive pins to let two similar devices talk; a straight-through cable keeps pins aligned, exactly what's needed between a PC and a switch."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes conflate any 'connecting a PC to network equipment' scenario with the console/management connection method they've also studied.",
+          "whyItSeems": "Console rollover cables are also used to connect a PC to a switch, creating surface-level confusion about which cable applies here.",
+          "whyWrongHere": "A console rollover cable connects a PC to a switch's console port for out-of-band CLI management — it doesn't carry regular Ethernet data traffic. This question is about a normal LAN data connection, which uses a straight-through Ethernet cable, not a rollover cable.",
+          "memoryAnchor": "Console rollover = management access via console port, no data traffic. Straight-through = normal Ethernet data link.",
+          "contrast": "A rollover cable connects to a serial/console port for CLI access only; a straight-through cable connects to a regular Ethernet port and carries actual network data."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes think 'connecting to a switch' implies fiber if picturing enterprise-grade switch uplinks rather than a basic PC connection.",
+          "whyItSeems": "Fiber does connect to switches in many designs, so it can feel like a valid general answer for 'switch connectivity.'",
+          "whyWrongHere": "The question is about a typical copper connection between a PC and a switch — nearly all PC NICs use copper RJ-45 Ethernet ports, not fiber. Single-mode fiber is reserved for long-distance links, not standard desktop PC-to-switch cabling.",
+          "memoryAnchor": "PCs connect to switches over copper (straight-through) in virtually every typical scenario — fiber is for longer-distance uplinks.",
+          "contrast": "Single-mode fiber is built for long-haul links measured in kilometers; a PC-to-switch connection is a short copper run using a standard straight-through cable."
+        }
+      ]
     },
     {
       "id": "1.3-c-q3",
@@ -883,7 +1319,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Fiber: multimode (orange, short) | single-mode (yellow, long) — match transceiver to cable."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes see 'fiber' in both options and assume any fiber type works equally well for long distances.",
+          "whyItSeems": "Multimode is fiber, and fiber in general is associated with 'long distance' networking, so it seems reasonable without distinguishing multimode from single-mode.",
+          "whyWrongHere": "Multimode fiber (typically orange or aqua jacketed) is designed for shorter campus-distance runs because light bouncing through its wider core causes modal dispersion over long distances. Long-distance WAN links need single-mode fiber (yellow jacketed), which uses a narrower core for reliability across long spans.",
+          "memoryAnchor": "Orange/aqua multimode = short campus runs. Yellow single-mode = long-distance WAN links.",
+          "contrast": "Multimode's wider core causes signal spreading that limits it to shorter distances; single-mode's narrow core avoids that, enabling much longer reliable runs."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes forget that Cat5 is copper, not fiber, especially if focused on 'cable type' questions generally.",
+          "whyItSeems": "Cat5 is a familiar cable name from CCNA cabling topics, which could make it a tempting generic guess.",
+          "whyWrongHere": "Cat5 is twisted-pair copper Ethernet cabling, limited to about 100 meters — nowhere near sufficient for a long-distance WAN link. WAN links spanning long distances require fiber, specifically single-mode fiber, not copper of any category.",
+          "memoryAnchor": "Copper (Cat5/5e/6/6a) tops out around 100 m; long-distance WAN links need fiber, specifically single-mode.",
+          "contrast": "Copper Cat5 is limited by electrical signal attenuation to about 100 m; single-mode fiber can span many kilometers using light instead of electricity."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes recall coax as an 'older, long-distance' cable type from cable TV or legacy broadband contexts, mistakenly applying that to modern WAN fiber links.",
+          "whyItSeems": "Coax has historically been used for broadband/cable internet delivery, so it can feel plausible for 'distance' scenarios.",
+          "whyWrongHere": "Coax is legacy cabling used mainly for cable broadband/video, not the standard medium for modern long-distance carrier WAN links. Long-distance WAN connections use single-mode fiber because of its very low signal loss over great distances, which coax cannot match.",
+          "memoryAnchor": "Coax = legacy cable broadband. Single-mode fiber = modern long-distance WAN standard.",
+          "contrast": "Coax signal degrades over distance much faster than fiber and is largely legacy technology; single-mode fiber is purpose-built for the long, low-loss runs WAN links require."
+        }
+      ]
     },
     {
       "id": "1.3-c-q4",
@@ -932,7 +1394,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SFP connectors: LC (most common) | SC (older) — always verify module + cable pairing."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes think of RJ-45 as the 'default' networking connector for any switch port, including SFP slots.",
+          "whyItSeems": "RJ-45 is the most familiar Ethernet connector from everyday copper networking, so it's an easy default guess.",
+          "whyWrongHere": "RJ-45 is the connector used for copper Ethernet cabling, not for SFP modules, which are designed to carry fiber optic connections. SFP modules typically use LC connectors to terminate the fiber cable into the module.",
+          "memoryAnchor": "RJ-45 = copper Ethernet. LC = fiber connector commonly found on SFP modules.",
+          "contrast": "RJ-45 carries electrical signals over twisted-pair copper; SFP/LC connections carry light signals over glass fiber — different media entirely."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes recall DB-9 from console/serial connections and mistakenly generalize it to any small connector question about network hardware.",
+          "whyItSeems": "DB-9 is a connector type studied in CCNA (console/serial cabling), so it can surface as a plausible-sounding 'connector' answer.",
+          "whyWrongHere": "DB-9 connectors are used for legacy serial/console connections, not for fiber SFP modules. SFP modules are built around small, fiber-specific connectors like LC, physically and functionally unrelated to a DB-9 serial connector.",
+          "memoryAnchor": "DB-9 = serial/console cabling. LC = fiber connector for SFP transceivers. Completely different use cases.",
+          "contrast": "A DB-9 carries a serial data stream for device management; an LC connector on an SFP carries a fiber optic network data link."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes assume modern hardware universally uses USB-C given its prevalence on consumer devices.",
+          "whyItSeems": "USB-C has become the ubiquitous modern connector on laptops and phones, tempting to assume it's used everywhere, including networking hardware.",
+          "whyWrongHere": "USB-C is a general-purpose data/power connector for consumer electronics — it is not used on standard Cisco SFP transceiver modules. SFP modules are purpose-built for fiber networking and use fiber-specific connectors like LC.",
+          "memoryAnchor": "USB-C belongs to consumer device charging/data — SFP modules use dedicated fiber connectors like LC, not USB-C.",
+          "contrast": "USB-C is designed for short-range consumer device connections; LC connectors on SFPs are designed to couple precisely aligned fiber cores for reliable optical signaling."
+        }
+      ]
     },
     {
       "id": "1.3-c-q5",
@@ -980,7 +1468,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Cat6a @ 100 m → 10 Gbps. Cat5e → 1 Gbps."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes underestimate newer cable category speeds, defaulting to older, more familiar figures like 100 Mbps from early Ethernet/Cat5 days.",
+          "whyItSeems": "100 Mbps is a commonly remembered 'basic Ethernet' speed from Cat5's Fast Ethernet association.",
+          "whyWrongHere": "100 Mbps is the speed associated with older Cat5 cabling (Fast Ethernet), not Cat6a. Cat6a was specifically developed to support much higher throughput — 10 Gbps — at the full 100-meter distance.",
+          "memoryAnchor": "100 Mbps = Cat5/Fast Ethernet territory. Cat6a is built for 10 Gbps at 100 m.",
+          "contrast": "Cat5 was designed for 100 Mbps Fast Ethernet; Cat6a uses tighter twisting and better shielding to support 100x that speed over the same 100 m distance."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Students sometimes settle on 1 Gbps because it's the most commonly deployed copper Ethernet speed today, without recalling Cat6a's specific higher-speed rating.",
+          "whyItSeems": "1 Gbps is achievable on Cat5e and Cat6, both closely related cable categories, so it's easy to assume Cat6a shares that same rated speed.",
+          "whyWrongHere": "While Cat6a can run at 1 Gbps, that's not its defining or exam-tested speed — Cat6a was engineered to support 10 Gbps at the full 100-meter distance, which lower categories like Cat5e/Cat6 cannot reliably achieve at that distance.",
+          "memoryAnchor": "Cat5e/Cat6 are commonly paired with 1 Gbps; Cat6a's defining spec is 10 Gbps at 100 m.",
+          "contrast": "Cat6 can only sustain 10 Gbps over shorter distances (around 55 m); Cat6a's added shielding lets it sustain 10 Gbps across the full 100 m."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes overshoot on cable category speeds, assuming 'a' in Cat6a implies an even higher speed tier than 10 Gbps.",
+          "whyItSeems": "Since Cat6a sounds like an 'upgraded' version of Cat6, it might seem like it should support an even more dramatic speed jump, like 40 Gbps.",
+          "whyWrongHere": "40 Gbps over copper twisted pair at 100 m is beyond what Cat6a can reliably support — that kind of speed typically requires fiber or much shorter copper runs. For the CCNA exam, Cat6a's tested pairing is specifically 10 Gbps at 100 m.",
+          "memoryAnchor": "Cat6a = 10 Gbps at 100 m is the exam-tested figure — 40 Gbps over copper at that distance isn't realistic for this category.",
+          "contrast": "40 Gbps copper links require dramatically shorter distances to work reliably; Cat6a trades some of that speed ceiling for reaching the full 100 m distance at 10 Gbps."
+        }
+      ]
     },
     {
       "id": "1.3-c-q6",
@@ -1028,7 +1542,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Switch ↔ switch (no auto-MDIX) = crossover. Modern gear often auto-MDIX."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes over-generalize 'straight-through is the default Ethernet cable' without accounting for when two identical devices are connected.",
+          "whyItSeems": "Straight-through cables are the most commonly used Ethernet cable type in modern networks (thanks to auto-MDIX), so it's an easy default guess.",
+          "whyWrongHere": "The question specifies two legacy switches without auto-MDIX — connecting like devices (switch-to-switch) on hardware that can't automatically detect and correct pinout requires a crossover cable. A straight-through cable would leave the transmit/receive pairs misaligned, and without auto-MDIX the link would fail.",
+          "memoryAnchor": "Auto-MDIX-capable gear tolerates either cable, but legacy like-to-like connections (switch-switch) need crossover.",
+          "contrast": "Straight-through works correctly between unlike devices (PC-switch); crossover is required between like devices when auto-MDIX isn't available."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes think 'connecting two networking devices together' broadly includes console cabling, mixing up management access with data links.",
+          "whyItSeems": "Console cables also connect to switches, so in a list of cable-type options it can seem superficially relevant.",
+          "whyWrongHere": "A console cable connects a PC to a switch's management port for CLI access — it's not designed to link two switches' Ethernet data ports together. This question is about an Ethernet data connection between two switches, which needs a crossover cable on legacy hardware.",
+          "memoryAnchor": "Console cable = out-of-band management access to one device via a PC. Crossover = Ethernet data link between two switches.",
+          "contrast": "A console cable plugs into a serial/console port for terminal access; a crossover cable plugs into Ethernet ports and carries actual network traffic."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes recall 'DCE/DTE' cabling from router WAN topics and misapply it to a switch-to-switch scenario.",
+          "whyItSeems": "Serial DCE/DTE cabling is another cable-type concept studied in CCNA, so it can surface as a distractor.",
+          "whyWrongHere": "Serial DCE cabling is used for WAN connections between routers — it has nothing to do with connecting two Ethernet switches together. Two legacy switches without auto-MDIX need a crossover Ethernet cable, not a serial WAN cable.",
+          "memoryAnchor": "Serial DCE/DTE = router WAN links. Crossover = switch-to-switch Ethernet links on legacy hardware.",
+          "contrast": "Serial DCE cabling carries WAN clocking and serial data between routers; crossover cabling carries standard Ethernet frames directly between two switches."
+        }
+      ]
     },
     {
       "id": "1.3-c-q7",
@@ -1076,7 +1616,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SFP/SFP+ = pluggable optics — change distance/speed by swapping the module, not the port."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes assume any hardware upgrade/module, including SFPs, must improve overall device performance broadly, like CPU power.",
+          "whyItSeems": "Adding hardware modules can feel like a general performance upgrade if the specific function of the SFP isn't clearly understood.",
+          "whyWrongHere": "SFP modules are Layer 1 physical media transceivers — they let a switch port use different types of cabling, but have no connection to the switch's CPU at all. The primary benefit tested here is flexibility of physical media on a port, not any performance boost to the processor.",
+          "memoryAnchor": "SFPs change what media a port can use — they never touch the switch's CPU or internal processing.",
+          "contrast": "CPU speed is determined by the switch's hardware/chipset; SFP modules only determine what type of physical cable can plug into a given port."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes assume any 'improvement' a network device offers must relate to loop prevention or Spanning Tree, since STP is such a heavily emphasized topic.",
+          "whyItSeems": "Since STP is one of the most-discussed switch features, it can become a default guess for 'what does this switch feature do' questions.",
+          "whyWrongHere": "SFP modules are physical layer transceivers for port media flexibility — they have nothing to do with detecting or preventing Layer 2 loops, which is STP's job. A switch with SFP ports still needs Spanning Tree running exactly the same way as one with fixed RJ-45 ports.",
+          "memoryAnchor": "SFP = physical media flexibility (Layer 1). STP = loop prevention (Layer 2). Unrelated functions.",
+          "contrast": "STP actively monitors the topology and blocks redundant links; an SFP module simply provides a slot for different types of physical connectors — it plays no role in loop detection."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes assume any hardware feature that sounds 'advanced' must be security-related, like encryption.",
+          "whyItSeems": "SFPs are sometimes discussed alongside secure/optical transport in enterprise contexts, which can blur into assuming they encrypt data.",
+          "whyWrongHere": "SFP modules operate at the physical layer, converting electrical or optical signals for transmission — they pass data through as-is without inspecting or altering its content. Encryption is a much higher-layer function, completely separate from what an SFP transceiver does.",
+          "memoryAnchor": "SFPs move signals at Layer 1 with no awareness of data content — encryption happens at higher layers, in software.",
+          "contrast": "Encryption transforms the actual payload data before it's sent; an SFP module doesn't touch the data content at all — it only converts the signal format for the chosen media."
+        }
+      ]
     },
     {
       "id": "1.3-c-q8",
@@ -1108,7 +1674,17 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Fiber colors: orange/aqua = multimode | yellow = single-mode — verify before connecting."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Students sometimes think all fiber cabling looks the same or uses a single universal color, unaware that color coding is a real industry convention.",
+          "whyItSeems": "If color-coding conventions weren't explicitly memorized, it might seem safer to assume there's no standardized color difference between fiber types.",
+          "whyWrongHere": "The industry does use jacket color as a quick visual identifier — multimode fiber is commonly orange (OM1/OM2) or aqua (OM3/OM4), while single-mode fiber is yellow. Saying 'False' denies a real, commonly tested visual convention used to avoid mismatching fiber types.",
+          "memoryAnchor": "Orange/aqua = multimode. Yellow = single-mode. A quick way to identify fiber type by sight.",
+          "contrast": "Mixing up cable colors isn't just cosmetic — connecting mismatched multimode and single-mode fiber can cause serious signal loss, which is exactly why the color convention exists."
+        }
+      ]
     }
   ],
   "1.4": [
@@ -1158,7 +1734,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Rising CRC errors → check cable, duplex, and physical layer first."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes assume any interface counter or statistic reflects overall network health in a positive sense, including successful routing.",
+          "whyItSeems": "Since CRC is a technical-sounding interface statistic, it might seem like it could indicate something is working correctly.",
+          "whyWrongHere": "CRC errors are a Layer 2 frame integrity check failure — they mean a frame arrived corrupted or damaged, unrelated to whether Layer 3 routing decisions are being made correctly. CRC errors specifically indicate a problem, the opposite of 'correct' behavior.",
+          "memoryAnchor": "CRC errors always signal a problem (corrupted frames) — never a sign that something is working correctly.",
+          "contrast": "Correct routing is a Layer 3 process that only happens after a frame arrives intact; CRC errors indicate the frame itself was damaged before routing could even matter."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes group all 'error' or 'failure' symptoms together without distinguishing which OSI layer each one operates at.",
+          "whyItSeems": "Both CRC errors and DNS failures are 'something going wrong' on the network, so without considering layers, they can seem interchangeable.",
+          "whyWrongHere": "DNS failures happen at the application layer when name resolution doesn't work — they have no effect on a Layer 2 interface's CRC counter, which only tracks physical/data-link frame integrity. A CRC error means the frame itself was corrupted in transit, a different layer and cause entirely.",
+          "memoryAnchor": "CRC = Layer 2 frame integrity issue. DNS failure = Layer 7 name resolution issue. Different layers, different causes.",
+          "contrast": "DNS failures leave the physical frame perfectly intact — the problem is in resolving a name; CRC errors mean the frame's actual bits were corrupted during transmission."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes assume that any traffic showing up with a technical detail (like a VLAN tag) mentioned nearby must be related to that detail's correctness.",
+          "whyItSeems": "802.1Q VLAN tagging modifies the frame slightly, so it might seem like tagging issues could be the cause of CRC errors.",
+          "whyWrongHere": "Valid VLAN tagging describes properly-formed 802.1Q frames — a normal, expected condition, not an error. CRC errors specifically mean the frame's contents were corrupted or damaged during transmission, unrelated to whether VLAN tags are properly applied.",
+          "memoryAnchor": "Valid VLAN tagging is normal, healthy frame formatting; CRC errors mean the frame's bits were physically damaged — two unrelated conditions.",
+          "contrast": "A frame can have perfectly valid VLAN tagging and still get a CRC error if a bad cable corrupts it in transit — tagging correctness and frame integrity are independent."
+        }
+      ]
     },
     {
       "id": "1.4-c-q2",
@@ -1206,7 +1808,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Physical/L2 errors → show interfaces or `show interfaces counters errors."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes default to 'show ip route' as a catch-all troubleshooting command since it's one of the most frequently used CLI commands.",
+          "whyItSeems": "show ip route is a heavily emphasized command throughout CCNA study, so it can become an automatic guess.",
+          "whyWrongHere": "show ip route displays the Layer 3 routing table — which networks are reachable and via which next hop — it has nothing to do with Layer 2 interface error statistics like CRC or collision counters. To see those, the correct command is show interfaces counters errors.",
+          "memoryAnchor": "show ip route = Layer 3 routing table. show interfaces counters errors = Layer 1/2 interface error statistics. Different purposes.",
+          "contrast": "show ip route tells you where traffic will be forwarded; show interfaces counters errors tells you whether the physical link itself is healthy."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes assume any 'show' command related to switch ports could reveal error statistics, including VLAN commands.",
+          "whyItSeems": "show vlan brief does list interfaces grouped by VLAN membership, so it can seem plausible without checking what info it shows.",
+          "whyWrongHere": "show vlan brief only lists which VLANs exist and which ports are assigned to each — it contains no error counters, CRC data, or collision statistics. Those specific metrics are shown by show interfaces counters errors, a different command entirely.",
+          "memoryAnchor": "show vlan brief = VLAN-to-port mapping. show interfaces counters errors = physical/data-link error statistics. Not the same data.",
+          "contrast": "show vlan brief answers 'which VLAN is this port in?'; show interfaces counters errors answers 'is this port experiencing CRC or collision problems?'"
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes think 'show version' is a general diagnostic command that reveals a broad range of device health information, including interface errors.",
+          "whyItSeems": "show version is commonly used for checking device status, so it can seem like a reasonable 'general health check' guess.",
+          "whyWrongHere": "show version only displays the IOS version, system uptime, and hardware/memory information — it contains no per-interface statistics like CRC or collision counters. Interface error counters specifically require show interfaces counters errors.",
+          "memoryAnchor": "show version = device-level info (IOS, uptime, hardware). show interfaces counters errors = per-port error statistics. Different scope.",
+          "contrast": "show version tells you about the device as a whole; show interfaces counters errors drills down into the health of individual physical ports."
+        }
+      ]
     },
     {
       "id": "1.4-c-q3",
@@ -1254,7 +1882,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Duplex mismatch symptom: CRC + late collisions on one link — fix: auto-auto or match both sides."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes assume any serious misconfiguration must cause a complete link failure rather than degraded performance.",
+          "whyItSeems": "A duplex mismatch does sound like a significant misconfiguration, so 'total failure' can feel like the intuitively worse and thus more likely answer.",
+          "whyWrongHere": "A duplex mismatch typically doesn't bring the link down — the physical link light stays up and basic connectivity often still works, but performance suffers badly. The real symptom is degraded performance with increasing CRC and late collision errors, not complete loss of connectivity.",
+          "memoryAnchor": "Duplex mismatch usually looks like 'it's slow and glitchy,' not 'it's completely dead' — link stays up, performance tanks.",
+          "contrast": "A truly down link shows no traffic passing at all; a duplex mismatch still passes traffic, just with heavy errors and poor throughput."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes think mismatched settings could randomly produce either a positive or negative effect, guessing 'double speed' as an unusual but possible outcome.",
+          "whyItSeems": "Since duplex settings relate to how data flows on the link, it might seem plausible that a mismatch could somehow multiply throughput.",
+          "whyWrongHere": "A duplex mismatch causes one side to expect to send and receive simultaneously (full-duplex) while the other takes turns (half-duplex), leading to collisions and retransmissions — this reduces effective throughput significantly, it never doubles it.",
+          "memoryAnchor": "Duplex mismatches always hurt performance — they never provide a speed boost of any kind.",
+          "contrast": "Matched full-duplex settings can use the link's full bandwidth in both directions simultaneously; a mismatch forces collision-prone, inefficient communication that reduces throughput."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes reach for Spanning Tree as a default explanation for any switch-related connectivity symptom, since STP is a heavily tested topic.",
+          "whyItSeems": "STP blocking is a real switch behavior that can affect connectivity, so it can surface as a guess whenever a switch port issue is described.",
+          "whyWrongHere": "STP blocking is a deliberate Layer 2 loop-prevention state triggered by redundant topology, completely unrelated to duplex settings. A duplex mismatch is a Layer 1/2 signaling problem between two directly connected ports, producing CRC and late collision errors — not an STP topology decision.",
+          "memoryAnchor": "STP blocking = deliberate loop prevention based on topology. Duplex mismatch = signaling misconfiguration between two directly connected ports. Unrelated causes.",
+          "contrast": "STP blocking is intentional and topology-driven, occurring even with perfectly matched duplex settings; duplex mismatch is unintentional and shows up as errors, not a blocked STP state."
+        }
+      ]
     },
     {
       "id": "1.4-c-q4",
@@ -1302,7 +1956,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Full-duplex = no collisions expected — if counters climb, check speed/duplex on both ends."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes recall that collisions were a normal, expected part of older half-duplex Ethernet and mistakenly apply that same expectation to modern full-duplex links.",
+          "whyItSeems": "Collisions were indeed a routine part of shared half-duplex Ethernet, which could make 'normal' feel plausible if the full-duplex context isn't fully considered.",
+          "whyWrongHere": "The question specifies a modern full-duplex switch access port — full-duplex eliminates the shared collision domain entirely, since each side has dedicated transmit/receive paths. Sustained collisions on a full-duplex port are abnormal and point to a duplex mismatch or misconfiguration.",
+          "memoryAnchor": "Full-duplex should have zero collisions by design — any sustained collisions there are a red flag, not normal.",
+          "contrast": "Half-duplex shared segments could see occasional collisions as a normal side effect of contention; a full-duplex switch port has no shared medium, so collisions there always indicate a problem."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes group all 'network problem' symptoms together without separating which OSI layer they belong to.",
+          "whyItSeems": "OSPF issues and interface collisions can both appear in a troubleshooting scenario, so without careful layer analysis they might seem related.",
+          "whyWrongHere": "OSPF adjacency is a Layer 3 routing protocol relationship between routers — it has nothing to do with Layer 1/2 collision counters on a switch access port. Collisions reflect physical/data-link signaling issues, a completely separate layer and cause from OSPF neighbor relationships.",
+          "memoryAnchor": "Collisions = Layer 1/2 physical signaling issue. OSPF adjacency = Layer 3 routing protocol relationship. Different layers entirely.",
+          "contrast": "OSPF adjacency problems show up as neighbors stuck in a non-FULL state; collisions show up as interface error counters — diagnosed with completely different commands and causes."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes lump any interface activity together, assuming address-related processes like DHCP could somehow explain physical-layer symptoms like collisions.",
+          "whyItSeems": "DHCP renewal happens periodically on network interfaces, so it might seem loosely connected to 'things happening on the interface.'",
+          "whyWrongHere": "DHCP renewal is a Layer 3 process for maintaining an IP address lease — it doesn't interact with the Layer 1/2 signaling that produces collisions. Sustained collisions on a full-duplex port point specifically to a duplex mismatch or physical misconfiguration, unrelated to IP addressing processes like DHCP.",
+          "memoryAnchor": "DHCP renewal = Layer 3 IP address maintenance. Collisions = Layer 1/2 physical signaling problem. Not connected.",
+          "contrast": "A DHCP renewal failure would show up as an addressing problem; collisions show up as interface error counters regardless of whether the device even has a valid IP address yet."
+        }
+      ]
     },
     {
       "id": "1.4-c-q5",
@@ -1351,7 +2031,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "CRC troubleshooting order: cable → duplex → SFP/optics → replace hardware."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes reach for 'reload/reboot' as a generic first troubleshooting step for any kind of problem, treating it as a universal fix.",
+          "whyItSeems": "Reloading a device can resolve various software glitches, so it can feel like a safe 'try this first' answer even when the problem is physical.",
+          "whyWrongHere": "CRC errors point to a Layer 1/2 physical issue — like a bad cable, connector, or duplex mismatch — which a reload won't fix, since the underlying hardware/cabling problem persists after reboot. The correct first step is to check and, if needed, replace the cable and verify speed/duplex settings.",
+          "memoryAnchor": "Physical-layer symptoms (like CRC errors) need physical-layer fixes (cable, speed/duplex) — a reload doesn't touch the wire.",
+          "contrast": "A reload might clear a stuck software process; it does nothing for a damaged cable or a duplex mismatch, which is what's actually driving the CRC errors."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes assume any interface problem might be resolved by adjusting Layer 2/3 logical configuration, like VLAN assignment.",
+          "whyItSeems": "VLAN misconfiguration is a common troubleshooting topic, so it can come to mind as a general 'fix the interface' step.",
+          "whyWrongHere": "VLAN misconfiguration causes connectivity/reachability problems, not CRC errors, which are a physical frame-integrity issue. Changing the VLAN wouldn't address a bad cable or duplex mismatch — the actual causes of rising CRC counts.",
+          "memoryAnchor": "VLAN issues cause reachability problems; CRC errors are a physical-layer symptom needing a physical-layer fix (cable/speed/duplex), not a VLAN change.",
+          "contrast": "A VLAN mismatch would still show clean, uncorrupted frames just going to the wrong broadcast domain; CRC errors mean the frames themselves are physically damaged."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes reach for a routing protocol as a fix-all answer, assuming enabling more advanced features could resolve interface-level problems.",
+          "whyItSeems": "OSPF is heavily emphasized in CCNA study, so it can surface as a default troubleshooting guess even in scenarios that aren't about routing.",
+          "whyWrongHere": "OSPF is a Layer 3 routing protocol that has no relationship to Layer 1/2 physical frame integrity — enabling it wouldn't fix CRC errors on a link. The actual first step is to check the cable and verify speed/duplex settings.",
+          "memoryAnchor": "CRC errors are a cabling/physical-layer symptom — routing protocols like OSPF operate at Layer 3 and can't fix a Layer 1/2 problem.",
+          "contrast": "OSPF issues would show up as routes missing from the routing table; CRC errors show up as corrupted frames regardless of what routing protocol is or isn't running."
+        }
+      ]
     },
     {
       "id": "1.4-c-q6",
@@ -1399,7 +2105,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Ethernet size: runt (<64 B) | normal (64–1518 B) | giant (>MTU) — often cable/duplex related."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes mix up the terminology for frame-size errors, confusing 'runt' with its opposite counterpart.",
+          "whyItSeems": "Both runts and oversized frames ('giants') are frame-size error categories studied together, so the terms can get swapped if not memorized precisely.",
+          "whyWrongHere": "'Runt' specifically refers to a frame smaller than the minimum valid Ethernet frame size, typically due to a collision or bad NIC — the opposite of oversized. Oversized frames exceeding the maximum length are called 'giants,' a completely separate error category.",
+          "memoryAnchor": "Runts = too small (below minimum). Giants = too big (above maximum). Opposite ends of the size spectrum.",
+          "contrast": "A runt is usually the product of a collision cutting a frame short; a giant/oversized frame usually results from a misconfigured MTU or jumbo frame issue."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes conflate frame-size categories with frame-type categories, assuming 'runt' describes what kind of traffic it is rather than its size.",
+          "whyItSeems": "Both runts and broadcasts are terms that appear together in interface statistics output, so it's easy to blur them into one category.",
+          "whyWrongHere": "'Runt' is purely a size classification — any type of frame can become a runt if it's truncated below the minimum Ethernet frame size. It's not limited to or defined by broadcast traffic at all; the defining trait is being undersized, regardless of the original frame type.",
+          "memoryAnchor": "Runt describes frame size (too small), not frame type (broadcast/unicast/multicast) — those are independent classifications.",
+          "contrast": "A broadcast frame is defined by its destination (all hosts on the segment); a runt is defined purely by its size — a unicast frame can be a runt just as easily as a broadcast frame."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes assume any unusual-sounding frame classification must relate to security processing like encryption.",
+          "whyItSeems": "'Runt' is an unfamiliar-sounding term, so without a clear definition it might get associated with some other advanced frame property.",
+          "whyWrongHere": "Encryption changes the content of a frame's payload but doesn't inherently make it undersized — encryption is unrelated to the Layer 2 frame-size classification the question asks about. A runt is defined strictly by its length falling below the minimum valid Ethernet frame size, regardless of content.",
+          "memoryAnchor": "Runt is about frame length, not frame content — encryption status has no bearing on whether a frame counts as a runt.",
+          "contrast": "Encryption affects what's inside the frame's payload; being a runt is purely about the frame's total length falling below the Ethernet minimum, independent of content."
+        }
+      ]
     },
     {
       "id": "1.4-c-q7",
@@ -1431,7 +2163,17 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Always check show interfaces error counters — up/up doesn't mean clean."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Students sometimes assume 'up/up' status means the link is completely error-free, treating link state and error counters as the same thing.",
+          "whyItSeems": "'Up/up' sounds like a clean bill of health, so it's intuitive to think it would rule out any ongoing errors like CRC counts.",
+          "whyWrongHere": "Link status (up/up) only reflects whether the physical connection and protocol are active — it says nothing about frame integrity. An interface can absolutely be up/up while still accumulating CRC errors from a marginal cable, EMI, or a duplex mismatch; the two metrics are tracked independently.",
+          "memoryAnchor": "'Up/up' only means the link is active — always check interface error counters separately to know if it's actually healthy.",
+          "contrast": "Link state answers 'is there a connection?'; the CRC/error counters answer 'is that connection clean?' — a link can pass the first check and fail the second at the same time."
+        }
+      ]
     },
     {
       "id": "1.4-c-q8",
@@ -1479,7 +2221,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Copper best practice: run away from power lines and fluorescent ballasts — use shielded cable if unavoidable."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes default to IP addressing issues as the go-to explanation for any connectivity-flavored symptom, even physical ones.",
+          "whyItSeems": "Subnet misconfiguration is one of the most commonly tested troubleshooting causes, so it can become an automatic guess.",
+          "whyWrongHere": "A wrong IP subnet causes Layer 3 reachability failures — it has no effect on Layer 1/2 CRC error counters. The scenario specifically describes CRC errors tied to a cable running parallel to power lines, pointing to electromagnetic interference (EMI) corrupting the physical signal, not an addressing mistake.",
+          "memoryAnchor": "CRC errors near power lines = physical-layer EMI issue. Wrong subnet = Layer 3 addressing issue. Different layers, different fixes.",
+          "contrast": "A wrong subnet would still deliver clean, uncorrupted frames that simply get dropped due to logical mismatch; EMI actually corrupts the electrical signal itself, producing the CRC errors described."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes reach for a Layer 3 routing explanation for any 'traffic isn't working right' symptom, regardless of what layer the clue actually points to.",
+          "whyItSeems": "A missing default route is a classic troubleshooting cause for reachability problems, so it can surface as a guess even when the clue points elsewhere.",
+          "whyWrongHere": "A missing default route would prevent traffic from reaching remote networks, but it has nothing to do with corrupting frames or causing CRC errors on a specific cable. The scenario's detail about the cable running parallel to power lines points to electromagnetic interference (EMI) as the physical cause.",
+          "memoryAnchor": "Missing default route breaks reachability to remote networks; CRC errors near power lines point to physical EMI, not a routing gap.",
+          "contrast": "A missing default route still delivers intact frames locally; EMI actively corrupts the frame's bits during transmission, which is what CRC checks catch."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes assume any security-related setting could be the hidden cause of a network symptom, even when the scenario clearly describes a wired issue.",
+          "whyItSeems": "WPA3 misconfig is a plausible-sounding technical answer, and wireless security topics are common in CCNA study.",
+          "whyWrongHere": "WPA3 is a wireless security protocol — it has no relevance to a scenario describing a copper cable physically running parallel to power lines, a wired, Layer 1 environment. The clue about proximity to power lines points directly to electromagnetic interference degrading the copper cable's signal.",
+          "memoryAnchor": "WPA3 governs wireless encryption; a copper cable near power lines points to EMI, a purely physical-layer wired issue.",
+          "contrast": "WPA3 misconfiguration would affect wireless client authentication/encryption; the scenario describes a wired copper cable being physically influenced by nearby electrical interference — a completely different domain."
+        }
+      ]
     }
   ],
   "1.5": [
@@ -1529,7 +2297,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "MAC learning → source MAC on the ingress port."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students sometimes assume the switch 'learns' whichever address seems most relevant to where the frame is going, which intuitively feels like the destination.",
+          "whyItSeems": "The destination MAC is what determines where the switch forwards the frame, so it can seem logical that this is also the address being learned.",
+          "whyWrongHere": "The question specifically asks which address the switch records when learning — that's the source MAC, taken from the frame that just arrived on a given port, so the switch now knows 'this MAC lives out this port.' The destination MAC is used for the forwarding decision, not for updating the MAC table.",
+          "memoryAnchor": "Learning uses the source MAC ('who sent this, and from which port'); forwarding uses the destination MAC ('where does this need to go').",
+          "contrast": "Learning is a write operation using the source address on the incoming port; forwarding is a read/lookup operation using the destination address to pick the outgoing port."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students sometimes assume the switch must capture both addresses in a frame since both are visible in the frame header.",
+          "whyItSeems": "Since both addresses are present in every Ethernet frame, it can seem reasonable that the switch would record both for its table.",
+          "whyWrongHere": "The switch's MAC address table only stores one MAC-to-port mapping at a time, built from the source address of arriving frames — it isn't simultaneously recording the destination address as a new table entry. The destination MAC is only used to decide where to forward, not to create or update a table entry.",
+          "memoryAnchor": "The MAC table only ever gets new entries from source addresses on incoming frames — never from destination addresses.",
+          "contrast": "If a destination MAC isn't yet in the table, the switch floods the frame instead of learning it from the destination; only source-address learning actually populates new entries."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students sometimes conflate Layer 2 and Layer 3 forwarding tables, assuming switches must also track IP addresses like routers do.",
+          "whyItSeems": "Networking devices in general do handle IP addresses somewhere in the stack, so it can seem plausible that switches track them too.",
+          "whyWrongHere": "A standard Layer 2 switch's MAC address table is built and used entirely at Layer 2 — it has no concept of IP addresses in this context. The question is specifically about MAC learning, and the switch learns the source MAC address of frames arriving on each port, not any IP information.",
+          "memoryAnchor": "MAC address tables are Layer 2 only — IP addresses belong to Layer 3 routing tables, a completely separate mechanism.",
+          "contrast": "A router's routing table maps IP networks to next hops based on Layer 3 headers; a switch's MAC table maps individual MAC addresses to local ports based on Layer 2 headers."
+        }
+      ]
     },
     {
       "id": "1.5-c-q2",
@@ -1577,7 +2371,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Known MAC in CAM → one egress port. Unknown MAC → flood (same VLAN, except ingress)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners think every frame the switch doesn't immediately recognize as 'this exact port' triggers a flood, blurring the line between unknown-unicast handling and known-unicast forwarding.",
+          "whyItSeems": "Flooding is the switch's fallback when it doesn't know where to send a frame, so it's tempting to apply that same logic whenever the destination is 'different' from the source port.",
+          "whyWrongHere": "The switch already has a CAM entry mapping this MAC to a specific port — flooding is reserved for frames whose destination MAC has NO table entry. Since the mapping exists, the switch reads it and sends the frame out that one port only; flooding here would waste bandwidth and defeat the purpose of learning.",
+          "memoryAnchor": "Known MAC in the table = one port, no exceptions; flooding is only for the unknown.",
+          "contrast": "Unknown-unicast flooding sprays every port in the VLAN because the switch has no better information; known-unicast forwarding uses the CAM entry to go straight to a single port."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Learners sometimes assume a frame destined for a 'different' port than it arrived on is somehow invalid or a policy violation, so the switch discards it.",
+          "whyItSeems": "Switches DO drop frames in some scenarios (e.g., port security violations, ACL denies), so it feels plausible that mismatched source/destination ports trigger a drop.",
+          "whyWrongHere": "There is nothing abnormal about a destination MAC mapping to a port different from the ingress port — that's the everyday case of two different hosts on two different switch ports talking to each other. The switch's normal job is to forward it out the mapped port, not discard it.",
+          "memoryAnchor": "Different ingress and egress port is the NORMAL case — forward, don't drop.",
+          "contrast": "Frames get dropped for exceptions like port security violations or STP blocking states; a routine known-unicast lookup with a valid CAM entry always forwards."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners conflate 'send to other hosts in the VLAN' with broadcasting, forgetting that a specific, known destination MAC calls for a targeted forward, not a VLAN-wide broadcast.",
+          "whyItSeems": "Both broadcasting and flooding involve sending a frame to multiple ports, so when a learner isn't sure of the exact mechanism, 'broadcast to the VLAN' sounds like a safe generic answer.",
+          "whyWrongHere": "This is a unicast frame with a specific, known destination MAC — broadcasting is reserved for frames sent to FFFF.FFFF.FFFF or truly unknown destinations needing a flood. Because the CAM table has an exact match, the switch sends it out that ONE port, never touching the other ports in the VLAN.",
+          "memoryAnchor": "A known unicast MAC gets a private letter to one address, not a mass mailing to the whole VLAN.",
+          "contrast": "Broadcast frames (dest FFFF.FFFF.FFFF) always go to every port in the VLAN by design; known unicast frames go to exactly one port by CAM lookup."
+        }
+      ]
     },
     {
       "id": "1.5-c-q3",
@@ -1625,7 +2445,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Unknown unicast → flood (same VLAN, except ingress). Known unicast → forward one port."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners assume that if a switch 'doesn't know' where something goes, it must be an error condition and get discarded — treating 'unknown' like 'invalid'.",
+          "whyItSeems": "In many other systems (routers with no route, DNS with no record), 'unknown destination' really does mean failure/drop, so it's natural to expect the same here.",
+          "whyWrongHere": "A switch has no concept of 'no route' the way a router does — every frame must go somewhere so the destination host has a chance to reply and get learned. With no CAM entry, the switch floods the frame out every port in the VLAN except the one it came in on, rather than discarding it.",
+          "memoryAnchor": "No CAM match ≠ error — it means 'flood and wait to learn,' not 'drop.'",
+          "contrast": "A router with no matching route entry truly does drop the packet (destination unreachable); a switch with no CAM entry floods instead, because Layer 2 has no 'no forwarding information' failure state."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Learners import a request/reply mental model (like ping or ARP) onto plain Ethernet switching, assuming the switch itself replies when it can't resolve a destination.",
+          "whyItSeems": "Networking is full of request-response patterns (ARP, DNS, ICMP), so 'ask the sender for more info' or 'bounce it back' feels like a reasonable fallback.",
+          "whyWrongHere": "A switch performs pure Layer 2 forwarding — it has no protocol for talking back to a sending host about an unresolved MAC. Its only two moves for an unknown unicast are flood or (in rare filtering cases) drop; sending the frame back to the exact port it arrived on would create a loop and serves no purpose here.",
+          "memoryAnchor": "A switch never talks back — it only forwards, filters, or floods.",
+          "contrast": "ARP explicitly involves a broadcast-then-reply exchange; plain frame switching is silent and one-directional — flood the unknown frame outward, don't echo it to the sender."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners blur the line between Layer 2 switching decisions and Layer 3 routing decisions, assuming any 'I don't know what to do' moment escalates to the router.",
+          "whyItSeems": "In real troubleshooting, when something 'doesn't work,' the default gateway often comes up as the answer — so it feels like a safe catch-all for uncertainty.",
+          "whyWrongHere": "The default gateway matters when a packet needs to leave the local subnet — that's an IP-layer decision. This question is entirely about MAC-address forwarding within one VLAN; there's no Layer 3 lookup happening, so escalating to a default gateway isn't part of the switch's job. It floods within the VLAN instead.",
+          "memoryAnchor": "Default gateway = leaving the subnet at Layer 3; MAC flooding = staying inside the VLAN at Layer 2 — don't mix the layers.",
+          "contrast": "A router sends off-subnet traffic to the default gateway based on IP; a switch with an unknown MAC floods locally within the VLAN — it never hands the decision to a gateway."
+        }
+      ]
     },
     {
       "id": "1.5-c-q4",
@@ -1673,7 +2519,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "MAC aging default = 300 s; change with mac address-table aging-time."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners often mix up MAC aging with other short Cisco timers (like some STP-related defaults), landing on 30 seconds as 'the' quick timeout value.",
+          "whyItSeems": "30 seconds sounds appropriately 'quick' for something as short-lived as a dynamically learned entry, so it feels intuitively right even without memorizing the real number.",
+          "whyWrongHere": "The Cisco IOS default MAC address table aging timer is specifically 300 seconds (5 minutes), configurable via mac address-table aging-time. 30 seconds isn't a default value tied to MAC learning at all — it doesn't match any of the standard CDP/aging defaults on a switch.",
+          "memoryAnchor": "MAC aging default = 300, not 30 — one extra zero matters on the exam.",
+          "contrast": "300 seconds is the MAC table's inactivity timeout; nothing in normal switch operation defaults to a flat 30-second aging value."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Learners confuse the MAC address table aging timer with CDP's default 60-second advertisement interval, since both are 'switch timers' studied around the same time.",
+          "whyItSeems": "60 seconds is a genuinely correct Cisco default — just for CDP hello messages, not MAC aging — so the number is memorable but attached to the wrong feature.",
+          "whyWrongHere": "CDP advertises every 60 seconds by default, but that has nothing to do with how long a dynamic MAC entry stays in the CAM table. The MAC aging default is 300 seconds; picking 60 seconds here means answering a different question (CDP timing) instead of this one (MAC aging).",
+          "memoryAnchor": "60 seconds is CDP's clock; 300 seconds is the MAC table's clock — different features, different numbers.",
+          "contrast": "CDP hellos repeat every 60 seconds regardless of traffic; MAC entries expire after 300 seconds of inactivity — conflating the two timers is a common exam trap."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners round up to a 'nice' unit like one hour, assuming longer retention is safer or more efficient without recalling the actual configured default.",
+          "whyItSeems": "An hour feels like a reasonable amount of time to remember a MAC-to-port mapping, especially if a learner is thinking about how infrequently some hosts move — so 3600 seems 'sensible' even though it isn't the real default.",
+          "whyWrongHere": "Cisco's default aging timer is 300 seconds specifically because it balances table freshness (catching moved hosts reasonably fast) against relearning overhead. 3600 seconds is 12 times longer than the actual default and would leave stale entries mapped to old ports for far too long after a host moves.",
+          "memoryAnchor": "5 minutes (300s), not 1 hour (3600s) — the switch relearns fast, on purpose.",
+          "contrast": "300 seconds keeps the CAM table responsive to host moves; a 3600-second timer (not the default) would let stale port mappings linger long after a device relocates."
+        }
+      ]
     },
     {
       "id": "1.5-c-q5",
@@ -1721,7 +2593,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Same ingress port for source and destination → filter (do not forward)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners assume every frame the switch processes must exit some other port, treating 'forwarding' as the default action regardless of where source and destination actually sit.",
+          "whyItSeems": "Most switching questions do involve forwarding out a different port, so it's an easy pattern to over-apply even to this edge case.",
+          "whyWrongHere": "Both PC-A and PC-B are reachable through the SAME switch port (because they share a hub upstream of that port). The switch's CAM table maps both MACs to that one port, so there is no 'different port' to forward to — the destination is already on the segment the frame arrived from, so it is filtered instead.",
+          "memoryAnchor": "Same port in, same port mapped out = filter, not forward — there's nowhere else to send it.",
+          "contrast": "Normal forwarding sends a frame out a DIFFERENT port than it arrived on; here source and destination share one port, so the switch filters instead."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Learners default to 'flood' whenever a scenario feels unusual or edge-case-y, without checking whether the destination MAC is actually known.",
+          "whyItSeems": "Flooding is the switch's fallback for uncertainty, so an unfamiliar scenario like a hub sharing one port can make flooding feel like the 'safe' catch-all answer.",
+          "whyWrongHere": "Flooding only happens for UNKNOWN destinations. PC-B's MAC is already known and mapped to the same port PC-A used — that's a known destination, and known destinations get filtered (if same port) or forwarded (if a different port), never flooded.",
+          "memoryAnchor": "Flooding is for unknowns; a known MAC — even one sharing the ingress port — is never flooded.",
+          "contrast": "Flooding sends a frame everywhere because the switch has no CAM entry; filtering withholds the frame entirely because the CAM entry shows the destination is already on the same segment."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners treat 'the switch does nothing with this frame' as equivalent to an error condition, since 'not forwarding' sounds abnormal.",
+          "whyItSeems": "Filtering and dropping both mean the frame doesn't reach a new port, so without a clear vocabulary distinction they can look identical from the outside.",
+          "whyWrongHere": "Filtering isn't a fault — it's correct, intentional behavior: the switch recognizes the destination is already on the same physical segment as the source (via the shared hub) and doesn't need to retransmit it. No error is logged and no frame is malformed; the switch is simply avoiding an unnecessary retransmission.",
+          "memoryAnchor": "Filtering is a deliberate 'no need to resend,' not a failure.",
+          "contrast": "An error/drop condition (like a CRC failure or security violation) discards a frame the switch SHOULD have otherwise forwarded; filtering here is normal, correct behavior for same-port traffic."
+        }
+      ]
     },
     {
       "id": "1.5-c-q6",
@@ -1769,7 +2667,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "L2 broadcast = FFFF.FFFF.FFFF."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners sometimes assume the 'special' all-zero pattern must represent some reserved/special-case address, mixing it up with concepts like IPv4's 0.0.0.0 'any' address.",
+          "whyItSeems": "0.0.0.0 IS a meaningful special value in IPv4 (default route/unspecified), so it's tempting to assume an all-zero MAC plays a similarly special broadcast-like role.",
+          "whyWrongHere": "There is no defined meaning for 0000.0000.0000 as a Layer 2 broadcast — the Ethernet broadcast address is specifically all binary 1s (FFFF.FFFF.FFFF), not all 0s. An all-zero MAC would just be an unassigned/invalid address, not a signal to flood.",
+          "memoryAnchor": "Broadcast = all 1s (FFFF...), not all 0s — the opposite pattern from what some IPv4 instincts suggest.",
+          "contrast": "IPv4's 0.0.0.0 can mean 'unspecified'; Ethernet's all-zero MAC has no such special broadcast meaning — the broadcast MAC is always all Fs."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners assume that because FFFF appears somewhere in the address, it must be the (partial) broadcast signature, without realizing the ENTIRE 48 bits must be 1s.",
+          "whyItSeems": "Seeing 'FFFF' in the last group can pattern-match to 'broadcast-ish,' especially if a learner only half-remembers the exact format.",
+          "whyWrongHere": "The Ethernet broadcast address requires all 48 bits to be 1 — FFFF.FFFF.FFFF, not just the last 16 bits. 0000.0000.FFFF is simply a specific unicast-looking MAC value with no broadcast significance; switches would treat it as a normal (likely unknown) unicast destination.",
+          "memoryAnchor": "It's all six bytes of F, not just the last one — FFFF.FFFF.FFFF, full stop.",
+          "contrast": "A partial-F address like 0000.0000.FFFF is just an ordinary 48-bit MAC value; only the fully-all-1s FFFF.FFFF.FFFF is recognized network-wide as broadcast."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners sometimes pick a 'symmetric-looking' repeated hex pattern, assuming any uniform address must carry special networking significance.",
+          "whyItSeems": "AAAA.AAAA.AAAA looks deliberately patterned (like a placeholder or example value), which can make it seem 'special' the way FFFF does.",
+          "whyWrongHere": "AAAA in hex is 10101010 in binary — a mixed pattern of 1s and 0s, not all 1s. Only an address of all binary 1s (FFFF.FFFF.FFFF) is reserved as the Layer 2 broadcast; AAAA.AAAA.AAAA is just an arbitrary (and likely locally-administered-looking) unicast MAC with no broadcast role.",
+          "memoryAnchor": "Only all-1s (F) means broadcast — any other repeating hex pattern, including A, is just a regular address.",
+          "contrast": "FFFF in binary is 1111 1111 1111 1111 — all ones; AAAA is 1010 1010 1010 1010 — alternating bits. Only the all-ones pattern is the reserved Ethernet broadcast."
+        }
+      ]
     },
     {
       "id": "1.5-c-q7",
@@ -1801,7 +2725,17 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Flood/filter scope = same VLAN only."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners assume flooding means 'send to literally every physical port on the switch,' forgetting that VLANs create separate logical broadcast domains that flooding respects.",
+          "whyItSeems": "Physically, all the switch's ports sit on the same hardware, so it can feel like flooding should reach all of them regardless of VLAN configuration.",
+          "whyWrongHere": "VLANs exist precisely to segment broadcast/flood domains — a switch tracks which VLAN each port belongs to and only floods a frame out ports assigned to the SAME VLAN the frame arrived on. Flooding into a different VLAN would violate the entire purpose of VLAN isolation and never happens in normal switch operation.",
+          "memoryAnchor": "Flooding stays inside its own VLAN fence — it never hops the fence into another VLAN.",
+          "contrast": "Within one VLAN, flooding legitimately reaches every port except the ingress port; across VLAN boundaries, flooding is completely blocked by design — that's the whole point of VLAN segmentation."
+        }
+      ]
     },
     {
       "id": "1.5-c-q8",
@@ -1849,7 +2783,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "MAC table → show mac address-table."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners reach for the most familiar 'show' command (show ip interface brief) as a catch-all verification tool, without checking whether it actually displays the requested information.",
+          "whyItSeems": "show ip interface brief is one of the first verification commands learned and used constantly for interface status, so it can feel like the default answer to any 'which show command' question.",
+          "whyWrongHere": "show ip interface brief reports Layer 3 interface status and IP addresses — it has no visibility into the Layer 2 MAC address table at all. To see MAC-to-port mappings, you need show mac address-table, a completely different command targeting a completely different data structure.",
+          "memoryAnchor": "IP interface brief = Layer 3 status; MAC address-table = Layer 2 CAM entries — different layer, different command.",
+          "contrast": "show ip interface brief shows interface up/down and IP assignment; show mac address-table shows which MAC is learned on which port/VLAN — they answer entirely different questions."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners lump all switch-related 'show' commands together, assuming VLAN info and MAC info live in the same output since both are Layer 2 switching concepts.",
+          "whyItSeems": "VLANs and MAC addresses are both core Layer 2 topics covered together in study material, so it's easy to assume one command covers both.",
+          "whyWrongHere": "show vlan brief lists which VLANs exist and which access ports belong to them — it says nothing about which specific MAC addresses have been learned on those ports. That learned-MAC-to-port mapping only appears in show mac address-table.",
+          "memoryAnchor": "VLAN brief = port-to-VLAN membership; MAC address-table = MAC-to-port learning — two different tables.",
+          "contrast": "show vlan brief tells you which VLAN a port belongs to; show mac address-table tells you which specific device (MAC) was learned on that port — related but distinct data."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners conflate neighbor discovery (which devices are physically connected) with MAC learning (which source MACs have sent traffic), since both feel like 'what's out there' commands.",
+          "whyItSeems": "CDP neighbors and MAC learning both reveal 'devices near this switch,' so without precise recall it's easy to blur the two into one general-purpose discovery command.",
+          "whyWrongHere": "show cdp neighbors reports directly-connected Cisco devices (via CDP advertisements) — it has nothing to do with the dynamically learned MAC address table, which tracks every source MAC seen on every port, Cisco or not. The correct command for that is show mac address-table.",
+          "memoryAnchor": "CDP neighbors = 'what Cisco gear is plugged in here'; MAC address-table = 'what MAC addresses have I actually seen.'",
+          "contrast": "CDP discovery relies on a Cisco-proprietary advertisement protocol between directly connected devices; MAC learning happens passively from ordinary frame traffic on any port, Cisco device or not."
+        }
+      ]
     },
     {
       "id": "1.5-c-q9",
@@ -1897,7 +2857,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Pin MAC → mac address-table static."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners assume disabling the aging TIMER (setting it to 0) is equivalent to permanently pinning a specific MAC entry, conflating 'stops aging globally' with 'creates one static entry.'",
+          "whyItSeems": "Both ideas involve 'not aging out,' so it's easy to think one command achieves the same practical outcome as the other.",
+          "whyWrongHere": "mac address-table aging-time 0 changes the GLOBAL aging behavior for all dynamically learned entries on the switch (effectively disabling aging entirely) — it does not add any specific MAC-to-port binding. To create ONE permanent, specific entry you need mac address-table static <mac> vlan <id> interface <intf>, a completely different command with a completely different scope.",
+          "memoryAnchor": "aging-time 0 = a global dial affecting ALL dynamic entries; mac address-table static = a scalpel adding ONE fixed entry.",
+          "contrast": "Disabling aging globally leaves stale dynamic entries around indefinitely without pinning any of them to a specific interface; the static command explicitly and individually binds one MAC to one VLAN/port, immune to aging by design."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners see the word 'static' in the command name and assume any switchport-related 'static' keyword must be the answer, without checking that it configures VLAN mode, not MAC bindings.",
+          "whyItSeems": "Pattern-matching on the word 'static' alone (rather than its actual context) makes switchport mode static feel plausible if you're skimming CLI syntax rather than recalling exact commands.",
+          "whyWrongHere": "switchport mode static is not even valid Cisco IOS syntax for MAC pinning — switchport mode configures whether a port is access, trunk, or dynamic, nothing about MAC-table entries. The real syntax for a fixed MAC binding is mac address-table static <mac> vlan <id> interface <intf>.",
+          "memoryAnchor": "'switchport mode' configures port TYPE (access/trunk); 'mac address-table static' configures a fixed MAC ENTRY — different commands, different targets.",
+          "contrast": "switchport mode commands control how a port handles VLAN tagging; mac address-table static commands control a specific MAC-to-port binding in the CAM table — unrelated configuration areas."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners cross Layer 2 (MAC/CAM table) concepts with Layer 3 (ARP/IP-to-MAC mapping) concepts, assuming 'static' entries of any kind live in the ARP table.",
+          "whyItSeems": "ARP entries and MAC table entries are both 'address mapping tables' conceptually close together in study material, so it's easy to reach for the wrong one under pressure.",
+          "whyWrongHere": "arp <mac> static configures a static ARP entry, which maps an IP address to a MAC address at Layer 3 for a router or host — it has nothing to do with the switch's own internal MAC address table (CAM), which maps MAC addresses to physical switch ports at Layer 2. Pinning a CAM entry requires mac address-table static, not an ARP command.",
+          "memoryAnchor": "ARP static = IP-to-MAC mapping (Layer 3); MAC address-table static = MAC-to-port mapping (Layer 2) — different tables entirely.",
+          "contrast": "A static ARP entry lives on a router/host and answers 'what MAC does this IP belong to'; a static MAC address-table entry lives on a switch and answers 'what port is this MAC always on.'"
+        }
+      ]
     },
     {
       "id": "1.5-c-q10",
@@ -1946,7 +2932,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Brand-new host, no CAM entry yet → unknown unicast flood until the server sends a frame."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners think a switch needs prior knowledge (a learned MAC) before it can deliver ANY frame to a host, treating 'unlearned' as 'unreachable.'",
+          "whyItSeems": "It feels logical that the switch must 'know' a device before talking to it — similar to how you can't call someone whose number you don't have.",
+          "whyWrongHere": "The switch doesn't need to know the destination's MAC in advance to deliver a frame — it just floods unknown-unicast frames out every port in the VLAN (except the ingress port), and whichever host actually owns that MAC receives it and can reply. The 'first contact' problem is solved by flooding, not blocked by it.",
+          "memoryAnchor": "Unlearned doesn't mean unreachable — it means 'flood until the destination replies and gets learned.'",
+          "contrast": "A phone call truly requires knowing the number in advance; Ethernet flooding is a broadcast-style delivery mechanism that reaches an unlearned host anyway, without any prior 'lookup' step."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners assume an unresolved/unknown situation at Layer 2 is exceptional enough to warrant an error log, similar to how unreachable destinations or failures get logged elsewhere in networking.",
+          "whyItSeems": "Error logging feels like the 'responsible' behavior for any situation the switch can't fully resolve, so it's an intuitive but incorrect extension of how other protocols handle failures.",
+          "whyWrongHere": "An unknown destination MAC is completely routine, expected behavior for a switch — every brand-new device on the network starts out 'unknown' until it sends its first frame. The switch simply floods the frame normally; there's no fault condition, so nothing gets dropped or logged as an error.",
+          "memoryAnchor": "Unknown unicast is Tuesday for a switch — not an error, just the normal 'first contact' case.",
+          "contrast": "Genuine error conditions (like a CRC failure or a security violation) get dropped/logged; a routine unknown-unicast lookup is expected and gets flooded, never treated as a fault."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners import the ARP request/reply pattern (used at Layer 3 for IP-to-MAC resolution) into a purely Layer 2 forwarding scenario, assuming the switch itself needs to 'ask' who owns a MAC.",
+          "whyItSeems": "ARP genuinely IS how hosts resolve IP-to-MAC before sending — so it's an easy but misplaced analogy to assume the switch performs a similar lookup step before forwarding.",
+          "whyWrongHere": "ARP is a Layer 3 protocol run by HOSTS to discover a MAC address for a known IP — switches don't originate ARP requests as part of normal frame forwarding. A switch works purely with the MAC address already present in the frame's Ethernet header; if it's not in the CAM table, the switch just floods the frame — it never needs to 'ask' anything first.",
+          "memoryAnchor": "ARP is a host's job to find a MAC from an IP; the switch's job is just 'flood if unknown' — no asking required.",
+          "contrast": "ARP resolution happens BEFORE a host even builds the Ethernet frame (to fill in the destination MAC); the switch's flood decision happens AFTER the frame already exists, purely based on whether that MAC is in its table."
+        }
+      ]
     },
     {
       "id": "1.5-c-q11",
@@ -1995,7 +3007,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Move a host → next frame relearns MAC-to-port; stale entry ages out."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners think of MAC table entries as permanent records once learned, not realizing every dynamic entry is subject to aging and continuous relearning from new traffic.",
+          "whyItSeems": "Once something is 'learned,' it can feel like it should stick — similar to how a person's name, once learned, isn't easily forgotten.",
+          "whyWrongHere": "Dynamic MAC entries are tied to an aging timer (default 300 seconds) and get updated whenever new traffic arrives from that MAC on a different port. As soon as the laptop sends its first frame from port 5, the switch relearns the mapping to port 5; the stale port-1 entry either gets overwritten immediately or ages out shortly after — it does not persist forever.",
+          "memoryAnchor": "MAC learning is continuous and self-correcting — the next frame always updates the table, nothing sticks forever.",
+          "contrast": "A static MAC entry (configured manually) truly does stay fixed until removed; a dynamic entry (the default, learned automatically) is always subject to aging and relearning as traffic patterns change."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Learners overreact to a single topology change, assuming any host move is disruptive enough to reset the entire MAC table rather than just updating the one affected entry.",
+          "whyItSeems": "A move feels like a 'big' network event, so it's tempting to imagine a correspondingly big response from the switch (wiping everything) rather than the actual small, surgical update that occurs.",
+          "whyWrongHere": "The switch's MAC learning process is entry-by-entry and traffic-driven — it never performs a full table flush just because one host moved ports. Only the specific entry for that one MAC gets updated (or aged out and relearned); every other host's mapping on the switch is completely unaffected.",
+          "memoryAnchor": "One host moving updates ONE entry — the rest of the table doesn't even notice.",
+          "contrast": "A full MAC table flush only happens in specific administrative or fault scenarios (like a manual clear mac address-table command or certain STP topology changes); a routine port move is handled with a single, targeted relearn."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners confuse ordinary MAC relearning with security enforcement features like port security, assuming any 'unexpected' MAC arrival triggers a protective shutdown.",
+          "whyItSeems": "Port security DOES shut down ports in response to certain MAC violations, so if a learner has studied that feature recently, it's easy to misapply that behavior to a completely unconfigured, default scenario.",
+          "whyWrongHere": "Without port security (or a similar restrictive feature) configured, a switch has no reason to disable a port just because a new MAC shows up on it — that's exactly how normal host mobility is supposed to work. Port 5 simply learns the laptop's MAC as any port would; nothing about a plain move triggers err-disable.",
+          "memoryAnchor": "Default behavior welcomes a moved host; only explicit port security configuration would ever shut a port down for this.",
+          "contrast": "Port security with a MAC violation action of shutdown WOULD err-disable a port on an unexpected MAC — but that's a deliberately configured security feature, not default switch behavior for a routine host relocation."
+        }
+      ]
     },
     {
       "id": "1.5-c-q12",
@@ -2044,7 +3082,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Switch = intelligent flood/filter; hub = repeat all ports."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners who haven't fully internalized what 'intelligent forwarding' means may see both devices as just 'boxes that connect multiple cables together' and assume they behave the same way.",
+          "whyItSeems": "From a purely physical standpoint, both hubs and switches have multiple ports that PCs plug into, so at a glance they can look functionally interchangeable.",
+          "whyWrongHere": "A hub is a dumb Layer 1 repeater — every bit that arrives gets repeated out every other port, with zero awareness of MAC addresses or which host is where. A switch is a Layer 2 device that learns MAC-to-port mappings and forwards known-unicast frames out only the correct single port, dramatically reducing unnecessary traffic and collisions.",
+          "memoryAnchor": "Hub = dumb repeater, everything everywhere; switch = smart forwarder, right frame to the right port.",
+          "contrast": "A hub creates one shared collision domain across all ports (anything in, everything out); a switch creates a separate collision domain per port and only floods when it genuinely doesn't know the destination."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners get the roles backwards, assigning the 'smart' MAC-table behavior to the simpler device (hub) instead of the actual device (switch) that performs MAC learning.",
+          "whyItSeems": "If a learner isn't confident about which device does what, it's easy to guess in either direction — and this option flips the correct assignment entirely.",
+          "whyWrongHere": "Hubs operate purely at Layer 1 (electrical signal repetition) and have no concept of MAC addresses or tables at all — they can't even read the Ethernet header. It's the SWITCH that builds and maintains a MAC address table (CAM) to make intelligent, per-port forwarding decisions; the hub does none of that.",
+          "memoryAnchor": "MAC tables belong to switches, never to hubs — a hub can't even see a MAC address, let alone remember one.",
+          "contrast": "A switch inspects every frame's source MAC to build its CAM table and inspects the destination MAC to decide where to forward; a hub does neither — it just repeats raw electrical signals blindly."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners confuse switch capability (some switches are 'multilayer' and CAN route) with switch's PRIMARY, defining function, assuming plain switching implies Layer 3 operation.",
+          "whyItSeems": "Advanced Layer 3 switches do exist and get mentioned in CCNA material, so a learner who's seen that term might overgeneralize it to all switches, including basic Layer 2 ones.",
+          "whyWrongHere": "A standard switch's defining, primary function is Layer 2 Ethernet frame forwarding based on MAC addresses — that's what distinguishes it from both a hub (Layer 1, no intelligence) and a router (Layer 3, IP-based forwarding). Saying 'switch only works at Layer 3' misses the entire point of what makes a switch a switch.",
+          "memoryAnchor": "Plain switch = Layer 2 by definition; Layer 3 switching is a specialized ADD-ON some switches have, not the baseline.",
+          "contrast": "A router forwards based on destination IP address at Layer 3; a switch (in its defining role) forwards based on destination MAC address at Layer 2 — mixing these up loses the fundamental Layer 2 vs Layer 3 distinction this question tests."
+        }
+      ]
     }
   ],
   "1.6": [
@@ -2094,7 +3158,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Usable hosts = 2^(32−prefix) − 2. /26 → 62."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners compute 2^6 = 64 correctly but forget the final step of subtracting the two reserved addresses (network and broadcast), treating 'total addresses' as if it equaled 'usable hosts.'",
+          "whyItSeems": "64 is the literal, correct result of the exponent math (2^6), so it feels 'done' right after that calculation — the subtraction step is easy to forget under exam pressure.",
+          "whyWrongHere": "2^6 = 64 gives the TOTAL number of addresses in the subnet, but two of those are always reserved: the network address (all host bits 0) and the broadcast address (all host bits 1). Neither can be assigned to a host, so usable hosts = 64 − 2 = 62.",
+          "memoryAnchor": "Total addresses minus 2 (network + broadcast) = usable hosts — never skip the −2.",
+          "contrast": "64 answers 'how many addresses exist in this subnet'; 62 answers 'how many can I actually assign to devices' — the question specifically asks for USABLE hosts."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners miscount the host bits for /26, accidentally applying the math for one prefix size shorter (/27), which yields 30 usable hosts.",
+          "whyItSeems": "30 and 62 are both common 'usable host' answers students memorize from a subnetting table, so it's easy to grab the adjacent value if the prefix-to-host-bits mapping isn't rock solid.",
+          "whyWrongHere": "/26 leaves 32 − 26 = 6 host bits, giving 2^6 − 2 = 62 usable hosts. 30 usable hosts corresponds to a /27 (5 host bits: 2^5 − 2 = 30) — one prefix size smaller (more subnets, fewer hosts each) than what this question asks about.",
+          "memoryAnchor": "/26 → 62 usable; /27 → 30 usable — one prefix bit shifts the whole answer.",
+          "contrast": "A /27 has one MORE network bit (and one fewer host bit) than a /26, cutting the usable host count roughly in half — 62 for /26 versus 30 for /27."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners miscount host bits in the other direction, applying the math for a /25 (7 host bits) instead of the /26 (6 host bits) actually asked about.",
+          "whyItSeems": "126 and 62 both appear on standard subnetting cheat sheets, so without a reliable way to derive the number from the prefix directly, it's easy to pick the wrong adjacent row.",
+          "whyWrongHere": "/25 leaves 7 host bits (32−25), giving 2^7 − 2 = 126 usable hosts — that's a LARGER subnet than a /26. The question specifically asks about /26, which leaves only 6 host bits: 2^6 − 2 = 62 usable hosts.",
+          "memoryAnchor": "/25 → 126 usable; /26 → 62 usable — don't grab the neighboring prefix's number.",
+          "contrast": "A /25 has one FEWER network bit than a /26, roughly doubling the usable hosts per subnet — 126 versus 62 — so mixing them up is an easy off-by-one-prefix mistake."
+        }
+      ]
     },
     {
       "id": "1.6-c-q2",
@@ -2142,7 +3232,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "/27 → 5 host bits → block size 32 (memorize 128/64/32/16/8 for /25–/29)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners shift the host-bit count by one, computing the block size for a /28 (4 host bits → 2^4=16) instead of the /27 actually asked about.",
+          "whyItSeems": "16 and 32 are adjacent values in the standard 128/64/32/16/8 block-size progression, so it's an easy slip to grab the wrong rung of the ladder.",
+          "whyWrongHere": "A /27 mask (255.255.255.224) leaves 32 − 27 = 5 host bits, and block size = 2^5 = 32. 16 is the block size for a /28 (4 host bits, 2^4=16) — one prefix size longer (smaller subnets) than what this question asks.",
+          "memoryAnchor": "Memorize the ladder: /25=128, /26=64, /27=32, /28=16, /29=8 — /27 always lands on 32.",
+          "contrast": "A /28 has one more network bit than a /27, halving the block size again — 16 versus 32 — so picking 16 answers a different, smaller subnet size."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners shift the host-bit count the other way, computing the block size for a /26 (6 host bits → 2^6=64) instead of the /27 actually asked about.",
+          "whyItSeems": "64 is also a common block size seen constantly in subnetting practice, so without double-checking which prefix maps to which host-bit count, it's easy to default to a frequently-seen number.",
+          "whyWrongHere": "255.255.255.224 corresponds to a /27, leaving 5 host bits (32−27), so block size = 2^5 = 32. 64 is the block size for a /26 (6 host bits, 2^6=64) — a larger subnet, one prefix size shorter than /27.",
+          "memoryAnchor": "/26 = 64 block size; /27 = 32 block size — halving each time you add a network bit.",
+          "contrast": "A /26 has one fewer network bit than a /27, doubling the block size — 64 versus 32 — so 64 answers the wrong (larger) subnet size."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners jump two steps down the block-size ladder, computing for a /29 (3 host bits → 2^3=8) instead of the /27 in question.",
+          "whyItSeems": "8 is a small, memorable block size often associated with point-to-point-style small subnets, so it can surface as a guess when the exact host-bit count for /27 isn't recalled precisely.",
+          "whyWrongHere": "255.255.255.224 is a /27 with 5 host bits (32−27), giving block size 2^5 = 32. 8 is the block size for a /29 (3 host bits, 2^3=8) — a much smaller subnet than /27, two sizes down the ladder.",
+          "memoryAnchor": "/27=32, /28=16, /29=8 — 8 is two steps down from /27, not the answer for it.",
+          "contrast": "A /29 has two more network bits than a /27, shrinking the block size by a factor of 4 — 8 versus 32 — a big jump, not a small rounding error."
+        }
+      ]
     },
     {
       "id": "1.6-c-q3",
@@ -2191,7 +3307,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "/26 block = 64 → broadcast = network + block size − 1."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners default to the /24 broadcast pattern (last octet .255) out of habit, forgetting that a /26 subdivides the /24 into four smaller blocks, each with its OWN broadcast address.",
+          "whyItSeems": ".255 is the most memorized 'broadcast-looking' ending from basic /24 networking, so it feels automatically 'right' for any broadcast question involving a 192.168.x.x address.",
+          "whyWrongHere": "192.168.10.0/26 is only 64 addresses (.0–.63) — a QUARTER of the full /24 range. The broadcast address is the LAST address within that smaller 64-address block, which is .63, not .255 (which would only be the broadcast if this were a /24, not a /26).",
+          "memoryAnchor": "The subnet mask decides the block size — a /26 broadcast ends at .63, only a full /24 ends at .255.",
+          "contrast": "A /24 network's broadcast really is the last octet at .255; a /26 network is four times smaller, so its broadcast lands at .63 — far short of .255."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners correctly identify that broadcast = last address of the block, but miscalculate which 64-address block 192.168.10.0 actually falls into, mistakenly using the NEXT subnet's boundary.",
+          "whyItSeems": "192.168.10.0/26 and 192.168.10.64/26 are adjacent subnets, and .127 IS a valid broadcast — just for the wrong (second) block — so it's an easy off-by-one-subnet error.",
+          "whyWrongHere": "192.168.10.0/26 spans exactly .0 through .63 (block size 64, starting at .0). .127 is the broadcast address of the NEXT subnet up, 192.168.10.64/26 (which spans .64–.127) — not this one.",
+          "memoryAnchor": "192.168.10.0/26 ends at .63; the NEXT block (192.168.10.64/26) ends at .127 — know which block you're in.",
+          "contrast": "192.168.10.0/26's range is .0–.63 (broadcast .63); 192.168.10.64/26's range is .64–.127 (broadcast .127) — adjacent but distinct subnets with different broadcasts."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners confuse the broadcast address (last address of THIS subnet) with the network address of the NEXT subnet, since .64 is the very next number after .63.",
+          "whyItSeems": ".64 is exactly where the numbers 'continue' after .63, so if a learner is just counting upward without distinguishing 'last address of this block' from 'first address of the next block,' .64 can look plausible.",
+          "whyWrongHere": ".64 is actually the NETWORK address of the next /26 subnet (192.168.10.64/26), not the broadcast of THIS one (192.168.10.0/26). This subnet's broadcast is the LAST address before the next block starts — that's .63, one less than .64.",
+          "memoryAnchor": "Broadcast is the last address BEFORE the next subnet starts (.63), not the first address OF the next subnet (.64).",
+          "contrast": ".63 is the highest address usable within 192.168.10.0/26; .64 is the lowest address of the following subnet — one is an ending, the other is a beginning."
+        }
+      ]
     },
     {
       "id": "1.6-c-q4",
@@ -2239,7 +3381,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Find subnet: divide host octet by block size (64 for /26) and floor to the boundary."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners default to the 'first' subnet boundary (.0) whenever the exact block a host falls into isn't immediately recalculated, treating .0 as a safe generic answer.",
+          "whyItSeems": ".0 is the most familiar-looking 'network address,' so without doing the block-size division, it can feel like the default correct-sounding choice.",
+          "whyWrongHere": "172.16.0.0/26 only covers the range .0–.63 (block size 64). The host address .100 is ABOVE that range — it falls in the NEXT /26 block, 172.16.0.64–172.16.0.127, so its subnet is 172.16.0.64, not 172.16.0.0.",
+          "memoryAnchor": "Divide the host octet by the block size (100 ÷ 64 = 1 remainder 36) and floor to the boundary — that lands in the .64 block, not .0.",
+          "contrast": "172.16.0.0/26 covers hosts .1–.62; 172.16.0.64/26 covers hosts .65–.126 — host .100 clearly sits in the second range, not the first."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners may confuse the block boundaries for a /26 (multiples of 64) with a smaller subnet size's boundaries (multiples of 32, which would include .96), miscounting the block size.",
+          "whyItSeems": ".96 is a valid subnet boundary for /27-sized blocks (32-address increments: 0, 32, 64, 96...), so if a learner momentarily uses the wrong block size, .96 can look like a legitimate stopping point.",
+          "whyWrongHere": "For a /26 (block size 64), valid subnet boundaries are only 0, 64, 128, 192 — NOT 96. Since .100 is between .64 and .127, it belongs to the .64 subnet; .96 isn't even a valid /26 boundary, so it can't be the right answer for this mask.",
+          "memoryAnchor": "/26 boundaries only land on multiples of 64 (0,64,128,192) — .96 would only make sense for a /27, not this /26.",
+          "contrast": "A /27 (block size 32) WOULD have a boundary at .96; a /26 (block size 64) skips straight from .64 to .128, with no stop at .96 at all."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners overshoot to the next block after correctly identifying .64 as a nearby boundary, mistakenly rounding UP instead of DOWN to find which subnet the host belongs to.",
+          "whyItSeems": ".128 is the next major boundary after .64 in the /26 progression (0,64,128,192), so if a learner isn't careful about rounding direction, it's easy to jump one block too far.",
+          "whyWrongHere": "172.16.0.128/26 covers the range .128–.191 — host .100 is BELOW that entire range, so it can't belong there. The correct subnet is the one whose range actually CONTAINS .100, which is 172.16.0.64–172.16.0.127 (subnet ID 172.16.0.64).",
+          "memoryAnchor": "Always round DOWN to the nearest block boundary that the host address actually falls within — never round up past it.",
+          "contrast": "172.16.0.64/26 contains .64 through .127 (includes .100); 172.16.0.128/26 contains .128 through .191 (does NOT include .100) — only the first range is correct."
+        }
+      ]
     },
     {
       "id": "1.6-c-q5",
@@ -2287,7 +3455,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Need N hosts → smallest prefix where 2^hostbits−2 ≥ N; /27 = 30 usable."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners default to a 'safer, bigger' subnet whenever host count is close to a boundary, assuming oversizing is a neutral or even preferable choice rather than recognizing it wastes addresses.",
+          "whyItSeems": "/26 does technically satisfy 'at least 30 hosts' (it gives 62), so it's not factually wrong about capacity — it just fails the SECOND part of the question: fewest addresses wasted.",
+          "whyWrongHere": "The question asks for the mask with the FEWEST wasted addresses that still meets the 30-host requirement. /26 provides 62 usable hosts — more than double what's needed — wasting 32 addresses that /27 (which provides exactly 30) would not waste.",
+          "memoryAnchor": "Meeting the requirement isn't enough — pick the SMALLEST mask that still meets it, to minimize waste.",
+          "contrast": "/27 gives exactly 30 usable hosts (a tight fit); /26 gives 62 usable hosts (a loose fit that wastes 32 addresses for the same 30-host requirement)."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners assume 'smaller subnet must mean less waste' without first checking whether it can even satisfy the host-count requirement — smaller isn't always sufficient.",
+          "whyItSeems": "The exam-savvy instinct to minimize waste is correct in spirit, but applying it here without checking capacity first leads to picking something too small to actually work.",
+          "whyWrongHere": "/28 leaves only 4 host bits, giving 2^4 − 2 = 14 usable hosts — that's LESS than the 30 hosts required, so it fails the requirement entirely regardless of how little it wastes. /27 (30 usable) is the smallest mask that actually meets the 'at least 30 hosts' condition.",
+          "memoryAnchor": "Minimizing waste only matters AFTER you confirm the mask can fit the required host count — /28's 14 hosts can't fit 30.",
+          "contrast": "/27 provides exactly 30 usable hosts (meets the requirement with zero slack); /28 provides only 14 usable hosts (fails the requirement outright, regardless of efficiency)."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners over-apply the 'go small to save addresses' instinct even further than /28, without checking that /29 falls even further short of the 30-host requirement.",
+          "whyItSeems": "If a learner is fixated purely on 'smallest possible mask' as the goal, /29 seems like an even more efficient answer than /27 — but efficiency only matters once the requirement is actually met.",
+          "whyWrongHere": "/29 leaves only 3 host bits, giving 2^3 − 2 = 6 usable hosts — drastically short of the 30 hosts required. This mask is typically reserved for tiny point-to-point links, not a subnet that needs to support 30 devices.",
+          "memoryAnchor": "/29's 6 usable hosts is a WAN-link-sized mask — nowhere near enough for a 30-host requirement.",
+          "contrast": "/27 (30 usable) exactly meets the stated requirement; /29 (6 usable) meets less than a quarter of it — not a viable candidate at all."
+        }
+      ]
     },
     {
       "id": "1.6-c-q6",
@@ -2335,7 +3529,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "/30 WAN link: 2 usable hosts (.1 and .2 in a .0/30)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners may think of a /30 as barely large enough for 'just one device,' undercounting because they conflate it with the /31 special case used for some point-to-point links.",
+          "whyItSeems": "A /30 is already a very small subnet, so 'just 1 usable host' can feel plausible if a learner senses it's tiny without doing the exact math.",
+          "whyWrongHere": "A /30 leaves 2 host bits (32−30), giving 2^2 = 4 total addresses, minus the network and broadcast addresses = 2 usable hosts. That's specifically sized for point-to-point links needing exactly two addressable ends (e.g., two router interfaces) — not one.",
+          "memoryAnchor": "/30 = 2 usable hosts, exactly enough for both ends of a point-to-point WAN link.",
+          "contrast": "A /31 (a special RFC 3021 case with no network/broadcast subtracted) can support 2 hosts with only 2 total addresses; a /30 has 4 total addresses and still yields 2 usable after subtracting network/broadcast."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners stop the calculation after computing 2^2=4 total addresses, forgetting to subtract the reserved network and broadcast addresses to get the USABLE count.",
+          "whyItSeems": "4 is the immediate, correct result of 2^(host bits) — it's easy to treat that as the final answer if the '−2' step for reserved addresses isn't automatic yet.",
+          "whyWrongHere": "2^2 = 4 gives the TOTAL addresses in the /30 block, but 2 of those 4 are always reserved (network address and broadcast address) and can never be assigned to a host. That leaves only 4 − 2 = 2 usable addresses for actual devices.",
+          "memoryAnchor": "Total addresses (4) minus network and broadcast (2) equals usable hosts (2) — never skip the subtraction.",
+          "contrast": "4 answers 'how many addresses exist in this /30 block'; 2 answers 'how many hosts I can actually assign' — the question specifically asks for usable hosts."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners may confuse the /30's usable-host math with the true edge case of a /32 (a single host address, no room for network/broadcast subtraction) or misremember /30 as similarly degenerate.",
+          "whyItSeems": "Very small subnet masks CAN have unusual host-count rules (like /31's special zero-usable-in-classic-counting behavior mentioned for even smaller masks), so it's easy to assume /30 is 'too small to have any usable hosts' without checking the actual math.",
+          "whyWrongHere": "A /30 is deliberately sized to be the smallest STANDARD subnet that still supports 2 usable hosts (via the classic '2^host bits − 2' formula) — it's specifically the go-to mask for point-to-point WAN links precisely because it always has exactly 2 usable addresses, never zero.",
+          "memoryAnchor": "/30 always yields 2 usable hosts — it's the standard, go-to size for a point-to-point link, not a zero-host edge case.",
+          "contrast": "Only a /31 (in modern RFC 3021 usage) or /32 involves non-standard host counting; a /30 follows the ordinary 2^h − 2 rule and reliably gives 2 usable hosts."
+        }
+      ]
     },
     {
       "id": "1.6-c-q7",
@@ -2383,7 +3603,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Subnets created = 2^(borrowed bits) unless question states otherwise."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners apply an outdated classful subnetting rule (subtracting the 'all-zeros' and 'all-ones' subnets) that hasn't applied to modern CIDR-based subnetting for decades.",
+          "whyItSeems": "Older subnetting conventions (pre-CIDR) did reserve the first and last subnet in some contexts, so if a learner picked up that legacy rule, subtracting 2 from 2^3=8 to get 6 can feel like 'the careful, complete' answer.",
+          "whyWrongHere": "Modern CIDR-based subnetting (which CCNA tests) uses ALL possible subnets created by the borrowed bits — the formula is simply 2^(borrowed bits), no subtraction. Borrowing 3 bits creates 2^3 = 8 usable subnets, not 6; the old 'subtract 2' rule for subnets is obsolete and not tested this way.",
+          "memoryAnchor": "Subnets = 2^(borrowed bits), full stop — no subtracting 2 the way host counts do.",
+          "contrast": "Host counts subtract 2 for network/broadcast reservations (2^h − 2); subnet counts do NOT subtract anything in modern CIDR — it's a clean 2^(borrowed bits)."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners double the correct exponent, computing as if 4 bits were borrowed (2^4=16) instead of the 3 bits stated in the question.",
+          "whyItSeems": "16 is a common, 'round' subnet count seen often in practice problems, so without carefully tracking the exact bit count given, it's an easy number to default to.",
+          "whyWrongHere": "The question explicitly states 3 bits are borrowed, so the subnet count is 2^3 = 8. 16 subnets would require borrowing 4 bits (2^4=16) — one bit more than what's specified here.",
+          "memoryAnchor": "Match the exponent to the EXACT number of bits stated — 3 borrowed bits means 2^3, not 2^4.",
+          "contrast": "Borrowing 3 bits yields 8 subnets; borrowing 4 bits yields 16 subnets — each additional borrowed bit DOUBLES the subnet count, so precision on the bit count matters."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners answer with the number of borrowed BITS itself, confusing 'how many bits did we borrow' with 'how many subnets does that create.'",
+          "whyItSeems": "3 is literally the number given in the question, so if a learner isn't confident about the 2^n relationship, restating the given number can feel like a 'safe' answer.",
+          "whyWrongHere": "3 is the INPUT to the formula (the number of borrowed bits), not the OUTPUT (the number of subnets). The actual subnet count is 2^3 = 8 — borrowing 3 bits doesn't create 3 subnets, it creates 8, because each additional bit doubles the possible subnet combinations.",
+          "memoryAnchor": "Borrowed bits and subnet count are different numbers — always apply 2^(bits), don't just repeat the bit count.",
+          "contrast": "3 describes how many BITS were taken from the host portion; 8 describes how many distinct SUBNETS those 3 bits can represent (2^3 combinations) — input versus output."
+        }
+      ]
     },
     {
       "id": "1.6-c-q8",
@@ -2431,7 +3677,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Last octet .240 = 11110000 → /28 (four network bits in last octet)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners misread the binary value of the last octet, associating .240 with a mask that has fewer network bits (/26, which actually ends in .192) than it really has.",
+          "whyItSeems": "Without converting .240 to binary explicitly, it's easy to underestimate how many bits are set to 1, especially if a learner is working from memorized decimal values rather than the binary pattern.",
+          "whyWrongHere": "255.255.255.192 (not .240) is the mask for a /26 — .192 in binary is 11000000 (2 bits set). .240 in binary is 11110000 (4 bits set), which corresponds to 24 (from the first three full octets) + 4 = /28, not /26.",
+          "memoryAnchor": "/26 ends in .192 (2 bits); /28 ends in .240 (4 bits) — don't confuse the two common mask endings.",
+          "contrast": ".192 = 11000000 (2 network bits in the last octet, /26); .240 = 11110000 (4 network bits in the last octet, /28) — different bit counts, different prefixes."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Learners are close but off by one bit, associating .240 with the mask ending in .224 (/27) instead of correctly converting .240's own binary pattern.",
+          "whyItSeems": ".224 and .240 are adjacent values in the standard subnet mask progression (128,192,224,240,248...), so it's an easy one-step slip between them.",
+          "whyWrongHere": "255.255.255.224 (not .240) is the /27 mask — .224 in binary is 11100000 (3 bits set), giving 24+3=/27. .240 in binary is 11110000 (4 bits set), giving 24+4=/28 — one more bit than /27.",
+          "memoryAnchor": "/27 ends in .224 (3 bits); /28 ends in .240 (4 bits) — sequential masks, but distinct prefixes.",
+          "contrast": ".224 = 11100000 (3 ones, /27); .240 = 11110000 (4 ones, /28) — the extra bit set in .240 is exactly what pushes it to /28."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners overshoot by one bit in the other direction, associating .240 with the mask ending in .248 (/29) instead of correctly reading .240's own bit pattern.",
+          "whyItSeems": ".240 and .248 are also adjacent in the standard mask progression, so it's just as easy to slip one step too far as it is to slip one step short.",
+          "whyWrongHere": "255.255.255.248 (not .240) is the /29 mask — .248 in binary is 11111000 (5 bits set), giving 24+5=/29. .240 in binary is 11110000 (only 4 bits set), giving 24+4=/28 — one fewer bit than /29.",
+          "memoryAnchor": "/28 ends in .240 (4 bits); /29 ends in .248 (5 bits) — one more 1-bit pushes you from /28 to /29.",
+          "contrast": ".240 = 11110000 (4 ones, /28); .248 = 11111000 (5 ones, /29) — the question's mask has exactly 4 ones, landing squarely on /28."
+        }
+      ]
     },
     {
       "id": "1.6-c-q9",
@@ -2480,7 +3752,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "/29 usable range: first host = network+1, last host = broadcast−1."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Learners correctly exclude the network address (.0) but forget to also exclude the broadcast address (.7) at the top of the range, treating the broadcast as if it were assignable.",
+          "whyItSeems": "It's easy to remember 'don't start at .0' (the obvious network address) while forgetting the equally important 'don't end at the very last address' (the broadcast), since the broadcast rule is a separate mental step.",
+          "whyWrongHere": "10.0.0.0/29 spans 8 total addresses (.0–.7), with .0 as the network address and .7 as the broadcast address — BOTH ends are reserved and unusable. The correct usable range excludes both: .1 through .6, not .1 through .7.",
+          "memoryAnchor": "Usable range excludes BOTH ends — first host is network+1, last host is broadcast−1, never the broadcast itself.",
+          "contrast": ".1–.7 wrongly includes the broadcast address as if assignable; .1–.6 correctly stops one address short of the broadcast, matching the true usable range."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners treat the ENTIRE subnet range (including both reserved addresses) as if it were all directly assignable to hosts, skipping the exclusion step entirely.",
+          "whyItSeems": "The block .0–.7 IS the full, correct set of addresses that belong to this subnet — so without the extra step of remembering which two are reserved, it can look like the 'complete and safe' answer.",
+          "whyWrongHere": "While .0–.7 correctly identifies all 8 addresses in the subnet, the FIRST (.0, network) and LAST (.7, broadcast) are both reserved and cannot be assigned to hosts. The usable range for actual devices is only the 6 addresses in between: .1 through .6.",
+          "memoryAnchor": "The full subnet range and the usable host range are different things — usable always excludes the first and last address of the block.",
+          "contrast": ".0–.7 describes the entire address block (8 addresses, including reserved ones); .1–.6 describes only the addresses a host can actually be assigned (6 addresses)."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners apply the block size of a LARGER subnet (/29 uses block size 8, but .14 implies a block size of 16, i.e., a /28) rather than correctly using the /29 stated in the question.",
+          "whyItSeems": "14 usable hosts is a commonly memorized number for /28 subnets, so if the exact prefix isn't tracked carefully, it's easy to default to a more 'familiar' larger range.",
+          "whyWrongHere": "A /29 has only 3 host bits (32−29), giving a block size of 2^3=8 addresses total (.0–.7) — the range simply doesn't extend to .14 at all. A range up to .14 (usable .1–.14, 14 hosts) describes a /28 subnet (4 host bits, block size 16), which is a completely different, larger prefix than the /29 given.",
+          "memoryAnchor": "/29 tops out at .7 (block size 8); reaching .14 would require a /28 (block size 16) — check the prefix before the range.",
+          "contrast": "A /29 block spans only 8 addresses (.0–.7, usable .1–.6); a /28 block spans 16 addresses (.0–.15, usable .1–.14) — twice the size, a different question."
+        }
+      ]
     },
     {
       "id": "1.6-c-q10",
@@ -2528,7 +3826,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Host bits in last octet = 32 − prefix (for /24-based subnets): /26 → 6 host bits."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners answer with the prefix number itself, confusing 'the CIDR notation number' (total network bits) with 'the host bits remaining' — treating the two as if they were the same value.",
+          "whyItSeems": "26 is right there in the question ('/26'), so restating it can feel like a direct, safe answer if the network-bits-vs-host-bits subtraction step isn't automatic.",
+          "whyWrongHere": "The '26' in /26 represents the number of NETWORK bits (out of 32 total), not host bits. To find host bits, you subtract: 32 − 26 = 6. Answering '26' confuses the two different quantities the question is asking about.",
+          "memoryAnchor": "The CIDR number IS the network bit count; host bits = 32 minus that number — they are never the same value.",
+          "contrast": "26 is the count of NETWORK bits (fixed portion identifying the subnet); 6 is the count of HOST bits (variable portion identifying devices within it) — different halves of the same 32-bit address."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners recall '8 host bits' as a very common CCNA answer (correct for a /24) and misapply it to this /26 question without re-deriving the subtraction for the actual prefix given.",
+          "whyItSeems": "8 host bits for a full octet (/24) is one of the most repeated facts in early networking study, making it an easy default to reach for even when the actual prefix in the question is different.",
+          "whyWrongHere": "8 host bits corresponds specifically to a /24 (32−24=8), where the entire last octet is available for hosts. This question asks about a /26, which has borrowed 2 additional bits from that last octet for subnetting, leaving only 32−26=6 host bits, not 8.",
+          "memoryAnchor": "/24 → 8 host bits (whole last octet); /26 → 6 host bits (2 bits borrowed for subnetting) — don't default to the /24 number.",
+          "contrast": "A /24 leaves the full last octet (8 bits) for hosts; a /26 has borrowed 2 of those 8 bits for extra subnets, leaving only 6 host bits behind."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners overshoot the subtraction, mentally landing on the host-bit count for a /28 instead of the /26 actually asked about.",
+          "whyItSeems": "4 host bits is also a frequently memorized value (for /28), so without recalculating 32−26 directly, it's easy to grab a nearby 'small number' associated with subnetting in general.",
+          "whyWrongHere": "4 host bits corresponds to a /28 (32−28=4) — a smaller subnet with two MORE borrowed bits than the /26 in this question. For a /26 specifically, the correct subtraction is 32−26=6 host bits, not 4.",
+          "memoryAnchor": "/26 → 6 host bits; /28 → 4 host bits — these are two prefix sizes apart, not interchangeable.",
+          "contrast": "A /26 leaves 6 host bits (fits up to 62 hosts); a /28 leaves only 4 host bits (fits up to 14 hosts) — a meaningfully smaller subnet than what /26 describes."
+        }
+      ]
     },
     {
       "id": "1.6-c-q11",
@@ -2560,7 +3884,17 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Usable hosts = total − 2 (network + broadcast) except special /31 cases."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners assume every address WITHIN the subnet's numeric range is automatically assignable, without recognizing that the first and last addresses of every block serve special, non-host purposes.",
+          "whyItSeems": "The network and broadcast addresses look like 'ordinary' IP addresses in every visible respect — same format, same range — so without the specific reservation rule in mind, they can seem just as assignable as any other address in the block.",
+          "whyWrongHere": "By definition, the network address (all host bits = 0) identifies the SUBNET itself, and the broadcast address (all host bits = 1) is used to send to EVERY host in that subnet at once — neither can identify one specific host. That's exactly why usable host counts always subtract 2 from the total (2^h − 2): those two addresses are permanently reserved for these roles.",
+          "memoryAnchor": "Network address = 'the subnet's name'; broadcast address = 'send to everyone' — neither one is 'a specific host,' so neither can be assigned to one.",
+          "contrast": "Every other address in the range (from network+1 to broadcast−1) identifies one specific device; the network and broadcast addresses instead identify the SUBNET AS A WHOLE and 'ALL HOSTS,' respectively — structurally different roles."
+        }
+      ]
     },
     {
       "id": "1.6-c-q12",
@@ -2608,7 +3942,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "200 hosts → need ≥202 addresses → /24 is smallest common mask that fits."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Learners underestimate the host bits needed, forgetting that /25 provides fewer usable addresses (126) than the 200 hosts required.",
+          "whyItSeems": "/25 sits right next to /24 in the mask progression and 'feels' close enough to be a reasonable guess if a learner doesn't carefully verify the actual usable-host math against the 200-host requirement.",
+          "whyWrongHere": "/25 leaves 7 host bits, giving 2^7 − 2 = 126 usable hosts — well short of the 200 hosts needed. /24 leaves 8 host bits, giving 2^8 − 2 = 254 usable hosts, which is the smallest standard mask that actually accommodates 200 devices.",
+          "memoryAnchor": "/25 = 126 usable (too few for 200); /24 = 254 usable (enough) — always check the number against the requirement.",
+          "contrast": "126 usable hosts (/25) falls short of the 200-host requirement; 254 usable hosts (/24) comfortably covers it — the requirement itself rules out /25."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners overcorrect, assuming a bigger subnet is always the 'safe' choice without checking whether a smaller one (that also meets the requirement) would waste fewer addresses.",
+          "whyItSeems": "/23 definitely has enough room (510 usable hosts) for 200 devices, so it 'technically works' — but the question specifically asks for the SMALLEST standard mask that fits, not just any mask that's big enough.",
+          "whyWrongHere": "/23 leaves 9 host bits, giving 2^9 − 2 = 510 usable hosts — more than double what's needed for 200 hosts, wasting a large number of addresses. /24 (254 usable) is the smallest standard mask that still comfortably fits 200 hosts without that excess waste.",
+          "memoryAnchor": "Bigger-than-needed still 'works' but wastes addresses — always pick the SMALLEST mask that satisfies the requirement.",
+          "contrast": "/24 provides 254 usable hosts (a tight, efficient fit for 200 devices); /23 provides 510 usable hosts (over twice as many as needed, wasting address space)."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners severely underestimate the required subnet size, perhaps confusing this scenario with a much smaller host-count question they've seen elsewhere.",
+          "whyItSeems": "/26 is a commonly practiced mask in subnetting drills, so it can surface as a reflexive answer even when the actual host requirement (200) is far beyond what it supports.",
+          "whyWrongHere": "/26 leaves only 6 host bits, giving 2^6 − 2 = 62 usable hosts — drastically insufficient for the 200 hosts required (covering less than a third of the need). /24, with 254 usable hosts, is the smallest standard mask that actually fits 200 devices.",
+          "memoryAnchor": "/26's 62 usable hosts isn't even close to 200 — always verify capacity against the stated requirement, not habit.",
+          "contrast": "/26 (62 usable) meets less than a third of the 200-host requirement; /24 (254 usable) meets it with a comfortable margin — not a viable candidate at all."
+        }
+      ]
     }
   ],
   "1.7": [
@@ -2658,7 +4018,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "RFC 1918 private: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners may not have the exact RFC 1918 ranges memorized and instead guess based on which addresses 'feel' commonly used, without recognizing 8.8.8.0/24 as Google's well-known public DNS block.",
+          "whyItSeems": "All four options look like generic IPv4 addresses at a glance, so without recalling the three specific reserved private blocks, any of them can seem equally plausible.",
+          "whyWrongHere": "8.8.8.0/24 sits within space allocated to and publicly routed by Google (home of the famous 8.8.8.8 DNS server) — it's globally unique, public Internet space, the opposite of RFC 1918 private addressing. RFC 1918 private space is specifically limited to 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16.",
+          "memoryAnchor": "8.8.8.8 is one of the most famous PUBLIC addresses on the Internet — the opposite of a private RFC 1918 example.",
+          "contrast": "192.168.50.0/24 falls within the reserved 192.168.0.0/16 private block; 8.8.8.0/24 falls within publicly routed, globally unique Google address space — private versus public, respectively."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners may mistake special-purpose DOCUMENTATION address blocks (TEST-NET ranges) for private, reusable address space, since both are 'not meant for a real production host' in some vague sense.",
+          "whyItSeems": "203.0.113.0/24 doesn't look like a 'famous' public address, so if a learner only knows RFC 1918 covers 'addresses you're not supposed to route on the real Internet,' this documentation block can seem to fit that same general idea.",
+          "whyWrongHere": "203.0.113.0/24 is reserved specifically for DOCUMENTATION AND EXAMPLES (RFC 5737 TEST-NET-3) — meant to appear in books and labs without being a real routable or private address. It is NOT one of the three RFC 1918 private ranges (10/8, 172.16/12, 192.168/16), even though it shares the general theme of 'not for live Internet traffic.'",
+          "memoryAnchor": "203.0.113.x, 192.0.2.x, and 198.51.100.x are DOCUMENTATION blocks — a separate reserved category from RFC 1918 private space.",
+          "contrast": "192.168.50.0/24 is genuine RFC 1918 private space meant for real internal networks; 203.0.113.0/24 is a documentation-only block meant for examples in books, not actual private LANs."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners lump ALL 'special, non-standard-looking' address ranges together as if they were interchangeable with RFC 1918 private space, without distinguishing APIPA's very different purpose.",
+          "whyItSeems": "169.254.x.x addresses are indeed 'not normal public Internet addresses,' so if a learner only has a fuzzy sense of 'private = weird-looking reserved range,' APIPA can seem to qualify.",
+          "whyWrongHere": "169.254.0.0/16 is the APIPA (Automatic Private IP Addressing) range, self-assigned by a host ONLY when DHCP fails — it's a distinct reserved category (RFC 3927 link-local) from the three genuine RFC 1918 private ranges (10/8, 172.16/12, 192.168/16), which are deliberately configured for normal private networking, not a failure fallback.",
+          "memoryAnchor": "169.254.x.x = 'DHCP failed, I gave myself an address' (APIPA); 192.168.x.x = deliberately configured RFC 1918 private space — different purposes entirely.",
+          "contrast": "RFC 1918 addresses (like 192.168.50.0/24) are intentionally assigned for normal private networking; APIPA addresses (169.254.x.x) only appear automatically when DHCP has failed — a fallback, not a deliberate private-network choice."
+        }
+      ]
     },
     {
       "id": "1.7-c-q2",
@@ -2706,7 +4092,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "RFC 1918: 10/8, 172.16/12, 192.168/16."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners may associate the number '10' with a 'real,' commonly-seen address and assume anything that looks like a normal-format IPv4 network must be publicly routable by default.",
+          "whyItSeems": "10.0.0.0/8 doesn't have an obviously 'special' look to it the way 169.254.x.x or 224.x.x.x might, so without the specific RFC 1918 fact memorized, assuming it's 'just a normal public network' can feel reasonable.",
+          "whyWrongHere": "10.0.0.0/8 is explicitly one of the three ranges reserved by RFC 1918 for PRIVATE use — Internet routers do not carry routes for this block, and it's reused independently inside millions of separate private networks worldwide. It is specifically NOT globally unique or publicly routable.",
+          "memoryAnchor": "10.0.0.0/8 is reserved, non-routable private space — never assume a 'normal-looking' address is automatically public.",
+          "contrast": "Public routable addresses are globally unique and carried in Internet routing tables; 10.0.0.0/8 is deliberately excluded from those tables and reused independently in countless private networks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners may confuse the CONCEPT of 'a reserved special-purpose block' with multicast specifically, without recalling that multicast has its own entirely separate reserved range.",
+          "whyItSeems": "Both private addressing and multicast involve 'addresses that behave differently from ordinary public unicast,' so without precise recall, it's easy to blend the two special-purpose categories together.",
+          "whyWrongHere": "Multicast addressing uses the completely separate 224.0.0.0/4 range (Class D) — 10.0.0.0/8 is ordinary private UNICAST space, used for normal one-to-one host addressing within private networks, with no multicast role at all.",
+          "memoryAnchor": "224.0.0.0/4 = multicast; 10.0.0.0/8 = private unicast — completely separate reserved ranges serving different purposes.",
+          "contrast": "Multicast addresses (224.x.x.x range) are used for one-to-many group communication; 10.0.0.0/8 addresses are used for ordinary one-to-one host-to-host communication within a private network."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners group all 'non-public-looking' address ranges together as functionally equivalent, missing that APIPA and RFC 1918 private space serve very different roles.",
+          "whyItSeems": "Both APIPA and RFC 1918 ranges are 'not routed on the public Internet,' so at a surface level they can seem like variations on the same idea of 'private addressing.'",
+          "whyWrongHere": "APIPA is specifically the 169.254.0.0/16 range, self-assigned automatically ONLY when a host's DHCP request fails — it's a distinct reserved block (RFC 3927) from the three deliberate RFC 1918 private ranges (10/8, 172.16/12, 192.168/16) used for normal, functioning private networks.",
+          "memoryAnchor": "169.254.x.x = automatic fallback when DHCP fails; 10.0.0.0/8 = deliberately assigned private network space — different ranges, different triggers.",
+          "contrast": "10.0.0.0/8 is configured on purpose for a working private network; 169.254.x.x (APIPA) only appears automatically as a symptom of a DHCP failure — one is a design choice, the other is a fallback."
+        }
+      ]
     },
     {
       "id": "1.7-c-q3",
@@ -2754,7 +4166,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "172.16.0.0–172.31.255.255 = private /12."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners may not have the full 172.16.0.0–172.31.255.255 RFC 1918 range memorized and assume any address starting with '172' outside of the more famous '172.16' example must be public.",
+          "whyItSeems": "172.20.x.x isn't as instantly recognizable as '172.16.x.x' (the number often quoted in RFC 1918 summaries), so if a learner only remembers '172.16 is private' as a literal single network rather than a /12 RANGE, 172.20 can seem like it falls outside that private space.",
+          "whyWrongHere": "The RFC 1918 private range for the 172 block is 172.16.0.0/12, which covers ALL addresses from 172.16.0.0 through 172.31.255.255 — not just the literal '172.16' network. 172.20.5.10 falls squarely within that /12 range, making it private, not public.",
+          "memoryAnchor": "172.16/12 covers 172.16 through 172.31 — sixteen full /16 blocks, not just the single '172.16' one people often quote.",
+          "contrast": "A /12 mask spans 16 contiguous /16 networks (172.16 through 172.31); thinking of it as 'just 172.16.x.x' misses 15 other private networks that fall in the same private range, including 172.20.x.x."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners conflate the METHOD of address assignment (DHCP vs. static) with the CLASSIFICATION of the address (private vs. public), assuming private status somehow depends on how the address was configured.",
+          "whyItSeems": "DHCP is closely associated with typical private-network client configuration, so it's an easy but incorrect leap to think DHCP assignment is what MAKES an address private, rather than the address simply falling within a reserved private range regardless of configuration method.",
+          "whyWrongHere": "Whether an address is private (RFC 1918) or public depends ENTIRELY on which numeric range it falls into — 172.16.0.0/12 is private by definition, whether assigned via DHCP, configured statically, or hard-coded in a lab. The assignment method has no bearing on the address's classification.",
+          "memoryAnchor": "Private vs. public is a property of the NUMBER itself, not of how that number got onto the interface (DHCP or static).",
+          "contrast": "A statically configured 172.20.5.10 is exactly as private as a DHCP-assigned 172.20.5.10 — RFC 1918 classification depends only on the address range, never on the assignment mechanism."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners may assume 'private addressing' as a general networking concept is somehow tied specifically to IPv6's private/unique-local addressing scheme, forgetting that IPv4 has its own long-established private ranges.",
+          "whyItSeems": "IPv6 does have its own private addressing concept (unique local addresses), so if 'private addressing' feels like a modern/IPv6-associated topic, it's easy to mistakenly assume the IPv4 question must actually be about IPv6.",
+          "whyWrongHere": "172.20.5.10 is clearly formatted as an IPv4 address (four dotted decimal octets), and IPv4 has had its own RFC 1918 private ranges since long before modern IPv6 private addressing existed. This address is private specifically because it falls within IPv4's 172.16.0.0/12 reserved block — nothing about it involves IPv6 at all.",
+          "memoryAnchor": "Dotted-decimal format = IPv4; RFC 1918 (10/8, 172.16/12, 192.168/16) is IPv4's OWN private addressing scheme, independent of IPv6.",
+          "contrast": "IPv4 private addressing uses RFC 1918 ranges like 172.16.0.0/12; IPv6 has an entirely separate private addressing scheme (unique local addresses, fc00::/7) — the two are unrelated mechanisms for their respective protocols."
+        }
+      ]
     },
     {
       "id": "1.7-c-q4",
@@ -2802,7 +4240,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "169.254.x.x = no DHCP lease (APIPA)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners may assume that because the PC 'has an IP address at all,' something must have worked correctly, without recognizing that 169.254.x.x specifically signals the OPPOSITE — a failed DHCP attempt.",
+          "whyItSeems": "The PC does have SOME IP configured, and 'having an IP' can loosely feel like 'networking is working,' so without recognizing the specific 169.254 pattern, it's easy to assume this represents normal, successful configuration.",
+          "whyWrongHere": "A successful DHCP lease would assign an address from the DHCP server's actual configured scope (e.g., a normal LAN range like 192.168.1.x) — never a 169.254.x.x address. Seeing 169.254.x.x is the diagnostic SIGNAL that DHCP specifically FAILED and the OS fell back to self-assigning an APIPA address instead.",
+          "memoryAnchor": "169.254.x.x is the exact OPPOSITE of a successful DHCP lease — it's the OS's fallback when DHCP couldn't be reached at all.",
+          "contrast": "A successful DHCP lease produces an address from the server's real scope (and typically comes with a default gateway, DNS servers, etc.); an APIPA address (169.254.x.x) has no gateway and signals DHCP never succeeded."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners may assume any manually-set-looking address (since APIPA is self-assigned, not server-assigned) must represent a deliberate static configuration by an administrator, rather than an automatic OS fallback.",
+          "whyItSeems": "APIPA addresses ARE technically 'self-assigned' rather than DHCP-assigned, which can loosely resemble the idea of 'static' configuration if the automatic, no-gateway nature of APIPA isn't fully understood.",
+          "whyWrongHere": "169.254.0.0/16 is specifically the reserved link-local APIPA range (RFC 3927) — it is NEVER a valid PUBLIC address and would never be intentionally statically configured for real Internet-facing use. Its presence specifically indicates the Windows OS auto-assigned it because DHCP failed, not that an administrator chose it.",
+          "memoryAnchor": "169.254.x.x is never a real static public IP choice — its presence is itself the symptom of a DHCP problem.",
+          "contrast": "A deliberately configured static public IP would come from real, globally routable address space; 169.254.x.x specifically only ever appears as an automatic, non-routable fallback when DHCP isn't available."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners may reach for a DNS-related explanation because DNS problems are a common, frequently-discussed troubleshooting topic, even though this symptom (an IP address itself) has nothing to do with name resolution.",
+          "whyItSeems": "DNS troubleshooting is common enough in general networking discussions that it can surface as a plausible-sounding guess for 'something went wrong,' even when the actual clue (the 169.254 IP address itself) points to a completely different layer of the problem.",
+          "whyWrongHere": "Flushing a DNS cache only clears locally cached name-to-IP resolution records — it has zero effect on the PC's own IP address configuration. A 169.254.x.x address is specifically the OS's automatic self-assignment when DHCP fails to respond, an entirely separate mechanism (IP configuration) from DNS (name resolution).",
+          "memoryAnchor": "DNS resolves NAMES to IPs; APIPA is about the PC's OWN IP when DHCP fails — unrelated layers of the network stack.",
+          "contrast": "A DNS cache flush affects only cached name lookups, leaving the PC's actual IP configuration untouched; a 169.254.x.x address reflects a failure in IP ADDRESS ASSIGNMENT itself, upstream of any DNS activity."
+        }
+      ]
     },
     {
       "id": "1.7-c-q5",
@@ -2850,7 +4314,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Private hosts reach Internet via NAT/PAT."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners may vaguely associate 'can't reach the Internet directly' with some kind of technical limitation in the address FORMAT itself, rather than the actual reason: routing policy.",
+          "whyItSeems": "If a learner doesn't know the real reason (non-uniqueness/non-routability), 'something about the address itself must be deficient' can feel like a reasonable, if vague, guess — 'too short' sounds like a plausible generic technical flaw.",
+          "whyWrongHere": "Private IPv4 addresses (like 192.168.1.1) are exactly the same LENGTH and FORMAT (32 bits, dotted decimal) as any public IPv4 address — there's nothing structurally 'shorter' or different about them. The real reason NAT is needed is that private addresses are NOT globally unique (many different networks reuse the same private ranges) and Internet routers are explicitly configured to NOT route them.",
+          "memoryAnchor": "Private and public IPv4 addresses are identical in format and length — the difference is routability and global uniqueness, not the address itself.",
+          "contrast": "A public address is guaranteed globally unique and is carried in Internet routing tables; a private address (same 32-bit format) is reused independently by countless networks and deliberately excluded from those routing tables."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners may assume that because NAT and private addressing are heavily discussed in IPv4 contexts, the underlying reason must relate to some IPv6-specific limitation, confusing the version of the protocol with the reason NAT exists.",
+          "whyItSeems": "IPv6 is sometimes framed as 'solving the address shortage that caused NAT,' so it's an easy but backward leap to think private addressing (and thus NAT) is somehow tied to IPv6 rather than being a fundamentally IPv4 concept.",
+          "whyWrongHere": "The scenario (and RFC 1918 itself) is specifically about IPv4 private addressing — NAT was developed BECAUSE IPv4's limited 32-bit address space made private/reused addressing necessary, with translation required to reach the public IPv4 Internet. This has nothing to do with IPv6, which uses a completely different, much larger 128-bit address space and different private addressing (unique local addresses).",
+          "memoryAnchor": "NAT exists to solve an IPv4 (32-bit) address scarcity problem — it predates and is unrelated to IPv6's own separate private addressing scheme.",
+          "contrast": "IPv4 private addresses require NAT specifically because the 32-bit space is limited and reused; IPv6's vastly larger 128-bit space was designed so that NAT for scarcity reasons is largely unnecessary."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners may conflate a firewall's SECURITY filtering function with the actual ROUTING reason private addresses can't reach the Internet directly, treating both as the same kind of 'blocking.'",
+          "whyItSeems": "Firewalls DO block various kinds of traffic, so 'firewalls block it' can feel like a generalized, catch-all explanation for 'why can't this reach the Internet,' even when the real issue is upstream routers simply not knowing how to route non-unique private addresses at all.",
+          "whyWrongHere": "Firewalls selectively filter traffic based on configured rules — they do NOT block 'all IPv4' as a blanket policy, and that's not the reason private addresses fail to reach the Internet directly anyway. The actual reason is that private addresses are non-globally-unique and Internet routers are specifically configured to drop/ignore RFC 1918 space in routing tables — NAT translates the source address to a real, routable public one so the packet CAN be forwarded across the Internet.",
+          "memoryAnchor": "The Internet doesn't route private addresses at all (regardless of any firewall); NAT translates them into something that CAN be routed.",
+          "contrast": "A firewall selectively permits or denies specific traffic based on rules; the Internet's core routers structurally don't carry ANY routes for RFC 1918 space at all — an entirely different (and more fundamental) kind of 'blocking.'"
+        }
+      ]
     },
     {
       "id": "1.7-c-q6",
@@ -2898,7 +4388,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Know the three private ranges vs public routable."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners may not have all three RFC 1918 ranges (10/8, 172.16/12, 192.168/16) fully memorized and may only recognize 192.168.x.x as 'the' private pattern, mistakenly assuming 10.x.x.x looks public by comparison.",
+          "whyItSeems": "192.168.x.x is the most commonly seen private address in home routers, so if that's the only pattern a learner strongly associates with 'private,' a less familiar-looking 10.x.x.x address can seem like it might be public by default.",
+          "whyWrongHere": "10.1.1.1 falls within 10.0.0.0/8 — one of the three RFC 1918 private ranges, just as reserved and non-routable on the public Internet as any 192.168.x.x address. 198.51.100.50, by contrast, falls within a documentation/public-illustrative TEST-NET-2 block that is NOT one of the three private ranges.",
+          "memoryAnchor": "All three RFC 1918 ranges (10/8, 172.16/12, 192.168/16) are equally private — don't treat 192.168.x.x as 'more private' than 10.x.x.x.",
+          "contrast": "10.1.1.1 is private RFC 1918 space (10.0.0.0/8); 198.51.100.50 falls outside all three RFC 1918 ranges, making it the only genuinely public-routable-style address among the choices."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Learners may second-guess a highly familiar textbook example, assuming that because 172.16.x.x is so commonly cited as THE RFC 1918 example, this particular instance must be an exception meant to represent something else (public) in this question.",
+          "whyItSeems": "Since 172.16.x.x is frequently used as the canonical RFC 1918 example in textbooks, a learner second-guessing themselves might assume this specific instance is meant to represent something different in this particular question.",
+          "whyWrongHere": "172.16.1.1 falls squarely within 172.16.0.0/12 — private, non-routable RFC 1918 space, with no special exception. 198.51.100.50, in contrast, is NOT in any of the three RFC 1918 ranges, making it the address that behaves like public space in this comparison.",
+          "memoryAnchor": "172.16.1.1 is textbook RFC 1918 private — there's no 'exception' version of it that becomes public.",
+          "contrast": "172.16.1.1 sits inside the reserved 172.16.0.0/12 private block; 198.51.100.50 sits outside all RFC 1918 ranges entirely, which is exactly why it (not 172.16.1.1) represents the public address here."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners may assume that because 192.168.1.1 is an extremely common home-router address seen 'everywhere,' its ubiquity implies it must be a normal, public-facing address rather than recognizing that its ubiquity is PRECISELY because it's reused privately millions of times.",
+          "whyItSeems": "192.168.1.1 is such a frequently seen default gateway address that its familiarity can create a false sense that it must be a 'real,' generally-routable address rather than a private one reused independently by countless separate home networks.",
+          "whyWrongHere": "192.168.1.1 is squarely within 192.168.0.0/16 — RFC 1918 private space, and its extreme popularity as a default router address is EXACTLY because it's private and gets reused identically across millions of independent home networks (which would be impossible if it were a single globally unique public address). 198.51.100.50, by contrast, is not in any RFC 1918 range.",
+          "memoryAnchor": "192.168.1.1's popularity as a default gateway address is proof it's private and reused everywhere — a public address couldn't be duplicated like that.",
+          "contrast": "192.168.1.1 is deliberately reused as identical, non-unique private space across countless separate networks; 198.51.100.50 is treated as globally unique, public-style address space in this comparison."
+        }
+      ]
     },
     {
       "id": "1.7-c-q7",
@@ -2930,7 +4446,17 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "APIPA 169.254/16 ≠ RFC 1918 192.168/16."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners lump all 'special/reserved-looking' address categories together, assuming APIPA must just be part of the broader RFC 1918 private addressing scheme rather than its own distinct reserved block.",
+          "whyItSeems": "Both APIPA and RFC 1918 addresses share the general theme of 'not routed on the public Internet,' so without precise recall of the exact separate ranges, it's easy to assume they're the same category under different names.",
+          "whyWrongHere": "APIPA uses the specific 169.254.0.0/16 range (RFC 3927), reserved exclusively for automatic self-assignment when DHCP fails. RFC 1918 private addressing (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) is a completely separate set of ranges used for deliberately configured private networks — the two never overlap and serve fundamentally different purposes (automatic fallback vs. intentional network design).",
+          "memoryAnchor": "169.254.x.x (APIPA, DHCP failure fallback) and 192.168.x.x (RFC 1918, deliberate private network) are two entirely separate reserved ranges — never the same block.",
+          "contrast": "192.168.x.x addresses are assigned on purpose (by DHCP or statically) for normal network operation; 169.254.x.x addresses only appear automatically as a symptom of DHCP failure — different ranges reflecting fundamentally different situations."
+        }
+      ]
     },
     {
       "id": "1.7-c-q8",
@@ -2978,7 +4504,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "One public IP, many LAN hosts = PAT."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners may reach for a familiar Layer-2 acronym (STP) without checking whether it has anything to do with translating or sharing IP addresses at all.",
+          "whyItSeems": "STP is a frequently studied core CCNA topic, so when a scenario mentions 'multiple devices' and 'a shared resource,' it can superficially pattern-match to STP's job of managing multiple paths/loops in a switched topology.",
+          "whyWrongHere": "Spanning Tree Protocol (STP) prevents Layer 2 switching loops by blocking redundant paths between switches — it has nothing to do with IP addressing or how multiple private hosts share one public IP address. That translation function belongs entirely to NAT/PAT, an IP-layer technology.",
+          "memoryAnchor": "STP stops switching LOOPS at Layer 2; NAT/PAT translates ADDRESSES at Layer 3 — completely different problems.",
+          "contrast": "STP manages redundant physical/logical paths between switches to avoid loops; NAT/PAT manages how multiple internal IP addresses map to one or few external IP addresses — unrelated functions at different layers."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners may confuse VTP's role in synchronizing VLAN databases across switches with the concept of 'many things sharing one thing,' loosely pattern-matching it to address-sharing scenarios.",
+          "whyItSeems": "VTP does involve a kind of centralized distribution (VLAN info from a server switch to clients), which can superficially feel similar to 'many hosts sharing one central IP' if the actual mechanisms aren't clearly distinguished.",
+          "whyWrongHere": "VLAN Trunking Protocol (VTP) synchronizes VLAN configuration information across a group of switches — it has no role whatsoever in IP address translation or allowing multiple hosts to share a single public IP. That is exclusively the job of NAT/PAT.",
+          "memoryAnchor": "VTP distributes VLAN DATABASES between switches; NAT/PAT translates IP ADDRESSES between private and public space — no overlap in function.",
+          "contrast": "VTP keeps VLAN numbering/naming consistent across multiple switches; NAT/PAT lets multiple private IP addresses appear as one (or a few) public IP addresses to the outside world."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners may associate LLDP's 'discovery of neighboring devices' with some general notion of 'connecting many devices together,' loosely conflating discovery with address-sharing technology.",
+          "whyItSeems": "LLDP does involve multiple devices exchanging information, which can create a vague sense of 'multi-device coordination' that gets mixed up with the actual multi-device-sharing-one-IP scenario in the question.",
+          "whyWrongHere": "Link Layer Discovery Protocol (LLDP) is a vendor-neutral discovery protocol that lets directly connected devices advertise information about themselves (like CDP) — it has no involvement in IP address translation or public/private address sharing. NAT/PAT is the specific technology that allows many private hosts to share one public IP.",
+          "memoryAnchor": "LLDP discovers what's PLUGGED IN NEXT to a device; NAT/PAT translates IP ADDRESSES for Internet access — entirely separate jobs.",
+          "contrast": "LLDP advertises device identity/capability information to directly connected neighbors; NAT/PAT rewrites source IP addresses (and often ports) so multiple internal hosts can share a single external address."
+        }
+      ]
     }
   ],
   "1.8": [
@@ -3028,7 +4580,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPv6 = 128-bit addresses. IPv4 = 32-bit."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners default to the IPv4 address length (32 bits) out of habit or confusion between the two protocol versions, treating them as if they shared the same address size.",
+          "whyItSeems": "32 bits is deeply memorized from IPv4 study, so without a clear mental separation between the two protocols, it's an easy reflex answer even when the question explicitly asks about IPv6.",
+          "whyWrongHere": "32 bits is specifically the IPv4 address length — IPv6 was designed with a much larger 128-bit address space (eight groups of 16 bits, i.e., hextets) specifically to solve IPv4's address exhaustion problem. Answering '32' here answers the wrong protocol's address length.",
+          "memoryAnchor": "IPv4 = 32 bits; IPv6 = 128 bits — four times longer, one of the core facts distinguishing the two protocols.",
+          "contrast": "IPv4's 32-bit space provides about 4.3 billion addresses; IPv6's 128-bit space is vastly larger — a difference so extreme it's one of IPv6's primary design goals."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Learners confuse the 64-bit INTERFACE ID portion (used in many IPv6 addressing schemes like SLAAC/EUI-64) with the total address length, mistaking a component for the whole.",
+          "whyItSeems": "64 bits IS a genuinely important, frequently discussed IPv6 number — specifically the size of the interface identifier portion in a typical /64 prefix — so it's an easy mix-up between 'a significant 64-bit piece' and 'the entire address.'",
+          "whyWrongHere": "In a common IPv6 addressing scheme, the address splits into a 64-bit network prefix and a 64-bit interface ID — but that's 64+64=128 bits TOTAL, not 64 bits alone. The full IPv6 address is 128 bits; 64 bits describes only half of it (typically the host/interface portion).",
+          "memoryAnchor": "64 bits is HALF an IPv6 address (the interface ID in a typical /64); the full address is 128 bits.",
+          "contrast": "A /64 prefix commonly splits an IPv6 address into a 64-bit network portion and a 64-bit interface ID — together these two 64-bit halves make up the complete 128-bit address."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners may double the correct 128-bit figure, assuming 'bigger must be even bigger' or misremembering IPv6 as an even larger jump than it actually is.",
+          "whyItSeems": "256 is a common 'round' number in computing (256 values in a byte, for example), so it can feel like a plausible 'big number' guess for something as large as an IPv6 address if the exact figure isn't precisely recalled.",
+          "whyWrongHere": "IPv6 addresses are specifically standardized at 128 bits (eight 16-bit hextets) — not 256 bits. 256 isn't used anywhere in standard IPv6 addressing; doubling the correct 128-bit figure overshoots the actual, well-defined address length.",
+          "memoryAnchor": "IPv6 = 128 bits, precisely — not 256; don't round up to a 'bigger-sounding' number.",
+          "contrast": "128 bits is the full, standardized IPv6 address length (8 hextets × 16 bits each); 256 bits doesn't correspond to any standard IPv6 addressing structure at all."
+        }
+      ]
     },
     {
       "id": "1.8-c-q2",
@@ -3076,7 +4654,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPv6 shorten: drop leading zeros; one :: per address."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Learners assume that if one pair of colons (::) compresses a run of zeros, using an EXTRA colon (:::) might compress even more effectively, misunderstanding the strict single-use rule for ::.",
+          "whyItSeems": "Adding more of the same symbol can intuitively feel like it should represent 'more compression,' especially if the exact IPv6 shortening rules aren't fully internalized.",
+          "whyWrongHere": "The IPv6 shortening standard allows exactly ONE :: per address, representing one contiguous run of one or more all-zero hextets — there's no such thing as a triple-colon (:::) notation, and it isn't valid syntax at all. The correctly shortened form uses a single :: to represent the run of zero hextets: 2001:db8::1.",
+          "memoryAnchor": ":: appears exactly once, however many zero hextets it's hiding — there's no 'extra strength' triple-colon version.",
+          "contrast": "2001:db8::1 uses one valid :: to compress the zero run between db8 and 1; 2001:db8:::1 uses invalid, non-standard triple-colon syntax that no IPv6 parser would accept."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners may try to preserve explicit zero-hextet markers (like '0:') alongside the :: shorthand, misunderstanding that :: already fully represents ALL the compressed zero hextets — you can't partially spell some out and abbreviate others in the same run.",
+          "whyItSeems": "Mixing an explicit '0' with the :: shorthand might feel like a way to be 'extra clear' about where the zeros were, if a learner isn't confident that :: alone is sufficient and unambiguous.",
+          "whyWrongHere": "The :: notation already represents the ENTIRE contiguous run of zero hextets — you never write out a partial '0' alongside it, and critically, :: can only be used ONCE per address (using it twice, as in ::0:1::, creates ambiguity about how many zero groups each :: represents, which is explicitly disallowed).",
+          "memoryAnchor": ":: means 'all the zeros go here, fully' — never mix an explicit 0 with it, and never use it twice.",
+          "contrast": "2001:db8::1 correctly uses one :: to silently represent every zero hextet in that run; 2001:db8::0:1:: incorrectly mixes an explicit zero with :: AND uses :: twice, both of which are invalid."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners may think multiple separate short runs elsewhere in the address can each get their own :: compression, not realizing the rule restricts an address to only ONE :: total, no matter how many zero-hextet runs exist.",
+          "whyItSeems": "If an address conceptually has 'zeros in two different spots,' it might seem natural to compress each spot independently with its own ::, rather than recognizing the single-use restriction.",
+          "whyWrongHere": "An IPv6 address may contain only ONE :: — full stop — because if there were two, a parser couldn't determine how many zero hextets each :: represents (the total must always add up to eight hextets, and two variable-length gaps make that math ambiguous). The original address here has just one contiguous run of zero hextets, correctly compressed once: 2001:db8::1.",
+          "memoryAnchor": ":: is a one-time-use tool per address — never split zero compression across two separate ::.",
+          "contrast": "2001:db8::1 uses a single, valid :: for the one zero run present in this address; 2001::db8::1 attempts two separate :: compressions, which is invalid IPv6 syntax regardless of the address's actual zero pattern."
+        }
+      ]
     },
     {
       "id": "1.8-c-q3",
@@ -3108,7 +4712,17 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "One :: max per IPv6 address."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners think more :: usage means more compression power, believing each :: independently 'saves space' for a separate run of zeros.",
+          "whyItSeems": "Since :: is a shorthand trick, it feels natural that using it more than once would compress the address even further, especially if there are multiple zero-heavy sections.",
+          "whyWrongHere": "The rule is strict: :: may appear only ONCE per address because it stands for an unknown number of zero hextets — the total hextet count must always resolve to eight. If :: appeared twice, there would be no way to determine how many zero hextets each occurrence represents, so the address becomes ambiguous and invalid.",
+          "memoryAnchor": "One address, one ::, ever.",
+          "contrast": "2001:db8::1 with a single :: unambiguously expands to eight hextets; 2001:0:0:db8::1:: with two :: leaves the zero count for each gap undefined and is rejected by every IPv6 parser."
+        }
+      ]
     },
     {
       "id": "1.8-c-q4",
@@ -3156,7 +4770,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPv6 LAN default = /64."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners carry over IPv4 subnetting habits, assuming /24 is a 'default' LAN size the way it commonly is in IPv4 home/office networks.",
+          "whyItSeems": "/24 is the most familiar prefix length from IPv4 CCNA material, so it feels like a safe, generic answer for any LAN question.",
+          "whyWrongHere": "IPv6 addresses are 128 bits split for SLAAC/EUI-64 into a 64-bit network portion and a 64-bit interface ID — a /24 would leave 104 bits for hosts, breaking the fixed 64-bit interface ID that SLAAC and EUI-64 depend on. IPv6 LAN design standardizes on /64 specifically so autoconfiguration math always works.",
+          "memoryAnchor": "IPv4 defaults to /24 habits; IPv6 LANs default to /64 — don't let old muscle memory answer new questions.",
+          "contrast": "A /24 IPv4 LAN leaves 8 host bits in a 32-bit address; a /64 IPv6 LAN leaves 64 host (interface ID) bits in a 128-bit address — the ratios and the standard sizes are entirely different."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Learners mix up the site-level allocation prefix (/48, given to an entire organization) with the prefix used on an individual LAN segment.",
+          "whyItSeems": "/48 is a real, commonly cited IPv6 number from ISP allocation discussions, so it's easy to misapply it one level too high — to a single LAN instead of the whole site.",
+          "whyWrongHere": "A /48 typically describes how much address space an ISP hands an entire customer site, which then gets subdivided into many /64 subnets for individual LANs. Using /48 directly on a LAN would waste the entire site's allocation on one segment and still not match the 64-bit interface ID that SLAAC requires.",
+          "memoryAnchor": "/48 = whole site allocation; /64 = one LAN carved out of it.",
+          "contrast": "A /48 site prefix can be split into 65,536 separate /64 subnets; each individual LAN gets exactly one of those /64s, never the full /48."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners equate the most 'precise' or 'complete' address value with the correct LAN prefix, assuming /128 is 'more thorough' addressing.",
+          "whyItSeems": "/128 is the longest possible IPv6 prefix, and longer sometimes intuitively feels 'more correct' or 'more secure,' like it's specifying more detail.",
+          "whyWrongHere": "A /128 identifies exactly one single host address with zero bits left for other devices — it's used for loopbacks and host routes, not a shared LAN segment. A LAN needs room for multiple hosts, which is why /64 (64 bits of interface ID) is standard, not /128 (0 bits of interface ID).",
+          "memoryAnchor": "/128 = one specific host, not a network — a LAN needs room to grow.",
+          "contrast": "A /128 route matches exactly one address with no host bits; a /64 LAN prefix reserves a full 64-bit interface ID space so every device on the segment can have its own unique address."
+        }
+      ]
     },
     {
       "id": "1.8-c-q5",
@@ -3204,7 +4844,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "EUI-64: split MAC, insert FFFE, flip U/L bit."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Learners half-remember an 'FF00-something' pattern from IPv6 multicast (FF00::/8) and misapply it to the EUI-64 insertion value.",
+          "whyItSeems": "FF00 looks visually similar to FFFE and both start with 'FF,' so if the exact hex value isn't memorized precisely, it's easy to swap in the wrong second half.",
+          "whyWrongHere": "Modified EUI-64 always inserts the exact 16-bit value FFFE into the middle of the 48-bit MAC address (splitting it into a 24-bit OUI and 24-bit device ID) — FF00 is not part of this standard at all and belongs to an unrelated context (IPv6 multicast prefixes).",
+          "memoryAnchor": "EUI-64 insert = FFFE, not FF00 — the last hex digit matters.",
+          "contrast": "FFFE is the fixed 16-bit padding EUI-64 inserts between the OUI and device ID halves of a MAC; FF00::/8 is a completely unrelated IPv6 address range reserved for multicast."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners assume the 'obvious' all-ones pattern FFFF is the insertion value, since FFFF looks like a natural placeholder or maximum value.",
+          "whyItSeems": "FFFF is a common 'all bits set' pattern seen elsewhere in networking (like a broadcast-style value), so it feels like a plausible filler value between MAC halves.",
+          "whyWrongHere": "The Modified EUI-64 standard specifically defines FFFE — not FFFF — as the 16-bit value inserted between the first three and last three bytes of the MAC address. Using FFFF would not match how any real EUI-64 interface ID is generated or interpreted by IPv6 stacks.",
+          "memoryAnchor": "It's FFFE, one digit short of all-ones — not the 'maximum' FFFF.",
+          "contrast": "FFFE is the exact standardized EUI-64 filler; FFFF resembles it but is never the value real Cisco or host EUI-64 interface IDs actually use."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners confuse the link-local address prefix (FE80::/10) with the EUI-64 insertion pattern because both involve 'FE' and both come up when discussing IPv6 interface IDs.",
+          "whyItSeems": "FE80 and EUI-64 are often taught together (since link-local addresses commonly use EUI-64-derived interface IDs), so the two concepts blend together in memory.",
+          "whyWrongHere": "FE80 is the prefix that identifies an address as link-local scope — it occupies the first 10 bits of the address, not the middle of the MAC-derived interface ID. FFFE is the separate value inserted into the MAC itself; FE80 and FFFE serve completely different roles in the address.",
+          "memoryAnchor": "FE80 starts the address (link-local scope); FFFE sits in the middle of the MAC-derived interface ID — different jobs, different places.",
+          "contrast": "FE80::/10 marks WHERE in the address space a link-local address lives; FFFE is WHAT gets inserted into the MAC address to build the interface ID portion of that same address."
+        }
+      ]
     },
     {
       "id": "1.8-c-q6",
@@ -3252,7 +4918,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "RA prefix + self-built host ID = SLAAC."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners treat 'automatic IPv6 address assignment' as a single concept and default to the more IPv4-familiar term DHCP, not realizing SLAAC is a separate RA-based mechanism.",
+          "whyItSeems": "DHCP is the well-known automatic-addressing protocol from IPv4, so when a question describes 'automatic' IPv6 configuration, DHCPv6 feels like the natural continuation of that concept.",
+          "whyWrongHere": "DHCPv6 requires a stateful (or stateless-info-only) server that the client explicitly requests and receives configuration from; SLAAC instead lets the host build its own address by combining the prefix from a Router Advertisement with a self-generated interface ID — no DHCP server or lease negotiation is involved at all.",
+          "memoryAnchor": "SLAAC = host builds its own address from an RA prefix; DHCPv6 = a server hands out the address.",
+          "contrast": "SLAAC needs only a router sending RAs and no central server; DHCPv6 needs a running DHCPv6 server that tracks and leases addresses to clients."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners assume any address a host 'keeps using consistently' must be manually/statically configured, missing that SLAAC produces a stable address entirely through automation.",
+          "whyItSeems": "Because a SLAAC-derived address looks fixed and predictable (especially with EUI-64), it can seem like someone must have typed it in — matching the mental model of a 'static' assignment.",
+          "whyWrongHere": "Static addressing means an administrator manually types the address into the host's configuration; SLAAC is the opposite — the address is derived automatically from Router Advertisement prefix data plus the interface's own MAC-derived (or randomized) interface ID, with zero manual entry.",
+          "memoryAnchor": "SLAAC = zero typing, all automation; static = a human typed the address in.",
+          "contrast": "A static address stays fixed because a human hardcoded it; a SLAAC address stays consistent (with EUI-64) because the same MAC-derived math runs every time, not because anyone configured it by hand."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners lump together any IPv6-specific acronym they've heard, blending an address-translation feature (NAT66) with an address-generation feature (SLAAC) simply because both are less familiar IPv6-only terms.",
+          "whyItSeems": "Both terms are unusual IPv6-specific jargon that sound technical and 'automatic' in nature, making them easy to conflate if the distinct purpose of each hasn't been pinned down.",
+          "whyWrongHere": "NAT66 translates one IPv6 address to another IPv6 address (rarely used, mostly for site renumbering or multihoming) — it has nothing to do with how a host originally builds its address. SLAAC is specifically the mechanism for a host to self-generate an address from an RA prefix; NAT66 operates only after an address already exists.",
+          "memoryAnchor": "SLAAC creates the address; NAT66 (if used) later translates an already-existing address — different stages entirely.",
+          "contrast": "SLAAC answers 'how did this host get its IPv6 address in the first place?'; NAT66 answers a completely different question — 'how is an existing IPv6 address rewritten as it crosses a boundary?'"
+        }
+      ]
     },
     {
       "id": "1.8-c-q7",
@@ -3300,7 +4992,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Router IPv6 forwarding → ipv6 unicast-routing."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners assume the command mirrors the IPv4 pattern almost exactly, guessing that dropping 'unicast' still produces a valid, shorter IOS command.",
+          "whyItSeems": "Since 'ip routing' is the (implicitly default) IPv4 equivalent concept, 'ipv6 routing' feels like the parallel shorthand a learner would guess without checking exact IOS syntax.",
+          "whyWrongHere": "Cisco IOS requires the exact keyword sequence ipv6 unicast-routing to globally enable IPv6 forwarding on a router — 'ipv6 routing' omits the required 'unicast-routing' keyword and is not recognized by the CLI at all, so the router never starts forwarding IPv6 packets.",
+          "memoryAnchor": "It's not just 'ipv6 routing' — the full magic word is unicast-routing.",
+          "contrast": "ipv6 unicast-routing is the real, IOS-recognized global command that turns on IPv6 forwarding; ipv6 routing is a plausible-sounding guess that the CLI rejects as invalid."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners reorder familiar keywords (ip, routing, v6) into an intuitive-sounding phrase without knowing Cisco IOS commands follow a fixed, memorized syntax rather than flexible English word order.",
+          "whyItSeems": "Rearranging 'ip,' 'routing,' and 'v6' into a sentence-like phrase feels like a reasonable guess if you understand the concept but haven't memorized the literal command syntax.",
+          "whyWrongHere": "IOS commands are not free-form English — 'ip routing v6' is not a recognized keyword sequence in Cisco IOS at all. The actual command starts with the protocol keyword 'ipv6' as a single token, followed by 'unicast-routing,' exactly as documented — any other word order returns a syntax error.",
+          "memoryAnchor": "IOS syntax is fixed, not freely reorderable — always start with ipv6, not ip ... v6.",
+          "contrast": "ipv6 unicast-routing is the literal, memorized IOS keyword string; ip routing v6 is an invented reordering that the CLI parser does not recognize."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners think in terms of the general concept ('turn IPv6 on') and construct a command that reads like a plain-English instruction rather than recalling the actual IOS keyword.",
+          "whyItSeems": "'enable' is a common English verb for 'turn on,' and it's also coincidentally a real (unrelated) IOS command name (privileged EXEC mode), so it feels like a natural word to lead with.",
+          "whyWrongHere": "'enable' in Cisco IOS is reserved for entering privileged EXEC mode, not for activating features — global IPv6 forwarding is turned on specifically with ipv6 unicast-routing in global configuration mode. 'enable ipv6' is not valid syntax and would be rejected by the CLI.",
+          "memoryAnchor": "'enable' gets you into privileged mode; ipv6 unicast-routing is the actual feature switch.",
+          "contrast": "ipv6 unicast-routing is typed in global config mode to turn on IPv6 forwarding; enable is typed at the user EXEC prompt just to escalate privilege — they solve completely different problems."
+        }
+      ]
     },
     {
       "id": "1.8-c-q8",
@@ -3348,7 +5066,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Per-hextet: drop leading zeros only."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners assume the shortening rule works the same regardless of which end the zeros sit on, treating leading and trailing zeros as interchangeable within a hextet.",
+          "whyItSeems": "Since both leading and trailing zeros are still 'zeros,' it can feel arbitrary that only one side gets special treatment — trailing zeros seem like they should be just as droppable.",
+          "whyWrongHere": "IPv6 hextet shortening only permits removing LEADING zeros, because a hextet's value is read left-to-right just like a normal number — dropping a leading zero doesn't change the value (007 = 7), but dropping a trailing zero would change it (dropping the trailing zero of 00a0 would falsely produce 'a' as if it were a different, smaller value). Only leading zeros are non-significant.",
+          "memoryAnchor": "Leading zeros are silent padding; trailing zeros are part of the actual value — only padding gets dropped.",
+          "contrast": "00a0 correctly shortens to a0 by dropping the two leading zeros (the value is unchanged); dropping a trailing zero instead would corrupt the hextet into a completely different value."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners overgeneralize the zero-compression rule from the whole-address :: shorthand down to individual hextets, assuming a hextet with any zeros can just be erased entirely.",
+          "whyItSeems": "Since IPv6 famously lets you compress runs of ALL-zero hextets using ::, it's easy to mistakenly apply that same 'delete it all' logic to a single hextet that merely starts with zeros but still has meaningful digits.",
+          "whyWrongHere": "The hextet 00a0 is not an all-zero hextet — it has real non-zero digits (a0) that carry address information and cannot be removed. Only a hextet that is entirely 0000 can be absorbed into the :: compression; a hextet like 00a0 can only have its leading zeros trimmed, never be deleted outright.",
+          "memoryAnchor": ":: erases whole zero hextets; leading-zero trimming only touches the padding inside one non-zero hextet.",
+          "contrast": "A hextet of 0000 can vanish entirely as part of a :: run; a hextet like 00a0 keeps its meaningful a0 value and only loses its leading zero padding."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners believe IPv6 addresses must always be written in full, uncompressed form, not realizing shortening rules are a standard, required part of correct IPv6 notation.",
+          "whyItSeems": "Given how strict and precise IPv6 notation rules feel overall, it can seem safer to assume 'no shortcuts are allowed' rather than remember the specific leading-zero-dropping rule.",
+          "whyWrongHere": "IPv6 shortening rules explicitly define two compressions: dropping leading zeros within each hextet, and collapsing one contiguous run of all-zero hextets with ::. Believing 'none' can be removed ignores both standard rules and would make already-compressed, correctly written IPv6 addresses (like those seen throughout the CCNA exam) look invalid.",
+          "memoryAnchor": "IPv6 shortening isn't optional stylistic flair — leading-zero and :: compression are standard, expected notation.",
+          "contrast": "00a0 correctly compresses to a0 under the standard leading-zero rule; treating it as 'none removable' would force writing out non-standard, overly verbose addresses that don't match how IPv6 is actually documented or displayed."
+        }
+      ]
     },
     {
       "id": "1.8-c-q9",
@@ -3396,7 +5140,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPv6 IF summary → show ipv6 interface brief."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners treat 'show ip interface brief' as a protocol-agnostic command, forgetting that in Cisco IOS the 'ip' keyword specifically means IPv4 and has a separate 'ipv6' counterpart.",
+          "whyItSeems": "The command is so commonly used for quick interface checks that it's easy to reach for by muscle memory without noticing it only reports IPv4 addressing.",
+          "whyWrongHere": "show ip interface brief displays only IPv4 addresses and up/down status per interface — it has no visibility into IPv6 addressing at all. To see IPv6 link-local and global addresses plus status, IOS requires the separate command show ipv6 interface brief.",
+          "memoryAnchor": "'ip' in IOS show commands means IPv4 only — IPv6 always needs its own 'ipv6' keyword.",
+          "contrast": "show ip interface brief lists IPv4 addresses and interface status; show ipv6 interface brief lists IPv6 addresses (link-local + global) and status — they never overlap in output."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners conflate 'seeing IPv6 information' broadly with checking the routing table, not distinguishing between an interface's own address/status and the router's learned destination routes.",
+          "whyItSeems": "Both commands start with 'show ipv6,' so if the exact second keyword isn't remembered precisely, 'route' feels like a plausible guess for any general IPv6 status check.",
+          "whyWrongHere": "show ipv6 route displays the IPv6 routing table — destination prefixes and next-hop paths the router has learned — not the addresses configured on the router's own interfaces. To see interface-level IPv6 addresses and up/down status, the correct command is show ipv6 interface brief.",
+          "memoryAnchor": "'route' shows where packets are going; 'interface brief' shows what's configured locally on each port.",
+          "contrast": "show ipv6 route answers 'how do I reach network X?'; show ipv6 interface brief answers 'what IPv6 addresses and status does this router's own interface have?'"
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners assume the full running configuration is a superset that always 'contains the answer,' so it should work for any verification question including address status.",
+          "whyItSeems": "Since running-config technically does list configured IPv6 addresses in the interface stanzas, it feels like a valid (if less convenient) way to find the same information.",
+          "whyWrongHere": "show running-config shows the CONFIGURED commands (what an admin typed), not the operational STATE (whether the interface actually came up, or what dynamically-assigned link-local address it's using) — show ipv6 interface brief is purpose-built to show live, real-time interface status and addressing in one compact summary line per interface.",
+          "memoryAnchor": "running-config = what was typed; interface brief = what's actually happening right now.",
+          "contrast": "show running-config could show a manually configured static IPv6 address but stays silent on operational up/down state; show ipv6 interface brief shows both the live address and the current status together."
+        }
+      ]
     },
     {
       "id": "1.8-c-q10",
@@ -3444,7 +5214,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "/64 → 64-bit network + 64-bit interface ID."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners import the IPv4 32-bit address length as a reflexive number for 'host bits,' without recalculating for IPv6's different total address length.",
+          "whyItSeems": "32 is such a deeply memorized number from IPv4 (the entire address length) that it can surface automatically as an answer to any 'how many bits' IPv6 question.",
+          "whyWrongHere": "IPv6 addresses are 128 bits total, not 32. With a /64 prefix taking the first 64 bits for the network portion, the remaining bits for the interface ID must be 128 − 64 = 64 bits, not 32.",
+          "memoryAnchor": "IPv4 is 32 bits total; IPv6 is 128 bits total — don't let the IPv4 number leak into an IPv6 answer.",
+          "contrast": "In IPv4, a /24 network leaves 8 host bits out of a 32-bit total; in IPv6, a /64 network leaves 64 interface-ID bits out of a 128-bit total — the math scales completely differently."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Learners confuse the 48-bit MAC address length (used as an input to EUI-64) with the 64-bit interface ID that results from processing that MAC.",
+          "whyItSeems": "48 is a real, relevant number in the same topic area (Modified EUI-64 starts from a 48-bit MAC), so it's easy to misremember which number is the interface ID length versus which is the source MAC length.",
+          "whyWrongHere": "A MAC address is 48 bits, but Modified EUI-64 expands it to a 64-bit interface ID by inserting the 16-bit FFFE value in the middle (48 + 16 = 64). The /64 prefix always leaves exactly 64 bits for the interface ID, regardless of whether it's built via EUI-64, SLAAC's privacy extensions, or manual assignment.",
+          "memoryAnchor": "MAC = 48 bits going in; interface ID = 64 bits coming out, after FFFE padding.",
+          "contrast": "The 48-bit MAC is the raw material for EUI-64; the 64-bit interface ID is the finished product used in the address — /64 always reserves the 64-bit figure, never the 48-bit one."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners mistakenly think the interface ID occupies the entire remaining address regardless of prefix length, or confuse the total address size (128 bits) with just the host portion.",
+          "whyItSeems": "128 is the headline number everyone learns first about IPv6 ('128-bit addresses'), so it can get misapplied to any sub-question about address components instead of just the total length.",
+          "whyWrongHere": "128 bits is the length of the ENTIRE IPv6 address, not the interface ID alone. Since the /64 prefix already claims the first 64 bits for the network, only the remaining 64 bits (128 − 64) are left for the interface ID — using 128 would mean the network portion took zero bits, which contradicts the /64 prefix stated in the question.",
+          "memoryAnchor": "128 is the whole address; subtract the prefix length to get what's left for the interface ID.",
+          "contrast": "128 bits describes the full address end-to-end; 64 bits (128 minus the /64 prefix) describes just the host-identifying interface ID portion within that address."
+        }
+      ]
     }
   ],
   "1.9": [
@@ -3494,7 +5290,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Global unicast = 2000::/3. Link-local = FE80::/10. ULA = FC00::/7."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners treat any recognizable IPv6 prefix as interchangeable with 'the public range,' not distinguishing link-local scope from globally routable scope.",
+          "whyItSeems": "FE80::/10 is one of the most frequently seen IPv6 prefixes (it appears automatically on every interface), so its familiarity can make it feel like a default answer for 'the' IPv6 address type.",
+          "whyWrongHere": "FE80::/10 addresses are link-local — valid only on the directly connected local segment and never forwarded by routers off that link. Global unicast addresses, by contrast, are the publicly routable range 2000::/3 meant to traverse the Internet, which is the exact opposite scope of link-local.",
+          "memoryAnchor": "FE80 never leaves the wire; 2000::/3 is built to travel the whole Internet.",
+          "contrast": "FE80::/10 addresses stay confined to one local link and get discarded by any router; 2000::/3 global unicast addresses are designed to be routed across the public Internet."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners assume 'private-like' and 'public/global' are just two labels for the same routable concept, not realizing ULA space is deliberately non-globally-routed despite being structurally similar to global unicast.",
+          "whyItSeems": "FC00::/7 addresses look and behave much like global unicast addresses in format, so without knowing the specific 'private-use' intent behind ULA, it's easy to lump the two ranges together.",
+          "whyWrongHere": "FC00::/7 is Unique Local Address (ULA) space, IPv6's analog to RFC 1918 private IPv4 — intended for internal-only routing, not for use on the public Internet. Global unicast, 2000::/3, is the range specifically allocated by IANA/RIRs for publicly routable, Internet-facing addressing.",
+          "memoryAnchor": "FC00::/7 = 'private' inside your network; 2000::/3 = public on the real Internet.",
+          "contrast": "FC00::/7 (ULA) addresses are meant to stay within an organization's own routing domain; 2000::/3 (global unicast) addresses are meant to be advertised and reachable across the public Internet."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners assume any address prefix that starts with a high hex value like FF must represent 'the important public range,' not knowing FF-prefixed addresses actually signal a completely different address type (multicast).",
+          "whyItSeems": "FF00::/8 shares a superficial resemblance (an 'F'-heavy prefix) with other notable IPv6 ranges, and multicast is a less commonly emphasized topic, so it can get mistaken for unicast.",
+          "whyWrongHere": "FF00::/8 is reserved entirely for multicast — traffic delivered to a GROUP of interested receivers, not a single destination. Global unicast (2000::/3) is for one-to-one addressing where a packet goes to exactly one specific interface — a fundamentally different delivery model than multicast.",
+          "memoryAnchor": "FF-prefixed addresses mean 'group delivery' (multicast); 2000::/3 means 'one specific device' (unicast).",
+          "contrast": "FF00::/8 multicast delivers one packet to many interested receivers simultaneously; 2000::/3 global unicast delivers one packet to exactly one specific, individually addressed interface."
+        }
+      ]
     },
     {
       "id": "1.9-c-q2",
@@ -3542,7 +5364,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Link-local starts FE80."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners lump all 'F-heavy' prefixes together as a single generic 'special address' category, not distinguishing multicast (FF) from link-local unicast (FE80).",
+          "whyItSeems": "FF02 and FE80 look visually similar (both start with 'F' and both are commonly seen in IPv6 output), which makes them easy to swap without careful attention to the exact hex digits.",
+          "whyWrongHere": "FF02::/16 addresses are multicast — delivered to a defined group of listening interfaces (like all-nodes or all-routers) — while FE80::/10 addresses are link-local unicast, assigned individually to a single interface for communication on its local segment. The two prefixes serve entirely different addressing purposes.",
+          "memoryAnchor": "FF = multicast group address; FE80 = one interface's local address — similar-looking prefixes, opposite roles.",
+          "contrast": "FF02::1 is a shared group address every node listens to; FE80::<interface-id> is a unique address that individually identifies just one specific interface."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Learners assume 2001-prefixed addresses (the most commonly seen 'example' IPv6 addresses in textbooks) represent every kind of IPv6 address, including link-local ones.",
+          "whyItSeems": "2001:: is the prefix used in nearly every documentation example address, so it becomes the mental default for 'what an IPv6 address looks like' regardless of the specific scope being asked about.",
+          "whyWrongHere": "2001:: addresses fall within the 2000::/3 global unicast range — meant for publicly routable addressing — while link-local addresses always begin specifically with FE80. A 2001-prefixed address is never automatically generated as a link-local address; link-local always uses the reserved FE80::/10 range.",
+          "memoryAnchor": "2001:: is a global unicast example prefix, not the automatic link-local prefix — link-local is always FE80.",
+          "contrast": "2001:db8::1 represents a globally-scoped, potentially Internet-routable address; FE80::1 represents a link-local address confined to just the local segment — different prefixes for fundamentally different reach."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners blur the distinction between IPv6's two 'restricted-scope-feeling' address types — link-local (FE80) and unique local (FD00) — treating them as the same concept because both sound 'local' or 'private.'",
+          "whyItSeems": "The word 'local' appears in both link-local and unique local terminology, making it tempting to assume they share the same address prefix.",
+          "whyWrongHere": "FD00::/8 is Unique Local Address (ULA) space — manually or randomly assigned, routable within an organization's internal network across multiple links — while FE80::/10 link-local addresses are automatically generated and confined to a single link, never routed even internally. 'Local' in each name refers to a different scope entirely.",
+          "memoryAnchor": "FE80 = confined to one wire, auto-generated; FD00 = routable across your whole internal network, usually planned.",
+          "contrast": "FE80::/10 link-local addresses never cross a router, even within the same company; FD00::/8 unique local addresses can be routed between multiple internal links, just not onto the public Internet."
+        }
+      ]
     },
     {
       "id": "1.9-c-q3",
@@ -3590,7 +5438,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPv6 private-like = FD00::/8 ULA."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Learners think of any IPv6 address that 'looks normal' (uses common hex prefixes) as automatically being the private range, without recalling that global unicast and ULA occupy entirely separate, non-overlapping prefix blocks.",
+          "whyItSeems": "2000::/3 is the most commonly seen prefix in general IPv6 examples, so if the specific 'private-use' prefix isn't memorized, this familiar-looking range can feel like a safe guess for any address-type question.",
+          "whyWrongHere": "2000::/3 is the global unicast range — specifically allocated for public, Internet-routable addressing, the opposite of a private/internal-only range. The IPv6 analog to RFC 1918 private space is FD00::/8 (part of FC00::/7 Unique Local space), a completely separate prefix block reserved for internal-only use.",
+          "memoryAnchor": "2000::/3 goes out to the Internet; FD00::/8 stays inside your own network.",
+          "contrast": "2000::/3 addresses are meant to be advertised and reached from anywhere on the public Internet; FD00::/8 addresses are meant to be used only within a private organization, similar in spirit to IPv4's 10.0.0.0/8."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners equate 'restricted to my own network' (the intuitive meaning of private) with link-local scope, not realizing link-local is restricted to a single WIRE, while ULA is a broader private range usable across an entire organization.",
+          "whyItSeems": "Both FE80 and FD00 avoid the public Internet, so without careful attention to scope, they can feel like the same 'private' concept just with different prefixes.",
+          "whyWrongHere": "FE80::/10 link-local addresses cannot be routed anywhere — not even between two links inside the same building — whereas FD00::/8 Unique Local addresses ARE meant to be routed across an organization's internal network, just never onto the public Internet. ULA is the true private/internal-routing analog to IPv4 RFC 1918 space; link-local is not.",
+          "memoryAnchor": "Link-local (FE80) can't leave one wire; unique local (FD00) can travel your whole internal network.",
+          "contrast": "FE80::/10 addresses die at the first router hop, even inside your own company; FD00::/8 addresses can be routed company-wide but are blocked from reaching the public Internet."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners default to any distinctive-looking 'FF'-style prefix as a catch-all for 'special' addressing, mistakenly applying it to the private-use question instead of recognizing it as the dedicated multicast range.",
+          "whyItSeems": "FF00::/8 stands out visually as an unusual, 'reserved-feeling' prefix, so in the absence of the correct FD00 answer it can seem like a plausible 'special-purpose' substitute.",
+          "whyWrongHere": "FF00::/8 is reserved exclusively for multicast group addressing — sending one packet to many interested listeners — and has nothing to do with private, internal-only unicast addressing. The RFC1918-like private range for IPv6 unicast is specifically FD00::/8.",
+          "memoryAnchor": "FF00 = multicast groups; FD00 = private unicast network — both start with 'F' but serve unrelated purposes.",
+          "contrast": "FF00::/8 addresses represent a group of receivers all listening for the same traffic; FD00::/8 addresses represent individual private devices inside an organization's own network, just like RFC 1918 IPv4 space."
+        }
+      ]
     },
     {
       "id": "1.9-c-q4",
@@ -3638,7 +5512,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "All routers link-local = FF02::2."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners remember 'FF02-something reaches everyone' but don't distinguish between the all-nodes group (every host and router) and the all-routers group (routers specifically).",
+          "whyItSeems": "FF02::1 is the most frequently cited IPv6 multicast address, so it comes to mind first as the generic answer for any 'reaches devices on the link' question, even when the question asks specifically about routers.",
+          "whyWrongHere": "FF02::1 is the all-nodes multicast group — every IPv6-enabled device on the link (hosts AND routers) listens to it. The question specifically asks for the group that reaches ROUTERS, which is the narrower all-routers group, FF02::2 — a host does not join FF02::2 unless it is itself acting as a router.",
+          "memoryAnchor": "FF02::1 = everybody; FF02::2 = routers only — one digit changes the entire audience.",
+          "contrast": "FF02::1 is received by every node on the link, hosts and routers alike; FF02::2 is received only by devices actively forwarding as routers."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners assume any FF02-prefixed 'router-related' multicast address serves the same general 'talk to routers' purpose, blending the generic all-routers group with a protocol-specific group like OSPFv3's.",
+          "whyItSeems": "FF02::5 is genuinely router-related (it's used by OSPFv3), so without precise recall of which digit maps to which group, it's easy to mistake it for the generic all-routers address.",
+          "whyWrongHere": "FF02::5 is the OSPFv3 'AllSPFRouters' multicast group — heard only by routers running OSPFv3 specifically, not by every router on the link. The generic, protocol-agnostic all-routers group that any IPv6 router listens to is FF02::2, which is what the question is asking about.",
+          "memoryAnchor": "FF02::2 = every router, any protocol; FF02::5 = only OSPFv3 routers.",
+          "contrast": "FF02::2 is joined by all IPv6 routers regardless of which routing protocol they run; FF02::5 is joined only by routers specifically participating in OSPFv3."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners pull the well-known IPv4 all-routers multicast address from memory and assume it carries over unchanged into IPv6, not accounting for IPv6's entirely separate address family.",
+          "whyItSeems": "224.0.0.2 is the classic IPv4 all-routers multicast address from earlier CCNA material, so it's an easy, familiar-feeling answer to reach for when the underlying CONCEPT (all-routers) is the same, even though the question is explicitly about IPv6.",
+          "whyWrongHere": "224.0.0.2 is a valid multicast address, but it belongs to IPv4's address space entirely — it is not a legal IPv6 address at all. The IPv6 equivalent all-routers address, using IPv6's own FF00::/8 multicast range, is FF02::2.",
+          "memoryAnchor": "224.0.0.2 is IPv4's all-routers; FF02::2 is IPv6's all-routers — same concept, completely different address families.",
+          "contrast": "224.0.0.2 is a 32-bit IPv4 multicast address usable only on IPv4 networks; FF02::2 is a 128-bit IPv6 multicast address usable only on IPv6 networks — they can't be substituted for each other."
+        }
+      ]
     },
     {
       "id": "1.9-c-q5",
@@ -3670,7 +5570,17 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPv6: no broadcast — use multicast."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners assume every network layer protocol must include a broadcast mechanism because IPv4 has one, not realizing IPv6's designers deliberately removed it.",
+          "whyItSeems": "Broadcast was such a core, heavily-tested IPv4 concept that it feels like it must simply carry forward into IPv6 as a similar, renamed feature.",
+          "whyWrongHere": "IPv6 was designed WITHOUT a broadcast address specifically to avoid the network-wide flooding and processing overhead broadcast caused in IPv4. Instead, IPv6 relies entirely on multicast (like FF02::1 for all-nodes) to achieve the same 'reach many devices' goals more efficiently and selectively.",
+          "memoryAnchor": "IPv6 killed broadcast on purpose — multicast does that job now.",
+          "contrast": "IPv4 uses a dedicated broadcast address (like 255.255.255.255) that every host on the subnet must process; IPv6 uses targeted multicast groups (like FF02::1) that only devices which explicitly joined the group need to process."
+        }
+      ]
     },
     {
       "id": "1.9-c-q6",
@@ -3718,7 +5628,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "One address, nearest node = anycast."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners see 'same address, multiple devices' and jump straight to multicast, since multicast is the more commonly taught 'one address, many destinations' concept, without noting the crucial 'delivered to only the NEAREST one' detail.",
+          "whyItSeems": "Both multicast and anycast involve a single address associated with more than one device, so the surface pattern matches even though the delivery behavior is opposite.",
+          "whyWrongHere": "Multicast delivers a packet to EVERY member of the group simultaneously — potentially many devices receive the same packet. Anycast delivers a packet to exactly ONE device — whichever instance is topologically nearest — even though the same address is configured on multiple devices. The scenario in the question explicitly says traffic goes to 'the nearest,' which is the anycast behavior, not multicast's one-to-many delivery.",
+          "memoryAnchor": "Multicast = same packet to ALL group members; anycast = same address, but delivered to just the ONE nearest instance.",
+          "contrast": "A multicast packet sent to FF02::1 reaches every node listening on that group simultaneously; an anycast packet sent to a shared anycast address reaches only the single nearest server hosting that address."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners treat 'link-local' as a catch-all label for any address-sharing or special-behavior scenario, rather than recognizing it strictly describes SCOPE (confined to one link), not delivery behavior across multiple devices.",
+          "whyItSeems": "Link-local is one of the first 'special' IPv6 address types learned, so it can become an overused default answer for any unusual addressing scenario, even one about delivery to the nearest of several servers.",
+          "whyWrongHere": "Link-local addresses (FE80::/10) describe WHERE an address is valid — confined to a single local segment — and are automatically generated per-interface; they say nothing about delivering traffic to 'the nearest' of several identically-addressed devices. The scenario described — the same address on multiple servers with nearest-node delivery — is specifically the definition of anycast.",
+          "memoryAnchor": "Link-local answers 'how far can this address travel?'; anycast answers 'which of several identical addresses gets the traffic?' — different questions entirely.",
+          "contrast": "A link-local address is unique to one interface and unusable outside its local segment; an anycast address is deliberately duplicated across multiple, often geographically distant, servers."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners assume any 'reaches multiple potential destinations' scenario must be some form of broadcast, carrying over IPv4 intuition rather than recognizing IPv6 doesn't even have a broadcast address.",
+          "whyItSeems": "Broadcast is the most familiar 'goes to more than one place' concept from IPv4 networking fundamentals, making it a tempting catch-all guess.",
+          "whyWrongHere": "IPv6 has no broadcast address at all — it was deliberately removed from the protocol. The scenario described (same address, delivery to nearest instance) is the specific definition of anycast, a distinct IPv6 addressing type that has no IPv4 broadcast equivalent.",
+          "memoryAnchor": "IPv6 has no broadcast, period — 'reaches multiple servers, delivered to the closest one' can only be anycast.",
+          "contrast": "IPv4 broadcast (if it existed in IPv6) would flood every device on the subnet; anycast instead intelligently routes to just the single nearest device sharing that address."
+        }
+      ]
     },
     {
       "id": "1.9-c-q7",
@@ -3766,7 +5702,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "FE80 = local segment only."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners assume every IPv6 address type is globally routable by default, since IPv6 was designed with a vastly larger address space intended to support widespread Internet use.",
+          "whyItSeems": "IPv6's headline feature is its enormous global address space, so it's easy to assume ALL IPv6 addresses — including link-local — are meant to travel the Internet, when in reality certain types are intentionally scope-restricted.",
+          "whyWrongHere": "Link-local addresses (FE80::/10) are, by design and by every router's default behavior, never forwarded beyond the local segment they're on — routers drop packets sourced from or destined to link-local addresses when attempting to route them elsewhere. They exist purely for local operations like neighbor discovery, not Internet communication.",
+          "memoryAnchor": "Link-local addresses die at the first router — they never even try to cross the Internet.",
+          "contrast": "A global unicast address (2000::/3) is specifically built to be routed across the Internet; a link-local address (FE80::) is specifically built to never leave its own local link."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners associate FE80 addresses primarily with router-to-router protocols (like OSPF neighbor relationships), mistakenly concluding that only routers use them, not realizing every IPv6-enabled device — including ordinary hosts — automatically gets one.",
+          "whyItSeems": "Since link-local addresses are prominently used for router neighbor discovery and routing protocol next-hops, it's easy to overweight that router use case and forget hosts use link-local addresses too.",
+          "whyWrongHere": "Every IPv6-enabled interface — hosts, switches, and routers alike — automatically generates a link-local address the moment IPv6 is enabled, because it's required for essential local operations like Neighbor Discovery Protocol (NDP), regardless of whether the device ever routes traffic.",
+          "memoryAnchor": "Any IPv6 device gets a link-local address automatically — not a router-exclusive feature.",
+          "contrast": "Routers use link-local addresses for tasks like OSPF/EIGRP neighbor adjacencies; ordinary end hosts equally use their own link-local addresses for tasks like ARP-replacement Neighbor Discovery — both device types rely on link-local scope."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners import IPv4's private-address-plus-NAT mental model, assuming any 'restricted' IPv6 address type must similarly depend on a translation mechanism to be usable.",
+          "whyItSeems": "In IPv4, private RFC 1918 addresses typically need NAT to reach the Internet, so it can seem logical that a 'restricted scope' IPv6 address type would follow the same NAT-dependent pattern.",
+          "whyWrongHere": "Link-local addresses have no relationship to NAT66 at all — they're fully functional and required for local link operations (like Neighbor Discovery) with zero translation involved. NAT66 (if used) operates on IPv6 addresses trying to cross network boundaries, an entirely separate and much rarer scenario than everyday link-local communication.",
+          "memoryAnchor": "Link-local works with zero NAT involvement — it's not trying to reach anywhere NAT would matter.",
+          "contrast": "IPv4 private addresses commonly rely on NAT to communicate beyond their own network; IPv6 link-local addresses don't communicate beyond their own network at all, so NAT isn't even part of the equation."
+        }
+      ]
     },
     {
       "id": "1.9-c-q8",
@@ -3814,7 +5776,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "All IPv6 hosts → FF02::1."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Learners swap the all-nodes and all-routers groups, assuming the same multicast address family covers 'every device' broadly without distinguishing the specific host-vs-router membership of each group.",
+          "whyItSeems": "FF02::1 and FF02::2 are nearly identical in appearance (differing by one digit) and are always taught side-by-side, making it easy to mix up which one is the universal 'every device' group.",
+          "whyWrongHere": "FF02::2 is the all-ROUTERS group, joined only by devices actively performing IPv6 routing — an ordinary host does not join it. Every IPv6-enabled device, host or router, automatically joins FF02::1, the all-NODES group, which is what the question is asking about.",
+          "memoryAnchor": "FF02::1 = everyone; FF02::2 = routers only — the last digit is the whole difference.",
+          "contrast": "FF02::1 is received by every IPv6 device on the link without exception; FF02::2 is received only by devices that are configured to route."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners confuse a device's own individual link-local unicast address with a shared multicast group address, not distinguishing 'my personal local address' from 'a group everyone listens to.'",
+          "whyItSeems": "FE80::1 looks like a plausible link-local-style address and the question is about local-link communication, so without careful attention to the FF02 multicast prefix versus FE80 unicast prefix, the two can blur together.",
+          "whyWrongHere": "FE80::1 would be a specific device's individual link-local unicast address (one device, one address) — it is not a group that 'every host joins.' The all-nodes group that every IPv6 device automatically joins is the multicast address FF02::1, which is a completely different address entirely.",
+          "memoryAnchor": "FE80::x is one device's personal address; FF02::1 is a shared mailbox every device checks.",
+          "contrast": "FE80::1 identifies a single specific interface uniquely; FF02::1 is a multicast group address that every IPv6 node listens to simultaneously, regardless of how many devices exist."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners assume the 'all-nodes' concept must live within global unicast space since that's the most Internet-facing, all-encompassing-sounding range, rather than recognizing multicast groups occupy their own dedicated FF00::/8 prefix.",
+          "whyItSeems": "2000::1 uses the familiar 'global' prefix that sounds broad and inclusive, which can be mistakenly associated with 'reaching all nodes.'",
+          "whyWrongHere": "2000::1 would be an ordinary global unicast address for one specific device — global unicast space has nothing to do with multicast group membership. The mandatory all-nodes multicast group every IPv6 device joins is specifically FF02::1, within the dedicated multicast prefix FF00::/8, not the global unicast range.",
+          "memoryAnchor": "'Global' (2000::/3) means Internet-routable to one device; 'all-nodes' (FF02::1) means a shared local multicast group — unrelated concepts.",
+          "contrast": "2000::1 would route to one specific globally-addressed device across the Internet; FF02::1 delivers to every node on the local link simultaneously, with no Internet routing involved."
+        }
+      ]
     }
   ],
   "1.10": [
@@ -3864,7 +5852,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Windows host IP check → ipconfig /all. Linux → ip addr."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners treat any Windows command-line networking tool as roughly interchangeable, assuming 'a networking command' automatically shows full IP configuration details.",
+          "whyItSeems": "netstat is a commonly used networking troubleshooting command, so its general association with 'network stuff' can make it feel like a viable answer for any networking information request.",
+          "whyWrongHere": "netstat displays active TCP/UDP connections and listening ports — it has no concept of showing the local host's own IP address, subnet mask, default gateway, or DNS servers. Those specific configuration details require ipconfig /all, a completely different tool built for a different purpose.",
+          "memoryAnchor": "netstat shows WHO you're connected to; ipconfig /all shows WHAT your own address settings are.",
+          "contrast": "netstat lists active sessions like established TCP connections to remote servers; ipconfig /all lists the host's own static configuration data like IP address, mask, gateway, and DNS."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners assume any command showing IP-to-something mappings must cover general IP configuration, blending the ARP cache (IP-to-MAC mappings of OTHER devices) with the host's own configured settings.",
+          "whyItSeems": "arp -a does display IP addresses in its output, so on the surface it looks like it's providing 'IP information,' even though it's about neighboring devices rather than the local host's own configuration.",
+          "whyWrongHere": "arp -a shows the local ARP cache — a table mapping OTHER devices' IP addresses to their MAC addresses that this host has recently communicated with. It shows nothing about this host's own IP address, subnet mask, default gateway, or DNS settings, which is specifically what ipconfig /all provides.",
+          "memoryAnchor": "arp -a is about your NEIGHBORS' addresses; ipconfig /all is about YOUR OWN address.",
+          "contrast": "arp -a reveals IP-to-MAC mappings for devices this host has recently talked to on the LAN; ipconfig /all reveals this host's own IP address, mask, gateway, and DNS configuration."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners assume the routing table alone is sufficient for full IP diagnostics, not distinguishing 'where packets are sent' (routing) from 'what my interface's address settings are' (IP configuration).",
+          "whyItSeems": "route print does list some IP-address-like information (destination networks, gateway addresses), so it can feel like it overlaps with the full configuration details the question is asking about.",
+          "whyWrongHere": "route print shows only the routing table — destination networks and their associated gateways/interfaces — it does not report the host's own configured IP address, subnet mask, or DNS server settings in one clear summary. ipconfig /all specifically packages exactly those details together.",
+          "memoryAnchor": "route print shows the map of destinations; ipconfig /all shows your own address card.",
+          "contrast": "route print answers 'which interface/gateway will traffic to network X use?'; ipconfig /all answers 'what is my own IP address, mask, gateway, and DNS server?' — two very different questions."
+        }
+      ]
     },
     {
       "id": "1.10-c-q2",
@@ -3912,7 +5926,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Local works, remote fails → check default gateway before DNS or VLAN."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners reflexively blame DNS for ANY connectivity failure to a remote/Internet destination, without checking whether the target was reached by IP address (bypassing DNS entirely) or by name.",
+          "whyItSeems": "'Can't reach the Internet' is the classic symptom description associated with DNS problems in everyday troubleshooting language, making DNS an automatic first guess.",
+          "whyWrongHere": "The scenario doesn't mention pinging a hostname — if 8.8.8.8 (a raw IP address) is the failing target, DNS is never even invoked, since DNS resolution only matters when translating names to addresses. Same-subnet ping success plus off-subnet IP-address ping failure isolates the fault to Layer 3 forwarding — specifically the default gateway — not name resolution.",
+          "memoryAnchor": "Pinging a raw IP address never touches DNS — if that fails, look at routing/gateway, not names.",
+          "contrast": "DNS failure would specifically break pinging by hostname while pinging the same target's raw IP address still works; here, the failure is with an IP address itself, pointing to the gateway/routing path instead."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners assume any connectivity issue involving a switch must be VLAN-related, without recognizing that a VLAN misconfiguration would typically break LOCAL communication too, not just remote traffic.",
+          "whyItSeems": "VLANs are a heavily emphasized CCNA topic for connectivity issues, so it's tempting to reach for a VLAN explanation whenever any 'can't reach X' scenario appears.",
+          "whyWrongHere": "If the PC were on the wrong VLAN, it likely couldn't even reach other hosts on its intended same-subnet segment, since it would be isolated in a different broadcast domain — but the scenario states same-subnet ping SUCCEEDS. That success shows Layer 2/local Layer 3 forwarding is fine; only the remote (off-subnet) path fails, pointing to the gateway rather than VLAN assignment.",
+          "memoryAnchor": "A VLAN mistake usually breaks LOCAL connectivity too; here local works fine, so look at the gateway instead.",
+          "contrast": "A wrong VLAN typically prevents reaching even same-subnet neighbors because the host lands in an unintended broadcast domain; here the same-subnet ping already succeeds, ruling VLAN out and pointing to the gateway for the off-subnet failure."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners pattern-match 'connectivity problem' with any recently-learned security or wireless topic, pulling in an unrelated concept like WPA3 encryption that has no bearing on IP-layer reachability symptoms.",
+          "whyItSeems": "WPA3 is a distinct, memorable term from recent WLAN security material, so it can surface as a guess purely from familiarity rather than logical fit to the symptom described.",
+          "whyWrongHere": "WPA3 governs wireless AUTHENTICATION and ENCRYPTION at Layer 2 — if it were misconfigured, the device likely couldn't associate with the network AT ALL, breaking both local and remote connectivity identically. The scenario's selective failure (same-subnet works, remote doesn't) is a Layer 3 symptom pointing specifically to gateway/routing, unrelated to Layer 2 wireless security settings.",
+          "memoryAnchor": "Wireless security (WPA3) breaks association entirely, not selectively; a gateway problem breaks only off-subnet reachability — match the symptom to the right layer.",
+          "contrast": "A WPA3 misconfiguration would typically prevent the device from joining the wireless network at all; a default gateway problem still allows full local (same-subnet) connectivity while blocking everything beyond it."
+        }
+      ]
     },
     {
       "id": "1.10-c-q3",
@@ -3960,7 +6000,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Ping IP works, ping name fails → DNS first."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners assume any connectivity symptom could stem from physical-layer problems, without checking whether the successful IP ping already rules out a physical/Layer 1 issue.",
+          "whyItSeems": "Cable and CRC errors are a classic 'catch-all' troubleshooting guess for flaky connectivity, so they can feel like a safe default answer even when the evidence points elsewhere.",
+          "whyWrongHere": "Physical-layer problems like CRC errors would degrade or break ALL traffic across that link, including the successful ping to 203.0.113.1 — but that ping succeeds cleanly. Since IP-based reachability works but only NAME resolution fails, the fault is isolated above Layer 1, specifically at the DNS layer.",
+          "memoryAnchor": "If IP-address ping fully succeeds, Layer 1/2 cabling is already proven fine — look higher, at DNS.",
+          "contrast": "Cable CRC errors would cause inconsistent or failed connectivity for ALL traffic, IP or name-based alike; here only name-based lookups fail while IP ping is perfectly clean, isolating the DNS layer specifically."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners assume subnet mask problems could explain any 'reachability limited to certain targets' symptom, without noticing the successful ping to a public IP already proves correct Layer 3 addressing and routing.",
+          "whyItSeems": "Subnet mask misconfigurations are a commonly tested CCNA failure mode, so they can feel like a plausible catch-all for any connectivity inconsistency.",
+          "whyWrongHere": "A missing or incorrect subnet mask would cause the host to misjudge which destinations are local versus remote, breaking IP-level reachability generally — but ping to 203.0.113.1 succeeds fine, proving the subnet mask and routing logic are working correctly. The selective failure (name lookups only) points specifically to DNS, not addressing.",
+          "memoryAnchor": "A working IP ping to a remote address proves the subnet mask is fine — the missing piece here is DNS, not addressing.",
+          "contrast": "A bad subnet mask would break IP-level routing decisions broadly, including reaching 203.0.113.1; here that IP ping already works perfectly, so the mask is clearly correct and DNS is the actual culprit."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners associate any intermittent or partial network failure with STP loops and broadcast storms, without checking whether the symptom pattern (selective name-resolution-only failure) actually matches what an STP loop would cause.",
+          "whyItSeems": "STP loops are a dramatic, heavily tested CCNA failure scenario, making them an appealing 'big, impressive' answer choice for any connectivity puzzle.",
+          "whyWrongHere": "An STP loop causes broadcast storms and severe, general network degradation or outages — it would not selectively break only DNS name resolution while leaving direct IP ping perfectly functional. The clean, working IP ping combined with the failing name-based ping is a textbook signature of a DNS-specific problem, not a Layer 2 loop.",
+          "memoryAnchor": "STP loops cause broad chaos, not surgical DNS-only failures — match the failure's precision to the right cause.",
+          "contrast": "An STP loop would degrade or crash connectivity network-wide, including the successful IP ping shown here; a DNS failure precisely and only breaks name-based lookups while IP-based traffic stays completely healthy."
+        }
+      ]
     },
     {
       "id": "1.10-c-q4",
@@ -4008,7 +6074,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "tracert/traceroute → hop-by-hop Layer 3 path and latency per router."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners conflate any 'path-related' or 'device-listing' networking tool with switch MAC address tables, not distinguishing Layer 2 forwarding tables from Layer 3 route tracing.",
+          "whyItSeems": "Since traceroute reveals a list of intermediate devices, it can loosely resemble the idea of 'a table of devices,' which is easy to confuse with a switch's MAC address table if the underlying mechanism isn't clearly understood.",
+          "whyWrongHere": "A MAC address table lives on a SWITCH and maps MAC addresses to physical ports for local Layer 2 forwarding — it's viewed with commands like show mac address-table, not traceroute. Traceroute works at Layer 3, sending packets with incrementing TTL values to elicit 'time exceeded' ICMP replies from each ROUTER hop along the path, revealing the Layer 3 path, not any switch's internal MAC table.",
+          "memoryAnchor": "MAC tables live inside switches (Layer 2); traceroute reveals router hops (Layer 3) — different devices, different layers.",
+          "contrast": "show mac address-table displays a switch's local Layer 2 port-to-MAC mappings; traceroute displays the sequence of Layer 3 router hops a packet takes to reach a remote destination."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners bundle all IP-related host information together, assuming any command touching 'IP configuration' — including DHCP lease details — must also be what traceroute reports.",
+          "whyItSeems": "DHCP lease time is a genuinely important piece of IP configuration information covered in the same general troubleshooting toolkit, so it can blur together with other diagnostic commands if their specific purposes aren't distinct in memory.",
+          "whyWrongHere": "DHCP lease time — how long a dynamically assigned IP address remains valid — comes from commands like ipconfig /all or show ip dhcp binding, not traceroute. Traceroute has no involvement with DHCP at all; its sole purpose is mapping the hop-by-hop Layer 3 path and per-hop latency to a destination.",
+          "memoryAnchor": "DHCP lease info comes from ipconfig /all; traceroute maps the path, not addressing time limits.",
+          "contrast": "ipconfig /all reports how long the local host's DHCP-assigned IP address remains valid; traceroute reports which routers a packet passes through en route to a destination — entirely separate diagnostic purposes."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners assume any troubleshooting tool used on a wireless-connected laptop must report wireless-specific details like the channel in use, not distinguishing Layer 3 path tools from Layer 1/2 RF diagnostics.",
+          "whyItSeems": "If traceroute is run from a Wi-Fi-connected device, it's tempting to assume its output somehow reflects the wireless medium being used, blending unrelated diagnostic domains.",
+          "whyWrongHere": "Wi-Fi channel information (RF frequency selection) is reported by wireless-specific tools or adapter status screens, not traceroute — traceroute operates entirely at Layer 3, tracing the IP path a packet takes through routers, completely independent of whether the first hop is wired or wireless, or which channel it uses.",
+          "memoryAnchor": "Wi-Fi channel is a Layer 1 RF detail; traceroute only cares about Layer 3 router hops.",
+          "contrast": "A wireless adapter status screen reports the Wi-Fi channel and signal details of the local radio link; traceroute reports the sequence of Layer 3 routers a packet crosses, regardless of the underlying physical medium."
+        }
+      ]
     },
     {
       "id": "1.10-c-q5",
@@ -4057,7 +6149,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "169.254.x.x = no DHCP — verify server, relay, and VLAN before anything else."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners assume any IP-addressing anomaly must be investigated by checking routing protocol state, blending end-host address assignment issues with router-level routing protocol troubleshooting.",
+          "whyItSeems": "OSPF is a heavily emphasized CCNA topic, so it can become an overused go-to troubleshooting step even in scenarios (like a single end-host's own address) where routing protocols play no role at all.",
+          "whyWrongHere": "OSPF neighbor relationships exist between ROUTERS exchanging routing information — an end-user PC showing a 169.254.x.x APIPA address isn't running OSPF at all; its problem is that it never received a DHCP offer. Checking OSPF neighbor tables has zero relevance to why a single host failed to get a DHCP-assigned address.",
+          "memoryAnchor": "APIPA is a HOST symptom about missing DHCP — OSPF is a ROUTER-to-ROUTER routing protocol; they don't intersect.",
+          "contrast": "OSPF neighbor tables reveal whether routers have formed adjacencies to exchange routes; a 169.254.x.x address on a PC reveals that the DHCP process failed for that one host — completely different diagnostic domains."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners default to physical-layer explanations (like fiber type mismatches) for any connectivity symptom, without recognizing that an APIPA address specifically indicates Layer 2 connectivity IS working — the DHCP exchange at a higher layer is what's failing.",
+          "whyItSeems": "Physical media issues are a classic first troubleshooting instinct, and fiber single-mode/multi-mode mismatches are a real, tested CCNA failure mode, making it feel like a reasonable general guess.",
+          "whyWrongHere": "A device receiving an APIPA (169.254.x.x) address means it successfully sent DHCPDISCOVER broadcasts and simply never got a DHCPOFFER back — this implies the Layer 1/2 link is UP and functioning (broadcasts went out fine); the failure is specifically that no DHCP server responded, which points to the DHCP server, relay configuration, or VLAN reachability, not fiber type.",
+          "memoryAnchor": "APIPA proves the link is physically up — the missing piece is the DHCP conversation, not the cable.",
+          "contrast": "A fiber SM/MM mismatch would typically prevent the link from coming up at all (no Layer 1 connectivity, no broadcasts sent); an APIPA address specifically shows the link IS up but the DHCP request/response cycle failed."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners assume any VLAN-adjacent term (like VTP, which manages VLAN database propagation between switches) is relevant to any client-side addressing problem, without distinguishing VLAN database synchronization from DHCP service availability.",
+          "whyItSeems": "VTP is a real, sometimes-misconfigured switch feature that can indirectly cause VLAN-related outages, so it can feel plausible as 'some switch thing' related to why a client isn't getting an address.",
+          "whyWrongHere": "VTP governs how VLAN configuration databases synchronize across trunked switches — it's a separate concern from whether a DHCP server is present, reachable, or properly relayed on the client's specific VLAN. Even if VTP were perfectly configured, a missing/unreachable DHCP server or ip helper-address would still produce an APIPA address; VTP misconfiguration is not the first thing to check for this specific symptom.",
+          "memoryAnchor": "VTP synchronizes VLAN databases between switches; it has no direct role in whether DHCP responds to a client.",
+          "contrast": "A VTP problem would show up as inconsistent or missing VLANs across the switch fabric; an APIPA address on a single client points specifically to a DHCP server/relay/reachability problem on that client's VLAN."
+        }
+      ]
     },
     {
       "id": "1.10-c-q6",
@@ -4105,7 +6223,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Layered ping: gateway → public IP → hostname to isolate L3 vs DNS."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners jump straight to testing the 'end goal' (reaching a named destination) first, without recognizing that a layered, closest-to-farthest testing order isolates faults far more efficiently.",
+          "whyItSeems": "Since the real goal is usually 'can I reach this website,' it can feel natural to test that exact scenario immediately rather than methodically working outward from the local host.",
+          "whyWrongHere": "Starting with a hostname immediately invokes DNS resolution, routing, AND remote reachability all at once — if it fails, you can't tell which of the three layers broke. A layered approach (gateway, then a known public IP, then a hostname) isolates each variable one at a time: local L3 connectivity, then end-to-end IP routing without DNS, then DNS itself.",
+          "memoryAnchor": "Test in layers, closest to farthest — jumping straight to a hostname tests three things at once and tells you nothing specific.",
+          "contrast": "Gateway → remote IP → hostname isolates exactly which layer fails at each step; hostname → random IP conflates DNS, routing, and reachability into one ambiguous test."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners assume any list of 'special' ICMP-related address types (broadcast, multicast) forms a natural troubleshooting sequence, without recognizing these aren't standard steps in Internet connectivity troubleshooting at all.",
+          "whyItSeems": "Broadcast and multicast are legitimate, memorable IPv6/IPv4 addressing concepts, so pairing them together can feel like a structured 'testing progression' even though it isn't one used for this purpose.",
+          "whyWrongHere": "Broadcast and multicast pings test LOCAL segment reachability for groups of devices — they have no role in diagnosing whether a host can reach the Internet through its gateway and beyond. The standard Internet troubleshooting sequence specifically tests unicast targets at increasing distance: gateway, then a known public unicast IP, then a hostname.",
+          "memoryAnchor": "Broadcast/multicast pings test local group reachability, not the path to the Internet — wrong tool for this job.",
+          "contrast": "Gateway → remote IP → hostname progressively tests reachability further from the host toward the Internet; broadcast → multicast tests entirely different local-segment group delivery, unrelated to Internet path troubleshooting."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners think testing the loopback address alone is a sufficient or meaningful step toward diagnosing Internet connectivity, not realizing loopback only proves the local TCP/IP stack itself is functioning — nothing about the network.",
+          "whyItSeems": "Loopback (127.0.0.1) is a legitimate, commonly taught first troubleshooting step for verifying a host's own IP stack, so it can seem like a reasonable 'first step' to anchor an entire troubleshooting sequence around.",
+          "whyWrongHere": "Pinging loopback only confirms that the local computer's own network stack is installed and functioning — it never leaves the machine, so it says NOTHING about the default gateway, routing, or Internet reachability. To troubleshoot actual Internet connectivity, you must test outward: gateway, then a public IP, then a hostname.",
+          "memoryAnchor": "Loopback only proves your own stack works — it never tells you anything about reaching the outside world.",
+          "contrast": "Loopback-only testing confirms just the local host's TCP/IP software is alive; gateway → remote IP → hostname actually tests progressively farther network reachability, all the way to DNS resolution."
+        }
+      ]
     },
     {
       "id": "1.10-c-q7",
@@ -4153,7 +6297,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Linux routing: ip route | route -n — default gateway appears as default via <gw>."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Learners blend Cisco IOS command syntax with Linux command syntax, assuming a memorized IOS 'show' command can be typed directly into a Linux shell.",
+          "whyItSeems": "show vlan brief is a familiar, well-practiced IOS command from switch configuration labs, so under exam pressure it's easy to reach for that syntax pattern even when the question specifically asks about Linux.",
+          "whyWrongHere": "show vlan brief is Cisco IOS-specific syntax that only runs on Cisco switches — it does not exist as a command in a Linux shell at all and would return a 'command not found' error. Linux uses its own native syntax, ip route (or the legacy route -n), to display the routing table including the default gateway.",
+          "memoryAnchor": "'show' commands are Cisco IOS syntax; Linux uses its own commands like ip route — they don't cross over.",
+          "contrast": "show vlan brief is valid only inside a Cisco IOS switch CLI to list VLAN membership; ip route is valid only inside a Linux shell to list the kernel's IP routing table."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners assume ifconfig is a complete networking status tool that covers everything including routing, not realizing it's scoped specifically to interface addressing and stats, with no routing table output.",
+          "whyItSeems": "ifconfig is a well-known, historically dominant Linux networking command, so its broad reputation makes it easy to assume it covers routing information too.",
+          "whyWrongHere": "ifconfig displays interface-level details — IP address, netmask, MAC address, and traffic statistics — for each network interface, but it does NOT show the routing table or default gateway at all. That specific information requires the separate ip route (or route -n) command.",
+          "memoryAnchor": "ifconfig shows what's ON each interface; ip route shows where TRAFFIC actually goes.",
+          "contrast": "ifconfig lists each interface's own IP address and packet counters; ip route lists the destination-to-gateway mappings, including which route matches 'default' (the gateway)."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners again blend Cisco IOS troubleshooting syntax (debug commands) into a Linux context, assuming 'debug' style commands work the same way across both operating systems.",
+          "whyItSeems": "debug ip routing is a real, memorable IOS troubleshooting command for watching routing table changes in real time, so its familiarity can bleed into a Linux-focused question.",
+          "whyWrongHere": "debug ip routing is Cisco IOS syntax used on routers to display real-time routing table change events — it is not a valid command in any Linux shell. Linux administrators view the routing table with ip route, an entirely different command from an entirely different operating system's toolset.",
+          "memoryAnchor": "'debug' commands belong to Cisco IOS; Linux routing visibility comes from ip route, not a debug command.",
+          "contrast": "debug ip routing on a Cisco router streams live routing table change notifications to the console; ip route on Linux simply prints the current, static snapshot of the host's routing table on demand."
+        }
+      ]
     },
     {
       "id": "1.10-c-q8",
@@ -4201,7 +6371,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ARP warnings + flaky connectivity → suspect duplicate IP on the segment."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Learners default to blaming DNS for any intermittent or confusing connectivity symptom, even when the described symptom (ARP warnings specifically) points to a completely different, lower layer.",
+          "whyItSeems": "'Intermittent connectivity' is a vague enough symptom description that DNS feels like a generically plausible catch-all explanation, even though the question explicitly mentions ARP — a Layer 2/3 boundary protocol, not name resolution.",
+          "whyWrongHere": "DNS operates entirely at the application layer, translating names to addresses — it has no mechanism to generate ARP warnings, which occur at the IP-to-MAC address resolution level. Correct DNS settings do nothing to prevent or cause the specific symptom described (ARP conflicts), which is a textbook sign of duplicate IP address assignment on the segment.",
+          "memoryAnchor": "ARP warnings are an IP/MAC-layer symptom — DNS lives at a totally different layer and can't cause or fix them.",
+          "contrast": "DNS misconfiguration would cause name-resolution failures with no ARP warnings involved; duplicate IP addresses specifically trigger ARP conflicts as two devices fight to claim ownership of the same IP address."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners assume any intermittent Layer 2 issue must involve a duplex mismatch, since duplex problems are a well-known CCNA topic for 'flaky' connections, without checking whether the specific symptom (ARP warnings) actually matches that failure mode.",
+          "whyItSeems": "Duplex mismatches are a classic 'intermittent connectivity' teaching example, so the general symptom description in the question can trigger this association even though the specific detail (ARP warnings) points elsewhere.",
+          "whyWrongHere": "A duplex mismatch causes collisions, late collisions, and performance degradation on a link — it produces interface error counters, not ARP conflict warnings. Full-duplex configured correctly on both ends is actually the HEALTHY, expected state and would not cause any symptom at all; ARP warnings specifically indicate two devices are claiming the same IP address.",
+          "memoryAnchor": "Duplex mismatches show up as interface errors/collisions, not ARP warnings — different symptom, different cause.",
+          "contrast": "A duplex mismatch produces runts, late collisions, and CRC-type interface errors visible in show interfaces; duplicate IP addresses produce ARP conflict log messages and intermittent reachability as devices contend for the same address."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners assume that if DHCP is functioning normally, IP addressing must be problem-free, not considering that duplicate IPs commonly arise from STATIC address overlaps or a rogue DHCP server, independent of the 'main' DHCP server's health.",
+          "whyItSeems": "'Valid DHCP lease' sounds like the picture of a healthy, well-functioning addressing setup, so it seems like it should rule out any IP conflict rather than being a red herring.",
+          "whyWrongHere": "A duplicate IP conflict often occurs precisely BECAUSE a statically configured device (or a second, rogue DHCP server) is using an address that overlaps with one already validly leased by the primary DHCP server — the presence of one valid lease doesn't guarantee no OTHER device is also using that same address. ARP conflict warnings are the direct symptom of that duplicate use, regardless of DHCP's overall health.",
+          "memoryAnchor": "A healthy DHCP lease for one device doesn't prevent a DIFFERENT device from statically squatting on that same address.",
+          "contrast": "A valid DHCP lease describes one device's own successful, unique address assignment; the ARP conflict symptom in this scenario indicates a SECOND device is independently also using that same address, regardless of how the first device obtained it."
+        }
+      ]
     }
   ],
   "1.11": [
@@ -4251,7 +6447,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "2.4 GHz non-overlapping (exam default): 1, 6, 11."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners assume any three sequential, low-numbered channels are automatically 'safe' and non-overlapping, not realizing 2.4 GHz channels are spaced only 5 MHz apart while each occupies about 22 MHz of spectrum, causing heavy overlap between adjacent numbers.",
+          "whyItSeems": "Picking the first three consecutive channel numbers (1, 2, 3) feels like an intuitively 'simple' or 'clean' selection, especially without visualizing how much spectrum each channel actually occupies.",
+          "whyWrongHere": "Each 2.4 GHz channel spans about 22 MHz of bandwidth but channels are numbered only 5 MHz apart, so adjacent channels like 1, 2, and 3 overlap heavily in frequency and interfere with each other. Only channels spaced by 5 channel-numbers or more — specifically 1, 6, and 11 — have enough separation to avoid overlapping in standard 20 MHz-wide 2.4 GHz planning.",
+          "memoryAnchor": "2.4 GHz channels are numbered close together but are wide — only 1, 6, 11 have enough gap to not overlap.",
+          "contrast": "Channels 1, 2, and 3 sit so close in frequency that their signal bandwidths overlap and interfere; channels 1, 6, and 11 are spaced far enough apart that each one's full bandwidth stays clear of the others."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners assume any three consecutive mid-range channel numbers form an equally valid non-overlapping set, not recognizing that the specific spacing (not just 'being sequential') determines whether channels overlap.",
+          "whyItSeems": "6, 7, 8 looks structurally similar to the correct 1, 6, 11 pattern (all spaced by increments), making it feel like an equally legitimate, just differently-numbered, non-overlapping set.",
+          "whyWrongHere": "Just like 1-2-3, channels 6, 7, and 8 are only 1 channel-number apart from each other, which is far less than the roughly 5-channel gap needed to avoid frequency overlap given each channel's ~22 MHz width. The specific, standard non-overlapping trio in 2.4 GHz is 1, 6, and 11 — no other combination of three channels achieves the same non-overlapping spacing.",
+          "memoryAnchor": "It's not just about being spread across the band — 1, 6, 11 is the ONE specific spacing that avoids overlap.",
+          "contrast": "Channels 6, 7, and 8 are adjacent and overlap in frequency just like 1, 2, 3 would; channels 1, 6, and 11 are the specific trio spaced widely enough (5 channels apart) to stay non-overlapping."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners assume the highest-numbered channels are the 'advanced' or 'preferred' choice, and also overgeneralize regional/regulatory channel availability as a universal exam-tested fact.",
+          "whyItSeems": "Channels 12 and 13 are legitimately usable in some regulatory domains (like parts of Europe), so a learner who's seen that detail might mistakenly promote it to 'the' universal standard answer.",
+          "whyWrongHere": "Channels 12 and 13 are restricted or unavailable in many regulatory domains (including the US, under FCC rules) — they are not a universally safe answer. The CCNA exam default, applicable across all regions, is the standard trio 1, 6, and 11, which are guaranteed available everywhere 2.4 GHz Wi-Fi operates.",
+          "memoryAnchor": "1, 6, 11 works everywhere; 12/13 availability depends on your regulatory region — don't assume universal support.",
+          "contrast": "1, 6, and 11 are internationally recognized as available and non-overlapping regardless of regulatory domain; channels 12 and 13 are region-restricted and cannot be assumed to be universally usable."
+        }
+      ]
     },
     {
       "id": "1.11-c-q2",
@@ -4299,7 +6521,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "2.4 GHz = range + penetration | 5 GHz = speed + channels — use both in dual-band APs."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners assume higher frequency inherently means better performance across every metric, including range, not realizing higher frequencies actually attenuate faster and penetrate obstacles less effectively.",
+          "whyItSeems": "Since 5 GHz is often marketed and taught as the 'better,' newer, faster band, it's easy to overextend that 'better' label to range as well, when in reality range and throughput trade off against each other.",
+          "whyWrongHere": "Higher-frequency RF signals like 5 GHz lose energy faster over distance and penetrate walls/obstacles less effectively than lower-frequency 2.4 GHz signals — this is basic RF physics, not a flaw specific to 5 GHz. 5 GHz genuinely wins on channel count and throughput, but 2.4 GHz wins on range and penetration; the two bands trade off, they don't both favor 5 GHz.",
+          "memoryAnchor": "Higher frequency = shorter range, more capacity — 5 GHz trades range for speed, it doesn't win at everything.",
+          "contrast": "2.4 GHz signals travel farther and penetrate walls better due to their lower frequency; 5 GHz signals travel a shorter distance but carry more data thanks to greater available channel bandwidth."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners assume frequency band and security protocol are linked, mistakenly believing that choosing a specific RF band (5 GHz) somehow limits or removes available encryption options.",
+          "whyItSeems": "Since 5 GHz and WPA3 are both 'newer' technology terms often discussed together, it's easy to accidentally invert the relationship and assume 5 GHz somehow lacks the encryption features that actually apply independently of frequency band.",
+          "whyWrongHere": "Encryption protocols like WPA2 and WPA3 are independent of which frequency band (2.4 GHz or 5 GHz) is used — an access point can apply the exact same encryption settings on either band. There is no technical restriction preventing 5 GHz networks from using strong encryption; claiming 'no encryption support' misunderstands how security and RF band are configured separately.",
+          "memoryAnchor": "Encryption (WPA2/WPA3) and frequency band (2.4/5 GHz) are two completely separate settings on an AP.",
+          "contrast": "5 GHz networks fully support WPA2/WPA3 encryption just like 2.4 GHz networks do; the band choice affects only range/throughput characteristics, never which encryption protocols are available."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners assume older, less secure protocols like WEP are somehow tied to specific frequency bands, rather than understanding that WEP's weaknesses are protocol-level and equally deprecated everywhere.",
+          "whyItSeems": "WEP is a memorable 'bad/deprecated' term from security material, and pairing it with an unfamiliar detail about 5 GHz can create a plausible-sounding but incorrect combination.",
+          "whyWrongHere": "WEP is a legacy, cryptographically broken security protocol that predates and is independent of the 5 GHz band's own development — 5 GHz networks support the full modern range of encryption (WPA2, WPA3), not just WEP. There's no technical reason 5 GHz would be limited to WEP specifically; that claim misrepresents both the band and the security protocol.",
+          "memoryAnchor": "WEP being broken has nothing to do with which frequency band it runs on — it's deprecated everywhere, not a 5 GHz-only limitation.",
+          "contrast": "5 GHz networks are fully compatible with modern WPA2/WPA3 security; WEP is a deprecated protocol that should never be used regardless of frequency band."
+        }
+      ]
     },
     {
       "id": "1.11-c-q3",
@@ -4347,7 +6595,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "WPA3 headline upgrade: SAE handshake replaces WPA2-PSK four-way exchange."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners assume newer wireless standards must maintain backward compatibility with the OLDEST legacy protocols as a selling point, rather than understanding WPA3 exists specifically to move past broken legacy methods.",
+          "whyItSeems": "'Compatibility' is often marketed as a positive feature for new technology in general, so it can feel plausible that WPA3 would tout WEP compatibility as an improvement, even though the two protocols represent opposite ends of the security spectrum.",
+          "whyWrongHere": "WEP is cryptographically broken and has been deprecated for years — WPA3's entire purpose is to strengthen wireless security beyond WPA2, not to reintroduce compatibility with an already-broken legacy protocol. WPA3's specific headline improvement is SAE (Simultaneous Authentication of Equals), a stronger handshake mechanism, unrelated to WEP at all.",
+          "memoryAnchor": "WPA3 moves security FORWARD with SAE — it has nothing to do with reviving WEP.",
+          "contrast": "WEP uses a fundamentally broken, easily-cracked encryption scheme abandoned by the industry; WPA3 introduces SAE, a modern, resistant-to-offline-attack authentication handshake — they represent opposite ends of the WLAN security timeline."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners mistakenly associate 'improved authentication method' with 'no authentication needed,' not distinguishing between a STRONGER password-based handshake (SAE) and the complete absence of security (open networks).",
+          "whyItSeems": "If SAE sounds like an unfamiliar, complex new mechanism, it might get mentally lumped with 'simplified' or 'easier' access — which could be misread as leading toward open, unsecured access rather than stronger secured access.",
+          "whyWrongHere": "WPA3's SAE handshake makes PASSWORD-BASED authentication significantly more resistant to offline dictionary and brute-force attacks — it strengthens secured (password-protected) networks, and has nothing to do with open, unsecured SSIDs, which use no encryption or authentication at all. WPA3 is a step toward stronger security, the opposite of promoting open networks.",
+          "memoryAnchor": "SAE makes password-protected WLANs harder to crack — it's not about removing passwords or promoting open networks.",
+          "contrast": "An open unsecured network requires no password and has zero encryption; a WPA3 network with SAE still requires a password but protects that password exchange with a far stronger handshake than WPA2 used."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners assume any 'improvement' to a security protocol must involve removing an older cryptographic component, mistakenly targeting AES (which WPA3 actually keeps) instead of the handshake mechanism (which WPA3 actually replaces).",
+          "whyItSeems": "Since WPA3 clearly changes something about WPA2's cryptography, and AES is the most well-known cryptographic term associated with WPA2, it's an easy (but incorrect) guess that AES itself is what got removed or replaced.",
+          "whyWrongHere": "WPA3 still uses AES encryption to protect data in transit — what actually changed is the KEY EXCHANGE/AUTHENTICATION mechanism, replacing WPA2-PSK's four-way handshake with SAE, which is far more resistant to offline password-guessing attacks. AES itself remains a core, retained component of WPA3, not something removed.",
+          "memoryAnchor": "WPA3 keeps AES for encrypting data — the actual upgrade is SAE for the authentication handshake.",
+          "contrast": "AES is the data encryption cipher retained by both WPA2 and WPA3 unchanged; SAE is the NEW authentication handshake WPA3 introduces to replace WPA2's weaker four-way handshake."
+        }
+      ]
     },
     {
       "id": "1.11-c-q4",
@@ -4379,7 +6653,17 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "WLAN security ladder: WEP (broken) → WPA2-PSK/Enterprise → WPA3 — never deploy WEP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners may assume that because WEP is still technically a supported, configurable option on many devices, it must still be an acceptable choice somewhere, especially for smaller or informal deployments mentally substituted for 'enterprise.'",
+          "whyItSeems": "The fact that WEP still appears as a selectable option in access point configuration menus can create a false impression that it remains a legitimate, sanctioned choice rather than a vestigial, deprecated one kept only for legacy compatibility.",
+          "whyWrongHere": "WEP's encryption scheme has well-documented, practical cryptographic flaws (weak IV reuse, RC4 weaknesses) that let attackers crack a WEP key in minutes using widely available tools — no modern enterprise security policy considers WEP acceptable. Enterprise WLANs are expected to use WPA2-Enterprise or WPA3 at minimum.",
+          "memoryAnchor": "WEP being selectable in a menu doesn't mean it's acceptable — it's crackable in minutes and should never be enterprise-deployed.",
+          "contrast": "WEP can be broken by an attacker with commonly available tools in a short time; WPA2/WPA3 use cryptographically sound methods (AES, SAE) that remain the accepted enterprise standard."
+        }
+      ]
     },
     {
       "id": "1.11-c-q5",
@@ -4427,7 +6711,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "802.11 naming: n=Wi-Fi 4, ac=Wi-Fi 5, ax=Wi-Fi 6."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners guess a low, arbitrary Wi-Fi generation number without having memorized the specific 802.11-letter-to-Wi-Fi-number mapping the CCNA expects.",
+          "whyItSeems": "'Wi-Fi 3' sounds like a plausible-enough generation label if the exact modern naming scheme (introduced retroactively by the Wi-Fi Alliance) isn't specifically memorized.",
+          "whyWrongHere": "The Wi-Fi Alliance's simplified generational naming maps specific 802.11 amendments to specific numbers: 802.11n=Wi-Fi 4, 802.11ac=Wi-Fi 5, 802.11ax=Wi-Fi 6. 'Wi-Fi 3' isn't part of this officially retroactive naming scheme at all (informally sometimes associated with 802.11g), and definitely doesn't refer to 802.11ax.",
+          "memoryAnchor": "802.11ax is specifically Wi-Fi 6 — memorize the n→4, ac→5, ax→6 sequence exactly.",
+          "contrast": "802.11ax (Wi-Fi 6) is the current-generation standard with OFDMA and target wake time; 'Wi-Fi 3' isn't part of the standard modern naming ladder used for CCNA-relevant amendments at all."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Learners shift the naming sequence by one generation, mistakenly mapping 802.11ax to Wi-Fi 4 instead of the earlier 802.11n standard that actually holds that name.",
+          "whyItSeems": "If the exact n/ac/ax-to-4/5/6 mapping isn't perfectly memorized, it's easy to misalign the sequence by picking an adjacent, plausible-sounding generation number.",
+          "whyWrongHere": "Wi-Fi 4 specifically refers to 802.11n, an earlier standard than 802.11ax. The correct mapping places 802.11ac as Wi-Fi 5 and 802.11ax as Wi-Fi 6 — two full generations newer than Wi-Fi 4/802.11n.",
+          "memoryAnchor": "802.11n = Wi-Fi 4 (older); 802.11ax = Wi-Fi 6 (two generations newer) — don't confuse the two.",
+          "contrast": "802.11n (Wi-Fi 4) predates modern OFDMA-based efficiency features; 802.11ax (Wi-Fi 6) is the current generation that introduces those improvements, two full naming generations later."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners confuse 802.11ac (Wi-Fi 5) with 802.11ax (Wi-Fi 6) because their standard letters ('ac' vs 'ax') look and sound visually similar.",
+          "whyItSeems": "802.11ac and 802.11ax share the same 'a' prefix and both end in a single additional letter, making them easy to mix up if the exact letter isn't read carefully.",
+          "whyWrongHere": "802.11ac is specifically Wi-Fi 5, an earlier standard focused primarily on 5 GHz throughput improvements; 802.11ax is the next generation, Wi-Fi 6, adding OFDMA, MU-MIMO improvements, and target wake time for efficiency. The two letter-codes are adjacent alphabetically but represent genuinely different, sequential generations.",
+          "memoryAnchor": "'ac' = Wi-Fi 5 (throughput-focused); 'ax' = Wi-Fi 6 (efficiency-focused) — one letter apart, one generation apart.",
+          "contrast": "802.11ac (Wi-Fi 5) primarily boosted raw 5 GHz throughput over 802.11n; 802.11ax (Wi-Fi 6) added efficiency mechanisms like OFDMA on top of that, representing the next full generation."
+        }
+      ]
     },
     {
       "id": "1.11-c-q6",
@@ -4475,7 +6785,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SSID = network name | BSSID = AP MAC | PSK = pre-shared key."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners blend the two pieces of information typically entered together when joining Wi-Fi (network name and password), mistakenly assigning the term SSID to the password/key instead of the name.",
+          "whyItSeems": "Since both the SSID and the passphrase are entered in the same Wi-Fi connection dialog at the same time, it's easy for the two distinct terms to blur into a single 'Wi-Fi credential' concept.",
+          "whyWrongHere": "The SSID is purely the broadcast NAME of the wireless network — the human-readable label seen when scanning for networks — and carries no cryptographic function whatsoever. The actual encryption key (the PSK/passphrase) is an entirely separate configuration field used specifically for authentication and encryption, distinct from the SSID's identification role.",
+          "memoryAnchor": "SSID is the network's NAME tag; the PSK/passphrase is the actual KEY — different fields, different jobs.",
+          "contrast": "The SSID is broadcast openly so devices can find and display the network in a scan list; the encryption key (PSK) is kept secret and used only during the authentication handshake, never broadcast in the clear."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners confuse the SSID (a chosen, human-readable name) with the BSSID (the AP radio's actual hardware MAC address), assuming both terms describe the same underlying identifier.",
+          "whyItSeems": "SSID and BSSID look and sound almost identical as terms, and both appear together in Wi-Fi scanning tools, making it easy to conflate the human-friendly name with the underlying hardware address.",
+          "whyWrongHere": "The SSID is an administrator-chosen text string (like 'HomeNetwork') used purely for identification by humans and client devices scanning for networks — it has nothing to do with hardware addressing. The BSSID, a separate and distinct value, is the actual MAC address of the specific radio interface broadcasting that SSID.",
+          "memoryAnchor": "SSID = human-readable name you pick; BSSID = the AP radio's actual MAC address — similar names, different concepts.",
+          "contrast": "The SSID 'CorpWiFi' might be broadcast identically by ten different access points in a building; each of those ten APs has its own unique BSSID (MAC address) even while sharing the same SSID name."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners overgeneralize the fact that an SSID can be MAPPED to a specific VLAN on enterprise APs, mistakenly concluding the SSID literally IS the VLAN ID rather than a separate, human-facing name that merely gets associated with one.",
+          "whyItSeems": "Since enterprise wireless deployments commonly configure one SSID to map onto one VLAN, the close operational pairing of the two concepts can lead to conflating the SSID's identity with the VLAN number it happens to be tied to.",
+          "whyWrongHere": "The SSID is the broadcast network NAME that client devices see and select from; the VLAN ID is a completely separate, numeric Layer 2 segmentation identifier used internally by the switching infrastructure, invisible to wireless clients. An SSID can be configured to map to a VLAN, but the SSID itself is never simply 'the VLAN ID' — it's a distinct, independently-named concept.",
+          "memoryAnchor": "An SSID can point to a VLAN, but the SSID IS the name clients see — the VLAN ID is a separate, invisible-to-clients switching detail.",
+          "contrast": "The SSID 'Guest-WiFi' is what a user sees and selects on their device; VLAN 20 (which that SSID might be mapped to) is an internal switching construct the wireless client never directly interacts with or sees."
+        }
+      ]
     },
     {
       "id": "1.11-c-q7",
@@ -4523,7 +6859,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Channel width trade-off: 20 MHz = more channels, less overlap | 40/80 MHz = more speed, fewer channels."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners may assume 'wider' channel somehow means 'spread thinner' and therefore weaker per-unit throughput, inverting the actual relationship between channel width and data capacity.",
+          "whyItSeems": "The word 'wider' could evoke an image of signal being 'spread out' or diluted, making a decrease in throughput feel intuitively plausible if the underlying bandwidth-to-capacity relationship isn't clearly understood.",
+          "whyWrongHere": "In RF and networking, a WIDER channel carries MORE data, not less — just as a wider physical pipe carries more water. Doubling channel width from 20 MHz to 40 MHz roughly doubles the potential throughput, following the same principle as wired Ethernet where more bandwidth means more capacity, not a dilution of capacity.",
+          "memoryAnchor": "Wider channel = more spectrum = more capacity, just like a wider pipe carries more water, not less.",
+          "contrast": "A 20 MHz channel carries a baseline amount of data per unit time; a 40 MHz channel, using twice the spectrum, can carry roughly double that throughput under similar conditions."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners assume that a 'bigger' or 'more capable' setting must also solve related problems like interference, not recognizing that wider channels actually increase the RISK of interference by occupying more of the limited available spectrum.",
+          "whyItSeems": "If 40 MHz sounds like a strictly 'better, more powerful' configuration than 20 MHz, it can feel plausible that it also improves every related metric, including interference resistance.",
+          "whyWrongHere": "Using a wider 40 MHz channel consumes more of the limited spectrum available in a band, which REDUCES the number of remaining non-overlapping channels nearby access points can use — increasing the chance of co-channel and adjacent-channel interference in dense environments, the opposite of eliminating interference.",
+          "memoryAnchor": "Wider channels trade AWAY interference resistance for more throughput — they don't eliminate interference, they can worsen it in crowded areas.",
+          "contrast": "A 20 MHz channel leaves more non-overlapping channel slots available for neighboring APs, reducing interference risk; a 40 MHz channel consumes more spectrum and leaves fewer non-overlapping options, increasing interference risk in dense deployments."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners assume channel width settings are somehow exclusive to a particular frequency band, mistakenly believing that selecting 40 MHz width would conflict with or disable the 5 GHz band entirely.",
+          "whyItSeems": "Since wider channels (40/80/160 MHz) are MORE commonly associated with and available on 5 GHz due to its greater spectrum, it might seem like there's some kind of dependency or conflict rather than recognizing width is just an independent configuration setting.",
+          "whyWrongHere": "Channel width is a configurable parameter independent of which band is in use — 5 GHz fully supports 40 MHz (and even wider 80/160 MHz) channels; selecting a wider channel width has no effect on whether the 5 GHz band itself is enabled or disabled. These are two entirely separate configuration settings on an access point.",
+          "memoryAnchor": "Channel width and frequency band are independent settings — widening a channel doesn't turn off any band.",
+          "contrast": "The 5 GHz band being enabled/disabled is a completely separate AP setting from channel width; a 5 GHz radio configured for 40 MHz channels remains fully active on 5 GHz, just using more spectrum per channel."
+        }
+      ]
     },
     {
       "id": "1.11-c-q8",
@@ -4571,7 +6933,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "RSSI in dBm: closer to 0 = stronger | -70 dBm usable | -80 dBm weak."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners default to a familiar Layer 3 term (routing table) whenever an unfamiliar acronym appears, without recognizing RSSI's clear RF/wireless context from its name.",
+          "whyItSeems": "If the acronym RSSI isn't immediately recognized, a learner might fall back on any generic-sounding networking metric they DO remember, like routing table size, purely out of unfamiliarity rather than logical connection.",
+          "whyWrongHere": "RSSI (Received Signal Strength Indicator) is a wireless/RF measurement of how strong a signal is received at an interface — it has no relationship whatsoever to a router's routing table size, which is a Layer 3 count of learned destination routes. The two concepts operate in completely different domains: physical/RF signal quality versus logical routing information.",
+          "memoryAnchor": "RSSI measures signal STRENGTH (RF/Layer 1), not routing table SIZE (Layer 3) — unrelated domains entirely.",
+          "contrast": "RSSI (in dBm) tells you how well a wireless client hears an access point's radio signal; a routing table's size reflects how many destination network entries a router has learned, an entirely unrelated logical concept."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners assume any acronym encountered in a general 'network performance' context must relate to a commonly tested metric like DNS latency, rather than recognizing RSSI's specific wireless signal-strength meaning.",
+          "whyItSeems": "DNS latency and RSSI are both 'performance-related' numbers a network engineer might monitor, so under exam pressure, an unfamiliar acronym can get mapped to a more familiar performance metric.",
+          "whyWrongHere": "RSSI is purely a physical-layer wireless measurement of signal strength (how strongly a radio receives a signal, typically in dBm) — it has nothing to do with DNS, which is an application-layer name resolution service measuring response TIME, not signal power. The two metrics measure completely different things at completely different layers.",
+          "memoryAnchor": "RSSI = signal power at Layer 1; DNS latency = name-resolution response time at Layer 7 — different layers, different metrics.",
+          "contrast": "RSSI is expressed in dBm and reflects radio signal strength between a client and AP; DNS latency is expressed in milliseconds and reflects how long a name-resolution query takes to complete — unrelated measurements."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners guess an unrelated but plausible-sounding networking metric (NAT port count) when the specific meaning of an unfamiliar wireless acronym like RSSI isn't recalled.",
+          "whyItSeems": "NAT port count is a real, tested networking concept involving numeric tracking, so it can feel like a generically 'technical-sounding' answer when the true wireless context of RSSI isn't recognized.",
+          "whyWrongHere": "RSSI is a wireless RF signal-strength indicator with no connection to Network Address Translation at all — NAT port count tracks how many translated connections a NAT device is currently managing, a completely unrelated Layer 3/4 concept from a different area of networking entirely.",
+          "memoryAnchor": "RSSI is about how strong a Wi-Fi signal is; NAT port count is about how many translated connections exist — no overlap in meaning.",
+          "contrast": "RSSI describes the physical quality of a wireless radio link between a client and an AP; NAT port count describes how many simultaneous translated sessions a router is tracking — entirely different networking domains."
+        }
+      ]
     }
   ],
   "1.12": [
@@ -4621,7 +7009,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Type 1 = bare metal (ESXi, Hyper-V on hardware). Type 2 = runs on OS (Workstation)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners assume any 'VMware-branded' virtualization product is automatically a Type 1 (bare-metal) hypervisor, not distinguishing VMware's own hosted (Type 2) products from its bare-metal (Type 1) ones.",
+          "whyItSeems": "Since both ESXi and Workstation are VMware products used for virtualization, the shared branding makes it easy to assume they occupy the same architectural category, when in fact they represent VMware's two DIFFERENT hypervisor types.",
+          "whyWrongHere": "VMware Workstation installs and runs ON TOP OF an existing host operating system (like Windows) — it depends on that OS for hardware access, making it a Type 2 (hosted) hypervisor. ESXi, by contrast, installs directly onto bare server hardware with no underlying general-purpose OS at all, making it the true Type 1 (bare-metal) hypervisor the question asks about.",
+          "memoryAnchor": "Same company (VMware), two different architectures — Workstation needs a host OS (Type 2); ESXi doesn't (Type 1).",
+          "contrast": "VMware Workstation requires Windows (or another host OS) already running underneath it before it can create VMs; VMware ESXi installs directly onto the server's hardware, with no separate host OS in between."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners conflate containerization technology (Docker) with hypervisor-based virtualization, treating any 'isolate an application/OS environment' tool as equivalent to a Type 1 hypervisor.",
+          "whyItSeems": "Docker and hypervisors both create isolated, virtualized-feeling environments for running software, so without understanding the architectural difference (containers share the host kernel; VMs run their own full guest OS), it's easy to lump them together.",
+          "whyWrongHere": "Docker Desktop runs containers that SHARE the host operating system's kernel — it requires a full host OS underneath it (and on non-Linux systems, actually runs a lightweight VM internally to provide that Linux kernel) — making it fundamentally dependent on an OS, unlike a bare-metal Type 1 hypervisor which needs no host OS to run guest virtual machines directly on hardware.",
+          "memoryAnchor": "Containers (Docker) share the host OS kernel; a Type 1 hypervisor (ESXi) runs full guest OSes directly on hardware with no host OS at all.",
+          "contrast": "Docker Desktop requires an underlying operating system to provide its container runtime environment; ESXi requires no general-purpose operating system at all, running as the bare-metal layer itself directly on server hardware."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners may pattern-match 'runs directly on hardware' (a defining trait of Type 1 hypervisors) to ANY piece of dedicated hardware, mistakenly including devices like routers that have nothing to do with virtualization at all.",
+          "whyItSeems": "Since Type 1 hypervisors are described as running 'directly on bare metal' similar to how a router's firmware also runs directly on its own hardware, the surface-level similarity ('runs on hardware, no separate OS layer visible') can create a false connection.",
+          "whyWrongHere": "A physical router is a networking device that forwards packets based on IP routing tables — it has no hypervisor function at all and does not create, host, or manage virtual machines. A Type 1 hypervisor is specifically software (like ESXi) that runs directly on server hardware for the PURPOSE of creating and managing multiple virtual machines, an entirely different function from packet forwarding.",
+          "memoryAnchor": "'Runs on hardware' alone doesn't make something a hypervisor — a hypervisor's defining job is hosting VIRTUAL MACHINES, which a router doesn't do.",
+          "contrast": "A physical router's job is examining IP headers and forwarding packets between networks; a Type 1 hypervisor's job is running directly on server hardware to create and manage multiple guest virtual machines — completely different purposes despite both running 'on hardware.'"
+        }
+      ]
     },
     {
       "id": "1.12-c-q2",
@@ -4669,7 +7083,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Type 1 = bare metal; Type 2 = hosted on a desktop/server OS."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners assume 'hypervisor' is a single category and default to the more commonly emphasized Type 1 (bare-metal) definition when asked about Type 2, not registering that the question specifically flags the hosted variant.",
+          "whyItSeems": "Type 1 (bare-metal) is often taught first and treated as the 'main' hypervisor concept, so its defining trait (running directly on hardware) can bleed into answers about Type 2 without careful attention to which type the question names.",
+          "whyWrongHere": "Running directly on bare metal with no host OS underneath is specifically the definition of a Type 1 hypervisor (like ESXi) — Type 2 hypervisors are, by definition, the opposite: they install as an application on top of an already-running host operating system (like Workstation on Windows), never bare metal.",
+          "memoryAnchor": "Type 1 = bare metal, no host OS; Type 2 = installed ON a host OS — the numbers map directly to 'how many OS layers are underneath.'",
+          "contrast": "A Type 1 hypervisor (ESXi) needs no separate host OS at all; a Type 2 hypervisor (Workstation) needs Windows or macOS already running before it can even be installed."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners conflate container technology with Type 2 hypervisors because both run 'on top of' something else, blurring the architectural distinction between sharing a kernel (containers) and running a full separate guest OS via a hosted hypervisor (Type 2).",
+          "whyItSeems": "Since both containers and Type 2 hypervisors are described as needing a host environment underneath them, it's easy to assume they're the same category of 'runs inside something.'",
+          "whyWrongHere": "A Type 2 hypervisor runs on top of a host OS as an application, but it creates and manages full virtual machines with their own separate guest operating systems — it has nothing to do with containers, which share the host kernel instead of virtualizing separate guest OS instances. 'Inside a container only' misdescribes both what a hypervisor is and how it relates to the host.",
+          "memoryAnchor": "Type 2 hypervisors host full VMs on top of an OS; containers are an entirely different, kernel-sharing virtualization model — not a description of Type 2.",
+          "contrast": "A Type 2 hypervisor (like VMware Workstation) creates VMs each with their own independent guest OS; a container (like Docker) shares the host's single kernel across all instances — fundamentally different architectures."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners assume 'runs on top of a host OS' by itself is the complete, defining description, forgetting that the entire PURPOSE of any hypervisor — Type 1 or Type 2 — is to create and manage virtual machines.",
+          "whyItSeems": "If a learner focuses only on the 'where it installs' detail without recalling the 'what it does' detail, it can seem plausible that a hypervisor could exist in some form without actually creating VMs.",
+          "whyWrongHere": "By definition, a hypervisor's entire function is creating and managing virtual machines — a Type 2 hypervisor 'without any VMs' would just be an installed application doing nothing, not a hypervisor at all. The defining behavior of both hypervisor types is hosting one or more guest VMs.",
+          "memoryAnchor": "A hypervisor that creates no VMs isn't a hypervisor — VM creation is the entire point, Type 1 or Type 2.",
+          "contrast": "A Type 2 hypervisor sitting idle with zero VMs configured is just inert software; the moment you create even one VM, it becomes a functioning hypervisor hosting a guest OS with virtual hardware."
+        }
+      ]
     },
     {
       "id": "1.12-c-q3",
@@ -4717,7 +7157,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "VM = hypervisor + guest OS | Container = shared kernel + isolated processes."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners apply the VM mental model (each instance gets its own complete operating system) to containers, not recognizing containers were specifically designed to avoid that overhead by sharing one kernel.",
+          "whyItSeems": "Since both VMs and containers create 'isolated' running environments for applications, and VMs are the more commonly taught model first, it's easy to assume containers must work the same way with their own full OS.",
+          "whyWrongHere": "Including a full guest OS per instance is exactly what makes VMs heavyweight — containers were built to solve that problem by sharing the single host OS kernel across all containers, packaging only the application and its dependencies, not an entire separate operating system.",
+          "memoryAnchor": "VMs each carry their own OS (heavy); containers all share one OS kernel (light) — that's the whole reason containers exist.",
+          "contrast": "A VM includes a full guest OS, its own kernel, and virtual hardware, making it gigabytes in size; a container includes just the app and its libraries, sharing the host's kernel, making it megabytes in size."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners may be recalling that Docker Desktop on Windows/macOS internally runs a lightweight VM to provide a Linux kernel, and mistakenly generalize that into 'containers can't run on Linux itself,' inverting the actual relationship.",
+          "whyItSeems": "Since containers need Windows/macOS to run a hidden VM layer to get Linux compatibility, it might seem like Linux itself is somehow a special or unsupported case rather than recognizing Linux is the NATIVE environment containers were built for.",
+          "whyWrongHere": "Containers (via Docker, containerd, etc.) run natively and extensively on Linux — Linux is in fact the OS containers were originally designed around, using Linux kernel features like cgroups and namespaces. It's Windows and macOS that need an extra compatibility layer (a lightweight VM) to run Linux containers, not the other way around.",
+          "memoryAnchor": "Linux is containers' native home; Windows/macOS need a hidden VM layer to catch up — not the reverse.",
+          "contrast": "Running Docker on native Linux uses the host kernel directly with no extra VM layer; running Docker on Windows/macOS spins up a lightweight Linux VM behind the scenes just to provide that same native-Linux kernel experience."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners assume any modern networking or infrastructure buzzword (containers) must be replacing older hardware categories (switches), blending unrelated layers of the infrastructure stack.",
+          "whyItSeems": "Containers are a newer, trendier technology term frequently mentioned alongside modern data center and cloud infrastructure discussions, which can create a vague association with 'replacing old hardware' even though the connection isn't real.",
+          "whyWrongHere": "Containers virtualize application workloads at the operating-system level — they have no relationship to Layer 2 switching hardware at all. Physical switches forward Ethernet frames based on MAC addresses; containers package and isolate software processes. The two solve completely unrelated problems in completely different parts of the infrastructure.",
+          "memoryAnchor": "Containers virtualize apps/processes; switches forward Ethernet frames — different layers of the stack entirely, not competitors.",
+          "contrast": "A container packages a web application and its dependencies to run consistently across environments; a physical switch forwards frames between devices on a LAN based on MAC address tables — unrelated functions."
+        }
+      ]
     },
     {
       "id": "1.12-c-q4",
@@ -4765,7 +7231,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "VRF = separate routing tables on one router — like virtual routers sharing hardware."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners treat any unfamiliar acronym (VRF) as belonging to whichever recently-studied topic feels 'advanced' or 'enterprise-y,' misapplying it to wireless security instead of Layer 3 routing virtualization.",
+          "whyItSeems": "VRF is a less commonly emphasized, more advanced-sounding term, so without a clear definition anchored in memory, it can get randomly associated with another 'advanced-sounding' topic like wireless encryption.",
+          "whyWrongHere": "Wireless encryption (WPA/WPA2/WPA3) protects 802.11 frames over the air at Layer 2 — it has no relationship to VRF, which is a Layer 3 feature that creates multiple separate, isolated ROUTING TABLES on a single physical router so different customers or departments can have overlapping IP address spaces without conflict.",
+          "memoryAnchor": "VRF isolates ROUTING TABLES (Layer 3); WPA/WPA2/WPA3 secure WIRELESS FRAMES (Layer 2) — unrelated features entirely.",
+          "contrast": "VRF lets one router maintain multiple completely separate routing tables (like separate virtual routers); wireless encryption protects the confidentiality and integrity of frames traveling over a Wi-Fi radio link — different layers, different purposes."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners assume any router feature that sounds 'infrastructure-related' could plausibly be about physical connectivity options like fiber transceivers, rather than software-level routing table separation.",
+          "whyItSeems": "Both VRF and transceiver support are technical router-related terms that could appear in the same enterprise networking conversation, making it tempting to connect them without a clear distinct definition for each.",
+          "whyWrongHere": "Fiber transceiver support (like SFP module compatibility) is a Layer 1 physical-media capability of a router's interfaces — completely unrelated to VRF, which operates at the control/data-plane level to isolate routing and forwarding logic. A router's ability to accept fiber optics has nothing to do with how many separate routing tables it can maintain.",
+          "memoryAnchor": "VRF is software-level routing table separation; transceiver support is physical Layer 1 optics — different OSI layers entirely.",
+          "contrast": "VRF creates multiple logically separate routing tables on the same router hardware; fiber transceiver support determines which physical optical modules (SFP, SFP+) a router's interfaces can physically accept — unrelated capabilities."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners assume VRF, because it involves 'multiple' something, must relate to redundancy or high-availability concepts like DHCP failover, rather than recognizing VRF's 'multiple' refers to isolated routing instances, not backup copies of a service.",
+          "whyItSeems": "VRF's core idea involves having 'more than one' of something (routing tables), which can superficially resemble redundancy concepts like having multiple DHCP servers for failover.",
+          "whyWrongHere": "DHCP redundancy is achieved through separate mechanisms like DHCP failover configuration or multiple DHCP servers serving overlapping scopes — it's about service AVAILABILITY. VRF is about routing table ISOLATION — keeping traffic and routes for different customers or departments completely separate on one device. 'Multiple' means something entirely different in each context.",
+          "memoryAnchor": "VRF's 'multiple' means isolated routing tables; DHCP redundancy's 'multiple' means backup servers for availability — different meanings of 'multiple.'",
+          "contrast": "VRF creates several independent routing tables so, for example, two customers' overlapping 10.0.0.0/8 networks never mix on the same router; DHCP redundancy runs multiple DHCP servers or a failover pair so address assignment keeps working if one server goes down."
+        }
+      ]
     },
     {
       "id": "1.12-c-q5",
@@ -4813,7 +7305,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "NFV = virtual firewall/router/LB on x86 | SDN = centralized control plane — often deployed together."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners pattern-match 'network function virtualization' to any pairing of two network service terms, randomly connecting DNS and VLANs as if NFV were about substituting one specific service for another.",
+          "whyItSeems": "Since NFV is an unfamiliar acronym combining 'network,' 'function,' and 'virtualization,' and DNS and VLANs are both familiar 'network' terms, it's tempting to construct a plausible-sounding but arbitrary relationship between them.",
+          "whyWrongHere": "NFV is a broad architectural concept — running network services (routers, firewalls, load balancers, and yes, even DNS servers) as SOFTWARE on general-purpose hardware instead of dedicated physical appliances. It has nothing to do with 'replacing DNS with VLANs' — DNS and VLANs solve entirely different problems (name resolution vs. Layer 2 segmentation), and NFV doesn't substitute one for the other.",
+          "memoryAnchor": "NFV virtualizes network FUNCTIONS as software — it doesn't swap one specific service for an unrelated one like VLANs.",
+          "contrast": "NFV might run a virtualized DNS server as software on a VM instead of dedicated DNS appliance hardware; VLANs are a completely separate Layer 2 broadcast-domain segmentation feature — NFV doesn't replace one with the other."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners assume 'virtualizing network functions' must mean eliminating the physical devices that perform those functions entirely, rather than understanding NFV replaces DEDICATED APPLIANCES with SOFTWARE running on general hardware — routing itself still happens.",
+          "whyItSeems": "If routers are one of the functions that CAN be virtualized under NFV, it might seem like the natural extreme conclusion is that NFV aims to eliminate routers altogether, rather than just changing how routing functionality is delivered.",
+          "whyWrongHere": "NFV doesn't eliminate router FUNCTIONALITY — it changes WHERE that functionality runs, from a dedicated physical router appliance to software running on commodity x86 hardware (a virtual router). Routing as a function is still very much present and necessary; NFV simply decouples it from specialized hardware.",
+          "memoryAnchor": "NFV changes HOW routing is delivered (software vs. appliance) — it doesn't eliminate routing itself.",
+          "contrast": "A traditional deployment uses a dedicated physical router appliance for routing; an NFV deployment runs that same routing function as a virtual router (software) on general-purpose server hardware — routing still happens either way."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners default to associating any unfamiliar 'virtualization' or 'software-defined' term with a recently-studied security topic like WEP, blending unrelated concepts purely out of topical proximity in study material.",
+          "whyItSeems": "WEP is a memorable, frequently-tested acronym from WLAN security material, so an unfamiliar acronym like NFV can trigger an association purely because both are 'technical acronyms' without any real conceptual link.",
+          "whyWrongHere": "WEP is a deprecated Wi-Fi encryption protocol — it has absolutely nothing to do with NFV, which is about running network services (routers, firewalls, load balancers) as software on general-purpose hardware. There is no relationship between how a network function is virtualized and which wireless encryption standard (if any) is used.",
+          "memoryAnchor": "NFV is about WHERE network functions run (software vs. appliance); WEP is a specific (broken) wireless encryption protocol — completely unrelated domains.",
+          "contrast": "NFV might involve running a virtual firewall as software on a server; WEP would be a (deprecated, insecure) encryption choice for a wireless network — one is an infrastructure delivery model, the other is a specific legacy security protocol."
+        }
+      ]
     },
     {
       "id": "1.12-c-q6",
@@ -4861,7 +7379,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Type 1 hypervisor (ESXi) vs Type 2 (Workstation) — both host VMs with guest OS + vNIC."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners import the container mental model (a lightweight image containing just app + dependencies) onto VMs, not recognizing VMs are fundamentally heavier, self-contained units with a full OS.",
+          "whyItSeems": "Both VMs and containers are described as 'packaged, isolated' units of virtualization, so if the container definition is more recently or more strongly remembered, it can bleed into how VMs get described.",
+          "whyWrongHere": "A container image is a lightweight package of just an application and its dependencies, sharing the host's kernel — a VM is a completely different, heavier construct that includes its own full guest operating system, virtual CPU, virtual memory, and virtual NICs, all independent from the host.",
+          "memoryAnchor": "'Only a container image' describes containers, not VMs — a VM is a full self-contained virtual computer, OS included.",
+          "contrast": "A container image bundles just an app and its libraries, relying on the host kernel; a VM bundles an entire guest operating system plus virtual hardware (vNICs, virtual disks), completely independent of what's running on other VMs."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners apply the container sharing-model (all instances share one host kernel) to VMs, not recognizing that kernel independence is precisely what distinguishes VM isolation from container isolation.",
+          "whyItSeems": "Since both VMs and containers are taught as 'isolated environments,' and containers famously share a kernel, it's easy to mistakenly extend that same sharing behavior to VMs if the distinction between the two isolation models isn't crisp.",
+          "whyWrongHere": "Each VM runs its own completely independent guest operating system with its own kernel — VMs do NOT share a kernel with each other or with the host; that's specifically what makes VM isolation stronger (but heavier) than container isolation, where all containers DO share the single host kernel.",
+          "memoryAnchor": "VMs = separate kernel each (heavy, strong isolation); containers = one shared kernel for all (light, less isolation).",
+          "contrast": "Ten VMs on one hypervisor each run their own independent guest OS kernel, fully isolated from each other; ten containers on one host all share that single host OS kernel underneath them."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners may assume a VM's networking is somehow implicit or automatic without a defined component, not recognizing that virtual NICs are an explicit, required piece of virtual hardware every VM is given.",
+          "whyItSeems": "Since virtual hardware components aren't physically visible the way a real NIC card is, it might seem plausible that a VM could simply lack network connectivity as a valid, ordinary configuration, rather than recognizing vNICs are standard.",
+          "whyWrongHere": "Every VM is provisioned with at least one virtual network interface card (vNIC) as part of its virtual hardware profile — this is what lets the VM send and receive traffic on the virtual (and ultimately physical) network. A VM without any network interface would be isolated from all network communication, which is not the typical or expected configuration.",
+          "memoryAnchor": "Every VM gets virtual hardware including at least one vNIC — network connectivity isn't optional, it's standard-issue.",
+          "contrast": "A VM with a properly configured vNIC can communicate on the virtual switch and beyond; a VM claimed to have 'no network interface' would be completely cut off from any network traffic, which defeats the purpose of most VM deployments."
+        }
+      ]
     },
     {
       "id": "1.12-c-q7",
@@ -4893,7 +7437,17 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "VLAN = L2 broadcast domain | VRF = L3 routing instance — complementary, not interchangeable."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners see both VRF and VLAN described using the word 'isolation' and assume that shared vocabulary means they solve the exact same problem at the exact same layer.",
+          "whyItSeems": "Both features are commonly discussed in the same 'network segmentation' conversations and both use the language of 'separating traffic,' making it tempting to treat them as interchangeable synonyms rather than distinct, layer-specific tools.",
+          "whyWrongHere": "VLAN isolation operates at Layer 2, separating BROADCAST DOMAINS — devices in different VLANs can't hear each other's broadcasts without a router. VRF isolation operates at Layer 3, separating ROUTING TABLES — allowing overlapping or completely independent IP routing instances on the same physical router. They solve related but structurally different problems at different layers, and are often used TOGETHER, not as substitutes.",
+          "memoryAnchor": "VLAN = Layer 2 broadcast domain isolation; VRF = Layer 3 routing table isolation — different layers, complementary not identical.",
+          "contrast": "Two VLANs on a switch keep Layer 2 broadcast traffic from mixing, but a router can still route between them by default; two VRFs on a router keep Layer 3 routing tables completely separate, so even a router won't route between them unless explicitly configured to leak routes."
+        }
+      ]
     },
     {
       "id": "1.12-c-q8",
@@ -4941,7 +7495,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Docker/Kubernetes = containers | VMware/Hyper-V = VMs — different virtualization models."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Learners lump Docker together with any other 'virtualization' technology under one umbrella term, not distinguishing container platforms from bare-metal hypervisors.",
+          "whyItSeems": "Docker and Type 1 hypervisors are both frequently discussed in the same 'modern data center virtualization' context, making them easy to conflate without a clear architectural distinction in mind.",
+          "whyWrongHere": "Type 1 hypervisors (like ESXi) run directly on bare metal to host full virtual machines, each with an independent guest OS. Docker is a completely different technology — a container PLATFORM that packages applications to share the host OS kernel, with no hypervisor or bare-metal installation involved at all.",
+          "memoryAnchor": "Docker = container platform (shares host kernel); Type 1 hypervisor = bare-metal VM host (separate guest OS each) — different architectures entirely.",
+          "contrast": "A Type 1 hypervisor installs directly on server hardware to host multiple full VMs; Docker installs as software on top of an existing host OS to run lightweight containers that share that OS's kernel."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Learners default to pairing any unfamiliar term with a recently memorized, unrelated acronym (WPA3) purely because both are 'technical terms' without checking for any actual conceptual connection.",
+          "whyItSeems": "WPA3 is a distinctive, well-remembered term from WLAN security material, so it can surface as an association for any new technical term, especially under exam-recall pressure, regardless of actual relevance.",
+          "whyWrongHere": "WPA3 is a wireless network encryption/authentication standard — it governs how Wi-Fi clients securely connect to an access point. Docker is entirely unrelated: a platform for packaging and deploying application containers. There is no functional or architectural overlap between the two at all.",
+          "memoryAnchor": "Docker packages and runs application containers; WPA3 secures wireless network authentication — completely different domains (application deployment vs. WLAN security).",
+          "contrast": "Docker is used by developers/ops teams to package and deploy an application consistently across environments; WPA3 is used by wireless network administrators to secure client connections to a Wi-Fi network — unrelated use cases."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Learners connect Docker to any other 'network-related sounding' term studied around the same time, like Spanning Tree Protocol, without a real conceptual link between application containerization and Layer 2 loop prevention.",
+          "whyItSeems": "Spanning Tree is a commonly tested networking term, and if Docker is being learned in the same general 'infrastructure' unit, an unfamiliar or under-recalled Docker definition might get randomly paired with a more familiar networking term like STP.",
+          "whyWrongHere": "Spanning Tree Protocol (STP) prevents Layer 2 loops in switched networks by blocking redundant paths — it operates entirely within switch-to-switch Ethernet topology. Docker has nothing to do with switching loops; it's an application-level tool for packaging and running containerized software, operating far above the Layer 2 forwarding plane STP manages.",
+          "memoryAnchor": "Docker packages applications into containers; Spanning Tree prevents Ethernet switching loops — no overlap between application deployment and Layer 2 loop prevention.",
+          "contrast": "Docker solves 'how do I package and run this application consistently?'; Spanning Tree solves 'how do I prevent a Layer 2 broadcast storm from redundant switch links?' — entirely different problems in entirely different parts of the network stack."
+        }
+      ]
     }
   ]
 }

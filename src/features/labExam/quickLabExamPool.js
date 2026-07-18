@@ -8,11 +8,100 @@ export const QUICK_LAB_EXAM_STATIONS = [
 ]
 
 export const QUICK_LAB_EXAM_MINUTES = 25
+export const FULL_LAB_EXAM_MINUTES = 55
+export const DOMAIN_LAB_EXAM_MINUTES = 30
 export const LAB_EXAM_PASS_PCT = 70
 
+export const FULL_LAB_EXAM_STATIONS = [
+  'LAB-VLAN-TRUNK',
+  'LAB-31-ROUTE-INTERPRET',
+  'LAB-STATIC-FLOATING',
+  'LAB-OSPF-DEFAULT',
+  'LAB-OSPF-VERIFY-34',
+  'LAB-NAT-PAT',
+  'LAB-SYSLOG-REMOTE',
+  'LAB-SSH-ACCESS',
+  'LAB-ACL-CONFIG',
+  'LAB-PORT-SECURITY',
+  'LAB-TS-OSPF-AREA',
+  'LAB-TS-NATIVE-VLAN',
+]
+
+export const DOMAIN_LAB_EXAM_POOLS = {
+  fundamentals: [
+    'LAB-IPV4-SUBNETTING',
+    'LAB-TS-WRONG-MASK',
+    'LAB-MAC-FORWARD-15',
+    'LAB-D11-14',
+    'LAB-D11-18',
+    'LAB-D11-110',
+  ],
+  access: [
+    'LAB-VLAN-TRUNK',
+    'LAB-ETHERCHANNEL',
+    'LAB-STP-ROOT',
+    'LAB-WIRELESS-ARCH',
+    'LAB-DHCP-SNOOP-27',
+    'LAB-TS-WLAN-VLAN',
+  ],
+  connectivity: [
+    'LAB-31-ROUTE-INTERPRET',
+    'LAB-STATIC-FLOATING',
+    'LAB-OSPF-DEFAULT',
+    'LAB-OSPF-VERIFY-34',
+    'LAB-TS-OSPF-AREA',
+    'LAB-TS-STATIC-NH',
+  ],
+  services: [
+    'LAB-NAT-PAT',
+    'LAB-SSH-ACCESS',
+    'LAB-DHCP-RELAY',
+    'LAB-NTP-CLIENT',
+    'LAB-SYSLOG-REMOTE',
+    'LAB-TS-DHCP-RELAY',
+  ],
+  security: [
+    'LAB-ACL-CONFIG',
+    'LAB-PORT-SECURITY',
+    'LAB-DEVICE-ACCESS',
+    'LAB-AAA-LOCAL',
+    'LAB-DAI-DHCP-SNOOPING',
+    'LAB-TS-ACL-PLACEMENT',
+  ],
+  automation: [
+    'LAB-AUTO-MGMT-61',
+    'LAB-AUTO-CTRL-62',
+    'LAB-AUTO-SDN-63',
+    'LAB-AUTO-DNA-64',
+    'LAB-AUTO-REST-65',
+    'LAB-AUTO-JSON-66',
+  ],
+}
+
+export const LAB_EXAM_MODES = {
+  quick: { label: 'Quick', minutes: QUICK_LAB_EXAM_MINUTES, description: 'Weekly mixed-domain skills check' },
+  full: { label: 'Full', minutes: FULL_LAB_EXAM_MINUTES, description: '12-station exam rehearsal' },
+  domain: { label: 'Domain', minutes: DOMAIN_LAB_EXAM_MINUTES, description: 'Six stations from one domain' },
+}
+
+export const LAB_EXAM_DOMAIN_LABELS = {
+  fundamentals: 'Network Fundamentals',
+  access: 'Network Access',
+  connectivity: 'IP Connectivity',
+  services: 'IP Services',
+  security: 'Security Fundamentals',
+  automation: 'Automation & Programmability',
+}
+
+function stationIdsForMode(mode, domainId) {
+  if (mode === 'full') return FULL_LAB_EXAM_STATIONS
+  if (mode === 'domain') return DOMAIN_LAB_EXAM_POOLS[domainId] || []
+  return QUICK_LAB_EXAM_STATIONS
+}
+
 /** @returns {Array<{ labId: string, objectiveId: string, title: string, domainId: string }>} */
-export function buildQuickLabExamStations(getLabFn) {
-  return QUICK_LAB_EXAM_STATIONS.flatMap((labId) => {
+export function buildLabExamStations({ mode = 'quick', domainId = 'access', getLabFn }) {
+  return stationIdsForMode(mode, domainId).flatMap((labId) => {
     const bundle = getLabFn(labId)
     if (!bundle?.lab) return []
     const { lab } = bundle
@@ -23,6 +112,11 @@ export function buildQuickLabExamStations(getLabFn) {
       domainId: lab.domainId,
     }]
   })
+}
+
+/** @returns {Array<{ labId: string, objectiveId: string, title: string, domainId: string }>} */
+export function buildQuickLabExamStations(getLabFn) {
+  return buildLabExamStations({ mode: 'quick', getLabFn })
 }
 
 /** @param {{ done: unknown[], total: number, complete: boolean }} labProgressResult */

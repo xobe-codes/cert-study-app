@@ -13,6 +13,10 @@ vi.mock('../answerReview/goldAnswerReviews.js', async (importOriginal) => {
 import { generateAnswerReview } from '../answerReviewLogic.js'
 import { goldAnswerReviewFor } from '../answerReview/goldAnswerReviews.js'
 import { regenIncorrectFor } from '../features/explanationIntegration.js'
+import regeneratedExplanations from '../answerReview/regeneratedExplanations.json'
+import { CLEAN_QUESTIONS as DOMAIN_6_QUESTIONS } from '../data/cleanQuestions/domain-6.js'
+
+const authoredRegen = regeneratedExplanations['1.1-c-q1'].incorrect
 
 describe('generateAnswerReview regen merge', () => {
   beforeEach(() => {
@@ -23,9 +27,9 @@ describe('generateAnswerReview regen merge', () => {
   it('uses regen over template clean-bank when gold is absent', () => {
     mockGoldFor.mockReturnValue(null)
     expect(goldAnswerReviewFor('1.1-c-q1')).toBeNull()
-    expect(regenIncorrectFor('1.1-c-q1', 0)?.whyWrongHere).toMatch(/primarily operates|Layer 3 header/i)
     const q = {
       id: '1.1-c-q1',
+      regeneratedIncorrect: authoredRegen,
       question: 'At which OSI layer does a router primarily operate?',
       choices: ['Layer 1', 'Layer 2', 'Layer 3', 'Layer 7'],
       correctIndex: 2,
@@ -39,6 +43,7 @@ describe('generateAnswerReview regen merge', () => {
         }],
       },
     }
+    expect(regenIncorrectFor(q, 0)?.whyWrongHere).toMatch(/primarily operates|Layer 3 header/i)
     const ar = generateAnswerReview(q)
     const item = ar.incorrect.find(i => i.choiceIndex === 0)
     expect(item.whyWrongHere).toMatch(/primarily operates|Layer 3 header/i)
@@ -57,6 +62,7 @@ describe('generateAnswerReview regen merge', () => {
     })
     const q = {
       id: '1.1-c-q1',
+      regeneratedIncorrect: authoredRegen,
       question: 'At which OSI layer does a router primarily operate?',
       choices: ['Layer 1', 'Layer 2', 'Layer 3', 'Layer 7'],
       correctIndex: 2,
@@ -66,5 +72,20 @@ describe('generateAnswerReview regen merge', () => {
     const item = ar.incorrect.find(i => i.choiceIndex === 0)
     expect(item.whyWrongHere).toMatch(/primarily operates|Layer 3 header/i)
     expect(item.explanation).toMatch(/Layer 1 handles bits/)
+  })
+
+  it('uses backfilled regen embedded in a lazy domain chunk', () => {
+    mockGoldFor.mockReturnValue(null)
+    const q = Object.values(DOMAIN_6_QUESTIONS)
+      .flat()
+      .find(item => item.id === 'obj-6.6-source-q018')
+    expect(q?.regeneratedIncorrect).toHaveLength(q.choices.length - 1)
+
+    const raw = q.regeneratedIncorrect[0]
+    const review = generateAnswerReview(q)
+    const applied = review.incorrect.find(item => item.choiceIndex === raw.choiceIndex)
+
+    expect(applied.whyWrongHere).toBe(raw.whyWrongHere)
+    expect(applied.whatItDoes).toContain(raw.contrast)
   })
 })

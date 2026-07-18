@@ -1,19 +1,19 @@
 import { describe, it, expect } from 'vitest'
 import { allLabs, getLab } from '../data/ccnaLabs.js'
 import { CONFIG_LAB_LITE_IDS } from '../data/configLabLiteWave.js'
+import { CORE_CONFIG_LAB_IDS } from '../data/coreConfigLabWave.js'
 import { CONFIG_LAB_IDS, getInterpretAlternate, isConfigLab, INTERPRET_ALTERNATE_BY_CONFIG } from '../data/labTierStrategy.js'
 
 const RESTORED_CONFIG_LAB_IDS = [
-  'LAB-PORT-SECURITY',
   'LAB-EXTENDED-ACL-BUILD',
-  'LAB-OSPF-DEFAULT',
+  ...CORE_CONFIG_LAB_IDS,
 ]
 
 describe('labTierStrategy', () => {
-  it('tracks three restored config labs', () => {
+  it('tracks the core configuration labs plus the extended ACL build', () => {
     const configFromData = allLabs().filter(l => !l.interpretOnly && CONFIG_LAB_IDS.has(l.id)).map(l => l.id).sort()
     expect(configFromData).toEqual([...RESTORED_CONFIG_LAB_IDS].sort())
-    expect(CONFIG_LAB_IDS.size).toBe(3)
+    expect(CONFIG_LAB_IDS.size).toBe(7)
   })
 
   it('keeps lite-wave labs interpret-only and marks restored labs as config', () => {

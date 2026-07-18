@@ -47,7 +47,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "CIA: Confidentiality = encryption; Integrity = hash; Availability = redundancy."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Mapping encryption to availability",
+          "whyItSeems": "\"Availability\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"CIA triad confidentiality\", Confidentiality matches the required behavior — Availability answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "CIA: Confidentiality = encryption; Integrity = hash; Availability = redundancy.",
+          "contrast": "Correct \"Confidentiality\" vs wrong \"Availability\": For \"CIA triad confidentiality\", Confidentiality matches the required behavior — Availability answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Confusing confidentiality with integrity",
+          "whyItSeems": "\"Integrity\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"CIA triad confidentiality\", Confidentiality matches the required behavior — Integrity answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "CIA: Confidentiality = encryption; Integrity = hash; Availability = redundancy.",
+          "contrast": "Correct \"Confidentiality\" vs wrong \"Integrity\": For \"CIA triad confidentiality\", Confidentiality matches the required behavior — Integrity answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Equating encryption with authentication",
+          "whyItSeems": "\"Authentication\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"CIA triad confidentiality\", Confidentiality matches the required behavior — Authentication answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "CIA: Confidentiality = encryption; Integrity = hash; Availability = redundancy.",
+          "contrast": "Correct \"Confidentiality\" vs wrong \"Authentication\": For \"CIA triad confidentiality\", Confidentiality matches the required behavior — Authentication answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.1-q2",
@@ -95,7 +121,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Detect tampering → integrity; hide data → confidentiality."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Confusing hash with encryption",
+          "whyItSeems": "\"Confidentiality\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"CIA triad integrity\", Integrity matches the required behavior — Confidentiality answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Detect tampering → integrity; hide data → confidentiality.",
+          "contrast": "Correct \"Integrity\" vs wrong \"Confidentiality\": For \"CIA triad integrity\", Integrity matches the required behavior — Confidentiality answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Mapping integrity control to availability",
+          "whyItSeems": "\"Availability\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"CIA triad integrity\", Integrity matches the required behavior — Availability answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Detect tampering → integrity; hide data → confidentiality.",
+          "contrast": "Correct \"Integrity\" vs wrong \"Availability\": For \"CIA triad integrity\", Integrity matches the required behavior — Availability answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Equating hash with non-repudiation",
+          "whyItSeems": "\"Non-repudiation\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"CIA triad integrity\", Integrity matches the required behavior — Non-repudiation answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Detect tampering → integrity; hide data → confidentiality.",
+          "contrast": "Correct \"Integrity\" vs wrong \"Non-repudiation\": For \"CIA triad integrity\", Integrity matches the required behavior — Non-repudiation answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.1-q3",
@@ -143,7 +195,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Flaw in the system = vulnerability; attack method = exploit."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Confusing threat with vulnerability",
+          "whyItSeems": "\"Threat\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"vulnerability definition\", Vulnerability matches the required behavior — Threat answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Flaw in the system = vulnerability; attack method = exploit.",
+          "contrast": "Correct \"Vulnerability\" vs wrong \"Threat\": For \"vulnerability definition\", Vulnerability matches the required behavior — Threat answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Labeling the flaw as the exploit",
+          "whyItSeems": "\"Exploit\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"vulnerability definition\", Vulnerability matches the required behavior — Exploit answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Flaw in the system = vulnerability; attack method = exploit.",
+          "contrast": "Correct \"Vulnerability\" vs wrong \"Exploit\": For \"vulnerability definition\", Vulnerability matches the required behavior — Exploit answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Equating risk with vulnerability",
+          "whyItSeems": "\"Risk\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"vulnerability definition\", Vulnerability matches the required behavior — Risk answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Flaw in the system = vulnerability; attack method = exploit.",
+          "contrast": "Correct \"Vulnerability\" vs wrong \"Risk\": For \"vulnerability definition\", Vulnerability matches the required behavior — Risk answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.1-q4",
@@ -191,7 +269,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Encrypt files + demand payment = ransomware."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Labeling virus as ransomware",
+          "whyItSeems": "\"Virus\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"ransomware\", Ransomware matches the required behavior — Virus answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Encrypt files + demand payment = ransomware.",
+          "contrast": "Correct \"Ransomware\" vs wrong \"Virus\": For \"ransomware\", Ransomware matches the required behavior — Virus answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Confusing worm with ransomware",
+          "whyItSeems": "\"Worm\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"ransomware\", Ransomware matches the required behavior — Worm answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Encrypt files + demand payment = ransomware.",
+          "contrast": "Correct \"Ransomware\" vs wrong \"Worm\": For \"ransomware\", Ransomware matches the required behavior — Worm answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Trojan vs ransomware",
+          "whyItSeems": "\"Trojan\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"ransomware\", Ransomware matches the required behavior — Trojan answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Encrypt files + demand payment = ransomware.",
+          "contrast": "Correct \"Ransomware\" vs wrong \"Trojan\": For \"ransomware\", Ransomware matches the required behavior — Trojan answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.1-q5",
@@ -239,7 +343,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Fake IT email + credential harvest = phishing."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Classifying email fraud as worm",
+          "whyItSeems": "\"A worm attack\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"phishing\", Phishing matches the required behavior — A worm attack answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Fake IT email + credential harvest = phishing.",
+          "contrast": "Correct \"Phishing\" vs wrong \"A worm attack\": For \"phishing\", Phishing matches the required behavior — A worm attack answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Confusing phishing with DoS",
+          "whyItSeems": "\"A DoS attack\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"phishing\", Phishing matches the required behavior — A DoS attack answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Fake IT email + credential harvest = phishing.",
+          "contrast": "Correct \"Phishing\" vs wrong \"A DoS attack\": For \"phishing\", Phishing matches the required behavior — A DoS attack answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Mixing spoofing with phishing",
+          "whyItSeems": "\"IP spoofing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"phishing\", Phishing matches the required behavior — IP spoofing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Fake IT email + credential harvest = phishing.",
+          "contrast": "Correct \"Phishing\" vs wrong \"IP spoofing\": For \"phishing\", Phishing matches the required behavior — IP spoofing answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.1-q6",
@@ -288,7 +418,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Service down / flooded = availability violation."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Mapping DoS to confidentiality",
+          "whyItSeems": "\"Confidentiality\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"DDoS and availability\", Availability matches the required behavior — Confidentiality answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Service down / flooded = availability violation.",
+          "contrast": "Correct \"Availability\" vs wrong \"Confidentiality\": For \"DDoS and availability\", Availability matches the required behavior — Confidentiality answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Mapping DoS to integrity",
+          "whyItSeems": "\"Integrity\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"DDoS and availability\", Availability matches the required behavior — Integrity answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Service down / flooded = availability violation.",
+          "contrast": "Correct \"Availability\" vs wrong \"Integrity\": For \"DDoS and availability\", Availability matches the required behavior — Integrity answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Confusing authentication with availability",
+          "whyItSeems": "\"Authentication\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"DDoS and availability\", Availability matches the required behavior — Authentication answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Service down / flooded = availability violation.",
+          "contrast": "Correct \"Availability\" vs wrong \"Authentication\": For \"DDoS and availability\", Availability matches the required behavior — Authentication answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.1-q7",
@@ -336,7 +492,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Multiple security layers → defense in depth."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Confusing defense in depth with MFA",
+          "whyItSeems": "\"Multi-factor authentication\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"defense in depth\", Defense in depth matches the required behavior — Multi-factor authentication answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Multiple security layers → defense in depth.",
+          "contrast": "Correct \"Defense in depth\" vs wrong \"Multi-factor authentication\": For \"defense in depth\", Defense in depth matches the required behavior — Multi-factor authentication answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Equating with zero trust",
+          "whyItSeems": "\"Zero-trust networking\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"defense in depth\", Defense in depth matches the required behavior — Zero-trust networking answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Multiple security layers → defense in depth.",
+          "contrast": "Correct \"Defense in depth\" vs wrong \"Zero-trust networking\": For \"defense in depth\", Defense in depth matches the required behavior — Zero-trust networking answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "AAA vs defense in depth",
+          "whyItSeems": "\"AAA framework\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"defense in depth\", Defense in depth matches the required behavior — AAA framework answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Multiple security layers → defense in depth.",
+          "contrast": "Correct \"Defense in depth\" vs wrong \"AAA framework\": For \"defense in depth\", Defense in depth matches the required behavior — AAA framework answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.1-q8",
@@ -384,7 +566,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Hidden intermediary reading/changing traffic = MITM."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Confusing MITM with DoS",
+          "whyItSeems": "\"A DoS attack\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"attacker\", A man-in-the-middle attack matches the required behavior — A DoS attack answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Hidden intermediary reading/changing traffic = MITM.",
+          "contrast": "Correct \"A man-in-the-middle attack\" vs wrong \"A DoS attack\": For \"attacker\", A man-in-the-middle attack matches the required behavior — A DoS attack answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Equating spoofing with MITM",
+          "whyItSeems": "\"IP spoofing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"attacker\", A man-in-the-middle attack matches the required behavior — IP spoofing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Hidden intermediary reading/changing traffic = MITM.",
+          "contrast": "Correct \"A man-in-the-middle attack\" vs wrong \"IP spoofing\": For \"attacker\", A man-in-the-middle attack matches the required behavior — IP spoofing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Confusing replay with MITM",
+          "whyItSeems": "\"A replay attack\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"attacker\", A man-in-the-middle attack matches the required behavior — A replay attack answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Hidden intermediary reading/changing traffic = MITM.",
+          "contrast": "Correct \"A man-in-the-middle attack\" vs wrong \"A replay attack\": For \"attacker\", A man-in-the-middle attack matches the required behavior — A replay attack answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.1-q9",
@@ -432,7 +640,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Self-replicates without host file = worm."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Calling self-replicating network malware a virus",
+          "whyItSeems": "\"Virus\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"worm vs virus\", Worm matches the required behavior — Virus answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Self-replicates without host file = worm.",
+          "contrast": "Correct \"Worm\" vs wrong \"Virus\": For \"worm vs virus\", Worm matches the required behavior — Virus answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Labeling worm as spyware",
+          "whyItSeems": "\"Spyware\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"worm vs virus\", Worm matches the required behavior — Spyware answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Self-replicates without host file = worm.",
+          "contrast": "Correct \"Worm\" vs wrong \"Spyware\": For \"worm vs virus\", Worm matches the required behavior — Spyware answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Confusing adware with worm",
+          "whyItSeems": "\"Adware\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"worm vs virus\", Worm matches the required behavior — Adware answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Self-replicates without host file = worm.",
+          "contrast": "Correct \"Worm\" vs wrong \"Adware\": For \"worm vs virus\", Worm matches the required behavior — Adware answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.1-q10",
@@ -481,7 +715,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Social engineering → train users first."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Expecting firewalls to stop phishing clicks",
+          "whyItSeems": "\"Firewalls\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"social engineering mitigation\", User security awareness training matches the required behavior — Firewalls answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Social engineering → train users first.",
+          "contrast": "Correct \"User security awareness training\" vs wrong \"Firewalls\": For \"social engineering mitigation\", User security awareness training matches the required behavior — Firewalls answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Relying on AV for social engineering",
+          "whyItSeems": "\"Antivirus software\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"social engineering mitigation\", User security awareness training matches the required behavior — Antivirus software answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Social engineering → train users first.",
+          "contrast": "Correct \"User security awareness training\" vs wrong \"Antivirus software\": For \"social engineering mitigation\", User security awareness training matches the required behavior — Antivirus software answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Encryption as phishing primary defense",
+          "whyItSeems": "\"Encryption\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"social engineering mitigation\", User security awareness training matches the required behavior — Encryption answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Social engineering → train users first.",
+          "contrast": "Correct \"User security awareness training\" vs wrong \"Encryption\": For \"social engineering mitigation\", User security awareness training matches the required behavior — Encryption answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.1-source-q001",
@@ -533,7 +793,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Outside firewall → perimeter. Public servers → DMZ inside it."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "DMZ vs perimeter",
+          "whyItSeems": "\"DMZ\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", Perimeter matches the required behavior — DMZ answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Perimeter\" — not \"DMZ\" — for what this stem actually tests.",
+          "contrast": "Correct \"Perimeter\" vs wrong \"DMZ\": For \"security concepts\", Perimeter matches the required behavior — DMZ answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Internal for outside edge",
+          "whyItSeems": "\"Internal\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", Perimeter matches the required behavior — Internal answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Perimeter\" — not \"Internal\" — for what this stem actually tests.",
+          "contrast": "Correct \"Perimeter\" vs wrong \"Internal\": For \"security concepts\", Perimeter matches the required behavior — Internal answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Trusted for outside firewall",
+          "whyItSeems": "\"Trusted\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", Perimeter matches the required behavior — Trusted answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Perimeter\" — not \"Trusted\" — for what this stem actually tests.",
+          "contrast": "Correct \"Perimeter\" vs wrong \"Trusted\": For \"security concepts\", Perimeter matches the required behavior — Trusted answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.1-source-q002",
@@ -585,7 +871,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Public servers behind firewall → DMZ (semi-trusted)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Perimeter label vs DMZ zone",
+          "whyItSeems": "\"Perimeter\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", DMZ matches the required behavior — Perimeter answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Public servers behind firewall → DMZ (semi-trusted).",
+          "contrast": "Correct \"DMZ\" vs wrong \"Perimeter\": For \"security concepts\", DMZ matches the required behavior — Perimeter answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Internal zone for public servers",
+          "whyItSeems": "\"Internal\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", DMZ matches the required behavior — Internal answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Public servers behind firewall → DMZ (semi-trusted).",
+          "contrast": "Correct \"DMZ\" vs wrong \"Internal\": For \"security concepts\", DMZ matches the required behavior — Internal answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Trusted for Internet-facing subnet",
+          "whyItSeems": "\"Trusted\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", DMZ matches the required behavior — Trusted answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Public servers behind firewall → DMZ (semi-trusted).",
+          "contrast": "Correct \"DMZ\" vs wrong \"Trusted\": For \"security concepts\", DMZ matches the required behavior — Trusted answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.1-source-q003",
@@ -637,7 +949,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IDS = detect/alert. IPS = detect + block inline."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Confusing honeypot decoy with inline prevention",
+          "whyItSeems": "\"Honey pots\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", IPS matches the required behavior — Honey pots answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"IPS\" — not \"Honey pots\" — for what this stem actually tests.",
+          "contrast": "Correct \"IPS\" vs wrong \"Honey pots\": For \"security concepts\", IPS matches the required behavior — Honey pots answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Selecting detect-only IDS when prevention is required",
+          "whyItSeems": "\"IDS\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", IPS matches the required behavior — IDS answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"IPS\" — not \"IDS\" — for what this stem actually tests.",
+          "contrast": "Correct \"IPS\" vs wrong \"IDS\": For \"security concepts\", IPS matches the required behavior — IDS answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Choosing host-based detection for network prevention question",
+          "whyItSeems": "\"HIDS\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", IPS matches the required behavior — HIDS answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"IPS\" — not \"HIDS\" — for what this stem actually tests.",
+          "contrast": "Correct \"IPS\" vs wrong \"HIDS\": For \"security concepts\", IPS matches the required behavior — HIDS answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.1-source-q004",
@@ -688,7 +1026,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Firewall zones: trusted = internal LAN; DMZ = semi-trusted; outside = Internet."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Calling the Internet a trusted network",
+          "whyItSeems": "\"The Internet\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", Internal network matches the required behavior — The Internet answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Firewall zones: trusted = internal LAN; DMZ = semi-trusted; outside = Internet.",
+          "contrast": "Correct \"Internal network\" vs wrong \"The Internet\": For \"security concepts\", Internal network matches the required behavior — The Internet answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Labeling DMZ as fully trusted internal",
+          "whyItSeems": "\"The DMZ\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", Internal network matches the required behavior — The DMZ answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Firewall zones: trusted = internal LAN; DMZ = semi-trusted; outside = Internet.",
+          "contrast": "Correct \"Internal network\" vs wrong \"The DMZ\": For \"security concepts\", Internal network matches the required behavior — The DMZ answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Defining trusted network by SSL presence",
+          "whyItSeems": "\"A network with SSL\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", Internal network matches the required behavior — A network with SSL answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Firewall zones: trusted = internal LAN; DMZ = semi-trusted; outside = Internet.",
+          "contrast": "Correct \"Internal network\" vs wrong \"A network with SSL\": For \"security concepts\", Internal network matches the required behavior — A network with SSL answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.1-source-q005",
@@ -740,7 +1104,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DDoS = many sources; DoS = one source — both aim to exhaust availability."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Selecting single-source DoS for distributed attack stem",
+          "whyItSeems": "\"Denial of service\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", Distributed denial of service matches the required behavior — Denial of service answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DDoS = many sources; DoS = one source — both aim to exhaust availability.",
+          "contrast": "Correct \"Distributed denial of service\" vs wrong \"Denial of service\": For \"security concepts\", Distributed denial of service matches the required behavior — Denial of service answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Equating spoofing with distributed flood attack",
+          "whyItSeems": "IP address spoofing shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"security concepts\", Distributed denial of service matches the required behavior — IP address spoofing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DDoS = many sources; DoS = one source — both aim to exhaust availability.",
+          "contrast": "Correct \"Distributed denial of service\" vs wrong \"IP address spoofing\": For \"security concepts\", Distributed denial of service matches the required behavior — IP address spoofing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Confusing session hijack with DDoS flood",
+          "whyItSeems": "\"Session hijacking\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", Distributed denial of service matches the required behavior — Session hijacking answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DDoS = many sources; DoS = one source — both aim to exhaust availability.",
+          "contrast": "Correct \"Distributed denial of service\" vs wrong \"Session hijacking\": For \"security concepts\", Distributed denial of service matches the required behavior — Session hijacking answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.1-source-q006",
@@ -792,7 +1182,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IDS = detect + alert; IPS = detect + inline prevent."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Expecting honeypots to serve as network IDS",
+          "whyItSeems": "\"Honey pots\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", IDS matches the required behavior — Honey pots answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IDS = detect + alert; IPS = detect + inline prevent.",
+          "contrast": "Correct \"IDS\" vs wrong \"Honey pots\": For \"security concepts\", IDS matches the required behavior — Honey pots answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Choosing IPS when only detection is asked",
+          "whyItSeems": "\"IPS\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", IDS matches the required behavior — IPS answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IDS = detect + alert; IPS = detect + inline prevent.",
+          "contrast": "Correct \"IDS\" vs wrong \"IPS\": For \"security concepts\", IDS matches the required behavior — IPS answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Narrowing to host IDS when network IDS fits",
+          "whyItSeems": "\"HIDS\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", IDS matches the required behavior — HIDS answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IDS = detect + alert; IPS = detect + inline prevent.",
+          "contrast": "Correct \"IDS\" vs wrong \"HIDS\": For \"security concepts\", IDS matches the required behavior — HIDS answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.1-source-q007",
@@ -843,7 +1259,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Stop ping sweeps at the edge → deny ICMP echo (type 8/0) on the perimeter."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Relying on host IDS to stop ping sweeps",
+          "whyItSeems": "\"Deploying host intrusion detection systems\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", Blocking ICMP echo requests and echo replies at the perimeter matches the required behavior — Deploying host intrusion detection systems answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Stop ping sweeps at the edge → deny ICMP echo (type 8/0) on the perimeter.",
+          "contrast": "Correct \"Blocking ICMP echo requests and echo replies at the perimeter\" vs wrong \"Deploying host intrusion detection systems\": For \"security concepts\", Blocking ICMP echo requests and echo replies at the perimeter matches the required behavior — Deploying host intrusion detection systems answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Expecting NIDS alone to prevent ping sweeps",
+          "whyItSeems": "\"Deploying network intrusion detection systems\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", Blocking ICMP echo requests and echo replies at the perimeter matches the required behavior — Deploying network intrusion detection systems answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Stop ping sweeps at the edge → deny ICMP echo (type 8/0) on the perimeter.",
+          "contrast": "Correct \"Blocking ICMP echo requests and echo replies at the perimeter\" vs wrong \"Deploying network intrusion detection systems\": For \"security concepts\", Blocking ICMP echo requests and echo replies at the perimeter matches the required behavior — Deploying network intrusion detection systems answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Blocking RFC 1918 as ping sweep countermeasure",
+          "whyItSeems": "\"Blocking RFC 1918 addresses at the perimeter\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", Blocking ICMP echo requests and echo replies at the perimeter matches the required behavior — Blocking RFC 1918 addresses at the perimeter answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Stop ping sweeps at the edge → deny ICMP echo (type 8/0) on the perimeter.",
+          "contrast": "Correct \"Blocking ICMP echo requests and echo replies at the perimeter\" vs wrong \"Blocking RFC 1918 addresses at the perimeter\": For \"security concepts\", Blocking ICMP echo requests and echo replies at the perimeter matches the required behavior — Blocking RFC 1918 addresses at the perimeter answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.1-source-q008",
@@ -896,7 +1338,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Mitigate floods inline → IPS (or dedicated anti-DDoS) at the perimeter."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Using honeypots for DoS mitigation",
+          "whyItSeems": "\"Honey pots\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", IPS matches the required behavior — Honey pots answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Mitigate floods inline → IPS (or dedicated anti-DDoS) at the perimeter.",
+          "contrast": "Correct \"IPS\" vs wrong \"Honey pots\": For \"security concepts\", IPS matches the required behavior — Honey pots answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Expecting IDS to mitigate DoS inline",
+          "whyItSeems": "\"IDS\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", IPS matches the required behavior — IDS answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Mitigate floods inline → IPS (or dedicated anti-DDoS) at the perimeter.",
+          "contrast": "Correct \"IPS\" vs wrong \"IDS\": For \"security concepts\", IPS matches the required behavior — IDS answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Choosing host IDS for network DoS mitigation",
+          "whyItSeems": "\"HIDS\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", IPS matches the required behavior — HIDS answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Mitigate floods inline → IPS (or dedicated anti-DDoS) at the perimeter.",
+          "contrast": "Correct \"IPS\" vs wrong \"HIDS\": For \"security concepts\", IPS matches the required behavior — HIDS answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.1-source-q009",
@@ -948,7 +1416,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Spoofing = fake source identity; hijacking = take over an existing session."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Selecting DoS for identity impersonation attack",
+          "whyItSeems": "\"Denial of service\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", IP address spoofing matches the required behavior — Denial of service answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Spoofing = fake source identity; hijacking = take over an existing session.",
+          "contrast": "Correct \"IP address spoofing\" vs wrong \"Denial of service\": For \"security concepts\", IP address spoofing matches the required behavior — Denial of service answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Confusing DDoS flood with address spoofing",
+          "whyItSeems": "\"Distributed denial of service\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", IP address spoofing matches the required behavior — Distributed denial of service answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Spoofing = fake source identity; hijacking = take over an existing session.",
+          "contrast": "Correct \"IP address spoofing\" vs wrong \"Distributed denial of service\": For \"security concepts\", IP address spoofing matches the required behavior — Distributed denial of service answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Equating session hijack with IP spoofing",
+          "whyItSeems": "\"Session hijacking\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", IP address spoofing matches the required behavior — Session hijacking answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Spoofing = fake source identity; hijacking = take over an existing session.",
+          "contrast": "Correct \"IP address spoofing\" vs wrong \"Session hijacking\": For \"security concepts\", IP address spoofing matches the required behavior — Session hijacking answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.1-source-q010",
@@ -1000,7 +1494,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Tamper-proof web traffic → SSL/TLS (integrity + confidentiality)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "ACLs as tamper prevention",
+          "whyItSeems": "\"Access control lists (ACLs)\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", SSL matches the required behavior — Access control lists (ACLs) answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Tamper-proof web traffic → SSL/TLS (integrity + confidentiality).",
+          "contrast": "Correct \"SSL\" vs wrong \"Access control lists (ACLs)\": For \"security concepts\", SSL matches the required behavior — Access control lists (ACLs) answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Spoofing mitigation as integrity control",
+          "whyItSeems": "\"Spoofing mitigation\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", SSL matches the required behavior — Spoofing mitigation answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Tamper-proof web traffic → SSL/TLS (integrity + confidentiality).",
+          "contrast": "Correct \"SSL\" vs wrong \"Spoofing mitigation\": For \"security concepts\", SSL matches the required behavior — Spoofing mitigation answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Generic encryption label over SSL",
+          "whyItSeems": "\"Encryption of the data\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", SSL matches the required behavior — Encryption of the data answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Tamper-proof web traffic → SSL/TLS (integrity + confidentiality).",
+          "contrast": "Correct \"SSL\" vs wrong \"Encryption of the data\": For \"security concepts\", SSL matches the required behavior — Encryption of the data answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.1-source-q011",
@@ -1052,7 +1572,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Rogue AP relaying clients → MitM; passive capture alone → sniffing."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Smurf as rogue AP attack",
+          "whyItSeems": "\"Smurf attack\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", Man in the middle attack matches the required behavior — Smurf attack answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Rogue AP relaying clients → MitM; passive capture alone → sniffing.",
+          "contrast": "Correct \"Man in the middle attack\" vs wrong \"Smurf attack\": For \"security concepts\", Man in the middle attack matches the required behavior — Smurf attack answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Compromised key for rogue AP relay",
+          "whyItSeems": "\"Compromised key attack\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", Man in the middle attack matches the required behavior — Compromised key attack answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Rogue AP relaying clients → MitM; passive capture alone → sniffing.",
+          "contrast": "Correct \"Man in the middle attack\" vs wrong \"Compromised key attack\": For \"security concepts\", Man in the middle attack matches the required behavior — Compromised key attack answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Passive sniffing as relay attack",
+          "whyItSeems": "\"Sniffer attack\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", Man in the middle attack matches the required behavior — Sniffer attack answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Rogue AP relaying clients → MitM; passive capture alone → sniffing.",
+          "contrast": "Correct \"Man in the middle attack\" vs wrong \"Sniffer attack\": For \"security concepts\", Man in the middle attack matches the required behavior — Sniffer attack answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.1-source-q012",
@@ -1105,7 +1651,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Block spoofed internal sources at the edge with ingress ACLs (deny impossible source IPs)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Using IDS where ingress ACL filtering is needed",
+          "whyItSeems": "\"Intrusion detection systems\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", ACLs matches the required behavior — Intrusion detection systems answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Block spoofed internal sources at the edge with ingress ACLs (deny impossible source IPs).",
+          "contrast": "Correct \"ACLs\" vs wrong \"Intrusion detection systems\": For \"security concepts\", ACLs matches the required behavior — Intrusion detection systems answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Expecting SSL to prevent IP spoofing",
+          "whyItSeems": "\"SSL\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", ACLs matches the required behavior — SSL answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Block spoofed internal sources at the edge with ingress ACLs (deny impossible source IPs).",
+          "contrast": "Correct \"ACLs\" vs wrong \"SSL\": For \"security concepts\", ACLs matches the required behavior — SSL answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Relying on host IDS for perimeter anti-spoofing",
+          "whyItSeems": "\"Host intrusion detection systems\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", ACLs matches the required behavior — Host intrusion detection systems answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Block spoofed internal sources at the edge with ingress ACLs (deny impossible source IPs).",
+          "contrast": "Correct \"ACLs\" vs wrong \"Host intrusion detection systems\": For \"security concepts\", ACLs matches the required behavior — Host intrusion detection systems answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.1-source-q013",
@@ -1156,7 +1728,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "MITM vectors: rogue DHCP/DNS, ARP spoofing, evil-twin WLAN — think \"who can sit between client and real server?\""
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "DHCP as sole MITM vector",
+          "whyItSeems": "\"DHCP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", All of the above matches the required behavior — DHCP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "MITM vectors: rogue DHCP/DNS, ARP spoofing, evil-twin WLAN — think \"who can sit between client and real server?\"",
+          "contrast": "Correct \"All of the above\" vs wrong \"DHCP\": For \"security concepts\", All of the above matches the required behavior — DHCP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "DNS as sole MITM vector",
+          "whyItSeems": "\"DNS\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", All of the above matches the required behavior — DNS answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "MITM vectors: rogue DHCP/DNS, ARP spoofing, evil-twin WLAN — think \"who can sit between client and real server?\"",
+          "contrast": "Correct \"All of the above\" vs wrong \"DNS\": For \"security concepts\", All of the above matches the required behavior — DNS answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Wireless as sole MITM vector",
+          "whyItSeems": "\"Wireless\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security concepts\", All of the above matches the required behavior — Wireless answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "MITM vectors: rogue DHCP/DNS, ARP spoofing, evil-twin WLAN — think \"who can sit between client and real server?\"",
+          "contrast": "Correct \"All of the above\" vs wrong \"Wireless\": For \"security concepts\", All of the above matches the required behavior — Wireless answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.1-source-q014",
@@ -1206,7 +1804,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Change native VLAN: switchport trunk native vlan <unused-id> on both ends — never leave VLAN 1 as native on trunks."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Native VLAN carries all VLAN traffic",
+          "whyItSeems": "\"The native VLAN contains frames from all VLANs.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "VLAN tagging (security concepts): The native VLAN is the default on all switch ports. matches access vs trunk/native behavior — The native VLAN contains frames from all VLANs. applies the wrong tagging model.",
+          "memoryAnchor": "Change native VLAN: switchport trunk native vlan <unused-id> on both ends — never leave VLAN 1 as native on trunks.",
+          "contrast": "Correct \"The native VLAN is the default on all switch ports.\" vs wrong \"The native VLAN contains frames from all VLANs.\": VLAN tagging (security concepts): The native VLAN is the default on all switch ports."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Native VLAN for switch logging",
+          "whyItSeems": "\"The native VLAN is configured on all switches for logging.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "VLAN tagging (security concepts): The native VLAN is the default on all switch ports. matches access vs trunk/native behavior — The native VLAN is configured on all switches for logging. applies the wrong tagging model.",
+          "memoryAnchor": "Change native VLAN: switchport trunk native vlan <unused-id> on both ends — never leave VLAN 1 as native on trunks.",
+          "contrast": "Correct \"The native VLAN is the default on all switch ports.\" vs wrong \"The native VLAN is configured on all switches for logging.\": VLAN tagging (security concepts): The native VLAN is the default on all switch ports."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Native VLAN encryption as primary risk",
+          "whyItSeems": "\"The native VLAN provides no encryption.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "VLAN tagging (security concepts): The native VLAN is the default on all switch ports. matches access vs trunk/native behavior — The native VLAN provides no encryption. applies the wrong tagging model.",
+          "memoryAnchor": "Change native VLAN: switchport trunk native vlan <unused-id> on both ends — never leave VLAN 1 as native on trunks.",
+          "contrast": "Correct \"The native VLAN is the default on all switch ports.\" vs wrong \"The native VLAN provides no encryption.\": VLAN tagging (security concepts): The native VLAN is the default on all switch ports."
+        }
+      ]
     }
   ],
   "5.2": [
@@ -1259,7 +1883,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Phishing defense = user training + email filtering; tech alone misses social engineering."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Anti-malware as primary phishing defense",
+          "whyItSeems": "\"Anti-malware software\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security program\", Training matches the required behavior — Anti-malware software answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Phishing defense = user training + email filtering; tech alone misses social engineering.",
+          "contrast": "Correct \"Training\" vs wrong \"Anti-malware software\": For \"security program\", Training matches the required behavior — Anti-malware software answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Antivirus stops phishing links",
+          "whyItSeems": "\"Antivirus software\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security program\", Training matches the required behavior — Antivirus software answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Phishing defense = user training + email filtering; tech alone misses social engineering.",
+          "contrast": "Correct \"Training\" vs wrong \"Antivirus software\": For \"security program\", Training matches the required behavior — Antivirus software answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Certificates prevent phishing email",
+          "whyItSeems": "\"Certificates\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security program\", Training matches the required behavior — Certificates answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Phishing defense = user training + email filtering; tech alone misses social engineering.",
+          "contrast": "Correct \"Training\" vs wrong \"Certificates\": For \"security program\", Training matches the required behavior — Certificates answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.2-source-q002",
@@ -1311,7 +1961,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Look-alike site + trusted brand email → phishing, not spam or worm."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Spam as credential impersonation",
+          "whyItSeems": "\"Spam\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security program\", Phishing matches the required behavior — Spam answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Look-alike site + trusted brand email → phishing, not spam or worm.",
+          "contrast": "Correct \"Phishing\" vs wrong \"Spam\": For \"security program\", Phishing matches the required behavior — Spam answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Password cracking as fake bank email",
+          "whyItSeems": "\"Password cracking\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security program\", Phishing matches the required behavior — Password cracking answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Look-alike site + trusted brand email → phishing, not spam or worm.",
+          "contrast": "Correct \"Phishing\" vs wrong \"Password cracking\": For \"security program\", Phishing matches the required behavior — Password cracking answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Worm as phishing email",
+          "whyItSeems": "\"Worm\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security program\", Phishing matches the required behavior — Worm answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Look-alike site + trusted brand email → phishing, not spam or worm.",
+          "contrast": "Correct \"Phishing\" vs wrong \"Worm\": For \"security program\", Phishing matches the required behavior — Worm answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.2-source-q003",
@@ -1361,7 +2037,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Physical layer: privacy filters = shoulder-surfing defense | mantraps = tailgating defense."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Generic security filter term",
+          "whyItSeems": "\"Security\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security program\", Privacy matches the required behavior — Security answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Physical layer: privacy filters = shoulder-surfing defense | mantraps = tailgating defense.",
+          "contrast": "Correct \"Privacy\" vs wrong \"Security\": For \"security program\", Privacy matches the required behavior — Security answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Degaussing for screen privacy",
+          "whyItSeems": "\"Degaussing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security program\", Privacy matches the required behavior — Degaussing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Physical layer: privacy filters = shoulder-surfing defense | mantraps = tailgating defense.",
+          "contrast": "Correct \"Privacy\" vs wrong \"Degaussing\": For \"security program\", Privacy matches the required behavior — Degaussing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Tempered glass for privacy",
+          "whyItSeems": "\"Tempered\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security program\", Privacy matches the required behavior — Tempered answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Physical layer: privacy filters = shoulder-surfing defense | mantraps = tailgating defense.",
+          "contrast": "Correct \"Privacy\" vs wrong \"Tempered\": For \"security program\", Privacy matches the required behavior — Tempered answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.2-source-q004",
@@ -1414,7 +2116,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Social engineering map: shoulder surfing (watch) | tailgating (door) | phishing (email) | whaling (exec phishing)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Phishing as shoulder surfing",
+          "whyItSeems": "\"Phishing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security program\", Shoulder surfing matches the required behavior — Phishing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Social engineering map: shoulder surfing (watch) | tailgating (door) | phishing (email) | whaling (exec phishing).",
+          "contrast": "Correct \"Shoulder surfing\" vs wrong \"Phishing\": For \"security program\", Shoulder surfing matches the required behavior — Phishing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Tailgating as shoulder surfing",
+          "whyItSeems": "\"Tailgating\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security program\", Shoulder surfing matches the required behavior — Tailgating answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Social engineering map: shoulder surfing (watch) | tailgating (door) | phishing (email) | whaling (exec phishing).",
+          "contrast": "Correct \"Shoulder surfing\" vs wrong \"Tailgating\": For \"security program\", Shoulder surfing matches the required behavior — Tailgating answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Whaling as shoulder surfing",
+          "whyItSeems": "\"Whaling\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security program\", Shoulder surfing matches the required behavior — Whaling answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Social engineering map: shoulder surfing (watch) | tailgating (door) | phishing (email) | whaling (exec phishing).",
+          "contrast": "Correct \"Shoulder surfing\" vs wrong \"Whaling\": For \"security program\", Shoulder surfing matches the required behavior — Whaling answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.2-source-q005",
@@ -1467,7 +2195,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Security program quick wins: least privilege + separation of duties before buying new auth hardware."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Biometrics as quickest admin-privilege fix",
+          "whyItSeems": "\"Biometric authentication\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security program\", Least privilege matches the required behavior — Biometric authentication answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Security program quick wins: least privilege + separation of duties before buying new auth hardware.",
+          "contrast": "Correct \"Least privilege\" vs wrong \"Biometric authentication\": For \"security program\", Least privilege matches the required behavior — Biometric authentication answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Hardware tokens as easiest fix",
+          "whyItSeems": "\"Hardware tokens\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security program\", Least privilege matches the required behavior — Hardware tokens answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Security program quick wins: least privilege + separation of duties before buying new auth hardware.",
+          "contrast": "Correct \"Least privilege\" vs wrong \"Hardware tokens\": For \"security program\", Least privilege matches the required behavior — Hardware tokens answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "AD alone removes excess admin rights",
+          "whyItSeems": "\"Active Directory\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security program\", Least privilege matches the required behavior — Active Directory answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Security program quick wins: least privilege + separation of duties before buying new auth hardware.",
+          "contrast": "Correct \"Least privilege\" vs wrong \"Active Directory\": For \"security program\", Least privilege matches the required behavior — Active Directory answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.2-source-q006",
@@ -1518,7 +2272,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Endpoint: anti-malware/EDR for malicious files + email filtering for phishing — MFA is identity, not malware defense."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "MFA for malware and phishing email",
+          "whyItSeems": "\"Multifactor authentication\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security program\", Anti-malware software matches the required behavior — Multifactor authentication answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Endpoint: anti-malware/EDR for malicious files + email filtering for phishing — MFA is identity, not malware defense.",
+          "contrast": "Correct \"Anti-malware software\" vs wrong \"Multifactor authentication\": For \"security program\", Anti-malware software matches the required behavior — Multifactor authentication answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Software firewall as anti-malware",
+          "whyItSeems": "\"Software firewalls\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security program\", Anti-malware software matches the required behavior — Software firewalls answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Endpoint: anti-malware/EDR for malicious files + email filtering for phishing — MFA is identity, not malware defense.",
+          "contrast": "Correct \"Anti-malware software\" vs wrong \"Software firewalls\": For \"security program\", Anti-malware software matches the required behavior — Software firewalls answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Antivirus equals full endpoint protection",
+          "whyItSeems": "\"Antivirus software\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security program\", Anti-malware software matches the required behavior — Antivirus software answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Endpoint: anti-malware/EDR for malicious files + email filtering for phishing — MFA is identity, not malware defense.",
+          "contrast": "Correct \"Anti-malware software\" vs wrong \"Antivirus software\": For \"security program\", Anti-malware software matches the required behavior — Antivirus software answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.2-source-q007",
@@ -1573,7 +2353,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Tailgating controls: mantraps, security guards, turnstiles — not passwords."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Authentication stops tailgating",
+          "whyItSeems": "\"User authentication\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security program\", Mantraps matches the required behavior — User authentication answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Tailgating controls: mantraps, security guards, turnstiles — not passwords.",
+          "contrast": "Correct \"Mantraps\" vs wrong \"User authentication\": For \"security program\", Mantraps matches the required behavior — User authentication answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Passwords prevent tailgating",
+          "whyItSeems": "\"Strong passwords\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security program\", Mantraps matches the required behavior — Strong passwords answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Tailgating controls: mantraps, security guards, turnstiles — not passwords.",
+          "contrast": "Correct \"Mantraps\" vs wrong \"Strong passwords\": For \"security program\", Mantraps matches the required behavior — Strong passwords answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "WLAN SSID change for tailgating",
+          "whyItSeems": "\"Change SSIDs\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security program\", Mantraps matches the required behavior — Change SSIDs answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Tailgating controls: mantraps, security guards, turnstiles — not passwords.",
+          "contrast": "Correct \"Mantraps\" vs wrong \"Change SSIDs\": For \"security program\", Mantraps matches the required behavior — Change SSIDs answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     }
   ],
   "5.3": [
@@ -1626,7 +2432,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Privileged mode → enable secret (hashed). Line/login passwords are separate."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Invented password subcommand order",
+          "whyItSeems": "\"Router(config)#password enable Password20!\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Router(config)#enable secret Password20! matches the required behavior — Router(config)#password enable Password20! answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Router(config)#enable secret Password20!\" — not \"Router(config)#password enable Password20!\" — for what this stem actually tests.",
+          "contrast": "Correct \"Router(config)#enable secret Password20!\" vs wrong \"Router(config)#password enable Password20!\": For \"local device access\", Router(config)#enable secret Password20!"
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Omitting secret keyword",
+          "whyItSeems": "\"Router(config)#enable Password20!\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Router(config)#enable secret Password20! matches the required behavior — Router(config)#enable Password20! answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Router(config)#enable secret Password20!\" — not \"Router(config)#enable Password20!\" — for what this stem actually tests.",
+          "contrast": "Correct \"Router(config)#enable secret Password20!\" vs wrong \"Router(config)#enable Password20!\": For \"local device access\", Router(config)#enable secret Password20!"
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Reversed enable/secret tokens",
+          "whyItSeems": "\"Router(config)#secret enable Password20!\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Router(config)#enable secret Password20! matches the required behavior — Router(config)#secret enable Password20! answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Router(config)#enable secret Password20!\" — not \"Router(config)#secret enable Password20!\" — for what this stem actually tests.",
+          "contrast": "Correct \"Router(config)#enable secret Password20!\" vs wrong \"Router(config)#secret enable Password20!\": For \"local device access\", Router(config)#enable secret Password20!"
+        }
+      ]
     },
     {
       "id": "obj-5.3-source-q002",
@@ -1679,7 +2511,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Remote login (Telnet/SSH) → line vty first. Console → line console 0."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Configuring SVI when VTY lines are needed",
+          "whyItSeems": "\"Switch(config)#interface vlan 1\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Switch(config)#line vty 0 5 matches the required behavior — Switch(config)#interface vlan 1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Switch(config)#line vty 0 5\" — not \"Switch(config)#interface vlan 1\" — for what this stem actually tests.",
+          "contrast": "Correct \"Switch(config)#line vty 0 5\" vs wrong \"Switch(config)#interface vlan 1\": For \"local device access\", Switch(config)#line vty 0 5 matches the required behavior — Switch(config)#interface vlan 1 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Using console line for Telnet password",
+          "whyItSeems": "\"Switch(config)#line console 1\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Switch(config)#line vty 0 5 matches the required behavior — Switch(config)#line console 1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Switch(config)#line vty 0 5\" — not \"Switch(config)#line console 1\" — for what this stem actually tests.",
+          "contrast": "Correct \"Switch(config)#line vty 0 5\" vs wrong \"Switch(config)#line console 1\": For \"local device access\", Switch(config)#line vty 0 5 matches the required behavior — Switch(config)#line console 1 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Selecting aux line for Telnet configuration",
+          "whyItSeems": "\"Switch(config)#line aux 1\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Switch(config)#line vty 0 5 matches the required behavior — Switch(config)#line aux 1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Switch(config)#line vty 0 5\" — not \"Switch(config)#line aux 1\" — for what this stem actually tests.",
+          "contrast": "Correct \"Switch(config)#line vty 0 5\" vs wrong \"Switch(config)#line aux 1\": For \"local device access\", Switch(config)#line vty 0 5 matches the required behavior — Switch(config)#line aux 1 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.3-source-q003",
@@ -1730,7 +2588,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Troubleshoot enable: show running-config | include enable — look for enable secret first."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Wrong password typed as root cause",
+          "whyItSeems": "\"You originally entered the wrong password.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", The enable secret password is set to something else. matches the required behavior — You originally entered the wrong password. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Troubleshoot enable: show running-config | include enable — look for enable secret first.",
+          "contrast": "Correct \"The enable secret password is set to something else.\" vs wrong \"You originally entered the wrong password.\": For \"local device access\", The enable secret password is set to something else."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Special characters break enable password",
+          "whyItSeems": "\"The password Password20! contains a special character.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", The enable secret password is set to something else. matches the required behavior — The password Password20! contains a special character. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Troubleshoot enable: show running-config | include enable — look for enable secret first.",
+          "contrast": "Correct \"The enable secret password is set to something else.\" vs wrong \"The password Password20! contains a special character.\": For \"local device access\", The enable secret password is set to something else."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Password truncation on enable",
+          "whyItSeems": "\"The password is too long and has been truncated.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", The enable secret password is set to something else. matches the required behavior — The password is too long and has been truncated. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Troubleshoot enable: show running-config | include enable — look for enable secret first.",
+          "contrast": "Correct \"The enable secret password is set to something else.\" vs wrong \"The password is too long and has been truncated.\": For \"local device access\", The enable secret password is set to something else."
+        }
+      ]
     },
     {
       "id": "obj-5.3-source-q004",
@@ -1781,7 +2665,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "VTY password: line vty 0 4 → password <pwd> → login → transport input ssh."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "set password and request login",
+          "whyItSeems": "Router(config-line)#set password Password20! Router(config-line)#request login names a DHCP DORA message step that may not be the phase described in the stem.",
+          "whyWrongHere": "For \"local device access\", Router(config-line)#password Password20! Router(config-line)#login matches the required behavior — Router(config-line)#set password Password20! Router(config-line)#request login answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "VTY password: line vty 0 4 → password <pwd> → login → transport input ssh.",
+          "contrast": "Correct \"Router(config-line)#password Password20! Router(config-line)#login\" vs wrong \"Router(config-line)#set password Password20! Router(config-line)#request login\": For \"local device access\", Router(config-line)#password Password20!"
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "login password combined syntax",
+          "whyItSeems": "\"Router(config-line)#password Password20! Router(config-line)#login password\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Router(config-line)#password Password20! Router(config-line)#login matches the required behavior — Router(config-line)#password Password20! Router(config-line)#login password answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "VTY password: line vty 0 4 → password <pwd> → login → transport input ssh.",
+          "contrast": "Correct \"Router(config-line)#password Password20! Router(config-line)#login\" vs wrong \"Router(config-line)#password Password20! Router(config-line)#login password\": For \"local device access\", Router(config-line)#password Password20!"
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "login password single command",
+          "whyItSeems": "\"Router(config-line)#login password Password20!\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Router(config-line)#password Password20! Router(config-line)#login matches the required behavior — Router(config-line)#login password Password20! answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "VTY password: line vty 0 4 → password <pwd> → login → transport input ssh.",
+          "contrast": "Correct \"Router(config-line)#password Password20! Router(config-line)#login\" vs wrong \"Router(config-line)#login password Password20!\": For \"local device access\", Router(config-line)#password Password20!"
+        }
+      ]
     },
     {
       "id": "obj-5.3-source-q005",
@@ -1833,7 +2743,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Telnet fail messages: no password set = add password + login or username + login local."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Enable secret for vty login error",
+          "whyItSeems": "\"The enable secret is not set.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", The line login password is not set. matches the required behavior — The enable secret is not set. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Telnet fail messages: no password set = add password + login or username + login local.",
+          "contrast": "Correct \"The line login password is not set.\" vs wrong \"The enable secret is not set.\": For \"local device access\", The line login password is not set."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Enable password for vty login",
+          "whyItSeems": "\"The enable password is not set.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", The line login password is not set. matches the required behavior — The enable password is not set. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Telnet fail messages: no password set = add password + login or username + login local.",
+          "contrast": "Correct \"The line login password is not set.\" vs wrong \"The enable password is not set.\": For \"local device access\", The line login password is not set."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Line administratively down",
+          "whyItSeems": "\"The line is administratively down.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", The line login password is not set. matches the required behavior — The line is administratively down. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Telnet fail messages: no password set = add password + login or username + login local.",
+          "contrast": "Correct \"The line login password is not set.\" vs wrong \"The line is administratively down.\": For \"local device access\", The line login password is not set."
+        }
+      ]
     },
     {
       "id": "obj-5.3-source-q006",
@@ -1884,7 +2820,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SSH setup order: hostname → ip domain-name → crypto key generate rsa → ip ssh version 2."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Time/date before SSH keys",
+          "whyItSeems": "\"Setting the time and date\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Setting the hostname and domain name matches the required behavior — Setting the time and date answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSH setup order: hostname → ip domain-name → crypto key generate rsa → ip ssh version 2.",
+          "contrast": "Correct \"Setting the hostname and domain name\" vs wrong \"Setting the time and date\": For \"local device access\", Setting the hostname and domain name matches the required behavior — Setting the time and date answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Separate key strength prerequisite",
+          "whyItSeems": "\"Setting the key strength\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Setting the hostname and domain name matches the required behavior — Setting the key strength answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSH setup order: hostname → ip domain-name → crypto key generate rsa → ip ssh version 2.",
+          "contrast": "Correct \"Setting the hostname and domain name\" vs wrong \"Setting the key strength\": For \"local device access\", Setting the hostname and domain name matches the required behavior — Setting the key strength answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Key repository prerequisite",
+          "whyItSeems": "\"Setting the key repository\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Setting the hostname and domain name matches the required behavior — Setting the key repository answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSH setup order: hostname → ip domain-name → crypto key generate rsa → ip ssh version 2.",
+          "contrast": "Correct \"Setting the hostname and domain name\" vs wrong \"Setting the key repository\": For \"local device access\", Setting the hostname and domain name matches the required behavior — Setting the key repository answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.3-source-q007",
@@ -1935,7 +2897,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SSHv2: ip ssh version 2 + RSA modulus ≥ 768 (1024+ recommended) + transport input ssh on vty."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "SSH version on vty line",
+          "whyItSeems": "\"Router(config-line)#version 2\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Router(config)#ip ssh version 2 matches the required behavior — Router(config-line)#version 2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSHv2: ip ssh version 2 + RSA modulus ≥ 768 (1024+ recommended) + transport input ssh on vty.",
+          "contrast": "Correct \"Router(config)#ip ssh version 2\" vs wrong \"Router(config-line)#version 2\": For \"local device access\", Router(config)#ip ssh version 2 matches the required behavior — Router(config-line)#version 2 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "config-ssh submode",
+          "whyItSeems": "\"Router(config-ssh)#version 2\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Router(config)#ip ssh version 2 matches the required behavior — Router(config-ssh)#version 2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSHv2: ip ssh version 2 + RSA modulus ≥ 768 (1024+ recommended) + transport input ssh on vty.",
+          "contrast": "Correct \"Router(config)#ip ssh version 2\" vs wrong \"Router(config-ssh)#version 2\": For \"local device access\", Router(config)#ip ssh version 2 matches the required behavior — Router(config-ssh)#version 2 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "ssh version without ip keyword",
+          "whyItSeems": "\"Router(config)#ssh version 2\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Router(config)#ip ssh version 2 matches the required behavior — Router(config)#ssh version 2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSHv2: ip ssh version 2 + RSA modulus ≥ 768 (1024+ recommended) + transport input ssh on vty.",
+          "contrast": "Correct \"Router(config)#ip ssh version 2\" vs wrong \"Router(config)#ssh version 2\": For \"local device access\", Router(config)#ip ssh version 2 matches the required behavior — Router(config)#ssh version 2 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.3-source-q008",
@@ -1987,7 +2975,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "VTY transport: transport input ssh (SSH only) | transport input ssh telnet (both) | transport input none (lock out)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "login ssh telnet global",
+          "whyItSeems": "Switch(config)#login ssh telnet uses cleartext Telnet for remote device management.",
+          "whyWrongHere": "Device management (local device access): Switch(config-line)#transport ssh telnet protects credentials in transit — Switch(config)#login ssh telnet uses cleartext remote access.",
+          "memoryAnchor": "VTY transport: transport input ssh (SSH only) | transport input ssh telnet (both) | transport input none (lock out).",
+          "contrast": "Correct \"Switch(config-line)#transport ssh telnet\" vs wrong \"Switch(config)#login ssh telnet\": Device management (local device access): Switch(config-line)#transport ssh telnet protects credentials in transit — Switch(config)#login ssh telnet uses cleartext remote access."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "login ssh telnet on line",
+          "whyItSeems": "Switch(config-line)#login ssh telnet uses cleartext Telnet for remote device management.",
+          "whyWrongHere": "Device management (local device access): Switch(config-line)#transport ssh telnet protects credentials in transit — Switch(config-line)#login ssh telnet uses cleartext remote access.",
+          "memoryAnchor": "VTY transport: transport input ssh (SSH only) | transport input ssh telnet (both) | transport input none (lock out).",
+          "contrast": "Correct \"Switch(config-line)#transport ssh telnet\" vs wrong \"Switch(config-line)#login ssh telnet\": Device management (local device access): Switch(config-line)#transport ssh telnet protects credentials in transit — Switch(config-line)#login ssh telnet uses cleartext remote access."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "transport input in global config",
+          "whyItSeems": "Switch(config)#transport ssh telnet uses cleartext Telnet for remote device management.",
+          "whyWrongHere": "Device management (local device access): Switch(config-line)#transport ssh telnet protects credentials in transit — Switch(config)#transport ssh telnet uses cleartext remote access.",
+          "memoryAnchor": "VTY transport: transport input ssh (SSH only) | transport input ssh telnet (both) | transport input none (lock out).",
+          "contrast": "Correct \"Switch(config-line)#transport ssh telnet\" vs wrong \"Switch(config)#transport ssh telnet\": Device management (local device access): Switch(config-line)#transport ssh telnet protects credentials in transit — Switch(config)#transport ssh telnet uses cleartext remote access."
+        }
+      ]
     },
     {
       "id": "obj-5.3-source-q009",
@@ -2040,7 +3054,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Telnet = TCP/23 cleartext | SSH = TCP/22 encrypted — disable Telnet: transport input ssh."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Telnet has weak encryption",
+          "whyItSeems": "Telnet has weak encryption. uses cleartext Telnet for remote device management.",
+          "whyWrongHere": "Device management (local device access): SSH is encrypted. protects credentials in transit — Telnet has weak encryption. uses cleartext remote access.",
+          "memoryAnchor": "Telnet = TCP/23 cleartext | SSH = TCP/22 encrypted — disable Telnet: transport input ssh.",
+          "contrast": "Correct \"SSH is encrypted.\" vs wrong \"Telnet has weak encryption.\": Device management (local device access): SSH is encrypted."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "SSH file copy as main benefit",
+          "whyItSeems": "\"SSH allows for file copy.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", SSH is encrypted. matches the required behavior — SSH allows for file copy. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Telnet = TCP/23 cleartext | SSH = TCP/22 encrypted — disable Telnet: transport input ssh.",
+          "contrast": "Correct \"SSH is encrypted.\" vs wrong \"SSH allows for file copy.\": For \"local device access\", SSH is encrypted."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SSH simplifies ACL creation",
+          "whyItSeems": "\"SSH makes it easier to create ACLs for access.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", SSH is encrypted. matches the required behavior — SSH makes it easier to create ACLs for access. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Telnet = TCP/23 cleartext | SSH = TCP/22 encrypted — disable Telnet: transport input ssh.",
+          "contrast": "Correct \"SSH is encrypted.\" vs wrong \"SSH makes it easier to create ACLs for access.\": For \"local device access\", SSH is encrypted."
+        }
+      ]
     },
     {
       "id": "obj-5.3-source-q010",
@@ -2092,7 +3132,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Mgmt ACL: access-list 1 permit host <admin-ip> → line vty 0 15 → access-class 1 in."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "SVI access-group for vty management",
+          "whyItSeems": "Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#interface vlan 1 Switch(config-if)#ip access-group 1 in applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (local device access): Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-class 1 in uses the right ACL type and position — Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#interface vlan 1 Switch(config-if)#ip access-group 1 in mismatches standard vs extended rules.",
+          "memoryAnchor": "Mgmt ACL: access-list 1 permit host <admin-ip> → line vty 0 15 → access-class 1 in.",
+          "contrast": "Correct \"Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-class 1 in\" vs wrong \"Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#interface vlan 1 Switch(config-if)#ip access-group 1 in\": ACL placement/match (local device access): Switch(config)#access-list 1 permit host 192."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "ip access-group on vty line",
+          "whyItSeems": "Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-group 1 in applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (local device access): Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-class 1 in uses the right ACL type and position — Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-group 1 in mismatches standard vs extended rules.",
+          "memoryAnchor": "Mgmt ACL: access-list 1 permit host <admin-ip> → line vty 0 15 → access-class 1 in.",
+          "contrast": "Correct \"Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-class 1 in\" vs wrong \"Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-group 1 in\": ACL placement/match (local device access): Switch(config)#access-list 1 permit host 192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Global ip access-group for management",
+          "whyItSeems": "Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#ip access-group 1 in applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (local device access): Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-class 1 in uses the right ACL type and position — Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#ip access-group 1 in mismatches standard vs extended rules.",
+          "memoryAnchor": "Mgmt ACL: access-list 1 permit host <admin-ip> → line vty 0 15 → access-class 1 in.",
+          "contrast": "Correct \"Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-class 1 in\" vs wrong \"Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#ip access-group 1 in\": ACL placement/match (local device access): Switch(config)#access-list 1 permit host 192."
+        }
+      ]
     },
     {
       "id": "obj-5.3-source-q011",
@@ -2143,7 +3209,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SSHv2 fail: regenerate keys — crypto key generate rsa modulus 2048 then ip ssh version 2."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "NTP required for SSHv2",
+          "whyItSeems": "\"The time and date need to be corrected.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", The key strength needs to be 768 bits or higher. matches the required behavior — The time and date need to be corrected. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSHv2 fail: regenerate keys — crypto key generate rsa modulus 2048 then ip ssh version 2.",
+          "contrast": "Correct \"The key strength needs to be 768 bits or higher.\" vs wrong \"The time and date need to be corrected.\": For \"local device access\", The key strength needs to be 768 bits or higher."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "DNS for SSHv2 enablement",
+          "whyItSeems": "\"The DNS server is not configured.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", The key strength needs to be 768 bits or higher. matches the required behavior — The DNS server is not configured. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSHv2 fail: regenerate keys — crypto key generate rsa modulus 2048 then ip ssh version 2.",
+          "contrast": "Correct \"The key strength needs to be 768 bits or higher.\" vs wrong \"The DNS server is not configured.\": For \"local device access\", The key strength needs to be 768 bits or higher."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "DNS host record for SSHv2",
+          "whyItSeems": "\"There is no host record for the switch or router.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", The key strength needs to be 768 bits or higher. matches the required behavior — There is no host record for the switch or router. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSHv2 fail: regenerate keys — crypto key generate rsa modulus 2048 then ip ssh version 2.",
+          "contrast": "Correct \"The key strength needs to be 768 bits or higher.\" vs wrong \"There is no host record for the switch or router.\": For \"local device access\", The key strength needs to be 768 bits or higher."
+        }
+      ]
     },
     {
       "id": "obj-5.3-source-q012",
@@ -2195,7 +3287,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Prefer username bob secret <pwd> (hashed) over password (weak) + login local on vty."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "account submode for local user",
+          "whyItSeems": "\"Router(config)#account user1 Router(config-acct)#password Password20!\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Router(config)#username user1 password Password20! matches the required behavior — Router(config)#account user1 Router(config-acct)#password Password20! answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Prefer username bob secret <pwd> (hashed) over password (weak) + login local on vty.",
+          "contrast": "Correct \"Router(config)#username user1 password Password20!\" vs wrong \"Router(config)#account user1 Router(config-acct)#password Password20!\": For \"local device access\", Router(config)#username user1 password Password20!"
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "user without username keyword",
+          "whyItSeems": "\"Router(config)#user user1 Password20!\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Router(config)#username user1 password Password20! matches the required behavior — Router(config)#user user1 Password20! answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Prefer username bob secret <pwd> (hashed) over password (weak) + login local on vty.",
+          "contrast": "Correct \"Router(config)#username user1 password Password20!\" vs wrong \"Router(config)#user user1 Password20!\": For \"local device access\", Router(config)#username user1 password Password20!"
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "user-account command",
+          "whyItSeems": "\"Router(config)#user-account user1 password Password20!\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Router(config)#username user1 password Password20! matches the required behavior — Router(config)#user-account user1 password Password20! answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Prefer username bob secret <pwd> (hashed) over password (weak) + login local on vty.",
+          "contrast": "Correct \"Router(config)#username user1 password Password20!\" vs wrong \"Router(config)#user-account user1 password Password20!\": For \"local device access\", Router(config)#username user1 password Password20!"
+        }
+      ]
     },
     {
       "id": "obj-5.3-source-q013",
@@ -2247,7 +3365,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Verify SSH: show ip ssh — keys present, version 2.0, timeout/authentication retries."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Wrong crypto key word order",
+          "whyItSeems": "\"Router(config)#generate crypto key rsa\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Router(config)#crypto key generate rsa matches the required behavior — Router(config)#generate crypto key rsa answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Verify SSH: show ip ssh — keys present, version 2.0, timeout/authentication retries.",
+          "contrast": "Correct \"Router(config)#crypto key generate rsa\" vs wrong \"Router(config)#generate crypto key rsa\": For \"local device access\", Router(config)#crypto key generate rsa matches the required behavior — Router(config)#generate crypto key rsa answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "crypto generate key word order",
+          "whyItSeems": "\"Router(config)#crypto generate key rsa\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Router(config)#crypto key generate rsa matches the required behavior — Router(config)#crypto generate key rsa answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Verify SSH: show ip ssh — keys present, version 2.0, timeout/authentication retries.",
+          "contrast": "Correct \"Router(config)#crypto key generate rsa\" vs wrong \"Router(config)#crypto generate key rsa\": For \"local device access\", Router(config)#crypto key generate rsa matches the required behavior — Router(config)#crypto generate key rsa answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "RSA key in exec mode only",
+          "whyItSeems": "\"Router#crypto key generate rsa\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Router(config)#crypto key generate rsa matches the required behavior — Router#crypto key generate rsa answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Verify SSH: show ip ssh — keys present, version 2.0, timeout/authentication retries.",
+          "contrast": "Correct \"Router(config)#crypto key generate rsa\" vs wrong \"Router#crypto key generate rsa\": For \"local device access\", Router(config)#crypto key generate rsa matches the required behavior — Router#crypto key generate rsa answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.3-source-q014",
@@ -2297,7 +3441,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Line timeout: exec-timeout 30 0 = 30 min idle | exec-timeout 0 0 = never disconnect."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "exec-timeout in global config",
+          "whyItSeems": "\"Switch(config)#exec-timeout 0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Switch(config-line)#exec-timeout 0 0 matches the required behavior — Switch(config)#exec-timeout 0 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Line timeout: exec-timeout 30 0 = 30 min idle | exec-timeout 0 0 = never disconnect.",
+          "contrast": "Correct \"Switch(config-line)#exec-timeout 0 0\" vs wrong \"Switch(config)#exec-timeout 0\": For \"local device access\", Switch(config-line)#exec-timeout 0 0 matches the required behavior — Switch(config)#exec-timeout 0 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "timeout without exec keyword",
+          "whyItSeems": "\"Switch(config-line)#timeout 0 0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Switch(config-line)#exec-timeout 0 0 matches the required behavior — Switch(config-line)#timeout 0 0 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Line timeout: exec-timeout 30 0 = 30 min idle | exec-timeout 0 0 = never disconnect.",
+          "contrast": "Correct \"Switch(config-line)#exec-timeout 0 0\" vs wrong \"Switch(config-line)#timeout 0 0\": For \"local device access\", Switch(config-line)#exec-timeout 0 0 matches the required behavior — Switch(config-line)#timeout 0 0 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "no exec-timeout disables timeout",
+          "whyItSeems": "\"Switch(config-line)#no exec-timeout\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Switch(config-line)#exec-timeout 0 0 matches the required behavior — Switch(config-line)#no exec-timeout answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Line timeout: exec-timeout 30 0 = 30 min idle | exec-timeout 0 0 = never disconnect.",
+          "contrast": "Correct \"Switch(config-line)#exec-timeout 0 0\" vs wrong \"Switch(config-line)#no exec-timeout\": For \"local device access\", Switch(config-line)#exec-timeout 0 0 matches the required behavior — Switch(config-line)#no exec-timeout answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.3-source-q015",
@@ -2349,7 +3519,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "show users / show line: * = your session | clear line vty <n> kicks another admin."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Always console when asterisk shown",
+          "whyItSeems": "\"Console 0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", VTY 0 matches the required behavior — Console 0 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "show users / show line: * = your session | clear line vty <n> kicks another admin.",
+          "contrast": "Correct \"VTY 0\" vs wrong \"Console 0\": For \"local device access\", VTY 0 matches the required behavior — Console 0 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Idle vty as current session",
+          "whyItSeems": "\"VTY 1\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", VTY 0 matches the required behavior — VTY 1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "show users / show line: * = your session | clear line vty <n> kicks another admin.",
+          "contrast": "Correct \"VTY 0\" vs wrong \"VTY 1\": For \"local device access\", VTY 0 matches the required behavior — VTY 1 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Nonexistent vty line",
+          "whyItSeems": "\"VTY 2\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", VTY 0 matches the required behavior — VTY 2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "show users / show line: * = your session | clear line vty <n> kicks another admin.",
+          "contrast": "Correct \"VTY 0\" vs wrong \"VTY 2\": For \"local device access\", VTY 0 matches the required behavior — VTY 2 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.3-source-q016",
@@ -2404,7 +3600,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Local auth chain: username → line vty 0 15 → login local → transport input ssh."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "aaa new-model for basic local login",
+          "whyItSeems": "\"Switch(config)#new aaa model\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Switch(config-line)#login local matches the required behavior — Switch(config)#new aaa model answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local auth chain: username → line vty 0 15 → login local → transport input ssh.",
+          "contrast": "Correct \"Switch(config-line)#login local\" vs wrong \"Switch(config)#new aaa model\": For \"local device access\", Switch(config-line)#login local matches the required behavior — Switch(config)#new aaa model answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "local authentication global",
+          "whyItSeems": "\"Switch(config)#local authentication\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Switch(config-line)#login local matches the required behavior — Switch(config)#local authentication answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local auth chain: username → line vty 0 15 → login local → transport input ssh.",
+          "contrast": "Correct \"Switch(config-line)#login local\" vs wrong \"Switch(config)#local authentication\": For \"local device access\", Switch(config-line)#login local matches the required behavior — Switch(config)#local authentication answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "local authentication on line",
+          "whyItSeems": "\"Switch(config-line)#local authentication\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Switch(config-line)#login local matches the required behavior — Switch(config-line)#local authentication answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local auth chain: username → line vty 0 15 → login local → transport input ssh.",
+          "contrast": "Correct \"Switch(config-line)#login local\" vs wrong \"Switch(config-line)#local authentication\": For \"local device access\", Switch(config-line)#login local matches the required behavior — Switch(config-line)#local authentication answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.3-source-q017",
@@ -2454,7 +3676,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "exec-timeout <minutes> <seconds> on line con 0 and line vty — default is often 10 0."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "exec-timeout in global config",
+          "whyItSeems": "\"Switch(config)#exec-timeout 30 0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Switch(config-line)#exec-timeout 30 0 matches the required behavior — Switch(config)#exec-timeout 30 0 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "exec-timeout <minutes> <seconds> on line con 0 and line vty — default is often 10 0.",
+          "contrast": "Correct \"Switch(config-line)#exec-timeout 30 0\" vs wrong \"Switch(config)#exec-timeout 30 0\": For \"local device access\", Switch(config-line)#exec-timeout 30 0 matches the required behavior — Switch(config)#exec-timeout 30 0 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Reversed exec-timeout fields",
+          "whyItSeems": "\"Switch(config-line)#exec-timeout 0 30\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Switch(config-line)#exec-timeout 30 0 matches the required behavior — Switch(config-line)#exec-timeout 0 30 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "exec-timeout <minutes> <seconds> on line con 0 and line vty — default is often 10 0.",
+          "contrast": "Correct \"Switch(config-line)#exec-timeout 30 0\" vs wrong \"Switch(config-line)#exec-timeout 0 30\": For \"local device access\", Switch(config-line)#exec-timeout 30 0 matches the required behavior — Switch(config-line)#exec-timeout 0 30 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "timeout without exec keyword",
+          "whyItSeems": "\"Switch(config-line)#timeout 30 0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Switch(config-line)#exec-timeout 30 0 matches the required behavior — Switch(config-line)#timeout 30 0 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "exec-timeout <minutes> <seconds> on line con 0 and line vty — default is often 10 0.",
+          "contrast": "Correct \"Switch(config-line)#exec-timeout 30 0\" vs wrong \"Switch(config-line)#timeout 30 0\": For \"local device access\", Switch(config-line)#exec-timeout 30 0 matches the required behavior — Switch(config-line)#timeout 30 0 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.3-source-q018",
@@ -2505,7 +3753,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Kick user: show users → note line → clear line vty <n> (confirm when prompted)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "no enable secret disconnects user",
+          "whyItSeems": "\"Switch(config)#no enable secret\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Switch#clear line vty 2 matches the required behavior — Switch(config)#no enable secret answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Kick user: show users → note line → clear line vty <n> (confirm when prompted).",
+          "contrast": "Correct \"Switch#clear line vty 2\" vs wrong \"Switch(config)#no enable secret\": For \"local device access\", Switch#clear line vty 2 matches the required behavior — Switch(config)#no enable secret answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "no line vty to disconnect",
+          "whyItSeems": "\"Switch#no line vty 2\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Switch#clear line vty 2 matches the required behavior — Switch#no line vty 2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Kick user: show users → note line → clear line vty <n> (confirm when prompted).",
+          "contrast": "Correct \"Switch#clear line vty 2\" vs wrong \"Switch#no line vty 2\": For \"local device access\", Switch#clear line vty 2 matches the required behavior — Switch#no line vty 2 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "disconnect line command",
+          "whyItSeems": "\"Switch#disconnect line vty 2\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Switch#clear line vty 2 matches the required behavior — Switch#disconnect line vty 2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Kick user: show users → note line → clear line vty <n> (confirm when prompted).",
+          "contrast": "Correct \"Switch#clear line vty 2\" vs wrong \"Switch#disconnect line vty 2\": For \"local device access\", Switch#clear line vty 2 matches the required behavior — Switch#disconnect line vty 2 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.3-source-q019",
@@ -2555,7 +3829,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Banners: login (pre-auth) | MOTD (pre-auth warning) | exec (post-auth, authenticated only)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "MOTD for authenticated users only",
+          "whyItSeems": "\"MOTD banner\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Exec banner matches the required behavior — MOTD banner answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Banners: login (pre-auth) | MOTD (pre-auth warning) | exec (post-auth, authenticated only).",
+          "contrast": "Correct \"Exec banner\" vs wrong \"MOTD banner\": For \"local device access\", Exec banner matches the required behavior — MOTD banner answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Login banner post-authentication",
+          "whyItSeems": "\"Login banner\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Exec banner matches the required behavior — Login banner answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Banners: login (pre-auth) | MOTD (pre-auth warning) | exec (post-auth, authenticated only).",
+          "contrast": "Correct \"Exec banner\" vs wrong \"Login banner\": For \"local device access\", Exec banner matches the required behavior — Login banner answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Incoming banner for all connections",
+          "whyItSeems": "\"Incoming banner\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local device access\", Exec banner matches the required behavior — Incoming banner answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Banners: login (pre-auth) | MOTD (pre-auth warning) | exec (post-auth, authenticated only).",
+          "contrast": "Correct \"Exec banner\" vs wrong \"Incoming banner\": For \"local device access\", Exec banner matches the required behavior — Incoming banner answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.4-source-q001",
@@ -2608,7 +3908,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "AAA factors: something you know (password) | have (token/smart card) | are (biometric)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Certificates as time-limited session creds",
+          "whyItSeems": "\"Certificate\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"password policy\", Token matches the required behavior — Certificate answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AAA factors: something you know (password) | have (token/smart card) | are (biometric).",
+          "contrast": "Correct \"Token\" vs wrong \"Certificate\": For \"password policy\", Token matches the required behavior — Certificate answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Smart card as time-limited token",
+          "whyItSeems": "\"Smart card\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"password policy\", Token matches the required behavior — Smart card answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AAA factors: something you know (password) | have (token/smart card) | are (biometric).",
+          "contrast": "Correct \"Token\" vs wrong \"Smart card\": For \"password policy\", Token matches the required behavior — Smart card answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "License as session authentication",
+          "whyItSeems": "\"License\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"password policy\", Token matches the required behavior — License answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AAA factors: something you know (password) | have (token/smart card) | are (biometric).",
+          "contrast": "Correct \"Token\" vs wrong \"License\": For \"password policy\", Token matches the required behavior — License answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.4-source-q002",
@@ -2660,7 +3986,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Cleartext in show run → service password-encryption. Best practice: enable secret + SSH."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Wrong global encryption command",
+          "whyItSeems": "\"Router(config)#password encryption\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"password policy\", Router(config)#service password-encryption matches the required behavior — Router(config)#password encryption answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Router(config)#service password-encryption\" — not \"Router(config)#password encryption\" — for what this stem actually tests.",
+          "contrast": "Correct \"Router(config)#service password-encryption\" vs wrong \"Router(config)#password encryption\": For \"password policy\", Router(config)#service password-encryption matches the required behavior — Router(config)#password encryption answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Truncated service command",
+          "whyItSeems": "\"Router(config)#service encryption\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"password policy\", Router(config)#service password-encryption matches the required behavior — Router(config)#service encryption answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Router(config)#service password-encryption\" — not \"Router(config)#service encryption\" — for what this stem actually tests.",
+          "contrast": "Correct \"Router(config)#service password-encryption\" vs wrong \"Router(config)#service encryption\": For \"password policy\", Router(config)#service password-encryption matches the required behavior — Router(config)#service encryption answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Reversed service keywords",
+          "whyItSeems": "\"Router(config)#password-encryption service\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"password policy\", Router(config)#service password-encryption matches the required behavior — Router(config)#password-encryption service answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Router(config)#service password-encryption\" — not \"Router(config)#password-encryption service\" — for what this stem actually tests.",
+          "contrast": "Correct \"Router(config)#service password-encryption\" vs wrong \"Router(config)#password-encryption service\": For \"password policy\", Router(config)#service password-encryption matches the required behavior — Router(config)#password-encryption service answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.4-source-q003",
@@ -2713,7 +4065,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Strong enable: enable algorithm-type scrypt secret <pwd> | Type 5 = MD5 | Type 7 = weak reversible."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "enable secret 9 without algorithm keyword",
+          "whyItSeems": "\"Switch(config)#enable secret 9\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"password policy\", Switch(config)#enable algorithm-type scrypt secret Password20! matches the required behavior — Switch(config)#enable secret 9 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Strong enable: enable algorithm-type scrypt secret <pwd> | Type 5 = MD5 | Type 7 = weak reversible.",
+          "contrast": "Correct \"Switch(config)#enable algorithm-type scrypt secret Password20!\" vs wrong \"Switch(config)#enable secret 9\": For \"password policy\", Switch(config)#enable algorithm-type scrypt secret Password20!"
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "service password-encryption for scrypt",
+          "whyItSeems": "\"Switch(config)#service password-encryption scrypt\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"password policy\", Switch(config)#enable algorithm-type scrypt secret Password20! matches the required behavior — Switch(config)#service password-encryption scrypt answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Strong enable: enable algorithm-type scrypt secret <pwd> | Type 5 = MD5 | Type 7 = weak reversible.",
+          "contrast": "Correct \"Switch(config)#enable algorithm-type scrypt secret Password20!\" vs wrong \"Switch(config)#service password-encryption scrypt\": For \"password policy\", Switch(config)#enable algorithm-type scrypt secret Password20!"
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "enable secret algorithm without password",
+          "whyItSeems": "\"Switch(config)#enable secret algorithm-type scrypt\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"password policy\", Switch(config)#enable algorithm-type scrypt secret Password20! matches the required behavior — Switch(config)#enable secret algorithm-type scrypt answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Strong enable: enable algorithm-type scrypt secret <pwd> | Type 5 = MD5 | Type 7 = weak reversible.",
+          "contrast": "Correct \"Switch(config)#enable algorithm-type scrypt secret Password20!\" vs wrong \"Switch(config)#enable secret algorithm-type scrypt\": For \"password policy\", Switch(config)#enable algorithm-type scrypt secret Password20!"
+        }
+      ]
     },
     {
       "id": "obj-5.4-source-q004",
@@ -2764,7 +4142,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Password types: line password = cleartext | enable secret = hashed | username secret = hashed local user."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "MD5 default for line password",
+          "whyItSeems": "\"MD5\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"password policy\", Clear text matches the required behavior — MD5 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Password types: line password = cleartext | enable secret = hashed | username secret = hashed local user.",
+          "contrast": "Correct \"Clear text\" vs wrong \"MD5\": For \"password policy\", Clear text matches the required behavior — MD5 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "SHA-128 default line encryption",
+          "whyItSeems": "\"SHA-128\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"password policy\", Clear text matches the required behavior — SHA-128 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Password types: line password = cleartext | enable secret = hashed | username secret = hashed local user.",
+          "contrast": "Correct \"Clear text\" vs wrong \"SHA-128\": For \"password policy\", Clear text matches the required behavior — SHA-128 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SHA-256 default for line password",
+          "whyItSeems": "\"SHA-256\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"password policy\", Clear text matches the required behavior — SHA-256 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Password types: line password = cleartext | enable secret = hashed | username secret = hashed local user.",
+          "contrast": "Correct \"Clear text\" vs wrong \"SHA-256\": For \"password policy\", Clear text matches the required behavior — SHA-256 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.4-source-q005",
@@ -2816,7 +4220,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "MFA examples: password + OTP, password + smart card/PIN, password + biometric."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Smart card as single factor",
+          "whyItSeems": "\"Single-factor authentication\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"password policy\", Multifactor authentication matches the required behavior — Single-factor authentication answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "MFA examples: password + OTP, password + smart card/PIN, password + biometric.",
+          "contrast": "Correct \"Multifactor authentication\" vs wrong \"Single-factor authentication\": For \"password policy\", Multifactor authentication matches the required behavior — Single-factor authentication answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "RADIUS as auth factor category",
+          "whyItSeems": "\"RADIUS authentication\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"password policy\", Multifactor authentication matches the required behavior — RADIUS authentication answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "MFA examples: password + OTP, password + smart card/PIN, password + biometric.",
+          "contrast": "Correct \"Multifactor authentication\" vs wrong \"RADIUS authentication\": For \"password policy\", Multifactor authentication matches the required behavior — RADIUS authentication answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "AD as factor type for smart card",
+          "whyItSeems": "\"Active Directory authentication\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"password policy\", Multifactor authentication matches the required behavior — Active Directory authentication answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "MFA examples: password + OTP, password + smart card/PIN, password + biometric.",
+          "contrast": "Correct \"Multifactor authentication\" vs wrong \"Active Directory authentication\": For \"password policy\", Multifactor authentication matches the required behavior — Active Directory authentication answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.4-source-q006",
@@ -2868,7 +4298,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Account policy: complexity + lockout + expiration — complexity is the direct anti-guessing control."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Expiration prevents password guessing",
+          "whyItSeems": "\"Password expiration\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"password policy\", Password complexity matches the required behavior — Password expiration answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Account policy: complexity + lockout + expiration — complexity is the direct anti-guessing control.",
+          "contrast": "Correct \"Password complexity\" vs wrong \"Password expiration\": For \"password policy\", Password complexity matches the required behavior — Password expiration answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Phishing protection for password attacks",
+          "whyItSeems": "\"Phishing protection\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"password policy\", Password complexity matches the required behavior — Phishing protection answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Account policy: complexity + lockout + expiration — complexity is the direct anti-guessing control.",
+          "contrast": "Correct \"Password complexity\" vs wrong \"Phishing protection\": For \"password policy\", Password complexity matches the required behavior — Phishing protection answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Time restrictions prevent password attacks",
+          "whyItSeems": "Time restrictions names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "For \"password policy\", Password complexity matches the required behavior — Time restrictions answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Account policy: complexity + lockout + expiration — complexity is the direct anti-guessing control.",
+          "contrast": "Correct \"Password complexity\" vs wrong \"Time restrictions\": For \"password policy\", Password complexity matches the required behavior — Time restrictions answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     }
   ],
   "5.5": [
@@ -2918,7 +4374,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ACL order trap → first match wins. Place explicit permits before catch-all deny."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Bottom-up ACL processing",
+          "whyItSeems": "\"Bottom-up\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"processing order\", Top-down, first match wins matches the required behavior — Bottom-up answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Top-down, first match wins\" — not \"Bottom-up\" — for what this stem actually tests.",
+          "contrast": "Correct \"Top-down, first match wins\" vs wrong \"Bottom-up\": For \"processing order\", Top-down, first match wins matches the required behavior — Bottom-up answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Assuming automatic most-specific-first",
+          "whyItSeems": "\"Most-specific first automatically\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"processing order\", Top-down, first match wins matches the required behavior — Most-specific first automatically answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Top-down, first match wins\" — not \"Most-specific first automatically\" — for what this stem actually tests.",
+          "contrast": "Correct \"Top-down, first match wins\" vs wrong \"Most-specific first automatically\": For \"processing order\", Top-down, first match wins matches the required behavior — Most-specific first automatically answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Random ACL matching",
+          "whyItSeems": "\"Randomly\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"processing order\", Top-down, first match wins matches the required behavior — Randomly answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Top-down, first match wins\" — not \"Randomly\" — for what this stem actually tests.",
+          "contrast": "Correct \"Top-down, first match wins\" vs wrong \"Randomly\": For \"processing order\", Top-down, first match wins matches the required behavior — Randomly answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.5-c-q2",
@@ -2950,7 +4432,17 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "No match at bottom of ACL → implicit deny all."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Believing ACLs permit by default",
+          "whyItSeems": "False states the opposite of the tested fact about implicit deny.",
+          "whyWrongHere": "For \"implicit deny\", True matches the required behavior — False answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "No match at bottom of ACL → implicit deny all.",
+          "contrast": "Correct \"True\" vs wrong \"False\": For \"implicit deny\", True matches the required behavior — False answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.5-c-q3",
@@ -2998,7 +4490,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Extended ACL → near source. Standard ACL → near destination."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Applying extended ACL placement rule to standard ACL",
+          "whyItSeems": "\"Close to the source\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"standard placement\", Close to the destination matches the required behavior — Close to the source answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Close to the destination\" — not \"Close to the source\" — for what this stem actually tests.",
+          "contrast": "Correct \"Close to the destination\" vs wrong \"Close to the source\": For \"standard placement\", Close to the destination matches the required behavior — Close to the source answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Over-applying ACLs network-wide",
+          "whyItSeems": "\"On every interface\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"standard placement\", Close to the destination matches the required behavior — On every interface answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Close to the destination\" — not \"On every interface\" — for what this stem actually tests.",
+          "contrast": "Correct \"Close to the destination\" vs wrong \"On every interface\": For \"standard placement\", Close to the destination matches the required behavior — On every interface answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Restricting ACL placement to trunk interfaces",
+          "whyItSeems": "Only on trunks expects VLAN tags on a link that should behave as access-only in this stem.",
+          "whyWrongHere": "For \"standard placement\", Close to the destination matches the required behavior — Only on trunks answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Close to the destination\" — not \"Only on trunks\" — for what this stem actually tests.",
+          "contrast": "Correct \"Close to the destination\" vs wrong \"Only on trunks\": For \"standard placement\", Close to the destination matches the required behavior — Only on trunks answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.5-c-q4",
@@ -3046,7 +4564,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Extended ACL → near source; standard ACL → near destination."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Extended near destination",
+          "whyItSeems": "\"Close to the destination\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "The stem asks what gets learned (extended placement). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
+          "memoryAnchor": "Extended → near source; standard → near destination.",
+          "contrast": "Correct \"Close to the source\" vs wrong \"Close to the destination\": The stem asks what gets learned (extended placement)."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Root bridge for ACL",
+          "whyItSeems": "\"On the root bridge\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"extended placement\", Close to the source matches the required behavior — On the root bridge answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Extended → near source; standard → near destination.",
+          "contrast": "Correct \"Close to the source\" vs wrong \"On the root bridge\": For \"extended placement\", Close to the source matches the required behavior — On the root bridge answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "DHCP for ACL place",
+          "whyItSeems": "\"On the DHCP server\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"extended placement\", Close to the source matches the required behavior — On the DHCP server answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Extended → near source; standard → near destination.",
+          "contrast": "Correct \"Close to the source\" vs wrong \"On the DHCP server\": For \"extended placement\", Close to the source matches the required behavior — On the DHCP server answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.5-c-q5",
@@ -3094,7 +4638,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "/24 ACL wildcard = 0.0.0.255 (invert the mask)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Mask as wildcard",
+          "whyItSeems": "\"255.255.255.0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Mask/wildcard (wildcard mask): 0.0.0.255 uses the mask style this stem requires — 255.255.255.0 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "/24 ACL wildcard = 0.0.0.255 (invert the mask).",
+          "contrast": "Correct \"0.0.0.255\" vs wrong \"255.255.255.0\": Mask/wildcard (wildcard mask): 0."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Host wildcard for /24",
+          "whyItSeems": "\"0.0.0.0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Mask/wildcard (wildcard mask): 0.0.0.255 uses the mask style this stem requires — 0.0.0.0 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "/24 ACL wildcard = 0.0.0.255 (invert the mask).",
+          "contrast": "Correct \"0.0.0.255\" vs wrong \"0.0.0.0\": Mask/wildcard (wildcard mask): 0."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Any-match as /24 wildcard",
+          "whyItSeems": "\"255.255.255.255\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Mask/wildcard (wildcard mask): 0.0.0.255 uses the mask style this stem requires — 255.255.255.255 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "/24 ACL wildcard = 0.0.0.255 (invert the mask).",
+          "contrast": "Correct \"0.0.0.255\" vs wrong \"255.255.255.255\": Mask/wildcard (wildcard mask): 0."
+        }
+      ]
     },
     {
       "id": "5.5-c-q6",
@@ -3142,7 +4712,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Standard ACL = 1–99; extended = 100–199."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Extended range as standard",
+          "whyItSeems": "\"100–199\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"standard range\", 1–99 matches the required behavior — 100–199 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Standard ACL = 1–99; extended = 100–199.",
+          "contrast": "Correct \"1–99\" vs wrong \"100–199\": For \"standard range\", 1–99 matches the required behavior — 100–199 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Wrong ACL number block",
+          "whyItSeems": "\"200–299\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"standard range\", 1–99 matches the required behavior — 200–299 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Standard ACL = 1–99; extended = 100–199.",
+          "contrast": "Correct \"1–99\" vs wrong \"200–299\": For \"standard range\", 1–99 matches the required behavior — 200–299 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Expanded-only as standard",
+          "whyItSeems": "\"1300–2699 only\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"standard range\", 1–99 matches the required behavior — 1300–2699 only answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Standard ACL = 1–99; extended = 100–199.",
+          "contrast": "Correct \"1–99\" vs wrong \"1300–2699 only\": For \"standard range\", 1–99 matches the required behavior — 1300–2699 only answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.5-c-q7",
@@ -3190,7 +4786,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Need port/protocol filter → extended ACL."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Thinking only extended matches source",
+          "whyItSeems": "\"Source IP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"extended match\", Destination IP, protocol, and port matches the required behavior — Source IP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Need port/protocol filter → extended ACL.",
+          "contrast": "Correct \"Destination IP, protocol, and port\" vs wrong \"Source IP\": For \"extended match\", Destination IP, protocol, and port matches the required behavior — Source IP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Interface name in ACE",
+          "whyItSeems": "\"Interface name\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"extended match\", Destination IP, protocol, and port matches the required behavior — Interface name answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Need port/protocol filter → extended ACL.",
+          "contrast": "Correct \"Destination IP, protocol, and port\" vs wrong \"Interface name\": For \"extended match\", Destination IP, protocol, and port matches the required behavior — Interface name answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "VLAN ID in standard vs extended",
+          "whyItSeems": "\"VLAN ID\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"extended match\", Destination IP, protocol, and port matches the required behavior — VLAN ID answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Need port/protocol filter → extended ACL.",
+          "contrast": "Correct \"Destination IP, protocol, and port\" vs wrong \"VLAN ID\": For \"extended match\", Destination IP, protocol, and port matches the required behavior — VLAN ID answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.5-c-q8",
@@ -3238,7 +4860,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Apply ACL on interface → ip access-group <num> in|out."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "access-list as apply",
+          "whyItSeems": "access-list 100 in applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (apply acl): ip access-group 100 in uses the right ACL type and position — access-list 100 in mismatches standard vs extended rules.",
+          "memoryAnchor": "Apply ACL → ip access-group <num> in|out.",
+          "contrast": "Correct \"ip access-group 100 in\" vs wrong \"access-list 100 in\": ACL placement/match (apply acl): ip access-group 100 in uses the right ACL type and position — access-list 100 in mismatches standard vs extended rules."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Define vs apply ACL",
+          "whyItSeems": "ip access-list 100 inbound applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (apply acl): ip access-group 100 in uses the right ACL type and position — ip access-list 100 inbound mismatches standard vs extended rules.",
+          "memoryAnchor": "Apply ACL → ip access-group <num> in|out.",
+          "contrast": "Correct \"ip access-group 100 in\" vs wrong \"ip access-list 100 inbound\": ACL placement/match (apply acl): ip access-group 100 in uses the right ACL type and position — ip access-list 100 inbound mismatches standard vs extended rules."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented apply acl",
+          "whyItSeems": "\"apply acl 100 in\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"apply acl\", ip access-group 100 in matches the required behavior — apply acl 100 in answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Apply ACL → ip access-group <num> in|out.",
+          "contrast": "Correct \"ip access-group 100 in\" vs wrong \"apply acl 100 in\": For \"apply acl\", ip access-group 100 in matches the required behavior — apply acl 100 in answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.5-c-q9",
@@ -3286,7 +4934,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Put specific denies before broad permits — first match wins."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "ACLs ignore deny",
+          "whyItSeems": "\"ACLs ignore deny rules\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"order matters\", First match wins — the permit matches first matches the required behavior — ACLs ignore deny rules answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Put specific denies before broad permits — first match wins.",
+          "contrast": "Correct \"First match wins — the permit matches first\" vs wrong \"ACLs ignore deny rules\": For \"order matters\", First match wins — the permit matches first matches the required behavior — ACLs ignore deny rules answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Wildcard fixes order",
+          "whyItSeems": "\"Deny rules need a wildcard\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"order matters\", First match wins — the permit matches first matches the required behavior — Deny rules need a wildcard answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Put specific denies before broad permits — first match wins.",
+          "contrast": "Correct \"First match wins — the permit matches first\" vs wrong \"Deny rules need a wildcard\": For \"order matters\", First match wins — the permit matches first matches the required behavior — Deny rules need a wildcard answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Unapplied as order issue",
+          "whyItSeems": "\"The ACL is not applied\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"order matters\", First match wins — the permit matches first matches the required behavior — The ACL is not applied answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Put specific denies before broad permits — first match wins.",
+          "contrast": "Correct \"First match wins — the permit matches first\" vs wrong \"The ACL is not applied\": For \"order matters\", First match wins — the permit matches first matches the required behavior — The ACL is not applied answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q001",
@@ -3336,7 +5010,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Standard ACL 1–99. Extended ACL 100–199. Match range to ACL type."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Including 100 in standard ACL range",
+          "whyItSeems": "\"1 to 100\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", 1 to 99 matches the required behavior — 1 to 100 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"1 to 99\" — not \"1 to 100\" — for what this stem actually tests.",
+          "contrast": "Correct \"1 to 99\" vs wrong \"1 to 100\": For \"identify\", 1 to 99 matches the required behavior — 1 to 100 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Confusing extended range with standard",
+          "whyItSeems": "\"100 to 199\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", 1 to 99 matches the required behavior — 100 to 199 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"1 to 99\" — not \"100 to 199\" — for what this stem actually tests.",
+          "contrast": "Correct \"1 to 99\" vs wrong \"100 to 199\": For \"identify\", 1 to 99 matches the required behavior — 100 to 199 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Off-by-range ACL numbering",
+          "whyItSeems": "\"100 to 200\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", 1 to 99 matches the required behavior — 100 to 200 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"1 to 99\" — not \"100 to 200\" — for what this stem actually tests.",
+          "contrast": "Correct \"1 to 99\" vs wrong \"100 to 200\": For \"identify\", 1 to 99 matches the required behavior — 100 to 200 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q002",
@@ -3386,7 +5086,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Standard = source only | Extended = src/dst IP + protocol + ports — place standard ACLs close to destination."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Standard ACL destination matching",
+          "whyItSeems": "\"Conditions can be based upon only the destination address.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "The stem asks what gets learned (statement). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
+          "memoryAnchor": "Standard = source only | Extended = src/dst IP + protocol + ports — place standard ACLs close to destination.",
+          "contrast": "Correct \"Conditions can be based upon only the source address.\" vs wrong \"Conditions can be based upon only the destination address.\": The stem asks what gets learned (statement)."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Standard ACL source port matching",
+          "whyItSeems": "\"Conditions can be based upon only the source address and source port.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", Conditions can be based upon only the source address. matches the required behavior — Conditions can be based upon only the source address and source port. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Standard = source only | Extended = src/dst IP + protocol + ports — place standard ACLs close to destination.",
+          "contrast": "Correct \"Conditions can be based upon only the source address.\" vs wrong \"Conditions can be based upon only the source address and source port.\": For \"statement\", Conditions can be based upon only the source address."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Standard ACL L4 and destination",
+          "whyItSeems": "\"Conditions can be based upon the source or destination address and source or destination port.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "CAM learning stores one mapping per arrival (statement): Conditions can be based upon only the source address. — not both addresses as table entries.",
+          "memoryAnchor": "Standard = source only | Extended = src/dst IP + protocol + ports — place standard ACLs close to destination.",
+          "contrast": "Correct \"Conditions can be based upon only the source address.\" vs wrong \"Conditions can be based upon the source or destination address and source or destination port.\": CAM learning stores one mapping per arrival (statement): Conditions can be based upon only the source address."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q003",
@@ -3436,7 +5162,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Numbered ACLs: 1–99/1300–1999 standard; 100–199/2000–2699 extended."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Standard range for extended ACL",
+          "whyItSeems": "\"1 to 99\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", 100 to 199 matches the required behavior — 1 to 99 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Numbered ACLs: 1–99/1300–1999 standard; 100–199/2000–2699 extended.",
+          "contrast": "Correct \"100 to 199\" vs wrong \"1 to 99\": For \"identify\", 100 to 199 matches the required behavior — 1 to 99 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Off-by-one extended ACL range",
+          "whyItSeems": "\"1 to 100\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", 100 to 199 matches the required behavior — 1 to 100 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Numbered ACLs: 1–99/1300–1999 standard; 100–199/2000–2699 extended.",
+          "contrast": "Correct \"100 to 199\" vs wrong \"1 to 100\": For \"identify\", 100 to 199 matches the required behavior — 1 to 100 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Extended range ending at 200",
+          "whyItSeems": "\"100 to 200\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", 100 to 199 matches the required behavior — 100 to 200 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Numbered ACLs: 1–99/1300–1999 standard; 100–199/2000–2699 extended.",
+          "contrast": "Correct \"100 to 199\" vs wrong \"100 to 200\": For \"identify\", 100 to 199 matches the required behavior — 100 to 200 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q004",
@@ -3486,7 +5238,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Always add explicit permit for needed traffic — implicit deny drops everything else."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Implicit permit any any",
+          "whyItSeems": "\"permit any any\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "ACL syntax (identify): deny any any matches the required match fields — permit any any uses the wrong wildcard or match scope.",
+          "memoryAnchor": "Always add explicit permit for needed traffic — implicit deny drops everything else.",
+          "contrast": "Correct \"deny any any\" vs wrong \"permit any any\": ACL syntax (identify): deny any any matches the required match fields — permit any any uses the wrong wildcard or match scope."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Implicit log all",
+          "whyItSeems": "\"log all\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", deny any any matches the required behavior — log all answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Always add explicit permit for needed traffic — implicit deny drops everything else.",
+          "contrast": "Correct \"deny any any\" vs wrong \"log all\": For \"identify\", deny any any matches the required behavior — log all answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Visible end-of-ACL marker",
+          "whyItSeems": "\"End of ACL marker\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", deny any any matches the required behavior — End of ACL marker answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Always add explicit permit for needed traffic — implicit deny drops everything else.",
+          "contrast": "Correct \"deny any any\" vs wrong \"End of ACL marker\": For \"identify\", deny any any matches the required behavior — End of ACL marker answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q005",
@@ -3536,7 +5314,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Order matters: place specific permits before broad denies — first hit sticks."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Last match wins",
+          "whyItSeems": "\"Packets are compared sequentially against each line in an access list, and the last matching condition is the action taken.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "ACL type/placement (statement): Packets are compared sequentially against each line in an access list until a match is made. matches match fields and placement — Packets are compared sequentially against each line in an access list, and the last matching condition is the action taken. mixes standard vs extended rules or position.",
+          "memoryAnchor": "Order matters: place specific permits before broad denies — first hit sticks.",
+          "contrast": "Correct \"Packets are compared sequentially against each line in an access list until a match is made.\" vs wrong \"Packets are compared sequentially against each line in an access list, and the last matching condition is the action taken.\": ACL type/placement (statement): Packets are compared sequentially against each line in an access list until a match is made."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Default permit when no match",
+          "whyItSeems": "\"Packets are compared, and if no matching rule exists, they are allowed.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "ACL type/placement (statement): Packets are compared sequentially against each line in an access list until a match is made. matches match fields and placement — Packets are compared, and if no matching rule exists, they are allowed. mixes standard vs extended rules or position.",
+          "memoryAnchor": "Order matters: place specific permits before broad denies — first hit sticks.",
+          "contrast": "Correct \"Packets are compared sequentially against each line in an access list until a match is made.\" vs wrong \"Packets are compared, and if no matching rule exists, they are allowed.\": ACL type/placement (statement): Packets are compared sequentially against each line in an access list until a match is made."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Implicit allow at ACL end",
+          "whyItSeems": "\"At the end of the ACL, there is an implicit allow.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "ACL type/placement (statement): Packets are compared sequentially against each line in an access list until a match is made. matches match fields and placement — At the end of the ACL, there is an implicit allow. mixes standard vs extended rules or position.",
+          "memoryAnchor": "Order matters: place specific permits before broad denies — first hit sticks.",
+          "contrast": "Correct \"Packets are compared sequentially against each line in an access list until a match is made.\" vs wrong \"At the end of the ACL, there is an implicit allow.\": ACL type/placement (statement): Packets are compared sequentially against each line in an access list until a match is made."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q006",
@@ -3586,7 +5390,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Standard ACL = fast, coarse (source IP) | Extended = slower, precise — place standard near destination."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Standard ACL more secure",
+          "whyItSeems": "\"More secure\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Less processing overhead matches the required behavior — More secure answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Standard ACL = fast, coarse (source IP) | Extended = slower, precise — place standard near destination.",
+          "contrast": "Correct \"Less processing overhead\" vs wrong \"More secure\": For \"identify\", Less processing overhead matches the required behavior — More secure answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Standard ACL for granular rules",
+          "whyItSeems": "\"More specific rules\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Less processing overhead matches the required behavior — More specific rules answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Standard ACL = fast, coarse (source IP) | Extended = slower, precise — place standard near destination.",
+          "contrast": "Correct \"Less processing overhead\" vs wrong \"More specific rules\": For \"identify\", Less processing overhead matches the required behavior — More specific rules answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Standard ACL blocks applications",
+          "whyItSeems": "\"Blocking of applications\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Less processing overhead matches the required behavior — Blocking of applications answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Standard ACL = fast, coarse (source IP) | Extended = slower, precise — place standard near destination.",
+          "contrast": "Correct \"Less processing overhead\" vs wrong \"Blocking of applications\": For \"identify\", Less processing overhead matches the required behavior — Blocking of applications answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q007",
@@ -3636,7 +5466,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ACL numbers: 1–99 / 1300–1999 standard | 100–199 / 2000–2699 extended."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "1000-1999 as expanded standard",
+          "whyItSeems": "\"1000 to 1999\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", 1300 to 1999 matches the required behavior — 1000 to 1999 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL numbers: 1–99 / 1300–1999 standard | 100–199 / 2000–2699 extended.",
+          "contrast": "Correct \"1300 to 1999\" vs wrong \"1000 to 1999\": For \"identify\", 1300 to 1999 matches the required behavior — 1000 to 1999 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "1100-1299 ACL range",
+          "whyItSeems": "\"1100 to 1299\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", 1300 to 1999 matches the required behavior — 1100 to 1299 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL numbers: 1–99 / 1300–1999 standard | 100–199 / 2000–2699 extended.",
+          "contrast": "Correct \"1300 to 1999\" vs wrong \"1100 to 1299\": For \"identify\", 1300 to 1999 matches the required behavior — 1100 to 1299 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "2000-2699 as standard ACL",
+          "whyItSeems": "\"2000 to 2699\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", 1300 to 1999 matches the required behavior — 2000 to 2699 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL numbers: 1–99 / 1300–1999 standard | 100–199 / 2000–2699 extended.",
+          "contrast": "Correct \"1300 to 1999\" vs wrong \"2000 to 2699\": For \"identify\", 1300 to 1999 matches the required behavior — 2000 to 2699 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q008",
@@ -3687,7 +5543,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Wildcard = inverse of mask. /12 → 0.15.255.255 for 172.16.0.0/12."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Using subnet mask as wildcard",
+          "whyItSeems": "\"255.240.0.0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wildcard\", 0.15.255.255 matches the required behavior — 255.240.0.0 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"0.15.255.255\" — not \"255.240.0.0\" — for what this stem actually tests.",
+          "contrast": "Correct \"0.15.255.255\" vs wrong \"255.240.0.0\": For \"wildcard\", 0."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Scrambled wildcard octets",
+          "whyItSeems": "\"0.0.240.255\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wildcard\", 0.15.255.255 matches the required behavior — 0.0.240.255 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"0.15.255.255\" — not \"0.0.240.255\" — for what this stem actually tests.",
+          "contrast": "Correct \"0.15.255.255\" vs wrong \"0.0.240.255\": For \"wildcard\", 0."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented mask/wildcard",
+          "whyItSeems": "\"255.3.0.0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wildcard\", 0.15.255.255 matches the required behavior — 255.3.0.0 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"0.15.255.255\" — not \"255.3.0.0\" — for what this stem actually tests.",
+          "contrast": "Correct \"0.15.255.255\" vs wrong \"255.3.0.0\": For \"wildcard\", 0."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q009",
@@ -3737,7 +5619,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Extended range for standard filter",
+          "whyItSeems": "Router(config)#ip access-list 100 192.168.1.0 0.0.0.255 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (configure): Router(config)#ip access-list 20 192.168.1.0 0.0.0.255 uses the right ACL type and position — Router(config)#ip access-list 100 192.168.1.0 0.0.0.255 mismatches standard vs extended rules.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#ip access-list 20 192.168.1.0 0.0.0.255\" vs wrong \"Router(config)#ip access-list 100 192.168.1.0 0.0.0.255\": ACL placement/match (configure): Router(config)#ip access-list 20 192."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "CIDR notation in ACL",
+          "whyItSeems": "Router(config)#ip access-list 1 192.168.1.0/24 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (configure): Router(config)#ip access-list 20 192.168.1.0 0.0.0.255 uses the right ACL type and position — Router(config)#ip access-list 1 192.168.1.0/24 mismatches standard vs extended rules.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#ip access-list 20 192.168.1.0 0.0.0.255\" vs wrong \"Router(config)#ip access-list 1 192.168.1.0/24\": ACL placement/match (configure): Router(config)#ip access-list 20 192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Subnet mask as wildcard",
+          "whyItSeems": "Router(config)#ip access-list 2 192.168.1.0 255.255.255.0 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (configure): Router(config)#ip access-list 20 192.168.1.0 0.0.0.255 uses the right ACL type and position — Router(config)#ip access-list 2 192.168.1.0 255.255.255.0 mismatches standard vs extended rules.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#ip access-list 20 192.168.1.0 0.0.0.255\" vs wrong \"Router(config)#ip access-list 2 192.168.1.0 255.255.255.0\": ACL placement/match (configure): Router(config)#ip access-list 20 192."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q010",
@@ -3788,7 +5696,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Wildcard pair as broadcast definition",
+          "whyItSeems": "Defining the broadcast address describes flooding the frame to multiple ports in the VLAN.",
+          "whyWrongHere": "For \"you configure a rule with the address of 0\", Defining all addresses matches the required behavior — Defining the broadcast address answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Defining all addresses\" vs wrong \"Defining the broadcast address\": For \"you configure a rule with the address of 0\", Defining all addresses matches the required behavior — Defining the broadcast address answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Match-none wildcard pair",
+          "whyItSeems": "\"Defining no addresses\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"you configure a rule with the address of 0\", Defining all addresses matches the required behavior — Defining no addresses answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Defining all addresses\" vs wrong \"Defining no addresses\": For \"you configure a rule with the address of 0\", Defining all addresses matches the required behavior — Defining no addresses answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Network address wildcard confusion",
+          "whyItSeems": "\"Defining the network address\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"you configure a rule with the address of 0\", Defining all addresses matches the required behavior — Defining the network address answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Defining all addresses\" vs wrong \"Defining the network address\": For \"you configure a rule with the address of 0\", Defining all addresses matches the required behavior — Defining the network address answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q011",
@@ -3838,7 +5772,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Single direction only misunderstood",
+          "whyItSeems": "\"An ACL can be applied in only one direction.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", All of the above. matches the required behavior — An ACL can be applied in only one direction. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"All of the above.\" vs wrong \"An ACL can be applied in only one direction.\": For \"statement\", All of the above."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Single protocol limit missed",
+          "whyItSeems": "\"An ACL can be applied only to a single protocol.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", All of the above. matches the required behavior — An ACL can be applied only to a single protocol. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"All of the above.\" vs wrong \"An ACL can be applied only to a single protocol.\": For \"statement\", All of the above."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Single ACL per port missed",
+          "whyItSeems": "\"An ACL can be applied only to a single port.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", All of the above. matches the required behavior — An ACL can be applied only to a single port. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"All of the above.\" vs wrong \"An ACL can be applied only to a single port.\": For \"statement\", All of the above."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q012",
@@ -3888,7 +5848,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Filter by port/protocol → extended ACL; source IP only → standard."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Standard ACL for port/application filter",
+          "whyItSeems": "\"Standard\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"application\", Extended matches the required behavior — Standard answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Filter by port/protocol → extended ACL; source IP only → standard.",
+          "contrast": "Correct \"Extended\" vs wrong \"Standard\": For \"application\", Extended matches the required behavior — Standard answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Dynamic ACL for static app filter",
+          "whyItSeems": "\"Dynamic\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"application\", Extended matches the required behavior — Dynamic answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Filter by port/protocol → extended ACL; source IP only → standard.",
+          "contrast": "Correct \"Extended\" vs wrong \"Dynamic\": For \"application\", Extended matches the required behavior — Dynamic answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Expanded as ACL type for applications",
+          "whyItSeems": "\"Expanded\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"application\", Extended matches the required behavior — Expanded answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Filter by port/protocol → extended ACL; source IP only → standard.",
+          "contrast": "Correct \"Extended\" vs wrong \"Expanded\": For \"application\", Extended matches the required behavior — Expanded answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q013",
@@ -3938,7 +5924,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Wrong thousand-range for extended expanded",
+          "whyItSeems": "\"1000 to 1999\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", 2000 to 2699 matches the required behavior — 1000 to 1999 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"2000 to 2699\" vs wrong \"1000 to 1999\": For \"identify\", 2000 to 2699 matches the required behavior — 1000 to 1999 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented ACL range",
+          "whyItSeems": "\"1100 to 1299\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", 2000 to 2699 matches the required behavior — 1100 to 1299 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"2000 to 2699\" vs wrong \"1100 to 1299\": For \"identify\", 2000 to 2699 matches the required behavior — 1100 to 1299 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Standard expanded range for extended",
+          "whyItSeems": "\"1300 to 1999\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", 2000 to 2699 matches the required behavior — 1300 to 1999 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"2000 to 2699\" vs wrong \"1300 to 1999\": For \"identify\", 2000 to 2699 matches the required behavior — 1300 to 1999 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q014",
@@ -3989,7 +6001,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Subnet mask used as wildcard",
+          "whyItSeems": "\"255.255.255.128\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Mask/wildcard (wildcard): 0.0.0.127 uses the mask style this stem requires — 255.255.255.128 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"0.0.0.127\" vs wrong \"255.255.255.128\": Mask/wildcard (wildcard): 0."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invalid wildcard 0.0.0.128",
+          "whyItSeems": "\"0.0.0.128\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Mask/wildcard (wildcard): 0.0.0.127 uses the mask style this stem requires — 0.0.0.128 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"0.0.0.127\" vs wrong \"0.0.0.128\": Mask/wildcard (wildcard): 0."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "/26 wildcard for /25 network",
+          "whyItSeems": "\"0.0.0.63\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Mask/wildcard (wildcard): 0.0.0.127 uses the mask style this stem requires — 0.0.0.63 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"0.0.0.127\" vs wrong \"0.0.0.63\": Mask/wildcard (wildcard): 0."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q015",
@@ -4039,7 +6077,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Standard ACL line delete",
+          "whyItSeems": "\"Standard\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"removing\", Named matches the required behavior — Standard answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Named\" vs wrong \"Standard\": For \"removing\", Named matches the required behavior — Standard answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Dynamic ACL for line edit",
+          "whyItSeems": "\"Dynamic\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"removing\", Named matches the required behavior — Dynamic answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Named\" vs wrong \"Dynamic\": For \"removing\", Named matches the required behavior — Dynamic answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Extended type for line delete",
+          "whyItSeems": "\"Extended\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"removing\", Named matches the required behavior — Extended answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Named\" vs wrong \"Extended\": For \"removing\", Named matches the required behavior — Extended answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q016",
@@ -4089,7 +6153,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Standard ACL for auth-triggered open",
+          "whyItSeems": "\"Standard\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"someone has successfully logged into the router\", Dynamic matches the required behavior — Standard answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Dynamic\" vs wrong \"Standard\": For \"someone has successfully logged into the router\", Dynamic matches the required behavior — Standard answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Extended ACL for login open",
+          "whyItSeems": "\"Extended\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"someone has successfully logged into the router\", Dynamic matches the required behavior — Extended answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Dynamic\" vs wrong \"Extended\": For \"someone has successfully logged into the router\", Dynamic matches the required behavior — Extended answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Named ACL as dynamic",
+          "whyItSeems": "\"Named\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"someone has successfully logged into the router\", Dynamic matches the required behavior — Named answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Dynamic\" vs wrong \"Named\": For \"someone has successfully logged into the router\", Dynamic matches the required behavior — Named answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q017",
@@ -4139,7 +6229,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Extended ACL numbered as standard",
+          "whyItSeems": "Router(config)#access-list 180 permit udp any 172.16.0.0 0.255.255.255 eq 161 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255 uses the right ACL type and position — Router(config)#access-list 180 permit udp any 172.16.0.0 0.255.255.255 eq 161 mismatches standard vs extended rules.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255\" vs wrong \"Router(config)#access-list 180 permit udp any 172.16.0.0 0.255.255.255 eq 161\": ACL placement/match (statement): Router(config)#access-list 20 deny 172."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Duplicate permit keyword",
+          "whyItSeems": "Router(config)#access-list 130 permit permit ip any any applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255 uses the right ACL type and position — Router(config)#access-list 130 permit permit ip any any mismatches standard vs extended rules.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255\" vs wrong \"Router(config)#access-list 130 permit permit ip any any\": ACL placement/match (statement): Router(config)#access-list 20 deny 172."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Standard ACL with any as source",
+          "whyItSeems": "Router(config)#access-list 150 deny any 172.16.0.0 0.255.255.255 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255 uses the right ACL type and position — Router(config)#access-list 150 deny any 172.16.0.0 0.255.255.255 mismatches standard vs extended rules.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255\" vs wrong \"Router(config)#access-list 150 deny any 172.16.0.0 0.255.255.255\": ACL placement/match (statement): Router(config)#access-list 20 deny 172."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q018",
@@ -4189,7 +6305,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Host permit without permit keyword",
+          "whyItSeems": "Router(config)#access-list 5 permit 192.168.1.5 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 5 permit host 192.168.1.5 uses the right ACL type and position — Router(config)#access-list 5 permit 192.168.1.5 mismatches standard vs extended rules.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#access-list 5 permit host 192.168.1.5\" vs wrong \"Router(config)#access-list 5 permit 192.168.1.5\": ACL placement/match (statement): Router(config)#access-list 5 permit host 192."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "CIDR in standard ACL",
+          "whyItSeems": "Router(config)#access-list 5 permit 192.168.1.5/24 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 5 permit host 192.168.1.5 uses the right ACL type and position — Router(config)#access-list 5 permit 192.168.1.5/24 mismatches standard vs extended rules.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#access-list 5 permit host 192.168.1.5\" vs wrong \"Router(config)#access-list 5 permit 192.168.1.5/24\": ACL placement/match (statement): Router(config)#access-list 5 permit host 192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Subnet instead of host keyword",
+          "whyItSeems": "Router(config)#access-list 5 permit 192.168.1.0 0.0.0.255 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 5 permit host 192.168.1.5 uses the right ACL type and position — Router(config)#access-list 5 permit 192.168.1.0 0.0.0.255 mismatches standard vs extended rules.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#access-list 5 permit host 192.168.1.5\" vs wrong \"Router(config)#access-list 5 permit 192.168.1.0 0.0.0.255\": ACL placement/match (statement): Router(config)#access-list 5 permit host 192."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q019",
@@ -4241,7 +6383,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "permit any any without ip keyword",
+          "whyItSeems": "Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (internet): Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any uses the right ACL type and position — Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any mismatches standard vs extended rules.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any\" vs wrong \"Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any\": ACL placement/match (internet): Router(config)#access-list 101 deny tcp host 192."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Missing tcp on deny line",
+          "whyItSeems": "Router(config)#access-list 101 deny host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (internet): Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any uses the right ACL type and position — Router(config)#access-list 101 deny host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any mismatches standard vs extended rules.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any\" vs wrong \"Router(config)#access-list 101 deny host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any\": ACL placement/match (internet): Router(config)#access-list 101 deny tcp host 192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Port filter on permit any",
+          "whyItSeems": "Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any eq 80 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (internet): Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any uses the right ACL type and position — Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any eq 80 mismatches standard vs extended rules.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any\" vs wrong \"Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any eq 80\": ACL placement/match (internet): Router(config)#access-list 101 deny tcp host 192."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q020",
@@ -4291,7 +6459,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Extended as source-only",
+          "whyItSeems": "\"Extended\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"describing\", Standard matches the required behavior — Extended answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Standard\" vs wrong \"Extended\": For \"describing\", Standard matches the required behavior — Extended answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Named as source-only type",
+          "whyItSeems": "\"Named\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"describing\", Standard matches the required behavior — Named answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Standard\" vs wrong \"Named\": For \"describing\", Standard matches the required behavior — Named answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Dynamic as source-only",
+          "whyItSeems": "\"Dynamic\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"describing\", Standard matches the required behavior — Dynamic answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Standard\" vs wrong \"Dynamic\": For \"describing\", Standard matches the required behavior — Dynamic answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q021",
@@ -4342,7 +6536,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "ip protocol with port operator",
+          "whyItSeems": "Router(config)#access-list 90 deny ip host 192.168.1.5 eq 22 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 199 deny tcp any host 192.168.1.5 eq 22 uses the right ACL type and position — Router(config)#access-list 90 deny ip host 192.168.1.5 eq 22 mismatches standard vs extended rules.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#access-list 199 deny tcp any host 192.168.1.5 eq 22\" vs wrong \"Router(config)#access-list 90 deny ip host 192.168.1.5 eq 22\": ACL placement/match (statement): Router(config)#access-list 199 deny tcp any host 192."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Standard ACL with port",
+          "whyItSeems": "Router(config)#access-list 90 deny tcp any host 192.168.1.5 eq 22 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 199 deny tcp any host 192.168.1.5 eq 22 uses the right ACL type and position — Router(config)#access-list 90 deny tcp any host 192.168.1.5 eq 22 mismatches standard vs extended rules.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#access-list 199 deny tcp any host 192.168.1.5 eq 22\" vs wrong \"Router(config)#access-list 90 deny tcp any host 192.168.1.5 eq 22\": ACL placement/match (statement): Router(config)#access-list 199 deny tcp any host 192."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Telnet port for SSH block",
+          "whyItSeems": "Router(config)#access-list 199 deny tcp host 192.168.1.5 any eq 23 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 199 deny tcp any host 192.168.1.5 eq 22 uses the right ACL type and position — Router(config)#access-list 199 deny tcp host 192.168.1.5 any eq 23 mismatches standard vs extended rules.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#access-list 199 deny tcp any host 192.168.1.5 eq 22\" vs wrong \"Router(config)#access-list 199 deny tcp host 192.168.1.5 any eq 23\": ACL placement/match (statement): Router(config)#access-list 199 deny tcp any host 192."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q022",
@@ -4394,7 +6614,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Standard ACL for L4 filter",
+          "whyItSeems": "\"Standard\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"requirement\", Extended matches the required behavior — Standard answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Extended\" vs wrong \"Standard\": For \"requirement\", Extended matches the required behavior — Standard answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Dynamic for static web block",
+          "whyItSeems": "\"Dynamic\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"requirement\", Extended matches the required behavior — Dynamic answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Extended\" vs wrong \"Dynamic\": For \"requirement\", Extended matches the required behavior — Dynamic answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Expanded ACL type",
+          "whyItSeems": "\"Expanded\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"requirement\", Extended matches the required behavior — Expanded answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Extended\" vs wrong \"Expanded\": For \"requirement\", Extended matches the required behavior — Expanded answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q023",
@@ -4444,7 +6690,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Standard ACL with port",
+          "whyItSeems": "Router(config)#access-list 99 deny tcp host 192.168.2.7 eq 443 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any uses the right ACL type and position — Router(config)#access-list 99 deny tcp host 192.168.2.7 eq 443 mismatches standard vs extended rules.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any\" vs wrong \"Router(config)#access-list 99 deny tcp host 192.168.2.7 eq 443\": ACL placement/match (statement): Router(config)#access-list 143 permit tcp host 192."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Malformed deny any host",
+          "whyItSeems": "Router(config)#access-list 189 deny any host 192.168.1.5 eq 22 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any uses the right ACL type and position — Router(config)#access-list 189 deny any host 192.168.1.5 eq 22 mismatches standard vs extended rules.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any\" vs wrong \"Router(config)#access-list 189 deny any host 192.168.1.5 eq 22\": ACL placement/match (statement): Router(config)#access-list 143 permit tcp host 192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Malformed permit any host",
+          "whyItSeems": "Router(config)#access-list 153 permit any host 192.168.4.5 eq 22 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (statement): Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any uses the right ACL type and position — Router(config)#access-list 153 permit any host 192.168.4.5 eq 22 mismatches standard vs extended rules.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any\" vs wrong \"Router(config)#access-list 153 permit any host 192.168.4.5 eq 22\": ACL placement/match (statement): Router(config)#access-list 143 permit tcp host 192."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q024",
@@ -4494,7 +6766,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Filter traffic on an interface → ip access-group <num> in|out under config-if."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Global ip access-list for interface filter",
+          "whyItSeems": "Router(config)#ip access-list 198 in fast 0/1 applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (interface): Router(config-if)#ip access-group 198 in uses the right ACL type and position — Router(config)#ip access-list 198 in fast 0/1 mismatches standard vs extended rules.",
+          "memoryAnchor": "Filter traffic on an interface → ip access-group <num> in|out under config-if.",
+          "contrast": "Correct \"Router(config-if)#ip access-group 198 in\" vs wrong \"Router(config)#ip access-list 198 in fast 0/1\": ACL placement/match (interface): Router(config-if)#ip access-group 198 in uses the right ACL type and position — Router(config)#ip access-list 198 in fast 0/1 mismatches standard vs extended rules."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "ACL definition command as apply command",
+          "whyItSeems": "Router(config-if)#ip access-list 198 in applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (interface): Router(config-if)#ip access-group 198 in uses the right ACL type and position — Router(config-if)#ip access-list 198 in mismatches standard vs extended rules.",
+          "memoryAnchor": "Filter traffic on an interface → ip access-group <num> in|out under config-if.",
+          "contrast": "Correct \"Router(config-if)#ip access-group 198 in\" vs wrong \"Router(config-if)#ip access-list 198 in\": ACL placement/match (interface): Router(config-if)#ip access-group 198 in uses the right ACL type and position — Router(config-if)#ip access-list 198 in mismatches standard vs extended rules."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "access-class for interface data filtering",
+          "whyItSeems": "\"Router(config-if)#ip access-class 198 in\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"interface\", Router(config-if)#ip access-group 198 in matches the required behavior — Router(config-if)#ip access-class 198 in answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Filter traffic on an interface → ip access-group <num> in|out under config-if.",
+          "contrast": "Correct \"Router(config-if)#ip access-group 198 in\" vs wrong \"Router(config-if)#ip access-class 198 in\": For \"interface\", Router(config-if)#ip access-group 198 in matches the required behavior — Router(config-if)#ip access-class 198 in answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q025",
@@ -4546,7 +6844,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "ACL inbound on user interface",
+          "whyItSeems": "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Mask/wildcard (topology): Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out uses the mask style this stem requires — Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out\" vs wrong \"Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in\": Mask/wildcard (topology): Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out uses the mask style this stem requires — Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in confuses subnet mask with ACL/OSPF wildcard bits."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "ACL outbound on user interface",
+          "whyItSeems": "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Mask/wildcard (topology): Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out uses the mask style this stem requires — Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out\" vs wrong \"Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out\": Mask/wildcard (topology): Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out uses the mask style this stem requires — Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out confuses subnet mask with ACL/OSPF wildcard bits."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "ACL inbound on HR interface",
+          "whyItSeems": "Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 in states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Mask/wildcard (topology): Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out uses the mask style this stem requires — Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 in confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out\" vs wrong \"Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 in\": Mask/wildcard (topology): Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out uses the mask style this stem requires — Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 in confuses subnet mask with ACL/OSPF wildcard bits."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q026",
@@ -4598,7 +6922,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Non-IP show access-list variant",
+          "whyItSeems": "\"Switch#show access-list named_list\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "ACL type/placement (named_list): Switch#show ip access-list matches match fields and placement — Switch#show access-list named_list mixes standard vs extended rules or position.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Switch#show ip access-list\" vs wrong \"Switch#show access-list named_list\": ACL type/placement (named_list): Switch#show ip access-list matches match fields and placement — Switch#show access-list named_list mixes standard vs extended rules or position."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Named-only show when all lists keyed",
+          "whyItSeems": "Switch#show ip access-list named_list is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (named_list): Switch#show ip access-list inspects the right table or state — Switch#show ip access-list named_list shows unrelated information.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Switch#show ip access-list\" vs wrong \"Switch#show ip access-list named_list\": Verification command (named_list): Switch#show ip access-list inspects the right table or state — Switch#show ip access-list named_list shows unrelated information."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Running-config for seq numbers",
+          "whyItSeems": "Switch#show running-configuration is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (named_list): Switch#show ip access-list inspects the right table or state — Switch#show running-configuration shows unrelated information.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Switch#show ip access-list\" vs wrong \"Switch#show running-configuration\": Verification command (named_list): Switch#show ip access-list inspects the right table or state — Switch#show running-configuration shows unrelated information."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q027",
@@ -4648,7 +6998,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Standard ACL at source",
+          "whyItSeems": "\"Standard\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"acl\", Extended matches the required behavior — Standard answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Extended\" vs wrong \"Standard\": For \"acl\", Extended matches the required behavior — Standard answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Dynamic ACL placement rule",
+          "whyItSeems": "\"Dynamic\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"acl\", Extended matches the required behavior — Dynamic answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Extended\" vs wrong \"Dynamic\": For \"acl\", Extended matches the required behavior — Dynamic answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Expanded ACL placement",
+          "whyItSeems": "\"Expanded\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"acl\", Extended matches the required behavior — Expanded answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Extended\" vs wrong \"Expanded\": For \"acl\", Extended matches the required behavior — Expanded answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q028",
@@ -4698,7 +7074,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "allow keyword in ACL",
+          "whyItSeems": "Router(config)#access-list 101 allow host 192.168.1.5 any applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (extended): Router(config)#ip access-list extended named_list uses the right ACL type and position — Router(config)#access-list 101 allow host 192.168.1.5 any mismatches standard vs extended rules.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#ip access-list extended named_list\" vs wrong \"Router(config)#access-list 101 allow host 192.168.1.5 any\": ACL placement/match (extended): Router(config)#ip access-list extended named_list uses the right ACL type and position — Router(config)#access-list 101 allow host 192."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Missing extended keyword",
+          "whyItSeems": "\"Router(config)#ip access-list named_list\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "ACL type/placement (extended): Router(config)#ip access-list extended named_list matches match fields and placement — Router(config)#ip access-list named_list mixes standard vs extended rules or position.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#ip access-list extended named_list\" vs wrong \"Router(config)#ip access-list named_list\": ACL type/placement (extended): Router(config)#ip access-list extended named_list matches match fields and placement — Router(config)#ip access-list named_list mixes standard vs extended rules or position."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Number and name combined",
+          "whyItSeems": "Router(config)#ip access-list 101 named_list applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (extended): Router(config)#ip access-list extended named_list uses the right ACL type and position — Router(config)#ip access-list 101 named_list mismatches standard vs extended rules.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#ip access-list extended named_list\" vs wrong \"Router(config)#ip access-list 101 named_list\": ACL placement/match (extended): Router(config)#ip access-list extended named_list uses the right ACL type and position — Router(config)#ip access-list 101 named_list mismatches standard vs extended rules."
+        }
+      ]
     },
     {
       "id": "obj-5.6-source-q029",
@@ -4748,7 +7150,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Extended ACL at destination",
+          "whyItSeems": "\"Extended\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"destination\", Standard matches the required behavior — Extended answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Standard\" vs wrong \"Extended\": For \"destination\", Standard matches the required behavior — Extended answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Dynamic ACL placement default",
+          "whyItSeems": "\"Dynamic\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"destination\", Standard matches the required behavior — Dynamic answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Standard\" vs wrong \"Dynamic\": For \"destination\", Standard matches the required behavior — Dynamic answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Expanded ACL at destination",
+          "whyItSeems": "\"Expanded\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"destination\", Standard matches the required behavior — Expanded answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ACL placement: standard → near destination | extended → near source | wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Standard\" vs wrong \"Expanded\": For \"destination\", Standard matches the required behavior — Expanded answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     }
   ],
   "5.6": [
@@ -4800,7 +7228,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DHCP snooping → L2 switch access ports in VLAN. Mark trusted uplinks to real server."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "DHCP server must run on the L2 switch",
+          "whyItSeems": "\"The DHCP server is running on the layer 2 switch.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", The device is on a layer 2 switched port on the same VLAN. matches the required behavior — The DHCP server is running on the layer 2 switch. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"The device is on a layer 2 switched port on the same VLAN.\" — not \"The DHCP server is running on the layer 2 switch.\" — for what this stem actually tests.",
+          "contrast": "Correct \"The device is on a layer 2 switched port on the same VLAN.\" vs wrong \"The DHCP server is running on the layer 2 switch.\": For \"layer2 security\", The device is on a layer 2 switched port on the same VLAN."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "DHCP snooping on L3 routed port",
+          "whyItSeems": "\"The device is on a layer 3 routed port on the same VLAN.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "This is a Layer 2 process (layer2 security). The device is on a layer 2 switched port on the same VLAN. uses Ethernet addresses — not IP headers.",
+          "memoryAnchor": "Remember: choose \"The device is on a layer 2 switched port on the same VLAN.\" — not \"The device is on a layer 3 routed port on the same VLAN.\" — for what this stem actually tests.",
+          "contrast": "Correct \"The device is on a layer 2 switched port on the same VLAN.\" vs wrong \"The device is on a layer 3 routed port on the same VLAN.\": This is a Layer 2 process (layer2 security)."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Special monitor IP as DHCP snooping prerequisite",
+          "whyItSeems": "Configuration of a dedicated IP address for monitoring DHCP transactions. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "Unlike The device is on a layer 2 switched port on the same VLAN., Configuration of a dedicated IP address for monitoring DHCP transactions. fails the stem constraint that makes the keyed answer unique.",
+          "memoryAnchor": "Remember: choose \"The device is on a layer 2 switched port on the same VLAN.\" — not \"Configuration of a dedicated IP address for monitoring DHCP transactions.\" — for what this stem actually tests.",
+          "contrast": "Correct \"The device is on a layer 2 switched port on the same VLAN.\" vs wrong \"Configuration of a dedicated IP address for monitoring DHCP transactions.\": Unlike The device is on a layer 2 switched port on the same VLAN."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q002",
@@ -4852,7 +7306,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Native VLAN attack → double tagging. Mitigate: unique native VLAN, do not use VLAN 1."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Generic traversal term",
+          "whyItSeems": "\"VLAN traversal\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Double tagging matches the required behavior — VLAN traversal answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Double tagging\" — not \"VLAN traversal\" — for what this stem actually tests.",
+          "contrast": "Correct \"Double tagging\" vs wrong \"VLAN traversal\": For \"layer2 security\", Double tagging matches the required behavior — VLAN traversal answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Invented attack name",
+          "whyItSeems": "Trunk popping expects VLAN tags on a link that should behave as access-only in this stem.",
+          "whyWrongHere": "VLAN tagging (layer2 security): Double tagging matches access vs trunk/native behavior — Trunk popping applies the wrong tagging model.",
+          "memoryAnchor": "Remember: choose \"Double tagging\" — not \"Trunk popping\" — for what this stem actually tests.",
+          "contrast": "Correct \"Double tagging\" vs wrong \"Trunk popping\": VLAN tagging (layer2 security): Double tagging matches access vs trunk/native behavior — Trunk popping applies the wrong tagging model."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "DoS instead of VLAN hop",
+          "whyItSeems": "\"Denial of service\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Double tagging matches the required behavior — Denial of service answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Double tagging\" — not \"Denial of service\" — for what this stem actually tests.",
+          "contrast": "Correct \"Double tagging\" vs wrong \"Denial of service\": For \"layer2 security\", Double tagging matches the required behavior — Denial of service answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q003",
@@ -4902,7 +7382,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DHCP snooping: untrusted access ports (clients) | trusted uplinks toward real DHCP servers."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "dhcp snooping trust without ip keyword",
+          "whyItSeems": "\"Switch(config-if)#dhcp snooping trust\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Switch(config-if)#ip dhcp snooping trust matches the required behavior — Switch(config-if)#dhcp snooping trust answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP snooping: untrusted access ports (clients) | trusted uplinks toward real DHCP servers.",
+          "contrast": "Correct \"Switch(config-if)#ip dhcp snooping trust\" vs wrong \"Switch(config-if)#dhcp snooping trust\": For \"layer2 security\", Switch(config-if)#ip dhcp snooping trust matches the required behavior — Switch(config-if)#dhcp snooping trust answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Global config trust syntax",
+          "whyItSeems": "Switch(config)#ip dhcp snooping trust interface gi 2/3 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "For \"layer2 security\", Switch(config-if)#ip dhcp snooping trust matches the required behavior — Switch(config)#ip dhcp snooping trust interface gi 2/3 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP snooping: untrusted access ports (clients) | trusted uplinks toward real DHCP servers.",
+          "contrast": "Correct \"Switch(config-if)#ip dhcp snooping trust\" vs wrong \"Switch(config)#ip dhcp snooping trust interface gi 2/3\": For \"layer2 security\", Switch(config-if)#ip dhcp snooping trust matches the required behavior — Switch(config)#ip dhcp snooping trust interface gi 2/3 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "ip dhcp trust without snooping",
+          "whyItSeems": "\"Switch(config-if)#ip dhcp trust\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Switch(config-if)#ip dhcp snooping trust matches the required behavior — Switch(config-if)#ip dhcp trust answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP snooping: untrusted access ports (clients) | trusted uplinks toward real DHCP servers.",
+          "contrast": "Correct \"Switch(config-if)#ip dhcp snooping trust\" vs wrong \"Switch(config-if)#ip dhcp trust\": For \"layer2 security\", Switch(config-if)#ip dhcp snooping trust matches the required behavior — Switch(config-if)#ip dhcp trust answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q004",
@@ -4952,7 +7458,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security triage → show port-security then show port-security interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "MAC table as port-security diagnostic",
+          "whyItSeems": "Switch#show mac address-table is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (layer2 security): Switch#show port-security inspects the right table or state — Switch#show mac address-table shows unrelated information.",
+          "memoryAnchor": "Port security triage → show port-security then show port-security interface.",
+          "contrast": "Correct \"Switch#show port-security\" vs wrong \"Switch#show mac address-table\": Verification command (layer2 security): Switch#show port-security inspects the right table or state — Switch#show mac address-table shows unrelated information."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Interface status only for port security",
+          "whyItSeems": "\"Switch#show interface\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Switch#show port-security matches the required behavior — Switch#show interface answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security triage → show port-security then show port-security interface.",
+          "contrast": "Correct \"Switch#show port-security\" vs wrong \"Switch#show interface\": For \"layer2 security\", Switch#show port-security matches the required behavior — Switch#show interface answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented show security command",
+          "whyItSeems": "\"Switch#show security\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Switch#show port-security matches the required behavior — Switch#show security answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security triage → show port-security then show port-security interface.",
+          "contrast": "Correct \"Switch#show port-security\" vs wrong \"Switch#show security\": For \"layer2 security\", Switch#show port-security matches the required behavior — Switch#show security answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q005",
@@ -5003,7 +7535,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Rogue device on access port → port security (MAC limit/sticky/learned)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Dynamic VLAN as rogue AP prevention",
+          "whyItSeems": "\"Dynamic VLANs\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Port security matches the required behavior — Dynamic VLANs answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Rogue device on access port → port security (MAC limit/sticky/learned).",
+          "contrast": "Correct \"Port security\" vs wrong \"Dynamic VLANs\": For \"layer2 security\", Port security matches the required behavior — Dynamic VLANs answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "ACL as port device restriction",
+          "whyItSeems": "\"ACLs\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Port security matches the required behavior — ACLs answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Rogue device on access port → port security (MAC limit/sticky/learned).",
+          "contrast": "Correct \"Port security\" vs wrong \"ACLs\": For \"layer2 security\", Port security matches the required behavior — ACLs answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "VLAN pruning as access-port security",
+          "whyItSeems": "\"VLAN pruning\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Port security matches the required behavior — VLAN pruning answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Rogue device on access port → port security (MAC limit/sticky/learned).",
+          "contrast": "Correct \"Port security\" vs wrong \"VLAN pruning\": For \"layer2 security\", Port security matches the required behavior — VLAN pruning answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q006",
@@ -5053,7 +7611,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security = Layer 2, source MAC limit, violation modes (protect/restrict/shutdown)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "ACL as L2 device restriction",
+          "whyItSeems": "\"Access control lists\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Port security matches the required behavior — Access control lists answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security = Layer 2, source MAC limit, violation modes (protect/restrict/shutdown).",
+          "contrast": "Correct \"Port security\" vs wrong \"Access control lists\": For \"layer2 security\", Port security matches the required behavior — Access control lists answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "WEP as wired port security",
+          "whyItSeems": "\"Wired Equivalent Privacy\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Port security matches the required behavior — Wired Equivalent Privacy answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security = Layer 2, source MAC limit, violation modes (protect/restrict/shutdown).",
+          "contrast": "Correct \"Port security\" vs wrong \"Wired Equivalent Privacy\": For \"layer2 security\", Port security matches the required behavior — Wired Equivalent Privacy answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Static CAM entry as port security feature",
+          "whyItSeems": "\"Static MAC addresses\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Port security matches the required behavior — Static MAC addresses answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security = Layer 2, source MAC limit, violation modes (protect/restrict/shutdown).",
+          "contrast": "Correct \"Port security\" vs wrong \"Static MAC addresses\": For \"layer2 security\", Port security matches the required behavior — Static MAC addresses answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q007",
@@ -5103,7 +7687,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security = limit source MACs on access ports (sticky/learned/secure)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Destination MAC for port security",
+          "whyItSeems": "Destination MAC addresses treats the destination MAC as the address recorded during learning.",
+          "whyWrongHere": "The stem asks what gets learned (layer2 security). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
+          "memoryAnchor": "Port security = limit source MACs on access ports (sticky/learned/secure).",
+          "contrast": "Correct \"Source MAC addresses\" vs wrong \"Destination MAC addresses\": The stem asks what gets learned (layer2 security)."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Source IP for port security",
+          "whyItSeems": "Source IP addresses shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "This is a Layer 2 process (layer2 security). Source MAC addresses uses Ethernet addresses — not IP headers.",
+          "memoryAnchor": "Port security = limit source MACs on access ports (sticky/learned/secure).",
+          "contrast": "Correct \"Source MAC addresses\" vs wrong \"Source IP addresses\": This is a Layer 2 process (layer2 security)."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Destination IP for port security",
+          "whyItSeems": "Destination IP addresses shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "Unlike Source MAC addresses, Destination IP addresses fails the stem constraint that makes the keyed answer unique.",
+          "memoryAnchor": "Port security = limit source MACs on access ports (sticky/learned/secure).",
+          "contrast": "Correct \"Source MAC addresses\" vs wrong \"Destination IP addresses\": Unlike Source MAC addresses, Destination IP addresses fails the stem constraint that makes the keyed answer unique."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q008",
@@ -5153,7 +7763,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security checklist: access mode → switchport port-security → set max/violation."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Global config for port security enable",
+          "whyItSeems": "\"Switch(config)#switchport port-security\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Switch(config-if)#switchport port-security matches the required behavior — Switch(config)#switchport port-security answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security checklist: access mode → switchport port-security → set max/violation.",
+          "contrast": "Correct \"Switch(config-if)#switchport port-security\" vs wrong \"Switch(config)#switchport port-security\": For \"layer2 security\", Switch(config-if)#switchport port-security matches the required behavior — Switch(config)#switchport port-security answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented port-security enable command",
+          "whyItSeems": "\"Switch(config)#port-security enable\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Switch(config-if)#switchport port-security matches the required behavior — Switch(config)#port-security enable answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security checklist: access mode → switchport port-security → set max/violation.",
+          "contrast": "Correct \"Switch(config-if)#switchport port-security\" vs wrong \"Switch(config)#port-security enable\": For \"layer2 security\", Switch(config-if)#switchport port-security matches the required behavior — Switch(config)#port-security enable answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Wrong command prefix for port security",
+          "whyItSeems": "\"Switch(config-if)#port-security enable\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Switch(config-if)#switchport port-security matches the required behavior — Switch(config-if)#port-security enable answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security checklist: access mode → switchport port-security → set max/violation.",
+          "contrast": "Correct \"Switch(config-if)#switchport port-security\" vs wrong \"Switch(config-if)#port-security enable\": For \"layer2 security\", Switch(config-if)#switchport port-security matches the required behavior — Switch(config-if)#port-security enable answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q009",
@@ -5203,7 +7839,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port-security defaults: max 1 MAC, violation shutdown, sticky off until configured."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Two MACs as port-security default",
+          "whyItSeems": "\"2 MAC addresses\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", 1 MAC address matches the required behavior — 2 MAC addresses answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port-security defaults: max 1 MAC, violation shutdown, sticky off until configured.",
+          "contrast": "Correct \"1 MAC address\" vs wrong \"2 MAC addresses\": For \"layer2 security\", 1 MAC address matches the required behavior — 2 MAC addresses answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Zero MACs as default maximum",
+          "whyItSeems": "\"0 MAC addresses\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", 1 MAC address matches the required behavior — 0 MAC addresses answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port-security defaults: max 1 MAC, violation shutdown, sticky off until configured.",
+          "contrast": "Correct \"1 MAC address\" vs wrong \"0 MAC addresses\": For \"layer2 security\", 1 MAC address matches the required behavior — 0 MAC addresses answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Ten MACs as port-security default",
+          "whyItSeems": "\"10 MAC addresses\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", 1 MAC address matches the required behavior — 10 MAC addresses answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port-security defaults: max 1 MAC, violation shutdown, sticky off until configured.",
+          "contrast": "Correct \"1 MAC address\" vs wrong \"10 MAC addresses\": For \"layer2 security\", 1 MAC address matches the required behavior — 10 MAC addresses answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q010",
@@ -5253,7 +7915,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security = L2 MAC control; ACLs = L3/L4 filtering."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Layer 0 as port security layer",
+          "whyItSeems": "\"Layer 0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Layer 2 matches the required behavior — Layer 0 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security = L2 MAC control; ACLs = L3/L4 filtering.",
+          "contrast": "Correct \"Layer 2\" vs wrong \"Layer 0\": For \"layer2 security\", Layer 2 matches the required behavior — Layer 0 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Layer 1 as port security layer",
+          "whyItSeems": "\"Layer 1\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Layer 2 matches the required behavior — Layer 1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security = L2 MAC control; ACLs = L3/L4 filtering.",
+          "contrast": "Correct \"Layer 2\" vs wrong \"Layer 1\": For \"layer2 security\", Layer 2 matches the required behavior — Layer 1 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Layer 3 as port security layer",
+          "whyItSeems": "\"Layer 3\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "This is a Layer 2 process (layer2 security). Layer 2 uses Ethernet addresses — not IP headers.",
+          "memoryAnchor": "Port security = L2 MAC control; ACLs = L3/L4 filtering.",
+          "contrast": "Correct \"Layer 2\" vs wrong \"Layer 3\": This is a Layer 2 process (layer2 security)."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q011",
@@ -5303,7 +7991,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "VLAN control via port security",
+          "whyItSeems": "\"To allow or disallow VLANs\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", To prevent unauthorized access by MAC address matches the required behavior — To allow or disallow VLANs answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"To prevent unauthorized access by MAC address\" vs wrong \"To allow or disallow VLANs\": For \"layer2 security\", To prevent unauthorized access by MAC address matches the required behavior — To allow or disallow VLANs answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "IP filtering via port security",
+          "whyItSeems": "To allow or disallow IP addresses shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "This is a Layer 2 process (layer2 security). To prevent unauthorized access by MAC address uses Ethernet addresses — not IP headers.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"To prevent unauthorized access by MAC address\" vs wrong \"To allow or disallow IP addresses\": This is a Layer 2 process (layer2 security)."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "User auth via port security",
+          "whyItSeems": "\"To prevent unauthorized access by users\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", To prevent unauthorized access by MAC address matches the required behavior — To prevent unauthorized access by users answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"To prevent unauthorized access by MAC address\" vs wrong \"To prevent unauthorized access by users\": For \"layer2 security\", To prevent unauthorized access by MAC address matches the required behavior — To prevent unauthorized access by users answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q012",
@@ -5353,7 +8067,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Port security ideal for mobile",
+          "whyItSeems": "\"Port security works best in mobile environments.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Port security works best in static environments. matches the required behavior — Port security works best in mobile environments. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Port security works best in static environments.\" vs wrong \"Port security works best in mobile environments.\": For \"layer2 security\", Port security works best in static environments."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "High memory as main drawback",
+          "whyItSeems": "\"Port security requires a higher amount of memory.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Port security works best in static environments. matches the required behavior — Port security requires a higher amount of memory. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Port security works best in static environments.\" vs wrong \"Port security requires a higher amount of memory.\": For \"layer2 security\", Port security works best in static environments."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Always requires manual reset",
+          "whyItSeems": "\"Port security always results in admin intervention to reset the port.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Port security works best in static environments. matches the required behavior — Port security always results in admin intervention to reset the port. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Port security works best in static environments.\" vs wrong \"Port security always results in admin intervention to reset the port.\": For \"layer2 security\", Port security works best in static environments."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q013",
@@ -5403,7 +8143,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Single MAC for phone+PC",
+          "whyItSeems": "\"1 MAC address\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", 2 MAC addresses matches the required behavior — 1 MAC address answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"2 MAC addresses\" vs wrong \"1 MAC address\": For \"layer2 security\", 2 MAC addresses matches the required behavior — 1 MAC address answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Zero MAC allowance",
+          "whyItSeems": "\"0 MAC addresses\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", 2 MAC addresses matches the required behavior — 0 MAC addresses answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"2 MAC addresses\" vs wrong \"0 MAC addresses\": For \"layer2 security\", 2 MAC addresses matches the required behavior — 0 MAC addresses answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Default max of 10",
+          "whyItSeems": "\"10 MAC addresses\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", 2 MAC addresses matches the required behavior — 10 MAC addresses answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"2 MAC addresses\" vs wrong \"10 MAC addresses\": For \"layer2 security\", 2 MAC addresses matches the required behavior — 10 MAC addresses answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q014",
@@ -5454,7 +8220,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Default port-security violation = shutdown (err-disable); use errdisable recovery to auto-heal."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Admin shutdown as default violation action",
+          "whyItSeems": "\"Administrative shutdown\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Port security (layer2 security): Err-disabled shutdown is the violation mode or learning rule tested — Administrative shutdown picks a different violation action.",
+          "memoryAnchor": "Default port-security violation = shutdown (err-disable); use errdisable recovery to auto-heal.",
+          "contrast": "Correct \"Err-disabled shutdown\" vs wrong \"Administrative shutdown\": Port security (layer2 security): Err-disabled shutdown is the violation mode or learning rule tested — Administrative shutdown picks a different violation action."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Restrict as default violation mode",
+          "whyItSeems": "Restricted access without logging names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "Port security (layer2 security): Err-disabled shutdown is the violation mode or learning rule tested — Restricted access without logging picks a different violation action.",
+          "memoryAnchor": "Default port-security violation = shutdown (err-disable); use errdisable recovery to auto-heal.",
+          "contrast": "Correct \"Err-disabled shutdown\" vs wrong \"Restricted access without logging\": Port security (layer2 security): Err-disabled shutdown is the violation mode or learning rule tested — Restricted access without logging picks a different violation action."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Restrict+logging as default action",
+          "whyItSeems": "Restricted access with logging names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "Port security (layer2 security): Err-disabled shutdown is the violation mode or learning rule tested — Restricted access with logging picks a different violation action.",
+          "memoryAnchor": "Default port-security violation = shutdown (err-disable); use errdisable recovery to auto-heal.",
+          "contrast": "Correct \"Err-disabled shutdown\" vs wrong \"Restricted access with logging\": Port security (layer2 security): Err-disabled shutdown is the violation mode or learning rule tested — Restricted access with logging picks a different violation action."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q015",
@@ -5504,7 +8296,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "no switchport dynamic command",
+          "whyItSeems": "\"SwitchA(config-if)#no switchport dynamic SwitchA(config-if)#switchport port-security\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security matches the required behavior — SwitchA(config-if)#no switchport dynamic SwitchA(config-if)#switchport port-security answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security\" vs wrong \"SwitchA(config-if)#no switchport dynamic SwitchA(config-if)#switchport port-security\": For \"layer2 security\", SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security matches the required behavior — SwitchA(config-if)#no switchport dynamic SwitchA(config-if)#switchport port-security answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Access mode without nonnegotiate",
+          "whyItSeems": "\"SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport port-security\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security matches the required behavior — SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport port-security answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security\" vs wrong \"SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport port-security\": For \"layer2 security\", SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security matches the required behavior — SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport port-security answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented no dynamic syntax",
+          "whyItSeems": "\"SwitchA(config-if)#switchport mode access SwitchA(config-if)#no dynamicSwitchA(config- if)#switchport port-security\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security matches the required behavior — SwitchA(config-if)#switchport mode access SwitchA(config-if)#no dynamicSwitchA(config- if)#switchport port-security answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security\" vs wrong \"SwitchA(config-if)#switchport mode access SwitchA(config-if)#no dynamicSwitchA(config- if)#switchport port-security\": For \"layer2 security\", SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security matches the required behavior — SwitchA(config-if)#switchport mode access SwitchA(config-if)#no dynamicSwitchA(config- if)#switchport port-security answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q016",
@@ -5554,7 +8372,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "switchport maximum without port-security",
+          "whyItSeems": "\"SwitchA(config-if)#switchport maximum 2\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport port-security maximum 2 matches the required behavior — SwitchA(config-if)#switchport maximum 2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"SwitchA(config-if)#switchport port-security maximum 2\" vs wrong \"SwitchA(config-if)#switchport maximum 2\": For \"layer2 security\", SwitchA(config-if)#switchport port-security maximum 2 matches the required behavior — SwitchA(config-if)#switchport maximum 2 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "port-security without switchport",
+          "whyItSeems": "\"SwitchA(config-if)#port-security maximum 2\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport port-security maximum 2 matches the required behavior — SwitchA(config-if)#port-security maximum 2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"SwitchA(config-if)#switchport port-security maximum 2\" vs wrong \"SwitchA(config-if)#port-security maximum 2\": For \"layer2 security\", SwitchA(config-if)#switchport port-security maximum 2 matches the required behavior — SwitchA(config-if)#port-security maximum 2 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "limit instead of maximum",
+          "whyItSeems": "\"SwitchA(config-if)#switchport port-security limit 2\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport port-security maximum 2 matches the required behavior — SwitchA(config-if)#switchport port-security limit 2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"SwitchA(config-if)#switchport port-security maximum 2\" vs wrong \"SwitchA(config-if)#switchport port-security limit 2\": For \"layer2 security\", SwitchA(config-if)#switchport port-security maximum 2 matches the required behavior — SwitchA(config-if)#switchport port-security limit 2 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q017",
@@ -5604,7 +8448,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port-security violations: shutdown (err-disable) | restrict (drop+log) | protect (drop, no log)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Shutdown when restrict mode requested",
+          "whyItSeems": "\"Switch(config-if)#switchport port-security violation shutdown\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Port security (layer2 security): Switch(config-if)#switchport port-security violation restrict is the violation mode or learning rule tested — Switch(config-if)#switchport port-security violation shutdown picks a different violation action.",
+          "memoryAnchor": "Port-security violations: shutdown (err-disable) | restrict (drop+log) | protect (drop, no log).",
+          "contrast": "Correct \"Switch(config-if)#switchport port-security violation restrict\" vs wrong \"Switch(config-if)#switchport port-security violation shutdown\": Port security (layer2 security): Switch(config-if)#switchport port-security violation restrict is the violation mode or learning rule tested — Switch(config-if)#switchport port-security violation shutdown picks a different violation action."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Missing violation keyword in restrict command",
+          "whyItSeems": "Switch(config-if)#switchport port-security restrict names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "Port security (layer2 security): Switch(config-if)#switchport port-security violation restrict is the violation mode or learning rule tested — Switch(config-if)#switchport port-security restrict picks a different violation action.",
+          "memoryAnchor": "Port-security violations: shutdown (err-disable) | restrict (drop+log) | protect (drop, no log).",
+          "contrast": "Correct \"Switch(config-if)#switchport port-security violation restrict\" vs wrong \"Switch(config-if)#switchport port-security restrict\": Port security (layer2 security): Switch(config-if)#switchport port-security violation restrict is the violation mode or learning rule tested — Switch(config-if)#switchport port-security restrict picks a different violation action."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Protect mode when logging required",
+          "whyItSeems": "\"Switch(config-if)#switchport port-security violation protect\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Port security (layer2 security): Switch(config-if)#switchport port-security violation restrict is the violation mode or learning rule tested — Switch(config-if)#switchport port-security violation protect picks a different violation action.",
+          "memoryAnchor": "Port-security violations: shutdown (err-disable) | restrict (drop+log) | protect (drop, no log).",
+          "contrast": "Correct \"Switch(config-if)#switchport port-security violation restrict\" vs wrong \"Switch(config-if)#switchport port-security violation protect\": Port security (layer2 security): Switch(config-if)#switchport port-security violation restrict is the violation mode or learning rule tested — Switch(config-if)#switchport port-security violation protect picks a different violation action."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q018",
@@ -5654,7 +8524,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Running-config for violation status",
+          "whyItSeems": "Switch#show running-configuration is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (layer2 security): Switch#show port-security interface gi 2/13 inspects the right table or state — Switch#show running-configuration shows unrelated information.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Switch#show port-security interface gi 2/13\" vs wrong \"Switch#show running-configuration\": Verification command (layer2 security): Switch#show port-security interface gi 2/13 inspects the right table or state — Switch#show running-configuration shows unrelated information."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Invented details keyword",
+          "whyItSeems": "Switch#show port-security details interface gi 2/13 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "For \"layer2 security\", Switch#show port-security interface gi 2/13 matches the required behavior — Switch#show port-security details interface gi 2/13 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Switch#show port-security interface gi 2/13\" vs wrong \"Switch#show port-security details interface gi 2/13\": For \"layer2 security\", Switch#show port-security interface gi 2/13 matches the required behavior — Switch#show port-security details interface gi 2/13 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Missing interface keyword",
+          "whyItSeems": "Switch#show port-security gi 2/13 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "For \"layer2 security\", Switch#show port-security interface gi 2/13 matches the required behavior — Switch#show port-security gi 2/13 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Switch#show port-security interface gi 2/13\" vs wrong \"Switch#show port-security gi 2/13\": For \"layer2 security\", Switch#show port-security interface gi 2/13 matches the required behavior — Switch#show port-security gi 2/13 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q019",
@@ -5705,7 +8601,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "restrict keyword alone",
+          "whyItSeems": "Switch(config-if)#switchport port-security restrict names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "Port security (layer2 security): Switch(config-if)#switchport port-security violation shutdown is the violation mode or learning rule tested — Switch(config-if)#switchport port-security restrict picks a different violation action.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Switch(config-if)#switchport port-security violation shutdown\" vs wrong \"Switch(config-if)#switchport port-security restrict\": Port security (layer2 security): Switch(config-if)#switchport port-security violation shutdown is the violation mode or learning rule tested — Switch(config-if)#switchport port-security restrict picks a different violation action."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "protect mode for notification",
+          "whyItSeems": "\"Switch(config-if)#switchport port-security violation protect\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Port security (layer2 security): Switch(config-if)#switchport port-security violation shutdown is the violation mode or learning rule tested — Switch(config-if)#switchport port-security violation protect picks a different violation action.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Switch(config-if)#switchport port-security violation shutdown\" vs wrong \"Switch(config-if)#switchport port-security violation protect\": Port security (layer2 security): Switch(config-if)#switchport port-security violation shutdown is the violation mode or learning rule tested — Switch(config-if)#switchport port-security violation protect picks a different violation action."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "restrict vs shutdown trap semantics",
+          "whyItSeems": "Switch(config-if)#switchport port-security violation restrict names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "Port security (layer2 security): Switch(config-if)#switchport port-security violation shutdown is the violation mode or learning rule tested — Switch(config-if)#switchport port-security violation restrict picks a different violation action.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Switch(config-if)#switchport port-security violation shutdown\" vs wrong \"Switch(config-if)#switchport port-security violation restrict\": Port security (layer2 security): Switch(config-if)#switchport port-security violation shutdown is the violation mode or learning rule tested — Switch(config-if)#switchport port-security violation restrict picks a different violation action."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q020",
@@ -5755,7 +8677,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "shutdown when port must stay up",
+          "whyItSeems": "\"Switch(config-if)#switchport port-security violation shutdown\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Port security (layer2 security): Switch(config-if)#switchport port-security violation protect is the violation mode or learning rule tested — Switch(config-if)#switchport port-security violation shutdown picks a different violation action.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Switch(config-if)#switchport port-security violation protect\" vs wrong \"Switch(config-if)#switchport port-security violation shutdown\": Port security (layer2 security): Switch(config-if)#switchport port-security violation protect is the violation mode or learning rule tested — Switch(config-if)#switchport port-security violation shutdown picks a different violation action."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "restrict when no logging wanted",
+          "whyItSeems": "Switch(config-if)#switchport port-security restrict names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "Port security (layer2 security): Switch(config-if)#switchport port-security violation protect is the violation mode or learning rule tested — Switch(config-if)#switchport port-security restrict picks a different violation action.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Switch(config-if)#switchport port-security violation protect\" vs wrong \"Switch(config-if)#switchport port-security restrict\": Port security (layer2 security): Switch(config-if)#switchport port-security violation protect is the violation mode or learning rule tested — Switch(config-if)#switchport port-security restrict picks a different violation action."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "restrict logs violations",
+          "whyItSeems": "Switch(config-if)#switchport port-security violation restrict names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "Port security (layer2 security): Switch(config-if)#switchport port-security violation protect is the violation mode or learning rule tested — Switch(config-if)#switchport port-security violation restrict picks a different violation action.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Switch(config-if)#switchport port-security violation protect\" vs wrong \"Switch(config-if)#switchport port-security violation restrict\": Port security (layer2 security): Switch(config-if)#switchport port-security violation protect is the violation mode or learning rule tested — Switch(config-if)#switchport port-security violation restrict picks a different violation action."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q021",
@@ -5805,7 +8753,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Invented show violations",
+          "whyItSeems": "\"Switch#show violations\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Port security (layer2 security): Switch#show port-security is the violation mode or learning rule tested — Switch#show violations picks a different violation action.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Switch#show port-security\" vs wrong \"Switch#show violations\": Port security (layer2 security): Switch#show port-security is the violation mode or learning rule tested — Switch#show violations picks a different violation action."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented violations subcommand",
+          "whyItSeems": "\"Switch#show port-security violations\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Port security (layer2 security): Switch#show port-security is the violation mode or learning rule tested — Switch#show port-security violations picks a different violation action.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Switch#show port-security\" vs wrong \"Switch#show port-security violations\": Port security (layer2 security): Switch#show port-security is the violation mode or learning rule tested — Switch#show port-security violations picks a different violation action."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Abbreviated psec command",
+          "whyItSeems": "\"Switch#show psec violations\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Port security (layer2 security): Switch#show port-security is the violation mode or learning rule tested — Switch#show psec violations picks a different violation action.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Switch#show port-security\" vs wrong \"Switch#show psec violations\": Port security (layer2 security): Switch#show port-security is the violation mode or learning rule tested — Switch#show psec violations picks a different violation action."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q022",
@@ -5856,7 +8830,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Static for least admin",
+          "whyItSeems": "\"Static port security\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Sticky port security matches the required behavior — Static port security answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Sticky port security\" vs wrong \"Static port security\": For \"layer2 security\", Sticky port security matches the required behavior — Static port security answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Dynamic without sticky persistence",
+          "whyItSeems": "\"Dynamic port security\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Sticky port security matches the required behavior — Dynamic port security answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Sticky port security\" vs wrong \"Dynamic port security\": For \"layer2 security\", Sticky port security matches the required behavior — Dynamic port security answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Time limit port security",
+          "whyItSeems": "\"Time limit port security\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Sticky port security matches the required behavior — Time limit port security answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Sticky port security\" vs wrong \"Time limit port security\": For \"layer2 security\", Sticky port security matches the required behavior — Time limit port security answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q023",
@@ -5908,7 +8908,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Admin shutdown vs violation",
+          "whyItSeems": "\"The port has been administratively shutdown.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Port security (layer2 security): The port has an access violation on it. is the violation mode or learning rule tested — The port has been administratively shutdown. picks a different violation action.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"The port has an access violation on it.\" vs wrong \"The port has been administratively shutdown.\": Port security (layer2 security): The port has an access violation on it."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Wiring fault for secure-shutdown",
+          "whyItSeems": "\"The port has bad wiring.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", The port has an access violation on it. matches the required behavior — The port has bad wiring. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"The port has an access violation on it.\" vs wrong \"The port has bad wiring.\": For \"layer2 security\", The port has an access violation on it."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Trunk mode for violation shutdown",
+          "whyItSeems": "The port on the switch is configured as a trunk. expects VLAN tags on a link that should behave as access-only in this stem.",
+          "whyWrongHere": "This stem (layer2 security) targets access-port behavior — The port has an access violation on it. is correct; The port on the switch is configured as a trunk. applies trunk tagging where a single VLAN is expected.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"The port has an access violation on it.\" vs wrong \"The port on the switch is configured as a trunk.\": This stem (layer2 security) targets access-port behavior — The port has an access violation on it."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q024",
@@ -5959,7 +8985,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "dynamic mac-address keyword",
+          "whyItSeems": "\"SwitchA(config-if)#switchport port-security mac-address dynamic\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport port-security mac-address sticky matches the required behavior — SwitchA(config-if)#switchport port-security mac-address dynamic answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"SwitchA(config-if)#switchport port-security mac-address sticky\" vs wrong \"SwitchA(config-if)#switchport port-security mac-address dynamic\": For \"layer2 security\", SwitchA(config-if)#switchport port-security mac-address sticky matches the required behavior — SwitchA(config-if)#switchport port-security mac-address dynamic answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "static for auto-learn first MAC",
+          "whyItSeems": "\"SwitchA(config-if)#switchport port-security mac-address static\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport port-security mac-address sticky matches the required behavior — SwitchA(config-if)#switchport port-security mac-address static answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"SwitchA(config-if)#switchport port-security mac-address sticky\" vs wrong \"SwitchA(config-if)#switchport port-security mac-address static\": For \"layer2 security\", SwitchA(config-if)#switchport port-security mac-address sticky matches the required behavior — SwitchA(config-if)#switchport port-security mac-address static answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "False belief that learn keyword — treating \"SwitchA(config-if)#switchport port-security mac-address learn\" as if it satisfied the stem instead of \"SwitchA(config-if)#switchport port-security mac-address sticky\".",
+          "whyItSeems": "\"SwitchA(config-if)#switchport port-security mac-address learn\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport port-security mac-address sticky matches the required behavior — SwitchA(config-if)#switchport port-security mac-address learn answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"SwitchA(config-if)#switchport port-security mac-address sticky\" vs wrong \"SwitchA(config-if)#switchport port-security mac-address learn\": For \"layer2 security\", SwitchA(config-if)#switchport port-security mac-address sticky matches the required behavior — SwitchA(config-if)#switchport port-security mac-address learn answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q025",
@@ -6011,7 +9063,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "no port-security for err-disable",
+          "whyItSeems": "\"SwitchA(config-if)#no port-security\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown matches the required behavior — SwitchA(config-if)#no port-security answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown\" vs wrong \"SwitchA(config-if)#no port-security\": For \"layer2 security\", SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown matches the required behavior — SwitchA(config-if)#no port-security answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "no shutdown alone for violation",
+          "whyItSeems": "\"SwitchA(config-if)#no shutdown\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Port security (layer2 security): SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown is the violation mode or learning rule tested — SwitchA(config-if)#no shutdown picks a different violation action.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown\" vs wrong \"SwitchA(config-if)#no shutdown\": Port security (layer2 security): SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown is the violation mode or learning rule tested — SwitchA(config-if)#no shutdown picks a different violation action."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Remove port-security instead of bounce",
+          "whyItSeems": "\"SwitchA(config-if)#no switchport port-security\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown matches the required behavior — SwitchA(config-if)#no switchport port-security answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown\" vs wrong \"SwitchA(config-if)#no switchport port-security\": For \"layer2 security\", SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown matches the required behavior — SwitchA(config-if)#no switchport port-security answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q026",
@@ -6062,7 +9140,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Sticky for manual MAC",
+          "whyItSeems": "\"SwitchA(config-if)#switchport port-security mac-address sticky\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4 matches the required behavior — SwitchA(config-if)#switchport port-security mac-address sticky answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4\" vs wrong \"SwitchA(config-if)#switchport port-security mac-address sticky\": For \"layer2 security\", SwitchA(config-if)#switchport port-security mac-address 0334."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "static keyword before MAC",
+          "whyItSeems": "\"SwitchA(config-if)#switchport port-security mac-address static 0334.56f3.e4e4\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4 matches the required behavior — SwitchA(config-if)#switchport port-security mac-address static 0334.56f3.e4e4 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4\" vs wrong \"SwitchA(config-if)#switchport port-security mac-address static 0334.56f3.e4e4\": For \"layer2 security\", SwitchA(config-if)#switchport port-security mac-address 0334."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Wrong command structure",
+          "whyItSeems": "\"SwitchA(config-if)#switchport port-security static 0334.56f3.e4e4\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4 matches the required behavior — SwitchA(config-if)#switchport port-security static 0334.56f3.e4e4 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4\" vs wrong \"SwitchA(config-if)#switchport port-security static 0334.56f3.e4e4\": For \"layer2 security\", SwitchA(config-if)#switchport port-security mac-address 0334."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q027",
@@ -6114,7 +9218,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "details subcommand for summary table",
+          "whyItSeems": "\"Switch#show port-security details\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Switch#show port-security matches the required behavior — Switch#show port-security details answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Switch#show port-security\" vs wrong \"Switch#show port-security details\": For \"layer2 security\", Switch#show port-security matches the required behavior — Switch#show port-security details answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "MAC table for port-security summary",
+          "whyItSeems": "Switch#show mac address-table secure is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (layer2 security): Switch#show port-security inspects the right table or state — Switch#show mac address-table secure shows unrelated information.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Switch#show port-security\" vs wrong \"Switch#show mac address-table secure\": Verification command (layer2 security): Switch#show port-security inspects the right table or state — Switch#show mac address-table secure shows unrelated information."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Invented address subcommand",
+          "whyItSeems": "\"Switch#show port-security address\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Switch#show port-security matches the required behavior — Switch#show port-security address answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Switch#show port-security\" vs wrong \"Switch#show port-security address\": For \"layer2 security\", Switch#show port-security matches the required behavior — Switch#show port-security address answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q028",
@@ -6165,7 +9295,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "clear err-disable command",
+          "whyItSeems": "\"Switch#clear err-disable\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Switch(config)#errdisable recovery cause psecure_violation matches the required behavior — Switch#clear err-disable answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Switch(config)#errdisable recovery cause psecure_violation\" vs wrong \"Switch#clear err-disable\": For \"layer2 security\", Switch(config)#errdisable recovery cause psecure_violation matches the required behavior — Switch#clear err-disable answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "clear switchport port-security",
+          "whyItSeems": "\"Switch#clear switchport port-security\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Switch(config)#errdisable recovery cause psecure_violation matches the required behavior — Switch#clear switchport port-security answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Switch(config)#errdisable recovery cause psecure_violation\" vs wrong \"Switch#clear switchport port-security\": For \"layer2 security\", Switch(config)#errdisable recovery cause psecure_violation matches the required behavior — Switch#clear switchport port-security answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "clear port-security violation",
+          "whyItSeems": "\"Switch#clear port-security violation\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", Switch(config)#errdisable recovery cause psecure_violation matches the required behavior — Switch#clear port-security violation answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"Switch(config)#errdisable recovery cause psecure_violation\" vs wrong \"Switch#clear port-security violation\": For \"layer2 security\", Switch(config)#errdisable recovery cause psecure_violation matches the required behavior — Switch#clear port-security violation answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.7-source-q029",
@@ -6216,7 +9372,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Summary show for sticky MACs",
+          "whyItSeems": "\"SwitchA#show port-security\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", SwitchA#show running-config matches the required behavior — SwitchA#show port-security answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"SwitchA#show running-config\" vs wrong \"SwitchA#show port-security\": For \"layer2 security\", SwitchA#show running-config matches the required behavior — SwitchA#show port-security answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "details for sticky entries",
+          "whyItSeems": "\"SwitchA#show port-security details\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", SwitchA#show running-config matches the required behavior — SwitchA#show port-security details answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"SwitchA#show running-config\" vs wrong \"SwitchA#show port-security details\": For \"layer2 security\", SwitchA#show running-config matches the required behavior — SwitchA#show port-security details answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented status subcommand",
+          "whyItSeems": "\"SwitchA#show port-security status\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"layer2 security\", SwitchA#show running-config matches the required behavior — SwitchA#show port-security status answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Port security: access mode → switchport port-security → max MACs → violation mode → show port-security interface.",
+          "contrast": "Correct \"SwitchA#show running-config\" vs wrong \"SwitchA#show port-security status\": For \"layer2 security\", SwitchA#show running-config matches the required behavior — SwitchA#show port-security status answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     }
   ],
   "5.7": [
@@ -6270,7 +9452,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "False belief that 802.1Q as NAC — treating \"802.1Q\" as if it satisfied the stem instead of \"802.1X\".",
+          "whyItSeems": "802.1Q expects VLAN tags on a link that should behave as access-only in this stem.",
+          "whyWrongHere": "This stem (technology) targets access-port behavior — 802.1X is correct; 802.1Q applies trunk tagging where a single VLAN is expected.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"802.1X\" vs wrong \"802.1Q\": This stem (technology) targets access-port behavior — 802."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "ACL as port authentication",
+          "whyItSeems": "\"ACLs\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"technology\", 802.1X matches the required behavior — ACLs answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"802.1X\" vs wrong \"ACLs\": For \"technology\", 802."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Firewall as 802.1X",
+          "whyItSeems": "\"Firewall\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"technology\", 802.1X matches the required behavior — Firewall answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"802.1X\" vs wrong \"Firewall\": For \"technology\", 802."
+        }
+      ]
     },
     {
       "id": "obj-5.8-source-q002",
@@ -6324,7 +9532,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Authenticator as credential sender",
+          "whyItSeems": "\"Authenticator\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Supplicant matches the required behavior — Authenticator answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"Supplicant\" vs wrong \"Authenticator\": For \"identify\", Supplicant matches the required behavior — Authenticator answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "AAA server as supplicant",
+          "whyItSeems": "\"AAA server\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Supplicant matches the required behavior — AAA server answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"Supplicant\" vs wrong \"AAA server\": For \"identify\", Supplicant matches the required behavior — AAA server answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "RADIUS as supplicant",
+          "whyItSeems": "\"RADIUS server\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Supplicant matches the required behavior — RADIUS server answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"Supplicant\" vs wrong \"RADIUS server\": For \"identify\", Supplicant matches the required behavior — RADIUS server answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.8-source-q003",
@@ -6378,7 +9612,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Supplicant as switch role",
+          "whyItSeems": "\"Supplicant\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Authenticator matches the required behavior — Supplicant answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"Authenticator\" vs wrong \"Supplicant\": For \"identify\", Authenticator matches the required behavior — Supplicant answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "AAA as authenticator",
+          "whyItSeems": "\"AAA server\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Authenticator matches the required behavior — AAA server answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"Authenticator\" vs wrong \"AAA server\": For \"identify\", Authenticator matches the required behavior — AAA server answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "RADIUS server as authenticator",
+          "whyItSeems": "\"RADIUS server\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Authenticator matches the required behavior — RADIUS server answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"Authenticator\" vs wrong \"RADIUS server\": For \"identify\", Authenticator matches the required behavior — RADIUS server answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.8-source-q004",
@@ -6432,7 +9692,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "UDP between supplicant and switch",
+          "whyItSeems": "UDP names a transport protocol or port behavior that may not match reliability or connection requirements.",
+          "whyWrongHere": "For \"protocol\", 802.1X EAP matches the required behavior — UDP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"802.1X EAP\" vs wrong \"UDP\": For \"protocol\", 802."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "False belief that TCP for 802.1X — treating \"TCP\" as if it satisfied the stem instead of \"802.1X EAP\".",
+          "whyItSeems": "TCP names a transport protocol or port behavior that may not match reliability or connection requirements.",
+          "whyWrongHere": "For \"protocol\", 802.1X EAP matches the required behavior — TCP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"802.1X EAP\" vs wrong \"TCP\": For \"protocol\", 802."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "IP protocol for 802.1X",
+          "whyItSeems": "\"IP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", 802.1X EAP matches the required behavior — IP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"802.1X EAP\" vs wrong \"IP\": For \"protocol\", 802."
+        }
+      ]
     },
     {
       "id": "obj-5.8-source-q005",
@@ -6489,7 +9775,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "802.1X headers as protocol name",
+          "whyItSeems": "\"802.1X authentication headers\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", EAP matches the required behavior — 802.1X authentication headers answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"EAP\" vs wrong \"802.1X authentication headers\": For \"protocol\", EAP matches the required behavior — 802."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "IPsec for 802.1X",
+          "whyItSeems": "\"IPsec\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", EAP matches the required behavior — IPsec answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"EAP\" vs wrong \"IPsec\": For \"protocol\", EAP matches the required behavior — IPsec answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "RADIUS replaces EAP entirely",
+          "whyItSeems": "\"RADIUS\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", EAP matches the required behavior — RADIUS answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"EAP\" vs wrong \"RADIUS\": For \"protocol\", EAP matches the required behavior — RADIUS answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.8-source-q006",
@@ -6541,7 +9853,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Auth server as supplicant",
+          "whyItSeems": "\"The server that is providing authentication\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"supplicant\", The device requesting access matches the required behavior — The server that is providing authentication answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"The device requesting access\" vs wrong \"The server that is providing authentication\": For \"supplicant\", The device requesting access matches the required behavior — The server that is providing authentication answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Authenticator as requesting device",
+          "whyItSeems": "\"The device that is controlling access via 802.1X\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"supplicant\", The device requesting access matches the required behavior — The device that is controlling access via 802.1X answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"The device requesting access\" vs wrong \"The device that is controlling access via 802.1X\": For \"supplicant\", The device requesting access matches the required behavior — The device that is controlling access via 802."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "L3 device as supplicant",
+          "whyItSeems": "\"The device connecting the layer 3 network\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"supplicant\", The device requesting access matches the required behavior — The device connecting the layer 3 network answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"The device requesting access\" vs wrong \"The device connecting the layer 3 network\": For \"supplicant\", The device requesting access matches the required behavior — The device connecting the layer 3 network answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.8-source-q007",
@@ -6592,7 +9930,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "AD as AAA for all devices",
+          "whyItSeems": "\"Active Directory server\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"centralize\", AAA server matches the required behavior — Active Directory server answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"AAA server\" vs wrong \"Active Directory server\": For \"centralize\", AAA server matches the required behavior — Active Directory server answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "802.1X as server type",
+          "whyItSeems": "\"802.1X server\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"centralize\", AAA server matches the required behavior — 802.1X server answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"AAA server\" vs wrong \"802.1X server\": For \"centralize\", AAA server matches the required behavior — 802."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Terminal server for AAA",
+          "whyItSeems": "\"Terminal server\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"centralize\", AAA server matches the required behavior — Terminal server answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"AAA server\" vs wrong \"Terminal server\": For \"centralize\", AAA server matches the required behavior — Terminal server answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.8-source-q008",
@@ -6643,7 +10007,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Wrong UDP port 1845",
+          "whyItSeems": "UDP/1845 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Transport protocol (protocol): UDP/1645 matches reliability, ports, or connection behavior — UDP/1845 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"UDP/1645\" vs wrong \"UDP/1845\": Transport protocol (protocol): UDP/1645 matches reliability, ports, or connection behavior — UDP/1845 picks the wrong L4 protocol or port role."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "TCP for RADIUS auth",
+          "whyItSeems": "TCP/1645 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Transport protocol (protocol): UDP/1645 matches reliability, ports, or connection behavior — TCP/1645 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"UDP/1645\" vs wrong \"TCP/1645\": Transport protocol (protocol): UDP/1645 matches reliability, ports, or connection behavior — TCP/1645 picks the wrong L4 protocol or port role."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Wrong port 1911",
+          "whyItSeems": "UDP/1911 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Transport protocol (protocol): UDP/1645 matches reliability, ports, or connection behavior — UDP/1911 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"UDP/1645\" vs wrong \"UDP/1911\": Transport protocol (protocol): UDP/1645 matches reliability, ports, or connection behavior — UDP/1911 picks the wrong L4 protocol or port role."
+        }
+      ]
     },
     {
       "id": "obj-5.8-source-q009",
@@ -6697,7 +10087,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "802.1X for Telnet AAA",
+          "whyItSeems": "\"802.1X\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"authentication\", TACACS+ matches the required behavior — 802.1X answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"TACACS+\" vs wrong \"802.1X\": For \"authentication\", TACACS+ matches the required behavior — 802."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "AD as Telnet auth protocol",
+          "whyItSeems": "\"AD\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"authentication\", TACACS+ matches the required behavior — AD answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"TACACS+\" vs wrong \"AD\": For \"authentication\", TACACS+ matches the required behavior — AD answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "False belief that EAP for Telnet — treating \"EAP\" as if it satisfied the stem instead of \"TACACS+\".",
+          "whyItSeems": "\"EAP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"authentication\", TACACS+ matches the required behavior — EAP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"TACACS+\" vs wrong \"EAP\": For \"authentication\", TACACS+ matches the required behavior — EAP answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.8-source-q010",
@@ -6748,7 +10164,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Missing aaa authentication structure",
+          "whyItSeems": "\"Router(config)#authentication login group tacacs+ local\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configure\", Router(config)#aaa authentication login default group tacacs+ local matches the required behavior — Router(config)#authentication login group tacacs+ local answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"Router(config)#aaa authentication login default group tacacs+ local\" vs wrong \"Router(config)#authentication login group tacacs+ local\": For \"configure\", Router(config)#aaa authentication login default group tacacs+ local matches the required behavior — Router(config)#authentication login group tacacs+ local answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Hyphenated aaa-authentication",
+          "whyItSeems": "\"Router(config)#aaa-authentication login default tacacs+ local\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configure\", Router(config)#aaa authentication login default group tacacs+ local matches the required behavior — Router(config)#aaa-authentication login default tacacs+ local answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"Router(config)#aaa authentication login default group tacacs+ local\" vs wrong \"Router(config)#aaa-authentication login default tacacs+ local\": For \"configure\", Router(config)#aaa authentication login default group tacacs+ local matches the required behavior — Router(config)#aaa-authentication login default tacacs+ local answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Missing default keyword",
+          "whyItSeems": "\"Router(config)#aaa authentication login tacacs+ local\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configure\", Router(config)#aaa authentication login default group tacacs+ local matches the required behavior — Router(config)#aaa authentication login tacacs+ local answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"Router(config)#aaa authentication login default group tacacs+ local\" vs wrong \"Router(config)#aaa authentication login tacacs+ local\": For \"configure\", Router(config)#aaa authentication login default group tacacs+ local matches the required behavior — Router(config)#aaa authentication login tacacs+ local answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.8-source-q011",
@@ -6800,7 +10242,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Enable secret as VTY login",
+          "whyItSeems": "\"The enable secret will work.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"you log out\", The router will lock you out. matches the required behavior — The enable secret will work. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"The router will lock you out.\" vs wrong \"The enable secret will work.\": For \"you log out\", The router will lock you out."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Console unaffected so no lockout",
+          "whyItSeems": "\"The console will still be available.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"you log out\", The router will lock you out. matches the required behavior — The console will still be available. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"The router will lock you out.\" vs wrong \"The console will still be available.\": For \"you log out\", The router will lock you out."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "No effect without username",
+          "whyItSeems": "\"Nothing, since a username and password have not been set.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"you log out\", The router will lock you out. matches the required behavior — Nothing, since a username and password have not been set. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"The router will lock you out.\" vs wrong \"Nothing, since a username and password have not been set.\": For \"you log out\", The router will lock you out."
+        }
+      ]
     },
     {
       "id": "obj-5.8-source-q012",
@@ -6850,7 +10318,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Active detection via log review",
+          "whyItSeems": "\"Active\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routinely\", Passive matches the required behavior — Active answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"Passive\" vs wrong \"Active\": For \"routinely\", Passive matches the required behavior — Active answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Proactive for log discovery",
+          "whyItSeems": "\"Proactive\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routinely\", Passive matches the required behavior — Proactive answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"Passive\" vs wrong \"Proactive\": For \"routinely\", Passive matches the required behavior — Proactive answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Auditing vs passive confusion",
+          "whyItSeems": "\"Auditing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routinely\", Passive matches the required behavior — Auditing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth.",
+          "contrast": "Correct \"Passive\" vs wrong \"Auditing\": For \"routinely\", Passive matches the required behavior — Auditing answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.8-source-q013",
@@ -6901,7 +10395,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "802.1X roles: supplicant (client) → authenticator (switch) → AAA/RADIUS (server) | EAP carries auth."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "DNS as RADIUS role",
+          "whyItSeems": "\"DNS\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"aaa\", Authentication matches the required behavior — DNS answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X: supplicant → authenticator (switch) → RADIUS/AAA server.",
+          "contrast": "Correct \"Authentication\" vs wrong \"DNS\": For \"aaa\", Authentication matches the required behavior — DNS answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Email as RADIUS",
+          "whyItSeems": "\"Email\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"aaa\", Authentication matches the required behavior — Email answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X: supplicant → authenticator (switch) → RADIUS/AAA server.",
+          "contrast": "Correct \"Authentication\" vs wrong \"Email\": For \"aaa\", Authentication matches the required behavior — Email answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Proxy as RADIUS",
+          "whyItSeems": "\"Proxy\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"aaa\", Authentication matches the required behavior — Proxy answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.1X: supplicant → authenticator (switch) → RADIUS/AAA server.",
+          "contrast": "Correct \"Authentication\" vs wrong \"Proxy\": For \"aaa\", Authentication matches the required behavior — Proxy answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     }
   ],
   "5.8": [
@@ -6955,7 +10475,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Exam reality: WPA2/WPA3 encrypt traffic; MAC filter is weak join control — still know what each option does."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Stopping at WPA2 without a join-control mechanism",
+          "whyItSeems": "\"Enable WPA2\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", Enable MAC filtering matches the required behavior — Enable WPA2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Exam reality: WPA2/WPA3 encrypt traffic; MAC filter is weak join control — still know what each option does.",
+          "contrast": "Correct \"Enable MAC filtering\" vs wrong \"Enable WPA2\": For \"wireless security\", Enable MAC filtering matches the required behavior — Enable WPA2 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Applying switch port security to WLAN admission",
+          "whyItSeems": "\"Enable port security\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", Enable MAC filtering matches the required behavior — Enable port security answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Exam reality: WPA2/WPA3 encrypt traffic; MAC filter is weak join control — still know what each option does.",
+          "contrast": "Correct \"Enable MAC filtering\" vs wrong \"Enable port security\": For \"wireless security\", Enable MAC filtering matches the required behavior — Enable port security answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Treating hidden SSID as access control",
+          "whyItSeems": "Disable SSID broadcasts describes flooding the frame to multiple ports in the VLAN.",
+          "whyWrongHere": "For \"wireless security\", Enable MAC filtering matches the required behavior — Disable SSID broadcasts answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Exam reality: WPA2/WPA3 encrypt traffic; MAC filter is weak join control — still know what each option does.",
+          "contrast": "Correct \"Enable MAC filtering\" vs wrong \"Disable SSID broadcasts\": For \"wireless security\", Enable MAC filtering matches the required behavior — Disable SSID broadcasts answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.9-source-q002",
@@ -7006,7 +10552,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "WPA2-Enterprise → 802.1X + RADIUS (+ certs on some EAP types). Personal → PSK."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Applying personal WPA2 (PSK) to enterprise",
+          "whyItSeems": "\"Creation of a PSK\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", Certificate infrastructure matches the required behavior — Creation of a PSK answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Certificate infrastructure\" — not \"Creation of a PSK\" — for what this stem actually tests.",
+          "contrast": "Correct \"Certificate infrastructure\" vs wrong \"Creation of a PSK\": For \"wireless security\", Certificate infrastructure matches the required behavior — Creation of a PSK answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Mixing WPA3-192 requirements into WPA2-Enterprise",
+          "whyItSeems": "\"192-bit key strength\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", Certificate infrastructure matches the required behavior — 192-bit key strength answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Certificate infrastructure\" — not \"192-bit key strength\" — for what this stem actually tests.",
+          "contrast": "Correct \"Certificate infrastructure\" vs wrong \"192-bit key strength\": For \"wireless security\", Certificate infrastructure matches the required behavior — 192-bit key strength answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Confusing radio standard with AAA requirements",
+          "whyItSeems": "\"802.11ac\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", Certificate infrastructure matches the required behavior — 802.11ac answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Certificate infrastructure\" — not \"802.11ac\" — for what this stem actually tests.",
+          "contrast": "Correct \"Certificate infrastructure\" vs wrong \"802.11ac\": For \"wireless security\", Certificate infrastructure matches the required behavior — 802."
+        }
+      ]
     },
     {
       "id": "obj-5.9-source-q003",
@@ -7058,7 +10630,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "WPA integrity/replay → MIC. WPA2 confidentiality → AES-CCMP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "TKIP vs MIC role",
+          "whyItSeems": "TKIP selects a weak or deprecated WLAN security option.",
+          "whyWrongHere": "WLAN security (wireless security): MIC meets the security requirement — TKIP is deprecated or too weak for the scenario.",
+          "memoryAnchor": "Remember: choose \"MIC\" — not \"TKIP\" — for what this stem actually tests.",
+          "contrast": "Correct \"MIC\" vs wrong \"TKIP\": WLAN security (wireless security): MIC meets the security requirement — TKIP is deprecated or too weak for the scenario."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "AES when MIC asked",
+          "whyItSeems": "\"AES\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", MIC matches the required behavior — AES answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"MIC\" — not \"AES\" — for what this stem actually tests.",
+          "contrast": "Correct \"MIC\" vs wrong \"AES\": For \"wireless security\", MIC matches the required behavior — AES answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Ethernet CRC on Wi-Fi",
+          "whyItSeems": "\"CRC\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", MIC matches the required behavior — CRC answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"MIC\" — not \"CRC\" — for what this stem actually tests.",
+          "contrast": "Correct \"MIC\" vs wrong \"CRC\": For \"wireless security\", MIC matches the required behavior — CRC answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.9-source-q004",
@@ -7109,7 +10707,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "WPA3-Enterprise strongest common exam answer → 192-bit (GCMP-256 suite)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Understating WPA3 key strength options",
+          "whyItSeems": "\"64-bit\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", 192-bit matches the required behavior — 64-bit answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "WPA3-Enterprise strongest common exam answer → 192-bit (GCMP-256 suite).",
+          "contrast": "Correct \"192-bit\" vs wrong \"64-bit\": For \"wireless security\", 192-bit matches the required behavior — 64-bit answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Stopping at WPA2-era 128-bit for WPA3-Enterprise",
+          "whyItSeems": "\"128-bit\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", 192-bit matches the required behavior — 128-bit answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "WPA3-Enterprise strongest common exam answer → 192-bit (GCMP-256 suite).",
+          "contrast": "Correct \"192-bit\" vs wrong \"128-bit\": For \"wireless security\", 192-bit matches the required behavior — 128-bit answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Guessing 256-bit without matching WPA3-Enterprise options",
+          "whyItSeems": "\"256-bit\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", 192-bit matches the required behavior — 256-bit answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "WPA3-Enterprise strongest common exam answer → 192-bit (GCMP-256 suite).",
+          "contrast": "Correct \"192-bit\" vs wrong \"256-bit\": For \"wireless security\", 192-bit matches the required behavior — 256-bit answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.9-source-q005",
@@ -7159,7 +10783,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "History trap: WEP broken → WPA (TKIP/MIC) → WPA2 (AES-CCMP) → WPA3 (SAE)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Thinking WPA and WEP shipped together",
+          "whyItSeems": "WPA was released at the same time as WEP. selects a weak or deprecated WLAN security option.",
+          "whyWrongHere": "WLAN security (wireless security): WPA was released as a fix for poor encryption. meets the security requirement — WPA was released at the same time as WEP. is deprecated or too weak for the scenario.",
+          "memoryAnchor": "History trap: WEP broken → WPA (TKIP/MIC) → WPA2 (AES-CCMP) → WPA3 (SAE).",
+          "contrast": "Correct \"WPA was released as a fix for poor encryption.\" vs wrong \"WPA was released at the same time as WEP.\": WLAN security (wireless security): WPA was released as a fix for poor encryption."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Confusing RF coverage with encryption upgrades",
+          "whyItSeems": "\"WPA was released as a fix for poor coverage.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", WPA was released as a fix for poor encryption. matches the required behavior — WPA was released as a fix for poor coverage. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "History trap: WEP broken → WPA (TKIP/MIC) → WPA2 (AES-CCMP) → WPA3 (SAE).",
+          "contrast": "Correct \"WPA was released as a fix for poor encryption.\" vs wrong \"WPA was released as a fix for poor coverage.\": For \"wireless security\", WPA was released as a fix for poor encryption."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Dismissing WPA as marketing-only",
+          "whyItSeems": "The Wi-Fi Alliance wanted to rebrand WEP with WPA. selects a weak or deprecated WLAN security option.",
+          "whyWrongHere": "WLAN security (wireless security): WPA was released as a fix for poor encryption. meets the security requirement — The Wi-Fi Alliance wanted to rebrand WEP with WPA. is deprecated or too weak for the scenario.",
+          "memoryAnchor": "History trap: WEP broken → WPA (TKIP/MIC) → WPA2 (AES-CCMP) → WPA3 (SAE).",
+          "contrast": "Correct \"WPA was released as a fix for poor encryption.\" vs wrong \"The Wi-Fi Alliance wanted to rebrand WEP with WPA.\": WLAN security (wireless security): WPA was released as a fix for poor encryption."
+        }
+      ]
     },
     {
       "id": "obj-5.9-source-q006",
@@ -7209,7 +10859,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "802.11i = WPA2 → AES-CCMP frame encryption."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Naming AAA certs instead of 802.11i encryption",
+          "whyItSeems": "\"The use of certificates\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", Frame-level encryption matches the required behavior — The use of certificates answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.11i = WPA2 → AES-CCMP frame encryption.",
+          "contrast": "Correct \"Frame-level encryption\" vs wrong \"The use of certificates\": For \"wireless security\", Frame-level encryption matches the required behavior — The use of certificates answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Crediting PSK to 802.11i",
+          "whyItSeems": "\"Pre-shared keys\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", Frame-level encryption matches the required behavior — Pre-shared keys answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.11i = WPA2 → AES-CCMP frame encryption.",
+          "contrast": "Correct \"Frame-level encryption\" vs wrong \"Pre-shared keys\": For \"wireless security\", Frame-level encryption matches the required behavior — Pre-shared keys answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Choosing legacy integrity instead of AES-CCMP",
+          "whyItSeems": "\"CRC checking\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", Frame-level encryption matches the required behavior — CRC checking answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "802.11i = WPA2 → AES-CCMP frame encryption.",
+          "contrast": "Correct \"Frame-level encryption\" vs wrong \"CRC checking\": For \"wireless security\", Frame-level encryption matches the required behavior — CRC checking answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.9-source-q007",
@@ -7260,7 +10936,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "WPA2 cipher → AES-CCMP. TKIP/RC4 = legacy/WPA1 era."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Selecting legacy RC4 for WPA2",
+          "whyItSeems": "\"RC4\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", AES-CCMP matches the required behavior — RC4 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"AES-CCMP\" — not \"RC4\" — for what this stem actually tests.",
+          "contrast": "Correct \"AES-CCMP\" vs wrong \"RC4\": For \"wireless security\", AES-CCMP matches the required behavior — RC4 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Confusing hash algorithms with WLAN cipher",
+          "whyItSeems": "\"MD5\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", AES-CCMP matches the required behavior — MD5 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"AES-CCMP\" — not \"MD5\" — for what this stem actually tests.",
+          "contrast": "Correct \"AES-CCMP\" vs wrong \"MD5\": For \"wireless security\", AES-CCMP matches the required behavior — MD5 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Naming SHA1 instead of AES-CCMP",
+          "whyItSeems": "\"SHA1\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", AES-CCMP matches the required behavior — SHA1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"AES-CCMP\" — not \"SHA1\" — for what this stem actually tests.",
+          "contrast": "Correct \"AES-CCMP\" vs wrong \"SHA1\": For \"wireless security\", AES-CCMP matches the required behavior — SHA1 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.9-source-q008",
@@ -7312,7 +11014,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "WPA3-Personal headline → SAE. WPA3-Enterprise → optional 192-bit modes."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Applying enterprise certs to WPA3-Personal",
+          "whyItSeems": "\"Certificate support\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", SAE authentication matches the required behavior — Certificate support answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"SAE authentication\" — not \"Certificate support\" — for what this stem actually tests.",
+          "contrast": "Correct \"SAE authentication\" vs wrong \"Certificate support\": For \"wireless security\", SAE authentication matches the required behavior — Certificate support answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Crediting generic encryption instead of SAE",
+          "whyItSeems": "\"Per-frame encryption\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", SAE authentication matches the required behavior — Per-frame encryption answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"SAE authentication\" — not \"Per-frame encryption\" — for what this stem actually tests.",
+          "contrast": "Correct \"SAE authentication\" vs wrong \"Per-frame encryption\": For \"wireless security\", SAE authentication matches the required behavior — Per-frame encryption answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Selecting TKIP on a WPA3 question",
+          "whyItSeems": "TKIP selects a weak or deprecated WLAN security option.",
+          "whyWrongHere": "WLAN security (wireless security): SAE authentication meets the security requirement — TKIP is deprecated or too weak for the scenario.",
+          "memoryAnchor": "Remember: choose \"SAE authentication\" — not \"TKIP\" — for what this stem actually tests.",
+          "contrast": "Correct \"SAE authentication\" vs wrong \"TKIP\": WLAN security (wireless security): SAE authentication meets the security requirement — TKIP is deprecated or too weak for the scenario."
+        }
+      ]
     },
     {
       "id": "obj-5.9-source-q009",
@@ -7365,7 +11093,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "WPA2-Enterprise on WLC → RADIUS + 802.1X; Personal → PSK."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "NTP for WPA2-Enterprise",
+          "whyItSeems": "\"NTP server\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", RADIUS server matches the required behavior — NTP server answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "WPA2-Enterprise on WLC → RADIUS + 802.1X; Personal → PSK.",
+          "contrast": "Correct \"RADIUS server\" vs wrong \"NTP server\": For \"wireless security\", RADIUS server matches the required behavior — NTP server answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "PSK for Enterprise mode",
+          "whyItSeems": "\"PSK\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", RADIUS server matches the required behavior — PSK answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "WPA2-Enterprise on WLC → RADIUS + 802.1X; Personal → PSK.",
+          "contrast": "Correct \"RADIUS server\" vs wrong \"PSK\": For \"wireless security\", RADIUS server matches the required behavior — PSK answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Captive portal as Enterprise requirement",
+          "whyItSeems": "\"Captive portal\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", RADIUS server matches the required behavior — Captive portal answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "WPA2-Enterprise on WLC → RADIUS + 802.1X; Personal → PSK.",
+          "contrast": "Correct \"RADIUS server\" vs wrong \"Captive portal\": For \"wireless security\", RADIUS server matches the required behavior — Captive portal answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.9-source-q010",
@@ -7418,7 +11172,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "WPA2-only WLAN → allow AES/CCMP, remove TKIP cipher suites."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Disable 802.1X to block WPA fallback",
+          "whyItSeems": "\"802.1X\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", TKIP matches the required behavior — 802.1X answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "WPA2-only WLAN → allow AES/CCMP, remove TKIP cipher suites.",
+          "contrast": "Correct \"TKIP\" vs wrong \"802.1X\": For \"wireless security\", TKIP matches the required behavior — 802."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Disable AES to force WPA2",
+          "whyItSeems": "\"AES\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", TKIP matches the required behavior — AES answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "WPA2-only WLAN → allow AES/CCMP, remove TKIP cipher suites.",
+          "contrast": "Correct \"TKIP\" vs wrong \"AES\": For \"wireless security\", TKIP matches the required behavior — AES answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "MAC filtering blocks WPA fallback",
+          "whyItSeems": "\"MAC filtering\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", TKIP matches the required behavior — MAC filtering answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "WPA2-only WLAN → allow AES/CCMP, remove TKIP cipher suites.",
+          "contrast": "Correct \"TKIP\" vs wrong \"MAC filtering\": For \"wireless security\", TKIP matches the required behavior — MAC filtering answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.9-source-q011",
@@ -7471,7 +11251,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Symmetric shared key on WPA2 → PSK (Personal). Per-user → Enterprise + RADIUS."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Naming the cipher instead of the PSK auth mode",
+          "whyItSeems": "\"AES\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", PSK matches the required behavior — AES answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"PSK\" — not \"AES\" — for what this stem actually tests.",
+          "contrast": "Correct \"PSK\" vs wrong \"AES\": For \"wireless security\", PSK matches the required behavior — AES answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Mixing enterprise cert auth with PSK personal",
+          "whyItSeems": "\"Certificates\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", PSK matches the required behavior — Certificates answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"PSK\" — not \"Certificates\" — for what this stem actually tests.",
+          "contrast": "Correct \"PSK\" vs wrong \"Certificates\": For \"wireless security\", PSK matches the required behavior — Certificates answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Selecting TKIP when auth mechanism is asked",
+          "whyItSeems": "TKIP selects a weak or deprecated WLAN security option.",
+          "whyWrongHere": "WLAN security (wireless security): PSK meets the security requirement — TKIP is deprecated or too weak for the scenario.",
+          "memoryAnchor": "Remember: choose \"PSK\" — not \"TKIP\" — for what this stem actually tests.",
+          "contrast": "Correct \"PSK\" vs wrong \"TKIP\": WLAN security (wireless security): PSK meets the security requirement — TKIP is deprecated or too weak for the scenario."
+        }
+      ]
     },
     {
       "id": "obj-5.9-source-q012",
@@ -7524,7 +11330,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Legacy TKIP = slower; modern AES/CCMP = WPA2 throughput answer."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "AES limits throughput",
+          "whyItSeems": "\"AES\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", TKIP matches the required behavior — AES answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Legacy TKIP = slower; modern AES/CCMP = WPA2 throughput answer.",
+          "contrast": "Correct \"TKIP\" vs wrong \"AES\": For \"wireless security\", TKIP matches the required behavior — AES answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "CCMP as throughput limiter",
+          "whyItSeems": "\"CCMP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", TKIP matches the required behavior — CCMP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Legacy TKIP = slower; modern AES/CCMP = WPA2 throughput answer.",
+          "contrast": "Correct \"TKIP\" vs wrong \"CCMP\": For \"wireless security\", TKIP matches the required behavior — CCMP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "PSK as throughput-limiting protocol",
+          "whyItSeems": "\"PSK\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wireless security\", TKIP matches the required behavior — PSK answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Legacy TKIP = slower; modern AES/CCMP = WPA2 throughput answer.",
+          "contrast": "Correct \"TKIP\" vs wrong \"PSK\": For \"wireless security\", TKIP matches the required behavior — PSK answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     }
   ],
   "5.9": [
@@ -7577,7 +11409,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SSID not visible → check WLAN enabled status first, then beacon/hide SSID settings."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Picking a healthy setting as the fault",
+          "whyItSeems": "\"SSID beaconing is enabled.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wlc gui wlan\", Status is disabled. matches the required behavior — SSID beaconing is enabled. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSID not visible → check WLAN enabled status first, then beacon/hide SSID settings.",
+          "contrast": "Correct \"Status is disabled.\" vs wrong \"SSID beaconing is enabled.\": For \"wlc gui wlan\", Status is disabled."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Blaming multicast for SSID invisibility",
+          "whyItSeems": "Multicast support is disabled. gives a broadcast or multicast MAC pattern that may not be the all-ones form tested here.",
+          "whyWrongHere": "For \"wlc gui wlan\", Status is disabled. matches the required behavior — Multicast support is disabled. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSID not visible → check WLAN enabled status first, then beacon/hide SSID settings.",
+          "contrast": "Correct \"Status is disabled.\" vs wrong \"Multicast support is disabled.\": For \"wlc gui wlan\", Status is disabled."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Over-focusing on band policy when the WLAN is admin-down",
+          "whyItSeems": "\"Radio Policy is configured to all.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wlc gui wlan\", Status is disabled. matches the required behavior — Radio Policy is configured to all. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSID not visible → check WLAN enabled status first, then beacon/hide SSID settings.",
+          "contrast": "Correct \"Status is disabled.\" vs wrong \"Radio Policy is configured to all.\": For \"wlc gui wlan\", Status is disabled."
+        }
+      ]
     },
     {
       "id": "obj-5.10-source-q002",
@@ -7630,7 +11488,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "WPA2 personal = one PSK per SSID. Enterprise = 802.1X/RADIUS."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Dual PSK types per SSID",
+          "whyItSeems": "\"Two PSKs (one hex and one ASCII)\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wlc gui wlan\", One PSK (one hex or one ASCII) matches the required behavior — Two PSKs (one hex and one ASCII) answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"One PSK (one hex or one ASCII)\" — not \"Two PSKs (one hex and one ASCII)\" — for what this stem actually tests.",
+          "contrast": "Correct \"One PSK (one hex or one ASCII)\" vs wrong \"Two PSKs (one hex and one ASCII)\": For \"wlc gui wlan\", One PSK (one hex or one ASCII) matches the required behavior — Two PSKs (one hex and one ASCII) answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Multiple PSK slots",
+          "whyItSeems": "\"Four PSKs (two hex and two ASCII)\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wlc gui wlan\", One PSK (one hex or one ASCII) matches the required behavior — Four PSKs (two hex and two ASCII) answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"One PSK (one hex or one ASCII)\" — not \"Four PSKs (two hex and two ASCII)\" — for what this stem actually tests.",
+          "contrast": "Correct \"One PSK (one hex or one ASCII)\" vs wrong \"Four PSKs (two hex and two ASCII)\": For \"wlc gui wlan\", One PSK (one hex or one ASCII) matches the required behavior — Four PSKs (two hex and two ASCII) answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Unlimited PSK on personal WLAN",
+          "whyItSeems": "\"Unlimited number of PSKs\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wlc gui wlan\", One PSK (one hex or one ASCII) matches the required behavior — Unlimited number of PSKs answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"One PSK (one hex or one ASCII)\" — not \"Unlimited number of PSKs\" — for what this stem actually tests.",
+          "contrast": "Correct \"One PSK (one hex or one ASCII)\" vs wrong \"Unlimited number of PSKs\": For \"wlc gui wlan\", One PSK (one hex or one ASCII) matches the required behavior — Unlimited number of PSKs answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.10-source-q003",
@@ -7684,7 +11568,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Highest WPA2 security → WPA2-AES (CCMP). Disable TKIP when hardening."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Stopping at WPA instead of WPA2",
+          "whyItSeems": "\"WPA-AES\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wlc gui wlan\", WPA2-AES matches the required behavior — WPA-AES answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"WPA2-AES\" — not \"WPA-AES\" — for what this stem actually tests.",
+          "contrast": "Correct \"WPA2-AES\" vs wrong \"WPA-AES\": For \"wlc gui wlan\", WPA2-AES matches the required behavior — WPA-AES answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Choosing TKIP under a WPA2 SSID for \"security\"",
+          "whyItSeems": "WPA2-TKIP selects a weak or deprecated WLAN security option.",
+          "whyWrongHere": "WLAN security (wlc gui wlan): WPA2-AES meets the security requirement — WPA2-TKIP is deprecated or too weak for the scenario.",
+          "memoryAnchor": "Remember: choose \"WPA2-AES\" — not \"WPA2-TKIP\" — for what this stem actually tests.",
+          "contrast": "Correct \"WPA2-AES\" vs wrong \"WPA2-TKIP\": WLAN security (wlc gui wlan): WPA2-AES meets the security requirement — WPA2-TKIP is deprecated or too weak for the scenario."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Selecting deprecated RC4 ciphers",
+          "whyItSeems": "\"WPA2-RC4\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wlc gui wlan\", WPA2-AES matches the required behavior — WPA2-RC4 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"WPA2-AES\" — not \"WPA2-RC4\" — for what this stem actually tests.",
+          "contrast": "Correct \"WPA2-AES\" vs wrong \"WPA2-RC4\": For \"wlc gui wlan\", WPA2-AES matches the required behavior — WPA2-RC4 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.10-source-q004",
@@ -7737,7 +11647,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Small site, minimal infra, shared key OK → WPA2-Personal. Enterprise/users → WPA2-Enterprise + RADIUS."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Choosing enterprise auth when minimal infra is required",
+          "whyItSeems": "\"WPA-Enterprise\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wlc gui wlan\", WPA2-Personal matches the required behavior — WPA-Enterprise answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"WPA2-Personal\" — not \"WPA-Enterprise\" — for what this stem actually tests.",
+          "contrast": "Correct \"WPA2-Personal\" vs wrong \"WPA-Enterprise\": For \"wlc gui wlan\", WPA2-Personal matches the required behavior — WPA-Enterprise answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Over-engineering with WPA3-Enterprise for minimal infra",
+          "whyItSeems": "\"WPA3-Enterprise\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wlc gui wlan\", WPA2-Personal matches the required behavior — WPA3-Enterprise answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"WPA2-Personal\" — not \"WPA3-Enterprise\" — for what this stem actually tests.",
+          "contrast": "Correct \"WPA2-Personal\" vs wrong \"WPA3-Enterprise\": For \"wlc gui wlan\", WPA2-Personal matches the required behavior — WPA3-Enterprise answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Reverting to WPA instead of WPA2-Personal",
+          "whyItSeems": "\"WPA-Personal\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"wlc gui wlan\", WPA2-Personal matches the required behavior — WPA-Personal answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"WPA2-Personal\" — not \"WPA-Personal\" — for what this stem actually tests.",
+          "contrast": "Correct \"WPA2-Personal\" vs wrong \"WPA-Personal\": For \"wlc gui wlan\", WPA2-Personal matches the required behavior — WPA-Personal answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     }
   ],
   "5.10": [
@@ -7790,7 +11726,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "GRE = proto 47, adds 24-byte header, no encryption | IPsec adds confidentiality/integrity."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "GRE includes IPsec by default",
+          "whyItSeems": "\"GRE uses IPsec security.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", GRE provides packet-in-packet encapsulation. matches the required behavior — GRE uses IPsec security. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GRE = proto 47, adds 24-byte header, no encryption | IPsec adds confidentiality/integrity.",
+          "contrast": "Correct \"GRE provides packet-in-packet encapsulation.\" vs wrong \"GRE uses IPsec security.\": For \"statement\", GRE provides packet-in-packet encapsulation."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "GRE protocol number 57",
+          "whyItSeems": "\"GRE uses a protocol of 57.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", GRE provides packet-in-packet encapsulation. matches the required behavior — GRE uses a protocol of 57. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GRE = proto 47, adds 24-byte header, no encryption | IPsec adds confidentiality/integrity.",
+          "contrast": "Correct \"GRE provides packet-in-packet encapsulation.\" vs wrong \"GRE uses a protocol of 57.\": For \"statement\", GRE provides packet-in-packet encapsulation."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "GRE per-packet authentication",
+          "whyItSeems": "\"GRE provides per-packet authentication.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", GRE provides packet-in-packet encapsulation. matches the required behavior — GRE provides per-packet authentication. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GRE = proto 47, adds 24-byte header, no encryption | IPsec adds confidentiality/integrity.",
+          "contrast": "Correct \"GRE provides packet-in-packet encapsulation.\" vs wrong \"GRE provides per-packet authentication.\": For \"statement\", GRE provides packet-in-packet encapsulation."
+        }
+      ]
     },
     {
       "id": "obj-5.5-source-q002",
@@ -7841,7 +11803,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Tunnel types: GRE (overlay) | IPsec (secure) | DMVPN (dynamic hub-spoke GRE+IPsec)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "PPP as Cisco proprietary tunnel",
+          "whyItSeems": "\"PPP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", GRE matches the required behavior — PPP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Tunnel types: GRE (overlay) | IPsec (secure) | DMVPN (dynamic hub-spoke GRE+IPsec).",
+          "contrast": "Correct \"GRE\" vs wrong \"PPP\": For \"protocol\", GRE matches the required behavior — PPP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "IPsec as Cisco proprietary",
+          "whyItSeems": "\"IPsec\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", GRE matches the required behavior — IPsec answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Tunnel types: GRE (overlay) | IPsec (secure) | DMVPN (dynamic hub-spoke GRE+IPsec).",
+          "contrast": "Correct \"GRE\" vs wrong \"IPsec\": For \"protocol\", GRE matches the required behavior — IPsec answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "SSL as Cisco proprietary tunnel",
+          "whyItSeems": "\"SSL\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", GRE matches the required behavior — SSL answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Tunnel types: GRE (overlay) | IPsec (secure) | DMVPN (dynamic hub-spoke GRE+IPsec).",
+          "contrast": "Correct \"GRE\" vs wrong \"SSL\": For \"protocol\", GRE matches the required behavior — SSL answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.5-source-q003",
@@ -7891,7 +11879,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "GRE = IP proto 47; ESP = 50; AH = 51 — don't swap tunnel vs IPsec numbers."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "IP-in-IP protocol for GRE",
+          "whyItSeems": "\"Protocol 4\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", Protocol 47 matches the required behavior — Protocol 4 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GRE = IP proto 47; ESP = 50; AH = 51 — don't swap tunnel vs IPsec numbers.",
+          "contrast": "Correct \"Protocol 47\" vs wrong \"Protocol 4\": For \"protocol\", Protocol 47 matches the required behavior — Protocol 4 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "IPv6 routing header protocol for GRE",
+          "whyItSeems": "\"Protocol 43\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", Protocol 47 matches the required behavior — Protocol 43 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GRE = IP proto 47; ESP = 50; AH = 51 — don't swap tunnel vs IPsec numbers.",
+          "contrast": "Correct \"Protocol 47\" vs wrong \"Protocol 43\": For \"protocol\", Protocol 47 matches the required behavior — Protocol 43 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Protocol 57 as GRE",
+          "whyItSeems": "\"Protocol 57\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", Protocol 47 matches the required behavior — Protocol 57 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GRE = IP proto 47; ESP = 50; AH = 51 — don't swap tunnel vs IPsec numbers.",
+          "contrast": "Correct \"Protocol 47\" vs wrong \"Protocol 57\": For \"protocol\", Protocol 47 matches the required behavior — Protocol 57 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.5-source-q004",
@@ -7943,7 +11957,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "GRE tunnel up requires reachable tunnel destination in routing table (underlay first)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Ignoring missing underlay route to tunnel endpoint",
+          "whyItSeems": "\"Nothing is wrong with the configuration.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"interface\", The network is unrouteable. matches the required behavior — Nothing is wrong with the configuration. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GRE tunnel up requires reachable tunnel destination in routing table (underlay first).",
+          "contrast": "Correct \"The network is unrouteable.\" vs wrong \"Nothing is wrong with the configuration.\": For \"interface\", The network is unrouteable."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Blaming wrong destination when underlay routing is missing",
+          "whyItSeems": "\"The destination on Router A of the tunnel is incorrect.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"interface\", The network is unrouteable. matches the required behavior — The destination on Router A of the tunnel is incorrect. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GRE tunnel up requires reachable tunnel destination in routing table (underlay first).",
+          "contrast": "Correct \"The network is unrouteable.\" vs wrong \"The destination on Router A of the tunnel is incorrect.\": For \"interface\", The network is unrouteable."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Flagging P2P addressing when underlay route is absent",
+          "whyItSeems": "\"The serial interfaces are on different networks.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"interface\", The network is unrouteable. matches the required behavior — The serial interfaces are on different networks. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GRE tunnel up requires reachable tunnel destination in routing table (underlay first).",
+          "contrast": "Correct \"The network is unrouteable.\" vs wrong \"The serial interfaces are on different networks.\": For \"interface\", The network is unrouteable."
+        }
+      ]
     },
     {
       "id": "obj-5.5-source-q005",
@@ -7995,7 +12035,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "GRE static route: ip route <remote-LAN> <mask> <tunnel0|peer-tunnel-IP> — tunnel interface must be up/up."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Interface tunnel as only static route form",
+          "whyItSeems": "Router(config)#ip route 192.168.3.0 255.255.255.0 tunnel 0 configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "For \"topology\", Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the required behavior — Router(config)#ip route 192.168.3.0 255.255.255.0 tunnel 0 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GRE static route: ip route <remote-LAN> <mask> <tunnel0|peer-tunnel-IP> — tunnel interface must be up/up.",
+          "contrast": "Correct \"Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2\" vs wrong \"Router(config)#ip route 192.168.3.0 255.255.255.0 tunnel 0\": For \"topology\", Router(config)#ip route 192."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Route to local LAN via tunnel",
+          "whyItSeems": "Router(config)#ip route 192.168.2.0 255.255.255.0 tunnel 0 configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "For \"topology\", Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the required behavior — Router(config)#ip route 192.168.2.0 255.255.255.0 tunnel 0 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GRE static route: ip route <remote-LAN> <mask> <tunnel0|peer-tunnel-IP> — tunnel interface must be up/up.",
+          "contrast": "Correct \"Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2\" vs wrong \"Router(config)#ip route 192.168.2.0 255.255.255.0 tunnel 0\": For \"topology\", Router(config)#ip route 192."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Serial next hop for GRE remote LAN",
+          "whyItSeems": "Router(config)#ip route 192.168.3.0 255.255.255.0 serial 0/0/1 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "For \"topology\", Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the required behavior — Router(config)#ip route 192.168.3.0 255.255.255.0 serial 0/0/1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GRE static route: ip route <remote-LAN> <mask> <tunnel0|peer-tunnel-IP> — tunnel interface must be up/up.",
+          "contrast": "Correct \"Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2\" vs wrong \"Router(config)#ip route 192.168.3.0 255.255.255.0 serial 0/0/1\": For \"topology\", Router(config)#ip route 192."
+        }
+      ]
     },
     {
       "id": "obj-5.5-source-q006",
@@ -8045,7 +12111,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "GRE MTU: default 1476 | fragmentation issues? Lower ip mtu on tunnel or enable TCP MSS adjust."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "PPPoE MTU for GRE",
+          "whyItSeems": "\"MTU 1492\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", MTU 1476 matches the required behavior — MTU 1492 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"MTU 1476\" — not \"MTU 1492\" — for what this stem actually tests.",
+          "contrast": "Correct \"MTU 1476\" vs wrong \"MTU 1492\": For \"identify\", MTU 1476 matches the required behavior — MTU 1492 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Ethernet MTU unchanged in GRE",
+          "whyItSeems": "\"MTU 1500\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", MTU 1476 matches the required behavior — MTU 1500 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"MTU 1476\" — not \"MTU 1500\" — for what this stem actually tests.",
+          "contrast": "Correct \"MTU 1476\" vs wrong \"MTU 1500\": For \"identify\", MTU 1476 matches the required behavior — MTU 1500 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Inflated GRE default MTU",
+          "whyItSeems": "\"MTU 1528\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", MTU 1476 matches the required behavior — MTU 1528 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"MTU 1476\" — not \"MTU 1528\" — for what this stem actually tests.",
+          "contrast": "Correct \"MTU 1476\" vs wrong \"MTU 1528\": For \"identify\", MTU 1476 matches the required behavior — MTU 1528 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.5-source-q007",
@@ -8095,7 +12187,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "GRE verify: show interface tunnel 0 (src/dst) + show ip route (static/tracked route to remote LAN)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "show ip tunnel command",
+          "whyItSeems": "Router#show ip tunnel 0 is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (destination): Router#show interface tunnel 0 inspects the right table or state — Router#show ip tunnel 0 shows unrelated information.",
+          "memoryAnchor": "GRE verify: show interface tunnel 0 (src/dst) + show ip route (static/tracked route to remote LAN).",
+          "contrast": "Correct \"Router#show interface tunnel 0\" vs wrong \"Router#show ip tunnel 0\": Verification command (destination): Router#show interface tunnel 0 inspects the right table or state — Router#show ip tunnel 0 shows unrelated information."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "show ip gre command",
+          "whyItSeems": "Router#show ip gre is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (destination): Router#show interface tunnel 0 inspects the right table or state — Router#show ip gre shows unrelated information.",
+          "memoryAnchor": "GRE verify: show interface tunnel 0 (src/dst) + show ip route (static/tracked route to remote LAN).",
+          "contrast": "Correct \"Router#show interface tunnel 0\" vs wrong \"Router#show ip gre\": Verification command (destination): Router#show interface tunnel 0 inspects the right table or state — Router#show ip gre shows unrelated information."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Routing table for tunnel endpoints",
+          "whyItSeems": "Router#show ip route is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (destination): Router#show interface tunnel 0 inspects the right table or state — Router#show ip route shows unrelated information.",
+          "memoryAnchor": "GRE verify: show interface tunnel 0 (src/dst) + show ip route (static/tracked route to remote LAN).",
+          "contrast": "Correct \"Router#show interface tunnel 0\" vs wrong \"Router#show ip route\": Verification command (destination): Router#show interface tunnel 0 inspects the right table or state — Router#show ip route shows unrelated information."
+        }
+      ]
     },
     {
       "id": "obj-5.5-source-q008",
@@ -8147,7 +12265,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "GRE traceroute shows tunnel endpoint as one hop — underlay hops may be hidden inside the tunnel."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "GRE counts underlay plus overlay hops",
+          "whyItSeems": "\"Two hops\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"you do a traceroute on Router A to a destination of 192\", One hop matches the required behavior — Two hops answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GRE traceroute shows tunnel endpoint as one hop — underlay hops may be hidden inside the tunnel.",
+          "contrast": "Correct \"One hop\" vs wrong \"Two hops\": For \"you do a traceroute on Router A to a destination of 192\", One hop matches the required behavior — Two hops answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Multiple hops for single GRE tunnel",
+          "whyItSeems": "\"Four hops\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"you do a traceroute on Router A to a destination of 192\", One hop matches the required behavior — Four hops answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GRE traceroute shows tunnel endpoint as one hop — underlay hops may be hidden inside the tunnel.",
+          "contrast": "Correct \"One hop\" vs wrong \"Four hops\": For \"you do a traceroute on Router A to a destination of 192\", One hop matches the required behavior — Four hops answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Zero hops on traceroute",
+          "whyItSeems": "\"Zero hops\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"you do a traceroute on Router A to a destination of 192\", One hop matches the required behavior — Zero hops answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GRE traceroute shows tunnel endpoint as one hop — underlay hops may be hidden inside the tunnel.",
+          "contrast": "Correct \"One hop\" vs wrong \"Zero hops\": For \"you do a traceroute on Router A to a destination of 192\", One hop matches the required behavior — Zero hops answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.5-source-q009",
@@ -8199,7 +12343,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "GRE checklist: tunnel source/dest → tunnel IP addressing → route to remote LAN via tunnel."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Tunnel number mismatch",
+          "whyItSeems": "\"The tunnel numbers do not match.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"vpn\", The routes are wrong. matches the required behavior — The tunnel numbers do not match. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GRE checklist: tunnel source/dest → tunnel IP addressing → route to remote LAN via tunnel.",
+          "contrast": "Correct \"The routes are wrong.\" vs wrong \"The tunnel numbers do not match.\": For \"vpn\", The routes are wrong."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Tunnel destination when interface up",
+          "whyItSeems": "\"The destination on Router A of the tunnel is incorrect.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"vpn\", The routes are wrong. matches the required behavior — The destination on Router A of the tunnel is incorrect. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GRE checklist: tunnel source/dest → tunnel IP addressing → route to remote LAN via tunnel.",
+          "contrast": "Correct \"The routes are wrong.\" vs wrong \"The destination on Router A of the tunnel is incorrect.\": For \"vpn\", The routes are wrong."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Serial IP mismatch when tunnel up",
+          "whyItSeems": "\"The serial interfaces do not match.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"vpn\", The routes are wrong. matches the required behavior — The serial interfaces do not match. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GRE checklist: tunnel source/dest → tunnel IP addressing → route to remote LAN via tunnel.",
+          "contrast": "Correct \"The routes are wrong.\" vs wrong \"The serial interfaces do not match.\": For \"vpn\", The routes are wrong."
+        }
+      ]
     },
     {
       "id": "obj-5.5-source-q010",
@@ -8250,7 +12420,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DMVPN stack → mGRE + IPsec + NHRP; NHRP = hub/spoke registration and resolution."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "HSRP for DMVPN resolution",
+          "whyItSeems": "\"HSRP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", NHRP matches the required behavior — HSRP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DMVPN stack → mGRE + IPsec + NHRP; NHRP = hub/spoke registration and resolution.",
+          "contrast": "Correct \"NHRP\" vs wrong \"HSRP\": For \"protocol\", NHRP matches the required behavior — HSRP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "ARP for DMVPN next-hop resolution",
+          "whyItSeems": "\"ARP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", NHRP matches the required behavior — ARP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DMVPN stack → mGRE + IPsec + NHRP; NHRP = hub/spoke registration and resolution.",
+          "contrast": "Correct \"NHRP\" vs wrong \"ARP\": For \"protocol\", NHRP matches the required behavior — ARP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "GRE as DMVPN resolution protocol",
+          "whyItSeems": "\"GRE\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", NHRP matches the required behavior — GRE answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DMVPN stack → mGRE + IPsec + NHRP; NHRP = hub/spoke registration and resolution.",
+          "contrast": "Correct \"NHRP\" vs wrong \"GRE\": For \"protocol\", NHRP matches the required behavior — GRE answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.5-source-q011",
@@ -8302,7 +12498,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "WAN encapsulation: Cisco default HDLC | multi-vendor PPP — both ends must match."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Shut interface as default guess",
+          "whyItSeems": "\"The interface is administratively shut down.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"encapsulation\", There is a protocol mismatch. matches the required behavior — The interface is administratively shut down. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "WAN encapsulation: Cisco default HDLC | multi-vendor PPP — both ends must match.",
+          "contrast": "Correct \"There is a protocol mismatch.\" vs wrong \"The interface is administratively shut down.\": For \"encapsulation\", There is a protocol mismatch."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Wiring before protocol mismatch",
+          "whyItSeems": "\"There is a wiring problem.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"encapsulation\", There is a protocol mismatch. matches the required behavior — There is a wiring problem. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "WAN encapsulation: Cisco default HDLC | multi-vendor PPP — both ends must match.",
+          "contrast": "Correct \"There is a protocol mismatch.\" vs wrong \"There is a wiring problem.\": For \"encapsulation\", There is a protocol mismatch."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "IP mismatch over encapsulation",
+          "whyItSeems": "There is an IP address mismatch. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"encapsulation\", There is a protocol mismatch. matches the required behavior — There is an IP address mismatch. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "WAN encapsulation: Cisco default HDLC | multi-vendor PPP — both ends must match.",
+          "contrast": "Correct \"There is a protocol mismatch.\" vs wrong \"There is an IP address mismatch.\": For \"encapsulation\", There is a protocol mismatch."
+        }
+      ]
     },
     {
       "id": "obj-5.5-source-q012",
@@ -8352,7 +12574,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DMVPN = mGRE + NHRP + IPsec on a hub-and-spoke — dynamic spoke-to-spoke when needed."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "DMVPN as point-to-point",
+          "whyItSeems": "\"Point-to-point\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"topology\", Hub-and-spoke matches the required behavior — Point-to-point answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DMVPN = mGRE + NHRP + IPsec on a hub-and-spoke — dynamic spoke-to-spoke when needed.",
+          "contrast": "Correct \"Hub-and-spoke\" vs wrong \"Point-to-point\": For \"topology\", Hub-and-spoke matches the required behavior — Point-to-point answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "DMVPN as static full mesh",
+          "whyItSeems": "\"Full-mesh\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"topology\", Hub-and-spoke matches the required behavior — Full-mesh answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DMVPN = mGRE + NHRP + IPsec on a hub-and-spoke — dynamic spoke-to-spoke when needed.",
+          "contrast": "Correct \"Hub-and-spoke\" vs wrong \"Full-mesh\": For \"topology\", Hub-and-spoke matches the required behavior — Full-mesh answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Dual-homed as DMVPN topology",
+          "whyItSeems": "\"Dual-homed\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"topology\", Hub-and-spoke matches the required behavior — Dual-homed answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DMVPN = mGRE + NHRP + IPsec on a hub-and-spoke — dynamic spoke-to-spoke when needed.",
+          "contrast": "Correct \"Hub-and-spoke\" vs wrong \"Dual-homed\": For \"topology\", Hub-and-spoke matches the required behavior — Dual-homed answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.5-source-q013",
@@ -8402,7 +12650,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPsec triad: confidentiality (encrypt) | integrity (hash) | authentication (peer identity) + anti-replay."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Authentication as tamper detection",
+          "whyItSeems": "\"Authentication\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"verification\", Data integrity matches the required behavior — Authentication answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IPsec triad: confidentiality (encrypt) | integrity (hash) | authentication (peer identity) + anti-replay.",
+          "contrast": "Correct \"Data integrity\" vs wrong \"Authentication\": For \"verification\", Data integrity matches the required behavior — Authentication answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Anti-replay as integrity",
+          "whyItSeems": "\"Anti-replay\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"verification\", Data integrity matches the required behavior — Anti-replay answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IPsec triad: confidentiality (encrypt) | integrity (hash) | authentication (peer identity) + anti-replay.",
+          "contrast": "Correct \"Data integrity\" vs wrong \"Anti-replay\": For \"verification\", Data integrity matches the required behavior — Anti-replay answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Confidentiality as tamper detection",
+          "whyItSeems": "\"Confidentiality\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"verification\", Data integrity matches the required behavior — Confidentiality answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IPsec triad: confidentiality (encrypt) | integrity (hash) | authentication (peer identity) + anti-replay.",
+          "contrast": "Correct \"Data integrity\" vs wrong \"Confidentiality\": For \"verification\", Data integrity matches the required behavior — Confidentiality answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.5-source-q014",
@@ -8452,7 +12726,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "VPN endpoints: ISR routers (IPsec) | ASA/FTD (IPsec + AnyConnect SSL) | DMVPN hubs."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Catalyst for VPN tunnels",
+          "whyItSeems": "\"Catalyst switches\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"technology\", Cisco FTD matches the required behavior — Catalyst switches answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "VPN endpoints: ISR routers (IPsec) | ASA/FTD (IPsec + AnyConnect SSL) | DMVPN hubs.",
+          "contrast": "Correct \"Cisco FTD\" vs wrong \"Catalyst switches\": For \"technology\", Cisco FTD matches the required behavior — Catalyst switches answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Router as only VPN option",
+          "whyItSeems": "\"Cisco routers\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"technology\", Cisco FTD matches the required behavior — Cisco routers answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "VPN endpoints: ISR routers (IPsec) | ASA/FTD (IPsec + AnyConnect SSL) | DMVPN hubs.",
+          "contrast": "Correct \"Cisco FTD\" vs wrong \"Cisco routers\": For \"technology\", Cisco FTD matches the required behavior — Cisco routers answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "PBR for VPN creation",
+          "whyItSeems": "\"Policy-based routing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"technology\", Cisco FTD matches the required behavior — Policy-based routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "VPN endpoints: ISR routers (IPsec) | ASA/FTD (IPsec + AnyConnect SSL) | DMVPN hubs.",
+          "contrast": "Correct \"Cisco FTD\" vs wrong \"Policy-based routing\": For \"technology\", Cisco FTD matches the required behavior — Policy-based routing answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.5-source-q015",
@@ -8502,7 +12802,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Remote user = client VPN/SSL | Branch office = site-to-site IPsec | Datacenter overlay = GRE/DMVPN."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "GRE for remote workers",
+          "whyItSeems": "\"GRE tunnels\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"information\", Client SSL/VPN matches the required behavior — GRE tunnels answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remote user = client VPN/SSL | Branch office = site-to-site IPsec | Datacenter overlay = GRE/DMVPN.",
+          "contrast": "Correct \"Client SSL/VPN\" vs wrong \"GRE tunnels\": For \"information\", Client SSL/VPN matches the required behavior — GRE tunnels answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Wireless WAN as remote worker VPN",
+          "whyItSeems": "\"Wireless WAN\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"information\", Client SSL/VPN matches the required behavior — Wireless WAN answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remote user = client VPN/SSL | Branch office = site-to-site IPsec | Datacenter overlay = GRE/DMVPN.",
+          "contrast": "Correct \"Client SSL/VPN\" vs wrong \"Wireless WAN\": For \"information\", Client SSL/VPN matches the required behavior — Wireless WAN answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Site-to-site for individual teleworkers",
+          "whyItSeems": "\"Site-to-site VPN\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"information\", Client SSL/VPN matches the required behavior — Site-to-site VPN answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remote user = client VPN/SSL | Branch office = site-to-site IPsec | Datacenter overlay = GRE/DMVPN.",
+          "contrast": "Correct \"Client SSL/VPN\" vs wrong \"Site-to-site VPN\": For \"information\", Client SSL/VPN matches the required behavior — Site-to-site VPN answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.5-source-q016",
@@ -8554,7 +12880,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPsec encryption → ESP; integrity-only → AH; key negotiation → IKE/ISAKMP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "AH as IPsec encryption protocol",
+          "whyItSeems": "\"AH\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", ESP matches the required behavior — AH answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IPsec encryption → ESP; integrity-only → AH; key negotiation → IKE/ISAKMP.",
+          "contrast": "Correct \"ESP\" vs wrong \"AH\": For \"protocol\", ESP matches the required behavior — AH answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "IKE as data encryption protocol",
+          "whyItSeems": "\"IKE\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", ESP matches the required behavior — IKE answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IPsec encryption → ESP; integrity-only → AH; key negotiation → IKE/ISAKMP.",
+          "contrast": "Correct \"ESP\" vs wrong \"IKE\": For \"protocol\", ESP matches the required behavior — IKE answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "ISAKMP as encryption protocol",
+          "whyItSeems": "\"ISAKMP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", ESP matches the required behavior — ISAKMP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IPsec encryption → ESP; integrity-only → AH; key negotiation → IKE/ISAKMP.",
+          "contrast": "Correct \"ESP\" vs wrong \"ISAKMP\": For \"protocol\", ESP matches the required behavior — ISAKMP answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-5.5-source-q017",
@@ -8605,7 +12957,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Site-to-site VPN: connects fixed sites | scales with hub models/DMVPN | pairs with routing (OSPF/EIGRP over tunnel)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "IPsec reduces bandwidth",
+          "whyItSeems": "\"Lower bandwidth requirements\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Scalability matches the required behavior — Lower bandwidth requirements answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Site-to-site VPN: connects fixed sites | scales with hub models/DMVPN | pairs with routing (OSPF/EIGRP over tunnel).",
+          "contrast": "Correct \"Scalability\" vs wrong \"Lower bandwidth requirements\": For \"identify\", Scalability matches the required behavior — Lower bandwidth requirements answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "IPsec lowers latency",
+          "whyItSeems": "\"Lower latency\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Scalability matches the required behavior — Lower latency answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Site-to-site VPN: connects fixed sites | scales with hub models/DMVPN | pairs with routing (OSPF/EIGRP over tunnel).",
+          "contrast": "Correct \"Scalability\" vs wrong \"Lower latency\": For \"identify\", Scalability matches the required behavior — Lower latency answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Multicast as IPsec site-to-site benefit",
+          "whyItSeems": "Support for multicast gives a broadcast or multicast MAC pattern that may not be the all-ones form tested here.",
+          "whyWrongHere": "For \"identify\", Scalability matches the required behavior — Support for multicast answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Site-to-site VPN: connects fixed sites | scales with hub models/DMVPN | pairs with routing (OSPF/EIGRP over tunnel).",
+          "contrast": "Correct \"Scalability\" vs wrong \"Support for multicast\": For \"identify\", Scalability matches the required behavior — Support for multicast answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     }
   ],
   "5.4": [
@@ -8658,7 +13036,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "AAA order: Authentication → Authorization → Accounting — match the stem verb."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Memorizing wrong AAA expansion",
+          "whyItSeems": "\"Access, Audit, Administration\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"AAA framework\", Authentication, Authorization, Accounting matches the required behavior — Access, Audit, Administration answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AAA order: Authentication → Authorization → Accounting — match the stem verb.",
+          "contrast": "Correct \"Authentication, Authorization, Accounting\" vs wrong \"Access, Audit, Administration\": For \"AAA framework\", Authentication, Authorization, Accounting matches the required behavior — Access, Audit, Administration answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Swapping Authorization with Auditing/Availability",
+          "whyItSeems": "\"Authentication, Auditing, Availability\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"AAA framework\", Authentication, Authorization, Accounting matches the required behavior — Authentication, Auditing, Availability answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AAA order: Authentication → Authorization → Accounting — match the stem verb.",
+          "contrast": "Correct \"Authentication, Authorization, Accounting\" vs wrong \"Authentication, Auditing, Availability\": For \"AAA framework\", Authentication, Authorization, Accounting matches the required behavior — Authentication, Auditing, Availability answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Reordering the three A components",
+          "whyItSeems": "\"Authorization, Access, Accounting\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"AAA framework\", Authentication, Authorization, Accounting matches the required behavior — Authorization, Access, Accounting answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AAA order: Authentication → Authorization → Accounting — match the stem verb.",
+          "contrast": "Correct \"Authentication, Authorization, Accounting\" vs wrong \"Authorization, Access, Accounting\": For \"AAA framework\", Authentication, Authorization, Accounting matches the required behavior — Authorization, Access, Accounting answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.4-legacy-q002",
@@ -8707,7 +13111,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Ports: TACACS+ TCP 49 | RADIUS UDP 1812/1813 — TCP vs UDP is an exam favorite."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "TACACS+ on UDP 1812",
+          "whyItSeems": "UDP port 1812 names a transport protocol or port behavior that may not match reliability or connection requirements.",
+          "whyWrongHere": "Transport protocol (TACACS+ transport): TCP port 49 matches reliability, ports, or connection behavior — UDP port 1812 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "Ports: TACACS+ TCP 49 | RADIUS UDP 1812/1813 — TCP vs UDP is an exam favorite.",
+          "contrast": "Correct \"TCP port 49\" vs wrong \"UDP port 1812\": Transport protocol (TACACS+ transport): TCP port 49 matches reliability, ports, or connection behavior — UDP port 1812 picks the wrong L4 protocol or port role."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "TACACS+ on UDP 49",
+          "whyItSeems": "UDP port 49 names a transport protocol or port behavior that may not match reliability or connection requirements.",
+          "whyWrongHere": "Transport protocol (TACACS+ transport): TCP port 49 matches reliability, ports, or connection behavior — UDP port 49 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "Ports: TACACS+ TCP 49 | RADIUS UDP 1812/1813 — TCP vs UDP is an exam favorite.",
+          "contrast": "Correct \"TCP port 49\" vs wrong \"UDP port 49\": Transport protocol (TACACS+ transport): TCP port 49 matches reliability, ports, or connection behavior — UDP port 49 picks the wrong L4 protocol or port role."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "TACACS+ on TCP 1812",
+          "whyItSeems": "TCP port 1812 names a transport protocol or port behavior that may not match reliability or connection requirements.",
+          "whyWrongHere": "Transport protocol (TACACS+ transport): TCP port 49 matches reliability, ports, or connection behavior — TCP port 1812 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "Ports: TACACS+ TCP 49 | RADIUS UDP 1812/1813 — TCP vs UDP is an exam favorite.",
+          "contrast": "Correct \"TCP port 49\" vs wrong \"TCP port 1812\": Transport protocol (TACACS+ transport): TCP port 49 matches reliability, ports, or connection behavior — TCP port 1812 picks the wrong L4 protocol or port role."
+        }
+      ]
     },
     {
       "id": "5.4-legacy-q003",
@@ -8756,7 +13186,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Legacy RADIUS used 1645/1646 — exam default is 1812/1813 unless stem says otherwise."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "RADIUS on TCP 49/50",
+          "whyItSeems": "TCP 49 and TCP 50 names a transport protocol or port behavior that may not match reliability or connection requirements.",
+          "whyWrongHere": "Transport protocol (RADIUS transport): UDP 1812 (authentication/authorization) and UDP 1813 (accounting) matches reliability, ports, or connection behavior — TCP 49 and TCP 50 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "Legacy RADIUS used 1645/1646 — exam default is 1812/1813 unless stem says otherwise.",
+          "contrast": "Correct \"UDP 1812 (authentication/authorization) and UDP 1813 (accounting)\" vs wrong \"TCP 49 and TCP 50\": Transport protocol (RADIUS transport): UDP 1812 (authentication/authorization) and UDP 1813 (accounting) matches reliability, ports, or connection behavior — TCP 49 and TCP 50 picks the wrong L4 protocol or port role."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "False belief that RADIUS on TCP — treating \"TCP 1812 and TCP 1813\" as if it satisfied the stem instead of \"UDP 1812 (authentication/authorization) and UDP 1813 (accounting)\".",
+          "whyItSeems": "TCP 1812 and TCP 1813 names a transport protocol or port behavior that may not match reliability or connection requirements.",
+          "whyWrongHere": "Transport protocol (RADIUS transport): UDP 1812 (authentication/authorization) and UDP 1813 (accounting) matches reliability, ports, or connection behavior — TCP 1812 and TCP 1813 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "Legacy RADIUS used 1645/1646 — exam default is 1812/1813 unless stem says otherwise.",
+          "contrast": "Correct \"UDP 1812 (authentication/authorization) and UDP 1813 (accounting)\" vs wrong \"TCP 1812 and TCP 1813\": Transport protocol (RADIUS transport): UDP 1812 (authentication/authorization) and UDP 1813 (accounting) matches reliability, ports, or connection behavior — TCP 1812 and TCP 1813 picks the wrong L4 protocol or port role."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "RADIUS on SNMP ports",
+          "whyItSeems": "UDP 161 and UDP 162 names a transport protocol or port behavior that may not match reliability or connection requirements.",
+          "whyWrongHere": "Transport protocol (RADIUS transport): UDP 1812 (authentication/authorization) and UDP 1813 (accounting) matches reliability, ports, or connection behavior — UDP 161 and UDP 162 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "Legacy RADIUS used 1645/1646 — exam default is 1812/1813 unless stem says otherwise.",
+          "contrast": "Correct \"UDP 1812 (authentication/authorization) and UDP 1813 (accounting)\" vs wrong \"UDP 161 and UDP 162\": Transport protocol (RADIUS transport): UDP 1812 (authentication/authorization) and UDP 1813 (accounting) matches reliability, ports, or connection behavior — UDP 161 and UDP 162 picks the wrong L4 protocol or port role."
+        }
+      ]
     },
     {
       "id": "5.4-legacy-q004",
@@ -8806,7 +13262,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "TACACS+ = encrypt everything (better for device admin) | RADIUS = password field only."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Reversed TACACS/RADIUS encryption",
+          "whyItSeems": "\"TACACS+ encrypts only the password; RADIUS encrypts the entire packet body\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"TACACS+ vs RADIUS encryption\", TACACS+ encrypts the entire packet body; RADIUS encrypts only the password in the access-request packet matches the required behavior — TACACS+ encrypts only the password; RADIUS encrypts the entire packet body answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "TACACS+ = encrypt everything (better for device admin) | RADIUS = password field only.",
+          "contrast": "Correct \"TACACS+ encrypts the entire packet body; RADIUS encrypts only the password in the access-request packet\" vs wrong \"TACACS+ encrypts only the password; RADIUS encrypts the entire packet body\": For \"TACACS+ vs RADIUS encryption\", TACACS+ encrypts the entire packet body; RADIUS encrypts only the password in the access-request packet matches the required behavior — TACACS+ encrypts only the password; RADIUS encrypts the entire packet body answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Neither protocol encrypts",
+          "whyItSeems": "Neither protocol supports encryption shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"TACACS+ vs RADIUS encryption\", TACACS+ encrypts the entire packet body; RADIUS encrypts only the password in the access-request packet matches the required behavior — Neither protocol supports encryption answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "TACACS+ = encrypt everything (better for device admin) | RADIUS = password field only.",
+          "contrast": "Correct \"TACACS+ encrypts the entire packet body; RADIUS encrypts only the password in the access-request packet\" vs wrong \"Neither protocol supports encryption\": For \"TACACS+ vs RADIUS encryption\", TACACS+ encrypts the entire packet body; RADIUS encrypts only the password in the access-request packet matches the required behavior — Neither protocol supports encryption answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Identical encryption models",
+          "whyItSeems": "\"Both encrypt the entire packet body identically\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "CAM learning stores one mapping per arrival (TACACS+ vs RADIUS encryption): TACACS+ encrypts the entire packet body; RADIUS encrypts only the password in the access-request packet — not both addresses as table entries.",
+          "memoryAnchor": "TACACS+ = encrypt everything (better for device admin) | RADIUS = password field only.",
+          "contrast": "Correct \"TACACS+ encrypts the entire packet body; RADIUS encrypts only the password in the access-request packet\" vs wrong \"Both encrypt the entire packet body identically\": CAM learning stores one mapping per arrival (TACACS+ vs RADIUS encryption): TACACS+ encrypts the entire packet body; RADIUS encrypts only the password in the access-request packet — not both addresses as table entries."
+        }
+      ]
     },
     {
       "id": "5.4-legacy-q005",
@@ -8855,7 +13337,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Before any AAA lines → aaa new-model in global config."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Inventing ip aaa enable as AAA prerequisite",
+          "whyItSeems": "\"ip aaa enable\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"aaa new-model\", aaa new-model matches the required behavior — ip aaa enable answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Before any AAA lines → aaa new-model in global config.",
+          "contrast": "Correct \"aaa new-model\" vs wrong \"ip aaa enable\": For \"aaa new-model\", aaa new-model matches the required behavior — ip aaa enable answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Using service aaa instead of aaa new-model",
+          "whyItSeems": "\"service aaa\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"aaa new-model\", aaa new-model matches the required behavior — service aaa answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Before any AAA lines → aaa new-model in global config.",
+          "contrast": "Correct \"aaa new-model\" vs wrong \"service aaa\": For \"aaa new-model\", aaa new-model matches the required behavior — service aaa answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Choosing aaa start as AAA enabler",
+          "whyItSeems": "\"aaa start\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"aaa new-model\", aaa new-model matches the required behavior — aaa start answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Before any AAA lines → aaa new-model in global config.",
+          "contrast": "Correct \"aaa new-model\" vs wrong \"aaa start\": For \"aaa new-model\", aaa new-model matches the required behavior — aaa start answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.4-legacy-q006",
@@ -8904,7 +13412,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "AAA method list order matters: group tacacs+ local = server first, local backup."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "No fallback with local keyword",
+          "whyItSeems": "\"Only TACACS+ can be used; if it fails, login is denied\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"AAA method lists\", The switch will attempt TACACS+ authentication first, and fall back to the local username/password database if TACACS+ is unreachable matches the required behavior — Only TACACS+ can be used; if it fails, login is denied answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AAA method list order matters: group tacacs+ local = server first, local backup.",
+          "contrast": "Correct \"The switch will attempt TACACS+ authentication first, and fall back to the local username/password database if TACACS+ is unreachable\" vs wrong \"Only TACACS+ can be used; if it fails, login is denied\": For \"AAA method lists\", The switch will attempt TACACS+ authentication first, and fall back to the local username/password database if TACACS+ is unreachable matches the required behavior — Only TACACS+ can be used; if it fails, login is denied answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Local before TACACS+",
+          "whyItSeems": "\"The switch authenticates against the local database first, then TACACS+\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"AAA method lists\", The switch will attempt TACACS+ authentication first, and fall back to the local username/password database if TACACS+ is unreachable matches the required behavior — The switch authenticates against the local database first, then TACACS+ answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AAA method list order matters: group tacacs+ local = server first, local backup.",
+          "contrast": "Correct \"The switch will attempt TACACS+ authentication first, and fall back to the local username/password database if TACACS+ is unreachable\" vs wrong \"The switch authenticates against the local database first, then TACACS+\": For \"AAA method lists\", The switch will attempt TACACS+ authentication first, and fall back to the local username/password database if TACACS+ is unreachable matches the required behavior — The switch authenticates against the local database first, then TACACS+ answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Requires RADIUS configured",
+          "whyItSeems": "\"This command has no effect without a RADIUS server configured\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"AAA method lists\", The switch will attempt TACACS+ authentication first, and fall back to the local username/password database if TACACS+ is unreachable matches the required behavior — This command has no effect without a RADIUS server configured answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AAA method list order matters: group tacacs+ local = server first, local backup.",
+          "contrast": "Correct \"The switch will attempt TACACS+ authentication first, and fall back to the local username/password database if TACACS+ is unreachable\" vs wrong \"This command has no effect without a RADIUS server configured\": For \"AAA method lists\", The switch will attempt TACACS+ authentication first, and fall back to the local username/password database if TACACS+ is unreachable matches the required behavior — This command has no effect without a RADIUS server configured answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.4-legacy-q007",
@@ -8953,7 +13487,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "TACACS+ debug: test aaa group tacacs+ <user> <pass> legacy — verify key + server reachability."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "TACACS+ no shared secret",
+          "whyItSeems": "\"TACACS+ does not support shared secret keys\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"AAA shared secret mismatch\", The shared secret keys must match exactly (including case) between the device and the TACACS+ server — this mismatch will cause authentication failures matches the required behavior — TACACS+ does not support shared secret keys answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "TACACS+ debug: test aaa group tacacs+ <user> <pass> legacy — verify key + server reachability.",
+          "contrast": "Correct \"The shared secret keys must match exactly (including case) between the device and the TACACS+ server — this mismatch will cause authentication failures\" vs wrong \"TACACS+ does not support shared secret keys\": For \"AAA shared secret mismatch\", The shared secret keys must match exactly (including case) between the device and the TACACS+ server — this mismatch will cause authentication failures matches the required behavior — TACACS+ does not support shared secret keys answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Switch to RADIUS fix",
+          "whyItSeems": "\"The device needs to use RADIUS instead\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"AAA shared secret mismatch\", The shared secret keys must match exactly (including case) between the device and the TACACS+ server — this mismatch will cause authentication failures matches the required behavior — The device needs to use RADIUS instead answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "TACACS+ debug: test aaa group tacacs+ <user> <pass> legacy — verify key + server reachability.",
+          "contrast": "Correct \"The shared secret keys must match exactly (including case) between the device and the TACACS+ server — this mismatch will cause authentication failures\" vs wrong \"The device needs to use RADIUS instead\": For \"AAA shared secret mismatch\", The shared secret keys must match exactly (including case) between the device and the TACACS+ server — this mismatch will cause authentication failures matches the required behavior — The device needs to use RADIUS instead answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Keys must differ per side",
+          "whyItSeems": "\"TACACS+ requires the keys to be different on each side\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"AAA shared secret mismatch\", The shared secret keys must match exactly (including case) between the device and the TACACS+ server — this mismatch will cause authentication failures matches the required behavior — TACACS+ requires the keys to be different on each side answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "TACACS+ debug: test aaa group tacacs+ <user> <pass> legacy — verify key + server reachability.",
+          "contrast": "Correct \"The shared secret keys must match exactly (including case) between the device and the TACACS+ server — this mismatch will cause authentication failures\" vs wrong \"TACACS+ requires the keys to be different on each side\": For \"AAA shared secret mismatch\", The shared secret keys must match exactly (including case) between the device and the TACACS+ server — this mismatch will cause authentication failures matches the required behavior — TACACS+ requires the keys to be different on each side answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.4-legacy-q008",
@@ -9002,7 +13562,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "AAA: Authentication (who) | Authorization (what allowed) | Accounting (what happened)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Authentication for command permissions",
+          "whyItSeems": "\"Authentication\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"authorization role\", Authorization matches the required behavior — Authentication answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AAA: Authentication (who) | Authorization (what allowed) | Accounting (what happened).",
+          "contrast": "Correct \"Authorization\" vs wrong \"Authentication\": For \"authorization role\", Authorization matches the required behavior — Authentication answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Accounting for command permissions",
+          "whyItSeems": "\"Accounting\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"authorization role\", Authorization matches the required behavior — Accounting answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AAA: Authentication (who) | Authorization (what allowed) | Accounting (what happened).",
+          "contrast": "Correct \"Authorization\" vs wrong \"Accounting\": For \"authorization role\", Authorization matches the required behavior — Accounting answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Auditing as AAA component",
+          "whyItSeems": "\"Auditing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"authorization role\", Authorization matches the required behavior — Auditing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AAA: Authentication (who) | Authorization (what allowed) | Accounting (what happened).",
+          "contrast": "Correct \"Authorization\" vs wrong \"Auditing\": For \"authorization role\", Authorization matches the required behavior — Auditing answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.4-legacy-q009",
@@ -9051,7 +13637,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Accounting logs what the user did after authZ."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Using authentication for command audit logging",
+          "whyItSeems": "\"Authentication\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"accounting use case\", Accounting matches the required behavior — Authentication answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Accounting logs what the user did after authZ.",
+          "contrast": "Correct \"Accounting\" vs wrong \"Authentication\": For \"accounting use case\", Accounting matches the required behavior — Authentication answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Confusing authorization with command accounting logs",
+          "whyItSeems": "\"Authorization\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"accounting use case\", Accounting matches the required behavior — Authorization answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Accounting logs what the user did after authZ.",
+          "contrast": "Correct \"Accounting\" vs wrong \"Authorization\": For \"accounting use case\", Accounting matches the required behavior — Authorization answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Choosing encryption for command audit requirement",
+          "whyItSeems": "\"Encryption\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"accounting use case\", Accounting matches the required behavior — Encryption answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Accounting logs what the user did after authZ.",
+          "contrast": "Correct \"Accounting\" vs wrong \"Encryption\": For \"accounting use case\", Accounting matches the required behavior — Encryption answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.4-legacy-q010",
@@ -9101,7 +13713,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Device admin → TACACS+ | Wireless/802.1X/NAS → RADIUS — know which AAA fits."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "RADIUS cannot authenticate",
+          "whyItSeems": "\"RADIUS cannot authenticate users at all\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"TACACS+ vs RADIUS use case\", TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-command authorization, which is well-suited to granular device-administration control matches the required behavior — RADIUS cannot authenticate users at all answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Device admin → TACACS+ | Wireless/802.1X/NAS → RADIUS — know which AAA fits.",
+          "contrast": "Correct \"TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-command authorization, which is well-suited to granular device-administration control\" vs wrong \"RADIUS cannot authenticate users at all\": For \"TACACS+ vs RADIUS use case\", TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-command authorization, which is well-suited to granular device-administration control matches the required behavior — RADIUS cannot authenticate users at all answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "TACACS+ required for wireless",
+          "whyItSeems": "\"TACACS+ is required for wireless client authentication, which RADIUS cannot do\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"TACACS+ vs RADIUS use case\", TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-command authorization, which is well-suited to granular device-administration control matches the required behavior — TACACS+ is required for wireless client authentication, which RADIUS cannot do answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Device admin → TACACS+ | Wireless/802.1X/NAS → RADIUS — know which AAA fits.",
+          "contrast": "Correct \"TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-command authorization, which is well-suited to granular device-administration control\" vs wrong \"TACACS+ is required for wireless client authentication, which RADIUS cannot do\": For \"TACACS+ vs RADIUS use case\", TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-command authorization, which is well-suited to granular device-administration control matches the required behavior — TACACS+ is required for wireless client authentication, which RADIUS cannot do answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "TACACS+ bandwidth advantage",
+          "whyItSeems": "\"TACACS+ uses less bandwidth than RADIUS in all cases\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"TACACS+ vs RADIUS use case\", TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-command authorization, which is well-suited to granular device-administration control matches the required behavior — TACACS+ uses less bandwidth than RADIUS in all cases answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Device admin → TACACS+ | Wireless/802.1X/NAS → RADIUS — know which AAA fits.",
+          "contrast": "Correct \"TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-command authorization, which is well-suited to granular device-administration control\" vs wrong \"TACACS+ uses less bandwidth than RADIUS in all cases\": For \"TACACS+ vs RADIUS use case\", TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-command authorization, which is well-suited to granular device-administration control matches the required behavior — TACACS+ uses less bandwidth than RADIUS in all cases answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     }
   ],
   "5.11": [
@@ -9152,7 +13790,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Segmentation limits lateral movement after breach."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Choosing bandwidth gain as primary segmentation benefit",
+          "whyItSeems": "\"It increases the total bandwidth available to every device\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"segmentation purpose\", It limits the scope of a security breach by restricting lateral movement between segments matches the required behavior — It increases the total bandwidth available to every device answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Segmentation limits lateral movement after breach.",
+          "contrast": "Correct \"It limits the scope of a security breach by restricting lateral movement between segments\" vs wrong \"It increases the total bandwidth available to every device\": For \"segmentation purpose\", It limits the scope of a security breach by restricting lateral movement between segments matches the required behavior — It increases the total bandwidth available to every device answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Believing segmentation removes firewall need",
+          "whyItSeems": "\"It eliminates the need for firewalls\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"segmentation purpose\", It limits the scope of a security breach by restricting lateral movement between segments matches the required behavior — It eliminates the need for firewalls answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Segmentation limits lateral movement after breach.",
+          "contrast": "Correct \"It limits the scope of a security breach by restricting lateral movement between segments\" vs wrong \"It eliminates the need for firewalls\": For \"segmentation purpose\", It limits the scope of a security breach by restricting lateral movement between segments matches the required behavior — It eliminates the need for firewalls answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Expecting automatic encryption from segmentation",
+          "whyItSeems": "\"It automatically encrypts all traffic on the network\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"segmentation purpose\", It limits the scope of a security breach by restricting lateral movement between segments matches the required behavior — It automatically encrypts all traffic on the network answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Segmentation limits lateral movement after breach.",
+          "contrast": "Correct \"It limits the scope of a security breach by restricting lateral movement between segments\" vs wrong \"It automatically encrypts all traffic on the network\": For \"segmentation purpose\", It limits the scope of a security breach by restricting lateral movement between segments matches the required behavior — It automatically encrypts all traffic on the network answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.11-legacy-q002",
@@ -9201,7 +13865,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Campus segmentation baseline → VLANs + L3 boundary (router/SVI) + ACLs/firewall."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "NAT as L2 segmentation",
+          "whyItSeems": "\"NAT\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"VLAN segmentation\", VLANs matches the required behavior — NAT answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Campus segmentation baseline → VLANs + L3 boundary (router/SVI) + ACLs/firewall.",
+          "contrast": "Correct \"VLANs\" vs wrong \"NAT\": For \"VLAN segmentation\", VLANs matches the required behavior — NAT answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "FHRP as segmentation building block",
+          "whyItSeems": "\"HSRP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"VLAN segmentation\", VLANs matches the required behavior — HSRP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Campus segmentation baseline → VLANs + L3 boundary (router/SVI) + ACLs/firewall.",
+          "contrast": "Correct \"VLANs\" vs wrong \"HSRP\": For \"VLAN segmentation\", VLANs matches the required behavior — HSRP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "CDP as segmentation technology",
+          "whyItSeems": "\"CDP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"VLAN segmentation\", VLANs matches the required behavior — CDP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Campus segmentation baseline → VLANs + L3 boundary (router/SVI) + ACLs/firewall.",
+          "contrast": "Correct \"VLANs\" vs wrong \"CDP\": For \"VLAN segmentation\", VLANs matches the required behavior — CDP answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.11-legacy-q003",
@@ -9250,7 +13940,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DMZ pattern: Internet → firewall → DMZ (web/mail) → firewall → internal LAN."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "DMZ for internal-only hosts",
+          "whyItSeems": "\"To host internal-only file servers with no external access\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"demilitarized\", To host externally-facing services (e.g., web/email servers) in a buffer zone, isolated from the internal network, between the internet and the internal LAN matches the required behavior — To host internal-only file servers with no external access answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DMZ pattern: Internet → firewall → DMZ (web/mail) → firewall → internal LAN.",
+          "contrast": "Correct \"To host externally-facing services (e.g., web/email servers) in a buffer zone, isolated from the internal network, between the internet and the internal LAN\" vs wrong \"To host internal-only file servers with no external access\": For \"demilitarized\", To host externally-facing services (e."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "DMZ as routing backup",
+          "whyItSeems": "To provide a backup path for routing protocols implies many-inside-to-few-outside PAT/overload translation.",
+          "whyWrongHere": "For \"demilitarized\", To host externally-facing services (e.g., web/email servers) in a buffer zone, isolated from the internal network, between the internet and the internal LAN matches the required behavior — To provide a backup path for routing protocols answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DMZ pattern: Internet → firewall → DMZ (web/mail) → firewall → internal LAN.",
+          "contrast": "Correct \"To host externally-facing services (e.g., web/email servers) in a buffer zone, isolated from the internal network, between the internet and the internal LAN\" vs wrong \"To provide a backup path for routing protocols\": For \"demilitarized\", To host externally-facing services (e."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "DMZ as backup storage",
+          "whyItSeems": "\"To store network device configuration backups\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"demilitarized\", To host externally-facing services (e.g., web/email servers) in a buffer zone, isolated from the internal network, between the internet and the internal LAN matches the required behavior — To store network device configuration backups answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DMZ pattern: Internet → firewall → DMZ (web/mail) → firewall → internal LAN.",
+          "contrast": "Correct \"To host externally-facing services (e.g., web/email servers) in a buffer zone, isolated from the internal network, between the internet and the internal LAN\" vs wrong \"To store network device configuration backups\": For \"demilitarized\", To host externally-facing services (e."
+        }
+      ]
     },
     {
       "id": "5.11-legacy-q004",
@@ -9300,7 +14016,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "VLAN = broadcast boundary; microsegmentation = east-west policy down to workload."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Microsegmentation as wireless-only",
+          "whyItSeems": "\"Microsegmentation only works on wireless networks\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"microsegmentation\", Microsegmentation applies granular security policies down to the individual workload or application level, often independent of physical/VLAN boundaries matches the required behavior — Microsegmentation only works on wireless networks answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "VLAN = broadcast boundary; microsegmentation = east-west policy down to workload.",
+          "contrast": "Correct \"Microsegmentation applies granular security policies down to the individual workload or application level, often independent of physical/VLAN boundaries\" vs wrong \"Microsegmentation only works on wireless networks\": For \"microsegmentation\", Microsegmentation applies granular security policies down to the individual workload or application level, often independent of physical/VLAN boundaries matches the required behavior — Microsegmentation only works on wireless networks answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Microsegmentation eliminates access control",
+          "whyItSeems": "\"Microsegmentation removes the need for any access control\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"microsegmentation\", Microsegmentation applies granular security policies down to the individual workload or application level, often independent of physical/VLAN boundaries matches the required behavior — Microsegmentation removes the need for any access control answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "VLAN = broadcast boundary; microsegmentation = east-west policy down to workload.",
+          "contrast": "Correct \"Microsegmentation applies granular security policies down to the individual workload or application level, often independent of physical/VLAN boundaries\" vs wrong \"Microsegmentation removes the need for any access control\": For \"microsegmentation\", Microsegmentation applies granular security policies down to the individual workload or application level, often independent of physical/VLAN boundaries matches the required behavior — Microsegmentation removes the need for any access control answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Subnet sizing as microsegmentation",
+          "whyItSeems": "\"Microsegmentation is identical to VLAN segmentation but uses smaller subnet masks\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"microsegmentation\", Microsegmentation applies granular security policies down to the individual workload or application level, often independent of physical/VLAN boundaries matches the required behavior — Microsegmentation is identical to VLAN segmentation but uses smaller subnet masks answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "VLAN = broadcast boundary; microsegmentation = east-west policy down to workload.",
+          "contrast": "Correct \"Microsegmentation applies granular security policies down to the individual workload or application level, often independent of physical/VLAN boundaries\" vs wrong \"Microsegmentation is identical to VLAN segmentation but uses smaller subnet masks\": For \"microsegmentation\", Microsegmentation applies granular security policies down to the individual workload or application level, often independent of physical/VLAN boundaries matches the required behavior — Microsegmentation is identical to VLAN segmentation but uses smaller subnet masks answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.11-legacy-q005",
@@ -9349,7 +14091,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Flat LAN → malware lateral movement with no segmentation."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Claiming segmentation has no effect on malware spread",
+          "whyItSeems": "\"The impact would be identical regardless of segmentation\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"segmentation and malware containment\", The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the required behavior — The impact would be identical regardless of segmentation answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Flat LAN → malware lateral movement with no segmentation.",
+          "contrast": "Correct \"The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement\" vs wrong \"The impact would be identical regardless of segmentation\": For \"segmentation and malware containment\", The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the required behavior — The impact would be identical regardless of segmentation answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Blaming segmentation for causing ransomware infection",
+          "whyItSeems": "\"Segmentation would have caused the initial infection instead of preventing spread\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"segmentation and malware containment\", The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the required behavior — Segmentation would have caused the initial infection instead of preventing spread answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Flat LAN → malware lateral movement with no segmentation.",
+          "contrast": "Correct \"The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement\" vs wrong \"Segmentation would have caused the initial infection instead of preventing spread\": For \"segmentation and malware containment\", The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the required behavior — Segmentation would have caused the initial infection instead of preventing spread answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Believing flat networks auto-isolate infected hosts",
+          "whyItSeems": "\"A flat network automatically isolates infected hosts\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"segmentation and malware containment\", The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the required behavior — A flat network automatically isolates infected hosts answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Flat LAN → malware lateral movement with no segmentation.",
+          "contrast": "Correct \"The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement\" vs wrong \"A flat network automatically isolates infected hosts\": For \"segmentation and malware containment\", The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement matches the required behavior — A flat network automatically isolates infected hosts answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.11-legacy-q006",
@@ -9399,7 +14167,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "VLANs segment L2; routing + ACLs/firewall enforce policy between VLANs."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "STP as inter-VLAN policy",
+          "whyItSeems": "\"Spanning Tree Protocol\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"inter-VLAN policy enforcement\", Access Control Lists (ACLs) on a Layer 3 device (router or multilayer switch) matches the required behavior — Spanning Tree Protocol answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "VLANs segment L2; routing + ACLs/firewall enforce policy between VLANs.",
+          "contrast": "Correct \"Access Control Lists (ACLs) on a Layer 3 device (router or multilayer switch)\" vs wrong \"Spanning Tree Protocol\": For \"inter-VLAN policy enforcement\", Access Control Lists (ACLs) on a Layer 3 device (router or multilayer switch) matches the required behavior — Spanning Tree Protocol answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "CDP as segmentation enforcement",
+          "whyItSeems": "\"CDP neighbor advertisements\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"inter-VLAN policy enforcement\", Access Control Lists (ACLs) on a Layer 3 device (router or multilayer switch) matches the required behavior — CDP neighbor advertisements answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "VLANs segment L2; routing + ACLs/firewall enforce policy between VLANs.",
+          "contrast": "Correct \"Access Control Lists (ACLs) on a Layer 3 device (router or multilayer switch)\" vs wrong \"CDP neighbor advertisements\": For \"inter-VLAN policy enforcement\", Access Control Lists (ACLs) on a Layer 3 device (router or multilayer switch) matches the required behavior — CDP neighbor advertisements answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "DHCP relay as inter-VLAN ACL",
+          "whyItSeems": "DHCP relay forwards DHCP broadcasts toward a remote server rather than acting as the DHCP server itself.",
+          "whyWrongHere": "For \"inter-VLAN policy enforcement\", Access Control Lists (ACLs) on a Layer 3 device (router or multilayer switch) matches the required behavior — DHCP relay answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "VLANs segment L2; routing + ACLs/firewall enforce policy between VLANs.",
+          "contrast": "Correct \"Access Control Lists (ACLs) on a Layer 3 device (router or multilayer switch)\" vs wrong \"DHCP relay\": For \"inter-VLAN policy enforcement\", Access Control Lists (ACLs) on a Layer 3 device (router or multilayer switch) matches the required behavior — DHCP relay answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.11-legacy-q007",
@@ -9448,7 +14242,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Zero trust = verify every request — no implicit LAN trust."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Trusting all internal devices by default",
+          "whyItSeems": "\"Once a device is on the internal network, it is trusted to access anything\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"zero trust\", No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the required behavior — Once a device is on the internal network, it is trusted to access anything answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Zero trust = verify every request — no implicit LAN trust.",
+          "contrast": "Correct \"No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter\" vs wrong \"Once a device is on the internal network, it is trusted to access anything\": For \"zero trust\", No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the required behavior — Once a device is on the internal network, it is trusted to access anything answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Believing zero trust means no internal authentication",
+          "whyItSeems": "\"Zero trust means no authentication is required for internal traffic\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"zero trust\", No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the required behavior — Zero trust means no authentication is required for internal traffic answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Zero trust = verify every request — no implicit LAN trust.",
+          "contrast": "Correct \"No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter\" vs wrong \"Zero trust means no authentication is required for internal traffic\": For \"zero trust\", No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the required behavior — Zero trust means no authentication is required for internal traffic answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Limiting zero trust to wireless networks",
+          "whyItSeems": "\"Zero trust applies only to wireless networks\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"zero trust\", No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the required behavior — Zero trust applies only to wireless networks answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Zero trust = verify every request — no implicit LAN trust.",
+          "contrast": "Correct \"No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter\" vs wrong \"Zero trust applies only to wireless networks\": For \"zero trust\", No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter matches the required behavior — Zero trust applies only to wireless networks answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.11-legacy-q008",
@@ -9498,7 +14318,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Guest users → dedicated VLAN/subnet + policy, not corp flat."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Placing guests on corporate VLAN for simplicity",
+          "whyItSeems": "\"Place guest devices on the same VLAN and subnet as corporate devices for simplicity\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"guest network segmentation\", Place guest traffic on a separate VLAN/subnet with restricted or no access to internal corporate resources, typically routed directly to the internet matches the required behavior — Place guest devices on the same VLAN and subnet as corporate devices for simplicity answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Guest users → dedicated VLAN/subnet + policy, not corp flat.",
+          "contrast": "Correct \"Place guest traffic on a separate VLAN/subnet with restricted or no access to internal corporate resources, typically routed directly to the internet\" vs wrong \"Place guest devices on the same VLAN and subnet as corporate devices for simplicity\": For \"guest network segmentation\", Place guest traffic on a separate VLAN/subnet with restricted or no access to internal corporate resources, typically routed directly to the internet matches the required behavior — Place guest devices on the same VLAN and subnet as corporate devices for simplicity answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Using DHCP disable instead of guest VLAN segmentation",
+          "whyItSeems": "Disable DHCP for guest devices so they can't get an IP address shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"guest network segmentation\", Place guest traffic on a separate VLAN/subnet with restricted or no access to internal corporate resources, typically routed directly to the internet matches the required behavior — Disable DHCP for guest devices so they can't get an IP address answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Guest users → dedicated VLAN/subnet + policy, not corp flat.",
+          "contrast": "Correct \"Place guest traffic on a separate VLAN/subnet with restricted or no access to internal corporate resources, typically routed directly to the internet\" vs wrong \"Disable DHCP for guest devices so they can't get an IP address\": For \"guest network segmentation\", Place guest traffic on a separate VLAN/subnet with restricted or no access to internal corporate resources, typically routed directly to the internet matches the required behavior — Disable DHCP for guest devices so they can't get an IP address answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Using VLAN priority instead of guest segmentation",
+          "whyItSeems": "\"Give guest devices a higher VLAN priority than corporate traffic\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"guest network segmentation\", Place guest traffic on a separate VLAN/subnet with restricted or no access to internal corporate resources, typically routed directly to the internet matches the required behavior — Give guest devices a higher VLAN priority than corporate traffic answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Guest users → dedicated VLAN/subnet + policy, not corp flat.",
+          "contrast": "Correct \"Place guest traffic on a separate VLAN/subnet with restricted or no access to internal corporate resources, typically routed directly to the internet\" vs wrong \"Give guest devices a higher VLAN priority than corporate traffic\": For \"guest network segmentation\", Place guest traffic on a separate VLAN/subnet with restricted or no access to internal corporate resources, typically routed directly to the internet matches the required behavior — Give guest devices a higher VLAN priority than corporate traffic answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.11-legacy-q009",
@@ -9547,7 +14393,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Traffic-type VLANs: voice, guest, IoT — separate QoS and security policy."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Department VLAN as traffic-type segmentation",
+          "whyItSeems": "\"Putting the Sales department on VLAN 10 and Engineering on VLAN 20\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"traffic-type segmentation\", Placing voice (VoIP) traffic on a separate VLAN from data traffic to isolate and prioritize it matches the required behavior — Putting the Sales department on VLAN 10 and Engineering on VLAN 20 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Traffic-type VLANs: voice, guest, IoT — separate QoS and security policy.",
+          "contrast": "Correct \"Placing voice (VoIP) traffic on a separate VLAN from data traffic to isolate and prioritize it\" vs wrong \"Putting the Sales department on VLAN 10 and Engineering on VLAN 20\": For \"traffic-type segmentation\", Placing voice (VoIP) traffic on a separate VLAN from data traffic to isolate and prioritize it matches the required behavior — Putting the Sales department on VLAN 10 and Engineering on VLAN 20 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Location VLAN as traffic-type segmentation",
+          "whyItSeems": "\"Creating a separate VLAN for each floor of a building\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"traffic-type segmentation\", Placing voice (VoIP) traffic on a separate VLAN from data traffic to isolate and prioritize it matches the required behavior — Creating a separate VLAN for each floor of a building answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Traffic-type VLANs: voice, guest, IoT — separate QoS and security policy.",
+          "contrast": "Correct \"Placing voice (VoIP) traffic on a separate VLAN from data traffic to isolate and prioritize it\" vs wrong \"Creating a separate VLAN for each floor of a building\": For \"traffic-type segmentation\", Placing voice (VoIP) traffic on a separate VLAN from data traffic to isolate and prioritize it matches the required behavior — Creating a separate VLAN for each floor of a building answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Static IP as traffic-type segmentation",
+          "whyItSeems": "\"Assigning a static IP to each printer\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"traffic-type segmentation\", Placing voice (VoIP) traffic on a separate VLAN from data traffic to isolate and prioritize it matches the required behavior — Assigning a static IP to each printer answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Traffic-type VLANs: voice, guest, IoT — separate QoS and security policy.",
+          "contrast": "Correct \"Placing voice (VoIP) traffic on a separate VLAN from data traffic to isolate and prioritize it\" vs wrong \"Assigning a static IP to each printer\": For \"traffic-type segmentation\", Placing voice (VoIP) traffic on a separate VLAN from data traffic to isolate and prioritize it matches the required behavior — Assigning a static IP to each printer answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "5.11-legacy-q010",
@@ -9596,7 +14468,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Device admin → out-of-band mgmt network isolated from users."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Choosing speed as primary OOB segmentation benefit",
+          "whyItSeems": "\"It increases the speed of management traffic only\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"out-of-band management segmentation\", It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the required behavior — It increases the speed of management traffic only answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Device admin → out-of-band mgmt network isolated from users.",
+          "contrast": "Correct \"It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic\" vs wrong \"It increases the speed of management traffic only\": For \"out-of-band management segmentation\", It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the required behavior — It increases the speed of management traffic only answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Believing OOB eliminates AAA requirement",
+          "whyItSeems": "\"It eliminates the need for AAA on network devices\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"out-of-band management segmentation\", It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the required behavior — It eliminates the need for AAA on network devices answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Device admin → out-of-band mgmt network isolated from users.",
+          "contrast": "Correct \"It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic\" vs wrong \"It eliminates the need for AAA on network devices\": For \"out-of-band management segmentation\", It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the required behavior — It eliminates the need for AAA on network devices answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Expecting users to bypass auth via OOB design",
+          "whyItSeems": "\"It allows users to bypass authentication for management access\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"out-of-band management segmentation\", It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the required behavior — It allows users to bypass authentication for management access answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Device admin → out-of-band mgmt network isolated from users.",
+          "contrast": "Correct \"It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic\" vs wrong \"It allows users to bypass authentication for management access\": For \"out-of-band management segmentation\", It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic matches the required behavior — It allows users to bypass authentication for management access answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     }
   ]
 }

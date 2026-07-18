@@ -47,7 +47,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Codes: C connected · S static · O OSPF · D EIGRP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "O means connected",
+          "whyItSeems": "\"Connected route\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"route source codes\", OSPF-learned route matches the required behavior — Connected route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Route codes: C connected · S static · O OSPF · D EIGRP.",
+          "contrast": "Correct \"OSPF-learned route\" vs wrong \"Connected route\": For \"route source codes\", OSPF-learned route matches the required behavior — Connected route answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "False belief that O means static — treating \"Static route\" as if it satisfied the stem instead of \"OSPF-learned route\".",
+          "whyItSeems": "Static route configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "For \"route source codes\", OSPF-learned route matches the required behavior — Static route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Route codes: C connected · S static · O OSPF · D EIGRP.",
+          "contrast": "Correct \"OSPF-learned route\" vs wrong \"Static route\": For \"route source codes\", OSPF-learned route matches the required behavior — Static route answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "False belief that O means EIGRP — treating \"EIGRP-learned route\" as if it satisfied the stem instead of \"OSPF-learned route\".",
+          "whyItSeems": "EIGRP-learned route applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "This stem tests OSPF (route source codes) — OSPF-learned route is protocol-specific; EIGRP-learned route applies another IGP's behavior.",
+          "memoryAnchor": "Route codes: C connected · S static · O OSPF · D EIGRP.",
+          "contrast": "Correct \"OSPF-learned route\" vs wrong \"EIGRP-learned route\": This stem tests OSPF (route source codes) — OSPF-learned route is protocol-specific; EIGRP-learned route applies another IGP's behavior."
+        }
+      ]
     },
     {
       "id": "3.1-q2",
@@ -95,7 +121,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Route table [110/20] → 110 = AD, 20 = metric. Always read left first."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Swapping AD and metric in bracket notation",
+          "whyItSeems": "\"The metric\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"AD/metric brackets\", The administrative distance matches the required behavior — The metric answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"The administrative distance\" — not \"The metric\" — for what this stem actually tests.",
+          "contrast": "Correct \"The administrative distance\" vs wrong \"The metric\": For \"AD/metric brackets\", The administrative distance matches the required behavior — The metric answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Identifying cost where AD belongs in [AD/metric]",
+          "whyItSeems": "\"The OSPF cost\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"AD/metric brackets\", The administrative distance matches the required behavior — The OSPF cost answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"The administrative distance\" — not \"The OSPF cost\" — for what this stem actually tests.",
+          "contrast": "Correct \"The administrative distance\" vs wrong \"The OSPF cost\": For \"AD/metric brackets\", The administrative distance matches the required behavior — The OSPF cost answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Applying RIP hop-count thinking to OSPF route display",
+          "whyItSeems": "\"The hop count\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"AD/metric brackets\", The administrative distance matches the required behavior — The hop count answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"The administrative distance\" — not \"The hop count\" — for what this stem actually tests.",
+          "contrast": "Correct \"The administrative distance\" vs wrong \"The hop count\": For \"AD/metric brackets\", The administrative distance matches the required behavior — The hop count answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.1-q3",
@@ -143,7 +195,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Interface up → C (subnet) + L (/32 local)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Static codes for connected install",
+          "whyItSeems": "S 192.168.1.0/24 and C 192.168.1.1/32 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Mask/wildcard (connected and local routes): C 192.168.1.0/24 and L 192.168.1.1/32 uses the mask style this stem requires — S 192.168.1.0/24 and C 192.168.1.1/32 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "Interface up → C (subnet) + L (/32 local).",
+          "contrast": "Correct \"C 192.168.1.0/24 and L 192.168.1.1/32\" vs wrong \"S 192.168.1.0/24 and C 192.168.1.1/32\": Mask/wildcard (connected and local routes): C 192."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "OSPF code on interface bring-up",
+          "whyItSeems": "O 192.168.1.0/24 and C 192.168.1.1/24 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Mask/wildcard (connected and local routes): C 192.168.1.0/24 and L 192.168.1.1/32 uses the mask style this stem requires — O 192.168.1.0/24 and C 192.168.1.1/24 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "Interface up → C (subnet) + L (/32 local).",
+          "contrast": "Correct \"C 192.168.1.0/24 and L 192.168.1.1/32\" vs wrong \"O 192.168.1.0/24 and C 192.168.1.1/24\": Mask/wildcard (connected and local routes): C 192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Connected only without local",
+          "whyItSeems": "C 192.168.1.0/24 only states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Mask/wildcard (connected and local routes): C 192.168.1.0/24 and L 192.168.1.1/32 uses the mask style this stem requires — C 192.168.1.0/24 only confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "Interface up → C (subnet) + L (/32 local).",
+          "contrast": "Correct \"C 192.168.1.0/24 and L 192.168.1.1/32\" vs wrong \"C 192.168.1.0/24 only\": Mask/wildcard (connected and local routes): C 192."
+        }
+      ]
     },
     {
       "id": "3.1-q4",
@@ -191,7 +269,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "L /32 = traffic to this router's interface IP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "L route for subnet hosts",
+          "whyItSeems": "\"It routes traffic to hosts on the subnet\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"L route purpose\", It allows the router to process packets destined for its own interface IP matches the required behavior — It routes traffic to hosts on the subnet answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "L /32 = traffic to this router's interface IP.",
+          "contrast": "Correct \"It allows the router to process packets destined for its own interface IP\" vs wrong \"It routes traffic to hosts on the subnet\": For \"L route purpose\", It allows the router to process packets destined for its own interface IP matches the required behavior — It routes traffic to hosts on the subnet answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "L as backup connected",
+          "whyItSeems": "\"It is a backup for the connected route\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"L route purpose\", It allows the router to process packets destined for its own interface IP matches the required behavior — It is a backup for the connected route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "L /32 = traffic to this router's interface IP.",
+          "contrast": "Correct \"It allows the router to process packets destined for its own interface IP\" vs wrong \"It is a backup for the connected route\": For \"L route purpose\", It allows the router to process packets destined for its own interface IP matches the required behavior — It is a backup for the connected route answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "L marks default gateway",
+          "whyItSeems": "It marks the default gateway sends the decision to a router/default gateway rather than handling it at Layer 2.",
+          "whyWrongHere": "For \"L route purpose\", It allows the router to process packets destined for its own interface IP matches the required behavior — It marks the default gateway answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "L /32 = traffic to this router's interface IP.",
+          "contrast": "Correct \"It allows the router to process packets destined for its own interface IP\" vs wrong \"It marks the default gateway\": For \"L route purpose\", It allows the router to process packets destined for its own interface IP matches the required behavior — It marks the default gateway answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.1-q5",
@@ -239,7 +343,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Memorize: O=OSPF, D=EIGRP, R=RIP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "False belief that E as EIGRP — treating \"E\" as if it satisfied the stem instead of \"D\".",
+          "whyItSeems": "\"E\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"EIGRP code\", D matches the required behavior — E answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Memorize: O=OSPF, D=EIGRP, R=RIP.",
+          "contrast": "Correct \"D\" vs wrong \"E\": For \"EIGRP code\", D matches the required behavior — E answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "False belief that O as EIGRP — treating \"O\" as if it satisfied the stem instead of \"D\".",
+          "whyItSeems": "\"O\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"EIGRP code\", D matches the required behavior — O answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Memorize: O=OSPF, D=EIGRP, R=RIP.",
+          "contrast": "Correct \"D\" vs wrong \"O\": For \"EIGRP code\", D matches the required behavior — O answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "False belief that R as EIGRP — treating \"R\" as if it satisfied the stem instead of \"D\".",
+          "whyItSeems": "\"R\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"EIGRP code\", D matches the required behavior — R answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Memorize: O=OSPF, D=EIGRP, R=RIP.",
+          "contrast": "Correct \"D\" vs wrong \"R\": For \"EIGRP code\", D matches the required behavior — R answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.1-q6",
@@ -287,7 +417,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Interface down → connected/local routes vanish immediately from the RIB."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Expecting special marking to preserve dead connected routes",
+          "whyItSeems": "\"Marked with *, indicating preferred\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"connected route removal\", Removed from the routing table matches the required behavior — Marked with *, indicating preferred answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Interface down → connected/local routes vanish immediately from the RIB.",
+          "contrast": "Correct \"Removed from the routing table\" vs wrong \"Marked with *, indicating preferred\": For \"connected route removal\", Removed from the routing table matches the required behavior — Marked with *, indicating preferred answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Expecting timer-based aging for connected routes",
+          "whyItSeems": "Stays with an age timer states a MAC aging timer or timeout value that may not match the default or configured setting.",
+          "whyWrongHere": "For \"connected route removal\", Removed from the routing table matches the required behavior — Stays with an age timer answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Interface down → connected/local routes vanish immediately from the RIB.",
+          "contrast": "Correct \"Removed from the routing table\" vs wrong \"Stays with an age timer\": For \"connected route removal\", Removed from the routing table matches the required behavior — Stays with an age timer answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Assuming automatic static conversion on link down",
+          "whyItSeems": "Converts to a static route configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "For \"connected route removal\", Removed from the routing table matches the required behavior — Converts to a static route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Interface down → connected/local routes vanish immediately from the RIB.",
+          "contrast": "Correct \"Removed from the routing table\" vs wrong \"Converts to a static route\": For \"connected route removal\", Removed from the routing table matches the required behavior — Converts to a static route answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.1-q7",
@@ -335,7 +491,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "AD recall: connected 0 | static 1 | EIGRP 90 | OSPF 110 | RIP 120."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "False belief that Static AD is 0 — treating \"0\" as if it satisfied the stem instead of \"1\".",
+          "whyItSeems": "0 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in static AD.",
+          "whyWrongHere": "For \"static AD\", 1 matches the required behavior — 0 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AD recall: connected 0 | static 1 | EIGRP 90 | OSPF 110 | RIP 120.",
+          "contrast": "Correct \"1\" vs wrong \"0\": For \"static AD\", 1 matches the required behavior — 0 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Static AD is 90",
+          "whyItSeems": "90 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in static AD.",
+          "whyWrongHere": "For \"static AD\", 1 matches the required behavior — 90 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AD recall: connected 0 | static 1 | EIGRP 90 | OSPF 110 | RIP 120.",
+          "contrast": "Correct \"1\" vs wrong \"90\": For \"static AD\", 1 matches the required behavior — 90 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Static AD is 110",
+          "whyItSeems": "110 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in static AD.",
+          "whyWrongHere": "For \"static AD\", 1 matches the required behavior — 110 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AD recall: connected 0 | static 1 | EIGRP 90 | OSPF 110 | RIP 120.",
+          "contrast": "Correct \"1\" vs wrong \"110\": For \"static AD\", 1 matches the required behavior — 110 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.1-q8",
@@ -384,7 +566,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Route format: D net [90/307200] — bracket = [AD/metric]."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Metric value is AD",
+          "whyItSeems": "\"Administrative distance\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"show ip route interpretation\", EIGRP composite metric matches the required behavior — Administrative distance answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Route format: D net [90/307200] — bracket = [AD/metric].",
+          "contrast": "Correct \"EIGRP composite metric\" vs wrong \"Administrative distance\": For \"show ip route interpretation\", EIGRP composite metric matches the required behavior — Administrative distance answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "EIGRP metric as OSPF cost",
+          "whyItSeems": "\"OSPF cost\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"show ip route interpretation\", EIGRP composite metric matches the required behavior — OSPF cost answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Route format: D net [90/307200] — bracket = [AD/metric].",
+          "contrast": "Correct \"EIGRP composite metric\" vs wrong \"OSPF cost\": For \"show ip route interpretation\", EIGRP composite metric matches the required behavior — OSPF cost answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "EIGRP metric as hop count",
+          "whyItSeems": "\"Hop count\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"show ip route interpretation\", EIGRP composite metric matches the required behavior — Hop count answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Route format: D net [90/307200] — bracket = [AD/metric].",
+          "contrast": "Correct \"EIGRP composite metric\" vs wrong \"Hop count\": For \"show ip route interpretation\", EIGRP composite metric matches the required behavior — Hop count answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.1-q9",
@@ -432,7 +640,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Default route: S* 0.0.0.0/0 or O*E2 0.0.0.0/0 — asterisk marks candidate default."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Default route means unreachable",
+          "whyItSeems": "\"The router cannot reach any network\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"gateway of last resort\", A default route is installed matches the required behavior — The router cannot reach any network answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Default route: S* 0.0.0.0/0 or O*E2 0.0.0.0/0 — asterisk marks candidate default.",
+          "contrast": "Correct \"A default route is installed\" vs wrong \"The router cannot reach any network\": For \"gateway of last resort\", A default route is installed matches the required behavior — The router cannot reach any network answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Default route means DHCP server",
+          "whyItSeems": "\"The router is a DHCP server\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"gateway of last resort\", A default route is installed matches the required behavior — The router is a DHCP server answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Default route: S* 0.0.0.0/0 or O*E2 0.0.0.0/0 — asterisk marks candidate default.",
+          "contrast": "Correct \"A default route is installed\" vs wrong \"The router is a DHCP server\": For \"gateway of last resort\", A default route is installed matches the required behavior — The router is a DHCP server answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Default route means OSPF DR",
+          "whyItSeems": "OSPF elected a DR states an OSPF DR/BDR election outcome or role that may not apply on this segment.",
+          "whyWrongHere": "For \"gateway of last resort\", A default route is installed matches the required behavior — OSPF elected a DR answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Default route: S* 0.0.0.0/0 or O*E2 0.0.0.0/0 — asterisk marks candidate default.",
+          "contrast": "Correct \"A default route is installed\" vs wrong \"OSPF elected a DR\": For \"gateway of last resort\", A default route is installed matches the required behavior — OSPF elected a DR answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.1-q10",
@@ -480,7 +714,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "next to static default = gateway of last resort is using this route."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Asterisk means unreachable",
+          "whyItSeems": "\"The route is unreachable\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"asterisk in routing table\", It is the best match or candidate default matches the required behavior — The route is unreachable answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "next to static default = gateway of last resort is using this route.",
+          "contrast": "Correct \"It is the best match or candidate default\" vs wrong \"The route is unreachable\": For \"asterisk in routing table\", It is the best match or candidate default matches the required behavior — The route is unreachable answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Asterisk means old route",
+          "whyItSeems": "\"The route is more than 24 hours old\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"asterisk in routing table\", It is the best match or candidate default matches the required behavior — The route is more than 24 hours old answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "next to static default = gateway of last resort is using this route.",
+          "contrast": "Correct \"It is the best match or candidate default\" vs wrong \"The route is more than 24 hours old\": For \"asterisk in routing table\", It is the best match or candidate default matches the required behavior — The route is more than 24 hours old answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Asterisk means manual activation needed",
+          "whyItSeems": "\"The route requires manual activation\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"asterisk in routing table\", It is the best match or candidate default matches the required behavior — The route requires manual activation answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "next to static default = gateway of last resort is using this route.",
+          "contrast": "Correct \"It is the best match or candidate default\" vs wrong \"The route requires manual activation\": For \"asterisk in routing table\", It is the best match or candidate default matches the required behavior — The route requires manual activation answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q001",
@@ -534,7 +794,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "S* in routing table = default route candidate (gateway of last resort)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Ignoring asterisk on static default route code",
+          "whyItSeems": "Static route configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "Static routing (routing table): Default route uses the right next-hop or exit interface — Static route misconfigures recursive or floating static behavior.",
+          "memoryAnchor": "S* in routing table = default route candidate (gateway of last resort).",
+          "contrast": "Correct \"Default route\" vs wrong \"Static route\": Static routing (routing table): Default route uses the right next-hop or exit interface — Static route misconfigures recursive or floating static behavior."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Calling S* a dynamic route",
+          "whyItSeems": "\"Dynamic route\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", Default route matches the required behavior — Dynamic route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "S* in routing table = default route candidate (gateway of last resort).",
+          "contrast": "Correct \"Default route\" vs wrong \"Dynamic route\": For \"routing table\", Default route matches the required behavior — Dynamic route answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Reading S* as OSPF",
+          "whyItSeems": "\"OSPF route\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", Default route matches the required behavior — OSPF route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "S* in routing table = default route candidate (gateway of last resort).",
+          "contrast": "Correct \"Default route\" vs wrong \"OSPF route\": For \"routing table\", Default route matches the required behavior — OSPF route answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q002",
@@ -588,7 +874,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "show ip route brackets: [AD / metric] — slash separates trust from protocol cost."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students think the number is administrative distance because AD is the more heavily drilled term, so they grab the first bracket number without checking its position.",
+          "whyItSeems": "AD is discussed constantly in CCNA routing lessons, so any number inside a routing-table bracket pattern-matches to 'AD' first.",
+          "whyWrongHere": "In an [AD/metric] pair like [110/20], AD is always the value BEFORE the slash (110 here) and metric is the value AFTER it (20). The number this question points to sits after the slash, which is metric, not AD.",
+          "memoryAnchor": "[AD/metric]: left of the slash = trust (AD), right of the slash = cost (metric).",
+          "contrast": "AD (110 for OSPF) tells you how much to trust the source protocol; metric (20) tells you the path's cost within that protocol — two different jobs, two different sides of the slash."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Students conflate a bracketed number with a protocol identifier, since OSPF process IDs and other protocol numbers also show up as plain digits in configs.",
+          "whyItSeems": "The route line already displays a protocol via the leading code letter (O for OSPF), so it feels plausible that a nearby number reinforces or restates that same protocol info.",
+          "whyWrongHere": "The protocol is identified entirely by the leading route code (O, S, C, etc.) at the start of the line — the bracketed [AD/metric] pair carries no protocol identity at all, only trust and cost values.",
+          "memoryAnchor": "Protocol = the letter code at the line's start. [AD/metric] = trust and cost, never protocol ID.",
+          "contrast": "Changing the metric value doesn't change which protocol installed the route; only the leading code (O, S, D, etc.) tells you that."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students assume numbers attached to a table row must indicate that row's position or index, similar to a spreadsheet row number.",
+          "whyItSeems": "Routing table output is dense and table-like, so any digit near an entry can look like bookkeeping metadata rather than a routing value.",
+          "whyWrongHere": "IOS routing tables don't display row position at all — every number in the [AD/metric] bracket is a routing value (administrative distance, then metric), not a display index.",
+          "memoryAnchor": "Nothing in 'show ip route' output tells you a row's position — every number there is either AD or metric.",
+          "contrast": "A row's position in the output changes if you resort or filter the table; the metric value stays tied to the route itself regardless of where it's printed."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q003",
@@ -640,11 +952,37 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "show ip route <net> <mask> longer-prefixes → all child routes within that summary — great for troubleshooting."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Exact match shows subset routes",
+          "whyItSeems": "Router#show ip route 160.45.23.0 255.255.255.0 is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (routing table): Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes inspects the right table or state — Router#show ip route 160.45.23.0 255.255.255.0 shows unrelated information.",
+          "memoryAnchor": "show ip route <net> <mask> longer-prefixes → all child routes within that summary — great for troubleshooting.",
+          "contrast": "Correct \"Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes\" vs wrong \"Router#show ip route 160.45.23.0 255.255.255.0\": Verification command (routing table): Router#show ip route 160."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "BGP filter for prefix subset",
+          "whyItSeems": "Router#show ip route bgp applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "Verification command (routing table): Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes inspects the right table or state — Router#show ip route bgp shows unrelated information.",
+          "memoryAnchor": "show ip route <net> <mask> longer-prefixes → all child routes within that summary — great for troubleshooting.",
+          "contrast": "Correct \"Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes\" vs wrong \"Router#show ip route bgp\": Verification command (routing table): Router#show ip route 160."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Full table for subset view",
+          "whyItSeems": "Router#show ip route is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (routing table): Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes inspects the right table or state — Router#show ip route shows unrelated information.",
+          "memoryAnchor": "show ip route <net> <mask> longer-prefixes → all child routes within that summary — great for troubleshooting.",
+          "contrast": "Correct \"Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes\" vs wrong \"Router#show ip route\": Verification command (routing table): Router#show ip route 160."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q004",
-      "question": "Routing table excerpt:\nC    192.168.1.0/26 is directly connected, Serial0/0\nS    192.168.1.0/24 [1/0] via 172.16.1.100\nO    192.168.1.128/25 [110/10] via 172.16.1.200\nCodes: C=connected, S=static, O=OSPF\n\nWhich will be the next hop for a destination address of 192.168.1.5?",
+      "question": "Routing table excerpt:\nC    192.168.1.0/26 is directly connected, Serial0/0\nS    192.168.1.0/24 [1/0] via 172.16.1.100\nO    192.168.1.128/25 [110/10] via 172.16.1.200\nCodes: C=connected, S=static, O=OSPF\n\nRouting table excerpt:\nC    192.168.1.0/26 is directly connected, Serial0/0\nS    192.168.1.0/24 [1/0] via 172.16.1.100\nO    192.168.1.128/25 [110/10] via 172.16.1.200\nCodes: C=connected, S=static, O=OSPF\n\nWhich will be the next hop for a destination address of 192.168.1.5?",
       "exhibitConverted": true,
       "choices": [
         "The gateway 172.16.1.200",
@@ -695,7 +1033,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Read show ip route line-by-line: match longest prefix → read next-hop or exit interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students assume the OSPF route (with its own gateway address) must be the answer because OSPF is the 'special' dynamic protocol they were told to pay attention to.",
+          "whyItSeems": "The OSPF entry has the most detailed-looking metric [110/10], which can make it feel like the 'important' or 'winning' route to focus on.",
+          "whyWrongHere": "The OSPF route covers 192.168.1.128/25 (addresses .128–.255) — the destination 192.168.1.5 doesn't even fall inside that block, so this route can't be a candidate at all, regardless of its gateway.",
+          "memoryAnchor": "Before comparing routes, first check: does the destination even fall inside this route's range?",
+          "contrast": "192.168.1.5 falls inside the /26 (0–63) and /24 (0–255) blocks, but not inside the /25 (128–255) block — that alone rules the OSPF route out."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students believe the static route wins because it has a lower administrative distance (1) than a directly connected interface, over-applying the 'lowest AD wins' rule outside its proper context.",
+          "whyItSeems": "AD comparisons are drilled heavily for choosing between routes to the SAME prefix, so it's an easy but incorrect extension to apply AD when the prefixes are actually different lengths.",
+          "whyWrongHere": "AD only breaks ties between routes to the exact same prefix. Here, the connected /26 route is a longer (more specific) prefix match for 192.168.1.5 than the static /24 — longest-prefix-match always wins over AD when the prefix lengths differ.",
+          "memoryAnchor": "Longest prefix match always wins first; AD only matters when two routes tie on prefix length.",
+          "contrast": "If both routes were /24s, the static's AD of 1 would beat connected's AD of 0 only in reverse (connected always wins ties); but since /26 is more specific than /24, AD never even enters the comparison here."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students assume connected routes always display as a generic 'Ethernet' interface rather than reading the actual interface name printed in the table.",
+          "whyItSeems": "Ethernet interfaces are the most common example used in CCNA labs, so it's an easy default guess when an interface name isn't carefully checked against the exhibit.",
+          "whyWrongHere": "The exhibit explicitly lists the connected route's exit interface as Serial0/0, not any Ethernet interface — 'Ethernet0' doesn't appear anywhere in the given routing table.",
+          "memoryAnchor": "Always read the exact interface name printed in the route line — don't substitute a 'typical' interface name from memory.",
+          "contrast": "Serial interfaces are common on WAN-facing routers in these exam scenarios; assuming Ethernet by default ignores what the exhibit actually shows."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q005",
@@ -747,11 +1111,37 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "/19 boundaries: 0, 32, 64, 96… | .53 is in 32–63 → network 203.80.32.0/19."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students use a /20-sized block increment (16) instead of the correct /19-sized increment (32), mixing up which prefix length they're working with.",
+          "whyItSeems": "16 and 32 are both common subnet block sizes drilled in CCNA subnetting practice, so it's easy to grab the wrong one under time pressure.",
+          "whyWrongHere": "A /19 mask leaves 5 host bits in the third octet (32 - 27 = 5... actually the block size is 256/2^(19-24+32)=32), so /19 blocks increment by 32 in the third octet: 0, 32, 64, 96... 203.80.53.x falls in the 32–63 range, not the 0–15 range that 16-based math would suggest.",
+          "memoryAnchor": "/19 = blocks of 32 in the third octet (0, 32, 64, 96...) — not 16.",
+          "contrast": "A /20 mask would increment by 16; a /19 mask increments by 32 — one bit of mask difference doubles the block size, so confirm the exact prefix length before computing the block."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Students round the host octet up to the next block boundary instead of down, treating subnetting like rounding to the 'nearest' value rather than the 'floor' value.",
+          "whyItSeems": "Rounding up to the closest boundary feels like ordinary math intuition, especially when .53 is roughly in the middle of the 32–63 range and closer to 48 by simple arithmetic distance thinking.",
+          "whyWrongHere": "Subnetting always rounds DOWN to the block boundary that the address falls within, never to the nearest one. Since /19 blocks are 0, 32, 64..., and 53 sits between 32 and 64, the network address is the lower boundary: 32, giving 203.80.32.0/19.",
+          "memoryAnchor": "Subnet network address = round DOWN to the block boundary, never round to nearest.",
+          "contrast": "203.80.48.0 would be the network address only if the block size were 16 (making 48 a valid boundary); with a /19's 32-sized blocks, 48 isn't a boundary at all — only 32 and 64 are."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students treat the interface's configured host address as if it were already the network address, without stripping the host bits.",
+          "whyItSeems": "The exact IP typed into the interface configuration (203.80.53.22) is the most concrete, visible number in the question, making it tempting to just reuse it directly in the route statement.",
+          "whyWrongHere": "A router never installs a connected route using the interface's full host address — it calculates and installs the network address for that subnet (203.80.32.0/19), zeroing out the host bits (.53.22 becomes irrelevant once the /19 mask is applied).",
+          "memoryAnchor": "Connected routes show the NETWORK address of the subnet, never the specific host IP configured on the interface.",
+          "contrast": "203.80.53.22/19 is a valid host address you could ping; 203.80.32.0/19 is the network address that actually appears as a route in the routing table — they serve different purposes."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q006",
-      "question": "Routing table excerpt:\nGateway of last resort is not set\n      10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks\nO        10.1.0.0/16 [110/20] via 10.0.0.1, 00:05:00, Gi0/0\nO        10.2.0.0/16 [110/30] via 10.0.0.2, 00:05:00, Gi0/1\nO        10.3.0.0/16 [110/25] via 10.0.0.3, 00:05:00, Gi0/2\n\nwhat does the top line of the output represent?",
+      "question": "Routing table excerpt:\nGateway of last resort is not set\n      10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks\nO        10.1.0.0/16 [110/20] via 10.0.0.1, 00:05:00, Gi0/0\nO        10.2.0.0/16 [110/30] via 10.0.0.2, 00:05:00, Gi0/1\nO        10.3.0.0/16 [110/25] via 10.0.0.3, 00:05:00, Gi0/2\n\nRouting table excerpt:\nGateway of last resort is not set\n      10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks\nO        10.1.0.0/16 [110/20] via 10.0.0.1, 00:05:00, Gi0/0\nO        10.2.0.0/16 [110/30] via 10.0.0.2, 00:05:00, Gi0/1\nO        10.3.0.0/16 [110/25] via 10.0.0.3, 00:05:00, Gi0/2\n\nwhat does the top line of the output represent?",
       "choices": [
         "The 10.0.0.0/8 is a route in the routing table.",
         "The 10.0.0.0/8 is a summarization of the routes in the table.",
@@ -800,7 +1190,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "\"variably subnetted, X subnets, Y masks\" = IOS display header grouping child routes — not a route itself."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Parent header as routable entry",
+          "whyItSeems": "The 10.0.0.0/8 is a route in the routing table. relies on a router routing table rather than switch MAC/CAM forwarding.",
+          "whyWrongHere": "Mask/wildcard (routing table): The 10.0.0.0/8 is a summarization of the routes in the table. uses the mask style this stem requires — The 10.0.0.0/8 is a route in the routing table. confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "\"variably subnetted, X subnets, Y masks\" = IOS display header grouping child routes — not a route itself.",
+          "contrast": "Correct \"The 10.0.0.0/8 is a summarization of the routes in the table.\" vs wrong \"The 10.0.0.0/8 is a route in the routing table.\": Mask/wildcard (routing table): The 10."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Summary header as router address",
+          "whyItSeems": "The 10.0.0.0/8 is the router’s network address. states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Mask/wildcard (routing table): The 10.0.0.0/8 is a summarization of the routes in the table. uses the mask style this stem requires — The 10.0.0.0/8 is the router’s network address. confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "\"variably subnetted, X subnets, Y masks\" = IOS display header grouping child routes — not a route itself.",
+          "contrast": "Correct \"The 10.0.0.0/8 is a summarization of the routes in the table.\" vs wrong \"The 10.0.0.0/8 is the router’s network address.\": Mask/wildcard (routing table): The 10."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Neighbor-learned parent route",
+          "whyItSeems": "The 10.0.0.0/8 has been populated from another router. states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Mask/wildcard (routing table): The 10.0.0.0/8 is a summarization of the routes in the table. uses the mask style this stem requires — The 10.0.0.0/8 has been populated from another router. confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "\"variably subnetted, X subnets, Y masks\" = IOS display header grouping child routes — not a route itself.",
+          "contrast": "Correct \"The 10.0.0.0/8 is a summarization of the routes in the table.\" vs wrong \"The 10.0.0.0/8 has been populated from another router.\": Mask/wildcard (routing table): The 10."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q007",
@@ -852,7 +1268,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Route table time (hh:mm:ss) = how long since this route was refreshed/installed — resets on update."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Students read the hh:mm:ss-formatted number as a wall-clock time simply because it visually matches how a clock is normally displayed.",
+          "whyItSeems": "00:05:00 looks exactly like a time-of-day format (hours:minutes:seconds), so without context it's easy to mistake it for 'the current time' rather than a duration.",
+          "whyWrongHere": "This field is an elapsed-time counter, not a clock — it counts up from the moment the route was installed or last refreshed, and resets to 00:00:00 whenever that happens again. It has no relationship to the router's actual time-of-day clock.",
+          "memoryAnchor": "hh:mm:ss in a routing table = a stopwatch counting since the route was last updated, not a clock showing the current time.",
+          "contrast": "The router's actual current time is shown by the 'show clock' command; the routing table's hh:mm:ss field is a completely separate, per-route age counter."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Students assume any number attached to a route line must be part of the metric calculation, since some protocols (like EIGRP) do factor delay directly into their composite metric.",
+          "whyItSeems": "EIGRP's metric visibly incorporates a delay component, so it's a reasonable but misapplied assumption that any adjacent number on any route line is also delay-related.",
+          "whyWrongHere": "This route's metric is already fully expressed inside the brackets as [110/20] — the separate hh:mm:ss field sitting outside the brackets is not part of the metric at all; it's the route's age (time since last update), a completely different piece of information.",
+          "memoryAnchor": "Metric lives INSIDE the brackets [AD/metric]; the hh:mm:ss field OUTSIDE the brackets is route age, not metric.",
+          "contrast": "OSPF's metric (cost) is a unitless integer like 20; delay in microseconds is an EIGRP-specific composite-metric input — neither matches the hh:mm:ss duration format shown here."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Students confuse the route's age with the connected interface's uptime, since both are displayed as elapsed-duration counters somewhere in IOS output.",
+          "whyItSeems": "Interface uptime (shown in 'show interfaces') uses a similar duration format, so it's easy to assume any duration-looking value anywhere in IOS output refers to interface uptime.",
+          "whyWrongHere": "Interface uptime is a separate statistic reported by 'show interfaces', tracking how long that physical/logical interface has been up — the routing table's hh:mm:ss field instead tracks how long THIS ROUTE has existed in the table, which resets on route changes even if the interface itself never goes down.",
+          "memoryAnchor": "Route age (routing table) tracks the route entry; interface uptime (show interfaces) tracks the physical link — they reset independently of each other.",
+          "contrast": "An interface can stay up for months while its route age resets repeatedly due to routing protocol recalculations, or vice versa — the two counters are not tied together."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q008",
@@ -906,7 +1348,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Static route → follow next-hop recursion to find actual exit interface in show ip route."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Wrong serial interface for destination",
+          "whyItSeems": "Interface Serial 0/2/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (routing table): Interface Serial 0/0/1 matches prefix, shortening, or assignment rules — Interface Serial 0/2/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "Static route → follow next-hop recursion to find actual exit interface in show ip route.",
+          "contrast": "Correct \"Interface Serial 0/0/1\" vs wrong \"Interface Serial 0/2/0\": IPv6 addressing (routing table): Interface Serial 0/0/1 matches prefix, shortening, or assignment rules — Interface Serial 0/2/0 breaks IPv6 syntax or prefix length."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Destination IP as next hop",
+          "whyItSeems": "IP address 192.168.4.2 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"routing table\", Interface Serial 0/0/1 matches the required behavior — IP address 192.168.4.2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static route → follow next-hop recursion to find actual exit interface in show ip route.",
+          "contrast": "Correct \"Interface Serial 0/0/1\" vs wrong \"IP address 192.168.4.2\": For \"routing table\", Interface Serial 0/0/1 matches the required behavior — IP address 192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Random IP as route exit",
+          "whyItSeems": "IP address 198.22.34.3 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"routing table\", Interface Serial 0/0/1 matches the required behavior — IP address 198.22.34.3 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static route → follow next-hop recursion to find actual exit interface in show ip route.",
+          "contrast": "Correct \"Interface Serial 0/0/1\" vs wrong \"IP address 198.22.34.3\": For \"routing table\", Interface Serial 0/0/1 matches the required behavior — IP address 198."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q009",
@@ -958,7 +1426,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Static route default AD = 1; connected = 0; EIGRP internal = 90; OSPF = 110; RIP = 120."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Assigning connected AD to static routes",
+          "whyItSeems": "\"AD of 0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", AD of 1 matches the required behavior — AD of 0 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static route default AD = 1; connected = 0; EIGRP internal = 90; OSPF = 110; RIP = 120.",
+          "contrast": "Correct \"AD of 1\" vs wrong \"AD of 0\": For \"routing table\", AD of 1 matches the required behavior — AD of 0 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Selecting AD 2 for static routes",
+          "whyItSeems": "\"AD of 2\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", AD of 1 matches the required behavior — AD of 2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static route default AD = 1; connected = 0; EIGRP internal = 90; OSPF = 110; RIP = 120.",
+          "contrast": "Correct \"AD of 1\" vs wrong \"AD of 2\": For \"routing table\", AD of 1 matches the required behavior — AD of 2 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Believing static routes use AD 255",
+          "whyItSeems": "\"AD of 255\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", AD of 1 matches the required behavior — AD of 255 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static route default AD = 1; connected = 0; EIGRP internal = 90; OSPF = 110; RIP = 120.",
+          "contrast": "Correct \"AD of 1\" vs wrong \"AD of 255\": For \"routing table\", AD of 1 matches the required behavior — AD of 255 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q010",
@@ -1009,7 +1503,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Memorize the ladder: connected 0 → static 1 → EIGRP 90 → OSPF 110 → RIP 120."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Confusing EIGRP AD with RIP",
+          "whyItSeems": "\"AD of 90\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", AD of 120 matches the required behavior — AD of 90 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Memorize the ladder: connected 0 → static 1 → EIGRP 90 → OSPF 110 → RIP 120.",
+          "contrast": "Correct \"AD of 120\" vs wrong \"AD of 90\": For \"routing table\", AD of 120 matches the required behavior — AD of 90 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Selecting nonstandard AD 100 for RIP",
+          "whyItSeems": "\"AD of 100\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", AD of 120 matches the required behavior — AD of 100 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Memorize the ladder: connected 0 → static 1 → EIGRP 90 → OSPF 110 → RIP 120.",
+          "contrast": "Correct \"AD of 120\" vs wrong \"AD of 100\": For \"routing table\", AD of 120 matches the required behavior — AD of 100 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Assigning OSPF AD to RIP",
+          "whyItSeems": "\"AD of 110\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", AD of 120 matches the required behavior — AD of 110 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Memorize the ladder: connected 0 → static 1 → EIGRP 90 → OSPF 110 → RIP 120.",
+          "contrast": "Correct \"AD of 120\" vs wrong \"AD of 110\": For \"routing table\", AD of 120 matches the required behavior — AD of 110 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q011",
@@ -1059,7 +1579,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "AD = trust rating (Connected 0, Static 1, EIGRP 90, OSPF 110, RIP 120) — lower wins between protocols."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "AD as protocol standard definition",
+          "whyItSeems": "\"ADs define protocol standards.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", ADs define reliability of routing protocols. matches the required behavior — ADs define protocol standards. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AD = trust rating (Connected 0, Static 1, EIGRP 90, OSPF 110, RIP 120) — lower wins between protocols.",
+          "contrast": "Correct \"ADs define reliability of routing protocols.\" vs wrong \"ADs define protocol standards.\": For \"routing table\", ADs define reliability of routing protocols."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "AD as shortest path metric",
+          "whyItSeems": "\"ADs allow for the shortest distance between routes.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", ADs define reliability of routing protocols. matches the required behavior — ADs allow for the shortest distance between routes. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AD = trust rating (Connected 0, Static 1, EIGRP 90, OSPF 110, RIP 120) — lower wins between protocols.",
+          "contrast": "Correct \"ADs define reliability of routing protocols.\" vs wrong \"ADs allow for the shortest distance between routes.\": For \"routing table\", ADs define reliability of routing protocols."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "AD programmed by admin",
+          "whyItSeems": "ADs are programmed by the administrator for path selection. implies many-inside-to-few-outside PAT/overload translation.",
+          "whyWrongHere": "For \"routing table\", ADs define reliability of routing protocols. matches the required behavior — ADs are programmed by the administrator for path selection. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AD = trust rating (Connected 0, Static 1, EIGRP 90, OSPF 110, RIP 120) — lower wins between protocols.",
+          "contrast": "Correct \"ADs define reliability of routing protocols.\" vs wrong \"ADs are programmed by the administrator for path selection.\": For \"routing table\", ADs define reliability of routing protocols."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q012",
@@ -1109,7 +1655,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Connected = AD 0 — always wins over static or dynamic unless overridden by policy."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Equating connected AD with static route AD",
+          "whyItSeems": "\"The AD is 1.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", The AD is 0. matches the required behavior — The AD is 1. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Connected = AD 0 — always wins over static or dynamic unless overridden by policy.",
+          "contrast": "Correct \"The AD is 0.\" vs wrong \"The AD is 1.\": For \"routing table\", The AD is 0."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Inventing AD 5 for connected networks",
+          "whyItSeems": "\"The AD is 5.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", The AD is 0. matches the required behavior — The AD is 5. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Connected = AD 0 — always wins over static or dynamic unless overridden by policy.",
+          "contrast": "Correct \"The AD is 0.\" vs wrong \"The AD is 5.\": For \"routing table\", The AD is 0."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Believing connected routes lack administrative distance",
+          "whyItSeems": "\"Directly connected networks do not have an AD.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", The AD is 0. matches the required behavior — Directly connected networks do not have an AD. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Connected = AD 0 — always wins over static or dynamic unless overridden by policy.",
+          "contrast": "Correct \"The AD is 0.\" vs wrong \"Directly connected networks do not have an AD.\": For \"routing table\", The AD is 0."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q013",
@@ -1160,7 +1732,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "EIGRP internal AD 90; external/summary EIGRP routes use 170 — know both."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Selecting AD 100 for internal EIGRP",
+          "whyItSeems": "100 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in routing table.",
+          "whyWrongHere": "For \"routing table\", 90 matches the required behavior — 100 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "EIGRP internal AD 90; external/summary EIGRP routes use 170 — know both.",
+          "contrast": "Correct \"90\" vs wrong \"100\": For \"routing table\", 90 matches the required behavior — 100 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Assigning OSPF AD to EIGRP",
+          "whyItSeems": "110 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in routing table.",
+          "whyWrongHere": "For \"routing table\", 90 matches the required behavior — 110 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "EIGRP internal AD 90; external/summary EIGRP routes use 170 — know both.",
+          "contrast": "Correct \"90\" vs wrong \"110\": For \"routing table\", 90 matches the required behavior — 110 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Confusing RIP AD with EIGRP",
+          "whyItSeems": "120 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in routing table.",
+          "whyWrongHere": "For \"routing table\", 90 matches the required behavior — 120 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "EIGRP internal AD 90; external/summary EIGRP routes use 170 — know both.",
+          "contrast": "Correct \"90\" vs wrong \"120\": For \"routing table\", 90 matches the required behavior — 120 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q014",
@@ -1213,7 +1811,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "AD answers: \"which routing source do I trust more?\" | Metric answers: \"which path is best within that source?\""
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "AD as intra-protocol metric",
+          "whyItSeems": "\"The AD is a metric that routing protocols use to select the best route.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", The AD is a rating of trust when multiple routes exist to the same destination. matches the required behavior — The AD is a metric that routing protocols use to select the best route. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AD answers: \"which routing source do I trust more?\" | Metric answers: \"which path is best within that source?\"",
+          "contrast": "Correct \"The AD is a rating of trust when multiple routes exist to the same destination.\" vs wrong \"The AD is a metric that routing protocols use to select the best route.\": For \"routing table\", The AD is a rating of trust when multiple routes exist to the same destination."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "AD as admin-assigned value",
+          "whyItSeems": "\"The AD is a value assigned by network administrators for route selection.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", The AD is a rating of trust when multiple routes exist to the same destination. matches the required behavior — The AD is a value assigned by network administrators for route selection. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AD answers: \"which routing source do I trust more?\" | Metric answers: \"which path is best within that source?\"",
+          "contrast": "Correct \"The AD is a rating of trust when multiple routes exist to the same destination.\" vs wrong \"The AD is a value assigned by network administrators for route selection.\": For \"routing table\", The AD is a rating of trust when multiple routes exist to the same destination."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "AD as cost metric",
+          "whyItSeems": "\"The AD is a value associated with the cost to the destination.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", The AD is a rating of trust when multiple routes exist to the same destination. matches the required behavior — The AD is a value associated with the cost to the destination. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AD answers: \"which routing source do I trust more?\" | Metric answers: \"which path is best within that source?\"",
+          "contrast": "Correct \"The AD is a rating of trust when multiple routes exist to the same destination.\" vs wrong \"The AD is a value associated with the cost to the destination.\": For \"routing table\", The AD is a rating of trust when multiple routes exist to the same destination."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q015",
@@ -1265,7 +1889,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "EIGRP default metric: bandwidth + delay (K1=K3=1, K2=K4=K5=0) — set bandwidth accurately on serial links."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Delay as sole EIGRP metric input",
+          "whyItSeems": "\"Delay\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", Bandwidth matches the required behavior — Delay answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "EIGRP default metric: bandwidth + delay (K1=K3=1, K2=K4=K5=0) — set bandwidth accurately on serial links.",
+          "contrast": "Correct \"Bandwidth\" vs wrong \"Delay\": For \"routing table\", Bandwidth matches the required behavior — Delay answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Reliability as required EIGRP config",
+          "whyItSeems": "\"Reliability\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", Bandwidth matches the required behavior — Reliability answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "EIGRP default metric: bandwidth + delay (K1=K3=1, K2=K4=K5=0) — set bandwidth accurately on serial links.",
+          "contrast": "Correct \"Bandwidth\" vs wrong \"Reliability\": For \"routing table\", Bandwidth matches the required behavior — Reliability answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Load as required EIGRP config",
+          "whyItSeems": "\"Load\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", Bandwidth matches the required behavior — Load answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "EIGRP default metric: bandwidth + delay (K1=K3=1, K2=K4=K5=0) — set bandwidth accurately on serial links.",
+          "contrast": "Correct \"Bandwidth\" vs wrong \"Load\": For \"routing table\", Bandwidth matches the required behavior — Load answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q016",
@@ -1320,7 +1970,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "AD quick ref: Connected=0, Static=1, EIGRP=90, OSPF=110, IS-IS=115, RIP=120."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "False belief that AD 90 for IGRP — treating \"IGRP\" as if it satisfied the stem instead of \"EIGRP\".",
+          "whyItSeems": "\"IGRP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", EIGRP matches the required behavior — IGRP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AD quick ref: Connected=0, Static=1, EIGRP=90, OSPF=110, IS-IS=115, RIP=120.",
+          "contrast": "Correct \"EIGRP\" vs wrong \"IGRP\": For \"routing table\", EIGRP matches the required behavior — IGRP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "False belief that AD 90 for OSPF — treating \"OSPF\" as if it satisfied the stem instead of \"EIGRP\".",
+          "whyItSeems": "\"OSPF\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", EIGRP matches the required behavior — OSPF answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AD quick ref: Connected=0, Static=1, EIGRP=90, OSPF=110, IS-IS=115, RIP=120.",
+          "contrast": "Correct \"EIGRP\" vs wrong \"OSPF\": For \"routing table\", EIGRP matches the required behavior — OSPF answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "False belief that AD 90 for RIP — treating \"RIP\" as if it satisfied the stem instead of \"EIGRP\".",
+          "whyItSeems": "RIP applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"routing table\", EIGRP matches the required behavior — RIP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AD quick ref: Connected=0, Static=1, EIGRP=90, OSPF=110, IS-IS=115, RIP=120.",
+          "contrast": "Correct \"EIGRP\" vs wrong \"RIP\": For \"routing table\", EIGRP matches the required behavior — RIP answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q017",
@@ -1372,7 +2048,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Cross-protocol tie: lowest AD wins; metric only compares routes from the same protocol."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Choosing highest AD across protocols",
+          "whyItSeems": "\"The route is chosen with the highest AD.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", The route is chosen with the lowest AD. matches the required behavior — The route is chosen with the highest AD. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cross-protocol tie: lowest AD wins; metric only compares routes from the same protocol.",
+          "contrast": "Correct \"The route is chosen with the lowest AD.\" vs wrong \"The route is chosen with the highest AD.\": For \"routing table\", The route is chosen with the lowest AD."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Comparing metrics before administrative distance",
+          "whyItSeems": "\"The route chosen has the lowest metric.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", The route is chosen with the lowest AD. matches the required behavior — The route chosen has the lowest metric. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cross-protocol tie: lowest AD wins; metric only compares routes from the same protocol.",
+          "contrast": "Correct \"The route is chosen with the lowest AD.\" vs wrong \"The route chosen has the lowest metric.\": For \"routing table\", The route is chosen with the lowest AD."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Selecting highest metric across protocols",
+          "whyItSeems": "\"The route chosen has the highest metric.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", The route is chosen with the lowest AD. matches the required behavior — The route chosen has the highest metric. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cross-protocol tie: lowest AD wins; metric only compares routes from the same protocol.",
+          "contrast": "Correct \"The route is chosen with the lowest AD.\" vs wrong \"The route chosen has the highest metric.\": For \"routing table\", The route is chosen with the lowest AD."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q018",
@@ -1425,7 +2127,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Varied bandwidths inside one AS → EIGRP (composite metric). RIP = hop count only."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Choosing legacy classful RIP for heterogeneous bandwidth",
+          "whyItSeems": "RIPv1 applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"routing table\", EIGRP matches the required behavior — RIPv1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"EIGRP\" — not \"RIPv1\" — for what this stem actually tests.",
+          "contrast": "Correct \"EIGRP\" vs wrong \"RIPv1\": For \"routing table\", EIGRP matches the required behavior — RIPv1 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Expecting RIPv2 to optimize for bandwidth differences",
+          "whyItSeems": "RIPv2 applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"routing table\", EIGRP matches the required behavior — RIPv2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"EIGRP\" — not \"RIPv2\" — for what this stem actually tests.",
+          "contrast": "Correct \"EIGRP\" vs wrong \"RIPv2\": For \"routing table\", EIGRP matches the required behavior — RIPv2 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Selecting BGP for internal enterprise IGP scenario",
+          "whyItSeems": "BGP applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"routing table\", EIGRP matches the required behavior — BGP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"EIGRP\" — not \"BGP\" — for what this stem actually tests.",
+          "contrast": "Correct \"EIGRP\" vs wrong \"BGP\": For \"routing table\", EIGRP matches the required behavior — BGP answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q019",
@@ -1478,7 +2206,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF cost = 10⁸ ÷ interface bandwidth (bps) | 100M=1, 10M=10, 1.544M≈64."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "EIGRP metric formula applied to OSPF",
+          "whyItSeems": "\"Delay, bandwidth, reliability, load\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", 108/bandwidth matches the required behavior — Delay, bandwidth, reliability, load answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF cost = 10⁸ ÷ interface bandwidth (bps) | 100M=1, 10M=10, 1.544M≈64.",
+          "contrast": "Correct \"108/bandwidth\" vs wrong \"Delay, bandwidth, reliability, load\": For \"routing table\", 108/bandwidth matches the required behavior — Delay, bandwidth, reliability, load answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "K-metrics in OSPF",
+          "whyItSeems": "\"K metrics\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", 108/bandwidth matches the required behavior — K metrics answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF cost = 10⁸ ÷ interface bandwidth (bps) | 100M=1, 10M=10, 1.544M≈64.",
+          "contrast": "Correct \"108/bandwidth\" vs wrong \"K metrics\": For \"routing table\", 108/bandwidth matches the required behavior — K metrics answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Bandwidth as direct OSPF metric",
+          "whyItSeems": "\"Bandwidth\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", 108/bandwidth matches the required behavior — Bandwidth answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF cost = 10⁸ ÷ interface bandwidth (bps) | 100M=1, 10M=10, 1.544M≈64.",
+          "contrast": "Correct \"108/bandwidth\" vs wrong \"Bandwidth\": For \"routing table\", 108/bandwidth matches the required behavior — Bandwidth answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q020",
@@ -1529,7 +2283,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "show ip route bracket = [AD/metric] | OSPF AD=110 | Cost 1 = 100M, 10 = 10M."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "OSPF metric 1 as 10 Mbps link",
+          "whyItSeems": "\"AD of 110 and a 10 Mb/s link\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", AD of 110 and a 100 Mb/s link matches the required behavior — AD of 110 and a 10 Mb/s link answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "show ip route bracket = [AD/metric] | OSPF AD=110 | Cost 1 = 100M, 10 = 10M.",
+          "contrast": "Correct \"AD of 110 and a 100 Mb/s link\" vs wrong \"AD of 110 and a 10 Mb/s link\": For \"routing table\", AD of 110 and a 100 Mb/s link matches the required behavior — AD of 110 and a 10 Mb/s link answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "AD and metric swapped in bracket notation",
+          "whyItSeems": "\"AD of 1 and a 110 Mb/s link\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", AD of 110 and a 100 Mb/s link matches the required behavior — AD of 1 and a 110 Mb/s link answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "show ip route bracket = [AD/metric] | OSPF AD=110 | Cost 1 = 100M, 10 = 10M.",
+          "contrast": "Correct \"AD of 110 and a 100 Mb/s link\" vs wrong \"AD of 1 and a 110 Mb/s link\": For \"routing table\", AD of 110 and a 100 Mb/s link matches the required behavior — AD of 1 and a 110 Mb/s link answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "OSPF metric 1 as 1 Gbps",
+          "whyItSeems": "\"AD of 110 and a 1 Gb/s link\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", AD of 110 and a 100 Mb/s link matches the required behavior — AD of 110 and a 1 Gb/s link answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "show ip route bracket = [AD/metric] | OSPF AD=110 | Cost 1 = 100M, 10 = 10M.",
+          "contrast": "Correct \"AD of 110 and a 100 Mb/s link\" vs wrong \"AD of 110 and a 1 Gb/s link\": For \"routing table\", AD of 110 and a 100 Mb/s link matches the required behavior — AD of 110 and a 1 Gb/s link answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q021",
@@ -1581,7 +2361,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Default route = 0.0.0.0/0 (IPv4) or ::/0 (IPv6) — gateway of last resort."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Default route as local route",
+          "whyItSeems": "\"Local route\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", Default route matches the required behavior — Local route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Default route = 0.0.0.0/0 (IPv4) or ::/0 (IPv6) — gateway of last resort.",
+          "contrast": "Correct \"Default route\" vs wrong \"Local route\": For \"routing table\", Default route matches the required behavior — Local route answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "0.0.0.0/0 as dynamic-only route type",
+          "whyItSeems": "\"Dynamic route\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", Default route matches the required behavior — Dynamic route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Default route = 0.0.0.0/0 (IPv4) or ::/0 (IPv6) — gateway of last resort.",
+          "contrast": "Correct \"Default route\" vs wrong \"Dynamic route\": For \"routing table\", Default route matches the required behavior — Dynamic route answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Default route as loopback route",
+          "whyItSeems": "\"Loopback route\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", Default route matches the required behavior — Loopback route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Default route = 0.0.0.0/0 (IPv4) or ::/0 (IPv6) — gateway of last resort.",
+          "contrast": "Correct \"Default route\" vs wrong \"Loopback route\": For \"routing table\", Default route matches the required behavior — Loopback route answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q022",
@@ -1633,7 +2439,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Host route = /32 (one IP) | Often seen as L (local) or static 192.168.1.5/32."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Host route as default route",
+          "whyItSeems": "The host route is the route a packet will take if no other route matches in the routing table. relies on a router routing table rather than switch MAC/CAM forwarding.",
+          "whyWrongHere": "For \"routing table\", A host route is a specific route with a netmask of /32 for a specific host. matches the required behavior — The host route is the route a packet will take if no other route matches in the routing table. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Host route = /32 (one IP) | Often seen as L (local) or static 192.168.1.5/32.",
+          "contrast": "Correct \"A host route is a specific route with a netmask of /32 for a specific host.\" vs wrong \"The host route is the route a packet will take if no other route matches in the routing table.\": For \"routing table\", A host route is a specific route with a netmask of /32 for a specific host."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Routing table auto-creates host routes",
+          "whyItSeems": "The routing table creates host routers for the destination hosts it discovers. relies on a router routing table rather than switch MAC/CAM forwarding.",
+          "whyWrongHere": "For \"routing table\", A host route is a specific route with a netmask of /32 for a specific host. matches the required behavior — The routing table creates host routers for the destination hosts it discovers. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Host route = /32 (one IP) | Often seen as L (local) or static 192.168.1.5/32.",
+          "contrast": "Correct \"A host route is a specific route with a netmask of /32 for a specific host.\" vs wrong \"The routing table creates host routers for the destination hosts it discovers.\": For \"routing table\", A host route is a specific route with a netmask of /32 for a specific host."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "HSRP populates host routes",
+          "whyItSeems": "\"The host route is populated from HSRP.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", A host route is a specific route with a netmask of /32 for a specific host. matches the required behavior — The host route is populated from HSRP. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Host route = /32 (one IP) | Often seen as L (local) or static 192.168.1.5/32.",
+          "contrast": "Correct \"A host route is a specific route with a netmask of /32 for a specific host.\" vs wrong \"The host route is populated from HSRP.\": For \"routing table\", A host route is a specific route with a netmask of /32 for a specific host."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q023",
@@ -1686,7 +2518,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Route codes: C=connected, S=static, O=OSPF, D=EIGRP, R=RIP, L=local."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Prefix as route source identifier",
+          "whyItSeems": "\"Prefix and network mask\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", Routing protocol code matches the required behavior — Prefix and network mask answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Route codes: C=connected, S=static, O=OSPF, D=EIGRP, R=RIP, L=local.",
+          "contrast": "Correct \"Routing protocol code\" vs wrong \"Prefix and network mask\": For \"routing table\", Routing protocol code matches the required behavior — Prefix and network mask answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Metric as route source identifier",
+          "whyItSeems": "\"Metric\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", Routing protocol code matches the required behavior — Metric answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Route codes: C=connected, S=static, O=OSPF, D=EIGRP, R=RIP, L=local.",
+          "contrast": "Correct \"Routing protocol code\" vs wrong \"Metric\": For \"routing table\", Routing protocol code matches the required behavior — Metric answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Next hop as route source identifier",
+          "whyItSeems": "\"Next hop\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", Routing protocol code matches the required behavior — Next hop answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Route codes: C=connected, S=static, O=OSPF, D=EIGRP, R=RIP, L=local.",
+          "contrast": "Correct \"Routing protocol code\" vs wrong \"Next hop\": For \"routing table\", Routing protocol code matches the required behavior — Next hop answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q024",
@@ -1737,7 +2595,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Host local/remote test: (dest IP AND mask) == (my IP AND mask) → local; else use default gateway."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Router uses subnet mask like a host",
+          "whyItSeems": "\"The subnet mask is used in routing to determine the destination network.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", The subnet mask is used by the host to determine the destination network. matches the required behavior — The subnet mask is used in routing to determine the destination network. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Host local/remote test: (dest IP AND mask) == (my IP AND mask) → local; else use default gateway.",
+          "contrast": "Correct \"The subnet mask is used by the host to determine the destination network.\" vs wrong \"The subnet mask is used in routing to determine the destination network.\": For \"routing table\", The subnet mask is used by the host to determine the destination network."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Router ANDs its mask when forwarding",
+          "whyItSeems": "\"The router uses its subnet mask when routing a packet.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", The subnet mask is used by the host to determine the destination network. matches the required behavior — The router uses its subnet mask when routing a packet. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Host local/remote test: (dest IP AND mask) == (my IP AND mask) → local; else use default gateway.",
+          "contrast": "Correct \"The subnet mask is used by the host to determine the destination network.\" vs wrong \"The router uses its subnet mask when routing a packet.\": For \"routing table\", The subnet mask is used by the host to determine the destination network."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Destination checks packet subnet mask",
+          "whyItSeems": "\"The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", The subnet mask is used by the host to determine the destination network. matches the required behavior — The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Host local/remote test: (dest IP AND mask) == (my IP AND mask) → local; else use default gateway.",
+          "contrast": "Correct \"The subnet mask is used by the host to determine the destination network.\" vs wrong \"The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer.\": For \"routing table\", The subnet mask is used by the host to determine the destination network."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q025",
@@ -1790,7 +2674,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Interface IP → C (connected network) + L (local /32 host route) in show ip route."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Invented IP address route term",
+          "whyItSeems": "IP address route shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"routing table\", Local route matches the required behavior — IP address route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Interface IP → C (connected network) + L (local /32 host route) in show ip route.",
+          "contrast": "Correct \"Local route\" vs wrong \"IP address route\": For \"routing table\", Local route matches the required behavior — IP address route answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Interface IP as dynamic route",
+          "whyItSeems": "\"Dynamic route\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", Local route matches the required behavior — Dynamic route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Interface IP → C (connected network) + L (local /32 host route) in show ip route.",
+          "contrast": "Correct \"Local route\" vs wrong \"Dynamic route\": For \"routing table\", Local route matches the required behavior — Dynamic route answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Interface IP as static route",
+          "whyItSeems": "Static route configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "For \"routing table\", Local route matches the required behavior — Static route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Interface IP → C (connected network) + L (local /32 host route) in show ip route.",
+          "contrast": "Correct \"Local route\" vs wrong \"Static route\": For \"routing table\", Local route matches the required behavior — Static route answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q026",
@@ -1843,7 +2753,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Remote send: IP = final host | MAC = default gateway (after ARP) | Local send: MAC = destination host."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Destination IP replaced with gateway",
+          "whyItSeems": "The destination IP address is replaced with the default gateway when the destination is remote. sends the decision to a router/default gateway rather than handling it at Layer 2.",
+          "whyWrongHere": "For \"routing table\", The host sends an ARP packet for the default gateway when the destination is remote. matches the required behavior — The destination IP address is replaced with the default gateway when the destination is remote. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remote send: IP = final host | MAC = default gateway (after ARP) | Local send: MAC = destination host.",
+          "contrast": "Correct \"The host sends an ARP packet for the default gateway when the destination is remote.\" vs wrong \"The destination IP address is replaced with the default gateway when the destination is remote.\": For \"routing table\", The host sends an ARP packet for the default gateway when the destination is remote."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Remote traffic sent via broadcast to gateway",
+          "whyItSeems": "The host sends the default gateway packets that are deemed remote via a broadcast. describes flooding the frame to multiple ports in the VLAN.",
+          "whyWrongHere": "For \"routing table\", The host sends an ARP packet for the default gateway when the destination is remote. matches the required behavior — The host sends the default gateway packets that are deemed remote via a broadcast. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remote send: IP = final host | MAC = default gateway (after ARP) | Local send: MAC = destination host.",
+          "contrast": "Correct \"The host sends an ARP packet for the default gateway when the destination is remote.\" vs wrong \"The host sends the default gateway packets that are deemed remote via a broadcast.\": For \"routing table\", The host sends an ARP packet for the default gateway when the destination is remote."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Dedicated connection to default gateway",
+          "whyItSeems": "The host creates a dedicated connection with the default gateway for remote traffic. sends the decision to a router/default gateway rather than handling it at Layer 2.",
+          "whyWrongHere": "For \"routing table\", The host sends an ARP packet for the default gateway when the destination is remote. matches the required behavior — The host creates a dedicated connection with the default gateway for remote traffic. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remote send: IP = final host | MAC = default gateway (after ARP) | Local send: MAC = destination host.",
+          "contrast": "Correct \"The host sends an ARP packet for the default gateway when the destination is remote.\" vs wrong \"The host creates a dedicated connection with the default gateway for remote traffic.\": For \"routing table\", The host sends an ARP packet for the default gateway when the destination is remote."
+        }
+      ]
     },
     {
       "id": "obj-3.1-source-q027",
@@ -1894,7 +2830,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPv4 RIB: show ip route | IPv6 RIB: show ipv6 route | Summary: add summary."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented show route command",
+          "whyItSeems": "\"Router#show route\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", Router#show ip route matches the required behavior — Router#show route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IPv4 RIB: show ip route | IPv6 RIB: show ipv6 route | Summary: add summary.",
+          "contrast": "Correct \"Router#show ip route\" vs wrong \"Router#show route\": For \"routing table\", Router#show ip route matches the required behavior — Router#show route answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Invented show route table command",
+          "whyItSeems": "\"Router#show route table\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", Router#show ip route matches the required behavior — Router#show route table answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IPv4 RIB: show ip route | IPv6 RIB: show ipv6 route | Summary: add summary.",
+          "contrast": "Correct \"Router#show ip route\" vs wrong \"Router#show route table\": For \"routing table\", Router#show ip route matches the required behavior — Router#show route table answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Plural show routes command",
+          "whyItSeems": "\"Router#show routes\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing table\", Router#show ip route matches the required behavior — Router#show routes answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IPv4 RIB: show ip route | IPv6 RIB: show ipv6 route | Summary: add summary.",
+          "contrast": "Correct \"Router#show ip route\" vs wrong \"Router#show routes\": For \"routing table\", Router#show ip route matches the required behavior — Router#show routes answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     }
   ],
   "3.2": [
@@ -1944,7 +2906,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Forwarding order: longest prefix match first, then lowest AD, then best metric."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Picking the shorter prefix when both match",
+          "whyItSeems": "The /24 via R2 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (longest prefix match): The /26 via R3 matches prefix, shortening, or assignment rules — The /24 via R2 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "Forwarding order: longest prefix match first, then lowest AD, then best metric.",
+          "contrast": "Correct \"The /26 via R3\" vs wrong \"The /24 via R2\": IPv6 addressing (longest prefix match): The /26 via R3 matches prefix, shortening, or assignment rules — The /24 via R2 breaks IPv6 syntax or prefix length."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Using metric before longest prefix match",
+          "whyItSeems": "\"Whichever has the lower metric\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"longest prefix match\", The /26 via R3 matches the required behavior — Whichever has the lower metric answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Forwarding order: longest prefix match first, then lowest AD, then best metric.",
+          "contrast": "Correct \"The /26 via R3\" vs wrong \"Whichever has the lower metric\": For \"longest prefix match\", The /26 via R3 matches the required behavior — Whichever has the lower metric answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Expecting load balance across different prefix lengths",
+          "whyItSeems": "\"Both, load-balanced\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "CAM learning stores one mapping per arrival (longest prefix match): The /26 via R3 — not both addresses as table entries.",
+          "memoryAnchor": "Forwarding order: longest prefix match first, then lowest AD, then best metric.",
+          "contrast": "Correct \"The /26 via R3\" vs wrong \"Both, load-balanced\": CAM learning stores one mapping per arrival (longest prefix match): The /26 via R3 — not both addresses as table entries."
+        }
+      ]
     },
     {
       "id": "3.2-c-q2",
@@ -1994,7 +2982,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Forward: LPM → AD → metric. Do not swap LPM with either tie-breaker."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Leading with metric instead of LPM",
+          "whyItSeems": "\"Metric → AD → longest prefix\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"route selection order\", Longest prefix match → administrative distance → metric matches the required behavior — Metric → AD → longest prefix answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Longest prefix match → administrative distance → metric\" — not \"Metric → AD → longest prefix\" — for what this stem actually tests.",
+          "contrast": "Correct \"Longest prefix match → administrative distance → metric\" vs wrong \"Metric → AD → longest prefix\": For \"route selection order\", Longest prefix match → administrative distance → metric matches the required behavior — Metric → AD → longest prefix answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Putting AD ahead of longest prefix match",
+          "whyItSeems": "\"AD → metric → longest prefix\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"route selection order\", Longest prefix match → administrative distance → metric matches the required behavior — AD → metric → longest prefix answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Longest prefix match → administrative distance → metric\" — not \"AD → metric → longest prefix\" — for what this stem actually tests.",
+          "contrast": "Correct \"Longest prefix match → administrative distance → metric\" vs wrong \"AD → metric → longest prefix\": For \"route selection order\", Longest prefix match → administrative distance → metric matches the required behavior — AD → metric → longest prefix answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Swapping AD and metric in the install order",
+          "whyItSeems": "\"Longest prefix → metric → AD\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"route selection order\", Longest prefix match → administrative distance → metric matches the required behavior — Longest prefix → metric → AD answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Longest prefix match → administrative distance → metric\" — not \"Longest prefix → metric → AD\" — for what this stem actually tests.",
+          "contrast": "Correct \"Longest prefix match → administrative distance → metric\" vs wrong \"Longest prefix → metric → AD\": For \"route selection order\", Longest prefix match → administrative distance → metric matches the required behavior — Longest prefix → metric → AD answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.2-c-q3",
@@ -2042,7 +3056,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Route selection: longest prefix → lowest AD → lowest metric (same protocol only)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Metric before AD",
+          "whyItSeems": "\"OSPF, lower metric\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"administrative distance\", The static route, lower AD matches the required behavior — OSPF, lower metric answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Selection: longest prefix → lowest AD → lowest metric (same protocol).",
+          "contrast": "Correct \"The static route, lower AD\" vs wrong \"OSPF, lower metric\": For \"administrative distance\", The static route, lower AD matches the required behavior — OSPF, lower metric answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Install both routes",
+          "whyItSeems": "\"Both\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "CAM learning stores one mapping per arrival (administrative distance): The static route, lower AD — not both addresses as table entries.",
+          "memoryAnchor": "Selection: longest prefix → lowest AD → lowest metric (same protocol).",
+          "contrast": "Correct \"The static route, lower AD\" vs wrong \"Both\": CAM learning stores one mapping per arrival (administrative distance): The static route, lower AD — not both addresses as table entries."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Metric tie across protocols",
+          "whyItSeems": "Neither until the tie is broken by metric shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"administrative distance\", The static route, lower AD matches the required behavior — Neither until the tie is broken by metric answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Selection: longest prefix → lowest AD → lowest metric (same protocol).",
+          "contrast": "Correct \"The static route, lower AD\" vs wrong \"Neither until the tie is broken by metric\": For \"administrative distance\", The static route, lower AD matches the required behavior — Neither until the tie is broken by metric answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.2-c-q4",
@@ -2090,7 +3130,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Connected = directly attached interface → AD 0, always beats static/dynamic."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Static AD for connected",
+          "whyItSeems": "1 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in administrative distance values.",
+          "whyWrongHere": "For \"administrative distance values\", 0 matches the required behavior — 1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Connected = AD 0 (always preferred over static/dynamic).",
+          "contrast": "Correct \"0\" vs wrong \"1\": For \"administrative distance values\", 0 matches the required behavior — 1 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "OSPF AD for connected",
+          "whyItSeems": "110 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in administrative distance values.",
+          "whyWrongHere": "For \"administrative distance values\", 0 matches the required behavior — 110 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Connected = AD 0 (always preferred over static/dynamic).",
+          "contrast": "Correct \"0\" vs wrong \"110\": For \"administrative distance values\", 0 matches the required behavior — 110 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "RIP AD for connected",
+          "whyItSeems": "120 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in administrative distance values.",
+          "whyWrongHere": "For \"administrative distance values\", 0 matches the required behavior — 120 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Connected = AD 0 (always preferred over static/dynamic).",
+          "contrast": "Correct \"0\" vs wrong \"120\": For \"administrative distance values\", 0 matches the required behavior — 120 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.2-c-q5",
@@ -2138,7 +3204,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Floating static backup: set AD > primary (e.g., 130 behind OSPF 110) — not 255 unless discarding."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "AD 255 preferred",
+          "whyItSeems": "\"It becomes the preferred route\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"administrative distance 255\", It is never installed in the routing table matches the required behavior — It becomes the preferred route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"It is never installed in the routing table\" — not \"It becomes the preferred route\" — for what this stem actually tests.",
+          "contrast": "Correct \"It is never installed in the routing table\" vs wrong \"It becomes the preferred route\": For \"administrative distance 255\", It is never installed in the routing table matches the required behavior — It becomes the preferred route answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "AD 255 conditional install",
+          "whyItSeems": "\"It is installed only if no metric exists\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"administrative distance 255\", It is never installed in the routing table matches the required behavior — It is installed only if no metric exists answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"It is never installed in the routing table\" — not \"It is installed only if no metric exists\" — for what this stem actually tests.",
+          "contrast": "Correct \"It is never installed in the routing table\" vs wrong \"It is installed only if no metric exists\": For \"administrative distance 255\", It is never installed in the routing table matches the required behavior — It is installed only if no metric exists answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "AD 255 installed unused",
+          "whyItSeems": "\"It is installed but never used\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"administrative distance 255\", It is never installed in the routing table matches the required behavior — It is installed but never used answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"It is never installed in the routing table\" — not \"It is installed but never used\" — for what this stem actually tests.",
+          "contrast": "Correct \"It is never installed in the routing table\" vs wrong \"It is installed but never used\": For \"administrative distance 255\", It is never installed in the routing table matches the required behavior — It is installed but never used answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.2-c-q6",
@@ -2171,7 +3263,17 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Never compare OSPF cost to EIGRP metric — AD decides between protocols; metric decides within one."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Cross-protocol metric comparison",
+          "whyItSeems": "True states the opposite of the tested fact about metric scope.",
+          "whyWrongHere": "For \"metric scope\", False matches the required behavior — True answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Never compare OSPF cost to EIGRP metric — AD decides between protocols; metric decides within one.",
+          "contrast": "Correct \"False\" vs wrong \"True\": For \"metric scope\", False matches the required behavior — True answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.2-c-q7",
@@ -2219,7 +3321,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Same protocol, same prefix → lower metric wins. ECMP needs equal metrics."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Selecting higher metric within one OSPF process",
+          "whyItSeems": "\"Cost 20\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"metric tie-break\", Cost 10 matches the required behavior — Cost 20 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Cost 10\" — not \"Cost 20\" — for what this stem actually tests.",
+          "contrast": "Correct \"Cost 10\" vs wrong \"Cost 20\": For \"metric tie-break\", Cost 10 matches the required behavior — Cost 20 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Expecting load balance across unequal OSPF costs",
+          "whyItSeems": "\"Both (equal-cost only if equal)\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "CAM learning stores one mapping per arrival (metric tie-break): Cost 10 — not both addresses as table entries.",
+          "memoryAnchor": "Remember: choose \"Cost 10\" — not \"Both (equal-cost only if equal)\" — for what this stem actually tests.",
+          "contrast": "Correct \"Cost 10\" vs wrong \"Both (equal-cost only if equal)\": CAM learning stores one mapping per arrival (metric tie-break): Cost 10 — not both addresses as table entries."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invoking AD when comparing metrics within one protocol",
+          "whyItSeems": "Neither — AD must differ shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"metric tie-break\", Cost 10 matches the required behavior — Neither — AD must differ answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Cost 10\" — not \"Neither — AD must differ\" — for what this stem actually tests.",
+          "contrast": "Correct \"Cost 10\" vs wrong \"Neither — AD must differ\": For \"metric tie-break\", Cost 10 matches the required behavior — Neither — AD must differ answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.2-c-q8",
@@ -2268,7 +3396,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Forwarding: longest prefix match beats default route every time."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Preferring default route over more specific prefix",
+          "whyItSeems": "\"The default route via R1\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"default route specificity\", The /16 via R2 matches the required behavior — The default route via R1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Forwarding: longest prefix match beats default route every time.",
+          "contrast": "Correct \"The /16 via R2\" vs wrong \"The default route via R1\": For \"default route specificity\", The /16 via R2 matches the required behavior — The default route via R1 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Using AD instead of longest prefix match at forward time",
+          "whyItSeems": "\"Whichever has lower AD\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"default route specificity\", The /16 via R2 matches the required behavior — Whichever has lower AD answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Forwarding: longest prefix match beats default route every time.",
+          "contrast": "Correct \"The /16 via R2\" vs wrong \"Whichever has lower AD\": For \"default route specificity\", The /16 via R2 matches the required behavior — Whichever has lower AD answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Assuming drop when both default and specific routes exist",
+          "whyItSeems": "It is dropped implies the device should discard the frame instead of forwarding or flooding it.",
+          "whyWrongHere": "For \"default route specificity\", The /16 via R2 matches the required behavior — It is dropped answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Forwarding: longest prefix match beats default route every time.",
+          "contrast": "Correct \"The /16 via R2\" vs wrong \"It is dropped\": For \"default route specificity\", The /16 via R2 matches the required behavior — It is dropped answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.2-c-q9",
@@ -2316,7 +3470,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "No route + no default = packet dropped — install ip route 0.0.0.0 0.0.0.0 <gw> for catch-all."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Router floods unknown destinations",
+          "whyItSeems": "Floods it out all interfaces describes flooding the frame to multiple ports in the VLAN.",
+          "whyWrongHere": "For \"no match no default\", Drops the packet matches the required behavior — Floods it out all interfaces answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "No route + no default = packet dropped — install ip route 0.0.0.0 0.0.0.0 <gw> for catch-all.",
+          "contrast": "Correct \"Drops the packet\" vs wrong \"Floods it out all interfaces\": For \"no match no default\", Drops the packet matches the required behavior — Floods it out all interfaces answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Send to lowest AD route",
+          "whyItSeems": "\"Sends it to the lowest-AD route\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"no match no default\", Drops the packet matches the required behavior — Sends it to the lowest-AD route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "No route + no default = packet dropped — install ip route 0.0.0.0 0.0.0.0 <gw> for catch-all.",
+          "contrast": "Correct \"Drops the packet\" vs wrong \"Sends it to the lowest-AD route\": For \"no match no default\", Drops the packet matches the required behavior — Sends it to the lowest-AD route answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Queue until route appears",
+          "whyItSeems": "\"Queues it until a route appears\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"no match no default\", Drops the packet matches the required behavior — Queues it until a route appears answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "No route + no default = packet dropped — install ip route 0.0.0.0 0.0.0.0 <gw> for catch-all.",
+          "contrast": "Correct \"Drops the packet\" vs wrong \"Queues it until a route appears\": For \"no match no default\", Drops the packet matches the required behavior — Queues it until a route appears answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.2-c-q10",
@@ -2365,7 +3545,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Always read brackets as [administrative distance / protocol metric]."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Reversed AD/metric",
+          "whyItSeems": "\"Metric and AD\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"show ip route brackets\", AD and metric matches the required behavior — Metric and AD answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Brackets = [administrative distance / protocol metric].",
+          "contrast": "Correct \"AD and metric\" vs wrong \"Metric and AD\": For \"show ip route brackets\", AD and metric matches the required behavior — Metric and AD answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Prefix in brackets",
+          "whyItSeems": "\"Prefix and metric\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"show ip route brackets\", AD and metric matches the required behavior — Prefix and metric answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Brackets = [administrative distance / protocol metric].",
+          "contrast": "Correct \"AD and metric\" vs wrong \"Prefix and metric\": For \"show ip route brackets\", AD and metric matches the required behavior — Prefix and metric answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Hop count for OSPF",
+          "whyItSeems": "\"Cost and hop count\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"show ip route brackets\", AD and metric matches the required behavior — Cost and hop count answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Brackets = [administrative distance / protocol metric].",
+          "contrast": "Correct \"AD and metric\" vs wrong \"Cost and hop count\": For \"show ip route brackets\", AD and metric matches the required behavior — Cost and hop count answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.2-c-q11",
@@ -2413,7 +3619,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Backup static only when primary fails → set higher AD than the primary (floating static)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Blaming OSPF metric when AD causes static preference",
+          "whyItSeems": "\"OSPF metric is too high\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"floating static\", Static AD (1) is lower than OSPF (110), so static is always preferred matches the required behavior — OSPF metric is too high answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Backup static only when primary fails → set higher AD than the primary (floating static).",
+          "contrast": "Correct \"Static AD (1) is lower than OSPF (110), so static is always preferred\" vs wrong \"OSPF metric is too high\": For \"floating static\", Static AD (1) is lower than OSPF (110), so static is always preferred matches the required behavior — OSPF metric is too high answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Suspecting mask error when AD is the issue",
+          "whyItSeems": "\"The mask is wrong\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"floating static\", Static AD (1) is lower than OSPF (110), so static is always preferred matches the required behavior — The mask is wrong answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Backup static only when primary fails → set higher AD than the primary (floating static).",
+          "contrast": "Correct \"Static AD (1) is lower than OSPF (110), so static is always preferred\" vs wrong \"The mask is wrong\": For \"floating static\", Static AD (1) is lower than OSPF (110), so static is always preferred matches the required behavior — The mask is wrong answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Dragging default-route logic into floating-static AD trap",
+          "whyItSeems": "\"Default routes override static\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"floating static\", Static AD (1) is lower than OSPF (110), so static is always preferred matches the required behavior — Default routes override static answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Backup static only when primary fails → set higher AD than the primary (floating static).",
+          "contrast": "Correct \"Static AD (1) is lower than OSPF (110), so static is always preferred\" vs wrong \"Default routes override static\": For \"floating static\", Static AD (1) is lower than OSPF (110), so static is always preferred matches the required behavior — Default routes override static answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.2-c-q12",
@@ -2461,7 +3693,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Memorize: connected 0, static 1, OSPF 110 — compare AD between sources, metric within one protocol."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Ranking OSPF above connected/static",
+          "whyItSeems": "\"OSPF, static, connected\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"connected vs static vs dynamic\", Connected, static, OSPF matches the required behavior — OSPF, static, connected answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Memorize: connected 0, static 1, OSPF 110 — compare AD between sources, metric within one protocol.",
+          "contrast": "Correct \"Connected, static, OSPF\" vs wrong \"OSPF, static, connected\": For \"connected vs static vs dynamic\", Connected, static, OSPF matches the required behavior — OSPF, static, connected answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Placing static above connected",
+          "whyItSeems": "\"Static, connected, OSPF\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"connected vs static vs dynamic\", Connected, static, OSPF matches the required behavior — Static, connected, OSPF answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Memorize: connected 0, static 1, OSPF 110 — compare AD between sources, metric within one protocol.",
+          "contrast": "Correct \"Connected, static, OSPF\" vs wrong \"Static, connected, OSPF\": For \"connected vs static vs dynamic\", Connected, static, OSPF matches the required behavior — Static, connected, OSPF answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Swapping connected and static trust order",
+          "whyItSeems": "\"Connected, OSPF, static\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"connected vs static vs dynamic\", Connected, static, OSPF matches the required behavior — Connected, OSPF, static answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Memorize: connected 0, static 1, OSPF 110 — compare AD between sources, metric within one protocol.",
+          "contrast": "Correct \"Connected, static, OSPF\" vs wrong \"Connected, OSPF, static\": For \"connected vs static vs dynamic\", Connected, static, OSPF matches the required behavior — Connected, OSPF, static answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q001",
@@ -2512,7 +3770,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ICMP role in routing: error reporting (unreachable, TTL exceeded) + diagnostics (ping/traceroute)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "ICMP populates routing table",
+          "whyItSeems": "ICMP populates the routing table. relies on a router routing table rather than switch MAC/CAM forwarding.",
+          "whyWrongHere": "For \"forwarding decision\", ICMP is used when routes are not reachable. matches the required behavior — ICMP populates the routing table. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ICMP role in routing: error reporting (unreachable, TTL exceeded) + diagnostics (ping/traceroute).",
+          "contrast": "Correct \"ICMP is used when routes are not reachable.\" vs wrong \"ICMP populates the routing table.\": For \"forwarding decision\", ICMP is used when routes are not reachable."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "ICMP maintains routing table",
+          "whyItSeems": "ICMP maintains the routing table. relies on a router routing table rather than switch MAC/CAM forwarding.",
+          "whyWrongHere": "For \"forwarding decision\", ICMP is used when routes are not reachable. matches the required behavior — ICMP maintains the routing table. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ICMP role in routing: error reporting (unreachable, TTL exceeded) + diagnostics (ping/traceroute).",
+          "contrast": "Correct \"ICMP is used when routes are not reachable.\" vs wrong \"ICMP maintains the routing table.\": For \"forwarding decision\", ICMP is used when routes are not reachable."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "ICMP continuous path diagnosis",
+          "whyItSeems": "ICMP performs continuous diagnosis of the network paths. implies many-inside-to-few-outside PAT/overload translation.",
+          "whyWrongHere": "For \"forwarding decision\", ICMP is used when routes are not reachable. matches the required behavior — ICMP performs continuous diagnosis of the network paths. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ICMP role in routing: error reporting (unreachable, TTL exceeded) + diagnostics (ping/traceroute).",
+          "contrast": "Correct \"ICMP is used when routes are not reachable.\" vs wrong \"ICMP performs continuous diagnosis of the network paths.\": For \"forwarding decision\", ICMP is used when routes are not reachable."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q002",
@@ -2565,7 +3849,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Route selection order: 1) longest prefix match → 2) lowest AD → 3) lowest metric."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Metric before longest prefix match",
+          "whyItSeems": "\"The route with the lowest cost is selected.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", The route with the longest matching prefix is selected. matches the required behavior — The route with the lowest cost is selected. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Route selection order: 1) longest prefix match → 2) lowest AD → 3) lowest metric.",
+          "contrast": "Correct \"The route with the longest matching prefix is selected.\" vs wrong \"The route with the lowest cost is selected.\": For \"forwarding decision\", The route with the longest matching prefix is selected."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Highest AD selected",
+          "whyItSeems": "\"The route with the highest AD is selected.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", The route with the longest matching prefix is selected. matches the required behavior — The route with the highest AD is selected. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Route selection order: 1) longest prefix match → 2) lowest AD → 3) lowest metric.",
+          "contrast": "Correct \"The route with the longest matching prefix is selected.\" vs wrong \"The route with the highest AD is selected.\": For \"forwarding decision\", The route with the longest matching prefix is selected."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "AD before longest prefix match",
+          "whyItSeems": "\"The route with the lowest AD is selected.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", The route with the longest matching prefix is selected. matches the required behavior — The route with the lowest AD is selected. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Route selection order: 1) longest prefix match → 2) lowest AD → 3) lowest metric.",
+          "contrast": "Correct \"The route with the longest matching prefix is selected.\" vs wrong \"The route with the lowest AD is selected.\": For \"forwarding decision\", The route with the longest matching prefix is selected."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q003",
@@ -2620,7 +3930,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Same prefix, different sources → lowest AD wins | Static=1 beats RIP=120 every time."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Highest AD wins default route",
+          "whyItSeems": "\"The route with the highest AD\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", The route with the lowest AD matches the required behavior — The route with the highest AD answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Same prefix, different sources → lowest AD wins | Static=1 beats RIP=120 every time.",
+          "contrast": "Correct \"The route with the lowest AD\" vs wrong \"The route with the highest AD\": For \"forwarding decision\", The route with the lowest AD matches the required behavior — The route with the highest AD answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Metric decides between protocol sources",
+          "whyItSeems": "\"The route with the lowest metric\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", The route with the lowest AD matches the required behavior — The route with the lowest metric answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Same prefix, different sources → lowest AD wins | Static=1 beats RIP=120 every time.",
+          "contrast": "Correct \"The route with the lowest AD\" vs wrong \"The route with the lowest metric\": For \"forwarding decision\", The route with the lowest AD matches the required behavior — The route with the lowest metric answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Dynamic route always wins over static",
+          "whyItSeems": "The route being populated from RIP applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"forwarding decision\", The route with the lowest AD matches the required behavior — The route being populated from RIP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Same prefix, different sources → lowest AD wins | Static=1 beats RIP=120 every time.",
+          "contrast": "Correct \"The route with the lowest AD\" vs wrong \"The route being populated from RIP\": For \"forwarding decision\", The route with the lowest AD matches the required behavior — The route being populated from RIP answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q004",
@@ -2672,7 +4008,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Host route = /32 for one IP | Longest match always beats broader prefixes."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Host route as catch-all default",
+          "whyItSeems": "The host route is the route a packet will take if no other route matches in the routing table. relies on a router routing table rather than switch MAC/CAM forwarding.",
+          "whyWrongHere": "For \"forwarding decision\", A host route is a specific route with a netmask of /32 for a specific host. matches the required behavior — The host route is the route a packet will take if no other route matches in the routing table. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Host route = /32 for one IP | Longest match always beats broader prefixes.",
+          "contrast": "Correct \"A host route is a specific route with a netmask of /32 for a specific host.\" vs wrong \"The host route is the route a packet will take if no other route matches in the routing table.\": For \"forwarding decision\", A host route is a specific route with a netmask of /32 for a specific host."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Auto-discovered host routes",
+          "whyItSeems": "The routing table creates host routers for the destination hosts it discovers. relies on a router routing table rather than switch MAC/CAM forwarding.",
+          "whyWrongHere": "For \"forwarding decision\", A host route is a specific route with a netmask of /32 for a specific host. matches the required behavior — The routing table creates host routers for the destination hosts it discovers. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Host route = /32 for one IP | Longest match always beats broader prefixes.",
+          "contrast": "Correct \"A host route is a specific route with a netmask of /32 for a specific host.\" vs wrong \"The routing table creates host routers for the destination hosts it discovers.\": For \"forwarding decision\", A host route is a specific route with a netmask of /32 for a specific host."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "HSRP creates host routes",
+          "whyItSeems": "\"The host route is populated from HSRP.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", A host route is a specific route with a netmask of /32 for a specific host. matches the required behavior — The host route is populated from HSRP. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Host route = /32 for one IP | Longest match always beats broader prefixes.",
+          "contrast": "Correct \"A host route is a specific route with a netmask of /32 for a specific host.\" vs wrong \"The host route is populated from HSRP.\": For \"forwarding decision\", A host route is a specific route with a netmask of /32 for a specific host."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q005",
@@ -2726,7 +4088,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Read show ip route left-to-right: code → prefix → [AD/metric] → next-hop/interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Prefix identifies route source",
+          "whyItSeems": "\"Prefix and network mask\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Routing protocol code matches the required behavior — Prefix and network mask answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Read show ip route left-to-right: code → prefix → [AD/metric] → next-hop/interface.",
+          "contrast": "Correct \"Routing protocol code\" vs wrong \"Prefix and network mask\": For \"forwarding decision\", Routing protocol code matches the required behavior — Prefix and network mask answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Metric identifies route source",
+          "whyItSeems": "\"Metric\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Routing protocol code matches the required behavior — Metric answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Read show ip route left-to-right: code → prefix → [AD/metric] → next-hop/interface.",
+          "contrast": "Correct \"Routing protocol code\" vs wrong \"Metric\": For \"forwarding decision\", Routing protocol code matches the required behavior — Metric answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Next hop identifies route source",
+          "whyItSeems": "\"Next hop\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Routing protocol code matches the required behavior — Next hop answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Read show ip route left-to-right: code → prefix → [AD/metric] → next-hop/interface.",
+          "contrast": "Correct \"Routing protocol code\" vs wrong \"Next hop\": For \"forwarding decision\", Routing protocol code matches the required behavior — Next hop answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q006",
@@ -2777,7 +4165,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "L3 routing decision = destination IP → RIB lookup → rewrite L2 MAC for next hop."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Source IP for routing decision",
+          "whyItSeems": "\"Source IP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Destination IP address matches the required behavior — Source IP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "L3 routing decision = destination IP → RIB lookup → rewrite L2 MAC for next hop.",
+          "contrast": "Correct \"Destination IP address\" vs wrong \"Source IP\": For \"forwarding decision\", Destination IP address matches the required behavior — Source IP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "TTL as routing criteria",
+          "whyItSeems": "\"TTL\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Destination IP address matches the required behavior — TTL answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "L3 routing decision = destination IP → RIB lookup → rewrite L2 MAC for next hop.",
+          "contrast": "Correct \"Destination IP address\" vs wrong \"TTL\": For \"forwarding decision\", Destination IP address matches the required behavior — TTL answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Destination MAC for routing",
+          "whyItSeems": "Destination MAC address treats the destination MAC as the address recorded during learning.",
+          "whyWrongHere": "For \"forwarding decision\", Destination IP address matches the required behavior — Destination MAC address answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "L3 routing decision = destination IP → RIB lookup → rewrite L2 MAC for next hop.",
+          "contrast": "Correct \"Destination IP address\" vs wrong \"Destination MAC address\": For \"forwarding decision\", Destination IP address matches the required behavior — Destination MAC address answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q007",
@@ -2828,7 +4242,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Static = admin configures | Dynamic = protocol learns | Connected = auto from interfaces."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Link-state as admin-configured",
+          "whyItSeems": "\"Link-state routing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Static routing matches the required behavior — Link-state routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static = admin configures | Dynamic = protocol learns | Connected = auto from interfaces.",
+          "contrast": "Correct \"Static routing\" vs wrong \"Link-state routing\": For \"forwarding decision\", Static routing matches the required behavior — Link-state routing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Distance-vector as admin-configured",
+          "whyItSeems": "\"Distance-vector routing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Static routing matches the required behavior — Distance-vector routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static = admin configures | Dynamic = protocol learns | Connected = auto from interfaces.",
+          "contrast": "Correct \"Static routing\" vs wrong \"Distance-vector routing\": For \"forwarding decision\", Static routing matches the required behavior — Distance-vector routing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Dynamic routing requires admin per route",
+          "whyItSeems": "\"Dynamic routing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Static routing matches the required behavior — Dynamic routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static = admin configures | Dynamic = protocol learns | Connected = auto from interfaces.",
+          "contrast": "Correct \"Static routing\" vs wrong \"Dynamic routing\": For \"forwarding decision\", Static routing matches the required behavior — Dynamic routing answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q008",
@@ -2879,7 +4319,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Host: mask ANDing → local vs remote | Router: longest prefix match in RIB."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Router uses mask ANDing like host",
+          "whyItSeems": "\"The subnet mask is used in routing to determine the destination network.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", The subnet mask is used by the host to determine the destination network. matches the required behavior — The subnet mask is used in routing to determine the destination network. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Host: mask ANDing → local vs remote | Router: longest prefix match in RIB.",
+          "contrast": "Correct \"The subnet mask is used by the host to determine the destination network.\" vs wrong \"The subnet mask is used in routing to determine the destination network.\": For \"forwarding decision\", The subnet mask is used by the host to determine the destination network."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Router ANDs its mask when routing",
+          "whyItSeems": "\"The router uses its subnet mask when routing a packet.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", The subnet mask is used by the host to determine the destination network. matches the required behavior — The router uses its subnet mask when routing a packet. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Host: mask ANDing → local vs remote | Router: longest prefix match in RIB.",
+          "contrast": "Correct \"The subnet mask is used by the host to determine the destination network.\" vs wrong \"The router uses its subnet mask when routing a packet.\": For \"forwarding decision\", The subnet mask is used by the host to determine the destination network."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Destination verifies packet subnet mask",
+          "whyItSeems": "\"The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", The subnet mask is used by the host to determine the destination network. matches the required behavior — The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Host: mask ANDing → local vs remote | Router: longest prefix match in RIB.",
+          "contrast": "Correct \"The subnet mask is used by the host to determine the destination network.\" vs wrong \"The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer.\": For \"forwarding decision\", The subnet mask is used by the host to determine the destination network."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q009",
@@ -2933,7 +4399,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Local delivery: ARP (IP→MAC) | Remote delivery: ARP the default gateway MAC."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "IGMP for local MAC resolution",
+          "whyItSeems": "\"IGMP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", ARP matches the required behavior — IGMP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local delivery: ARP (IP→MAC) | Remote delivery: ARP the default gateway MAC.",
+          "contrast": "Correct \"ARP\" vs wrong \"IGMP\": For \"forwarding decision\", ARP matches the required behavior — IGMP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "RARP for forward MAC lookup",
+          "whyItSeems": "\"RARP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", ARP matches the required behavior — RARP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local delivery: ARP (IP→MAC) | Remote delivery: ARP the default gateway MAC.",
+          "contrast": "Correct \"ARP\" vs wrong \"RARP\": For \"forwarding decision\", ARP matches the required behavior — RARP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "ICMP for MAC resolution",
+          "whyItSeems": "ICMP names a transport protocol or port behavior that may not match reliability or connection requirements.",
+          "whyWrongHere": "For \"forwarding decision\", ARP matches the required behavior — ICMP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local delivery: ARP (IP→MAC) | Remote delivery: ARP the default gateway MAC.",
+          "contrast": "Correct \"ARP\" vs wrong \"ICMP\": For \"forwarding decision\", ARP matches the required behavior — ICMP answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q010",
@@ -2984,7 +4476,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Remote packet from host: dest IP = final host | dest MAC = default gateway."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Destination IP changed to router",
+          "whyItSeems": "The destination IP address is changed to the router’s IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "This is a Layer 2 process (forwarding decision). The destination MAC address is changed to the router’s MAC address. uses Ethernet addresses — not IP headers.",
+          "memoryAnchor": "Remote packet from host: dest IP = final host | dest MAC = default gateway.",
+          "contrast": "Correct \"The destination MAC address is changed to the router’s MAC address.\" vs wrong \"The destination IP address is changed to the router’s IP address.\": This is a Layer 2 process (forwarding decision)."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Remote traffic uses destination host MAC",
+          "whyItSeems": "The destination MAC address is changed to the destination host’s MAC address. treats the destination MAC as the address recorded during learning.",
+          "whyWrongHere": "For \"forwarding decision\", The destination MAC address is changed to the router’s MAC address. matches the required behavior — The destination MAC address is changed to the destination host’s MAC address. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remote packet from host: dest IP = final host | dest MAC = default gateway.",
+          "contrast": "Correct \"The destination MAC address is changed to the router’s MAC address.\" vs wrong \"The destination MAC address is changed to the destination host’s MAC address.\": For \"forwarding decision\", The destination MAC address is changed to the router’s MAC address."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Source IP changed to router",
+          "whyItSeems": "The source IP address is changed to the router’s IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "Unlike The destination MAC address is changed to the router’s MAC address., The source IP address is changed to the router’s IP address. fails the stem constraint that makes the keyed answer unique.",
+          "memoryAnchor": "Remote packet from host: dest IP = final host | dest MAC = default gateway.",
+          "contrast": "Correct \"The destination MAC address is changed to the router’s MAC address.\" vs wrong \"The source IP address is changed to the router’s IP address.\": Unlike The destination MAC address is changed to the router’s MAC address."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q011",
@@ -3035,7 +4553,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Router hop: TTL−1 | rewrite L2 MACs | L3 IPs unchanged (except NAT)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Router rewrites destination IP",
+          "whyItSeems": "The destination IP address is changed to the original destination. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"forwarding decision\", The packet’s TTL is decremented. matches the required behavior — The destination IP address is changed to the original destination. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Router hop: TTL−1 | rewrite L2 MACs | L3 IPs unchanged (except NAT).",
+          "contrast": "Correct \"The packet’s TTL is decremented.\" vs wrong \"The destination IP address is changed to the original destination.\": For \"forwarding decision\", The packet’s TTL is decremented."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Source MAC restored to original",
+          "whyItSeems": "\"The source MAC address is changed to the original source MAC address.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", The packet’s TTL is decremented. matches the required behavior — The source MAC address is changed to the original source MAC address. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Router hop: TTL−1 | rewrite L2 MACs | L3 IPs unchanged (except NAT).",
+          "contrast": "Correct \"The packet’s TTL is decremented.\" vs wrong \"The source MAC address is changed to the original source MAC address.\": For \"forwarding decision\", The packet’s TTL is decremented."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "All router hop actions combined",
+          "whyItSeems": "\"All of the above.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", The packet’s TTL is decremented. matches the required behavior — All of the above. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Router hop: TTL−1 | rewrite L2 MACs | L3 IPs unchanged (except NAT).",
+          "contrast": "Correct \"The packet’s TTL is decremented.\" vs wrong \"All of the above.\": For \"forwarding decision\", The packet’s TTL is decremented."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q012",
@@ -3087,7 +4631,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Local: MAC = destination host | Remote: MAC = default gateway | IP always = final destination."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Local traffic changes dest IP to router",
+          "whyItSeems": "The destination IP address is changed to the router IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "This is a Layer 2 process (forwarding decision). The destination MAC address is changed to the destination host’s MAC address. uses Ethernet addresses — not IP headers.",
+          "memoryAnchor": "Local: MAC = destination host | Remote: MAC = default gateway | IP always = final destination.",
+          "contrast": "Correct \"The destination MAC address is changed to the destination host’s MAC address.\" vs wrong \"The destination IP address is changed to the router IP address.\": This is a Layer 2 process (forwarding decision)."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Local traffic uses router MAC",
+          "whyItSeems": "The destination MAC address is changed to the router’s MAC address. treats the destination MAC as the address recorded during learning.",
+          "whyWrongHere": "For \"forwarding decision\", The destination MAC address is changed to the destination host’s MAC address. matches the required behavior — The destination MAC address is changed to the router’s MAC address. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local: MAC = destination host | Remote: MAC = default gateway | IP always = final destination.",
+          "contrast": "Correct \"The destination MAC address is changed to the destination host’s MAC address.\" vs wrong \"The destination MAC address is changed to the router’s MAC address.\": For \"forwarding decision\", The destination MAC address is changed to the destination host’s MAC address."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Source IP changed to router on local send",
+          "whyItSeems": "The source IP address is changed to the router’s IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "Unlike The destination MAC address is changed to the destination host’s MAC address., The source IP address is changed to the router’s IP address. fails the stem constraint that makes the keyed answer unique.",
+          "memoryAnchor": "Local: MAC = destination host | Remote: MAC = default gateway | IP always = final destination.",
+          "contrast": "Correct \"The destination MAC address is changed to the destination host’s MAC address.\" vs wrong \"The source IP address is changed to the router’s IP address.\": Unlike The destination MAC address is changed to the destination host’s MAC address."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q013",
@@ -3141,7 +4711,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Local test: (dest IP AND my mask) == (my IP AND my mask) → on-link; else use gateway."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Host routing table lookup",
+          "whyItSeems": "The host compares the IP address to its internal routing table. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"forwarding decision\", The host performs ANDing on its subnet mask and the destination IP address, comparing the result to its own network address. matches the required behavior — The host compares the IP address to its internal routing table. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local test: (dest IP AND my mask) == (my IP AND my mask) → on-link; else use gateway.",
+          "contrast": "Correct \"The host performs ANDing on its subnet mask and the destination IP address, comparing the result to its own network address.\" vs wrong \"The host compares the IP address to its internal routing table.\": For \"forwarding decision\", The host performs ANDing on its subnet mask and the destination IP address, comparing the result to its own network address."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Destination subnet mask used for ANDing",
+          "whyItSeems": "The host performs ANDing on the destination subnet mask and the destination IP address, comparing the result to its own network address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"forwarding decision\", The host performs ANDing on its subnet mask and the destination IP address, comparing the result to its own network address. matches the required behavior — The host performs ANDing on the destination subnet mask and the destination IP address, comparing the result to its own network address. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local test: (dest IP AND my mask) == (my IP AND my mask) → on-link; else use gateway.",
+          "contrast": "Correct \"The host performs ANDing on its subnet mask and the destination IP address, comparing the result to its own network address.\" vs wrong \"The host performs ANDing on the destination subnet mask and the destination IP address, comparing the result to its own network address.\": For \"forwarding decision\", The host performs ANDing on its subnet mask and the destination IP address, comparing the result to its own network address."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "ICMP verifies local network",
+          "whyItSeems": "The IP address is verified to be local to its network via ICMP. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"forwarding decision\", The host performs ANDing on its subnet mask and the destination IP address, comparing the result to its own network address. matches the required behavior — The IP address is verified to be local to its network via ICMP. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local test: (dest IP AND my mask) == (my IP AND my mask) → on-link; else use gateway.",
+          "contrast": "Correct \"The host performs ANDing on its subnet mask and the destination IP address, comparing the result to its own network address.\" vs wrong \"The IP address is verified to be local to its network via ICMP.\": For \"forwarding decision\", The host performs ANDing on its subnet mask and the destination IP address, comparing the result to its own network address."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q014",
@@ -3191,7 +4787,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Forwarding evolution: process → fast → CEF | Verify: show ip cef / show ip route."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Process switching as current default",
+          "whyItSeems": "\"Process switching\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Cisco Express Forwarding matches the required behavior — Process switching answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Forwarding evolution: process → fast → CEF | Verify: show ip cef / show ip route.",
+          "contrast": "Correct \"Cisco Express Forwarding\" vs wrong \"Process switching\": For \"forwarding decision\", Cisco Express Forwarding matches the required behavior — Process switching answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Fast switching as current default",
+          "whyItSeems": "\"Fast switching\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Cisco Express Forwarding matches the required behavior — Fast switching answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Forwarding evolution: process → fast → CEF | Verify: show ip cef / show ip route.",
+          "contrast": "Correct \"Cisco Express Forwarding\" vs wrong \"Fast switching\": For \"forwarding decision\", Cisco Express Forwarding matches the required behavior — Fast switching answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Invented intelligent forwarding term",
+          "whyItSeems": "\"Intelligent packet forwarding\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Cisco Express Forwarding matches the required behavior — Intelligent packet forwarding answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Forwarding evolution: process → fast → CEF | Verify: show ip cef / show ip route.",
+          "contrast": "Correct \"Cisco Express Forwarding\" vs wrong \"Intelligent packet forwarding\": For \"forwarding decision\", Cisco Express Forwarding matches the required behavior — Intelligent packet forwarding answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q015",
@@ -3242,7 +4864,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Each router hop: L3 IP unchanged → rewrite L2 MACs (frame rewrite) → forward."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "IP routing as L2 hop process name",
+          "whyItSeems": "\"IP routing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Frame rewrite matches the required behavior — IP routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Each router hop: L3 IP unchanged → rewrite L2 MACs (frame rewrite) → forward.",
+          "contrast": "Correct \"Frame rewrite\" vs wrong \"IP routing\": For \"forwarding decision\", Frame rewrite matches the required behavior — IP routing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Invented packet hopping term",
+          "whyItSeems": "\"Packet hopping\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Frame rewrite matches the required behavior — Packet hopping answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Each router hop: L3 IP unchanged → rewrite L2 MACs (frame rewrite) → forward.",
+          "contrast": "Correct \"Frame rewrite\" vs wrong \"Packet hopping\": For \"forwarding decision\", Frame rewrite matches the required behavior — Packet hopping answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Packet switching as frame rewrite term",
+          "whyItSeems": "\"Packet switching\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Frame rewrite matches the required behavior — Packet switching answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Each router hop: L3 IP unchanged → rewrite L2 MACs (frame rewrite) → forward.",
+          "contrast": "Correct \"Frame rewrite\" vs wrong \"Packet switching\": For \"forwarding decision\", Frame rewrite matches the required behavior — Packet switching answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q016",
@@ -3294,7 +4942,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ARP request frame: broadcast MAC | ARP reply: unicast back to requester."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "ARP request unicast to router",
+          "whyItSeems": "\"The router’s MAC address\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", The MAC address, in the form of a broadcast matches the required behavior — The router’s MAC address answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ARP request frame: broadcast MAC | ARP reply: unicast back to requester.",
+          "contrast": "Correct \"The MAC address, in the form of a broadcast\" vs wrong \"The router’s MAC address\": For \"forwarding decision\", The MAC address, in the form of a broadcast matches the required behavior — The router’s MAC address answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "ARP request unicast to host",
+          "whyItSeems": "\"The host’s MAC address\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", The MAC address, in the form of a broadcast matches the required behavior — The host’s MAC address answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ARP request frame: broadcast MAC | ARP reply: unicast back to requester.",
+          "contrast": "Correct \"The MAC address, in the form of a broadcast\" vs wrong \"The host’s MAC address\": For \"forwarding decision\", The MAC address, in the form of a broadcast matches the required behavior — The host’s MAC address answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "ARP as multicast",
+          "whyItSeems": "The MAC address, in the form of a multicast gives a broadcast or multicast MAC pattern that may not be the all-ones form tested here.",
+          "whyWrongHere": "Ethernet addressing (forwarding decision): The MAC address, in the form of a broadcast is the broadcast/multicast form this stem expects — The MAC address, in the form of a multicast uses the wrong MAC pattern.",
+          "memoryAnchor": "ARP request frame: broadcast MAC | ARP reply: unicast back to requester.",
+          "contrast": "Correct \"The MAC address, in the form of a broadcast\" vs wrong \"The MAC address, in the form of a multicast\": Ethernet addressing (forwarding decision): The MAC address, in the form of a broadcast is the broadcast/multicast form this stem expects — The MAC address, in the form of a multicast uses the wrong MAC pattern."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q017",
@@ -3345,7 +5019,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ARP cache: default 240s (4 min) on Cisco | show ip arp to inspect."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "IP multicast limits ARP",
+          "whyItSeems": "IP multicasting gives a broadcast or multicast MAC pattern that may not be the all-ones form tested here.",
+          "whyWrongHere": "For \"forwarding decision\", ARP cache matches the required behavior — IP multicasting answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ARP cache: default 240s (4 min) on Cisco | show ip arp to inspect.",
+          "contrast": "Correct \"ARP cache\" vs wrong \"IP multicasting\": For \"forwarding decision\", ARP cache matches the required behavior — IP multicasting answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Invented frame casting term",
+          "whyItSeems": "\"Frame casting\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", ARP cache matches the required behavior — Frame casting answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ARP cache: default 240s (4 min) on Cisco | show ip arp to inspect.",
+          "contrast": "Correct \"ARP cache\" vs wrong \"Frame casting\": For \"forwarding decision\", ARP cache matches the required behavior — Frame casting answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "IP cache for ARP limiting",
+          "whyItSeems": "\"IP cache\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", ARP cache matches the required behavior — IP cache answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ARP cache: default 240s (4 min) on Cisco | show ip arp to inspect.",
+          "contrast": "Correct \"ARP cache\" vs wrong \"IP cache\": For \"forwarding decision\", ARP cache matches the required behavior — IP cache answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q018",
@@ -3396,7 +5096,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Router ingress: check dest MAC = me → decap → dest IP lookup → rewrite MAC → forward."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Router accepts all incoming frames",
+          "whyItSeems": "The router accepts all incoming frames regardless of their destination MAC address. treats the destination MAC as the address recorded during learning.",
+          "whyWrongHere": "For \"forwarding decision\", The router decapsulates the packet and inspects the destination IP address. matches the required behavior — The router accepts all incoming frames regardless of their destination MAC address. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Router ingress: check dest MAC = me → decap → dest IP lookup → rewrite MAC → forward.",
+          "contrast": "Correct \"The router decapsulates the packet and inspects the destination IP address.\" vs wrong \"The router accepts all incoming frames regardless of their destination MAC address.\": For \"forwarding decision\", The router decapsulates the packet and inspects the destination IP address."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Route without decapsulation",
+          "whyItSeems": "Routers do not need to decapsulate packets to inspect the destination IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"forwarding decision\", The router decapsulates the packet and inspects the destination IP address. matches the required behavior — Routers do not need to decapsulate packets to inspect the destination IP address. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Router ingress: check dest MAC = me → decap → dest IP lookup → rewrite MAC → forward.",
+          "contrast": "Correct \"The router decapsulates the packet and inspects the destination IP address.\" vs wrong \"Routers do not need to decapsulate packets to inspect the destination IP address.\": For \"forwarding decision\", The router decapsulates the packet and inspects the destination IP address."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Route by source MAC address",
+          "whyItSeems": "\"Routers make routing decisions first by examining the source MAC address.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", The router decapsulates the packet and inspects the destination IP address. matches the required behavior — Routers make routing decisions first by examining the source MAC address. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Router ingress: check dest MAC = me → decap → dest IP lookup → rewrite MAC → forward.",
+          "contrast": "Correct \"The router decapsulates the packet and inspects the destination IP address.\" vs wrong \"Routers make routing decisions first by examining the source MAC address.\": For \"forwarding decision\", The router decapsulates the packet and inspects the destination IP address."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q019",
@@ -3447,7 +5173,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ARP verify: show ip arp | Clear: clear arp-cache | Age default 240s."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Truncated show arp command",
+          "whyItSeems": "\"Router#show arp\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Router#show ip arp matches the required behavior — Router#show arp answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ARP verify: show ip arp | Clear: clear arp-cache | Age default 240s.",
+          "contrast": "Correct \"Router#show ip arp\" vs wrong \"Router#show arp\": For \"forwarding decision\", Router#show ip arp matches the required behavior — Router#show arp answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented show arp table command",
+          "whyItSeems": "\"Router#show arp table\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Router#show ip arp matches the required behavior — Router#show arp table answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ARP verify: show ip arp | Clear: clear arp-cache | Age default 240s.",
+          "contrast": "Correct \"Router#show ip arp\" vs wrong \"Router#show arp table\": For \"forwarding decision\", Router#show ip arp matches the required behavior — Router#show arp table answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Invented show arp cache command",
+          "whyItSeems": "\"Router#show arp cache\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Router#show ip arp matches the required behavior — Router#show arp cache answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ARP verify: show ip arp | Clear: clear arp-cache | Age default 240s.",
+          "contrast": "Correct \"Router#show ip arp\" vs wrong \"Router#show arp cache\": For \"forwarding decision\", Router#show ip arp matches the required behavior — Router#show arp cache answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q020",
@@ -3499,7 +5251,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Cisco ARP cache default: 240s | Windows often 120–300s — know Cisco for the exam."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "180-second ARP timeout",
+          "whyItSeems": "180 seconds states a MAC aging timer or timeout value that may not match the default or configured setting.",
+          "whyWrongHere": "For \"forwarding decision\", 240 seconds matches the required behavior — 180 seconds answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cisco ARP cache default: 240s | Windows often 120–300s — know Cisco for the exam.",
+          "contrast": "Correct \"240 seconds\" vs wrong \"180 seconds\": For \"forwarding decision\", 240 seconds matches the required behavior — 180 seconds answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "300-second ARP timeout on Cisco",
+          "whyItSeems": "300 seconds states a MAC aging timer or timeout value that may not match the default or configured setting.",
+          "whyWrongHere": "For \"forwarding decision\", 240 seconds matches the required behavior — 300 seconds answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cisco ARP cache default: 240s | Windows often 120–300s — know Cisco for the exam.",
+          "contrast": "Correct \"240 seconds\" vs wrong \"300 seconds\": For \"forwarding decision\", 240 seconds matches the required behavior — 300 seconds answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "600-second ARP timeout",
+          "whyItSeems": "600 seconds states a MAC aging timer or timeout value that may not match the default or configured setting.",
+          "whyWrongHere": "For \"forwarding decision\", 240 seconds matches the required behavior — 600 seconds answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cisco ARP cache default: 240s | Windows often 120–300s — know Cisco for the exam.",
+          "contrast": "Correct \"240 seconds\" vs wrong \"600 seconds\": For \"forwarding decision\", 240 seconds matches the required behavior — 600 seconds answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q021",
@@ -3551,7 +5329,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Router rewrite: dest MAC = next hop | dest IP = unchanged | TTL − 1."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "TTL increases per router hop",
+          "whyItSeems": "\"As a packet travels through the routers, the TTL of the packet will increase by one.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", When a route to the destination network is found, the router will attach the destination MAC address for the next hop to the packet. matches the required behavior — As a packet travels through the routers, the TTL of the packet will increase by one. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Router rewrite: dest MAC = next hop | dest IP = unchanged | TTL − 1.",
+          "contrast": "Correct \"When a route to the destination network is found, the router will attach the destination MAC address for the next hop to the packet.\" vs wrong \"As a packet travels through the routers, the TTL of the packet will increase by one.\": For \"forwarding decision\", When a route to the destination network is found, the router will attach the destination MAC address for the next hop to the packet."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Transport layer checked for dest network",
+          "whyItSeems": "When a packet travels through the router, the transport information will be checked for the destination network. mixes SNMP version, trap/inform, or community/security features.",
+          "whyWrongHere": "For \"forwarding decision\", When a route to the destination network is found, the router will attach the destination MAC address for the next hop to the packet. matches the required behavior — When a packet travels through the router, the transport information will be checked for the destination network. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Router rewrite: dest MAC = next hop | dest IP = unchanged | TTL − 1.",
+          "contrast": "Correct \"When a route to the destination network is found, the router will attach the destination MAC address for the next hop to the packet.\" vs wrong \"When a packet travels through the router, the transport information will be checked for the destination network.\": For \"forwarding decision\", When a route to the destination network is found, the router will attach the destination MAC address for the next hop to the packet."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Router attaches next-hop IP to packet",
+          "whyItSeems": "When a route to the destination network is found, the router will attach the destination IP address for the next hop to the packet. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "This is a Layer 2 process (forwarding decision). When a route to the destination network is found, the router will attach the destination MAC address for the next hop to the packet. uses Ethernet addresses — not IP headers.",
+          "memoryAnchor": "Router rewrite: dest MAC = next hop | dest IP = unchanged | TTL − 1.",
+          "contrast": "Correct \"When a route to the destination network is found, the router will attach the destination MAC address for the next hop to the packet.\" vs wrong \"When a route to the destination network is found, the router will attach the destination IP address for the next hop to the packet.\": This is a Layer 2 process (forwarding decision)."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q022",
@@ -3603,7 +5407,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Connectivity test: ping (ICMP echo) | Path trace: traceroute (ICMP TTL exceeded)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "IGMP for route testing",
+          "whyItSeems": "\"IGMP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", ICMP matches the required behavior — IGMP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Connectivity test: ping (ICMP echo) | Path trace: traceroute (ICMP TTL exceeded).",
+          "contrast": "Correct \"ICMP\" vs wrong \"IGMP\": For \"forwarding decision\", ICMP matches the required behavior — IGMP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "RARP for connectivity testing",
+          "whyItSeems": "\"RARP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", ICMP matches the required behavior — RARP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Connectivity test: ping (ICMP echo) | Path trace: traceroute (ICMP TTL exceeded).",
+          "contrast": "Correct \"ICMP\" vs wrong \"RARP\": For \"forwarding decision\", ICMP matches the required behavior — RARP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "ARP for route connectivity",
+          "whyItSeems": "\"ARP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", ICMP matches the required behavior — ARP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Connectivity test: ping (ICMP echo) | Path trace: traceroute (ICMP TTL exceeded).",
+          "contrast": "Correct \"ICMP\" vs wrong \"ARP\": For \"forwarding decision\", ICMP matches the required behavior — ARP answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q023",
@@ -3654,7 +5484,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "No route: drop + ICMP Type 3 (destination unreachable) | Code 0=network, 1=host."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Silent discard on no route",
+          "whyItSeems": "The router will discard the packet without notification. implies the device should discard the frame instead of forwarding or flooding it.",
+          "whyWrongHere": "For \"forwarding decision\", The router will send back a destination unreachable message. matches the required behavior — The router will discard the packet without notification. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "No route: drop + ICMP Type 3 (destination unreachable) | Code 0=network, 1=host.",
+          "contrast": "Correct \"The router will send back a destination unreachable message.\" vs wrong \"The router will discard the packet without notification.\": For \"forwarding decision\", The router will send back a destination unreachable message."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "TTL set to 0 instead of ICMP unreachable",
+          "whyItSeems": "\"The router will change the TTL of the packet to 0.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", The router will send back a destination unreachable message. matches the required behavior — The router will change the TTL of the packet to 0. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "No route: drop + ICMP Type 3 (destination unreachable) | Code 0=network, 1=host.",
+          "contrast": "Correct \"The router will send back a destination unreachable message.\" vs wrong \"The router will change the TTL of the packet to 0.\": For \"forwarding decision\", The router will send back a destination unreachable message."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Original packet returned to source",
+          "whyItSeems": "\"The router will send the packet back to the originating host.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", The router will send back a destination unreachable message. matches the required behavior — The router will send the packet back to the originating host. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "No route: drop + ICMP Type 3 (destination unreachable) | Code 0=network, 1=host.",
+          "contrast": "Correct \"The router will send back a destination unreachable message.\" vs wrong \"The router will send the packet back to the originating host.\": For \"forwarding decision\", The router will send back a destination unreachable message."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q024",
@@ -3704,7 +5560,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Routing loop signs: TTL exceeded ICMP, constant hop count, traceroute shows repeating routers."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Asymmetric routing as routing loop",
+          "whyItSeems": "\"Packets are routed out one interface but come back on a different interface.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Packets are transmitted within a series of routers and never reach the destination. matches the required behavior — Packets are routed out one interface but come back on a different interface. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Routing loop signs: TTL exceeded ICMP, constant hop count, traceroute shows repeating routers.",
+          "contrast": "Correct \"Packets are transmitted within a series of routers and never reach the destination.\" vs wrong \"Packets are routed out one interface but come back on a different interface.\": For \"forwarding decision\", Packets are transmitted within a series of routers and never reach the destination."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "TTL expiry as definition of routing loop",
+          "whyItSeems": "\"Packets reach the expiry TTL before reaching the destination network.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Packets are transmitted within a series of routers and never reach the destination. matches the required behavior — Packets reach the expiry TTL before reaching the destination network. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Routing loop signs: TTL exceeded ICMP, constant hop count, traceroute shows repeating routers.",
+          "contrast": "Correct \"Packets are transmitted within a series of routers and never reach the destination.\" vs wrong \"Packets reach the expiry TTL before reaching the destination network.\": For \"forwarding decision\", Packets are transmitted within a series of routers and never reach the destination."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Suboptimal path as routing loop",
+          "whyItSeems": "Packets are routed via an inefficient path. implies many-inside-to-few-outside PAT/overload translation.",
+          "whyWrongHere": "For \"forwarding decision\", Packets are transmitted within a series of routers and never reach the destination. matches the required behavior — Packets are routed via an inefficient path. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Routing loop signs: TTL exceeded ICMP, constant hop count, traceroute shows repeating routers.",
+          "contrast": "Correct \"Packets are transmitted within a series of routers and never reach the destination.\" vs wrong \"Packets are routed via an inefficient path.\": For \"forwarding decision\", Packets are transmitted within a series of routers and never reach the destination."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q025",
@@ -3754,7 +5636,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Active RIB = RAM | Static route commands in running-config | Dynamic routes rebuilt on boot."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Dynamic routes in flash",
+          "whyItSeems": "\"Flash\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", RAM matches the required behavior — Flash answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Active RIB = RAM | Static route commands in running-config | Dynamic routes rebuilt on boot.",
+          "contrast": "Correct \"RAM\" vs wrong \"Flash\": For \"forwarding decision\", RAM matches the required behavior — Flash answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Dynamic routes in startup config",
+          "whyItSeems": "\"Startup configuration\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", RAM matches the required behavior — Startup configuration answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Active RIB = RAM | Static route commands in running-config | Dynamic routes rebuilt on boot.",
+          "contrast": "Correct \"RAM\" vs wrong \"Startup configuration\": For \"forwarding decision\", RAM matches the required behavior — Startup configuration answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Dynamic routes only in running config",
+          "whyItSeems": "\"Running configuration\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", RAM matches the required behavior — Running configuration answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Active RIB = RAM | Static route commands in running-config | Dynamic routes rebuilt on boot.",
+          "contrast": "Correct \"RAM\" vs wrong \"Running configuration\": For \"forwarding decision\", RAM matches the required behavior — Running configuration answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q026",
@@ -3806,7 +5714,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "CEF verify: show ip cef (FIB) | show adjacency (L2 rewrite info) | show ip route (RIB)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Truncated show cef command",
+          "whyItSeems": "\"Router#show cef\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Router#show ip cef matches the required behavior — Router#show cef answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "CEF verify: show ip cef (FIB) | show adjacency (L2 rewrite info) | show ip route (RIB).",
+          "contrast": "Correct \"Router#show ip cef\" vs wrong \"Router#show cef\": For \"forwarding decision\", Router#show ip cef matches the required behavior — Router#show cef answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Invented show cef nop command",
+          "whyItSeems": "\"Router#show cef nop\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Router#show ip cef matches the required behavior — Router#show cef nop answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "CEF verify: show ip cef (FIB) | show adjacency (L2 rewrite info) | show ip route (RIB).",
+          "contrast": "Correct \"Router#show ip cef\" vs wrong \"Router#show cef nop\": For \"forwarding decision\", Router#show ip cef matches the required behavior — Router#show cef nop answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented show cef route command",
+          "whyItSeems": "\"Router#show cef route\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Router#show ip cef matches the required behavior — Router#show cef route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "CEF verify: show ip cef (FIB) | show adjacency (L2 rewrite info) | show ip route (RIB).",
+          "contrast": "Correct \"Router#show ip cef\" vs wrong \"Router#show cef route\": For \"forwarding decision\", Router#show ip cef matches the required behavior — Router#show cef route answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q027",
@@ -3857,7 +5791,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "End-to-end constant: source IP + dest IP | Changes each hop: source MAC + dest MAC."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Destination IP changes per hop",
+          "whyItSeems": "Destination IP address shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "This is a Layer 2 process (forwarding decision). Destination MAC address uses Ethernet addresses — not IP headers.",
+          "memoryAnchor": "End-to-end constant: source IP + dest IP | Changes each hop: source MAC + dest MAC.",
+          "contrast": "Correct \"Destination MAC address\" vs wrong \"Destination IP address\": This is a Layer 2 process (forwarding decision)."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Source IP changes per hop",
+          "whyItSeems": "Source IP address shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "Unlike Destination MAC address, Source IP address fails the stem constraint that makes the keyed answer unique.",
+          "memoryAnchor": "End-to-end constant: source IP + dest IP | Changes each hop: source MAC + dest MAC.",
+          "contrast": "Correct \"Destination MAC address\" vs wrong \"Source IP address\": Unlike Destination MAC address, Source IP address fails the stem constraint that makes the keyed answer unique."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Internal routes change during routing",
+          "whyItSeems": "\"Internal routes\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Destination MAC address matches the required behavior — Internal routes answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "End-to-end constant: source IP + dest IP | Changes each hop: source MAC + dest MAC.",
+          "contrast": "Correct \"Destination MAC address\" vs wrong \"Internal routes\": For \"forwarding decision\", Destination MAC address matches the required behavior — Internal routes answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q028",
@@ -3908,7 +5868,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "No match + no default = drop (+ ICMP unreachable) | Not flood, not bounce back data."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Flood on no matching route",
+          "whyItSeems": "Flood the packet to all active interfaces describes flooding the frame to multiple ports in the VLAN.",
+          "whyWrongHere": "For \"forwarding decision\", Drop the packet matches the required behavior — Flood the packet to all active interfaces answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "No match + no default = drop (+ ICMP unreachable) | Not flood, not bounce back data.",
+          "contrast": "Correct \"Drop the packet\" vs wrong \"Flood the packet to all active interfaces\": For \"forwarding decision\", Drop the packet matches the required behavior — Flood the packet to all active interfaces answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Multicast to other routers on no route",
+          "whyItSeems": "Multicast the packet to other routers gives a broadcast or multicast MAC pattern that may not be the all-ones form tested here.",
+          "whyWrongHere": "For \"forwarding decision\", Drop the packet matches the required behavior — Multicast the packet to other routers answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "No match + no default = drop (+ ICMP unreachable) | Not flood, not bounce back data.",
+          "contrast": "Correct \"Drop the packet\" vs wrong \"Multicast the packet to other routers\": For \"forwarding decision\", Drop the packet matches the required behavior — Multicast the packet to other routers answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Return original packet to source",
+          "whyItSeems": "Send the original packet back to the source implies the switch returns the frame to the sender instead of flooding or forwarding it.",
+          "whyWrongHere": "For \"forwarding decision\", Drop the packet matches the required behavior — Send the original packet back to the source answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "No match + no default = drop (+ ICMP unreachable) | Not flood, not bounce back data.",
+          "contrast": "Correct \"Drop the packet\" vs wrong \"Send the original packet back to the source\": For \"forwarding decision\", Drop the packet matches the required behavior — Send the original packet back to the source answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q029",
@@ -3960,7 +5946,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Automatic routes: connected (C) + local (L) from interface IPs | Everything else needs config."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Default routing automatic",
+          "whyItSeems": "\"Default routing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Connected routes matches the required behavior — Default routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Automatic routes: connected (C) + local (L) from interface IPs | Everything else needs config.",
+          "contrast": "Correct \"Connected routes\" vs wrong \"Default routing\": For \"forwarding decision\", Connected routes matches the required behavior — Default routing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Dynamic routes automatic by default",
+          "whyItSeems": "\"Dynamic routes\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Connected routes matches the required behavior — Dynamic routes answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Automatic routes: connected (C) + local (L) from interface IPs | Everything else needs config.",
+          "contrast": "Correct \"Connected routes\" vs wrong \"Dynamic routes\": For \"forwarding decision\", Connected routes matches the required behavior — Dynamic routes answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Static routes automatic",
+          "whyItSeems": "Static routes configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "For \"forwarding decision\", Connected routes matches the required behavior — Static routes answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Automatic routes: connected (C) + local (L) from interface IPs | Everything else needs config.",
+          "contrast": "Correct \"Connected routes\" vs wrong \"Static routes\": For \"forwarding decision\", Connected routes matches the required behavior — Static routes answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q030",
@@ -4012,7 +6024,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPv6 default: ipv6 route ::/0 <next-hop or interface> | IPv4: ip route 0.0.0.0 0.0.0.0."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "ip route for IPv6 default",
+          "whyItSeems": "Router(config)#ip route 0.0.0.0/0 s0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (forwarding decision): Router(config)#ipv6 route ::0/0 s0/0 matches prefix, shortening, or assignment rules — Router(config)#ip route 0.0.0.0/0 s0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 default: ipv6 route ::/0 <next-hop or interface> | IPv4: ip route 0.0.0.0 0.0.0.0.",
+          "contrast": "Correct \"Router(config)#ipv6 route ::0/0 s0/0\" vs wrong \"Router(config)#ip route 0.0.0.0/0 s0/0\": IPv6 addressing (forwarding decision): Router(config)#ipv6 route ::0/0 s0/0 matches prefix, shortening, or assignment rules — Router(config)#ip route 0."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "IPv4 prefix in ipv6 route command",
+          "whyItSeems": "Router(config)#ipv6 route 0.0.0.0/0 s0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (forwarding decision): Router(config)#ipv6 route ::0/0 s0/0 matches prefix, shortening, or assignment rules — Router(config)#ipv6 route 0.0.0.0/0 s0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 default: ipv6 route ::/0 <next-hop or interface> | IPv4: ip route 0.0.0.0 0.0.0.0.",
+          "contrast": "Correct \"Router(config)#ipv6 route ::0/0 s0/0\" vs wrong \"Router(config)#ipv6 route 0.0.0.0/0 s0/0\": IPv6 addressing (forwarding decision): Router(config)#ipv6 route ::0/0 s0/0 matches prefix, shortening, or assignment rules — Router(config)#ipv6 route 0."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Invented ipv6 unicast-route command",
+          "whyItSeems": "Router(config)#ipv6 unicast-route ::0/0 s0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (forwarding decision): Router(config)#ipv6 route ::0/0 s0/0 matches prefix, shortening, or assignment rules — Router(config)#ipv6 unicast-route ::0/0 s0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 default: ipv6 route ::/0 <next-hop or interface> | IPv4: ip route 0.0.0.0 0.0.0.0.",
+          "contrast": "Correct \"Router(config)#ipv6 route ::0/0 s0/0\" vs wrong \"Router(config)#ipv6 unicast-route ::0/0 s0/0\": IPv6 addressing (forwarding decision): Router(config)#ipv6 route ::0/0 s0/0 matches prefix, shortening, or assignment rules — Router(config)#ipv6 unicast-route ::0/0 s0/0 breaks IPv6 syntax or prefix length."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q031",
@@ -4066,7 +6104,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPv6 IGPs: RIPng | OSPFv3 (new process, same concepts) | EIGRPv6 (address-family)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Only RIPng supports IPv6",
+          "whyItSeems": "RIPng applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"forwarding decision\", All of the above matches the required behavior — RIPng answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IPv6 IGPs: RIPng | OSPFv3 (new process, same concepts) | EIGRPv6 (address-family).",
+          "contrast": "Correct \"All of the above\" vs wrong \"RIPng\": For \"forwarding decision\", All of the above matches the required behavior — RIPng answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Only OSPFv3 supports IPv6",
+          "whyItSeems": "\"OSPFv3\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", All of the above matches the required behavior — OSPFv3 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IPv6 IGPs: RIPng | OSPFv3 (new process, same concepts) | EIGRPv6 (address-family).",
+          "contrast": "Correct \"All of the above\" vs wrong \"OSPFv3\": For \"forwarding decision\", All of the above matches the required behavior — OSPFv3 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Only EIGRPv6 supports IPv6",
+          "whyItSeems": "EIGRPv6 applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"forwarding decision\", All of the above matches the required behavior — EIGRPv6 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IPv6 IGPs: RIPng | OSPFv3 (new process, same concepts) | EIGRPv6 (address-family).",
+          "contrast": "Correct \"All of the above\" vs wrong \"EIGRPv6\": For \"forwarding decision\", All of the above matches the required behavior — EIGRPv6 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q032",
@@ -4118,7 +6182,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPv4: show ip route | IPv6: show ipv6 route | Both: run each separately."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Invented show route command",
+          "whyItSeems": "\"Router#show route\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Router#show ipv6 route matches the required behavior — Router#show route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IPv4: show ip route | IPv6: show ipv6 route | Both: run each separately.",
+          "contrast": "Correct \"Router#show ipv6 route\" vs wrong \"Router#show route\": For \"forwarding decision\", Router#show ipv6 route matches the required behavior — Router#show route answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "show ip route for IPv6 table",
+          "whyItSeems": "Router#show ip route is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (forwarding decision): Router#show ipv6 route inspects the right table or state — Router#show ip route shows unrelated information.",
+          "memoryAnchor": "IPv4: show ip route | IPv6: show ipv6 route | Both: run each separately.",
+          "contrast": "Correct \"Router#show ipv6 route\" vs wrong \"Router#show ip route\": Verification command (forwarding decision): Router#show ipv6 route inspects the right table or state — Router#show ip route shows unrelated information."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Reversed show route ipv6 syntax",
+          "whyItSeems": "Router#show route ipv6 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (forwarding decision): Router#show ipv6 route matches prefix, shortening, or assignment rules — Router#show route ipv6 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv4: show ip route | IPv6: show ipv6 route | Both: run each separately.",
+          "contrast": "Correct \"Router#show ipv6 route\" vs wrong \"Router#show route ipv6\": IPv6 addressing (forwarding decision): Router#show ipv6 route matches prefix, shortening, or assignment rules — Router#show route ipv6 breaks IPv6 syntax or prefix length."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q033",
@@ -4171,7 +6261,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "First remote packet: ARP gateway → set dest MAC = gateway → dest IP = remote host."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Destination IP replaced with gateway",
+          "whyItSeems": "The destination IP address is replaced with the default gateway when the destination is remote. sends the decision to a router/default gateway rather than handling it at Layer 2.",
+          "whyWrongHere": "For \"forwarding decision\", The host sends an ARP packet for the default gateway when the destination is remote. matches the required behavior — The destination IP address is replaced with the default gateway when the destination is remote. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "First remote packet: ARP gateway → set dest MAC = gateway → dest IP = remote host.",
+          "contrast": "Correct \"The host sends an ARP packet for the default gateway when the destination is remote.\" vs wrong \"The destination IP address is replaced with the default gateway when the destination is remote.\": For \"forwarding decision\", The host sends an ARP packet for the default gateway when the destination is remote."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Broadcast remote packets to gateway",
+          "whyItSeems": "The host sends the default gateway packets that are deemed remote via a broadcast. describes flooding the frame to multiple ports in the VLAN.",
+          "whyWrongHere": "For \"forwarding decision\", The host sends an ARP packet for the default gateway when the destination is remote. matches the required behavior — The host sends the default gateway packets that are deemed remote via a broadcast. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "First remote packet: ARP gateway → set dest MAC = gateway → dest IP = remote host.",
+          "contrast": "Correct \"The host sends an ARP packet for the default gateway when the destination is remote.\" vs wrong \"The host sends the default gateway packets that are deemed remote via a broadcast.\": For \"forwarding decision\", The host sends an ARP packet for the default gateway when the destination is remote."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Dedicated gateway connection for remote",
+          "whyItSeems": "The host creates a dedicated connection with the default gateway for remote traffic. sends the decision to a router/default gateway rather than handling it at Layer 2.",
+          "whyWrongHere": "For \"forwarding decision\", The host sends an ARP packet for the default gateway when the destination is remote. matches the required behavior — The host creates a dedicated connection with the default gateway for remote traffic. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "First remote packet: ARP gateway → set dest MAC = gateway → dest IP = remote host.",
+          "contrast": "Correct \"The host sends an ARP packet for the default gateway when the destination is remote.\" vs wrong \"The host creates a dedicated connection with the default gateway for remote traffic.\": For \"forwarding decision\", The host sends an ARP packet for the default gateway when the destination is remote."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q034",
@@ -4222,7 +6338,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Routing table commands: show ip route (v4) | show ipv6 route (v6) | show ip route summary."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented show route command",
+          "whyItSeems": "\"Router#show route\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Router#show ip route matches the required behavior — Router#show route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Routing table commands: show ip route (v4) | show ipv6 route (v6) | show ip route summary.",
+          "contrast": "Correct \"Router#show ip route\" vs wrong \"Router#show route\": For \"forwarding decision\", Router#show ip route matches the required behavior — Router#show route answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Invented show route table command",
+          "whyItSeems": "\"Router#show route table\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Router#show ip route matches the required behavior — Router#show route table answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Routing table commands: show ip route (v4) | show ipv6 route (v6) | show ip route summary.",
+          "contrast": "Correct \"Router#show ip route\" vs wrong \"Router#show route table\": For \"forwarding decision\", Router#show ip route matches the required behavior — Router#show route table answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Plural show routes command",
+          "whyItSeems": "\"Router#show routes\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Router#show ip route matches the required behavior — Router#show routes answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Routing table commands: show ip route (v4) | show ipv6 route (v6) | show ip route summary.",
+          "contrast": "Correct \"Router#show ip route\" vs wrong \"Router#show routes\": For \"forwarding decision\", Router#show ip route matches the required behavior — Router#show routes answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q035",
@@ -4274,7 +6416,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Routing needs ARP at each hop: IP route lookup → ARP next-hop MAC → frame rewrite → forward."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "IGMP facilitates packet routing",
+          "whyItSeems": "\"IGMP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", ARP matches the required behavior — IGMP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Routing needs ARP at each hop: IP route lookup → ARP next-hop MAC → frame rewrite → forward.",
+          "contrast": "Correct \"ARP\" vs wrong \"IGMP\": For \"forwarding decision\", ARP matches the required behavior — IGMP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "RARP facilitates packet routing",
+          "whyItSeems": "\"RARP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", ARP matches the required behavior — RARP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Routing needs ARP at each hop: IP route lookup → ARP next-hop MAC → frame rewrite → forward.",
+          "contrast": "Correct \"ARP\" vs wrong \"RARP\": For \"forwarding decision\", ARP matches the required behavior — RARP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "ICMP as primary routing facilitator",
+          "whyItSeems": "ICMP names a transport protocol or port behavior that may not match reliability or connection requirements.",
+          "whyWrongHere": "Transport protocol (forwarding decision): ARP matches reliability, ports, or connection behavior — ICMP picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "Routing needs ARP at each hop: IP route lookup → ARP next-hop MAC → frame rewrite → forward.",
+          "contrast": "Correct \"ARP\" vs wrong \"ICMP\": Transport protocol (forwarding decision): ARP matches reliability, ports, or connection behavior — ICMP picks the wrong L4 protocol or port role."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q036",
@@ -4327,7 +6495,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Router reachability: ping <ip> (ICMP echo) | Extended: traceroute for hop-by-hop."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "SNMP traps as router status check",
+          "whyItSeems": "SNMP traps mixes SNMP version, trap/inform, or community/security features.",
+          "whyWrongHere": "For \"forwarding decision\", Ping matches the required behavior — SNMP traps answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Router reachability: ping <ip> (ICMP echo) | Extended: traceroute for hop-by-hop.",
+          "contrast": "Correct \"Ping\" vs wrong \"SNMP traps\": For \"forwarding decision\", Ping matches the required behavior — SNMP traps answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Generic notifications for router check",
+          "whyItSeems": "\"Notifications\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Ping matches the required behavior — Notifications answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Router reachability: ping <ip> (ICMP echo) | Extended: traceroute for hop-by-hop.",
+          "contrast": "Correct \"Ping\" vs wrong \"Notifications\": For \"forwarding decision\", Ping matches the required behavior — Notifications answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "ARP as router status check",
+          "whyItSeems": "\"ARP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", Ping matches the required behavior — ARP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Router reachability: ping <ip> (ICMP echo) | Extended: traceroute for hop-by-hop.",
+          "contrast": "Correct \"Ping\" vs wrong \"ARP\": For \"forwarding decision\", Ping matches the required behavior — ARP answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.2-source-q037",
@@ -4378,7 +6572,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Ping symbols: ! = success | . = timeout | U = unreachable | Q = source quench."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Exclamation marks mean no response",
+          "whyItSeems": "\"The distant router is not responding.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", The distant router is responding. matches the required behavior — The distant router is not responding. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"The distant router is responding.\" — not \"The distant router is not responding.\" — for what this stem actually tests.",
+          "contrast": "Correct \"The distant router is responding.\" vs wrong \"The distant router is not responding.\": For \"forwarding decision\", The distant router is responding."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Exclamation marks indicate high latency",
+          "whyItSeems": "\"The distant router has a high response time.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", The distant router is responding. matches the required behavior — The distant router has a high response time. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"The distant router is responding.\" — not \"The distant router has a high response time.\" — for what this stem actually tests.",
+          "contrast": "Correct \"The distant router is responding.\" vs wrong \"The distant router has a high response time.\": For \"forwarding decision\", The distant router is responding."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Exclamation marks indicate low latency",
+          "whyItSeems": "\"The distant router has a low response time.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarding decision\", The distant router is responding. matches the required behavior — The distant router has a low response time. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"The distant router is responding.\" — not \"The distant router has a low response time.\" — for what this stem actually tests.",
+          "contrast": "Correct \"The distant router is responding.\" vs wrong \"The distant router has a low response time.\": For \"forwarding decision\", The distant router is responding."
+        }
+      ]
     }
   ],
   "3.3": [
@@ -4428,7 +6648,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Static route: ip route + network + subnet mask + next-hop or exit interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Using ACL wildcard mask in static route command",
+          "whyItSeems": "ip route 172.16.0.0 0.0.255.255 10.0.0.1 configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "Static routing (static route syntax): ip route 172.16.0.0 255.255.0.0 10.0.0.1 uses the right next-hop or exit interface — ip route 172.16.0.0 0.0.255.255 10.0.0.1 misconfigures recursive or floating static behavior.",
+          "memoryAnchor": "Static route: ip route + network + subnet mask + next-hop or exit interface.",
+          "contrast": "Correct \"ip route 172.16.0.0 255.255.0.0 10.0.0.1\" vs wrong \"ip route 172.16.0.0 0.0.255.255 10.0.0.1\": Static routing (static route syntax): ip route 172."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Inventing non-IOS static route syntax",
+          "whyItSeems": "static route 172.16.0.0/16 10.0.0.1 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Static routing (static route syntax): ip route 172.16.0.0 255.255.0.0 10.0.0.1 uses the right next-hop or exit interface — static route 172.16.0.0/16 10.0.0.1 misconfigures recursive or floating static behavior.",
+          "memoryAnchor": "Static route: ip route + network + subnet mask + next-hop or exit interface.",
+          "contrast": "Correct \"ip route 172.16.0.0 255.255.0.0 10.0.0.1\" vs wrong \"static route 172.16.0.0/16 10.0.0.1\": Static routing (static route syntax): ip route 172."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Misspelling the ip route command",
+          "whyItSeems": "\"ip static-route 172.16.0.0 255.255.0.0 10.0.0.1\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Mask/wildcard (static route syntax): ip route 172.16.0.0 255.255.0.0 10.0.0.1 uses the mask style this stem requires — ip static-route 172.16.0.0 255.255.0.0 10.0.0.1 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "Static route: ip route + network + subnet mask + next-hop or exit interface.",
+          "contrast": "Correct \"ip route 172.16.0.0 255.255.0.0 10.0.0.1\" vs wrong \"ip static-route 172.16.0.0 255.255.0.0 10.0.0.1\": Mask/wildcard (static route syntax): ip route 172."
+        }
+      ]
     },
     {
       "id": "3.3-q2",
@@ -4476,7 +6722,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPv4 default: ip route 0.0.0.0 0.0.0.0 <next-hop> or ip route 0.0.0.0 0.0.0.0 <int> <next-hop>."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Host mask for default route",
+          "whyItSeems": "ip route 0.0.0.0 255.255.255.255 203.0.113.1 configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "Mask/wildcard (default static route): ip route 0.0.0.0 0.0.0.0 203.0.113.1 uses the mask style this stem requires — ip route 0.0.0.0 255.255.255.255 203.0.113.1 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "IPv4 default: ip route 0.0.0.0 0.0.0.0 <next-hop> or ip route 0.0.0.0 0.0.0.0 <int> <next-hop>.",
+          "contrast": "Correct \"ip route 0.0.0.0 0.0.0.0 203.0.113.1\" vs wrong \"ip route 0.0.0.0 255.255.255.255 203.0.113.1\": Mask/wildcard (default static route): ip route 0."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "ip route default keyword",
+          "whyItSeems": "ip route default 203.0.113.1 configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "For \"default static route\", ip route 0.0.0.0 0.0.0.0 203.0.113.1 matches the required behavior — ip route default 203.0.113.1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IPv4 default: ip route 0.0.0.0 0.0.0.0 <next-hop> or ip route 0.0.0.0 0.0.0.0 <int> <next-hop>.",
+          "contrast": "Correct \"ip route 0.0.0.0 0.0.0.0 203.0.113.1\" vs wrong \"ip route default 203.0.113.1\": For \"default static route\", ip route 0."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "ip default-route command",
+          "whyItSeems": "\"ip default-route 203.0.113.1\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"default static route\", ip route 0.0.0.0 0.0.0.0 203.0.113.1 matches the required behavior — ip default-route 203.0.113.1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IPv4 default: ip route 0.0.0.0 0.0.0.0 <next-hop> or ip route 0.0.0.0 0.0.0.0 <int> <next-hop>.",
+          "contrast": "Correct \"ip route 0.0.0.0 0.0.0.0 203.0.113.1\" vs wrong \"ip default-route 203.0.113.1\": For \"default static route\", ip route 0."
+        }
+      ]
     },
     {
       "id": "3.3-q3",
@@ -4524,7 +6796,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Floating static: AD > active protocol — OSPF primary 110 → backup static 130."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "AD 90 as floating backup",
+          "whyItSeems": "ip route 10.0.0.0 255.0.0.0 192.168.2.1 90 configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "Static routing (floating static): ip route 10.0.0.0 255.0.0.0 192.168.2.1 130 uses the right next-hop or exit interface — ip route 10.0.0.0 255.0.0.0 192.168.2.1 90 misconfigures recursive or floating static behavior.",
+          "memoryAnchor": "Floating static: AD > active protocol — OSPF primary 110 → backup static 130.",
+          "contrast": "Correct \"ip route 10.0.0.0 255.0.0.0 192.168.2.1 130\" vs wrong \"ip route 10.0.0.0 255.0.0.0 192.168.2.1 90\": Static routing (floating static): ip route 10."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Default AD static as backup",
+          "whyItSeems": "ip route 10.0.0.0 255.0.0.0 192.168.2.1 configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "Static routing (floating static): ip route 10.0.0.0 255.0.0.0 192.168.2.1 130 uses the right next-hop or exit interface — ip route 10.0.0.0 255.0.0.0 192.168.2.1 misconfigures recursive or floating static behavior.",
+          "memoryAnchor": "Floating static: AD > active protocol — OSPF primary 110 → backup static 130.",
+          "contrast": "Correct \"ip route 10.0.0.0 255.0.0.0 192.168.2.1 130\" vs wrong \"ip route 10.0.0.0 255.0.0.0 192.168.2.1\": Static routing (floating static): ip route 10."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "AD 1 as floating backup",
+          "whyItSeems": "ip route 10.0.0.0 255.0.0.0 192.168.2.1 1 configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "Static routing (floating static): ip route 10.0.0.0 255.0.0.0 192.168.2.1 130 uses the right next-hop or exit interface — ip route 10.0.0.0 255.0.0.0 192.168.2.1 1 misconfigures recursive or floating static behavior.",
+          "memoryAnchor": "Floating static: AD > active protocol — OSPF primary 110 → backup static 130.",
+          "contrast": "Correct \"ip route 10.0.0.0 255.0.0.0 192.168.2.1 130\" vs wrong \"ip route 10.0.0.0 255.0.0.0 192.168.2.1 1\": Static routing (floating static): ip route 10."
+        }
+      ]
     },
     {
       "id": "3.3-q4",
@@ -4572,7 +6870,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Static missing from table → check next-hop reachability first (recursive lookup)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Believing static routes depend on OSPF",
+          "whyItSeems": "Static routes require OSPF to advertise them configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "Static routing (recursive lookup): The next-hop must be reachable — recursive lookup fails uses the right next-hop or exit interface — Static routes require OSPF to advertise them misconfigures recursive or floating static behavior.",
+          "memoryAnchor": "Static missing from table → check next-hop reachability first (recursive lookup).",
+          "contrast": "Correct \"The next-hop must be reachable — recursive lookup fails\" vs wrong \"Static routes require OSPF to advertise them\": Static routing (recursive lookup): The next-hop must be reachable — recursive lookup fails uses the right next-hop or exit interface — Static routes require OSPF to advertise them misconfigures recursive or floating static behavior."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Misdiagnosing as exit-interface requirement",
+          "whyItSeems": "Static routes must use exit interface only configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "Static routing (recursive lookup): The next-hop must be reachable — recursive lookup fails uses the right next-hop or exit interface — Static routes must use exit interface only misconfigures recursive or floating static behavior.",
+          "memoryAnchor": "Static missing from table → check next-hop reachability first (recursive lookup).",
+          "contrast": "Correct \"The next-hop must be reachable — recursive lookup fails\" vs wrong \"Static routes must use exit interface only\": Static routing (recursive lookup): The next-hop must be reachable — recursive lookup fails uses the right next-hop or exit interface — Static routes must use exit interface only misconfigures recursive or floating static behavior."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Blaming subnet mask instead of next-hop reachability",
+          "whyItSeems": "The mask is incompatible implies many-inside-to-few-outside PAT/overload translation.",
+          "whyWrongHere": "For \"recursive lookup\", The next-hop must be reachable — recursive lookup fails matches the required behavior — The mask is incompatible answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static missing from table → check next-hop reachability first (recursive lookup).",
+          "contrast": "Correct \"The next-hop must be reachable — recursive lookup fails\" vs wrong \"The mask is incompatible\": For \"recursive lookup\", The next-hop must be reachable — recursive lookup fails matches the required behavior — The mask is incompatible answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.3-q5",
@@ -4620,7 +6944,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPv6 static: ipv6 route <prefix/len> <next-hop> | default: ipv6 route ::/0 <next-hop>."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "ip route for IPv6",
+          "whyItSeems": "ip route 2001:db8:1::/48 2001:db8::1 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (IPv6 static route): ipv6 route 2001:db8:1::/48 2001:db8::1 matches prefix, shortening, or assignment rules — ip route 2001:db8:1::/48 2001:db8::1 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 static: ipv6 route <prefix/len> <next-hop> | default: ipv6 route ::/0 <next-hop>.",
+          "contrast": "Correct \"ipv6 route 2001:db8:1::/48 2001:db8::1\" vs wrong \"ip route 2001:db8:1::/48 2001:db8::1\": IPv6 addressing (IPv6 static route): ipv6 route 2001:db8:1::/48 2001:db8::1 matches prefix, shortening, or assignment rules — ip route 2001:db8:1::/48 2001:db8::1 breaks IPv6 syntax or prefix length."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "ipv6 static-route command",
+          "whyItSeems": "ipv6 static-route 2001:db8:1::/48 nexthop 2001:db8::1 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (IPv6 static route): ipv6 route 2001:db8:1::/48 2001:db8::1 matches prefix, shortening, or assignment rules — ipv6 static-route 2001:db8:1::/48 nexthop 2001:db8::1 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 static: ipv6 route <prefix/len> <next-hop> | default: ipv6 route ::/0 <next-hop>.",
+          "contrast": "Correct \"ipv6 route 2001:db8:1::/48 2001:db8::1\" vs wrong \"ipv6 static-route 2001:db8:1::/48 nexthop 2001:db8::1\": IPv6 addressing (IPv6 static route): ipv6 route 2001:db8:1::/48 2001:db8::1 matches prefix, shortening, or assignment rules — ipv6 static-route 2001:db8:1::/48 nexthop 2001:db8::1 breaks IPv6 syntax or prefix length."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Space before IPv6 prefix length",
+          "whyItSeems": "ipv6 route 2001:db8:1:: /48 2001:db8::1 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (IPv6 static route): ipv6 route 2001:db8:1::/48 2001:db8::1 matches prefix, shortening, or assignment rules — ipv6 route 2001:db8:1:: /48 2001:db8::1 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 static: ipv6 route <prefix/len> <next-hop> | default: ipv6 route ::/0 <next-hop>.",
+          "contrast": "Correct \"ipv6 route 2001:db8:1::/48 2001:db8::1\" vs wrong \"ipv6 route 2001:db8:1:: /48 2001:db8::1\": IPv6 addressing (IPv6 static route): ipv6 route 2001:db8:1::/48 2001:db8::1 matches prefix, shortening, or assignment rules — ipv6 route 2001:db8:1:: /48 2001:db8::1 breaks IPv6 syntax or prefix length."
+        }
+      ]
     },
     {
       "id": "3.3-q6",
@@ -4669,7 +7019,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPv6 default = ::/0 (all zeros prefix) — appears as S ::/0 in show ipv6 route."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Multicast prefix as default",
+          "whyItSeems": "ipv6 route ff00::/8 <next-hop> states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (IPv6 default route): ipv6 route ::/0 <next-hop> matches prefix, shortening, or assignment rules — ipv6 route ff00::/8 <next-hop> breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 default = ::/0 (all zeros prefix) — appears as S ::/0 in show ipv6 route.",
+          "contrast": "Correct \"ipv6 route ::/0 <next-hop>\" vs wrong \"ipv6 route ff00::/8 <next-hop>\": IPv6 addressing (IPv6 default route): ipv6 route ::/0 <next-hop> matches prefix, shortening, or assignment rules — ipv6 route ff00::/8 <next-hop> breaks IPv6 syntax or prefix length."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "0::0/0 as default",
+          "whyItSeems": "ipv6 route 0::0/0 <next-hop> states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (IPv6 default route): ipv6 route ::/0 <next-hop> matches prefix, shortening, or assignment rules — ipv6 route 0::0/0 <next-hop> breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 default = ::/0 (all zeros prefix) — appears as S ::/0 in show ipv6 route.",
+          "contrast": "Correct \"ipv6 route ::/0 <next-hop>\" vs wrong \"ipv6 route 0::0/0 <next-hop>\": IPv6 addressing (IPv6 default route): ipv6 route ::/0 <next-hop> matches prefix, shortening, or assignment rules — ipv6 route 0::0/0 <next-hop> breaks IPv6 syntax or prefix length."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "default-gateway on router",
+          "whyItSeems": "ipv6 default-gateway <next-hop> states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (IPv6 default route): ipv6 route ::/0 <next-hop> matches prefix, shortening, or assignment rules — ipv6 default-gateway <next-hop> breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 default = ::/0 (all zeros prefix) — appears as S ::/0 in show ipv6 route.",
+          "contrast": "Correct \"ipv6 route ::/0 <next-hop>\" vs wrong \"ipv6 default-gateway <next-hop>\": IPv6 addressing (IPv6 default route): ipv6 route ::/0 <next-hop> matches prefix, shortening, or assignment rules — ipv6 default-gateway <next-hop> breaks IPv6 syntax or prefix length."
+        }
+      ]
     },
     {
       "id": "3.3-q7",
@@ -4717,7 +7093,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Route filters: show ip route static | connected | ospf | summary."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "show ip route shows static only",
+          "whyItSeems": "show ip route is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (verify static routes): show ip route static inspects the right table or state — show ip route shows unrelated information.",
+          "memoryAnchor": "Route filters: show ip route static | connected | ospf | summary.",
+          "contrast": "Correct \"show ip route static\" vs wrong \"show ip route\": Verification command (verify static routes): show ip route static inspects the right table or state — show ip route shows unrelated information."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "running-config section for static only",
+          "whyItSeems": "show running-config | section route is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (verify static routes): show ip route static inspects the right table or state — show running-config | section route shows unrelated information.",
+          "memoryAnchor": "Route filters: show ip route static | connected | ospf | summary.",
+          "contrast": "Correct \"show ip route static\" vs wrong \"show running-config | section route\": Verification command (verify static routes): show ip route static inspects the right table or state — show running-config | section route shows unrelated information."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "ip protocols for static routes",
+          "whyItSeems": "show ip protocols is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (verify static routes): show ip route static inspects the right table or state — show ip protocols shows unrelated information.",
+          "memoryAnchor": "Route filters: show ip route static | connected | ospf | summary.",
+          "contrast": "Correct \"show ip route static\" vs wrong \"show ip protocols\": Verification command (verify static routes): show ip route static inspects the right table or state — show ip protocols shows unrelated information."
+        }
+      ]
     },
     {
       "id": "3.3-q8",
@@ -4765,7 +7167,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Multi-access Ethernet static → use next-hop IP, not exit interface only (avoids ARP for every destination)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Expecting the route to vanish instead of ARP inefficiency",
+          "whyItSeems": "\"The route disappears from the table\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"exit interface vs next-hop\", The router ARP-resolves every destination individually, wasting resources matches the required behavior — The route disappears from the table answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Multi-access Ethernet static → use next-hop IP, not exit interface only (avoids ARP for every destination).",
+          "contrast": "Correct \"The router ARP-resolves every destination individually, wasting resources\" vs wrong \"The route disappears from the table\": For \"exit interface vs next-hop\", The router ARP-resolves every destination individually, wasting resources matches the required behavior — The route disappears from the table answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Confusing AD 255 with exit-interface statics",
+          "whyItSeems": "\"The route has AD 255\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"exit interface vs next-hop\", The router ARP-resolves every destination individually, wasting resources matches the required behavior — The route has AD 255 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Multi-access Ethernet static → use next-hop IP, not exit interface only (avoids ARP for every destination).",
+          "contrast": "Correct \"The router ARP-resolves every destination individually, wasting resources\" vs wrong \"The route has AD 255\": For \"exit interface vs next-hop\", The router ARP-resolves every destination individually, wasting resources matches the required behavior — The route has AD 255 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Expecting OSPF to fix static ARP behavior",
+          "whyItSeems": "The router uses OSPF to resolve the path implies many-inside-to-few-outside PAT/overload translation.",
+          "whyWrongHere": "For \"exit interface vs next-hop\", The router ARP-resolves every destination individually, wasting resources matches the required behavior — The router uses OSPF to resolve the path answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Multi-access Ethernet static → use next-hop IP, not exit interface only (avoids ARP for every destination).",
+          "contrast": "Correct \"The router ARP-resolves every destination individually, wasting resources\" vs wrong \"The router uses OSPF to resolve the path\": For \"exit interface vs next-hop\", The router ARP-resolves every destination individually, wasting resources matches the required behavior — The router uses OSPF to resolve the path answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q001",
@@ -4816,7 +7244,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Static route template: ip route <net> <mask> <next-hop|exit-intf> — convert /29 → 255.255.255.248."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "CIDR slash in ip route command",
+          "whyItSeems": "Router(config)#ip route 205.34.54.85/24 205.34.55.2 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "For \"static routing\", Router(config)#ip route 205.34.54.85 255.255.255.248 205.34.55.2 matches the required behavior — Router(config)#ip route 205.34.54.85/24 205.34.55.2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static route template: ip route <net> <mask> <next-hop|exit-intf> — convert /29 → 255.255.255.248.",
+          "contrast": "Correct \"Router(config)#ip route 205.34.54.85 255.255.255.248 205.34.55.2\" vs wrong \"Router(config)#ip route 205.34.54.85/24 205.34.55.2\": For \"static routing\", Router(config)#ip route 205."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "/29 mask as 255.255.255.240",
+          "whyItSeems": "Router(config)#ip route 205.34.54.85 255.255.255.240 205.34.55.2 configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "For \"static routing\", Router(config)#ip route 205.34.54.85 255.255.255.248 205.34.55.2 matches the required behavior — Router(config)#ip route 205.34.54.85 255.255.255.240 205.34.55.2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static route template: ip route <net> <mask> <next-hop|exit-intf> — convert /29 → 255.255.255.248.",
+          "contrast": "Correct \"Router(config)#ip route 205.34.54.85 255.255.255.248 205.34.55.2\" vs wrong \"Router(config)#ip route 205.34.54.85 255.255.255.240 205.34.55.2\": For \"static routing\", Router(config)#ip route 205."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Next-hop and network reversed in static route",
+          "whyItSeems": "Router(config)#ip route 205.34.55.2 255.255.255.248 205.34.54.85 configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "For \"static routing\", Router(config)#ip route 205.34.54.85 255.255.255.248 205.34.55.2 matches the required behavior — Router(config)#ip route 205.34.55.2 255.255.255.248 205.34.54.85 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static route template: ip route <net> <mask> <next-hop|exit-intf> — convert /29 → 255.255.255.248.",
+          "contrast": "Correct \"Router(config)#ip route 205.34.54.85 255.255.255.248 205.34.55.2\" vs wrong \"Router(config)#ip route 205.34.55.2 255.255.255.248 205.34.54.85\": For \"static routing\", Router(config)#ip route 205."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q002",
@@ -4866,7 +7320,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Static = you type it. Dynamic = protocol learns and adapts."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Link-state as admin-configured per route",
+          "whyItSeems": "\"Link-state routing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Static routing matches the required behavior — Link-state routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Static routing\" — not \"Link-state routing\" — for what this stem actually tests.",
+          "contrast": "Correct \"Static routing\" vs wrong \"Link-state routing\": For \"static routing\", Static routing matches the required behavior — Link-state routing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Distance-vector requiring manual routes",
+          "whyItSeems": "\"Distance-vector routing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Static routing matches the required behavior — Distance-vector routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Static routing\" — not \"Distance-vector routing\" — for what this stem actually tests.",
+          "contrast": "Correct \"Static routing\" vs wrong \"Distance-vector routing\": For \"static routing\", Static routing matches the required behavior — Distance-vector routing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Dynamic routing as admin-intervention type",
+          "whyItSeems": "\"Dynamic routing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Static routing matches the required behavior — Dynamic routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Static routing\" — not \"Dynamic routing\" — for what this stem actually tests.",
+          "contrast": "Correct \"Static routing\" vs wrong \"Dynamic routing\": For \"static routing\", Static routing matches the required behavior — Dynamic routing answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q003",
@@ -4917,7 +7397,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Need automatic failover to remote nets → dynamic IGP (OSPF/EIGRP), not static alone."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Connected routes as failover mechanism",
+          "whyItSeems": "\"Directly connected routes\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Dynamic routing matches the required behavior — Directly connected routes answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Need automatic failover to remote nets → dynamic IGP (OSPF/EIGRP), not static alone.",
+          "contrast": "Correct \"Dynamic routing\" vs wrong \"Directly connected routes\": For \"static routing\", Dynamic routing matches the required behavior — Directly connected routes answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Default route as self-healing routing",
+          "whyItSeems": "\"Default routing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Dynamic routing matches the required behavior — Default routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Need automatic failover to remote nets → dynamic IGP (OSPF/EIGRP), not static alone.",
+          "contrast": "Correct \"Dynamic routing\" vs wrong \"Default routing\": For \"static routing\", Dynamic routing matches the required behavior — Default routing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Static routing auto-adapting on failure",
+          "whyItSeems": "\"Static routing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Dynamic routing matches the required behavior — Static routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Need automatic failover to remote nets → dynamic IGP (OSPF/EIGRP), not static alone.",
+          "contrast": "Correct \"Dynamic routing\" vs wrong \"Static routing\": For \"static routing\", Dynamic routing matches the required behavior — Static routing answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q004",
@@ -4970,7 +7476,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Manual per-network routes → static. Large networks → OSPF/EIGRP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "RIP as highest admin burden",
+          "whyItSeems": "RIP routing applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"static routing\", Static routing matches the required behavior — RIP routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Static routing\" — not \"RIP routing\" — for what this stem actually tests.",
+          "contrast": "Correct \"Static routing\" vs wrong \"RIP routing\": For \"static routing\", Static routing matches the required behavior — RIP routing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "OSPF as manual per-link config",
+          "whyItSeems": "\"OSPF routing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Static routing matches the required behavior — OSPF routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Static routing\" — not \"OSPF routing\" — for what this stem actually tests.",
+          "contrast": "Correct \"Static routing\" vs wrong \"OSPF routing\": For \"static routing\", Static routing matches the required behavior — OSPF routing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Default route as only static pain",
+          "whyItSeems": "\"Default routing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Static routing matches the required behavior — Default routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Static routing\" — not \"Default routing\" — for what this stem actually tests.",
+          "contrast": "Correct \"Static routing\" vs wrong \"Default routing\": For \"static routing\", Static routing matches the required behavior — Default routing answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q005",
@@ -5023,7 +7555,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Smallest routing memory footprint: one default static → everything else via gateway."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "RIP as lowest RAM routing",
+          "whyItSeems": "RIP routing applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"static routing\", Default routing matches the required behavior — RIP routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Smallest routing memory footprint: one default static → everything else via gateway.",
+          "contrast": "Correct \"Default routing\" vs wrong \"RIP routing\": For \"static routing\", Default routing matches the required behavior — RIP routing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "OSPF as lowest RAM option",
+          "whyItSeems": "\"OSPF routing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Default routing matches the required behavior — OSPF routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Smallest routing memory footprint: one default static → everything else via gateway.",
+          "contrast": "Correct \"Default routing\" vs wrong \"OSPF routing\": For \"static routing\", Default routing matches the required behavior — OSPF routing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "All static routing as lowest RAM without default context",
+          "whyItSeems": "\"Static routing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Default routing matches the required behavior — Static routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Smallest routing memory footprint: one default static → everything else via gateway.",
+          "contrast": "Correct \"Default routing\" vs wrong \"Static routing\": For \"static routing\", Default routing matches the required behavior — Static routing answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q006",
@@ -5076,7 +7634,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Lowest dynamic overhead = RIP (but poor scale). Best scale = OSPF/EIGRP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "BGP as lowest overhead IGP",
+          "whyItSeems": "BGP applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"static routing\", RIP matches the required behavior — BGP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"RIP\" — not \"BGP\" — for what this stem actually tests.",
+          "contrast": "Correct \"RIP\" vs wrong \"BGP\": For \"static routing\", RIP matches the required behavior — BGP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "OSPF as lowest overhead dynamic protocol",
+          "whyItSeems": "\"OSPF\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", RIP matches the required behavior — OSPF answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"RIP\" — not \"OSPF\" — for what this stem actually tests.",
+          "contrast": "Correct \"RIP\" vs wrong \"OSPF\": For \"static routing\", RIP matches the required behavior — OSPF answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "EIGRP as lowest overhead protocol",
+          "whyItSeems": "EIGRP applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"static routing\", RIP matches the required behavior — EIGRP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"RIP\" — not \"EIGRP\" — for what this stem actually tests.",
+          "contrast": "Correct \"RIP\" vs wrong \"EIGRP\": For \"static routing\", RIP matches the required behavior — EIGRP answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q007",
@@ -5127,7 +7711,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Dynamic routing trade: more resources in exchange for automatic failover."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Dynamic routing lowers RAM usage",
+          "whyItSeems": "\"Lower router RAM usage\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Resiliency when routes become unavailable matches the required behavior — Lower router RAM usage answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Dynamic routing trade: more resources in exchange for automatic failover.",
+          "contrast": "Correct \"Resiliency when routes become unavailable\" vs wrong \"Lower router RAM usage\": For \"static routing\", Resiliency when routes become unavailable matches the required behavior — Lower router RAM usage answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Dynamic routing lowers CPU usage",
+          "whyItSeems": "\"Lower router CPU usage\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Resiliency when routes become unavailable matches the required behavior — Lower router CPU usage answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Dynamic routing trade: more resources in exchange for automatic failover.",
+          "contrast": "Correct \"Resiliency when routes become unavailable\" vs wrong \"Lower router CPU usage\": For \"static routing\", Resiliency when routes become unavailable matches the required behavior — Lower router CPU usage answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Dynamic routing uses less bandwidth",
+          "whyItSeems": "\"Less bandwidth usage\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Resiliency when routes become unavailable matches the required behavior — Less bandwidth usage answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Dynamic routing trade: more resources in exchange for automatic failover.",
+          "contrast": "Correct \"Resiliency when routes become unavailable\" vs wrong \"Less bandwidth usage\": For \"static routing\", Resiliency when routes become unavailable matches the required behavior — Less bandwidth usage answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q008",
@@ -5178,7 +7788,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Route types: Connected = auto | Static = manual | Dynamic = protocol."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Default routing automatic by default",
+          "whyItSeems": "\"Default routing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Connected routes matches the required behavior — Default routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Route types: Connected = auto | Static = manual | Dynamic = protocol.",
+          "contrast": "Correct \"Connected routes\" vs wrong \"Default routing\": For \"static routing\", Connected routes matches the required behavior — Default routing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Dynamic routes automatic without config",
+          "whyItSeems": "\"Dynamic routes\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Connected routes matches the required behavior — Dynamic routes answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Route types: Connected = auto | Static = manual | Dynamic = protocol.",
+          "contrast": "Correct \"Connected routes\" vs wrong \"Dynamic routes\": For \"static routing\", Connected routes matches the required behavior — Dynamic routes answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Static routes automatic on router",
+          "whyItSeems": "Static routes configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "For \"static routing\", Connected routes matches the required behavior — Static routes answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Route types: Connected = auto | Static = manual | Dynamic = protocol.",
+          "contrast": "Correct \"Connected routes\" vs wrong \"Static routes\": For \"static routing\", Connected routes matches the required behavior — Static routes answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q009",
@@ -5229,7 +7865,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPv6 default: ipv6 route ::/0 <next-hop|interface> — enable ipv6 unicast-routing first."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "ip route for IPv6 default",
+          "whyItSeems": "Router(config)#ip route 0.0.0.0/0 s0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): Router(config)#ipv6 route ::0/0 s0/0 matches prefix, shortening, or assignment rules — Router(config)#ip route 0.0.0.0/0 s0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 default: ipv6 route ::/0 <next-hop|interface> — enable ipv6 unicast-routing first.",
+          "contrast": "Correct \"Router(config)#ipv6 route ::0/0 s0/0\" vs wrong \"Router(config)#ip route 0.0.0.0/0 s0/0\": IPv6 addressing (static routing): Router(config)#ipv6 route ::0/0 s0/0 matches prefix, shortening, or assignment rules — Router(config)#ip route 0."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "IPv4 prefix in ipv6 route command",
+          "whyItSeems": "Router(config)#ipv6 route 0.0.0.0/0 s0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): Router(config)#ipv6 route ::0/0 s0/0 matches prefix, shortening, or assignment rules — Router(config)#ipv6 route 0.0.0.0/0 s0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 default: ipv6 route ::/0 <next-hop|interface> — enable ipv6 unicast-routing first.",
+          "contrast": "Correct \"Router(config)#ipv6 route ::0/0 s0/0\" vs wrong \"Router(config)#ipv6 route 0.0.0.0/0 s0/0\": IPv6 addressing (static routing): Router(config)#ipv6 route ::0/0 s0/0 matches prefix, shortening, or assignment rules — Router(config)#ipv6 route 0."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "ipv6 unicast-route as static route syntax",
+          "whyItSeems": "Router(config)#ipv6 unicast-route ::0/0 s0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): Router(config)#ipv6 route ::0/0 s0/0 matches prefix, shortening, or assignment rules — Router(config)#ipv6 unicast-route ::0/0 s0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 default: ipv6 route ::/0 <next-hop|interface> — enable ipv6 unicast-routing first.",
+          "contrast": "Correct \"Router(config)#ipv6 route ::0/0 s0/0\" vs wrong \"Router(config)#ipv6 unicast-route ::0/0 s0/0\": IPv6 addressing (static routing): Router(config)#ipv6 route ::0/0 s0/0 matches prefix, shortening, or assignment rules — Router(config)#ipv6 unicast-route ::0/0 s0/0 breaks IPv6 syntax or prefix length."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q010",
@@ -5282,7 +7944,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPv6 dynamic trio on CCNA: RIPng | OSPFv3 | EIGRPv6."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "RIPng as only IPv6 dynamic protocol",
+          "whyItSeems": "RIPng applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"static routing\", All of the above matches the required behavior — RIPng answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IPv6 dynamic trio on CCNA: RIPng | OSPFv3 | EIGRPv6.",
+          "contrast": "Correct \"All of the above\" vs wrong \"RIPng\": For \"static routing\", All of the above matches the required behavior — RIPng answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "OSPFv3 as sole IPv6 routing protocol",
+          "whyItSeems": "\"OSPFv3\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", All of the above matches the required behavior — OSPFv3 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IPv6 dynamic trio on CCNA: RIPng | OSPFv3 | EIGRPv6.",
+          "contrast": "Correct \"All of the above\" vs wrong \"OSPFv3\": For \"static routing\", All of the above matches the required behavior — OSPFv3 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "EIGRPv6 as only IPv6 dynamic protocol",
+          "whyItSeems": "EIGRPv6 applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"static routing\", All of the above matches the required behavior — EIGRPv6 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IPv6 dynamic trio on CCNA: RIPng | OSPFv3 | EIGRPv6.",
+          "contrast": "Correct \"All of the above\" vs wrong \"EIGRPv6\": For \"static routing\", All of the above matches the required behavior — EIGRPv6 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q011",
@@ -5333,7 +8021,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "RIB verify: IPv4 = show ip route | IPv6 = show ipv6 route."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "show route as valid IOS command",
+          "whyItSeems": "\"Router#show route\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Router#show ipv6 route matches the required behavior — Router#show route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "RIB verify: IPv4 = show ip route | IPv6 = show ipv6 route.",
+          "contrast": "Correct \"Router#show ipv6 route\" vs wrong \"Router#show route\": For \"static routing\", Router#show ipv6 route matches the required behavior — Router#show route answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "show ip route for IPv6 table",
+          "whyItSeems": "Router#show ip route is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (static routing): Router#show ipv6 route inspects the right table or state — Router#show ip route shows unrelated information.",
+          "memoryAnchor": "RIB verify: IPv4 = show ip route | IPv6 = show ipv6 route.",
+          "contrast": "Correct \"Router#show ipv6 route\" vs wrong \"Router#show ip route\": Verification command (static routing): Router#show ipv6 route inspects the right table or state — Router#show ip route shows unrelated information."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Reversed show route ipv6 syntax",
+          "whyItSeems": "Router#show route ipv6 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): Router#show ipv6 route matches prefix, shortening, or assignment rules — Router#show route ipv6 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "RIB verify: IPv4 = show ip route | IPv6 = show ipv6 route.",
+          "contrast": "Correct \"Router#show ipv6 route\" vs wrong \"Router#show route ipv6\": IPv6 addressing (static routing): Router#show ipv6 route matches prefix, shortening, or assignment rules — Router#show route ipv6 breaks IPv6 syntax or prefix length."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q012",
@@ -5386,7 +8100,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Remote host send: IP dst = remote | ARP/MAC dst = default gateway."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Replacing destination IP with gateway IP",
+          "whyItSeems": "The destination IP address is replaced with the default gateway when the destination is remote. sends the decision to a router/default gateway rather than handling it at Layer 2.",
+          "whyWrongHere": "For \"static routing\", The host sends an ARP packet for the default gateway when the destination is remote. matches the required behavior — The destination IP address is replaced with the default gateway when the destination is remote. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remote host send: IP dst = remote | ARP/MAC dst = default gateway.",
+          "contrast": "Correct \"The host sends an ARP packet for the default gateway when the destination is remote.\" vs wrong \"The destination IP address is replaced with the default gateway when the destination is remote.\": For \"static routing\", The host sends an ARP packet for the default gateway when the destination is remote."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Broadcast to default gateway for remote traffic",
+          "whyItSeems": "The host sends the default gateway packets that are deemed remote via a broadcast. describes flooding the frame to multiple ports in the VLAN.",
+          "whyWrongHere": "For \"static routing\", The host sends an ARP packet for the default gateway when the destination is remote. matches the required behavior — The host sends the default gateway packets that are deemed remote via a broadcast. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remote host send: IP dst = remote | ARP/MAC dst = default gateway.",
+          "contrast": "Correct \"The host sends an ARP packet for the default gateway when the destination is remote.\" vs wrong \"The host sends the default gateway packets that are deemed remote via a broadcast.\": For \"static routing\", The host sends an ARP packet for the default gateway when the destination is remote."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Dedicated connection to default gateway",
+          "whyItSeems": "The host creates a dedicated connection with the default gateway for remote traffic. sends the decision to a router/default gateway rather than handling it at Layer 2.",
+          "whyWrongHere": "For \"static routing\", The host sends an ARP packet for the default gateway when the destination is remote. matches the required behavior — The host creates a dedicated connection with the default gateway for remote traffic. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remote host send: IP dst = remote | ARP/MAC dst = default gateway.",
+          "contrast": "Correct \"The host sends an ARP packet for the default gateway when the destination is remote.\" vs wrong \"The host creates a dedicated connection with the default gateway for remote traffic.\": For \"static routing\", The host sends an ARP packet for the default gateway when the destination is remote."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q013",
@@ -5437,7 +8177,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Routing table: show ip route (IPv4) | show ipv6 route (IPv6)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "show route as routing table command",
+          "whyItSeems": "\"Router#show route\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Router#show ip route matches the required behavior — Router#show route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Routing table: show ip route (IPv4) | show ipv6 route (IPv6).",
+          "contrast": "Correct \"Router#show ip route\" vs wrong \"Router#show route\": For \"static routing\", Router#show ip route matches the required behavior — Router#show route answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "show route table as IOS command",
+          "whyItSeems": "\"Router#show route table\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Router#show ip route matches the required behavior — Router#show route table answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Routing table: show ip route (IPv4) | show ipv6 route (IPv6).",
+          "contrast": "Correct \"Router#show ip route\" vs wrong \"Router#show route table\": For \"static routing\", Router#show ip route matches the required behavior — Router#show route table answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "show routes plural syntax",
+          "whyItSeems": "\"Router#show routes\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Router#show ip route matches the required behavior — Router#show routes answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Routing table: show ip route (IPv4) | show ipv6 route (IPv6).",
+          "contrast": "Correct \"Router#show ip route\" vs wrong \"Router#show routes\": For \"static routing\", Router#show ip route matches the required behavior — Router#show routes answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q014",
@@ -5489,7 +8255,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Next-hop forward needs ARP (IPv4) or NDP (IPv6) — not ICMP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "IGMP as routing facilitation protocol",
+          "whyItSeems": "\"IGMP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", ARP matches the required behavior — IGMP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Next-hop forward needs ARP (IPv4) or NDP (IPv6) — not ICMP.",
+          "contrast": "Correct \"ARP\" vs wrong \"IGMP\": For \"static routing\", ARP matches the required behavior — IGMP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "RARP as forward-path resolution",
+          "whyItSeems": "\"RARP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", ARP matches the required behavior — RARP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Next-hop forward needs ARP (IPv4) or NDP (IPv6) — not ICMP.",
+          "contrast": "Correct \"ARP\" vs wrong \"RARP\": For \"static routing\", ARP matches the required behavior — RARP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "ICMP as routing facilitation vs ARP",
+          "whyItSeems": "ICMP names a transport protocol or port behavior that may not match reliability or connection requirements.",
+          "whyWrongHere": "Transport protocol (static routing): ARP matches reliability, ports, or connection behavior — ICMP picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "Next-hop forward needs ARP (IPv4) or NDP (IPv6) — not ICMP.",
+          "contrast": "Correct \"ARP\" vs wrong \"ICMP\": Transport protocol (static routing): ARP matches reliability, ports, or connection behavior — ICMP picks the wrong L4 protocol or port role."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q015",
@@ -5542,7 +8334,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Reachability test = ping (ICMP) | L2 resolve = ARP | Management events = SNMP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "SNMP traps as ICMP router check",
+          "whyItSeems": "SNMP traps mixes SNMP version, trap/inform, or community/security features.",
+          "whyWrongHere": "For \"static routing\", Ping matches the required behavior — SNMP traps answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Reachability test = ping (ICMP) | L2 resolve = ARP | Management events = SNMP.",
+          "contrast": "Correct \"Ping\" vs wrong \"SNMP traps\": For \"static routing\", Ping matches the required behavior — SNMP traps answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Generic notifications as ICMP check",
+          "whyItSeems": "\"Notifications\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Ping matches the required behavior — Notifications answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Reachability test = ping (ICMP) | L2 resolve = ARP | Management events = SNMP.",
+          "contrast": "Correct \"Ping\" vs wrong \"Notifications\": For \"static routing\", Ping matches the required behavior — Notifications answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "ARP as router status check",
+          "whyItSeems": "\"ARP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Ping matches the required behavior — ARP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Reachability test = ping (ICMP) | L2 resolve = ARP | Management events = SNMP.",
+          "contrast": "Correct \"Ping\" vs wrong \"ARP\": For \"static routing\", Ping matches the required behavior — ARP answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q016",
@@ -5593,7 +8411,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Ping symbols: ! = success | . = timeout | U = unreachable."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Exclamation mark as ping failure",
+          "whyItSeems": "\"The distant router is not responding.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", The distant router is responding. matches the required behavior — The distant router is not responding. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"The distant router is responding.\" — not \"The distant router is not responding.\" — for what this stem actually tests.",
+          "contrast": "Correct \"The distant router is responding.\" vs wrong \"The distant router is not responding.\": For \"static routing\", The distant router is responding."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Exclamation mark indicates high latency",
+          "whyItSeems": "\"The distant router has a high response time.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", The distant router is responding. matches the required behavior — The distant router has a high response time. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"The distant router is responding.\" — not \"The distant router has a high response time.\" — for what this stem actually tests.",
+          "contrast": "Correct \"The distant router is responding.\" vs wrong \"The distant router has a high response time.\": For \"static routing\", The distant router is responding."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Exclamation mark indicates low latency",
+          "whyItSeems": "\"The distant router has a low response time.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", The distant router is responding. matches the required behavior — The distant router has a low response time. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"The distant router is responding.\" — not \"The distant router has a low response time.\" — for what this stem actually tests.",
+          "contrast": "Correct \"The distant router is responding.\" vs wrong \"The distant router has a low response time.\": For \"static routing\", The distant router is responding."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q017",
@@ -5643,7 +8487,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ip route <net> <mask> <next-hop|interface> — mask is always 255.255.255.0 style, not /24."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "CIDR notation in ip route command",
+          "whyItSeems": "Router(config)#ip route 192.168.4.0/24 serial 0/1 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "For \"static routing\", Router(config)#ip route 192.168.4.0 255.255.255.0 serial 0/1 matches the required behavior — Router(config)#ip route 192.168.4.0/24 serial 0/1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ip route <net> <mask> <next-hop|interface> — mask is always 255.255.255.0 style, not /24.",
+          "contrast": "Correct \"Router(config)#ip route 192.168.4.0 255.255.255.0 serial 0/1\" vs wrong \"Router(config)#ip route 192.168.4.0/24 serial 0/1\": For \"static routing\", Router(config)#ip route 192."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "interface keyword in static route",
+          "whyItSeems": "Router(config)#ip route 192.168.4.0/24 interface serial 0/1 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "For \"static routing\", Router(config)#ip route 192.168.4.0 255.255.255.0 serial 0/1 matches the required behavior — Router(config)#ip route 192.168.4.0/24 interface serial 0/1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ip route <net> <mask> <next-hop|interface> — mask is always 255.255.255.0 style, not /24.",
+          "contrast": "Correct \"Router(config)#ip route 192.168.4.0 255.255.255.0 serial 0/1\" vs wrong \"Router(config)#ip route 192.168.4.0/24 interface serial 0/1\": For \"static routing\", Router(config)#ip route 192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invalid config-rtr static route syntax",
+          "whyItSeems": "Router(config)#ip route Router(config- rtr)#192.168.4.0/24 serial 0/1 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "For \"static routing\", Router(config)#ip route 192.168.4.0 255.255.255.0 serial 0/1 matches the required behavior — Router(config)#ip route Router(config- rtr)#192.168.4.0/24 serial 0/1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ip route <net> <mask> <next-hop|interface> — mask is always 255.255.255.0 style, not /24.",
+          "contrast": "Correct \"Router(config)#ip route 192.168.4.0 255.255.255.0 serial 0/1\" vs wrong \"Router(config)#ip route Router(config- rtr)#192.168.4.0/24 serial 0/1\": For \"static routing\", Router(config)#ip route 192."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q018",
@@ -5694,7 +8564,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Router transit default = ip route 0.0.0.0 0.0.0.0 <gw> | ip default-gateway = management/host behavior."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "default-network fixes default-gateway forwarding",
+          "whyItSeems": "\"The ip default-network needs to be used in conjunction with ip default-gateway 192.168.11.2.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", The command is only used for the management plane of the router itself. matches the required behavior — The ip default-network needs to be used in conjunction with ip default-gateway 192.168.11.2. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Router transit default = ip route 0.0.0.0 0.0.0.0 <gw> | ip default-gateway = management/host behavior.",
+          "contrast": "Correct \"The command is only used for the management plane of the router itself.\" vs wrong \"The ip default-network needs to be used in conjunction with ip default-gateway 192.168.11.2.\": For \"static routing\", The command is only used for the management plane of the router itself."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "default-gateway for dynamic routing",
+          "whyItSeems": "\"The command is used for dynamic routing only.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", The command is only used for the management plane of the router itself. matches the required behavior — The command is used for dynamic routing only. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Router transit default = ip route 0.0.0.0 0.0.0.0 <gw> | ip default-gateway = management/host behavior.",
+          "contrast": "Correct \"The command is only used for the management plane of the router itself.\" vs wrong \"The command is used for dynamic routing only.\": For \"static routing\", The command is only used for the management plane of the router itself."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Wrong gateway IP as root cause",
+          "whyItSeems": "\"The specified gateway is wrong.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", The command is only used for the management plane of the router itself. matches the required behavior — The specified gateway is wrong. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Router transit default = ip route 0.0.0.0 0.0.0.0 <gw> | ip default-gateway = management/host behavior.",
+          "contrast": "Correct \"The command is only used for the management plane of the router itself.\" vs wrong \"The specified gateway is wrong.\": For \"static routing\", The command is only used for the management plane of the router itself."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q019",
@@ -5747,7 +8643,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Static route next hop = directly connected peer IP on the link toward the destination."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Wrong exit interface in static route",
+          "whyItSeems": "RouterA(config)#ip route 192.168.3.0 255.255.255.0 serial 0/1 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "For \"static routing\", RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the required behavior — RouterA(config)#ip route 192.168.3.0 255.255.255.0 serial 0/1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static route next hop = directly connected peer IP on the link toward the destination.",
+          "contrast": "Correct \"RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2\" vs wrong \"RouterA(config)#ip route 192.168.3.0 255.255.255.0 serial 0/1\": For \"static routing\", RouterA(config)#ip route 192."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Own interface IP as next hop",
+          "whyItSeems": "RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.1 configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "For \"static routing\", RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the required behavior — RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static route next hop = directly connected peer IP on the link toward the destination.",
+          "contrast": "Correct \"RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2\" vs wrong \"RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.1\": For \"static routing\", RouterA(config)#ip route 192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Remote network gateway as next hop",
+          "whyItSeems": "RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.3.1 configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "For \"static routing\", RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2 matches the required behavior — RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.3.1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static route next hop = directly connected peer IP on the link toward the destination.",
+          "contrast": "Correct \"RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2\" vs wrong \"RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.3.1\": For \"static routing\", RouterA(config)#ip route 192."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q020",
@@ -5798,7 +8720,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Interface ip address → connected route in RIB + possible local host route + IGP advertisement if enabled."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Only /32 route on interface IP config",
+          "whyItSeems": "The router creates a /32 route for the IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "IPv6 addressing (static routing): All of the above. matches prefix, shortening, or assignment rules — The router creates a /32 route for the IP address. breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "Interface ip address → connected route in RIB + possible local host route + IGP advertisement if enabled.",
+          "contrast": "Correct \"All of the above.\" vs wrong \"The router creates a /32 route for the IP address.\": IPv6 addressing (static routing): All of the above."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Automatic summary route on interface IP",
+          "whyItSeems": "\"The router creates a summary address for the network.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", All of the above. matches the required behavior — The router creates a summary address for the network. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Interface ip address → connected route in RIB + possible local host route + IGP advertisement if enabled.",
+          "contrast": "Correct \"All of the above.\" vs wrong \"The router creates a summary address for the network.\": For \"static routing\", All of the above."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Dynamic updates without connected route",
+          "whyItSeems": "\"The router creates a routing update if dynamic routing is configured.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", All of the above. matches the required behavior — The router creates a routing update if dynamic routing is configured. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Interface ip address → connected route in RIB + possible local host route + IGP advertisement if enabled.",
+          "contrast": "Correct \"All of the above.\" vs wrong \"The router creates a routing update if dynamic routing is configured.\": For \"static routing\", All of the above."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q021",
@@ -5850,7 +8798,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Interface IPs = show ip interface brief | Routing table = show ip route."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Truncated show ip command",
+          "whyItSeems": "Router#show ip is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (static routing): Router#show ip interfaces brief inspects the right table or state — Router#show ip shows unrelated information.",
+          "memoryAnchor": "Interface IPs = show ip interface brief | Routing table = show ip route.",
+          "contrast": "Correct \"Router#show ip interfaces brief\" vs wrong \"Router#show ip\": Verification command (static routing): Router#show ip interfaces brief inspects the right table or state — Router#show ip shows unrelated information."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "show interfaces as primary IP verify",
+          "whyItSeems": "\"Router#show interfaces\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Router#show ip interfaces brief matches the required behavior — Router#show interfaces answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Interface IPs = show ip interface brief | Routing table = show ip route.",
+          "contrast": "Correct \"Router#show ip interfaces brief\" vs wrong \"Router#show interfaces\": For \"static routing\", Router#show ip interfaces brief matches the required behavior — Router#show interfaces answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented show ip brief command",
+          "whyItSeems": "Router#show ip brief is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (static routing): Router#show ip interfaces brief inspects the right table or state — Router#show ip brief shows unrelated information.",
+          "memoryAnchor": "Interface IPs = show ip interface brief | Routing table = show ip route.",
+          "contrast": "Correct \"Router#show ip interfaces brief\" vs wrong \"Router#show ip brief\": Verification command (static routing): Router#show ip interfaces brief inspects the right table or state — Router#show ip brief shows unrelated information."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q022",
@@ -5902,7 +8876,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "No connected route but link LED on → check show ip interface brief for admin down (shutdown)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Speed mismatch hides connected route",
+          "whyItSeems": "\"The interface speed is incorrect.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", The interface is administratively shut down. matches the required behavior — The interface speed is incorrect. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "No connected route but link LED on → check show ip interface brief for admin down (shutdown).",
+          "contrast": "Correct \"The interface is administratively shut down.\" vs wrong \"The interface speed is incorrect.\": For \"static routing\", The interface is administratively shut down."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Bandwidth setting blocks connected route",
+          "whyItSeems": "\"The interface bandwidth is not set.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", The interface is administratively shut down. matches the required behavior — The interface bandwidth is not set. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "No connected route but link LED on → check show ip interface brief for admin down (shutdown).",
+          "contrast": "Correct \"The interface is administratively shut down.\" vs wrong \"The interface bandwidth is not set.\": For \"static routing\", The interface is administratively shut down."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Save required for connected route",
+          "whyItSeems": "\"The route will not show up until you save the config.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", The interface is administratively shut down. matches the required behavior — The route will not show up until you save the config. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "No connected route but link LED on → check show ip interface brief for admin down (shutdown).",
+          "contrast": "Correct \"The interface is administratively shut down.\" vs wrong \"The route will not show up until you save the config.\": For \"static routing\", The interface is administratively shut down."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q023",
@@ -5953,7 +8953,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Static routing win = no routing protocol overhead | Loss = manual updates when topology changes."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Static routing easy to add networks at scale",
+          "whyItSeems": "\"Adding networks is an easy task for network administrators.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", It reduces bandwidth used by router-to-router communications. matches the required behavior — Adding networks is an easy task for network administrators. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static routing win = no routing protocol overhead | Loss = manual updates when topology changes.",
+          "contrast": "Correct \"It reduces bandwidth used by router-to-router communications.\" vs wrong \"Adding networks is an easy task for network administrators.\": For \"static routing\", It reduces bandwidth used by router-to-router communications."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Static routing suited for large networks",
+          "whyItSeems": "\"It is suited for large networks because changes will not disturb routing.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", It reduces bandwidth used by router-to-router communications. matches the required behavior — It is suited for large networks because changes will not disturb routing. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static routing win = no routing protocol overhead | Loss = manual updates when topology changes.",
+          "contrast": "Correct \"It reduces bandwidth used by router-to-router communications.\" vs wrong \"It is suited for large networks because changes will not disturb routing.\": For \"static routing\", It reduces bandwidth used by router-to-router communications."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Any admin config as static routing benefit",
+          "whyItSeems": "\"It allows for configuration by any network admin in the network.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", It reduces bandwidth used by router-to-router communications. matches the required behavior — It allows for configuration by any network admin in the network. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static routing win = no routing protocol overhead | Loss = manual updates when topology changes.",
+          "contrast": "Correct \"It reduces bandwidth used by router-to-router communications.\" vs wrong \"It allows for configuration by any network admin in the network.\": For \"static routing\", It reduces bandwidth used by router-to-router communications."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q024",
@@ -6003,7 +9029,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Statics = config (show running-config | section ip route) — dynamic learned routes also in RAM RIB."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Static routes stored only in RAM",
+          "whyItSeems": "\"RAM\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Startup configuration matches the required behavior — RAM answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Statics = config (show running-config | section ip route) — dynamic learned routes also in RAM RIB.",
+          "contrast": "Correct \"Startup configuration\" vs wrong \"RAM\": For \"static routing\", Startup configuration matches the required behavior — RAM answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Static routes in Flash",
+          "whyItSeems": "\"Flash\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Startup configuration matches the required behavior — Flash answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Statics = config (show running-config | section ip route) — dynamic learned routes also in RAM RIB.",
+          "contrast": "Correct \"Startup configuration\" vs wrong \"Flash\": For \"static routing\", Startup configuration matches the required behavior — Flash answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Generic routing database storage",
+          "whyItSeems": "\"Routing database\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Startup configuration matches the required behavior — Routing database answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Statics = config (show running-config | section ip route) — dynamic learned routes also in RAM RIB.",
+          "contrast": "Correct \"Startup configuration\" vs wrong \"Routing database\": For \"static routing\", Startup configuration matches the required behavior — Routing database answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q025",
@@ -6055,7 +9107,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Summarize contiguous subnets → find longest common prefix — here /20 (255.255.240.0) covers .1 and .2 /24 blocks."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "/16 summary for two /24 networks",
+          "whyItSeems": "Router(config)#ip route 192.168.0.0 255.255.0.0 198.43.23.2 configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "For \"static routing\", Router(config)#ip route 192.168.0.0 255.255.240.0 198.43.23.2 matches the required behavior — Router(config)#ip route 192.168.0.0 255.255.0.0 198.43.23.2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Summarize contiguous subnets → find longest common prefix — here /20 (255.255.240.0) covers .1 and .2 /24 blocks.",
+          "contrast": "Correct \"Router(config)#ip route 192.168.0.0 255.255.240.0 198.43.23.2\" vs wrong \"Router(config)#ip route 192.168.0.0 255.255.0.0 198.43.23.2\": For \"static routing\", Router(config)#ip route 192."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "/24 mask for two /24 prefixes",
+          "whyItSeems": "Router(config)#ip route 192.168.0.0 255.255.255.0 198.43.23.2 configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "For \"static routing\", Router(config)#ip route 192.168.0.0 255.255.240.0 198.43.23.2 matches the required behavior — Router(config)#ip route 192.168.0.0 255.255.255.0 198.43.23.2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Summarize contiguous subnets → find longest common prefix — here /20 (255.255.240.0) covers .1 and .2 /24 blocks.",
+          "contrast": "Correct \"Router(config)#ip route 192.168.0.0 255.255.240.0 198.43.23.2\" vs wrong \"Router(config)#ip route 192.168.0.0 255.255.255.0 198.43.23.2\": For \"static routing\", Router(config)#ip route 192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invalid subnet mask in static route",
+          "whyItSeems": "Router(config)#ip route 192.168.0.0 255.255.0.240 198.43.23.2 configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "For \"static routing\", Router(config)#ip route 192.168.0.0 255.255.240.0 198.43.23.2 matches the required behavior — Router(config)#ip route 192.168.0.0 255.255.0.240 198.43.23.2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Summarize contiguous subnets → find longest common prefix — here /20 (255.255.240.0) covers .1 and .2 /24 blocks.",
+          "contrast": "Correct \"Router(config)#ip route 192.168.0.0 255.255.240.0 198.43.23.2\" vs wrong \"Router(config)#ip route 192.168.0.0 255.255.0.240 198.43.23.2\": For \"static routing\", Router(config)#ip route 192."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q026",
@@ -6106,7 +9184,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Floating static = same prefix, higher AD, alternate next-hop/intf — installs when primary disappears."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "AD alone fixes failed routing",
+          "whyItSeems": "\"If the first one fails to route to the destination, the second route will succeed.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", If the first interface goes down, the second route will become active. matches the required behavior — If the first one fails to route to the destination, the second route will succeed. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Floating static = same prefix, higher AD, alternate next-hop/intf — installs when primary disappears.",
+          "contrast": "Correct \"If the first interface goes down, the second route will become active.\" vs wrong \"If the first one fails to route to the destination, the second route will succeed.\": For \"static routing\", If the first interface goes down, the second route will become active."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Traffic-based static failover",
+          "whyItSeems": "\"If there is a high amount of traffic on the first interface, the second route will become active.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", If the first interface goes down, the second route will become active. matches the required behavior — If there is a high amount of traffic on the first interface, the second route will become active. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Floating static = same prefix, higher AD, alternate next-hop/intf — installs when primary disappears.",
+          "contrast": "Correct \"If the first interface goes down, the second route will become active.\" vs wrong \"If there is a high amount of traffic on the first interface, the second route will become active.\": For \"static routing\", If the first interface goes down, the second route will become active."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Backup static overcomes routing loop",
+          "whyItSeems": "\"If there is a routing loop on the first interface, the second will overcome the loop.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", If the first interface goes down, the second route will become active. matches the required behavior — If there is a routing loop on the first interface, the second will overcome the loop. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Floating static = same prefix, higher AD, alternate next-hop/intf — installs when primary disappears.",
+          "contrast": "Correct \"If the first interface goes down, the second route will become active.\" vs wrong \"If there is a routing loop on the first interface, the second will overcome the loop.\": For \"static routing\", If the first interface goes down, the second route will become active."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q027",
@@ -6158,7 +9262,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Interface IP → connected network + local /32 for the exact address — read show ip route codes C and L."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Network /29 route instead of host /32",
+          "whyItSeems": "S 208.43.34.24/29 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): S 208.43.34.17/32 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 208.43.34.24/29 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "Interface IP → connected network + local /32 for the exact address — read show ip route codes C and L.",
+          "contrast": "Correct \"S 208.43.34.17/32 is directly connected, Serial 0/0/0\" vs wrong \"S 208.43.34.24/29 is directly connected, Serial 0/0/0\": IPv6 addressing (static routing): S 208."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Subnet network route as primary host entry",
+          "whyItSeems": "S 208.43.34.8/29 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): S 208.43.34.17/32 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 208.43.34.8/29 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "Interface IP → connected network + local /32 for the exact address — read show ip route codes C and L.",
+          "contrast": "Correct \"S 208.43.34.17/32 is directly connected, Serial 0/0/0\" vs wrong \"S 208.43.34.8/29 is directly connected, Serial 0/0/0\": IPv6 addressing (static routing): S 208."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "/29 host route in RIB",
+          "whyItSeems": "S 208.43.34.17/29 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): S 208.43.34.17/32 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 208.43.34.17/29 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "Interface IP → connected network + local /32 for the exact address — read show ip route codes C and L.",
+          "contrast": "Correct \"S 208.43.34.17/32 is directly connected, Serial 0/0/0\" vs wrong \"S 208.43.34.17/29 is directly connected, Serial 0/0/0\": IPv6 addressing (static routing): S 208."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q028",
@@ -6210,7 +9340,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Unreachable next-hop = static not usable | Connected (C) = always forward out local interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Static route preferred over connected",
+          "whyItSeems": "The 172.30.0/16 network states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "For \"static routing\", The 192.168.4.0/24 network matches the required behavior — The 172.30.0/16 network answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Unreachable next-hop = static not usable | Connected (C) = always forward out local interface.",
+          "contrast": "Correct \"The 192.168.4.0/24 network\" vs wrong \"The 172.30.0/16 network\": For \"static routing\", The 192."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Static with unreachable next-hop still routable",
+          "whyItSeems": "The 192.168.128.0/24 network states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "For \"static routing\", The 192.168.4.0/24 network matches the required behavior — The 192.168.128.0/24 network answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Unreachable next-hop = static not usable | Connected (C) = always forward out local interface.",
+          "contrast": "Correct \"The 192.168.4.0/24 network\" vs wrong \"The 192.168.128.0/24 network\": For \"static routing\", The 192."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Choosing broader connected over specific /24",
+          "whyItSeems": "The 192.168.0.0/16 network states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "For \"static routing\", The 192.168.4.0/24 network matches the required behavior — The 192.168.0.0/16 network answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Unreachable next-hop = static not usable | Connected (C) = always forward out local interface.",
+          "contrast": "Correct \"The 192.168.4.0/24 network\" vs wrong \"The 192.168.0.0/16 network\": For \"static routing\", The 192."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q029",
@@ -6262,7 +9418,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Serial static → often ip route <net> <mask> <interface> when no NBMA next-hop IP is given."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "CIDR notation in ip route",
+          "whyItSeems": "RouterB(config)#ip route 198.44.4.0/24 198.55.4.9 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "For \"static routing\", RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/1 matches the required behavior — RouterB(config)#ip route 198.44.4.0/24 198.55.4.9 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Serial static → often ip route <net> <mask> <interface> when no NBMA next-hop IP is given.",
+          "contrast": "Correct \"RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/1\" vs wrong \"RouterB(config)#ip route 198.44.4.0/24 198.55.4.9\": For \"static routing\", RouterB(config)#ip route 198."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Wrong next-hop IP on serial link",
+          "whyItSeems": "RouterB(config)#ip route 198.44.4.0 255.255.255.0 198.55.4.10 configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "For \"static routing\", RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/1 matches the required behavior — RouterB(config)#ip route 198.44.4.0 255.255.255.0 198.55.4.10 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Serial static → often ip route <net> <mask> <interface> when no NBMA next-hop IP is given.",
+          "contrast": "Correct \"RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/1\" vs wrong \"RouterB(config)#ip route 198.44.4.0 255.255.255.0 198.55.4.10\": For \"static routing\", RouterB(config)#ip route 198."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Wrong exit interface for static route",
+          "whyItSeems": "RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "For \"static routing\", RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/1 matches the required behavior — RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/0 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Serial static → often ip route <net> <mask> <interface> when no NBMA next-hop IP is given.",
+          "contrast": "Correct \"RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/1\" vs wrong \"RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/0\": For \"static routing\", RouterB(config)#ip route 198."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q030",
@@ -6314,7 +9496,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "/28 boundaries: increment 16 in last octet — .48, .64, .80… — place .54 in .48/28."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Wrong /28 network boundary",
+          "whyItSeems": "S 194.22.34.64/28 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): S 194.22.34.48/28 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 194.22.34.64/28 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "/28 boundaries: increment 16 in last octet — .48, .64, .80… — place .54 in .48/28.",
+          "contrast": "Correct \"S 194.22.34.48/28 is directly connected, Serial 0/0/0\" vs wrong \"S 194.22.34.64/28 is directly connected, Serial 0/0/0\": IPv6 addressing (static routing): S 194."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Host address as /28 network route",
+          "whyItSeems": "S 194.22.34.54/28 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): S 194.22.34.48/28 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 194.22.34.54/28 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "/28 boundaries: increment 16 in last octet — .48, .64, .80… — place .54 in .48/28.",
+          "contrast": "Correct \"S 194.22.34.48/28 is directly connected, Serial 0/0/0\" vs wrong \"S 194.22.34.54/28 is directly connected, Serial 0/0/0\": IPv6 addressing (static routing): S 194."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Misaligned /28 subnet for .54",
+          "whyItSeems": "S 194.22.34.32/28 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): S 194.22.34.48/28 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 194.22.34.32/28 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "/28 boundaries: increment 16 in last octet — .48, .64, .80… — place .54 in .48/28.",
+          "contrast": "Correct \"S 194.22.34.48/28 is directly connected, Serial 0/0/0\" vs wrong \"S 194.22.34.32/28 is directly connected, Serial 0/0/0\": IPv6 addressing (static routing): S 194."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q031",
@@ -6365,7 +9573,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPv6 default = ipv6 route ::/0 <next-hop|interface> | IPv4 default = ip route 0.0.0.0 0.0.0.0 …."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "IPv4 default route for IPv6",
+          "whyItSeems": "Router(config)# ip route 0.0.0.0 0.0.0.0 serial 0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): Router(config)# ipv6 route ::/0 serial 0/0 matches prefix, shortening, or assignment rules — Router(config)# ip route 0.0.0.0 0.0.0.0 serial 0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 default = ipv6 route ::/0 <next-hop|interface> | IPv4 default = ip route 0.0.0.0 0.0.0.0 ….",
+          "contrast": "Correct \"Router(config)# ipv6 route ::/0 serial 0/0\" vs wrong \"Router(config)# ip route 0.0.0.0 0.0.0.0 serial 0/0\": IPv6 addressing (static routing): Router(config)# ipv6 route ::/0 serial 0/0 matches prefix, shortening, or assignment rules — Router(config)# ip route 0."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "IPv4 address in ipv6 route command",
+          "whyItSeems": "Router(config)# ipv6 route 0.0.0.0 0.0.0.0 serial 0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): Router(config)# ipv6 route ::/0 serial 0/0 matches prefix, shortening, or assignment rules — Router(config)# ipv6 route 0.0.0.0 0.0.0.0 serial 0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 default = ipv6 route ::/0 <next-hop|interface> | IPv4 default = ip route 0.0.0.0 0.0.0.0 ….",
+          "contrast": "Correct \"Router(config)# ipv6 route ::/0 serial 0/0\" vs wrong \"Router(config)# ipv6 route 0.0.0.0 0.0.0.0 serial 0/0\": IPv6 addressing (static routing): Router(config)# ipv6 route ::/0 serial 0/0 matches prefix, shortening, or assignment rules — Router(config)# ipv6 route 0."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "ip route keyword for IPv6 default",
+          "whyItSeems": "Router(config)# ip route ::/0 serial 0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): Router(config)# ipv6 route ::/0 serial 0/0 matches prefix, shortening, or assignment rules — Router(config)# ip route ::/0 serial 0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 default = ipv6 route ::/0 <next-hop|interface> | IPv4 default = ip route 0.0.0.0 0.0.0.0 ….",
+          "contrast": "Correct \"Router(config)# ipv6 route ::/0 serial 0/0\" vs wrong \"Router(config)# ip route ::/0 serial 0/0\": IPv6 addressing (static routing): Router(config)# ipv6 route ::/0 serial 0/0 matches prefix, shortening, or assignment rules — Router(config)# ip route ::/0 serial 0/0 breaks IPv6 syntax or prefix length."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q032",
@@ -6415,7 +9649,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPv6 static format: ipv6 route <prefix/len> <next-hop|interface> — always include prefix length."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "ip route for IPv6 prefix",
+          "whyItSeems": "Router(config)#ip route fc00:0:0:1 serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0 matches prefix, shortening, or assignment rules — Router(config)#ip route fc00:0:0:1 serial 0/0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 static format: ipv6 route <prefix/len> <next-hop|interface> — always include prefix length.",
+          "contrast": "Correct \"Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0\" vs wrong \"Router(config)#ip route fc00:0:0:1 serial 0/0/0\": IPv6 addressing (static routing): Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0 matches prefix, shortening, or assignment rules — Router(config)#ip route fc00:0:0:1 serial 0/0/0 breaks IPv6 syntax or prefix length."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "IPv4 ip route with /64",
+          "whyItSeems": "Router(config)#ip route fc00:0:0:1/64 serial 0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0 matches prefix, shortening, or assignment rules — Router(config)#ip route fc00:0:0:1/64 serial 0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 static format: ipv6 route <prefix/len> <next-hop|interface> — always include prefix length.",
+          "contrast": "Correct \"Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0\" vs wrong \"Router(config)#ip route fc00:0:0:1/64 serial 0/0\": IPv6 addressing (static routing): Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0 matches prefix, shortening, or assignment rules — Router(config)#ip route fc00:0:0:1/64 serial 0/0 breaks IPv6 syntax or prefix length."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "IPv6 static route without prefix length",
+          "whyItSeems": "Router(config)#ipv6 route fc00:0:0:1 serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0 matches prefix, shortening, or assignment rules — Router(config)#ipv6 route fc00:0:0:1 serial 0/0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 static format: ipv6 route <prefix/len> <next-hop|interface> — always include prefix length.",
+          "contrast": "Correct \"Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0\" vs wrong \"Router(config)#ipv6 route fc00:0:0:1 serial 0/0/0\": IPv6 addressing (static routing): Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0 matches prefix, shortening, or assignment rules — Router(config)#ipv6 route fc00:0:0:1 serial 0/0/0 breaks IPv6 syntax or prefix length."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q033",
@@ -6468,7 +9728,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Duplicate statics same AD/metric → top entry wins unless ip route ECMP / maximum-paths applies."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Second static preferred over first",
+          "whyItSeems": "IP address of 192.168.4.5 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"static routing\", IP address of 192.168.4.2 matches the required behavior — IP address of 192.168.4.5 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Duplicate statics same AD/metric → top entry wins unless ip route ECMP / maximum-paths applies.",
+          "contrast": "Correct \"IP address of 192.168.4.2\" vs wrong \"IP address of 192.168.4.5\": For \"static routing\", IP address of 192."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Invented exit interface",
+          "whyItSeems": "Interface Serial 0/0/1 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): IP address of 192.168.4.2 matches prefix, shortening, or assignment rules — Interface Serial 0/0/1 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "Duplicate statics same AD/metric → top entry wins unless ip route ECMP / maximum-paths applies.",
+          "contrast": "Correct \"IP address of 192.168.4.2\" vs wrong \"Interface Serial 0/0/1\": IPv6 addressing (static routing): IP address of 192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Wrong interface not in RIB",
+          "whyItSeems": "Interface Serial 0/2/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): IP address of 192.168.4.2 matches prefix, shortening, or assignment rules — Interface Serial 0/2/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "Duplicate statics same AD/metric → top entry wins unless ip route ECMP / maximum-paths applies.",
+          "contrast": "Correct \"IP address of 192.168.4.2\" vs wrong \"Interface Serial 0/2/0\": IPv6 addressing (static routing): IP address of 192."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q034",
@@ -6522,7 +9808,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Static family = specific prefixes + default route | Dynamic = OSPF/EIGRP/RIP with updates."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "OSPF classified as static routing",
+          "whyItSeems": "\"OSPF routing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Default routing matches the required behavior — OSPF routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static family = specific prefixes + default route | Dynamic = OSPF/EIGRP/RIP with updates.",
+          "contrast": "Correct \"Default routing\" vs wrong \"OSPF routing\": For \"static routing\", Default routing matches the required behavior — OSPF routing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "EIGRP classified as static routing",
+          "whyItSeems": "EIGRP routing applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"static routing\", Default routing matches the required behavior — EIGRP routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static family = specific prefixes + default route | Dynamic = OSPF/EIGRP/RIP with updates.",
+          "contrast": "Correct \"Default routing\" vs wrong \"EIGRP routing\": For \"static routing\", Default routing matches the required behavior — EIGRP routing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "RIP classified as static routing",
+          "whyItSeems": "RIP routing applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"static routing\", Default routing matches the required behavior — RIP routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static family = specific prefixes + default route | Dynamic = OSPF/EIGRP/RIP with updates.",
+          "contrast": "Correct \"Default routing\" vs wrong \"RIP routing\": For \"static routing\", Default routing matches the required behavior — RIP routing answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q035",
@@ -6572,7 +9884,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Static “advantage” stems often = control/predictability or no protocol traffic — not scalability."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Less overhead with static routing",
+          "whyItSeems": "\"There is less administrative overhead.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", It is extremely secure. matches the required behavior — There is less administrative overhead. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static “advantage” stems often = control/predictability or no protocol traffic — not scalability.",
+          "contrast": "Correct \"It is extremely secure.\" vs wrong \"There is less administrative overhead.\": For \"static routing\", It is extremely secure."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Automatic resiliency from static routing alone",
+          "whyItSeems": "\"It can create resiliency in a network.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", It is extremely secure. matches the required behavior — It can create resiliency in a network. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static “advantage” stems often = control/predictability or no protocol traffic — not scalability.",
+          "contrast": "Correct \"It is extremely secure.\" vs wrong \"It can create resiliency in a network.\": For \"static routing\", It is extremely secure."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Static routing extremely scalable",
+          "whyItSeems": "\"It is extremely scalable without issues.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", It is extremely secure. matches the required behavior — It is extremely scalable without issues. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static “advantage” stems often = control/predictability or no protocol traffic — not scalability.",
+          "contrast": "Correct \"It is extremely secure.\" vs wrong \"It is extremely scalable without issues.\": For \"static routing\", It is extremely secure."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q036",
@@ -6626,7 +9964,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Lowest routing overhead = static (none) → then protocol-specific intervals (RIP 30s, OSPF hellos, etc.)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "RIP lowest bandwidth overhead",
+          "whyItSeems": "RIP routing applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"static routing\", Static routing matches the required behavior — RIP routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Lowest routing overhead = static (none) → then protocol-specific intervals (RIP 30s, OSPF hellos, etc.).",
+          "contrast": "Correct \"Static routing\" vs wrong \"RIP routing\": For \"static routing\", Static routing matches the required behavior — RIP routing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "OSPF lowest bandwidth overhead",
+          "whyItSeems": "\"OSPF routing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Static routing matches the required behavior — OSPF routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Lowest routing overhead = static (none) → then protocol-specific intervals (RIP 30s, OSPF hellos, etc.).",
+          "contrast": "Correct \"Static routing\" vs wrong \"OSPF routing\": For \"static routing\", Static routing matches the required behavior — OSPF routing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "EIGRP lowest bandwidth overhead",
+          "whyItSeems": "EIGRP routing applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"static routing\", Static routing matches the required behavior — EIGRP routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Lowest routing overhead = static (none) → then protocol-specific intervals (RIP 30s, OSPF hellos, etc.).",
+          "contrast": "Correct \"Static routing\" vs wrong \"EIGRP routing\": For \"static routing\", Static routing matches the required behavior — EIGRP routing answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q037",
@@ -6677,7 +10041,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Manual intervention on failure = static | Auto reconvergence = dynamic IGP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Dynamic routing needs manual fix per failure",
+          "whyItSeems": "\"Dynamic routing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Static routing matches the required behavior — Dynamic routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Manual intervention on failure = static | Auto reconvergence = dynamic IGP.",
+          "contrast": "Correct \"Static routing\" vs wrong \"Dynamic routing\": For \"static routing\", Static routing matches the required behavior — Dynamic routing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Connected routes need admin intervention",
+          "whyItSeems": "\"Directly connected routes\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Static routing matches the required behavior — Directly connected routes answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Manual intervention on failure = static | Auto reconvergence = dynamic IGP.",
+          "contrast": "Correct \"Static routing\" vs wrong \"Directly connected routes\": For \"static routing\", Static routing matches the required behavior — Directly connected routes answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Default routing auto-heals without admin",
+          "whyItSeems": "\"Default routing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", Static routing matches the required behavior — Default routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Manual intervention on failure = static | Auto reconvergence = dynamic IGP.",
+          "contrast": "Correct \"Static routing\" vs wrong \"Default routing\": For \"static routing\", Static routing matches the required behavior — Default routing answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q038",
@@ -6728,7 +10118,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Route filters: show ip route static|connected|ospf|rip — protocol keyword after route."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Invented show static routes command",
+          "whyItSeems": "Router#show static routes configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "For \"static routing\", Router#show ip routes static matches the required behavior — Router#show static routes answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Route filters: show ip route static|connected|ospf|rip — protocol keyword after route.",
+          "contrast": "Correct \"Router#show ip routes static\" vs wrong \"Router#show static routes\": For \"static routing\", Router#show ip routes static matches the required behavior — Router#show static routes answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented show ip static routes command",
+          "whyItSeems": "Router#show ip static routes is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (static routing): Router#show ip routes static inspects the right table or state — Router#show ip static routes shows unrelated information.",
+          "memoryAnchor": "Route filters: show ip route static|connected|ospf|rip — protocol keyword after route.",
+          "contrast": "Correct \"Router#show ip routes static\" vs wrong \"Router#show ip static routes\": Verification command (static routing): Router#show ip routes static inspects the right table or state — Router#show ip static routes shows unrelated information."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Full table for static-only filter",
+          "whyItSeems": "Router#show ip routes is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (static routing): Router#show ip routes static inspects the right table or state — Router#show ip routes shows unrelated information.",
+          "memoryAnchor": "Route filters: show ip route static|connected|ospf|rip — protocol keyword after route.",
+          "contrast": "Correct \"Router#show ip routes static\" vs wrong \"Router#show ip routes\": Verification command (static routing): Router#show ip routes static inspects the right table or state — Router#show ip routes shows unrelated information."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q039",
@@ -6779,7 +10195,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPv6 /64 on interface → connected network::/64 in show ipv6 route."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Truncated IPv6 network ID",
+          "whyItSeems": "\"The router will calculate a network ID of 2000:0db8::.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0. matches the required behavior — The router will calculate a network ID of 2000:0db8::. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IPv6 /64 on interface → connected network::/64 in show ipv6 route.",
+          "contrast": "Correct \"The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0.\" vs wrong \"The router will calculate a network ID of 2000:0db8::.\": For \"static routing\", The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Wrong interface and /128 host route",
+          "whyItSeems": "The IPv6 address of 2000:0db8:4400:2300:1234:0000:0000:0000/128 will be assigned to Serial 0/0. states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0. matches prefix, shortening, or assignment rules — The IPv6 address of 2000:0db8:4400:2300:1234:0000:0000:0000/128 will be assigned to Serial 0/0. breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 /64 on interface → connected network::/64 in show ipv6 route.",
+          "contrast": "Correct \"The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0.\" vs wrong \"The IPv6 address of 2000:0db8:4400:2300:1234:0000:0000:0000/128 will be assigned to Serial 0/0.\": IPv6 addressing (static routing): The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Incorrect IPv6 network notation",
+          "whyItSeems": "The router will calculate a network ID of 2000:db8:4400:2300:0000/64 for Serial 0/0. states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0. matches prefix, shortening, or assignment rules — The router will calculate a network ID of 2000:db8:4400:2300:0000/64 for Serial 0/0. breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 /64 on interface → connected network::/64 in show ipv6 route.",
+          "contrast": "Correct \"The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0.\" vs wrong \"The router will calculate a network ID of 2000:db8:4400:2300:0000/64 for Serial 0/0.\": IPv6 addressing (static routing): The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q040",
@@ -6832,7 +10274,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Link-local fe80:: = per-interface, not globally routed | Global 2001:db8::/64 → connected route."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Multicast addresses in RIB discussion",
+          "whyItSeems": "Multicast addresses do not get added to the routing tables. relies on a router routing table rather than switch MAC/CAM forwarding.",
+          "whyWrongHere": "For \"static routing\", Link-local addresses do not get added to the routing tables. matches the required behavior — Multicast addresses do not get added to the routing tables. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Link-local fe80:: = per-interface, not globally routed | Global 2001:db8::/64 → connected route.",
+          "contrast": "Correct \"Link-local addresses do not get added to the routing tables.\" vs wrong \"Multicast addresses do not get added to the routing tables.\": For \"static routing\", Link-local addresses do not get added to the routing tables."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Single route per interface limit",
+          "whyItSeems": "Only one route statement can be in the routing table at a time for an interface. relies on a router routing table rather than switch MAC/CAM forwarding.",
+          "whyWrongHere": "For \"static routing\", Link-local addresses do not get added to the routing tables. matches the required behavior — Only one route statement can be in the routing table at a time for an interface. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Link-local fe80:: = per-interface, not globally routed | Global 2001:db8::/64 → connected route.",
+          "contrast": "Correct \"Link-local addresses do not get added to the routing tables.\" vs wrong \"Only one route statement can be in the routing table at a time for an interface.\": For \"static routing\", Link-local addresses do not get added to the routing tables."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Broadcast addresses in IPv6 RIB",
+          "whyItSeems": "Broadcast addresses do not get added to the routing tables. describes flooding the frame to multiple ports in the VLAN.",
+          "whyWrongHere": "For \"static routing\", Link-local addresses do not get added to the routing tables. matches the required behavior — Broadcast addresses do not get added to the routing tables. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Link-local fe80:: = per-interface, not globally routed | Global 2001:db8::/64 → connected route.",
+          "contrast": "Correct \"Link-local addresses do not get added to the routing tables.\" vs wrong \"Broadcast addresses do not get added to the routing tables.\": For \"static routing\", Link-local addresses do not get added to the routing tables."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q041",
@@ -6886,7 +10354,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPv6 LAN Internet for hosts → router ipv6 route ::/0 uplink + ipv6 address autoconfig default on LAN."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Invalid ipv6 address default syntax",
+          "whyItSeems": "RouterB(config-if )#ipv6 address default states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): RouterB(config-if)#ipv6 address autoconfig default matches prefix, shortening, or assignment rules — RouterB(config-if )#ipv6 address default breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 LAN Internet for hosts → router ipv6 route ::/0 uplink + ipv6 address autoconfig default on LAN.",
+          "contrast": "Correct \"RouterB(config-if)#ipv6 address autoconfig default\" vs wrong \"RouterB(config-if )#ipv6 address default\": IPv6 addressing (static routing): RouterB(config-if)#ipv6 address autoconfig default matches prefix, shortening, or assignment rules — RouterB(config-if )#ipv6 address default breaks IPv6 syntax or prefix length."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "ip route for IPv6 default on router LAN",
+          "whyItSeems": "RouterB(config)#ip route ::/0 serial 0/3/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): RouterB(config-if)#ipv6 address autoconfig default matches prefix, shortening, or assignment rules — RouterB(config)#ip route ::/0 serial 0/3/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 LAN Internet for hosts → router ipv6 route ::/0 uplink + ipv6 address autoconfig default on LAN.",
+          "contrast": "Correct \"RouterB(config-if)#ipv6 address autoconfig default\" vs wrong \"RouterB(config)#ip route ::/0 serial 0/3/0\": IPv6 addressing (static routing): RouterB(config-if)#ipv6 address autoconfig default matches prefix, shortening, or assignment rules — RouterB(config)#ip route ::/0 serial 0/3/0 breaks IPv6 syntax or prefix length."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "SLAAC without default router advertisement",
+          "whyItSeems": "RouterB(config-if)#ipv6 address slaac states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (static routing): RouterB(config-if)#ipv6 address autoconfig default matches prefix, shortening, or assignment rules — RouterB(config-if)#ipv6 address slaac breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 LAN Internet for hosts → router ipv6 route ::/0 uplink + ipv6 address autoconfig default on LAN.",
+          "contrast": "Correct \"RouterB(config-if)#ipv6 address autoconfig default\" vs wrong \"RouterB(config-if)#ipv6 address slaac\": IPv6 addressing (static routing): RouterB(config-if)#ipv6 address autoconfig default matches prefix, shortening, or assignment rules — RouterB(config-if)#ipv6 address slaac breaks IPv6 syntax or prefix length."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q042",
@@ -6937,7 +10431,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Default static = 0.0.0.0 0.0.0.0 <next-hop> — do not confuse with ip default-network."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "default-network as static default route",
+          "whyItSeems": "\"RouterA(config)#ip default-network 192.168.2.6\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static routing\", RouterA(config)#ip route 0.0.0.0 0.0.0.0 192.168.2.6 matches the required behavior — RouterA(config)#ip default-network 192.168.2.6 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Default static = 0.0.0.0 0.0.0.0 <next-hop> — do not confuse with ip default-network.",
+          "contrast": "Correct \"RouterA(config)#ip route 0.0.0.0 0.0.0.0 192.168.2.6\" vs wrong \"RouterA(config)#ip default-network 192.168.2.6\": For \"static routing\", RouterA(config)#ip route 0."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "default-gateway in ip route syntax",
+          "whyItSeems": "RouterA(config)#ip route default-gateway 192.168.2.6 configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "For \"static routing\", RouterA(config)#ip route 0.0.0.0 0.0.0.0 192.168.2.6 matches the required behavior — RouterA(config)#ip route default-gateway 192.168.2.6 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Default static = 0.0.0.0 0.0.0.0 <next-hop> — do not confuse with ip default-network.",
+          "contrast": "Correct \"RouterA(config)#ip route 0.0.0.0 0.0.0.0 192.168.2.6\" vs wrong \"RouterA(config)#ip route default-gateway 192.168.2.6\": For \"static routing\", RouterA(config)#ip route 0."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Host mask on default route",
+          "whyItSeems": "RouterA(config)#ip route 0.0.0.0 255.255.255.255 192.168.2.6 configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "For \"static routing\", RouterA(config)#ip route 0.0.0.0 0.0.0.0 192.168.2.6 matches the required behavior — RouterA(config)#ip route 0.0.0.0 255.255.255.255 192.168.2.6 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Default static = 0.0.0.0 0.0.0.0 <next-hop> — do not confuse with ip default-network.",
+          "contrast": "Correct \"RouterA(config)#ip route 0.0.0.0 0.0.0.0 192.168.2.6\" vs wrong \"RouterA(config)#ip route 0.0.0.0 255.255.255.255 192.168.2.6\": For \"static routing\", RouterA(config)#ip route 0."
+        }
+      ]
     },
     {
       "id": "obj-3.3-source-q043",
@@ -6989,7 +10509,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "show ip route <connected|static|ospf|rip|eigrp> — same pattern for every source."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "show ip rip for RIB filter",
+          "whyItSeems": "RouterA#show ip rip applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "Verification command (static routing): RouterA#show ip route rip inspects the right table or state — RouterA#show ip rip shows unrelated information.",
+          "memoryAnchor": "show ip route <connected|static|ospf|rip|eigrp> — same pattern for every source.",
+          "contrast": "Correct \"RouterA#show ip route rip\" vs wrong \"RouterA#show ip rip\": Verification command (static routing): RouterA#show ip route rip inspects the right table or state — RouterA#show ip rip shows unrelated information."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Full table for RIP-only view",
+          "whyItSeems": "RouterA#show ip route is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (static routing): RouterA#show ip route rip inspects the right table or state — RouterA#show ip route shows unrelated information.",
+          "memoryAnchor": "show ip route <connected|static|ospf|rip|eigrp> — same pattern for every source.",
+          "contrast": "Correct \"RouterA#show ip route rip\" vs wrong \"RouterA#show ip route\": Verification command (static routing): RouterA#show ip route rip inspects the right table or state — RouterA#show ip route shows unrelated information."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Invented show ip rip route command",
+          "whyItSeems": "RouterA#show ip rip route applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "Verification command (static routing): RouterA#show ip route rip inspects the right table or state — RouterA#show ip rip route shows unrelated information.",
+          "memoryAnchor": "show ip route <connected|static|ospf|rip|eigrp> — same pattern for every source.",
+          "contrast": "Correct \"RouterA#show ip route rip\" vs wrong \"RouterA#show ip rip route\": Verification command (static routing): RouterA#show ip route rip inspects the right table or state — RouterA#show ip rip route shows unrelated information."
+        }
+      ]
     }
   ],
   "3.4": [
@@ -7039,7 +10585,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF = link-state · RIP = distance vector · BGP = path vector."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "OSPF as distance vector",
+          "whyItSeems": "\"Distance vector\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol type\", Link-state matches the required behavior — Distance vector answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF = link-state · RIP = distance vector · BGP = path vector.",
+          "contrast": "Correct \"Link-state\" vs wrong \"Distance vector\": For \"protocol type\", Link-state matches the required behavior — Distance vector answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "OSPF as path vector",
+          "whyItSeems": "Path vector implies many-inside-to-few-outside PAT/overload translation.",
+          "whyWrongHere": "For \"protocol type\", Link-state matches the required behavior — Path vector answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF = link-state · RIP = distance vector · BGP = path vector.",
+          "contrast": "Correct \"Link-state\" vs wrong \"Path vector\": For \"protocol type\", Link-state matches the required behavior — Path vector answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Dynamic protocol labeled static",
+          "whyItSeems": "\"Static\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol type\", Link-state matches the required behavior — Static answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF = link-state · RIP = distance vector · BGP = path vector.",
+          "contrast": "Correct \"Link-state\" vs wrong \"Static\": For \"protocol type\", Link-state matches the required behavior — Static answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.4-c-q2",
@@ -7087,7 +10659,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "AD: 110 OSPF, 90 EIGRP, 120 RIP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "EIGRP AD for OSPF",
+          "whyItSeems": "90 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in administrative distance.",
+          "whyWrongHere": "For \"administrative distance\", 110 matches the required behavior — 90 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AD: EIGRP 90 · OSPF 110 · RIP 120.",
+          "contrast": "Correct \"110\" vs wrong \"90\": For \"administrative distance\", 110 matches the required behavior — 90 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "IGRP AD for OSPF",
+          "whyItSeems": "100 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in administrative distance.",
+          "whyWrongHere": "For \"administrative distance\", 110 matches the required behavior — 100 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AD: EIGRP 90 · OSPF 110 · RIP 120.",
+          "contrast": "Correct \"110\" vs wrong \"100\": For \"administrative distance\", 110 matches the required behavior — 100 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "RIP AD for OSPF",
+          "whyItSeems": "120 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in administrative distance.",
+          "whyWrongHere": "For \"administrative distance\", 110 matches the required behavior — 120 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AD: EIGRP 90 · OSPF 110 · RIP 120.",
+          "contrast": "Correct \"110\" vs wrong \"120\": For \"administrative distance\", 110 matches the required behavior — 120 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.4-c-q3",
@@ -7135,7 +10733,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Default ref-bw → 100M = cost 1, 10M = cost 10."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "10M cost on 100M link",
+          "whyItSeems": "10 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in cost formula.",
+          "whyWrongHere": "For \"cost formula\", 1 matches the required behavior — 10 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Default ref-bw → 100M = cost 1, 10M = cost 10.",
+          "contrast": "Correct \"1\" vs wrong \"10\": For \"cost formula\", 1 matches the required behavior — 10 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Cost equals Mbps",
+          "whyItSeems": "100 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in cost formula.",
+          "whyWrongHere": "For \"cost formula\", 1 matches the required behavior — 100 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Default ref-bw → 100M = cost 1, 10M = cost 10.",
+          "contrast": "Correct \"1\" vs wrong \"100\": For \"cost formula\", 1 matches the required behavior — 100 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented cost 64",
+          "whyItSeems": "64 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in cost formula.",
+          "whyWrongHere": "For \"cost formula\", 1 matches the required behavior — 64 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Default ref-bw → 100M = cost 1, 10M = cost 10.",
+          "contrast": "Correct \"1\" vs wrong \"64\": For \"cost formula\", 1 matches the required behavior — 64 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.4-c-q4",
@@ -7183,7 +10807,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF RID = highest loopback, else highest active if IP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Lowest IP as OSPF RID",
+          "whyItSeems": "\"Lowest interface IP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"router id\", Highest loopback IP, else highest active interface IP matches the required behavior — Lowest interface IP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF RID = highest loopback, else highest active interface IP.",
+          "contrast": "Correct \"Highest loopback IP, else highest active interface IP\" vs wrong \"Lowest interface IP\": For \"router id\", Highest loopback IP, else highest active interface IP matches the required behavior — Lowest interface IP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "MAC as OSPF RID",
+          "whyItSeems": "\"MAC address\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"router id\", Highest loopback IP, else highest active interface IP matches the required behavior — MAC address answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF RID = highest loopback, else highest active interface IP.",
+          "contrast": "Correct \"Highest loopback IP, else highest active interface IP\" vs wrong \"MAC address\": For \"router id\", Highest loopback IP, else highest active interface IP matches the required behavior — MAC address answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Zero RID default",
+          "whyItSeems": "\"Always 0.0.0.0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Mask/wildcard (router id): Highest loopback IP, else highest active interface IP uses the mask style this stem requires — Always 0.0.0.0 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "OSPF RID = highest loopback, else highest active interface IP.",
+          "contrast": "Correct \"Highest loopback IP, else highest active interface IP\" vs wrong \"Always 0.0.0.0\": Mask/wildcard (router id): Highest loopback IP, else highest active interface IP uses the mask style this stem requires — Always 0."
+        }
+      ]
     },
     {
       "id": "3.4-c-q5",
@@ -7231,7 +10881,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF won't neighbor: area | hello/dead | subnet mask | auth | stub/NSSA flags."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Hostname blocks OSPF",
+          "whyItSeems": "\"Different hostnames\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"adjacency requirements\", Different hello/dead timers or area matches the required behavior — Different hostnames answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF won’t neighbor: area | hello/dead | mask | auth | stub flags.",
+          "contrast": "Correct \"Different hello/dead timers or area\" vs wrong \"Different hostnames\": For \"adjacency requirements\", Different hello/dead timers or area matches the required behavior — Different hostnames answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SNMP blocks OSPF",
+          "whyItSeems": "\"Different SNMP strings\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"adjacency requirements\", Different hello/dead timers or area matches the required behavior — Different SNMP strings answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF won’t neighbor: area | hello/dead | mask | auth | stub flags.",
+          "contrast": "Correct \"Different hello/dead timers or area\" vs wrong \"Different SNMP strings\": For \"adjacency requirements\", Different hello/dead timers or area matches the required behavior — Different SNMP strings answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Banner blocks OSPF",
+          "whyItSeems": "\"Different banners\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"adjacency requirements\", Different hello/dead timers or area matches the required behavior — Different banners answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF won’t neighbor: area | hello/dead | mask | auth | stub flags.",
+          "contrast": "Correct \"Different hello/dead timers or area\" vs wrong \"Different banners\": For \"adjacency requirements\", Different hello/dead timers or area matches the required behavior — Different banners answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.4-c-q6",
@@ -7279,7 +10955,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF network: network <ip> <wildcard> area <id> — wildcard = inverse of subnet mask."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Subnet mask in OSPF network",
+          "whyItSeems": "\"network 10.0.0.0 255.255.255.0 area 0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF area rules (config network): network 10.0.0.0 0.0.0.255 area 0 satisfies area type and connectivity — network 10.0.0.0 255.255.255.0 area 0 violates area/backbone constraints.",
+          "memoryAnchor": "OSPF: network <ip> <wildcard> area <id> — wildcard = inverse of mask.",
+          "contrast": "Correct \"network 10.0.0.0 0.0.0.255 area 0\" vs wrong \"network 10.0.0.0 255.255.255.0 area 0\": OSPF area rules (config network): network 10."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Invented ospf network",
+          "whyItSeems": "ospf network 10.0.0.0/24 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Mask/wildcard (config network): network 10.0.0.0 0.0.0.255 area 0 uses the mask style this stem requires — ospf network 10.0.0.0/24 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "OSPF: network <ip> <wildcard> area <id> — wildcard = inverse of mask.",
+          "contrast": "Correct \"network 10.0.0.0 0.0.0.255 area 0\" vs wrong \"ospf network 10.0.0.0/24\": Mask/wildcard (config network): network 10."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented advertise command",
+          "whyItSeems": "\"advertise 10.0.0.0 area 0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF area rules (config network): network 10.0.0.0 0.0.0.255 area 0 satisfies area type and connectivity — advertise 10.0.0.0 area 0 violates area/backbone constraints.",
+          "memoryAnchor": "OSPF: network <ip> <wildcard> area <id> — wildcard = inverse of mask.",
+          "contrast": "Correct \"network 10.0.0.0 0.0.0.255 area 0\" vs wrong \"advertise 10.0.0.0 area 0\": OSPF area rules (config network): network 10."
+        }
+      ]
     },
     {
       "id": "3.4-c-q7",
@@ -7327,7 +11029,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF states: Down → Init → 2-Way → ExStart → Exchange → Loading → Full."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Init as healthy final",
+          "whyItSeems": "\"Init\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"full state\", Full matches the required behavior — Init answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF: Down → Init → 2-Way → ExStart → Exchange → Loading → Full.",
+          "contrast": "Correct \"Full\" vs wrong \"Init\": For \"full state\", Full matches the required behavior — Init answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "False belief that 2-Way as Full — treating \"2-Way\" as if it satisfied the stem instead of \"Full\".",
+          "whyItSeems": "\"2-Way\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"full state\", Full matches the required behavior — 2-Way answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF: Down → Init → 2-Way → ExStart → Exchange → Loading → Full.",
+          "contrast": "Correct \"Full\" vs wrong \"2-Way\": For \"full state\", Full matches the required behavior — 2-Way answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Exchange as final",
+          "whyItSeems": "\"Exchange\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"full state\", Full matches the required behavior — Exchange answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF: Down → Init → 2-Way → ExStart → Exchange → Loading → Full.",
+          "contrast": "Correct \"Full\" vs wrong \"Exchange\": For \"full state\", Full matches the required behavior — Exchange answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.4-c-q8",
@@ -7375,7 +11103,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Use passive-interface default + no passive-interface <uplink> to secure user-facing ports."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "passive-interface stops advertising",
+          "whyItSeems": "\"Stops advertising the network\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"passive interface\", Advertises the network but sends no hellos matches the required behavior — Stops advertising the network answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Use passive-interface default + no passive-interface <uplink> to secure user-facing ports.",
+          "contrast": "Correct \"Advertises the network but sends no hellos\" vs wrong \"Stops advertising the network\": For \"passive interface\", Advertises the network but sends no hellos matches the required behavior — Stops advertising the network answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "passive-interface shuts interface",
+          "whyItSeems": "\"Disables the interface\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"passive interface\", Advertises the network but sends no hellos matches the required behavior — Disables the interface answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Use passive-interface default + no passive-interface <uplink> to secure user-facing ports.",
+          "contrast": "Correct \"Advertises the network but sends no hellos\" vs wrong \"Disables the interface\": For \"passive interface\", Advertises the network but sends no hellos matches the required behavior — Disables the interface answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "passive-interface forces DR election",
+          "whyItSeems": "Forces DR election states an OSPF DR/BDR election outcome or role that may not apply on this segment.",
+          "whyWrongHere": "OSPF DR/BDR (passive interface): Advertises the network but sends no hellos follows election rules on this segment — Forces DR election misstates who becomes DR/BDR or when.",
+          "memoryAnchor": "Use passive-interface default + no passive-interface <uplink> to secure user-facing ports.",
+          "contrast": "Correct \"Advertises the network but sends no hellos\" vs wrong \"Forces DR election\": OSPF DR/BDR (passive interface): Advertises the network but sends no hellos follows election rules on this segment — Forces DR election misstates who becomes DR/BDR or when."
+        }
+      ]
     },
     {
       "id": "3.4-c-q9",
@@ -7423,7 +11177,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF DR: highest priority → tie highest RID. Priority 0 = never DR/BDR."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Using lowest IP for DR election",
+          "whyItSeems": "\"Lowest IP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"DR election\", Highest OSPF priority, then highest Router ID matches the required behavior — Lowest IP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Highest OSPF priority, then highest Router ID\" — not \"Lowest IP\" — for what this stem actually tests.",
+          "contrast": "Correct \"Highest OSPF priority, then highest Router ID\" vs wrong \"Lowest IP\": For \"DR election\", Highest OSPF priority, then highest Router ID matches the required behavior — Lowest IP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Electing DR by MAC address",
+          "whyItSeems": "\"Lowest MAC\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"DR election\", Highest OSPF priority, then highest Router ID matches the required behavior — Lowest MAC answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Highest OSPF priority, then highest Router ID\" — not \"Lowest MAC\" — for what this stem actually tests.",
+          "contrast": "Correct \"Highest OSPF priority, then highest Router ID\" vs wrong \"Lowest MAC\": For \"DR election\", Highest OSPF priority, then highest Router ID matches the required behavior — Lowest MAC answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Believing first router up stays DR forever",
+          "whyItSeems": "\"First to boot only\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"DR election\", Highest OSPF priority, then highest Router ID matches the required behavior — First to boot only answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Highest OSPF priority, then highest Router ID\" — not \"First to boot only\" — for what this stem actually tests.",
+          "contrast": "Correct \"Highest OSPF priority, then highest Router ID\" vs wrong \"First to boot only\": For \"DR election\", Highest OSPF priority, then highest Router ID matches the required behavior — First to boot only answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q001",
@@ -7475,7 +11255,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Link-state on CCNA = OSPF (LSAs + SPF). Distance-vector = RIP. Path-vector = BGP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "RIP as link-state protocol",
+          "whyItSeems": "RIP applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "This stem tests OSPF (protocol) — OSPF is protocol-specific; RIP applies another IGP's behavior.",
+          "memoryAnchor": "Remember: choose \"OSPF\" — not \"RIP\" — for what this stem actually tests.",
+          "contrast": "Correct \"OSPF\" vs wrong \"RIP\": This stem tests OSPF (protocol) — OSPF is protocol-specific; RIP applies another IGP's behavior."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "EIGRP as link-state protocol",
+          "whyItSeems": "EIGRP applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "This stem tests OSPF (protocol) — OSPF is protocol-specific; EIGRP applies another IGP's behavior.",
+          "memoryAnchor": "Remember: choose \"OSPF\" — not \"EIGRP\" — for what this stem actually tests.",
+          "contrast": "Correct \"OSPF\" vs wrong \"EIGRP\": This stem tests OSPF (protocol) — OSPF is protocol-specific; EIGRP applies another IGP's behavior."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "BGP as link-state IGP",
+          "whyItSeems": "BGP applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "This stem tests OSPF (protocol) — OSPF is protocol-specific; BGP applies another IGP's behavior.",
+          "memoryAnchor": "Remember: choose \"OSPF\" — not \"BGP\" — for what this stem actually tests.",
+          "contrast": "Correct \"OSPF\" vs wrong \"BGP\": This stem tests OSPF (protocol) — OSPF is protocol-specific; BGP applies another IGP's behavior."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q002",
@@ -7527,7 +11333,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Dijkstra/SPF ↔ OSPF. DUAL ↔ EIGRP. Hop count ↔ RIP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "RIP using Dijkstra SPF",
+          "whyItSeems": "RIP applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "This stem tests OSPF (protocol) — OSPF is protocol-specific; RIP applies another IGP's behavior.",
+          "memoryAnchor": "Remember: choose \"OSPF\" — not \"RIP\" — for what this stem actually tests.",
+          "contrast": "Correct \"OSPF\" vs wrong \"RIP\": This stem tests OSPF (protocol) — OSPF is protocol-specific; RIP applies another IGP's behavior."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "EIGRP using Dijkstra algorithm",
+          "whyItSeems": "EIGRP applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "This stem tests OSPF (protocol) — OSPF is protocol-specific; EIGRP applies another IGP's behavior.",
+          "memoryAnchor": "Remember: choose \"OSPF\" — not \"EIGRP\" — for what this stem actually tests.",
+          "contrast": "Correct \"OSPF\" vs wrong \"EIGRP\": This stem tests OSPF (protocol) — OSPF is protocol-specific; EIGRP applies another IGP's behavior."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "BGP using Dijkstra routing algorithm",
+          "whyItSeems": "BGP applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "This stem tests OSPF (protocol) — OSPF is protocol-specific; BGP applies another IGP's behavior.",
+          "memoryAnchor": "Remember: choose \"OSPF\" — not \"BGP\" — for what this stem actually tests.",
+          "contrast": "Correct \"OSPF\" vs wrong \"BGP\": This stem tests OSPF (protocol) — OSPF is protocol-specific; BGP applies another IGP's behavior."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q003",
@@ -7577,7 +11409,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Link-state loop avoidance: same topology map on every router → SPF builds loop-free paths."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Single shared topology database file",
+          "whyItSeems": "\"Link-state protocols share the topology database among all routers.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocols\", Link-state protocols require routers to maintain their own topology database of the network. matches the required behavior — Link-state protocols share the topology database among all routers. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Link-state loop avoidance: same topology map on every router → SPF builds loop-free paths.",
+          "contrast": "Correct \"Link-state protocols require routers to maintain their own topology database of the network.\" vs wrong \"Link-state protocols share the topology database among all routers.\": For \"protocols\", Link-state protocols require routers to maintain their own topology database of the network."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Link-state DB as router list only",
+          "whyItSeems": "\"Link-state protocols allow routers to maintain a link-state database of all routers.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocols\", Link-state protocols require routers to maintain their own topology database of the network. matches the required behavior — Link-state protocols allow routers to maintain a link-state database of all routers. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Link-state loop avoidance: same topology map on every router → SPF builds loop-free paths.",
+          "contrast": "Correct \"Link-state protocols require routers to maintain their own topology database of the network.\" vs wrong \"Link-state protocols allow routers to maintain a link-state database of all routers.\": For \"protocols\", Link-state protocols require routers to maintain their own topology database of the network."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "ECMP as reason link-state avoids loops",
+          "whyItSeems": "\"Link-state protocols use multiple routes to the same destination.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocols\", Link-state protocols require routers to maintain their own topology database of the network. matches the required behavior — Link-state protocols use multiple routes to the same destination. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Link-state loop avoidance: same topology map on every router → SPF builds loop-free paths.",
+          "contrast": "Correct \"Link-state protocols require routers to maintain their own topology database of the network.\" vs wrong \"Link-state protocols use multiple routes to the same destination.\": For \"protocols\", Link-state protocols require routers to maintain their own topology database of the network."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q004",
@@ -7629,7 +11487,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Link-state pros: fast triggered updates, accurate topology. Cons: more CPU/RAM than static/RIP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Hop count as link-state metric",
+          "whyItSeems": "\"The only metric needed is hop count.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"advantage\", Link-state dynamic routing protocols use triggered updates for recalculation of routing tables. matches the required behavior — The only metric needed is hop count. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Link-state dynamic routing protocols use triggered updates for recalculation of routing tables.\" — not \"The only metric needed is hop count.\" — for what this stem actually tests.",
+          "contrast": "Correct \"Link-state dynamic routing protocols use triggered updates for recalculation of routing tables.\" vs wrong \"The only metric needed is hop count.\": For \"advantage\", Link-state dynamic routing protocols use triggered updates for recalculation of routing tables."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "CIDR/VLSM as exclusive link-state advantage",
+          "whyItSeems": "\"Link-state dynamic routing protocols support CIDR and VLSM.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"advantage\", Link-state dynamic routing protocols use triggered updates for recalculation of routing tables. matches the required behavior — Link-state dynamic routing protocols support CIDR and VLSM. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Link-state dynamic routing protocols use triggered updates for recalculation of routing tables.\" — not \"Link-state dynamic routing protocols support CIDR and VLSM.\" — for what this stem actually tests.",
+          "contrast": "Correct \"Link-state dynamic routing protocols use triggered updates for recalculation of routing tables.\" vs wrong \"Link-state dynamic routing protocols support CIDR and VLSM.\": For \"advantage\", Link-state dynamic routing protocols use triggered updates for recalculation of routing tables."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "OSPF as low CPU/RAM protocol",
+          "whyItSeems": "\"OSPF requires only a small amount of resources such as CPU and RAM.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"advantage\", Link-state dynamic routing protocols use triggered updates for recalculation of routing tables. matches the required behavior — OSPF requires only a small amount of resources such as CPU and RAM. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Link-state dynamic routing protocols use triggered updates for recalculation of routing tables.\" — not \"OSPF requires only a small amount of resources such as CPU and RAM.\" — for what this stem actually tests.",
+          "contrast": "Correct \"Link-state dynamic routing protocols use triggered updates for recalculation of routing tables.\" vs wrong \"OSPF requires only a small amount of resources such as CPU and RAM.\": For \"advantage\", Link-state dynamic routing protocols use triggered updates for recalculation of routing tables."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q005",
@@ -7679,7 +11563,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF sweet spot: medium-to-large hierarchical networks with trained staff."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "OSPF for very small networks",
+          "whyItSeems": "\"Extremely small networks of three routers\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", Large hierarchical networks like global networks matches the required behavior — Extremely small networks of three routers answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF sweet spot: medium-to-large hierarchical networks with trained staff.",
+          "contrast": "Correct \"Large hierarchical networks like global networks\" vs wrong \"Extremely small networks of three routers\": For \"protocol\", Large hierarchical networks like global networks matches the required behavior — Extremely small networks of three routers answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "OSPF on resource-constrained routers",
+          "whyItSeems": "\"Networks with routers that have a limited amount of RAM and CPU\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", Large hierarchical networks like global networks matches the required behavior — Networks with routers that have a limited amount of RAM and CPU answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF sweet spot: medium-to-large hierarchical networks with trained staff.",
+          "contrast": "Correct \"Large hierarchical networks like global networks\" vs wrong \"Networks with routers that have a limited amount of RAM and CPU\": For \"protocol\", Large hierarchical networks like global networks matches the required behavior — Networks with routers that have a limited amount of RAM and CPU answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "OSPF for untrained admin teams",
+          "whyItSeems": "\"Networks within organizations with limited training of network admins\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", Large hierarchical networks like global networks matches the required behavior — Networks within organizations with limited training of network admins answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF sweet spot: medium-to-large hierarchical networks with trained staff.",
+          "contrast": "Correct \"Large hierarchical networks like global networks\" vs wrong \"Networks within organizations with limited training of network admins\": For \"protocol\", Large hierarchical networks like global networks matches the required behavior — Networks within organizations with limited training of network admins answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q006",
@@ -7730,7 +11640,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Open IGP = OSPF. Cisco IGP = EIGRP. Inter-AS = BGP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "EGP as interior nonproprietary IGP",
+          "whyItSeems": "\"EGP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"interior\", OSPF matches the required behavior — EGP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"OSPF\" — not \"EGP\" — for what this stem actually tests.",
+          "contrast": "Correct \"OSPF\" vs wrong \"EGP\": For \"interior\", OSPF matches the required behavior — EGP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "EIGRP as nonproprietary IGP",
+          "whyItSeems": "EIGRP applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "This stem tests OSPF (interior) — OSPF is protocol-specific; EIGRP applies another IGP's behavior.",
+          "memoryAnchor": "Remember: choose \"OSPF\" — not \"EIGRP\" — for what this stem actually tests.",
+          "contrast": "Correct \"OSPF\" vs wrong \"EIGRP\": This stem tests OSPF (interior) — OSPF is protocol-specific; EIGRP applies another IGP's behavior."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "BGP as interior nonproprietary IGP",
+          "whyItSeems": "BGP applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "This stem tests OSPF (interior) — OSPF is protocol-specific; BGP applies another IGP's behavior.",
+          "memoryAnchor": "Remember: choose \"OSPF\" — not \"BGP\" — for what this stem actually tests.",
+          "contrast": "Correct \"OSPF\" vs wrong \"BGP\": This stem tests OSPF (interior) — OSPF is protocol-specific; BGP applies another IGP's behavior."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q007",
@@ -7781,7 +11717,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Same org, many sites → OSPF areas. Different AS/ISP policy → BGP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "BGP for same-company site routing",
+          "whyItSeems": "BGP applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "This stem tests OSPF (different) — OSPF is protocol-specific; BGP applies another IGP's behavior.",
+          "memoryAnchor": "Remember: choose \"OSPF\" — not \"BGP\" — for what this stem actually tests.",
+          "contrast": "Correct \"OSPF\" vs wrong \"BGP\": This stem tests OSPF (different) — OSPF is protocol-specific; BGP applies another IGP's behavior."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "RIPv2 for multi-site enterprise",
+          "whyItSeems": "RIPv2 applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "This stem tests OSPF (different) — OSPF is protocol-specific; RIPv2 applies another IGP's behavior.",
+          "memoryAnchor": "Remember: choose \"OSPF\" — not \"RIPv2\" — for what this stem actually tests.",
+          "contrast": "Correct \"OSPF\" vs wrong \"RIPv2\": This stem tests OSPF (different) — OSPF is protocol-specific; RIPv2 applies another IGP's behavior."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "EGP for enterprise multi-site",
+          "whyItSeems": "\"EGP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"different\", OSPF matches the required behavior — EGP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"OSPF\" — not \"EGP\" — for what this stem actually tests.",
+          "contrast": "Correct \"OSPF\" vs wrong \"EGP\": For \"different\", OSPF matches the required behavior — EGP answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q008",
@@ -7831,7 +11793,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF rule: all areas must touch Area 0 (via ABR) — no Area 0 = broken design."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "User area as required backbone",
+          "whyItSeems": "\"Area 1\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF area rules (using the OSPF routing protocol with multiple areas): Area 0 satisfies area type and connectivity — Area 1 violates area/backbone constraints.",
+          "memoryAnchor": "OSPF rule: all areas must touch Area 0 (via ABR) — no Area 0 = broken design.",
+          "contrast": "Correct \"Area 0\" vs wrong \"Area 1\": OSPF area rules (using the OSPF routing protocol with multiple areas): Area 0 satisfies area type and connectivity — Area 1 violates area/backbone constraints."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "High-numbered area as backbone",
+          "whyItSeems": "\"Area 10\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF area rules (using the OSPF routing protocol with multiple areas): Area 0 satisfies area type and connectivity — Area 10 violates area/backbone constraints.",
+          "memoryAnchor": "OSPF rule: all areas must touch Area 0 (via ABR) — no Area 0 = broken design.",
+          "contrast": "Correct \"Area 0\" vs wrong \"Area 10\": OSPF area rules (using the OSPF routing protocol with multiple areas): Area 0 satisfies area type and connectivity — Area 10 violates area/backbone constraints."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Non-zero area as backbone substitute",
+          "whyItSeems": "\"Area 4\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF area rules (using the OSPF routing protocol with multiple areas): Area 0 satisfies area type and connectivity — Area 4 violates area/backbone constraints.",
+          "memoryAnchor": "OSPF rule: all areas must touch Area 0 (via ABR) — no Area 0 = broken design.",
+          "contrast": "Correct \"Area 0\" vs wrong \"Area 4\": OSPF area rules (using the OSPF routing protocol with multiple areas): Area 0 satisfies area type and connectivity — Area 4 violates area/backbone constraints."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q009",
@@ -7883,7 +11871,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF roles: ABR = area ↔ Area 0 | ASBR = OSPF ↔ external (EIGRP, static, etc.)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "ABR role for external redistribution",
+          "whyItSeems": "\"Area border router\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF adjacency (hierarchy): Autonomous system boundary router satisfies neighbor requirements — Area border router breaks area, timers, or network type matching.",
+          "memoryAnchor": "OSPF roles: ABR = area ↔ Area 0 | ASBR = OSPF ↔ external (EIGRP, static, etc.).",
+          "contrast": "Correct \"Autonomous system boundary router\" vs wrong \"Area border router\": OSPF adjacency (hierarchy): Autonomous system boundary router satisfies neighbor requirements — Area border router breaks area, timers, or network type matching."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented autonomous system router term",
+          "whyItSeems": "\"Autonomous system router\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"hierarchy\", Autonomous system boundary router matches the required behavior — Autonomous system router answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF roles: ABR = area ↔ Area 0 | ASBR = OSPF ↔ external (EIGRP, static, etc.).",
+          "contrast": "Correct \"Autonomous system boundary router\" vs wrong \"Autonomous system router\": For \"hierarchy\", Autonomous system boundary router matches the required behavior — Autonomous system router answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Area backup router as OSPF role",
+          "whyItSeems": "\"Area backup router\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF adjacency (hierarchy): Autonomous system boundary router satisfies neighbor requirements — Area backup router breaks area, timers, or network type matching.",
+          "memoryAnchor": "OSPF roles: ABR = area ↔ Area 0 | ASBR = OSPF ↔ external (EIGRP, static, etc.).",
+          "contrast": "Correct \"Autonomous system boundary router\" vs wrong \"Area backup router\": OSPF adjacency (hierarchy): Autonomous system boundary router satisfies neighbor requirements — Area backup router breaks area, timers, or network type matching."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q010",
@@ -7935,7 +11949,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF multicast: 224.0.0.5 = all SPF routers | 224.0.0.6 = DR/BDR only."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "RIP multicast for OSPF hellos",
+          "whyItSeems": "\"224.0.0.9\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"multicast\", 224.0.0.5 matches the required behavior — 224.0.0.9 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF multicast: 224.0.0.5 = all SPF routers | 224.0.0.6 = DR/BDR only.",
+          "contrast": "Correct \"224.0.0.5\" vs wrong \"224.0.0.9\": For \"multicast\", 224."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "DR multicast as hello address",
+          "whyItSeems": "\"224.0.0.6\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"multicast\", 224.0.0.5 matches the required behavior — 224.0.0.6 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF multicast: 224.0.0.5 = all SPF routers | 224.0.0.6 = DR/BDR only.",
+          "contrast": "Correct \"224.0.0.5\" vs wrong \"224.0.0.6\": For \"multicast\", 224."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Wrong OSPF multicast address",
+          "whyItSeems": "\"224.0.0.7\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"multicast\", 224.0.0.5 matches the required behavior — 224.0.0.7 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF multicast: 224.0.0.5 = all SPF routers | 224.0.0.6 = DR/BDR only.",
+          "contrast": "Correct \"224.0.0.5\" vs wrong \"224.0.0.7\": For \"multicast\", 224."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q011",
@@ -7987,7 +12027,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Memorize: ABR sits on Area 0 border | ASBR touches external routes."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Autonomous system router for area borders",
+          "whyItSeems": "\"Autonomous system routers\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"backbone\", Area border routers matches the required behavior — Autonomous system routers answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Memorize: ABR sits on Area 0 border | ASBR touches external routes.",
+          "contrast": "Correct \"Area border routers\" vs wrong \"Autonomous system routers\": For \"backbone\", Area border routers matches the required behavior — Autonomous system routers answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "ASBR for multi-area backbone attachment",
+          "whyItSeems": "\"Autonomous system boundary routers\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"backbone\", Area border routers matches the required behavior — Autonomous system boundary routers answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Memorize: ABR sits on Area 0 border | ASBR touches external routes.",
+          "contrast": "Correct \"Area border routers\" vs wrong \"Autonomous system boundary routers\": For \"backbone\", Area border routers matches the required behavior — Autonomous system boundary routers answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Area backup router as inter-area role",
+          "whyItSeems": "\"Area backup routers\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF adjacency (backbone): Area border routers satisfies neighbor requirements — Area backup routers breaks area, timers, or network type matching.",
+          "memoryAnchor": "Memorize: ABR sits on Area 0 border | ASBR touches external routes.",
+          "contrast": "Correct \"Area border routers\" vs wrong \"Area backup routers\": OSPF adjacency (backbone): Area border routers satisfies neighbor requirements — Area backup routers breaks area, timers, or network type matching."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q012",
@@ -8038,7 +12104,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF updates: triggered LSAs on change | hellos on 224.0.0.5 (AllSPFRouters)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "OSPF as distance-vector protocol",
+          "whyItSeems": "\"OSPF is a distance-vector protocol.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", OSPF updates are event triggered. matches the required behavior — OSPF is a distance-vector protocol. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF updates: triggered LSAs on change | hellos on 224.0.0.5 (AllSPFRouters).",
+          "contrast": "Correct \"OSPF updates are event triggered.\" vs wrong \"OSPF is a distance-vector protocol.\": For \"statement\", OSPF updates are event triggered."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "OSPF default auto-summarization",
+          "whyItSeems": "\"OSPF performs default auto-summarization.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", OSPF updates are event triggered. matches the required behavior — OSPF performs default auto-summarization. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF updates: triggered LSAs on change | hellos on 224.0.0.5 (AllSPFRouters).",
+          "contrast": "Correct \"OSPF updates are event triggered.\" vs wrong \"OSPF performs default auto-summarization.\": For \"statement\", OSPF updates are event triggered."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "OSPF broadcasts routing table updates",
+          "whyItSeems": "OSPF broadcasts changes to the routing tables. describes flooding the frame to multiple ports in the VLAN.",
+          "whyWrongHere": "For \"statement\", OSPF updates are event triggered. matches the required behavior — OSPF broadcasts changes to the routing tables. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF updates: triggered LSAs on change | hellos on 224.0.0.5 (AllSPFRouters).",
+          "contrast": "Correct \"OSPF updates are event triggered.\" vs wrong \"OSPF broadcasts changes to the routing tables.\": For \"statement\", OSPF updates are event triggered."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q013",
@@ -8089,7 +12181,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "RID order: router-id → highest loopback → highest interface IP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Lowest loopback IP as OSPF RID",
+          "whyItSeems": "The lowest IP address configured on the loopback interfaces shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"determine\", The highest IP address configured on the router matches the required behavior — The lowest IP address configured on the loopback interfaces answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "RID order: router-id → highest loopback → highest interface IP.",
+          "contrast": "Correct \"The highest IP address configured on the router\" vs wrong \"The lowest IP address configured on the loopback interfaces\": For \"determine\", The highest IP address configured on the router matches the required behavior — The lowest IP address configured on the loopback interfaces answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Lowest IP as OSPF router ID",
+          "whyItSeems": "The lowest IP address configured on the router shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"determine\", The highest IP address configured on the router matches the required behavior — The lowest IP address configured on the router answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "RID order: router-id → highest loopback → highest interface IP.",
+          "contrast": "Correct \"The highest IP address configured on the router\" vs wrong \"The lowest IP address configured on the router\": For \"determine\", The highest IP address configured on the router matches the required behavior — The lowest IP address configured on the router answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "MAC address as OSPF router ID",
+          "whyItSeems": "\"The highest MAC address configured on the router\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"determine\", The highest IP address configured on the router matches the required behavior — The highest MAC address configured on the router answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "RID order: router-id → highest loopback → highest interface IP.",
+          "contrast": "Correct \"The highest IP address configured on the router\" vs wrong \"The highest MAC address configured on the router\": For \"determine\", The highest IP address configured on the router matches the required behavior — The highest MAC address configured on the router answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q014",
@@ -8139,7 +12257,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF link = interface in the OSPF process. Neighbor = router on the other end."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "OSPF link as neighbor relationship",
+          "whyItSeems": "Two routers participating in OSPF routing implies many-inside-to-few-outside PAT/overload translation.",
+          "whyWrongHere": "For \"definition\", A routed interface added to the OSPF process matches the required behavior — Two routers participating in OSPF routing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"A routed interface added to the OSPF process\" — not \"Two routers participating in OSPF routing\" — for what this stem actually tests.",
+          "contrast": "Correct \"A routed interface added to the OSPF process\" vs wrong \"Two routers participating in OSPF routing\": For \"definition\", A routed interface added to the OSPF process matches the required behavior — Two routers participating in OSPF routing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Area ID match as OSPF link definition",
+          "whyItSeems": "\"Two routers that share the same area ID\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF adjacency (definition): A routed interface added to the OSPF process satisfies neighbor requirements — Two routers that share the same area ID breaks area, timers, or network type matching.",
+          "memoryAnchor": "Remember: choose \"A routed interface added to the OSPF process\" — not \"Two routers that share the same area ID\" — for what this stem actually tests.",
+          "contrast": "Correct \"A routed interface added to the OSPF process\" vs wrong \"Two routers that share the same area ID\": OSPF adjacency (definition): A routed interface added to the OSPF process satisfies neighbor requirements — Two routers that share the same area ID breaks area, timers, or network type matching."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "AS number as OSPF link definition",
+          "whyItSeems": "\"Two routers that share the same AS number\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"definition\", A routed interface added to the OSPF process matches the required behavior — Two routers that share the same AS number answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"A routed interface added to the OSPF process\" — not \"Two routers that share the same AS number\" — for what this stem actually tests.",
+          "contrast": "Correct \"A routed interface added to the OSPF process\" vs wrong \"Two routers that share the same AS number\": For \"definition\", A routed interface added to the OSPF process matches the required behavior — Two routers that share the same AS number answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q015",
@@ -8191,7 +12335,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Broadcast LAN: DR ↔ all neighbors FULL | DROther ↔ DROther 2-WAY only."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Full adjacency between all routers on LAN",
+          "whyItSeems": "\"An adjacency is formed between routers on the same link.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF adjacency (statement): An adjacency is formed between the designated router (DR) and every neighbor router on the same area. satisfies neighbor requirements — An adjacency is formed between routers on the same link. breaks area, timers, or network type matching.",
+          "memoryAnchor": "Broadcast LAN: DR ↔ all neighbors FULL | DROther ↔ DROther 2-WAY only.",
+          "contrast": "Correct \"An adjacency is formed between the designated router (DR) and every neighbor router on the same area.\" vs wrong \"An adjacency is formed between routers on the same link.\": OSPF adjacency (statement): An adjacency is formed between the designated router (DR) and every neighbor router on the same area."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "DR adjacency across entire AS",
+          "whyItSeems": "An adjacency is formed between the DR and every router in the same autonomous system. states an OSPF DR/BDR election outcome or role that may not apply on this segment.",
+          "whyWrongHere": "OSPF DR/BDR (statement): An adjacency is formed between the designated router (DR) and every neighbor router on the same area. follows election rules on this segment — An adjacency is formed between the DR and every router in the same autonomous system. misstates who becomes DR/BDR or when.",
+          "memoryAnchor": "Broadcast LAN: DR ↔ all neighbors FULL | DROther ↔ DROther 2-WAY only.",
+          "contrast": "Correct \"An adjacency is formed between the designated router (DR) and every neighbor router on the same area.\" vs wrong \"An adjacency is formed between the DR and every router in the same autonomous system.\": OSPF DR/BDR (statement): An adjacency is formed between the designated router (DR) and every neighbor router on the same area."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "DR adjacency to all area routers",
+          "whyItSeems": "An adjacency is formed between the DR and every router in the same OSPF area. states an OSPF DR/BDR election outcome or role that may not apply on this segment.",
+          "whyWrongHere": "OSPF DR/BDR (statement): An adjacency is formed between the designated router (DR) and every neighbor router on the same area. follows election rules on this segment — An adjacency is formed between the DR and every router in the same OSPF area. misstates who becomes DR/BDR or when.",
+          "memoryAnchor": "Broadcast LAN: DR ↔ all neighbors FULL | DROther ↔ DROther 2-WAY only.",
+          "contrast": "Correct \"An adjacency is formed between the designated router (DR) and every neighbor router on the same area.\" vs wrong \"An adjacency is formed between the DR and every router in the same OSPF area.\": OSPF DR/BDR (statement): An adjacency is formed between the designated router (DR) and every neighbor router on the same area."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q016",
@@ -8243,7 +12413,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DR/BDR pick: priority (high wins) → RID (high wins) on the same subnet."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "DR elected AS-wide by highest priority",
+          "whyItSeems": "The DR is elected by the highest priority and highest RID in the same autonomous system. states an OSPF DR/BDR election outcome or role that may not apply on this segment.",
+          "whyWrongHere": "OSPF DR/BDR (ospfv2): The DR is elected by the highest priority and highest RID in the same area. follows election rules on this segment — The DR is elected by the highest priority and highest RID in the same autonomous system. misstates who becomes DR/BDR or when.",
+          "memoryAnchor": "DR/BDR pick: priority (high wins) → RID (high wins) on the same subnet.",
+          "contrast": "Correct \"The DR is elected by the highest priority and highest RID in the same area.\" vs wrong \"The DR is elected by the highest priority and highest RID in the same autonomous system.\": OSPF DR/BDR (ospfv2): The DR is elected by the highest priority and highest RID in the same area."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Lowest OSPF priority wins DR election",
+          "whyItSeems": "The DR is elected by the lowest priority and highest RID in the same area. states an OSPF DR/BDR election outcome or role that may not apply on this segment.",
+          "whyWrongHere": "OSPF DR/BDR (ospfv2): The DR is elected by the highest priority and highest RID in the same area. follows election rules on this segment — The DR is elected by the lowest priority and highest RID in the same area. misstates who becomes DR/BDR or when.",
+          "memoryAnchor": "DR/BDR pick: priority (high wins) → RID (high wins) on the same subnet.",
+          "contrast": "Correct \"The DR is elected by the highest priority and highest RID in the same area.\" vs wrong \"The DR is elected by the lowest priority and highest RID in the same area.\": OSPF DR/BDR (ospfv2): The DR is elected by the highest priority and highest RID in the same area."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Lowest priority and lowest RID for DR",
+          "whyItSeems": "The DR is elected by the lowest priority and lowest RID. states an OSPF DR/BDR election outcome or role that may not apply on this segment.",
+          "whyWrongHere": "OSPF DR/BDR (ospfv2): The DR is elected by the highest priority and highest RID in the same area. follows election rules on this segment — The DR is elected by the lowest priority and lowest RID. misstates who becomes DR/BDR or when.",
+          "memoryAnchor": "DR/BDR pick: priority (high wins) → RID (high wins) on the same subnet.",
+          "contrast": "Correct \"The DR is elected by the highest priority and highest RID in the same area.\" vs wrong \"The DR is elected by the lowest priority and lowest RID.\": OSPF DR/BDR (ospfv2): The DR is elected by the highest priority and highest RID in the same area."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q017",
@@ -8295,7 +12491,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Neighbors = show ip ospf neighbor | Topology = LSDB (show ip ospf database)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Routing table as OSPF neighbor list",
+          "whyItSeems": "The routing table database relies on a router routing table rather than switch MAC/CAM forwarding.",
+          "whyWrongHere": "For \"database\", The neighborship database matches the required behavior — The routing table database answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Neighbors = show ip ospf neighbor | Topology = LSDB (show ip ospf database).",
+          "contrast": "Correct \"The neighborship database\" vs wrong \"The routing table database\": For \"database\", The neighborship database matches the required behavior — The routing table database answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Topological DB as hello neighbor list",
+          "whyItSeems": "\"The topological database\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"database\", The neighborship database matches the required behavior — The topological database answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Neighbors = show ip ospf neighbor | Topology = LSDB (show ip ospf database).",
+          "contrast": "Correct \"The neighborship database\" vs wrong \"The topological database\": For \"database\", The neighborship database matches the required behavior — The topological database answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "LSDB as OSPF neighbor database",
+          "whyItSeems": "\"The link-state database\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"database\", The neighborship database matches the required behavior — The link-state database answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Neighbors = show ip ospf neighbor | Topology = LSDB (show ip ospf database).",
+          "contrast": "Correct \"The neighborship database\" vs wrong \"The link-state database\": For \"database\", The neighborship database matches the required behavior — The link-state database answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q018",
@@ -8345,7 +12567,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF scale lever = multi-area design + summarization at ABRs."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "OSPF AS numbers for scalability",
+          "whyItSeems": "\"OSPF uses autonomous systems for scalability.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", OSPF uses areas for scalability. matches the required behavior — OSPF uses autonomous systems for scalability. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF scale lever = multi-area design + summarization at ABRs.",
+          "contrast": "Correct \"OSPF uses areas for scalability.\" vs wrong \"OSPF uses autonomous systems for scalability.\": For \"statement\", OSPF uses areas for scalability."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "OSPF process ID for scalability",
+          "whyItSeems": "\"OSPF uses process IDs for scalability.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", OSPF uses areas for scalability. matches the required behavior — OSPF uses process IDs for scalability. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF scale lever = multi-area design + summarization at ABRs.",
+          "contrast": "Correct \"OSPF uses areas for scalability.\" vs wrong \"OSPF uses process IDs for scalability.\": For \"statement\", OSPF uses areas for scalability."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Router ID as OSPF scalability mechanism",
+          "whyItSeems": "\"OSPF uses RID for scalability.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", OSPF uses areas for scalability. matches the required behavior — OSPF uses RID for scalability. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF scale lever = multi-area design + summarization at ABRs.",
+          "contrast": "Correct \"OSPF uses areas for scalability.\" vs wrong \"OSPF uses RID for scalability.\": For \"statement\", OSPF uses areas for scalability."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q019",
@@ -8395,7 +12643,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF network types: Broadcast = LAN | Point-to-point = serial/HDLC/PPP | NBMA = Frame Relay."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "X.25 as OSPF broadcast network",
+          "whyItSeems": "\"An X.25 network\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"broadcast\", A LAN matches the required behavior — An X.25 network answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF network types: Broadcast = LAN | Point-to-point = serial/HDLC/PPP | NBMA = Frame Relay.",
+          "contrast": "Correct \"A LAN\" vs wrong \"An X.25 network\": For \"broadcast\", A LAN matches the required behavior — An X."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Frame Relay as broadcast multi-access",
+          "whyItSeems": "Frame Relay forwards DHCP broadcasts toward a remote server rather than acting as the DHCP server itself.",
+          "whyWrongHere": "For \"broadcast\", A LAN matches the required behavior — Frame Relay answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF network types: Broadcast = LAN | Point-to-point = serial/HDLC/PPP | NBMA = Frame Relay.",
+          "contrast": "Correct \"A LAN\" vs wrong \"Frame Relay\": For \"broadcast\", A LAN matches the required behavior — Frame Relay answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "ATM as OSPF broadcast network type",
+          "whyItSeems": "\"ATM network\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"broadcast\", A LAN matches the required behavior — ATM network answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF network types: Broadcast = LAN | Point-to-point = serial/HDLC/PPP | NBMA = Frame Relay.",
+          "contrast": "Correct \"A LAN\" vs wrong \"ATM network\": For \"broadcast\", A LAN matches the required behavior — ATM network answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q020",
@@ -8446,7 +12720,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF multicast: 224.0.0.5 = AllSPFRouters | 224.0.0.6 = AllDRouters."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "224.0.0.9 as OSPF DR multicast",
+          "whyItSeems": "\"224.0.0.9\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"multicast\", 224.0.0.6 matches the required behavior — 224.0.0.9 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF multicast: 224.0.0.5 = AllSPFRouters | 224.0.0.6 = AllDRouters.",
+          "contrast": "Correct \"224.0.0.6\" vs wrong \"224.0.0.9\": For \"multicast\", 224."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "AllSPFRouters as DR adjacency multicast",
+          "whyItSeems": "\"224.0.0.5\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"multicast\", 224.0.0.6 matches the required behavior — 224.0.0.5 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF multicast: 224.0.0.5 = AllSPFRouters | 224.0.0.6 = AllDRouters.",
+          "contrast": "Correct \"224.0.0.6\" vs wrong \"224.0.0.5\": For \"multicast\", 224."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "224.0.0.7 as OSPF multicast address",
+          "whyItSeems": "\"224.0.0.7\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"multicast\", 224.0.0.6 matches the required behavior — 224.0.0.7 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF multicast: 224.0.0.5 = AllSPFRouters | 224.0.0.6 = AllDRouters.",
+          "contrast": "Correct \"224.0.0.6\" vs wrong \"224.0.0.7\": For \"multicast\", 224."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q021",
@@ -8497,7 +12797,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Process ID = label on router ospf <id> — must match only on the same router (multiple processes)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "OSPF number as area ID",
+          "whyItSeems": "\"An OSPF router area of 20\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF adjacency (configure): An OSPF router process ID of 20 satisfies neighbor requirements — An OSPF router area of 20 breaks area, timers, or network type matching.",
+          "memoryAnchor": "Process ID = label on router ospf <id> — must match only on the same router (multiple processes).",
+          "contrast": "Correct \"An OSPF router process ID of 20\" vs wrong \"An OSPF router area of 20\": OSPF adjacency (configure): An OSPF router process ID of 20 satisfies neighbor requirements — An OSPF router area of 20 breaks area, timers, or network type matching."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "OSPF number as autonomous system",
+          "whyItSeems": "\"An OSPF router autonomous system of 20\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configure\", An OSPF router process ID of 20 matches the required behavior — An OSPF router autonomous system of 20 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Process ID = label on router ospf <id> — must match only on the same router (multiple processes).",
+          "contrast": "Correct \"An OSPF router process ID of 20\" vs wrong \"An OSPF router autonomous system of 20\": For \"configure\", An OSPF router process ID of 20 matches the required behavior — An OSPF router autonomous system of 20 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "OSPF number as interface cost",
+          "whyItSeems": "\"An OSPF cost of 20\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configure\", An OSPF router process ID of 20 matches the required behavior — An OSPF cost of 20 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Process ID = label on router ospf <id> — must match only on the same router (multiple processes).",
+          "contrast": "Correct \"An OSPF router process ID of 20\" vs wrong \"An OSPF cost of 20\": For \"configure\", An OSPF router process ID of 20 matches the required behavior — An OSPF cost of 20 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q022",
@@ -8548,7 +12874,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Bandwidth verify = show interface <int> | OSPF cost verify = show ip ospf interface <int>."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "show ospf as bandwidth verify command",
+          "whyItSeems": "Router#show ospf is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (bandwidth): Router#show interface inspects the right table or state — Router#show ospf shows unrelated information.",
+          "memoryAnchor": "Bandwidth verify = show interface <int> | OSPF cost verify = show ip ospf interface <int>.",
+          "contrast": "Correct \"Router#show interface\" vs wrong \"Router#show ospf\": Verification command (bandwidth): Router#show interface inspects the right table or state — Router#show ospf shows unrelated information."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "show running-config as primary bandwidth check",
+          "whyItSeems": "Router#show running-config is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (bandwidth): Router#show interface inspects the right table or state — Router#show running-config shows unrelated information.",
+          "memoryAnchor": "Bandwidth verify = show interface <int> | OSPF cost verify = show ip ospf interface <int>.",
+          "contrast": "Correct \"Router#show interface\" vs wrong \"Router#show running-config\": Verification command (bandwidth): Router#show interface inspects the right table or state — Router#show running-config shows unrelated information."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "show ip ospf interface for raw bandwidth",
+          "whyItSeems": "Router#show ospf interface is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (bandwidth): Router#show interface inspects the right table or state — Router#show ospf interface shows unrelated information.",
+          "memoryAnchor": "Bandwidth verify = show interface <int> | OSPF cost verify = show ip ospf interface <int>.",
+          "contrast": "Correct \"Router#show interface\" vs wrong \"Router#show ospf interface\": Verification command (bandwidth): Router#show interface inspects the right table or state — Router#show ospf interface shows unrelated information."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q023",
@@ -8600,7 +12952,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF cost override = interface → ip ospf cost <n> | Reference BW = router ospf → auto-cost reference-bandwidth."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "ip cost without ospf keyword",
+          "whyItSeems": "\"Router(config-if)#ip cost 20000\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"integration\", Router(config-if)#ip ospf cost 20000 matches the required behavior — Router(config-if)#ip cost 20000 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF cost override = interface → ip ospf cost <n> | Reference BW = router ospf → auto-cost reference-bandwidth.",
+          "contrast": "Correct \"Router(config-if)#ip ospf cost 20000\" vs wrong \"Router(config-if)#ip cost 20000\": For \"integration\", Router(config-if)#ip ospf cost 20000 matches the required behavior — Router(config-if)#ip cost 20000 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Global config ip ospf cost",
+          "whyItSeems": "\"Router(config)#ip ospf cost 20000\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"integration\", Router(config-if)#ip ospf cost 20000 matches the required behavior — Router(config)#ip ospf cost 20000 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF cost override = interface → ip ospf cost <n> | Reference BW = router ospf → auto-cost reference-bandwidth.",
+          "contrast": "Correct \"Router(config-if)#ip ospf cost 20000\" vs wrong \"Router(config)#ip ospf cost 20000\": For \"integration\", Router(config-if)#ip ospf cost 20000 matches the required behavior — Router(config)#ip ospf cost 20000 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Global ip cost command",
+          "whyItSeems": "\"Router(config)#ip cost 20000\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"integration\", Router(config-if)#ip ospf cost 20000 matches the required behavior — Router(config)#ip cost 20000 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF cost override = interface → ip ospf cost <n> | Reference BW = router ospf → auto-cost reference-bandwidth.",
+          "contrast": "Correct \"Router(config-if)#ip ospf cost 20000\" vs wrong \"Router(config)#ip cost 20000\": For \"integration\", Router(config-if)#ip ospf cost 20000 matches the required behavior — Router(config)#ip cost 20000 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q024",
@@ -8650,7 +13028,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF enable: router ospf 1 → network <net> <wildcard> area <n> — wildcard = inverse of subnet mask."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "OSPF network without area keyword",
+          "whyItSeems": "\"Router(config)#router ospf 0 Router(config-router)#network 192.168.1.0 0.0.0.255\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Mask/wildcard (configure): Router(config)#router ospf 1 Router(config-router)#network 192.168.1.0 0.0.0.255 area 0 uses the mask style this stem requires — Router(config)#router ospf 0 Router(config-router)#network 192.168.1.0 0.0.0.255 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "OSPF enable: router ospf 1 → network <net> <wildcard> area <n> — wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#router ospf 1 Router(config-router)#network 192.168.1.0 0.0.0.255 area 0\" vs wrong \"Router(config)#router ospf 0 Router(config-router)#network 192.168.1.0 0.0.0.255\": Mask/wildcard (configure): Router(config)#router ospf 1 Router(config-router)#network 192."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "ospf command without router keyword",
+          "whyItSeems": "\"Router(config)#ospf 0 Router(config-router)#network 192.168.1.0 0.0.0.255\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Mask/wildcard (configure): Router(config)#router ospf 1 Router(config-router)#network 192.168.1.0 0.0.0.255 area 0 uses the mask style this stem requires — Router(config)#ospf 0 Router(config-router)#network 192.168.1.0 0.0.0.255 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "OSPF enable: router ospf 1 → network <net> <wildcard> area <n> — wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#router ospf 1 Router(config-router)#network 192.168.1.0 0.0.0.255 area 0\" vs wrong \"Router(config)#ospf 0 Router(config-router)#network 192.168.1.0 0.0.0.255\": Mask/wildcard (configure): Router(config)#router ospf 1 Router(config-router)#network 192."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Subnet mask in OSPF network statement",
+          "whyItSeems": "\"Router(config)#router ospf 0 Router(config-router)#network 192.168.1.0 255.255.255.0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Mask/wildcard (configure): Router(config)#router ospf 1 Router(config-router)#network 192.168.1.0 0.0.0.255 area 0 uses the mask style this stem requires — Router(config)#router ospf 0 Router(config-router)#network 192.168.1.0 255.255.255.0 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "OSPF enable: router ospf 1 → network <net> <wildcard> area <n> — wildcard = inverse of subnet mask.",
+          "contrast": "Correct \"Router(config)#router ospf 1 Router(config-router)#network 192.168.1.0 0.0.0.255 area 0\" vs wrong \"Router(config)#router ospf 0 Router(config-router)#network 192.168.1.0 255.255.255.0\": Mask/wildcard (configure): Router(config)#router ospf 1 Router(config-router)#network 192."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q025",
@@ -8702,7 +13106,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF ECMP: default 4 | max 32 — change with maximum-paths under router ospf."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "8 as default OSPF equal-cost paths",
+          "whyItSeems": "\"8 routes\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"ospfv2\", 4 routes matches the required behavior — 8 routes answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF ECMP: default 4 | max 32 — change with maximum-paths under router ospf.",
+          "contrast": "Correct \"4 routes\" vs wrong \"8 routes\": For \"ospfv2\", 4 routes matches the required behavior — 8 routes answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "16 as default OSPF equal-cost paths",
+          "whyItSeems": "\"16 routes\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"ospfv2\", 4 routes matches the required behavior — 16 routes answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF ECMP: default 4 | max 32 — change with maximum-paths under router ospf.",
+          "contrast": "Correct \"4 routes\" vs wrong \"16 routes\": For \"ospfv2\", 4 routes matches the required behavior — 16 routes answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Maximum paths confused with default",
+          "whyItSeems": "\"32 routes\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"ospfv2\", 4 routes matches the required behavior — 32 routes answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF ECMP: default 4 | max 32 — change with maximum-paths under router ospf.",
+          "contrast": "Correct \"4 routes\" vs wrong \"32 routes\": For \"ospfv2\", 4 routes matches the required behavior — 32 routes answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q026",
@@ -8754,7 +13184,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Wildcard last octet = 2^(32−prefix) − 1 — /27 → 31 | /28 → 15."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Subnet mask as OSPF wildcard",
+          "whyItSeems": "\"255.255.224.0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Mask/wildcard (advertise): 0.0.0.31 uses the mask style this stem requires — 255.255.224.0 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "Wildcard last octet = 2^(32−prefix) − 1 — /27 → 31 | /28 → 15.",
+          "contrast": "Correct \"0.0.0.31\" vs wrong \"255.255.224.0\": Mask/wildcard (advertise): 0."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Wrong wildcard for /27 prefix",
+          "whyItSeems": "\"0.0.32.255\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"advertise\", 0.0.0.31 matches the required behavior — 0.0.32.255 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Wildcard last octet = 2^(32−prefix) − 1 — /27 → 31 | /28 → 15.",
+          "contrast": "Correct \"0.0.0.31\" vs wrong \"0.0.32.255\": For \"advertise\", 0."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Miscomputed /27 wildcard mask",
+          "whyItSeems": "\"0.0.224.255\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"advertise\", 0.0.0.31 matches the required behavior — 0.0.224.255 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Wildcard last octet = 2^(32−prefix) − 1 — /27 → 31 | /28 → 15.",
+          "contrast": "Correct \"0.0.0.31\" vs wrong \"0.0.224.255\": For \"advertise\", 0."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q027",
@@ -8805,7 +13261,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "router ospf 1 → maximum-paths <1-32> — applies to OSPF ECMP install in RIB."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "ospf equal-cost global command",
+          "whyItSeems": "\"Router(config)#ospf equal-cost 10\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"changing\", Router(config-router)#maximum-paths 10 matches the required behavior — Router(config)#ospf equal-cost 10 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "router ospf 1 → maximum-paths <1-32> — applies to OSPF ECMP install in RIB.",
+          "contrast": "Correct \"Router(config-router)#maximum-paths 10\" vs wrong \"Router(config)#ospf equal-cost 10\": For \"changing\", Router(config-router)#maximum-paths 10 matches the required behavior — Router(config)#ospf equal-cost 10 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "ospf equal-cost under router config",
+          "whyItSeems": "\"Router(config-router)#ospf equal-cost 10\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"changing\", Router(config-router)#maximum-paths 10 matches the required behavior — Router(config-router)#ospf equal-cost 10 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "router ospf 1 → maximum-paths <1-32> — applies to OSPF ECMP install in RIB.",
+          "contrast": "Correct \"Router(config-router)#maximum-paths 10\" vs wrong \"Router(config-router)#ospf equal-cost 10\": For \"changing\", Router(config-router)#maximum-paths 10 matches the required behavior — Router(config-router)#ospf equal-cost 10 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "maximum-paths at global config",
+          "whyItSeems": "Router(config)#ospf maximum-paths 10 implies many-inside-to-few-outside PAT/overload translation.",
+          "whyWrongHere": "For \"changing\", Router(config-router)#maximum-paths 10 matches the required behavior — Router(config)#ospf maximum-paths 10 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "router ospf 1 → maximum-paths <1-32> — applies to OSPF ECMP install in RIB.",
+          "contrast": "Correct \"Router(config-router)#maximum-paths 10\" vs wrong \"Router(config)#ospf maximum-paths 10\": For \"changing\", Router(config-router)#maximum-paths 10 matches the required behavior — Router(config)#ospf maximum-paths 10 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q028",
@@ -8856,7 +13338,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF ECMP ceiling = 32 | Default = 4 — same family as EIGRP maximum-paths."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Default paths confused with maximum",
+          "whyItSeems": "\"4 routes\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configured\", 32 routes matches the required behavior — 4 routes answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF ECMP ceiling = 32 | Default = 4 — same family as EIGRP maximum-paths.",
+          "contrast": "Correct \"32 routes\" vs wrong \"4 routes\": For \"configured\", 32 routes matches the required behavior — 4 routes answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "8 as OSPF maximum paths",
+          "whyItSeems": "\"8 routes\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configured\", 32 routes matches the required behavior — 8 routes answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF ECMP ceiling = 32 | Default = 4 — same family as EIGRP maximum-paths.",
+          "contrast": "Correct \"32 routes\" vs wrong \"8 routes\": For \"configured\", 32 routes matches the required behavior — 8 routes answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "16 as OSPF maximum paths",
+          "whyItSeems": "\"16 routes\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configured\", 32 routes matches the required behavior — 16 routes answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF ECMP ceiling = 32 | Default = 4 — same family as EIGRP maximum-paths.",
+          "contrast": "Correct \"32 routes\" vs wrong \"16 routes\": For \"configured\", 32 routes matches the required behavior — 16 routes answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q029",
@@ -8907,7 +13415,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Local RID = show ip ospf | Neighbors = show ip ospf neighbor | Per-int OSPF = show ip ospf interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "show ip interface for OSPF RID",
+          "whyItSeems": "Router#show ip interface is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (ospfv2): Router#show ip ospf inspects the right table or state — Router#show ip interface shows unrelated information.",
+          "memoryAnchor": "Local RID = show ip ospf | Neighbors = show ip ospf neighbor | Per-int OSPF = show ip ospf interface.",
+          "contrast": "Correct \"Router#show ip ospf\" vs wrong \"Router#show ip interface\": Verification command (ospfv2): Router#show ip ospf inspects the right table or state — Router#show ip interface shows unrelated information."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Invented show ip ospf rid command",
+          "whyItSeems": "Router#show ip ospf rid is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (ospfv2): Router#show ip ospf inspects the right table or state — Router#show ip ospf rid shows unrelated information.",
+          "memoryAnchor": "Local RID = show ip ospf | Neighbors = show ip ospf neighbor | Per-int OSPF = show ip ospf interface.",
+          "contrast": "Correct \"Router#show ip ospf\" vs wrong \"Router#show ip ospf rid\": Verification command (ospfv2): Router#show ip ospf inspects the right table or state — Router#show ip ospf rid shows unrelated information."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Neighbor table for local RID",
+          "whyItSeems": "Router#show ip ospf neighbor is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (ospfv2): Router#show ip ospf inspects the right table or state — Router#show ip ospf neighbor shows unrelated information.",
+          "memoryAnchor": "Local RID = show ip ospf | Neighbors = show ip ospf neighbor | Per-int OSPF = show ip ospf interface.",
+          "contrast": "Correct \"Router#show ip ospf\" vs wrong \"Router#show ip ospf neighbor\": Verification command (ospfv2): Router#show ip ospf inspects the right table or state — Router#show ip ospf neighbor shows unrelated information."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q030",
@@ -8959,7 +13493,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "/28 → mask 255.255.255.240 | wildcard 0.0.0.15 — memorize /28 pair for OSPF stems."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Wildcard 16 for /28 prefix",
+          "whyItSeems": "\"0.0.0.16\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Mask/wildcard (advertise): 0.0.0.15 uses the mask style this stem requires — 0.0.0.16 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "/28 → mask 255.255.255.240 | wildcard 0.0.0.15 — memorize /28 pair for OSPF stems.",
+          "contrast": "Correct \"0.0.0.15\" vs wrong \"0.0.0.16\": Mask/wildcard (advertise): 0."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Subnet mask as OSPF wildcard for /28",
+          "whyItSeems": "\"255.255.255.240\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Mask/wildcard (advertise): 0.0.0.15 uses the mask style this stem requires — 255.255.255.240 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "/28 → mask 255.255.255.240 | wildcard 0.0.0.15 — memorize /28 pair for OSPF stems.",
+          "contrast": "Correct \"0.0.0.15\" vs wrong \"255.255.255.240\": Mask/wildcard (advertise): 0."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Miscomputed /28 wildcard mask",
+          "whyItSeems": "\"0.0.0.240\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Mask/wildcard (advertise): 0.0.0.15 uses the mask style this stem requires — 0.0.0.240 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "/28 → mask 255.255.255.240 | wildcard 0.0.0.15 — memorize /28 pair for OSPF stems.",
+          "contrast": "Correct \"0.0.0.15\" vs wrong \"0.0.0.240\": Mask/wildcard (advertise): 0."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q031",
@@ -9010,7 +13570,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Adjacency check = show ip ospf neighbor — look for FULL/DR state with remote RID."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented show router adjacency command",
+          "whyItSeems": "\"Router#show router adjacency\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF adjacency (a remote router has formed an adjacency with the current router): Router#show ip ospf neighbor satisfies neighbor requirements — Router#show router adjacency breaks area, timers, or network type matching.",
+          "memoryAnchor": "Adjacency check = show ip ospf neighbor — look for FULL/DR state with remote RID.",
+          "contrast": "Correct \"Router#show ip ospf neighbor\" vs wrong \"Router#show router adjacency\": OSPF adjacency (a remote router has formed an adjacency with the current router): Router#show ip ospf neighbor satisfies neighbor requirements — Router#show router adjacency breaks area, timers, or network type matching."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "show ip ospf for adjacency verify",
+          "whyItSeems": "Router#show ip ospf is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (a remote router has formed an adjacency with the current router): Router#show ip ospf neighbor inspects the right table or state — Router#show ip ospf shows unrelated information.",
+          "memoryAnchor": "Adjacency check = show ip ospf neighbor — look for FULL/DR state with remote RID.",
+          "contrast": "Correct \"Router#show ip ospf neighbor\" vs wrong \"Router#show ip ospf\": Verification command (a remote router has formed an adjacency with the current router): Router#show ip ospf neighbor inspects the right table or state — Router#show ip ospf shows unrelated information."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented show ip ospf router command",
+          "whyItSeems": "Router#show ip ospf router is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (a remote router has formed an adjacency with the current router): Router#show ip ospf neighbor inspects the right table or state — Router#show ip ospf router shows unrelated information.",
+          "memoryAnchor": "Adjacency check = show ip ospf neighbor — look for FULL/DR state with remote RID.",
+          "contrast": "Correct \"Router#show ip ospf neighbor\" vs wrong \"Router#show ip ospf router\": Verification command (a remote router has formed an adjacency with the current router): Router#show ip ospf neighbor inspects the right table or state — Router#show ip ospf router shows unrelated information."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q032",
@@ -9062,7 +13648,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF timers: Broadcast hello 10 dead 40 | P2P hello 5 dead 20 — must match on link."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "5-second hello on broadcast OSPF network",
+          "whyItSeems": "5 seconds states a MAC aging timer or timeout value that may not match the default or configured setting.",
+          "whyWrongHere": "For \"interval\", 10 seconds matches the required behavior — 5 seconds answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF timers: Broadcast hello 10 dead 40 | P2P hello 5 dead 20 — must match on link.",
+          "contrast": "Correct \"10 seconds\" vs wrong \"5 seconds\": For \"interval\", 10 seconds matches the required behavior — 5 seconds answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "30-second OSPF hello on broadcast",
+          "whyItSeems": "30 seconds states a MAC aging timer or timeout value that may not match the default or configured setting.",
+          "whyWrongHere": "For \"interval\", 10 seconds matches the required behavior — 30 seconds answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF timers: Broadcast hello 10 dead 40 | P2P hello 5 dead 20 — must match on link.",
+          "contrast": "Correct \"10 seconds\" vs wrong \"30 seconds\": For \"interval\", 10 seconds matches the required behavior — 30 seconds answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "60-second OSPF hello interval",
+          "whyItSeems": "60 seconds states a MAC aging timer or timeout value that may not match the default or configured setting.",
+          "whyWrongHere": "For \"interval\", 10 seconds matches the required behavior — 60 seconds answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF timers: Broadcast hello 10 dead 40 | P2P hello 5 dead 20 — must match on link.",
+          "contrast": "Correct \"10 seconds\" vs wrong \"60 seconds\": For \"interval\", 10 seconds matches the required behavior — 60 seconds answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q033",
@@ -9114,7 +13726,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF passive = router ospf → passive-interface <intf> — no hellos, still advertises subnet."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "passive-interface in interface config mode",
+          "whyItSeems": "\"Router(config-if)#passive-interface\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"interfaces\", Router(config-router)#passive-interface gigabitethernet 0/1 matches the required behavior — Router(config-if)#passive-interface answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF passive = router ospf → passive-interface <intf> — no hellos, still advertises subnet.",
+          "contrast": "Correct \"Router(config-router)#passive-interface gigabitethernet 0/1\" vs wrong \"Router(config-if)#passive-interface\": For \"interfaces\", Router(config-router)#passive-interface gigabitethernet 0/1 matches the required behavior — Router(config-if)#passive-interface answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "passive-interface at global config",
+          "whyItSeems": "Router(config)#passive-interface gigabitethernet 0/1 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Mask/wildcard (interfaces): Router(config-router)#passive-interface gigabitethernet 0/1 uses the mask style this stem requires — Router(config)#passive-interface gigabitethernet 0/1 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "OSPF passive = router ospf → passive-interface <intf> — no hellos, still advertises subnet.",
+          "contrast": "Correct \"Router(config-router)#passive-interface gigabitethernet 0/1\" vs wrong \"Router(config)#passive-interface gigabitethernet 0/1\": Mask/wildcard (interfaces): Router(config-router)#passive-interface gigabitethernet 0/1 uses the mask style this stem requires — Router(config)#passive-interface gigabitethernet 0/1 confuses subnet mask with ACL/OSPF wildcard bits."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "passive-interface default for one ISP link",
+          "whyItSeems": "\"Router(config-if)#passive-interface default\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"interfaces\", Router(config-router)#passive-interface gigabitethernet 0/1 matches the required behavior — Router(config-if)#passive-interface default answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF passive = router ospf → passive-interface <intf> — no hellos, still advertises subnet.",
+          "contrast": "Correct \"Router(config-router)#passive-interface gigabitethernet 0/1\" vs wrong \"Router(config-if)#passive-interface default\": For \"interfaces\", Router(config-router)#passive-interface gigabitethernet 0/1 matches the required behavior — Router(config-if)#passive-interface default answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q034",
@@ -9166,7 +13804,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF intf timers/hellos = show ip ospf interface | Neighbors = show ip ospf neighbor."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Generic show interfaces for OSPF hellos",
+          "whyItSeems": "\"Router#show interfaces\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"interfaces\", Router#show ip ospf interface matches the required behavior — Router#show interfaces answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF intf timers/hellos = show ip ospf interface | Neighbors = show ip ospf neighbor.",
+          "contrast": "Correct \"Router#show ip ospf interface\" vs wrong \"Router#show interfaces\": For \"interfaces\", Router#show ip ospf interface matches the required behavior — Router#show interfaces answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Routing table for OSPF hello verify",
+          "whyItSeems": "Router#show ip routes is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (interfaces): Router#show ip ospf interface inspects the right table or state — Router#show ip routes shows unrelated information.",
+          "memoryAnchor": "OSPF intf timers/hellos = show ip ospf interface | Neighbors = show ip ospf neighbor.",
+          "contrast": "Correct \"Router#show ip ospf interface\" vs wrong \"Router#show ip routes\": Verification command (interfaces): Router#show ip ospf interface inspects the right table or state — Router#show ip routes shows unrelated information."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented show ip ospf brief command",
+          "whyItSeems": "Router#show ip ospf brief is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (interfaces): Router#show ip ospf interface inspects the right table or state — Router#show ip ospf brief shows unrelated information.",
+          "memoryAnchor": "OSPF intf timers/hellos = show ip ospf interface | Neighbors = show ip ospf neighbor.",
+          "contrast": "Correct \"Router#show ip ospf interface\" vs wrong \"Router#show ip ospf brief\": Verification command (interfaces): Router#show ip ospf interface inspects the right table or state — Router#show ip ospf brief shows unrelated information."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q035",
@@ -9218,7 +13882,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF RID priority: router-id (manual) > highest loopback > highest active interface IP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Physical interface IP as static RID override",
+          "whyItSeems": "Router(config)#interface fa 0/1 Router(config-if)#ip address 192.168.1.5 255.255.255.0 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "Mask/wildcard (statically): Router(config-router)#router-id 192.168.1.5 uses the mask style this stem requires — Router(config)#interface fa 0/1 Router(config-if)#ip address 192.168.1.5 255.255.255.0 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "OSPF RID priority: router-id (manual) > highest loopback > highest active interface IP.",
+          "contrast": "Correct \"Router(config-router)#router-id 192.168.1.5\" vs wrong \"Router(config)#interface fa 0/1 Router(config-if)#ip address 192.168.1.5 255.255.255.0\": Mask/wildcard (statically): Router(config-router)#router-id 192."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Loopback config alone as override keyword",
+          "whyItSeems": "Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.5 255.255.255.0 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "Mask/wildcard (statically): Router(config-router)#router-id 192.168.1.5 uses the mask style this stem requires — Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.5 255.255.255.0 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "OSPF RID priority: router-id (manual) > highest loopback > highest active interface IP.",
+          "contrast": "Correct \"Router(config-router)#router-id 192.168.1.5\" vs wrong \"Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.5 255.255.255.0\": Mask/wildcard (statically): Router(config-router)#router-id 192."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "rid keyword instead of router-id",
+          "whyItSeems": "\"Router(config-router)#rid 192.168.1.5\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statically\", Router(config-router)#router-id 192.168.1.5 matches the required behavior — Router(config-router)#rid 192.168.1.5 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF RID priority: router-id (manual) > highest loopback > highest active interface IP.",
+          "contrast": "Correct \"Router(config-router)#router-id 192.168.1.5\" vs wrong \"Router(config-router)#rid 192.168.1.5\": For \"statically\", Router(config-router)#router-id 192."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q036",
@@ -9271,7 +13961,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Only one intf active: passive-interface default + no passive-interface <intf> — common OSPF security pattern."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Invented active-interface command",
+          "whyItSeems": "Router(config-router)#active-interface gigabitethernet 0/2 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Mask/wildcard (interface): Router(config-router)#passive-interface default Router(config-router)#no passive-interface gigabitethernet 0/2 uses the mask style this stem requires — Router(config-router)#active-interface gigabitethernet 0/2 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "Only one intf active: passive-interface default + no passive-interface <intf> — common OSPF security pattern.",
+          "contrast": "Correct \"Router(config-router)#passive-interface default Router(config-router)#no passive-interface gigabitethernet 0/2\" vs wrong \"Router(config-router)#active-interface gigabitethernet 0/2\": Mask/wildcard (interface): Router(config-router)#passive-interface default Router(config-router)#no passive-interface gigabitethernet 0/2 uses the mask style this stem requires — Router(config-router)#active-interface gigabitethernet 0/2 confuses subnet mask with ACL/OSPF wildcard bits."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "active-interface as passive undo",
+          "whyItSeems": "Router(config-router)#passive-interface default Router(config-router)#active-interface gigabitethernet 0/2 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Mask/wildcard (interface): Router(config-router)#passive-interface default Router(config-router)#no passive-interface gigabitethernet 0/2 uses the mask style this stem requires — Router(config-router)#passive-interface default Router(config-router)#active-interface gigabitethernet 0/2 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "Only one intf active: passive-interface default + no passive-interface <intf> — common OSPF security pattern.",
+          "contrast": "Correct \"Router(config-router)#passive-interface default Router(config-router)#no passive-interface gigabitethernet 0/2\" vs wrong \"Router(config-router)#passive-interface default Router(config-router)#active-interface gigabitethernet 0/2\": Mask/wildcard (interface): Router(config-router)#passive-interface default Router(config-router)#no passive-interface gigabitethernet 0/2 uses the mask style this stem requires — Router(config-router)#passive-interface default Router(config-router)#active-interface gigabitethernet 0/2 confuses subnet mask with ACL/OSPF wildcard bits."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Single passive-interface for inverse logic",
+          "whyItSeems": "Router(config-router)#passive-interface gigabitethernet 0/2 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Mask/wildcard (interface): Router(config-router)#passive-interface default Router(config-router)#no passive-interface gigabitethernet 0/2 uses the mask style this stem requires — Router(config-router)#passive-interface gigabitethernet 0/2 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "Only one intf active: passive-interface default + no passive-interface <intf> — common OSPF security pattern.",
+          "contrast": "Correct \"Router(config-router)#passive-interface default Router(config-router)#no passive-interface gigabitethernet 0/2\" vs wrong \"Router(config-router)#passive-interface gigabitethernet 0/2\": Mask/wildcard (interface): Router(config-router)#passive-interface default Router(config-router)#no passive-interface gigabitethernet 0/2 uses the mask style this stem requires — Router(config-router)#passive-interface gigabitethernet 0/2 confuses subnet mask with ACL/OSPF wildcard bits."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q037",
@@ -9321,7 +14037,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "RID change takes effect after clear ip ospf process (or reload) — not automatic."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Interface bounce for RID change",
+          "whyItSeems": "\"Router(config-router)#shutdown Router(config-router)#no shutdown\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"changing the router’s RID for OSPF, which command needs to be entered\", Router#clear ip ospf matches the required behavior — Router(config-router)#shutdown Router(config-router)#no shutdown answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "RID change takes effect after clear ip ospf process (or reload) — not automatic.",
+          "contrast": "Correct \"Router#clear ip ospf\" vs wrong \"Router(config-router)#shutdown Router(config-router)#no shutdown\": For \"changing the router’s RID for OSPF, which command needs to be entered\", Router#clear ip ospf matches the required behavior — Router(config-router)#shutdown Router(config-router)#no shutdown answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "clear ip ospf in config-router mode",
+          "whyItSeems": "\"Router(config-router)#clear ip ospf\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"changing the router’s RID for OSPF, which command needs to be entered\", Router#clear ip ospf matches the required behavior — Router(config-router)#clear ip ospf answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "RID change takes effect after clear ip ospf process (or reload) — not automatic.",
+          "contrast": "Correct \"Router#clear ip ospf\" vs wrong \"Router(config-router)#clear ip ospf\": For \"changing the router’s RID for OSPF, which command needs to be entered\", Router#clear ip ospf matches the required behavior — Router(config-router)#clear ip ospf answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Truncated clear ospf command",
+          "whyItSeems": "\"Router#clear ospf\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"changing the router’s RID for OSPF, which command needs to be entered\", Router#clear ip ospf matches the required behavior — Router#clear ospf answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "RID change takes effect after clear ip ospf process (or reload) — not automatic.",
+          "contrast": "Correct \"Router#clear ip ospf\" vs wrong \"Router#clear ospf\": For \"changing the router’s RID for OSPF, which command needs to be entered\", Router#clear ip ospf matches the required behavior — Router#clear ospf answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q038",
@@ -9371,7 +14113,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ABR = borders between areas (Type 3) | ASBR = borders between routing domains (Type 5)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "ABR confused with ASBR",
+          "whyItSeems": "\"ABRs sit between an autonomous system and OSPF.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", ABRs exchange Type 3 link-state advertisements between areas. matches the required behavior — ABRs sit between an autonomous system and OSPF. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ABR = borders between areas (Type 3) | ASBR = borders between routing domains (Type 5).",
+          "contrast": "Correct \"ABRs exchange Type 3 link-state advertisements between areas.\" vs wrong \"ABRs sit between an autonomous system and OSPF.\": For \"statement\", ABRs exchange Type 3 link-state advertisements between areas."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Type 1 LSAs cross areas via ABR",
+          "whyItSeems": "\"ABRs exchange Type 1 link-state advertisements between areas.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF adjacency (statement): ABRs exchange Type 3 link-state advertisements between areas. satisfies neighbor requirements — ABRs exchange Type 1 link-state advertisements between areas. breaks area, timers, or network type matching.",
+          "memoryAnchor": "ABR = borders between areas (Type 3) | ASBR = borders between routing domains (Type 5).",
+          "contrast": "Correct \"ABRs exchange Type 3 link-state advertisements between areas.\" vs wrong \"ABRs exchange Type 1 link-state advertisements between areas.\": OSPF adjacency (statement): ABRs exchange Type 3 link-state advertisements between areas."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Type 2 LSAs exchanged between areas",
+          "whyItSeems": "\"ABRs exchange Type 2 link-state advertisements between areas.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF adjacency (statement): ABRs exchange Type 3 link-state advertisements between areas. satisfies neighbor requirements — ABRs exchange Type 2 link-state advertisements between areas. breaks area, timers, or network type matching.",
+          "memoryAnchor": "ABR = borders between areas (Type 3) | ASBR = borders between routing domains (Type 5).",
+          "contrast": "Correct \"ABRs exchange Type 3 link-state advertisements between areas.\" vs wrong \"ABRs exchange Type 2 link-state advertisements between areas.\": OSPF adjacency (statement): ABRs exchange Type 3 link-state advertisements between areas."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q039",
@@ -9423,7 +14191,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "/14 wildcard = 0.0.252.255 — 2 host bits in 3rd octet (4−2=252 inverted bits)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "CIDR notation in OSPF network statement",
+          "whyItSeems": "Router(config-router)#network 128.24.0.0/22 area 0 Router(config-router)#network 128.24.0.0/22 area 1 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "OSPF area rules (advertise): Router(config-router)#network 128.24.0.0 0.0.252.255 area 0 Router(config-router)#network 128.24.0.0 0.0.252.255 area 1 satisfies area type and connectivity — Router(config-router)#network 128.24.0.0/22 area 0 Router(config-router)#network 128.24.0.0/22 area 1 violates area/backbone constraints.",
+          "memoryAnchor": "/14 wildcard = 0.0.252.255 — 2 host bits in 3rd octet (4−2=252 inverted bits).",
+          "contrast": "Correct \"Router(config-router)#network 128.24.0.0 0.0.252.255 area 0 Router(config-router)#network 128.24.0.0 0.0.252.255 area 1\" vs wrong \"Router(config-router)#network 128.24.0.0/22 area 0 Router(config-router)#network 128.24.0.0/22 area 1\": OSPF area rules (advertise): Router(config-router)#network 128."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Miscomputed /14 wildcard mask",
+          "whyItSeems": "\"Router(config-router)#network 128.24.0.0 0.0.254.255 area 0 Router(config-router)#network 128.24.0.0 255.254.255 area 1\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF area rules (advertise): Router(config-router)#network 128.24.0.0 0.0.252.255 area 0 Router(config-router)#network 128.24.0.0 0.0.252.255 area 1 satisfies area type and connectivity — Router(config-router)#network 128.24.0.0 0.0.254.255 area 0 Router(config-router)#network 128.24.0.0 255.254.255 area 1 violates area/backbone constraints.",
+          "memoryAnchor": "/14 wildcard = 0.0.252.255 — 2 host bits in 3rd octet (4−2=252 inverted bits).",
+          "contrast": "Correct \"Router(config-router)#network 128.24.0.0 0.0.252.255 area 0 Router(config-router)#network 128.24.0.0 0.0.252.255 area 1\" vs wrong \"Router(config-router)#network 128.24.0.0 0.0.254.255 area 0 Router(config-router)#network 128.24.0.0 255.254.255 area 1\": OSPF area rules (advertise): Router(config-router)#network 128."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Single network statement for multiple areas",
+          "whyItSeems": "\"Router(config-router)#network 128.24.0.0 0.0.255.255\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"advertise\", Router(config-router)#network 128.24.0.0 0.0.252.255 area 0 Router(config-router)#network 128.24.0.0 0.0.252.255 area 1 matches the required behavior — Router(config-router)#network 128.24.0.0 0.0.255.255 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "/14 wildcard = 0.0.252.255 — 2 host bits in 3rd octet (4−2=252 inverted bits).",
+          "contrast": "Correct \"Router(config-router)#network 128.24.0.0 0.0.252.255 area 0 Router(config-router)#network 128.24.0.0 0.0.252.255 area 1\" vs wrong \"Router(config-router)#network 128.24.0.0 0.0.255.255\": For \"advertise\", Router(config-router)#network 128."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q040",
@@ -9474,7 +14268,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "LSDB view = show ip ospf database | Neighbor view = show ip ospf neighbor."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented show ip ospf states command",
+          "whyItSeems": "Router#show ip ospf states is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (advertisements): Router#show ip ospf database inspects the right table or state — Router#show ip ospf states shows unrelated information.",
+          "memoryAnchor": "LSDB view = show ip ospf database | Neighbor view = show ip ospf neighbor.",
+          "contrast": "Correct \"Router#show ip ospf database\" vs wrong \"Router#show ip ospf states\": Verification command (advertisements): Router#show ip ospf database inspects the right table or state — Router#show ip ospf states shows unrelated information."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Neighbor table for LSA summary",
+          "whyItSeems": "Router#show ip ospf neighbors is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (advertisements): Router#show ip ospf database inspects the right table or state — Router#show ip ospf neighbors shows unrelated information.",
+          "memoryAnchor": "LSDB view = show ip ospf database | Neighbor view = show ip ospf neighbor.",
+          "contrast": "Correct \"Router#show ip ospf database\" vs wrong \"Router#show ip ospf neighbors\": Verification command (advertisements): Router#show ip ospf database inspects the right table or state — Router#show ip ospf neighbors shows unrelated information."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented show ip ospf topology command",
+          "whyItSeems": "Router#show ip ospf topology is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (advertisements): Router#show ip ospf database inspects the right table or state — Router#show ip ospf topology shows unrelated information.",
+          "memoryAnchor": "LSDB view = show ip ospf database | Neighbor view = show ip ospf neighbor.",
+          "contrast": "Correct \"Router#show ip ospf database\" vs wrong \"Router#show ip ospf topology\": Verification command (advertisements): Router#show ip ospf database inspects the right table or state — Router#show ip ospf topology shows unrelated information."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q041",
@@ -9525,7 +14345,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Wildcard 0.0.0.63 = /26 (first 64 IPs). IPs ≥ .64 on that interface won't match the network statement."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Serial in range excluded from OSPF",
+          "whyItSeems": "Interface Serial 0/3/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Mask/wildcard (interfaces): Interface GigabitEthernet 0/0 uses the mask style this stem requires — Interface Serial 0/3/0 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "Remember: choose \"Interface GigabitEthernet 0/0\" — not \"Interface Serial 0/3/0\" — for what this stem actually tests.",
+          "contrast": "Correct \"Interface GigabitEthernet 0/0\" vs wrong \"Interface Serial 0/3/0\": Mask/wildcard (interfaces): Interface GigabitEthernet 0/0 uses the mask style this stem requires — Interface Serial 0/3/0 confuses subnet mask with ACL/OSPF wildcard bits."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Sub-interface excluded from wildcard match",
+          "whyItSeems": "Interface Serial 0/3/0.1 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Mask/wildcard (interfaces): Interface GigabitEthernet 0/0 uses the mask style this stem requires — Interface Serial 0/3/0.1 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "Remember: choose \"Interface GigabitEthernet 0/0\" — not \"Interface Serial 0/3/0.1\" — for what this stem actually tests.",
+          "contrast": "Correct \"Interface GigabitEthernet 0/0\" vs wrong \"Interface Serial 0/3/0.1\": Mask/wildcard (interfaces): Interface GigabitEthernet 0/0 uses the mask style this stem requires — Interface Serial 0/3/0."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Second sub-interface excluded from match",
+          "whyItSeems": "Interface Serial 0/3/0.2 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Mask/wildcard (interfaces): Interface GigabitEthernet 0/0 uses the mask style this stem requires — Interface Serial 0/3/0.2 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "Remember: choose \"Interface GigabitEthernet 0/0\" — not \"Interface Serial 0/3/0.2\" — for what this stem actually tests.",
+          "contrast": "Correct \"Interface GigabitEthernet 0/0\" vs wrong \"Interface Serial 0/3/0.2\": Mask/wildcard (interfaces): Interface GigabitEthernet 0/0 uses the mask style this stem requires — Interface Serial 0/3/0."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q042",
@@ -9577,7 +14423,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF stuck in INIT/EXSTART → verify hello and dead timers match on both sides."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Blaming static route for OSPF neighbor failure",
+          "whyItSeems": "There is a static route configured between the two routers. configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "For \"configured\", Router A is configured with a hello timer of 30. matches the required behavior — There is a static route configured between the two routers. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF stuck in INIT/EXSTART → verify hello and dead timers match on both sides.",
+          "contrast": "Correct \"Router A is configured with a hello timer of 30.\" vs wrong \"There is a static route configured between the two routers.\": For \"configured\", Router A is configured with a hello timer of 30."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Choosing multi-area config over clear timer mismatch",
+          "whyItSeems": "\"Router A is configured with multiple area IDs.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF adjacency (configured): Router A is configured with a hello timer of 30. satisfies neighbor requirements — Router A is configured with multiple area IDs. breaks area, timers, or network type matching.",
+          "memoryAnchor": "OSPF stuck in INIT/EXSTART → verify hello and dead timers match on both sides.",
+          "contrast": "Correct \"Router A is configured with a hello timer of 30.\" vs wrong \"Router A is configured with multiple area IDs.\": OSPF adjacency (configured): Router A is configured with a hello timer of 30."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Flagging the router with default timer instead of the odd 30-second hello",
+          "whyItSeems": "Router B is configured with a hello timer of 10. states a MAC aging timer or timeout value that may not match the default or configured setting.",
+          "whyWrongHere": "MAC aging (configured): Router A is configured with a hello timer of 30. is the default or configured timer — Router B is configured with a hello timer of 10. states the wrong timeout value or behavior.",
+          "memoryAnchor": "OSPF stuck in INIT/EXSTART → verify hello and dead timers match on both sides.",
+          "contrast": "Correct \"Router A is configured with a hello timer of 30.\" vs wrong \"Router B is configured with a hello timer of 10.\": MAC aging (configured): Router A is configured with a hello timer of 30."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q043",
@@ -9628,7 +14500,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF areas → smaller LSDB per area → faster convergence + less CPU on SPF recalculation."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Hierarchical OSPF reduces config work",
+          "whyItSeems": "\"Reduction of configuration complexity\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"hierarchical\", Fast convergence matches the required behavior — Reduction of configuration complexity answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF areas → smaller LSDB per area → faster convergence + less CPU on SPF recalculation.",
+          "contrast": "Correct \"Fast convergence\" vs wrong \"Reduction of configuration complexity\": For \"hierarchical\", Fast convergence matches the required behavior — Reduction of configuration complexity answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Hierarchical design increases bandwidth",
+          "whyItSeems": "\"Increased bandwidth\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"hierarchical\", Fast convergence matches the required behavior — Increased bandwidth answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF areas → smaller LSDB per area → faster convergence + less CPU on SPF recalculation.",
+          "contrast": "Correct \"Fast convergence\" vs wrong \"Increased bandwidth\": For \"hierarchical\", Fast convergence matches the required behavior — Increased bandwidth answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Security as primary hierarchical benefit",
+          "whyItSeems": "\"Better security\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"hierarchical\", Fast convergence matches the required behavior — Better security answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF areas → smaller LSDB per area → faster convergence + less CPU on SPF recalculation.",
+          "contrast": "Correct \"Fast convergence\" vs wrong \"Better security\": For \"hierarchical\", Fast convergence matches the required behavior — Better security answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q044",
@@ -9681,7 +14579,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "In show ip ospf neighbor output: FULL/DR = that neighbor IS the DR | FULL/BDR = backup."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "BDR confused with DR",
+          "whyItSeems": "\"Router C\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"neighbors\", Router B matches the required behavior — Router C answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "In show ip ospf neighbor output: FULL/DR = that neighbor IS the DR | FULL/BDR = backup.",
+          "contrast": "Correct \"Router B\" vs wrong \"Router C\": For \"neighbors\", Router B matches the required behavior — Router C answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Unlisted router as DR",
+          "whyItSeems": "\"Router D\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"neighbors\", Router B matches the required behavior — Router D answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "In show ip ospf neighbor output: FULL/DR = that neighbor IS the DR | FULL/BDR = backup.",
+          "contrast": "Correct \"Router B\" vs wrong \"Router D\": For \"neighbors\", Router B matches the required behavior — Router D answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Non-existent router as DR",
+          "whyItSeems": "\"Router E\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"neighbors\", Router B matches the required behavior — Router E answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "In show ip ospf neighbor output: FULL/DR = that neighbor IS the DR | FULL/BDR = backup.",
+          "contrast": "Correct \"Router B\" vs wrong \"Router E\": For \"neighbors\", Router B matches the required behavior — Router E answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q045",
@@ -9734,7 +14658,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "ABR = at least one interface in area 0 + one in another area — summarizes with Type 3 LSAs."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "ASBR for inter-area OSPF",
+          "whyItSeems": "\"ASBR\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"hierarchy\", ABR matches the required behavior — ASBR answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "ABR = at least one interface in area 0 + one in another area — summarizes with Type 3 LSAs.",
+          "contrast": "Correct \"ABR\" vs wrong \"ASBR\": For \"hierarchy\", ABR matches the required behavior — ASBR answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "DR role confused with ABR",
+          "whyItSeems": "DR states an OSPF DR/BDR election outcome or role that may not apply on this segment.",
+          "whyWrongHere": "OSPF DR/BDR (hierarchy): ABR follows election rules on this segment — DR misstates who becomes DR/BDR or when.",
+          "memoryAnchor": "ABR = at least one interface in area 0 + one in another area — summarizes with Type 3 LSAs.",
+          "contrast": "Correct \"ABR\" vs wrong \"DR\": OSPF DR/BDR (hierarchy): ABR follows election rules on this segment — DR misstates who becomes DR/BDR or when."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "BDR role confused with ABR",
+          "whyItSeems": "BDR states an OSPF DR/BDR election outcome or role that may not apply on this segment.",
+          "whyWrongHere": "OSPF DR/BDR (hierarchy): ABR follows election rules on this segment — BDR misstates who becomes DR/BDR or when.",
+          "memoryAnchor": "ABR = at least one interface in area 0 + one in another area — summarizes with Type 3 LSAs.",
+          "contrast": "Correct \"ABR\" vs wrong \"BDR\": OSPF DR/BDR (hierarchy): ABR follows election rules on this segment — BDR misstates who becomes DR/BDR or when."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q046",
@@ -9786,7 +14736,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Wildcard 0.0.0.0 = single host match — almost never correct for enabling OSPF on a subnet."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Invalid OSPF process ID",
+          "whyItSeems": "\"The process ID is incorrect.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"you enter show ip routes you do not see any routes for OSPF\", The subnet mask is incorrect. matches the required behavior — The process ID is incorrect. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Wildcard 0.0.0.0 = single host match — almost never correct for enabling OSPF on a subnet.",
+          "contrast": "Correct \"The subnet mask is incorrect.\" vs wrong \"The process ID is incorrect.\": For \"you enter show ip routes you do not see any routes for OSPF\", The subnet mask is incorrect."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invalid OSPF area number",
+          "whyItSeems": "\"The area number is incorrect.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF adjacency (you enter show ip routes you do not see any routes for OSPF): The subnet mask is incorrect. satisfies neighbor requirements — The area number is incorrect. breaks area, timers, or network type matching.",
+          "memoryAnchor": "Wildcard 0.0.0.0 = single host match — almost never correct for enabling OSPF on a subnet.",
+          "contrast": "Correct \"The subnet mask is incorrect.\" vs wrong \"The area number is incorrect.\": OSPF adjacency (you enter show ip routes you do not see any routes for OSPF): The subnet mask is incorrect."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invalid network ID in OSPF",
+          "whyItSeems": "\"The network ID is incorrect.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"you enter show ip routes you do not see any routes for OSPF\", The subnet mask is incorrect. matches the required behavior — The network ID is incorrect. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Wildcard 0.0.0.0 = single host match — almost never correct for enabling OSPF on a subnet.",
+          "contrast": "Correct \"The subnet mask is incorrect.\" vs wrong \"The network ID is incorrect.\": For \"you enter show ip routes you do not see any routes for OSPF\", The subnet mask is incorrect."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q047",
@@ -9840,7 +14816,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF adjacency checklist: area ID + hello/dead timers + subnet + authentication must match."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "P2P link type prevents adjacency",
+          "whyItSeems": "\"The link is a point-to-point connection.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"mismatched\", The hello and dead timers do not match. matches the required behavior — The link is a point-to-point connection. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF adjacency checklist: area ID + hello/dead timers + subnet + authentication must match.",
+          "contrast": "Correct \"The hello and dead timers do not match.\" vs wrong \"The link is a point-to-point connection.\": For \"mismatched\", The hello and dead timers do not match."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Mismatched process IDs break adjacency",
+          "whyItSeems": "\"The process IDs do not match.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"mismatched\", The hello and dead timers do not match. matches the required behavior — The process IDs do not match. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF adjacency checklist: area ID + hello/dead timers + subnet + authentication must match.",
+          "contrast": "Correct \"The hello and dead timers do not match.\" vs wrong \"The process IDs do not match.\": For \"mismatched\", The hello and dead timers do not match."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Area IP mismatch when timers differ",
+          "whyItSeems": "The area IP addresses do not match. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "OSPF adjacency (mismatched): The hello and dead timers do not match. satisfies neighbor requirements — The area IP addresses do not match. breaks area, timers, or network type matching.",
+          "memoryAnchor": "OSPF adjacency checklist: area ID + hello/dead timers + subnet + authentication must match.",
+          "contrast": "Correct \"The hello and dead timers do not match.\" vs wrong \"The area IP addresses do not match.\": OSPF adjacency (mismatched): The hello and dead timers do not match."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q048",
@@ -9891,7 +14893,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF states: INIT → 2-WAY → EXSTART → EXCHANGE → LOADING → FULL (adjacency complete)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "EXSTART as fully synced state",
+          "whyItSeems": "\"EXSTART state\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"neighbor\", FULL state matches the required behavior — EXSTART state answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF states: INIT → 2-WAY → EXSTART → EXCHANGE → LOADING → FULL (adjacency complete).",
+          "contrast": "Correct \"FULL state\" vs wrong \"EXSTART state\": For \"neighbor\", FULL state matches the required behavior — EXSTART state answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "INIT as full synchronization",
+          "whyItSeems": "\"INIT state\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"neighbor\", FULL state matches the required behavior — INIT state answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF states: INIT → 2-WAY → EXSTART → EXCHANGE → LOADING → FULL (adjacency complete).",
+          "contrast": "Correct \"FULL state\" vs wrong \"INIT state\": For \"neighbor\", FULL state matches the required behavior — INIT state answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "EXCHANGE as fully synced state",
+          "whyItSeems": "\"EXCHANGE state\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"neighbor\", FULL state matches the required behavior — EXCHANGE state answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF states: INIT → 2-WAY → EXSTART → EXCHANGE → LOADING → FULL (adjacency complete).",
+          "contrast": "Correct \"FULL state\" vs wrong \"EXCHANGE state\": For \"neighbor\", FULL state matches the required behavior — EXCHANGE state answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q049",
@@ -9945,7 +14973,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "FULL neighbor state = healthy, fully adjacent — no action required."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "FULL state indicates problem",
+          "whyItSeems": "\"The neighbor is having a problem forming an adjacency.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF adjacency (neighbor): Both routers have formed an adjacency. satisfies neighbor requirements — The neighbor is having a problem forming an adjacency. breaks area, timers, or network type matching.",
+          "memoryAnchor": "FULL neighbor state = healthy, fully adjacent — no action required.",
+          "contrast": "Correct \"Both routers have formed an adjacency.\" vs wrong \"The neighbor is having a problem forming an adjacency.\": OSPF adjacency (neighbor): Both routers have formed an adjacency."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "FULL state means recalculating",
+          "whyItSeems": "\"The neighbor’s OSPF process is recalculating cost.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF adjacency (neighbor): Both routers have formed an adjacency. satisfies neighbor requirements — The neighbor’s OSPF process is recalculating cost. breaks area, timers, or network type matching.",
+          "memoryAnchor": "FULL neighbor state = healthy, fully adjacent — no action required.",
+          "contrast": "Correct \"Both routers have formed an adjacency.\" vs wrong \"The neighbor’s OSPF process is recalculating cost.\": OSPF adjacency (neighbor): Both routers have formed an adjacency."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Local recalculation in FULL state",
+          "whyItSeems": "\"This router’s OSPF process is recalculating cost.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"neighbor\", Both routers have formed an adjacency. matches the required behavior — This router’s OSPF process is recalculating cost. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "FULL neighbor state = healthy, fully adjacent — no action required.",
+          "contrast": "Correct \"Both routers have formed an adjacency.\" vs wrong \"This router’s OSPF process is recalculating cost.\": For \"neighbor\", Both routers have formed an adjacency."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q050",
@@ -9999,7 +15053,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Path preference = cost (lower wins) | DR election = priority — don't confuse the two."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "OSPF priority for path preference",
+          "whyItSeems": "\"Router(config-router)#ip ospf priority 25\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"bandwidth\", Router(config-if)#ip ospf cost 25 matches the required behavior — Router(config-router)#ip ospf priority 25 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Path preference = cost (lower wins) | DR election = priority — don't confuse the two.",
+          "contrast": "Correct \"Router(config-if)#ip ospf cost 25\" vs wrong \"Router(config-router)#ip ospf priority 25\": For \"bandwidth\", Router(config-if)#ip ospf cost 25 matches the required behavior — Router(config-router)#ip ospf priority 25 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented ip ospf route primary command",
+          "whyItSeems": "\"Router(config-if)#ip ospf route primary\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"bandwidth\", Router(config-if)#ip ospf cost 25 matches the required behavior — Router(config-if)#ip ospf route primary answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Path preference = cost (lower wins) | DR election = priority — don't confuse the two.",
+          "contrast": "Correct \"Router(config-if)#ip ospf cost 25\" vs wrong \"Router(config-if)#ip ospf route primary\": For \"bandwidth\", Router(config-if)#ip ospf cost 25 matches the required behavior — Router(config-if)#ip ospf route primary answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Passive interface for backup path",
+          "whyItSeems": "Router(config-router)#passive interface gi 0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Mask/wildcard (bandwidth): Router(config-if)#ip ospf cost 25 uses the mask style this stem requires — Router(config-router)#passive interface gi 0/0 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "Path preference = cost (lower wins) | DR election = priority — don't confuse the two.",
+          "contrast": "Correct \"Router(config-if)#ip ospf cost 25\" vs wrong \"Router(config-router)#passive interface gi 0/0\": Mask/wildcard (bandwidth): Router(config-if)#ip ospf cost 25 uses the mask style this stem requires — Router(config-router)#passive interface gi 0/0 confuses subnet mask with ACL/OSPF wildcard bits."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q051",
@@ -10052,7 +15132,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DROTHERs form FULL with DR/BDR only; DROTHER↔DROTHER stays at 2-WAY."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "FULL means still forming adjacency",
+          "whyItSeems": "\"It is in the process of forming an adjacency.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF adjacency (neighbor): It will only form an adjacency with the DR or BDR. satisfies neighbor requirements — It is in the process of forming an adjacency. breaks area, timers, or network type matching.",
+          "memoryAnchor": "DROTHERs form FULL with DR/BDR only; DROTHER↔DROTHER stays at 2-WAY.",
+          "contrast": "Correct \"It will only form an adjacency with the DR or BDR.\" vs wrong \"It is in the process of forming an adjacency.\": OSPF adjacency (neighbor): It will only form an adjacency with the DR or BDR."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "DROTHER as designated router",
+          "whyItSeems": "It is the designated router. states an OSPF DR/BDR election outcome or role that may not apply on this segment.",
+          "whyWrongHere": "OSPF DR/BDR (neighbor): It will only form an adjacency with the DR or BDR. follows election rules on this segment — It is the designated router. misstates who becomes DR/BDR or when.",
+          "memoryAnchor": "DROTHERs form FULL with DR/BDR only; DROTHER↔DROTHER stays at 2-WAY.",
+          "contrast": "Correct \"It will only form an adjacency with the DR or BDR.\" vs wrong \"It is the designated router.\": OSPF DR/BDR (neighbor): It will only form an adjacency with the DR or BDR."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "DROTHER not participating in area",
+          "whyItSeems": "It is not participating in this OSPF area. implies many-inside-to-few-outside PAT/overload translation.",
+          "whyWrongHere": "OSPF adjacency (neighbor): It will only form an adjacency with the DR or BDR. satisfies neighbor requirements — It is not participating in this OSPF area. breaks area, timers, or network type matching.",
+          "memoryAnchor": "DROTHERs form FULL with DR/BDR only; DROTHER↔DROTHER stays at 2-WAY.",
+          "contrast": "Correct \"It will only form an adjacency with the DR or BDR.\" vs wrong \"It is not participating in this OSPF area.\": OSPF adjacency (neighbor): It will only form an adjacency with the DR or BDR."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q052",
@@ -10107,7 +15213,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DR election: highest priority wins (tie = highest RID) — set on interface with ip ospf priority."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Priority under router OSPF config",
+          "whyItSeems": "\"RouterD(config-router)#ospf priority\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"broadcast\", RouterD(config-if)#ip ospf priority 10 matches the required behavior — RouterD(config-router)#ospf priority answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DR election: highest priority wins (tie = highest RID) — set on interface with ip ospf priority.",
+          "contrast": "Correct \"RouterD(config-if)#ip ospf priority 10\" vs wrong \"RouterD(config-router)#ospf priority\": For \"broadcast\", RouterD(config-if)#ip ospf priority 10 matches the required behavior — RouterD(config-router)#ospf priority answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "IP address for DR election",
+          "whyItSeems": "RouterD(config-if)#ip address 192.168.5.2 255.255.255.0 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "Mask/wildcard (broadcast): RouterD(config-if)#ip ospf priority 10 uses the mask style this stem requires — RouterD(config-if)#ip address 192.168.5.2 255.255.255.0 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "DR election: highest priority wins (tie = highest RID) — set on interface with ip ospf priority.",
+          "contrast": "Correct \"RouterD(config-if)#ip ospf priority 10\" vs wrong \"RouterD(config-if)#ip address 192.168.5.2 255.255.255.0\": Mask/wildcard (broadcast): RouterD(config-if)#ip ospf priority 10 uses the mask style this stem requires — RouterD(config-if)#ip address 192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "OSPF cost for DR election",
+          "whyItSeems": "\"RouterD(config-if)#ip ospf cost 15\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"broadcast\", RouterD(config-if)#ip ospf priority 10 matches the required behavior — RouterD(config-if)#ip ospf cost 15 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DR election: highest priority wins (tie = highest RID) — set on interface with ip ospf priority.",
+          "contrast": "Correct \"RouterD(config-if)#ip ospf priority 10\" vs wrong \"RouterD(config-if)#ip ospf cost 15\": For \"broadcast\", RouterD(config-if)#ip ospf priority 10 matches the required behavior — RouterD(config-if)#ip ospf cost 15 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q053",
@@ -10159,7 +15291,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "show ip ospf interface → see DR, BDR, hello/dead, cost, network type per link."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Neighbor table for DR identification",
+          "whyItSeems": "Router#show ip ospf neighbor is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (ospfv2): Router#show ip ospf interface inspects the right table or state — Router#show ip ospf neighbor shows unrelated information.",
+          "memoryAnchor": "show ip ospf interface → see DR, BDR, hello/dead, cost, network type per link.",
+          "contrast": "Correct \"Router#show ip ospf interface\" vs wrong \"Router#show ip ospf neighbor\": Verification command (ospfv2): Router#show ip ospf interface inspects the right table or state — Router#show ip ospf neighbor shows unrelated information."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "LSDB for per-interface DR display",
+          "whyItSeems": "Router#show ip ospf database is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (ospfv2): Router#show ip ospf interface inspects the right table or state — Router#show ip ospf database shows unrelated information.",
+          "memoryAnchor": "show ip ospf interface → see DR, BDR, hello/dead, cost, network type per link.",
+          "contrast": "Correct \"Router#show ip ospf interface\" vs wrong \"Router#show ip ospf database\": Verification command (ospfv2): Router#show ip ospf interface inspects the right table or state — Router#show ip ospf database shows unrelated information."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Invented show ip ospf dr command",
+          "whyItSeems": "Router#show ip ospf dr states an OSPF DR/BDR election outcome or role that may not apply on this segment.",
+          "whyWrongHere": "OSPF DR/BDR (ospfv2): Router#show ip ospf interface follows election rules on this segment — Router#show ip ospf dr misstates who becomes DR/BDR or when.",
+          "memoryAnchor": "show ip ospf interface → see DR, BDR, hello/dead, cost, network type per link.",
+          "contrast": "Correct \"Router#show ip ospf interface\" vs wrong \"Router#show ip ospf dr\": OSPF DR/BDR (ospfv2): Router#show ip ospf interface follows election rules on this segment — Router#show ip ospf dr misstates who becomes DR/BDR or when."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q054",
@@ -10212,7 +15370,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Shared link must be in the same OSPF area — area mismatch = no hello acceptance → no adjacency."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Timer mismatch when areas differ",
+          "whyItSeems": "The hello and dead timers do not match. states a MAC aging timer or timeout value that may not match the default or configured setting.",
+          "whyWrongHere": "OSPF adjacency (adjacency): The area IDs do not match. satisfies neighbor requirements — The hello and dead timers do not match. breaks area, timers, or network type matching.",
+          "memoryAnchor": "Shared link must be in the same OSPF area — area mismatch = no hello acceptance → no adjacency.",
+          "contrast": "Correct \"The area IDs do not match.\" vs wrong \"The hello and dead timers do not match.\": OSPF adjacency (adjacency): The area IDs do not match."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "No DR prevents adjacency",
+          "whyItSeems": "There is no designated router on the network. states an OSPF DR/BDR election outcome or role that may not apply on this segment.",
+          "whyWrongHere": "OSPF DR/BDR (adjacency): The area IDs do not match. follows election rules on this segment — There is no designated router on the network. misstates who becomes DR/BDR or when.",
+          "memoryAnchor": "Shared link must be in the same OSPF area — area mismatch = no hello acceptance → no adjacency.",
+          "contrast": "Correct \"The area IDs do not match.\" vs wrong \"There is no designated router on the network.\": OSPF DR/BDR (adjacency): The area IDs do not match."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Process ID mismatch breaks OSPF",
+          "whyItSeems": "\"The process IDs do not match.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"adjacency\", The area IDs do not match. matches the required behavior — The process IDs do not match. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Shared link must be in the same OSPF area — area mismatch = no hello acceptance → no adjacency.",
+          "contrast": "Correct \"The area IDs do not match.\" vs wrong \"The process IDs do not match.\": For \"adjacency\", The area IDs do not match."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q055",
@@ -10265,7 +15449,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF default injection = default-information originate [always] — requires existing default unless always used."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Static default alone propagates into OSPF",
+          "whyItSeems": "RouterA(config)#ip route 0.0.0.0 0.0.0.0 serial 0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Static routing (ospfv2): RouterA(config-router)#default-information originate uses the right next-hop or exit interface — RouterA(config)#ip route 0.0.0.0 0.0.0.0 serial 0/0 misconfigures recursive or floating static behavior.",
+          "memoryAnchor": "OSPF default injection = default-information originate [always] — requires existing default unless always used.",
+          "contrast": "Correct \"RouterA(config-router)#default-information originate\" vs wrong \"RouterA(config)#ip route 0.0.0.0 0.0.0.0 serial 0/0\": Static routing (ospfv2): RouterA(config-router)#default-information originate uses the right next-hop or exit interface — RouterA(config)#ip route 0."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Misspelled default-information originate",
+          "whyItSeems": "\"RouterA(config-router)#default-route originate\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"ospfv2\", RouterA(config-router)#default-information originate matches the required behavior — RouterA(config-router)#default-route originate answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF default injection = default-information originate [always] — requires existing default unless always used.",
+          "contrast": "Correct \"RouterA(config-router)#default-information originate\" vs wrong \"RouterA(config-router)#default-route originate\": For \"ospfv2\", RouterA(config-router)#default-information originate matches the required behavior — RouterA(config-router)#default-route originate answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Network 0.0.0.0 as default route injection",
+          "whyItSeems": "\"RouterA(config-router)#network 0.0.0.0 0.0.0.0 area 0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF area rules (ospfv2): RouterA(config-router)#default-information originate satisfies area type and connectivity — RouterA(config-router)#network 0.0.0.0 0.0.0.0 area 0 violates area/backbone constraints.",
+          "memoryAnchor": "OSPF default injection = default-information originate [always] — requires existing default unless always used.",
+          "contrast": "Correct \"RouterA(config-router)#default-information originate\" vs wrong \"RouterA(config-router)#network 0.0.0.0 0.0.0.0 area 0\": OSPF area rules (ospfv2): RouterA(config-router)#default-information originate satisfies area type and connectivity — RouterA(config-router)#network 0."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q056",
@@ -10316,7 +15526,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "bandwidth = kbps always | OSPF cost = reference-BW (default 100 Mbps) ÷ interface BW."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Bandwidth in bps instead of kbps",
+          "whyItSeems": "\"Router(config-if)#bandwidth 2048000000\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"bandwidth\", Router(config-if)#bandwidth 2048 matches the required behavior — Router(config-if)#bandwidth 2048000000 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "bandwidth = kbps always | OSPF cost = reference-BW (default 100 Mbps) ÷ interface BW.",
+          "contrast": "Correct \"Router(config-if)#bandwidth 2048\" vs wrong \"Router(config-if)#bandwidth 2048000000\": For \"bandwidth\", Router(config-if)#bandwidth 2048 matches the required behavior — Router(config-if)#bandwidth 2048000000 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Decimal Mbps in bandwidth command",
+          "whyItSeems": "\"Router(config-if)#bandwidth 2.048\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"bandwidth\", Router(config-if)#bandwidth 2048 matches the required behavior — Router(config-if)#bandwidth 2.048 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "bandwidth = kbps always | OSPF cost = reference-BW (default 100 Mbps) ÷ interface BW.",
+          "contrast": "Correct \"Router(config-if)#bandwidth 2048\" vs wrong \"Router(config-if)#bandwidth 2.048\": For \"bandwidth\", Router(config-if)#bandwidth 2048 matches the required behavior — Router(config-if)#bandwidth 2."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Bandwidth in bps divided by 1000",
+          "whyItSeems": "\"Router(config-if)#bandwidth 2048000\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"bandwidth\", Router(config-if)#bandwidth 2048 matches the required behavior — Router(config-if)#bandwidth 2048000 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "bandwidth = kbps always | OSPF cost = reference-BW (default 100 Mbps) ÷ interface BW.",
+          "contrast": "Correct \"Router(config-if)#bandwidth 2048\" vs wrong \"Router(config-if)#bandwidth 2048000\": For \"bandwidth\", Router(config-if)#bandwidth 2048 matches the required behavior — Router(config-if)#bandwidth 2048000 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q057",
@@ -10369,7 +15605,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Priority 0 = never DR/BDR | Priority 1 (default) = eligible | Highest priority wins election."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Invented no ospf designated command",
+          "whyItSeems": "\"Router(config)#no ospf designated\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"ospfv2\", Router(config-if)#ip ospf priority 0 matches the required behavior — Router(config)#no ospf designated answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Priority 0 = never DR/BDR | Priority 1 (default) = eligible | Highest priority wins election.",
+          "contrast": "Correct \"Router(config-if)#ip ospf priority 0\" vs wrong \"Router(config)#no ospf designated\": For \"ospfv2\", Router(config-if)#ip ospf priority 0 matches the required behavior — Router(config)#no ospf designated answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "config-router no ospf designated",
+          "whyItSeems": "\"Router(config-router)#no ospf designated\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"ospfv2\", Router(config-if)#ip ospf priority 0 matches the required behavior — Router(config-router)#no ospf designated answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Priority 0 = never DR/BDR | Priority 1 (default) = eligible | Highest priority wins election.",
+          "contrast": "Correct \"Router(config-if)#ip ospf priority 0\" vs wrong \"Router(config-router)#no ospf designated\": For \"ospfv2\", Router(config-if)#ip ospf priority 0 matches the required behavior — Router(config-router)#no ospf designated answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Passive interface to prevent DR role",
+          "whyItSeems": "Router(config-router)#passive interface gi 0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Mask/wildcard (ospfv2): Router(config-if)#ip ospf priority 0 uses the mask style this stem requires — Router(config-router)#passive interface gi 0/0 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "Priority 0 = never DR/BDR | Priority 1 (default) = eligible | Highest priority wins election.",
+          "contrast": "Correct \"Router(config-if)#ip ospf priority 0\" vs wrong \"Router(config-router)#passive interface gi 0/0\": Mask/wildcard (ospfv2): Router(config-if)#ip ospf priority 0 uses the mask style this stem requires — Router(config-router)#passive interface gi 0/0 confuses subnet mask with ACL/OSPF wildcard bits."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q058",
@@ -10420,7 +15682,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Loopback: interface loopback <0-2147483647> + ip address <ip> <mask> — common for OSPF RID."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "CIDR notation in ip address command",
+          "whyItSeems": "Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.2/24 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "IPv6 addressing (configure): Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.2 255.255.255.0 matches prefix, shortening, or assignment rules — Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.2/24 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "Loopback: interface loopback <0-2147483647> + ip address <ip> <mask> — common for OSPF RID.",
+          "contrast": "Correct \"Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.2 255.255.255.0\" vs wrong \"Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.2/24\": IPv6 addressing (configure): Router(config)#interface loopback 0 Router(config-if)#ip address 192."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Loopback interface without ID",
+          "whyItSeems": "Router(config)#interface loopback Router(config-if)#ip address 192.168.1.2/24 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "IPv6 addressing (configure): Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.2 255.255.255.0 matches prefix, shortening, or assignment rules — Router(config)#interface loopback Router(config-if)#ip address 192.168.1.2/24 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "Loopback: interface loopback <0-2147483647> + ip address <ip> <mask> — common for OSPF RID.",
+          "contrast": "Correct \"Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.2 255.255.255.0\" vs wrong \"Router(config)#interface loopback Router(config-if)#ip address 192.168.1.2/24\": IPv6 addressing (configure): Router(config)#interface loopback 0 Router(config-if)#ip address 192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Unnumbered loopback with dotted mask",
+          "whyItSeems": "Router(config)#interface loopback Router(config-if)#ip address 192.168.1.2 255.255.255.0 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "Mask/wildcard (configure): Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.2 255.255.255.0 uses the mask style this stem requires — Router(config)#interface loopback Router(config-if)#ip address 192.168.1.2 255.255.255.0 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "Loopback: interface loopback <0-2147483647> + ip address <ip> <mask> — common for OSPF RID.",
+          "contrast": "Correct \"Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.2 255.255.255.0\" vs wrong \"Router(config)#interface loopback Router(config-if)#ip address 192.168.1.2 255.255.255.0\": Mask/wildcard (configure): Router(config)#interface loopback 0 Router(config-if)#ip address 192."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q059",
@@ -10470,7 +15758,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF over MPLS: PE ↔ CE run OSPF in customer's area — MPLS backbone is transparent (sham-link for intra-area)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "PE restricted to area 0",
+          "whyItSeems": "\"The provider edge (PE) routers can only host area 0.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF area rules (statement): Both the customer edge (CE) routers and the provider edge (PE) routers can participate in area 0. satisfies area type and connectivity — The provider edge (PE) routers can only host area 0. violates area/backbone constraints.",
+          "memoryAnchor": "OSPF over MPLS: PE ↔ CE run OSPF in customer's area — MPLS backbone is transparent (sham-link for intra-area).",
+          "contrast": "Correct \"Both the customer edge (CE) routers and the provider edge (PE) routers can participate in area 0.\" vs wrong \"The provider edge (PE) routers can only host area 0.\": OSPF area rules (statement): Both the customer edge (CE) routers and the provider edge (PE) routers can participate in area 0."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "CE restricted to area 0",
+          "whyItSeems": "\"The customer edge (CE) routers can only host area 0.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF area rules (statement): Both the customer edge (CE) routers and the provider edge (PE) routers can participate in area 0. satisfies area type and connectivity — The customer edge (CE) routers can only host area 0. violates area/backbone constraints.",
+          "memoryAnchor": "OSPF over MPLS: PE ↔ CE run OSPF in customer's area — MPLS backbone is transparent (sham-link for intra-area).",
+          "contrast": "Correct \"Both the customer edge (CE) routers and the provider edge (PE) routers can participate in area 0.\" vs wrong \"The customer edge (CE) routers can only host area 0.\": OSPF area rules (statement): Both the customer edge (CE) routers and the provider edge (PE) routers can participate in area 0."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "GRE mandatory for OSPF over MPLS",
+          "whyItSeems": "\"The customer edge (CE) routers must use GRE for OSPF.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", Both the customer edge (CE) routers and the provider edge (PE) routers can participate in area 0. matches the required behavior — The customer edge (CE) routers must use GRE for OSPF. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF over MPLS: PE ↔ CE run OSPF in customer's area — MPLS backbone is transparent (sham-link for intra-area).",
+          "contrast": "Correct \"Both the customer edge (CE) routers and the provider edge (PE) routers can participate in area 0.\" vs wrong \"The customer edge (CE) routers must use GRE for OSPF.\": For \"statement\", Both the customer edge (CE) routers and the provider edge (PE) routers can participate in area 0."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q060",
@@ -10522,7 +15836,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF priority: default 1 | 0 = never DR | higher wins DR election (tie → highest RID)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "100 as default OSPF priority",
+          "whyItSeems": "100 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in priority.",
+          "whyWrongHere": "For \"priority\", 1 matches the required behavior — 100 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF priority: default 1 | 0 = never DR | higher wins DR election (tie → highest RID).",
+          "contrast": "Correct \"1\" vs wrong \"100\": For \"priority\", 1 matches the required behavior — 100 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Maximum value as default priority",
+          "whyItSeems": "255 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in priority.",
+          "whyWrongHere": "For \"priority\", 1 matches the required behavior — 255 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF priority: default 1 | 0 = never DR | higher wins DR election (tie → highest RID).",
+          "contrast": "Correct \"1\" vs wrong \"255\": For \"priority\", 1 matches the required behavior — 255 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "STP priority confused with OSPF priority",
+          "whyItSeems": "\"32,768\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"priority\", 1 matches the required behavior — 32,768 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF priority: default 1 | 0 = never DR | higher wins DR election (tie → highest RID).",
+          "contrast": "Correct \"1\" vs wrong \"32,768\": For \"priority\", 1 matches the required behavior — 32,768 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q061",
@@ -10574,7 +15914,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF DR is non-preemptive — incumbent keeps role until it fails or OSPF is cleared on it."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Local interface bounce forces DR change",
+          "whyItSeems": "You must use the shutdown and no shutdown commands on the interface with the highest IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"priority\", In privileged exec mode on the DR, you must enter the command clear ip ospf process x. matches the required behavior — You must use the shutdown and no shutdown commands on the interface with the highest IP address. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF DR is non-preemptive — incumbent keeps role until it fails or OSPF is cleared on it.",
+          "contrast": "Correct \"In privileged exec mode on the DR, you must enter the command clear ip ospf process x.\" vs wrong \"You must use the shutdown and no shutdown commands on the interface with the highest IP address.\": For \"priority\", In privileged exec mode on the DR, you must enter the command clear ip ospf process x."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented ospf election force command",
+          "whyItSeems": "\"In global configuration mode, you must enter the command ospf election force.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"priority\", In privileged exec mode on the DR, you must enter the command clear ip ospf process x. matches the required behavior — In global configuration mode, you must enter the command ospf election force. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF DR is non-preemptive — incumbent keeps role until it fails or OSPF is cleared on it.",
+          "contrast": "Correct \"In privileged exec mode on the DR, you must enter the command clear ip ospf process x.\" vs wrong \"In global configuration mode, you must enter the command ospf election force.\": For \"priority\", In privileged exec mode on the DR, you must enter the command clear ip ospf process x."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Clear on local router forces DR election",
+          "whyItSeems": "\"In privileged exec mode, you must enter the command clear ip ospf process x.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"priority\", In privileged exec mode on the DR, you must enter the command clear ip ospf process x. matches the required behavior — In privileged exec mode, you must enter the command clear ip ospf process x. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "OSPF DR is non-preemptive — incumbent keeps role until it fails or OSPF is cleared on it.",
+          "contrast": "Correct \"In privileged exec mode on the DR, you must enter the command clear ip ospf process x.\" vs wrong \"In privileged exec mode, you must enter the command clear ip ospf process x.\": For \"priority\", In privileged exec mode on the DR, you must enter the command clear ip ospf process x."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q062",
@@ -10625,7 +15991,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "OSPF adjacency needs: matching area, hello/dead timers, subnet, auth | NBMA default hello=30s."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Multiple area IDs block adjacency",
+          "whyItSeems": "\"Router A is configured with multiple area IDs.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "OSPF adjacency (configured): The two routers do not have the same hello timer of 30 seconds. satisfies neighbor requirements — Router A is configured with multiple area IDs. breaks area, timers, or network type matching.",
+          "memoryAnchor": "OSPF adjacency needs: matching area, hello/dead timers, subnet, auth | NBMA default hello=30s.",
+          "contrast": "Correct \"The two routers do not have the same hello timer of 30 seconds.\" vs wrong \"Router A is configured with multiple area IDs.\": OSPF adjacency (configured): The two routers do not have the same hello timer of 30 seconds."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Hello 10 always blocks adjacency",
+          "whyItSeems": "Router A is configured with a hello timer of 10. states a MAC aging timer or timeout value that may not match the default or configured setting.",
+          "whyWrongHere": "MAC aging (configured): The two routers do not have the same hello timer of 30 seconds. is the default or configured timer — Router A is configured with a hello timer of 10. states the wrong timeout value or behavior.",
+          "memoryAnchor": "OSPF adjacency needs: matching area, hello/dead timers, subnet, auth | NBMA default hello=30s.",
+          "contrast": "Correct \"The two routers do not have the same hello timer of 30 seconds.\" vs wrong \"Router A is configured with a hello timer of 10.\": MAC aging (configured): The two routers do not have the same hello timer of 30 seconds."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Hello 10 on one side always the problem",
+          "whyItSeems": "Router B is configured with a hello timer of 10. states a MAC aging timer or timeout value that may not match the default or configured setting.",
+          "whyWrongHere": "MAC aging (configured): The two routers do not have the same hello timer of 30 seconds. is the default or configured timer — Router B is configured with a hello timer of 10. states the wrong timeout value or behavior.",
+          "memoryAnchor": "OSPF adjacency needs: matching area, hello/dead timers, subnet, auth | NBMA default hello=30s.",
+          "contrast": "Correct \"The two routers do not have the same hello timer of 30 seconds.\" vs wrong \"Router B is configured with a hello timer of 10.\": MAC aging (configured): The two routers do not have the same hello timer of 30 seconds."
+        }
+      ]
     },
     {
       "id": "obj-3.4-source-q063",
@@ -10675,7 +16067,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "AD ladder: Connected=0, Static=1, EIGRP=90, OSPF=110, IS-IS=115, RIP=120."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "False belief that AD 90 for OSPF — treating \"90\" as if it satisfied the stem instead of \"110\".",
+          "whyItSeems": "90 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in ospfv2.",
+          "whyWrongHere": "For \"ospfv2\", 110 matches the required behavior — 90 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AD ladder: Connected=0, Static=1, EIGRP=90, OSPF=110, IS-IS=115, RIP=120.",
+          "contrast": "Correct \"110\" vs wrong \"90\": For \"ospfv2\", 110 matches the required behavior — 90 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "AD 120 for OSPF",
+          "whyItSeems": "120 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in ospfv2.",
+          "whyWrongHere": "For \"ospfv2\", 110 matches the required behavior — 120 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AD ladder: Connected=0, Static=1, EIGRP=90, OSPF=110, IS-IS=115, RIP=120.",
+          "contrast": "Correct \"110\" vs wrong \"120\": For \"ospfv2\", 110 matches the required behavior — 120 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "AD 200 for OSPF",
+          "whyItSeems": "200 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in ospfv2.",
+          "whyWrongHere": "For \"ospfv2\", 110 matches the required behavior — 200 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AD ladder: Connected=0, Static=1, EIGRP=90, OSPF=110, IS-IS=115, RIP=120.",
+          "contrast": "Correct \"110\" vs wrong \"200\": For \"ospfv2\", 110 matches the required behavior — 200 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     }
   ],
   "3.5": [
@@ -10729,7 +16147,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Open standard FHRP → VRRP. Cisco-only → HSRP or GLBP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Substituting Proxy ARP for FHRP",
+          "whyItSeems": "\"Proxy ARP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", VRRP matches the required behavior — Proxy ARP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"VRRP\" — not \"Proxy ARP\" — for what this stem actually tests.",
+          "contrast": "Correct \"VRRP\" vs wrong \"Proxy ARP\": For \"protocol\", VRRP matches the required behavior — Proxy ARP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Picking Cisco GLBP when IEEE standard is required",
+          "whyItSeems": "\"GLBP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (protocol): VRRP matches the protocol and failover behavior — GLBP swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "Remember: choose \"VRRP\" — not \"GLBP\" — for what this stem actually tests.",
+          "contrast": "Correct \"VRRP\" vs wrong \"GLBP\": FHRP (protocol): VRRP matches the protocol and failover behavior — GLBP swaps HSRP/VRRP/GLBP roles or timers."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Selecting HSRP instead of open standard VRRP",
+          "whyItSeems": "\"HSRP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (protocol): VRRP matches the protocol and failover behavior — HSRP swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "Remember: choose \"VRRP\" — not \"HSRP\" — for what this stem actually tests.",
+          "contrast": "Correct \"VRRP\" vs wrong \"HSRP\": FHRP (protocol): VRRP matches the protocol and failover behavior — HSRP swaps HSRP/VRRP/GLBP roles or timers."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q002",
@@ -10780,7 +16224,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "HSRP v1 virtual MAC pattern → 0000.0c07.acXX (XX = group in hex)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "OUI prefix as HSRP ID",
+          "whyItSeems": "\"0000.0c\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", 07.ac matches the required behavior — 0000.0c answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRP v1 virtual MAC pattern → 0000.0c07.acXX (XX = group in hex).",
+          "contrast": "Correct \"07.ac\" vs wrong \"0000.0c\": For \"protocol\", 07."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Mis-parsing MAC octets",
+          "whyItSeems": "\"oc07\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", 07.ac matches the required behavior — oc07 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRP v1 virtual MAC pattern → 0000.0c07.acXX (XX = group in hex).",
+          "contrast": "Correct \"07.ac\" vs wrong \"oc07\": For \"protocol\", 07."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Group number suffix as HSRP ID",
+          "whyItSeems": "\"0a\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", 07.ac matches the required behavior — 0a answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRP v1 virtual MAC pattern → 0000.0c07.acXX (XX = group in hex).",
+          "contrast": "Correct \"07.ac\" vs wrong \"0a\": For \"protocol\", 07."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q003",
@@ -10832,7 +16302,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Cisco load-balancing FHRP = GLBP; HSRP = one active; VRRP = open standard."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Proxy ARP as FHRP load balancer",
+          "whyItSeems": "\"Proxy ARP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"protocol\", GLBP matches the required behavior — Proxy ARP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cisco load-balancing FHRP = GLBP; HSRP = one active; VRRP = open standard.",
+          "contrast": "Correct \"GLBP\" vs wrong \"Proxy ARP\": For \"protocol\", GLBP matches the required behavior — Proxy ARP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "VRRP as Cisco load-balancing FHRP",
+          "whyItSeems": "\"VRRP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (protocol): GLBP matches the protocol and failover behavior — VRRP swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "Cisco load-balancing FHRP = GLBP; HSRP = one active; VRRP = open standard.",
+          "contrast": "Correct \"GLBP\" vs wrong \"VRRP\": FHRP (protocol): GLBP matches the protocol and failover behavior — VRRP swaps HSRP/VRRP/GLBP roles or timers."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "HSRP as load-balancing FHRP",
+          "whyItSeems": "\"HSRP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (protocol): GLBP matches the protocol and failover behavior — HSRP swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "Cisco load-balancing FHRP = GLBP; HSRP = one active; VRRP = open standard.",
+          "contrast": "Correct \"GLBP\" vs wrong \"HSRP\": FHRP (protocol): GLBP matches the protocol and failover behavior — HSRP swaps HSRP/VRRP/GLBP roles or timers."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q004",
@@ -10883,7 +16379,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "HSRP v1 MAC 0000.0c07.acXX — XX (last byte) = group number in hex."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "OUI prefix as HSRP group number",
+          "whyItSeems": "\"0000.0c\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"fhrp\", 01 matches the required behavior — 0000.0c answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRP v1 MAC 0000.0c07.acXX — XX (last byte) = group number in hex.",
+          "contrast": "Correct \"01\" vs wrong \"0000.0c\": For \"fhrp\", 01 matches the required behavior — 0000."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Mid-MAC bytes as group number",
+          "whyItSeems": "\"0c07\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"fhrp\", 01 matches the required behavior — 0c07 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRP v1 MAC 0000.0c07.acXX — XX (last byte) = group number in hex.",
+          "contrast": "Correct \"01\" vs wrong \"0c07\": For \"fhrp\", 01 matches the required behavior — 0c07 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "HSRP ID field as group number",
+          "whyItSeems": "\"07.ac\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"fhrp\", 01 matches the required behavior — 07.ac answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRP v1 MAC 0000.0c07.acXX — XX (last byte) = group number in hex.",
+          "contrast": "Correct \"01\" vs wrong \"07.ac\": For \"fhrp\", 01 matches the required behavior — 07."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q005",
@@ -10935,7 +16457,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "HSRP default priority = 100; higher number = more preferred active."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "110 as default HSRP priority",
+          "whyItSeems": "110 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in priority.",
+          "whyWrongHere": "For \"priority\", 100 matches the required behavior — 110 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRP default priority = 100; higher number = more preferred active.",
+          "contrast": "Correct \"100\" vs wrong \"110\": For \"priority\", 100 matches the required behavior — 110 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "200 as default HSRP priority",
+          "whyItSeems": "200 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in priority.",
+          "whyWrongHere": "For \"priority\", 100 matches the required behavior — 200 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRP default priority = 100; higher number = more preferred active.",
+          "contrast": "Correct \"100\" vs wrong \"200\": For \"priority\", 100 matches the required behavior — 200 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "10 as default HSRP priority",
+          "whyItSeems": "10 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in priority.",
+          "whyWrongHere": "For \"priority\", 100 matches the required behavior — 10 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRP default priority = 100; higher number = more preferred active.",
+          "contrast": "Correct \"100\" vs wrong \"10\": For \"priority\", 100 matches the required behavior — 10 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q006",
@@ -10985,7 +16533,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "HSRPv1 max groups = 256 (0–255); HSRPv2 raises the ceiling to 4096."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "EtherChannel limit as HSRP group max",
+          "whyItSeems": "8 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in fhrp.",
+          "whyWrongHere": "For \"fhrp\", 256 matches the required behavior — 8 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRPv1 max groups = 256 (0–255); HSRPv2 raises the ceiling to 4096.",
+          "contrast": "Correct \"256\" vs wrong \"8\": For \"fhrp\", 256 matches the required behavior — 8 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Small integer as HSRPv1 group max",
+          "whyItSeems": "16 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in fhrp.",
+          "whyWrongHere": "For \"fhrp\", 256 matches the required behavior — 16 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRPv1 max groups = 256 (0–255); HSRPv2 raises the ceiling to 4096.",
+          "contrast": "Correct \"256\" vs wrong \"16\": For \"fhrp\", 256 matches the required behavior — 16 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "255 vs 256 off-by-one for HSRPv1",
+          "whyItSeems": "255 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in fhrp.",
+          "whyWrongHere": "For \"fhrp\", 256 matches the required behavior — 255 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRPv1 max groups = 256 (0–255); HSRPv2 raises the ceiling to 4096.",
+          "contrast": "Correct \"256\" vs wrong \"255\": For \"fhrp\", 256 matches the required behavior — 255 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q007",
@@ -11035,7 +16609,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "HSRP control messages → UDP 1985 (memorize with VRRP 112)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "RTMP port for HSRP",
+          "whyItSeems": "UDP/1935 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Transport protocol (protocol): UDP/1985 matches reliability, ports, or connection behavior — UDP/1935 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "HSRP control messages → UDP 1985 (memorize with VRRP 112).",
+          "contrast": "Correct \"UDP/1985\" vs wrong \"UDP/1935\": Transport protocol (protocol): UDP/1985 matches reliability, ports, or connection behavior — UDP/1935 picks the wrong L4 protocol or port role."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Wrong UDP port near 1985",
+          "whyItSeems": "UDP/1895 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Transport protocol (protocol): UDP/1985 matches reliability, ports, or connection behavior — UDP/1895 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "HSRP control messages → UDP 1985 (memorize with VRRP 112).",
+          "contrast": "Correct \"UDP/1985\" vs wrong \"UDP/1895\": Transport protocol (protocol): UDP/1985 matches reliability, ports, or connection behavior — UDP/1895 picks the wrong L4 protocol or port role."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented UCP port for HSRP",
+          "whyItSeems": "UCP/3222 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "For \"protocol\", UDP/1985 matches the required behavior — UCP/3222 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRP control messages → UDP 1985 (memorize with VRRP 112).",
+          "contrast": "Correct \"UDP/1985\" vs wrong \"UCP/3222\": For \"protocol\", UDP/1985 matches the required behavior — UCP/3222 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q008",
@@ -11086,7 +16686,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "HSRP = one active + standby; GLBP = load balancing across AVFs."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "All HSRP routers active simultaneously",
+          "whyItSeems": "\"All routers in an HSRP group are active.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (statement): Only one router in an HSRP group can be active. matches the protocol and failover behavior — All routers in an HSRP group are active. swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "HSRP = one active + standby; GLBP = load balancing across AVFs.",
+          "contrast": "Correct \"Only one router in an HSRP group can be active.\" vs wrong \"All routers in an HSRP group are active.\": FHRP (statement): Only one router in an HSRP group can be active."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Virtual router as hello sender",
+          "whyItSeems": "\"The virtual router sends hello packets to the HSRP group.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (statement): Only one router in an HSRP group can be active. matches the protocol and failover behavior — The virtual router sends hello packets to the HSRP group. swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "HSRP = one active + standby; GLBP = load balancing across AVFs.",
+          "contrast": "Correct \"Only one router in an HSRP group can be active.\" vs wrong \"The virtual router sends hello packets to the HSRP group.\": FHRP (statement): Only one router in an HSRP group can be active."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "HSRP as load-balancing FHRP",
+          "whyItSeems": "\"HSRP allows for per-packet load balancing.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (statement): Only one router in an HSRP group can be active. matches the protocol and failover behavior — HSRP allows for per-packet load balancing. swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "HSRP = one active + standby; GLBP = load balancing across AVFs.",
+          "contrast": "Correct \"Only one router in an HSRP group can be active.\" vs wrong \"HSRP allows for per-packet load balancing.\": FHRP (statement): Only one router in an HSRP group can be active."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q009",
@@ -11136,7 +16762,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "HSRP hellos → multicast 224.0.0.102 (v2); memorize with GLBP 3222/UDP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Unicast for HSRP member hellos",
+          "whyItSeems": "\"Unicast\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"communication\", Multicast matches the required behavior — Unicast answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRP hellos → multicast 224.0.0.102 (v2); memorize with GLBP 3222/UDP.",
+          "contrast": "Correct \"Multicast\" vs wrong \"Unicast\": For \"communication\", Multicast matches the required behavior — Unicast answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Broadcast as HSRP member protocol",
+          "whyItSeems": "Broadcast describes flooding the frame to multiple ports in the VLAN.",
+          "whyWrongHere": "For \"communication\", Multicast matches the required behavior — Broadcast answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRP hellos → multicast 224.0.0.102 (v2); memorize with GLBP 3222/UDP.",
+          "contrast": "Correct \"Multicast\" vs wrong \"Broadcast\": For \"communication\", Multicast matches the required behavior — Broadcast answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "L2 flooding as HSRP transport",
+          "whyItSeems": "Layer 2 flooding describes flooding the frame to multiple ports in the VLAN.",
+          "whyWrongHere": "For \"communication\", Multicast matches the required behavior — Layer 2 flooding answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRP hellos → multicast 224.0.0.102 (v2); memorize with GLBP 3222/UDP.",
+          "contrast": "Correct \"Multicast\" vs wrong \"Layer 2 flooding\": For \"communication\", Multicast matches the required behavior — Layer 2 flooding answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q010",
@@ -11188,7 +16840,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "FHRP clients point at the virtual IP/MAC — active router services it; standby waits."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Active router IP as default gateway",
+          "whyItSeems": "\"Active router\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"default gateway\", Virtual router matches the required behavior — Active router answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "FHRP clients point at the virtual IP/MAC — active router services it; standby waits.",
+          "contrast": "Correct \"Virtual router\" vs wrong \"Active router\": For \"default gateway\", Virtual router matches the required behavior — Active router answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Standby router as gateway target",
+          "whyItSeems": "\"Standby router\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (default gateway): Virtual router matches the protocol and failover behavior — Standby router swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "FHRP clients point at the virtual IP/MAC — active router services it; standby waits.",
+          "contrast": "Correct \"Virtual router\" vs wrong \"Standby router\": FHRP (default gateway): Virtual router matches the protocol and failover behavior — Standby router swaps HSRP/VRRP/GLBP roles or timers."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented monitor router role",
+          "whyItSeems": "\"Monitor router\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"default gateway\", Virtual router matches the required behavior — Monitor router answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "FHRP clients point at the virtual IP/MAC — active router services it; standby waits.",
+          "contrast": "Correct \"Virtual router\" vs wrong \"Monitor router\": For \"default gateway\", Virtual router matches the required behavior — Monitor router answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q011",
@@ -11239,7 +16917,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "HSRP timers: hello sends, hold expires → standby becomes active."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Hello timer as failover trigger",
+          "whyItSeems": "Hello timer states a MAC aging timer or timeout value that may not match the default or configured setting.",
+          "whyWrongHere": "MAC aging (fhrp): Hold timer is the default or configured timer — Hello timer states the wrong timeout value or behavior.",
+          "memoryAnchor": "HSRP timers: hello sends, hold expires → standby becomes active.",
+          "contrast": "Correct \"Hold timer\" vs wrong \"Hello timer\": MAC aging (fhrp): Hold timer is the default or configured timer — Hello timer states the wrong timeout value or behavior."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented standby timer name",
+          "whyItSeems": "Standby timer states a MAC aging timer or timeout value that may not match the default or configured setting.",
+          "whyWrongHere": "MAC aging (fhrp): Hold timer is the default or configured timer — Standby timer states the wrong timeout value or behavior.",
+          "memoryAnchor": "HSRP timers: hello sends, hold expires → standby becomes active.",
+          "contrast": "Correct \"Hold timer\" vs wrong \"Standby timer\": MAC aging (fhrp): Hold timer is the default or configured timer — Standby timer states the wrong timeout value or behavior."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Virtual timer as HSRP failover trigger",
+          "whyItSeems": "Virtual timer states a MAC aging timer or timeout value that may not match the default or configured setting.",
+          "whyWrongHere": "MAC aging (fhrp): Hold timer is the default or configured timer — Virtual timer states the wrong timeout value or behavior.",
+          "memoryAnchor": "HSRP timers: hello sends, hold expires → standby becomes active.",
+          "contrast": "Correct \"Hold timer\" vs wrong \"Virtual timer\": MAC aging (fhrp): Hold timer is the default or configured timer — Virtual timer states the wrong timeout value or behavior."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q012",
@@ -11290,7 +16994,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "FHRP ports: HSRP 1985 | GLBP 3222 | VRRP 112."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "RTMP port for GLBP",
+          "whyItSeems": "UDP/1935 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Transport protocol (protocol): UDP/3222 matches reliability, ports, or connection behavior — UDP/1935 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "FHRP ports: HSRP 1985 | GLBP 3222 | VRRP 112.",
+          "contrast": "Correct \"UDP/3222\" vs wrong \"UDP/1935\": Transport protocol (protocol): UDP/3222 matches reliability, ports, or connection behavior — UDP/1935 picks the wrong L4 protocol or port role."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "HSRP port for GLBP",
+          "whyItSeems": "UDP/1985 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Transport protocol (protocol): UDP/3222 matches reliability, ports, or connection behavior — UDP/1985 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "FHRP ports: HSRP 1985 | GLBP 3222 | VRRP 112.",
+          "contrast": "Correct \"UDP/3222\" vs wrong \"UDP/1985\": Transport protocol (protocol): UDP/3222 matches reliability, ports, or connection behavior — UDP/1985 picks the wrong L4 protocol or port role."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Wrong UDP port near GLBP",
+          "whyItSeems": "UDP/1895 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Transport protocol (protocol): UDP/3222 matches reliability, ports, or connection behavior — UDP/1895 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "FHRP ports: HSRP 1985 | GLBP 3222 | VRRP 112.",
+          "contrast": "Correct \"UDP/3222\" vs wrong \"UDP/1895\": Transport protocol (protocol): UDP/3222 matches reliability, ports, or connection behavior — UDP/1895 picks the wrong L4 protocol or port role."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q013",
@@ -11342,7 +17072,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "HSRPv2 upgrades: 4096 groups, multicast, millisecond timers, IPv6."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "HSRPv2 without hellos",
+          "whyItSeems": "\"HSRPv2 does not use hello packets.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (difference): HSRPv2 uses milliseconds. matches the protocol and failover behavior — HSRPv2 does not use hello packets. swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "HSRPv2 upgrades: 4096 groups, multicast, millisecond timers, IPv6.",
+          "contrast": "Correct \"HSRPv2 uses milliseconds.\" vs wrong \"HSRPv2 does not use hello packets.\": FHRP (difference): HSRPv2 uses milliseconds."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Broadcast/multicast as primary v1/v2 difference",
+          "whyItSeems": "HSRPv1 uses broadcasts, and HSRPv2 uses multicasts. describes flooding the frame to multiple ports in the VLAN.",
+          "whyWrongHere": "FHRP (difference): HSRPv2 uses milliseconds. matches the protocol and failover behavior — HSRPv1 uses broadcasts, and HSRPv2 uses multicasts. swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "HSRPv2 upgrades: 4096 groups, multicast, millisecond timers, IPv6.",
+          "contrast": "Correct \"HSRPv2 uses milliseconds.\" vs wrong \"HSRPv1 uses broadcasts, and HSRPv2 uses multicasts.\": FHRP (difference): HSRPv2 uses milliseconds."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "IPv6 as the keyed v1/v2 difference",
+          "whyItSeems": "HSRPv1 supports IPv6. states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "FHRP (difference): HSRPv2 uses milliseconds. matches the protocol and failover behavior — HSRPv1 supports IPv6. swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "HSRPv2 upgrades: 4096 groups, multicast, millisecond timers, IPv6.",
+          "contrast": "Correct \"HSRPv2 uses milliseconds.\" vs wrong \"HSRPv1 supports IPv6.\": FHRP (difference): HSRPv2 uses milliseconds."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q014",
@@ -11394,7 +17150,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "GLBP roles: AVG (VIP/ARP) + AVF (forwards) — not HSRP active/standby."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "HSRP active router role applied to GLBP",
+          "whyItSeems": "\"The active router is responsible for responding to clients with the virtual router’s MAC address.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", The active virtual gateway will respond with a MAC address of an active virtual forwarder. matches the required behavior — The active router is responsible for responding to clients with the virtual router’s MAC address. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GLBP roles: AVG (VIP/ARP) + AVF (forwards) — not HSRP active/standby.",
+          "contrast": "Correct \"The active virtual gateway will respond with a MAC address of an active virtual forwarder.\" vs wrong \"The active router is responsible for responding to clients with the virtual router’s MAC address.\": For \"statement\", The active virtual gateway will respond with a MAC address of an active virtual forwarder."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Physical router MAC as GLBP ARP response",
+          "whyItSeems": "\"The active virtual gateway will respond with a MAC address of the active router.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", The active virtual gateway will respond with a MAC address of an active virtual forwarder. matches the required behavior — The active virtual gateway will respond with a MAC address of the active router. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GLBP roles: AVG (VIP/ARP) + AVF (forwards) — not HSRP active/standby.",
+          "contrast": "Correct \"The active virtual gateway will respond with a MAC address of an active virtual forwarder.\" vs wrong \"The active virtual gateway will respond with a MAC address of the active router.\": For \"statement\", The active virtual gateway will respond with a MAC address of an active virtual forwarder."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Virtual router tracking as GLBP ARP handler",
+          "whyItSeems": "The virtual router is responsible for responding to tracking requests. names a DHCP DORA message step that may not be the phase described in the stem.",
+          "whyWrongHere": "For \"statement\", The active virtual gateway will respond with a MAC address of an active virtual forwarder. matches the required behavior — The virtual router is responsible for responding to tracking requests. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GLBP roles: AVG (VIP/ARP) + AVF (forwards) — not HSRP active/standby.",
+          "contrast": "Correct \"The active virtual gateway will respond with a MAC address of an active virtual forwarder.\" vs wrong \"The virtual router is responsible for responding to tracking requests.\": For \"statement\", The active virtual gateway will respond with a MAC address of an active virtual forwarder."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q015",
@@ -11447,7 +17229,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "GLBP AVG election: highest priority → tie = highest IP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Lowest priority wins GLBP AVG",
+          "whyItSeems": "\"The router with the lowest priority\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (fhrp): The router with the highest priority and highest IP address matches the protocol and failover behavior — The router with the lowest priority swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "GLBP AVG election: highest priority → tie = highest IP.",
+          "contrast": "Correct \"The router with the highest priority and highest IP address\" vs wrong \"The router with the lowest priority\": FHRP (fhrp): The router with the highest priority and highest IP address matches the protocol and failover behavior — The router with the lowest priority swaps HSRP/VRRP/GLBP roles or timers."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Priority-only AVG election without IP tie-break",
+          "whyItSeems": "\"The router with the highest priority\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (fhrp): The router with the highest priority and highest IP address matches the protocol and failover behavior — The router with the highest priority swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "GLBP AVG election: highest priority → tie = highest IP.",
+          "contrast": "Correct \"The router with the highest priority and highest IP address\" vs wrong \"The router with the highest priority\": FHRP (fhrp): The router with the highest priority and highest IP address matches the protocol and failover behavior — The router with the highest priority swaps HSRP/VRRP/GLBP roles or timers."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Lowest priority and IP as AVG winner",
+          "whyItSeems": "The router with the lowest priority and lowest IP address shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "FHRP (fhrp): The router with the highest priority and highest IP address matches the protocol and failover behavior — The router with the lowest priority and lowest IP address swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "GLBP AVG election: highest priority → tie = highest IP.",
+          "contrast": "Correct \"The router with the highest priority and highest IP address\" vs wrong \"The router with the lowest priority and lowest IP address\": FHRP (fhrp): The router with the highest priority and highest IP address matches the protocol and failover behavior — The router with the lowest priority and lowest IP address swaps HSRP/VRRP/GLBP roles or timers."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q016",
@@ -11498,7 +17306,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "GLBP load share: up to 4 AVFs + 1 AVG per group."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Two AVFs as GLBP maximum",
+          "whyItSeems": "2 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in forwarders.",
+          "whyWrongHere": "For \"forwarders\", 4 matches the required behavior — 2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GLBP load share: up to 4 AVFs + 1 AVG per group.",
+          "contrast": "Correct \"4\" vs wrong \"2\": For \"forwarders\", 4 matches the required behavior — 2 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Sixteen AVFs as GLBP group max",
+          "whyItSeems": "16 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in forwarders.",
+          "whyWrongHere": "For \"forwarders\", 4 matches the required behavior — 16 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GLBP load share: up to 4 AVFs + 1 AVG per group.",
+          "contrast": "Correct \"4\" vs wrong \"16\": For \"forwarders\", 4 matches the required behavior — 16 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "1024 AVFs as GLBP limit",
+          "whyItSeems": "\"1,024\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"forwarders\", 4 matches the required behavior — 1,024 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GLBP load share: up to 4 AVFs + 1 AVG per group.",
+          "contrast": "Correct \"4\" vs wrong \"1,024\": For \"forwarders\", 4 matches the required behavior — 1,024 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q017",
@@ -11549,7 +17383,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "HSRP priority: default 100, higher wins — syntax is standby <n> priority <n>."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Sub-default priority to become active",
+          "whyItSeems": "\"Router(config-if)#standby 1 priority 70\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (fhrp): Router(config-if)#standby 1 priority 150 matches the protocol and failover behavior — Router(config-if)#standby 1 priority 70 swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "HSRP priority: default 100, higher wins — syntax is standby <n> priority <n>.",
+          "contrast": "Correct \"Router(config-if)#standby 1 priority 150\" vs wrong \"Router(config-if)#standby 1 priority 70\": FHRP (fhrp): Router(config-if)#standby 1 priority 150 matches the protocol and failover behavior — Router(config-if)#standby 1 priority 70 swaps HSRP/VRRP/GLBP roles or timers."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "hsrp keyword instead of standby",
+          "whyItSeems": "\"Router(config-if)#hsrp 1 priority 150\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (fhrp): Router(config-if)#standby 1 priority 150 matches the protocol and failover behavior — Router(config-if)#hsrp 1 priority 150 swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "HSRP priority: default 100, higher wins — syntax is standby <n> priority <n>.",
+          "contrast": "Correct \"Router(config-if)#standby 1 priority 150\" vs wrong \"Router(config-if)#hsrp 1 priority 150\": FHRP (fhrp): Router(config-if)#standby 1 priority 150 matches the protocol and failover behavior — Router(config-if)#hsrp 1 priority 150 swaps HSRP/VRRP/GLBP roles or timers."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "hsrp command with insufficient priority",
+          "whyItSeems": "\"Router(config-if)#hsrp 1 priority 90\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (fhrp): Router(config-if)#standby 1 priority 150 matches the protocol and failover behavior — Router(config-if)#hsrp 1 priority 90 swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "HSRP priority: default 100, higher wins — syntax is standby <n> priority <n>.",
+          "contrast": "Correct \"Router(config-if)#standby 1 priority 150\" vs wrong \"Router(config-if)#hsrp 1 priority 90\": FHRP (fhrp): Router(config-if)#standby 1 priority 150 matches the protocol and failover behavior — Router(config-if)#hsrp 1 priority 90 swaps HSRP/VRRP/GLBP roles or timers."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q018",
@@ -11599,7 +17459,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "HSRP group limits: v1 = 256 (0–255) | v2 = 4096."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "HSRPv1 max groups as HSRPv2 answer",
+          "whyItSeems": "255 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in fhrp.",
+          "whyWrongHere": "For \"fhrp\", 4,096 matches the required behavior — 255 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRP group limits: v1 = 256 (0–255) | v2 = 4096.",
+          "contrast": "Correct \"4,096\" vs wrong \"255\": For \"fhrp\", 4,096 matches the required behavior — 255 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "256 as HSRPv2 group max",
+          "whyItSeems": "256 gives a numeric value (timer, prefix, or rate) that may not match the fact tested in fhrp.",
+          "whyWrongHere": "For \"fhrp\", 4,096 matches the required behavior — 256 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRP group limits: v1 = 256 (0–255) | v2 = 4096.",
+          "contrast": "Correct \"4,096\" vs wrong \"256\": For \"fhrp\", 4,096 matches the required behavior — 256 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "1024 as HSRPv2 group max",
+          "whyItSeems": "\"1,024\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"fhrp\", 4,096 matches the required behavior — 1,024 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRP group limits: v1 = 256 (0–255) | v2 = 4096.",
+          "contrast": "Correct \"4,096\" vs wrong \"1,024\": For \"fhrp\", 4,096 matches the required behavior — 1,024 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q019",
@@ -11652,7 +17538,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "FHRP MAC prefixes: HSRPv1 0000.0c07.ac | HSRPv2 0000.0c9f.f | GLBP 0007.b400 | VRRP 0000.5e00.01."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "HSRPv1 MAC OUI for 0000.0c9f.f address",
+          "whyItSeems": "\"HSRPv1\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (default gateway): HSRPv2 matches the protocol and failover behavior — HSRPv1 swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "FHRP MAC prefixes: HSRPv1 0000.0c07.ac | HSRPv2 0000.0c9f.f | GLBP 0007.b400 | VRRP 0000.5e00.01.",
+          "contrast": "Correct \"HSRPv2\" vs wrong \"HSRPv1\": FHRP (default gateway): HSRPv2 matches the protocol and failover behavior — HSRPv1 swaps HSRP/VRRP/GLBP roles or timers."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "GLBP MAC OUI for HSRPv2 address",
+          "whyItSeems": "\"GLBP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (default gateway): HSRPv2 matches the protocol and failover behavior — GLBP swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "FHRP MAC prefixes: HSRPv1 0000.0c07.ac | HSRPv2 0000.0c9f.f | GLBP 0007.b400 | VRRP 0000.5e00.01.",
+          "contrast": "Correct \"HSRPv2\" vs wrong \"GLBP\": FHRP (default gateway): HSRPv2 matches the protocol and failover behavior — GLBP swaps HSRP/VRRP/GLBP roles or timers."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "VRRP MAC for HSRPv2 OUI",
+          "whyItSeems": "\"VRRP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (default gateway): HSRPv2 matches the protocol and failover behavior — VRRP swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "FHRP MAC prefixes: HSRPv1 0000.0c07.ac | HSRPv2 0000.0c9f.f | GLBP 0007.b400 | VRRP 0000.5e00.01.",
+          "contrast": "Correct \"HSRPv2\" vs wrong \"VRRP\": FHRP (default gateway): HSRPv2 matches the protocol and failover behavior — VRRP swaps HSRP/VRRP/GLBP roles or timers."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q020",
@@ -11704,7 +17616,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Enable preemption: standby <n> preempt — higher priority router can reclaim active role."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Preemption as load-balancing feature",
+          "whyItSeems": "\"It allows the protocol to effectively load-balance per packet.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"definition\", When a standby router comes online, it allows for a re-election of the active router. matches the required behavior — It allows the protocol to effectively load-balance per packet. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Enable preemption: standby <n> preempt — higher priority router can reclaim active role.",
+          "contrast": "Correct \"When a standby router comes online, it allows for a re-election of the active router.\" vs wrong \"It allows the protocol to effectively load-balance per packet.\": For \"definition\", When a standby router comes online, it allows for a re-election of the active router."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Interface tracking as preemption definition",
+          "whyItSeems": "\"It watches an upstream interface and fails over when the interface goes down.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"definition\", When a standby router comes online, it allows for a re-election of the active router. matches the required behavior — It watches an upstream interface and fails over when the interface goes down. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Enable preemption: standby <n> preempt — higher priority router can reclaim active role.",
+          "contrast": "Correct \"When a standby router comes online, it allows for a re-election of the active router.\" vs wrong \"It watches an upstream interface and fails over when the interface goes down.\": For \"definition\", When a standby router comes online, it allows for a re-election of the active router."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Preemption ignores priority for IP-only election",
+          "whyItSeems": "It ignores the priorities of the routers and elects an active router by highest IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"definition\", When a standby router comes online, it allows for a re-election of the active router. matches the required behavior — It ignores the priorities of the routers and elects an active router by highest IP address. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Enable preemption: standby <n> preempt — higher priority router can reclaim active role.",
+          "contrast": "Correct \"When a standby router comes online, it allows for a re-election of the active router.\" vs wrong \"It ignores the priorities of the routers and elects an active router by highest IP address.\": For \"definition\", When a standby router comes online, it allows for a re-election of the active router."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q021",
@@ -11755,7 +17693,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "HSRP load spread trick: per-VLAN groups + alternating priorities; true LB → GLBP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "HSRPv2 alone as load-balancing method",
+          "whyItSeems": "\"Configure version 2 for all HSRP groups.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (configuring): Configure an HSRP group per VLAN and alternate the priority above 100. matches the protocol and failover behavior — Configure version 2 for all HSRP groups. swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "HSRP load spread trick: per-VLAN groups + alternating priorities; true LB → GLBP.",
+          "contrast": "Correct \"Configure an HSRP group per VLAN and alternate the priority above 100.\" vs wrong \"Configure version 2 for all HSRP groups.\": FHRP (configuring): Configure an HSRP group per VLAN and alternate the priority above 100."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "PPPoE as HSRP load distribution",
+          "whyItSeems": "\"Configure PPPoE on the router interfaces.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuring\", Configure an HSRP group per VLAN and alternate the priority above 100. matches the required behavior — Configure PPPoE on the router interfaces. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRP load spread trick: per-VLAN groups + alternating priorities; true LB → GLBP.",
+          "contrast": "Correct \"Configure an HSRP group per VLAN and alternate the priority above 100.\" vs wrong \"Configure PPPoE on the router interfaces.\": For \"configuring\", Configure an HSRP group per VLAN and alternate the priority above 100."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "All routers active in one HSRP group",
+          "whyItSeems": "\"Configure all routers in the HSRP as active routers.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (configuring): Configure an HSRP group per VLAN and alternate the priority above 100. matches the protocol and failover behavior — Configure all routers in the HSRP as active routers. swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "HSRP load spread trick: per-VLAN groups + alternating priorities; true LB → GLBP.",
+          "contrast": "Correct \"Configure an HSRP group per VLAN and alternate the priority above 100.\" vs wrong \"Configure all routers in the HSRP as active routers.\": FHRP (configuring): Configure an HSRP group per VLAN and alternate the priority above 100."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q022",
@@ -11805,7 +17769,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "HSRP verify: show standby [brief | interface] — not show hsrp."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "show hsrp as valid verify command",
+          "whyItSeems": "\"RouterA#show hsrp\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (fhrp): RouterA#show standby matches the protocol and failover behavior — RouterA#show hsrp swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "HSRP verify: show standby [brief | interface] — not show hsrp.",
+          "contrast": "Correct \"RouterA#show standby\" vs wrong \"RouterA#show hsrp\": FHRP (fhrp): RouterA#show standby matches the protocol and failover behavior — RouterA#show hsrp swaps HSRP/VRRP/GLBP roles or timers."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "show ip standby as HSRP verify command",
+          "whyItSeems": "RouterA#show ip standby is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (fhrp): RouterA#show standby inspects the right table or state — RouterA#show ip standby shows unrelated information.",
+          "memoryAnchor": "HSRP verify: show standby [brief | interface] — not show hsrp.",
+          "contrast": "Correct \"RouterA#show standby\" vs wrong \"RouterA#show ip standby\": Verification command (fhrp): RouterA#show standby inspects the right table or state — RouterA#show ip standby shows unrelated information."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "show ip hsrp as verify command",
+          "whyItSeems": "RouterA#show ip hsrp is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (fhrp): RouterA#show standby inspects the right table or state — RouterA#show ip hsrp shows unrelated information.",
+          "memoryAnchor": "HSRP verify: show standby [brief | interface] — not show hsrp.",
+          "contrast": "Correct \"RouterA#show standby\" vs wrong \"RouterA#show ip hsrp\": Verification command (fhrp): RouterA#show standby inspects the right table or state — RouterA#show ip hsrp shows unrelated information."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q023",
@@ -11859,7 +17849,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Higher priority + no preempt = incumbent stays active — enable standby <n> preempt."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Default priority 150 instead of 100",
+          "whyItSeems": "\"The default priority is 150.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (priority): The HSRP group is not set for preemption. matches the protocol and failover behavior — The default priority is 150. swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "Higher priority + no preempt = incumbent stays active — enable standby <n> preempt.",
+          "contrast": "Correct \"The HSRP group is not set for preemption.\" vs wrong \"The default priority is 150.\": FHRP (priority): The HSRP group is not set for preemption."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Hold timer blocking priority-based takeover",
+          "whyItSeems": "The hold timer is set too high and needs to timeout. states a MAC aging timer or timeout value that may not match the default or configured setting.",
+          "whyWrongHere": "For \"priority\", The HSRP group is not set for preemption. matches the required behavior — The hold timer is set too high and needs to timeout. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Higher priority + no preempt = incumbent stays active — enable standby <n> preempt.",
+          "contrast": "Correct \"The HSRP group is not set for preemption.\" vs wrong \"The hold timer is set too high and needs to timeout.\": For \"priority\", The HSRP group is not set for preemption."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "IP tiebreaker as reason priority 150 fails",
+          "whyItSeems": "Router A’s IP address is too low. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"priority\", The HSRP group is not set for preemption. matches the required behavior — Router A’s IP address is too low. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Higher priority + no preempt = incumbent stays active — enable standby <n> preempt.",
+          "contrast": "Correct \"The HSRP group is not set for preemption.\" vs wrong \"Router A’s IP address is too low.\": For \"priority\", The HSRP group is not set for preemption."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q024",
@@ -11910,7 +17926,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "HSRP preempt syntax: standby <n> preempt under config-if."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Global config standby preemption",
+          "whyItSeems": "\"Router(config)#standby 1 preemption\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (preemption): Router(config-if)#standby 1 preempt matches the protocol and failover behavior — Router(config)#standby 1 preemption swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "HSRP preempt syntax: standby <n> preempt under config-if.",
+          "contrast": "Correct \"Router(config-if)#standby 1 preempt\" vs wrong \"Router(config)#standby 1 preemption\": FHRP (preemption): Router(config-if)#standby 1 preempt matches the protocol and failover behavior — Router(config)#standby 1 preemption swaps HSRP/VRRP/GLBP roles or timers."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "preemption instead of preempt keyword",
+          "whyItSeems": "\"Router(config-if)#standby 1 preemption\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (preemption): Router(config-if)#standby 1 preempt matches the protocol and failover behavior — Router(config-if)#standby 1 preemption swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "HSRP preempt syntax: standby <n> preempt under config-if.",
+          "contrast": "Correct \"Router(config-if)#standby 1 preempt\" vs wrong \"Router(config-if)#standby 1 preemption\": FHRP (preemption): Router(config-if)#standby 1 preempt matches the protocol and failover behavior — Router(config-if)#standby 1 preemption swaps HSRP/VRRP/GLBP roles or timers."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "hsrp keyword instead of standby preempt",
+          "whyItSeems": "\"Router(config-if)#hsrp 1 preempt\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (preemption): Router(config-if)#standby 1 preempt matches the protocol and failover behavior — Router(config-if)#hsrp 1 preempt swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "HSRP preempt syntax: standby <n> preempt under config-if.",
+          "contrast": "Correct \"Router(config-if)#standby 1 preempt\" vs wrong \"Router(config-if)#hsrp 1 preempt\": FHRP (preemption): Router(config-if)#standby 1 preempt matches the protocol and failover behavior — Router(config-if)#hsrp 1 preempt swaps HSRP/VRRP/GLBP roles or timers."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q025",
@@ -11961,7 +18003,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "FHRP syntax split: HSRP = standby | VRRP = vrrp <n> ip <vip> | GLBP = glbp <n> ip <vip>."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Global vrrp with interface argument",
+          "whyItSeems": "Router(config)#vrrp 1 10.1.2.3 gi 0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (configure): Router(config-if)#vrrp 1 ip 10.1.2.3 matches prefix, shortening, or assignment rules — Router(config)#vrrp 1 10.1.2.3 gi 0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "FHRP syntax split: HSRP = standby | VRRP = vrrp <n> ip <vip> | GLBP = glbp <n> ip <vip>.",
+          "contrast": "Correct \"Router(config-if)#vrrp 1 ip 10.1.2.3\" vs wrong \"Router(config)#vrrp 1 10.1.2.3 gi 0/0\": IPv6 addressing (configure): Router(config-if)#vrrp 1 ip 10."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "VRRP VIP without ip keyword",
+          "whyItSeems": "\"Router(config-if)#vrrp 1 10.1.2.3\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (configure): Router(config-if)#vrrp 1 ip 10.1.2.3 matches the protocol and failover behavior — Router(config-if)#vrrp 1 10.1.2.3 swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "FHRP syntax split: HSRP = standby | VRRP = vrrp <n> ip <vip> | GLBP = glbp <n> ip <vip>.",
+          "contrast": "Correct \"Router(config-if)#vrrp 1 ip 10.1.2.3\" vs wrong \"Router(config-if)#vrrp 1 10.1.2.3\": FHRP (configure): Router(config-if)#vrrp 1 ip 10."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "HSRP standby syntax for VRRP",
+          "whyItSeems": "\"Router(config-if)#standby 1 10.1.2.3 Router(config-if)#standby 1 vrrp\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (configure): Router(config-if)#vrrp 1 ip 10.1.2.3 matches the protocol and failover behavior — Router(config-if)#standby 1 10.1.2.3 Router(config-if)#standby 1 vrrp swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "FHRP syntax split: HSRP = standby | VRRP = vrrp <n> ip <vip> | GLBP = glbp <n> ip <vip>.",
+          "contrast": "Correct \"Router(config-if)#vrrp 1 ip 10.1.2.3\" vs wrong \"Router(config-if)#standby 1 10.1.2.3 Router(config-if)#standby 1 vrrp\": FHRP (configure): Router(config-if)#vrrp 1 ip 10."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q026",
@@ -12013,7 +18081,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "HSRP track: standby <n> track <if> [priority decrement] — reacts to upstream ISP link loss."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "standby interface tracking word order",
+          "whyItSeems": "RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "FHRP (topology): RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1 matches the protocol and failover behavior — RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1 swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "HSRP track: standby <n> track <if> [priority decrement] — reacts to upstream ISP link loss.",
+          "contrast": "Correct \"RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1\" vs wrong \"RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1\": FHRP (topology): RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1 matches the protocol and failover behavior — RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1 swaps HSRP/VRRP/GLBP roles or timers."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "standby tracking without track keyword",
+          "whyItSeems": "RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "FHRP (topology): RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1 matches the protocol and failover behavior — RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1 swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "HSRP track: standby <n> track <if> [priority decrement] — reacts to upstream ISP link loss.",
+          "contrast": "Correct \"RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1\" vs wrong \"RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1\": FHRP (topology): RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1 matches the protocol and failover behavior — RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1 swaps HSRP/VRRP/GLBP roles or timers."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Tracking configured on tracked interface",
+          "whyItSeems": "RouterA(config-if)#interface serial 0/0/1 RouterA(config-if)#standby 1 interface tracking RouterA(config-if)#interface serial 0/0/1 RouterB(config-if)#standby 1 interface tracking states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "FHRP (topology): RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1 matches the protocol and failover behavior — RouterA(config-if)#interface serial 0/0/1 RouterA(config-if)#standby 1 interface tracking RouterA(config-if)#interface serial 0/0/1 RouterB(config-if)#standby 1 interface tracking swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "HSRP track: standby <n> track <if> [priority decrement] — reacts to upstream ISP link loss.",
+          "contrast": "Correct \"RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1\" vs wrong \"RouterA(config-if)#interface serial 0/0/1 RouterA(config-if)#standby 1 interface tracking RouterA(config-if)#interface serial 0/0/1 RouterB(config-if)#standby 1 interface tracking\": FHRP (topology): RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1 matches the protocol and failover behavior — RouterA(config-if)#interface serial 0/0/1 RouterA(config-if)#standby 1 interface tracking RouterA(config-if)#interface serial 0/0/1 RouterB(config-if)#standby 1 interface tracking swaps HSRP/VRRP/GLBP roles or timers."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q027",
@@ -12063,7 +18157,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "HSRP troubleshoot: show standby (snapshot) | debug standby (live events)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "show ip hsrp as HSRP command",
+          "whyItSeems": "Router#show ip hsrp is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "FHRP (diagnostics): Router#debug standby matches the protocol and failover behavior — Router#show ip hsrp swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "HSRP troubleshoot: show standby (snapshot) | debug standby (live events).",
+          "contrast": "Correct \"Router#debug standby\" vs wrong \"Router#show ip hsrp\": FHRP (diagnostics): Router#debug standby matches the protocol and failover behavior — Router#show ip hsrp swaps HSRP/VRRP/GLBP roles or timers."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "debug ip hsrp instead of debug standby",
+          "whyItSeems": "\"Router#debug ip hsrp\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (diagnostics): Router#debug standby matches the protocol and failover behavior — Router#debug ip hsrp swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "HSRP troubleshoot: show standby (snapshot) | debug standby (live events).",
+          "contrast": "Correct \"Router#debug standby\" vs wrong \"Router#debug ip hsrp\": FHRP (diagnostics): Router#debug standby matches the protocol and failover behavior — Router#debug ip hsrp swaps HSRP/VRRP/GLBP roles or timers."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "debug ip standby word order",
+          "whyItSeems": "\"Router#debug ip standby\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (diagnostics): Router#debug standby matches the protocol and failover behavior — Router#debug ip standby swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "HSRP troubleshoot: show standby (snapshot) | debug standby (live events).",
+          "contrast": "Correct \"Router#debug standby\" vs wrong \"Router#debug ip standby\": FHRP (diagnostics): Router#debug standby matches the protocol and failover behavior — Router#debug ip standby swaps HSRP/VRRP/GLBP roles or timers."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q028",
@@ -12115,7 +18235,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "GLBP = per-host LB via AVG/AVF; HSRP = one active per group."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "AVG returns physical router MAC",
+          "whyItSeems": "\"The active virtual gateway will respond with a MAC address of the active router.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", GLBP allows for per-host load balancing. matches the required behavior — The active virtual gateway will respond with a MAC address of the active router. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GLBP = per-host LB via AVG/AVF; HSRP = one active per group.",
+          "contrast": "Correct \"GLBP allows for per-host load balancing.\" vs wrong \"The active virtual gateway will respond with a MAC address of the active router.\": For \"statement\", GLBP allows for per-host load balancing."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Per-subnet instead of per-host GLBP LB",
+          "whyItSeems": "\"GLBP allows for per-subnet load balancing.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "FHRP (statement): GLBP allows for per-host load balancing. matches the protocol and failover behavior — GLBP allows for per-subnet load balancing. swaps HSRP/VRRP/GLBP roles or timers.",
+          "memoryAnchor": "GLBP = per-host LB via AVG/AVF; HSRP = one active per group.",
+          "contrast": "Correct \"GLBP allows for per-host load balancing.\" vs wrong \"GLBP allows for per-subnet load balancing.\": FHRP (statement): GLBP allows for per-host load balancing."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Virtual router handles tracking requests",
+          "whyItSeems": "The virtual router is responsible for responding to tracking requests. names a DHCP DORA message step that may not be the phase described in the stem.",
+          "whyWrongHere": "For \"statement\", GLBP allows for per-host load balancing. matches the required behavior — The virtual router is responsible for responding to tracking requests. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "GLBP = per-host LB via AVG/AVF; HSRP = one active per group.",
+          "contrast": "Correct \"GLBP allows for per-host load balancing.\" vs wrong \"The virtual router is responsible for responding to tracking requests.\": For \"statement\", GLBP allows for per-host load balancing."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q029",
@@ -12166,7 +18312,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "HSRPv2 timers: standby <n> timers msec <hello> msec <hold> — hold > hello."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Mixed sec and msec timer syntax",
+          "whyItSeems": "RouterA(config-if)#standby 1 timers 200 msec 700 msec states a MAC aging timer or timeout value that may not match the default or configured setting.",
+          "whyWrongHere": "MAC aging (milliseconds): RouterA(config-if)#standby 1 timers msec 200 msec 700 is the default or configured timer — RouterA(config-if)#standby 1 timers 200 msec 700 msec states the wrong timeout value or behavior.",
+          "memoryAnchor": "HSRPv2 timers: standby <n> timers msec <hello> msec <hold> — hold > hello.",
+          "contrast": "Correct \"RouterA(config-if)#standby 1 timers msec 200 msec 700\" vs wrong \"RouterA(config-if)#standby 1 timers 200 msec 700 msec\": MAC aging (milliseconds): RouterA(config-if)#standby 1 timers msec 200 msec 700 is the default or configured timer — RouterA(config-if)#standby 1 timers 200 msec 700 msec states the wrong timeout value or behavior."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Hello/hold timer values reversed",
+          "whyItSeems": "RouterA(config-if)#standby 1 timers 700 msec 200 msec states a MAC aging timer or timeout value that may not match the default or configured setting.",
+          "whyWrongHere": "MAC aging (milliseconds): RouterA(config-if)#standby 1 timers msec 200 msec 700 is the default or configured timer — RouterA(config-if)#standby 1 timers 700 msec 200 msec states the wrong timeout value or behavior.",
+          "memoryAnchor": "HSRPv2 timers: standby <n> timers msec <hello> msec <hold> — hold > hello.",
+          "contrast": "Correct \"RouterA(config-if)#standby 1 timers msec 200 msec 700\" vs wrong \"RouterA(config-if)#standby 1 timers 700 msec 200 msec\": MAC aging (milliseconds): RouterA(config-if)#standby 1 timers msec 200 msec 700 is the default or configured timer — RouterA(config-if)#standby 1 timers 700 msec 200 msec states the wrong timeout value or behavior."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Hold shorter than hello in timer command",
+          "whyItSeems": "RouterA(config-if)#standby 1 timers msec 700 msec 200 states a MAC aging timer or timeout value that may not match the default or configured setting.",
+          "whyWrongHere": "MAC aging (milliseconds): RouterA(config-if)#standby 1 timers msec 200 msec 700 is the default or configured timer — RouterA(config-if)#standby 1 timers msec 700 msec 200 states the wrong timeout value or behavior.",
+          "memoryAnchor": "HSRPv2 timers: standby <n> timers msec <hello> msec <hold> — hold > hello.",
+          "contrast": "Correct \"RouterA(config-if)#standby 1 timers msec 200 msec 700\" vs wrong \"RouterA(config-if)#standby 1 timers msec 700 msec 200\": MAC aging (milliseconds): RouterA(config-if)#standby 1 timers msec 200 msec 700 is the default or configured timer — RouterA(config-if)#standby 1 timers msec 700 msec 200 states the wrong timeout value or behavior."
+        }
+      ]
     },
     {
       "id": "obj-3.5-source-q030",
@@ -12218,7 +18390,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "HSRP active = highest priority → tie = highest IP on the interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Lowest priority wins HSRP election",
+          "whyItSeems": "\"Router A will become the active router.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configured\", Router C will become the active router. matches the required behavior — Router A will become the active router. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRP active = highest priority → tie = highest IP on the interface.",
+          "contrast": "Correct \"Router C will become the active router.\" vs wrong \"Router A will become the active router.\": For \"configured\", Router C will become the active router."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Default priority beats explicit higher priority",
+          "whyItSeems": "\"Router B will become the active router.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configured\", Router C will become the active router. matches the required behavior — Router B will become the active router. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRP active = highest priority → tie = highest IP on the interface.",
+          "contrast": "Correct \"Router C will become the active router.\" vs wrong \"Router B will become the active router.\": For \"configured\", Router C will become the active router."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Default priority router wins over 140",
+          "whyItSeems": "\"Router D will become the active router.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configured\", Router C will become the active router. matches the required behavior — Router D will become the active router. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "HSRP active = highest priority → tie = highest IP on the interface.",
+          "contrast": "Correct \"Router C will become the active router.\" vs wrong \"Router D will become the active router.\": For \"configured\", Router C will become the active router."
+        }
+      ]
     }
   ],
   "3.6": [
@@ -12270,7 +18468,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Same prefix, multiple sources → lowest AD wins."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Preferring dynamic OSPF over static regardless of AD",
+          "whyItSeems": "\"The OSPF route, because it is dynamically learned\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"administrative distance\", The static route, because it has the lower administrative distance matches the required behavior — The OSPF route, because it is dynamically learned answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Same prefix, multiple sources → lowest AD wins.",
+          "contrast": "Correct \"The static route, because it has the lower administrative distance\" vs wrong \"The OSPF route, because it is dynamically learned\": For \"administrative distance\", The static route, because it has the lower administrative distance matches the required behavior — The OSPF route, because it is dynamically learned answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Expecting both static and OSPF installed for load balance",
+          "whyItSeems": "\"Both routes, load-balanced equally\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "CAM learning stores one mapping per arrival (administrative distance): The static route, because it has the lower administrative distance — not both addresses as table entries.",
+          "memoryAnchor": "Same prefix, multiple sources → lowest AD wins.",
+          "contrast": "Correct \"The static route, because it has the lower administrative distance\" vs wrong \"Both routes, load-balanced equally\": CAM learning stores one mapping per arrival (administrative distance): The static route, because it has the lower administrative distance — not both addresses as table entries."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Believing duplicate sources create a routing conflict error",
+          "whyItSeems": "Neither route — the router flags a conflict shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"administrative distance\", The static route, because it has the lower administrative distance matches the required behavior — Neither route — the router flags a conflict answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Same prefix, multiple sources → lowest AD wins.",
+          "contrast": "Correct \"The static route, because it has the lower administrative distance\" vs wrong \"Neither route — the router flags a conflict\": For \"administrative distance\", The static route, because it has the lower administrative distance matches the required behavior — Neither route — the router flags a conflict answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.6-legacy-q002",
@@ -12319,7 +18543,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Static via next-hop IP → recursive lookup for egress interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Skipping recursive lookup and ARPing destination host",
+          "whyItSeems": "An ARP request to the destination host directly names a DHCP DORA message step that may not be the phase described in the stem.",
+          "whyWrongHere": "Layer 2 forwarding (recursive route lookup): A recursive lookup to find the exit interface for the next-hop IP handles the frame — switches do not substitute An ARP request to the destination host directly for normal MAC lookup/flood behavior.",
+          "memoryAnchor": "Static via next-hop IP → recursive lookup for egress interface.",
+          "contrast": "Correct \"A recursive lookup to find the exit interface for the next-hop IP\" vs wrong \"An ARP request to the destination host directly\": Layer 2 forwarding (recursive route lookup): A recursive lookup to find the exit interface for the next-hop IP handles the frame — switches do not substitute An ARP request to the destination host directly for normal MAC lookup/flood behavior."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Using DNS lookup for next-hop static routes",
+          "whyItSeems": "\"A DNS lookup to resolve the next-hop IP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"recursive route lookup\", A recursive lookup to find the exit interface for the next-hop IP matches the required behavior — A DNS lookup to resolve the next-hop IP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static via next-hop IP → recursive lookup for egress interface.",
+          "contrast": "Correct \"A recursive lookup to find the exit interface for the next-hop IP\" vs wrong \"A DNS lookup to resolve the next-hop IP\": For \"recursive route lookup\", A recursive lookup to find the exit interface for the next-hop IP matches the required behavior — A DNS lookup to resolve the next-hop IP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Believing next-hop routes forward without lookup",
+          "whyItSeems": "\"Nothing — next-hop routes forward immediately\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"recursive route lookup\", A recursive lookup to find the exit interface for the next-hop IP matches the required behavior — Nothing — next-hop routes forward immediately answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static via next-hop IP → recursive lookup for egress interface.",
+          "contrast": "Correct \"A recursive lookup to find the exit interface for the next-hop IP\" vs wrong \"Nothing — next-hop routes forward immediately\": For \"recursive route lookup\", A recursive lookup to find the exit interface for the next-hop IP matches the required behavior — Nothing — next-hop routes forward immediately answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.6-legacy-q003",
@@ -12368,7 +18618,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Exit interface down → static route removed until path returns."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Expecting inactive static routes to remain installed",
+          "whyItSeems": "\"It remains in the table but is marked inactive\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static route dependency\", It is removed from the routing table until the interface comes back up matches the required behavior — It remains in the table but is marked inactive answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Exit interface down → static route removed until path returns.",
+          "contrast": "Correct \"It is removed from the routing table until the interface comes back up\" vs wrong \"It remains in the table but is marked inactive\": For \"static route dependency\", It is removed from the routing table until the interface comes back up matches the required behavior — It remains in the table but is marked inactive answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Believing default route auto-replaces failed static",
+          "whyItSeems": "\"It is automatically replaced by a default route\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static route dependency\", It is removed from the routing table until the interface comes back up matches the required behavior — It is automatically replaced by a default route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Exit interface down → static route removed until path returns.",
+          "contrast": "Correct \"It is removed from the routing table until the interface comes back up\" vs wrong \"It is automatically replaced by a default route\": For \"static route dependency\", It is removed from the routing table until the interface comes back up matches the required behavior — It is automatically replaced by a default route answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Thinking static stays active while interface is down",
+          "whyItSeems": "\"It stays active but stops forwarding traffic silently\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static route dependency\", It is removed from the routing table until the interface comes back up matches the required behavior — It stays active but stops forwarding traffic silently answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Exit interface down → static route removed until path returns.",
+          "contrast": "Correct \"It is removed from the routing table until the interface comes back up\" vs wrong \"It stays active but stops forwarding traffic silently\": For \"static route dependency\", It is removed from the routing table until the interface comes back up matches the required behavior — It stays active but stops forwarding traffic silently answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.6-legacy-q004",
@@ -12417,7 +18693,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Local subnet OK, remote fails → default gateway on host."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Blaming DNS for remote IP unreachable with local OK",
+          "whyItSeems": "\"The host's DNS server is unreachable\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"default gateway\", The host is missing a default gateway, or the gateway is misconfigured matches the required behavior — The host's DNS server is unreachable answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local subnet OK, remote fails → default gateway on host.",
+          "contrast": "Correct \"The host is missing a default gateway, or the gateway is misconfigured\" vs wrong \"The host's DNS server is unreachable\": For \"default gateway\", The host is missing a default gateway, or the gateway is misconfigured matches the required behavior — The host's DNS server is unreachable answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Choosing VLAN mismatch when local subnet works",
+          "whyItSeems": "\"The switch port is in the wrong VLAN\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"default gateway\", The host is missing a default gateway, or the gateway is misconfigured matches the required behavior — The switch port is in the wrong VLAN answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local subnet OK, remote fails → default gateway on host.",
+          "contrast": "Correct \"The host is missing a default gateway, or the gateway is misconfigured\" vs wrong \"The switch port is in the wrong VLAN\": For \"default gateway\", The host is missing a default gateway, or the gateway is misconfigured matches the required behavior — The switch port is in the wrong VLAN answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Selecting duplicate IP over missing gateway",
+          "whyItSeems": "The host has a duplicate IP address shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"default gateway\", The host is missing a default gateway, or the gateway is misconfigured matches the required behavior — The host has a duplicate IP address answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local subnet OK, remote fails → default gateway on host.",
+          "contrast": "Correct \"The host is missing a default gateway, or the gateway is misconfigured\" vs wrong \"The host has a duplicate IP address\": For \"default gateway\", The host is missing a default gateway, or the gateway is misconfigured matches the required behavior — The host has a duplicate IP address answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.6-legacy-q005",
@@ -12466,7 +18768,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Troubleshoot installed routes → show ip route (look for C/S/O/D codes)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Interface brief as routing table",
+          "whyItSeems": "show ip interface brief is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (routing table verification): show ip route inspects the right table or state — show ip interface brief shows unrelated information.",
+          "memoryAnchor": "Troubleshoot installed routes → show ip route (look for C/S/O/D codes).",
+          "contrast": "Correct \"show ip route\" vs wrong \"show ip interface brief\": Verification command (routing table verification): show ip route inspects the right table or state — show ip interface brief shows unrelated information."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Running-config as live routing table",
+          "whyItSeems": "show running-config is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (routing table verification): show ip route inspects the right table or state — show running-config shows unrelated information.",
+          "memoryAnchor": "Troubleshoot installed routes → show ip route (look for C/S/O/D codes).",
+          "contrast": "Correct \"show ip route\" vs wrong \"show running-config\": Verification command (routing table verification): show ip route inspects the right table or state — show running-config shows unrelated information."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Protocols summary as route table",
+          "whyItSeems": "show ip protocols is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (routing table verification): show ip route inspects the right table or state — show ip protocols shows unrelated information.",
+          "memoryAnchor": "Troubleshoot installed routes → show ip route (look for C/S/O/D codes).",
+          "contrast": "Correct \"show ip route\" vs wrong \"show ip protocols\": Verification command (routing table verification): show ip route inspects the right table or state — show ip protocols shows unrelated information."
+        }
+      ]
     },
     {
       "id": "3.6-legacy-q006",
@@ -12515,7 +18843,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Floating static = higher AD backup when primary fails."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Using metric comparison for floating static activation",
+          "whyItSeems": "Whenever the floating static route has a lower metric configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.",
+          "whyWrongHere": "Static routing (floating static route): Only when the OSPF route is no longer available uses the right next-hop or exit interface — Whenever the floating static route has a lower metric misconfigures recursive or floating static behavior.",
+          "memoryAnchor": "Floating static = higher AD backup when primary fails.",
+          "contrast": "Correct \"Only when the OSPF route is no longer available\" vs wrong \"Whenever the floating static route has a lower metric\": Static routing (floating static route): Only when the OSPF route is no longer available uses the right next-hop or exit interface — Whenever the floating static route has a lower metric misconfigures recursive or floating static behavior."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Expecting simultaneous OSPF and floating static load balance",
+          "whyItSeems": "\"Immediately, alongside the OSPF route, for load balancing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"floating static route\", Only when the OSPF route is no longer available matches the required behavior — Immediately, alongside the OSPF route, for load balancing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Floating static = higher AD backup when primary fails.",
+          "contrast": "Correct \"Only when the OSPF route is no longer available\" vs wrong \"Immediately, alongside the OSPF route, for load balancing\": For \"floating static route\", Only when the OSPF route is no longer available matches the required behavior — Immediately, alongside the OSPF route, for load balancing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Requiring reboot for floating static takeover",
+          "whyItSeems": "\"Only after the router reboots\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"floating static route\", Only when the OSPF route is no longer available matches the required behavior — Only after the router reboots answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Floating static = higher AD backup when primary fails.",
+          "contrast": "Correct \"Only when the OSPF route is no longer available\" vs wrong \"Only after the router reboots\": For \"floating static route\", Only when the OSPF route is no longer available matches the required behavior — Only after the router reboots answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.6-legacy-q007",
@@ -12564,7 +18918,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Good route but cannot ping connected next-hop → L1/L2: cable, up/up, speed/duplex."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "OSPF process when direct ping to next-hop fails",
+          "whyItSeems": "\"The OSPF process ID\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing troubleshooting layers\", Layer 1/2 status of the connecting link (interface up/up, cabling, duplex) matches the required behavior — The OSPF process ID answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Good route but cannot ping connected next-hop → L1/L2: cable, up/up, speed/duplex.",
+          "contrast": "Correct \"Layer 1/2 status of the connecting link (interface up/up, cabling, duplex)\" vs wrong \"The OSPF process ID\": For \"routing troubleshooting layers\", Layer 1/2 status of the connecting link (interface up/up, cabling, duplex) matches the required behavior — The OSPF process ID answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Hostname config for ping failure to adjacent router",
+          "whyItSeems": "\"The router's hostname configuration\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing troubleshooting layers\", Layer 1/2 status of the connecting link (interface up/up, cabling, duplex) matches the required behavior — The router's hostname configuration answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Good route but cannot ping connected next-hop → L1/L2: cable, up/up, speed/duplex.",
+          "contrast": "Correct \"Layer 1/2 status of the connecting link (interface up/up, cabling, duplex)\" vs wrong \"The router's hostname configuration\": For \"routing troubleshooting layers\", Layer 1/2 status of the connecting link (interface up/up, cabling, duplex) matches the required behavior — The router's hostname configuration answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "NTP as first check for failed neighbor ping",
+          "whyItSeems": "\"The NTP server configuration\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"routing troubleshooting layers\", Layer 1/2 status of the connecting link (interface up/up, cabling, duplex) matches the required behavior — The NTP server configuration answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Good route but cannot ping connected next-hop → L1/L2: cable, up/up, speed/duplex.",
+          "contrast": "Correct \"Layer 1/2 status of the connecting link (interface up/up, cabling, duplex)\" vs wrong \"The NTP server configuration\": For \"routing troubleshooting layers\", Layer 1/2 status of the connecting link (interface up/up, cabling, duplex) matches the required behavior — The NTP server configuration answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.6-legacy-q008",
@@ -12613,7 +18993,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Same prefix + same AD statics → ECMP load balancing, not first-wins."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "First static wins exclusively",
+          "whyItSeems": "\"Only the first-configured route is installed\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"equal-cost routes\", Both routes are installed for equal-cost load balancing matches the required behavior — Only the first-configured route is installed answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Same prefix + same AD statics → ECMP load balancing, not first-wins.",
+          "contrast": "Correct \"Both routes are installed for equal-cost load balancing\" vs wrong \"Only the first-configured route is installed\": For \"equal-cost routes\", Both routes are installed for equal-cost load balancing matches the required behavior — Only the first-configured route is installed answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Duplicate statics always rejected",
+          "whyItSeems": "\"The router rejects both routes as a conflict\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "CAM learning stores one mapping per arrival (equal-cost routes): Both routes are installed for equal-cost load balancing — not both addresses as table entries.",
+          "memoryAnchor": "Same prefix + same AD statics → ECMP load balancing, not first-wins.",
+          "contrast": "Correct \"Both routes are installed for equal-cost load balancing\" vs wrong \"The router rejects both routes as a conflict\": CAM learning stores one mapping per arrival (equal-cost routes): Both routes are installed for equal-cost load balancing — not both addresses as table entries."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Higher next-hop IP wins tie",
+          "whyItSeems": "\"The route with the higher next-hop IP is preferred\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"equal-cost routes\", Both routes are installed for equal-cost load balancing matches the required behavior — The route with the higher next-hop IP is preferred answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Same prefix + same AD statics → ECMP load balancing, not first-wins.",
+          "contrast": "Correct \"Both routes are installed for equal-cost load balancing\" vs wrong \"The route with the higher next-hop IP is preferred\": For \"equal-cost routes\", Both routes are installed for equal-cost load balancing matches the required behavior — The route with the higher next-hop IP is preferred answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "3.6-legacy-q009",
@@ -12663,7 +19069,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Default route in table but no internet → next-hop up + NAT."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Believing default route needs /32 mask",
+          "whyItSeems": "\"The default route mask must be 255.255.255.255, not 0.0.0.0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"default route troubleshooting\", 203.0.113.1 itself may be unreachable, or NAT is not configured for the internal hosts matches the required behavior — The default route mask must be 255.255.255.255, not 0.0.0.0 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Default route in table but no internet → next-hop up + NAT.",
+          "contrast": "Correct \"203.0.113.1 itself may be unreachable, or NAT is not configured for the internal hosts\" vs wrong \"The default route mask must be 255.255.255.255, not 0.0.0.0\": For \"default route troubleshooting\", 203."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Claiming default routes unsupported on edge routers",
+          "whyItSeems": "\"Default routes are not supported on edge routers\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"default route troubleshooting\", 203.0.113.1 itself may be unreachable, or NAT is not configured for the internal hosts matches the required behavior — Default routes are not supported on edge routers answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Default route in table but no internet → next-hop up + NAT.",
+          "contrast": "Correct \"203.0.113.1 itself may be unreachable, or NAT is not configured for the internal hosts\" vs wrong \"Default routes are not supported on edge routers\": For \"default route troubleshooting\", 203."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Requiring OSPF redistribution for static default",
+          "whyItSeems": "\"The route needs to be redistributed into OSPF before it can be used\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"default route troubleshooting\", 203.0.113.1 itself may be unreachable, or NAT is not configured for the internal hosts matches the required behavior — The route needs to be redistributed into OSPF before it can be used answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Default route in table but no internet → next-hop up + NAT.",
+          "contrast": "Correct \"203.0.113.1 itself may be unreachable, or NAT is not configured for the internal hosts\" vs wrong \"The route needs to be redistributed into OSPF before it can be used\": For \"default route troubleshooting\", 203."
+        }
+      ]
     },
     {
       "id": "3.6-legacy-q010",
@@ -12713,7 +19145,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Missing OSPF routes → show ip ospf neighbor for FULL state."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Checking OSPF routes before confirming neighbor adjacency",
+          "whyItSeems": "show ip route ospf is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (OSPF adjacency troubleshooting): show ip ospf neighbor inspects the right table or state — show ip route ospf shows unrelated information.",
+          "memoryAnchor": "Missing OSPF routes → show ip ospf neighbor for FULL state.",
+          "contrast": "Correct \"show ip ospf neighbor\" vs wrong \"show ip route ospf\": Verification command (OSPF adjacency troubleshooting): show ip ospf neighbor inspects the right table or state — show ip route ospf shows unrelated information."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Using interface brief instead of OSPF neighbor table",
+          "whyItSeems": "show ip interface brief is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (OSPF adjacency troubleshooting): show ip ospf neighbor inspects the right table or state — show ip interface brief shows unrelated information.",
+          "memoryAnchor": "Missing OSPF routes → show ip ospf neighbor for FULL state.",
+          "contrast": "Correct \"show ip ospf neighbor\" vs wrong \"show ip interface brief\": Verification command (OSPF adjacency troubleshooting): show ip ospf neighbor inspects the right table or state — show ip interface brief shows unrelated information."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Checking VLAN brief for OSPF adjacency",
+          "whyItSeems": "show vlan brief is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (OSPF adjacency troubleshooting): show ip ospf neighbor inspects the right table or state — show vlan brief shows unrelated information.",
+          "memoryAnchor": "Missing OSPF routes → show ip ospf neighbor for FULL state.",
+          "contrast": "Correct \"show ip ospf neighbor\" vs wrong \"show vlan brief\": Verification command (OSPF adjacency troubleshooting): show ip ospf neighbor inspects the right table or state — show vlan brief shows unrelated information."
+        }
+      ]
     }
   ]
 }

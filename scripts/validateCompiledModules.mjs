@@ -4,7 +4,7 @@
  */
 import { existsSync, readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import { DOMAIN_1_OBJECTIVES, EXTRA_CLEAN_OBJECTIVES } from './lib/sourceBankConfig.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -13,6 +13,7 @@ const META = join(ROOT, 'src', 'data', 'ccnaCleanBankMeta.js')
 const CLEAN_Q_DIR = join(ROOT, 'src', 'data', 'cleanQuestions')
 const KB = join(ROOT, 'src', 'data', 'ccnaKnowledgeBaseDomain4.js')
 const MANIFEST = join(ROOT, 'data', 'clean-question-bank', 'manifest.json')
+const REGEN = join(ROOT, 'src', 'answerReview', 'regeneratedExplanations.json')
 
 function readMetaObjectiveCount() {
   const text = readFileSync(META, 'utf-8')
@@ -21,7 +22,36 @@ function readMetaObjectiveCount() {
   return (match[1].match(/"/g) || []).length / 2
 }
 
-function main() {
+async function validateCompiledRegen(errors) {
+  if (!existsSync(REGEN)) {
+    errors.push('missing src/answerReview/regeneratedExplanations.json')
+    return
+  }
+  const expected = new Set(Object.keys(JSON.parse(readFileSync(REGEN, 'utf-8'))))
+  const compiled = new Map()
+  for (let domain = 1; domain <= 6; domain += 1) {
+    const path = join(CLEAN_Q_DIR, `domain-${domain}.js`)
+    if (!existsSync(path)) continue
+    const mod = await import(`${pathToFileURL(path).href}?validate=${Date.now()}`)
+    for (const questions of Object.values(mod.CLEAN_QUESTIONS || {})) {
+      for (const q of questions) {
+        if (Array.isArray(q.regeneratedIncorrect) && q.regeneratedIncorrect.length) {
+          compiled.set(q.id, q.regeneratedIncorrect)
+        }
+      }
+    }
+  }
+  const missing = [...expected].filter(id => !compiled.has(id))
+  const extra = [...compiled.keys()].filter(id => !expected.has(id))
+  if (missing.length) {
+    errors.push(`compiled clean-bank chunks missing regen for ${missing.length} question(s): ${missing.slice(0, 5).join(', ')}`)
+  }
+  if (extra.length) {
+    errors.push(`compiled clean-bank chunks have ${extra.length} unknown regen question(s): ${extra.slice(0, 5).join(', ')}`)
+  }
+}
+
+async function main() {
   const errors = []
   if (!existsSync(META)) errors.push('missing src/data/ccnaCleanBankMeta.js')
   for (let d = 1; d <= 6; d += 1) {
@@ -51,12 +81,17 @@ function main() {
     if (!kbText.includes('"examTraps"')) errors.push('KB module missing examTraps')
   }
 
+  await validateCompiledRegen(errors)
+
   if (errors.length) {
     console.error('✗ Compiled module validation failed:')
     errors.forEach(e => console.error('  -', e))
     process.exit(1)
   }
-  console.log('✓ Compiled modules and domain-1/extra clean bank files present')
+  console.log('✓ Compiled modules present with full per-domain regen coverage')
 }
 
-main()
+main().catch(error => {
+  console.error('✗ Compiled module validation failed:', error)
+  process.exit(1)
+})

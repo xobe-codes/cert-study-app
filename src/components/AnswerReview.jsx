@@ -12,6 +12,7 @@ import { familyRemediationActions } from '../features/practice/debriefRemediatio
 import QuestionFlagPanel from './QuestionFlagPanel.jsx'
 import StemReplayCTA from '../features/stemReplay/StemReplayCTA.jsx'
 import QuestionUnderReviewBanner from './QuestionUnderReviewBanner.jsx'
+import DebriefObjectiveFooter from './DebriefObjectiveFooter.jsx'
 import { useCompactMobile } from '../hooks/useCompactMobile.js'
 import { useMcChoiceShuffleContext } from '../context/McChoiceShuffleContext.jsx'
 import { COLORS, accentColors } from '../ui/appTheme.js'
@@ -187,7 +188,7 @@ function WrongChoiceReview({
   )
 }
 
-/** Post-reveal breakdown — your pick first when wrong; other distractors collapsed. */
+/** Post-reveal breakdown — your pick first when wrong; every rationale visible. */
 export default function AnswerReview({
   q, selected, selectedIndexes, cliAnswer, orderAnswer, hideExamTip = false, objectiveId, domainId,
   showQuestionFlag = false, onOpenLab, onOpenTrapDrill, onOpenSubnet,
@@ -350,8 +351,6 @@ export default function AnswerReview({
       icon="✅"
       title={`CORRECT ANSWER: ${displayLetter(correctIdx)}`}
       accent="mint"
-      collapsible={selectedWrongIdx != null || compactMobile}
-      defaultOpen={selectedWrongIdx == null ? !compactMobile : !compactMobile}
     >
       <RichText text={ar?.correct?.explanation || q.explanation} />
     </ReviewBlock>
@@ -384,46 +383,35 @@ export default function AnswerReview({
     <div className={`ccna-answer-review${compactMobile ? ' ccna-answer-review--compact' : ''}`} style={{ marginTop: compactMobile ? 6 : 8, minWidth: 0 }}>
       <QuestionUnderReviewBanner questionId={q?.id} />
       {selectedWrongIdx != null ? [...yourWrongBlocks, correctBlock] : [correctBlock, ...yourWrongBlocks]}
-      {otherWrong.length > 0 && (
-        <ReviewBlock
-          icon="📋"
-          title={`OTHER OPTIONS (${otherWrong.length})`}
-          accent="silver"
-          collapsible
-          defaultOpen={false}
-        >
-          {otherWrong.map(item => {
-            const letter = displayLetter(item.choiceIndex)
-            const choiceText = q.choices?.[item.choiceIndex] || ''
-            return (
-              <ReviewBlock
-                key={item.choiceIndex}
-                icon="❌"
-                title={formatOtherWrongHeader(letter, choiceText)}
-                accent="rose"
-                collapsible
-                defaultOpen={false}
-              >
-                <WrongChoiceReview
-                  q={q}
-                  item={item}
-                  objectiveId={objectiveId}
-                  domainId={domainId}
-                  onOpenTrapDrill={onOpenTrapDrill}
-                  onOpenSubnet={onOpenSubnet}
-                  showFamily={false}
-                />
-              </ReviewBlock>
-            )
-          })}
-        </ReviewBlock>
-      )}
+      {otherWrong.map(item => {
+        const letter = displayLetter(item.choiceIndex)
+        const choiceText = q.choices?.[item.choiceIndex] || ''
+        return (
+          <ReviewBlock
+            key={item.choiceIndex}
+            icon="❌"
+            title={formatOtherWrongHeader(letter, choiceText)}
+            accent="rose"
+          >
+            <WrongChoiceReview
+              q={q}
+              item={item}
+              objectiveId={objectiveId}
+              domainId={domainId}
+              onOpenTrapDrill={onOpenTrapDrill}
+              onOpenSubnet={onOpenSubnet}
+              showFamily={false}
+            />
+          </ReviewBlock>
+        )
+      })}
       {(!hideExamTip && ar?.examTip) && <ReviewBlock icon="💡" title="EXAM TIP" accent="amber" collapsible defaultOpen={false}><RichText text={ar.examTip} /></ReviewBlock>}
       {ar?.memoryHook && (
         <ReviewBlock icon="🧠" title="MEMORY HOOK" accent="purple" collapsible defaultOpen={false}>
           <RichText text={ar.memoryHook} />
         </ReviewBlock>
       )}
+      <DebriefObjectiveFooter objectiveId={objectiveId || q?.objectiveId} />
       {showQuestionFlag && (
         <QuestionFlagPanel question={q} objectiveId={objectiveId} selectedIndex={selected} />
       )}

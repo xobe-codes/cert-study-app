@@ -21,6 +21,7 @@ export const LAB_SOURCES = {
 import { EXTENDED_LAB_BUNDLES } from './ccnaLabsExtended.js'
 import { PHASE_LAB_BUNDLES } from './ccnaLabsPhases.js'
 import { applyConfigLabLite } from './configLabLiteWave.js'
+import { applyCoreConfigLabWave } from './coreConfigLabWave.js'
 import { applyLabQuality99 } from '../lab/labQuality99.js'
 import { CLI_ROUTE_31_SHOW_OUTPUT, CLI_VLAN_TRUNK_21_SHOW_OUTPUT, CLI_OSPF_SINGLE_34_SHOW_OUTPUT, CLI_NAT_41_SHOW_OUTPUT } from '../lab/cliEngine.js'
 import { normalizeIosCli } from '../lab/iosShorthand.js'
@@ -194,16 +195,17 @@ const LAB_VLAN_TRUNK = {
   objectiveId: '2.1',
   ckuIds: ['CKU-VLAN', 'CKU-ACCESS-PORT', 'CKU-TRUNKING', 'CKU-NATIVE-VLAN'],
   labType: 'guided',
-  interpretOnly: true,
+  interpretOnly: false,
   difficulty: 'beginner',
   estimatedTimeMinutes: 10,
   tools: ['Packet Tracer', 'GNS3', 'CML'],
   examRelevance: 'core',
-  scenario: 'SW1 and SW2 are pre-configured with VLANs 10 (Sales) and 20 (Engineering), access ports, and an 802.1Q trunk on Gi0/3. Verify VLAN membership and trunk status without changing configuration.',
+  scenario: 'Build VLANs 10 (Sales) and 20 (Engineering), assign access ports, configure an 802.1Q trunk on Gi0/3 between SW1 and SW2, and verify that both VLANs cross the trunk.',
   learningGoals: [
-    'Read VLAN 10 and 20 membership from show vlan brief',
-    'Confirm Gi0/3 trunk allows VLANs 10 and 20',
-    'Verify native VLAN and encapsulation on the trunk port',
+    'Create and name VLANs 10 and 20',
+    'Assign access ports to the correct VLAN',
+    'Configure Gi0/3 as a restricted 802.1Q trunk',
+    'Verify native VLAN, allowed VLANs, and port membership',
   ],
   topologyId: 'TOPO-VLAN-TRUNK',
   prerequisites: ['CKU-MAC-ADDRESS-TABLE'],
@@ -1295,7 +1297,7 @@ export const allLabs = () => Object.values(LABS).map(x => x.lab)
 export function getLab(labId) {
   const raw = LABS[labId] || null
   if (!raw) return null
-  return applyLabQuality99(applyConfigLabLite(raw))
+  return applyLabQuality99(applyConfigLabLite(applyCoreConfigLabWave(raw)))
 }
 export function labsForObjective(objectiveId) { return Object.values(LABS).filter(x => x.lab.objectiveId === objectiveId).map(x => x.lab) }
 export const troubleshootingLabs = () => allLabs().filter(l => l.labType === 'troubleshooting')

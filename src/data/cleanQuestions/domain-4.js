@@ -47,7 +47,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Private inside → NAT → public outside. PAT overloads one public IP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Equating NAT with encryption",
+          "whyItSeems": "\"Encrypts traffic\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"nat purpose\", Maps private IPs to public IPs matches the required behavior — Encrypts traffic answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Maps private IPs to public IPs\" — not \"Encrypts traffic\" — for what this stem actually tests.",
+          "contrast": "Correct \"Maps private IPs to public IPs\" vs wrong \"Encrypts traffic\": For \"nat purpose\", Maps private IPs to public IPs matches the required behavior — Encrypts traffic answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "NAT as inter-VLAN routing",
+          "whyItSeems": "\"Routes between VLANs\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"nat purpose\", Maps private IPs to public IPs matches the required behavior — Routes between VLANs answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Maps private IPs to public IPs\" — not \"Routes between VLANs\" — for what this stem actually tests.",
+          "contrast": "Correct \"Maps private IPs to public IPs\" vs wrong \"Routes between VLANs\": For \"nat purpose\", Maps private IPs to public IPs matches the required behavior — Routes between VLANs answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "False belief that NAT as DHCP — treating \"Assigns DHCP addresses\" as if it satisfied the stem instead of \"Maps private IPs to public IPs\".",
+          "whyItSeems": "\"Assigns DHCP addresses\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"nat purpose\", Maps private IPs to public IPs matches the required behavior — Assigns DHCP addresses answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Maps private IPs to public IPs\" — not \"Assigns DHCP addresses\" — for what this stem actually tests.",
+          "contrast": "Correct \"Maps private IPs to public IPs\" vs wrong \"Assigns DHCP addresses\": For \"nat purpose\", Maps private IPs to public IPs matches the required behavior — Assigns DHCP addresses answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "4.1-c-q2",
@@ -95,7 +121,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Many inside → one public IP = PAT/overload, not static 1:1."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Using 1:1 static NAT for many-to-one scenario",
+          "whyItSeems": "\"Static NAT\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"PAT/overload maps many inside hosts to one public IP using ports\", PAT (overload) matches the required behavior — Static NAT answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Many inside → one public IP = PAT/overload, not static 1:1.",
+          "contrast": "Correct \"PAT (overload)\" vs wrong \"Static NAT\": For \"PAT/overload maps many inside hosts to one public IP using ports\", PAT (overload) matches the required behavior — Static NAT answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Choosing dynamic pool when overload/PAT is required",
+          "whyItSeems": "\"Dynamic NAT\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"PAT/overload maps many inside hosts to one public IP using ports\", PAT (overload) matches the required behavior — Dynamic NAT answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Many inside → one public IP = PAT/overload, not static 1:1.",
+          "contrast": "Correct \"PAT (overload)\" vs wrong \"Dynamic NAT\": For \"PAT/overload maps many inside hosts to one public IP using ports\", PAT (overload) matches the required behavior — Dynamic NAT answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Denying NAT in a classic SOHO sharing scenario",
+          "whyItSeems": "\"No NAT\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"PAT/overload maps many inside hosts to one public IP using ports\", PAT (overload) matches the required behavior — No NAT answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Many inside → one public IP = PAT/overload, not static 1:1.",
+          "contrast": "Correct \"PAT (overload)\" vs wrong \"No NAT\": For \"PAT/overload maps many inside hosts to one public IP using ports\", PAT (overload) matches the required behavior — No NAT answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "4.1-c-q3",
@@ -143,7 +195,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Permanent server NAT → ip nat inside source static <local> <global>."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Using dynamic pool command for static server mapping",
+          "whyItSeems": "\"ip nat pool\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static nat\", ip nat inside source static 192.168.1.10 203.0.113.10 matches the required behavior — ip nat pool answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Permanent server NAT → ip nat inside source static <local> <global>.",
+          "contrast": "Correct \"ip nat inside source static 192.168.1.10 203.0.113.10\" vs wrong \"ip nat pool\": For \"static nat\", ip nat inside source static 192."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Applying PAT overload syntax to 1:1 static requirement",
+          "whyItSeems": "ip nat inside source list 1 interface g0/0 overload implies many-inside-to-few-outside PAT/overload translation.",
+          "whyWrongHere": "NAT type (static nat): ip nat inside source static 192.168.1.10 203.0.113.10 fits the stem — ip nat inside source list 1 interface g0/0 overload describes PAT/overload when the question tests a different translation style.",
+          "memoryAnchor": "Permanent server NAT → ip nat inside source static <local> <global>.",
+          "contrast": "Correct \"ip nat inside source static 192.168.1.10 203.0.113.10\" vs wrong \"ip nat inside source list 1 interface g0/0 overload\": NAT type (static nat): ip nat inside source static 192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Stopping at interface NAT label without translation rule",
+          "whyItSeems": "\"ip nat outside\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"static nat\", ip nat inside source static 192.168.1.10 203.0.113.10 matches the required behavior — ip nat outside answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Permanent server NAT → ip nat inside source static <local> <global>.",
+          "contrast": "Correct \"ip nat inside source static 192.168.1.10 203.0.113.10\" vs wrong \"ip nat outside\": For \"static nat\", ip nat inside source static 192."
+        }
+      ]
     },
     {
       "id": "4.1-c-q4",
@@ -191,7 +269,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "NAT broken? First check ip nat inside / ip nat outside on the right interfaces."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Adding default route when NAT direction tags are missing",
+          "whyItSeems": "\"A default route\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"interface tags\", The ip nat inside / ip nat outside interface tags matches the required behavior — A default route answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"The ip nat inside / ip nat outside interface tags\" — not \"A default route\" — for what this stem actually tests.",
+          "contrast": "Correct \"The ip nat inside / ip nat outside interface tags\" vs wrong \"A default route\": For \"interface tags\", The ip nat inside / ip nat outside interface tags matches the required behavior — A default route answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Creating loopback instead of labeling NAT interfaces",
+          "whyItSeems": "\"A loopback\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"interface tags\", The ip nat inside / ip nat outside interface tags matches the required behavior — A loopback answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"The ip nat inside / ip nat outside interface tags\" — not \"A loopback\" — for what this stem actually tests.",
+          "contrast": "Correct \"The ip nat inside / ip nat outside interface tags\" vs wrong \"A loopback\": For \"interface tags\", The ip nat inside / ip nat outside interface tags matches the required behavior — A loopback answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Checking DNS when NAT interface roles are unset",
+          "whyItSeems": "\"DNS\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"interface tags\", The ip nat inside / ip nat outside interface tags matches the required behavior — DNS answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"The ip nat inside / ip nat outside interface tags\" — not \"DNS\" — for what this stem actually tests.",
+          "contrast": "Correct \"The ip nat inside / ip nat outside interface tags\" vs wrong \"DNS\": For \"interface tags\", The ip nat inside / ip nat outside interface tags matches the required behavior — DNS answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "4.1-c-q5",
@@ -239,7 +343,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "PAT to outside interface → ip nat inside source list <acl> interface <if> overload."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Using static syntax for many-to-one PAT",
+          "whyItSeems": "\"ip nat inside source static\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"overload command\", ip nat inside source list 1 interface g0/0 overload matches the required behavior — ip nat inside source static answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "PAT to outside interface → ip nat inside source list <acl> interface <if> overload.",
+          "contrast": "Correct \"ip nat inside source list 1 interface g0/0 overload\" vs wrong \"ip nat inside source static\": For \"overload command\", ip nat inside source list 1 interface g0/0 overload matches the required behavior — ip nat inside source static answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Expecting pool alone to provide PAT",
+          "whyItSeems": "\"ip nat pool MYPOOL\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"overload command\", ip nat inside source list 1 interface g0/0 overload matches the required behavior — ip nat pool MYPOOL answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "PAT to outside interface → ip nat inside source list <acl> interface <if> overload.",
+          "contrast": "Correct \"ip nat inside source list 1 interface g0/0 overload\" vs wrong \"ip nat pool MYPOOL\": For \"overload command\", ip nat inside source list 1 interface g0/0 overload matches the required behavior — ip nat pool MYPOOL answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Configuring outside source for inside PAT",
+          "whyItSeems": "\"ip nat outside source list 1\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"overload command\", ip nat inside source list 1 interface g0/0 overload matches the required behavior — ip nat outside source list 1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "PAT to outside interface → ip nat inside source list <acl> interface <if> overload.",
+          "contrast": "Correct \"ip nat inside source list 1 interface g0/0 overload\" vs wrong \"ip nat outside source list 1\": For \"overload command\", ip nat inside source list 1 interface g0/0 overload matches the required behavior — ip nat outside source list 1 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "4.1-c-q6",
@@ -287,7 +417,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "NAT naming: inside local = private IP before translation on the LAN."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Swapping inside local with inside global",
+          "whyItSeems": "Inside global assigns a specific NAT address role (inside/outside, local/global) that may not match the stem.",
+          "whyWrongHere": "For \"terminology\", Inside local matches the required behavior — Inside global answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NAT naming: inside local = private IP before translation on the LAN.",
+          "contrast": "Correct \"Inside local\" vs wrong \"Inside global\": For \"terminology\", Inside local matches the required behavior — Inside global answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Labeling remote public as inside local",
+          "whyItSeems": "Outside global assigns a specific NAT address role (inside/outside, local/global) that may not match the stem.",
+          "whyWrongHere": "For \"terminology\", Inside local matches the required behavior — Outside global answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NAT naming: inside local = private IP before translation on the LAN.",
+          "contrast": "Correct \"Inside local\" vs wrong \"Outside global\": For \"terminology\", Inside local matches the required behavior — Outside global answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Confusing outside local with host private address",
+          "whyItSeems": "Outside local assigns a specific NAT address role (inside/outside, local/global) that may not match the stem.",
+          "whyWrongHere": "For \"terminology\", Inside local matches the required behavior — Outside local answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NAT naming: inside local = private IP before translation on the LAN.",
+          "contrast": "Correct \"Inside local\" vs wrong \"Outside local\": For \"terminology\", Inside local matches the required behavior — Outside local answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "4.1-c-q7",
@@ -335,7 +491,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Active NAT entries → show ip nat translations."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Using routing table for NAT translation verification",
+          "whyItSeems": "show ip route is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (show ip nat translations lists the current mappings): show ip nat translations inspects the right table or state — show ip route shows unrelated information.",
+          "memoryAnchor": "Active NAT entries → show ip nat translations.",
+          "contrast": "Correct \"show ip nat translations\" vs wrong \"show ip route\": Verification command (show ip nat translations lists the current mappings): show ip nat translations inspects the right table or state — show ip route shows unrelated information."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Checking running-config for active translation state",
+          "whyItSeems": "show running-config is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (show ip nat translations lists the current mappings): show ip nat translations inspects the right table or state — show running-config shows unrelated information.",
+          "memoryAnchor": "Active NAT entries → show ip nat translations.",
+          "contrast": "Correct \"show ip nat translations\" vs wrong \"show running-config\": Verification command (show ip nat translations lists the current mappings): show ip nat translations inspects the right table or state — show running-config shows unrelated information."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Inventing show ip nat inside command",
+          "whyItSeems": "show ip nat inside is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (show ip nat translations lists the current mappings): show ip nat translations inspects the right table or state — show ip nat inside shows unrelated information.",
+          "memoryAnchor": "Active NAT entries → show ip nat translations.",
+          "contrast": "Correct \"show ip nat translations\" vs wrong \"show ip nat inside\": Verification command (show ip nat translations lists the current mappings): show ip nat translations inspects the right table or state — show ip nat inside shows unrelated information."
+        }
+      ]
     },
     {
       "id": "4.1-c-q8",
@@ -367,7 +549,17 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "PAT = one public IP + many hosts distinguished by ports."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Denying port role in PAT",
+          "whyItSeems": "False states the opposite of the tested fact about pat ports.",
+          "whyWrongHere": "For \"pat ports\", True matches the required behavior — False answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "PAT = one public IP + many hosts distinguished by ports.",
+          "contrast": "Correct \"True\" vs wrong \"False\": For \"pat ports\", True matches the required behavior — False answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "4.1-q1",
@@ -415,7 +607,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Private RFC 1918 → Internet = NAT/PAT. Label inside/outside first."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Equating CIDR with address translation",
+          "whyItSeems": "\"CIDR\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"addresses\", NAT matches the required behavior — CIDR answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"NAT\" — not \"CIDR\" — for what this stem actually tests.",
+          "contrast": "Correct \"NAT\" vs wrong \"CIDR\": For \"addresses\", NAT matches the required behavior — CIDR answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Expecting classful rules to enable Internet from private space",
+          "whyItSeems": "\"Classful addressing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"addresses\", NAT matches the required behavior — Classful addressing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"NAT\" — not \"Classful addressing\" — for what this stem actually tests.",
+          "contrast": "Correct \"NAT\" vs wrong \"Classful addressing\": For \"addresses\", NAT matches the required behavior — Classful addressing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Choosing VPN when NAT is the standard exam answer",
+          "whyItSeems": "\"VPN\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"addresses\", NAT matches the required behavior — VPN answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"NAT\" — not \"VPN\" — for what this stem actually tests.",
+          "contrast": "Correct \"NAT\" vs wrong \"VPN\": For \"addresses\", NAT matches the required behavior — VPN answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "4.1-q2",
@@ -465,7 +683,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Inside local = private host address before NAT."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Confusing router inside interface with host",
+          "whyItSeems": "192.168.1.1 Router A Gi0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (inside local): 192.168.1.2 Host A matches prefix, shortening, or assignment rules — 192.168.1.1 Router A Gi0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "Inside local = private host address before NAT.",
+          "contrast": "Correct \"192.168.1.2 Host A\" vs wrong \"192.168.1.1 Router A Gi0/0\": IPv6 addressing (inside local): 192."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Labeling WAN address as inside local",
+          "whyItSeems": "179.43.44.1 Router A S0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (inside local): 192.168.1.2 Host A matches prefix, shortening, or assignment rules — 179.43.44.1 Router A S0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "Inside local = private host address before NAT.",
+          "contrast": "Correct \"192.168.1.2 Host A\" vs wrong \"179.43.44.1 Router A S0/0\": IPv6 addressing (inside local): 192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Mixing outside global with inside local",
+          "whyItSeems": "\"198.23.53.3 web server\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"inside local\", 192.168.1.2 Host A matches the required behavior — 198.23.53.3 web server answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Inside local = private host address before NAT.",
+          "contrast": "Correct \"192.168.1.2 Host A\" vs wrong \"198.23.53.3 web server\": For \"inside local\", 192."
+        }
+      ]
     },
     {
       "id": "4.1-q3",
@@ -515,7 +759,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Inside global = public address seen by the outside world for an inside host."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Using private address as inside global",
+          "whyItSeems": "\"192.168.1.2 Host A\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"inside local\", 179.43.44.1 Router A S0/0 matches the required behavior — 192.168.1.2 Host A answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Inside global = public address seen by the outside world for an inside host.",
+          "contrast": "Correct \"179.43.44.1 Router A S0/0\" vs wrong \"192.168.1.2 Host A\": For \"inside local\", 179."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Confusing inside interface with inside global",
+          "whyItSeems": "192.168.1.1 Router A Gi0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (inside local): 179.43.44.1 Router A S0/0 matches prefix, shortening, or assignment rules — 192.168.1.1 Router A Gi0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "Inside global = public address seen by the outside world for an inside host.",
+          "contrast": "Correct \"179.43.44.1 Router A S0/0\" vs wrong \"192.168.1.1 Router A Gi0/0\": IPv6 addressing (inside local): 179."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Selecting outside server as inside global",
+          "whyItSeems": "\"198.23.53.3 web server\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"inside local\", 179.43.44.1 Router A S0/0 matches the required behavior — 198.23.53.3 web server answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Inside global = public address seen by the outside world for an inside host.",
+          "contrast": "Correct \"179.43.44.1 Router A S0/0\" vs wrong \"198.23.53.3 web server\": For \"inside local\", 179."
+        }
+      ]
     },
     {
       "id": "4.1-q4",
@@ -565,7 +835,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Outside global = real public address of the remote host on the Internet."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Inside host labeled as outside global",
+          "whyItSeems": "\"192.168.1.2 Host A\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"inside local\", 198.23.53.3 web server matches the required behavior — 192.168.1.2 Host A answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Outside global = real public address of the remote host on the Internet.",
+          "contrast": "Correct \"198.23.53.3 web server\" vs wrong \"192.168.1.2 Host A\": For \"inside local\", 198."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Router LAN IP as outside global",
+          "whyItSeems": "192.168.1.1 Router A Gi0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (inside local): 198.23.53.3 web server matches prefix, shortening, or assignment rules — 192.168.1.1 Router A Gi0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "Outside global = real public address of the remote host on the Internet.",
+          "contrast": "Correct \"198.23.53.3 web server\" vs wrong \"192.168.1.1 Router A Gi0/0\": IPv6 addressing (inside local): 198."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "NAT router WAN IP as destination outside global",
+          "whyItSeems": "179.43.44.1 Router A S0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (inside local): 198.23.53.3 web server matches prefix, shortening, or assignment rules — 179.43.44.1 Router A S0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "Outside global = real public address of the remote host on the Internet.",
+          "contrast": "Correct \"198.23.53.3 web server\" vs wrong \"179.43.44.1 Router A S0/0\": IPv6 addressing (inside local): 198."
+        }
+      ]
     },
     {
       "id": "4.1-q5",
@@ -613,7 +909,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "View NAT table → show ip nat translations."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Omitting ip keyword in show command",
+          "whyItSeems": "\"Router#show nat translations\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"translations\", Router#show ip nat translations matches the required behavior — Router#show nat translations answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "View NAT table → show ip nat translations.",
+          "contrast": "Correct \"Router#show ip nat translations\" vs wrong \"Router#show nat translations\": For \"translations\", Router#show ip nat translations matches the required behavior — Router#show nat translations answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Using debug instead of show",
+          "whyItSeems": "\"Router#debug ip nat translations\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"translations\", Router#show ip nat translations matches the required behavior — Router#debug ip nat translations answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "View NAT table → show ip nat translations.",
+          "contrast": "Correct \"Router#show ip nat translations\" vs wrong \"Router#debug ip nat translations\": For \"translations\", Router#show ip nat translations matches the required behavior — Router#debug ip nat translations answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Inventing show command word order",
+          "whyItSeems": "\"Router#show translations nat\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"translations\", Router#show ip nat translations matches the required behavior — Router#show translations nat answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "View NAT table → show ip nat translations.",
+          "contrast": "Correct \"Router#show ip nat translations\" vs wrong \"Router#show translations nat\": For \"translations\", Router#show ip nat translations matches the required behavior — Router#show translations nat answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "4.1-q6",
@@ -661,7 +983,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "NAT counters/overview → show ip nat statistics."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Using translations for summary stats",
+          "whyItSeems": "Router#show ip nat translations is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (overview): Router#show ip nat statistics inspects the right table or state — Router#show ip nat translations shows unrelated information.",
+          "memoryAnchor": "NAT counters/overview → show ip nat statistics.",
+          "contrast": "Correct \"Router#show ip nat statistics\" vs wrong \"Router#show ip nat translations\": Verification command (overview): Router#show ip nat statistics inspects the right table or state — Router#show ip nat translations shows unrelated information."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Inventing summary command",
+          "whyItSeems": "Router#show ip nat summary is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (overview): Router#show ip nat statistics inspects the right table or state — Router#show ip nat summary shows unrelated information.",
+          "memoryAnchor": "NAT counters/overview → show ip nat statistics.",
+          "contrast": "Correct \"Router#show ip nat statistics\" vs wrong \"Router#show ip nat summary\": Verification command (overview): Router#show ip nat statistics inspects the right table or state — Router#show ip nat summary shows unrelated information."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Confusing status with statistics",
+          "whyItSeems": "Router#show ip nat status is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (overview): Router#show ip nat statistics inspects the right table or state — Router#show ip nat status shows unrelated information.",
+          "memoryAnchor": "NAT counters/overview → show ip nat statistics.",
+          "contrast": "Correct \"Router#show ip nat statistics\" vs wrong \"Router#show ip nat status\": Verification command (overview): Router#show ip nat statistics inspects the right table or state — Router#show ip nat status shows unrelated information."
+        }
+      ]
     },
     {
       "id": "4.1-q7",
@@ -711,7 +1059,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Static NAT: ip nat inside source static <local> <global>."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Omitting ip nat prefix",
+          "whyItSeems": "\"RouterA(config)#nat source static 192.168.1.3 179.43.44.1\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"inside local\", RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the required behavior — RouterA(config)#nat source static 192.168.1.3 179.43.44.1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static NAT: ip nat inside source static <local> <global>.",
+          "contrast": "Correct \"RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1\" vs wrong \"RouterA(config)#nat source static 192.168.1.3 179.43.44.1\": For \"inside local\", RouterA(config)#ip nat inside source static 192."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Wrong static NAT syntax",
+          "whyItSeems": "\"RouterA(config)#ip nat static 192.168.1.3 179.43.44.1\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"inside local\", RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the required behavior — RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static NAT: ip nat inside source static <local> <global>.",
+          "contrast": "Correct \"RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1\" vs wrong \"RouterA(config)#ip nat static 192.168.1.3 179.43.44.1\": For \"inside local\", RouterA(config)#ip nat inside source static 192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Reversed inside/source keywords",
+          "whyItSeems": "\"RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"inside local\", RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the required behavior — RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static NAT: ip nat inside source static <local> <global>.",
+          "contrast": "Correct \"RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1\" vs wrong \"RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1\": For \"inside local\", RouterA(config)#ip nat inside source static 192."
+        }
+      ]
     },
     {
       "id": "4.1-q8",
@@ -761,7 +1135,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Dynamic pool: ip nat pool <name> <start> <end> netmask <mask>."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Using CIDR in ip nat pool",
+          "whyItSeems": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches prefix, shortening, or assignment rules — RouterA(config)#ip nat pool EntPool 179.43.44.0/28 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "Dynamic pool: ip nat pool <name> <start> <end> netmask <mask>.",
+          "contrast": "Correct \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" vs wrong \"RouterA(config)#ip nat pool EntPool 179.43.44.0/28\": IPv6 addressing (inside local): RouterA(config)#ip nat pool EntPool 179."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Wrong netmask for /28 block",
+          "whyItSeems": "\"RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 uses the mask style this stem requires — RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "Dynamic pool: ip nat pool <name> <start> <end> netmask <mask>.",
+          "contrast": "Correct \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" vs wrong \"RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\": Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Applying \"RouterA(config)#ip nat pool EntPool \" without matching nat",
+          "whyItSeems": "\"RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 uses the mask style this stem requires — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "Dynamic pool: ip nat pool <name> <start> <end> netmask <mask>.",
+          "contrast": "Correct \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" vs wrong \"RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240\": Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179."
+        }
+      ]
     },
     {
       "id": "4.1-q9",
@@ -809,7 +1209,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "NAT ACL must match inside local addresses permitted to translate."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Reversing inside/outside direction for NAT ACL",
+          "whyItSeems": "The access list allows incoming access from outside global addresses. assigns a specific NAT address role (inside/outside, local/global) that may not match the stem.",
+          "whyWrongHere": "NAT address roles (configuring dynamic NAT, why must you configure an access list) are fixed — The access list allows outgoing access from inside local addresses. matches the stem's inside/outside and local/global pairing; The access list allows incoming access from outside global addresses. swaps roles.",
+          "memoryAnchor": "NAT ACL must match inside local addresses permitted to translate.",
+          "contrast": "Correct \"The access list allows outgoing access from inside local addresses.\" vs wrong \"The access list allows incoming access from outside global addresses.\": NAT address roles (configuring dynamic NAT, why must you configure an access list) are fixed — The access list allows outgoing access from inside local addresses."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Confusing outside local with inside local in NAT ACL",
+          "whyItSeems": "The access list allows outgoing access from outside local addresses. assigns a specific NAT address role (inside/outside, local/global) that may not match the stem.",
+          "whyWrongHere": "NAT address roles (configuring dynamic NAT, why must you configure an access list) are fixed — The access list allows outgoing access from inside local addresses. matches the stem's inside/outside and local/global pairing; The access list allows outgoing access from outside local addresses. swaps roles.",
+          "memoryAnchor": "NAT ACL must match inside local addresses permitted to translate.",
+          "contrast": "Correct \"The access list allows outgoing access from inside local addresses.\" vs wrong \"The access list allows outgoing access from outside local addresses.\": NAT address roles (configuring dynamic NAT, why must you configure an access list) are fixed — The access list allows outgoing access from inside local addresses."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Matching inside global instead of inside local in ACL",
+          "whyItSeems": "The access list allows outgoing access from inside global addresses. assigns a specific NAT address role (inside/outside, local/global) that may not match the stem.",
+          "whyWrongHere": "NAT address roles (configuring dynamic NAT, why must you configure an access list) are fixed — The access list allows outgoing access from inside local addresses. matches the stem's inside/outside and local/global pairing; The access list allows outgoing access from inside global addresses. swaps roles.",
+          "memoryAnchor": "NAT ACL must match inside local addresses permitted to translate.",
+          "contrast": "Correct \"The access list allows outgoing access from inside local addresses.\" vs wrong \"The access list allows outgoing access from inside global addresses.\": NAT address roles (configuring dynamic NAT, why must you configure an access list) are fixed — The access list allows outgoing access from inside local addresses."
+        }
+      ]
     },
     {
       "id": "4.1-q10",
@@ -857,7 +1283,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Flush NAT table → clear ip nat translation *."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Using no instead of clear",
+          "whyItSeems": "\"Router#no ip nat translation\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"translations\", Router#clear ip nat translation * matches the required behavior — Router#no ip nat translation answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Flush NAT table → clear ip nat translation *.",
+          "contrast": "Correct \"Router#clear ip nat translation *\" vs wrong \"Router#no ip nat translation\": For \"translations\", Router#clear ip nat translation * matches the required behavior — Router#no ip nat translation answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Incomplete clear syntax",
+          "whyItSeems": "\"Router#clear ip nat translation\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"translations\", Router#clear ip nat translation * matches the required behavior — Router#clear ip nat translation answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Flush NAT table → clear ip nat translation *.",
+          "contrast": "Correct \"Router#clear ip nat translation *\" vs wrong \"Router#clear ip nat translation\": For \"translations\", Router#clear ip nat translation * matches the required behavior — Router#clear ip nat translation answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Truncated clear command",
+          "whyItSeems": "\"Router#clear ip nat\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"translations\", Router#clear ip nat translation * matches the required behavior — Router#clear ip nat answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Flush NAT table → clear ip nat translation *.",
+          "contrast": "Correct \"Router#clear ip nat translation *\" vs wrong \"Router#clear ip nat\": For \"translations\", Router#clear ip nat translation * matches the required behavior — Router#clear ip nat answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "4.1-q11",
@@ -905,7 +1357,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Realtime NAT events → debug ip nat (remember undebug all)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Invalid show command",
+          "whyItSeems": "Router#show ip translations is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "For \"translations\", Router#debug ip nat matches the required behavior — Router#show ip translations answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Realtime NAT events → debug ip nat (remember undebug all).",
+          "contrast": "Correct \"Router#debug ip nat\" vs wrong \"Router#show ip translations\": For \"translations\", Router#debug ip nat matches the required behavior — Router#show ip translations answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Wrong debug keyword",
+          "whyItSeems": "\"Router#debug ip translations\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"translations\", Router#debug ip nat matches the required behavior — Router#debug ip translations answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Realtime NAT events → debug ip nat (remember undebug all).",
+          "contrast": "Correct \"Router#debug ip nat\" vs wrong \"Router#debug ip translations\": For \"translations\", Router#debug ip nat matches the required behavior — Router#debug ip translations answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Expecting show for realtime debug",
+          "whyItSeems": "Router#show ip nat is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "For \"translations\", Router#debug ip nat matches the required behavior — Router#show ip nat answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Realtime NAT events → debug ip nat (remember undebug all).",
+          "contrast": "Correct \"Router#debug ip nat\" vs wrong \"Router#show ip nat\": For \"translations\", Router#debug ip nat matches the required behavior — Router#show ip nat answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "4.1-q12",
@@ -956,7 +1434,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "PAT on one public IP → add overload to inside source list pool."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Forgetting overload for PAT",
+          "whyItSeems": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (inside local): RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload uses the right ACL type and position — RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool mismatches standard vs extended rules.",
+          "memoryAnchor": "PAT on one public IP → add overload to inside source list pool.",
+          "contrast": "Correct \"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload\" vs wrong \"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool\": ACL placement/match (inside local): RouterA(config)#access-list 1 permit 192."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Wrong PAT command structure",
+          "whyItSeems": "\"RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Mask/wildcard (inside local): RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload uses the mask style this stem requires — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "PAT on one public IP → add overload to inside source list pool.",
+          "contrast": "Correct \"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload\" vs wrong \"RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool\": Mask/wildcard (inside local): RouterA(config)#access-list 1 permit 192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Pool without overload on one IP",
+          "whyItSeems": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (inside local): RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload uses the right ACL type and position — RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool mismatches standard vs extended rules.",
+          "memoryAnchor": "PAT on one public IP → add overload to inside source list pool.",
+          "contrast": "Correct \"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload\" vs wrong \"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool\": ACL placement/match (inside local): RouterA(config)#access-list 1 permit 192."
+        }
+      ]
     },
     {
       "id": "obj-4.1-source-q001",
@@ -1006,7 +1510,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "RFC 1918 → Internet egress needs NAT (or carrier-grade NAT) to a public address."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Expecting CIDR to provide private-to-public translation",
+          "whyItSeems": "\"CIDR\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"addresses\", NAT matches the required behavior — CIDR answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "RFC 1918 → Internet egress needs NAT (or carrier-grade NAT) to a public address.",
+          "contrast": "Correct \"NAT\" vs wrong \"CIDR\": For \"addresses\", NAT matches the required behavior — CIDR answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Believing classful rules alone enable Internet use of RFC 1918",
+          "whyItSeems": "\"Classful addressing\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"addresses\", NAT matches the required behavior — Classful addressing answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "RFC 1918 → Internet egress needs NAT (or carrier-grade NAT) to a public address.",
+          "contrast": "Correct \"NAT\" vs wrong \"Classful addressing\": For \"addresses\", NAT matches the required behavior — Classful addressing answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Substituting VPN for address translation to the Internet",
+          "whyItSeems": "\"VPN\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"addresses\", NAT matches the required behavior — VPN answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "RFC 1918 → Internet egress needs NAT (or carrier-grade NAT) to a public address.",
+          "contrast": "Correct \"NAT\" vs wrong \"VPN\": For \"addresses\", NAT matches the required behavior — VPN answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.1-source-q002",
@@ -1059,7 +1589,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "NAT quadrants: inside local = private host IP before translation."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Labeling inside router interface as inside local host",
+          "whyItSeems": "192.168.1.1 Router A Gi0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (inside local): 192.168.1.2 Host A matches prefix, shortening, or assignment rules — 192.168.1.1 Router A Gi0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "NAT quadrants: inside local = private host IP before translation.",
+          "contrast": "Correct \"192.168.1.2 Host A\" vs wrong \"192.168.1.1 Router A Gi0/0\": IPv6 addressing (inside local): 192."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Confusing inside global WAN address with inside local",
+          "whyItSeems": "179.43.44.1 Router A S0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (inside local): 192.168.1.2 Host A matches prefix, shortening, or assignment rules — 179.43.44.1 Router A S0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "NAT quadrants: inside local = private host IP before translation.",
+          "contrast": "Correct \"192.168.1.2 Host A\" vs wrong \"179.43.44.1 Router A S0/0\": IPv6 addressing (inside local): 192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Selecting outside global address for inside local question",
+          "whyItSeems": "\"198.23.53.3 web server\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"inside local\", 192.168.1.2 Host A matches the required behavior — 198.23.53.3 web server answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NAT quadrants: inside local = private host IP before translation.",
+          "contrast": "Correct \"192.168.1.2 Host A\" vs wrong \"198.23.53.3 web server\": For \"inside local\", 192."
+        }
+      ]
     },
     {
       "id": "obj-4.1-source-q003",
@@ -1112,7 +1668,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Inside global = public address outsiders see for an inside host."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Equating inside local host with inside global",
+          "whyItSeems": "\"192.168.1.2 Host A\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"inside local\", 179.43.44.1 Router A S0/0 matches the required behavior — 192.168.1.2 Host A answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Inside global = public address outsiders see for an inside host.",
+          "contrast": "Correct \"179.43.44.1 Router A S0/0\" vs wrong \"192.168.1.2 Host A\": For \"inside local\", 179."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Choosing inside LAN gateway as inside global",
+          "whyItSeems": "192.168.1.1 Router A Gi0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (inside local): 179.43.44.1 Router A S0/0 matches prefix, shortening, or assignment rules — 192.168.1.1 Router A Gi0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "Inside global = public address outsiders see for an inside host.",
+          "contrast": "Correct \"179.43.44.1 Router A S0/0\" vs wrong \"192.168.1.1 Router A Gi0/0\": IPv6 addressing (inside local): 179."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Selecting outside global server for inside global slot",
+          "whyItSeems": "\"198.23.53.3 web server\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"inside local\", 179.43.44.1 Router A S0/0 matches the required behavior — 198.23.53.3 web server answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Inside global = public address outsiders see for an inside host.",
+          "contrast": "Correct \"179.43.44.1 Router A S0/0\" vs wrong \"198.23.53.3 web server\": For \"inside local\", 179."
+        }
+      ]
     },
     {
       "id": "obj-4.1-source-q004",
@@ -1165,7 +1747,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Outside global = remote host's public IP as your network sees it."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Labeling inside local host as outside global",
+          "whyItSeems": "\"192.168.1.2 Host A\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"inside local\", 198.23.53.3 web server matches the required behavior — 192.168.1.2 Host A answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Outside global = remote host's public IP as your network sees it.",
+          "contrast": "Correct \"198.23.53.3 web server\" vs wrong \"192.168.1.2 Host A\": For \"inside local\", 198."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Confusing inside gateway with outside global destination",
+          "whyItSeems": "192.168.1.1 Router A Gi0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (inside local): 198.23.53.3 web server matches prefix, shortening, or assignment rules — 192.168.1.1 Router A Gi0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "Outside global = remote host's public IP as your network sees it.",
+          "contrast": "Correct \"198.23.53.3 web server\" vs wrong \"192.168.1.1 Router A Gi0/0\": IPv6 addressing (inside local): 198."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Mixing inside global WAN with outside global destination",
+          "whyItSeems": "179.43.44.1 Router A S0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (inside local): 198.23.53.3 web server matches prefix, shortening, or assignment rules — 179.43.44.1 Router A S0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "Outside global = remote host's public IP as your network sees it.",
+          "contrast": "Correct \"198.23.53.3 web server\" vs wrong \"179.43.44.1 Router A S0/0\": IPv6 addressing (inside local): 198."
+        }
+      ]
     },
     {
       "id": "obj-4.1-source-q005",
@@ -1217,7 +1825,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Active NAT mappings → show ip nat translations (not debug)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Dropping ip keyword from show nat command",
+          "whyItSeems": "\"Router#show nat translations\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"translations\", Router#show ip nat translations matches the required behavior — Router#show nat translations answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Active NAT mappings → show ip nat translations (not debug).",
+          "contrast": "Correct \"Router#show ip nat translations\" vs wrong \"Router#show nat translations\": For \"translations\", Router#show ip nat translations matches the required behavior — Router#show nat translations answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Using debug instead of show for translation table",
+          "whyItSeems": "\"Router#debug ip nat translations\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"translations\", Router#show ip nat translations matches the required behavior — Router#debug ip nat translations answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Active NAT mappings → show ip nat translations (not debug).",
+          "contrast": "Correct \"Router#show ip nat translations\" vs wrong \"Router#debug ip nat translations\": For \"translations\", Router#show ip nat translations matches the required behavior — Router#debug ip nat translations answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Reordering show ip nat keywords",
+          "whyItSeems": "\"Router#show translations nat\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"translations\", Router#show ip nat translations matches the required behavior — Router#show translations nat answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Active NAT mappings → show ip nat translations (not debug).",
+          "contrast": "Correct \"Router#show ip nat translations\" vs wrong \"Router#show translations nat\": For \"translations\", Router#show ip nat translations matches the required behavior — Router#show translations nat answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.1-source-q006",
@@ -1270,7 +1904,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "NAT overview/counters → show ip nat statistics; per-entry table → show ip nat translations."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Using translations table for overview statistics",
+          "whyItSeems": "Router#show ip nat translations is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (overview): Router#show ip nat statistics inspects the right table or state — Router#show ip nat translations shows unrelated information.",
+          "memoryAnchor": "NAT overview/counters → show ip nat statistics; per-entry table → show ip nat translations.",
+          "contrast": "Correct \"Router#show ip nat statistics\" vs wrong \"Router#show ip nat translations\": Verification command (overview): Router#show ip nat statistics inspects the right table or state — Router#show ip nat translations shows unrelated information."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Inventing show ip nat summary command",
+          "whyItSeems": "Router#show ip nat summary is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (overview): Router#show ip nat statistics inspects the right table or state — Router#show ip nat summary shows unrelated information.",
+          "memoryAnchor": "NAT overview/counters → show ip nat statistics; per-entry table → show ip nat translations.",
+          "contrast": "Correct \"Router#show ip nat statistics\" vs wrong \"Router#show ip nat summary\": Verification command (overview): Router#show ip nat statistics inspects the right table or state — Router#show ip nat summary shows unrelated information."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Selecting nonexistent show ip nat status",
+          "whyItSeems": "Router#show ip nat status is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (overview): Router#show ip nat statistics inspects the right table or state — Router#show ip nat status shows unrelated information.",
+          "memoryAnchor": "NAT overview/counters → show ip nat statistics; per-entry table → show ip nat translations.",
+          "contrast": "Correct \"Router#show ip nat statistics\" vs wrong \"Router#show ip nat status\": Verification command (overview): Router#show ip nat statistics inspects the right table or state — Router#show ip nat status shows unrelated information."
+        }
+      ]
     },
     {
       "id": "obj-4.1-source-q007",
@@ -1322,7 +1982,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Static NAT: ip nat inside source static <private> <public>."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Omitting ip nat inside keywords from static NAT",
+          "whyItSeems": "\"RouterA(config)#nat source static 192.168.1.3 179.43.44.1\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"inside local\", RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the required behavior — RouterA(config)#nat source static 192.168.1.3 179.43.44.1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static NAT: ip nat inside source static <private> <public>.",
+          "contrast": "Correct \"RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1\" vs wrong \"RouterA(config)#nat source static 192.168.1.3 179.43.44.1\": For \"inside local\", RouterA(config)#ip nat inside source static 192."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Using shortened ip nat static syntax",
+          "whyItSeems": "\"RouterA(config)#ip nat static 192.168.1.3 179.43.44.1\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"inside local\", RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the required behavior — RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static NAT: ip nat inside source static <private> <public>.",
+          "contrast": "Correct \"RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1\" vs wrong \"RouterA(config)#ip nat static 192.168.1.3 179.43.44.1\": For \"inside local\", RouterA(config)#ip nat inside source static 192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Missing inside keyword in static NAT command",
+          "whyItSeems": "\"RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"inside local\", RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1 matches the required behavior — RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Static NAT: ip nat inside source static <private> <public>.",
+          "contrast": "Correct \"RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1\" vs wrong \"RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1\": For \"inside local\", RouterA(config)#ip nat inside source static 192."
+        }
+      ]
     },
     {
       "id": "obj-4.1-source-q008",
@@ -1377,7 +2063,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Dynamic NAT pool: ip nat pool <name> <first> <last> netmask <mask>."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Using CIDR notation inside ip nat pool command",
+          "whyItSeems": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches prefix, shortening, or assignment rules — RouterA(config)#ip nat pool EntPool 179.43.44.0/28 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "Dynamic NAT pool: ip nat pool <name> <first> <last> netmask <mask>.",
+          "contrast": "Correct \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" vs wrong \"RouterA(config)#ip nat pool EntPool 179.43.44.0/28\": IPv6 addressing (inside local): RouterA(config)#ip nat pool EntPool 179."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Using ip pool instead of ip nat pool",
+          "whyItSeems": "\"RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 uses the mask style this stem requires — RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "Dynamic NAT pool: ip nat pool <name> <first> <last> netmask <mask>.",
+          "contrast": "Correct \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" vs wrong \"RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\": Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Including interface address as pool start",
+          "whyItSeems": "\"RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 uses the mask style this stem requires — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "Dynamic NAT pool: ip nat pool <name> <first> <last> netmask <mask>.",
+          "contrast": "Correct \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" vs wrong \"RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240\": Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179."
+        }
+      ]
     },
     {
       "id": "obj-4.1-source-q009",
@@ -1431,7 +2143,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Dynamic NAT ACL → match inside local sources allowed to translate outbound."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Reversing NAT ACL direction (inbound vs outbound)",
+          "whyItSeems": "The access list allows incoming access from outside global addresses. assigns a specific NAT address role (inside/outside, local/global) that may not match the stem.",
+          "whyWrongHere": "NAT address roles (configuring dynamic NAT, why must you configure an access list) are fixed — The access list allows outgoing access from inside local addresses. matches the stem's inside/outside and local/global pairing; The access list allows incoming access from outside global addresses. swaps roles.",
+          "memoryAnchor": "Dynamic NAT ACL → match inside local sources allowed to translate outbound.",
+          "contrast": "Correct \"The access list allows outgoing access from inside local addresses.\" vs wrong \"The access list allows incoming access from outside global addresses.\": NAT address roles (configuring dynamic NAT, why must you configure an access list) are fixed — The access list allows outgoing access from inside local addresses."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Confusing outside local with inside local in NAT ACL",
+          "whyItSeems": "The access list allows outgoing access from outside local addresses. assigns a specific NAT address role (inside/outside, local/global) that may not match the stem.",
+          "whyWrongHere": "NAT address roles (configuring dynamic NAT, why must you configure an access list) are fixed — The access list allows outgoing access from inside local addresses. matches the stem's inside/outside and local/global pairing; The access list allows outgoing access from outside local addresses. swaps roles.",
+          "memoryAnchor": "Dynamic NAT ACL → match inside local sources allowed to translate outbound.",
+          "contrast": "Correct \"The access list allows outgoing access from inside local addresses.\" vs wrong \"The access list allows outgoing access from outside local addresses.\": NAT address roles (configuring dynamic NAT, why must you configure an access list) are fixed — The access list allows outgoing access from inside local addresses."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Matching inside global instead of inside local pre-translation",
+          "whyItSeems": "The access list allows outgoing access from inside global addresses. assigns a specific NAT address role (inside/outside, local/global) that may not match the stem.",
+          "whyWrongHere": "NAT address roles (configuring dynamic NAT, why must you configure an access list) are fixed — The access list allows outgoing access from inside local addresses. matches the stem's inside/outside and local/global pairing; The access list allows outgoing access from inside global addresses. swaps roles.",
+          "memoryAnchor": "Dynamic NAT ACL → match inside local sources allowed to translate outbound.",
+          "contrast": "Correct \"The access list allows outgoing access from inside local addresses.\" vs wrong \"The access list allows outgoing access from inside global addresses.\": NAT address roles (configuring dynamic NAT, why must you configure an access list) are fixed — The access list allows outgoing access from inside local addresses."
+        }
+      ]
     },
     {
       "id": "obj-4.1-source-q010",
@@ -1482,7 +2220,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Flush NAT table: clear ip nat translation * — use * for all dynamic entries."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "no ip nat translation as clear command",
+          "whyItSeems": "\"Router#no ip nat translation\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"translations\", Router#clear ip nat translation * matches the required behavior — Router#no ip nat translation answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Flush NAT table: clear ip nat translation * — use * for all dynamic entries.",
+          "contrast": "Correct \"Router#clear ip nat translation *\" vs wrong \"Router#no ip nat translation\": For \"translations\", Router#clear ip nat translation * matches the required behavior — Router#no ip nat translation answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Clear without asterisk for all translations",
+          "whyItSeems": "\"Router#clear ip nat translation\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"translations\", Router#clear ip nat translation * matches the required behavior — Router#clear ip nat translation answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Flush NAT table: clear ip nat translation * — use * for all dynamic entries.",
+          "contrast": "Correct \"Router#clear ip nat translation *\" vs wrong \"Router#clear ip nat translation\": For \"translations\", Router#clear ip nat translation * matches the required behavior — Router#clear ip nat translation answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Abbreviated clear ip nat command",
+          "whyItSeems": "\"Router#clear ip nat\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"translations\", Router#clear ip nat translation * matches the required behavior — Router#clear ip nat answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Flush NAT table: clear ip nat translation * — use * for all dynamic entries.",
+          "contrast": "Correct \"Router#clear ip nat translation *\" vs wrong \"Router#clear ip nat\": For \"translations\", Router#clear ip nat translation * matches the required behavior — Router#clear ip nat answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.1-source-q011",
@@ -1533,7 +2297,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "NAT verify: show ip nat translations (table) | debug ip nat (live translation events)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "show ip translations for live NAT",
+          "whyItSeems": "Router#show ip translations is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "For \"translations\", Router#debug ip nat matches the required behavior — Router#show ip translations answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NAT verify: show ip nat translations (table) | debug ip nat (live translation events).",
+          "contrast": "Correct \"Router#debug ip nat\" vs wrong \"Router#show ip translations\": For \"translations\", Router#debug ip nat matches the required behavior — Router#show ip translations answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "debug ip translations instead of debug ip nat",
+          "whyItSeems": "\"Router#debug ip translations\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"translations\", Router#debug ip nat matches the required behavior — Router#debug ip translations answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NAT verify: show ip nat translations (table) | debug ip nat (live translation events).",
+          "contrast": "Correct \"Router#debug ip nat\" vs wrong \"Router#debug ip translations\": For \"translations\", Router#debug ip nat matches the required behavior — Router#debug ip translations answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Show command for real-time NAT events",
+          "whyItSeems": "Router#show ip nat is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "For \"translations\", Router#debug ip nat matches the required behavior — Router#show ip nat answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NAT verify: show ip nat translations (table) | debug ip nat (live translation events).",
+          "contrast": "Correct \"Router#debug ip nat\" vs wrong \"Router#show ip nat\": For \"translations\", Router#debug ip nat matches the required behavior — Router#show ip nat answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.1-source-q012",
@@ -1588,7 +2378,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "PAT recipe: ACL permit inside net → ip nat inside source list <n> pool <name> overload."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Dynamic NAT pool without overload as PAT",
+          "whyItSeems": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (inside local): RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload uses the right ACL type and position — RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool mismatches standard vs extended rules.",
+          "memoryAnchor": "PAT recipe: ACL permit inside net → ip nat inside source list <n> pool <name> overload.",
+          "contrast": "Correct \"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload\" vs wrong \"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool\": ACL placement/match (inside local): RouterA(config)#access-list 1 permit 192."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "ip nat source pool without inside keyword",
+          "whyItSeems": "\"RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Mask/wildcard (inside local): RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload uses the mask style this stem requires — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool confuses subnet mask with ACL/OSPF wildcard bits.",
+          "memoryAnchor": "PAT recipe: ACL permit inside net → ip nat inside source list <n> pool <name> overload.",
+          "contrast": "Correct \"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload\" vs wrong \"RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool\": Mask/wildcard (inside local): RouterA(config)#access-list 1 permit 192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "NAT pool config without overload for PAT",
+          "whyItSeems": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool applies an ACL type (standard vs extended) or number range that may not match placement rules here.",
+          "whyWrongHere": "ACL placement/match (inside local): RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload uses the right ACL type and position — RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool mismatches standard vs extended rules.",
+          "memoryAnchor": "PAT recipe: ACL permit inside net → ip nat inside source list <n> pool <name> overload.",
+          "contrast": "Correct \"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload\" vs wrong \"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool\": ACL placement/match (inside local): RouterA(config)#access-list 1 permit 192."
+        }
+      ]
     }
   ],
   "4.2": [
@@ -1640,7 +2456,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "NTP: ntp server <ip> in global config. Verify with show ntp associations."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "NTP server in privileged exec instead of config mode",
+          "whyItSeems": "\"Router#ntp server 129.6.15.28\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"synchronize\", Router(config)#ntp server 129.6.15.28 matches the required behavior — Router#ntp server 129.6.15.28 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Router(config)#ntp server 129.6.15.28\" — not \"Router#ntp server 129.6.15.28\" — for what this stem actually tests.",
+          "contrast": "Correct \"Router(config)#ntp server 129.6.15.28\" vs wrong \"Router#ntp server 129.6.15.28\": For \"synchronize\", Router(config)#ntp server 129."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Inventing ntp client syntax",
+          "whyItSeems": "\"Router(config)#ntp client 129.6.15.28\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"synchronize\", Router(config)#ntp server 129.6.15.28 matches the required behavior — Router(config)#ntp client 129.6.15.28 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Router(config)#ntp server 129.6.15.28\" — not \"Router(config)#ntp client 129.6.15.28\" — for what this stem actually tests.",
+          "contrast": "Correct \"Router(config)#ntp server 129.6.15.28\" vs wrong \"Router(config)#ntp client 129.6.15.28\": For \"synchronize\", Router(config)#ntp server 129."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Exec-mode NTP configuration",
+          "whyItSeems": "\"Router#ntp client 129.6.15.28\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"synchronize\", Router(config)#ntp server 129.6.15.28 matches the required behavior — Router#ntp client 129.6.15.28 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Router(config)#ntp server 129.6.15.28\" — not \"Router#ntp client 129.6.15.28\" — for what this stem actually tests.",
+          "contrast": "Correct \"Router(config)#ntp server 129.6.15.28\" vs wrong \"Router#ntp client 129.6.15.28\": For \"synchronize\", Router(config)#ntp server 129."
+        }
+      ]
     },
     {
       "id": "obj-4.2-source-q002",
@@ -1691,7 +2533,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Device is the time authority → ntp master (after setting clock or syncing once)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Using ntp server to become time master",
+          "whyItSeems": "\"Router(config)#ntp server\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configures\", Router(config)#ntp master matches the required behavior — Router(config)#ntp server answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Device is the time authority → ntp master (after setting clock or syncing once).",
+          "contrast": "Correct \"Router(config)#ntp master\" vs wrong \"Router(config)#ntp server\": For \"configures\", Router(config)#ntp master matches the required behavior — Router(config)#ntp server answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Inventing ntp clock source command",
+          "whyItSeems": "\"Router(config)#ntp clock source\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configures\", Router(config)#ntp master matches the required behavior — Router(config)#ntp clock source answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Device is the time authority → ntp master (after setting clock or syncing once).",
+          "contrast": "Correct \"Router(config)#ntp master\" vs wrong \"Router(config)#ntp clock source\": For \"configures\", Router(config)#ntp master matches the required behavior — Router(config)#ntp clock source answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Confusing ntp trusted with ntp master",
+          "whyItSeems": "\"Router(config)#ntp trusted\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configures\", Router(config)#ntp master matches the required behavior — Router(config)#ntp trusted answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Device is the time authority → ntp master (after setting clock or syncing once).",
+          "contrast": "Correct \"Router(config)#ntp master\" vs wrong \"Router(config)#ntp trusted\": For \"configures\", Router(config)#ntp master matches the required behavior — Router(config)#ntp trusted answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.2-source-q003",
@@ -1742,7 +2610,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "NTP sync check: show clock detail (synced vs unsynced) | show ntp status for stratum."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Truncated show ntp command",
+          "whyItSeems": "\"Router#show ntp\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"the router or switch is using NTP\", Router#show clock detail matches the required behavior — Router#show ntp answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NTP sync check: show clock detail (synced vs unsynced) | show ntp status for stratum.",
+          "contrast": "Correct \"Router#show clock detail\" vs wrong \"Router#show ntp\": For \"the router or switch is using NTP\", Router#show clock detail matches the required behavior — Router#show ntp answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Invented show time command",
+          "whyItSeems": "\"Router#show time\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"the router or switch is using NTP\", Router#show clock detail matches the required behavior — Router#show time answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NTP sync check: show clock detail (synced vs unsynced) | show ntp status for stratum.",
+          "contrast": "Correct \"Router#show clock detail\" vs wrong \"Router#show time\": For \"the router or switch is using NTP\", Router#show clock detail matches the required behavior — Router#show time answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented show time source command",
+          "whyItSeems": "\"Router#show time source\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"the router or switch is using NTP\", Router#show clock detail matches the required behavior — Router#show time source answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NTP sync check: show clock detail (synced vs unsynced) | show ntp status for stratum.",
+          "contrast": "Correct \"Router#show clock detail\" vs wrong \"Router#show time source\": For \"the router or switch is using NTP\", Router#show clock detail matches the required behavior — Router#show time source answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.2-source-q004",
@@ -1794,7 +2688,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "NTP verify: show ntp associations (summary) | detail for per-server stratum/offset/reach."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "show clock detail for server associations",
+          "whyItSeems": "\"Router#show clock detail\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configured\", Router#show ntp associations detail matches the required behavior — Router#show clock detail answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NTP verify: show ntp associations (summary) | detail for per-server stratum/offset/reach.",
+          "contrast": "Correct \"Router#show ntp associations detail\" vs wrong \"Router#show clock detail\": For \"configured\", Router#show ntp associations detail matches the required behavior — Router#show clock detail answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented show ntp detail command",
+          "whyItSeems": "\"Router#show ntp detail\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configured\", Router#show ntp associations detail matches the required behavior — Router#show ntp detail answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NTP verify: show ntp associations (summary) | detail for per-server stratum/offset/reach.",
+          "contrast": "Correct \"Router#show ntp associations detail\" vs wrong \"Router#show ntp detail\": For \"configured\", Router#show ntp associations detail matches the required behavior — Router#show ntp detail answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented show ntp skew command",
+          "whyItSeems": "\"Router#show ntp skew\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configured\", Router#show ntp associations detail matches the required behavior — Router#show ntp skew answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NTP verify: show ntp associations (summary) | detail for per-server stratum/offset/reach.",
+          "contrast": "Correct \"Router#show ntp associations detail\" vs wrong \"Router#show ntp skew\": For \"configured\", Router#show ntp associations detail matches the required behavior — Router#show ntp skew answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.2-source-q005",
@@ -1844,7 +2764,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "NTP = UDP/123 | SNMP = UDP/161 (agent) / UDP/162 (traps) | memorize the UDP service ports."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "SNMP port for NTP",
+          "whyItSeems": "TCP/161 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Transport protocol (protocol): UDP/123 matches reliability, ports, or connection behavior — TCP/161 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "NTP = UDP/123 | SNMP = UDP/161 (agent) / UDP/162 (traps) | memorize the UDP service ports.",
+          "contrast": "Correct \"UDP/123\" vs wrong \"TCP/161\": Transport protocol (protocol): UDP/123 matches reliability, ports, or connection behavior — TCP/161 picks the wrong L4 protocol or port role."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "TCP transport for NTP",
+          "whyItSeems": "TCP/123 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Transport protocol (protocol): UDP/123 matches reliability, ports, or connection behavior — TCP/123 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "NTP = UDP/123 | SNMP = UDP/161 (agent) / UDP/162 (traps) | memorize the UDP service ports.",
+          "contrast": "Correct \"UDP/123\" vs wrong \"TCP/123\": Transport protocol (protocol): UDP/123 matches reliability, ports, or connection behavior — TCP/123 picks the wrong L4 protocol or port role."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "TFTP port for NTP",
+          "whyItSeems": "UDP/69 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Transport protocol (protocol): UDP/123 matches reliability, ports, or connection behavior — UDP/69 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "NTP = UDP/123 | SNMP = UDP/161 (agent) / UDP/162 (traps) | memorize the UDP service ports.",
+          "contrast": "Correct \"UDP/123\" vs wrong \"UDP/69\": Transport protocol (protocol): UDP/123 matches reliability, ports, or connection behavior — UDP/69 picks the wrong L4 protocol or port role."
+        }
+      ]
     },
     {
       "id": "obj-4.2-source-q006",
@@ -1894,7 +2840,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "NTP troubleshoot: show ntp associations → show ntp status → debug ntp packets (disable debug when done)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Truncated show ntp for server response",
+          "whyItSeems": "\"Router#show ntp\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"the router or switch is getting an answer back from an NTP server\", Router#debug ntp packets matches the required behavior — Router#show ntp answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NTP troubleshoot: show ntp associations → show ntp status → debug ntp packets (disable debug when done).",
+          "contrast": "Correct \"Router#debug ntp packets\" vs wrong \"Router#show ntp\": For \"the router or switch is getting an answer back from an NTP server\", Router#debug ntp packets matches the required behavior — Router#show ntp answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented show ip ntp command",
+          "whyItSeems": "Router#show ip ntp is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "For \"the router or switch is getting an answer back from an NTP server\", Router#debug ntp packets matches the required behavior — Router#show ip ntp answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NTP troubleshoot: show ntp associations → show ntp status → debug ntp packets (disable debug when done).",
+          "contrast": "Correct \"Router#debug ntp packets\" vs wrong \"Router#show ip ntp\": For \"the router or switch is getting an answer back from an NTP server\", Router#debug ntp packets matches the required behavior — Router#show ip ntp answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "NTP messages debug for packet exchange",
+          "whyItSeems": "\"Router#debug ntp messages\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"the router or switch is getting an answer back from an NTP server\", Router#debug ntp packets matches the required behavior — Router#debug ntp messages answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NTP troubleshoot: show ntp associations → show ntp status → debug ntp packets (disable debug when done).",
+          "contrast": "Correct \"Router#debug ntp packets\" vs wrong \"Router#debug ntp messages\": For \"the router or switch is getting an answer back from an NTP server\", Router#debug ntp packets matches the required behavior — Router#debug ntp messages answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.2-source-q007",
@@ -1945,7 +2917,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "NTP best practice: DNS name for the server + hierarchical stratum (client → internal server → public stratum-1)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "All devices to one public NTP server",
+          "whyItSeems": "\"Configure all devices to a public NTP server.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"practice\", Always configure the time source to a DNS address. matches the required behavior — Configure all devices to a public NTP server. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NTP best practice: DNS name for the server + hierarchical stratum (client → internal server → public stratum-1).",
+          "contrast": "Correct \"Always configure the time source to a DNS address.\" vs wrong \"Configure all devices to a public NTP server.\": For \"practice\", Always configure the time source to a DNS address."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Per-device different NTP servers for redundancy",
+          "whyItSeems": "\"Configure all devices to different NTP servers for redundancy.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"practice\", Always configure the time source to a DNS address. matches the required behavior — Configure all devices to different NTP servers for redundancy. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NTP best practice: DNS name for the server + hierarchical stratum (client → internal server → public stratum-1).",
+          "contrast": "Correct \"Always configure the time source to a DNS address.\" vs wrong \"Configure all devices to different NTP servers for redundancy.\": For \"practice\", Always configure the time source to a DNS address."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Every device as NTP master",
+          "whyItSeems": "\"Configure all devices as master servers.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"practice\", Always configure the time source to a DNS address. matches the required behavior — Configure all devices as master servers. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NTP best practice: DNS name for the server + hierarchical stratum (client → internal server → public stratum-1).",
+          "contrast": "Correct \"Always configure the time source to a DNS address.\" vs wrong \"Configure all devices as master servers.\": For \"practice\", Always configure the time source to a DNS address."
+        }
+      ]
     },
     {
       "id": "obj-4.2-source-q008",
@@ -1996,7 +2994,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "NTP drift/offset: show ntp status | Per-peer detail: show ntp associations detail."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Truncated show ntp for drift",
+          "whyItSeems": "\"Router#show ntp\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"observed\", Router#show ntp status matches the required behavior — Router#show ntp answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NTP drift/offset: show ntp status | Per-peer detail: show ntp associations detail.",
+          "contrast": "Correct \"Router#show ntp status\" vs wrong \"Router#show ntp\": For \"observed\", Router#show ntp status matches the required behavior — Router#show ntp answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented show ip ntp status command",
+          "whyItSeems": "Router#show ip ntp status is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (observed): Router#show ntp status inspects the right table or state — Router#show ip ntp status shows unrelated information.",
+          "memoryAnchor": "NTP drift/offset: show ntp status | Per-peer detail: show ntp associations detail.",
+          "contrast": "Correct \"Router#show ntp status\" vs wrong \"Router#show ip ntp status\": Verification command (observed): Router#show ntp status inspects the right table or state — Router#show ip ntp status shows unrelated information."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented debug ntp drift command",
+          "whyItSeems": "\"Router#debug ntp drift\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"observed\", Router#show ntp status matches the required behavior — Router#debug ntp drift answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NTP drift/offset: show ntp status | Per-peer detail: show ntp associations detail.",
+          "contrast": "Correct \"Router#show ntp status\" vs wrong \"Router#debug ntp drift\": For \"observed\", Router#show ntp status matches the required behavior — Router#debug ntp drift answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.2-source-q009",
@@ -2048,7 +3072,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Timezone: clock timezone EST -5 0 | PST = -8 0 | PDT adds DST offset in second field."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Timezone name without offset",
+          "whyItSeems": "\"Router(config)#clock timezone pacific\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"standard\", Router(config)#clock timezone pst -8 0 matches the required behavior — Router(config)#clock timezone pacific answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Timezone: clock timezone EST -5 0 | PST = -8 0 | PDT adds DST offset in second field.",
+          "contrast": "Correct \"Router(config)#clock timezone pst -8 0\" vs wrong \"Router(config)#clock timezone pacific\": For \"standard\", Router(config)#clock timezone pst -8 0 matches the required behavior — Router(config)#clock timezone pacific answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Invented timezone command",
+          "whyItSeems": "\"Router(config)#timezone pacific\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"standard\", Router(config)#clock timezone pst -8 0 matches the required behavior — Router(config)#timezone pacific answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Timezone: clock timezone EST -5 0 | PST = -8 0 | PDT adds DST offset in second field.",
+          "contrast": "Correct \"Router(config)#clock timezone pst -8 0\" vs wrong \"Router(config)#timezone pacific\": For \"standard\", Router(config)#clock timezone pst -8 0 matches the required behavior — Router(config)#timezone pacific answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Timezone without clock keyword",
+          "whyItSeems": "\"Router(config)#timezone pst -8\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"standard\", Router(config)#clock timezone pst -8 0 matches the required behavior — Router(config)#timezone pst -8 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Timezone: clock timezone EST -5 0 | PST = -8 0 | PDT adds DST offset in second field.",
+          "contrast": "Correct \"Router(config)#clock timezone pst -8 0\" vs wrong \"Router(config)#timezone pst -8\": For \"standard\", Router(config)#clock timezone pst -8 0 matches the required behavior — Router(config)#timezone pst -8 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.2-source-q010",
@@ -2099,7 +3149,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Stable NTP source: ntp source loopback0 — loopback is always up if the router is reachable."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Tunnel interface for NTP source",
+          "whyItSeems": "\"Tunnel interface\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"any interface fails, NTP will still be available\", Loopback interface matches the required behavior — Tunnel interface answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Stable NTP source: ntp source loopback0 — loopback is always up if the router is reachable.",
+          "contrast": "Correct \"Loopback interface\" vs wrong \"Tunnel interface\": For \"any interface fails, NTP will still be available\", Loopback interface matches the required behavior — Tunnel interface answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented NTP interface type",
+          "whyItSeems": "\"NTP interface\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"any interface fails, NTP will still be available\", Loopback interface matches the required behavior — NTP interface answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Stable NTP source: ntp source loopback0 — loopback is always up if the router is reachable.",
+          "contrast": "Correct \"Loopback interface\" vs wrong \"NTP interface\": For \"any interface fails, NTP will still be available\", Loopback interface matches the required behavior — NTP interface answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "SVI over loopback for NTP resilience",
+          "whyItSeems": "Switched Virtual Interface (SVI) describes an inter-VLAN routing approach (SVI or router-on-a-stick) that may not fit this topology.",
+          "whyWrongHere": "Inter-VLAN routing (any interface fails, NTP will still be available): Loopback interface provides L3 between VLANs — Switched Virtual Interface (SVI) leaves traffic unrouted or uses the wrong L3 interface.",
+          "memoryAnchor": "Stable NTP source: ntp source loopback0 — loopback is always up if the router is reachable.",
+          "contrast": "Correct \"Loopback interface\" vs wrong \"Switched Virtual Interface (SVI)\": Inter-VLAN routing (any interface fails, NTP will still be available): Loopback interface provides L3 between VLANs — Switched Virtual Interface (SVI) leaves traffic unrouted or uses the wrong L3 interface."
+        }
+      ]
     },
     {
       "id": "obj-4.2-source-q011",
@@ -2151,7 +3227,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "NTP source: ntp source Loopback0 in global config — pairs with a configured loopback IP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "ntp loopback without source keyword",
+          "whyItSeems": "\"Switch(config)#ntp loopback 0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configure\", Switch(config)#ntp source loopback 0 matches the required behavior — Switch(config)#ntp loopback 0 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NTP source: ntp source Loopback0 in global config — pairs with a configured loopback IP.",
+          "contrast": "Correct \"Switch(config)#ntp source loopback 0\" vs wrong \"Switch(config)#ntp loopback 0\": For \"configure\", Switch(config)#ntp source loopback 0 matches the required behavior — Switch(config)#ntp loopback 0 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "ntp master for source binding",
+          "whyItSeems": "\"Switch(config)#ntp master loopback 0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configure\", Switch(config)#ntp source loopback 0 matches the required behavior — Switch(config)#ntp master loopback 0 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NTP source: ntp source Loopback0 in global config — pairs with a configured loopback IP.",
+          "contrast": "Correct \"Switch(config)#ntp source loopback 0\" vs wrong \"Switch(config)#ntp master loopback 0\": For \"configure\", Switch(config)#ntp source loopback 0 matches the required behavior — Switch(config)#ntp master loopback 0 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented ntp clock command",
+          "whyItSeems": "\"Switch(config)#ntp clock loopback 0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configure\", Switch(config)#ntp source loopback 0 matches the required behavior — Switch(config)#ntp clock loopback 0 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "NTP source: ntp source Loopback0 in global config — pairs with a configured loopback IP.",
+          "contrast": "Correct \"Switch(config)#ntp source loopback 0\" vs wrong \"Switch(config)#ntp clock loopback 0\": For \"configure\", Switch(config)#ntp source loopback 0 matches the required behavior — Switch(config)#ntp clock loopback 0 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.2-source-q012",
@@ -2202,7 +3304,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Manual time: Router# clock set HH:MM:SS DD MONTH YYYY — required before SSH key generation if NTP is down."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "clock set in config mode",
+          "whyItSeems": "\"Router(config)#clock set 2:24:00 1 august 2019\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"internal\", Router#clock set 2:24:00 1 august 2019 matches the required behavior — Router(config)#clock set 2:24:00 1 august 2019 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Manual time: Router# clock set HH:MM:SS DD MONTH YYYY — required before SSH key generation if NTP is down.",
+          "contrast": "Correct \"Router#clock set 2:24:00 1 august 2019\" vs wrong \"Router(config)#clock set 2:24:00 1 august 2019\": For \"internal\", Router#clock set 2:24:00 1 august 2019 matches the required behavior — Router(config)#clock set 2:24:00 1 august 2019 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Wrong clock set date field order",
+          "whyItSeems": "\"Router(config)#clock set 2:24:00 august 1 2019\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"internal\", Router#clock set 2:24:00 1 august 2019 matches the required behavior — Router(config)#clock set 2:24:00 august 1 2019 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Manual time: Router# clock set HH:MM:SS DD MONTH YYYY — required before SSH key generation if NTP is down.",
+          "contrast": "Correct \"Router#clock set 2:24:00 1 august 2019\" vs wrong \"Router(config)#clock set 2:24:00 august 1 2019\": For \"internal\", Router#clock set 2:24:00 1 august 2019 matches the required behavior — Router(config)#clock set 2:24:00 august 1 2019 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "clock without set keyword",
+          "whyItSeems": "\"Router#clock 2:24:00 1 august 2019\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"internal\", Router#clock set 2:24:00 1 august 2019 matches the required behavior — Router#clock 2:24:00 1 august 2019 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Manual time: Router# clock set HH:MM:SS DD MONTH YYYY — required before SSH key generation if NTP is down.",
+          "contrast": "Correct \"Router#clock set 2:24:00 1 august 2019\" vs wrong \"Router#clock 2:24:00 1 august 2019\": For \"internal\", Router#clock set 2:24:00 1 august 2019 matches the required behavior — Router#clock 2:24:00 1 august 2019 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     }
   ],
   "4.3": [
@@ -2254,7 +3382,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Reverse DNS = IP → FQDN (PTR); forward = name → IP."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Defining reverse lookup as server referral",
+          "whyItSeems": "A reverse lookup is when the request needs to be reversed to another DNS server. names a DHCP DORA message step that may not be the phase described in the stem.",
+          "whyWrongHere": "For \"statement\", A reverse lookup is the resolution of an IP address to FQDN. matches the required behavior — A reverse lookup is when the request needs to be reversed to another DNS server. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Reverse DNS = IP → FQDN (PTR); forward = name → IP.",
+          "contrast": "Correct \"A reverse lookup is the resolution of an IP address to FQDN.\" vs wrong \"A reverse lookup is when the request needs to be reversed to another DNS server.\": For \"statement\", A reverse lookup is the resolution of an IP address to FQDN."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Equating reverse with non-recursive answer",
+          "whyItSeems": "A reverse lookup is when the DNS queried can answer the request without asking another DNS server. names a DHCP DORA message step that may not be the phase described in the stem.",
+          "whyWrongHere": "For \"statement\", A reverse lookup is the resolution of an IP address to FQDN. matches the required behavior — A reverse lookup is when the DNS queried can answer the request without asking another DNS server. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Reverse DNS = IP → FQDN (PTR); forward = name → IP.",
+          "contrast": "Correct \"A reverse lookup is the resolution of an IP address to FQDN.\" vs wrong \"A reverse lookup is when the DNS queried can answer the request without asking another DNS server.\": For \"statement\", A reverse lookup is the resolution of an IP address to FQDN."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Swapping forward and reverse DNS definitions",
+          "whyItSeems": "A reverse lookup is the resolution of an FQDN to an IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"statement\", A reverse lookup is the resolution of an IP address to FQDN. matches the required behavior — A reverse lookup is the resolution of an FQDN to an IP address. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Reverse DNS = IP → FQDN (PTR); forward = name → IP.",
+          "contrast": "Correct \"A reverse lookup is the resolution of an IP address to FQDN.\" vs wrong \"A reverse lookup is the resolution of an FQDN to an IP address.\": For \"statement\", A reverse lookup is the resolution of an IP address to FQDN."
+        }
+      ]
     },
     {
       "id": "obj-4.3-source-q002",
@@ -2305,7 +3459,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IP → name = PTR (reverse); name → IP = A (forward)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Using A record for reverse IP-to-name lookup",
+          "whyItSeems": "\"The A record\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"dns\", The PTR record matches the required behavior — The A record answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IP → name = PTR (reverse); name → IP = A (forward).",
+          "contrast": "Correct \"The PTR record\" vs wrong \"The A record\": For \"dns\", The PTR record matches the required behavior — The A record answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Selecting CNAME for reverse DNS",
+          "whyItSeems": "\"The CName record\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"dns\", The PTR record matches the required behavior — The CName record answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IP → name = PTR (reverse); name → IP = A (forward).",
+          "contrast": "Correct \"The PTR record\" vs wrong \"The CName record\": For \"dns\", The PTR record matches the required behavior — The CName record answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Confusing AAAA with IPv4 reverse PTR",
+          "whyItSeems": "\"The AAAA record\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"dns\", The PTR record matches the required behavior — The AAAA record answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IP → name = PTR (reverse); name → IP = A (forward).",
+          "contrast": "Correct \"The PTR record\" vs wrong \"The AAAA record\": For \"dns\", The PTR record matches the required behavior — The AAAA record answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.3-source-q003",
@@ -2358,7 +3538,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Unqualified name router1 + domain example.com → query router1.example.com."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "DNS zone as appended suffix",
+          "whyItSeems": "\"The DNS zone\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"appended\", The DNS domain name matches the required behavior — The DNS zone answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Unqualified name router1 + domain example.com → query router1.example.com.",
+          "contrast": "Correct \"The DNS domain name\" vs wrong \"The DNS zone\": For \"appended\", The DNS domain name matches the required behavior — The DNS zone answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "HTTP host header as DNS suffix",
+          "whyItSeems": "\"The host header\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"appended\", The DNS domain name matches the required behavior — The host header answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Unqualified name router1 + domain example.com → query router1.example.com.",
+          "contrast": "Correct \"The DNS domain name\" vs wrong \"The host header\": For \"appended\", The DNS domain name matches the required behavior — The host header answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "PTR record as DNS suffix",
+          "whyItSeems": "\"The hostname PTR record\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"appended\", The DNS domain name matches the required behavior — The hostname PTR record answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Unqualified name router1 + domain example.com → query router1.example.com.",
+          "contrast": "Correct \"The DNS domain name\" vs wrong \"The hostname PTR record\": For \"appended\", The DNS domain name matches the required behavior — The hostname PTR record answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.3-source-q004",
@@ -2410,7 +3616,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Device peer names you must trust → ip host static table; lab DNS is fine for general lookup."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "DNS as most secure device name resolution",
+          "whyItSeems": "\"DNS\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"resolution\", Static hostname entries matches the required behavior — DNS answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Device peer names you must trust → ip host static table; lab DNS is fine for general lookup.",
+          "contrast": "Correct \"Static hostname entries\" vs wrong \"DNS\": For \"resolution\", Static hostname entries matches the required behavior — DNS answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "PTR as primary secure resolution",
+          "whyItSeems": "\"PTR records\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"resolution\", Static hostname entries matches the required behavior — PTR records answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Device peer names you must trust → ip host static table; lab DNS is fine for general lookup.",
+          "contrast": "Correct \"Static hostname entries\" vs wrong \"PTR records\": For \"resolution\", Static hostname entries matches the required behavior — PTR records answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "LLMNR as most secure resolution",
+          "whyItSeems": "\"LLMNR\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"resolution\", Static hostname entries matches the required behavior — LLMNR answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Device peer names you must trust → ip host static table; lab DNS is fine for general lookup.",
+          "contrast": "Correct \"Static hostname entries\" vs wrong \"LLMNR\": For \"resolution\", Static hostname entries matches the required behavior — LLMNR answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.3-source-q005",
@@ -2462,7 +3694,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Hostname → IPv4 = A record; IPv6 = AAAA; reverse = PTR."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Using CNAME to store IPv4 address",
+          "whyItSeems": "\"The CName record\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"hostname\", The A record matches the required behavior — The CName record answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Hostname → IPv4 = A record; IPv6 = AAAA; reverse = PTR.",
+          "contrast": "Correct \"The A record\" vs wrong \"The CName record\": For \"hostname\", The A record matches the required behavior — The CName record answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Selecting PTR for forward IPv4 lookup",
+          "whyItSeems": "\"The PTR record\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"hostname\", The A record matches the required behavior — The PTR record answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Hostname → IPv4 = A record; IPv6 = AAAA; reverse = PTR.",
+          "contrast": "Correct \"The A record\" vs wrong \"The PTR record\": For \"hostname\", The A record matches the required behavior — The PTR record answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Choosing AAAA for IPv4 hostname mapping",
+          "whyItSeems": "\"The AAAA record\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"hostname\", The A record matches the required behavior — The AAAA record answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Hostname → IPv4 = A record; IPv6 = AAAA; reverse = PTR.",
+          "contrast": "Correct \"The A record\" vs wrong \"The AAAA record\": For \"hostname\", The A record matches the required behavior — The AAAA record answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.3-source-q006",
@@ -2514,7 +3772,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DNS cache aging → check the record's TTL value (seconds until refresh)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "A record as cache timer",
+          "whyItSeems": "\"An A record\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"available\", TTL matches the required behavior — An A record answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNS cache aging → check the record's TTL value (seconds until refresh).",
+          "contrast": "Correct \"TTL\" vs wrong \"An A record\": For \"available\", TTL matches the required behavior — An A record answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SOA as per-entry cache limit",
+          "whyItSeems": "\"SOA\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"available\", TTL matches the required behavior — SOA answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNS cache aging → check the record's TTL value (seconds until refresh).",
+          "contrast": "Correct \"TTL\" vs wrong \"SOA\": For \"available\", TTL matches the required behavior — SOA answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Fixed 5-minute DNS cache default",
+          "whyItSeems": "\"Default of 5 minutes\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"available\", TTL matches the required behavior — Default of 5 minutes answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DNS cache aging → check the record's TTL value (seconds until refresh).",
+          "contrast": "Correct \"TTL\" vs wrong \"Default of 5 minutes\": For \"available\", TTL matches the required behavior — Default of 5 minutes answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.3-source-q007",
@@ -2568,7 +3852,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DORA order: Discover → Offer → Request → Ack — ACK is server confirmation to client."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Discover as lease confirmation",
+          "whyItSeems": "Discover names a DHCP DORA message step that may not be the phase described in the stem.",
+          "whyWrongHere": "DHCP message order (dns): Acknowledgment is the step this stem describes — Discover is another DORA phase.",
+          "memoryAnchor": "DORA order: Discover → Offer → Request → Ack — ACK is server confirmation to client.",
+          "contrast": "Correct \"Acknowledgment\" vs wrong \"Discover\": DHCP message order (dns): Acknowledgment is the step this stem describes — Discover is another DORA phase."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Offer as client confirmation message",
+          "whyItSeems": "Offer names a DHCP DORA message step that may not be the phase described in the stem.",
+          "whyWrongHere": "DHCP message order (dns): Acknowledgment is the step this stem describes — Offer is another DORA phase.",
+          "memoryAnchor": "DORA order: Discover → Offer → Request → Ack — ACK is server confirmation to client.",
+          "contrast": "Correct \"Acknowledgment\" vs wrong \"Offer\": DHCP message order (dns): Acknowledgment is the step this stem describes — Offer is another DORA phase."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Request as final confirmation",
+          "whyItSeems": "Request names a DHCP DORA message step that may not be the phase described in the stem.",
+          "whyWrongHere": "DHCP message order (dns): Acknowledgment is the step this stem describes — Request is another DORA phase.",
+          "memoryAnchor": "DORA order: Discover → Offer → Request → Ack — ACK is server confirmation to client.",
+          "contrast": "Correct \"Acknowledgment\" vs wrong \"Request\": DHCP message order (dns): Acknowledgment is the step this stem describes — Request is another DORA phase."
+        }
+      ]
     },
     {
       "id": "obj-4.3-source-q008",
@@ -2619,7 +3929,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "No IP yet → DHCP broadcast discover; relay (ip helper-address) forwards to server."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Multicast for initial DHCP discover",
+          "whyItSeems": "Layer 3 multicast gives a broadcast or multicast MAC pattern that may not be the all-ones form tested here.",
+          "whyWrongHere": "Ethernet addressing (communication): Layer 3 broadcast is the broadcast/multicast form this stem expects — Layer 3 multicast uses the wrong MAC pattern.",
+          "memoryAnchor": "No IP yet → DHCP broadcast discover; relay (ip helper-address) forwards to server.",
+          "contrast": "Correct \"Layer 3 broadcast\" vs wrong \"Layer 3 multicast\": Ethernet addressing (communication): Layer 3 broadcast is the broadcast/multicast form this stem expects — Layer 3 multicast uses the wrong MAC pattern."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "802.1Q as DHCP transport",
+          "whyItSeems": "Layer 3 802.1Q expects VLAN tags on a link that should behave as access-only in this stem.",
+          "whyWrongHere": "For \"communication\", Layer 3 broadcast matches the required behavior — Layer 3 802.1Q answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "No IP yet → DHCP broadcast discover; relay (ip helper-address) forwards to server.",
+          "contrast": "Correct \"Layer 3 broadcast\" vs wrong \"Layer 3 802.1Q\": For \"communication\", Layer 3 broadcast matches the required behavior — Layer 3 802."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Unicast for initial DHCP discover",
+          "whyItSeems": "\"Layer 3 unicast\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"communication\", Layer 3 broadcast matches the required behavior — Layer 3 unicast answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "No IP yet → DHCP broadcast discover; relay (ip helper-address) forwards to server.",
+          "contrast": "Correct \"Layer 3 broadcast\" vs wrong \"Layer 3 unicast\": For \"communication\", Layer 3 broadcast matches the required behavior — Layer 3 unicast answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.3-source-q009",
@@ -2671,7 +4007,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DHCP lease timers: T1 = 50% renew to server | T2 = 87.5% rebind | expiry = drop."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "25% as renewal timer",
+          "whyItSeems": "\"One-quarter of the lease\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"dns\", One-half of the lease matches the required behavior — One-quarter of the lease answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP lease timers: T1 = 50% renew to server | T2 = 87.5% rebind | expiry = drop.",
+          "contrast": "Correct \"One-half of the lease\" vs wrong \"One-quarter of the lease\": For \"dns\", One-half of the lease matches the required behavior — One-quarter of the lease answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "T2 rebinding as first renewal",
+          "whyItSeems": "\"Seven-eighths of the lease\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"dns\", One-half of the lease matches the required behavior — Seven-eighths of the lease answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP lease timers: T1 = 50% renew to server | T2 = 87.5% rebind | expiry = drop.",
+          "contrast": "Correct \"One-half of the lease\" vs wrong \"Seven-eighths of the lease\": For \"dns\", One-half of the lease matches the required behavior — Seven-eighths of the lease answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "End-of-lease as renewal point",
+          "whyItSeems": "\"End of the lease\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"dns\", One-half of the lease matches the required behavior — End of the lease answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP lease timers: T1 = 50% renew to server | T2 = 87.5% rebind | expiry = drop.",
+          "contrast": "Correct \"One-half of the lease\" vs wrong \"End of the lease\": For \"dns\", One-half of the lease matches the required behavior — End of the lease answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.3-source-q010",
@@ -2723,7 +4085,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DHCP DORA — client sends Discover/Request; client renews before lease expires."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Assigning all lifecycle responsibility to the server",
+          "whyItSeems": "The DHCP server is responsible for maintaining the life cycle of an IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"statement\", The DHCP client is responsible for maintaining the life cycle of an IP address. matches the required behavior — The DHCP server is responsible for maintaining the life cycle of an IP address. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP DORA — client sends Discover/Request; client renews before lease expires.",
+          "contrast": "Correct \"The DHCP client is responsible for maintaining the life cycle of an IP address.\" vs wrong \"The DHCP server is responsible for maintaining the life cycle of an IP address.\": For \"statement\", The DHCP client is responsible for maintaining the life cycle of an IP address."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Claiming DHCP is multicast end-to-end",
+          "whyItSeems": "DHCP uses multicasting between the client and server. gives a broadcast or multicast MAC pattern that may not be the all-ones form tested here.",
+          "whyWrongHere": "For \"statement\", The DHCP client is responsible for maintaining the life cycle of an IP address. matches the required behavior — DHCP uses multicasting between the client and server. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP DORA — client sends Discover/Request; client renews before lease expires.",
+          "contrast": "Correct \"The DHCP client is responsible for maintaining the life cycle of an IP address.\" vs wrong \"DHCP uses multicasting between the client and server.\": For \"statement\", The DHCP client is responsible for maintaining the life cycle of an IP address."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Focusing on negotiation wording instead of client renewal duty",
+          "whyItSeems": "\"The DHCP lease is negotiated between client and server.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", The DHCP client is responsible for maintaining the life cycle of an IP address. matches the required behavior — The DHCP lease is negotiated between client and server. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP DORA — client sends Discover/Request; client renews before lease expires.",
+          "contrast": "Correct \"The DHCP client is responsible for maintaining the life cycle of an IP address.\" vs wrong \"The DHCP lease is negotiated between client and server.\": For \"statement\", The DHCP client is responsible for maintaining the life cycle of an IP address."
+        }
+      ]
     },
     {
       "id": "obj-4.3-source-q011",
@@ -2775,7 +4163,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DHCP = UDP/67 (server) + UDP/68 (client) | IPv6 DHCP uses UDP 546/547."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "ICMP transport for DHCP",
+          "whyItSeems": "ICMP names a transport protocol or port behavior that may not match reliability or connection requirements.",
+          "whyWrongHere": "Transport protocol (transport): UDP matches reliability, ports, or connection behavior — ICMP picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "DHCP = UDP/67 (server) + UDP/68 (client) | IPv6 DHCP uses UDP 546/547.",
+          "contrast": "Correct \"UDP\" vs wrong \"ICMP\": Transport protocol (transport): UDP matches reliability, ports, or connection behavior — ICMP picks the wrong L4 protocol or port role."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "TCP transport for DHCP",
+          "whyItSeems": "TCP names a transport protocol or port behavior that may not match reliability or connection requirements.",
+          "whyWrongHere": "Transport protocol (transport): UDP matches reliability, ports, or connection behavior — TCP picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "DHCP = UDP/67 (server) + UDP/68 (client) | IPv6 DHCP uses UDP 546/547.",
+          "contrast": "Correct \"UDP\" vs wrong \"TCP\": Transport protocol (transport): UDP matches reliability, ports, or connection behavior — TCP picks the wrong L4 protocol or port role."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "RARP as current DHCP transport",
+          "whyItSeems": "\"RARP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"transport\", UDP matches the required behavior — RARP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP = UDP/67 (server) + UDP/68 (client) | IPv6 DHCP uses UDP 546/547.",
+          "contrast": "Correct \"UDP\" vs wrong \"RARP\": For \"transport\", UDP matches the required behavior — RARP answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.3-source-q012",
@@ -2827,7 +4241,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DHCP duplicate: ip dhcp conflict logging + address removed from pool — check with show ip dhcp conflict."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Serve duplicate IP anyway",
+          "whyItSeems": "The IP address is still served to the client. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "This is a Layer 2 process (a router or switch detects a duplicate IP address for a DHCP process). The IP address is removed from the DHCP pool. uses Ethernet addresses — not IP headers.",
+          "memoryAnchor": "DHCP duplicate: ip dhcp conflict logging + address removed from pool — check with show ip dhcp conflict.",
+          "contrast": "Correct \"The IP address is removed from the DHCP pool.\" vs wrong \"The IP address is still served to the client.\": This is a Layer 2 process (a router or switch detects a duplicate IP address for a DHCP process)."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "DHCP server halts on duplicate",
+          "whyItSeems": "\"The DHCP server will halt.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"a router or switch detects a duplicate IP address for a DHCP process\", The IP address is removed from the DHCP pool. matches the required behavior — The DHCP server will halt. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP duplicate: ip dhcp conflict logging + address removed from pool — check with show ip dhcp conflict.",
+          "contrast": "Correct \"The IP address is removed from the DHCP pool.\" vs wrong \"The DHCP server will halt.\": For \"a router or switch detects a duplicate IP address for a DHCP process\", The IP address is removed from the DHCP pool."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Duplicate IP served later",
+          "whyItSeems": "The DHCP will serve the IP address in the future. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "Unlike The IP address is removed from the DHCP pool., The DHCP will serve the IP address in the future. fails the stem constraint that makes the keyed answer unique.",
+          "memoryAnchor": "DHCP duplicate: ip dhcp conflict logging + address removed from pool — check with show ip dhcp conflict.",
+          "contrast": "Correct \"The IP address is removed from the DHCP pool.\" vs wrong \"The DHCP will serve the IP address in the future.\": Unlike The IP address is removed from the DHCP pool."
+        }
+      ]
     }
   ],
   "4.4": [
@@ -2880,7 +4320,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SNMP with auth + encryption → SNMPv3 (not v1/v2c communities)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Expecting SNMPv1 to provide encryption",
+          "whyItSeems": "\"SNMP version 1\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"authentication\", SNMP version 3 matches the required behavior — SNMP version 1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SNMP with auth + encryption → SNMPv3 (not v1/v2c communities).",
+          "contrast": "Correct \"SNMP version 3\" vs wrong \"SNMP version 1\": For \"authentication\", SNMP version 3 matches the required behavior — SNMP version 1 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Selecting nonstandard v2e for security",
+          "whyItSeems": "\"SNMP version 2e\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"authentication\", SNMP version 3 matches the required behavior — SNMP version 2e answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SNMP with auth + encryption → SNMPv3 (not v1/v2c communities).",
+          "contrast": "Correct \"SNMP version 3\" vs wrong \"SNMP version 2e\": For \"authentication\", SNMP version 3 matches the required behavior — SNMP version 2e answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Believing v2c community strings are encrypted",
+          "whyItSeems": "\"SNMP version 2c\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"authentication\", SNMP version 3 matches the required behavior — SNMP version 2c answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SNMP with auth + encryption → SNMPv3 (not v1/v2c communities).",
+          "contrast": "Correct \"SNMP version 3\" vs wrong \"SNMP version 2c\": For \"authentication\", SNMP version 3 matches the required behavior — SNMP version 2c answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.4-source-q002",
@@ -2933,7 +4399,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SNMP stack: MIB (database) → OID (address) → agent (responder) → NMS (poller)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "OID as the SNMP database",
+          "whyItSeems": "\"Object identifiers (OIDs)\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Management information base matches the required behavior — Object identifiers (OIDs) answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SNMP stack: MIB (database) → OID (address) → agent (responder) → NMS (poller).",
+          "contrast": "Correct \"Management information base\" vs wrong \"Object identifiers (OIDs)\": For \"identify\", Management information base matches the required behavior — Object identifiers (OIDs) answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SNMP agent as variable database",
+          "whyItSeems": "\"SNMP agent\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Management information base matches the required behavior — SNMP agent answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SNMP stack: MIB (database) → OID (address) → agent (responder) → NMS (poller).",
+          "contrast": "Correct \"Management information base\" vs wrong \"SNMP agent\": For \"identify\", Management information base matches the required behavior — SNMP agent answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Community string as MIB",
+          "whyItSeems": "SNMP community string mixes SNMP version, trap/inform, or community/security features.",
+          "whyWrongHere": "SNMP (identify): Management information base matches version, trap/inform, or security — SNMP community string mixes SNMPv2/v3 features or trap types.",
+          "memoryAnchor": "SNMP stack: MIB (database) → OID (address) → agent (responder) → NMS (poller).",
+          "contrast": "Correct \"Management information base\" vs wrong \"SNMP community string\": SNMP (identify): Management information base matches version, trap/inform, or security — SNMP community string mixes SNMPv2/v3 features or trap types."
+        }
+      ]
     },
     {
       "id": "obj-4.4-source-q003",
@@ -2985,7 +4477,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SNMP roles: agent on device → NMS (manager) receives polls and traps."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Syslog as SNMP trap destination",
+          "whyItSeems": "Syslog assigns a syslog severity or facility level that may reverse the lower-number-is-more-severe rule.",
+          "whyWrongHere": "For \"identify\", Network management station matches the required behavior — Syslog answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SNMP roles: agent on device → NMS (manager) receives polls and traps.",
+          "contrast": "Correct \"Network management station\" vs wrong \"Syslog\": For \"identify\", Network management station matches the required behavior — Syslog answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "OID as SNMP message destination",
+          "whyItSeems": "\"Object identifier\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Network management station matches the required behavior — Object identifier answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SNMP roles: agent on device → NMS (manager) receives polls and traps.",
+          "contrast": "Correct \"Network management station\" vs wrong \"Object identifier\": For \"identify\", Network management station matches the required behavior — Object identifier answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "MIB as external trap receiver",
+          "whyItSeems": "Management information base mixes SNMP version, trap/inform, or community/security features.",
+          "whyWrongHere": "SNMP (identify): Network management station matches version, trap/inform, or security — Management information base mixes SNMPv2/v3 features or trap types.",
+          "memoryAnchor": "SNMP roles: agent on device → NMS (manager) receives polls and traps.",
+          "contrast": "Correct \"Network management station\" vs wrong \"Management information base\": SNMP (identify): Network management station matches version, trap/inform, or security — Management information base mixes SNMPv2/v3 features or trap types."
+        }
+      ]
     },
     {
       "id": "obj-4.4-source-q004",
@@ -3036,7 +4554,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Agent pushes event to NMS without poll → SNMP trap (or inform with ack)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Using Get-request for unsolicited interface-down alert",
+          "whyItSeems": "Get-request message names a DHCP DORA message step that may not be the phase described in the stem.",
+          "whyWrongHere": "For \"an interface goes down\", Trap message matches the required behavior — Get-request message answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Agent pushes event to NMS without poll → SNMP trap (or inform with ack).",
+          "contrast": "Correct \"Trap message\" vs wrong \"Get-request message\": For \"an interface goes down\", Trap message matches the required behavior — Get-request message answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Selecting Get-response for agent-initiated alert",
+          "whyItSeems": "\"Get-response message\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"an interface goes down\", Trap message matches the required behavior — Get-response message answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Agent pushes event to NMS without poll → SNMP trap (or inform with ack).",
+          "contrast": "Correct \"Trap message\" vs wrong \"Get-response message\": For \"an interface goes down\", Trap message matches the required behavior — Get-response message answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Expecting Set-request for link-down notification",
+          "whyItSeems": "Set-request message names a DHCP DORA message step that may not be the phase described in the stem.",
+          "whyWrongHere": "For \"an interface goes down\", Trap message matches the required behavior — Set-request message answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Agent pushes event to NMS without poll → SNMP trap (or inform with ack).",
+          "contrast": "Correct \"Trap message\" vs wrong \"Set-request message\": For \"an interface goes down\", Trap message matches the required behavior — Set-request message answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.4-source-q005",
@@ -3089,7 +4633,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "MIB = tree of OIDs (e.g., 1.3.6.1.2.1... = mib-2 standard branch)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Community string as MIB structure",
+          "whyItSeems": "The SNMP community string mixes SNMP version, trap/inform, or community/security features.",
+          "whyWrongHere": "SNMP (hierarchical): Object identifiers (OIDs) matches version, trap/inform, or security — The SNMP community string mixes SNMPv2/v3 features or trap types.",
+          "memoryAnchor": "Remember: choose \"Object identifiers (OIDs)\" — not \"The SNMP community string\" — for what this stem actually tests.",
+          "contrast": "Correct \"Object identifiers (OIDs)\" vs wrong \"The SNMP community string\": SNMP (hierarchical): Object identifiers (OIDs) matches version, trap/inform, or security — The SNMP community string mixes SNMPv2/v3 features or trap types."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SNMP agent as MIB hierarchy",
+          "whyItSeems": "\"The SNMP agent\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"hierarchical\", Object identifiers (OIDs) matches the required behavior — The SNMP agent answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Object identifiers (OIDs)\" — not \"The SNMP agent\" — for what this stem actually tests.",
+          "contrast": "Correct \"Object identifiers (OIDs)\" vs wrong \"The SNMP agent\": For \"hierarchical\", Object identifiers (OIDs) matches the required behavior — The SNMP agent answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "SNMP messages as MIB hierarchy",
+          "whyItSeems": "\"SNMP messages\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"hierarchical\", Object identifiers (OIDs) matches the required behavior — SNMP messages answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remember: choose \"Object identifiers (OIDs)\" — not \"SNMP messages\" — for what this stem actually tests.",
+          "contrast": "Correct \"Object identifiers (OIDs)\" vs wrong \"SNMP messages\": For \"hierarchical\", Object identifiers (OIDs) matches the required behavior — SNMP messages answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.4-source-q006",
@@ -3142,7 +4712,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Trap = no ACK (UDP/162) | Inform = ACK required — more reliable but more overhead."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "SNMP traps always encrypted",
+          "whyItSeems": "Trap messages are always encrypted. mixes SNMP version, trap/inform, or community/security features.",
+          "whyWrongHere": "SNMP (identify): Inform messages always use acknowledgments. matches version, trap/inform, or security — Trap messages are always encrypted. mixes SNMPv2/v3 features or trap types.",
+          "memoryAnchor": "Trap = no ACK (UDP/162) | Inform = ACK required — more reliable but more overhead.",
+          "contrast": "Correct \"Inform messages always use acknowledgments.\" vs wrong \"Trap messages are always encrypted.\": SNMP (identify): Inform messages always use acknowledgments."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Inform messages lack acknowledgments",
+          "whyItSeems": "Inform messages do not use acknowledgments. mixes SNMP version, trap/inform, or community/security features.",
+          "whyWrongHere": "SNMP (identify): Inform messages always use acknowledgments. matches version, trap/inform, or security — Inform messages do not use acknowledgments. mixes SNMPv2/v3 features or trap types.",
+          "memoryAnchor": "Trap = no ACK (UDP/162) | Inform = ACK required — more reliable but more overhead.",
+          "contrast": "Correct \"Inform messages always use acknowledgments.\" vs wrong \"Inform messages do not use acknowledgments.\": SNMP (identify): Inform messages always use acknowledgments."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Traps always acknowledged",
+          "whyItSeems": "Trap messages always use acknowledgments. mixes SNMP version, trap/inform, or community/security features.",
+          "whyWrongHere": "SNMP (identify): Inform messages always use acknowledgments. matches version, trap/inform, or security — Trap messages always use acknowledgments. mixes SNMPv2/v3 features or trap types.",
+          "memoryAnchor": "Trap = no ACK (UDP/162) | Inform = ACK required — more reliable but more overhead.",
+          "contrast": "Correct \"Inform messages always use acknowledgments.\" vs wrong \"Trap messages always use acknowledgments.\": SNMP (identify): Inform messages always use acknowledgments."
+        }
+      ]
     },
     {
       "id": "obj-4.4-source-q007",
@@ -3193,7 +4789,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SNMP versions: v1/v2c = community string | v3 = user + auth + priv (encryption)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "SNMPv2c encryption",
+          "whyItSeems": "\"Encryption\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security\", Community strings matches the required behavior — Encryption answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SNMP versions: v1/v2c = community string | v3 = user + auth + priv (encryption).",
+          "contrast": "Correct \"Community strings\" vs wrong \"Encryption\": For \"security\", Community strings matches the required behavior — Encryption answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "SNMPv2c user authentication",
+          "whyItSeems": "\"User authentication\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security\", Community strings matches the required behavior — User authentication answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SNMP versions: v1/v2c = community string | v3 = user + auth + priv (encryption).",
+          "contrast": "Correct \"Community strings\" vs wrong \"User authentication\": For \"security\", Community strings matches the required behavior — User authentication answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "SNMPv2c message integrity",
+          "whyItSeems": "\"Message integrity\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"security\", Community strings matches the required behavior — Message integrity answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SNMP versions: v1/v2c = community string | v3 = user + auth + priv (encryption).",
+          "contrast": "Correct \"Community strings\" vs wrong \"Message integrity\": For \"security\", Community strings matches the required behavior — Message integrity answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.4-source-q008",
@@ -3243,7 +4865,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SNMP harden: ACL on community + snmp-server community with RO/RW + prefer SNMPv3."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Encrypted SNMP communities",
+          "whyItSeems": "\"Encrypted communities\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"conjunction\", Access control lists matches the required behavior — Encrypted communities answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SNMP harden: ACL on community + snmp-server community with RO/RW + prefer SNMPv3.",
+          "contrast": "Correct \"Access control lists\" vs wrong \"Encrypted communities\": For \"conjunction\", Access control lists matches the required behavior — Encrypted communities answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SNMP callback security",
+          "whyItSeems": "\"SNMP callback security\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"conjunction\", Access control lists matches the required behavior — SNMP callback security answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SNMP harden: ACL on community + snmp-server community with RO/RW + prefer SNMPv3.",
+          "contrast": "Correct \"Access control lists\" vs wrong \"SNMP callback security\": For \"conjunction\", Access control lists matches the required behavior — SNMP callback security answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "SHA-256 with SNMPv2c agent",
+          "whyItSeems": "\"SHA-256\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"conjunction\", Access control lists matches the required behavior — SHA-256 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SNMP harden: ACL on community + snmp-server community with RO/RW + prefer SNMPv3.",
+          "contrast": "Correct \"Access control lists\" vs wrong \"SHA-256\": For \"conjunction\", Access control lists matches the required behavior — SHA-256 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.4-source-q009",
@@ -3294,7 +4942,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SNMP traps: snmp-server enable traps + snmp-server host <NMS-ip> version 2c <string>."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "snmp-server without host keyword",
+          "whyItSeems": "Switch(config)#snmp-server 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps mixes SNMP version, trap/inform, or community/security features.",
+          "whyWrongHere": "SNMP (configure): Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps matches version, trap/inform, or security — Switch(config)#snmp-server 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps mixes SNMPv2/v3 features or trap types.",
+          "memoryAnchor": "SNMP traps: snmp-server enable traps + snmp-server host <NMS-ip> version 2c <string>.",
+          "contrast": "Correct \"Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps\" vs wrong \"Switch(config)#snmp-server 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps\": SNMP (configure): Switch(config)#snmp-server host 192."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "SNMP host without community string",
+          "whyItSeems": "Switch(config)#snmp-server host 192.168.1.5 version 2c Switch(config)#snmp-server enable traps mixes SNMP version, trap/inform, or community/security features.",
+          "whyWrongHere": "SNMP (configure): Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps matches version, trap/inform, or security — Switch(config)#snmp-server host 192.168.1.5 version 2c Switch(config)#snmp-server enable traps mixes SNMPv2/v3 features or trap types.",
+          "memoryAnchor": "SNMP traps: snmp-server enable traps + snmp-server host <NMS-ip> version 2c <string>.",
+          "contrast": "Correct \"Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps\" vs wrong \"Switch(config)#snmp-server host 192.168.1.5 version 2c Switch(config)#snmp-server enable traps\": SNMP (configure): Switch(config)#snmp-server host 192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented snmp contact trap command",
+          "whyItSeems": "Switch(config)#snmp contact trap 192.168.1.5 version 2c mixes SNMP version, trap/inform, or community/security features.",
+          "whyWrongHere": "SNMP (configure): Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps matches version, trap/inform, or security — Switch(config)#snmp contact trap 192.168.1.5 version 2c mixes SNMPv2/v3 features or trap types.",
+          "memoryAnchor": "SNMP traps: snmp-server enable traps + snmp-server host <NMS-ip> version 2c <string>.",
+          "contrast": "Correct \"Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps\" vs wrong \"Switch(config)#snmp contact trap 192.168.1.5 version 2c\": SNMP (configure): Switch(config)#snmp-server host 192."
+        }
+      ]
     },
     {
       "id": "obj-4.4-source-q010",
@@ -3346,7 +5020,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SNMP ports: 161 = agent (GET) | 162 = traps/informs to NMS."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "False belief that Trap port 161 — treating \"UDP/161\" as if it satisfied the stem instead of \"UDP/162\".",
+          "whyItSeems": "UDP/161 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Transport protocol (protocol): UDP/162 matches reliability, ports, or connection behavior — UDP/161 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "SNMP ports: 161 = agent (GET) | 162 = traps/informs to NMS.",
+          "contrast": "Correct \"UDP/162\" vs wrong \"UDP/161\": Transport protocol (protocol): UDP/162 matches reliability, ports, or connection behavior — UDP/161 picks the wrong L4 protocol or port role."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "TCP transport for SNMP traps",
+          "whyItSeems": "TCP/162 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Transport protocol (protocol): UDP/162 matches reliability, ports, or connection behavior — TCP/162 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "SNMP ports: 161 = agent (GET) | 162 = traps/informs to NMS.",
+          "contrast": "Correct \"UDP/162\" vs wrong \"TCP/162\": Transport protocol (protocol): UDP/162 matches reliability, ports, or connection behavior — TCP/162 picks the wrong L4 protocol or port role."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Syslog port for SNMP traps",
+          "whyItSeems": "UDP/514 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Transport protocol (protocol): UDP/162 matches reliability, ports, or connection behavior — UDP/514 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "SNMP ports: 161 = agent (GET) | 162 = traps/informs to NMS.",
+          "contrast": "Correct \"UDP/162\" vs wrong \"UDP/514\": Transport protocol (protocol): UDP/162 matches reliability, ports, or connection behavior — UDP/514 picks the wrong L4 protocol or port role."
+        }
+      ]
     },
     {
       "id": "obj-4.4-source-q011",
@@ -3398,7 +5098,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SNMP verify: show snmp (general) | show snmp host (trap targets) | show snmp user (v3)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "show snmp for trap destinations",
+          "whyItSeems": "\"Switch#show snmp\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"management\", Switch#show snmp host matches the required behavior — Switch#show snmp answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SNMP verify: show snmp (general) | show snmp host (trap targets) | show snmp user (v3).",
+          "contrast": "Correct \"Switch#show snmp host\" vs wrong \"Switch#show snmp\": For \"management\", Switch#show snmp host matches the required behavior — Switch#show snmp answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Community show for trap hosts",
+          "whyItSeems": "Switch#show snmp community mixes SNMP version, trap/inform, or community/security features.",
+          "whyWrongHere": "SNMP (management): Switch#show snmp host matches version, trap/inform, or security — Switch#show snmp community mixes SNMPv2/v3 features or trap types.",
+          "memoryAnchor": "SNMP verify: show snmp (general) | show snmp host (trap targets) | show snmp user (v3).",
+          "contrast": "Correct \"Switch#show snmp host\" vs wrong \"Switch#show snmp community\": SNMP (management): Switch#show snmp host matches version, trap/inform, or security — Switch#show snmp community mixes SNMPv2/v3 features or trap types."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented show snmp notifications command",
+          "whyItSeems": "\"Switch#show snmp notifications\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"management\", Switch#show snmp host matches the required behavior — Switch#show snmp notifications answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SNMP verify: show snmp (general) | show snmp host (trap targets) | show snmp user (v3).",
+          "contrast": "Correct \"Switch#show snmp host\" vs wrong \"Switch#show snmp notifications\": For \"management\", Switch#show snmp host matches the required behavior — Switch#show snmp notifications answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.4-source-q012",
@@ -3451,7 +5177,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SNMPv3 order: view (OID filter) → group (links view + security) → user (credentials)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "SNMPv3 group before view",
+          "whyItSeems": "\"Configuring a group\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"you configure SNMPv3 for a restricted OID, what is the first step\", Configuring a view matches the required behavior — Configuring a group answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SNMPv3 order: view (OID filter) → group (links view + security) → user (credentials).",
+          "contrast": "Correct \"Configuring a view\" vs wrong \"Configuring a group\": For \"you configure SNMPv3 for a restricted OID, what is the first step\", Configuring a view matches the required behavior — Configuring a group answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SNMPv3 user before view",
+          "whyItSeems": "\"Configuring a user\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"you configure SNMPv3 for a restricted OID, what is the first step\", Configuring a view matches the required behavior — Configuring a user answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SNMPv3 order: view (OID filter) → group (links view + security) → user (credentials).",
+          "contrast": "Correct \"Configuring a view\" vs wrong \"Configuring a user\": For \"you configure SNMPv3 for a restricted OID, what is the first step\", Configuring a view matches the required behavior — Configuring a user answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "SNMPv3 community configuration",
+          "whyItSeems": "Configuring a community mixes SNMP version, trap/inform, or community/security features.",
+          "whyWrongHere": "SNMP (you configure SNMPv3 for a restricted OID, what is the first step): Configuring a view matches version, trap/inform, or security — Configuring a community mixes SNMPv2/v3 features or trap types.",
+          "memoryAnchor": "SNMPv3 order: view (OID filter) → group (links view + security) → user (credentials).",
+          "contrast": "Correct \"Configuring a view\" vs wrong \"Configuring a community\": SNMP (you configure SNMPv3 for a restricted OID, what is the first step): Configuring a view matches version, trap/inform, or security — Configuring a community mixes SNMPv2/v3 features or trap types."
+        }
+      ]
     }
   ],
   "4.5": [
@@ -3503,7 +5255,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Syslog 514/udp · SNMP 161/udp poll · traps 162."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "SNMP poll port mistaken for syslog",
+          "whyItSeems": "UDP/161 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Transport protocol (protocol): UDP/514 matches reliability, ports, or connection behavior — UDP/161 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "Syslog 514/udp · SNMP poll 161/udp · SNMP traps 162/udp.",
+          "contrast": "Correct \"UDP/514\" vs wrong \"UDP/161\": Transport protocol (protocol): UDP/514 matches reliability, ports, or connection behavior — UDP/161 picks the wrong L4 protocol or port role."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "SNMP trap port + TCP for syslog",
+          "whyItSeems": "TCP/162 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Transport protocol (protocol): UDP/514 matches reliability, ports, or connection behavior — TCP/162 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "Syslog 514/udp · SNMP poll 161/udp · SNMP traps 162/udp.",
+          "contrast": "Correct \"UDP/514\" vs wrong \"TCP/162\": Transport protocol (protocol): UDP/514 matches reliability, ports, or connection behavior — TCP/162 picks the wrong L4 protocol or port role."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SNMP trap port for syslog",
+          "whyItSeems": "UDP/162 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "Transport protocol (protocol): UDP/514 matches reliability, ports, or connection behavior — UDP/162 picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "Syslog 514/udp · SNMP poll 161/udp · SNMP traps 162/udp.",
+          "contrast": "Correct \"UDP/514\" vs wrong \"UDP/162\": Transport protocol (protocol): UDP/514 matches reliability, ports, or connection behavior — UDP/162 picks the wrong L4 protocol or port role."
+        }
+      ]
     },
     {
       "id": "obj-4.5-source-q002",
@@ -3555,7 +5333,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Remote syslog severity → logging trap <level>; console → logging console <level>."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "syslog command prefix for trap level",
+          "whyItSeems": "Router(config)#syslog debugging assigns a syslog severity or facility level that may reverse the lower-number-is-more-severe rule.",
+          "whyWrongHere": "Syslog (configure): Router(config)#logging trap debugging reflects severity or facility rules — Router(config)#syslog debugging reverses severity numbering or mislabels the level.",
+          "memoryAnchor": "Remote syslog severity → logging trap <level>; console → logging console <level>.",
+          "contrast": "Correct \"Router(config)#logging trap debugging\" vs wrong \"Router(config)#syslog debugging\": Syslog (configure): Router(config)#logging trap debugging reflects severity or facility rules — Router(config)#syslog debugging reverses severity numbering or mislabels the level."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Missing trap keyword for remote severity",
+          "whyItSeems": "\"Router(config)#logging debugging\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configure\", Router(config)#logging trap debugging matches the required behavior — Router(config)#logging debugging answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remote syslog severity → logging trap <level>; console → logging console <level>.",
+          "contrast": "Correct \"Router(config)#logging trap debugging\" vs wrong \"Router(config)#logging debugging\": For \"configure\", Router(config)#logging trap debugging matches the required behavior — Router(config)#logging debugging answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented log-level command",
+          "whyItSeems": "\"Router(config)#log-level debugging\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configure\", Router(config)#logging trap debugging matches the required behavior — Router(config)#log-level debugging answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Remote syslog severity → logging trap <level>; console → logging console <level>.",
+          "contrast": "Correct \"Router(config)#logging trap debugging\" vs wrong \"Router(config)#log-level debugging\": For \"configure\", Router(config)#logging trap debugging matches the required behavior — Router(config)#log-level debugging answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.5-source-q003",
@@ -3606,7 +5410,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Send warnings and above → logging trap 4 (0=emerg … 4=warning)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Using logging server with severity number as address",
+          "whyItSeems": "\"Switch(config)#logging server 4\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"warnings\", Switch(config)#logging trap 4 matches the required behavior — Switch(config)#logging server 4 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Send warnings and above → logging trap 4 (0=emerg … 4=warning).",
+          "contrast": "Correct \"Switch(config)#logging trap 4\" vs wrong \"Switch(config)#logging server 4\": For \"warnings\", Switch(config)#logging trap 4 matches the required behavior — Switch(config)#logging server 4 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Setting trap level 5 when warnings are level 4",
+          "whyItSeems": "Switch(config)#logging trap 5 mixes SNMP version, trap/inform, or community/security features.",
+          "whyWrongHere": "For \"warnings\", Switch(config)#logging trap 4 matches the required behavior — Switch(config)#logging trap 5 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Send warnings and above → logging trap 4 (0=emerg … 4=warning).",
+          "contrast": "Correct \"Switch(config)#logging trap 4\" vs wrong \"Switch(config)#logging trap 5\": For \"warnings\", Switch(config)#logging trap 4 matches the required behavior — Switch(config)#logging trap 5 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Confusing syslog server IP with trap severity",
+          "whyItSeems": "\"Switch(config)#logging server 5\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"warnings\", Switch(config)#logging trap 4 matches the required behavior — Switch(config)#logging server 5 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Send warnings and above → logging trap 4 (0=emerg … 4=warning).",
+          "contrast": "Correct \"Switch(config)#logging trap 4\" vs wrong \"Switch(config)#logging server 5\": For \"warnings\", Switch(config)#logging trap 4 matches the required behavior — Switch(config)#logging server 5 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.5-source-q004",
@@ -3657,7 +5487,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Timestamps: service timestamps log datetime (+ debug variant for debug messages)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "logging prefix for timestamp service",
+          "whyItSeems": "\"Switch(config)#logging timestamps log datetime\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sequence\", Switch(config)#service timestamps log datetime matches the required behavior — Switch(config)#logging timestamps log datetime answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Timestamps: service timestamps log datetime (+ debug variant for debug messages).",
+          "contrast": "Correct \"Switch(config)#service timestamps log datetime\" vs wrong \"Switch(config)#logging timestamps log datetime\": For \"sequence\", Switch(config)#service timestamps log datetime matches the required behavior — Switch(config)#logging timestamps log datetime answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Incomplete timestamps command",
+          "whyItSeems": "\"Switch(config)#logging timestamps datetime\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sequence\", Switch(config)#service timestamps log datetime matches the required behavior — Switch(config)#logging timestamps datetime answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Timestamps: service timestamps log datetime (+ debug variant for debug messages).",
+          "contrast": "Correct \"Switch(config)#service timestamps log datetime\" vs wrong \"Switch(config)#logging timestamps datetime\": For \"sequence\", Switch(config)#service timestamps log datetime matches the required behavior — Switch(config)#logging timestamps datetime answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Reversed service timestamps keywords",
+          "whyItSeems": "\"Switch(config)#service datetime timestamps\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"sequence\", Switch(config)#service timestamps log datetime matches the required behavior — Switch(config)#service datetime timestamps answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Timestamps: service timestamps log datetime (+ debug variant for debug messages).",
+          "contrast": "Correct \"Switch(config)#service timestamps log datetime\" vs wrong \"Switch(config)#service datetime timestamps\": For \"sequence\", Switch(config)#service timestamps log datetime matches the required behavior — Switch(config)#service datetime timestamps answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.5-source-q005",
@@ -3708,7 +5564,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Syslog levels: 0=emergencies, 1=alerts … 7=debugging | Console: logging console 1 for alerts+."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Console logging in config-line",
+          "whyItSeems": "\"Router(config-line)#logging level 0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"severity\", Router(config)#logging console 0 matches the required behavior — Router(config-line)#logging level 0 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Syslog levels: 0=emergencies, 1=alerts … 7=debugging | Console: logging console 1 for alerts+.",
+          "contrast": "Correct \"Router(config)#logging console 0\" vs wrong \"Router(config-line)#logging level 0\": For \"severity\", Router(config)#logging console 0 matches the required behavior — Router(config-line)#logging level 0 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Debug level for alerts-only console",
+          "whyItSeems": "\"Router(config)#logging console 7\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"severity\", Router(config)#logging console 0 matches the required behavior — Router(config)#logging console 7 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Syslog levels: 0=emergencies, 1=alerts … 7=debugging | Console: logging console 1 for alerts+.",
+          "contrast": "Correct \"Router(config)#logging console 0\" vs wrong \"Router(config)#logging console 7\": For \"severity\", Router(config)#logging console 0 matches the required behavior — Router(config)#logging console 7 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Line-level logging level for console",
+          "whyItSeems": "\"Router(config-line)#logging level 7\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"severity\", Router(config)#logging console 0 matches the required behavior — Router(config-line)#logging level 7 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Syslog levels: 0=emergencies, 1=alerts … 7=debugging | Console: logging console 1 for alerts+.",
+          "contrast": "Correct \"Router(config)#logging console 0\" vs wrong \"Router(config-line)#logging level 7\": For \"severity\", Router(config)#logging console 0 matches the required behavior — Router(config-line)#logging level 7 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.5-source-q006",
@@ -3759,7 +5641,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Buffered logs: logging buffered 6 (common) | show logging to read RAM buffer."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "logging without buffered keyword",
+          "whyItSeems": "\"Switch(config)#logging 1\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configure\", Switch(config)#logging buffered 1 matches the required behavior — Switch(config)#logging 1 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Buffered logs: logging buffered 6 (common) | show logging to read RAM buffer.",
+          "contrast": "Correct \"Switch(config)#logging buffered 1\" vs wrong \"Switch(config)#logging 1\": For \"configure\", Switch(config)#logging buffered 1 matches the required behavior — Switch(config)#logging 1 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Buffered level 2 for emergencies and alerts only",
+          "whyItSeems": "\"Switch(config)#logging buffered 2\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configure\", Switch(config)#logging buffered 1 matches the required behavior — Switch(config)#logging buffered 2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Buffered logs: logging buffered 6 (common) | show logging to read RAM buffer.",
+          "contrast": "Correct \"Switch(config)#logging buffered 1\" vs wrong \"Switch(config)#logging buffered 2\": For \"configure\", Switch(config)#logging buffered 1 matches the required behavior — Switch(config)#logging buffered 2 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "logging 2 without buffered",
+          "whyItSeems": "\"Switch(config)#logging 2\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configure\", Switch(config)#logging buffered 1 matches the required behavior — Switch(config)#logging 2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Buffered logs: logging buffered 6 (common) | show logging to read RAM buffer.",
+          "contrast": "Correct \"Switch(config)#logging buffered 1\" vs wrong \"Switch(config)#logging 2\": For \"configure\", Switch(config)#logging buffered 1 matches the required behavior — Switch(config)#logging 2 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.5-source-q007",
@@ -3809,7 +5717,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "CLI history: show history | Larger history: terminal history size <n> under line config."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Invented show commands command",
+          "whyItSeems": "\"Switch#show commands\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"commands\", Switch#show history matches the required behavior — Switch#show commands answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "CLI history: show history | Larger history: terminal history size <n> under line config.",
+          "contrast": "Correct \"Switch#show history\" vs wrong \"Switch#show commands\": For \"commands\", Switch#show history matches the required behavior — Switch#show commands answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Syslog log for CLI history",
+          "whyItSeems": "\"Switch#show log\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"commands\", Switch#show history matches the required behavior — Switch#show log answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "CLI history: show history | Larger history: terminal history size <n> under line config.",
+          "contrast": "Correct \"Switch#show history\" vs wrong \"Switch#show log\": For \"commands\", Switch#show history matches the required behavior — Switch#show log answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "show buffer for command history",
+          "whyItSeems": "\"Switch#show buffer\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"commands\", Switch#show history matches the required behavior — Switch#show buffer answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "CLI history: show history | Larger history: terminal history size <n> under line config.",
+          "contrast": "Correct \"Switch#show history\" vs wrong \"Switch#show buffer\": For \"commands\", Switch#show history matches the required behavior — Switch#show buffer answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.5-source-q008",
@@ -3863,7 +5797,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "logging trap <level> sends traps for that level and all more-severe (lower numbers) — read the ceiling carefully."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Trap level equals highest severity sent",
+          "whyItSeems": "Informational (6) mixes SNMP version, trap/inform, or community/security features.",
+          "whyWrongHere": "For \"configuration\", Notifications (5) matches the required behavior — Informational (6) answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "logging trap <level> sends traps for that level and all more-severe (lower numbers) — read the ceiling carefully.",
+          "contrast": "Correct \"Notifications (5)\" vs wrong \"Informational (6)\": For \"configuration\", Notifications (5) matches the required behavior — Informational (6) answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Warnings as trap ceiling",
+          "whyItSeems": "\"Warnings (4)\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration\", Notifications (5) matches the required behavior — Warnings (4) answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "logging trap <level> sends traps for that level and all more-severe (lower numbers) — read the ceiling carefully.",
+          "contrast": "Correct \"Notifications (5)\" vs wrong \"Warnings (4)\": For \"configuration\", Notifications (5) matches the required behavior — Warnings (4) answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Debugging as trap result for informational config",
+          "whyItSeems": "\"Debugging (7)\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration\", Notifications (5) matches the required behavior — Debugging (7) answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "logging trap <level> sends traps for that level and all more-severe (lower numbers) — read the ceiling carefully.",
+          "contrast": "Correct \"Notifications (5)\" vs wrong \"Debugging (7)\": For \"configuration\", Notifications (5) matches the required behavior — Debugging (7) answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.5-source-q009",
@@ -3913,7 +5873,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "CPU check: show processes cpu | 5-sec / 1-min / 5-min averages | show memory for RAM."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Invented show cpu command",
+          "whyItSeems": "\"Router#show cpu\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"utilization\", Router#show processes matches the required behavior — Router#show cpu answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "CPU check: show processes cpu | 5-sec / 1-min / 5-min averages | show memory for RAM.",
+          "contrast": "Correct \"Router#show processes\" vs wrong \"Router#show cpu\": For \"utilization\", Router#show processes matches the required behavior — Router#show cpu answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented show cpu-stats command",
+          "whyItSeems": "\"Router#show cpu-stats\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"utilization\", Router#show processes matches the required behavior — Router#show cpu-stats answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "CPU check: show processes cpu | 5-sec / 1-min / 5-min averages | show memory for RAM.",
+          "contrast": "Correct \"Router#show processes\" vs wrong \"Router#show cpu-stats\": For \"utilization\", Router#show processes matches the required behavior — Router#show cpu-stats answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Environment show for CPU utilization",
+          "whyItSeems": "\"Router#show environment cpu\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"utilization\", Router#show processes matches the required behavior — Router#show environment cpu answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "CPU check: show processes cpu | 5-sec / 1-min / 5-min averages | show memory for RAM.",
+          "contrast": "Correct \"Router#show processes\" vs wrong \"Router#show environment cpu\": For \"utilization\", Router#show processes matches the required behavior — Router#show environment cpu answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.5-source-q010",
@@ -3965,7 +5951,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Log destinations: console (terminal) | buffered (RAM) | host (remote syslog server)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented logging internal command",
+          "whyItSeems": "\"Router(config)#logging internal\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"internal\", Router(config)#logging buffered matches the required behavior — Router(config)#logging internal answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Log destinations: console (terminal) | buffered (RAM) | host (remote syslog server).",
+          "contrast": "Correct \"Router(config)#logging buffered\" vs wrong \"Router(config)#logging internal\": For \"internal\", Router(config)#logging buffered matches the required behavior — Router(config)#logging internal answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "logging ram keyword",
+          "whyItSeems": "\"Router(config)#logging ram\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"internal\", Router(config)#logging buffered matches the required behavior — Router(config)#logging ram answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Log destinations: console (terminal) | buffered (RAM) | host (remote syslog server).",
+          "contrast": "Correct \"Router(config)#logging buffered\" vs wrong \"Router(config)#logging ram\": For \"internal\", Router(config)#logging buffered matches the required behavior — Router(config)#logging ram answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Console logging for RAM buffer",
+          "whyItSeems": "\"Router(config)#logging console\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"internal\", Router(config)#logging buffered matches the required behavior — Router(config)#logging console answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Log destinations: console (terminal) | buffered (RAM) | host (remote syslog server).",
+          "contrast": "Correct \"Router(config)#logging buffered\" vs wrong \"Router(config)#logging console\": For \"internal\", Router(config)#logging buffered matches the required behavior — Router(config)#logging console answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.5-source-q011",
@@ -4017,7 +6029,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Default syslog → console | Add logging buffered and logging host <ip> for RAM and remote."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Syslog server as default destination",
+          "whyItSeems": "Broadcasts to a syslog server describes flooding the frame to multiple ports in the VLAN.",
+          "whyWrongHere": "Syslog (identify): Console reflects severity or facility rules — Broadcasts to a syslog server reverses severity numbering or mislabels the level.",
+          "memoryAnchor": "Default syslog → console | Add logging buffered and logging host <ip> for RAM and remote.",
+          "contrast": "Correct \"Console\" vs wrong \"Broadcasts to a syslog server\": Syslog (identify): Console reflects severity or facility rules — Broadcasts to a syslog server reverses severity numbering or mislabels the level."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "TTY as default syslog destination",
+          "whyItSeems": "\"TTY\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Console matches the required behavior — TTY answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Default syslog → console | Add logging buffered and logging host <ip> for RAM and remote.",
+          "contrast": "Correct \"Console\" vs wrong \"TTY\": For \"identify\", Console matches the required behavior — TTY answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "NVRAM as default syslog destination",
+          "whyItSeems": "\"NVRAM\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Console matches the required behavior — NVRAM answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Default syslog → console | Add logging buffered and logging host <ip> for RAM and remote.",
+          "contrast": "Correct \"Console\" vs wrong \"NVRAM\": For \"identify\", Console matches the required behavior — NVRAM answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.5-source-q012",
@@ -4069,7 +6107,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Default logging console = level 7 (debugging) — tighten with logging console 6 or lower in production."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Notification as default syslog level",
+          "whyItSeems": "\"Notification (5)\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Debugging (7) matches the required behavior — Notification (5) answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Default logging console = level 7 (debugging) — tighten with logging console 6 or lower in production.",
+          "contrast": "Correct \"Debugging (7)\" vs wrong \"Notification (5)\": For \"identify\", Debugging (7) matches the required behavior — Notification (5) answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Informational as default syslog level",
+          "whyItSeems": "Informational (6) mixes SNMP version, trap/inform, or community/security features.",
+          "whyWrongHere": "For \"identify\", Debugging (7) matches the required behavior — Informational (6) answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Default logging console = level 7 (debugging) — tighten with logging console 6 or lower in production.",
+          "contrast": "Correct \"Debugging (7)\" vs wrong \"Informational (6)\": For \"identify\", Debugging (7) matches the required behavior — Informational (6) answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Warning as default syslog level",
+          "whyItSeems": "\"Warning (4)\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Debugging (7) matches the required behavior — Warning (4) answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Default logging console = level 7 (debugging) — tighten with logging console 6 or lower in production.",
+          "contrast": "Correct \"Debugging (7)\" vs wrong \"Warning (4)\": For \"identify\", Debugging (7) matches the required behavior — Warning (4) answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     }
   ],
   "4.6": [
@@ -4123,7 +6187,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Client router lease check → show dhcp lease. Server pool → show ip dhcp binding."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Using server-side show command on a DHCP client",
+          "whyItSeems": "Router#show ip dhcp lease is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (dhcp client): Router#show dhcp lease inspects the right table or state — Router#show ip dhcp lease shows unrelated information.",
+          "memoryAnchor": "Remember: choose \"Router#show dhcp lease\" — not \"Router#show ip dhcp lease\" — for what this stem actually tests.",
+          "contrast": "Correct \"Router#show dhcp lease\" vs wrong \"Router#show ip dhcp lease\": Verification command (dhcp client): Router#show dhcp lease inspects the right table or state — Router#show ip dhcp lease shows unrelated information."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Inventing show command syntax",
+          "whyItSeems": "Router#show ip lease is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (dhcp client): Router#show dhcp lease inspects the right table or state — Router#show ip lease shows unrelated information.",
+          "memoryAnchor": "Remember: choose \"Router#show dhcp lease\" — not \"Router#show ip lease\" — for what this stem actually tests.",
+          "contrast": "Correct \"Router#show dhcp lease\" vs wrong \"Router#show ip lease\": Verification command (dhcp client): Router#show dhcp lease inspects the right table or state — Router#show ip lease shows unrelated information."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Substituting interface status for DHCP lease details",
+          "whyItSeems": "Router#show ip interface is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "Verification command (dhcp client): Router#show dhcp lease inspects the right table or state — Router#show ip interface shows unrelated information.",
+          "memoryAnchor": "Remember: choose \"Router#show dhcp lease\" — not \"Router#show ip interface\" — for what this stem actually tests.",
+          "contrast": "Correct \"Router#show dhcp lease\" vs wrong \"Router#show ip interface\": Verification command (dhcp client): Router#show dhcp lease inspects the right table or state — Router#show ip interface shows unrelated information."
+        }
+      ]
     },
     {
       "id": "obj-4.6-source-q002",
@@ -4176,7 +6266,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DHCP Offer → server MAC as L2 source; L2 dest often broadcast pre-ACK."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Expecting unicast L3 Offer before client has address",
+          "whyItSeems": "\"The layer 3 destination is a unicast to the DHCP client.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "The stem asks what gets learned (dhcp client). Switches record the source MAC on ingress — destination MAC is for lookup, not learning.",
+          "memoryAnchor": "DHCP Offer → server MAC as L2 source; L2 dest often broadcast pre-ACK.",
+          "contrast": "Correct \"The layer 2 source is the MAC address of the server.\" vs wrong \"The layer 3 destination is a unicast to the DHCP client.\": The stem asks what gets learned (dhcp client)."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Assuming Offer is always unicast to client MAC",
+          "whyItSeems": "\"The layer 2 destination is the MAC address of the DHCP client.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Unlike The layer 2 source is the MAC address of the server., The layer 2 destination is the MAC address of the DHCP client. fails the stem constraint that makes the keyed answer unique.",
+          "memoryAnchor": "DHCP Offer → server MAC as L2 source; L2 dest often broadcast pre-ACK.",
+          "contrast": "Correct \"The layer 2 source is the MAC address of the server.\" vs wrong \"The layer 2 destination is the MAC address of the DHCP client.\": Unlike The layer 2 source is the MAC address of the server."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Claiming Offer L3 source is client link-local",
+          "whyItSeems": "The layer 3 source is a link-local address of the client. states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "This is a Layer 2 process (dhcp client). The layer 2 source is the MAC address of the server. uses Ethernet addresses — not IP headers.",
+          "memoryAnchor": "DHCP Offer → server MAC as L2 source; L2 dest often broadcast pre-ACK.",
+          "contrast": "Correct \"The layer 2 source is the MAC address of the server.\" vs wrong \"The layer 3 source is a link-local address of the client.\": This is a Layer 2 process (dhcp client)."
+        }
+      ]
     },
     {
       "id": "obj-4.6-source-q003",
@@ -4227,7 +6343,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DHCP relay → ip helper-address <server> on the client VLAN interface."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Global dhcp server instead of interface helper-address",
+          "whyItSeems": "\"Router(config)#ip dhcp server 10.10.1.101\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"dhcp client\", Router(config-if)#ip helper-address 10.10.1.101 matches the required behavior — Router(config)#ip dhcp server 10.10.1.101 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP relay → ip helper-address <server> on the client VLAN interface.",
+          "contrast": "Correct \"Router(config-if)#ip helper-address 10.10.1.101\" vs wrong \"Router(config)#ip dhcp server 10.10.1.101\": For \"dhcp client\", Router(config-if)#ip helper-address 10."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Wrong interface DHCP command for relay",
+          "whyItSeems": "\"Router(config-if)#ip dhcp server 10.10.1.101\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"dhcp client\", Router(config-if)#ip helper-address 10.10.1.101 matches the required behavior — Router(config-if)#ip dhcp server 10.10.1.101 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP relay → ip helper-address <server> on the client VLAN interface.",
+          "contrast": "Correct \"Router(config-if)#ip helper-address 10.10.1.101\" vs wrong \"Router(config-if)#ip dhcp server 10.10.1.101\": For \"dhcp client\", Router(config-if)#ip helper-address 10."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Inventing relay-agent command name",
+          "whyItSeems": "Router(config-if)#ip relay-agent 10.10.1.101 forwards DHCP broadcasts toward a remote server rather than acting as the DHCP server itself.",
+          "whyWrongHere": "DHCP roles (dhcp client): Router(config-if)#ip helper-address 10.10.1.101 matches who acts in this scenario — Router(config-if)#ip relay-agent 10.10.1.101 confuses relay/helper with server or client duties.",
+          "memoryAnchor": "DHCP relay → ip helper-address <server> on the client VLAN interface.",
+          "contrast": "Correct \"Router(config-if)#ip helper-address 10.10.1.101\" vs wrong \"Router(config-if)#ip relay-agent 10.10.1.101\": DHCP roles (dhcp client): Router(config-if)#ip helper-address 10."
+        }
+      ]
     },
     {
       "id": "obj-4.6-source-q004",
@@ -4279,7 +6421,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DHCP fields: CHADDR=MAC | GIADDR=relay interface IP (scope hint) | CIADDR=client IP on renew."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "CIADDR for scope selection",
+          "whyItSeems": "\"CIADDR\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"dhcp client\", GIADDR matches the required behavior — CIADDR answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP fields: CHADDR=MAC | GIADDR=relay interface IP (scope hint) | CIADDR=client IP on renew.",
+          "contrast": "Correct \"GIADDR\" vs wrong \"CIADDR\": For \"dhcp client\", GIADDR matches the required behavior — CIADDR answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SIADDR for DHCP scope",
+          "whyItSeems": "\"SIADDR\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"dhcp client\", GIADDR matches the required behavior — SIADDR answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP fields: CHADDR=MAC | GIADDR=relay interface IP (scope hint) | CIADDR=client IP on renew.",
+          "contrast": "Correct \"GIADDR\" vs wrong \"SIADDR\": For \"dhcp client\", GIADDR matches the required behavior — SIADDR answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "CHADDR for scope selection",
+          "whyItSeems": "\"CHADDR\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"dhcp client\", GIADDR matches the required behavior — CHADDR answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP fields: CHADDR=MAC | GIADDR=relay interface IP (scope hint) | CIADDR=client IP on renew.",
+          "contrast": "Correct \"GIADDR\" vs wrong \"CHADDR\": For \"dhcp client\", GIADDR matches the required behavior — CHADDR answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.6-source-q005",
@@ -4332,7 +6500,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DHCP relay: ip helper-address <ip> on the client-facing router interface — forwards UDP/67 broadcasts."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Second DHCP server instead of relay",
+          "whyItSeems": "\"A second DHCP server on the Host A network\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"dhcp client\", A DHCP relay agent on Router A interface Gi0/0 matches the required behavior — A second DHCP server on the Host A network answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP relay: ip helper-address <ip> on the client-facing router interface — forwards UDP/67 broadcasts.",
+          "contrast": "Correct \"A DHCP relay agent on Router A interface Gi0/0\" vs wrong \"A second DHCP server on the Host A network\": For \"dhcp client\", A DHCP relay agent on Router A interface Gi0/0 matches the required behavior — A second DHCP server on the Host A network answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Relay on wrong router",
+          "whyItSeems": "A DHCP relay agent on Router B interface Gi0/0 forwards DHCP broadcasts toward a remote server rather than acting as the DHCP server itself.",
+          "whyWrongHere": "DHCP roles (dhcp client): A DHCP relay agent on Router A interface Gi0/0 matches who acts in this scenario — A DHCP relay agent on Router B interface Gi0/0 confuses relay/helper with server or client duties.",
+          "memoryAnchor": "DHCP relay: ip helper-address <ip> on the client-facing router interface — forwards UDP/67 broadcasts.",
+          "contrast": "Correct \"A DHCP relay agent on Router A interface Gi0/0\" vs wrong \"A DHCP relay agent on Router B interface Gi0/0\": DHCP roles (dhcp client): A DHCP relay agent on Router A interface Gi0/0 matches who acts in this scenario — A DHCP relay agent on Router B interface Gi0/0 confuses relay/helper with server or client duties."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "DHCP relay on switch",
+          "whyItSeems": "A DHCP relay agent on Switch A forwards DHCP broadcasts toward a remote server rather than acting as the DHCP server itself.",
+          "whyWrongHere": "DHCP roles (dhcp client): A DHCP relay agent on Router A interface Gi0/0 matches who acts in this scenario — A DHCP relay agent on Switch A confuses relay/helper with server or client duties.",
+          "memoryAnchor": "DHCP relay: ip helper-address <ip> on the client-facing router interface — forwards UDP/67 broadcasts.",
+          "contrast": "Correct \"A DHCP relay agent on Router A interface Gi0/0\" vs wrong \"A DHCP relay agent on Switch A\": DHCP roles (dhcp client): A DHCP relay agent on Router A interface Gi0/0 matches who acts in this scenario — A DHCP relay agent on Switch A confuses relay/helper with server or client duties."
+        }
+      ]
     },
     {
       "id": "obj-4.6-source-q006",
@@ -4383,7 +6577,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DHCP debug: debug ip dhcp server events | debug ip dhcp server packet — always undebug all after."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Generic debug dhcp command",
+          "whyItSeems": "\"Router#debug dhcp\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"dhcp client\", Router#debug ip dhcp server packet matches the required behavior — Router#debug dhcp answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP debug: debug ip dhcp server events | debug ip dhcp server packet — always undebug all after.",
+          "contrast": "Correct \"Router#debug ip dhcp server packet\" vs wrong \"Router#debug dhcp\": For \"dhcp client\", Router#debug ip dhcp server packet matches the required behavior — Router#debug dhcp answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Show command for DHCP relay debug",
+          "whyItSeems": "Router#show ip dhcp detail is a verification command that inspects a different table or feature than the stem asks about.",
+          "whyWrongHere": "For \"dhcp client\", Router#debug ip dhcp server packet matches the required behavior — Router#show ip dhcp detail answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP debug: debug ip dhcp server events | debug ip dhcp server packet — always undebug all after.",
+          "contrast": "Correct \"Router#debug ip dhcp server packet\" vs wrong \"Router#show ip dhcp detail\": For \"dhcp client\", Router#debug ip dhcp server packet matches the required behavior — Router#show ip dhcp detail answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Generic debug ip dhcp for relay packets",
+          "whyItSeems": "\"Router#debug ip dhcp\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"dhcp client\", Router#debug ip dhcp server packet matches the required behavior — Router#debug ip dhcp answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP debug: debug ip dhcp server events | debug ip dhcp server packet — always undebug all after.",
+          "contrast": "Correct \"Router#debug ip dhcp server packet\" vs wrong \"Router#debug ip dhcp\": For \"dhcp client\", Router#debug ip dhcp server packet matches the required behavior — Router#debug ip dhcp answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.6-source-q007",
@@ -4435,7 +6655,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SLAAC + DHCPv6 = stateless (options only) | Stateful DHCPv6 assigns full addresses."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Stateful DHCPv6 with SLAAC",
+          "whyItSeems": "Stateful configuration of clients for IPv6 addressing states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (dhcp client): Configuration of clients with IPv6 options matches prefix, shortening, or assignment rules — Stateful configuration of clients for IPv6 addressing breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "SLAAC + DHCPv6 = stateless (options only) | Stateful DHCPv6 assigns full addresses.",
+          "contrast": "Correct \"Configuration of clients with IPv6 options\" vs wrong \"Stateful configuration of clients for IPv6 addressing\": IPv6 addressing (dhcp client): Configuration of clients with IPv6 options matches prefix, shortening, or assignment rules — Stateful configuration of clients for IPv6 addressing breaks IPv6 syntax or prefix length."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "DHCPv6 supplies network ID in SLAAC",
+          "whyItSeems": "Configuration of clients with the IPv6 network IDs states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (dhcp client): Configuration of clients with IPv6 options matches prefix, shortening, or assignment rules — Configuration of clients with the IPv6 network IDs breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "SLAAC + DHCPv6 = stateless (options only) | Stateful DHCPv6 assigns full addresses.",
+          "contrast": "Correct \"Configuration of clients with IPv6 options\" vs wrong \"Configuration of clients with the IPv6 network IDs\": IPv6 addressing (dhcp client): Configuration of clients with IPv6 options matches prefix, shortening, or assignment rules — Configuration of clients with the IPv6 network IDs breaks IPv6 syntax or prefix length."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Stateless addressing via DHCPv6 in SLAAC",
+          "whyItSeems": "Stateless configuration of clients for IPv6 addressing states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (dhcp client): Configuration of clients with IPv6 options matches prefix, shortening, or assignment rules — Stateless configuration of clients for IPv6 addressing breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "SLAAC + DHCPv6 = stateless (options only) | Stateful DHCPv6 assigns full addresses.",
+          "contrast": "Correct \"Configuration of clients with IPv6 options\" vs wrong \"Stateless configuration of clients for IPv6 addressing\": IPv6 addressing (dhcp client): Configuration of clients with IPv6 options matches prefix, shortening, or assignment rules — Stateless configuration of clients for IPv6 addressing breaks IPv6 syntax or prefix length."
+        }
+      ]
     },
     {
       "id": "obj-4.6-source-q008",
@@ -4487,7 +6733,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "DHCP lease timers: T1 = 50% renew | T2 = 87.5% rebind | 100% = lease expires."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Immediate IP loss on server down",
+          "whyItSeems": "They lose their IP address immediately. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"dhcp client\", They lose their IP address after their entire lease has expired. matches the required behavior — They lose their IP address immediately. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP lease timers: T1 = 50% renew | T2 = 87.5% rebind | 100% = lease expires.",
+          "contrast": "Correct \"They lose their IP address after their entire lease has expired.\" vs wrong \"They lose their IP address immediately.\": For \"dhcp client\", They lose their IP address after their entire lease has expired."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "IP lost at half lease on server down",
+          "whyItSeems": "They lose their IP address after one-half of their lease has expired. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"dhcp client\", They lose their IP address after their entire lease has expired. matches the required behavior — They lose their IP address after one-half of their lease has expired. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP lease timers: T1 = 50% renew | T2 = 87.5% rebind | 100% = lease expires.",
+          "contrast": "Correct \"They lose their IP address after their entire lease has expired.\" vs wrong \"They lose their IP address after one-half of their lease has expired.\": For \"dhcp client\", They lose their IP address after their entire lease has expired."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "IP lost at seven-eighths lease",
+          "whyItSeems": "They lose their IP address after seven-eighths of their lease has expired. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"dhcp client\", They lose their IP address after their entire lease has expired. matches the required behavior — They lose their IP address after seven-eighths of their lease has expired. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "DHCP lease timers: T1 = 50% renew | T2 = 87.5% rebind | 100% = lease expires.",
+          "contrast": "Correct \"They lose their IP address after their entire lease has expired.\" vs wrong \"They lose their IP address after seven-eighths of their lease has expired.\": For \"dhcp client\", They lose their IP address after their entire lease has expired."
+        }
+      ]
     },
     {
       "id": "obj-4.6-source-q009",
@@ -4539,7 +6811,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Stateful DHCPv6: ipv6 dhcp pool + address dhcp on client — full address lease like DHCPv4."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Stateful DHCPv6 supplies default router",
+          "whyItSeems": "\"Stateful DHCPv6 supplies the network ID, host ID, and default router.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"dhcp client\", Stateful DHCPv6 supplies the network ID and host ID. matches the required behavior — Stateful DHCPv6 supplies the network ID, host ID, and default router. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Stateful DHCPv6: ipv6 dhcp pool + address dhcp on client — full address lease like DHCPv4.",
+          "contrast": "Correct \"Stateful DHCPv6 supplies the network ID and host ID.\" vs wrong \"Stateful DHCPv6 supplies the network ID, host ID, and default router.\": For \"dhcp client\", Stateful DHCPv6 supplies the network ID and host ID."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "DHCPv6 uses broadcasts",
+          "whyItSeems": "Stateful DHCPv6 communicates via broadcasts. describes flooding the frame to multiple ports in the VLAN.",
+          "whyWrongHere": "For \"dhcp client\", Stateful DHCPv6 supplies the network ID and host ID. matches the required behavior — Stateful DHCPv6 communicates via broadcasts. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Stateful DHCPv6: ipv6 dhcp pool + address dhcp on client — full address lease like DHCPv4.",
+          "contrast": "Correct \"Stateful DHCPv6 supplies the network ID and host ID.\" vs wrong \"Stateful DHCPv6 communicates via broadcasts.\": For \"dhcp client\", Stateful DHCPv6 supplies the network ID and host ID."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Stateful DHCPv6 works with SLAAC addressing",
+          "whyItSeems": "Stateful DHCPv6 works in conjunction with SLAAC. states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "For \"dhcp client\", Stateful DHCPv6 supplies the network ID and host ID. matches the required behavior — Stateful DHCPv6 works in conjunction with SLAAC. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Stateful DHCPv6: ipv6 dhcp pool + address dhcp on client — full address lease like DHCPv4.",
+          "contrast": "Correct \"Stateful DHCPv6 supplies the network ID and host ID.\" vs wrong \"Stateful DHCPv6 works in conjunction with SLAAC.\": For \"dhcp client\", Stateful DHCPv6 supplies the network ID and host ID."
+        }
+      ]
     },
     {
       "id": "obj-4.6-source-q010",
@@ -4591,7 +6889,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IPv6 addressing modes: autoconfig (SLAAC) | dhcp (stateful) | dhcp rapid-commit (faster stateful)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Global config ipv6 address dhcp",
+          "whyItSeems": "RouterA(config)#ipv6 address dhcp gi 0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (dhcp client): RouterA(config-if)#ipv6 address dhcp matches prefix, shortening, or assignment rules — RouterA(config)#ipv6 address dhcp gi 0/0 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 addressing modes: autoconfig (SLAAC) | dhcp (stateful) | dhcp rapid-commit (faster stateful).",
+          "contrast": "Correct \"RouterA(config-if)#ipv6 address dhcp\" vs wrong \"RouterA(config)#ipv6 address dhcp gi 0/0\": IPv6 addressing (dhcp client): RouterA(config-if)#ipv6 address dhcp matches prefix, shortening, or assignment rules — RouterA(config)#ipv6 address dhcp gi 0/0 breaks IPv6 syntax or prefix length."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "dhcpv6 keyword on interface",
+          "whyItSeems": "RouterA(config-if)#ipv6 address dhcpv6 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (dhcp client): RouterA(config-if)#ipv6 address dhcp matches prefix, shortening, or assignment rules — RouterA(config-if)#ipv6 address dhcpv6 breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 addressing modes: autoconfig (SLAAC) | dhcp (stateful) | dhcp rapid-commit (faster stateful).",
+          "contrast": "Correct \"RouterA(config-if)#ipv6 address dhcp\" vs wrong \"RouterA(config-if)#ipv6 address dhcpv6\": IPv6 addressing (dhcp client): RouterA(config-if)#ipv6 address dhcp matches prefix, shortening, or assignment rules — RouterA(config-if)#ipv6 address dhcpv6 breaks IPv6 syntax or prefix length."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "stateless keyword for stateful DHCPv6",
+          "whyItSeems": "RouterA(config)#ipv6 address stateless states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "IPv6 addressing (dhcp client): RouterA(config-if)#ipv6 address dhcp matches prefix, shortening, or assignment rules — RouterA(config)#ipv6 address stateless breaks IPv6 syntax or prefix length.",
+          "memoryAnchor": "IPv6 addressing modes: autoconfig (SLAAC) | dhcp (stateful) | dhcp rapid-commit (faster stateful).",
+          "contrast": "Correct \"RouterA(config-if)#ipv6 address dhcp\" vs wrong \"RouterA(config)#ipv6 address stateless\": IPv6 addressing (dhcp client): RouterA(config-if)#ipv6 address dhcp matches prefix, shortening, or assignment rules — RouterA(config)#ipv6 address stateless breaks IPv6 syntax or prefix length."
+        }
+      ]
     },
     {
       "id": "obj-4.6-source-q011",
@@ -4644,7 +6968,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Never delete active leases casually — wait for natural expiry or confirm the client released the address."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Server forces immediate client release",
+          "whyItSeems": "The server will contact the client to immediately relinquish the IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"dhcp client\", The server will offer the IP address to another node, which will cause a duplicate address. matches the required behavior — The server will contact the client to immediately relinquish the IP address. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Never delete active leases casually — wait for natural expiry or confirm the client released the address.",
+          "contrast": "Correct \"The server will offer the IP address to another node, which will cause a duplicate address.\" vs wrong \"The server will contact the client to immediately relinquish the IP address.\": For \"dhcp client\", The server will offer the IP address to another node, which will cause a duplicate address."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Client immediately renews deleted lease",
+          "whyItSeems": "The client will immediately renew its lease for the current IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"dhcp client\", The server will offer the IP address to another node, which will cause a duplicate address. matches the required behavior — The client will immediately renew its lease for the current IP address. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Never delete active leases casually — wait for natural expiry or confirm the client released the address.",
+          "contrast": "Correct \"The server will offer the IP address to another node, which will cause a duplicate address.\" vs wrong \"The client will immediately renew its lease for the current IP address.\": For \"dhcp client\", The server will offer the IP address to another node, which will cause a duplicate address."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Graceful relinquish on re-offer",
+          "whyItSeems": "The server will offer the IP address to another node, at which time the original client will relinquish the IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "DHCP message order (dhcp client): The server will offer the IP address to another node, which will cause a duplicate address. is the step this stem describes — The server will offer the IP address to another node, at which time the original client will relinquish the IP address. is another DORA phase.",
+          "memoryAnchor": "Never delete active leases casually — wait for natural expiry or confirm the client released the address.",
+          "contrast": "Correct \"The server will offer the IP address to another node, which will cause a duplicate address.\" vs wrong \"The server will offer the IP address to another node, at which time the original client will relinquish the IP address.\": DHCP message order (dhcp client): The server will offer the IP address to another node, which will cause a duplicate address."
+        }
+      ]
     },
     {
       "id": "obj-4.6-source-q012",
@@ -4696,7 +7046,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Lease timeline: 50% = RENEW (to original server) | 87.5% = REBIND (any server) | 100% = expire."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "No action at seven-eighths lease",
+          "whyItSeems": "\"Nothing. The DHCP client will retain the lease.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"dhcp client\", The DHCP client will perform a DHCP rebinding. matches the required behavior — Nothing. The DHCP client will retain the lease. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Lease timeline: 50% = RENEW (to original server) | 87.5% = REBIND (any server) | 100% = expire.",
+          "contrast": "Correct \"The DHCP client will perform a DHCP rebinding.\" vs wrong \"Nothing. The DHCP client will retain the lease.\": For \"dhcp client\", The DHCP client will perform a DHCP rebinding."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Renew at seven-eighths lease",
+          "whyItSeems": "\"The DHCP client will renew its lease.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"dhcp client\", The DHCP client will perform a DHCP rebinding. matches the required behavior — The DHCP client will renew its lease. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Lease timeline: 50% = RENEW (to original server) | 87.5% = REBIND (any server) | 100% = expire.",
+          "contrast": "Correct \"The DHCP client will perform a DHCP rebinding.\" vs wrong \"The DHCP client will renew its lease.\": For \"dhcp client\", The DHCP client will perform a DHCP rebinding."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Relinquish IP at seven-eighths lease",
+          "whyItSeems": "The DHCP client will relinquish the use of the IP address. shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
+          "whyWrongHere": "For \"dhcp client\", The DHCP client will perform a DHCP rebinding. matches the required behavior — The DHCP client will relinquish the use of the IP address. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Lease timeline: 50% = RENEW (to original server) | 87.5% = REBIND (any server) | 100% = expire.",
+          "contrast": "Correct \"The DHCP client will perform a DHCP rebinding.\" vs wrong \"The DHCP client will relinquish the use of the IP address.\": For \"dhcp client\", The DHCP client will perform a DHCP rebinding."
+        }
+      ]
     }
   ],
   "4.7": [
@@ -4748,7 +7124,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "QoS classification on routers → ACL/class-map match, then mark (DSCP/CoS) and queue."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "ASIC classification for QoS policy",
+          "whyItSeems": "\"Layer 2 ASICs\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"classify\", Access control lists matches the required behavior — Layer 2 ASICs answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "QoS classification on routers → ACL/class-map match, then mark (DSCP/CoS) and queue.",
+          "contrast": "Correct \"Access control lists\" vs wrong \"Layer 2 ASICs\": For \"classify\", Access control lists matches the required behavior — Layer 2 ASICs answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Routing table as QoS classifier",
+          "whyItSeems": "\"Route tables\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"classify\", Access control lists matches the required behavior — Route tables answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "QoS classification on routers → ACL/class-map match, then mark (DSCP/CoS) and queue.",
+          "contrast": "Correct \"Access control lists\" vs wrong \"Route tables\": For \"classify\", Access control lists matches the required behavior — Route tables answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Generic frame filter for QoS",
+          "whyItSeems": "\"Frame filters\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"classify\", Access control lists matches the required behavior — Frame filters answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "QoS classification on routers → ACL/class-map match, then mark (DSCP/CoS) and queue.",
+          "contrast": "Correct \"Access control lists\" vs wrong \"Frame filters\": For \"classify\", Access control lists matches the required behavior — Frame filters answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.7-source-q002",
@@ -4800,7 +7202,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Voice/video QoS watch jitter — variation in packet arrival timing."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Confusing bandwidth with delay variation",
+          "whyItSeems": "\"Bandwidth\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"measurement\", Jitter matches the required behavior — Bandwidth answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Voice/video QoS watch jitter — variation in packet arrival timing.",
+          "contrast": "Correct \"Jitter\" vs wrong \"Bandwidth\": For \"measurement\", Jitter matches the required behavior — Bandwidth answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Equating constant delay with jitter",
+          "whyItSeems": "\"Delay\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"measurement\", Jitter matches the required behavior — Delay answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Voice/video QoS watch jitter — variation in packet arrival timing.",
+          "contrast": "Correct \"Jitter\" vs wrong \"Delay\": For \"measurement\", Jitter matches the required behavior — Delay answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Selecting loss for delay variation metric",
+          "whyItSeems": "\"Loss\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"measurement\", Jitter matches the required behavior — Loss answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Voice/video QoS watch jitter — variation in packet arrival timing.",
+          "contrast": "Correct \"Jitter\" vs wrong \"Loss\": For \"measurement\", Jitter matches the required behavior — Loss answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.7-source-q003",
@@ -4850,7 +7278,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "CoS = 3-bit 802.1Q tag; DSCP = 6-bit IP marking."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Placing CoS at Layer 3 with DSCP",
+          "whyItSeems": "\"The Class of Service field is a layer 3 field.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "This is a Layer 2 process (statement). The Class of Service field is only present in 802.1Q frames. uses Ethernet addresses — not IP headers.",
+          "memoryAnchor": "CoS = 3-bit 802.1Q tag; DSCP = 6-bit IP marking.",
+          "contrast": "Correct \"The Class of Service field is only present in 802.1Q frames.\" vs wrong \"The Class of Service field is a layer 3 field.\": This is a Layer 2 process (statement)."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Believing CoS persists end-to-end over WAN",
+          "whyItSeems": "\"The Class of Service field is present from end to end of a transmission.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", The Class of Service field is only present in 802.1Q frames. matches the required behavior — The Class of Service field is present from end to end of a transmission. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "CoS = 3-bit 802.1Q tag; DSCP = 6-bit IP marking.",
+          "contrast": "Correct \"The Class of Service field is only present in 802.1Q frames.\" vs wrong \"The Class of Service field is present from end to end of a transmission.\": For \"statement\", The Class of Service field is only present in 802."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Confusing 6-bit DSCP with 3-bit CoS",
+          "whyItSeems": "\"The Class of Service field is 6 bits.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", The Class of Service field is only present in 802.1Q frames. matches the required behavior — The Class of Service field is 6 bits. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "CoS = 3-bit 802.1Q tag; DSCP = 6-bit IP marking.",
+          "contrast": "Correct \"The Class of Service field is only present in 802.1Q frames.\" vs wrong \"The Class of Service field is 6 bits.\": For \"statement\", The Class of Service field is only present in 802."
+        }
+      ]
     },
     {
       "id": "obj-4.7-source-q004",
@@ -4903,7 +7357,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "QoS metrics: loss = drops; jitter = delay variation; delay = latency."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Bandwidth as queue discard metric",
+          "whyItSeems": "\"Bandwidth\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Loss matches the required behavior — Bandwidth answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "QoS metrics: loss = drops; jitter = delay variation; delay = latency.",
+          "contrast": "Correct \"Loss\" vs wrong \"Bandwidth\": For \"identify\", Loss matches the required behavior — Bandwidth answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Delay as packet discard",
+          "whyItSeems": "\"Delay\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Loss matches the required behavior — Delay answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "QoS metrics: loss = drops; jitter = delay variation; delay = latency.",
+          "contrast": "Correct \"Loss\" vs wrong \"Delay\": For \"identify\", Loss matches the required behavior — Delay answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Jitter as queue drop metric",
+          "whyItSeems": "\"Jitter\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Loss matches the required behavior — Jitter answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "QoS metrics: loss = drops; jitter = delay variation; delay = latency.",
+          "contrast": "Correct \"Loss\" vs wrong \"Jitter\": For \"identify\", Loss matches the required behavior — Jitter answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.7-source-q005",
@@ -4954,7 +7434,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Voice/real-time marking → EF (46); bulk data → AF classes; default → 0/BE."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "High AF class beats EF",
+          "whyItSeems": "\"DSCP AF 43\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"priority\", DSCP EF 46 matches the required behavior — DSCP AF 43 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Voice/real-time marking → EF (46); bulk data → AF classes; default → 0/BE.",
+          "contrast": "Correct \"DSCP EF 46\" vs wrong \"DSCP AF 43\": For \"priority\", DSCP EF 46 matches the required behavior — DSCP AF 43 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Low AF as highest priority",
+          "whyItSeems": "\"DSCP AF 11\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"priority\", DSCP EF 46 matches the required behavior — DSCP AF 11 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Voice/real-time marking → EF (46); bulk data → AF classes; default → 0/BE.",
+          "contrast": "Correct \"DSCP EF 46\" vs wrong \"DSCP AF 11\": For \"priority\", DSCP EF 46 matches the required behavior — DSCP AF 11 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Best-effort DSCP as highest priority",
+          "whyItSeems": "\"DSCP AF 00\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"priority\", DSCP EF 46 matches the required behavior — DSCP AF 00 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Voice/real-time marking → EF (46); bulk data → AF classes; default → 0/BE.",
+          "contrast": "Correct \"DSCP EF 46\" vs wrong \"DSCP AF 00\": For \"priority\", DSCP EF 46 matches the required behavior — DSCP AF 00 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.7-source-q006",
@@ -5004,7 +7510,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "VoIP delay budget → 150 ms one-way max (also watch jitter and loss)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "10 ms as VoIP delay ceiling",
+          "whyItSeems": "10 ms gives a numeric value (timer, prefix, or rate) that may not match the fact tested in identify.",
+          "whyWrongHere": "For \"identify\", 150 ms matches the required behavior — 10 ms answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "VoIP delay budget → 150 ms one-way max (also watch jitter and loss).",
+          "contrast": "Correct \"150 ms\" vs wrong \"10 ms\": For \"identify\", 150 ms matches the required behavior — 10 ms answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "90 ms as CCNA VoIP max",
+          "whyItSeems": "90 ms gives a numeric value (timer, prefix, or rate) that may not match the fact tested in identify.",
+          "whyWrongHere": "For \"identify\", 150 ms matches the required behavior — 90 ms answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "VoIP delay budget → 150 ms one-way max (also watch jitter and loss).",
+          "contrast": "Correct \"150 ms\" vs wrong \"90 ms\": For \"identify\", 150 ms matches the required behavior — 90 ms answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "300 ms as acceptable VoIP delay",
+          "whyItSeems": "300 ms gives a numeric value (timer, prefix, or rate) that may not match the fact tested in identify.",
+          "whyWrongHere": "For \"identify\", 150 ms matches the required behavior — 300 ms answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "VoIP delay budget → 150 ms one-way max (also watch jitter and loss).",
+          "contrast": "Correct \"150 ms\" vs wrong \"300 ms\": For \"identify\", 150 ms matches the required behavior — 300 ms answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.7-source-q007",
@@ -5057,7 +7589,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Strict priority for VoIP → LLQ; weighted sharing among classes → CBWFQ."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "CBWFQ as strict priority scheduler",
+          "whyItSeems": "\"CBWFQ\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"priority\", LLQ matches the required behavior — CBWFQ answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Strict priority for VoIP → LLQ; weighted sharing among classes → CBWFQ.",
+          "contrast": "Correct \"LLQ\" vs wrong \"CBWFQ\": For \"priority\", LLQ matches the required behavior — CBWFQ answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "FIFO as priority queuing",
+          "whyItSeems": "\"FIFO\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"priority\", LLQ matches the required behavior — FIFO answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Strict priority for VoIP → LLQ; weighted sharing among classes → CBWFQ.",
+          "contrast": "Correct \"LLQ\" vs wrong \"FIFO\": For \"priority\", LLQ matches the required behavior — FIFO answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "CIR as QoS queue type",
+          "whyItSeems": "\"CIR\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"priority\", LLQ matches the required behavior — CIR answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Strict priority for VoIP → LLQ; weighted sharing among classes → CBWFQ.",
+          "contrast": "Correct \"LLQ\" vs wrong \"CIR\": For \"priority\", LLQ matches the required behavior — CIR answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.7-source-q008",
@@ -5111,7 +7669,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Queue starvation fix: policing/shaping rate limits + LLQ for latency-sensitive traffic."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "LLQ as queue starvation prevention via policing",
+          "whyItSeems": "\"LLQ\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"starvation\", Policing matches the required behavior — LLQ answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Queue starvation fix: policing/shaping rate limits + LLQ for latency-sensitive traffic.",
+          "contrast": "Correct \"Policing\" vs wrong \"LLQ\": For \"starvation\", Policing matches the required behavior — LLQ answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "CBWFQ as policing for starvation",
+          "whyItSeems": "\"CBWFQ\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"starvation\", Policing matches the required behavior — CBWFQ answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Queue starvation fix: policing/shaping rate limits + LLQ for latency-sensitive traffic.",
+          "contrast": "Correct \"Policing\" vs wrong \"CBWFQ\": For \"starvation\", Policing matches the required behavior — CBWFQ answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "FIFO prevents queue starvation",
+          "whyItSeems": "\"FIFO\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"starvation\", Policing matches the required behavior — FIFO answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Queue starvation fix: policing/shaping rate limits + LLQ for latency-sensitive traffic.",
+          "contrast": "Correct \"Policing\" vs wrong \"FIFO\": For \"starvation\", Policing matches the required behavior — FIFO answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.7-source-q009",
@@ -5164,7 +7748,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Shaping = buffer + delay to meet rate | Policing = drop excess immediately."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Shaping drops excess packets",
+          "whyItSeems": "Shaping drops packets over the configured bit rate to cause loss. implies the device should discard the frame instead of forwarding or flooding it.",
+          "whyWrongHere": "For \"statement\", Shaping holds packets in the queue over the configured bit rate to cause delay. matches the required behavior — Shaping drops packets over the configured bit rate to cause loss. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Shaping = buffer + delay to meet rate | Policing = drop excess immediately.",
+          "contrast": "Correct \"Shaping holds packets in the queue over the configured bit rate to cause delay.\" vs wrong \"Shaping drops packets over the configured bit rate to cause loss.\": For \"statement\", Shaping holds packets in the queue over the configured bit rate to cause delay."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Shaping causes jitter",
+          "whyItSeems": "\"Shaping holds packets in the queue over the configured bit rate to cause jitter.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", Shaping holds packets in the queue over the configured bit rate to cause delay. matches the required behavior — Shaping holds packets in the queue over the configured bit rate to cause jitter. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Shaping = buffer + delay to meet rate | Policing = drop excess immediately.",
+          "contrast": "Correct \"Shaping holds packets in the queue over the configured bit rate to cause delay.\" vs wrong \"Shaping holds packets in the queue over the configured bit rate to cause jitter.\": For \"statement\", Shaping holds packets in the queue over the configured bit rate to cause delay."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Shaping slows packets in queue",
+          "whyItSeems": "\"Shaping slows packets in the queue over the configured bit rate to adhere to the speed.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", Shaping holds packets in the queue over the configured bit rate to cause delay. matches the required behavior — Shaping slows packets in the queue over the configured bit rate to adhere to the speed. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Shaping = buffer + delay to meet rate | Policing = drop excess immediately.",
+          "contrast": "Correct \"Shaping holds packets in the queue over the configured bit rate to cause delay.\" vs wrong \"Shaping slows packets in the queue over the configured bit rate to adhere to the speed.\": For \"statement\", Shaping holds packets in the queue over the configured bit rate to cause delay."
+        }
+      ]
     },
     {
       "id": "obj-4.7-source-q010",
@@ -5216,7 +7826,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Queuing: FIFO (single queue) | CBWFQ (weighted round-robin) | LLQ (CBWFQ + strict priority)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "LLQ as round-robin scheduler",
+          "whyItSeems": "\"LLQ\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"scheduler\", CBWFQ matches the required behavior — LLQ answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Queuing: FIFO (single queue) | CBWFQ (weighted round-robin) | LLQ (CBWFQ + strict priority).",
+          "contrast": "Correct \"CBWFQ\" vs wrong \"LLQ\": For \"scheduler\", CBWFQ matches the required behavior — LLQ answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "FIFO as round-robin queuing",
+          "whyItSeems": "\"FIFO\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"scheduler\", CBWFQ matches the required behavior — FIFO answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Queuing: FIFO (single queue) | CBWFQ (weighted round-robin) | LLQ (CBWFQ + strict priority).",
+          "contrast": "Correct \"CBWFQ\" vs wrong \"FIFO\": For \"scheduler\", CBWFQ matches the required behavior — FIFO answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Priority queuing as round-robin",
+          "whyItSeems": "\"PQ\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"scheduler\", CBWFQ matches the required behavior — PQ answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Queuing: FIFO (single queue) | CBWFQ (weighted round-robin) | LLQ (CBWFQ + strict priority).",
+          "contrast": "Correct \"CBWFQ\" vs wrong \"PQ\": For \"scheduler\", CBWFQ matches the required behavior — PQ answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.7-source-q011",
@@ -5269,7 +7905,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Policing = drop at token bucket limit | Shaping = queue/delay to average the rate."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Policing buffers for delay",
+          "whyItSeems": "\"Policing holds packets in the queue over the configured bit rate to cause delay.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", Policing drops packets over the configured bit rate to cause loss. matches the required behavior — Policing holds packets in the queue over the configured bit rate to cause delay. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Policing = drop at token bucket limit | Shaping = queue/delay to average the rate.",
+          "contrast": "Correct \"Policing drops packets over the configured bit rate to cause loss.\" vs wrong \"Policing holds packets in the queue over the configured bit rate to cause delay.\": For \"statement\", Policing drops packets over the configured bit rate to cause loss."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Policing causes jitter",
+          "whyItSeems": "\"Policing holds packets in the queue over the configured bit rate to cause jitter.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", Policing drops packets over the configured bit rate to cause loss. matches the required behavior — Policing holds packets in the queue over the configured bit rate to cause jitter. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Policing = drop at token bucket limit | Shaping = queue/delay to average the rate.",
+          "contrast": "Correct \"Policing drops packets over the configured bit rate to cause loss.\" vs wrong \"Policing holds packets in the queue over the configured bit rate to cause jitter.\": For \"statement\", Policing drops packets over the configured bit rate to cause loss."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Policing slows packets like shaping",
+          "whyItSeems": "\"Policing slows packets in the queue over the configured bit rate to adhere to the bit rate.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", Policing drops packets over the configured bit rate to cause loss. matches the required behavior — Policing slows packets in the queue over the configured bit rate to adhere to the bit rate. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Policing = drop at token bucket limit | Shaping = queue/delay to average the rate.",
+          "contrast": "Correct \"Policing drops packets over the configured bit rate to cause loss.\" vs wrong \"Policing slows packets in the queue over the configured bit rate to adhere to the bit rate.\": For \"statement\", Policing drops packets over the configured bit rate to cause loss."
+        }
+      ]
     },
     {
       "id": "obj-4.7-source-q012",
@@ -5320,7 +7982,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Policing terms: CIR = sustained rate | BC = normal burst | BE = excess burst."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Policing only for LAN apps",
+          "whyItSeems": "\"To help police LAN applications\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"policing\", To maintain a contracted CIR matches the required behavior — To help police LAN applications answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Policing terms: CIR = sustained rate | BC = normal burst | BE = excess burst.",
+          "contrast": "Correct \"To maintain a contracted CIR\" vs wrong \"To help police LAN applications\": For \"policing\", To maintain a contracted CIR matches the required behavior — To help police LAN applications answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Policing only for WAN apps",
+          "whyItSeems": "\"To help police WAN applications\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"policing\", To maintain a contracted CIR matches the required behavior — To help police WAN applications answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Policing terms: CIR = sustained rate | BC = normal burst | BE = excess burst.",
+          "contrast": "Correct \"To maintain a contracted CIR\" vs wrong \"To help police WAN applications\": For \"policing\", To maintain a contracted CIR matches the required behavior — To help police WAN applications answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Policing for burst rate only",
+          "whyItSeems": "\"To maintain a contracted burst rate\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"policing\", To maintain a contracted CIR matches the required behavior — To maintain a contracted burst rate answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Policing terms: CIR = sustained rate | BC = normal burst | BE = excess burst.",
+          "contrast": "Correct \"To maintain a contracted CIR\" vs wrong \"To maintain a contracted burst rate\": For \"policing\", To maintain a contracted CIR matches the required behavior — To maintain a contracted burst rate answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.7-source-q013",
@@ -5374,7 +8062,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "WRED thresholds: below min = no drop | min–max = increasing drop probability | max = tail drop."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "WRED drops only when queue full",
+          "whyItSeems": "When the queue depth is full, a percentage of TCP packets are dropped. implies the device should discard the frame instead of forwarding or flooding it.",
+          "whyWrongHere": "Transport protocol (congestion): When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped. matches reliability, ports, or connection behavior — When the queue depth is full, a percentage of TCP packets are dropped. picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "WRED thresholds: below min = no drop | min–max = increasing drop probability | max = tail drop.",
+          "contrast": "Correct \"When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped.\" vs wrong \"When the queue depth is full, a percentage of TCP packets are dropped.\": Transport protocol (congestion): When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "WRED drops on empty queue",
+          "whyItSeems": "When the queue depth is empty, a percentage of TCP packets are dropped. implies the device should discard the frame instead of forwarding or flooding it.",
+          "whyWrongHere": "Transport protocol (congestion): When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped. matches reliability, ports, or connection behavior — When the queue depth is empty, a percentage of TCP packets are dropped. picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "WRED thresholds: below min = no drop | min–max = increasing drop probability | max = tail drop.",
+          "contrast": "Correct \"When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped.\" vs wrong \"When the queue depth is empty, a percentage of TCP packets are dropped.\": Transport protocol (congestion): When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "WRED drops below minimum threshold",
+          "whyItSeems": "When the queue depth is below the minimum threshold, a percentage of TCP packets are dropped. implies the device should discard the frame instead of forwarding or flooding it.",
+          "whyWrongHere": "Transport protocol (congestion): When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped. matches reliability, ports, or connection behavior — When the queue depth is below the minimum threshold, a percentage of TCP packets are dropped. picks the wrong L4 protocol or port role.",
+          "memoryAnchor": "WRED thresholds: below min = no drop | min–max = increasing drop probability | max = tail drop.",
+          "contrast": "Correct \"When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped.\" vs wrong \"When the queue depth is below the minimum threshold, a percentage of TCP packets are dropped.\": Transport protocol (congestion): When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped."
+        }
+      ]
     },
     {
       "id": "obj-4.7-source-q014",
@@ -5427,7 +8141,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "AF format: AFxy — x = class (higher = better queue) | y = drop precedence (lower = less likely drop)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "AF31 better queue than AF41",
+          "whyItSeems": "\"AF31 marked traffic has a better queue than AF41 marked traffic.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"statement\", AF41 marked traffic has a better queue than AF31 marked traffic. matches the required behavior — AF31 marked traffic has a better queue than AF41 marked traffic. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AF format: AFxy — x = class (higher = better queue) | y = drop precedence (lower = less likely drop).",
+          "contrast": "Correct \"AF41 marked traffic has a better queue than AF31 marked traffic.\" vs wrong \"AF31 marked traffic has a better queue than AF41 marked traffic.\": For \"statement\", AF41 marked traffic has a better queue than AF31 marked traffic."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "AF31 and AF41 equal priority",
+          "whyItSeems": "\"Both AF31 and AF41 marked traffic has an equal queue.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "CAM learning stores one mapping per arrival (statement): AF41 marked traffic has a better queue than AF31 marked traffic. — not both addresses as table entries.",
+          "memoryAnchor": "AF format: AFxy — x = class (higher = better queue) | y = drop precedence (lower = less likely drop).",
+          "contrast": "Correct \"AF41 marked traffic has a better queue than AF31 marked traffic.\" vs wrong \"Both AF31 and AF41 marked traffic has an equal queue.\": CAM learning stores one mapping per arrival (statement): AF41 marked traffic has a better queue than AF31 marked traffic."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "AF41 dropped before AF31",
+          "whyItSeems": "During high congestion, AF41 queues will be dropped and AF31 queues won’t. implies the device should discard the frame instead of forwarding or flooding it.",
+          "whyWrongHere": "For \"statement\", AF41 marked traffic has a better queue than AF31 marked traffic. matches the required behavior — During high congestion, AF41 queues will be dropped and AF31 queues won’t. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "AF format: AFxy — x = class (higher = better queue) | y = drop precedence (lower = less likely drop).",
+          "contrast": "Correct \"AF41 marked traffic has a better queue than AF31 marked traffic.\" vs wrong \"During high congestion, AF41 queues will be dropped and AF31 queues won’t.\": For \"statement\", AF41 marked traffic has a better queue than AF31 marked traffic."
+        }
+      ]
     }
   ],
   "4.8": [
@@ -5479,7 +8219,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SSH key prep: hostname R1 → ip domain-name lab.local → crypto key generate rsa."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Time/date as only SSH key prerequisite",
+          "whyItSeems": "\"Setting the time and date\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Setting the hostname and domain name matches the required behavior — Setting the time and date answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSH key prep: hostname R1 → ip domain-name lab.local → crypto key generate rsa.",
+          "contrast": "Correct \"Setting the hostname and domain name\" vs wrong \"Setting the time and date\": For \"identify\", Setting the hostname and domain name matches the required behavior — Setting the time and date answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Key strength as separate prerequisite",
+          "whyItSeems": "\"Setting the key strength\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Setting the hostname and domain name matches the required behavior — Setting the key strength answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSH key prep: hostname R1 → ip domain-name lab.local → crypto key generate rsa.",
+          "contrast": "Correct \"Setting the hostname and domain name\" vs wrong \"Setting the key strength\": For \"identify\", Setting the hostname and domain name matches the required behavior — Setting the key strength answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Key repository prerequisite",
+          "whyItSeems": "\"Setting the key repository\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"identify\", Setting the hostname and domain name matches the required behavior — Setting the key repository answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSH key prep: hostname R1 → ip domain-name lab.local → crypto key generate rsa.",
+          "contrast": "Correct \"Setting the hostname and domain name\" vs wrong \"Setting the key repository\": For \"identify\", Setting the hostname and domain name matches the required behavior — Setting the key repository answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.8-source-q002",
@@ -5529,7 +8295,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SSH harden: ip ssh version 2 + transport input ssh on vty lines + disable Telnet."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "SSH version under line config",
+          "whyItSeems": "\"Router(config-line)#version 2\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"ssh\", Router(config)#ip ssh version 2 matches the required behavior — Router(config-line)#version 2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSH harden: ip ssh version 2 + transport input ssh on vty lines + disable Telnet.",
+          "contrast": "Correct \"Router(config)#ip ssh version 2\" vs wrong \"Router(config-line)#version 2\": For \"ssh\", Router(config)#ip ssh version 2 matches the required behavior — Router(config-line)#version 2 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "config-ssh mode for SSH version",
+          "whyItSeems": "\"Router(config-ssh)#version 2\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"ssh\", Router(config)#ip ssh version 2 matches the required behavior — Router(config-ssh)#version 2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSH harden: ip ssh version 2 + transport input ssh on vty lines + disable Telnet.",
+          "contrast": "Correct \"Router(config)#ip ssh version 2\" vs wrong \"Router(config-ssh)#version 2\": For \"ssh\", Router(config)#ip ssh version 2 matches the required behavior — Router(config-ssh)#version 2 answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "ssh version without ip prefix",
+          "whyItSeems": "\"Router(config)#ssh version 2\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"ssh\", Router(config)#ip ssh version 2 matches the required behavior — Router(config)#ssh version 2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSH harden: ip ssh version 2 + transport input ssh on vty lines + disable Telnet.",
+          "contrast": "Correct \"Router(config)#ip ssh version 2\" vs wrong \"Router(config)#ssh version 2\": For \"ssh\", Router(config)#ip ssh version 2 matches the required behavior — Router(config)#ssh version 2 answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.8-source-q003",
@@ -5581,7 +8373,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "VTY: transport input ssh telnet under line vty (after ip domain-name + crypto key)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Configuring transport at global config",
+          "whyItSeems": "Switch(config)#login ssh telnet uses cleartext Telnet for remote device management.",
+          "whyWrongHere": "Device management (configure): Switch(config-line)#transport ssh telnet protects credentials in transit — Switch(config)#login ssh telnet uses cleartext remote access.",
+          "memoryAnchor": "VTY: transport input ssh telnet under line vty (after ip domain-name + crypto key).",
+          "contrast": "Correct \"Switch(config-line)#transport ssh telnet\" vs wrong \"Switch(config)#login ssh telnet\": Device management (configure): Switch(config-line)#transport ssh telnet protects credentials in transit — Switch(config)#login ssh telnet uses cleartext remote access."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Using login instead of transport input",
+          "whyItSeems": "Switch(config-line)#login ssh telnet uses cleartext Telnet for remote device management.",
+          "whyWrongHere": "Device management (configure): Switch(config-line)#transport ssh telnet protects credentials in transit — Switch(config-line)#login ssh telnet uses cleartext remote access.",
+          "memoryAnchor": "VTY: transport input ssh telnet under line vty (after ip domain-name + crypto key).",
+          "contrast": "Correct \"Switch(config-line)#transport ssh telnet\" vs wrong \"Switch(config-line)#login ssh telnet\": Device management (configure): Switch(config-line)#transport ssh telnet protects credentials in transit — Switch(config-line)#login ssh telnet uses cleartext remote access."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Setting transport input at wrong config level",
+          "whyItSeems": "Switch(config)#transport ssh telnet uses cleartext Telnet for remote device management.",
+          "whyWrongHere": "Device management (configure): Switch(config-line)#transport ssh telnet protects credentials in transit — Switch(config)#transport ssh telnet uses cleartext remote access.",
+          "memoryAnchor": "VTY: transport input ssh telnet under line vty (after ip domain-name + crypto key).",
+          "contrast": "Correct \"Switch(config-line)#transport ssh telnet\" vs wrong \"Switch(config)#transport ssh telnet\": Device management (configure): Switch(config-line)#transport ssh telnet protects credentials in transit — Switch(config)#transport ssh telnet uses cleartext remote access."
+        }
+      ]
     },
     {
       "id": "obj-4.8-source-q004",
@@ -5632,7 +8450,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Telnet = cleartext TCP/23 | SSH = encrypted TCP/22 — always prefer SSH on vty lines."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Telnet has weak encryption",
+          "whyItSeems": "Telnet has weak encryption. uses cleartext Telnet for remote device management.",
+          "whyWrongHere": "Device management (replaced): SSH is encrypted. protects credentials in transit — Telnet has weak encryption. uses cleartext remote access.",
+          "memoryAnchor": "Telnet = cleartext TCP/23 | SSH = encrypted TCP/22 — always prefer SSH on vty lines.",
+          "contrast": "Correct \"SSH is encrypted.\" vs wrong \"Telnet has weak encryption.\": Device management (replaced): SSH is encrypted."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "SSH for file copy over Telnet replacement",
+          "whyItSeems": "\"SSH allows for file copy.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"replaced\", SSH is encrypted. matches the required behavior — SSH allows for file copy. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Telnet = cleartext TCP/23 | SSH = encrypted TCP/22 — always prefer SSH on vty lines.",
+          "contrast": "Correct \"SSH is encrypted.\" vs wrong \"SSH allows for file copy.\": For \"replaced\", SSH is encrypted."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "SSH eases ACL creation as main benefit",
+          "whyItSeems": "\"SSH makes it easier to create ACLs for access.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"replaced\", SSH is encrypted. matches the required behavior — SSH makes it easier to create ACLs for access. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Telnet = cleartext TCP/23 | SSH = encrypted TCP/22 — always prefer SSH on vty lines.",
+          "contrast": "Correct \"SSH is encrypted.\" vs wrong \"SSH makes it easier to create ACLs for access.\": For \"replaced\", SSH is encrypted."
+        }
+      ]
     },
     {
       "id": "obj-4.8-source-q005",
@@ -5684,7 +8528,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SSHv2 key: crypto key generate rsa modulus 1024 (or 2048) — v2 fails with tiny keys."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Time sync blocks SSHv2",
+          "whyItSeems": "\"The time and date need to be corrected.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"encryption\", The key strength needs to be 768 bits or higher. matches the required behavior — The time and date need to be corrected. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSHv2 key: crypto key generate rsa modulus 1024 (or 2048) — v2 fails with tiny keys.",
+          "contrast": "Correct \"The key strength needs to be 768 bits or higher.\" vs wrong \"The time and date need to be corrected.\": For \"encryption\", The key strength needs to be 768 bits or higher."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "DNS required for SSHv2",
+          "whyItSeems": "\"The DNS server is not configured.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"encryption\", The key strength needs to be 768 bits or higher. matches the required behavior — The DNS server is not configured. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSHv2 key: crypto key generate rsa modulus 1024 (or 2048) — v2 fails with tiny keys.",
+          "contrast": "Correct \"The key strength needs to be 768 bits or higher.\" vs wrong \"The DNS server is not configured.\": For \"encryption\", The key strength needs to be 768 bits or higher."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "DNS host record for SSHv2",
+          "whyItSeems": "\"There is no host record for the switch or router.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"encryption\", The key strength needs to be 768 bits or higher. matches the required behavior — There is no host record for the switch or router. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSHv2 key: crypto key generate rsa modulus 1024 (or 2048) — v2 fails with tiny keys.",
+          "contrast": "Correct \"The key strength needs to be 768 bits or higher.\" vs wrong \"There is no host record for the switch or router.\": For \"encryption\", The key strength needs to be 768 bits or higher."
+        }
+      ]
     },
     {
       "id": "obj-4.8-source-q006",
@@ -5735,7 +8605,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Local auth: username bob secret <pwd> (preferred over plaintext password) + login local on vty."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "account submode for local user",
+          "whyItSeems": "\"Router(config)#account user1 Router(config-acct)#password Password20!\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configure\", Router(config)#username user1 password Password20! matches the required behavior — Router(config)#account user1 Router(config-acct)#password Password20! answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local auth: username bob secret <pwd> (preferred over plaintext password) + login local on vty.",
+          "contrast": "Correct \"Router(config)#username user1 password Password20!\" vs wrong \"Router(config)#account user1 Router(config-acct)#password Password20!\": For \"configure\", Router(config)#username user1 password Password20!"
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "user without username keyword",
+          "whyItSeems": "\"Router(config)#user user1 Password20!\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configure\", Router(config)#username user1 password Password20! matches the required behavior — Router(config)#user user1 Password20! answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local auth: username bob secret <pwd> (preferred over plaintext password) + login local on vty.",
+          "contrast": "Correct \"Router(config)#username user1 password Password20!\" vs wrong \"Router(config)#user user1 Password20!\": For \"configure\", Router(config)#username user1 password Password20!"
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "user-account command",
+          "whyItSeems": "\"Router(config)#user-account user1 password Password20!\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configure\", Router(config)#username user1 password Password20! matches the required behavior — Router(config)#user-account user1 password Password20! answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local auth: username bob secret <pwd> (preferred over plaintext password) + login local on vty.",
+          "contrast": "Correct \"Router(config)#username user1 password Password20!\" vs wrong \"Router(config)#user-account user1 password Password20!\": For \"configure\", Router(config)#username user1 password Password20!"
+        }
+      ]
     },
     {
       "id": "obj-4.8-source-q007",
@@ -5786,7 +8682,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "SSH keys: crypto key generate rsa → confirm with show ip ssh."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Wrong crypto key command word order",
+          "whyItSeems": "\"Router(config)#generate crypto key rsa\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"generate\", Router(config)#crypto key generate rsa matches the required behavior — Router(config)#generate crypto key rsa answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSH keys: crypto key generate rsa → confirm with show ip ssh.",
+          "contrast": "Correct \"Router(config)#crypto key generate rsa\" vs wrong \"Router(config)#generate crypto key rsa\": For \"generate\", Router(config)#crypto key generate rsa matches the required behavior — Router(config)#generate crypto key rsa answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "crypto generate key word order",
+          "whyItSeems": "\"Router(config)#crypto generate key rsa\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"generate\", Router(config)#crypto key generate rsa matches the required behavior — Router(config)#crypto generate key rsa answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSH keys: crypto key generate rsa → confirm with show ip ssh.",
+          "contrast": "Correct \"Router(config)#crypto key generate rsa\" vs wrong \"Router(config)#crypto generate key rsa\": For \"generate\", Router(config)#crypto key generate rsa matches the required behavior — Router(config)#crypto generate key rsa answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "RSA key generation in exec mode",
+          "whyItSeems": "\"Router#crypto key generate rsa\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"generate\", Router(config)#crypto key generate rsa matches the required behavior — Router#crypto key generate rsa answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "SSH keys: crypto key generate rsa → confirm with show ip ssh.",
+          "contrast": "Correct \"Router(config)#crypto key generate rsa\" vs wrong \"Router#crypto key generate rsa\": For \"generate\", Router(config)#crypto key generate rsa matches the required behavior — Router#crypto key generate rsa answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.8-source-q008",
@@ -5840,7 +8762,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "VTY auth chain: create username → line vty 0 4 → login local → transport input ssh."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "aaa new-model for simple local login",
+          "whyItSeems": "\"Switch(config)#new aaa model\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"managing the switch\", Switch(config-line)#login local matches the required behavior — Switch(config)#new aaa model answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "VTY auth chain: create username → line vty 0 4 → login local → transport input ssh.",
+          "contrast": "Correct \"Switch(config-line)#login local\" vs wrong \"Switch(config)#new aaa model\": For \"managing the switch\", Switch(config-line)#login local matches the required behavior — Switch(config)#new aaa model answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "local authentication global command",
+          "whyItSeems": "\"Switch(config)#local authentication\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"managing the switch\", Switch(config-line)#login local matches the required behavior — Switch(config)#local authentication answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "VTY auth chain: create username → line vty 0 4 → login local → transport input ssh.",
+          "contrast": "Correct \"Switch(config-line)#login local\" vs wrong \"Switch(config)#local authentication\": For \"managing the switch\", Switch(config-line)#login local matches the required behavior — Switch(config)#local authentication answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "local authentication on line",
+          "whyItSeems": "\"Switch(config-line)#local authentication\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"managing the switch\", Switch(config-line)#login local matches the required behavior — Switch(config-line)#local authentication answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "VTY auth chain: create username → line vty 0 4 → login local → transport input ssh.",
+          "contrast": "Correct \"Switch(config-line)#login local\" vs wrong \"Switch(config-line)#local authentication\": For \"managing the switch\", Switch(config-line)#login local matches the required behavior — Switch(config-line)#local authentication answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.8-source-q009",
@@ -5891,7 +8839,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Banner order on connect: login → credentials → MOTD (if set) → exec (after auth)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "MOTD always first on SSH",
+          "whyItSeems": "\"MOTD banner\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"a user connects to a Cisco device via SSH\", Login banner matches the required behavior — MOTD banner answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Banner order on connect: login → credentials → MOTD (if set) → exec (after auth).",
+          "contrast": "Correct \"Login banner\" vs wrong \"MOTD banner\": For \"a user connects to a Cisco device via SSH\", Login banner matches the required behavior — MOTD banner answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Exec banner on connect",
+          "whyItSeems": "\"Exec banner\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"a user connects to a Cisco device via SSH\", Login banner matches the required behavior — Exec banner answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Banner order on connect: login → credentials → MOTD (if set) → exec (after auth).",
+          "contrast": "Correct \"Login banner\" vs wrong \"Exec banner\": For \"a user connects to a Cisco device via SSH\", Login banner matches the required behavior — Exec banner answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Incoming banner for SSH",
+          "whyItSeems": "\"Incoming banner\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"a user connects to a Cisco device via SSH\", Login banner matches the required behavior — Incoming banner answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Banner order on connect: login → credentials → MOTD (if set) → exec (after auth).",
+          "contrast": "Correct \"Login banner\" vs wrong \"Incoming banner\": For \"a user connects to a Cisco device via SSH\", Login banner matches the required behavior — Incoming banner answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     }
   ],
   "4.9": [
@@ -5944,7 +8918,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Config restore: copy tftp: running-config (immediate) | copy tftp: startup-config (+ reload for boot)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "archive tftp for config restore",
+          "whyItSeems": "\"Switch#archive tftp: running-config\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration\", Switch#copy tftp: running-config matches the required behavior — Switch#archive tftp: running-config answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Config restore: copy tftp: running-config (immediate) | copy tftp: startup-config (+ reload for boot).",
+          "contrast": "Correct \"Switch#copy tftp: running-config\" vs wrong \"Switch#archive tftp: running-config\": For \"configuration\", Switch#copy tftp: running-config matches the required behavior — Switch#archive tftp: running-config answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "restore tftp URL command",
+          "whyItSeems": "Switch#restore tftp://192.168.1.2 running-config names an automation tool, data format, or API style that may not match the stem's orchestration model.",
+          "whyWrongHere": "For \"configuration\", Switch#copy tftp: running-config matches the required behavior — Switch#restore tftp://192.168.1.2 running-config answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Config restore: copy tftp: running-config (immediate) | copy tftp: startup-config (+ reload for boot).",
+          "contrast": "Correct \"Switch#copy tftp: running-config\" vs wrong \"Switch#restore tftp://192.168.1.2 running-config\": For \"configuration\", Switch#copy tftp: running-config matches the required behavior — Switch#restore tftp://192."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "copy server keyword for TFTP",
+          "whyItSeems": "\"Switch#copy server: running-config\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"configuration\", Switch#copy tftp: running-config matches the required behavior — Switch#copy server: running-config answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Config restore: copy tftp: running-config (immediate) | copy tftp: startup-config (+ reload for boot).",
+          "contrast": "Correct \"Switch#copy tftp: running-config\" vs wrong \"Switch#copy server: running-config\": For \"configuration\", Switch#copy tftp: running-config matches the required behavior — Switch#copy server: running-config answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.9-source-q002",
@@ -5995,7 +8995,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "IOS upgrade: copy tftp flash → verify with show flash: → set boot system → reload."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented ios destination for TFTP copy",
+          "whyItSeems": "\"Switch#copy tftp ios\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"tftp\", Switch#copy tftp flash matches the required behavior — Switch#copy tftp ios answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IOS upgrade: copy tftp flash → verify with show flash: → set boot system → reload.",
+          "contrast": "Correct \"Switch#copy tftp flash\" vs wrong \"Switch#copy tftp ios\": For \"tftp\", Switch#copy tftp flash matches the required behavior — Switch#copy tftp ios answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "NVRAM as IOS image target",
+          "whyItSeems": "\"Switch#copy tftp nvram\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"tftp\", Switch#copy tftp flash matches the required behavior — Switch#copy tftp nvram answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IOS upgrade: copy tftp flash → verify with show flash: → set boot system → reload.",
+          "contrast": "Correct \"Switch#copy tftp flash\" vs wrong \"Switch#copy tftp nvram\": For \"tftp\", Switch#copy tftp flash matches the required behavior — Switch#copy tftp nvram answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Invented upgrade command",
+          "whyItSeems": "\"Switch#upgrade tftp flash\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"tftp\", Switch#copy tftp flash matches the required behavior — Switch#upgrade tftp flash answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "IOS upgrade: copy tftp flash → verify with show flash: → set boot system → reload.",
+          "contrast": "Correct \"Switch#copy tftp flash\" vs wrong \"Switch#upgrade tftp flash\": For \"tftp\", Switch#copy tftp flash matches the required behavior — Switch#upgrade tftp flash answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "obj-4.9-source-q003",
@@ -6047,7 +9073,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Boot from TFTP: boot system tftp://<ip> <image.bin> in global config + copy tftp flash first."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Exec-mode boot for TFTP image",
+          "whyItSeems": "Router#boot tftp://192.168.1.2 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "For \"universalk9\", Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 matches the required behavior — Router#boot tftp://192.168.1.2 answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Boot from TFTP: boot system tftp://<ip> <image.bin> in global config + copy tftp flash first.",
+          "contrast": "Correct \"Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2\" vs wrong \"Router#boot tftp://192.168.1.2\": For \"universalk9\", Router(config)#boot system c2900-universalk9-mz."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "boot without system keyword",
+          "whyItSeems": "Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "For \"universalk9\", Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 matches the required behavior — Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Boot from TFTP: boot system tftp://<ip> <image.bin> in global config + copy tftp flash first.",
+          "contrast": "Correct \"Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2\" vs wrong \"Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin\": For \"universalk9\", Router(config)#boot system c2900-universalk9-mz."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Reversed boot system argument order",
+          "whyItSeems": "Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
+          "whyWrongHere": "For \"universalk9\", Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 matches the required behavior — Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Boot from TFTP: boot system tftp://<ip> <image.bin> in global config + copy tftp flash first.",
+          "contrast": "Correct \"Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2\" vs wrong \"Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin\": For \"universalk9\", Router(config)#boot system c2900-universalk9-mz."
+        }
+      ]
     },
     {
       "id": "obj-4.9-source-q004",
@@ -6099,7 +9151,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Dead flash / blank card → ROMMON → set IP/TFTP vars → tftpdnld or copy tftp flash."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Mini-IOS always on new flash",
+          "whyItSeems": "\"The new flash memory will have a mini-IOS installed. You will need to upgrade it from the mini-IOS.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"upgrading\", The router will boot into the ROMMON, and from there you will need to TFTP download the IOS. matches the required behavior — The new flash memory will have a mini-IOS installed. You will need to upgrade it from the mini-IOS. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Dead flash / blank card → ROMMON → set IP/TFTP vars → tftpdnld or copy tftp flash.",
+          "contrast": "Correct \"The router will boot into the ROMMON, and from there you will need to TFTP download the IOS.\" vs wrong \"The new flash memory will have a mini-IOS installed. You will need to upgrade it from the mini-IOS.\": For \"upgrading\", The router will boot into the ROMMON, and from there you will need to TFTP download the IOS."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "IOS not on flash card",
+          "whyItSeems": "\"Nothing needs to be done because the IOS is not storage on the flash memory card.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"upgrading\", The router will boot into the ROMMON, and from there you will need to TFTP download the IOS. matches the required behavior — Nothing needs to be done because the IOS is not storage on the flash memory card. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Dead flash / blank card → ROMMON → set IP/TFTP vars → tftpdnld or copy tftp flash.",
+          "contrast": "Correct \"The router will boot into the ROMMON, and from there you will need to TFTP download the IOS.\" vs wrong \"Nothing needs to be done because the IOS is not storage on the flash memory card.\": For \"upgrading\", The router will boot into the ROMMON, and from there you will need to TFTP download the IOS."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Format-only restores IOS",
+          "whyItSeems": "\"Format the flash card with the FAT operating system and copy the IOS image to the card.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"upgrading\", The router will boot into the ROMMON, and from there you will need to TFTP download the IOS. matches the required behavior — Format the flash card with the FAT operating system and copy the IOS image to the card. answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Dead flash / blank card → ROMMON → set IP/TFTP vars → tftpdnld or copy tftp flash.",
+          "contrast": "Correct \"The router will boot into the ROMMON, and from there you will need to TFTP download the IOS.\" vs wrong \"Format the flash card with the FAT operating system and copy the IOS image to the card.\": For \"upgrading\", The router will boot into the ROMMON, and from there you will need to TFTP download the IOS."
+        }
+      ]
     },
     {
       "id": "obj-4.9-source-q005",
@@ -6150,7 +9228,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "FTP backup: ip ftp username + ip ftp password → copy running-config ftp:."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Combined username+password on one line",
+          "whyItSeems": "\"Router(config)#ip ftp username USER password USERPASS\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"required\", Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS matches the required behavior — Router(config)#ip ftp username USER password USERPASS answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "FTP backup: ip ftp username + ip ftp password → copy running-config ftp:.",
+          "contrast": "Correct \"Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS\" vs wrong \"Router(config)#ip ftp username USER password USERPASS\": For \"required\", Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS matches the required behavior — Router(config)#ip ftp username USER password USERPASS answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Invented ftp global command",
+          "whyItSeems": "\"Router(config)#ftp USER password USERPASS\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"required\", Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS matches the required behavior — Router(config)#ftp USER password USERPASS answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "FTP backup: ip ftp username + ip ftp password → copy running-config ftp:.",
+          "contrast": "Correct \"Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS\" vs wrong \"Router(config)#ftp USER password USERPASS\": For \"required\", Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS matches the required behavior — Router(config)#ftp USER password USERPASS answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Local username for FTP client",
+          "whyItSeems": "\"Router(config)#username USER password USERPASS\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"required\", Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS matches the required behavior — Router(config)#username USER password USERPASS answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "FTP backup: ip ftp username + ip ftp password → copy running-config ftp:.",
+          "contrast": "Correct \"Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS\" vs wrong \"Router(config)#username USER password USERPASS\": For \"required\", Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS matches the required behavior — Router(config)#username USER password USERPASS answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     }
   ],
   "4.10": [
@@ -6201,7 +9305,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Cloud-managed = devices → vendor cloud dashboard; on-prem = local NMS/controller."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "On-prem as no remote management",
+          "whyItSeems": "\"On-premises devices cannot be managed remotely at all\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cloud vs local management\", Cloud-managed devices send configuration and telemetry to a vendor-hosted dashboard accessed over the internet, instead of a locally hosted controller matches the required behavior — On-premises devices cannot be managed remotely at all answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cloud-managed = devices → vendor cloud dashboard; on-prem = local NMS/controller.",
+          "contrast": "Correct \"Cloud-managed devices send configuration and telemetry to a vendor-hosted dashboard accessed over the internet, instead of a locally hosted controller\" vs wrong \"On-premises devices cannot be managed remotely at all\": For \"cloud vs local management\", Cloud-managed devices send configuration and telemetry to a vendor-hosted dashboard accessed over the internet, instead of a locally hosted controller matches the required behavior — On-premises devices cannot be managed remotely at all answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Cloud-managed without VLANs",
+          "whyItSeems": "\"Cloud-managed networks do not support VLANs\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cloud vs local management\", Cloud-managed devices send configuration and telemetry to a vendor-hosted dashboard accessed over the internet, instead of a locally hosted controller matches the required behavior — Cloud-managed networks do not support VLANs answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cloud-managed = devices → vendor cloud dashboard; on-prem = local NMS/controller.",
+          "contrast": "Correct \"Cloud-managed devices send configuration and telemetry to a vendor-hosted dashboard accessed over the internet, instead of a locally hosted controller\" vs wrong \"Cloud-managed networks do not support VLANs\": For \"cloud vs local management\", Cloud-managed devices send configuration and telemetry to a vendor-hosted dashboard accessed over the internet, instead of a locally hosted controller matches the required behavior — Cloud-managed networks do not support VLANs answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "On-prem cannot use SNMP",
+          "whyItSeems": "\"On-premises networks cannot use SNMP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cloud vs local management\", Cloud-managed devices send configuration and telemetry to a vendor-hosted dashboard accessed over the internet, instead of a locally hosted controller matches the required behavior — On-premises networks cannot use SNMP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cloud-managed = devices → vendor cloud dashboard; on-prem = local NMS/controller.",
+          "contrast": "Correct \"Cloud-managed devices send configuration and telemetry to a vendor-hosted dashboard accessed over the internet, instead of a locally hosted controller\" vs wrong \"On-premises networks cannot use SNMP\": For \"cloud vs local management\", Cloud-managed devices send configuration and telemetry to a vendor-hosted dashboard accessed over the internet, instead of a locally hosted controller matches the required behavior — On-premises networks cannot use SNMP answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "4.10-legacy-q002",
@@ -6250,7 +9380,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Fleet-wide template push → cloud controller (DNA Center class)."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Choosing per-site console for multi-branch management",
+          "whyItSeems": "\"Local CLI management via console cable at each site\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cloud management use case\", A cloud-based management platform (e.g., Meraki dashboard) matches the required behavior — Local CLI management via console cable at each site answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Fleet-wide template push → cloud controller (DNA Center class).",
+          "contrast": "Correct \"A cloud-based management platform (e.g., Meraki dashboard)\" vs wrong \"Local CLI management via console cable at each site\": For \"cloud management use case\", A cloud-based management platform (e."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Expecting SNMPv1 alone to replace cloud dashboard",
+          "whyItSeems": "\"SNMPv1 polling from a central NMS\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cloud management use case\", A cloud-based management platform (e.g., Meraki dashboard) matches the required behavior — SNMPv1 polling from a central NMS answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Fleet-wide template push → cloud controller (DNA Center class).",
+          "contrast": "Correct \"A cloud-based management platform (e.g., Meraki dashboard)\" vs wrong \"SNMPv1 polling from a central NMS\": For \"cloud management use case\", A cloud-based management platform (e."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Using Telnet per device for 50-site management",
+          "whyItSeems": "Telnet to each device's management IP uses cleartext Telnet for remote device management.",
+          "whyWrongHere": "Device management (cloud management use case): A cloud-based management platform (e.g., Meraki dashboard) protects credentials in transit — Telnet to each device's management IP uses cleartext remote access.",
+          "memoryAnchor": "Fleet-wide template push → cloud controller (DNA Center class).",
+          "contrast": "Correct \"A cloud-based management platform (e.g., Meraki dashboard)\" vs wrong \"Telnet to each device's management IP\": Device management (cloud management use case): A cloud-based management platform (e."
+        }
+      ]
     },
     {
       "id": "4.10-legacy-q003",
@@ -6300,7 +9456,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Cloud WAN down → local forwarding continues; management/analytics pause."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Assuming total wireless outage when cloud link drops",
+          "whyItSeems": "\"All wireless clients are immediately disconnected\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cloud management data vs control plane\", The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the required behavior — All wireless clients are immediately disconnected answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cloud WAN down → local forwarding continues; management/analytics pause.",
+          "contrast": "Correct \"The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored\" vs wrong \"All wireless clients are immediately disconnected\": For \"cloud management data vs control plane\", The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the required behavior — All wireless clients are immediately disconnected answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Expecting automatic factory reset on management outage",
+          "whyItSeems": "\"The APs factory-reset themselves automatically\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cloud management data vs control plane\", The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the required behavior — The APs factory-reset themselves automatically answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cloud WAN down → local forwarding continues; management/analytics pause.",
+          "contrast": "Correct \"The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored\" vs wrong \"The APs factory-reset themselves automatically\": For \"cloud management data vs control plane\", The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the required behavior — The APs factory-reset themselves automatically answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Extending AP management outage to wired switching",
+          "whyItSeems": "\"Wired switches in the same branch also stop forwarding traffic\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"cloud management data vs control plane\", The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the required behavior — Wired switches in the same branch also stop forwarding traffic answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cloud WAN down → local forwarding continues; management/analytics pause.",
+          "contrast": "Correct \"The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored\" vs wrong \"Wired switches in the same branch also stop forwarding traffic\": For \"cloud management data vs control plane\", The APs typically continue forwarding existing traffic (data plane unaffected), but configuration changes and cloud analytics are unavailable until connectivity is restored matches the required behavior — Wired switches in the same branch also stop forwarding traffic answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "4.10-legacy-q004",
@@ -6349,7 +9531,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Meraki/cloud win: ZTP, centralized monitoring, fleet firmware — trade-off = cloud dependency."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Cloud as always lower latency",
+          "whyItSeems": "\"Lower latency for all management operations regardless of internet connectivity\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"zero-touch provisioning\", Zero-touch provisioning — new devices can be shipped to a site and automatically pull their configuration from the cloud on first boot matches the required behavior — Lower latency for all management operations regardless of internet connectivity answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Meraki/cloud win: ZTP, centralized monitoring, fleet firmware — trade-off = cloud dependency.",
+          "contrast": "Correct \"Zero-touch provisioning — new devices can be shipped to a site and automatically pull their configuration from the cloud on first boot\" vs wrong \"Lower latency for all management operations regardless of internet connectivity\": For \"zero-touch provisioning\", Zero-touch provisioning — new devices can be shipped to a site and automatically pull their configuration from the cloud on first boot matches the required behavior — Lower latency for all management operations regardless of internet connectivity answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Cloud with no internet ever",
+          "whyItSeems": "\"No internet connection is ever required\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"zero-touch provisioning\", Zero-touch provisioning — new devices can be shipped to a site and automatically pull their configuration from the cloud on first boot matches the required behavior — No internet connection is ever required answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Meraki/cloud win: ZTP, centralized monitoring, fleet firmware — trade-off = cloud dependency.",
+          "contrast": "Correct \"Zero-touch provisioning — new devices can be shipped to a site and automatically pull their configuration from the cloud on first boot\" vs wrong \"No internet connection is ever required\": For \"zero-touch provisioning\", Zero-touch provisioning — new devices can be shipped to a site and automatically pull their configuration from the cloud on first boot matches the required behavior — No internet connection is ever required answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Cloud config without internet",
+          "whyItSeems": "\"Configuration changes never require any internet access\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"zero-touch provisioning\", Zero-touch provisioning — new devices can be shipped to a site and automatically pull their configuration from the cloud on first boot matches the required behavior — Configuration changes never require any internet access answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Meraki/cloud win: ZTP, centralized monitoring, fleet firmware — trade-off = cloud dependency.",
+          "contrast": "Correct \"Zero-touch provisioning — new devices can be shipped to a site and automatically pull their configuration from the cloud on first boot\" vs wrong \"Configuration changes never require any internet access\": For \"zero-touch provisioning\", Zero-touch provisioning — new devices can be shipped to a site and automatically pull their configuration from the cloud on first boot matches the required behavior — Configuration changes never require any internet access answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "4.10-legacy-q005",
@@ -6398,7 +9606,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Cisco mgmt map: DNA Center = campus on-prem | Meraki = cloud SaaS | vManage = SD-WAN."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "DNA cloud-only and Meraki on-prem",
+          "whyItSeems": "\"DNA Center is cloud-only; Meraki is on-premises-only\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"DNA Center vs Meraki\", DNA Center is typically deployed on-premises (or as a private cloud) as a local controller, while Meraki is a vendor-hosted cloud dashboard matches the required behavior — DNA Center is cloud-only; Meraki is on-premises-only answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cisco mgmt map: DNA Center = campus on-prem | Meraki = cloud SaaS | vManage = SD-WAN.",
+          "contrast": "Correct \"DNA Center is typically deployed on-premises (or as a private cloud) as a local controller, while Meraki is a vendor-hosted cloud dashboard\" vs wrong \"DNA Center is cloud-only; Meraki is on-premises-only\": For \"DNA Center vs Meraki\", DNA Center is typically deployed on-premises (or as a private cloud) as a local controller, while Meraki is a vendor-hosted cloud dashboard matches the required behavior — DNA Center is cloud-only; Meraki is on-premises-only answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Both as CLI-only tools",
+          "whyItSeems": "\"Both are exclusively command-line tools with no GUI\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "CAM learning stores one mapping per arrival (DNA Center vs Meraki): DNA Center is typically deployed on-premises (or as a private cloud) as a local controller, while Meraki is a vendor-hosted cloud dashboard — not both addresses as table entries.",
+          "memoryAnchor": "Cisco mgmt map: DNA Center = campus on-prem | Meraki = cloud SaaS | vManage = SD-WAN.",
+          "contrast": "Correct \"DNA Center is typically deployed on-premises (or as a private cloud) as a local controller, while Meraki is a vendor-hosted cloud dashboard\" vs wrong \"Both are exclusively command-line tools with no GUI\": CAM learning stores one mapping per arrival (DNA Center vs Meraki): DNA Center is typically deployed on-premises (or as a private cloud) as a local controller, while Meraki is a vendor-hosted cloud dashboard — not both addresses as table entries."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Same hardware for DNA and Meraki",
+          "whyItSeems": "\"Both require the same physical hardware appliance\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "Unlike DNA Center is typically deployed on-premises (or as a private cloud) as a local controller, while Meraki is a vendor-hosted cloud dashboard, Both require the same physical hardware appliance fails the stem constraint that makes the keyed answer unique.",
+          "memoryAnchor": "Cisco mgmt map: DNA Center = campus on-prem | Meraki = cloud SaaS | vManage = SD-WAN.",
+          "contrast": "Correct \"DNA Center is typically deployed on-premises (or as a private cloud) as a local controller, while Meraki is a vendor-hosted cloud dashboard\" vs wrong \"Both require the same physical hardware appliance\": Unlike DNA Center is typically deployed on-premises (or as a private cloud) as a local controller, while Meraki is a vendor-hosted cloud dashboard, Both require the same physical hardware appliance fails the stem constraint that makes the keyed answer unique."
+        }
+      ]
     },
     {
       "id": "4.10-legacy-q006",
@@ -6447,7 +9681,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Local vs cloud: compliance/sovereignty favors on-prem | scale/automation favors cloud."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Local always faster",
+          "whyItSeems": "\"Local management is always faster to configure\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"on-prem management security rationale\", Management traffic and configuration data stay entirely within the organization's own network rather than transiting a third-party cloud provider matches the required behavior — Local management is always faster to configure answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local vs cloud: compliance/sovereignty favors on-prem | scale/automation favors cloud.",
+          "contrast": "Correct \"Management traffic and configuration data stay entirely within the organization's own network rather than transiting a third-party cloud provider\" vs wrong \"Local management is always faster to configure\": For \"on-prem management security rationale\", Management traffic and configuration data stay entirely within the organization's own network rather than transiting a third-party cloud provider matches the required behavior — Local management is always faster to configure answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Local needs no training",
+          "whyItSeems": "\"Local management doesn't require any administrator training\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"on-prem management security rationale\", Management traffic and configuration data stay entirely within the organization's own network rather than transiting a third-party cloud provider matches the required behavior — Local management doesn't require any administrator training answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local vs cloud: compliance/sovereignty favors on-prem | scale/automation favors cloud.",
+          "contrast": "Correct \"Management traffic and configuration data stay entirely within the organization's own network rather than transiting a third-party cloud provider\" vs wrong \"Local management doesn't require any administrator training\": For \"on-prem management security rationale\", Management traffic and configuration data stay entirely within the organization's own network rather than transiting a third-party cloud provider matches the required behavior — Local management doesn't require any administrator training answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Local auto-encrypts user data",
+          "whyItSeems": "\"Local management automatically encrypts all user data\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"on-prem management security rationale\", Management traffic and configuration data stay entirely within the organization's own network rather than transiting a third-party cloud provider matches the required behavior — Local management automatically encrypts all user data answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local vs cloud: compliance/sovereignty favors on-prem | scale/automation favors cloud.",
+          "contrast": "Correct \"Management traffic and configuration data stay entirely within the organization's own network rather than transiting a third-party cloud provider\" vs wrong \"Local management automatically encrypts all user data\": For \"on-prem management security rationale\", Management traffic and configuration data stay entirely within the organization's own network rather than transiting a third-party cloud provider matches the required behavior — Local management automatically encrypts all user data answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "4.10-legacy-q007",
@@ -6495,7 +9755,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Local = CLI per box or on-prem NMS | Cloud = Meraki/DNA Center SaaS dashboard."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 1,
+          "misconceptionReason": "Cloud push as local management",
+          "whyItSeems": "\"All configuration is pushed automatically from a vendor's global cloud\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local management characteristics\", Devices are managed individually via CLI, SNMP, or a locally-hosted controller, often requiring per-site or per-device access matches the required behavior — All configuration is pushed automatically from a vendor's global cloud answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local = CLI per box or on-prem NMS | Cloud = Meraki/DNA Center SaaS dashboard.",
+          "contrast": "Correct \"Devices are managed individually via CLI, SNMP, or a locally-hosted controller, often requiring per-site or per-device access\" vs wrong \"All configuration is pushed automatically from a vendor's global cloud\": For \"local management characteristics\", Devices are managed individually via CLI, SNMP, or a locally-hosted controller, often requiring per-site or per-device access matches the required behavior — All configuration is pushed automatically from a vendor's global cloud answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Auto firmware as local management",
+          "whyItSeems": "\"Firmware updates are applied automatically across all sites with no administrator involvement\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local management characteristics\", Devices are managed individually via CLI, SNMP, or a locally-hosted controller, often requiring per-site or per-device access matches the required behavior — Firmware updates are applied automatically across all sites with no administrator involvement answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local = CLI per box or on-prem NMS | Cloud = Meraki/DNA Center SaaS dashboard.",
+          "contrast": "Correct \"Devices are managed individually via CLI, SNMP, or a locally-hosted controller, often requiring per-site or per-device access\" vs wrong \"Firmware updates are applied automatically across all sites with no administrator involvement\": For \"local management characteristics\", Devices are managed individually via CLI, SNMP, or a locally-hosted controller, often requiring per-site or per-device access matches the required behavior — Firmware updates are applied automatically across all sites with no administrator involvement answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "WAN required for local management",
+          "whyItSeems": "\"Management is impossible without a dedicated WAN link to each branch\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"local management characteristics\", Devices are managed individually via CLI, SNMP, or a locally-hosted controller, often requiring per-site or per-device access matches the required behavior — Management is impossible without a dedicated WAN link to each branch answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Local = CLI per box or on-prem NMS | Cloud = Meraki/DNA Center SaaS dashboard.",
+          "contrast": "Correct \"Devices are managed individually via CLI, SNMP, or a locally-hosted controller, often requiring per-site or per-device access\" vs wrong \"Management is impossible without a dedicated WAN link to each branch\": For \"local management characteristics\", Devices are managed individually via CLI, SNMP, or a locally-hosted controller, often requiring per-site or per-device access matches the required behavior — Management is impossible without a dedicated WAN link to each branch answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "4.10-legacy-q008",
@@ -6544,7 +9830,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Cloud management wins: firmware orchestration, template config, multi-site visibility."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "CLI scripting as cloud lifecycle",
+          "whyItSeems": "Local CLI scripting applies another routing protocol's behavior instead of OSPF-specific rules.",
+          "whyWrongHere": "For \"centralized lifecycle management\", Centralized, automated lifecycle management across the fleet from a single cloud platform matches the required behavior — Local CLI scripting answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cloud management wins: firmware orchestration, template config, multi-site visibility.",
+          "contrast": "Correct \"Centralized, automated lifecycle management across the fleet from a single cloud platform\" vs wrong \"Local CLI scripting\": For \"centralized lifecycle management\", Centralized, automated lifecycle management across the fleet from a single cloud platform matches the required behavior — Local CLI scripting answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Manual TFTP as cloud lifecycle",
+          "whyItSeems": "\"Manual per-device firmware upload via TFTP\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"centralized lifecycle management\", Centralized, automated lifecycle management across the fleet from a single cloud platform matches the required behavior — Manual per-device firmware upload via TFTP answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cloud management wins: firmware orchestration, template config, multi-site visibility.",
+          "contrast": "Correct \"Centralized, automated lifecycle management across the fleet from a single cloud platform\" vs wrong \"Manual per-device firmware upload via TFTP\": For \"centralized lifecycle management\", Centralized, automated lifecycle management across the fleet from a single cloud platform matches the required behavior — Manual per-device firmware upload via TFTP answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "VLAN trunking as lifecycle",
+          "whyItSeems": "VLAN trunking configuration expects VLAN tags on a link that should behave as access-only in this stem.",
+          "whyWrongHere": "For \"centralized lifecycle management\", Centralized, automated lifecycle management across the fleet from a single cloud platform matches the required behavior — VLAN trunking configuration answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cloud management wins: firmware orchestration, template config, multi-site visibility.",
+          "contrast": "Correct \"Centralized, automated lifecycle management across the fleet from a single cloud platform\" vs wrong \"VLAN trunking configuration\": For \"centralized lifecycle management\", Centralized, automated lifecycle management across the fleet from a single cloud platform matches the required behavior — VLAN trunking configuration answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "4.10-legacy-q009",
@@ -6593,7 +9905,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Single pane of glass = unified NMS/dashboard (Meraki, DNAC, Prime) — one view, many sites."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Physical cable single pane",
+          "whyItSeems": "\"All devices share one physical management cable\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"single pane of glass\", A single user interface or dashboard provides visibility and control over the entire network's devices and sites matches the required behavior — All devices share one physical management cable answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Single pane of glass = unified NMS/dashboard (Meraki, DNAC, Prime) — one view, many sites.",
+          "contrast": "Correct \"A single user interface or dashboard provides visibility and control over the entire network's devices and sites\" vs wrong \"All devices share one physical management cable\": For \"single pane of glass\", A single user interface or dashboard provides visibility and control over the entire network's devices and sites matches the required behavior — All devices share one physical management cable answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Single admin account",
+          "whyItSeems": "\"Only one administrator account exists for the whole network\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"single pane of glass\", A single user interface or dashboard provides visibility and control over the entire network's devices and sites matches the required behavior — Only one administrator account exists for the whole network answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Single pane of glass = unified NMS/dashboard (Meraki, DNAC, Prime) — one view, many sites.",
+          "contrast": "Correct \"A single user interface or dashboard provides visibility and control over the entire network's devices and sites\" vs wrong \"Only one administrator account exists for the whole network\": For \"single pane of glass\", A single user interface or dashboard provides visibility and control over the entire network's devices and sites matches the required behavior — Only one administrator account exists for the whole network answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Same rack required",
+          "whyItSeems": "\"All devices are physically located in the same rack\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"single pane of glass\", A single user interface or dashboard provides visibility and control over the entire network's devices and sites matches the required behavior — All devices are physically located in the same rack answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Single pane of glass = unified NMS/dashboard (Meraki, DNAC, Prime) — one view, many sites.",
+          "contrast": "Correct \"A single user interface or dashboard provides visibility and control over the entire network's devices and sites\" vs wrong \"All devices are physically located in the same rack\": For \"single pane of glass\", A single user interface or dashboard provides visibility and control over the entire network's devices and sites matches the required behavior — All devices are physically located in the same rack answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     },
     {
       "id": "4.10-legacy-q010",
@@ -6642,7 +9980,33 @@ export const CLEAN_QUESTIONS = {
           }
         ],
         "examTip": "Cloud dashboard unreachable → fall back to local CLI/console."
-      }
+      },
+      "regeneratedIncorrect": [
+        {
+          "choiceIndex": 0,
+          "misconceptionReason": "Choosing cloud-fit retail chain for local-only mgmt",
+          "whyItSeems": "\"A multinational retail chain with 500 small stores needing rapid, uniform rollout of new APs\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"choosing management model\", A single highly-regulated data center where all management traffic must remain on an isolated, air-gapped internal network with no internet access matches the required behavior — A multinational retail chain with 500 small stores needing rapid, uniform rollout of new APs answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cloud dashboard unreachable → fall back to local CLI/console.",
+          "contrast": "Correct \"A single highly-regulated data center where all management traffic must remain on an isolated, air-gapped internal network with no internet access\" vs wrong \"A multinational retail chain with 500 small stores needing rapid, uniform rollout of new APs\": For \"choosing management model\", A single highly-regulated data center where all management traffic must remain on an isolated, air-gapped internal network with no internet access matches the required behavior — A multinational retail chain with 500 small stores needing rapid, uniform rollout of new APs answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 2,
+          "misconceptionReason": "Picking startup branch expansion for local management",
+          "whyItSeems": "\"A startup that wants to add new branch offices with minimal on-site IT staff\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"choosing management model\", A single highly-regulated data center where all management traffic must remain on an isolated, air-gapped internal network with no internet access matches the required behavior — A startup that wants to add new branch offices with minimal on-site IT staff answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cloud dashboard unreachable → fall back to local CLI/console.",
+          "contrast": "Correct \"A single highly-regulated data center where all management traffic must remain on an isolated, air-gapped internal network with no internet access\" vs wrong \"A startup that wants to add new branch offices with minimal on-site IT staff\": For \"choosing management model\", A single highly-regulated data center where all management traffic must remain on an isolated, air-gapped internal network with no internet access matches the required behavior — A startup that wants to add new branch offices with minimal on-site IT staff answers a different mechanism or constraint than the stem asks."
+        },
+        {
+          "choiceIndex": 3,
+          "misconceptionReason": "Choosing school district central visibility for local-only",
+          "whyItSeems": "\"A school district wanting centralized visibility across 30 campuses\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
+          "whyWrongHere": "For \"choosing management model\", A single highly-regulated data center where all management traffic must remain on an isolated, air-gapped internal network with no internet access matches the required behavior — A school district wanting centralized visibility across 30 campuses answers a different mechanism or constraint than the stem asks.",
+          "memoryAnchor": "Cloud dashboard unreachable → fall back to local CLI/console.",
+          "contrast": "Correct \"A single highly-regulated data center where all management traffic must remain on an isolated, air-gapped internal network with no internet access\" vs wrong \"A school district wanting centralized visibility across 30 campuses\": For \"choosing management model\", A single highly-regulated data center where all management traffic must remain on an isolated, air-gapped internal network with no internet access matches the required behavior — A school district wanting centralized visibility across 30 campuses answers a different mechanism or constraint than the stem asks."
+        }
+      ]
     }
   ]
 }

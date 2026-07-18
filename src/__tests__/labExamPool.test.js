@@ -2,8 +2,13 @@ import { describe, it, expect } from 'vitest'
 import { getLab } from '../data/ccnaLabs.js'
 import {
   QUICK_LAB_EXAM_STATIONS,
+  FULL_LAB_EXAM_STATIONS,
+  DOMAIN_LAB_EXAM_POOLS,
   QUICK_LAB_EXAM_MINUTES,
+  FULL_LAB_EXAM_MINUTES,
+  DOMAIN_LAB_EXAM_MINUTES,
   LAB_EXAM_PASS_PCT,
+  buildLabExamStations,
   buildQuickLabExamStations,
   scoreLabStation,
   aggregateLabExamScore,
@@ -12,8 +17,23 @@ import {
 describe('quickLabExamPool constants', () => {
   it('exposes the quick exam defaults', () => {
     expect(QUICK_LAB_EXAM_STATIONS).toHaveLength(6)
+    expect(FULL_LAB_EXAM_STATIONS).toHaveLength(12)
     expect(QUICK_LAB_EXAM_MINUTES).toBe(25)
+    expect(FULL_LAB_EXAM_MINUTES).toBe(55)
+    expect(DOMAIN_LAB_EXAM_MINUTES).toBe(30)
     expect(LAB_EXAM_PASS_PCT).toBe(70)
+  })
+
+  it('builds the curated full exam and six-station domain exams', () => {
+    const full = buildLabExamStations({ mode: 'full', getLabFn: getLab })
+    expect(full).toHaveLength(FULL_LAB_EXAM_STATIONS.length)
+
+    for (const [domainId, pool] of Object.entries(DOMAIN_LAB_EXAM_POOLS)) {
+      const stations = buildLabExamStations({ mode: 'domain', domainId, getLabFn: getLab })
+      expect(stations).toHaveLength(pool.length)
+      expect(stations).toHaveLength(6)
+      expect(stations.every(station => station.domainId === domainId)).toBe(true)
+    }
   })
 })
 

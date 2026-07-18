@@ -2,7 +2,6 @@ import { describe, it, expect } from 'vitest'
 import { labsForObjective, getLab } from '../data/ccnaLabs.js'
 
 const LAB_LITE_IDS = [
-  ['2.1', 'LAB-VLAN-TRUNK'],
   ['2.4', 'LAB-ETHERCHANNEL'],
   ['2.5', 'LAB-STP-ROOT'],
   ['3.1', 'LAB-ROUTE-TABLE-31'],

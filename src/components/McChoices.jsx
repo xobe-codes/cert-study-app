@@ -75,7 +75,7 @@ export default function McChoices({
   selected,
   revealed,
   onSelect,
-  accordionOnReveal = true,
+  accordionOnReveal = false,
   shuffleChoices = true,
 }) {
   const groupRef = useRef(null)

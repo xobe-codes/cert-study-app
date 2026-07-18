@@ -44,6 +44,12 @@ test.describe('Wrong-answer debrief smoke', () => {
     await expect(review).toBeVisible()
     await expect(review.getByText(/Why it is wrong here/i).first()).toBeVisible()
     await expect(review.getByText(/What this choice implies/i).first()).toBeVisible()
+    await expect(review.getByText(DEBRIEF_HEADING)).toHaveCount(3)
+    await expect(page.getByRole('button', { name: /Show \d+ other option/i })).toHaveCount(0)
+    const objectiveRef = review.getByRole('button', { name: /OBJECTIVE 1\.5/i })
+    await expect(objectiveRef).toBeVisible()
+    await objectiveRef.click()
+    await expect(review.getByText(/Switches build a MAC address table/i)).toBeVisible()
     // Family chip (Trap:) when misconception label is present
     const trapChip = review.getByRole('button', { name: /Trap:/i })
     if (await trapChip.count()) {

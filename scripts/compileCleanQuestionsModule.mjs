@@ -16,6 +16,15 @@ const CLEAN_ROOT = join(ROOT, 'data', 'clean-question-bank')
 const OUT_DIR = join(ROOT, 'src', 'data', 'cleanQuestions')
 const OUT_LEGACY = join(ROOT, 'src', 'data', 'ccnaCleanQuestions.js')
 const REGISTRY = join(ROOT, 'data', 'question-health-registry.json')
+const REGEN_PATH = join(ROOT, 'src', 'answerReview', 'regeneratedExplanations.json')
+
+function loadRegeneratedExplanations() {
+  if (!existsSync(REGEN_PATH)) return {}
+  const parsed = JSON.parse(readFileSync(REGEN_PATH, 'utf-8'))
+  return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {}
+}
+
+const regeneratedExplanations = loadRegeneratedExplanations()
 
 function loadExcludedIds() {
   if (!existsSync(REGISTRY)) return new Set()
@@ -28,6 +37,14 @@ function normalizeCompiledQuestion(q) {
   const converted = exhibitForQuestion(out)
   if (converted) out = converted
   return out
+}
+
+function withRegeneratedExplanation(question) {
+  const regen = regeneratedExplanations[question?.id]
+  if (Array.isArray(regen?.incorrect) && regen.incorrect.length) {
+    return { ...question, regeneratedIncorrect: regen.incorrect }
+  }
+  return question
 }
 
 function filterExcluded(questions, excluded) {
@@ -75,7 +92,7 @@ function main() {
   for (const objectiveId of objectives) {
     const domain = Number(objectiveId.split('.')[0])
     if (!byDomain[domain]) byDomain[domain] = {}
-    byDomain[domain][objectiveId] = bank[objectiveId]
+    byDomain[domain][objectiveId] = bank[objectiveId].map(withRegeneratedExplanation)
   }
 
   const domainNums = Object.keys(byDomain).map(Number).sort((a, b) => a - b)
