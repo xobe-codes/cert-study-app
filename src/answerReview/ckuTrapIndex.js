@@ -559,7 +559,7 @@ export const CKU_TRAP_INDEX = {
     },
     {
       "trap": "STP prevents routing loops.",
-      "correction": "STP is Layer 2 only; routing loops are handled by L3 mechanisms (TTL, split horizon).",
+      "correction": "STP is Layer 2 only. L3 loop damage is limited by TTL; DV protocols use split horizon/poison/hold-down; OSPF uses LSDB+SPF; EIGRP uses DUAL.",
       "source": "misconception"
     }
   ],

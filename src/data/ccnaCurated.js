@@ -1168,7 +1168,7 @@ const OBJ_25 = {
   ],
   misconceptions: [
     { id: '2.5-x1', misconception: 'STP load-balances across redundant links.', reality: 'Classic STP blocks redundant links (one active path); EtherChannel or per-VLAN roots are needed to use both.', example: 'A blocked link carries no data until the primary fails.', ckuIds: ['CKU-STP'] },
-    { id: '2.5-x2', misconception: 'STP prevents routing loops.', reality: 'STP is Layer 2 only; routing loops are handled by L3 mechanisms (TTL, split horizon).', example: 'STP has no effect on IP routing.', ckuIds: ['CKU-STP'] },
+    { id: '2.5-x2', misconception: 'STP prevents routing loops.', reality: 'STP is Layer 2 only. L3 loop damage is limited by TTL; DV protocols use split horizon/poison/hold-down; OSPF uses LSDB+SPF; EIGRP uses DUAL.', example: 'STP has no effect on IP routing.', ckuIds: ['CKU-STP'] },
   ],
   diagram: {
     id: 'DIAG-2.5-stp', title: 'STP blocks one redundant path', type: 'topology', ckuIds: ['CKU-STP', 'CKU-ROOT-BRIDGE'],

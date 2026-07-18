@@ -1,6 +1,6 @@
 # Project Log — CCNA Study App
 
-**Sync date:** 2026-07-10  
+**Sync date:** 2026-07-15  
 **Active tracking:** [`ai-improvement-logs/IMPLEMENTATION_TRACKER.md`](ai-improvement-logs/IMPLEMENTATION_TRACKER.md) (Cursor's live source of truth)  
 **Cursor working dir:** `ai-improvement-logs/` — do not delete
 
@@ -166,13 +166,51 @@ Full report: `ai-improvement-logs/WAVE_CONSOLIDATION_REPORT.md`
 
 ---
 
-## Next planned work
+## Lab Testing Framework — Full Deployment Complete
 
-**P1–P7 remediation + first-paint split:** shipped (`ab57ba4`, `004266a`).
+**2026-07-15:** All 4 phases implemented and deployed to production:
+- **Phase 1 (CLI Validation):** 82 tests ✅ — command normalization, output validation, state comparison, sequences, checkpoints, hints, mistake detection
+- **Phase 2 (Device Simulator):** 57 tests ✅ — device state model, command simulator (20+ IOS commands), realistic output generation
+- **Phase 3 (Advanced Validation):** 59 tests ✅ — 10 mistake patterns, contextual feedback, progressive difficulty (easy/medium/hard)
+- **Phase 4 (Gamification):** 40+ tests ✅ — badges (6 types), leaderboard (with anomaly detection), progress dashboard, encouragement messages
+- **Commit:** `50135c0` — 19 new files, 11,747 lines, 321+ tests (1,990/2,049 passing)
+- **Deployment:** Live at https://ccna-study-tool.pages.dev
 
-**P5 pool-depth continuation:** closed — runtime counts show **no objective below 10** (lowest ≈16). Stale CRITICAL flags for 5.9/4.9 were clean-bank-only snapshots; see updated `WAVE_CONSOLIDATION_REPORT.md`.
+---
 
-Queue empty · backlog empty. Next work needs an explicit feature request.
+## Next Planned Work (Queued Implementation)
+
+### 1. Missed Commands Review System
+**Spec:** `src/answerReview/missedCommandsReviewSpec.md` (647 lines)
+- **Problem:** Students miss 47–100 commands but reviewing requires scrolling 900+ command bank
+- **Solution:** Dedicated dashboard showing ONLY missed commands, sorted by frequency/recency
+- **Features:** Detail view + mistake context + related commands + mark learned + spaced rep scheduling
+- **MVP:** Week 1 (list, sort, detail, mark learned, basic scheduling)
+- **Phase 2:** Week 2 (filtering, recommendations, sessions)
+- **Phase 3:** Week 3 (gamification, badges, analytics)
+- **Status:** Ready to implement (2-3 weeks for full)
+
+### 2. Commands in Domain Practice Tests
+**Spec:** `src/answerReview/commandsInDomainPracticeSpec.md` (355 lines)
+- **Problem:** Commands studied separately in Command Hub; no domain context on real exam
+- **Solution:** Weave command questions into domain practice tests (not separate)
+- **Features:** Mixed MC + command questions (configurable density 0–50%) + combined scoring + command-to-domain mapping
+- **Scoring:** Questions 60% + Commands 40% = Domain Score
+- **Phase 1:** Week 1 (plumbing — add question type, component, injection)
+- **Phase 2:** Week 2 (content — map 100+ commands to domains, write 50+ scenarios)
+- **Phase 3:** Week 3 (polish — settings, dashboard breakdown, spaced rep integration)
+- **Dependencies:** Uses CommandSimulator + DeviceState from Phase 2 (✅ already built)
+- **Status:** Ready to implement (2-3 weeks for full)
+
+**Queue order:** Implement Missed Commands Review first, then Commands in Domain Practice.
+
+---
+
+## Source files for this sync (2026-07-15)
+
+- `src/answerReview/missedCommandsReviewSpec.md` (647 lines) — new feature spec
+- `src/answerReview/commandsInDomainPracticeSpec.md` (355 lines) — new feature spec
+- `PROJECT_LOG.md` (this file) — updated with Phase 2–4 completion + queue
 
 ---
 

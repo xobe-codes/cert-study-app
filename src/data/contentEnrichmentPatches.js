@@ -30,6 +30,8 @@ import { READING_COMMANDS_WAVE2_PATCHES } from './readingCommandsWave2Patches.js
 import { CONTENT_DEPTH_WAVE10_PATCHES } from './contentDepthWave10Patches.js'
 import { CONTENT_DEPTH_WAVE11_PATCHES } from './contentDepthWave11Patches.js'
 import { LESSON_ALIGNMENT_WAVE12_PATCHES } from './lessonAlignmentWave12Patches.js'
+import { BLUEPRINT_ADJACENT_WAVE1_PATCHES } from './blueprintAdjacentWave1Patches.js'
+import { BLUEPRINT_ADJACENT_WAVE2_PATCHES } from './blueprintAdjacentWave2Patches.js'
 import { TIER_B_TRAP_WAVE13_PATCHES } from './tierBTrapWave13Patches.js'
 import { TIER_B_TRAP_WAVE14_PATCHES } from './tierBTrapWave14Patches.js'
 import { TIER_B_TRAP_WAVE15_PATCHES } from './tierBTrapWave15Patches.js'
@@ -598,7 +600,9 @@ export function applyContentEnrichment(base, objectiveId) {
   const wave10 = CONTENT_DEPTH_WAVE10_PATCHES[objectiveId]
   const wave11 = CONTENT_DEPTH_WAVE11_PATCHES[objectiveId]
   const wave12 = LESSON_ALIGNMENT_WAVE12_PATCHES[objectiveId]
-  if (!factory && !patch && !wave3 && !wave4 && !wave5 && !wave6 && !wave7 && !wave8 && !wave9 && !trapWave4 && !trapWave5 && !trapWave6 && !trapWave7 && !trapWave8 && !trapWave9 && !trapWave10 && !trapWave11 && !trapWave12 && !trapWave13 && !trapWave14 && !trapWave15 && !trapWave16 && !trapWave17 && !trapWave18 && !trapWave19 && !trapWave20 && !trapWave21 && !trapWave22 && !trapWave23 && !wlanWave5 && !readingW1 && !readingW2 && !wave10 && !wave11 && !wave12) return base
+  const baWave1 = BLUEPRINT_ADJACENT_WAVE1_PATCHES[objectiveId]
+  const baWave2 = BLUEPRINT_ADJACENT_WAVE2_PATCHES[objectiveId]
+  if (!factory && !patch && !wave3 && !wave4 && !wave5 && !wave6 && !wave7 && !wave8 && !wave9 && !trapWave4 && !trapWave5 && !trapWave6 && !trapWave7 && !trapWave8 && !trapWave9 && !trapWave10 && !trapWave11 && !trapWave12 && !trapWave13 && !trapWave14 && !trapWave15 && !trapWave16 && !trapWave17 && !trapWave18 && !trapWave19 && !trapWave20 && !trapWave21 && !trapWave22 && !trapWave23 && !wlanWave5 && !readingW1 && !readingW2 && !wave10 && !wave11 && !wave12 && !baWave1 && !baWave2) return base
   const mergeList = (a, b) => (b?.length ? [...(a || []), ...b] : a)
   const mergeUniqueStrings = (a, b) => {
     if (!b?.length) return a
@@ -664,6 +668,12 @@ export function applyContentEnrichment(base, objectiveId) {
   if (wave11?.flashcards) flashcards = mergeList(flashcards, wave11.flashcards)
   if (wave12?.flashcards) flashcards = mergeList(flashcards, wave12.flashcards)
   if (wave12?.examTraps) examTraps = mergeList(examTraps, wave12.examTraps)
+  if (baWave1?.flashcards) flashcards = mergeList(flashcards, baWave1.flashcards)
+  if (baWave1?.examTraps) examTraps = mergeList(examTraps, baWave1.examTraps)
+  if (baWave1?.questions) questions = mergeList(questions, baWave1.questions)
+  if (baWave2?.flashcards) flashcards = mergeList(flashcards, baWave2.flashcards)
+  if (baWave2?.examTraps) examTraps = mergeList(examTraps, baWave2.examTraps)
+  if (baWave2?.questions) questions = mergeList(questions, baWave2.questions)
   if (wave12?.reading && reading) {
     const rp = wave12.reading
     reading = {
@@ -672,6 +682,29 @@ export function applyContentEnrichment(base, objectiveId) {
       tiers: { ...reading.tiers, ...(rp.tiers || {}) },
       keyPoints: mergeUniqueStrings(reading.keyPoints, rp.keyPoints),
       commonMistakes: mergeUniqueStrings(reading.commonMistakes, rp.commonMistakes),
+      related: mergeUniqueStrings(reading.related, rp.related),
+    }
+  }
+  if (baWave1?.reading) {
+    const rp = baWave1.reading
+    reading = {
+      ...(reading || {}),
+      ...(rp.bigTakeaway ? { bigTakeaway: rp.bigTakeaway } : {}),
+      tiers: { ...(reading?.tiers || {}), ...(rp.tiers || {}) },
+      keyPoints: mergeUniqueStrings(reading?.keyPoints, rp.keyPoints),
+      commonMistakes: mergeUniqueStrings(reading?.commonMistakes, rp.commonMistakes),
+      related: mergeUniqueStrings(reading?.related, rp.related),
+    }
+  }
+  if (baWave2?.reading) {
+    const rp = baWave2.reading
+    reading = {
+      ...(reading || {}),
+      ...(rp.bigTakeaway ? { bigTakeaway: rp.bigTakeaway } : {}),
+      tiers: { ...(reading?.tiers || {}), ...(rp.tiers || {}) },
+      keyPoints: mergeUniqueStrings(reading?.keyPoints, rp.keyPoints),
+      commonMistakes: mergeUniqueStrings(reading?.commonMistakes, rp.commonMistakes),
+      related: mergeUniqueStrings(reading?.related, rp.related),
     }
   }
   const readingMerged = [

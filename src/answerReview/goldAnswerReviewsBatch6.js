@@ -618,8 +618,8 @@ export const BATCH6_GOLD = {
       },
       {
         "choiceIndex": 3,
-        "explanation": "OSPF split horizon affects route advertisement — it does not contain lateral movement within a flat VLAN.",
-        "misconceptionTested": "Using OSPF split horizon for L2 lateral movement"
+        "explanation": "OSPF LSA flooding exchanges Layer 3 topology — it does not contain lateral movement within a flat VLAN.",
+        "misconceptionTested": "Using OSPF flooding for L2 lateral movement"
       }
     ],
     "examTip": "Same VLAN = same **broadcast domain** — no L3 boundary."

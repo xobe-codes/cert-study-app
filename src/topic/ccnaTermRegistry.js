@@ -455,4 +455,154 @@ export const CCNA_TERM_REGISTRY = [
     objectiveIds: ['6.2', '6.3'],
     note: 'Conceptual — no full SDN lab configuration on CCNA.',
   },
+  {
+    id: 'term-split-horizon',
+    term: 'Split horizon',
+    aliases: ['split-horizon', 'distance vector loop prevention'],
+    definition:
+      'A classic distance-vector rule: a router does not advertise a route back out the same interface on which it was learned. This reduces routing loops. Blueprint-adjacent on CCNA — recognize the idea and contrast it with OSPF LSDB+SPF. OSPF does not rely on split horizon as its primary loop-prevention mechanism.',
+    tags: ['routing'],
+    objectiveIds: ['3.1', '3.4'],
+    note: 'Blueprint-adjacent — reference only; not a configure objective.',
+  },
+  {
+    id: 'term-poison-reverse',
+    term: 'Poison reverse',
+    aliases: ['route poisoning', 'metric 16', 'infinity metric'],
+    definition:
+      'A distance-vector technique that advertises a route as unreachable (for RIP, metric 16) so neighbors remove it quickly. Often paired with split horizon. Blueprint-adjacent recognition topic on CCNA 200-301.',
+    tags: ['routing'],
+    objectiveIds: ['3.1'],
+    note: 'Blueprint-adjacent — reference only; not a configure objective.',
+  },
+  {
+    id: 'term-count-to-infinity',
+    term: 'Count to infinity',
+    aliases: ['counting to infinity', 'distance vector loop'],
+    definition:
+      'A distance-vector failure mode where looped updates keep increasing a route metric toward infinity. Split horizon, poison reverse, and hold-down timers exist to contain this behavior. Blueprint-adjacent recognition topic on CCNA.',
+    tags: ['routing'],
+    objectiveIds: ['3.1'],
+    note: 'Blueprint-adjacent — reference only; not a configure objective.',
+  },
+  {
+    id: 'term-hold-down-timer',
+    term: 'Hold-down timer',
+    aliases: ['holddown timer', 'routing hold-down'],
+    definition:
+      'A distance-vector stability timer during which a router ignores worse updates for a recently failed route, reducing flapping and count-to-infinity behavior. Do not confuse with CDP/LLDP holdtime. Blueprint-adjacent recognition topic on CCNA.',
+    tags: ['routing'],
+    objectiveIds: ['3.1'],
+    note: 'Blueprint-adjacent — reference only; not a configure objective.',
+  },
+  {
+    id: 'term-feasible-successor',
+    term: 'Feasible successor',
+    aliases: ['EIGRP FS', 'DUAL feasible successor', 'reported distance'],
+    definition:
+      'In EIGRP, a loop-free backup next hop stored in the topology table when its advertised/reported distance is less than the successor’s feasible distance (RD < FD). The successor is installed in the routing table. Blueprint-adjacent recognition — EIGRP is not a CCNA configure-and-verify objective.',
+    tags: ['routing'],
+    objectiveIds: ['3.1'],
+    note: 'Blueprint-adjacent — reference only; not a configure objective.',
+  },
+  {
+    id: 'term-vtp',
+    term: 'VTP',
+    aliases: ['VLAN Trunking Protocol', 'VTP revision'],
+    definition:
+      'Cisco VLAN Trunking Protocol can synchronize VLAN databases across a domain. A higher revision number can overwrite VLAN lists — a common lab/production risk. Trunking itself (802.1Q) does not require VTP. Blueprint-adjacent recognition topic.',
+    tags: ['switching'],
+    objectiveIds: ['2.2'],
+    note: 'Blueprint-adjacent — reference only; not a deep configure objective.',
+  },
+  {
+    id: 'term-pmtud',
+    term: 'PMTUD',
+    aliases: ['Path MTU Discovery', 'MTU black hole', 'TCP MSS'],
+    definition:
+      'Path MTU Discovery finds the smallest MTU along a path so hosts can avoid sending packets that are dropped when fragmentation is not allowed. Explains “small ping works, large transfer fails.” Blueprint-adjacent troubleshooting foundation.',
+    tags: ['fundamentals'],
+    objectiveIds: ['1.4'],
+    note: 'Blueprint-adjacent — reference only.',
+  },
+  {
+    id: 'term-netflow',
+    term: 'NetFlow',
+    aliases: ['flow export', 'traffic flows', 'flow records'],
+    definition:
+      'Flow telemetry that summarizes conversations (who talked to whom, ports, bytes). Distinct from SNMP device metrics and syslog event logs. Blueprint-adjacent monitoring recognition topic.',
+    tags: ['services'],
+    objectiveIds: ['4.4'],
+    note: 'Blueprint-adjacent — reference only.',
+  },
+  {
+    id: 'term-igmp-snooping',
+    term: 'IGMP snooping',
+    aliases: ['multicast snooping', 'IGMP membership', 'multicast receiver ports'],
+    definition:
+      'A Layer 2 switch feature that observes IGMP host/router membership messages and forwards IPv4 multicast only toward ports with interested receivers. It limits unnecessary VLAN flooding but is not itself a multicast routing protocol.',
+    tags: ['switching', 'multicast'],
+    objectiveIds: ['1.5'],
+    note: 'Blueprint-adjacent — recognition and troubleshooting-lite only.',
+  },
+  {
+    id: 'term-poe-budget',
+    term: 'PoE budget',
+    aliases: ['power budget', 'PoE power allocation', 'switch watt budget'],
+    definition:
+      'The shared amount of power a switch or stack can deliver to powered devices. Individual ports may support PoE/PoE+, yet APs or phones can fail or reduce features when the total available wattage is exhausted.',
+    tags: ['wireless', 'switching'],
+    objectiveIds: ['2.7'],
+    note: 'Blueprint-adjacent — operational recognition.',
+  },
+  {
+    id: 'term-lldp-med',
+    term: 'LLDP-MED',
+    aliases: ['Link Layer Discovery Protocol Media Endpoint Discovery', 'voice VLAN advertisement'],
+    definition:
+      'An LLDP extension for media endpoints such as IP phones. It can advertise device capabilities, network policy/voice VLAN, location, and power information.',
+    tags: ['switching', 'voice'],
+    objectiveIds: ['2.7'],
+    note: 'Blueprint-adjacent — recognition only.',
+  },
+  {
+    id: 'term-policy-based-routing',
+    term: 'Policy-based routing',
+    aliases: ['PBR', 'route-map forwarding', 'set next-hop'],
+    definition:
+      'A forwarding policy that can select a next hop for matched traffic (for example, by source) before normal destination-based longest-prefix routing. Unmatched traffic normally follows the routing table.',
+    tags: ['routing'],
+    objectiveIds: ['3.2'],
+    note: 'Blueprint-adjacent — explain/recognize; deep route-map configuration is excluded.',
+  },
+  {
+    id: 'term-storm-control',
+    term: 'Storm control',
+    aliases: ['broadcast storm control', 'multicast storm control', 'unknown-unicast suppression'],
+    definition:
+      'A switch-port feature that limits broadcast, multicast, or unknown-unicast traffic above configured thresholds. It contains storm impact but does not replace STP loop prevention or port-security MAC controls.',
+    tags: ['security', 'switching'],
+    objectiveIds: ['5.6'],
+    note: 'Blueprint-adjacent — recognition and troubleshoot-lite.',
+  },
+  {
+    id: 'term-nac-posture',
+    term: 'NAC posture assessment',
+    aliases: ['Network Access Control', 'endpoint posture', 'quarantine VLAN', 'remediation network'],
+    definition:
+      'A Network Access Control decision that evaluates endpoint compliance after or alongside identity checks. Policy may permit normal access, restrict, quarantine, or direct a device to remediation.',
+    tags: ['security', 'aaa'],
+    objectiveIds: ['5.7'],
+    note: 'Blueprint-adjacent — conceptual policy flow.',
+  },
+  {
+    id: 'term-gnmi',
+    term: 'gNMI',
+    aliases: ['gRPC Network Management Interface', 'streaming telemetry', 'Get Set Subscribe'],
+    definition:
+      'A model-driven gRPC interface commonly used with YANG data for Get, Set, and Subscribe operations. Subscribe enables periodic or on-change streaming telemetry instead of repeated polling.',
+    tags: ['automation', 'telemetry'],
+    objectiveIds: ['6.3'],
+    note: 'Blueprint-adjacent — recognize the interface and subscription model; no vendor-specific configuration.',
+  },
 ]

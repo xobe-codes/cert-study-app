@@ -2257,7 +2257,7 @@ export const FACTORY_DEPTH_WAVE3_QUESTIONS = {
         "Nothing — VLANs fully isolate",
         "Lateral movement if one host is compromised",
         "Automatic encryption",
-        "OSPF split horizon only"
+        "OSPF LSA flooding alone isolates hosts in one VLAN"
       ],
       "correctIndex": 1,
       "explanation": "Same VLAN = same broadcast domain — hosts can reach each other at L2.",

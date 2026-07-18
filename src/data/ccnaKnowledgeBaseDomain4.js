@@ -5234,7 +5234,7 @@ export const DOMAIN_4_KB = {
     {
       "id": "2.5-x2",
       "misconception": "STP prevents routing loops.",
-      "reality": "STP is Layer 2 only; routing loops are handled by L3 mechanisms (TTL, split horizon).",
+      "reality": "STP is Layer 2 only. L3 loop damage is limited by TTL; DV protocols use split horizon/poison/hold-down; OSPF uses LSDB+SPF; EIGRP uses DUAL.",
       "example": "STP has no effect on IP routing.",
       "ckuIds": [
         "CKU-STP"
