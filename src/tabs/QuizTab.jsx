@@ -38,6 +38,7 @@ import { QUIZ_SCHEMA } from '../ai/claudeClient.js'
 import { recordQuestionHealthSignal } from '../quiz/questionHealthSignals.js'
 import { confidenceFeedbackCopy } from '../quiz/confidenceScheduler.js'
 import { applyAnswerReviewToQuestion, inferTrapForChoice } from '../answerReviewLogic.js'
+import { diagnoseWrongAnswer } from '../answerReview/diagnoseWrongAnswer.js'
 import { bumpSessionStudy } from '../home/sessionRecap.js'
 import {
   createTrapStreakState,
@@ -339,6 +340,12 @@ export function QuizTab({
     }
   }, [phase, current?.id, current?.question])
 
+  // Optional, backward-compatible diagnosis (pure — reuses existing answer-review resolution).
+  function missEntry(question, submittedAnswer, correct, extra) {
+    const diagnosis = diagnoseWrongAnswer({ question, submittedAnswer, gradeResult: correct })
+    return buildMissedEntry(objective.id, question, { ...extra, diagnosis })
+  }
+
   function selectAnswer(idx) {
     if (revealed || !isMcQuestion(current)) return
     setSelected(idx)
@@ -388,7 +395,7 @@ export function QuizTab({
     }
     if (!correct) {
       collectDeferredTip(current, idx)
-      onMissed(buildMissedEntry(objective.id, current, { selectedIndex: idx }))
+      onMissed(missEntry(current, idx, correct, { selectedIndex: idx }))
       recordMissClearAttempt(current.id, { correct: false }).catch(() => {})
       const trapPrefill = resolveQuizTrapDrillPrefill(current, objective, idx)
       if (trapPrefill) {
@@ -431,7 +438,7 @@ export function QuizTab({
       total: 1,
       questionId: current.id,
     })
-    onMissed(buildMissedEntry(objective.id, current, unknownMissExtra(null)))
+    onMissed(missEntry(current, null, false, unknownMissExtra(null)))
     recordMissClearAttempt(current.id, { correct: false }).catch(() => {})
     const qKey = current.id || current.question
     if (missedOnce.current.has(qKey)) {
@@ -483,7 +490,7 @@ export function QuizTab({
     if (!correct) {
       const firstWrong = selectedIndexes.find(i => !(current.correctIndexes || []).includes(i))
       collectDeferredTip(current, firstWrong ?? selectedIndexes[0])
-      onMissed(buildMissedEntry(objective.id, current, { selectedIndexes: [...selectedIndexes] }))
+      onMissed(missEntry(current, selectedIndexes, correct, { selectedIndexes: [...selectedIndexes] }))
       const trapPrefill = resolveQuizTrapDrillPrefill(current, objective, firstWrong ?? selectedIndexes[0])
       if (trapPrefill) {
         const recorded = recordTrapMiss(trapStreakRef.current, trapPrefill)
@@ -515,7 +522,7 @@ export function QuizTab({
     recordPracticeExposure(objective.id, current.id, correct)
     if (!correct) {
       collectDeferredTip(current, null)
-      onMissed(buildMissedEntry(objective.id, current, { orderAnswer: orderDraft }))
+      onMissed(missEntry(current, orderDraft, correct, { orderAnswer: orderDraft }))
       const qKey = current.id || current.question
       if (missedOnce.current.has(qKey)) {
         setQueue(q => [q[0], current, ...q.slice(1)].filter(Boolean))
@@ -541,7 +548,7 @@ export function QuizTab({
     recordPracticeExposure(objective.id, current.id, correct)
     if (!correct) {
       collectDeferredTip(current, null)
-      onMissed(buildMissedEntry(objective.id, current, { cliAnswer }))
+      onMissed(missEntry(current, cliAnswer, correct, { cliAnswer }))
       const qKey = current.id || current.question
       if (missedOnce.current.has(qKey)) {
         setQueue(q => [q[0], current, ...q.slice(1)].filter(Boolean))
