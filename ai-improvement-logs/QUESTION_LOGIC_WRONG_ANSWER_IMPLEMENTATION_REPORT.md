@@ -84,10 +84,22 @@ No new failures anywhere. All pre-existing lint errors/warnings were verified (v
 
 ## Recommended next phase
 
-1. Unify `QuizTab.jsx`'s four post-grade handlers behind one shared fan-out, validated in isolation with a dedicated regression pass (addresses the "strongly preferred" shared-orchestration item).
-2. Resolve the missed-entry writer dedup inconsistency (`appendMissedEntry` dedups by `questionId+objectiveId`; `handleMissed`/`saveMissed` does not) — pick one behavior and apply it uniformly.
+1. Unify `QuizTab.jsx`'s four post-grade handlers behind one shared fan-out, validated in isolation with a dedicated regression pass (addresses the "strongly preferred" shared-orchestration item). Still not attempted — highest remaining risk/value item.
+2. ~~Resolve the missed-entry writer dedup inconsistency~~ — **done in a follow-up session, commit `44d207e`.** See addendum below.
 3. If/when the canonical CLI grader gains structured failure reasons, extend `diagnoseCli` to consume them (still without becoming a second grading engine).
 4. Consider a small, optional UI element (e.g. in `AnswerReview.jsx`) that surfaces `diagnosis.misconceptionLabel` only when it differs from what's already shown via the existing trap-family chip, to avoid duplicate copy.
+
+## Addendum — follow-up session (commit `44d207e`)
+
+**Operational note:** this routine's own prior commits (`54a9cc0`, `39a8f00`, `00a973a`) were found in a detached-HEAD state, not on `master`, and never pushed — despite this report's claims. They were recovered via a clean fast-forward merge and pushed before any new work started. If a future run inherits an unexpected `HEAD detached from refs/heads/master` state, do not assume prior "shipped" claims in these docs are actually on the branch — verify with `git log --oneline` on the checked-out branch itself.
+
+**Fix shipped:** item 2 above turned out to be a live, user-visible defect rather than pure hygiene. `MissedReview.jsx` renders the raw `missed` array with no dedup, and `handleMissed` (used by Practice, Topic Focus, Focus Mode, Daily Review) appended unconditionally while `appendMissedEntry` (Domain Pass, Domain Placement, Mock Exam) skipped duplicates — so a question missed twice across two different sessions before being cleared surfaced as two rows in Missed Review, one of the app's most-used screens. This directly violates the routine's own completion criterion "wrong answers create exactly one missed record."
+
+- New shared helper: `isDuplicateMissedEntry(missed, entry)` in `src/missed/missedDisplay.js` — pure, reused by both writers (`useAppProgress.handleMissed` and `domainPassStorage.appendMissedEntry`) instead of keeping two copies of the same rule.
+- No new storage key, no schema version bump, no change to grading/scoring/SRS/exposure — purely a write-time guard on an already-existing check.
+- Tests: 4 new cases in `src/__tests__/missedDisplay.test.js` (empty bank, same question+objective collision, same question different objective is not a collision, entries with no `questionId` never collide).
+- Validation: `npm test` 186 files / 1730 tests passed (0 failures, +4 from this addendum); `npm run lint` 137 problems (27 errors, 110 warnings) — identical to baseline; `npm run build` succeeds.
+- Rollback: `git revert 44d207e` — fully isolated, touches no other behavior.
 
 ## Manual QA checklist (not run this session — no browser available in this environment)
 
