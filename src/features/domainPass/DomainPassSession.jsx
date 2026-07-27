@@ -52,6 +52,7 @@ import { shouldShowWildcardBridge } from '../practice/trapStreak.js'
 import { isPlacementDomain } from '../domainPlacement/placementBlueprints.js'
 import IdkButton from '../../components/IdkButton.jsx'
 import { takeLatencyMs, recordAnswerOutcome, unknownMissExtra } from '../study/answerOutcome.js'
+import { diagnoseWrongAnswer } from '../../answerReview/diagnoseWrongAnswer.js'
 
 function recordPassExposure(domainId, questionId, correct) {
   if (!domainId || !questionId) return
@@ -248,7 +249,10 @@ export default function DomainPassSession({
         selectedIndex: idx,
       }).catch(() => {})
       recordPassExposure(domainId, q.id, correct)
-      if (!correct) appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndex: idx }))
+      if (!correct) {
+        const diagnosis = diagnoseWrongAnswer({ question: q, submittedAnswer: idx, gradeResult: correct })
+        appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndex: idx, diagnosis }))
+      }
     }
   }
 
@@ -274,7 +278,8 @@ export default function DomainPassSession({
         latencyMs,
       }).catch(() => {})
       recordPassExposure(domainId, q.id, false)
-      appendMissedEntry(buildMissedEntry(q.objectiveId, q, unknownMissExtra(null)))
+      const diagnosis = diagnoseWrongAnswer({ question: q, submittedAnswer: null, gradeResult: false })
+      appendMissedEntry(buildMissedEntry(q.objectiveId, q, { ...unknownMissExtra(null), diagnosis }))
     }
   }
 
@@ -312,7 +317,10 @@ export default function DomainPassSession({
         selectedIndexes: answer,
       }).catch(() => {})
       recordPassExposure(domainId, q.id, correct)
-      if (!correct) appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndexes: answer }))
+      if (!correct) {
+        const diagnosis = diagnoseWrongAnswer({ question: q, submittedAnswer: answer, gradeResult: correct })
+        appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndexes: answer, diagnosis }))
+      }
     }
   }
 

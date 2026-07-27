@@ -21,6 +21,7 @@ import Spinner from '../../components/Spinner.jsx'
 import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import { useMasteryProgress } from '../progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
+import { diagnoseWrongAnswer } from '../../answerReview/diagnoseWrongAnswer.js'
 
 const quizFeedbackA11y = { role: 'status', 'aria-live': 'polite', 'aria-atomic': true }
 
@@ -78,7 +79,8 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection,
     recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.REVIEW, correct: correct ? 1 : 0, total: 1 })
     logEvent('user_reviewed_concept', { objectiveId: current.objectiveId, questionId: current.id, correct })
     if (!correct) {
-      onMissed({ objectiveId: current.objectiveId, questionId: current.id, question: current.question, choices: current.choices, correctIndex: current.correctIndex, selectedIndex: idx, explanation: current.explanation, concept: current.concept, type: current.type, skill: current.skill, addedAt: Date.now() })
+      const diagnosis = diagnoseWrongAnswer({ question: current, submittedAnswer: idx, gradeResult: correct })
+      onMissed({ objectiveId: current.objectiveId, questionId: current.id, question: current.question, choices: current.choices, correctIndex: current.correctIndex, selectedIndex: idx, explanation: current.explanation, concept: current.concept, type: current.type, skill: current.skill, addedAt: Date.now(), diagnosis })
     }
   }
 
@@ -102,7 +104,8 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection,
     recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.REVIEW, correct: correct ? 1 : 0, total: 1 })
     logEvent('user_reviewed_concept', { objectiveId: current.objectiveId, questionId: current.id, correct })
     if (!correct) {
-      onMissed(buildMissedEntry(current.objectiveId, current, { selectedIndexes: [...selectedIndexes] }))
+      const diagnosis = diagnoseWrongAnswer({ question: current, submittedAnswer: selectedIndexes, gradeResult: correct })
+      onMissed(buildMissedEntry(current.objectiveId, current, { selectedIndexes: [...selectedIndexes], diagnosis }))
     }
   }
 
@@ -116,7 +119,8 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection,
     recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.REVIEW, correct: correct ? 1 : 0, total: 1 })
     logEvent('user_reviewed_concept', { objectiveId: current.objectiveId, questionId: current.id, correct })
     if (!correct) {
-      onMissed(buildMissedEntry(current.objectiveId, current, { orderAnswer: orderDraft }))
+      const diagnosis = diagnoseWrongAnswer({ question: current, submittedAnswer: orderDraft, gradeResult: correct })
+      onMissed(buildMissedEntry(current.objectiveId, current, { orderAnswer: orderDraft, diagnosis }))
     }
   }
   function submitCli() {
@@ -129,7 +133,8 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection,
     recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.REVIEW, correct: correct ? 1 : 0, total: 1 })
     logEvent('user_reviewed_concept', { objectiveId: current.objectiveId, questionId: current.id, correct })
     if (!correct) {
-      onMissed(buildMissedEntry(current.objectiveId, current, { cliAnswer }))
+      const diagnosis = diagnoseWrongAnswer({ question: current, submittedAnswer: cliAnswer, gradeResult: correct })
+      onMissed(buildMissedEntry(current.objectiveId, current, { cliAnswer, diagnosis }))
     }
   }
   function next() {

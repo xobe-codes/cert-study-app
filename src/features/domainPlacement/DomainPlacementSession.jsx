@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { DOMAINS } from '../../data/ccnaDomains.js'
 import { preloadCleanBankForObjective } from '../../data/cleanQuestionAdapter.js'
 import { gradeQuestion, buildMissedEntry } from '../../questionUtils.js'
+import { diagnoseWrongAnswer } from '../../answerReview/diagnoseWrongAnswer.js'
 import { COLORS, styles } from '../../ui/appTheme.js'
 import McChoices from '../../components/McChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
@@ -129,7 +130,10 @@ export default function DomainPlacementSession({
         correct: correct ? 1 : 0,
         total: 1,
       })
-      if (!correct) appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndex: idx }))
+      if (!correct) {
+        const diagnosis = diagnoseWrongAnswer({ question: q, submittedAnswer: idx, gradeResult: correct })
+        appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndex: idx, diagnosis }))
+      }
     }
   }
 

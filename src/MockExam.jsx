@@ -40,6 +40,7 @@ import McChoices from './components/McChoices.jsx'
 import MultiChoices from './components/MultiChoices.jsx'
 import IdkButton from './components/IdkButton.jsx'
 import { takeLatencyMs, recordAnswerOutcome, unknownMissExtra } from './features/study/answerOutcome.js'
+import { diagnoseWrongAnswer } from './answerReview/diagnoseWrongAnswer.js'
 import { appendMissedEntry } from './features/domainPass/domainPassStorage.js'
 import AnswerReview from './components/AnswerReview.jsx'
 import { answerReviewSessionProps } from './components/answerReviewSessionProps.js'
@@ -288,7 +289,10 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
           latencyMs,
           selectedIndex: idx,
         }).catch(() => {})
-        if (!correct) appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndex: idx }))
+        if (!correct) {
+          const diagnosis = diagnoseWrongAnswer({ question: q, submittedAnswer: idx, gradeResult: correct })
+          appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndex: idx, diagnosis }))
+        }
       }
     }
   }
@@ -309,7 +313,8 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
         unknown: true,
         latencyMs: takeLatencyMs(shownAtRef.current),
       }).catch(() => {})
-      appendMissedEntry(buildMissedEntry(q.objectiveId, q, unknownMissExtra(null)))
+      const diagnosis = diagnoseWrongAnswer({ question: q, submittedAnswer: null, gradeResult: false })
+      appendMissedEntry(buildMissedEntry(q.objectiveId, q, { ...unknownMissExtra(null), diagnosis }))
     }
   }
 
@@ -349,7 +354,10 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
           latencyMs: takeLatencyMs(shownAtRef.current),
           selectedIndexes: answer,
         }).catch(() => {})
-        if (!correct) appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndexes: answer }))
+        if (!correct) {
+          const diagnosis = diagnoseWrongAnswer({ question: q, submittedAnswer: answer, gradeResult: correct })
+          appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndexes: answer, diagnosis }))
+        }
       }
     }
   }
