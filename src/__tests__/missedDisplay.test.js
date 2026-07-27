@@ -4,6 +4,7 @@ import {
   findMissedBankIndex,
   missedReviewOptionRows,
   missedUserAttemptLabel,
+  isDuplicateMissedEntry,
 } from '../missed/missedDisplay.js'
 
 describe('missedDisplay', () => {
@@ -66,5 +67,30 @@ describe('missedDisplay', () => {
     const bank = [entry]
     const copy = { ...entry, answerReview: { examTip: 'tip' } }
     expect(findMissedBankIndex(bank, copy)).toBe(0)
+  })
+
+  describe('isDuplicateMissedEntry', () => {
+    it('is false against an empty or missing bank', () => {
+      const entry = buildMissedEntry('1.1', mc, { selectedIndex: 0 })
+      expect(isDuplicateMissedEntry([], entry)).toBe(false)
+      expect(isDuplicateMissedEntry(undefined, entry)).toBe(false)
+    })
+
+    it('is true when the same question+objective is already in the bank', () => {
+      const first = buildMissedEntry('1.1', mc, { selectedIndex: 0 })
+      const second = buildMissedEntry('1.1', mc, { selectedIndex: 2 })
+      expect(isDuplicateMissedEntry([first], second)).toBe(true)
+    })
+
+    it('is false for the same question under a different objective', () => {
+      const first = buildMissedEntry('1.1', mc, { selectedIndex: 0 })
+      const second = buildMissedEntry('2.3', mc, { selectedIndex: 0 })
+      expect(isDuplicateMissedEntry([first], second)).toBe(false)
+    })
+
+    it('never collides entries with no questionId', () => {
+      const noId = { ...buildMissedEntry('1.1', mc, { selectedIndex: 0 }), questionId: undefined }
+      expect(isDuplicateMissedEntry([noId], { ...noId })).toBe(false)
+    })
   })
 })

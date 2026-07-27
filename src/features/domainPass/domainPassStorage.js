@@ -5,6 +5,7 @@ import {
   evaluateDomainPass,
   isDomainPassPassed,
 } from './domainPassConfig.js'
+import { isDuplicateMissedEntry } from '../../missed/missedDisplay.js'
 
 const MAX_FOCUS_ATTEMPTS = 20
 
@@ -164,9 +165,7 @@ export function countPassedDomains(records, domains) {
 
 export async function appendMissedEntry(entry) {
   const missed = (await window.storage.getItem(STORAGE_KEYS.missed)) || []
-  // Only add if this question hasn't already been marked as missed
-  const alreadyMissed = missed.some(m => m.questionId === entry.questionId && m.objectiveId === entry.objectiveId)
-  if (!alreadyMissed) {
+  if (!isDuplicateMissedEntry(missed, entry)) {
     await window.storage.setItem(STORAGE_KEYS.missed, [...missed, entry])
   }
 }

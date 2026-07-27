@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { saveProgress, saveMissed } from '../../storage/appPersistence.js'
 import { buildEngagementProgressPatch } from './masteryEngagement.js'
+import { isDuplicateMissedEntry } from '../../missed/missedDisplay.js'
 
 /** Progress and missed-question handlers — extracted from App.jsx. */
 export function useAppProgress({ setProgress, setMissed }) {
@@ -34,6 +35,7 @@ export function useAppProgress({ setProgress, setMissed }) {
 
   const handleMissed = useCallback((entry) => {
     setMissed(prev => {
+      if (isDuplicateMissedEntry(prev, entry)) return prev
       const next = [...prev, entry]
       saveMissed(next)
       return next

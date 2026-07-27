@@ -22,6 +22,17 @@ export function findMissedBankIndex(missed, entry) {
 }
 
 /**
+ * Write-time dedup guard shared by every missed-entry writer: true when a
+ * question already sits in the missed bank (unretested) for the same objective.
+ * Prevents the same question from producing two rows in Missed Review when
+ * it's missed again from a different session before being cleared.
+ */
+export function isDuplicateMissedEntry(missed, entry) {
+  if (!Array.isArray(missed) || entry?.questionId == null) return false
+  return missed.some(m => m?.questionId === entry.questionId && m?.objectiveId === entry.objectiveId)
+}
+
+/**
  * Rows for Missed Review answer list.
  * MC uses choices; CLI/ordering use the correct-answer label so `.map` never runs on undefined.
  */
